@@ -1,72 +1,92 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.bath#1139",
-  "publication_group": "cruciblecraft:bath/remainder/exact_multi",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 512,
-      "eut": 0,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 720,
-          "id": "cruciblecraft:molten_magnesium_carbonate"
+          "fluid_inputs": [
+            {
+              "amount": 720,
+              "id": "cruciblecraft:molten_magnesium_carbonate"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 720,
+              "id": "cruciblecraft:molten_calcite"
+            }
+          ],
+          "fluid_outputs": []
         }
       ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        4
+      "hashes": [
+        "2334e91566092af8a926eef424a1ae81a5efe999956234f25fcd57396e594b4b",
+        "f4f9ceae351f1d2e93ca401975ba7eb8774e11b73013ccb46d4e285a26d419b2"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:salt/dust"
-        }
+        [
+          {
+            "item": "cruciblecraft:salt/dust"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 3,
-          "id": "cruciblecraft:magnesium_chloride/dust"
-        },
-        {
-          "count": 3,
-          "id": "cruciblecraft:sodium_carbonate/dust"
-        },
-        {
-          "count": 3,
-          "id": "cruciblecraft:sodium_carbonate/dust"
-        }
-      ],
-      "output_chances": [
-        10000,
-        10000,
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "2334e91566092af8a926eef424a1ae81a5efe999956234f25fcd57396e594b4b"
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:magnesium_chloride/dust"
+          },
+          {
+            "count": 3,
+            "id": "cruciblecraft:sodium_carbonate/dust"
+          },
+          {
+            "count": 3,
+            "id": "cruciblecraft:sodium_carbonate/dust"
+          }
         ],
-        "selected_source_recipe": "gt.recipe.bath#1139",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/439bd0cff41d539e"
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:calcium_chloride/dust"
+          },
+          {
+            "count": 3,
+            "id": "cruciblecraft:sodium_carbonate/dust"
+          },
+          {
+            "count": 3,
+            "id": "cruciblecraft:sodium_carbonate/dust"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:bath/remainder/439bd0cff41d539e",
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        1,
+        "cruciblecraft:bath/remainder/537e28ed1b603bbc",
+        1,
+        1
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 512,
       "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 720,
-          "id": "cruciblecraft:molten_calcite"
-        }
-      ],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -75,42 +95,17 @@
       "item_input_counts": [
         4
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:salt/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 3,
-          "id": "cruciblecraft:calcium_chloride/dust"
-        },
-        {
-          "count": 3,
-          "id": "cruciblecraft:sodium_carbonate/dust"
-        },
-        {
-          "count": 3,
-          "id": "cruciblecraft:sodium_carbonate/dust"
-        }
-      ],
       "output_chances": [
         10000,
         10000,
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "f4f9ceae351f1d2e93ca401975ba7eb8774e11b73013ccb46d4e285a26d419b2"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#1139",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/537e28ed1b603bbc"
+      "selected_source_recipe": "gt.recipe.bath#1139",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:bath/remainder/exact_multi",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:bath",
   "type": "cruciblecraft:compact_gt_recipe_family"

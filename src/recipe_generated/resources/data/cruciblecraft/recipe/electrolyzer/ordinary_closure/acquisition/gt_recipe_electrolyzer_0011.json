@@ -1,95 +1,102 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.electrolyzer#0011",
-  "publication_group": "cruciblecraft:electrolyzer/ordinary_closure/acquisition",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 1024,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 1,
-          "id": "cruciblecraft:molten_cryolite"
-        },
-        {
-          "amount": 2,
-          "id": "cruciblecraft:molten_aluminium_fluoride"
+          "fluid_inputs": [
+            {
+              "amount": 1,
+              "id": "cruciblecraft:molten_cryolite"
+            },
+            {
+              "amount": 2,
+              "id": "cruciblecraft:molten_aluminium_fluoride"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 4500,
+              "id": "cruciblecraft:carbon_dioxide"
+            },
+            {
+              "amount": 14,
+              "id": "cruciblecraft:fluorine"
+            }
+          ]
         }
       ],
-      "fluid_outputs": [
-        {
-          "amount": 4500,
-          "id": "cruciblecraft:carbon_dioxide"
-        },
-        {
-          "amount": 14,
-          "id": "cruciblecraft:fluorine"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        5
+      "hashes": [
+        "8a4fa7ffef91a8195262fa54d8c7b77326a63b797d7055b59a3330e6d573bb89",
+        "be458d1ee9231737db5a0082b949234dffed5802e9d1d074a0363788feecfffc",
+        "48ea389bfa1e1d1b327fe686087a0046c8552b6efeb19cb43f915e2de2be3164"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:coal_coke/small_dust"
-        },
-        {
-          "item": "cruciblecraft:alumina/ingot"
-        }
+        [
+          {
+            "item": "cruciblecraft:coal_coke/small_dust"
+          },
+          {
+            "item": "cruciblecraft:alumina/ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:graphite/small_dust"
+          },
+          {
+            "item": "cruciblecraft:alumina/ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:carbon/small_dust"
+          },
+          {
+            "item": "cruciblecraft:alumina/ingot"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aluminium/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "8a4fa7ffef91a8195262fa54d8c7b77326a63b797d7055b59a3330e6d573bb89"
-        ],
-        "selected_source_recipe": "gt.recipe.electrolyzer#0011",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:electrolyzer/ordinary_closure/8d598dee6da3d686"
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:aluminium/dust"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:electrolyzer/ordinary_closure/8d598dee6da3d686",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:electrolyzer/ordinary_closure/e28a865e240613a9",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:electrolyzer/ordinary_closure/a26027d60ee8989f",
+        2,
+        2
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 1024,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1,
-          "id": "cruciblecraft:molten_cryolite"
-        },
-        {
-          "amount": 2,
-          "id": "cruciblecraft:molten_aluminium_fluoride"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 4500,
-          "id": "cruciblecraft:carbon_dioxide"
-        },
-        {
-          "amount": 14,
-          "id": "cruciblecraft:fluorine"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -102,99 +109,15 @@
         6,
         5
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:graphite/small_dust"
-        },
-        {
-          "item": "cruciblecraft:alumina/ingot"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aluminium/dust"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "be458d1ee9231737db5a0082b949234dffed5802e9d1d074a0363788feecfffc"
-        ],
-        "selected_source_recipe": "gt.recipe.electrolyzer#0011",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:electrolyzer/ordinary_closure/e28a865e240613a9"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 1024,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1,
-          "id": "cruciblecraft:molten_cryolite"
-        },
-        {
-          "amount": 2,
-          "id": "cruciblecraft:molten_aluminium_fluoride"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 4500,
-          "id": "cruciblecraft:carbon_dioxide"
-        },
-        {
-          "amount": 14,
-          "id": "cruciblecraft:fluorine"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        5
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:carbon/small_dust"
-        },
-        {
-          "item": "cruciblecraft:alumina/ingot"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aluminium/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "48ea389bfa1e1d1b327fe686087a0046c8552b6efeb19cb43f915e2de2be3164"
-        ],
-        "selected_source_recipe": "gt.recipe.electrolyzer#0011",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:electrolyzer/ordinary_closure/a26027d60ee8989f"
+      "selected_source_recipe": "gt.recipe.electrolyzer#0011",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:electrolyzer/ordinary_closure/acquisition",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:electrolyzer",
   "type": "cruciblecraft:compact_gt_recipe_family"

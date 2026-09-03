@@ -1,0 +1,70 @@
+{
+  "allows_implementation_child": false,
+  "categories": [
+    {
+      "allows_implementation_child": false,
+      "category": "Panels",
+      "destination": null,
+      "missing_evidence": [],
+      "reasons": [
+        "Panels capability-map cc_mechanism is none.",
+        "No named energy-converter, cover, or machine-tier runtime covers it.",
+        "The gap is a missing mechanism, not a missing definition row."
+      ],
+      "verdict": "requires_new_runtime"
+    },
+    {
+      "allows_implementation_child": false,
+      "category": "Sensors",
+      "destination": null,
+      "missing_evidence": [],
+      "reasons": [
+        "Sensors capability-map cc_mechanism is none.",
+        "No named energy-converter, cover, or machine-tier runtime covers it.",
+        "The gap is a missing mechanism, not a missing definition row."
+      ],
+      "verdict": "requires_new_runtime"
+    },
+    {
+      "allows_implementation_child": false,
+      "category": "Portals",
+      "destination": null,
+      "missing_evidence": [],
+      "reasons": [
+        "Portals capability-map cc_mechanism is none.",
+        "No named energy-converter, cover, or machine-tier runtime covers it.",
+        "The gap is a missing mechanism, not a missing definition row."
+      ],
+      "verdict": "requires_new_runtime"
+    },
+    {
+      "allows_implementation_child": false,
+      "category": "Batteries",
+      "destination": null,
+      "missing_evidence": [],
+      "reasons": [
+        "Batteries capability-map cc_mechanism is none.",
+        "No named energy-converter, cover, or machine-tier runtime covers it.",
+        "The gap is a missing mechanism, not a missing definition row."
+      ],
+      "verdict": "requires_new_runtime"
+    },
+    {
+      "allows_implementation_child": false,
+      "category": "Reactors",
+      "destination": "portfolio/nuclear",
+      "missing_evidence": [],
+      "reasons": [
+        "All 46 Reactors carry reactor_part_not_machine_behavior.",
+        "growth_order already names portfolio/nuclear.",
+        "nuclear_started stays false. This card does not implement fission, fusion, or plasma."
+      ],
+      "verdict": "defer_to_portfolio"
+    }
+  ],
+  "generated_by": "python tools/build_t13c_exclusion_reclaim_r0.py",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "FEASIBILITY_READY",
+  "wave_slug": "portfolio/t13c-exclusion-reclaim-r0"
+}

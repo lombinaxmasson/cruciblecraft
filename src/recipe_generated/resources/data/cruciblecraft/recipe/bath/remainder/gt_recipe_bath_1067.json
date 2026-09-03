@@ -1,62 +1,70 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.bath#1067",
-  "publication_group": "cruciblecraft:bath/remainder/exact_multi",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 0,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 5,
-          "id": "cruciblecraft:dye_watermixed_orange"
+          "fluid_inputs": [
+            {
+              "amount": 5,
+              "id": "cruciblecraft:dye_watermixed_orange"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 5,
+              "id": "cruciblecraft:dye_flower_orange"
+            }
+          ],
+          "fluid_outputs": []
         }
       ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "6774a0fbcc532a3a1279713bb81cf90472263e2c16688f6aff12a8a260cf79d0",
+        "917efd6a318fd4a520f1d7f07e99ec87bee967b3d4290e941ffac833cf5dcdda"
       ],
       "item_inputs": [
-        {
-          "item": "minecraft:white_carpet"
-        }
+        [
+          {
+            "item": "minecraft:white_carpet"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 1,
-          "id": "minecraft:orange_carpet"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "6774a0fbcc532a3a1279713bb81cf90472263e2c16688f6aff12a8a260cf79d0"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#1067",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/fb85fae7acfac2bd"
+        [
+          {
+            "count": 1,
+            "id": "minecraft:orange_carpet"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:bath/remainder/fb85fae7acfac2bd",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:bath/remainder/34be6d1d2329393d",
+        1,
+        1
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 5,
-          "id": "cruciblecraft:dye_flower_orange"
-        }
-      ],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -65,32 +73,15 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "minecraft:white_carpet"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "minecraft:orange_carpet"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "917efd6a318fd4a520f1d7f07e99ec87bee967b3d4290e941ffac833cf5dcdda"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#1067",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/34be6d1d2329393d"
+      "selected_source_recipe": "gt.recipe.bath#1067",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:bath/remainder/exact_multi",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:bath",
   "type": "cruciblecraft:compact_gt_recipe_family"

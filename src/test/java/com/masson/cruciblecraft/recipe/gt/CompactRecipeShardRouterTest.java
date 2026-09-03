@@ -178,8 +178,7 @@ class CompactRecipeShardRouterTest {
                 shadowOrder,
                 new GTRecipeProvenance(
                         "SOURCE_BACKED",
-                        Optional.of("gt.recipe.centrifuge#router"),
-                        List.of("router-test")));
+                        Optional.of("gt.recipe.centrifuge#router")));
     }
 
     private static ResourceLocation id(String path) {

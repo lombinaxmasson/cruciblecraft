@@ -298,7 +298,7 @@ class AssemblerWoodMeasurementHarness {
     private static int countLogicalRows(List<CompactRecipeFamilySource> familySources) {
         int total = 0;
         for (CompactRecipeFamilySource source : familySources) {
-            total += source.definition().relations().size();
+            total += source.authoredRelations().size();
         }
         return total;
     }
@@ -740,7 +740,7 @@ class AssemblerWoodMeasurementHarness {
         List<GTRecipeQuery> queries = new ArrayList<>();
         for (CompactRecipeFamilySource source : familySources) {
             for (CompactGTRecipeFamilyDefinition.Relation relation
-                    : source.definition().relations()) {
+                    : source.authoredRelations()) {
                 List<ItemStack> offered = new ArrayList<>();
                 List<Ingredient> inputs = relation.itemInputs();
                 List<Integer> counts = relation.itemInputCounts();

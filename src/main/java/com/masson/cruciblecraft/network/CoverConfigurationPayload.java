@@ -57,6 +57,8 @@ public record CoverConfigurationPayload(
                     && value < CoverDefinition.TransferMode.values().length;
             case SELECTOR -> value >= 0
                     && value <= CoverDefinition.MAX_SELECTOR;
+            case NETWORK_ID -> value >= 0
+                    && value <= CoverDefinition.MAX_NETWORK_ID;
         };
     }
 

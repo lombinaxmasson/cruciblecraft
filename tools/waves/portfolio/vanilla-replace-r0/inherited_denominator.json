@@ -1,0 +1,110 @@
+{
+  "already_closed_elsewhere": {
+    "empty_dump_maps": {
+      "is_census": false,
+      "recipe_counts": {
+        "gt.recipe.autocrafting": 0,
+        "mc.recipe.furnace": 0,
+        "mc.recipe.furnacefuel": 0
+      }
+    },
+    "t30_hopper_vanilla": {
+      "owner_here": false,
+      "recipe_count": 121,
+      "status": "T30_READY"
+    },
+    "worldgen_ores_vanilla": {
+      "feature_count": 24,
+      "full_other_features": 190,
+      "owner_here": false,
+      "remainder_after_non_ore_slice": 172,
+      "status": "non-ore-worldgen remainder"
+    }
+  },
+  "authority_hashes": {
+    "capability_map": "afd2c54ad8737e18474f85a11de86af5e0fe94a0332a2d2dd2b01e758ced6719",
+    "growth_order": "159dde552217dba3e23fcc82d9209ec6c6510fde51de834a6e24dafbae857e0e",
+    "logistics_cover_net_r0_seal": "a6432d9f65070e52e679964bf9319abc47d88237a373b8626e3673689a5ea47b",
+    "non_ore_worldgen_r0_seal": "062ce0d80e609d7b6ad0c47e180038c74877476ee382ff5003c2a0cdd93d9f81",
+    "t13_gt6_tree_manifest": "cfb7aeb7951a3c4ef761cb4f79ff04099f504cf90c9eeb40acfc87a4926b8f9f",
+    "t13_source_symbol_inventory": "d5aa1faa86ac336d83a0c120d6b4aaa29a07d9f95390a4c7ffc50757eac81f91",
+    "t13c_exclusion_reclaim_r0_seal": "9dd40d0e7fafc383fac68017f6aa05dd199ff417469a0b62f9180be74d99bf17"
+  },
+  "capability_map_seed": {
+    "1x_disposition": "not_in_1x",
+    "cc_mechanism": "none",
+    "correspondence_class": "out_of_scope_historical",
+    "growth_blocker": "no_owner",
+    "gt6_anchor": "GT6 Vanilla replace loaders",
+    "gt6_domain": "loader",
+    "inherited_from_seed": true,
+    "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+  },
+  "categories": [
+    {
+      "capability_row": {
+        "1x_disposition": "not_in_1x",
+        "cc_mechanism": "none",
+        "correspondence_class": "out_of_scope_historical",
+        "growth_blocker": "no_owner",
+        "gt6_anchor": "gregtech.loaders.c.Loader_Recipes_Vanilla",
+        "gt6_domain": "loader",
+        "recheck_condition": "Vanilla replace loader. Not a 1.x failure and not a forever ban."
+      },
+      "category": "Vanilla",
+      "gt6_anchor": "gregtech.loaders.c.Loader_Recipes_Vanilla",
+      "source_file_count": 1,
+      "source_files": [
+        {
+          "git_blob_sha1": "4c459acd2c7729d4186c5ada9ccd76181745bacf",
+          "nested_classes": [
+            "Loader_Recipes_Vanilla"
+          ],
+          "path": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+          "size": 92644
+        }
+      ]
+    },
+    {
+      "capability_row": {
+        "1x_disposition": "not_in_1x",
+        "cc_mechanism": "none",
+        "correspondence_class": "out_of_scope_historical",
+        "growth_blocker": "no_owner",
+        "gt6_anchor": "gregtech.loaders.c.Loader_Recipes_Replace + gregtech.asm.transformers.minecraft.Replacements",
+        "gt6_domain": "loader",
+        "recheck_condition": "Vanilla replacement transformer. CC mechanism is none."
+      },
+      "category": "Replace",
+      "gt6_anchor": "gregtech.loaders.c.Loader_Recipes_Replace + gregtech.asm.transformers.minecraft.Replacements",
+      "source_file_count": 2,
+      "source_files": [
+        {
+          "git_blob_sha1": "d75124ccf34297b4a59f87553564a02d887c0bc0",
+          "nested_classes": [
+            "Loader_Recipes_Replace",
+            "RecipeReplacement",
+            "RecipeReplacer"
+          ],
+          "path": "src/main/java/gregtech/loaders/c/Loader_Recipes_Replace.java",
+          "size": 25382
+        },
+        {
+          "git_blob_sha1": "584a2030723c11e984b5b7437ed17f7a9bc93e5d",
+          "nested_classes": [
+            "Replacements"
+          ],
+          "path": "src/main/java/gregtech/asm/transformers/minecraft/Replacements.java",
+          "size": 5592
+        }
+      ]
+    }
+  ],
+  "category_count": 2,
+  "generated_by": "python tools/build_vanilla_replace_r0.py",
+  "schema_version": 1,
+  "source_file_count": 3,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "INHERITED_DENOMINATOR_READY",
+  "wave_slug": "portfolio/vanilla-replace-r0"
+}

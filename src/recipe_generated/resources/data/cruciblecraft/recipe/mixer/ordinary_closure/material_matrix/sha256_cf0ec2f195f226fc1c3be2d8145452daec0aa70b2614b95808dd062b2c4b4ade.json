@@ -1,72 +1,113 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:cf0ec2f195f226fc1c3be2d8145452daec0aa70b2614b95808dd062b2c4b4ade",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 80,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 4000,
-          "id": "cruciblecraft:hydrochloric_acid"
+          "fluid_inputs": [
+            {
+              "amount": 4000,
+              "id": "cruciblecraft:hydrochloric_acid"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 2000,
+              "id": "cruciblecraft:hydrogen"
+            }
+          ]
         }
       ],
-      "fluid_outputs": [
-        {
-          "amount": 2000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "9203655ddb11991601f56d379f6b8404120756b3009c5804773bad9aeae34b25",
+        "b8fc2635e882e8303e2c733fd24d715efcbe4490879cc225b3686bd99ea69430",
+        "d3e90a5a9dd8689fb4511007ab68dd48505e2b4eaa9034c0555f7eb44bc4561a",
+        "fb333843ff5695defa1c3daa6c38b90c6c73fdedc59c8ba043ab1a1973c003bf",
+        "25a5a54e609f32293edcffc4c54876f8b68ba00b3e5c68c5a62ac61d074ad143"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:pig_iron/dust"
-        }
+        [
+          {
+            "item": "cruciblecraft:pig_iron/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iron/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoric_iron/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteorite/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:enori/dust"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 3,
-          "id": "cruciblecraft:ferrous_chloride/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "9203655ddb11991601f56d379f6b8404120756b3009c5804773bad9aeae34b25"
-        ],
-        "selected_source_recipe": "sha256:cf0ec2f195f226fc1c3be2d8145452daec0aa70b2614b95808dd062b2c4b4ade",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/fe1067190e3f6327"
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:ferrous_chloride/dust"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/fe1067190e3f6327",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/4c2e29345574a323",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/705c509c5c1278c2",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/0252b4a2f9fc47d0",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/75f8c90be8602e47",
+        4,
+        4
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 80,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 4000,
-          "id": "cruciblecraft:hydrochloric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 2000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -75,179 +116,15 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:iron/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 3,
-          "id": "cruciblecraft:ferrous_chloride/dust"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "b8fc2635e882e8303e2c733fd24d715efcbe4490879cc225b3686bd99ea69430"
-        ],
-        "selected_source_recipe": "sha256:cf0ec2f195f226fc1c3be2d8145452daec0aa70b2614b95808dd062b2c4b4ade",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/4c2e29345574a323"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 80,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 4000,
-          "id": "cruciblecraft:hydrochloric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 2000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:meteoric_iron/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 3,
-          "id": "cruciblecraft:ferrous_chloride/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "d3e90a5a9dd8689fb4511007ab68dd48505e2b4eaa9034c0555f7eb44bc4561a"
-        ],
-        "selected_source_recipe": "sha256:cf0ec2f195f226fc1c3be2d8145452daec0aa70b2614b95808dd062b2c4b4ade",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/705c509c5c1278c2"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 80,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 4000,
-          "id": "cruciblecraft:hydrochloric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 2000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:meteorite/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 3,
-          "id": "cruciblecraft:ferrous_chloride/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "fb333843ff5695defa1c3daa6c38b90c6c73fdedc59c8ba043ab1a1973c003bf"
-        ],
-        "selected_source_recipe": "sha256:cf0ec2f195f226fc1c3be2d8145452daec0aa70b2614b95808dd062b2c4b4ade",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/0252b4a2f9fc47d0"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 80,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 4000,
-          "id": "cruciblecraft:hydrochloric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 2000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:enori/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 3,
-          "id": "cruciblecraft:ferrous_chloride/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "25a5a54e609f32293edcffc4c54876f8b68ba00b3e5c68c5a62ac61d074ad143"
-        ],
-        "selected_source_recipe": "sha256:cf0ec2f195f226fc1c3be2d8145452daec0aa70b2614b95808dd062b2c4b4ade",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 4,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/75f8c90be8602e47"
+      "selected_source_recipe": "sha256:cf0ec2f195f226fc1c3be2d8145452daec0aa70b2614b95808dd062b2c4b4ade",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

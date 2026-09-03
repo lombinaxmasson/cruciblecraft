@@ -52,7 +52,7 @@ public final class BathIdentityGameTests {
     private static final int EXACT_RELATIONS = 47;
     private static final int EXACT_MULTI_RELATIONS = 12422;
     private static final int TOOL_HEAD_RELATIONS = 21622;
-    private static final int IDENTITY_COUNT = 3532;
+    private static final int IDENTITY_COUNT = 71;
     private static final int FLUID_SUPPORT_RECIPES = 2;
     private static final int BATH_REMAINDER_LOCKED_RELATIONS = 13708;
     private static final ResourceLocation BATH_MTE_GROUP =
@@ -75,7 +75,7 @@ public final class BathIdentityGameTests {
         helper.assertTrue(
                 BathIdentityCatalog.VARIANT_COUNT == IDENTITY_COUNT
                         && BathIdentityCatalog.identities().size() == IDENTITY_COUNT,
-                "bath/identity identity catalog drifted from 3532");
+                "bath/identity identity catalog drifted from 71");
         helper.assertTrue(
                 ModItems.bathIdentityItemsById().size() == IDENTITY_COUNT,
                 "bath/identity identity items drifted: "

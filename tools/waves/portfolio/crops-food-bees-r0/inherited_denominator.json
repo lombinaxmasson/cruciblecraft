@@ -1,0 +1,402 @@
+{
+  "already_closed_elsewhere": {
+    "count_ceiling_kind_envelope": {
+      "owner_here": false,
+      "status": "COUNT_CEILING_REFS_READY",
+      "telemetry_report_only": true
+    },
+    "generic_recipe_import": {
+      "creates_recipe_maps": false,
+      "owner_here": false,
+      "status": "GENERIC_RECIPE_IMPORT_READY"
+    },
+    "non_ore_worldgen_r0": {
+      "feature_count": 18,
+      "full_other_features": 190,
+      "owner_here": false,
+      "remainder_after_slice": 172,
+      "status": "NON_ORE_WORLDGEN_R0_READY"
+    },
+    "t20_worldgen_catalog": {
+      "fluid_deposit_count": 2,
+      "ore_vein_count": 129,
+      "owner_here": false,
+      "surface_scatter_id": "surface_rock_scatter"
+    },
+    "vanilla_replace_r0": {
+      "owner_here": false,
+      "status": "VANILLA_REPLACE_R0_READY"
+    }
+  },
+  "authority_hashes": {
+    "capability_map": "afd2c54ad8737e18474f85a11de86af5e0fe94a0332a2d2dd2b01e758ced6719",
+    "dump_index": "04a1ddf9f0bee4432206d2e89890839c10e4a9ad0b66aa3cd67f7385c31abc7f",
+    "growth_order": "159dde552217dba3e23fcc82d9209ec6c6510fde51de834a6e24dafbae857e0e",
+    "non_ore_worldgen_r0_seal": "062ce0d80e609d7b6ad0c47e180038c74877476ee382ff5003c2a0cdd93d9f81",
+    "other_features": "af58bb23fe9be024176ba81cee784fe1c91748a3aedd72bc28a286b42968af23",
+    "t20_worldgen_source_policy": "585b365382554323e557b9ce44eb68414e2b50748a0882dd398f0722095f7414",
+    "t35_excluded_object_reclaim": "e9f697209038fe988e6a2bd4d17a8c832167893dbc3542625a1794ed9dd60363",
+    "vanilla_replace_r0_seal": "e0b28a323a155b9d1d6d2dabf54ff5783e6ee212dcccdb62a7b9b34dcd8e423c"
+  },
+  "capability_map_seed": {
+    "1x_disposition": "not_in_1x",
+    "cc_mechanism": "none",
+    "correspondence_class": "out_of_scope_historical",
+    "growth_blocker": "no_owner",
+    "gt6_anchor": "crops / food / bees",
+    "gt6_domain": "worldgen",
+    "inherited_from_seed": true,
+    "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+  },
+  "categories": [
+    {
+      "capability_row": {
+        "1x_disposition": "not_in_1x",
+        "cc_mechanism": "none",
+        "correspondence_class": "out_of_scope_historical",
+        "growth_blocker": "no_owner",
+        "gt6_anchor": "GT6 crops / plants (dump worldgen plant.* + gt.recipe.squeezer)",
+        "gt6_domain": "worldgen",
+        "recheck_condition": "Crops/food/bees remain none. Anchor is the GT6 plant/crop source, not 'later'."
+      },
+      "category": "Crops",
+      "dump_maps": [
+        {
+          "file": "maps/gt.recipe.squeezer.json",
+          "is_census": false,
+          "nameInternal": "gt.recipe.squeezer",
+          "nameLocal": "Squeezer",
+          "recipeCount": 5322
+        }
+      ],
+      "dump_recipe_count_context": 5322,
+      "feature_count": 2,
+      "features": [
+        {
+          "category": "worldgenerator.plant.glowtus",
+          "enabled": true,
+          "invalid": false,
+          "name": "plant.glowtus",
+          "type": "WorldgenGlowtus"
+        },
+        {
+          "category": "worldgenerator.plant.bush",
+          "enabled": true,
+          "invalid": false,
+          "name": "plant.bush",
+          "type": "WorldgenBushes"
+        }
+      ],
+      "gt6_anchor": "GT6 crops / plants (dump worldgen plant.* + gt.recipe.squeezer)",
+      "names": [
+        "plant.glowtus",
+        "plant.bush"
+      ],
+      "types": [
+        "WorldgenGlowtus",
+        "WorldgenBushes"
+      ]
+    },
+    {
+      "capability_row": {
+        "1x_disposition": "not_in_1x",
+        "cc_mechanism": "none",
+        "correspondence_class": "out_of_scope_historical",
+        "growth_blocker": "no_owner",
+        "gt6_anchor": "GT6 food maps (gt.recipe.juicer / gt.recipe.fermenter)",
+        "gt6_domain": "worldgen",
+        "recheck_condition": "Food processing maps are none in CC."
+      },
+      "category": "Food",
+      "dump_maps": [
+        {
+          "file": "maps/gt.recipe.juicer.json",
+          "is_census": false,
+          "nameInternal": "gt.recipe.juicer",
+          "nameLocal": "Juicer",
+          "recipeCount": 96
+        },
+        {
+          "file": "maps/gt.recipe.fermenter.json",
+          "is_census": false,
+          "nameInternal": "gt.recipe.fermenter",
+          "nameLocal": "Fermenter",
+          "recipeCount": 6435
+        }
+      ],
+      "dump_recipe_count_context": 6531,
+      "feature_count": 0,
+      "features": [],
+      "gt6_anchor": "GT6 food maps (gt.recipe.juicer / gt.recipe.fermenter)",
+      "names": [],
+      "types": []
+    },
+    {
+      "capability_row": {
+        "1x_disposition": "not_in_1x",
+        "cc_mechanism": "none",
+        "correspondence_class": "out_of_scope_historical",
+        "growth_blocker": "no_owner",
+        "gt6_anchor": "gt.recipe.bumblequeen / gt.recipe.bumblelyzer + WorldgenHives",
+        "gt6_domain": "worldgen",
+        "recheck_condition": "Bee/hive source maps and worldgen hives. CC mechanism is none."
+      },
+      "category": "Bees",
+      "dump_maps": [
+        {
+          "file": "maps/gt.recipe.bumblequeen.json",
+          "is_census": false,
+          "nameInternal": "gt.recipe.bumblequeen",
+          "nameLocal": "Bumblebee Queen",
+          "recipeCount": 80
+        },
+        {
+          "file": "maps/gt.recipe.bumblelyzer.json",
+          "is_census": false,
+          "nameInternal": "gt.recipe.bumblelyzer",
+          "nameLocal": "Bumblelyzer",
+          "recipeCount": 1440
+        }
+      ],
+      "dump_recipe_count_context": 1520,
+      "feature_count": 10,
+      "features": [
+        {
+          "category": "worldgenerator.overworld.bumblehives",
+          "enabled": true,
+          "invalid": false,
+          "name": "overworld.bumblehives",
+          "type": "WorldgenHives"
+        },
+        {
+          "category": "worldgenerator.nether.bumblehives",
+          "enabled": true,
+          "invalid": false,
+          "name": "nether.bumblehives",
+          "type": "WorldgenHives"
+        },
+        {
+          "category": "worldgenerator.aether.bumblehives",
+          "enabled": true,
+          "invalid": false,
+          "name": "aether.bumblehives",
+          "type": "WorldgenHives"
+        },
+        {
+          "category": "worldgenerator.end.bumblehives",
+          "enabled": true,
+          "invalid": false,
+          "name": "end.bumblehives",
+          "type": "WorldgenHives"
+        },
+        {
+          "category": "worldgenerator.twilight.bumblehives",
+          "enabled": true,
+          "invalid": false,
+          "name": "twilight.bumblehives",
+          "type": "WorldgenHives"
+        },
+        {
+          "category": "worldgenerator.erebus.bumblehives",
+          "enabled": true,
+          "invalid": false,
+          "name": "erebus.bumblehives",
+          "type": "WorldgenHives"
+        },
+        {
+          "category": "worldgenerator.betweenlands.bumblehives",
+          "enabled": true,
+          "invalid": false,
+          "name": "betweenlands.bumblehives",
+          "type": "WorldgenHives"
+        },
+        {
+          "category": "worldgenerator.atum.bumblehives",
+          "enabled": true,
+          "invalid": false,
+          "name": "atum.bumblehives",
+          "type": "WorldgenHives"
+        },
+        {
+          "category": "worldgenerator.alfheim.bumblehives",
+          "enabled": true,
+          "invalid": false,
+          "name": "alfheim.bumblehives",
+          "type": "WorldgenHives"
+        },
+        {
+          "category": "worldgenerator.tropics.bumblehives",
+          "enabled": true,
+          "invalid": false,
+          "name": "tropics.bumblehives",
+          "type": "WorldgenHives"
+        }
+      ],
+      "gt6_anchor": "gt.recipe.bumblequeen / gt.recipe.bumblelyzer + WorldgenHives",
+      "names": [
+        "overworld.bumblehives",
+        "nether.bumblehives",
+        "aether.bumblehives",
+        "end.bumblehives",
+        "twilight.bumblehives",
+        "erebus.bumblehives",
+        "betweenlands.bumblehives",
+        "atum.bumblehives",
+        "alfheim.bumblehives",
+        "tropics.bumblehives"
+      ],
+      "types": [
+        "WorldgenHives",
+        "WorldgenHives",
+        "WorldgenHives",
+        "WorldgenHives",
+        "WorldgenHives",
+        "WorldgenHives",
+        "WorldgenHives",
+        "WorldgenHives",
+        "WorldgenHives",
+        "WorldgenHives"
+      ]
+    }
+  ],
+  "category_count": 3,
+  "dump": {
+    "feature_count": 190,
+    "path": "gt6_dump/gt6_recipe_dump/worldgen/other_features.json",
+    "recipe_index": "gt6_dump/gt6_recipe_dump/index.json",
+    "sha256": "af58bb23fe9be024176ba81cee784fe1c91748a3aedd72bc28a286b42968af23"
+  },
+  "dump_recipe_count_context": 13373,
+  "feature_count": 12,
+  "features": [
+    {
+      "category": "worldgenerator.plant.glowtus",
+      "enabled": true,
+      "invalid": false,
+      "name": "plant.glowtus",
+      "type": "WorldgenGlowtus"
+    },
+    {
+      "category": "worldgenerator.plant.bush",
+      "enabled": true,
+      "invalid": false,
+      "name": "plant.bush",
+      "type": "WorldgenBushes"
+    },
+    {
+      "category": "worldgenerator.overworld.bumblehives",
+      "enabled": true,
+      "invalid": false,
+      "name": "overworld.bumblehives",
+      "type": "WorldgenHives"
+    },
+    {
+      "category": "worldgenerator.nether.bumblehives",
+      "enabled": true,
+      "invalid": false,
+      "name": "nether.bumblehives",
+      "type": "WorldgenHives"
+    },
+    {
+      "category": "worldgenerator.aether.bumblehives",
+      "enabled": true,
+      "invalid": false,
+      "name": "aether.bumblehives",
+      "type": "WorldgenHives"
+    },
+    {
+      "category": "worldgenerator.end.bumblehives",
+      "enabled": true,
+      "invalid": false,
+      "name": "end.bumblehives",
+      "type": "WorldgenHives"
+    },
+    {
+      "category": "worldgenerator.twilight.bumblehives",
+      "enabled": true,
+      "invalid": false,
+      "name": "twilight.bumblehives",
+      "type": "WorldgenHives"
+    },
+    {
+      "category": "worldgenerator.erebus.bumblehives",
+      "enabled": true,
+      "invalid": false,
+      "name": "erebus.bumblehives",
+      "type": "WorldgenHives"
+    },
+    {
+      "category": "worldgenerator.betweenlands.bumblehives",
+      "enabled": true,
+      "invalid": false,
+      "name": "betweenlands.bumblehives",
+      "type": "WorldgenHives"
+    },
+    {
+      "category": "worldgenerator.atum.bumblehives",
+      "enabled": true,
+      "invalid": false,
+      "name": "atum.bumblehives",
+      "type": "WorldgenHives"
+    },
+    {
+      "category": "worldgenerator.alfheim.bumblehives",
+      "enabled": true,
+      "invalid": false,
+      "name": "alfheim.bumblehives",
+      "type": "WorldgenHives"
+    },
+    {
+      "category": "worldgenerator.tropics.bumblehives",
+      "enabled": true,
+      "invalid": false,
+      "name": "tropics.bumblehives",
+      "type": "WorldgenHives"
+    }
+  ],
+  "full_other_features": 190,
+  "generated_by": "python tools/build_crops_food_bees_r0.py",
+  "non_ore_owned_feature_count": 18,
+  "plantalyzer": {
+    "file": "maps/gt.recipe.plantalyzer.json",
+    "is_census": false,
+    "nameInternal": "gt.recipe.plantalyzer",
+    "nameLocal": "Plantalyzer",
+    "recipeCount": 0
+  },
+  "remainder_after_non_ore": 172,
+  "remainder_after_this_slice": {
+    "feature_count": 160,
+    "type_histogram": {
+      "WorldgenAetherRocks": 1,
+      "WorldgenAlfheimRocks": 1,
+      "WorldgenBlackSand": 1,
+      "WorldgenColtan": 1,
+      "WorldgenDeepOcean": 1,
+      "WorldgenErebusRocks": 1,
+      "WorldgenFluidSpring": 16,
+      "WorldgenLogDry": 1,
+      "WorldgenLogFrozen": 1,
+      "WorldgenLogMossy": 1,
+      "WorldgenLogRotten": 1,
+      "WorldgenNetherClay": 1,
+      "WorldgenNetherCrystals": 1,
+      "WorldgenNetherQuartz": 1,
+      "WorldgenOcean": 1,
+      "WorldgenOresVanilla": 24,
+      "WorldgenPit": 6,
+      "WorldgenRacks": 1,
+      "WorldgenRiver": 1,
+      "WorldgenRocks": 4,
+      "WorldgenSticks": 1,
+      "WorldgenStone": 90,
+      "WorldgenStoneLayers": 1,
+      "WorldgenSwamp": 1,
+      "WorldgenTurf": 1
+    }
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "INHERITED_DENOMINATOR_READY",
+  "wave_slug": "portfolio/crops-food-bees-r0"
+}

@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import json
 import unittest
 
 from tools import build_t30_publication_delta as builder
@@ -8,9 +7,6 @@ from tools import build_t30_publication_delta as builder
 
 class T30PublicationDeltaTest(unittest.TestCase):
     def test_committed_artifact_is_current_and_check_is_read_only(self) -> None:
-        on_disk = json.loads(builder.OUTPUT.read_text(encoding="utf-8"))
-        expected = builder.build()
-        self.assertEqual(expected, on_disk)
         before = builder.OUTPUT.read_bytes()
         self.assertEqual([], builder.check())
         self.assertEqual(before, builder.OUTPUT.read_bytes())

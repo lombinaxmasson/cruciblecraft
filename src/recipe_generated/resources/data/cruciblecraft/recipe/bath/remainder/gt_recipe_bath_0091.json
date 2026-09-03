@@ -1,62 +1,222 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.bath#0091",
-  "publication_group": "cruciblecraft:bath/remainder/exact_multi",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 18,
-      "eut": 0,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 2,
-          "id": "cruciblecraft:molten_zinc"
+          "fluid_inputs": [
+            {
+              "amount": 2,
+              "id": "cruciblecraft:molten_zinc"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 2,
+              "id": "cruciblecraft:molten_gold"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 3,
+              "id": "cruciblecraft:molten_midasium"
+            }
+          ],
+          "fluid_outputs": []
         }
       ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "7e697b68b350b705ee02670f4fbf2f95fbc08cda406768266f1dab1a8bf7c1fa",
+        "86cc778874247bf9ae856231fbf152f417af723bcd54f19f801181679540a5f1",
+        "c0634e2c2111bfaabad092e1c00fb4f6a43eb05025d897195ca0d028d7b25c24",
+        "a994f389db141d7f0e28bf0043c7a286d78138ce188e4704812cbcd2a26bf6e1",
+        "53696952581aa4e575d6c10f0d0d7e02eb8a7d9ab3f24ab3556f4ba491ae3422",
+        "49dca3e3dbd7416a79dae4e39e9cb5257dea48d86c476d1b3590d8b9ab461654",
+        "7076501c976897ad07d01bcac29eb3e2d2e3442904c2df1e2288000788906782",
+        "1c54d11e63235a275c5eb4fc5838a1d55198ebd3b35df6daa93d29fbc04d62d4",
+        "58a45513e5f16c3d742d8aa369d4d38427c06d84969d8c692612d32dd6ae6913",
+        "1dc00d00e2b8f83cc31044f5f5a8502c96f370575417070cd2d19a0a65187285",
+        "618367e343e6af2f4d5a19c496a8e24880728a00ca3dffc02e52c28ffa9e7072"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:knightmetal/fine_wire"
-        }
+        [
+          {
+            "item": "cruciblecraft:knightmetal/fine_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoric_iron/fine_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:cast_iron/fine_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:pig_iron/fine_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteorite/fine_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iron/fine_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:wrought_iron/fine_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iron_compressed/fine_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoric_steel/fine_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:lead/fine_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steel/fine_wire"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:steel_galvanized/fine_wire"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "7e697b68b350b705ee02670f4fbf2f95fbc08cda406768266f1dab1a8bf7c1fa"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:steel_galvanized/fine_wire"
+          }
         ],
-        "selected_source_recipe": "gt.recipe.bath#0091",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/f7a11c3d291552c0"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gilded_iron/fine_wire"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gold/fine_wire"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:bath/remainder/f7a11c3d291552c0",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        "cruciblecraft:bath/remainder/d9cf55b61fa10513",
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        1,
+        "cruciblecraft:bath/remainder/7f6a5d1c42f23d96",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        1,
+        "cruciblecraft:bath/remainder/33431637fe79986c",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        1,
+        "cruciblecraft:bath/remainder/488b078d52dfd32e",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        1,
+        "cruciblecraft:bath/remainder/721a90ebd767116b",
+        5,
+        5
+      ],
+      [
+        6,
+        1,
+        1,
+        "cruciblecraft:bath/remainder/33fc8d0816c750af",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        1,
+        "cruciblecraft:bath/remainder/143ecf1a48a670e8",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:bath/remainder/af6e504aa5a8823d",
+        8,
+        8
+      ],
+      [
+        9,
+        2,
+        2,
+        "cruciblecraft:bath/remainder/18ec020898285308",
+        9,
+        9
+      ],
+      [
+        10,
+        0,
+        0,
+        "cruciblecraft:bath/remainder/aa64740c2d245845",
+        10,
+        10
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 18,
       "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 2,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -65,428 +225,15 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:meteoric_iron/fine_wire"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gilded_iron/fine_wire"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "86cc778874247bf9ae856231fbf152f417af723bcd54f19f801181679540a5f1"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0091",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/d9cf55b61fa10513"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 18,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 2,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:cast_iron/fine_wire"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gilded_iron/fine_wire"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "c0634e2c2111bfaabad092e1c00fb4f6a43eb05025d897195ca0d028d7b25c24"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0091",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/7f6a5d1c42f23d96"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 18,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 2,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:pig_iron/fine_wire"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gilded_iron/fine_wire"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "a994f389db141d7f0e28bf0043c7a286d78138ce188e4704812cbcd2a26bf6e1"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0091",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/33431637fe79986c"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 18,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 2,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:meteorite/fine_wire"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gilded_iron/fine_wire"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "53696952581aa4e575d6c10f0d0d7e02eb8a7d9ab3f24ab3556f4ba491ae3422"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0091",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 4,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/488b078d52dfd32e"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 18,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 2,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:iron/fine_wire"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gilded_iron/fine_wire"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "49dca3e3dbd7416a79dae4e39e9cb5257dea48d86c476d1b3590d8b9ab461654"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0091",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 5,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/721a90ebd767116b"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 18,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 2,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:wrought_iron/fine_wire"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gilded_iron/fine_wire"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "7076501c976897ad07d01bcac29eb3e2d2e3442904c2df1e2288000788906782"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0091",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 6,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/33fc8d0816c750af"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 18,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 2,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:iron_compressed/fine_wire"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gilded_iron/fine_wire"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "1c54d11e63235a275c5eb4fc5838a1d55198ebd3b35df6daa93d29fbc04d62d4"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0091",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 7,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/143ecf1a48a670e8"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 18,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 2,
-          "id": "cruciblecraft:molten_zinc"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:meteoric_steel/fine_wire"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:steel_galvanized/fine_wire"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "58a45513e5f16c3d742d8aa369d4d38427c06d84969d8c692612d32dd6ae6913"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0091",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 8,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/af6e504aa5a8823d"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 18,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3,
-          "id": "cruciblecraft:molten_midasium"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:lead/fine_wire"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gold/fine_wire"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "1dc00d00e2b8f83cc31044f5f5a8502c96f370575417070cd2d19a0a65187285"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0091",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 9,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/18ec020898285308"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 18,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 2,
-          "id": "cruciblecraft:molten_zinc"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:steel/fine_wire"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:steel_galvanized/fine_wire"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "618367e343e6af2f4d5a19c496a8e24880728a00ca3dffc02e52c28ffa9e7072"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0091",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 10,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/aa64740c2d245845"
+      "selected_source_recipe": "gt.recipe.bath#0091",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:bath/remainder/exact_multi",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:bath",
   "type": "cruciblecraft:compact_gt_recipe_family"

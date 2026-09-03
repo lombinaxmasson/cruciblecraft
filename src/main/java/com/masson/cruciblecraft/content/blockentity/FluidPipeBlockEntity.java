@@ -27,6 +27,7 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -62,6 +63,7 @@ public final class FluidPipeBlockEntity extends BlockEntity {
     private int recoveredInvalidFields;
     private boolean recoveryWarningLogged;
     private boolean clientSyncPending;
+    private boolean networkChunkLoaded = true;
 
     public FluidPipeBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.FLUID_PIPE.get(), pos, state);
@@ -79,6 +81,7 @@ public final class FluidPipeBlockEntity extends BlockEntity {
     @Override
     public void onLoad() {
         super.onLoad();
+        networkChunkLoaded = true;
         if (!recoveryWarningLogged
                 && recoveredInvalidFields > 0
                 && level != null
@@ -146,6 +149,16 @@ public final class FluidPipeBlockEntity extends BlockEntity {
         return covers.snapshot();
     }
 
+    public boolean offersNetworkDiscovery() {
+        return networkChunkLoaded && !isRemoved();
+    }
+
+    @Override
+    public void onChunkUnloaded() {
+        networkChunkLoaded = false;
+        super.onChunkUnloaded();
+    }
+
     public String coverSummary() {
         return covers.boundedSummary();
     }
@@ -157,6 +170,40 @@ public final class FluidPipeBlockEntity extends BlockEntity {
         }
         if (!covers.set(side, cover)) {
             return false;
+        }
+        setChanged();
+        if (level != null && !level.isClientSide) {
+            PipeTopology.invalidate(level, worldPosition);
+            syncToClient();
+        }
+        return true;
+    }
+
+    public void dropCovers() {
+        if (level == null || level.isClientSide) {
+            return;
+        }
+        for (ItemStack stack : covers.removeAllAsItems()) {
+            Block.popResource(level, worldPosition, stack);
+        }
+        setChanged();
+        PipeTopology.invalidate(level, worldPosition);
+        syncToClient();
+    }
+
+    public boolean removeCover(
+            Direction side,
+            net.minecraft.world.entity.player.Player player) {
+        var taken = covers.take(side);
+        if (taken.isEmpty()) {
+            return false;
+        }
+        ItemStack stack = com.masson.cruciblecraft.logistics.pipe.cover
+                .PipeCoverItems.stackFor(taken.orElseThrow());
+        if (!stack.isEmpty()) {
+            if (player == null || !player.addItem(stack)) {
+                Block.popResource(level, worldPosition, stack);
+            }
         }
         setChanged();
         if (level != null && !level.isClientSide) {
@@ -677,6 +724,16 @@ public final class FluidPipeBlockEntity extends BlockEntity {
             return source == null
                     ? 0
                     : pumpFrom(source, side, amount, matchId, mode);
+        }
+
+        @Override
+        public Level world() {
+            return world;
+        }
+
+        @Override
+        public BlockPos hostPos() {
+            return worldPosition;
         }
     }
 

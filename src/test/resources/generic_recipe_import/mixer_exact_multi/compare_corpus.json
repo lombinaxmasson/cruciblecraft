@@ -1,0 +1,923 @@
+{
+  "original_source_path": "tools/waves/mixer/ordinary-closure/source.json",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "cohort": "material_matrix",
+      "duration": 8,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:mixer/sha256:088c098eff19f1e3e175529457c75de92b023c7bbe59c6f3b9ab9c4eebba1fe1",
+      "fluid_inputs": [
+        {
+          "alias": "cruciblecraft:molten_tin",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_tin",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 3,
+            "fluid": "molten.tin"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_tin"
+        },
+        {
+          "alias": "cruciblecraft:molten_silver",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_silver",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 1,
+            "fluid": "molten.silver"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_silver"
+        },
+        {
+          "alias": "cruciblecraft:molten_glowstone_pluto",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_glowstone_pluto",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 4,
+            "fluid": "molten.glowstonepluto"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_glowstone_pluto"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "alias": "cruciblecraft:molten_lumium",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_lumium",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 4,
+            "fluid": "molten.lumium"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_lumium"
+        }
+      ],
+      "host": "cruciblecraft:mixer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:programmed_circuit",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Selector Tag",
+            "item": "gregapi:gt.integrated_circuit",
+            "meta": 3
+          },
+          "tag": null,
+          "value": "cruciblecraft:programmed_circuit"
+        }
+      ],
+      "item_outputs": [],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [],
+      "owner": "coordination/multi_axis",
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
+      "shadow_order": 0,
+      "slot_notes": [],
+      "source_map": "gt.recipe.mixer",
+      "source_recipe_index": 695,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "f259abc33982b841f2d7b60d035873893e6fcff6ce80b89b4a8c5bf40697961e",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:mixer/ordinary_closure/5f428666f8fec36f",
+      "target_map": "cruciblecraft:mixer",
+      "template_key": "sha256:088c098eff19f1e3e175529457c75de92b023c7bbe59c6f3b9ab9c4eebba1fe1",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "cohort": "material_matrix",
+      "duration": 8,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:mixer/sha256:088c098eff19f1e3e175529457c75de92b023c7bbe59c6f3b9ab9c4eebba1fe1",
+      "fluid_inputs": [
+        {
+          "alias": "cruciblecraft:molten_tin",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_tin",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 3,
+            "fluid": "molten.tin"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_tin"
+        },
+        {
+          "alias": "cruciblecraft:molten_silver",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_silver",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 1,
+            "fluid": "molten.silver"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_silver"
+        },
+        {
+          "alias": "cruciblecraft:molten_gloomstone",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_gloomstone",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 4,
+            "fluid": "molten.gloomstone"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_gloomstone"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "alias": "cruciblecraft:molten_lumium",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_lumium",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 4,
+            "fluid": "molten.lumium"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_lumium"
+        }
+      ],
+      "host": "cruciblecraft:mixer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:programmed_circuit",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Selector Tag",
+            "item": "gregapi:gt.integrated_circuit",
+            "meta": 3
+          },
+          "tag": null,
+          "value": "cruciblecraft:programmed_circuit"
+        }
+      ],
+      "item_outputs": [],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [],
+      "owner": "coordination/multi_axis",
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
+      "shadow_order": 1,
+      "slot_notes": [],
+      "source_map": "gt.recipe.mixer",
+      "source_recipe_index": 1916,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "f6513aa3862b1c0e664c420afc4f81ecf03109e071ebe58ae72695644f4f2304",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:mixer/ordinary_closure/3366d62e5e5eb1af",
+      "target_map": "cruciblecraft:mixer",
+      "template_key": "sha256:088c098eff19f1e3e175529457c75de92b023c7bbe59c6f3b9ab9c4eebba1fe1",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "cohort": "material_matrix",
+      "duration": 8,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:mixer/sha256:088c098eff19f1e3e175529457c75de92b023c7bbe59c6f3b9ab9c4eebba1fe1",
+      "fluid_inputs": [
+        {
+          "alias": "cruciblecraft:molten_tin",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_tin",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 3,
+            "fluid": "molten.tin"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_tin"
+        },
+        {
+          "alias": "cruciblecraft:molten_silver",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_silver",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 1,
+            "fluid": "molten.silver"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_silver"
+        },
+        {
+          "alias": "cruciblecraft:molten_glowstone",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_glowstone",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 4,
+            "fluid": "molten.glowstone"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_glowstone"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "alias": "cruciblecraft:molten_lumium",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_lumium",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 4,
+            "fluid": "molten.lumium"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_lumium"
+        }
+      ],
+      "host": "cruciblecraft:mixer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:programmed_circuit",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Selector Tag",
+            "item": "gregapi:gt.integrated_circuit",
+            "meta": 3
+          },
+          "tag": null,
+          "value": "cruciblecraft:programmed_circuit"
+        }
+      ],
+      "item_outputs": [],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [],
+      "owner": "coordination/multi_axis",
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
+      "shadow_order": 2,
+      "slot_notes": [],
+      "source_map": "gt.recipe.mixer",
+      "source_recipe_index": 7953,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "e3365ccb66cb3426d75b02fb243de237a7fb6a7af4640dd5e0cfbbe4b6f226a4",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:mixer/ordinary_closure/db6927c248d82125",
+      "target_map": "cruciblecraft:mixer",
+      "template_key": "sha256:088c098eff19f1e3e175529457c75de92b023c7bbe59c6f3b9ab9c4eebba1fe1",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "cohort": "material_matrix",
+      "duration": 8,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:mixer/sha256:088c098eff19f1e3e175529457c75de92b023c7bbe59c6f3b9ab9c4eebba1fe1",
+      "fluid_inputs": [
+        {
+          "alias": "cruciblecraft:molten_tin",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_tin",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 3,
+            "fluid": "molten.tin"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_tin"
+        },
+        {
+          "alias": "cruciblecraft:molten_silver",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_silver",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 1,
+            "fluid": "molten.silver"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_silver"
+        },
+        {
+          "alias": "cruciblecraft:molten_glowstone_ceres",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_glowstone_ceres",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 4,
+            "fluid": "molten.glowstoneceres"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_glowstone_ceres"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "alias": "cruciblecraft:molten_lumium",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_lumium",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 4,
+            "fluid": "molten.lumium"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_lumium"
+        }
+      ],
+      "host": "cruciblecraft:mixer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:programmed_circuit",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Selector Tag",
+            "item": "gregapi:gt.integrated_circuit",
+            "meta": 3
+          },
+          "tag": null,
+          "value": "cruciblecraft:programmed_circuit"
+        }
+      ],
+      "item_outputs": [],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [],
+      "owner": "coordination/multi_axis",
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
+      "shadow_order": 3,
+      "slot_notes": [],
+      "source_map": "gt.recipe.mixer",
+      "source_recipe_index": 37287,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "6436ae5172f64a2fd9c4072cca29fbb66dcf36f8de220424ac7928221beffeb8",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:mixer/ordinary_closure/f66ecf45c1ec36a4",
+      "target_map": "cruciblecraft:mixer",
+      "template_key": "sha256:088c098eff19f1e3e175529457c75de92b023c7bbe59c6f3b9ab9c4eebba1fe1",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "cohort": "material_matrix",
+      "duration": 8,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:mixer/sha256:088c098eff19f1e3e175529457c75de92b023c7bbe59c6f3b9ab9c4eebba1fe1",
+      "fluid_inputs": [
+        {
+          "alias": "cruciblecraft:molten_tin",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_tin",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 3,
+            "fluid": "molten.tin"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_tin"
+        },
+        {
+          "alias": "cruciblecraft:molten_silver",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_silver",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 1,
+            "fluid": "molten.silver"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_silver"
+        },
+        {
+          "alias": "cruciblecraft:molten_glowstone_io",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_glowstone_io",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 4,
+            "fluid": "molten.glowstoneio"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_glowstone_io"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "alias": "cruciblecraft:molten_lumium",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_lumium",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 4,
+            "fluid": "molten.lumium"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_lumium"
+        }
+      ],
+      "host": "cruciblecraft:mixer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:programmed_circuit",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Selector Tag",
+            "item": "gregapi:gt.integrated_circuit",
+            "meta": 3
+          },
+          "tag": null,
+          "value": "cruciblecraft:programmed_circuit"
+        }
+      ],
+      "item_outputs": [],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [],
+      "owner": "coordination/multi_axis",
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
+      "shadow_order": 4,
+      "slot_notes": [],
+      "source_map": "gt.recipe.mixer",
+      "source_recipe_index": 45710,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "58cea76fdc82cca825c74be5706c5731878edba500137986d1e9617abc887b6f",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:mixer/ordinary_closure/3efbfe62dd3a93a1",
+      "target_map": "cruciblecraft:mixer",
+      "template_key": "sha256:088c098eff19f1e3e175529457c75de92b023c7bbe59c6f3b9ab9c4eebba1fe1",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "cohort": "material_matrix",
+      "duration": 8,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:mixer/sha256:088c098eff19f1e3e175529457c75de92b023c7bbe59c6f3b9ab9c4eebba1fe1",
+      "fluid_inputs": [
+        {
+          "alias": "cruciblecraft:molten_tin",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_tin",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 3,
+            "fluid": "molten.tin"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_tin"
+        },
+        {
+          "alias": "cruciblecraft:molten_silver",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_silver",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 1,
+            "fluid": "molten.silver"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_silver"
+        },
+        {
+          "alias": "cruciblecraft:molten_glowstone_proteus",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_glowstone_proteus",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 4,
+            "fluid": "molten.glowstoneproteus"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_glowstone_proteus"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "alias": "cruciblecraft:molten_lumium",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_lumium",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 4,
+            "fluid": "molten.lumium"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_lumium"
+        }
+      ],
+      "host": "cruciblecraft:mixer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:programmed_circuit",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Selector Tag",
+            "item": "gregapi:gt.integrated_circuit",
+            "meta": 3
+          },
+          "tag": null,
+          "value": "cruciblecraft:programmed_circuit"
+        }
+      ],
+      "item_outputs": [],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [],
+      "owner": "coordination/multi_axis",
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
+      "shadow_order": 5,
+      "slot_notes": [],
+      "source_map": "gt.recipe.mixer",
+      "source_recipe_index": 46645,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "f7a730de6ca62dd26101c6c269371f92746b12b02523f3c43188b5d0c8bc3499",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:mixer/ordinary_closure/97d0102421eed14b",
+      "target_map": "cruciblecraft:mixer",
+      "template_key": "sha256:088c098eff19f1e3e175529457c75de92b023c7bbe59c6f3b9ab9c4eebba1fe1",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "cohort": "material_matrix",
+      "duration": 8,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:mixer/sha256:088c098eff19f1e3e175529457c75de92b023c7bbe59c6f3b9ab9c4eebba1fe1",
+      "fluid_inputs": [
+        {
+          "alias": "cruciblecraft:molten_tin",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_tin",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 3,
+            "fluid": "molten.tin"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_tin"
+        },
+        {
+          "alias": "cruciblecraft:molten_silver",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_silver",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 1,
+            "fluid": "molten.silver"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_silver"
+        },
+        {
+          "alias": "cruciblecraft:molten_glowstone_enceladus",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_glowstone_enceladus",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 4,
+            "fluid": "molten.glowstoneenceladus"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_glowstone_enceladus"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "alias": "cruciblecraft:molten_lumium",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_lumium",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 4,
+            "fluid": "molten.lumium"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_lumium"
+        }
+      ],
+      "host": "cruciblecraft:mixer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:programmed_circuit",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Selector Tag",
+            "item": "gregapi:gt.integrated_circuit",
+            "meta": 3
+          },
+          "tag": null,
+          "value": "cruciblecraft:programmed_circuit"
+        }
+      ],
+      "item_outputs": [],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [],
+      "owner": "coordination/multi_axis",
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
+      "shadow_order": 6,
+      "slot_notes": [],
+      "source_map": "gt.recipe.mixer",
+      "source_recipe_index": 51162,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "e9ee2450e5c86b5a581951104d97dacaddb03c96ba1e439bdc407a6eef019b17",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:mixer/ordinary_closure/2939d6e665850676",
+      "target_map": "cruciblecraft:mixer",
+      "template_key": "sha256:088c098eff19f1e3e175529457c75de92b023c7bbe59c6f3b9ab9c4eebba1fe1",
+      "unsupported_semantics": []
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+}

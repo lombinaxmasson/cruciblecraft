@@ -24,6 +24,10 @@ import net.minecraft.resources.ResourceLocation;
 public final class CoverDefinitionCatalog {
     private static final String RESOURCE =
             "/data/cruciblecraft/cover_definitions.json";
+    private static final String ITEM_NETWORK_RESOURCE =
+            "/data/cruciblecraft/item_network_cover_definitions.json";
+    private static final String FLUID_NETWORK_RESOURCE =
+            "/data/cruciblecraft/fluid_network_cover_definitions.json";
     private static final Set<String> DOCUMENT_FIELDS =
             Set.of("schemaVersion", "definitions");
     private static final Set<String> DEFINITION_FIELDS = Set.of(
@@ -47,6 +51,14 @@ public final class CoverDefinitionCatalog {
             "cruciblecraft:robot_arm",
             "cruciblecraft:pressure_valve",
             "cruciblecraft:selector_manual");
+    private static final Set<String> REQUIRED_ITEM_NETWORK_IDS = Set.of(
+            "cruciblecraft:logistics_item_storage",
+            "cruciblecraft:logistics_item_import",
+            "cruciblecraft:logistics_item_export");
+    private static final Set<String> REQUIRED_FLUID_NETWORK_IDS = Set.of(
+            "cruciblecraft:logistics_fluid_storage",
+            "cruciblecraft:logistics_fluid_import",
+            "cruciblecraft:logistics_fluid_export");
     private static final Map<ResourceLocation, CoverDefinition> DEFINITIONS =
             loadBundled();
 
@@ -79,27 +91,54 @@ public final class CoverDefinitionCatalog {
     }
 
     private static Map<ResourceLocation, CoverDefinition> loadBundled() {
+        LinkedHashMap<ResourceLocation, CoverDefinition> definitions =
+                new LinkedHashMap<>();
+        loadInto(definitions, RESOURCE, "cover catalog");
+        Set<String> bundled = definitions.keySet().stream()
+                .map(ResourceLocation::toString)
+                .collect(java.util.stream.Collectors.toSet());
+        if (!bundled.containsAll(REQUIRED_IDS) || bundled.size() != 9) {
+            throw new IllegalStateException(
+                    "Base cover definitions drifted: " + bundled);
+        }
+        loadInto(definitions, ITEM_NETWORK_RESOURCE, "item network cover catalog");
+        loadInto(definitions, FLUID_NETWORK_RESOURCE, "fluid network cover catalog");
+        Set<String> ids = definitions.keySet().stream()
+                .map(ResourceLocation::toString)
+                .collect(java.util.stream.Collectors.toSet());
+        if (!ids.containsAll(REQUIRED_ITEM_NETWORK_IDS)
+                || !ids.containsAll(REQUIRED_FLUID_NETWORK_IDS)
+                || definitions.size() != 15) {
+            throw new IllegalStateException(
+                    "Required cover definitions are missing or the "
+                            + "catalog is not exact: " + ids);
+        }
+        return Map.copyOf(definitions);
+    }
+
+    private static void loadInto(
+            LinkedHashMap<ResourceLocation, CoverDefinition> definitions,
+            String resource,
+            String owner) {
         try (var stream = CoverDefinitionCatalog.class.getResourceAsStream(
-                RESOURCE)) {
+                resource)) {
             if (stream == null) {
                 throw new IllegalStateException(
-                        "Missing bundled cover definition catalog " + RESOURCE);
+                        "Missing bundled cover definition catalog " + resource);
             }
             JsonElement parsed = JsonParser.parseReader(new InputStreamReader(
                     stream, StandardCharsets.UTF_8));
             if (!parsed.isJsonObject()) {
                 throw new IllegalStateException(
-                        "Cover definition catalog must be an object");
+                        owner + " must be an object");
             }
             JsonObject document = parsed.getAsJsonObject();
-            exactFields(document, DOCUMENT_FIELDS, "cover catalog");
+            exactFields(document, DOCUMENT_FIELDS, owner);
             if (requiredInt(document, "schemaVersion") != 1
                     || !document.get("definitions").isJsonArray()) {
                 throw new IllegalStateException(
-                        "Invalid cover definition catalog header");
+                        "Invalid " + owner + " header");
             }
-            LinkedHashMap<ResourceLocation, CoverDefinition> definitions =
-                    new LinkedHashMap<>();
             JsonArray rows = document.getAsJsonArray("definitions");
             for (JsonElement element : rows) {
                 if (!element.isJsonObject()) {
@@ -113,22 +152,12 @@ public final class CoverDefinitionCatalog {
                             "Duplicate cover definition " + definition.id());
                 }
             }
-            Set<String> ids = definitions.keySet().stream()
-                    .map(ResourceLocation::toString)
-                    .collect(java.util.stream.Collectors.toSet());
-            if (!ids.containsAll(REQUIRED_IDS)
-                    || definitions.size() > 64) {
-                throw new IllegalStateException(
-                        "Required cover definitions are missing or the "
-                                + "catalog exceeds its hard bound: " + ids);
-            }
-            return Map.copyOf(definitions);
         } catch (IOException
                 | JsonIOException
                 | JsonSyntaxException
                 | IllegalArgumentException exception) {
             throw new IllegalStateException(
-                    "Could not load cover definition catalog", exception);
+                    "Could not load " + owner, exception);
         }
     }
 

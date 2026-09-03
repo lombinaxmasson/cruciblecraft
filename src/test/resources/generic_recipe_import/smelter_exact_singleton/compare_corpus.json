@@ -1,0 +1,91 @@
+{
+  "original_source_path": "tools/waves/smelter/ordinary-closure/source.json",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "cohort": "singleton",
+      "duration": 291,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:smelter/gt.recipe.smelter#0490",
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "alias": "cruciblecraft:molten_bronze",
+          "form": null,
+          "mapping": "source_derived_alias",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "cruciblecraft:molten_bronze",
+          "slot_class": "occupied",
+          "source": {
+            "amount": 16,
+            "fluid": "molten.bronze"
+          },
+          "tag": null,
+          "value": "cruciblecraft:molten_bronze"
+        }
+      ],
+      "host": "cruciblecraft:smelter",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_books_m32000",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Book",
+            "item": "gregtech:gt.multiitem.books",
+            "meta": 32000
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_books_m32000"
+        }
+      ],
+      "item_outputs": [],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [],
+      "owner": "object_expression/multiitem",
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "publication_group": "cruciblecraft:smelter/ordinary_closure/singleton",
+      "shadow_order": 0,
+      "slot_notes": [],
+      "source_map": "gt.recipe.smelter",
+      "source_recipe_index": 5699,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "ccf2b9eb618e64c211ed52ac63da94d3ad3b39f17afb71f380c865c3e01a39fe",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/ordinary_closure/84c552b51d70770a",
+      "target_map": "cruciblecraft:smelter",
+      "template_key": "gt.recipe.smelter#0490",
+      "unsupported_semantics": []
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+}

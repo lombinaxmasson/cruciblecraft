@@ -7,6 +7,7 @@ import java.util.Set;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.client.color.Gt6OpeningBlockColor;
+import com.masson.cruciblecraft.client.color.GtBlockDyeColor;
 import com.masson.cruciblecraft.client.color.HopperBlockColor;
 import com.masson.cruciblecraft.client.color.MachineBlockColor;
 import com.masson.cruciblecraft.client.color.MaterialItemColor;
@@ -62,6 +63,13 @@ public class ClientSetup {
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
         CrucibleCraft.LOGGER.info("CrucibleCraft client setup");
+        if ("player-complete".equals(
+                System.getProperty("cruciblecraft.clientSmoke"))) {
+            event.enqueueWork(() -> {
+                com.masson.cruciblecraft.verification.PlayerCompleteSmoke
+                        .writeIfConfigured("client");
+            });
+        }
     }
 
     @SubscribeEvent
@@ -114,6 +122,7 @@ public class ClientSetup {
                 java.util.Arrays.stream(tintedHoppers)
                         .map(net.minecraft.world.level.block.Block::asItem)
                         .toArray(Item[]::new));
+        event.register(GtBlockDyeColor.itemColor(), GtBlockDyeColor.tintedItems());
     }
 
     @SubscribeEvent
@@ -186,6 +195,7 @@ public class ClientSetup {
         event.register(
                 RockColor::blockColor,
                 RockColor.rockBlocks());
+        event.register(GtBlockDyeColor.blockColor(), GtBlockDyeColor.tintedBlocks());
     }
 
     @SubscribeEvent

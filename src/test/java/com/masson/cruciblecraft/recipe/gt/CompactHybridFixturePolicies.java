@@ -20,7 +20,7 @@ final class CompactHybridFixturePolicies {
         Set<ResourceLocation> eagerStableIds = new HashSet<>();
         for (CompactRecipeFamilySource source : sources) {
             for (CompactGTRecipeFamilyDefinition.Relation relation
-                    : source.definition().relations()) {
+                    : source.authoredRelations()) {
                 if (relation.duration() <= 16
                         || firstTen.contains(source.definition().familyId())) {
                     eagerStableIds.add(relation.stableId());

@@ -51,10 +51,10 @@ class CompactGTRecipeFamilyGeneratedTest {
                     "cruciblecraft:compact_gt_recipe_family",
                     document.get("type").getAsString());
             assertTrue(familyIds.add(document.get("family_id").getAsString()));
-            document.getAsJsonArray("relations").forEach(element -> {
-                JsonObject relation = element.getAsJsonObject();
+            for (JsonObject relation :
+                    CompactGTRecipeFamilyGeneratedSupport.authoredRelationJsons(document)) {
                 assertTrue(stableIds.add(relation.get("stable_id").getAsString()));
-            });
+            }
         }
         assertEquals(50, familyIds.size());
         assertEquals(50, stableIds.size());
@@ -87,8 +87,7 @@ class CompactGTRecipeFamilyGeneratedTest {
                       "shadow_order": 0,
                       "provenance": {
                         "source_kind": "SOURCE_BACKED",
-                        "selected_source_recipe": "gt.recipe.roaster#0001",
-                        "evidence_hashes": ["first"]
+                        "selected_source_recipe": "gt.recipe.roaster#0001"
                       }
                     },
                     {
@@ -107,8 +106,7 @@ class CompactGTRecipeFamilyGeneratedTest {
                       "shadow_order": 1,
                       "provenance": {
                         "source_kind": "SOURCE_BACKED",
-                        "selected_source_recipe": "gt.recipe.roaster#0002",
-                        "evidence_hashes": ["second"]
+                        "selected_source_recipe": "gt.recipe.roaster#0002"
                       }
                     }
                   ]
@@ -122,8 +120,8 @@ class CompactGTRecipeFamilyGeneratedTest {
                         registries);
 
         assertEquals(id("roaster/compact/gt_recipe_roaster_0001"), source.id());
-        assertEquals(2, source.definition().relations().size());
-        var first = source.definition().relations().getFirst();
+        assertEquals(2, source.authoredRelations().size());
+        var first = source.authoredRelations().getFirst();
         assertEquals(id("roaster/compact/roaster_water"), first.stableId());
         assertEquals(Fluids.WATER, first.fluidInputs().getFirst().getFluid());
         assertEquals(250, first.fluidInputs().getFirst().getAmount());
@@ -131,7 +129,7 @@ class CompactGTRecipeFamilyGeneratedTest {
         assertEquals(25, first.fluidOutputs().getFirst().getAmount());
         assertEquals(
                 id("roaster/compact/roaster_second"),
-                source.definition().relations().get(1).stableId());
+                source.authoredRelations().get(1).stableId());
     }
 
     @Test
@@ -151,7 +149,7 @@ class CompactGTRecipeFamilyGeneratedTest {
         for (CompactRecipeFamilySource source : sources) {
             assertTrue(source.id().getPath().startsWith("roaster/compact/"));
             for (CompactGTRecipeFamilyDefinition.Relation relation
-                    : source.definition().relations()) {
+                    : source.authoredRelations()) {
                 assertTrue(stableIds.add(relation.stableId()), relation.stableId()::toString);
             }
         }
@@ -179,15 +177,15 @@ class CompactGTRecipeFamilyGeneratedTest {
             ResourceLocation group = source.definition().resolvedPublicationGroup();
             if (group.equals(CompactPublicationGroups.CENTRIFUGE_SINGLETON)) {
                 singletonCount++;
-                assertEquals(1, source.definition().relations().size());
+                assertEquals(1, source.authoredRelations().size());
             } else if (group.equals(CompactPublicationGroups.CENTRIFUGE_MULTI)) {
                 multiCount++;
-                assertTrue(source.definition().relations().size() > 1);
+                assertTrue(source.authoredRelations().size() > 1);
             } else {
                 throw new AssertionError("unexpected centrifuge-compact publication group " + group);
             }
             for (CompactGTRecipeFamilyDefinition.Relation relation
-                    : source.definition().relations()) {
+                    : source.authoredRelations()) {
                 assertTrue(stableIds.add(relation.stableId()), relation.stableId()::toString);
             }
         }
@@ -233,9 +231,9 @@ class CompactGTRecipeFamilyGeneratedTest {
         for (CompactRecipeFamilySource source : sources) {
             if (source.definition().resolvedPublicationGroup().getPath()
                     .contains("singleton")) {
-                singleton.addAll(source.definition().relations());
+                singleton.addAll(source.authoredRelations());
             } else {
-                multi.addAll(source.definition().relations());
+                multi.addAll(source.authoredRelations());
             }
         }
         assertEquals(123, singleton.size());

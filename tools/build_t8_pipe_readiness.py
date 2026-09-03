@@ -9,13 +9,13 @@ import sys
 from pathlib import Path
 from typing import Any
 
-try:
-    from tools import gt6_pipes
-except ModuleNotFoundError:
-    import gt6_pipes
-
-
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tools import gt6_pipes
+from tools import t35_common as t35
+
 TOOLS = ROOT / "tools"
 SOURCE = TOOLS / "gt6_pipe_source.json"
 POLICY = TOOLS / "t8_pipe_policy.json"
@@ -844,10 +844,13 @@ def main() -> int:
         if args.check:
             if not OUTPUT.is_file():
                 raise ValueError(f"missing committed ledger: {OUTPUT}")
-            if OUTPUT.read_text(encoding="utf-8") != encoded:
-                raise ValueError(
-                    "committed T8 pipe readiness ledger is stale"
-                )
+            errors = t35.check_compact(
+                OUTPUT,
+                json.loads(encoded),
+                encode=stable_json,
+            )
+            if errors:
+                raise ValueError("; ".join(errors))
         else:
             OUTPUT.write_bytes(encoded.encode("utf-8"))
         result = json.loads(encoded)

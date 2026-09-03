@@ -7,6 +7,7 @@ from typing import Any
 
 from tools import t47_identities as t47_ids
 from tools import t48_common as common
+from tools import tool_head_prefix as thp
 
 VANILLA_DYE_COLORS = t47_ids.VANILLA_DYE_COLORS
 VANILLA_COLOR_META_ITEMS = t47_ids.VANILLA_COLOR_META_ITEMS
@@ -14,7 +15,6 @@ VANILLA_SPECIAL_META = t47_ids.VANILLA_SPECIAL_META
 VANILLA_RENAMES = t47_ids.VANILLA_RENAMES
 
 # GT prefixes that are material forms but are not in gt6_prefix_mapping.json.
-# Tool heads stay out of this table (T42/T48: do not fold tool_head into forms).
 PREFIX_ITEM_TO_FORM_OVERLAY: dict[str, str] = {
     "gregtech:gt.meta.crushedPurifiedTiny": "tiny_washed_crushed_ore",
     "gregtech:gt.meta.arrowGtPlastic": "arrow_gt_plastic",
@@ -105,6 +105,14 @@ PREFIX_FORM_UNITS: dict[str, int] = {
     "quadruple_ingot": 576,
     "quintuple_ingot": 720,
 }
+
+PREFIX_ITEM_TO_FORM_OVERLAY.update(thp.prefix_item_to_form_overlay())
+PREFIX_FORM_UNITS.update(
+    {
+        thp.cc_prefix_id(gt_prefix): int(units)
+        for gt_prefix, (units, _authority) in thp.load_gt_prefix_units().items()
+    }
+)
 
 EXISTING_PREFIX_FORMS = {
     "block",
@@ -364,7 +372,13 @@ def load_t48_item_overlay() -> dict[tuple[str, int | None], dict[str, Any]]:
         source_item = str(identity.get("source_item") or "")
         meta = identity.get("meta")
         key = (source_item, int(meta) if isinstance(meta, int) else None)
-        mapped[key] = identity
+        row = dict(identity)
+        if isinstance(meta, int):
+            rewritten = thp.mapped_runtime(source_item, meta)
+            if rewritten:
+                row["runtime_id"] = rewritten
+                row["registry_path"] = rewritten.split(":", 1)[-1]
+        mapped[key] = row
     return mapped
 
 
@@ -386,6 +400,19 @@ def slug_source_item(item_id: str) -> str:
 def runtime_id_for(kind: str, source_item: str, meta: int) -> str:
     slug = slug_source_item(source_item)
     if kind == "tool_head":
+        mapped = thp.mapped_runtime(source_item, meta)
+        if mapped:
+            return mapped
+        remainder = {
+            (str(row.get("source_item") or ""), int(row["meta"]))
+            for row in (thp.load_remap().get("remainder") or [])
+            if isinstance(row.get("meta"), int)
+        }
+        if thp.load_remap().get("mapped") and (source_item, int(meta)) not in remainder:
+            raise ValueError(
+                f"mapped tool-head remap is closed; refusing unique item for "
+                f"{source_item}@{meta}"
+            )
         return f"cruciblecraft:gt_tool_head/{slug}_m{meta}"
     if kind == "multiitem":
         return f"cruciblecraft:gt_multiitem/{slug}_m{meta}"

@@ -1,0 +1,48 @@
+{
+  "compare_corpus": "src/test/resources/generic_recipe_import/mixer_exact_multi/compare_corpus.json",
+  "family_membership_source": {
+    "kind": "work_set",
+    "path": "src/test/resources/generic_recipe_import/mixer_exact_multi/source_pack/work_set.json"
+  },
+  "host": "cruciblecraft:mixer",
+  "import_slug": "generic-import/mixer-exact-multi",
+  "operand_authorities": [
+    {
+      "id": "identity_ledger_v3",
+      "kind": "data"
+    },
+    {
+      "id": "material_form_authority",
+      "kind": "data"
+    },
+    {
+      "adapter": "gt6",
+      "kind": "source_dialect"
+    }
+  ],
+  "output_paths": {
+    "lock_candidate": "src/test/resources/generic_recipe_import/mixer_exact_multi/lock_candidate.json",
+    "receipt": "src/test/resources/generic_recipe_import/mixer_exact_multi/source_receipt.json",
+    "review": "src/test/resources/generic_recipe_import/mixer_exact_multi/source_review.json",
+    "source": "src/test/resources/generic_recipe_import/mixer_exact_multi/source.json"
+  },
+  "representation_policy": {
+    "allowed": [
+      "exact",
+      "exact_multi"
+    ]
+  },
+  "schema_version": 1,
+  "selection_rule": {
+    "kind": "work_set_members"
+  },
+  "source_maps": [
+    "gt.recipe.mixer"
+  ],
+  "source_pack": "src/test/resources/generic_recipe_import/mixer_exact_multi/source_pack_manifest.json",
+  "stable_id_policy": {
+    "algorithm": "source_system_revision_family_relation",
+    "include_card_number": false
+  },
+  "target_map": "cruciblecraft:mixer"
+}

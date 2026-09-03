@@ -1,0 +1,18 @@
+{
+  "generated_by": "python tools/build_crops_food_bees_r0.py",
+  "implemented": false,
+  "questions": {
+    "crop_runtime": "plant.glowtus / plant.bush are crop growth, not another scatter JSON row. R0 must not write them into the current T20 catalog.",
+    "delete_later": "If a later realization card marks one category out_of_scope, it must keep this R0 denominator hash. R0 does not delete a named category.",
+    "disposition_policy": "Per-category later cards must choose implemented, planned, deferred, or out_of_scope. R0 does not fill those dispositions.",
+    "fail_closed": "Unknown plant, hive, or food map must not silent no-op.",
+    "hive_worldgen": "Ten WorldgenHives span overworld / nether / aether / end / twilight / erebus / betweenlands / atum / alfheim / tropics. T20 is overworld-only. R0 must not write hives into the current catalog.",
+    "new_recipe_maps": "Whether squeezer / juicer / fermenter / bumblequeen / bumblelyzer need new RecipeMaps or processing kinds. Generic importer does not create those maps. R0 must not register them.",
+    "player_acquisition": "How survival encounters crops, food processing, or bees.",
+    "scale": "13,373 dump recipeCount rows are scale context, not a census. A later implementation card measures how that context is cut into a production lock separately from this R0 denominator."
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "CROPS_CONTRACT_READY",
+  "wave_slug": "portfolio/crops-food-bees-r0"
+}

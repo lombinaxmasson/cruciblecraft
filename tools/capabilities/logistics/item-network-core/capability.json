@@ -1,0 +1,25 @@
+{
+  "schema_version": 2,
+  "slug": "logistics/item-network-core",
+  "title": "Item network core",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/logistics/itemnet/**",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/ItemPipeBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/ItemNetworkCoreGameTests.java",
+    "src/main/resources/data/cruciblecraft/item_network_cover_definitions.json",
+    "src/main/resources/data/cruciblecraft_wave_runtime_item_network_core/**",
+    "tools/waves/runtime/item-network-core/**",
+    "tools/tests/test_item_network_core.py"
+  ],
+  "depends_on": [
+    "logistics/cover-net-r0"
+  ],
+  "profiles": ["capability-runtime"],
+  "wave_slug": "runtime/item-network-core",
+  "legacy_readiness": "tools/waves/runtime/item-network-core/readiness.json",
+  "player_signoff": null,
+  "identity_disposition": [],
+  "note": "Mechanism can run. Not player_complete."
+}

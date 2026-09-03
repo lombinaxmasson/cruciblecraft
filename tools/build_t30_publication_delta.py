@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from tools import t27_common as common  # noqa: E402
+from tools import t35_common as t35  # noqa: E402
 
 TOOLS = common.TOOLS
 OUTPUT = TOOLS / "t30_publication_delta.json"
@@ -92,11 +93,7 @@ def write() -> dict[str, Any]:
 
 
 def check() -> list[str]:
-    if not OUTPUT.is_file():
-        return [f"missing generated file: {common.relative(OUTPUT)}"]
-    if common.stable_json(build()) != OUTPUT.read_text(encoding="utf-8"):
-        return [f"{common.relative(OUTPUT)} is stale"]
-    return []
+    return t35.check_compact(OUTPUT, build(), encode=common.stable_json)
 
 
 def main(argv: list[str] | None = None) -> int:

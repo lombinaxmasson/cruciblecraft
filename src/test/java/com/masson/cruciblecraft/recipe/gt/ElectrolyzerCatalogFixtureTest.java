@@ -44,7 +44,7 @@ class ElectrolyzerCatalogFixtureTest {
     void catalogFixtureHoldsSixtyOneFamiliesAndOneHundredFiftyOneRelations() {
         assertEquals(61, catalogFamilies.size());
         int relations = sources.stream()
-                .mapToInt(source -> source.definition().relations().size())
+                .mapToInt(source -> source.authoredRelations().size())
                 .sum();
         assertEquals(151, relations);
         for (CompactRecipeFamilySource source : sources) {
@@ -53,7 +53,8 @@ class ElectrolyzerCatalogFixtureTest {
             assertTrue(
                     group.equals(CompactPublicationGroups.ELECTROLYZER_SINGLETON)
                             || group.equals(CompactPublicationGroups.ELECTROLYZER_MULTI)
-                            || "t40_electrolyzer_combinatorial".equals(group.getPath()),
+                            || "t40_electrolyzer_combinatorial".equals(group.getPath())
+                            || "t40_electrolyzer_multi".equals(group.getPath()),
                     () -> "unexpected catalog group " + group);
         }
     }

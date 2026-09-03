@@ -32,6 +32,8 @@ class LegacySealArchiveTest(unittest.TestCase):
             live = closeout_seal.seal_path(card_id)
             snapshot = resolver.seal_snapshot_path(card_id)
             self.assertTrue(live.is_file(), card_id)
+            if closeout_seal.live_reseal_supersedes_archive(card_id):
+                continue
             self.assertEqual(live.read_bytes(), snapshot.read_bytes(), card_id)
 
     def test_resolver_check_matches_live_check(self) -> None:

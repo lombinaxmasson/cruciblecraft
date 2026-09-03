@@ -24,7 +24,6 @@ public final class RecipeCensusRuntimeRegistryGateFixture {
     private final int schemaVersion;
     private final int compatibleSchemaVersion;
     private final String namespace;
-    private final String fullArtifactSha256;
     private final int totalExpectedIds;
     private final Map<String, Integer> countsByCategory;
     private final Map<String, List<String>> categories;
@@ -33,14 +32,12 @@ public final class RecipeCensusRuntimeRegistryGateFixture {
             int schemaVersion,
             int compatibleSchemaVersion,
             String namespace,
-            String fullArtifactSha256,
             int totalExpectedIds,
             Map<String, Integer> countsByCategory,
             Map<String, List<String>> categories) {
         this.schemaVersion = schemaVersion;
         this.compatibleSchemaVersion = compatibleSchemaVersion;
         this.namespace = namespace;
-        this.fullArtifactSha256 = fullArtifactSha256;
         this.totalExpectedIds = totalExpectedIds;
         this.countsByCategory = countsByCategory;
         this.categories = categories;
@@ -69,8 +66,6 @@ public final class RecipeCensusRuntimeRegistryGateFixture {
         int compatibleSchemaVersion =
                 root.get("compatible_schema_version").getAsInt();
         String namespace = root.get("namespace").getAsString();
-        String fullArtifactSha256 =
-                root.get("full_artifact_sha256").getAsString();
         int totalExpectedIds = root.get("total_expected_ids").getAsInt();
         Map<String, Integer> countsByCategory = new LinkedHashMap<>();
         JsonObject counts = root.getAsJsonObject("counts_by_category");
@@ -91,7 +86,6 @@ public final class RecipeCensusRuntimeRegistryGateFixture {
                 schemaVersion,
                 compatibleSchemaVersion,
                 namespace,
-                fullArtifactSha256,
                 totalExpectedIds,
                 Map.copyOf(countsByCategory),
                 Map.copyOf(categories));
@@ -107,10 +101,6 @@ public final class RecipeCensusRuntimeRegistryGateFixture {
 
     public String namespace() {
         return namespace;
-    }
-
-    public String fullArtifactSha256() {
-        return fullArtifactSha256;
     }
 
     public int totalExpectedIds() {

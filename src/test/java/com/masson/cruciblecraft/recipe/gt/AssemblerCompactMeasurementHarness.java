@@ -82,7 +82,7 @@ class AssemblerCompactMeasurementHarness {
         Set<String> firstTen = new LinkedHashSet<>(familyIds.subList(0, 10));
         for (CompactRecipeFamilySource source : sources) {
             CompactGTRecipeFamilyDefinition.Relation relation =
-                    source.definition().relations().get(0);
+                    source.authoredRelations().get(0);
             if (relation.duration() <= 16
                     || firstTen.contains(source.definition().familyId())) {
                 eagerStableIds.add(relation.stableId());
@@ -291,7 +291,7 @@ class AssemblerCompactMeasurementHarness {
         List<GTRecipeQuery> queries = new ArrayList<>();
         for (CompactRecipeFamilySource source : familySources) {
             CompactGTRecipeFamilyDefinition.Relation relation =
-                    source.definition().relations().get(0);
+                    source.authoredRelations().get(0);
             List<ItemStack> offered = new ArrayList<>();
             List<Ingredient> inputs = relation.itemInputs();
             List<Integer> counts = relation.itemInputCounts();

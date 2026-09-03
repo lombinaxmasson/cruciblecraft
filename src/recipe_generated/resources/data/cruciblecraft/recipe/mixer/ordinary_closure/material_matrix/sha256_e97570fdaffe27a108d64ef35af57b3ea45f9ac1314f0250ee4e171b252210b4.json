@@ -1,77 +1,141 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:e97570fdaffe27a108d64ef35af57b3ea45f9ac1314f0250ee4e171b252210b4",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 2,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 1,
-          "id": "cruciblecraft:molten_hslasteel"
+          "fluid_inputs": [
+            {
+              "amount": 1,
+              "id": "cruciblecraft:molten_hslasteel"
+            },
+            {
+              "amount": 1,
+              "id": "cruciblecraft:molten_tungsten"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 2,
+              "id": "cruciblecraft:molten_tungstensteel"
+            }
+          ]
         },
         {
-          "amount": 1,
-          "id": "cruciblecraft:molten_tungsten"
-        }
-      ],
-      "fluid_outputs": [
+          "fluid_inputs": [
+            {
+              "amount": 1,
+              "id": "cruciblecraft:molten_knightmetal"
+            },
+            {
+              "amount": 1,
+              "id": "cruciblecraft:molten_tungsten"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 2,
+              "id": "cruciblecraft:molten_tungstensteel"
+            }
+          ]
+        },
         {
-          "amount": 2,
-          "id": "cruciblecraft:molten_tungstensteel"
-        }
-      ],
-      "item_input_actions": [
+          "fluid_inputs": [
+            {
+              "amount": 1,
+              "id": "cruciblecraft:molten_steel"
+            },
+            {
+              "amount": 1,
+              "id": "cruciblecraft:molten_tungsten"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 2,
+              "id": "cruciblecraft:molten_tungstensteel"
+            }
+          ]
+        },
         {
-          "kind": "preserve"
+          "fluid_inputs": [
+            {
+              "amount": 1,
+              "id": "cruciblecraft:molten_meteoric_steel"
+            },
+            {
+              "amount": 1,
+              "id": "cruciblecraft:molten_tungsten"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 2,
+              "id": "cruciblecraft:molten_tungstensteel"
+            }
+          ]
         }
       ],
-      "item_input_counts": [
-        0
+      "hashes": [
+        "f52c5788604acf6ad0a65397c50933c683165078741acfa468b703f561df7b47",
+        "3603c0b0f7ebb90047d314ab84fac97d472a35014c02d767a27f6b9b693cf7f8",
+        "2bae4ed00ff1439cf340736d680ee9518e4af3bdd73da791c9e62465c56f878d",
+        "d524572c088f4da8d3ddaf566f042446407105404ada15277ec65b53d7a77d20"
       ],
       "item_inputs": [
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 2
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
+        [
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 2
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ]
       ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "f52c5788604acf6ad0a65397c50933c683165078741acfa468b703f561df7b47"
-        ],
-        "selected_source_recipe": "sha256:e97570fdaffe27a108d64ef35af57b3ea45f9ac1314f0250ee4e171b252210b4",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/dfefa7ed1329acc5"
+      "item_outputs": [
+        []
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/dfefa7ed1329acc5",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:mixer/ordinary_closure/7a6d0ccebd3fbff3",
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        "cruciblecraft:mixer/ordinary_closure/5c19280c4ac0a427",
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        3,
+        "cruciblecraft:mixer/ordinary_closure/1dbbf6cde4e5c4b7",
+        3,
+        3
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 2,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1,
-          "id": "cruciblecraft:molten_knightmetal"
-        },
-        {
-          "amount": 1,
-          "id": "cruciblecraft:molten_tungsten"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 2,
-          "id": "cruciblecraft:molten_tungstensteel"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "preserve"
@@ -80,129 +144,13 @@
       "item_input_counts": [
         0
       ],
-      "item_inputs": [
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 2
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [],
       "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "3603c0b0f7ebb90047d314ab84fac97d472a35014c02d767a27f6b9b693cf7f8"
-        ],
-        "selected_source_recipe": "sha256:e97570fdaffe27a108d64ef35af57b3ea45f9ac1314f0250ee4e171b252210b4",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/7a6d0ccebd3fbff3"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 2,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1,
-          "id": "cruciblecraft:molten_steel"
-        },
-        {
-          "amount": 1,
-          "id": "cruciblecraft:molten_tungsten"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 2,
-          "id": "cruciblecraft:molten_tungstensteel"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        0
-      ],
-      "item_inputs": [
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 2
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "2bae4ed00ff1439cf340736d680ee9518e4af3bdd73da791c9e62465c56f878d"
-        ],
-        "selected_source_recipe": "sha256:e97570fdaffe27a108d64ef35af57b3ea45f9ac1314f0250ee4e171b252210b4",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/5c19280c4ac0a427"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 2,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1,
-          "id": "cruciblecraft:molten_meteoric_steel"
-        },
-        {
-          "amount": 1,
-          "id": "cruciblecraft:molten_tungsten"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 2,
-          "id": "cruciblecraft:molten_tungstensteel"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        0
-      ],
-      "item_inputs": [
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 2
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "d524572c088f4da8d3ddaf566f042446407105404ada15277ec65b53d7a77d20"
-        ],
-        "selected_source_recipe": "sha256:e97570fdaffe27a108d64ef35af57b3ea45f9ac1314f0250ee4e171b252210b4",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/1dbbf6cde4e5c4b7"
+      "selected_source_recipe": "sha256:e97570fdaffe27a108d64ef35af57b3ea45f9ac1314f0250ee4e171b252210b4",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

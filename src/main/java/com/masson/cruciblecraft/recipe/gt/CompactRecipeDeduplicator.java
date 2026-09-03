@@ -96,7 +96,7 @@ public final class CompactRecipeDeduplicator {
                 continue;
             }
             for (CompactGTRecipeFamilyDefinition.Relation relation
-                    : source.definition().relations()) {
+                    : source.authoredRelations()) {
                 GTRecipe recipe = relation.materialize();
                 winnerOutputs.put(inputIdentity(rule, recipe), outputIdentity(rule, recipe));
             }
@@ -114,8 +114,9 @@ public final class CompactRecipeDeduplicator {
             }
             List<CompactGTRecipeFamilyDefinition.Relation> remaining =
                     new ArrayList<>();
-            for (CompactGTRecipeFamilyDefinition.Relation relation
-                    : source.definition().relations()) {
+            List<CompactGTRecipeFamilyDefinition.Relation> authored =
+                    source.authoredRelations();
+            for (CompactGTRecipeFamilyDefinition.Relation relation : authored) {
                 GTRecipe recipe = relation.materialize();
                 if (!matchesWinnerOutput(
                         rule,
@@ -128,7 +129,7 @@ public final class CompactRecipeDeduplicator {
             if (remaining.isEmpty()) {
                 continue;
             }
-            if (remaining.size() == source.definition().relations().size()) {
+            if (remaining.size() == authored.size()) {
                 kept.add(source);
                 continue;
             }

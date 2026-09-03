@@ -54,7 +54,7 @@ class AssemblerWoodCatalogFixtureTest {
     void catalogFixtureHoldsTwoHundredNinetyFourFamiliesAndFifteenThirtyOneRelations() {
         assertEquals(CATALOG_FAMILIES, catalogFamilies.size());
         int relations = sources.stream()
-                .mapToInt(source -> source.definition().relations().size())
+                .mapToInt(source -> source.authoredRelations().size())
                 .sum();
         long parameterized = sources.stream()
                 .filter(source -> source.definition().parameterized().isPresent())
@@ -78,11 +78,11 @@ class AssemblerWoodCatalogFixtureTest {
         for (CompactRecipeFamilySource source : sources) {
             ResourceLocation group = source.definition().resolvedPublicationGroup();
             if (group.equals(CompactPublicationGroups.ASSEMBLER_PLANKS)) {
-                planks.addAll(source.definition().relations());
+                planks.addAll(source.authoredRelations());
             } else if (group.equals(CompactPublicationGroups.ASSEMBLER_FIREPROOF)) {
-                fireproof.addAll(source.definition().relations());
+                fireproof.addAll(source.authoredRelations());
             } else if (group.equals(CompactPublicationGroups.ASSEMBLER_PLANKS2)) {
-                planks2.addAll(source.definition().relations());
+                planks2.addAll(source.authoredRelations());
             }
         }
         assertRouterCapacity(
@@ -100,7 +100,7 @@ class AssemblerWoodCatalogFixtureTest {
             CompactRecipeFamilySource source,
             ResourceLocation group) {
         if (source.definition().parameterized().isPresent()) {
-            return source.definition().relations().isEmpty();
+            return source.authoredRelations().isEmpty();
         }
         return group.equals(CompactPublicationGroups.ASSEMBLER_PLANKS)
                 || group.equals(CompactPublicationGroups.ASSEMBLER_FIREPROOF)

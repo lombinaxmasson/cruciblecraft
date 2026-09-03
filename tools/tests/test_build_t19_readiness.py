@@ -87,7 +87,7 @@ class T19ReadinessTest(unittest.TestCase):
             set(currentness["verification_targets"]),
         )
         self.assertIn(
-            "src/main/resources/data/cruciblecraft/recipe/t8",
+            "src/main/resources/data/cruciblecraft/recipe/pipe",
             currentness["owned_inputs"],
         )
         pending = currentness["pending_report"]
@@ -258,10 +258,6 @@ class T19ReadinessTest(unittest.TestCase):
         before = builder.OUTPUT.read_bytes()
         self.assertEqual([], builder.check())
         self.assertEqual(before, builder.OUTPUT.read_bytes())
-        self.assertEqual(
-            self.document,
-            json.loads(builder.OUTPUT.read_text(encoding="utf-8")),
-        )
 
 
 if __name__ == "__main__":

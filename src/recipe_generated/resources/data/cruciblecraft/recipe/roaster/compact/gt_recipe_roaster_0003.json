@@ -1,64 +1,75 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.roaster#0003",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 2000,
-          "id": "cruciblecraft:oxygen"
+          "fluid_inputs": [
+            {
+              "amount": 2000,
+              "id": "cruciblecraft:oxygen"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 3000,
+              "id": "cruciblecraft:sulfur_dioxide"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 8000,
+              "id": "cruciblecraft:air"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 3000,
+              "id": "cruciblecraft:sulfur_dioxide"
+            }
+          ]
         }
       ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:sulfur_dioxide"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "ff8cd1e63c55cd97f31e74d1607b3e7b3ee69f4e37c6342b136be6684bd192fd",
+        "5e76fb831f7ff2d2bb1ba0432ae12b3035933109eafdd8970af4f23019c01007"
       ],
       "item_inputs": [
-        {
-          "item": "minecraft:blaze_powder"
-        }
+        [
+          {
+            "item": "minecraft:blaze_powder"
+          }
+        ]
       ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "ff8cd1e63c55cd97f31e74d1607b3e7b3ee69f4e37c6342b136be6684bd192fd"
-        ],
-        "selected_source_recipe": "gt.recipe.roaster#0003",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:roaster/compact/9d062d722e80ea52"
+      "item_outputs": [
+        []
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:roaster/compact/9d062d722e80ea52",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:roaster/compact/820c11856673f378",
+        1,
+        1
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 8000,
-          "id": "cruciblecraft:air"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:sulfur_dioxide"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -67,27 +78,14 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "minecraft:blaze_powder"
-        }
-      ],
-      "item_outputs": [],
       "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "5e76fb831f7ff2d2bb1ba0432ae12b3035933109eafdd8970af4f23019c01007"
-        ],
-        "selected_source_recipe": "gt.recipe.roaster#0003",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:roaster/compact/820c11856673f378"
+      "selected_source_recipe": "gt.recipe.roaster#0003",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:roaster/compact",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:roaster",
-  "type": "cruciblecraft:compact_gt_recipe_family",
-  "publication_group": "cruciblecraft:roaster/compact"
+  "type": "cruciblecraft:compact_gt_recipe_family"
 }

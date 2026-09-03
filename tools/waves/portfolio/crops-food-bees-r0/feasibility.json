@@ -1,0 +1,46 @@
+{
+  "allows_implementation_child": false,
+  "categories": [
+    {
+      "allows_implementation_child": false,
+      "category": "Crops",
+      "destination": null,
+      "missing_evidence": [],
+      "reasons": [
+        "Crops capability-map cc_mechanism is none.",
+        "plant.glowtus / plant.bush are crop growth, not another scatter JSON row.",
+        "There is no squeezer RecipeMap or host. T35 already excluded the squeezer MTE."
+      ],
+      "verdict": "requires_new_runtime"
+    },
+    {
+      "allows_implementation_child": false,
+      "category": "Food",
+      "destination": null,
+      "missing_evidence": [],
+      "reasons": [
+        "Food capability-map cc_mechanism is none.",
+        "There is no juicer or fermenter host. Generic importer does not create new RecipeMaps.",
+        "T35 already excluded juicer and fermenter MTEs from the 1.x machine tree."
+      ],
+      "verdict": "requires_new_runtime"
+    },
+    {
+      "allows_implementation_child": false,
+      "category": "Bees",
+      "destination": null,
+      "missing_evidence": [],
+      "reasons": [
+        "Bees capability-map cc_mechanism is none.",
+        "There is no bumble host. T35 already excluded the bumble hive MTE.",
+        "Ten-dimension WorldgenHives do not fit T20 DESIGN_POLICY_OVERWORLD_ACCESS."
+      ],
+      "verdict": "requires_new_runtime"
+    }
+  ],
+  "generated_by": "python tools/build_crops_food_bees_r0.py",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "FEASIBILITY_READY",
+  "wave_slug": "portfolio/crops-food-bees-r0"
+}

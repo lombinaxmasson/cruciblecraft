@@ -1,65 +1,121 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:8e12544160cd77b4b9b0e7c2744322ffad7a233ac181e57352b1c607b34f0ab9",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 36,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 1687,
-          "id": "cruciblecraft:water_distilled"
+          "fluid_inputs": [
+            {
+              "amount": 1687,
+              "id": "cruciblecraft:water_distilled"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1687,
+              "id": "cruciblecraft:tea"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 1687,
+              "id": "cruciblecraft:spectral_dew"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1687,
+              "id": "cruciblecraft:tea"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 1687,
+              "id": "minecraft:water"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1687,
+              "id": "cruciblecraft:tea"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 1687,
+              "id": "cruciblecraft:potion_mineralwater"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1687,
+              "id": "cruciblecraft:tea"
+            }
+          ]
         }
       ],
-      "fluid_outputs": [
-        {
-          "amount": 1687,
-          "id": "cruciblecraft:tea"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "f45a4a798a7f858858f566e24d9eccd5cca691bd413ee6bb9ec994ff9eb3d553",
+        "7055401fb090f92d8779d4af5c6e469835b76d39d2e4b48f0dc036a64f2e5822",
+        "4f7af61f2a68c8b2d3a0785cc4fd5b59f1c8d4dee73cdd5c89bfc13f62cf33e0",
+        "4457de6a70cf550d0ca15337f19652a1cb2ff01fb3c473219f357b8e25e5e514"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:tea/small_dust"
-        }
+        [
+          {
+            "item": "cruciblecraft:tea/small_dust"
+          }
+        ]
       ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "f45a4a798a7f858858f566e24d9eccd5cca691bd413ee6bb9ec994ff9eb3d553"
-        ],
-        "selected_source_recipe": "sha256:8e12544160cd77b4b9b0e7c2744322ffad7a233ac181e57352b1c607b34f0ab9",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/f8c84b2e0f5b8acf"
+      "item_outputs": [
+        []
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/f8c84b2e0f5b8acf",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:mixer/ordinary_closure/ab3e4a22d17f9a5a",
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        "cruciblecraft:mixer/ordinary_closure/b8c568e63209e411",
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        3,
+        "cruciblecraft:mixer/ordinary_closure/2482733670c62a46",
+        3,
+        3
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 36,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1687,
-          "id": "cruciblecraft:spectral_dew"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1687,
-          "id": "cruciblecraft:tea"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -68,109 +124,13 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:tea/small_dust"
-        }
-      ],
-      "item_outputs": [],
       "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "7055401fb090f92d8779d4af5c6e469835b76d39d2e4b48f0dc036a64f2e5822"
-        ],
-        "selected_source_recipe": "sha256:8e12544160cd77b4b9b0e7c2744322ffad7a233ac181e57352b1c607b34f0ab9",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/ab3e4a22d17f9a5a"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 36,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1687,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1687,
-          "id": "cruciblecraft:tea"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:tea/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "4f7af61f2a68c8b2d3a0785cc4fd5b59f1c8d4dee73cdd5c89bfc13f62cf33e0"
-        ],
-        "selected_source_recipe": "sha256:8e12544160cd77b4b9b0e7c2744322ffad7a233ac181e57352b1c607b34f0ab9",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/b8c568e63209e411"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 36,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1687,
-          "id": "cruciblecraft:potion_mineralwater"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1687,
-          "id": "cruciblecraft:tea"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:tea/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "4457de6a70cf550d0ca15337f19652a1cb2ff01fb3c473219f357b8e25e5e514"
-        ],
-        "selected_source_recipe": "sha256:8e12544160cd77b4b9b0e7c2744322ffad7a233ac181e57352b1c607b34f0ab9",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/2482733670c62a46"
+      "selected_source_recipe": "sha256:8e12544160cd77b4b9b0e7c2744322ffad7a233ac181e57352b1c607b34f0ab9",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

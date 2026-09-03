@@ -1,62 +1,80 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:59561dc1ac2cabdde58cbf06e016bc5ad3676bed733a056b464a0b1a45b01e77",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 100,
-          "id": "cruciblecraft:glue"
+          "fluid_inputs": [
+            {
+              "amount": 100,
+              "id": "cruciblecraft:glue"
+            }
+          ],
+          "fluid_outputs": []
         }
       ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "58044baa75cb515dc6311a33f7321abc36608afabca8963eac3ab95d87044fa8",
+        "1c7bddc0644c12efa69d3d25ee9b0bb45595056a53f6b251c25007ff1ebd0f8e",
+        "b1694d9f549a65a47dbdbc7c8431ce164c6c228d22bc11f8811f13891645c3fb"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:dreamwood/dust"
-        }
+        [
+          {
+            "item": "cruciblecraft:dreamwood/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:shimmerwood/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:silverwood/dust"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:gt_multiitem/multiitem_randomtools_m5999"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "58044baa75cb515dc6311a33f7321abc36608afabca8963eac3ab95d87044fa8"
-        ],
-        "selected_source_recipe": "sha256:59561dc1ac2cabdde58cbf06e016bc5ad3676bed733a056b464a0b1a45b01e77",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/95d6d2b109c06b02"
+        [
+          {
+            "count": 4,
+            "id": "cruciblecraft:gt_multiitem/multiitem_randomtools_m5999"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/95d6d2b109c06b02",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/63a07486b0b68c4a",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/be8b1a2d6fd6edc0",
+        2,
+        2
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 64,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 100,
-          "id": "cruciblecraft:glue"
-        }
-      ],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -65,76 +83,15 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:shimmerwood/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:gt_multiitem/multiitem_randomtools_m5999"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "1c7bddc0644c12efa69d3d25ee9b0bb45595056a53f6b251c25007ff1ebd0f8e"
-        ],
-        "selected_source_recipe": "sha256:59561dc1ac2cabdde58cbf06e016bc5ad3676bed733a056b464a0b1a45b01e77",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/63a07486b0b68c4a"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 100,
-          "id": "cruciblecraft:glue"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:silverwood/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:gt_multiitem/multiitem_randomtools_m5999"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "b1694d9f549a65a47dbdbc7c8431ce164c6c228d22bc11f8811f13891645c3fb"
-        ],
-        "selected_source_recipe": "sha256:59561dc1ac2cabdde58cbf06e016bc5ad3676bed733a056b464a0b1a45b01e77",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/be8b1a2d6fd6edc0"
+      "selected_source_recipe": "sha256:59561dc1ac2cabdde58cbf06e016bc5ad3676bed733a056b464a0b1a45b01e77",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

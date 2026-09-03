@@ -12,8 +12,17 @@ The [player guide](docs/current/player-guide.md) is play-facing text. It is not 
 
 - **The claimed 1.x portfolio has jointly exited** (`ONE_X_JOINT_EXIT_READY`). Current execution gap = 0. Deferred ledger = 0 (1,817 Smelter MTE recoveries complete + 28 independent post-1.x scopes).
 - **The source-capability map is closed** (`SOURCE_CAPABILITY_MAP_READY`). 113 mechanism rows (22 seed + 91 expanded). This is not a recipe census.
-- **Next program is issued, not implemented:** the [generic Source Pack importer](docs/history/card-plans/active/通用Source-Pack导入器详细计划.md) (`portfolio/generic-recipe-generator`). It only removes hand-written glue between a new Source Pack and the canonical source / compile spec. It does not rebuild the finished `recipe_bulk` compiler and it publishes no recipes.
+- **The generic Source Pack importer is closed** (`GENERIC_RECIPE_IMPORT_READY`). See the [closed plan](docs/history/card-plans/closed/通用Source-Pack导入器详细计划.md). An existing host plus a new Source Pack no longer needs a per-wave builder or a handwritten `WaveSpec`. Production still needs a separately reviewed content card. No recipes are published.
+- **Logistics cover net R0 is closed** (`LOGISTICS_COVER_NET_R0_READY`). See the [closed plan](docs/history/card-plans/closed/物流封面网络R0详细计划.md). Seven T13 logistics cover kinds and their fit onto the existing T19/T44 stack are frozen. Feasibility is `requires_new_runtime`. It does not implement a network runtime and does not pre-assign a core child.
+- **T13c exclusion reclaim R0 is closed** (`T13C_EXCLUSION_RECLAIM_R0_READY`). See the [closed plan](docs/history/card-plans/closed/T13c排除表收回R0详细计划.md). Five T13c categories (129/471) and their fit onto existing mechanisms are frozen. It does not implement MTEs.
+- **Non-ore worldgen R0 is closed** (`NON_ORE_WORLDGEN_R0_READY`). See the [closed plan](docs/history/card-plans/closed/非矿世界生成R0详细计划.md). The four capability-map named non-ore worldgen dump categories (18/190) and their fit onto the existing T20 catalog are frozen. All four verdicts are `requires_new_runtime`. It does not implement worldgen and does not pre-assign an implementation child.
+- **Vanilla replace R0 is closed** (`VANILLA_REPLACE_R0_READY`). See the [closed plan](docs/history/card-plans/closed/原版替换R0详细计划.md). The two capability-map named vanilla-replace loaders and their fit onto the existing datapack / importer stack are frozen. Both verdicts are `requires_new_runtime`. It does not replace vanilla recipes and does not pre-assign an implementation child.
+- **Crops / food / bees R0 is closed** (`CROPS_FOOD_BEES_R0_READY`). See the [closed plan](docs/history/card-plans/closed/作物食物蜜蜂R0详细计划.md). The three capability-map named crops / food / bees categories and their fit onto existing mechanisms are frozen. All three verdicts are `requires_new_runtime`. It does not implement crops, food maps, or hives and does not pre-assign an implementation child.
+- **First-hour presentation and the stage ledger are closed** (`FIRST_HOUR_PRESENTATION_READY`). See the [closed plan](docs/history/card-plans/closed/首小时表现与阶段账本详细计划.md). Mortar / sifter / bath imported GT6 tool textures; `smelter` is now a cube machine and no longer shares the crucible pot. Three-state ledger and next sequence: [unimplemented-gap](docs/current/unimplemented-gap.md). No next implementation child is pre-assigned.
+- **Vanilla-replace MVP is closed** (`VANILLA_REPLACE_MVP_READY`). See the [closed plan](docs/history/card-plans/closed/原版替换MVP详细计划.md). Paper is 3 sugar cane → 1 paper; furnace / bones stay deferred (no pre-iron firestarter). The R0 seal is unchanged. Vanilla / Replace in the gap ledger are partial, remainder still frozen. No next implementation child is pre-assigned.
+- **Item Network Core is closed** (`ITEM_NETWORK_CORE_READY`). See the [closed plan](docs/history/card-plans/closed/物品网络核心详细计划.md). Item storage / transfer covers are `runtime_ready`. T19 9/8 stays live-locked; new defs live in a sidecar. Fluid / Generic / Dump and `MultiTileEntityLogisticsCore` stay out. Not seven-kind `player_complete`. Machine-readable `unique_active_wave` is `null`; `next_unassigned = true`.
 - Nuclear Track C stays `started = false`. No new milestone numbers. No player release, RC soak, or GA.
+- **A mechanism-card `*_READY` is not shipped content.** The R0 cards after the capability map only froze denominators and feasibility. Gap ledger: [冻结与未实现账本](docs/current/unimplemented-gap.md).
 
 A historical `_READY` seal only proves that card’s denominator. It does not mean the mod is fully playable or that GT6 is complete. The [roadmap](docs/current/roadmap.md) is the living plan.
 
@@ -95,21 +104,21 @@ Docs are split the same way: [docs/current/](docs/current/) is live, [docs/histo
 
 Early work used numbered cards (T7, T20, T45). Those numbers leaked into paths, test names, and runtime ids, and later waves could not reuse the special cases. Live authoring now uses semantic paths: `recipe/mortar/`, `recipe/pipe/`, `recipe/ingot_form/`, and wave slugs.
 
-Remaining `TXX` tokens are **left on purpose**:
+Remaining `TXX` tokens are unfinished migration, not a permanent exemption. The only planned keep is `docs/history/card-plans/`. Inventory, batches, and verification: [semantic-naming.md](docs/current/semantic-naming.md). Do not rename them as a side effect of a content card. `GT6` / `gt6_*` means GregTech 6, not a card number.
+
+Still visible in the tree:
 
 - Bound ids (NBT, family ids, gate fields such as `t14_extruder`, `t11_materials/`)
-- About 396 `tools/build_t*.py` scripts and their receipts
-- Test fixtures `t39_*_fixture` … `t45_*_fixture` (tied to seal bytes)
-- Texture dir `t34_gt6/` and some GameTest method names
-
-Do not bulk-rename these without a dedicated migration card. Do not start new recipes, machines, or tools from T-numbered files. Inventory and resume order: [semantic-naming.md](docs/current/semantic-naming.md). `GT6` / `gt6_*` means GregTech 6, not a card number.
+- About 397 `tools/build_t*.py` scripts and their receipts
+- Six fixture trees, 1321 files (`t39_*` … `t45_*`, including `t39_withdrawn_recovery`)
+- Texture dir `t34_gt6/`; GameTest T18 method names are already semantic, readiness tokens are not
 
 ## Docs map
 
 - [Roadmap](docs/current/roadmap.md)
 - [Verification](docs/current/verification.md)
 - [Ordinary recipe-wave rules](docs/current/recipe-wave-workflow.md)
-- [Semantic naming leftovers](docs/current/semantic-naming.md)
+- [Semantic naming inventory](docs/current/semantic-naming.md)
 - [Known issues](docs/current/known-issues.md)
 - [Doc index](docs/README.md) · [History](docs/history/INDEX.md)
 - [Tools](tools/README.md)

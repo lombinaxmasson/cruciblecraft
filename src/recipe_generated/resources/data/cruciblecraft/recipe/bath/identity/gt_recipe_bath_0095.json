@@ -1,62 +1,179 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.bath#0095",
-  "publication_group": "cruciblecraft:bath/identity/exact_multi",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 1296,
-      "eut": 0,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 144,
-          "id": "cruciblecraft:molten_gold"
+          "fluid_inputs": [
+            {
+              "amount": 144,
+              "id": "cruciblecraft:molten_gold"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 144,
+              "id": "cruciblecraft:molten_zinc"
+            }
+          ],
+          "fluid_outputs": []
         }
       ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "b4c3df0a85316ecafef95281c4c502537ca2d5a7ebd9f89fc90867b3da91929f",
+        "da2f873216dfe258e4658075df5db6244f5a0e1430edacb3c95a3eced4a575c1",
+        "635aa1224710cfedcbba74b1081472c4d6e7152cb277f71b875bd6e6996965df",
+        "172b90f039825984fd5d083847d5b38e4930ff53b8168686947d4cc872415aa9",
+        "413aa2051102aba75c53666942fab7c2f8bed87a3a17a4b59eb707fc689a6b32",
+        "45a1064b9616ce30eec1f049145a5f968e55be587a5d9139ff5dbdd4a00f3501",
+        "1503c05037cc406c2aedf2241f14e8cecccc46eb549fea711104b3cc7f1bc673",
+        "d8d4eb463c2f2f4f24376c5b6a6eff90df8861e9255494aab1cd8e9f72a9ea77",
+        "75ff88a15c604751bdd11731e372fb365739e73015578b33aeda81914ffbe6b5"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:pig_iron/storage_ingot"
-        }
+        [
+          {
+            "item": "cruciblecraft:pig_iron/storage_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:wrought_iron/storage_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:knightmetal/storage_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoric_steel/storage_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteorite/storage_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:cast_iron/storage_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steel/storage_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoric_iron/storage_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iron_compressed/storage_ingot"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gilded_iron/storage_ingot"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "b4c3df0a85316ecafef95281c4c502537ca2d5a7ebd9f89fc90867b3da91929f"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gilded_iron/storage_ingot"
+          }
         ],
-        "selected_source_recipe": "gt.recipe.bath#0095",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/539dc14b306d9c4a"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:steel_galvanized/storage_ingot"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:bath/identity/539dc14b306d9c4a",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:bath/identity/d9786c3fffc101a0",
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        1,
+        "cruciblecraft:bath/identity/c4ff57c5407203ae",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        1,
+        "cruciblecraft:bath/identity/35de4c0445e80d7b",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:bath/identity/156b9185fadb8cc5",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:bath/identity/ec8d271aa8e30769",
+        5,
+        5
+      ],
+      [
+        6,
+        1,
+        1,
+        "cruciblecraft:bath/identity/516409e436b19a20",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:bath/identity/e3b065ad36e80e9d",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:bath/identity/92553b01ec7c83a0",
+        8,
+        8
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 1296,
       "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -65,340 +182,15 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:wrought_iron/storage_ingot"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gilded_iron/storage_ingot"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "da2f873216dfe258e4658075df5db6244f5a0e1430edacb3c95a3eced4a575c1"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0095",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/d9786c3fffc101a0"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 1296,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:molten_zinc"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:knightmetal/storage_ingot"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:steel_galvanized/storage_ingot"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "635aa1224710cfedcbba74b1081472c4d6e7152cb277f71b875bd6e6996965df"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0095",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/c4ff57c5407203ae"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 1296,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:molten_zinc"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:meteoric_steel/storage_ingot"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:steel_galvanized/storage_ingot"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "172b90f039825984fd5d083847d5b38e4930ff53b8168686947d4cc872415aa9"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0095",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/35de4c0445e80d7b"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 1296,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:meteorite/storage_ingot"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gilded_iron/storage_ingot"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "413aa2051102aba75c53666942fab7c2f8bed87a3a17a4b59eb707fc689a6b32"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0095",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 4,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/156b9185fadb8cc5"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 1296,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:cast_iron/storage_ingot"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gilded_iron/storage_ingot"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "45a1064b9616ce30eec1f049145a5f968e55be587a5d9139ff5dbdd4a00f3501"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0095",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 5,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/ec8d271aa8e30769"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 1296,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:molten_zinc"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:steel/storage_ingot"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:steel_galvanized/storage_ingot"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "1503c05037cc406c2aedf2241f14e8cecccc46eb549fea711104b3cc7f1bc673"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0095",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 6,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/516409e436b19a20"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 1296,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:meteoric_iron/storage_ingot"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gilded_iron/storage_ingot"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "d8d4eb463c2f2f4f24376c5b6a6eff90df8861e9255494aab1cd8e9f72a9ea77"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0095",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 7,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/e3b065ad36e80e9d"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 1296,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:iron_compressed/storage_ingot"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gilded_iron/storage_ingot"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "75ff88a15c604751bdd11731e372fb365739e73015578b33aeda81914ffbe6b5"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0095",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 8,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/92553b01ec7c83a0"
+      "selected_source_recipe": "gt.recipe.bath#0095",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:bath/identity/exact_multi",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:bath",
   "type": "cruciblecraft:compact_gt_recipe_family"

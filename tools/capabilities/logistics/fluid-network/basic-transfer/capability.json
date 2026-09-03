@@ -1,0 +1,58 @@
+{
+  "schema_version": 2,
+  "slug": "logistics/fluid-network/basic-transfer",
+  "title": "Fluid network basic transfer",
+  "maturity": "player_complete",
+  "workflow": "accepted",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/logistics/fluidnet/**",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/FluidPipeBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/FluidNetworkCoreGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/verification/PlayerCompleteSmoke.java",
+    "src/main/java/com/masson/cruciblecraft/client/ClientSmoke.java",
+    "src/main/resources/data/cruciblecraft/fluid_network_cover_definitions.json",
+    "src/main/resources/data/cruciblecraft_wave_runtime_fluid_network_basic_transfer/**",
+    "src/generated/resources/data/cruciblecraft/recipe/logistics_fluid_*_cover.json",
+    "src/generated/resources/assets/cruciblecraft/models/item/logistics_fluid_*_cover.json",
+    "tools/capabilities/logistics/fluid-network/basic-transfer/**",
+    "tools/waves/runtime/fluid-network-basic-transfer/**",
+    "tools/tests/test_fluid_network_core.py",
+    "tools/player_complete.py",
+    "tools/build_player_complete.py"
+  ],
+  "depends_on": [
+    "logistics/cover-net-r0",
+    "logistics/item-network-core"
+  ],
+  "profiles": ["capability-runtime", "player-complete"],
+  "wave_slug": "runtime/fluid-network-basic-transfer",
+  "legacy_readiness": null,
+  "player_signoff": "tools/capabilities/logistics/fluid-network/basic-transfer/player_signoff.json",
+  "identity_disposition": [
+    {
+      "semantic_key": "cover:logistics_fluid_storage",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:logistics_fluid_storage"
+      ],
+      "reason": "Fluid storage cover is a distinct medium from item storage."
+    },
+    {
+      "semantic_key": "cover:logistics_fluid_import",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:logistics_fluid_import"
+      ],
+      "reason": "Fluid import cover is a distinct medium from item import."
+    },
+    {
+      "semantic_key": "cover:logistics_fluid_export",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:logistics_fluid_export"
+      ],
+      "reason": "Fluid export cover is a distinct medium from item export."
+    }
+  ],
+  "note": "Survival craftable storage/import/export covers. Not Generic or Dump."
+}

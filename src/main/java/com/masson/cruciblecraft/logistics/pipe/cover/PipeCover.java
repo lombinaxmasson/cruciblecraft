@@ -30,6 +30,7 @@ public record PipeCover(
                         Optional.empty(),
                         Optional.empty(),
                         Optional.empty(),
+                        Optional.empty(),
                         Optional.empty()));
     }
 

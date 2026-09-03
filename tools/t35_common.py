@@ -134,6 +134,9 @@ CURRENTNESS_FIELD_NAMES = frozenset(
         "generated_at",
         "currentness_root_sha256",
         "semantic_root_sha256",
+        "input_sha256",
+        "material_tree_sha256",
+        "source_contracts",
     }
 )
 
@@ -209,6 +212,39 @@ def classify_stale(
 def stale_error(path: Path, expected_text: str, actual_text: str) -> str:
     classification, message = classify_stale(path, expected_text, actual_text)
     return f"{classification}: {message}"
+
+
+def check_compact(
+    path: Path,
+    rebuilt: Any,
+    *,
+    encode: Any | None = None,
+    view: Any | None = None,
+) -> list[str]:
+    """Fail on semantic drift only.
+
+    Closed T-card ledgers pin whole-tree / source-file sha envelopes.
+    Those envelopes are HASH_ONLY: they do not fail compact ``--check``.
+    """
+    encoder = encode or stable_json
+    transform = view or _strip_currentness
+    if not path.is_file():
+        return [f"MISSING: {relative(path)} is stale (missing)"]
+    expected_text = encoder(rebuilt)
+    actual_text = path.read_text(encoding="utf-8")
+    if actual_text == expected_text:
+        return []
+    try:
+        actual_doc = json.loads(actual_text)
+    except json.JSONDecodeError:
+        classification, message = classify_stale(path, expected_text, actual_text)
+        return [f"{classification}: {message}"]
+    if transform(rebuilt) == transform(actual_doc):
+        return []
+    classification, message = classify_stale(path, expected_text, actual_text)
+    if classification == "HASH_ONLY_DRIFT":
+        return []
+    return [f"{classification}: {message}"]
 
 
 def check_generated_document(path: Path, document: Any) -> list[str]:

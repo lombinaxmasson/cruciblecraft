@@ -1,0 +1,32 @@
+{
+  "files": [
+    {
+      "path": "src/test/resources/generic_recipe_import/smelter_exact_singleton/source_pack/dump_slice.json",
+      "role": "dump_slice",
+      "sha256": "964add78a81bf0df996b774ad6acdc058721290a1190ab22ebb925f294fe1660"
+    },
+    {
+      "path": "src/test/resources/generic_recipe_import/smelter_exact_singleton/source_pack/work_set.json",
+      "role": "work_set",
+      "sha256": "5d12f3ce2c08777beb4ada5f1833bd03686469f474058c7fc797497d5576f456"
+    },
+    {
+      "path": "src/test/resources/generic_recipe_import/smelter_exact_singleton/compare_corpus.json",
+      "role": "compare_corpus",
+      "sha256": "c460329b585c6da789d6a76004ad18030b722a9462a7d9ec6f63821437894606"
+    }
+  ],
+  "full_replay": {
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "provenance_policy": {
+    "append_only": true,
+    "forbid_gt6u": true
+  },
+  "schema_version": 1,
+  "source_dialect": "gt6",
+  "source_pack_id": "generic-import/smelter-exact-singleton",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_system": "gt6"
+}

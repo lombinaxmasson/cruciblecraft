@@ -82,10 +82,11 @@ class SmelterStoneHarnessTest {
             assertEquals(
                     STONE_GROUP.toString(),
                     document.get("publication_group").getAsString());
-            JsonArray relations = document.getAsJsonArray("relations");
+            java.util.List<JsonObject> relations =
+                    CompactGTRecipeFamilyGeneratedSupport.authoredRelationJsons(document);
             for (int index = 0; index < relations.size(); index++) {
                 relationCount++;
-                JsonObject relationJson = relations.get(index).getAsJsonObject();
+                JsonObject relationJson = relations.get(index);
                 ResourceLocation stableId = ResourceLocation.parse(
                         relationJson.get("stable_id").getAsString());
                 GTRecipe recipe = map.entry(stableId).orElseThrow().recipe();
@@ -213,7 +214,7 @@ class SmelterStoneHarnessTest {
         Map<String, List<ResourceLocation>> grouped = new HashMap<>();
         for (CompactRecipeFamilySource source : sources) {
             for (CompactGTRecipeFamilyDefinition.Relation relation
-                    : source.definition().relations()) {
+                    : source.authoredRelations()) {
                 String signature = GTRecipeMapLoader.inputSignature(
                         relation.materialize());
                 grouped.computeIfAbsent(signature, ignored -> new ArrayList<>())
@@ -244,7 +245,7 @@ class SmelterStoneHarnessTest {
         map.prepareRecipes(List.of(), List.copyOf(snapshots.values()), 1L).publish();
         List<CompactGTRecipeFamilyDefinition.Relation> relations = new ArrayList<>();
         for (CompactRecipeFamilySource source : sources) {
-            relations.addAll(source.definition().relations());
+            relations.addAll(source.authoredRelations());
         }
         assertEquals(LOCKED_RELATIONS, relations.size());
         assertShardRouting(map, relations, STONE_GROUP);

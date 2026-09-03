@@ -21,6 +21,7 @@ sys.path.insert(0, str(ROOT))
 
 from tools import build_t20_worldgen_source as t20  # noqa: E402
 from tools import t27_common as common  # noqa: E402
+from tools import t35_common as t35  # noqa: E402
 
 TOOLS = common.TOOLS
 POLICY = TOOLS / "t30_hopper_source_policy.json"
@@ -374,23 +375,15 @@ def write() -> dict[str, Any]:
 
 
 def check() -> list[str]:
-    errors: list[str] = []
-    if not OUTPUT.is_file():
-        errors.append(f"missing generated file: {common.relative(OUTPUT)}")
-        return errors
     document = build()
-    expected = common.stable_json(document)
-    actual = OUTPUT.read_text(encoding="utf-8")
-    if actual != expected:
-        errors.append(f"{common.relative(OUTPUT)} is stale")
-    catalog_path = _catalog_path(_policy())
-    if not catalog_path.is_file():
-        errors.append(f"missing generated file: {common.relative(catalog_path)}")
-        return errors
-    catalog_expected = common.stable_json(catalog_document(document))
-    catalog_actual = catalog_path.read_text(encoding="utf-8")
-    if catalog_actual != catalog_expected:
-        errors.append(f"{common.relative(catalog_path)} is stale")
+    errors = t35.check_compact(OUTPUT, document, encode=common.stable_json)
+    errors.extend(
+        t35.check_compact(
+            _catalog_path(_policy()),
+            catalog_document(document),
+            encode=common.stable_json,
+        )
+    )
     return errors
 
 

@@ -1,73 +1,171 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:6c869f0d1acf76f8dee9f1ffa48fffef0ff8b4979c40458af94dc7b6b15a3293",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
+          "fluid_inputs": [],
+          "fluid_outputs": []
         }
       ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
+      "hashes": [
+        "76fcd8e1b8fc5b5bd13792ee68e49ae3a29b342950e2204967a8f83acd1503af",
+        "1595c07eb438c18b697390f5976d82f2020755945c887e7ecb6bca8ade3f3c14",
+        "64a350e7e315539c57ad1e780f238e1e6a7657be38207f6d6f24468b740d26db",
+        "5cd088775c56b99f6d6088515610330c4088b87aba42ae27ed894d125ded63d1",
+        "f24e5681eb4ec7069128f489ff703b74ff33237b76048ba641408a00df77610d",
+        "5d285fce73b416d1be5190dd94ecf8b006850489637e56fab03d283e77926cbd"
       ],
       "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:basalz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:bentonite/dust"
-        },
-        {
-          "item": "cruciblecraft:obsidian/dust"
-        }
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:basalz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:bentonite/dust"
+          },
+          {
+            "item": "cruciblecraft:obsidian/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:basalz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:clay/dust"
+          },
+          {
+            "item": "cruciblecraft:obsidian/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:basalz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:palygorskite/dust"
+          },
+          {
+            "item": "cruciblecraft:obsidian/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:basalz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:kaolinite/dust"
+          },
+          {
+            "item": "cruciblecraft:obsidian/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:basalz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:clay_red/dust"
+          },
+          {
+            "item": "cruciblecraft:obsidian/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:basalz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:clay_brown/dust"
+          },
+          {
+            "item": "cruciblecraft:obsidian/dust"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:petrotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "76fcd8e1b8fc5b5bd13792ee68e49ae3a29b342950e2204967a8f83acd1503af"
-        ],
-        "selected_source_recipe": "sha256:6c869f0d1acf76f8dee9f1ffa48fffef0ff8b4979c40458af94dc7b6b15a3293",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/b39614c37a5902fa"
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:petrotheum/dust"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/b39614c37a5902fa",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/820910533907fa3c",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/d9a54383df8bca64",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/043e80f453013a46",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/735a770e216b7134",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/72521663d3651727",
+        5,
+        5
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -88,281 +186,15 @@
         1,
         1
       ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:basalz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:clay/dust"
-        },
-        {
-          "item": "cruciblecraft:obsidian/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:petrotheum/dust"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "1595c07eb438c18b697390f5976d82f2020755945c887e7ecb6bca8ade3f3c14"
-        ],
-        "selected_source_recipe": "sha256:6c869f0d1acf76f8dee9f1ffa48fffef0ff8b4979c40458af94dc7b6b15a3293",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/820910533907fa3c"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:basalz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:palygorskite/dust"
-        },
-        {
-          "item": "cruciblecraft:obsidian/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:petrotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "64a350e7e315539c57ad1e780f238e1e6a7657be38207f6d6f24468b740d26db"
-        ],
-        "selected_source_recipe": "sha256:6c869f0d1acf76f8dee9f1ffa48fffef0ff8b4979c40458af94dc7b6b15a3293",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/d9a54383df8bca64"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:basalz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:kaolinite/dust"
-        },
-        {
-          "item": "cruciblecraft:obsidian/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:petrotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "5cd088775c56b99f6d6088515610330c4088b87aba42ae27ed894d125ded63d1"
-        ],
-        "selected_source_recipe": "sha256:6c869f0d1acf76f8dee9f1ffa48fffef0ff8b4979c40458af94dc7b6b15a3293",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/043e80f453013a46"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:basalz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:clay_red/dust"
-        },
-        {
-          "item": "cruciblecraft:obsidian/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:petrotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "f24e5681eb4ec7069128f489ff703b74ff33237b76048ba641408a00df77610d"
-        ],
-        "selected_source_recipe": "sha256:6c869f0d1acf76f8dee9f1ffa48fffef0ff8b4979c40458af94dc7b6b15a3293",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 4,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/735a770e216b7134"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:basalz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:clay_brown/dust"
-        },
-        {
-          "item": "cruciblecraft:obsidian/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:petrotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "5d285fce73b416d1be5190dd94ecf8b006850489637e56fab03d283e77926cbd"
-        ],
-        "selected_source_recipe": "sha256:6c869f0d1acf76f8dee9f1ffa48fffef0ff8b4979c40458af94dc7b6b15a3293",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 5,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/72521663d3651727"
+      "selected_source_recipe": "sha256:6c869f0d1acf76f8dee9f1ffa48fffef0ff8b4979c40458af94dc7b6b15a3293",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

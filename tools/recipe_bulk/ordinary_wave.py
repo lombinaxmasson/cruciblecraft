@@ -5,18 +5,23 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import shutil
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 
+from tools import block_art as block_art
+from tools import multiitem_art as art
 from tools import t35_common as t35
 from tools import t41_shard_router as router
 from tools import t48_identities as identities
+from tools import tool_head_prefix as thp
 from tools.recipe_bulk import compile as compile_mod
 from tools.recipe_bulk import membership as membership_mod
 from tools.recipe_bulk import ordinary_r0
 from tools.recipe_bulk import ordinary_source
 from tools.recipe_bulk.waves import RECIPE_SUPPORT_ROOT, recipe_wave
+from tools.recipe_bulk.matrix import authored_relations
 from tools.recipe_bulk.slugs import parse_wave_token
 
 ROOT = t35.ROOT
@@ -171,6 +176,8 @@ def build_object_catalog(slug: str, relations: list[dict[str, Any]]) -> dict[str
                 meta = 0
             if not isinstance(meta, int):
                 continue
+            if kind == "tool_head" and thp.is_mapped(item, meta):
+                continue
             if (item, meta) in reused:
                 continue
             if ordinary_source.proven_item_runtime(item, meta):
@@ -286,7 +293,7 @@ def build_object_catalog(slug: str, relations: list[dict[str, Any]]) -> dict[str
         "kind_counts": dict(sorted(kinds.items())),
         "note": (
             "Semantic object identities not already registered by the T48 catalog. "
-            "Tool heads stay out of material prefixes."
+            "Mapped tool heads leave this catalog and resolve as material prefixes."
         ),
         "schema_version": 1,
         "source_revision": SOURCE_REVISION,
@@ -537,7 +544,15 @@ def build_operand_map(slug: str, relations: list[dict[str, Any]]) -> dict[str, A
                 continue
             source = operand.get("source") or {}
             if source.get("item"):
-                key = f"item:{source.get('item')}@{source.get('meta')}"
+                item = str(source.get("item"))
+                meta = source.get("meta")
+                key = f"item:{item}@{meta}"
+                runtime = thp.rewrite_published_runtime(runtime, item, meta)
+                if thp.is_forbidden_unique_tool_head(runtime):
+                    raise ValueError(
+                        f"{slug} operand map still has unique tool head {runtime} "
+                        f"for {key}"
+                    )
             elif source.get("fluid"):
                 key = f"fluid:{source.get('fluid')}"
             else:
@@ -923,7 +938,7 @@ def build_equivalence(slug: str, planned: list[tuple[Path, dict[str, Any]]], sou
         by_stable[str(relation["stable_id"])] = relation
     rows: list[dict[str, Any]] = []
     for _path, document in planned:
-        for generated in document.get("relations") or []:
+        for generated in authored_relations(document):
             stable = str(generated["stable_id"])
             source_row = by_stable.get(stable)
             if source_row is None:
@@ -969,7 +984,7 @@ def build_equivalence(slug: str, planned: list[tuple[Path, dict[str, Any]]], sou
 def build_player_path(slug: str, planned: list[tuple[Path, dict[str, Any]]]) -> dict[str, Any]:
     rows: list[dict[str, Any]] = []
     for _path, document in planned:
-        for relation in document.get("relations") or []:
+        for relation in authored_relations(document):
             consume = [
                 str(stack.get("item") or stack.get("items") or stack.get("tag") or "")
                 for stack in relation.get("item_inputs") or []
@@ -1704,13 +1719,22 @@ def write_item_models(catalog: dict[str, Any]) -> None:
                 {
                     "parent": "minecraft:item/generated",
                     "textures": {
-                        "layer0": str(identity.get("texture") or "minecraft:item/iron_ingot")
+                        "layer0": block_art.identity_layer0(identity)
                     },
                 }
             ),
             encoding="utf-8",
             newline="\n",
         )
+    head_root = ITEM_MODEL_ROOT / "gt_tool_head"
+    remaining = [
+        identity
+        for identity in catalog.get("identities") or []
+        if str(identity.get("kind") or "") == "tool_head"
+        or str(identity.get("runtime_id") or "").startswith("cruciblecraft:gt_tool_head/")
+    ]
+    if head_root.is_dir() and not remaining:
+        shutil.rmtree(head_root)
 
 
 def write_b1_scatter(catalog: dict[str, Any]) -> None:

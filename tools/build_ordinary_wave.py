@@ -407,6 +407,43 @@ def check_wave(slug: str) -> list[str]:
     return errors
 
 
+def repair_runtime_ids(slug: str) -> dict[str, Any]:
+    """Rewrite operand runtime ids without resealing production lock or census."""
+    spec = recipe_wave(slug)
+    root = wave.wave_dir(slug)
+    source = t35.load_json(spec.source_path)
+    relations = list(source.get("relations") or [])
+    if not relations:
+        raise ValueError(f"{slug} frozen source has no relations")
+    catalog = wave.build_object_catalog(slug, relations)
+    t35.write_stable(root / "object_catalog.json", catalog)
+    merged_objects = wave.merge_object_catalogs()
+    t35.write_stable(wave.BUNDLED_OBJECT_CATALOG, merged_objects)
+    wave.write_item_models(merged_objects)
+    wave.write_b1_scatter(merged_objects)
+    operand_map = wave.build_operand_map(slug, relations)
+    t35.write_stable(spec.operand_map_path, operand_map)
+    identity_delta = wave.build_identity_delta(slug, operand_map)
+    t35.write_stable(root / "identity_ledger_delta.json", identity_delta)
+    from tools.recipe_bulk import identity_v3
+
+    t35.write_stable(identity_v3.OUTPUT, identity_v3.build())
+    compiled = compile_mod.compile_wave(slug)
+    compile_mod.write_tree(
+        compiled["planned"],
+        spec.generated_root,
+        spec.generated_root,
+        path_prefix=spec.path_prefix,
+    )
+    t35.write_stable(root / "compile_report.json", compiled["report"])
+    return {
+        "identities": int(catalog.get("identity_count") or 0),
+        "relations": compiled["report"]["relation_count"],
+        "slug": slug,
+        "status": "runtime_ids_repaired",
+    }
+
+
 def write_seal(slug: str) -> dict[str, Any]:
     return closeout_seal.write_wave_seal(slug)
 
@@ -429,6 +466,14 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--seal", action="store_true")
     parser.add_argument("--skip-gate", action="store_true")
     parser.add_argument("--rebuild-closeout", action="store_true")
+    parser.add_argument(
+        "--repair-runtime-ids",
+        action="store_true",
+        help=(
+            "Rewrite object catalogs, identity deltas, and generated recipes "
+            "without touching lock/census."
+        ),
+    )
     args = parser.parse_args(argv)
     if (
         args.write == args.check
@@ -436,11 +481,17 @@ def main(argv: list[str] | None = None) -> int:
         and not args.from_integrated
         and not args.seal
         and not args.rebuild_closeout
+        and not args.repair_runtime_ids
     ):
         parser.error(
-            "choose --write, --check, --from-log, --from-integrated, --seal, or --rebuild-closeout"
+            "choose --write, --check, --from-log, --from-integrated, --seal, "
+            "--rebuild-closeout, or --repair-runtime-ids"
         )
     try:
+        if args.repair_runtime_ids:
+            summary = repair_runtime_ids(args.wave)
+            print(json.dumps(summary, sort_keys=True))
+            return 0
         if args.from_integrated is not None:
             summary = apply_integrated_measurements(args.wave, args.from_integrated)
             print(json.dumps(summary, sort_keys=True))

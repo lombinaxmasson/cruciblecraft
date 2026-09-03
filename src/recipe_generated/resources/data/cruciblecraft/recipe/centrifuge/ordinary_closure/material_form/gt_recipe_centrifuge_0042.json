@@ -1,77 +1,107 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.centrifuge#0042",
-  "publication_group": "cruciblecraft:centrifuge/ordinary_closure/material_form",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 64,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "kind": "consume"
+          "fluid_inputs": [],
+          "fluid_outputs": []
         }
       ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "5fb734deb103330b2df702f95ea51e578c8323cf054f9240df280150c2e81ff3",
+        "4320d2d199b06a7428555e143039db6a38d5e6e9eddab5cc5c6bf8a8fc66ff70"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        }
+        [
+          {
+            "item": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:rare_earth/tiny_centrifuged_crushed_ore"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 8,
-          "id": "cruciblecraft:ruthenium/tiny_dust"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:rhodium/tiny_dust"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:palladium/tiny_dust"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:osmium_elemental/tiny_dust"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:iridium/tiny_dust"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum/tiny_dust"
-        }
-      ],
-      "output_chances": [
-        80,
-        80,
-        80,
-        80,
-        80,
-        80
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "5fb734deb103330b2df702f95ea51e578c8323cf054f9240df280150c2e81ff3"
+        [
+          {
+            "count": 8,
+            "id": "cruciblecraft:ruthenium/tiny_dust"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:rhodium/tiny_dust"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:palladium/tiny_dust"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:osmium_elemental/tiny_dust"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:iridium/tiny_dust"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum/tiny_dust"
+          }
         ],
-        "selected_source_recipe": "gt.recipe.centrifuge#0042",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:centrifuge/ordinary_closure/8e5d1e1ac4d34bd9"
+        [
+          {
+            "count": 8,
+            "id": "cruciblecraft:neodymium/tiny_dust"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:yttrium/tiny_dust"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:lanthanium/tiny_dust"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:cerium/tiny_dust"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:cadmium/tiny_dust"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:caesium/tiny_dust"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:centrifuge/ordinary_closure/8e5d1e1ac4d34bd9",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:centrifuge/ordinary_closure/8ccc041c1e887d29",
+        1,
+        1
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 64,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -79,37 +109,6 @@
       ],
       "item_input_counts": [
         1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:rare_earth/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 8,
-          "id": "cruciblecraft:neodymium/tiny_dust"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:yttrium/tiny_dust"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:lanthanium/tiny_dust"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:cerium/tiny_dust"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:cadmium/tiny_dust"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:caesium/tiny_dust"
-        }
       ],
       "output_chances": [
         80,
@@ -119,18 +118,12 @@
         80,
         80
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "4320d2d199b06a7428555e143039db6a38d5e6e9eddab5cc5c6bf8a8fc66ff70"
-        ],
-        "selected_source_recipe": "gt.recipe.centrifuge#0042",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:centrifuge/ordinary_closure/8ccc041c1e887d29"
+      "selected_source_recipe": "gt.recipe.centrifuge#0042",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:centrifuge/ordinary_closure/material_form",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:centrifuge",
   "type": "cruciblecraft:compact_gt_recipe_family"

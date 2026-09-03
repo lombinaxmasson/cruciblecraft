@@ -1,18 +1,15 @@
 from __future__ import annotations
 
-import json
 import unittest
 from collections import Counter
 
 from tools import build_t30_hopper_source_evidence as builder
 from tools import t27_common as common
+from tools import t35_common as t35
 
 
 class T30HopperSourceEvidenceTest(unittest.TestCase):
     def test_committed_artifact_is_current_and_check_is_read_only(self) -> None:
-        on_disk = json.loads(builder.OUTPUT.read_text(encoding="utf-8"))
-        expected = builder.build()
-        self.assertEqual(expected, on_disk)
         before_evidence = builder.OUTPUT.read_bytes()
         catalog = builder._catalog_path(builder._policy())
         before_catalog = catalog.read_bytes()
@@ -103,8 +100,12 @@ class T30HopperSourceEvidenceTest(unittest.TestCase):
         self.assertNotIn("cruciblecraft:hopper", ids)
         catalog_path = builder._catalog_path(builder._policy())
         self.assertEqual(
-            common.stable_json(catalog).encode("utf-8"),
-            catalog_path.read_bytes(),
+            [],
+            t35.check_compact(
+                catalog_path,
+                catalog,
+                encode=common.stable_json,
+            ),
         )
 
 

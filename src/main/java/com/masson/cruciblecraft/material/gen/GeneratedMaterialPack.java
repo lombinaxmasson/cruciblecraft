@@ -29,6 +29,12 @@ import com.masson.cruciblecraft.material.MaterialZhNames;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixDefinition;
+import com.masson.cruciblecraft.content.item.BathIdentityCatalog;
+import com.masson.cruciblecraft.content.item.BathMteIdentityCatalog;
+import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
+import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
+import com.masson.cruciblecraft.content.item.SemanticObjectCatalog;
+import com.masson.cruciblecraft.content.item.SmelterMteIdentityCatalog;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -373,11 +379,6 @@ public final class GeneratedMaterialPack {
                         GSON.toJson(model));
             }
         }
-        if (!oreTranslations.entrySet().isEmpty()) {
-            files.put(
-                    "assets/" + CrucibleCraft.MODID + "/lang/en_us.json",
-                    GSON.toJson(oreTranslations));
-        }
         JsonObject zhTranslations = new JsonObject();
         for (MaterialDefinition material : materials) {
             MaterialZhNames.material(material.id()).ifPresent(mat -> {
@@ -414,13 +415,123 @@ public final class GeneratedMaterialPack {
                 }
             });
         }
-        if (!zhTranslations.entrySet().isEmpty()) {
-            files.put(
-                    "assets/" + CrucibleCraft.MODID + "/lang/zh_cn.json",
-                    GSON.toJson(zhTranslations));
-        }
+        addCatalogClientAssets(files, oreTranslations, zhTranslations);
+        files.put(
+                "assets/" + CrucibleCraft.MODID + "/lang/en_us.json",
+                GSON.toJson(oreTranslations));
+        files.put(
+                "assets/" + CrucibleCraft.MODID + "/lang/zh_cn.json",
+                GSON.toJson(zhTranslations));
         return Map.copyOf(files);
     }
+
+    private static void addCatalogClientAssets(
+            Map<String, String> files,
+            JsonObject english,
+            JsonObject chinese) {
+        if (MaterialPrefixCatalog.isBootstrapped()) {
+            for (MaterialPrefix form : MaterialPrefixCatalog.values()) {
+                String key = "item.cruciblecraft.material_form." + form.serializedName();
+                english.addProperty(key, "%s " + title(form.serializedName()));
+                MaterialZhNames.prefix(form.serializedName()).ifPresent(name ->
+                        chinese.addProperty(key, "%s " + name));
+            }
+        }
+        addIdentityLang(english, chinese, BathIdentityCatalog.identities(), identity ->
+                new CatalogLang(
+                        identity.registryPath(),
+                        identity.englishName(),
+                        identity.chineseName(),
+                        false));
+        addIdentityLang(english, chinese, SemanticObjectCatalog.identities(), identity ->
+                new CatalogLang(
+                        identity.registryPath(),
+                        identity.englishName(),
+                        identity.chineseName(),
+                        false));
+        addIdentityLang(english, chinese, BathMteIdentityCatalog.newItems(), identity ->
+                new CatalogLang(
+                        identity.registryPath(),
+                        identity.englishName(),
+                        identity.chineseName(),
+                        false));
+        addIdentityLang(english, chinese, SmelterMteIdentityCatalog.newItems(), identity ->
+                new CatalogLang(
+                        identity.registryPath(),
+                        identity.englishName(),
+                        identity.chineseName(),
+                        false));
+        addBlockObjectAssets(files, english, chinese, GtBlockObjectCatalog.variants());
+        addBlockObjectAssets(
+                files, english, chinese, BathRemainderBlockObjectCatalog.variants());
+    }
+
+    private static <T> void addIdentityLang(
+            JsonObject english,
+            JsonObject chinese,
+            Collection<T> identities,
+            java.util.function.Function<T, CatalogLang> view) {
+        for (T identity : identities) {
+            CatalogLang lang = view.apply(identity);
+            String dotted = lang.registryPath().replace('/', '.');
+            String itemKey = "item." + CrucibleCraft.MODID + "." + dotted;
+            english.addProperty(itemKey, lang.englishName());
+            chinese.addProperty(itemKey, lang.chineseName());
+            if (lang.block()) {
+                String blockKey = "block." + CrucibleCraft.MODID + "." + dotted;
+                english.addProperty(blockKey, lang.englishName());
+                chinese.addProperty(blockKey, lang.chineseName());
+            }
+        }
+    }
+
+    private static void addBlockObjectAssets(
+            Map<String, String> files,
+            JsonObject english,
+            JsonObject chinese,
+            Collection<GtBlockObjectCatalog.Variant> variants) {
+        for (GtBlockObjectCatalog.Variant variant : variants) {
+            addIdentityLang(
+                    english,
+                    chinese,
+                    List.of(new CatalogLang(
+                            variant.registryPath(),
+                            variant.englishName(),
+                            variant.chineseName(),
+                            true)),
+                    value -> value);
+            String path = variant.registryPath();
+            String modelId = CrucibleCraft.MODID + ":block/" + path;
+            JsonObject blockstate = new JsonObject();
+            JsonObject variantsJson = new JsonObject();
+            JsonObject def = new JsonObject();
+            def.addProperty("model", modelId);
+            variantsJson.add("", def);
+            blockstate.add("variants", variantsJson);
+            files.put(
+                    "assets/" + CrucibleCraft.MODID + "/blockstates/" + path + ".json",
+                    GSON.toJson(blockstate));
+            JsonObject blockModel = new JsonObject();
+            blockModel.addProperty("parent", "minecraft:block/cube_all");
+            JsonObject textures = new JsonObject();
+            textures.addProperty("all", variant.texture());
+            blockModel.add("textures", textures);
+            files.put(
+                    "assets/" + CrucibleCraft.MODID + "/models/block/" + path + ".json",
+                    GSON.toJson(blockModel));
+            JsonObject itemModel = new JsonObject();
+            itemModel.addProperty("parent", modelId);
+            files.put(
+                    "assets/" + CrucibleCraft.MODID + "/models/item/" + path + ".json",
+                    GSON.toJson(itemModel));
+        }
+    }
+
+    private record CatalogLang(
+            String registryPath,
+            String englishName,
+            String chineseName,
+            boolean block) {}
 
     private static Map<String, List<MaterialPrefix>> registeredForms(
             Collection<MaterialDefinition> materials) {

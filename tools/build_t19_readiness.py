@@ -6,24 +6,21 @@ import argparse
 import hashlib
 import json
 import re
+import sys
 from pathlib import Path
 from typing import Any
 
-try:
-    from tools import build_t19_cover_acquisition as acquisition_builder
-    from tools import build_t19_cover_denominator as denominator_builder
-    from tools import build_t19_pipe_acquisition as pipe_acquisition_builder
-    from tools import build_t17_machine_denominator as publication_support
-    from tools import recipe_load_projection
-except ModuleNotFoundError:
-    import build_t19_cover_acquisition as acquisition_builder
-    import build_t19_cover_denominator as denominator_builder
-    import build_t19_pipe_acquisition as pipe_acquisition_builder
-    import build_t17_machine_denominator as publication_support
-    import recipe_load_projection
-
-
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tools import build_t19_cover_acquisition as acquisition_builder
+from tools import build_t19_cover_denominator as denominator_builder
+from tools import build_t19_pipe_acquisition as pipe_acquisition_builder
+from tools import build_t17_machine_denominator as publication_support
+from tools import recipe_load_projection
+from tools import t35_common as t35
+
 TOOLS = ROOT / "tools"
 POLICY = TOOLS / "t19_readiness_policy.json"
 OUTPUT = TOOLS / "t19_readiness.json"
@@ -41,7 +38,7 @@ GENERATED_RECIPE_ROOT = (
     ROOT / "src/generated/resources/data/cruciblecraft/recipe"
 )
 T8_PIPE_RULE_ROOT = (
-    ROOT / "src/main/resources/data/cruciblecraft/recipe/t8"
+    ROOT / "src/main/resources/data/cruciblecraft/recipe/pipe"
 )
 PIPE_PHASE = (
     ROOT
@@ -711,13 +708,32 @@ def build(policy: dict[str, Any] | None = None) -> dict[str, Any]:
     }
 
 
+def _compact_readiness(document: Any) -> Any:
+    compact = t35._strip_currentness(document)
+    if not isinstance(compact, dict):
+        return compact
+    compact = dict(compact)
+    dependencies = compact.get("dependencies")
+    if isinstance(dependencies, dict):
+        compact["dependencies"] = {
+            key: (
+                {name: value for name, value in row.items() if name != "sha256"}
+                if isinstance(row, dict)
+                else row
+            )
+            for key, row in dependencies.items()
+        }
+    return compact
+
+
 def check(document: dict[str, Any] | None = None) -> list[str]:
-    expected = stable(build() if document is None else document)
-    if not OUTPUT.is_file():
-        return [f"missing {relative(OUTPUT)}"]
-    if OUTPUT.read_text(encoding="utf-8") != expected:
-        return [f"stale {relative(OUTPUT)}"]
-    return []
+    rebuilt = build() if document is None else document
+    return t35.check_compact(
+        OUTPUT,
+        rebuilt,
+        encode=stable,
+        view=_compact_readiness,
+    )
 
 
 def main() -> int:

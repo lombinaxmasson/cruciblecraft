@@ -8,15 +8,22 @@ from tools import t48_identities as identities
 
 
 class T48IdentityOverlayTest(unittest.TestCase):
-    def test_tool_heads_are_not_prefix_forms(self) -> None:
+    def test_tool_heads_are_prefix_forms(self) -> None:
         self.assertEqual(
             "tool_head",
             identities.classify_source_item("gregtech:gt.meta.toolHeadArrow"),
         )
-        self.assertIsNone(
-            identities.overlay_prefix_form("gregtech:gt.meta.toolHeadArrow")
+        self.assertEqual(
+            "tool_head_arrow",
+            identities.overlay_prefix_form("gregtech:gt.meta.toolHeadArrow"),
         )
-        self.assertTrue(
+        self.assertEqual(
+            "cruciblecraft:iron/tool_head_arrow",
+            identities.runtime_id_for(
+                "tool_head", "gregtech:gt.meta.toolHeadArrow", 260
+            ),
+        )
+        self.assertFalse(
             identities.runtime_id_for(
                 "tool_head", "gregtech:gt.meta.toolHeadArrow", 260
             ).startswith("cruciblecraft:gt_tool_head/")
@@ -42,7 +49,7 @@ class T48IdentityOverlayTest(unittest.TestCase):
             identities.vanilla_meta_runtime("minecraft:dye", 15),
         )
         self.assertEqual(
-            "cruciblecraft:t48_stained_glass",
+            "cruciblecraft:bath_identity_stained_glass",
             identities.vanilla_wildcard_tag("minecraft:stained_glass"),
         )
         self.assertEqual(16, len(identities.stained_color_items("minecraft:stained_glass")))

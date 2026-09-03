@@ -1,203 +1,176 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.centrifuge#0009",
-  "publication_group": "cruciblecraft:centrifuge/ordinary_closure/acquisition",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 1168,
-      "eut": 56,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 576,
-          "id": "cruciblecraft:molten_bronze"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [],
-      "item_input_counts": [],
-      "item_inputs": [],
-      "item_outputs": [
-        {
-          "count": 3,
-          "id": "cruciblecraft:copper/dust"
+          "fluid_inputs": [
+            {
+              "amount": 576,
+              "id": "cruciblecraft:molten_bronze"
+            }
+          ],
+          "fluid_outputs": []
         },
         {
-          "count": 1,
-          "id": "cruciblecraft:tin/dust"
+          "fluid_inputs": [
+            {
+              "amount": 576,
+              "id": "cruciblecraft:molten_arsenic_copper"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 576,
+              "id": "cruciblecraft:molten_aluminium_brass"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 576,
+              "id": "cruciblecraft:molten_brass"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 576,
+              "id": "cruciblecraft:molten_titanium_gold"
+            }
+          ],
+          "fluid_outputs": []
         }
       ],
-      "output_chances": [
-        10000,
-        10000
+      "hashes": [
+        "3b8cbd9bf1270816a4641d9ad4616383e15eb67a2af24406cc9163f6e192ddc0",
+        "3c7ff1c16fd1e7e604928f7e9b5956b32333067afbd350b3bebaf02593ddab33",
+        "13a25f1404fecb682028673c70b2fa1123bea8feb537db2d40d3d0e5f05885a3",
+        "59ef3c80da2c0a95b039599c67e07fc70c6393d460d0da36c54552b84c1c5abe",
+        "752ee1da92c8be22ff50d39124ac68095d47b0ef5a75fce136fec4230ff168e1"
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "3b8cbd9bf1270816a4641d9ad4616383e15eb67a2af24406cc9163f6e192ddc0"
+      "item_inputs": [
+        []
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:copper/dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:tin/dust"
+          }
         ],
-        "selected_source_recipe": "gt.recipe.centrifuge#0009",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:centrifuge/ordinary_closure/a44309b9a92f1d0f"
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:copper/dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:arsenic/dust"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:aluminium/dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:copper/dust"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:copper/dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:zinc/dust"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:titanium/dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:gold/dust"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:centrifuge/ordinary_closure/a44309b9a92f1d0f",
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        1,
+        "cruciblecraft:centrifuge/ordinary_closure/8784f7dfb2765f9b",
+        1,
+        1
+      ],
+      [
+        0,
+        2,
+        2,
+        "cruciblecraft:centrifuge/ordinary_closure/c83bded78b5d51f6",
+        2,
+        2
+      ],
+      [
+        0,
+        3,
+        3,
+        "cruciblecraft:centrifuge/ordinary_closure/697a43e13db481e4",
+        3,
+        3
+      ],
+      [
+        0,
+        4,
+        4,
+        "cruciblecraft:centrifuge/ordinary_closure/1d806d9150943ac7",
+        4,
+        4
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 1168,
       "eut": 56,
-      "fluid_inputs": [
-        {
-          "amount": 576,
-          "id": "cruciblecraft:molten_arsenic_copper"
-        }
-      ],
-      "fluid_outputs": [],
       "item_input_actions": [],
       "item_input_counts": [],
-      "item_inputs": [],
-      "item_outputs": [
-        {
-          "count": 3,
-          "id": "cruciblecraft:copper/dust"
-        },
-        {
-          "count": 1,
-          "id": "cruciblecraft:arsenic/dust"
-        }
-      ],
       "output_chances": [
         10000,
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "3c7ff1c16fd1e7e604928f7e9b5956b32333067afbd350b3bebaf02593ddab33"
-        ],
-        "selected_source_recipe": "gt.recipe.centrifuge#0009",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:centrifuge/ordinary_closure/8784f7dfb2765f9b"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 1168,
-      "eut": 56,
-      "fluid_inputs": [
-        {
-          "amount": 576,
-          "id": "cruciblecraft:molten_aluminium_brass"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [],
-      "item_input_counts": [],
-      "item_inputs": [],
-      "item_outputs": [
-        {
-          "count": 3,
-          "id": "cruciblecraft:aluminium/dust"
-        },
-        {
-          "count": 1,
-          "id": "cruciblecraft:copper/dust"
-        }
-      ],
-      "output_chances": [
-        10000,
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "13a25f1404fecb682028673c70b2fa1123bea8feb537db2d40d3d0e5f05885a3"
-        ],
-        "selected_source_recipe": "gt.recipe.centrifuge#0009",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:centrifuge/ordinary_closure/c83bded78b5d51f6"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 1168,
-      "eut": 56,
-      "fluid_inputs": [
-        {
-          "amount": 576,
-          "id": "cruciblecraft:molten_brass"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [],
-      "item_input_counts": [],
-      "item_inputs": [],
-      "item_outputs": [
-        {
-          "count": 3,
-          "id": "cruciblecraft:copper/dust"
-        },
-        {
-          "count": 1,
-          "id": "cruciblecraft:zinc/dust"
-        }
-      ],
-      "output_chances": [
-        10000,
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "59ef3c80da2c0a95b039599c67e07fc70c6393d460d0da36c54552b84c1c5abe"
-        ],
-        "selected_source_recipe": "gt.recipe.centrifuge#0009",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:centrifuge/ordinary_closure/697a43e13db481e4"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 1168,
-      "eut": 56,
-      "fluid_inputs": [
-        {
-          "amount": 576,
-          "id": "cruciblecraft:molten_titanium_gold"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [],
-      "item_input_counts": [],
-      "item_inputs": [],
-      "item_outputs": [
-        {
-          "count": 3,
-          "id": "cruciblecraft:titanium/dust"
-        },
-        {
-          "count": 1,
-          "id": "cruciblecraft:gold/dust"
-        }
-      ],
-      "output_chances": [
-        10000,
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "752ee1da92c8be22ff50d39124ac68095d47b0ef5a75fce136fec4230ff168e1"
-        ],
-        "selected_source_recipe": "gt.recipe.centrifuge#0009",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 4,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:centrifuge/ordinary_closure/1d806d9150943ac7"
+      "selected_source_recipe": "gt.recipe.centrifuge#0009",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:centrifuge/ordinary_closure/acquisition",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:centrifuge",
   "type": "cruciblecraft:compact_gt_recipe_family"

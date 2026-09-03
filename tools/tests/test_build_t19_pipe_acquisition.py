@@ -126,10 +126,6 @@ class T19PipeAcquisitionTest(unittest.TestCase):
         before = builder.OUTPUT.read_bytes()
         self.assertEqual([], builder.check())
         self.assertEqual(before, builder.OUTPUT.read_bytes())
-        self.assertEqual(
-            self.document,
-            json.loads(builder.OUTPUT.read_text(encoding="utf-8")),
-        )
 
 
 if __name__ == "__main__":

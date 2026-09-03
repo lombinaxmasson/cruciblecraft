@@ -124,13 +124,9 @@ def main() -> None:
         tint=True,
         rotate=True,
     )
-    write_model(
-        "smelter.json",
-        "MultiTileEntitySmeltery.json",
-        texture=METAL,
-        tint=True,
-        rotate=True,
-    )
+    # smelter is a heat processing cube (basicmachines/smelter), not the
+    # MultiTileEntitySmeltery pot shared with the T34 crucible. Do not regenerate
+    # src/main/resources/.../models/block/smelter.json from this converter.
     write_model(
         "bronze_steam_engine.json",
         "MultiTileEntityEngineSteam.json",

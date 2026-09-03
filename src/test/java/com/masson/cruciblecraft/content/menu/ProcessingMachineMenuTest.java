@@ -188,7 +188,7 @@ class ProcessingMachineMenuTest {
         assertEquals(9, menu.scaledProgress(18));
         assertEquals(60_000, menu.duration());
         assertEquals(409_600, menu.tankAmount(0));
-        assertEquals(2_500_000, menu.tankCapacity(0));
+        assertEquals(4_000_000, menu.tankCapacity(0));
     }
 
     @Test

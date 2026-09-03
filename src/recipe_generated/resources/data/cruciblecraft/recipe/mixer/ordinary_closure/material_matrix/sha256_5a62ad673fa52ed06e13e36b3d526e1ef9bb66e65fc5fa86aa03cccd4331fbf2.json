@@ -1,65 +1,121 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:5a62ad673fa52ed06e13e36b3d526e1ef9bb66e65fc5fa86aa03cccd4331fbf2",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 250,
-          "id": "cruciblecraft:spectral_dew"
+          "fluid_inputs": [
+            {
+              "amount": 250,
+              "id": "cruciblecraft:spectral_dew"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 250,
+              "id": "cruciblecraft:glue"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 250,
+              "id": "cruciblecraft:potion_mineralwater"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 250,
+              "id": "cruciblecraft:glue"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 250,
+              "id": "minecraft:water"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 250,
+              "id": "cruciblecraft:glue"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 200,
+              "id": "cruciblecraft:water_distilled"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 250,
+              "id": "cruciblecraft:glue"
+            }
+          ]
         }
       ],
-      "fluid_outputs": [
-        {
-          "amount": 250,
-          "id": "cruciblecraft:glue"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "fc3469d736b51fe6ea36c9f85a3e38965b0f76095e75081afe69e13ba49d75b6",
+        "02cc04e27f08b4e9b2b36086d9a80c93c7a775a86a63000f45bc76404a505c03",
+        "accfd6cf6c394c0fa18fa29defe570e8fe6e72e511a099610bfe6982c4e92f60",
+        "b595698102b5c3b360ae7f875c20e727bf206b283cbfe62189949c9334ccdfba"
       ],
       "item_inputs": [
-        {
-          "item": "minecraft:slime_ball"
-        }
+        [
+          {
+            "item": "minecraft:slime_ball"
+          }
+        ]
       ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "fc3469d736b51fe6ea36c9f85a3e38965b0f76095e75081afe69e13ba49d75b6"
-        ],
-        "selected_source_recipe": "sha256:5a62ad673fa52ed06e13e36b3d526e1ef9bb66e65fc5fa86aa03cccd4331fbf2",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/ece56376ac02001c"
+      "item_outputs": [
+        []
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/ece56376ac02001c",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:mixer/ordinary_closure/a938d0c76c7664d9",
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        "cruciblecraft:mixer/ordinary_closure/19294f790b96c1e3",
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        3,
+        "cruciblecraft:mixer/ordinary_closure/adfab02467374506",
+        3,
+        3
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 250,
-          "id": "cruciblecraft:potion_mineralwater"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 250,
-          "id": "cruciblecraft:glue"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -68,109 +124,13 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "minecraft:slime_ball"
-        }
-      ],
-      "item_outputs": [],
       "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "02cc04e27f08b4e9b2b36086d9a80c93c7a775a86a63000f45bc76404a505c03"
-        ],
-        "selected_source_recipe": "sha256:5a62ad673fa52ed06e13e36b3d526e1ef9bb66e65fc5fa86aa03cccd4331fbf2",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/a938d0c76c7664d9"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 250,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 250,
-          "id": "cruciblecraft:glue"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:slime_ball"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "accfd6cf6c394c0fa18fa29defe570e8fe6e72e511a099610bfe6982c4e92f60"
-        ],
-        "selected_source_recipe": "sha256:5a62ad673fa52ed06e13e36b3d526e1ef9bb66e65fc5fa86aa03cccd4331fbf2",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/19294f790b96c1e3"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 200,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 250,
-          "id": "cruciblecraft:glue"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:slime_ball"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "b595698102b5c3b360ae7f875c20e727bf206b283cbfe62189949c9334ccdfba"
-        ],
-        "selected_source_recipe": "sha256:5a62ad673fa52ed06e13e36b3d526e1ef9bb66e65fc5fa86aa03cccd4331fbf2",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/adfab02467374506"
+      "selected_source_recipe": "sha256:5a62ad673fa52ed06e13e36b3d526e1ef9bb66e65fc5fa86aa03cccd4331fbf2",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

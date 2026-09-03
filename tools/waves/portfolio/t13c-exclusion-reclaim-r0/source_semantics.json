@@ -1,0 +1,300 @@
+{
+  "categories": [
+    {
+      "behavior_classes": [
+        "MultiTileEntityPanelAsphalt",
+        "MultiTileEntityPanelCFoam",
+        "MultiTileEntityPanelConcrete",
+        "MultiTileEntityPanelWood"
+      ],
+      "canonical_families": [
+        "panels/multi_tile_entity_panel_asphalt",
+        "panels/multi_tile_entity_panel_c_foam",
+        "panels/multi_tile_entity_panel_concrete",
+        "panels/multi_tile_entity_panel_wood"
+      ],
+      "category": "Panels",
+      "contrast": {
+        "site_multiplicities": [
+          {
+            "multiplicity": 100,
+            "site_key": "loader:Panels|i+32252|MultiTileEntityPanelWood"
+          },
+          {
+            "multiplicity": 100,
+            "site_key": "loader:Panels|i+32352|MultiTileEntityPanelWood"
+          },
+          {
+            "multiplicity": 16,
+            "site_key": "loader:Panels|i+32452|MultiTileEntityPanelConcrete"
+          },
+          {
+            "multiplicity": 16,
+            "site_key": "loader:Panels|i+32468|MultiTileEntityPanelCFoam"
+          },
+          {
+            "multiplicity": 16,
+            "site_key": "loader:Panels|i+32484|MultiTileEntityPanelAsphalt"
+          },
+          {
+            "multiplicity": 100,
+            "site_key": "loader:Panels|i+32500|MultiTileEntityPanelWood"
+          }
+        ],
+        "sites_are_not_registrations": true,
+        "statement": "Six loader sites expand by multiplicity to 348 registrations. They are not six registrations."
+      },
+      "evidence_class": "SOURCE_BACKED",
+      "expanded_multiplicity": 348,
+      "historical_exclusion_reasons": [
+        "outside_fixed_machine_energy_behavior_tree"
+      ],
+      "source_sites": 6
+    },
+    {
+      "behavior_classes": [
+        "MultiTileEntityBucketometer",
+        "MultiTileEntityChronometer",
+        "MultiTileEntityElectrometer",
+        "MultiTileEntityFluidometer",
+        "MultiTileEntityGeigerCounter",
+        "MultiTileEntityGibblometer",
+        "MultiTileEntityItemometer",
+        "MultiTileEntityKiloBucketometer",
+        "MultiTileEntityKiloGibblometer",
+        "MultiTileEntityLaserometer",
+        "MultiTileEntityLuminometer",
+        "MultiTileEntityPlayerCounter",
+        "MultiTileEntityProgressmeter",
+        "MultiTileEntityStackometer",
+        "MultiTileEntityTPSmeter",
+        "MultiTileEntityTachometer",
+        "MultiTileEntityThermometer",
+        "MultiTileEntityWeightometerHeavy",
+        "MultiTileEntityWeightometerLight",
+        "MultiTileEntityWeightometerMedium",
+        "MultiTileEntityWeightometerSuperHeavy"
+      ],
+      "canonical_families": [
+        "sensors/multi_tile_entity_bucketometer",
+        "sensors/multi_tile_entity_chronometer",
+        "sensors/multi_tile_entity_electrometer",
+        "sensors/multi_tile_entity_fluidometer",
+        "sensors/multi_tile_entity_geiger_counter",
+        "sensors/multi_tile_entity_gibblometer",
+        "sensors/multi_tile_entity_itemometer",
+        "sensors/multi_tile_entity_kilo_bucketometer",
+        "sensors/multi_tile_entity_kilo_gibblometer",
+        "sensors/multi_tile_entity_laserometer",
+        "sensors/multi_tile_entity_luminometer",
+        "sensors/multi_tile_entity_player_counter",
+        "sensors/multi_tile_entity_progressmeter",
+        "sensors/multi_tile_entity_stackometer",
+        "sensors/multi_tile_entity_tachometer",
+        "sensors/multi_tile_entity_thermometer",
+        "sensors/multi_tile_entity_tp_smeter",
+        "sensors/multi_tile_entity_weightometer_heavy",
+        "sensors/multi_tile_entity_weightometer_light",
+        "sensors/multi_tile_entity_weightometer_medium",
+        "sensors/multi_tile_entity_weightometer_super_heavy"
+      ],
+      "category": "Sensors",
+      "contrast": {
+        "open_questions": [
+          "detection",
+          "redstone_output",
+          "network_membership"
+        ],
+        "redstone_wires_not_in_slice": {
+          "category": "Redstone Wires",
+          "expanded_multiplicity": 6,
+          "source_sites": 6
+        },
+        "t19_cover_has_sensor": false
+      },
+      "evidence_class": "SOURCE_BACKED",
+      "expanded_multiplicity": 21,
+      "historical_exclusion_reasons": [
+        "outside_fixed_machine_energy_behavior_tree"
+      ],
+      "source_sites": 21
+    },
+    {
+      "behavior_classes": [
+        "MultiTileEntityMiniPortalAether",
+        "MultiTileEntityMiniPortalAlfheim",
+        "MultiTileEntityMiniPortalAroma",
+        "MultiTileEntityMiniPortalAtum",
+        "MultiTileEntityMiniPortalBetweenlands",
+        "MultiTileEntityMiniPortalCW2AquaCavern",
+        "MultiTileEntityMiniPortalCW2Caveland",
+        "MultiTileEntityMiniPortalCW2Cavenia",
+        "MultiTileEntityMiniPortalCW2Cavern",
+        "MultiTileEntityMiniPortalCW2Caveworld",
+        "MultiTileEntityMiniPortalCandyCraft",
+        "MultiTileEntityMiniPortalDeepDark",
+        "MultiTileEntityMiniPortalEnd",
+        "MultiTileEntityMiniPortalEndOfTime",
+        "MultiTileEntityMiniPortalEnviromine",
+        "MultiTileEntityMiniPortalErebus",
+        "MultiTileEntityMiniPortalNether",
+        "MultiTileEntityMiniPortalTropics",
+        "MultiTileEntityMiniPortalTwilight"
+      ],
+      "canonical_families": [
+        "portals/multi_tile_entity_mini_portal_aether",
+        "portals/multi_tile_entity_mini_portal_alfheim",
+        "portals/multi_tile_entity_mini_portal_aroma",
+        "portals/multi_tile_entity_mini_portal_atum",
+        "portals/multi_tile_entity_mini_portal_betweenlands",
+        "portals/multi_tile_entity_mini_portal_candy_craft",
+        "portals/multi_tile_entity_mini_portal_cw2_aqua_cavern",
+        "portals/multi_tile_entity_mini_portal_cw2_caveland",
+        "portals/multi_tile_entity_mini_portal_cw2_cavenia",
+        "portals/multi_tile_entity_mini_portal_cw2_cavern",
+        "portals/multi_tile_entity_mini_portal_cw2_caveworld",
+        "portals/multi_tile_entity_mini_portal_deep_dark",
+        "portals/multi_tile_entity_mini_portal_end",
+        "portals/multi_tile_entity_mini_portal_end_of_time",
+        "portals/multi_tile_entity_mini_portal_enviromine",
+        "portals/multi_tile_entity_mini_portal_erebus",
+        "portals/multi_tile_entity_mini_portal_nether",
+        "portals/multi_tile_entity_mini_portal_tropics",
+        "portals/multi_tile_entity_mini_portal_twilight"
+      ],
+      "category": "Portals",
+      "contrast": {
+        "open_questions": [
+          "linking",
+          "dimension_travel",
+          "save"
+        ],
+        "portal_behavior_classes": [
+          "MultiTileEntityMiniPortalAether",
+          "MultiTileEntityMiniPortalAlfheim",
+          "MultiTileEntityMiniPortalAroma",
+          "MultiTileEntityMiniPortalAtum",
+          "MultiTileEntityMiniPortalBetweenlands",
+          "MultiTileEntityMiniPortalCW2AquaCavern",
+          "MultiTileEntityMiniPortalCW2Caveland",
+          "MultiTileEntityMiniPortalCW2Cavenia",
+          "MultiTileEntityMiniPortalCW2Cavern",
+          "MultiTileEntityMiniPortalCW2Caveworld",
+          "MultiTileEntityMiniPortalCandyCraft",
+          "MultiTileEntityMiniPortalDeepDark",
+          "MultiTileEntityMiniPortalEnd",
+          "MultiTileEntityMiniPortalEndOfTime",
+          "MultiTileEntityMiniPortalEnviromine",
+          "MultiTileEntityMiniPortalErebus",
+          "MultiTileEntityMiniPortalNether",
+          "MultiTileEntityMiniPortalTropics",
+          "MultiTileEntityMiniPortalTwilight"
+        ]
+      },
+      "evidence_class": "SOURCE_BACKED",
+      "expanded_multiplicity": 19,
+      "historical_exclusion_reasons": [
+        "outside_fixed_machine_energy_behavior_tree"
+      ],
+      "source_sites": 19
+    },
+    {
+      "behavior_classes": [
+        "MultiTileEntityBatteryAdvEU128",
+        "MultiTileEntityBatteryAdvEU2048",
+        "MultiTileEntityBatteryAdvEU32",
+        "MultiTileEntityBatteryAdvEU512",
+        "MultiTileEntityBatteryAdvEU8",
+        "MultiTileEntityBatteryEU128",
+        "MultiTileEntityBatteryEU2048",
+        "MultiTileEntityBatteryEU32",
+        "MultiTileEntityBatteryEU512",
+        "MultiTileEntityBatteryEU8",
+        "MultiTileEntityBatteryLU128",
+        "MultiTileEntityBatteryLU2048",
+        "MultiTileEntityBatteryLU32",
+        "MultiTileEntityBatteryLU512",
+        "MultiTileEntityBatteryLU8",
+        "MultiTileEntityBatteryLU8192"
+      ],
+      "canonical_families": [
+        "batteries/multi_tile_entity_battery_adv_eu128",
+        "batteries/multi_tile_entity_battery_adv_eu2048",
+        "batteries/multi_tile_entity_battery_adv_eu32",
+        "batteries/multi_tile_entity_battery_adv_eu512",
+        "batteries/multi_tile_entity_battery_adv_eu8",
+        "batteries/multi_tile_entity_battery_eu128",
+        "batteries/multi_tile_entity_battery_eu2048",
+        "batteries/multi_tile_entity_battery_eu32",
+        "batteries/multi_tile_entity_battery_eu512",
+        "batteries/multi_tile_entity_battery_eu8",
+        "batteries/multi_tile_entity_battery_lu128",
+        "batteries/multi_tile_entity_battery_lu2048",
+        "batteries/multi_tile_entity_battery_lu32",
+        "batteries/multi_tile_entity_battery_lu512",
+        "batteries/multi_tile_entity_battery_lu8",
+        "batteries/multi_tile_entity_battery_lu8192"
+      ],
+      "category": "Batteries",
+      "contrast": {
+        "t18_bronze_profiles": [
+          "cruciblecraft:bronze_firebox",
+          "cruciblecraft:bronze_boiler",
+          "cruciblecraft:bronze_steam_engine",
+          "cruciblecraft:bronze_dynamo",
+          "cruciblecraft:bronze_fuel_engine",
+          "cruciblecraft:bronze_gas_generator"
+        ],
+        "t18_is_battery_catalog": false
+      },
+      "evidence_class": "SOURCE_BACKED",
+      "expanded_multiplicity": 37,
+      "historical_exclusion_reasons": [
+        "outside_fixed_machine_energy_behavior_tree"
+      ],
+      "source_sites": 37
+    },
+    {
+      "behavior_classes": [
+        "MultiTileEntityReactorRodAbsorber",
+        "MultiTileEntityReactorRodBase",
+        "MultiTileEntityReactorRodBreeder",
+        "MultiTileEntityReactorRodDepleted",
+        "MultiTileEntityReactorRodModerator",
+        "MultiTileEntityReactorRodNuclear",
+        "MultiTileEntityReactorRodProduct",
+        "MultiTileEntityReactorRodReflector"
+      ],
+      "canonical_families": [
+        "reactor/multi_tile_entity_reactor_rod_absorber",
+        "reactor/multi_tile_entity_reactor_rod_base",
+        "reactor/multi_tile_entity_reactor_rod_breeder",
+        "reactor/multi_tile_entity_reactor_rod_depleted",
+        "reactor/multi_tile_entity_reactor_rod_moderator",
+        "reactor/multi_tile_entity_reactor_rod_nuclear",
+        "reactor/multi_tile_entity_reactor_rod_product",
+        "reactor/multi_tile_entity_reactor_rod_reflector"
+      ],
+      "category": "Reactors",
+      "contrast": {
+        "destination_portfolio": "portfolio/nuclear",
+        "nuclear_started": false,
+        "open_questions": [
+          "part_vs_controller"
+        ],
+        "part_not_controller": true
+      },
+      "evidence_class": "SOURCE_BACKED",
+      "expanded_multiplicity": 46,
+      "historical_exclusion_reasons": [
+        "reactor_part_not_machine_behavior"
+      ],
+      "source_sites": 46
+    }
+  ],
+  "generated_by": "python tools/build_t13c_exclusion_reclaim_r0.py",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "SOURCE_SEMANTICS_READY",
+  "wave_slug": "portfolio/t13c-exclusion-reclaim-r0"
+}

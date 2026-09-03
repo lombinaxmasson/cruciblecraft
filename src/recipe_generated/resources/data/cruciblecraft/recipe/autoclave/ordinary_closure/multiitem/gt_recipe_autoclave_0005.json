@@ -1,83 +1,686 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.autoclave#0005",
-  "publication_group": "cruciblecraft:autoclave/ordinary_closure/multiitem",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 25600,
-      "eut": 0,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 819200,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3840,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
+          "fluid_inputs": [
+            {
+              "amount": 819200,
+              "id": "cruciblecraft:steam"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 3840,
+              "id": "cruciblecraft:water_distilled"
+            }
+          ]
         },
         {
-          "kind": "preserve"
+          "fluid_inputs": [
+            {
+              "amount": 3276800,
+              "id": "cruciblecraft:steam"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 15360,
+              "id": "cruciblecraft:water_distilled"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 2457600,
+              "id": "cruciblecraft:steam"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 11520,
+              "id": "cruciblecraft:water_distilled"
+            }
+          ]
         }
       ],
-      "item_input_counts": [
-        32,
-        0
+      "hashes": [
+        "cd0dc8d0ea8232a79dd60abc6bd1e85301b60e174a29d59197eaa59edbb30d63",
+        "616ed76ab4d0bc4574a23180005a07faaaff3e40d58ed4c79e6b4a90f9e6ddcc",
+        "879e4dfd1fd9c526554a91f6ef1825a8db6fd4e58af6cea83fad024234b85e92",
+        "6cd29d08f4bcb535f129ce304e16a69fdf0506a67feb8000ec4e37fc36f4b4f5",
+        "60807c4ddc099f164fd12bfb950d479cc13e72911d5e7d91c10ff00ceeda6cdd",
+        "f113ea9a50300dfbda1fb7a314c6830d7ba2bcc8f94b3eca3fe4fa84d90e3eab",
+        "a25fa82f685224ef4c754f05ab566bb94fa2295f7730a90fac75ab9e1c3030be",
+        "e7e64c2eefece6f6089319a941c0bf7c808007bd5f73c00a4b15c410d36e5fc7",
+        "374e63e0bf68a232331f3817a7b904b37544b72a1cd1af7947fdd4d8e450273f",
+        "4964f6899c49f7e66df172699623492be20fe4e558748217fa93b83c95046f3e",
+        "5c97999a8f3490d2d6528ba2125896faefd9e961142650940407d7638548e18a",
+        "a66290a0b5505943a8d3f75c738369ebf65a7711d44c3ff2be1bade6ff2c17d9",
+        "c525a0560b064bb16e054fdd236083b54dcb83faffa78f0ce999aed7dc3824b5",
+        "0eb49a83dfb1ea281c7d5ec5eb77e11c55696414bd5323b40ff83d0c5121132b",
+        "e4c3adbf20ddd1e307e0f70e463b4afdd17cbe57e0fbb328c16242304c97e417",
+        "5c7aa6e7e8a922880ef01af7b2a05020fe117ce248423d2021ac6d7b41039869",
+        "da82fd91517d19d3778b63ed82b3c41b53e2e33d2aa51af0cf27f3c279fdca93",
+        "6f885720bbcdde91feaac48e52be33cc4b2ee5942249be0c65f748509b36339e",
+        "23aa786a4e83b7757a5d696cbf821709cd8020f0a5a10135f1ac9cb994090c19",
+        "34abf7a0378da43b95d269370574082b037c1ce5073e905e8626bae22abd82b0",
+        "e06b7eccd052ff1fcc4026a7622d2d276effa284bc27086f667b0e6ee11959ca",
+        "43c4cb8cf02a3d2d32c2782f82902916551e4af0c9d0256df4bb5af9d16be9b3",
+        "3ff7eb2d935796a1bd4f38b0b4d5e9ccfd3ef753e30fba57ff8c50030df58bbc"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:glowstone_pluto/small_dust"
-        },
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 5
+        [
+          {
+            "item": "cruciblecraft:glowstone_pluto/small_dust"
           },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dilithium/small_dust"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gravitite/small_dust"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:glowstone_proteus/small_dust"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:golden_amber/small_dust"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gloomstone/small_dust"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:jade/small_dust"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:glowstone/small_dust"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hexorium_white/small_dust"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hexorium_red/small_dust"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:carminite/small_dust"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hexorium_green/small_dust"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:glowstone_ceres/small_dust"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:glowstone_io/small_dust"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:craponite/small_dust"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:amber/small_dust"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dominican_amber/small_dust"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hexorium_black/small_dust"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hexorium_blue/small_dust"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nikolite/small_dust"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:zanite/small_dust"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:redstone/small_dust"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:glowstone_enceladus/small_dust"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:glowstone_pluto/gem_legendary"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "cd0dc8d0ea8232a79dd60abc6bd1e85301b60e174a29d59197eaa59edbb30d63"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:glowstone_pluto/gem_legendary"
+          }
         ],
-        "selected_source_recipe": "gt.recipe.autoclave#0005",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/55c7971614572395"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:dilithium/gem_legendary"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gravitite/gem_legendary"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:glowstone_proteus/gem_legendary"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:golden_amber/gem_legendary"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gloomstone/gem_legendary"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:jade/gem_legendary"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:glowstone/gem_legendary"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hexorium_white/gem_legendary"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hexorium_red/gem_legendary"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:carminite/gem_legendary"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hexorium_green/gem_legendary"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:glowstone_ceres/gem_legendary"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:glowstone_io/gem_legendary"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:craponite/gem_legendary"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:amber/gem_legendary"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:dominican_amber/gem_legendary"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hexorium_black/gem_legendary"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hexorium_blue/gem_legendary"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:nikolite/gem_legendary"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:zanite/gem_legendary"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:redstone/gem_legendary"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:glowstone_enceladus/gem_legendary"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:autoclave/ordinary_closure/55c7971614572395",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:autoclave/ordinary_closure/2574254c72d6bf4a",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        1,
+        "cruciblecraft:autoclave/ordinary_closure/3f50eea69bd3c385",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:autoclave/ordinary_closure/6ce8b25f1401b74c",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        1,
+        "cruciblecraft:autoclave/ordinary_closure/4d538f989bd1aca9",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:autoclave/ordinary_closure/5b531d1f6ff1ce31",
+        5,
+        5
+      ],
+      [
+        6,
+        6,
+        2,
+        "cruciblecraft:autoclave/ordinary_closure/f8cc29d2cc5d7e5d",
+        6,
+        6
+      ],
+      [
+        7,
+        7,
+        0,
+        "cruciblecraft:autoclave/ordinary_closure/c6b71ea91e8a6273",
+        7,
+        7
+      ],
+      [
+        8,
+        8,
+        2,
+        "cruciblecraft:autoclave/ordinary_closure/d71432246c471fc0",
+        8,
+        8
+      ],
+      [
+        9,
+        9,
+        2,
+        "cruciblecraft:autoclave/ordinary_closure/a188e6ff95bfb1e6",
+        9,
+        9
+      ],
+      [
+        10,
+        10,
+        1,
+        "cruciblecraft:autoclave/ordinary_closure/d70a705c4ee061a2",
+        10,
+        10
+      ],
+      [
+        11,
+        11,
+        2,
+        "cruciblecraft:autoclave/ordinary_closure/b99c9518d291e10a",
+        11,
+        11
+      ],
+      [
+        12,
+        12,
+        0,
+        "cruciblecraft:autoclave/ordinary_closure/c06bba102762af9f",
+        12,
+        12
+      ],
+      [
+        13,
+        13,
+        0,
+        "cruciblecraft:autoclave/ordinary_closure/73019cb43b353669",
+        13,
+        13
+      ],
+      [
+        14,
+        14,
+        2,
+        "cruciblecraft:autoclave/ordinary_closure/b597cfade69d11b9",
+        14,
+        14
+      ],
+      [
+        15,
+        15,
+        1,
+        "cruciblecraft:autoclave/ordinary_closure/d13d3a45059f6c02",
+        15,
+        15
+      ],
+      [
+        16,
+        16,
+        1,
+        "cruciblecraft:autoclave/ordinary_closure/4fd939571ad2e72f",
+        16,
+        16
+      ],
+      [
+        17,
+        17,
+        2,
+        "cruciblecraft:autoclave/ordinary_closure/b279e21a6b102bac",
+        17,
+        17
+      ],
+      [
+        18,
+        18,
+        2,
+        "cruciblecraft:autoclave/ordinary_closure/1140bf483174bd7c",
+        18,
+        18
+      ],
+      [
+        19,
+        19,
+        0,
+        "cruciblecraft:autoclave/ordinary_closure/e1518ad56c9ba663",
+        19,
+        19
+      ],
+      [
+        20,
+        20,
+        2,
+        "cruciblecraft:autoclave/ordinary_closure/bf60880199933aff",
+        20,
+        20
+      ],
+      [
+        21,
+        21,
+        0,
+        "cruciblecraft:autoclave/ordinary_closure/1f7f1b38111d48ca",
+        21,
+        21
+      ],
+      [
+        22,
+        22,
+        0,
+        "cruciblecraft:autoclave/ordinary_closure/1b3b793ec6a404f6",
+        22,
+        22
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 25600,
       "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 819200,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3840,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -90,1299 +693,15 @@
         32,
         0
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dilithium/small_dust"
-        },
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 5
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:dilithium/gem_legendary"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "616ed76ab4d0bc4574a23180005a07faaaff3e40d58ed4c79e6b4a90f9e6ddcc"
-        ],
-        "selected_source_recipe": "gt.recipe.autoclave#0005",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/2574254c72d6bf4a"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 25600,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3276800,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 15360,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        32,
-        0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gravitite/small_dust"
-        },
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 5
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gravitite/gem_legendary"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "879e4dfd1fd9c526554a91f6ef1825a8db6fd4e58af6cea83fad024234b85e92"
-        ],
-        "selected_source_recipe": "gt.recipe.autoclave#0005",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/3f50eea69bd3c385"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 25600,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 819200,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3840,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        32,
-        0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:glowstone_proteus/small_dust"
-        },
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 5
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:glowstone_proteus/gem_legendary"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "6cd29d08f4bcb535f129ce304e16a69fdf0506a67feb8000ec4e37fc36f4b4f5"
-        ],
-        "selected_source_recipe": "gt.recipe.autoclave#0005",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/6ce8b25f1401b74c"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 25600,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3276800,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 15360,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        32,
-        0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:golden_amber/small_dust"
-        },
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 5
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:golden_amber/gem_legendary"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "60807c4ddc099f164fd12bfb950d479cc13e72911d5e7d91c10ff00ceeda6cdd"
-        ],
-        "selected_source_recipe": "gt.recipe.autoclave#0005",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 4,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/4d538f989bd1aca9"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 25600,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 819200,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3840,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        32,
-        0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gloomstone/small_dust"
-        },
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 5
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gloomstone/gem_legendary"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "f113ea9a50300dfbda1fb7a314c6830d7ba2bcc8f94b3eca3fe4fa84d90e3eab"
-        ],
-        "selected_source_recipe": "gt.recipe.autoclave#0005",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 5,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/5b531d1f6ff1ce31"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 25600,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 2457600,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 11520,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        32,
-        0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:jade/small_dust"
-        },
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 5
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:jade/gem_legendary"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "a25fa82f685224ef4c754f05ab566bb94fa2295f7730a90fac75ab9e1c3030be"
-        ],
-        "selected_source_recipe": "gt.recipe.autoclave#0005",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 6,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/f8cc29d2cc5d7e5d"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 25600,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 819200,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3840,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        32,
-        0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:glowstone/small_dust"
-        },
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 5
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:glowstone/gem_legendary"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "e7e64c2eefece6f6089319a941c0bf7c808007bd5f73c00a4b15c410d36e5fc7"
-        ],
-        "selected_source_recipe": "gt.recipe.autoclave#0005",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 7,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/c6b71ea91e8a6273"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 25600,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 2457600,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 11520,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        32,
-        0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:hexorium_white/small_dust"
-        },
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 5
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:hexorium_white/gem_legendary"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "374e63e0bf68a232331f3817a7b904b37544b72a1cd1af7947fdd4d8e450273f"
-        ],
-        "selected_source_recipe": "gt.recipe.autoclave#0005",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 8,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/d71432246c471fc0"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 25600,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 2457600,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 11520,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        32,
-        0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:hexorium_red/small_dust"
-        },
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 5
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:hexorium_red/gem_legendary"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "4964f6899c49f7e66df172699623492be20fe4e558748217fa93b83c95046f3e"
-        ],
-        "selected_source_recipe": "gt.recipe.autoclave#0005",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 9,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/a188e6ff95bfb1e6"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 25600,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3276800,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 15360,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        32,
-        0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:carminite/small_dust"
-        },
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 5
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:carminite/gem_legendary"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "5c97999a8f3490d2d6528ba2125896faefd9e961142650940407d7638548e18a"
-        ],
-        "selected_source_recipe": "gt.recipe.autoclave#0005",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 10,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/d70a705c4ee061a2"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 25600,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 2457600,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 11520,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        32,
-        0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:hexorium_green/small_dust"
-        },
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 5
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:hexorium_green/gem_legendary"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "a66290a0b5505943a8d3f75c738369ebf65a7711d44c3ff2be1bade6ff2c17d9"
-        ],
-        "selected_source_recipe": "gt.recipe.autoclave#0005",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 11,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/b99c9518d291e10a"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 25600,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 819200,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3840,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        32,
-        0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:glowstone_ceres/small_dust"
-        },
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 5
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:glowstone_ceres/gem_legendary"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "c525a0560b064bb16e054fdd236083b54dcb83faffa78f0ce999aed7dc3824b5"
-        ],
-        "selected_source_recipe": "gt.recipe.autoclave#0005",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 12,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/c06bba102762af9f"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 25600,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 819200,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3840,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        32,
-        0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:glowstone_io/small_dust"
-        },
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 5
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:glowstone_io/gem_legendary"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "0eb49a83dfb1ea281c7d5ec5eb77e11c55696414bd5323b40ff83d0c5121132b"
-        ],
-        "selected_source_recipe": "gt.recipe.autoclave#0005",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 13,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/73019cb43b353669"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 25600,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 2457600,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 11520,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        32,
-        0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:craponite/small_dust"
-        },
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 5
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:craponite/gem_legendary"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "e4c3adbf20ddd1e307e0f70e463b4afdd17cbe57e0fbb328c16242304c97e417"
-        ],
-        "selected_source_recipe": "gt.recipe.autoclave#0005",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 14,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/b597cfade69d11b9"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 25600,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3276800,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 15360,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        32,
-        0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:amber/small_dust"
-        },
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 5
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:amber/gem_legendary"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "5c7aa6e7e8a922880ef01af7b2a05020fe117ce248423d2021ac6d7b41039869"
-        ],
-        "selected_source_recipe": "gt.recipe.autoclave#0005",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 15,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/d13d3a45059f6c02"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 25600,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3276800,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 15360,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        32,
-        0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dominican_amber/small_dust"
-        },
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 5
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:dominican_amber/gem_legendary"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "da82fd91517d19d3778b63ed82b3c41b53e2e33d2aa51af0cf27f3c279fdca93"
-        ],
-        "selected_source_recipe": "gt.recipe.autoclave#0005",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 16,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/4fd939571ad2e72f"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 25600,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 2457600,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 11520,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        32,
-        0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:hexorium_black/small_dust"
-        },
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 5
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:hexorium_black/gem_legendary"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "6f885720bbcdde91feaac48e52be33cc4b2ee5942249be0c65f748509b36339e"
-        ],
-        "selected_source_recipe": "gt.recipe.autoclave#0005",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 17,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/b279e21a6b102bac"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 25600,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 2457600,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 11520,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        32,
-        0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:hexorium_blue/small_dust"
-        },
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 5
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:hexorium_blue/gem_legendary"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "23aa786a4e83b7757a5d696cbf821709cd8020f0a5a10135f1ac9cb994090c19"
-        ],
-        "selected_source_recipe": "gt.recipe.autoclave#0005",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 18,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/1140bf483174bd7c"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 25600,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 819200,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3840,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        32,
-        0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:nikolite/small_dust"
-        },
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 5
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:nikolite/gem_legendary"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "34abf7a0378da43b95d269370574082b037c1ce5073e905e8626bae22abd82b0"
-        ],
-        "selected_source_recipe": "gt.recipe.autoclave#0005",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 19,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/e1518ad56c9ba663"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 25600,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 2457600,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 11520,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        32,
-        0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:zanite/small_dust"
-        },
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 5
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:zanite/gem_legendary"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "e06b7eccd052ff1fcc4026a7622d2d276effa284bc27086f667b0e6ee11959ca"
-        ],
-        "selected_source_recipe": "gt.recipe.autoclave#0005",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 20,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/bf60880199933aff"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 25600,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 819200,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3840,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        32,
-        0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:redstone/small_dust"
-        },
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 5
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:redstone/gem_legendary"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "43c4cb8cf02a3d2d32c2782f82902916551e4af0c9d0256df4bb5af9d16be9b3"
-        ],
-        "selected_source_recipe": "gt.recipe.autoclave#0005",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 21,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/1f7f1b38111d48ca"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 25600,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 819200,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3840,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        32,
-        0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:glowstone_enceladus/small_dust"
-        },
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 5
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:glowstone_enceladus/gem_legendary"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "3ff7eb2d935796a1bd4f38b0b4d5e9ccfd3ef753e30fba57ff8c50030df58bbc"
-        ],
-        "selected_source_recipe": "gt.recipe.autoclave#0005",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 22,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/1b3b793ec6a404f6"
+      "selected_source_recipe": "gt.recipe.autoclave#0005",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:autoclave/ordinary_closure/multiitem",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:autoclave",
   "type": "cruciblecraft:compact_gt_recipe_family"

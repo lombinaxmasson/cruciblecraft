@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "status": "READ_ONLY_LEGACY",
+  "policy": {
+    "active_import_allowed": false,
+    "active_scheduling_allowed": false,
+    "resigning_allowed": false,
+    "roadmap_progress_allowed": false,
+    "rewrite_for_current_code_allowed": false
+  },
+  "groups": [
+    {
+      "kind": "numbered_builders",
+      "path_pattern": "tools/build_t*.py",
+      "file_count": 352
+    },
+    {
+      "kind": "numbered_builder_tests",
+      "path_pattern": "tools/tests/test_build_t*.py",
+      "file_count": 229
+    },
+    {
+      "kind": "currentness_sidecars",
+      "path_pattern": "tools/**/*.currentness.json",
+      "file_count": 70
+    },
+    {
+      "kind": "closeout_seals",
+      "path_pattern": "tools/**/*closeout_seal.json",
+      "file_count": 49
+    },
+    {
+      "kind": "retired_card_closeout_builders",
+      "paths": [
+        "tools/build_generic_recipe_import_r0.py",
+        "tools/build_generic_recipe_import_core.py",
+        "tools/build_generic_recipe_import_proof.py",
+        "tools/build_generic_recipe_import.py",
+        "tools/build_vanilla_replace_mvp.py"
+      ]
+    },
+    {
+      "kind": "workflow_hash_infrastructure",
+      "paths": [
+        "tools/currentness.py",
+        "tools/currentness.schema.json",
+        "tools/rebind_currentness.py",
+        "tools/semantic_projection.py",
+        "tools/semantic_projection.schema.json",
+        "tools/verification_session.py",
+        "tools/verification_session.schema.json",
+        "tools/verification_dependency_dag.json",
+        "tools/verification_dependency_dag.schema.json",
+        "tools/run_verification_dag.py",
+        "tools/closeout_seal.py",
+        "tools/closeout_seal.schema.json",
+        "tools/legacy_seal_resolver.py",
+        "tools/run_full_verification.py",
+        "tools/verify_full_verification_report.py",
+        "tools/full_verification_report.json"
+      ]
+    }
+  ],
+  "note": "Paths remain at their historical locations so links and investigations preserve original bytes. Active profiles and Python discovery must not reference these groups."
+}

@@ -21,6 +21,8 @@ import org.junit.jupiter.api.io.TempDir;
 import com.google.gson.JsonParser;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
+import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
+import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.material.MaterialRegistrationGate;
 import com.masson.cruciblecraft.material.def.MaterialLoader;
 import com.masson.cruciblecraft.material.gen.GeneratedMaterialPack;
@@ -169,6 +171,23 @@ class OreResourceTest {
             }
         }
         expectedTags.putAll(aggregateTags);
+        Set<String> catalogBlockObjectModels = new HashSet<>();
+        for (GtBlockObjectCatalog.Variant variant : GtBlockObjectCatalog.variants()) {
+            if (variant.registryPath().contains("/")) {
+                catalogBlockObjectModels.add(
+                        "assets/cruciblecraft/models/item/"
+                                + variant.registryPath() + ".json");
+            }
+        }
+        for (GtBlockObjectCatalog.Variant variant
+                : BathRemainderBlockObjectCatalog.variants()) {
+            if (variant.registryPath().contains("/")) {
+                catalogBlockObjectModels.add(
+                        "assets/cruciblecraft/models/item/"
+                                + variant.registryPath() + ".json");
+            }
+        }
+        expectedModels.addAll(catalogBlockObjectModels);
 
         Set<String> actualModels = clientFiles.keySet().stream()
                 .filter(path -> path.startsWith("assets/cruciblecraft/models/item/"))
@@ -182,6 +201,9 @@ class OreResourceTest {
         Path datagenModels =
                 GENERATED_RESOURCES.resolve("assets/cruciblecraft/models/item");
         for (String path : expectedModels) {
+            if (catalogBlockObjectModels.contains(path)) {
+                continue;
+            }
             String relative = path.substring(
                     "assets/cruciblecraft/models/item/".length());
             assertTrue(Files.notExists(datagenModels.resolve(relative)), relative);
@@ -392,9 +414,9 @@ class OreResourceTest {
         // 1 steel dust funnel). T36 adds catalog-driven machine recipes plus
         // five source-backed casings beyond the T15 six. T44 adds 18
         // source-visible storage acquisition recipes.
-        assertEquals(1_062, generatedRecipeSet.size() - t19RecipeSet.size());
+        assertEquals(1_068, generatedRecipeSet.size() - t19RecipeSet.size());
         assertEquals(
-                1_062 + t19RecipeSet.size(),
+                1_068 + t19RecipeSet.size(),
                 generatedRecipeSet.size());
         assertEquals(48, countRegularFiles(COMPONENT_RULE_RESOURCES.resolve(
                 "data/cruciblecraft/recipe")));

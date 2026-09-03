@@ -11,6 +11,7 @@ import com.masson.cruciblecraft.content.block.ItemPipeBlock;
 import com.masson.cruciblecraft.logistics.pipe.PipeTopology;
 import com.masson.cruciblecraft.logistics.pipe.PipeTransferDiagnostics;
 import com.masson.cruciblecraft.logistics.pipe.PipeTransferPhase;
+import com.masson.cruciblecraft.logistics.itemnet.ItemNetworkKinds;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverBehavior;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinition;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
@@ -58,6 +59,7 @@ public final class ItemPipeBlockEntity extends BlockEntity {
     private boolean recoveryWarningLogged;
     private ItemStack recoveryBuffer = ItemStack.EMPTY;
     private Direction recoveryIngress;
+    private boolean networkChunkLoaded = true;
 
     public ItemPipeBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.ITEM_PIPE.get(), pos, state);
@@ -69,6 +71,7 @@ public final class ItemPipeBlockEntity extends BlockEntity {
     @Override
     public void onLoad() {
         super.onLoad();
+        networkChunkLoaded = true;
         if (!recoveryWarningLogged
                 && recoveredInvalidCoverRows > 0
                 && level != null
@@ -148,6 +151,54 @@ public final class ItemPipeBlockEntity extends BlockEntity {
         return covers.boundedSummary();
     }
 
+    @Override
+    public void onChunkUnloaded() {
+        networkChunkLoaded = false;
+        super.onChunkUnloaded();
+    }
+
+    public boolean offersNetworkDiscovery() {
+        return networkChunkLoaded && !isRemoved();
+    }
+
+    public void dropCovers() {
+        if (level == null || level.isClientSide) {
+            return;
+        }
+        for (ItemStack stack : covers.removeAllAsItems()) {
+            Block.popResource(level, worldPosition, stack);
+        }
+        invalidateRoutes();
+        setChanged();
+        if (!level.isClientSide) {
+            PipeTopology.invalidate(level, worldPosition);
+            syncToClient();
+        }
+    }
+
+    public boolean removeCover(Direction side, net.minecraft.world.entity.player.Player player) {
+        var taken = covers.take(side);
+        if (taken.isEmpty()) {
+            return false;
+        }
+        ItemStack stack = com.masson.cruciblecraft.logistics.pipe.cover
+                .PipeCoverItems.stackFor(taken.orElseThrow());
+        if (!stack.isEmpty()) {
+            if (player == null || !player.addItem(stack)) {
+                if (level != null && !level.isClientSide) {
+                    Block.popResource(level, worldPosition, stack);
+                }
+            }
+        }
+        invalidateRoutes();
+        setChanged();
+        if (level != null && !level.isClientSide) {
+            PipeTopology.invalidate(level, worldPosition);
+            syncToClient();
+        }
+        return true;
+    }
+
     public boolean setCover(Direction side, PipeCover cover) {
         if (cover != null
                 && !cover.supports(CoverDefinition.Medium.ITEM)) {
@@ -202,12 +253,17 @@ public final class ItemPipeBlockEntity extends BlockEntity {
         if (!recoveryBuffer.isEmpty()) {
             return;
         }
-        if (availableItems() <= 0) {
-            return;
-        }
         for (Direction side : Direction.values()) {
-            if (!AbstractPipeBlock.isConnected(liveState(), side)
-                    || availableItems() <= 0) {
+            if (!AbstractPipeBlock.isConnected(liveState(), side)) {
+                continue;
+            }
+            Optional<PipeCover> cover = covers.get(side);
+            if (cover.isEmpty()) {
+                continue;
+            }
+            boolean logistics = ItemNetworkKinds.isLogistics(
+                    cover.orElseThrow().definitionId());
+            if (!logistics && availableItems() <= 0) {
                 continue;
             }
             covers.tick(side, new ItemCoverContext(level, side));
@@ -589,6 +645,16 @@ public final class ItemPipeBlockEntity extends BlockEntity {
                 Optional<String> matchId,
                 CoverDefinition.TransferMode mode) {
             return 0;
+        }
+
+        @Override
+        public Level world() {
+            return world;
+        }
+
+        @Override
+        public BlockPos hostPos() {
+            return worldPosition;
         }
     }
 

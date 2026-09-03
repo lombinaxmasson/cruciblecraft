@@ -5,12 +5,16 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 from collections import Counter
 from pathlib import Path
 from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+from tools import t35_common as t35
 TOOLS = ROOT / "tools"
 POLICY = TOOLS / "t19_cover_denominator_policy.json"
 OUTPUT = TOOLS / "t19_cover_denominator.json"
@@ -180,12 +184,8 @@ def build(policy: dict[str, Any] | None = None) -> dict[str, Any]:
 
 
 def check(document: dict[str, Any] | None = None) -> list[str]:
-    expected = stable(build() if document is None else document)
-    if not OUTPUT.is_file():
-        return [f"missing {OUTPUT.relative_to(ROOT).as_posix()}"]
-    if OUTPUT.read_text(encoding="utf-8") != expected:
-        return [f"stale {OUTPUT.relative_to(ROOT).as_posix()}"]
-    return []
+    rebuilt = build() if document is None else document
+    return t35.check_compact(OUTPUT, rebuilt, encode=stable)
 
 
 def main() -> int:

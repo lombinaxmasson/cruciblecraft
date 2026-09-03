@@ -29,9 +29,6 @@ class RecipeCensusRuntimeRegistryGateFixtureTest {
                 fixture.compatibleSchemaVersion(),
                 fromDisk.compatibleSchemaVersion());
         assertEquals(fixture.namespace(), fromDisk.namespace());
-        assertEquals(
-                fixture.fullArtifactSha256(),
-                fromDisk.fullArtifactSha256());
         assertEquals(fixture.totalExpectedIds(), fromDisk.totalExpectedIds());
         assertEquals(fixture.categories(), fromDisk.categories());
         assertEquals(

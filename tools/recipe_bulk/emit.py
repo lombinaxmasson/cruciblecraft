@@ -2,12 +2,26 @@
 """Emit CompactGTRecipeFamilyDefinition JSON from resolved source relations."""
 from __future__ import annotations
 
+import re
 from typing import Any
 
 from tools.recipe_bulk.models import WaveSpec
+from tools.recipe_bulk.matrix import authored_relations, wrap_document
+from tools import tool_head_prefix as thp
 
 SOURCE_REVISION_DEFAULT = "3703e40308c8c030763fd6297dea8b210d2a77b1"
 GT_PREFIXES = ("gregtech:", "gregapi:", "fixed:")
+_ASPHALT_OBJECT = re.compile(
+    r"^cruciblecraft:gt_object/gt_block_asphalt_(m\d+)$"
+)
+
+
+def rewrite_published_block_runtime(runtime: str) -> str:
+    """Published asphalt cubes live under gt_block/, not gt_object/."""
+    match = _ASPHALT_OBJECT.fullmatch(runtime)
+    if match:
+        return f"cruciblecraft:gt_block/asphalt_{match.group(1)}"
+    return runtime
 
 
 def family_filename(template_key: str) -> str:
@@ -28,6 +42,13 @@ def _runtime_id(operand: dict[str, Any]) -> str:
     runtime = str(operand.get("runtime_id") or "")
     if not runtime:
         raise ValueError(f"missing runtime_id: {operand}")
+    source = operand.get("source") or {}
+    item = str(source.get("item") or operand.get("item") or "")
+    meta = source.get("meta")
+    runtime = thp.rewrite_published_runtime(runtime, item, meta)
+    runtime = rewrite_published_block_runtime(runtime)
+    if thp.is_forbidden_unique_tool_head(runtime):
+        raise ValueError(f"refusing unique tool_head item: {runtime}")
     if runtime.startswith(GT_PREFIXES):
         raise ValueError(f"refusing to emit GT runtime id: {runtime}")
     if not runtime.startswith(("minecraft:", "cruciblecraft:")):
@@ -211,11 +232,10 @@ def emit_wave_document(
         "family_id": template_key,
         "target_map": target_map,
         "source_revision": source_revision,
-        "relations": relations,
     }
     if publication_group:
         document["publication_group"] = publication_group
-    return document
+    return wrap_document(document, relations)
 
 
 def emit_family(
@@ -256,7 +276,7 @@ def semantic_relation_key(relation: dict[str, Any]) -> dict[str, Any]:
 
 
 def semantic_replay_key(document: dict[str, Any]) -> dict[str, Any]:
-    relations = document.get("relations") or []
+    relations = authored_relations(document)
     return {
         "family_id": document.get("family_id"),
         "publication_group": document.get("publication_group"),

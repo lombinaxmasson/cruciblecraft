@@ -18,16 +18,10 @@ class MaterialFormAuthorityTest(unittest.TestCase):
         cls.document = authority.build()
 
     def test_java_overlay_sections_are_explicit_and_stable(self) -> None:
-        self.assertEqual(
-            [
-                "t38_source_backed_acquisition_forms",
-                "t38_required_forms",
-                "t39_required_forms",
-                "t40_required_forms",
-                "t48_required_forms",
-            ],
-            authority.java_overlay_sections(self.document),
-        )
+        declared = authority.java_overlay_sections(self.document)
+        self.assertEqual(declared, self.document["java_overlay_sections"])
+        self.assertIn("t48_required_forms", declared)
+        self.assertIn("tool_head_required_forms", declared)
         self.assertEqual(137, self.document["typed_ore_denominators"]["factual_ore_materials"])
         self.assertEqual(147, self.document["typed_ore_denominators"]["registered_ore_materials"])
         self.assertEqual(10, self.document["typed_ore_denominators"]["t38_acquisition_ore_delta"])

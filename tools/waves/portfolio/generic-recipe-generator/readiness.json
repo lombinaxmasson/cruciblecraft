@@ -1,0 +1,29 @@
+{
+  "evidence": {
+    "combinatorial_accounted": 4,
+    "combinatorial_completed": 0,
+    "completion_delta": 0,
+    "count_ceiling_kind_envelope": "telemetry_report_only_not_preassigned",
+    "generated_recipe_count": 0,
+    "nuclear_track_c_started": false,
+    "owns_families": 0,
+    "partial_family_count": 0,
+    "production_lock": null,
+    "recipe_files_generated": false,
+    "statuses": [
+      "GENERIC_RECIPE_IMPORT_R0_READY",
+      "GENERIC_RECIPE_IMPORT_CORE_READY",
+      "GENERIC_RECIPE_IMPORT_PROOF_READY",
+      "GENERIC_RECIPE_IMPORT_READY"
+    ]
+  },
+  "generated_by": "python tools/build_generic_recipe_import.py",
+  "next_unassigned": true,
+  "note": "GENERIC_RECIPE_IMPORT_READY. Existing host plus new Source Pack needs no per-wave builder and no handwritten WaveSpec. Production still requires a separately reviewed content card. unique_active_wave is null.",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "GENERIC_RECIPE_IMPORT_READY",
+  "unique_active_wave": null,
+  "wave_complete": true,
+  "wave_slug": "portfolio/generic-recipe-generator"
+}

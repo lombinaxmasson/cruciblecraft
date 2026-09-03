@@ -6,12 +6,15 @@ import java.util.Map;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
 import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.logistics.pipe.PipeTopology;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -21,6 +24,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -128,12 +132,46 @@ public abstract class AbstractPipeBlock extends Block
     }
 
     @Override
+    protected InteractionResult useWithoutItem(
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            Player player,
+            BlockHitResult hit) {
+        if (!player.isShiftKeyDown()) {
+            return InteractionResult.PASS;
+        }
+        if (level.isClientSide) {
+            return InteractionResult.SUCCESS;
+        }
+        Direction face = hit.getDirection();
+        if (level.getBlockEntity(pos) instanceof ItemPipeBlockEntity pipe
+                && pipe.removeCover(face, player)) {
+            return InteractionResult.SUCCESS;
+        }
+        if (level.getBlockEntity(pos) instanceof FluidPipeBlockEntity pipe
+                && pipe.removeCover(face, player)) {
+            return InteractionResult.SUCCESS;
+        }
+        return InteractionResult.PASS;
+    }
+
+    @Override
     protected void onRemove(
             BlockState state,
             Level level,
             BlockPos pos,
             BlockState newState,
             boolean movedByPiston) {
+        if (!level.isClientSide
+                && state.getBlock() != newState.getBlock()) {
+            BlockEntity be = level.getBlockEntity(pos);
+            if (be instanceof ItemPipeBlockEntity itemPipe) {
+                itemPipe.dropCovers();
+            } else if (be instanceof FluidPipeBlockEntity fluidPipe) {
+                fluidPipe.dropCovers();
+            }
+        }
         super.onRemove(state, level, pos, newState, movedByPiston);
         if (!level.isClientSide
                 && state.getBlock() != newState.getBlock()) {

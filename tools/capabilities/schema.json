@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "capability.schema.json",
+  "title": "CrucibleCraft semantic capability",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "slug",
+    "title",
+    "maturity",
+    "workflow",
+    "owned_paths",
+    "profiles"
+  ],
+  "properties": {
+    "schema_version": { "const": 2 },
+    "slug": { "type": "string", "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*(?:/[a-z][a-z0-9]*(?:-[a-z0-9]+)*)+$" },
+    "title": { "type": "string", "minLength": 1 },
+    "maturity": {
+      "enum": ["frozen", "runtime_ready", "player_complete"]
+    },
+    "workflow": { "enum": ["active", "paused", "accepted"] },
+    "owned_paths": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "depends_on": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "profiles": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string" }
+    },
+    "wave_slug": { "type": ["string", "null"] },
+    "legacy_readiness": { "type": ["string", "null"] },
+    "player_signoff": { "type": ["string", "null"] },
+    "identity_disposition": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["semantic_key", "disposition", "runtime_ids"],
+        "properties": {
+          "semantic_key": { "type": "string" },
+          "disposition": {
+            "enum": ["reuse_canonical", "new_distinct", "bridge", "blocked"]
+          },
+          "runtime_ids": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "reason": { "type": "string" }
+        }
+      }
+    },
+    "note": { "type": "string" }
+  }
+}

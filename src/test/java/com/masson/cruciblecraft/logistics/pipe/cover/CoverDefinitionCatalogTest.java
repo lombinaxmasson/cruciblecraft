@@ -17,10 +17,10 @@ import org.junit.jupiter.api.Test;
 
 class CoverDefinitionCatalogTest {
     @Test
-    void catalogHasEightPluginsAndNineDefinitions() {
+    void catalogHasExactDefinitionsAndBehaviors() {
         CoverBehaviorRegistry.validateDefinitions();
-        assertEquals(9, CoverDefinitionCatalog.definitions().size());
-        assertEquals(8, CoverBehaviorRegistry.registeredIds().size());
+        assertEquals(15, CoverDefinitionCatalog.definitions().size());
+        assertEquals(12, CoverBehaviorRegistry.registeredIds().size());
     }
 
     @Test
@@ -41,6 +41,10 @@ class CoverDefinitionCatalogTest {
         assertTrue(Modifier.isSynchronized(
                 CoverBehaviorRegistry.class.getMethod(
                         "validateDefinitions").getModifiers()));
+        CoverBehaviorRegistry.validateDefinitions();
+        List<String> ids = CoverBehaviorRegistry.registeredIds().stream()
+                .map(ResourceLocation::toString)
+                .toList();
         assertEquals(
                 List.of(
                         "cruciblecraft:filter",
@@ -51,9 +55,13 @@ class CoverDefinitionCatalogTest {
                         "cruciblecraft:robot_arm",
                         "cruciblecraft:pressure_valve",
                         "cruciblecraft:selector_manual"),
-                CoverBehaviorRegistry.registeredIds().stream()
-                        .map(ResourceLocation::toString)
-                        .toList());
+                ids.subList(0, 8));
+        assertEquals(12, ids.size());
+        assertTrue(ids.containsAll(List.of(
+                "cruciblecraft:logistics_item_storage",
+                "cruciblecraft:logistics_item_transfer",
+                "cruciblecraft:logistics_fluid_storage",
+                "cruciblecraft:logistics_fluid_transfer")));
     }
 
     @Test
@@ -89,6 +97,7 @@ class CoverDefinitionCatalogTest {
                 IllegalArgumentException.class,
                 () -> new PipeCoverConfig(
                         Optional.of("minecraft:" + "x".repeat(128)),
+                        Optional.empty(),
                         Optional.empty(),
                         Optional.empty(),
                         Optional.empty(),

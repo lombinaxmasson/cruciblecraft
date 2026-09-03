@@ -85,8 +85,13 @@ def load_block_runtime_map() -> dict[tuple[str, int], str]:
         mapped[(str(identity["source_item"]), int(identity["meta"]))] = str(
             identity["runtime_id"]
         )
-    if common.IDENTITY_CATALOG.is_file():
-        t47 = common.load_json(common.IDENTITY_CATALOG)
+    catalog_path = (
+        common.IDENTITY_CATALOG
+        if common.IDENTITY_CATALOG.is_file()
+        else common.BUNDLED_IDENTITY_CATALOG
+    )
+    if catalog_path.is_file():
+        t47 = common.load_json(catalog_path)
         for identity in t47.get("identities") or []:
             if str(identity.get("kind") or "") != "block":
                 continue

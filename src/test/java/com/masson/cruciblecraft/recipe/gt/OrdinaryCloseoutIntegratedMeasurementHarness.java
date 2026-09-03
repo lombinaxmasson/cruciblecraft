@@ -342,7 +342,7 @@ class OrdinaryCloseoutIntegratedMeasurementHarness {
         List<GTRecipeQuery> collected = new ArrayList<>();
         for (CompactRecipeFamilySource source : familySources) {
             for (CompactGTRecipeFamilyDefinition.Relation relation
-                    : source.definition().relations()) {
+                    : source.authoredRelations()) {
                 List<ItemStack> offered = new ArrayList<>();
                 var inputs = relation.itemInputs();
                 var counts = relation.itemInputCounts();

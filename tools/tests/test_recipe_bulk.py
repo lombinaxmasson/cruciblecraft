@@ -150,6 +150,10 @@ class RecipeBulkCompilerTest(unittest.TestCase):
             )
 
     def test_t43_replay_matches_generated_root(self) -> None:
+        from tools import t43_common as t43
+
+        if not t43.GENERATED_ROOT.is_dir():
+            self.skipTest("T43 generated compact tree is not present")
         document = replay_mod.replay_t43()
         self.assertTrue(document["ok"], document.get("mismatches"))
         self.assertEqual(407, document["compared"])
@@ -172,6 +176,84 @@ class RecipeBulkCompilerTest(unittest.TestCase):
             semantic_replay_key(truncated),
             semantic_replay_key(complete),
         )
+
+    def test_shared_shape_emits_matrix_and_round_trips(self) -> None:
+        from tools.recipe_bulk.matrix import (
+            authored_relation_count,
+            can_emit_matrix,
+            emit_matrix_body,
+            expand_matrix,
+            wrap_document,
+        )
+
+        first = _matrix_relation("cruciblecraft:bath/matrix/first", "minecraft:iron_ingot")
+        second = _matrix_relation("cruciblecraft:bath/matrix/second", "minecraft:gold_ingot")
+        mixed = dict(second)
+        mixed["duration"] = 99
+        self.assertTrue(can_emit_matrix([first, second]))
+        self.assertFalse(can_emit_matrix([first]))
+        self.assertFalse(can_emit_matrix([first, mixed]))
+        expanded = expand_matrix(emit_matrix_body([first, second]))
+        self.assertEqual(first["stable_id"], expanded[0]["stable_id"])
+        self.assertEqual(second["item_inputs"], expanded[1]["item_inputs"])
+        self.assertEqual(first["item_outputs"], expanded[0]["item_outputs"])
+        self.assertEqual(
+            first["provenance"]["evidence_hashes"],
+            expanded[0]["provenance"]["evidence_hashes"],
+        )
+        wrapped = wrap_document(
+            {
+                "type": "cruciblecraft:compact_gt_recipe_family",
+                "family_id": "gt.recipe.bath#matrix",
+                "target_map": "cruciblecraft:bath",
+                "publication_group": "cruciblecraft:bath/identity/exact_multi",
+            },
+            [first, second],
+        )
+        self.assertEqual("matrix_v1", wrapped["authored_form"])
+        self.assertNotIn("relations", wrapped)
+        self.assertNotIn("parameterized", wrapped)
+        self.assertEqual(2, authored_relation_count(wrapped))
+        self.assertEqual(
+            semantic_replay_key(
+                {
+                    "family_id": wrapped["family_id"],
+                    "publication_group": wrapped["publication_group"],
+                    "target_map": wrapped["target_map"],
+                    "relations": [first, second],
+                }
+            ),
+            semantic_replay_key(wrapped),
+        )
+        singleton = wrap_document({"family_id": "gt.recipe.bath#one"}, [first])
+        self.assertEqual([first], singleton["relations"])
+        self.assertNotIn("matrix", singleton)
+        mixed_doc = wrap_document({"family_id": "gt.recipe.bath#mixed"}, [first, mixed])
+        self.assertEqual([first, mixed], mixed_doc["relations"])
+        self.assertNotIn("matrix", mixed_doc)
+
+
+def _matrix_relation(stable_id: str, item: str) -> dict:
+    return {
+        "stable_id": stable_id,
+        "item_inputs": [{"item": item}],
+        "item_input_counts": [1],
+        "item_input_actions": [{"kind": "consume"}],
+        "item_outputs": [{"id": "minecraft:iron_nugget", "count": 1}],
+        "fluid_inputs": [],
+        "fluid_outputs": [],
+        "output_chances": [10000],
+        "duration": 32,
+        "eut": 16,
+        "special_value": 0,
+        "can_be_buffered": True,
+        "shadow_order": 0 if "first" in stable_id else 1,
+        "provenance": {
+            "source_kind": "SOURCE_BACKED",
+            "selected_source_recipe": "gt.recipe.bath#matrix",
+            "evidence_hashes": ["ab" * 32],
+        },
+    }
 
 
 if __name__ == "__main__":

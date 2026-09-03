@@ -86,16 +86,11 @@ class BathMteIntegratedMeasurementHarness {
         for (int index = 0; index < groups.size(); index++) {
             JsonObject group = groups.get(index).getAsJsonObject();
             ResourceLocation mapId = ResourceLocation.parse(group.get("target_map").getAsString());
-            ResourceLocation publicationGroup = ResourceLocation.parse(
-                    group.get("publication_group").getAsString());
+            ResourceLocation publicationGroup = SemanticIdMap.publicationGroupId(group);
             PublicationGroupKey key = new PublicationGroupKey(mapId, publicationGroup);
             int cache = group.get("cache_ceiling").getAsInt();
             Set<ResourceLocation> eager = new HashSet<>();
-            JsonArray eagerIds = group.getAsJsonArray("eager_stable_ids");
-            if (eagerIds != null) {
-                eagerIds.forEach(element ->
-                        eager.add(ResourceLocation.parse(element.getAsString())));
-            }
+            SemanticIdMap.addRemappedEagerIds(group, eager);
             String policyType = group.get("policy_type").getAsString();
             CompactRecipeFamilyProvider.MaterializationPolicy production =
                     switch (policyType) {
@@ -282,7 +277,7 @@ class BathMteIntegratedMeasurementHarness {
         List<GTRecipeQuery> queries = new ArrayList<>();
         for (CompactRecipeFamilySource source : familySources) {
             for (CompactGTRecipeFamilyDefinition.Relation relation
-                    : source.definition().relations()) {
+                    : source.authoredRelations()) {
                 List<ItemStack> offered = new ArrayList<>();
                 var inputs = relation.itemInputs();
                 var counts = relation.itemInputCounts();
@@ -340,7 +335,6 @@ class BathMteIntegratedMeasurementHarness {
         root.put("id", "integrated");
         root.put("scale", "1x");
         root.put("group_count", 13);
-        root.put("load_budget_policy_v2_sha256", hashV2());
         root.put("candidates", rows);
         root.put("note",
                 "Measured assembler-through-bath-mte compact families from runtime manifest v2's 13 groups. "
@@ -348,20 +342,6 @@ class BathMteIntegratedMeasurementHarness {
         return root;
     }
 
-    private static String hashV2() {
-        try {
-            byte[] bytes = Files.readAllBytes(Path.of("tools/t14_load_budget_policy.v2.json"));
-            java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-256");
-            byte[] hashed = digest.digest(bytes);
-            StringBuilder builder = new StringBuilder();
-            for (byte value : hashed) {
-                builder.append(String.format("%02x", value));
-            }
-            return builder.toString();
-        } catch (Exception exception) {
-            throw new IllegalStateException(exception);
-        }
-    }
 
     private static Map<String, Object> candidateRow(CandidateMeasurement candidate) {
         Map<String, Object> row = new LinkedHashMap<>();

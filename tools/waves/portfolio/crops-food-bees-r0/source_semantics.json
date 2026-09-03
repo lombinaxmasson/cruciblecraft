@@ -1,0 +1,92 @@
+{
+  "categories": [
+    {
+      "category": "Crops",
+      "contrast": {
+        "not_wood_recipes": true,
+        "plant_worldgen": [
+          "plant.glowtus",
+          "plant.bush"
+        ],
+        "plantalyzer_is_not_census": true,
+        "squeezer_map": "gt.recipe.squeezer"
+      },
+      "dump_recipe_count_context": 5322,
+      "evidence_class": "SOURCE_BACKED",
+      "feature_count": 2,
+      "gt6_anchor": "GT6 crops / plants (dump worldgen plant.* + gt.recipe.squeezer)",
+      "names": [
+        "plant.glowtus",
+        "plant.bush"
+      ]
+    },
+    {
+      "category": "Food",
+      "contrast": {
+        "fermenter_map": "gt.recipe.fermenter",
+        "juicer_map": "gt.recipe.juicer",
+        "not_smelter": true,
+        "worldgen_in_this_card": false
+      },
+      "dump_recipe_count_context": 6531,
+      "evidence_class": "SOURCE_BACKED",
+      "feature_count": 0,
+      "gt6_anchor": "GT6 food maps (gt.recipe.juicer / gt.recipe.fermenter)",
+      "names": []
+    },
+    {
+      "category": "Bees",
+      "contrast": {
+        "bumblelyzer_map": "gt.recipe.bumblelyzer",
+        "bumblequeen_map": "gt.recipe.bumblequeen",
+        "hive_dimensions": [
+          "overworld",
+          "nether",
+          "aether",
+          "end",
+          "twilight",
+          "erebus",
+          "betweenlands",
+          "atum",
+          "alfheim",
+          "tropics"
+        ],
+        "hive_worldgen": [
+          "overworld.bumblehives",
+          "nether.bumblehives",
+          "aether.bumblehives",
+          "end.bumblehives",
+          "twilight.bumblehives",
+          "erebus.bumblehives",
+          "betweenlands.bumblehives",
+          "atum.bumblehives",
+          "alfheim.bumblehives",
+          "tropics.bumblehives"
+        ]
+      },
+      "dump_recipe_count_context": 1520,
+      "evidence_class": "SOURCE_BACKED",
+      "feature_count": 10,
+      "gt6_anchor": "gt.recipe.bumblequeen / gt.recipe.bumblelyzer + WorldgenHives",
+      "names": [
+        "overworld.bumblehives",
+        "nether.bumblehives",
+        "aether.bumblehives",
+        "end.bumblehives",
+        "twilight.bumblehives",
+        "erebus.bumblehives",
+        "betweenlands.bumblehives",
+        "atum.bumblehives",
+        "alfheim.bumblehives",
+        "tropics.bumblehives"
+      ]
+    }
+  ],
+  "generated_by": "python tools/build_crops_food_bees_r0.py",
+  "plantalyzer_recipe_count": 0,
+  "plantalyzer_used_as_census": false,
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "SOURCE_SEMANTICS_READY",
+  "wave_slug": "portfolio/crops-food-bees-r0"
+}

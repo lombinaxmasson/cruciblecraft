@@ -10728,8 +10728,8 @@ public final class CrucibleCraftGameTests {
 
     // ---- Small workload: declared scenario identity, deterministic
     // summary, conservation and bounded operation counts. Every placement
-    // and assertion below copies a proven topology (t18a steam leg, t18b
-    // RU/EU leg, tank3x3x3Formation, covered pipe idioms).
+    // and assertion below copies a proven topology (steam converter leg,
+    // kinetic/EU converter leg, tank3x3x3Formation, covered pipe idioms).
 
     private static final BlockPos SMALL_WORKLOAD_FIREBOX = new BlockPos(4, 1, 5);
     private static final BlockPos SMALL_WORKLOAD_BOILER = SMALL_WORKLOAD_FIREBOX.above();

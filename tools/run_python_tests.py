@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-"""Run auditable fast, affected, closure, source-replay, or listed-module Python suites."""
+"""Run only Python test modules declared by active verification policy."""
 from __future__ import annotations
 
 import argparse
 import fnmatch
 import json
-import os
 import subprocess
 import sys
 import time
@@ -16,16 +15,15 @@ from typing import Any, Iterable
 
 ROOT = Path(__file__).resolve().parents[1]
 TOOLS = ROOT / "tools"
-TEST_ROOT = TOOLS / "tests"
 POLICY = TOOLS / "python_test_policy.json"
 PROFILES = TOOLS / "verification_profiles.json"
-BUILDER_POLICY = TOOLS / "verification_builder_policy.json"
+
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 
 class PolicyError(ValueError):
-    """The workflow policy cannot prove a safe test selection."""
+    """The active test policy cannot prove a safe selection."""
 
 
 @dataclass(frozen=True)
@@ -33,49 +31,83 @@ class Selection:
     suite: str
     cases: tuple[unittest.TestCase, ...]
     changed_paths: tuple[str, ...] = ()
-    escalated_to_closure: bool = False
-    escalation_paths: tuple[str, ...] = ()
     unmatched_paths: tuple[str, ...] = ()
 
 
 def load_policy(path: Path = POLICY) -> dict[str, Any]:
     document = json.loads(path.read_text(encoding="utf-8"))
-    if document.get("schema_version") != 1:
+    if document.get("schema_version") != 2:
         raise PolicyError("unsupported Python test policy schema")
-    required = {
-        "closure_only_test_patterns",
-        "source_replay_test_patterns",
-        "prechecked_stage_test_patterns",
-        "affected_rules",
-        "source_replay_commands",
-    }
+    required = {"default_suite", "active_test_modules", "affected_rules"}
     missing = sorted(required - set(document))
     if missing:
         raise PolicyError(f"Python test policy omits {missing}")
+    validate_policy(document)
     return document
 
 
-def source_replay_records(policy: dict[str, Any]) -> list[dict[str, Any]]:
-    builder_policy = json.loads(BUILDER_POLICY.read_text(encoding="utf-8"))
-    if builder_policy.get("schema_version") != 1:
-        raise PolicyError("unsupported verification builder policy schema")
-    records: list[dict[str, Any]] = []
-    for builder in builder_policy.get("builders") or []:
-        replay = builder.get("full_replay")
-        if not replay:
+def load_profiles(path: Path = PROFILES) -> dict[str, Any]:
+    document = json.loads(path.read_text(encoding="utf-8"))
+    if document.get("schema_version") != 2:
+        raise PolicyError("unsupported verification profile schema")
+    return document
+
+
+def normalize_module_names(modules: Iterable[str]) -> tuple[str, ...]:
+    names: list[str] = []
+    seen: set[str] = set()
+    for raw in modules:
+        stem = Path(str(raw).replace("\\", "/")).stem
+        if not stem or stem in seen:
             continue
-        records.append({
-            "name": f"{builder['name']} full replay",
-            "required_paths": replay.get("required_paths", []),
-            "required_any_paths": replay.get("required_any_paths", []),
-            "command": [
-                "$PYTHON",
-                builder["script"],
-                *replay["args"],
-            ],
-        })
-    records.extend(policy["source_replay_commands"])
-    return records
+        seen.add(stem)
+        names.append(stem)
+    return tuple(names)
+
+
+def profile_test_modules(profiles: dict[str, Any] | None = None) -> tuple[str, ...]:
+    document = profiles if profiles is not None else load_profiles()
+    names: list[str] = []
+    for profile_name in document.get("active_profiles") or []:
+        profile = (document.get("profiles") or {}).get(profile_name)
+        if not isinstance(profile, dict):
+            raise PolicyError(f"active profile {profile_name!r} is missing")
+        names.extend(profile.get("python_modules") or [])
+    return normalize_module_names(names)
+
+
+def active_module_names(
+    policy: dict[str, Any] | None = None,
+    profiles: dict[str, Any] | None = None,
+) -> tuple[str, ...]:
+    document = policy if policy is not None else load_policy()
+    declared = normalize_module_names(document["active_test_modules"])
+    profiled = set(profile_test_modules(profiles))
+    missing = sorted(profiled - set(declared))
+    unprofiled = sorted(set(declared) - profiled)
+    if missing or unprofiled:
+        raise PolicyError(
+            "active test policy and profiles disagree; "
+            f"missing={missing}, unprofiled={unprofiled}"
+        )
+    return declared
+
+
+def validate_policy(policy: dict[str, Any]) -> None:
+    modules = normalize_module_names(policy.get("active_test_modules") or [])
+    if not modules:
+        raise PolicyError("active_test_modules must not be empty")
+    if len(modules) != len(policy["active_test_modules"]):
+        raise PolicyError("active_test_modules must be unique module stems")
+    allowed = set(modules)
+    for rule in policy.get("affected_rules") or []:
+        if not rule.get("paths") or not rule.get("test_modules"):
+            raise PolicyError("every affected rule needs paths and test_modules")
+        unknown = sorted(set(rule["test_modules"]) - allowed)
+        if unknown:
+            raise PolicyError(
+                f"affected rule reaches inactive test modules: {unknown}"
+            )
 
 
 def flatten_suite(
@@ -89,11 +121,21 @@ def flatten_suite(
     return [suite]
 
 
-def discover_cases() -> list[unittest.TestCase]:
-    suite = unittest.defaultTestLoader.discover(
-        str(TEST_ROOT),
-        pattern="test_*.py",
-    )
+def discover_cases(
+    modules: Iterable[str] | None = None,
+    *,
+    policy: dict[str, Any] | None = None,
+) -> list[unittest.TestCase]:
+    document = policy if policy is not None else load_policy()
+    allowed = active_module_names(document)
+    requested = normalize_module_names(allowed if modules is None else modules)
+    inactive = sorted(set(requested) - set(allowed))
+    if inactive:
+        raise PolicyError(
+            f"test modules are not active and will not be imported: {inactive}"
+        )
+    names = [f"tools.tests.{name}" for name in requested]
+    suite = unittest.defaultTestLoader.loadTestsFromNames(names)
     cases = flatten_suite(suite)
     failed_imports = [
         (case.id(), repr(getattr(case, "_exception", None)))
@@ -101,13 +143,13 @@ def discover_cases() -> list[unittest.TestCase]:
         if case.__class__.__name__ == "_FailedTest"
     ]
     if failed_imports:
-        raise PolicyError(
-            f"unittest discovery contains failed imports: {failed_imports}"
-        )
+        raise PolicyError(f"active test modules failed to import: {failed_imports}")
+    excluded = document.get("excluded_test_patterns") or []
+    cases = [case for case in cases if not matches_any(case, excluded)]
     ids = [case.id() for case in cases]
     duplicates = sorted({test_id for test_id in ids if ids.count(test_id) > 1})
     if duplicates:
-        raise PolicyError(f"unittest discovery produced duplicate ids: {duplicates}")
+        raise PolicyError(f"active test loading produced duplicate ids: {duplicates}")
     return cases
 
 
@@ -124,65 +166,24 @@ def test_module(case_or_id: unittest.TestCase | str) -> str:
     return normalized_test_id(case_or_id).split(".", 1)[0]
 
 
-def normalize_module_names(modules: Iterable[str]) -> tuple[str, ...]:
-    names: list[str] = []
-    seen: set[str] = set()
-    for raw in modules:
-        stem = Path(str(raw).replace("\\", "/")).stem
-        if not stem or stem in seen:
-            continue
-        seen.add(stem)
-        names.append(stem)
-    return tuple(names)
-
-
-def matches_any(test_id: str, patterns: Iterable[str]) -> bool:
-    normalized = normalized_test_id(test_id)
+def matches_any(
+    case_or_id: unittest.TestCase | str,
+    patterns: Iterable[str],
+) -> bool:
+    normalized = normalized_test_id(case_or_id)
     return any(fnmatch.fnmatchcase(normalized, pattern) for pattern in patterns)
 
 
-def validate_policy(
-    policy: dict[str, Any],
-    cases: Iterable[unittest.TestCase],
-) -> None:
-    closure = policy["closure_only_test_patterns"]
-    replay = policy["source_replay_test_patterns"]
-    overlap = sorted(
-        normalized_test_id(case)
-        for case in cases
-        if matches_any(case.id(), closure) and matches_any(case.id(), replay)
-    )
-    if overlap:
-        raise PolicyError(
-            "tests cannot be both closure-only and source-replay: "
-            + ", ".join(overlap)
-        )
-    for patterns in policy["prechecked_stage_test_patterns"].values():
-        unsafe = sorted(
-            normalized_test_id(case)
-            for case in cases
-            if matches_any(case.id(), patterns)
-            and any(
-                token in normalized_test_id(case).lower()
-                for token in ("mutation", "tamper", "reject", "fail_closed")
-            )
-        )
-        if unsafe:
-            raise PolicyError(
-                "prechecked stages cannot skip mutation/tamper tests: "
-                + ", ".join(unsafe)
-            )
-    for rule in policy["affected_rules"]:
-        if not rule.get("paths") or not rule.get("test_modules"):
-            raise PolicyError("every affected rule needs paths and test_modules")
-
-
 def normalize_paths(paths: Iterable[str]) -> tuple[str, ...]:
-    return tuple(sorted({
-        path.replace("\\", "/").removeprefix("./")
-        for path in paths
-        if path.strip()
-    }))
+    return tuple(
+        sorted(
+            {
+                path.replace("\\", "/").removeprefix("./")
+                for path in paths
+                if path.strip()
+            }
+        )
+    )
 
 
 def read_path_file(path: Path) -> tuple[str, ...]:
@@ -199,7 +200,7 @@ def resolve_suite_paths(
     path_args: Iterable[str] = (),
     path_file: Path | None = None,
 ) -> tuple[str, ...]:
-    paths: list[str] = list(path_args)
+    paths = list(path_args)
     if path_file is not None:
         paths.extend(read_path_file(path_file))
     normalized = normalize_paths(paths)
@@ -228,7 +229,7 @@ def git_changed_paths() -> tuple[str, ...]:
                 f"{completed.stderr.decode('utf-8', errors='replace').strip()}"
             )
         paths.extend(
-            item.decode("utf-8")
+            item.decode("utf-8", errors="replace")
             for item in completed.stdout.split(b"\0")
             if item
         )
@@ -236,23 +237,19 @@ def git_changed_paths() -> tuple[str, ...]:
 
 
 def is_documentation_path(policy: dict[str, Any], path: str) -> bool:
-    patterns = policy.get("documentation_path_patterns") or (
-        "*.md",
-        "docs/**",
-        ".plans/**",
-        "plans/**",
-    )
+    patterns = policy.get("documentation_path_patterns") or ("*.md", "docs/**")
     return any(fnmatch.fnmatchcase(path, pattern) for pattern in patterns)
 
 
 def profile_owns_path(path: str) -> bool:
-    if not PROFILES.is_file():
-        return False
-    document = json.loads(PROFILES.read_text(encoding="utf-8"))
-    for profile in document.get("profiles", {}).values():
+    document = load_profiles()
+    active = set(document.get("active_profiles") or [])
+    for name, profile in (document.get("profiles") or {}).items():
+        if name not in active:
+            continue
         if any(
             fnmatch.fnmatchcase(path, pattern)
-            for pattern in profile.get("owned_paths", ())
+            for pattern in profile.get("owned_paths") or ()
         ):
             return True
     return False
@@ -266,14 +263,32 @@ def affected_modules_for_path(
     matched = False
     for rule in policy["affected_rules"]:
         if not any(
-            fnmatch.fnmatchcase(path, pattern)
-            for pattern in rule["paths"]
+            fnmatch.fnmatchcase(path, pattern) for pattern in rule["paths"]
         ):
             continue
         matched = True
-        for module in rule["test_modules"]:
-            modules.add(Path(path).stem if module == "$changed_test_module" else module)
+        modules.update(rule["test_modules"])
     return modules if matched else None
+
+
+def affected_module_names(
+    policy: dict[str, Any],
+    paths: Iterable[str],
+) -> tuple[tuple[str, ...], tuple[str, ...]]:
+    selected: set[str] = set()
+    unmatched: list[str] = []
+    for path in normalize_paths(paths):
+        modules = affected_modules_for_path(policy, path)
+        if modules is not None:
+            selected.update(modules)
+        elif is_documentation_path(policy, path):
+            selected.update(("test_check_markdown_links", "test_verification_profiles"))
+        elif not profile_owns_path(path):
+            unmatched.append(path)
+    ordered = tuple(
+        name for name in active_module_names(policy) if name in selected
+    )
+    return ordered, tuple(sorted(unmatched))
 
 
 def select_cases(
@@ -284,161 +299,34 @@ def select_cases(
     changed_paths: Iterable[str] = (),
     modules: Iterable[str] = (),
 ) -> Selection:
-    validate_policy(policy, cases)
-    closure_patterns = policy["closure_only_test_patterns"]
-    replay_patterns = policy["source_replay_test_patterns"]
-    if suite == "closure":
+    if suite == "active":
         return Selection(suite, tuple(cases))
-    if suite == "fast":
-        selected = tuple(
-            case
-            for case in cases
-            if not matches_any(case.id(), closure_patterns)
-            and not matches_any(case.id(), replay_patterns)
-        )
-        return Selection(suite, selected)
-    if suite == "source-replay":
-        selected = tuple(
-            case for case in cases if matches_any(case.id(), replay_patterns)
-        )
-        return Selection(suite, selected)
     if suite == "modules":
         requested = normalize_module_names(modules)
         if not requested:
             raise PolicyError("modules suite requires at least one --module")
-        selected_modules = set(requested)
+        inactive = sorted(set(requested) - set(active_module_names(policy)))
+        if inactive:
+            raise PolicyError(f"modules suite requested inactive modules: {inactive}")
         selected = tuple(
-            case for case in cases if test_module(case) in selected_modules
+            case for case in cases if test_module(case) in set(requested)
         )
-        missing = sorted(
-            selected_modules - {test_module(case) for case in selected}
-        )
+        missing = sorted(set(requested) - {test_module(case) for case in selected})
         if missing:
-            raise PolicyError(
-                f"modules suite selected missing test modules: {missing}"
-            )
+            raise PolicyError(f"modules suite selected missing modules: {missing}")
         return Selection(suite, selected)
     if suite != "affected":
         raise PolicyError(f"unknown suite {suite}")
-
-    normalized_paths = normalize_paths(changed_paths)
-    if not normalized_paths:
-        fast = select_cases("fast", policy, cases)
-        return Selection(suite, fast.cases)
-    selected_modules: set[str] = set()
-    unknown: list[str] = []
-    for path in normalized_paths:
-        modules = affected_modules_for_path(policy, path)
-        if modules is None:
-            if is_documentation_path(policy, path):
-                selected_modules.update({
-                    "test_check_markdown_links",
-                    "test_verification_profiles",
-                })
-            elif profile_owns_path(path):
-                continue
-            else:
-                unknown.append(path)
-        else:
-            selected_modules.update(modules)
-    if unknown:
-        return Selection(
-            suite,
-            (),
-            normalized_paths,
-            unmatched_paths=tuple(sorted(unknown)),
-        )
-    selected = tuple(
-        case for case in cases if test_module(case) in selected_modules
-    )
-    if selected_modules and not selected:
-        raise PolicyError(
-            f"affected rules selected missing test modules: {sorted(selected_modules)}"
-        )
-    return Selection(suite, selected, normalized_paths)
+    paths = normalize_paths(changed_paths)
+    if not paths:
+        return Selection(suite, tuple(cases))
+    names, unmatched = affected_module_names(policy, paths)
+    selected = tuple(case for case in cases if test_module(case) in set(names))
+    return Selection(suite, selected, paths, unmatched)
 
 
-def ordered_cases(
-    selection: Selection,
-    policy: dict[str, Any],
-) -> list[unittest.TestCase]:
-    closure = policy["closure_only_test_patterns"]
-    replay = policy["source_replay_test_patterns"]
-    return sorted(
-        selection.cases,
-        key=lambda case: (
-            matches_any(case.id(), replay),
-            matches_any(case.id(), closure),
-            normalized_test_id(case),
-        ),
-    )
-
-
-def apply_prechecked_stage_skips(
-    cases: Iterable[unittest.TestCase],
-    policy: dict[str, Any],
-) -> None:
-    """Mark only policy-listed duplicate positive currentness tests skipped."""
-    for environment_name, patterns in policy[
-        "prechecked_stage_test_patterns"
-    ].items():
-        if os.environ.get(environment_name) != "1":
-            continue
-        for case in cases:
-            if not matches_any(case.id(), patterns):
-                continue
-            method = getattr(type(case), case._testMethodName)
-            method.__unittest_skip__ = True
-            method.__unittest_skip_why__ = (
-                f"{environment_name} evidence was recorded by the orchestrator"
-            )
-
-
-def apply_source_replay_skips(
-    cases: Iterable[unittest.TestCase],
-    policy: dict[str, Any],
-    suite: str,
-) -> None:
-    """Keep raw/cache replays visible but skipped outside source-replay."""
-    if suite == "source-replay":
-        return
-    patterns = policy["source_replay_test_patterns"]
-    for case in cases:
-        if not matches_any(case.id(), patterns):
-            continue
-        method = getattr(type(case), case._testMethodName)
-        method.__unittest_skip__ = True
-        method.__unittest_skip_why__ = (
-            "raw/cache replay is reserved for the source-replay suite"
-        )
-
-
-def run_source_replay_commands(policy: dict[str, Any]) -> tuple[int, int]:
-    passed = 0
-    skipped = 0
-    for record in source_replay_records(policy):
-        required = [ROOT / path for path in record.get("required_paths", ())]
-        required_any = [
-            ROOT / path for path in record.get("required_any_paths", ())
-        ]
-        unavailable = any(not path.is_file() for path in required) or (
-            required_any and not any(path.is_file() for path in required_any)
-        )
-        if unavailable:
-            skipped += 1
-            print(f"SKIP source replay: {record['name']} (required input missing)")
-            continue
-        command = [
-            sys.executable if argument == "$PYTHON" else argument
-            for argument in record["command"]
-        ]
-        print(f"RUN source replay: {record['name']}")
-        completed = subprocess.run(command, cwd=ROOT, check=False)
-        if completed.returncode != 0:
-            return completed.returncode, skipped
-        passed += 1
-    print(f"Source replay commands: {passed} passed, {skipped} skipped")
-    return 0, skipped
+def ordered_cases(selection: Selection) -> list[unittest.TestCase]:
+    return sorted(selection.cases, key=normalized_test_id)
 
 
 def write_result(
@@ -448,33 +336,18 @@ def write_result(
     result: unittest.TestResult,
     elapsed_seconds: float,
     success: bool,
-    source_replay_skipped: int,
 ) -> None:
-    skipped_tests = getattr(result, "skipped", ())
-    class_level_skips = sum(
-        1 for case, _reason in skipped_tests
-        if not hasattr(case, "_testMethodName")
-    )
-    skip_reasons: list[str] = []
-    for _case, reason in skipped_tests:
-        if reason and str(reason).strip():
-            skip_reasons.append(str(reason).strip())
     document = {
-        "schema_version": 1,
+        "schema_version": 2,
         "suite": selection.suite,
         "selected_tests": len(selection.cases),
         "tests_run": result.testsRun,
         "failures": len(result.failures),
         "errors": len(result.errors),
-        "skipped": len(skipped_tests),
-        "class_level_skips": class_level_skips,
-        "skip_reasons": skip_reasons,
+        "skipped": len(getattr(result, "skipped", ())),
         "elapsed_seconds": round(elapsed_seconds, 3),
         "success": success,
-        "escalated_to_closure": selection.escalated_to_closure,
-        "escalation_paths": list(selection.escalation_paths),
         "unmatched_paths": list(selection.unmatched_paths),
-        "source_replay_commands_skipped": source_replay_skipped,
     }
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
@@ -488,96 +361,68 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--suite",
-        choices=("fast", "affected", "closure", "source-replay", "modules"),
+        choices=("active", "affected", "modules"),
         default=None,
     )
     parser.add_argument("--path", action="append", default=[])
-    parser.add_argument(
-        "--module",
-        action="append",
-        default=[],
-        help="Test module stem for --suite modules (repeatable).",
-    )
-    parser.add_argument(
-        "--path-file",
-        type=Path,
-        default=None,
-        help=(
-            "UTF-8 file of changed paths, one per line. Use this instead of "
-            "repeating --path when the dirty tree is too large for argv."
-        ),
-    )
+    parser.add_argument("--path-file", type=Path)
+    parser.add_argument("--module", action="append", default=[])
     parser.add_argument("--durations", type=int, default=20)
     parser.add_argument("--failfast", action="store_true")
     parser.add_argument("--list", action="store_true")
     parser.add_argument("--result-json", type=Path)
-    parser.add_argument(
-        "--exclude-slow",
-        action="store_true",
-        help="Drop closure-only and source-replay tests from the selected set",
-    )
     args = parser.parse_args(argv)
+
     try:
         policy = load_policy()
         suite = args.suite or policy["default_suite"]
-        cases = discover_cases()
         if suite == "modules":
+            cases = discover_cases(args.module, policy=policy)
             selection = select_cases(
                 suite,
                 policy,
                 cases,
                 modules=args.module,
             )
-        else:
-            changed_paths = resolve_suite_paths(
+        elif suite == "affected":
+            paths = resolve_suite_paths(
                 suite=suite,
                 path_args=args.path,
                 path_file=args.path_file,
+            )
+            names, unmatched = affected_module_names(policy, paths)
+            if unmatched:
+                print(
+                    "Affected selection left unmatched paths: "
+                    + ", ".join(unmatched),
+                    file=sys.stderr,
+                )
+                return 2
+            cases = discover_cases(
+                names if paths else None,
+                policy=policy,
             )
             selection = select_cases(
                 suite,
                 policy,
                 cases,
-                changed_paths=changed_paths,
+                changed_paths=paths,
             )
-        selected = ordered_cases(selection, policy)
-        if args.exclude_slow:
-            selected = [
-                case
-                for case in selected
-                if not matches_any(case.id(), policy["closure_only_test_patterns"])
-                and not matches_any(case.id(), policy["source_replay_test_patterns"])
-            ]
-        apply_prechecked_stage_skips(selected, policy)
-        apply_source_replay_skips(selected, policy, suite)
-    except (OSError, json.JSONDecodeError, PolicyError) as exc:
-        print(f"Python test workflow policy failed: {exc}", file=sys.stderr)
+        else:
+            cases = discover_cases(policy=policy)
+            selection = select_cases(suite, policy, cases)
+        selected = ordered_cases(selection)
+    except (OSError, json.JSONDecodeError, PolicyError) as error:
+        print(f"Python test workflow policy failed: {error}", file=sys.stderr)
         return 2
 
-    if selection.escalated_to_closure:
-        print(
-            "Affected selection escalated to closure for unknown paths: "
-            + ", ".join(selection.escalation_paths)
-        )
-    if selection.unmatched_paths:
-        print(
-            "Affected selection left unmatched paths; declare a profile in "
-            "tools/verification_profiles.json: "
-            + ", ".join(selection.unmatched_paths)
-        )
-        return 2
-    print(
-        f"Python suite {suite}: selected {len(selected)} / {len(cases)} tests"
-    )
+    print(f"Python suite {suite}: selected {len(selected)} active tests")
     if args.list:
         print("\n".join(normalized_test_id(case) for case in selected))
         return 0
-    if not selected and suite != "source-replay":
-        if args.exclude_slow:
-            print("Python test workflow selected no non-slow tests")
-            return 0
-        print("Python test workflow selected no tests", file=sys.stderr)
-        return 2
+    if not selected:
+        print("Python test workflow selected no tests")
+        return 0
 
     started = time.perf_counter()
     from tools.tests.support import authority_sandbox
@@ -589,12 +434,8 @@ def main(argv: list[str] | None = None) -> int:
         durations=max(0, args.durations),
     )
     result = runner.run(unittest.TestSuite(selected))
-    source_replay_skipped = 0
-    replay_code = 0
-    if result.wasSuccessful() and suite == "source-replay":
-        replay_code, source_replay_skipped = run_source_replay_commands(policy)
     elapsed = time.perf_counter() - started
-    success = result.wasSuccessful() and replay_code == 0
+    success = result.wasSuccessful()
     if args.result_json:
         write_result(
             args.result_json,
@@ -602,9 +443,8 @@ def main(argv: list[str] | None = None) -> int:
             result=result,
             elapsed_seconds=elapsed,
             success=success,
-            source_replay_skipped=source_replay_skipped,
         )
-    return 0 if success else (replay_code or 1)
+    return 0 if success else 1
 
 
 if __name__ == "__main__":

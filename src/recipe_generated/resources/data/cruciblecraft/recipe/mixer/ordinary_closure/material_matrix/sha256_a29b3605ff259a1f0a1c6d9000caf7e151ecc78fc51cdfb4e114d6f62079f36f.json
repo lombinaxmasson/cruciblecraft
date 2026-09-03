@@ -1,65 +1,236 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:a29b3605ff259a1f0a1c6d9000caf7e151ecc78fc51cdfb4e114d6f62079f36f",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 1000,
-          "id": "cruciblecraft:fish_oil"
+          "fluid_inputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:fish_oil"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:lubricant"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:nut_oil"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:lubricant"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:lin_oil"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:lubricant"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:whale_oil"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:lubricant"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:frying_oil_hot"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:lubricant"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:olive_oil"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:lubricant"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:hemp_oil"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:lubricant"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:sunflower_oil"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:lubricant"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:seed_oil"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:lubricant"
+            }
+          ]
         }
       ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:lubricant"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "ba4308b82b4f52761a3950501082b10e09a02fe59381203c4858cd1c0d27e1bb",
+        "d1eba8e043869e46e783994830291761e6a568425d4dca95e642fe37d21b5efb",
+        "03ca9698c48fb008eb8ca23970a6112fb34684564d885576a0dbaaefe8e59a60",
+        "45610b990a26616f98dbb5904798278e04879d1d02b4275f7805d8867c2cc0f9",
+        "193a34935e3a490f9625326c9ba34926f861ee95b62d5d1071ce5dc5103ded27",
+        "7c44193501171e958299be5c71449b58a56ed2710abca3938b7e09c6ff60aba8",
+        "b739feb56b2a5042072f1360a32258fd93b9e08f8d209c907955209dd1812894",
+        "cefe41998b5206c7932bd4473d6a79a17aca5b0ccad3748844b97d4fa7e1c4c2",
+        "e54d318c2382cdcb4c8c4cf1af6096d692242bdc5f4d16172b5a8706591b79f6"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:talc/dust"
-        }
+        [
+          {
+            "item": "cruciblecraft:talc/dust"
+          }
+        ]
       ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "ba4308b82b4f52761a3950501082b10e09a02fe59381203c4858cd1c0d27e1bb"
-        ],
-        "selected_source_recipe": "sha256:a29b3605ff259a1f0a1c6d9000caf7e151ecc78fc51cdfb4e114d6f62079f36f",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/76da43474324e51f"
+      "item_outputs": [
+        []
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/76da43474324e51f",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:mixer/ordinary_closure/34081a1f554fa135",
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        "cruciblecraft:mixer/ordinary_closure/bc3932aaf76d9f39",
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        3,
+        "cruciblecraft:mixer/ordinary_closure/d6dea244c0fb3638",
+        3,
+        3
+      ],
+      [
+        0,
+        0,
+        4,
+        "cruciblecraft:mixer/ordinary_closure/b15f712477eaabe0",
+        4,
+        4
+      ],
+      [
+        0,
+        0,
+        5,
+        "cruciblecraft:mixer/ordinary_closure/38d4d71c39aaea67",
+        5,
+        5
+      ],
+      [
+        0,
+        0,
+        6,
+        "cruciblecraft:mixer/ordinary_closure/ef059a17282663ca",
+        6,
+        6
+      ],
+      [
+        0,
+        0,
+        7,
+        "cruciblecraft:mixer/ordinary_closure/3a9cb8f58a19af57",
+        7,
+        7
+      ],
+      [
+        0,
+        0,
+        8,
+        "cruciblecraft:mixer/ordinary_closure/23ba65cf5c2e1ae3",
+        8,
+        8
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:nut_oil"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:lubricant"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -68,319 +239,13 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:talc/dust"
-        }
-      ],
-      "item_outputs": [],
       "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "d1eba8e043869e46e783994830291761e6a568425d4dca95e642fe37d21b5efb"
-        ],
-        "selected_source_recipe": "sha256:a29b3605ff259a1f0a1c6d9000caf7e151ecc78fc51cdfb4e114d6f62079f36f",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/34081a1f554fa135"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:lin_oil"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:lubricant"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:talc/dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "03ca9698c48fb008eb8ca23970a6112fb34684564d885576a0dbaaefe8e59a60"
-        ],
-        "selected_source_recipe": "sha256:a29b3605ff259a1f0a1c6d9000caf7e151ecc78fc51cdfb4e114d6f62079f36f",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/bc3932aaf76d9f39"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:whale_oil"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:lubricant"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:talc/dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "45610b990a26616f98dbb5904798278e04879d1d02b4275f7805d8867c2cc0f9"
-        ],
-        "selected_source_recipe": "sha256:a29b3605ff259a1f0a1c6d9000caf7e151ecc78fc51cdfb4e114d6f62079f36f",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/d6dea244c0fb3638"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:frying_oil_hot"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:lubricant"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:talc/dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "193a34935e3a490f9625326c9ba34926f861ee95b62d5d1071ce5dc5103ded27"
-        ],
-        "selected_source_recipe": "sha256:a29b3605ff259a1f0a1c6d9000caf7e151ecc78fc51cdfb4e114d6f62079f36f",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 4,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/b15f712477eaabe0"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:olive_oil"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:lubricant"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:talc/dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "7c44193501171e958299be5c71449b58a56ed2710abca3938b7e09c6ff60aba8"
-        ],
-        "selected_source_recipe": "sha256:a29b3605ff259a1f0a1c6d9000caf7e151ecc78fc51cdfb4e114d6f62079f36f",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 5,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/38d4d71c39aaea67"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hemp_oil"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:lubricant"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:talc/dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "b739feb56b2a5042072f1360a32258fd93b9e08f8d209c907955209dd1812894"
-        ],
-        "selected_source_recipe": "sha256:a29b3605ff259a1f0a1c6d9000caf7e151ecc78fc51cdfb4e114d6f62079f36f",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 6,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/ef059a17282663ca"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:sunflower_oil"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:lubricant"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:talc/dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "cefe41998b5206c7932bd4473d6a79a17aca5b0ccad3748844b97d4fa7e1c4c2"
-        ],
-        "selected_source_recipe": "sha256:a29b3605ff259a1f0a1c6d9000caf7e151ecc78fc51cdfb4e114d6f62079f36f",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 7,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/3a9cb8f58a19af57"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:seed_oil"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:lubricant"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:talc/dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "e54d318c2382cdcb4c8c4cf1af6096d692242bdc5f4d16172b5a8706591b79f6"
-        ],
-        "selected_source_recipe": "sha256:a29b3605ff259a1f0a1c6d9000caf7e151ecc78fc51cdfb4e114d6f62079f36f",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 8,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/23ba65cf5c2e1ae3"
+      "selected_source_recipe": "sha256:a29b3605ff259a1f0a1c6d9000caf7e151ecc78fc51cdfb4e114d6f62079f36f",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

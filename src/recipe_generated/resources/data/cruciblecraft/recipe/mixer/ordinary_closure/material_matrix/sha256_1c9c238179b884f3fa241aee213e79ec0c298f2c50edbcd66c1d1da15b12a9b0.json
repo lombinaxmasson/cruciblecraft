@@ -1,62 +1,122 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:1c9c238179b884f3fa241aee213e79ec0c298f2c50edbcd66c1d1da15b12a9b0",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 144,
-          "id": "cruciblecraft:molten_asphalt"
+          "fluid_inputs": [
+            {
+              "amount": 144,
+              "id": "cruciblecraft:molten_asphalt"
+            }
+          ],
+          "fluid_outputs": []
         }
       ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "878ee8763c190664c33260f4b3979a5d9c2257ead9f120248bc865a4cff326d3",
+        "434e2ce0d3d05cb50522434d1f8be25ced433fe0c33011417c50a08c8c845c5d",
+        "fb7c41072412b8c4d9e0cfca94cd4ae23498638f48d13e9de97b9405c00e961e",
+        "28073273e854ebd5e47eb1f85eb7ec0ff893394bb3199a658cea48a62940e1a2",
+        "1bd6e5513e1a38e6d4b92eaddbda231b18144f7e642814eebcf2dd003bc8639f",
+        "236d1f2ffe9619103101ab3886369589fdb1d0fff68b7c02d57c1440b75b51b7"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:moon_turf/dust"
-        }
+        [
+          {
+            "item": "cruciblecraft:moon_turf/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:andesite/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:greywacke/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:deadrock/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dacite/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:moon_stone/dust"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_object/gt_block_asphalt_m7"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "878ee8763c190664c33260f4b3979a5d9c2257ead9f120248bc865a4cff326d3"
-        ],
-        "selected_source_recipe": "sha256:1c9c238179b884f3fa241aee213e79ec0c298f2c50edbcd66c1d1da15b12a9b0",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/4059ba729a804008"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gt_block/asphalt_m7"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/4059ba729a804008",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/393e26bb979571fa",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/220807a27d2b78e0",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/e8da5b90ddb2c7df",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/0e43ae94fd64ff8d",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/5955da6171068436",
+        5,
+        5
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:molten_asphalt"
-        }
-      ],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -65,208 +125,15 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:andesite/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_object/gt_block_asphalt_m7"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "434e2ce0d3d05cb50522434d1f8be25ced433fe0c33011417c50a08c8c845c5d"
-        ],
-        "selected_source_recipe": "sha256:1c9c238179b884f3fa241aee213e79ec0c298f2c50edbcd66c1d1da15b12a9b0",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/393e26bb979571fa"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:molten_asphalt"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:greywacke/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_object/gt_block_asphalt_m7"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "fb7c41072412b8c4d9e0cfca94cd4ae23498638f48d13e9de97b9405c00e961e"
-        ],
-        "selected_source_recipe": "sha256:1c9c238179b884f3fa241aee213e79ec0c298f2c50edbcd66c1d1da15b12a9b0",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/220807a27d2b78e0"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:molten_asphalt"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:deadrock/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_object/gt_block_asphalt_m7"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "28073273e854ebd5e47eb1f85eb7ec0ff893394bb3199a658cea48a62940e1a2"
-        ],
-        "selected_source_recipe": "sha256:1c9c238179b884f3fa241aee213e79ec0c298f2c50edbcd66c1d1da15b12a9b0",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/e8da5b90ddb2c7df"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:molten_asphalt"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dacite/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_object/gt_block_asphalt_m7"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "1bd6e5513e1a38e6d4b92eaddbda231b18144f7e642814eebcf2dd003bc8639f"
-        ],
-        "selected_source_recipe": "sha256:1c9c238179b884f3fa241aee213e79ec0c298f2c50edbcd66c1d1da15b12a9b0",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 4,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/0e43ae94fd64ff8d"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:molten_asphalt"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:moon_stone/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_object/gt_block_asphalt_m7"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "236d1f2ffe9619103101ab3886369589fdb1d0fff68b7c02d57c1440b75b51b7"
-        ],
-        "selected_source_recipe": "sha256:1c9c238179b884f3fa241aee213e79ec0c298f2c50edbcd66c1d1da15b12a9b0",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 5,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/5955da6171068436"
+      "selected_source_recipe": "sha256:1c9c238179b884f3fa241aee213e79ec0c298f2c50edbcd66c1d1da15b12a9b0",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

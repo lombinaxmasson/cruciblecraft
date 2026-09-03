@@ -1,72 +1,126 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:1b4c1a81a3dd258552c978f83ddc1b4593ed6cda88ae6bfbdb5409656a2d2659",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 3000,
-          "id": "cruciblecraft:potion_mineralwater"
+          "fluid_inputs": [
+            {
+              "amount": 3000,
+              "id": "cruciblecraft:potion_mineralwater"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:hydrogen"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 3000,
+              "id": "minecraft:water"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:hydrogen"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 3000,
+              "id": "cruciblecraft:spectral_dew"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:hydrogen"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 3000,
+              "id": "cruciblecraft:water_distilled"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:hydrogen"
+            }
+          ]
         }
       ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "21331e09fdc7b5aa4da40ebabf1a8c5d63ee816647b89d585eb32664165076b8",
+        "329203842fabcc36dfcc6d2ecefa45f28dbcafdcbb22ec49bd3af1f8f4133a1d",
+        "80a9046dff55e6f655f185df27c71d4360f3bdb77cdb1d901215f519c26ca917",
+        "e235ed41f12fa083696e9c4434663f1eb23b861aa527481e93f6e633068286b9"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:sodium/dust"
-        }
+        [
+          {
+            "item": "cruciblecraft:sodium/dust"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 3,
-          "id": "cruciblecraft:sodium_hydroxide/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "21331e09fdc7b5aa4da40ebabf1a8c5d63ee816647b89d585eb32664165076b8"
-        ],
-        "selected_source_recipe": "sha256:1b4c1a81a3dd258552c978f83ddc1b4593ed6cda88ae6bfbdb5409656a2d2659",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/d4dea0a3197d2cba"
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:sodium_hydroxide/dust"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/d4dea0a3197d2cba",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:mixer/ordinary_closure/e5f2903402bcfeab",
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        "cruciblecraft:mixer/ordinary_closure/5f61f019b6070d2a",
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        3,
+        "cruciblecraft:mixer/ordinary_closure/914b45b8868dd63e",
+        3,
+        3
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 64,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 3000,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -75,130 +129,15 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:sodium/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 3,
-          "id": "cruciblecraft:sodium_hydroxide/dust"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "329203842fabcc36dfcc6d2ecefa45f28dbcafdcbb22ec49bd3af1f8f4133a1d"
-        ],
-        "selected_source_recipe": "sha256:1b4c1a81a3dd258552c978f83ddc1b4593ed6cda88ae6bfbdb5409656a2d2659",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/e5f2903402bcfeab"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:spectral_dew"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:sodium/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 3,
-          "id": "cruciblecraft:sodium_hydroxide/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "80a9046dff55e6f655f185df27c71d4360f3bdb77cdb1d901215f519c26ca917"
-        ],
-        "selected_source_recipe": "sha256:1b4c1a81a3dd258552c978f83ddc1b4593ed6cda88ae6bfbdb5409656a2d2659",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/5f61f019b6070d2a"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:sodium/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 3,
-          "id": "cruciblecraft:sodium_hydroxide/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "e235ed41f12fa083696e9c4434663f1eb23b861aa527481e93f6e633068286b9"
-        ],
-        "selected_source_recipe": "sha256:1b4c1a81a3dd258552c978f83ddc1b4593ed6cda88ae6bfbdb5409656a2d2659",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/914b45b8868dd63e"
+      "selected_source_recipe": "sha256:1b4c1a81a3dd258552c978f83ddc1b4593ed6cda88ae6bfbdb5409656a2d2659",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

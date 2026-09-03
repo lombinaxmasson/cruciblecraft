@@ -15,24 +15,26 @@ class T48IdentityTest(unittest.TestCase):
         cls.required_forms = common.load_json(common.REQUIRED_FORMS)
         cls.operands = common.load_json(common.OPERAND_RUNTIME_MAP)
 
-    def test_identity_catalog_is_3532_tool_head_and_multiitem(self) -> None:
+    def test_identity_catalog_drops_mapped_tool_heads(self) -> None:
         identities = list(self.catalog.get("identities") or [])
         self.assertEqual("T48_IDENTITY_CATALOG", self.catalog["status"])
-        self.assertEqual(3532, self.catalog["identity_count"])
-        self.assertEqual(3532, len(identities))
+        self.assertEqual(common.EXPECTED_IDENTITY_COUNT, self.catalog["identity_count"])
+        self.assertEqual(common.EXPECTED_IDENTITY_COUNT, len(identities))
         kinds = self.catalog.get("kind_counts") or {}
-        self.assertEqual(3461, kinds.get("tool_head"))
+        self.assertEqual(0, int(kinds.get("tool_head") or 0))
         self.assertEqual(71, kinds.get("multiitem"))
         runtime_ids = [str(row["runtime_id"]) for row in identities]
-        self.assertEqual(3532, len(set(runtime_ids)))
+        self.assertEqual(common.EXPECTED_IDENTITY_COUNT, len(set(runtime_ids)))
         self.assertTrue(all(item.startswith("cruciblecraft:") for item in runtime_ids))
         self.assertTrue(
             all(
-                item.startswith("cruciblecraft:gt_tool_head/")
-                or item.startswith("cruciblecraft:gt_multiitem/")
+                item.startswith("cruciblecraft:gt_multiitem/")
                 or item.startswith("minecraft:")
                 for item in runtime_ids
             )
+        )
+        self.assertFalse(
+            any(item.startswith("cruciblecraft:gt_tool_head/") for item in runtime_ids)
         )
         self.assertEqual(2, int(self.catalog.get("reused_alias_count") or 0))
         self.assertFalse(

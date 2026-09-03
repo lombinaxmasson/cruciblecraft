@@ -1,62 +1,70 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.bath#1114",
-  "publication_group": "cruciblecraft:bath/remainder/exact_multi",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 0,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 9,
-          "id": "cruciblecraft:dye_watermixed_green"
+          "fluid_inputs": [
+            {
+              "amount": 9,
+              "id": "cruciblecraft:dye_watermixed_green"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 9,
+              "id": "cruciblecraft:dye_flower_green"
+            }
+          ],
+          "fluid_outputs": []
         }
       ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "59ae64ee67df114ff535dcba3d0262d5d1809b64ff85c9bde919d2a625705466",
+        "c313edc853b8ae165e8da1999f7e40c6bbfb0980d7be0ac7321f21c01c80114c"
       ],
       "item_inputs": [
-        {
-          "item": "minecraft:terracotta"
-        }
+        [
+          {
+            "item": "minecraft:terracotta"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 1,
-          "id": "minecraft:green_terracotta"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "59ae64ee67df114ff535dcba3d0262d5d1809b64ff85c9bde919d2a625705466"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#1114",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/0ad2eb011449ac6b"
+        [
+          {
+            "count": 1,
+            "id": "minecraft:green_terracotta"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:bath/remainder/0ad2eb011449ac6b",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:bath/remainder/982100addf7ad441",
+        1,
+        1
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 9,
-          "id": "cruciblecraft:dye_flower_green"
-        }
-      ],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -65,32 +73,15 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "minecraft:terracotta"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "minecraft:green_terracotta"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "c313edc853b8ae165e8da1999f7e40c6bbfb0980d7be0ac7321f21c01c80114c"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#1114",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/982100addf7ad441"
+      "selected_source_recipe": "gt.recipe.bath#1114",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:bath/remainder/exact_multi",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:bath",
   "type": "cruciblecraft:compact_gt_recipe_family"

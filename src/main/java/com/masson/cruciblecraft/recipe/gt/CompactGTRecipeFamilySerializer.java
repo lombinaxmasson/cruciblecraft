@@ -3,17 +3,11 @@ package com.masson.cruciblecraft.recipe.gt;
 import com.mojang.serialization.MapCodec;
 
 import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 
 public final class CompactGTRecipeFamilySerializer
         implements RecipeSerializer<CompactGTRecipeFamilyEntry> {
-    private static final StreamCodec<RegistryFriendlyByteBuf, CompactGTRecipeFamilyEntry>
-            STREAM_CODEC =
-                    ByteBufCodecs.fromCodecWithRegistries(
-                            CompactGTRecipeFamilyEntry.CODEC.codec());
-
     @Override
     public MapCodec<CompactGTRecipeFamilyEntry> codec() {
         return CompactGTRecipeFamilyEntry.CODEC;
@@ -21,6 +15,6 @@ public final class CompactGTRecipeFamilySerializer
 
     @Override
     public StreamCodec<RegistryFriendlyByteBuf, CompactGTRecipeFamilyEntry> streamCodec() {
-        return STREAM_CODEC;
+        return CompactGTRecipeFamilyStreamCodec.INSTANCE;
     }
 }

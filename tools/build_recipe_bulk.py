@@ -24,6 +24,11 @@ from tools.recipe_bulk.waves import (
     recipe_wave,
 )
 from tools.recipe_bulk.slugs import SCHEMA_SEMANTIC, WaveSlugError, parse_wave_token
+from tools.recipe_bulk.source_import import (
+    SourceImportError,
+    check_import,
+    write_import,
+)
 
 WAVE_CHOICES = (*FORWARD_COMPILE_ORDER, *SEMANTIC_COMPILE_ORDER, "all")
 AUTHORITY_HISTORICAL = "historical-v1"
@@ -129,11 +134,9 @@ def _check_wave_tree(wave_id: str) -> list[str]:
         if not built["planned"]:
             return []
         return [f"{wave_id} generated recipe tree missing"]
-    generated = {
-        str(path): json.loads(path.read_text(encoding="utf-8"))
-        for path in spec.generated_root.rglob("gt_recipe_*.json")
-        if path.is_file()
-    }
+    from tools.recipe_bulk.matrix import load_compact_family_documents
+
+    generated = load_compact_family_documents(spec.generated_root)
     if spec.path_prefix:
         marker = "/" + spec.path_prefix.replace("\\", "/").strip("/") + "/"
         generated = {
@@ -167,9 +170,25 @@ def _check_compile(waves: tuple[str, ...]) -> list[str]:
     return errors
 
 
+def _import_source(spec: str | None, *, write: bool) -> list[str]:
+    if not spec:
+        raise ValueError("import-source requires --spec")
+    path = Path(spec)
+    if not path.is_absolute():
+        path = ROOT / path
+    if write:
+        result = write_import(path)
+        print(f"Wrote import-source for {result['import_slug']}")
+        return []
+    return check_import(path)
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Recipe bulk compiler")
-    parser.add_argument("command", choices=("analyze", "compile", "check"))
+    parser.add_argument(
+        "command",
+        choices=("analyze", "compile", "check", "import-source", "rewrite-matrix"),
+    )
     parser.add_argument(
         "--wave",
         default=None,
@@ -181,6 +200,11 @@ def main(argv: list[str] | None = None) -> int:
         default=None,
         help="historical-v1 compiles T37–T45. forward-v2 compiles T37–T49. semantic-v3 compiles slug waves.",
     )
+    parser.add_argument(
+        "--spec",
+        default=None,
+        help="Path to recipe_import.json for import-source.",
+    )
     modes = parser.add_mutually_exclusive_group(required=True)
     modes.add_argument("--check", action="store_true")
     modes.add_argument("--write", action="store_true")
@@ -189,7 +213,22 @@ def main(argv: list[str] | None = None) -> int:
     if command == "check":
         command = "compile"
     try:
-        if command == "analyze":
+        if command == "rewrite-matrix":
+            from tools.recipe_bulk.matrix import LIVE_RECIPE_ROOT, rewrite_tree
+
+            if not args.write:
+                print("rewrite-matrix requires --write", file=sys.stderr)
+                return 1
+            report = rewrite_tree(LIVE_RECIPE_ROOT)
+            print(
+                "Rewrote compact matrix families: "
+                f"{report['rewritten']} of {report['files']} "
+                f"(kept inline {report['kept_inline']})"
+            )
+            return 0
+        if command == "import-source":
+            errors = _import_source(args.spec, write=args.write)
+        elif command == "analyze":
             if args.write:
                 _write_analyze()
                 print(f"Wrote {common.relative(common.ANALYZE_REPORT)}")
@@ -202,7 +241,7 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"Wrote recipe_bulk compile for {','.join(waves)}")
                 return 0
             errors = _check_compile(waves)
-    except (WaveSlugError, ValueError, KeyError) as error:
+    except (WaveSlugError, ValueError, KeyError, SourceImportError) as error:
         print(str(error), file=sys.stderr)
         return 1
     if errors:

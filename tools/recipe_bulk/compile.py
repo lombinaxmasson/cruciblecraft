@@ -9,7 +9,9 @@ from typing import Any
 
 from tools import t35_common as t35
 from tools import t45_common as common
+from tools import tool_head_prefix as thp
 from tools.recipe_bulk.emit import emit_wave_document
+from tools.recipe_bulk.matrix import authored_relation_count, authored_relations
 from tools.recipe_bulk.identity import index_ledger
 from tools.recipe_bulk.resolver import resolve_relation_operands
 from tools.recipe_bulk.selection import (
@@ -195,7 +197,7 @@ def planned_documents_for(wave_id: str) -> list[tuple[Path, dict[str, Any]]]:
             publication_group=group,
             operand_classes=operand_classes,
         )
-        for relation in document["relations"]:
+        for relation in authored_relations(document):
             consume = _consume_identity(relation, wave_id=wave_id)
             previous = seen_consume.get(f"{target_map}:{consume}")
             if previous:
@@ -216,7 +218,7 @@ def planned_documents_for(wave_id: str) -> list[tuple[Path, dict[str, Any]]]:
             raise ValueError(
                 f"{wave_id} family count {len(planned)} != {spec.expected_family_count}"
             )
-    relation_count = sum(len(doc.get("relations") or []) for _path, doc in planned)
+    relation_count = sum(authored_relation_count(doc) for _path, doc in planned)
     if (
         spec.expected_relation_count is not None
         and relation_count != spec.expected_relation_count
@@ -252,6 +254,8 @@ def write_tree(
         rel = path.relative_to(origin)
         dest = root / rel
         dest.parent.mkdir(parents=True, exist_ok=True)
+        payload = t35.stable_json(document)
+        thp.assert_text_has_no_mapped_unique_tool_heads(payload, t35.relative(dest))
         t35.write_stable(dest, document)
 
 
@@ -289,7 +293,7 @@ def wave_compile_report(
     by_group: dict[str, int] = defaultdict(int)
     relation_count = 0
     for _path, document in planned:
-        relation_count += len(document.get("relations") or [])
+        relation_count += authored_relation_count(document)
         group = document.get("publication_group")
         if group:
             by_group[str(group)] += 1

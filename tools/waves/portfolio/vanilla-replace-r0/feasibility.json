@@ -1,0 +1,34 @@
+{
+  "allows_implementation_child": false,
+  "categories": [
+    {
+      "allows_implementation_child": false,
+      "category": "Vanilla",
+      "destination": null,
+      "missing_evidence": [],
+      "reasons": [
+        "Vanilla capability-map cc_mechanism is none.",
+        "Additive cruciblecraft recipes and mold-firing smelting are not Loader_Recipes_Vanilla.",
+        "The gap is vanilla recipe addition plus deletion/replace policy, not another Source Pack."
+      ],
+      "verdict": "requires_new_runtime"
+    },
+    {
+      "allows_implementation_child": false,
+      "category": "Replace",
+      "destination": null,
+      "missing_evidence": [],
+      "reasons": [
+        "Replace capability-map cc_mechanism is none.",
+        "Loader_Recipes_Replace and ASM Replacements stay one category.",
+        "1.21 NeoForge has no GT6 transformer, and the generic importer does not remove minecraft recipes."
+      ],
+      "verdict": "requires_new_runtime"
+    }
+  ],
+  "generated_by": "python tools/build_vanilla_replace_r0.py",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "FEASIBILITY_READY",
+  "wave_slug": "portfolio/vanilla-replace-r0"
+}

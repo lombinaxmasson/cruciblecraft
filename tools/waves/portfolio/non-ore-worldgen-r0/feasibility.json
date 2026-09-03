@@ -1,0 +1,56 @@
+{
+  "allows_implementation_child": false,
+  "categories": [
+    {
+      "allows_implementation_child": false,
+      "category": "Trees",
+      "destination": null,
+      "missing_evidence": [],
+      "reasons": [
+        "Trees capability-map cc_mechanism is none.",
+        "No named ore-vein, fluid-deposit, scatter, or tree-growth runtime covers WorldgenTree*.",
+        "Wood and sapling material identity is not tree placement. The gap is custom growth, not another scatter JSON row."
+      ],
+      "verdict": "requires_new_runtime"
+    },
+    {
+      "allows_implementation_child": false,
+      "category": "Dungeons",
+      "destination": null,
+      "missing_evidence": [],
+      "reasons": [
+        "Dungeons capability-map cc_mechanism is none.",
+        "WorldgenDungeonGT is a structure. T20 catalogs and scatter features are not a structure pipeline."
+      ],
+      "verdict": "requires_new_runtime"
+    },
+    {
+      "allows_implementation_child": false,
+      "category": "Planets",
+      "destination": null,
+      "missing_evidence": [],
+      "reasons": [
+        "Planets capability-map cc_mechanism is none.",
+        "DESIGN_POLICY_OVERWORLD_ACCESS records GT6 dimensions as source facts without overworld catalog parity.",
+        "moon.rocks / mars.rocks / planet.rocks are not in the current overworld catalog."
+      ],
+      "verdict": "requires_new_runtime"
+    },
+    {
+      "allows_implementation_child": false,
+      "category": "Center",
+      "destination": null,
+      "missing_evidence": [],
+      "reasons": [
+        "Center capability-map cc_mechanism is none.",
+        "center.biomes / streets / nexus / beacon / testing have no named CC biome, structure, or feature runtime."
+      ],
+      "verdict": "requires_new_runtime"
+    }
+  ],
+  "generated_by": "python tools/build_non_ore_worldgen_r0.py",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "FEASIBILITY_READY",
+  "wave_slug": "portfolio/non-ore-worldgen-r0"
+}

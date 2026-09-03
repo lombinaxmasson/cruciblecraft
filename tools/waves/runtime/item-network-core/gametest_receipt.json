@@ -1,0 +1,27 @@
+{
+  "command": ".\\gradlew.bat runGameTestServer -PwaveRecipes=runtime/item-network-core --offline",
+  "failed": 0,
+  "java_source": "src/main/java/com/masson/cruciblecraft/gametest/ItemNetworkCoreGameTests.java",
+  "log_path": "tools/waves/runtime/item-network-core/gametest.log",
+  "namespace": "cruciblecraft_wave_runtime_item_network_core",
+  "note": "Isolated dedicated GameTestServer. Skip is not pass. --offline uses the existing Gradle dist; --no-daemon previously forced a wrapper re-fetch and failed.",
+  "passed": 11,
+  "required_tests": 11,
+  "schema_version": 1,
+  "skip_is_not_pass": true,
+  "status": "PASS",
+  "test_ids": [
+    "chunkunloadhidesendpointthenrejoins",
+    "coveridentitysurvivesblockentityreload",
+    "coversaresurvivalcraftable",
+    "definitionssurvivedatapackreload",
+    "differentidentityisinvisible",
+    "disconnectedpipesarenotonenetwork",
+    "importpullsfromstorage",
+    "loadaxiscapsarerecorded",
+    "notargetdoesnotswallowitems",
+    "removingstoragestopstransfer",
+    "sameidentityconnectedexportsintostorage"
+  ],
+  "wave_slug": "runtime/item-network-core"
+}

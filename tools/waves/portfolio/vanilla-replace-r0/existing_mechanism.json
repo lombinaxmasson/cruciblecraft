@@ -1,0 +1,91 @@
+{
+  "already_closed_elsewhere": {
+    "empty_dump_maps": {
+      "is_census": false,
+      "recipe_counts": {
+        "gt.recipe.autocrafting": 0,
+        "mc.recipe.furnace": 0,
+        "mc.recipe.furnacefuel": 0
+      }
+    },
+    "t30_hopper_vanilla": {
+      "owner_here": false,
+      "recipe_count": 121,
+      "status": "T30_READY"
+    },
+    "worldgen_ores_vanilla": {
+      "feature_count": 24,
+      "full_other_features": 190,
+      "owner_here": false,
+      "remainder_after_non_ore_slice": 172,
+      "status": "non-ore-worldgen remainder"
+    }
+  },
+  "authored_minecraft_smelting": [
+    "src/main/resources/data/cruciblecraft/recipe/bolt_mold_firing.json",
+    "src/main/resources/data/cruciblecraft/recipe/crucible_firing.json",
+    "src/main/resources/data/cruciblecraft/recipe/ingot_mold_firing.json",
+    "src/main/resources/data/cruciblecraft/recipe/plate_mold_firing.json",
+    "src/main/resources/data/cruciblecraft/recipe/rod_mold_firing.json"
+  ],
+  "capability_map_seed": {
+    "1x_disposition": "not_in_1x",
+    "cc_mechanism": "none",
+    "correspondence_class": "out_of_scope_historical",
+    "growth_blocker": "no_owner",
+    "gt6_anchor": "GT6 Vanilla replace loaders",
+    "gt6_domain": "loader",
+    "inherited_from_seed": true,
+    "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+  },
+  "capability_map_vanilla_replace": [
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "gregtech.loaders.c.Loader_Recipes_Vanilla",
+      "gt6_domain": "loader",
+      "recheck_condition": "Vanilla replace loader. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "gregtech.loaders.c.Loader_Recipes_Replace + gregtech.asm.transformers.minecraft.Replacements",
+      "gt6_domain": "loader",
+      "recheck_condition": "Vanilla replacement transformer. CC mechanism is none."
+    }
+  ],
+  "generated_by": "python tools/build_vanilla_replace_r0.py",
+  "generic_importer_removes_minecraft_recipes": false,
+  "generic_importer_status": "GENERIC_RECIPE_IMPORT_READY",
+  "kinds": [
+    {
+      "adjacent_analog": "Additive cruciblecraft datapack recipes and authored minecraft:smelting mold-firing are not Loader_Recipes_Vanilla",
+      "category": "Vanilla",
+      "cc_mechanism": "none",
+      "gap": "mechanism",
+      "named_runtime_hits": []
+    },
+    {
+      "adjacent_analog": "Generic Source Pack importer does not remove minecraft recipes; there is no data/minecraft/recipe override tree and no GT6 ASM transformer",
+      "category": "Replace",
+      "cc_mechanism": "none",
+      "gap": "mechanism",
+      "named_runtime_hits": []
+    }
+  ],
+  "minecraft_recipe_override_count": 0,
+  "mixins": [
+    "ItemStackMixin"
+  ],
+  "note": "The gap is a missing mechanism, not a missing hopper or mold-firing recipe. T30 121 hopper vanilla recipes and authored smelting do not cover Loader_Recipes_Vanilla, Loader_Recipes_Replace, or ASM Replacements.",
+  "nuclear_started": false,
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "EXISTING_MECHANISM_READY",
+  "t30_hopper_vanilla_count": 121,
+  "wave_slug": "portfolio/vanilla-replace-r0"
+}

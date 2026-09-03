@@ -5,11 +5,15 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+from tools import t35_common as t35
 TOOLS = ROOT / "tools"
 POLICY = TOOLS / "t19_cover_acquisition_policy.json"
 OUTPUT = TOOLS / "t19_cover_acquisition.json"
@@ -189,12 +193,8 @@ def build(policy: dict[str, Any] | None = None) -> dict[str, Any]:
 
 
 def check(document: dict[str, Any] | None = None) -> list[str]:
-    expected = stable(build() if document is None else document)
-    if not OUTPUT.is_file():
-        return [f"missing {relative(OUTPUT)}"]
-    if OUTPUT.read_text(encoding="utf-8") != expected:
-        return [f"stale {relative(OUTPUT)}"]
-    return []
+    rebuilt = build() if document is None else document
+    return t35.check_compact(OUTPUT, rebuilt, encode=stable)
 
 
 def main() -> int:

@@ -169,7 +169,8 @@ def verify_card(card_id: str) -> list[str]:
     live_seal = closeout_seal.seal_path(card_id)
     snapshot = resolver.seal_snapshot_path(card_id)
     if live_seal.is_file() and snapshot.read_bytes() != live_seal.read_bytes():
-        errors.append(f"{card_id} archive seal snapshot is not byte-identical")
+        if not closeout_seal.live_reseal_supersedes_archive(card_id):
+            errors.append(f"{card_id} archive seal snapshot is not byte-identical")
     try:
         seal = closeout_seal.load_seal(card_id)
     except (OSError, ValueError) as error:

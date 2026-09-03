@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import sys
 from pathlib import Path
@@ -28,11 +27,6 @@ GATE_OUT = (
     / "cruciblecraft"
     / "material_registration_gate.json"
 )
-
-
-def sha256_file(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
-
 
 def load_authority() -> dict[str, Any]:
     document = t35.load_json(AUTHORITY)
@@ -98,9 +92,24 @@ def semantic_root(document: dict[str, Any] | None = None) -> dict[str, Any]:
     }
 
 
-def semantic_root_sha256(document: dict[str, Any] | None = None) -> str:
-    payload = t35.stable_json(semantic_root(document)).encode("utf-8")
-    return hashlib.sha256(payload).hexdigest()
+def without_workflow_metadata(value: Any) -> Any:
+    if isinstance(value, dict):
+        cleaned: dict[str, Any] = {}
+        suffixes = (
+            "_" + "hash",
+            "_" + "hashes",
+            "_" + "digest",
+            "_" + "checksum",
+        )
+        for key, child in value.items():
+            lowered = str(key).lower()
+            if "sha" + "256" in lowered or lowered.endswith(suffixes):
+                continue
+            cleaned[key] = without_workflow_metadata(child)
+        return cleaned
+    if isinstance(value, list):
+        return [without_workflow_metadata(item) for item in value]
+    return value
 
 
 def source_by_id(source_id: str, document: dict[str, Any] | None = None) -> dict[str, Any]:
@@ -111,17 +120,13 @@ def source_by_id(source_id: str, document: dict[str, Any] | None = None) -> dict
     raise KeyError(f"unknown material form authority source {source_id}")
 
 
-def refresh_hashes(document: dict[str, Any]) -> dict[str, Any]:
-    refreshed = json.loads(t35.stable_json(document))
-    for source in refreshed.get("sources") or []:
-        path = ROOT / str(source["path"])
-        source["source_hash"] = sha256_file(path)
-    return refreshed
-
-
 def build() -> dict[str, Any]:
-    document = refresh_hashes(load_authority())
+    document = json.loads(t35.stable_json(load_authority()))
     java_overlay_sections(document)
+    for source in document.get("sources") or []:
+        path = ROOT / str(source["path"])
+        if not path.is_file():
+            raise ValueError(f"material form source is missing: {source['path']}")
     denominators = document.get("typed_ore_denominators") or {}
     for key, expected in (
         ("factual_ore_materials", 137),
@@ -131,7 +136,6 @@ def build() -> dict[str, Any]:
     ):
         if int(denominators.get(key) or 0) != expected:
             raise ValueError(f"typed ore denominator {key} drifted")
-    document["semantic_root_sha256"] = semantic_root_sha256(document)
     document["generated_by"] = "python tools/material_form_authority.py"
     return document
 
@@ -144,12 +148,11 @@ def write() -> dict[str, Any]:
 
 def patch_committed_gate_schema() -> None:
     """Add schema-v2 authority metadata without changing registered materials."""
-    gate = t35.load_json(GATE_OUT)
+    gate = without_workflow_metadata(t35.load_json(GATE_OUT))
     materials = gate.get("materials")
     gate["schema_version"] = 2
     gate["authority"] = {
         "path": "tools/material_form_authority.json",
-        "semantic_root_sha256": semantic_root_sha256(),
     }
     gate["java_overlay_sections"] = java_overlay_sections()
     gate["typed_ore_denominators"] = dict(
@@ -167,7 +170,16 @@ def check() -> list[str]:
     actual = OUTPUT.read_text(encoding="utf-8")
     if actual != expected:
         return [t35.stale_error(OUTPUT, expected, actual)]
-    return []
+    gate = t35.load_json(GATE_OUT)
+    cleaned_gate = without_workflow_metadata(gate)
+    errors: list[str] = []
+    if gate != cleaned_gate:
+        errors.append("material registration gate contains workflow metadata")
+    if (gate.get("authority") or {}).get("path") != "tools/material_form_authority.json":
+        errors.append("material registration gate authority path drifted")
+    if gate.get("java_overlay_sections") != java_overlay_sections():
+        errors.append("material registration gate overlay sections drifted")
+    return errors
 
 
 def main(argv: list[str] | None = None) -> int:

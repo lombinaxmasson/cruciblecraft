@@ -39,9 +39,14 @@ jobs:
           fi
           echo "OK: no common→client imports"
 
-      - name: Fetch comparison base
-        if: github.event_name == 'pull_request'
-        run: git fetch origin ${{ github.base_ref }} --no-tags
+      - name: Verify active tooling
+        run: python3 tools/verify.py integration --profile verification
 
-      - name: Run developer verification
-        run: python3 tools/verify.py dev
+      - name: Reject development workflow hashes
+        run: python3 tools/check_no_workflow_hashes.py --check
+
+      - name: Verify semantic generators
+        run: python3 tools/verify.py integration --profile semantic-generators
+
+      - name: Verify capability runtime
+        run: python3 tools/verify.py integration --profile capability-runtime

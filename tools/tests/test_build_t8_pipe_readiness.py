@@ -322,11 +322,13 @@ class T8PipeReadinessTest(unittest.TestCase):
         ):
             MODULE.build(policy)
 
-    def test_committed_ledger_is_current_and_check_is_read_only(self):
-        encoded = MODULE.stable_json(self.document)
-        self.assertEqual(encoded, MODULE.OUTPUT.read_text(encoding="utf-8"))
+    def test_committed_ledger_is_compact_current_and_check_is_read_only(self):
         before = MODULE.sha256(MODULE.OUTPUT)
-        self.assertEqual(encoded, MODULE.stable_json(self.document))
+        self.assertEqual([], MODULE.t35.check_compact(
+            MODULE.OUTPUT,
+            self.document,
+            encode=MODULE.stable_json,
+        ))
         self.assertEqual(before, MODULE.sha256(MODULE.OUTPUT))
         self.assertEqual("READY", self.document["status"])
 

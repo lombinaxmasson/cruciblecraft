@@ -17,6 +17,7 @@ public record CoverDefinition(
     public static final int MAX_PRESSURE_THRESHOLD = 1_000_000;
     public static final int MAX_EXACT_COUNT = 64;
     public static final int MAX_SELECTOR = 5;
+    public static final int MAX_NETWORK_ID = 16;
 
     public CoverDefinition {
         Objects.requireNonNull(id, "id");
@@ -89,7 +90,8 @@ public record CoverDefinition(
         PRESSURE_THRESHOLD,
         EXACT_COUNT,
         MODE,
-        SELECTOR
+        SELECTOR,
+        NETWORK_ID
     }
 
     public record Values(

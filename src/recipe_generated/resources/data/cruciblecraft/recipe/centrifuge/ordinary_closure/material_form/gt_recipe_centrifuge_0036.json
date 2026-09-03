@@ -1,62 +1,83 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.centrifuge#0036",
-  "publication_group": "cruciblecraft:centrifuge/ordinary_closure/material_form",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 256,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "kind": "consume"
+          "fluid_inputs": [],
+          "fluid_outputs": []
         }
       ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "1792bc2326373d3a44ef203ab2d0fcc4d2d8bc239351d3943b7b5708dbce6648",
+        "6637ed3cf716821f67e179de497f939173f4e89bedcfab62fa7f7ca871249929"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:beryllium/tiny_centrifuged_crushed_ore"
-        }
+        [
+          {
+            "item": "cruciblecraft:beryllium/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:carbon/tiny_centrifuged_crushed_ore"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:beryllium/tiny_dust"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:beryllium7/tiny_dust"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:beryllium8/tiny_dust"
-        }
-      ],
-      "output_chances": [
-        10000,
-        150,
-        150
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "1792bc2326373d3a44ef203ab2d0fcc4d2d8bc239351d3943b7b5708dbce6648"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:beryllium/tiny_dust"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:beryllium7/tiny_dust"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:beryllium8/tiny_dust"
+          }
         ],
-        "selected_source_recipe": "gt.recipe.centrifuge#0036",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:centrifuge/ordinary_closure/73dbe068654effdd"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:carbon/tiny_dust"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:carbon13/tiny_dust"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:carbon14/tiny_dust"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:centrifuge/ordinary_closure/73dbe068654effdd",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:centrifuge/ordinary_closure/93e12dae7893e9d9",
+        1,
+        1
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 256,
       "eut": 256,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -65,42 +86,17 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:carbon/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:carbon/tiny_dust"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:carbon13/tiny_dust"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:carbon14/tiny_dust"
-        }
-      ],
       "output_chances": [
         10000,
         150,
         150
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "6637ed3cf716821f67e179de497f939173f4e89bedcfab62fa7f7ca871249929"
-        ],
-        "selected_source_recipe": "gt.recipe.centrifuge#0036",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:centrifuge/ordinary_closure/93e12dae7893e9d9"
+      "selected_source_recipe": "gt.recipe.centrifuge#0036",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:centrifuge/ordinary_closure/material_form",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:centrifuge",
   "type": "cruciblecraft:compact_gt_recipe_family"

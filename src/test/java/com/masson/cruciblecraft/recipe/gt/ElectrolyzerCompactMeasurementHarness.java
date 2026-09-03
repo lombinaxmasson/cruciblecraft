@@ -284,7 +284,7 @@ class ElectrolyzerCompactMeasurementHarness {
         Set<ResourceLocation> eagerStableIds = new HashSet<>();
         for (CompactRecipeFamilySource source : familySources) {
             for (CompactGTRecipeFamilyDefinition.Relation relation
-                    : source.definition().relations()) {
+                    : source.authoredRelations()) {
                 if (relation.duration() <= durationCutoff) {
                     eagerStableIds.add(relation.stableId());
                 }
@@ -299,7 +299,7 @@ class ElectrolyzerCompactMeasurementHarness {
         int count = 0;
         for (CompactRecipeFamilySource source : familySources) {
             List<CompactGTRecipeFamilyDefinition.Relation> relations =
-                    source.definition().relations();
+                    source.authoredRelations();
             for (int index = 0; index < relations.size(); index++) {
                 if (selector.isEager(index, relations.get(index))) {
                     count++;
@@ -312,7 +312,7 @@ class ElectrolyzerCompactMeasurementHarness {
     private static int countLogicalRows(List<CompactRecipeFamilySource> familySources) {
         int total = 0;
         for (CompactRecipeFamilySource source : familySources) {
-            total += source.definition().relations().size();
+            total += source.authoredRelations().size();
         }
         return total;
     }
@@ -752,7 +752,7 @@ class ElectrolyzerCompactMeasurementHarness {
         List<GTRecipeQuery> queries = new ArrayList<>();
         for (CompactRecipeFamilySource source : familySources) {
             for (CompactGTRecipeFamilyDefinition.Relation relation
-                    : source.definition().relations()) {
+                    : source.authoredRelations()) {
                 List<ItemStack> offered = new ArrayList<>();
                 List<Ingredient> inputs = relation.itemInputs();
                 List<Integer> counts = relation.itemInputCounts();

@@ -1,0 +1,2397 @@
+{
+  "already_closed_elsewhere": {
+    "hoppers": {
+      "expanded_multiplicity": 2,
+      "owner_here": false,
+      "source_sites": 2,
+      "status": "T30_READY"
+    },
+    "mass_storage_logistics": {
+      "expanded_multiplicity": 1,
+      "owner_here": false,
+      "source_sites": 1,
+      "status": "T44_STORAGE_READY"
+    },
+    "storage": {
+      "expanded_multiplicity": 624,
+      "owner_here": false,
+      "source_sites": 28,
+      "status": "T44_STORAGE_READY"
+    }
+  },
+  "authority_hashes": {
+    "capability_map": "afd2c54ad8737e18474f85a11de86af5e0fe94a0332a2d2dd2b01e758ced6719",
+    "growth_order": "c61cc0da1d5091e4a2a5414fe2e8dcd9cc72475a9b3be5ae01c06b10d5f7c863",
+    "logistics_cover_net_r0_seal": "a6432d9f65070e52e679964bf9319abc47d88237a373b8626e3673689a5ea47b",
+    "t13_machine_kinds": "b7faf744c5def30031c2d50b857e4ddd5f8f9c2c0217966996fcb20ebdf4316e",
+    "t35_excluded_object_reclaim": "e9f697209038fe988e6a2bd4d17a8c832167893dbc3542625a1794ed9dd60363"
+  },
+  "category_summaries": [
+    {
+      "category": "Panels",
+      "expanded_multiplicity": 348,
+      "source_sites": 6
+    },
+    {
+      "category": "Sensors",
+      "expanded_multiplicity": 21,
+      "source_sites": 21
+    },
+    {
+      "category": "Portals",
+      "expanded_multiplicity": 19,
+      "source_sites": 19
+    },
+    {
+      "category": "Batteries",
+      "expanded_multiplicity": 37,
+      "source_sites": 37
+    },
+    {
+      "category": "Reactors",
+      "expanded_multiplicity": 46,
+      "source_sites": 46
+    }
+  ],
+  "expanded_multiplicity": 471,
+  "full_t35": {
+    "expanded_multiplicity": 1701,
+    "source_sites": 763,
+    "unmapped": 0
+  },
+  "generated_by": "python tools/build_t13c_exclusion_reclaim_r0.py",
+  "remainder_after_slice": {
+    "expanded_multiplicity": 1230,
+    "source_sites": 634
+  },
+  "schema_version": 1,
+  "source_artifact": "tools/t35_excluded_object_reclaim.json",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_site_count": 129,
+  "source_sites": [
+    {
+      "behavior_class": "MultiTileEntityBatteryEU8",
+      "canonical_family": "batteries/multi_tile_entity_battery_eu8",
+      "category": "Batteries",
+      "display_expression": "\"Lead-Acid Battery (\"+VN[0]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14000|MultiTileEntityBatteryEU8",
+      "source_id_expression": "14000",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14000|MultiTileEntityBatteryEU8",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1009
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryEU32",
+      "canonical_family": "batteries/multi_tile_entity_battery_eu32",
+      "category": "Batteries",
+      "display_expression": "\"Lead-Acid Battery (\" +VN[1]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14001|MultiTileEntityBatteryEU32",
+      "source_id_expression": "14001",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14001|MultiTileEntityBatteryEU32",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1010
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryEU128",
+      "canonical_family": "batteries/multi_tile_entity_battery_eu128",
+      "category": "Batteries",
+      "display_expression": "\"Lead-Acid Battery (\" +VN[2]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14002|MultiTileEntityBatteryEU128",
+      "source_id_expression": "14002",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14002|MultiTileEntityBatteryEU128",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1011
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryEU512",
+      "canonical_family": "batteries/multi_tile_entity_battery_eu512",
+      "category": "Batteries",
+      "display_expression": "\"Lead-Acid Battery (\" +VN[3]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14003|MultiTileEntityBatteryEU512",
+      "source_id_expression": "14003",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14003|MultiTileEntityBatteryEU512",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1012
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryEU2048",
+      "canonical_family": "batteries/multi_tile_entity_battery_eu2048",
+      "category": "Batteries",
+      "display_expression": "\"Lead-Acid Battery (\" +VN[4]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14004|MultiTileEntityBatteryEU2048",
+      "source_id_expression": "14004",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14004|MultiTileEntityBatteryEU2048",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1013
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryEU8",
+      "canonical_family": "batteries/multi_tile_entity_battery_eu8",
+      "category": "Batteries",
+      "display_expression": "\"Alkaline Battery (\"+VN[0]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14010|MultiTileEntityBatteryEU8",
+      "source_id_expression": "14010",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14010|MultiTileEntityBatteryEU8",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1033
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryEU32",
+      "canonical_family": "batteries/multi_tile_entity_battery_eu32",
+      "category": "Batteries",
+      "display_expression": "\"Alkaline Battery (\" +VN[1]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14011|MultiTileEntityBatteryEU32",
+      "source_id_expression": "14011",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14011|MultiTileEntityBatteryEU32",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1034
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryEU128",
+      "canonical_family": "batteries/multi_tile_entity_battery_eu128",
+      "category": "Batteries",
+      "display_expression": "\"Alkaline Battery (\" +VN[2]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14012|MultiTileEntityBatteryEU128",
+      "source_id_expression": "14012",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14012|MultiTileEntityBatteryEU128",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1035
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryEU512",
+      "canonical_family": "batteries/multi_tile_entity_battery_eu512",
+      "category": "Batteries",
+      "display_expression": "\"Alkaline Battery (\" +VN[3]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14013|MultiTileEntityBatteryEU512",
+      "source_id_expression": "14013",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14013|MultiTileEntityBatteryEU512",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1036
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryEU2048",
+      "canonical_family": "batteries/multi_tile_entity_battery_eu2048",
+      "category": "Batteries",
+      "display_expression": "\"Alkaline Battery (\" +VN[4]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14014|MultiTileEntityBatteryEU2048",
+      "source_id_expression": "14014",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14014|MultiTileEntityBatteryEU2048",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1037
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryEU8",
+      "canonical_family": "batteries/multi_tile_entity_battery_eu8",
+      "category": "Batteries",
+      "display_expression": "\"Nickel-Cadmium Battery (\"+VN[0]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14020|MultiTileEntityBatteryEU8",
+      "source_id_expression": "14020",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14020|MultiTileEntityBatteryEU8",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1044
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryEU32",
+      "canonical_family": "batteries/multi_tile_entity_battery_eu32",
+      "category": "Batteries",
+      "display_expression": "\"Nickel-Cadmium Battery (\" +VN[1]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14021|MultiTileEntityBatteryEU32",
+      "source_id_expression": "14021",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14021|MultiTileEntityBatteryEU32",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1045
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryEU128",
+      "canonical_family": "batteries/multi_tile_entity_battery_eu128",
+      "category": "Batteries",
+      "display_expression": "\"Nickel-Cadmium Battery (\" +VN[2]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14022|MultiTileEntityBatteryEU128",
+      "source_id_expression": "14022",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14022|MultiTileEntityBatteryEU128",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1046
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryEU512",
+      "canonical_family": "batteries/multi_tile_entity_battery_eu512",
+      "category": "Batteries",
+      "display_expression": "\"Nickel-Cadmium Battery (\" +VN[3]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14023|MultiTileEntityBatteryEU512",
+      "source_id_expression": "14023",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14023|MultiTileEntityBatteryEU512",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1047
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryEU2048",
+      "canonical_family": "batteries/multi_tile_entity_battery_eu2048",
+      "category": "Batteries",
+      "display_expression": "\"Nickel-Cadmium Battery (\" +VN[4]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14024|MultiTileEntityBatteryEU2048",
+      "source_id_expression": "14024",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14024|MultiTileEntityBatteryEU2048",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1048
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryAdvEU8",
+      "canonical_family": "batteries/multi_tile_entity_battery_adv_eu8",
+      "category": "Batteries",
+      "display_expression": "\"Lithium-Cobalt Battery (\"+VN[0]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14030|MultiTileEntityBatteryAdvEU8",
+      "source_id_expression": "14030",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14030|MultiTileEntityBatteryAdvEU8",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1054
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryAdvEU32",
+      "canonical_family": "batteries/multi_tile_entity_battery_adv_eu32",
+      "category": "Batteries",
+      "display_expression": "\"Lithium-Cobalt Battery (\" +VN[1]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14031|MultiTileEntityBatteryAdvEU32",
+      "source_id_expression": "14031",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14031|MultiTileEntityBatteryAdvEU32",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1055
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryAdvEU128",
+      "canonical_family": "batteries/multi_tile_entity_battery_adv_eu128",
+      "category": "Batteries",
+      "display_expression": "\"Lithium-Cobalt Battery (\" +VN[2]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14032|MultiTileEntityBatteryAdvEU128",
+      "source_id_expression": "14032",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14032|MultiTileEntityBatteryAdvEU128",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1056
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryAdvEU512",
+      "canonical_family": "batteries/multi_tile_entity_battery_adv_eu512",
+      "category": "Batteries",
+      "display_expression": "\"Lithium-Cobalt Battery (\" +VN[3]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14033|MultiTileEntityBatteryAdvEU512",
+      "source_id_expression": "14033",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14033|MultiTileEntityBatteryAdvEU512",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1057
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryAdvEU2048",
+      "canonical_family": "batteries/multi_tile_entity_battery_adv_eu2048",
+      "category": "Batteries",
+      "display_expression": "\"Lithium-Cobalt Battery (\" +VN[4]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14034|MultiTileEntityBatteryAdvEU2048",
+      "source_id_expression": "14034",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14034|MultiTileEntityBatteryAdvEU2048",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1058
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryAdvEU8",
+      "canonical_family": "batteries/multi_tile_entity_battery_adv_eu8",
+      "category": "Batteries",
+      "display_expression": "\"Lithium-Manganese Battery (\"+VN[0]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14040|MultiTileEntityBatteryAdvEU8",
+      "source_id_expression": "14040",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14040|MultiTileEntityBatteryAdvEU8",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1064
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryAdvEU32",
+      "canonical_family": "batteries/multi_tile_entity_battery_adv_eu32",
+      "category": "Batteries",
+      "display_expression": "\"Lithium-Manganese Battery (\" +VN[1]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14041|MultiTileEntityBatteryAdvEU32",
+      "source_id_expression": "14041",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14041|MultiTileEntityBatteryAdvEU32",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1065
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryAdvEU128",
+      "canonical_family": "batteries/multi_tile_entity_battery_adv_eu128",
+      "category": "Batteries",
+      "display_expression": "\"Lithium-Manganese Battery (\" +VN[2]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14042|MultiTileEntityBatteryAdvEU128",
+      "source_id_expression": "14042",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14042|MultiTileEntityBatteryAdvEU128",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1066
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryAdvEU512",
+      "canonical_family": "batteries/multi_tile_entity_battery_adv_eu512",
+      "category": "Batteries",
+      "display_expression": "\"Lithium-Manganese Battery (\" +VN[3]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14043|MultiTileEntityBatteryAdvEU512",
+      "source_id_expression": "14043",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14043|MultiTileEntityBatteryAdvEU512",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1067
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryAdvEU2048",
+      "canonical_family": "batteries/multi_tile_entity_battery_adv_eu2048",
+      "category": "Batteries",
+      "display_expression": "\"Lithium-Manganese Battery (\" +VN[4]+\")\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14044|MultiTileEntityBatteryAdvEU2048",
+      "source_id_expression": "14044",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14044|MultiTileEntityBatteryAdvEU2048",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1068
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryLU8",
+      "canonical_family": "batteries/multi_tile_entity_battery_lu8",
+      "category": "Batteries",
+      "display_expression": "\"Red Energium Crystal (T0)\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14500|MultiTileEntityBatteryLU8",
+      "source_id_expression": "14500",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14500|MultiTileEntityBatteryLU8",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1079
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryLU32",
+      "canonical_family": "batteries/multi_tile_entity_battery_lu32",
+      "category": "Batteries",
+      "display_expression": "\"Red Energium Crystal (T1)\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14501|MultiTileEntityBatteryLU32",
+      "source_id_expression": "14501",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14501|MultiTileEntityBatteryLU32",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1080
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryLU128",
+      "canonical_family": "batteries/multi_tile_entity_battery_lu128",
+      "category": "Batteries",
+      "display_expression": "\"Red Energium Crystal (T2)\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14502|MultiTileEntityBatteryLU128",
+      "source_id_expression": "14502",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14502|MultiTileEntityBatteryLU128",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1081
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryLU512",
+      "canonical_family": "batteries/multi_tile_entity_battery_lu512",
+      "category": "Batteries",
+      "display_expression": "\"Red Energium Crystal (T3)\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14503|MultiTileEntityBatteryLU512",
+      "source_id_expression": "14503",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14503|MultiTileEntityBatteryLU512",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1082
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryLU2048",
+      "canonical_family": "batteries/multi_tile_entity_battery_lu2048",
+      "category": "Batteries",
+      "display_expression": "\"Red Energium Crystal (T4)\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14504|MultiTileEntityBatteryLU2048",
+      "source_id_expression": "14504",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14504|MultiTileEntityBatteryLU2048",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1083
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryLU8192",
+      "canonical_family": "batteries/multi_tile_entity_battery_lu8192",
+      "category": "Batteries",
+      "display_expression": "\"Red Energium Crystal (T5)\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14505|MultiTileEntityBatteryLU8192",
+      "source_id_expression": "14505",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14505|MultiTileEntityBatteryLU8192",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1084
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryLU8",
+      "canonical_family": "batteries/multi_tile_entity_battery_lu8",
+      "category": "Batteries",
+      "display_expression": "\"Cyan Energium Crystal (T0)\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14510|MultiTileEntityBatteryLU8",
+      "source_id_expression": "14510",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14510|MultiTileEntityBatteryLU8",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1087
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryLU32",
+      "canonical_family": "batteries/multi_tile_entity_battery_lu32",
+      "category": "Batteries",
+      "display_expression": "\"Cyan Energium Crystal (T1)\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14511|MultiTileEntityBatteryLU32",
+      "source_id_expression": "14511",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14511|MultiTileEntityBatteryLU32",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1088
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryLU128",
+      "canonical_family": "batteries/multi_tile_entity_battery_lu128",
+      "category": "Batteries",
+      "display_expression": "\"Cyan Energium Crystal (T2)\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14512|MultiTileEntityBatteryLU128",
+      "source_id_expression": "14512",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14512|MultiTileEntityBatteryLU128",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1089
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryLU512",
+      "canonical_family": "batteries/multi_tile_entity_battery_lu512",
+      "category": "Batteries",
+      "display_expression": "\"Cyan Energium Crystal (T3)\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14513|MultiTileEntityBatteryLU512",
+      "source_id_expression": "14513",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14513|MultiTileEntityBatteryLU512",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1090
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryLU2048",
+      "canonical_family": "batteries/multi_tile_entity_battery_lu2048",
+      "category": "Batteries",
+      "display_expression": "\"Cyan Energium Crystal (T4)\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14514|MultiTileEntityBatteryLU2048",
+      "source_id_expression": "14514",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14514|MultiTileEntityBatteryLU2048",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1091
+    },
+    {
+      "behavior_class": "MultiTileEntityBatteryLU8192",
+      "canonical_family": "batteries/multi_tile_entity_battery_lu8192",
+      "category": "Batteries",
+      "display_expression": "\"Cyan Energium Crystal (T5)\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Batteries|14515|MultiTileEntityBatteryLU8192",
+      "source_id_expression": "14515",
+      "source_identity": {
+        "normalized_row_key": "loader:Batteries|14515|MultiTileEntityBatteryLU8192",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1092
+    },
+    {
+      "behavior_class": "MultiTileEntityPanelWood",
+      "canonical_family": "panels/multi_tile_entity_panel_wood",
+      "category": "Panels",
+      "display_expression": "\"Wooden Panel\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 100,
+      "site_key": "loader:Panels|i+32252|MultiTileEntityPanelWood",
+      "source_id_expression": "i+32252",
+      "source_identity": {
+        "normalized_row_key": "loader:Panels|i+32252|MultiTileEntityPanelWood",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2076
+    },
+    {
+      "behavior_class": "MultiTileEntityPanelWood",
+      "canonical_family": "panels/multi_tile_entity_panel_wood",
+      "category": "Panels",
+      "display_expression": "\"Wooden Panel\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 100,
+      "site_key": "loader:Panels|i+32352|MultiTileEntityPanelWood",
+      "source_id_expression": "i+32352",
+      "source_identity": {
+        "normalized_row_key": "loader:Panels|i+32352|MultiTileEntityPanelWood",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2067
+    },
+    {
+      "behavior_class": "MultiTileEntityPanelConcrete",
+      "canonical_family": "panels/multi_tile_entity_panel_concrete",
+      "category": "Panels",
+      "display_expression": "\"Concrete Panel\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 16,
+      "site_key": "loader:Panels|i+32452|MultiTileEntityPanelConcrete",
+      "source_id_expression": "i+32452",
+      "source_identity": {
+        "normalized_row_key": "loader:Panels|i+32452|MultiTileEntityPanelConcrete",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2045
+    },
+    {
+      "behavior_class": "MultiTileEntityPanelCFoam",
+      "canonical_family": "panels/multi_tile_entity_panel_c_foam",
+      "category": "Panels",
+      "display_expression": "\"C-Foam Panel\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 16,
+      "site_key": "loader:Panels|i+32468|MultiTileEntityPanelCFoam",
+      "source_id_expression": "i+32468",
+      "source_identity": {
+        "normalized_row_key": "loader:Panels|i+32468|MultiTileEntityPanelCFoam",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2049
+    },
+    {
+      "behavior_class": "MultiTileEntityPanelAsphalt",
+      "canonical_family": "panels/multi_tile_entity_panel_asphalt",
+      "category": "Panels",
+      "display_expression": "\"Asphalt Panel\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 16,
+      "site_key": "loader:Panels|i+32484|MultiTileEntityPanelAsphalt",
+      "source_id_expression": "i+32484",
+      "source_identity": {
+        "normalized_row_key": "loader:Panels|i+32484|MultiTileEntityPanelAsphalt",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2053
+    },
+    {
+      "behavior_class": "MultiTileEntityPanelWood",
+      "canonical_family": "panels/multi_tile_entity_panel_wood",
+      "category": "Panels",
+      "display_expression": "\"Wooden Panel\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 100,
+      "site_key": "loader:Panels|i+32500|MultiTileEntityPanelWood",
+      "source_id_expression": "i+32500",
+      "source_identity": {
+        "normalized_row_key": "loader:Panels|i+32500|MultiTileEntityPanelWood",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2058
+    },
+    {
+      "behavior_class": "MultiTileEntityMiniPortalEnd",
+      "canonical_family": "portals/multi_tile_entity_mini_portal_end",
+      "category": "Portals",
+      "display_expression": "\"Miniature End Portal\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Portals|32000|MultiTileEntityMiniPortalEnd",
+      "source_id_expression": "32000",
+      "source_identity": {
+        "normalized_row_key": "loader:Portals|32000|MultiTileEntityMiniPortalEnd",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2004
+    },
+    {
+      "behavior_class": "MultiTileEntityMiniPortalTwilight",
+      "canonical_family": "portals/multi_tile_entity_mini_portal_twilight",
+      "category": "Portals",
+      "display_expression": "\"Miniature Twilight Portal\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Portals|32001|MultiTileEntityMiniPortalTwilight",
+      "source_id_expression": "32001",
+      "source_identity": {
+        "normalized_row_key": "loader:Portals|32001|MultiTileEntityMiniPortalTwilight",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2005
+    },
+    {
+      "behavior_class": "MultiTileEntityMiniPortalErebus",
+      "canonical_family": "portals/multi_tile_entity_mini_portal_erebus",
+      "category": "Portals",
+      "display_expression": "\"Miniature Erebus Portal\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Portals|32002|MultiTileEntityMiniPortalErebus",
+      "source_id_expression": "32002",
+      "source_identity": {
+        "normalized_row_key": "loader:Portals|32002|MultiTileEntityMiniPortalErebus",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2006
+    },
+    {
+      "behavior_class": "MultiTileEntityMiniPortalDeepDark",
+      "canonical_family": "portals/multi_tile_entity_mini_portal_deep_dark",
+      "category": "Portals",
+      "display_expression": "\"Miniature Deep Dark Portal\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Portals|32003|MultiTileEntityMiniPortalDeepDark",
+      "source_id_expression": "32003",
+      "source_identity": {
+        "normalized_row_key": "loader:Portals|32003|MultiTileEntityMiniPortalDeepDark",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2020
+    },
+    {
+      "behavior_class": "MultiTileEntityMiniPortalEndOfTime",
+      "canonical_family": "portals/multi_tile_entity_mini_portal_end_of_time",
+      "category": "Portals",
+      "display_expression": "\"Miniature Last Millenium Portal\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Portals|32004|MultiTileEntityMiniPortalEndOfTime",
+      "source_id_expression": "32004",
+      "source_identity": {
+        "normalized_row_key": "loader:Portals|32004|MultiTileEntityMiniPortalEndOfTime",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2021
+    },
+    {
+      "behavior_class": "MultiTileEntityMiniPortalAtum",
+      "canonical_family": "portals/multi_tile_entity_mini_portal_atum",
+      "category": "Portals",
+      "display_expression": "\"Miniature Atum Portal\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Portals|32005|MultiTileEntityMiniPortalAtum",
+      "source_id_expression": "32005",
+      "source_identity": {
+        "normalized_row_key": "loader:Portals|32005|MultiTileEntityMiniPortalAtum",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2007
+    },
+    {
+      "behavior_class": "MultiTileEntityMiniPortalBetweenlands",
+      "canonical_family": "portals/multi_tile_entity_mini_portal_betweenlands",
+      "category": "Portals",
+      "display_expression": "\"Miniature Betweenlands Portal\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Portals|32006|MultiTileEntityMiniPortalBetweenlands",
+      "source_id_expression": "32006",
+      "source_identity": {
+        "normalized_row_key": "loader:Portals|32006|MultiTileEntityMiniPortalBetweenlands",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2008
+    },
+    {
+      "behavior_class": "MultiTileEntityMiniPortalAether",
+      "canonical_family": "portals/multi_tile_entity_mini_portal_aether",
+      "category": "Portals",
+      "display_expression": "\"Miniature Aether Portal\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Portals|32015|MultiTileEntityMiniPortalAether",
+      "source_id_expression": "32015",
+      "source_identity": {
+        "normalized_row_key": "loader:Portals|32015|MultiTileEntityMiniPortalAether",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2009
+    },
+    {
+      "behavior_class": "MultiTileEntityMiniPortalEnviromine",
+      "canonical_family": "portals/multi_tile_entity_mini_portal_enviromine",
+      "category": "Portals",
+      "display_expression": "\"Miniature Enviromine Portal\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Portals|32051|MultiTileEntityMiniPortalEnviromine",
+      "source_id_expression": "32051",
+      "source_identity": {
+        "normalized_row_key": "loader:Portals|32051|MultiTileEntityMiniPortalEnviromine",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2010
+    },
+    {
+      "behavior_class": "MultiTileEntityMiniPortalAlfheim",
+      "canonical_family": "portals/multi_tile_entity_mini_portal_alfheim",
+      "category": "Portals",
+      "display_expression": "\"Miniature Alfheim Portal\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Portals|32052|MultiTileEntityMiniPortalAlfheim",
+      "source_id_expression": "32052",
+      "source_identity": {
+        "normalized_row_key": "loader:Portals|32052|MultiTileEntityMiniPortalAlfheim",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2017
+    },
+    {
+      "behavior_class": "MultiTileEntityMiniPortalTropics",
+      "canonical_family": "portals/multi_tile_entity_mini_portal_tropics",
+      "category": "Portals",
+      "display_expression": "\"Miniature Tropics Portal\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Portals|32053|MultiTileEntityMiniPortalTropics",
+      "source_id_expression": "32053",
+      "source_identity": {
+        "normalized_row_key": "loader:Portals|32053|MultiTileEntityMiniPortalTropics",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2018
+    },
+    {
+      "behavior_class": "MultiTileEntityMiniPortalCandyCraft",
+      "canonical_family": "portals/multi_tile_entity_mini_portal_candy_craft",
+      "category": "Portals",
+      "display_expression": "\"Miniature Candy Portal\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Portals|32054|MultiTileEntityMiniPortalCandyCraft",
+      "source_id_expression": "32054",
+      "source_identity": {
+        "normalized_row_key": "loader:Portals|32054|MultiTileEntityMiniPortalCandyCraft",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2019
+    },
+    {
+      "behavior_class": "MultiTileEntityMiniPortalAroma",
+      "canonical_family": "portals/multi_tile_entity_mini_portal_aroma",
+      "category": "Portals",
+      "display_expression": "\"Miniature Mining Dimension Portal\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Portals|32096|MultiTileEntityMiniPortalAroma",
+      "source_id_expression": "32096",
+      "source_identity": {
+        "normalized_row_key": "loader:Portals|32096|MultiTileEntityMiniPortalAroma",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2011
+    },
+    {
+      "behavior_class": "MultiTileEntityMiniPortalCW2Caveworld",
+      "canonical_family": "portals/multi_tile_entity_mini_portal_cw2_caveworld",
+      "category": "Portals",
+      "display_expression": "\"Miniature Caveworld Dimension Portal\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Portals|32097|MultiTileEntityMiniPortalCW2Caveworld",
+      "source_id_expression": "32097",
+      "source_identity": {
+        "normalized_row_key": "loader:Portals|32097|MultiTileEntityMiniPortalCW2Caveworld",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2012
+    },
+    {
+      "behavior_class": "MultiTileEntityMiniPortalCW2Cavern",
+      "canonical_family": "portals/multi_tile_entity_mini_portal_cw2_cavern",
+      "category": "Portals",
+      "display_expression": "\"Miniature Cavern Dimension Portal\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Portals|32098|MultiTileEntityMiniPortalCW2Cavern",
+      "source_id_expression": "32098",
+      "source_identity": {
+        "normalized_row_key": "loader:Portals|32098|MultiTileEntityMiniPortalCW2Cavern",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2013
+    },
+    {
+      "behavior_class": "MultiTileEntityMiniPortalCW2AquaCavern",
+      "canonical_family": "portals/multi_tile_entity_mini_portal_cw2_aqua_cavern",
+      "category": "Portals",
+      "display_expression": "\"Miniature Aqua Cavern Dimension Portal\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Portals|32099|MultiTileEntityMiniPortalCW2AquaCavern",
+      "source_id_expression": "32099",
+      "source_identity": {
+        "normalized_row_key": "loader:Portals|32099|MultiTileEntityMiniPortalCW2AquaCavern",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2014
+    },
+    {
+      "behavior_class": "MultiTileEntityMiniPortalCW2Caveland",
+      "canonical_family": "portals/multi_tile_entity_mini_portal_cw2_caveland",
+      "category": "Portals",
+      "display_expression": "\"Miniature Caveland Dimension Portal\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Portals|32100|MultiTileEntityMiniPortalCW2Caveland",
+      "source_id_expression": "32100",
+      "source_identity": {
+        "normalized_row_key": "loader:Portals|32100|MultiTileEntityMiniPortalCW2Caveland",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2015
+    },
+    {
+      "behavior_class": "MultiTileEntityMiniPortalCW2Cavenia",
+      "canonical_family": "portals/multi_tile_entity_mini_portal_cw2_cavenia",
+      "category": "Portals",
+      "display_expression": "\"Miniature Cavenia Dimension Portal\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Portals|32101|MultiTileEntityMiniPortalCW2Cavenia",
+      "source_id_expression": "32101",
+      "source_identity": {
+        "normalized_row_key": "loader:Portals|32101|MultiTileEntityMiniPortalCW2Cavenia",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2016
+    },
+    {
+      "behavior_class": "MultiTileEntityMiniPortalNether",
+      "canonical_family": "portals/multi_tile_entity_mini_portal_nether",
+      "category": "Portals",
+      "display_expression": "\"Miniature Nether Portal\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Portals|32766|MultiTileEntityMiniPortalNether",
+      "source_id_expression": "32766",
+      "source_identity": {
+        "normalized_row_key": "loader:Portals|32766|MultiTileEntityMiniPortalNether",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 2003
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodBase",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_base",
+      "category": "Reactors",
+      "display_expression": "\"Empty Reactor Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9201|MultiTileEntityReactorRodBase",
+      "source_id_expression": "9201",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9201|MultiTileEntityReactorRodBase",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 741
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodAbsorber",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_absorber",
+      "category": "Reactors",
+      "display_expression": "\"Neutron Absorber Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9202|MultiTileEntityReactorRodAbsorber",
+      "source_id_expression": "9202",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9202|MultiTileEntityReactorRodAbsorber",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 742
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodReflector",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_reflector",
+      "category": "Reactors",
+      "display_expression": "\"Neutron Reflector Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9203|MultiTileEntityReactorRodReflector",
+      "source_id_expression": "9203",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9203|MultiTileEntityReactorRodReflector",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 743
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodModerator",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_moderator",
+      "category": "Reactors",
+      "display_expression": "\"Neutron Moderator Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9204|MultiTileEntityReactorRodModerator",
+      "source_id_expression": "9204",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9204|MultiTileEntityReactorRodModerator",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 744
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodNuclear",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_nuclear",
+      "category": "Reactors",
+      "display_expression": "\"Thorium-232 Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9210|MultiTileEntityReactorRodNuclear",
+      "source_id_expression": "9210",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9210|MultiTileEntityReactorRodNuclear",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 746
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodNuclear",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_nuclear",
+      "category": "Reactors",
+      "display_expression": "\"Cyanite Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9219|MultiTileEntityReactorRodNuclear",
+      "source_id_expression": "9219",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9219|MultiTileEntityReactorRodNuclear",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 747
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodNuclear",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_nuclear",
+      "category": "Reactors",
+      "display_expression": "\"Uranium-238 Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9220|MultiTileEntityReactorRodNuclear",
+      "source_id_expression": "9220",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9220|MultiTileEntityReactorRodNuclear",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 748
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodNuclear",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_nuclear",
+      "category": "Reactors",
+      "display_expression": "\"Uranium-235 Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9221|MultiTileEntityReactorRodNuclear",
+      "source_id_expression": "9221",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9221|MultiTileEntityReactorRodNuclear",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 749
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodNuclear",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_nuclear",
+      "category": "Reactors",
+      "display_expression": "\"Uranium-233 Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9222|MultiTileEntityReactorRodNuclear",
+      "source_id_expression": "9222",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9222|MultiTileEntityReactorRodNuclear",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 750
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodNuclear",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_nuclear",
+      "category": "Reactors",
+      "display_expression": "\"Yellorium Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9229|MultiTileEntityReactorRodNuclear",
+      "source_id_expression": "9229",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9229|MultiTileEntityReactorRodNuclear",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 751
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodNuclear",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_nuclear",
+      "category": "Reactors",
+      "display_expression": "\"Plutonium-244 Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9230|MultiTileEntityReactorRodNuclear",
+      "source_id_expression": "9230",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9230|MultiTileEntityReactorRodNuclear",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 752
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodNuclear",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_nuclear",
+      "category": "Reactors",
+      "display_expression": "\"Plutonium-241 Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9231|MultiTileEntityReactorRodNuclear",
+      "source_id_expression": "9231",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9231|MultiTileEntityReactorRodNuclear",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 753
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodNuclear",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_nuclear",
+      "category": "Reactors",
+      "display_expression": "\"Plutonium-243 Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9232|MultiTileEntityReactorRodNuclear",
+      "source_id_expression": "9232",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9232|MultiTileEntityReactorRodNuclear",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 754
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodNuclear",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_nuclear",
+      "category": "Reactors",
+      "display_expression": "\"Plutonium-239 Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9233|MultiTileEntityReactorRodNuclear",
+      "source_id_expression": "9233",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9233|MultiTileEntityReactorRodNuclear",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 755
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodNuclear",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_nuclear",
+      "category": "Reactors",
+      "display_expression": "\"Blutonium Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9239|MultiTileEntityReactorRodNuclear",
+      "source_id_expression": "9239",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9239|MultiTileEntityReactorRodNuclear",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 756
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodNuclear",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_nuclear",
+      "category": "Reactors",
+      "display_expression": "\"Americium-245 Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9240|MultiTileEntityReactorRodNuclear",
+      "source_id_expression": "9240",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9240|MultiTileEntityReactorRodNuclear",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 757
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodNuclear",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_nuclear",
+      "category": "Reactors",
+      "display_expression": "\"Americium-241 Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9241|MultiTileEntityReactorRodNuclear",
+      "source_id_expression": "9241",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9241|MultiTileEntityReactorRodNuclear",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 758
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodNuclear",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_nuclear",
+      "category": "Reactors",
+      "display_expression": "\"Ludicrite Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9249|MultiTileEntityReactorRodNuclear",
+      "source_id_expression": "9249",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9249|MultiTileEntityReactorRodNuclear",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 759
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodNuclear",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_nuclear",
+      "category": "Reactors",
+      "display_expression": "\"Cobalt-60 Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9250|MultiTileEntityReactorRodNuclear",
+      "source_id_expression": "9250",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9250|MultiTileEntityReactorRodNuclear",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 760
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodNuclear",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_nuclear",
+      "category": "Reactors",
+      "display_expression": "\"Enriched Naquadah Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9260|MultiTileEntityReactorRodNuclear",
+      "source_id_expression": "9260",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9260|MultiTileEntityReactorRodNuclear",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 761
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodNuclear",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_nuclear",
+      "category": "Reactors",
+      "display_expression": "\"Naquadria Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9261|MultiTileEntityReactorRodNuclear",
+      "source_id_expression": "9261",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9261|MultiTileEntityReactorRodNuclear",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 762
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodDepleted",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_depleted",
+      "category": "Reactors",
+      "display_expression": "\"Depleted Thorium-232 Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9310|MultiTileEntityReactorRodDepleted",
+      "source_id_expression": "9310",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9310|MultiTileEntityReactorRodDepleted",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 764
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodDepleted",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_depleted",
+      "category": "Reactors",
+      "display_expression": "\"Depleted Cyanite Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9319|MultiTileEntityReactorRodDepleted",
+      "source_id_expression": "9319",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9319|MultiTileEntityReactorRodDepleted",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 765
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodDepleted",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_depleted",
+      "category": "Reactors",
+      "display_expression": "\"Depleted Uranium-238 Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9320|MultiTileEntityReactorRodDepleted",
+      "source_id_expression": "9320",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9320|MultiTileEntityReactorRodDepleted",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 766
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodDepleted",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_depleted",
+      "category": "Reactors",
+      "display_expression": "\"Depleted Uranium-235 Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9321|MultiTileEntityReactorRodDepleted",
+      "source_id_expression": "9321",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9321|MultiTileEntityReactorRodDepleted",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 767
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodDepleted",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_depleted",
+      "category": "Reactors",
+      "display_expression": "\"Depleted Uranium-233 Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9322|MultiTileEntityReactorRodDepleted",
+      "source_id_expression": "9322",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9322|MultiTileEntityReactorRodDepleted",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 768
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodDepleted",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_depleted",
+      "category": "Reactors",
+      "display_expression": "\"Depleted Yellorium Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9329|MultiTileEntityReactorRodDepleted",
+      "source_id_expression": "9329",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9329|MultiTileEntityReactorRodDepleted",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 769
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodDepleted",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_depleted",
+      "category": "Reactors",
+      "display_expression": "\"Depleted Plutonium-244 Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9330|MultiTileEntityReactorRodDepleted",
+      "source_id_expression": "9330",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9330|MultiTileEntityReactorRodDepleted",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 770
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodDepleted",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_depleted",
+      "category": "Reactors",
+      "display_expression": "\"Depleted Plutonium-241 Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9331|MultiTileEntityReactorRodDepleted",
+      "source_id_expression": "9331",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9331|MultiTileEntityReactorRodDepleted",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 771
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodDepleted",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_depleted",
+      "category": "Reactors",
+      "display_expression": "\"Depleted Plutonium-243 Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9332|MultiTileEntityReactorRodDepleted",
+      "source_id_expression": "9332",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9332|MultiTileEntityReactorRodDepleted",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 772
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodDepleted",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_depleted",
+      "category": "Reactors",
+      "display_expression": "\"Depleted Plutonium-239 Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9333|MultiTileEntityReactorRodDepleted",
+      "source_id_expression": "9333",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9333|MultiTileEntityReactorRodDepleted",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 773
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodDepleted",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_depleted",
+      "category": "Reactors",
+      "display_expression": "\"Depleted Blutonium Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9339|MultiTileEntityReactorRodDepleted",
+      "source_id_expression": "9339",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9339|MultiTileEntityReactorRodDepleted",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 774
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodDepleted",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_depleted",
+      "category": "Reactors",
+      "display_expression": "\"Depleted Americium-245 Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9340|MultiTileEntityReactorRodDepleted",
+      "source_id_expression": "9340",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9340|MultiTileEntityReactorRodDepleted",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 775
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodDepleted",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_depleted",
+      "category": "Reactors",
+      "display_expression": "\"Depleted Americium-241 Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9341|MultiTileEntityReactorRodDepleted",
+      "source_id_expression": "9341",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9341|MultiTileEntityReactorRodDepleted",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 776
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodDepleted",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_depleted",
+      "category": "Reactors",
+      "display_expression": "\"Depleted Ludicrite Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9349|MultiTileEntityReactorRodDepleted",
+      "source_id_expression": "9349",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9349|MultiTileEntityReactorRodDepleted",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 777
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodDepleted",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_depleted",
+      "category": "Reactors",
+      "display_expression": "\"Depleted Cobalt-60 Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9350|MultiTileEntityReactorRodDepleted",
+      "source_id_expression": "9350",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9350|MultiTileEntityReactorRodDepleted",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 778
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodDepleted",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_depleted",
+      "category": "Reactors",
+      "display_expression": "\"Depleted Enriched Naquadah Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9360|MultiTileEntityReactorRodDepleted",
+      "source_id_expression": "9360",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9360|MultiTileEntityReactorRodDepleted",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 779
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodDepleted",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_depleted",
+      "category": "Reactors",
+      "display_expression": "\"Depleted Naquadria Fuel Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9361|MultiTileEntityReactorRodDepleted",
+      "source_id_expression": "9361",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9361|MultiTileEntityReactorRodDepleted",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 780
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodBreeder",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_breeder",
+      "category": "Reactors",
+      "display_expression": "\"Thorium-232 Breeder Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9410|MultiTileEntityReactorRodBreeder",
+      "source_id_expression": "9410",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9410|MultiTileEntityReactorRodBreeder",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 782
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodProduct",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_product",
+      "category": "Reactors",
+      "display_expression": "\"Uranium-233 Enriched Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9411|MultiTileEntityReactorRodProduct",
+      "source_id_expression": "9411",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9411|MultiTileEntityReactorRodProduct",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 787
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodBreeder",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_breeder",
+      "category": "Reactors",
+      "display_expression": "\"Uranium-238 Breeder Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9420|MultiTileEntityReactorRodBreeder",
+      "source_id_expression": "9420",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9420|MultiTileEntityReactorRodBreeder",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 783
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodProduct",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_product",
+      "category": "Reactors",
+      "display_expression": "\"Plutonium-239 Enriched Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9421|MultiTileEntityReactorRodProduct",
+      "source_id_expression": "9421",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9421|MultiTileEntityReactorRodProduct",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 788
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodBreeder",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_breeder",
+      "category": "Reactors",
+      "display_expression": "\"Lithium Breeder Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9430|MultiTileEntityReactorRodBreeder",
+      "source_id_expression": "9430",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9430|MultiTileEntityReactorRodBreeder",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 784
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodProduct",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_product",
+      "category": "Reactors",
+      "display_expression": "\"Tritium Enriched Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9431|MultiTileEntityReactorRodProduct",
+      "source_id_expression": "9431",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9431|MultiTileEntityReactorRodProduct",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 789
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodBreeder",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_breeder",
+      "category": "Reactors",
+      "display_expression": "\"Naquadah Breeder Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9440|MultiTileEntityReactorRodBreeder",
+      "source_id_expression": "9440",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9440|MultiTileEntityReactorRodBreeder",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 785
+    },
+    {
+      "behavior_class": "MultiTileEntityReactorRodProduct",
+      "canonical_family": "reactor/multi_tile_entity_reactor_rod_product",
+      "category": "Reactors",
+      "display_expression": "\"Enriched Naquadah Enriched Rod\"",
+      "historical_exclusion_reason": "reactor_part_not_machine_behavior",
+      "multiplicity": 1,
+      "site_key": "loader:Reactors|9441|MultiTileEntityReactorRodProduct",
+      "source_id_expression": "9441",
+      "source_identity": {
+        "normalized_row_key": "loader:Reactors|9441|MultiTileEntityReactorRodProduct",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 790
+    },
+    {
+      "behavior_class": "MultiTileEntityThermometer",
+      "canonical_family": "sensors/multi_tile_entity_thermometer",
+      "category": "Sensors",
+      "display_expression": "\"Thermometer Sensor\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Sensors|31000|MultiTileEntityThermometer",
+      "source_id_expression": "31000",
+      "source_identity": {
+        "normalized_row_key": "loader:Sensors|31000|MultiTileEntityThermometer",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1979
+    },
+    {
+      "behavior_class": "MultiTileEntityGibblometer",
+      "canonical_family": "sensors/multi_tile_entity_gibblometer",
+      "category": "Sensors",
+      "display_expression": "\"Gibbl-O-Meter Sensor\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Sensors|31001|MultiTileEntityGibblometer",
+      "source_id_expression": "31001",
+      "source_identity": {
+        "normalized_row_key": "loader:Sensors|31001|MultiTileEntityGibblometer",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1982
+    },
+    {
+      "behavior_class": "MultiTileEntityLuminometer",
+      "canonical_family": "sensors/multi_tile_entity_luminometer",
+      "category": "Sensors",
+      "display_expression": "\"Luminometer Sensor\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Sensors|31002|MultiTileEntityLuminometer",
+      "source_id_expression": "31002",
+      "source_identity": {
+        "normalized_row_key": "loader:Sensors|31002|MultiTileEntityLuminometer",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1980
+    },
+    {
+      "behavior_class": "MultiTileEntityChronometer",
+      "canonical_family": "sensors/multi_tile_entity_chronometer",
+      "category": "Sensors",
+      "display_expression": "\"Chronometer Sensor\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Sensors|31003|MultiTileEntityChronometer",
+      "source_id_expression": "31003",
+      "source_identity": {
+        "normalized_row_key": "loader:Sensors|31003|MultiTileEntityChronometer",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1981
+    },
+    {
+      "behavior_class": "MultiTileEntityItemometer",
+      "canonical_family": "sensors/multi_tile_entity_itemometer",
+      "category": "Sensors",
+      "display_expression": "\"Item-O-Meter Sensor\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Sensors|31004|MultiTileEntityItemometer",
+      "source_id_expression": "31004",
+      "source_identity": {
+        "normalized_row_key": "loader:Sensors|31004|MultiTileEntityItemometer",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1984
+    },
+    {
+      "behavior_class": "MultiTileEntityStackometer",
+      "canonical_family": "sensors/multi_tile_entity_stackometer",
+      "category": "Sensors",
+      "display_expression": "\"Stack-O-Meter Sensor\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Sensors|31005|MultiTileEntityStackometer",
+      "source_id_expression": "31005",
+      "source_identity": {
+        "normalized_row_key": "loader:Sensors|31005|MultiTileEntityStackometer",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1985
+    },
+    {
+      "behavior_class": "MultiTileEntityFluidometer",
+      "canonical_family": "sensors/multi_tile_entity_fluidometer",
+      "category": "Sensors",
+      "display_expression": "\"Fluid-O-Meter Sensor\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Sensors|31006|MultiTileEntityFluidometer",
+      "source_id_expression": "31006",
+      "source_identity": {
+        "normalized_row_key": "loader:Sensors|31006|MultiTileEntityFluidometer",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1986
+    },
+    {
+      "behavior_class": "MultiTileEntityBucketometer",
+      "canonical_family": "sensors/multi_tile_entity_bucketometer",
+      "category": "Sensors",
+      "display_expression": "\"Bucket-O-Meter Sensor\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Sensors|31007|MultiTileEntityBucketometer",
+      "source_id_expression": "31007",
+      "source_identity": {
+        "normalized_row_key": "loader:Sensors|31007|MultiTileEntityBucketometer",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1987
+    },
+    {
+      "behavior_class": "MultiTileEntityWeightometerLight",
+      "canonical_family": "sensors/multi_tile_entity_weightometer_light",
+      "category": "Sensors",
+      "display_expression": "\"Light Weight-O-Meter Sensor\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Sensors|31010|MultiTileEntityWeightometerLight",
+      "source_id_expression": "31010",
+      "source_identity": {
+        "normalized_row_key": "loader:Sensors|31010|MultiTileEntityWeightometerLight",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1989
+    },
+    {
+      "behavior_class": "MultiTileEntityWeightometerMedium",
+      "canonical_family": "sensors/multi_tile_entity_weightometer_medium",
+      "category": "Sensors",
+      "display_expression": "\"Medium Weight-O-Meter Sensor\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Sensors|31011|MultiTileEntityWeightometerMedium",
+      "source_id_expression": "31011",
+      "source_identity": {
+        "normalized_row_key": "loader:Sensors|31011|MultiTileEntityWeightometerMedium",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1990
+    },
+    {
+      "behavior_class": "MultiTileEntityWeightometerHeavy",
+      "canonical_family": "sensors/multi_tile_entity_weightometer_heavy",
+      "category": "Sensors",
+      "display_expression": "\"Heavy Weight-O-Meter Sensor\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Sensors|31012|MultiTileEntityWeightometerHeavy",
+      "source_id_expression": "31012",
+      "source_identity": {
+        "normalized_row_key": "loader:Sensors|31012|MultiTileEntityWeightometerHeavy",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1991
+    },
+    {
+      "behavior_class": "MultiTileEntityWeightometerSuperHeavy",
+      "canonical_family": "sensors/multi_tile_entity_weightometer_super_heavy",
+      "category": "Sensors",
+      "display_expression": "\"Super Heavy Weight-O-Meter Sensor\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Sensors|31013|MultiTileEntityWeightometerSuperHeavy",
+      "source_id_expression": "31013",
+      "source_identity": {
+        "normalized_row_key": "loader:Sensors|31013|MultiTileEntityWeightometerSuperHeavy",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1992
+    },
+    {
+      "behavior_class": "MultiTileEntityElectrometer",
+      "canonical_family": "sensors/multi_tile_entity_electrometer",
+      "category": "Sensors",
+      "display_expression": "\"Electrometer Sensor\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Sensors|31015|MultiTileEntityElectrometer",
+      "source_id_expression": "31015",
+      "source_identity": {
+        "normalized_row_key": "loader:Sensors|31015|MultiTileEntityElectrometer",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1997
+    },
+    {
+      "behavior_class": "MultiTileEntityTPSmeter",
+      "canonical_family": "sensors/multi_tile_entity_tp_smeter",
+      "category": "Sensors",
+      "display_expression": "\"TPS Sensor\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Sensors|31016|MultiTileEntityTPSmeter",
+      "source_id_expression": "31016",
+      "source_identity": {
+        "normalized_row_key": "loader:Sensors|31016|MultiTileEntityTPSmeter",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1993
+    },
+    {
+      "behavior_class": "MultiTileEntityPlayerCounter",
+      "canonical_family": "sensors/multi_tile_entity_player_counter",
+      "category": "Sensors",
+      "display_expression": "\"Player Counter Sensor\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Sensors|31017|MultiTileEntityPlayerCounter",
+      "source_id_expression": "31017",
+      "source_identity": {
+        "normalized_row_key": "loader:Sensors|31017|MultiTileEntityPlayerCounter",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1994
+    },
+    {
+      "behavior_class": "MultiTileEntityProgressmeter",
+      "canonical_family": "sensors/multi_tile_entity_progressmeter",
+      "category": "Sensors",
+      "display_expression": "\"Progress Sensor\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Sensors|31018|MultiTileEntityProgressmeter",
+      "source_id_expression": "31018",
+      "source_identity": {
+        "normalized_row_key": "loader:Sensors|31018|MultiTileEntityProgressmeter",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1995
+    },
+    {
+      "behavior_class": "MultiTileEntityTachometer",
+      "canonical_family": "sensors/multi_tile_entity_tachometer",
+      "category": "Sensors",
+      "display_expression": "\"Tachometer Sensor\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Sensors|31019|MultiTileEntityTachometer",
+      "source_id_expression": "31019",
+      "source_identity": {
+        "normalized_row_key": "loader:Sensors|31019|MultiTileEntityTachometer",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1998
+    },
+    {
+      "behavior_class": "MultiTileEntityGeigerCounter",
+      "canonical_family": "sensors/multi_tile_entity_geiger_counter",
+      "category": "Sensors",
+      "display_expression": "\"Geiger Counter Sensor\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Sensors|31020|MultiTileEntityGeigerCounter",
+      "source_id_expression": "31020",
+      "source_identity": {
+        "normalized_row_key": "loader:Sensors|31020|MultiTileEntityGeigerCounter",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1996
+    },
+    {
+      "behavior_class": "MultiTileEntityLaserometer",
+      "canonical_family": "sensors/multi_tile_entity_laserometer",
+      "category": "Sensors",
+      "display_expression": "\"Laser-O-Meter Sensor\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Sensors|31021|MultiTileEntityLaserometer",
+      "source_id_expression": "31021",
+      "source_identity": {
+        "normalized_row_key": "loader:Sensors|31021|MultiTileEntityLaserometer",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1999
+    },
+    {
+      "behavior_class": "MultiTileEntityKiloBucketometer",
+      "canonical_family": "sensors/multi_tile_entity_kilo_bucketometer",
+      "category": "Sensors",
+      "display_expression": "\"Kilo-Bucket-O-Meter Sensor\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Sensors|31022|MultiTileEntityKiloBucketometer",
+      "source_id_expression": "31022",
+      "source_identity": {
+        "normalized_row_key": "loader:Sensors|31022|MultiTileEntityKiloBucketometer",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1988
+    },
+    {
+      "behavior_class": "MultiTileEntityKiloGibblometer",
+      "canonical_family": "sensors/multi_tile_entity_kilo_gibblometer",
+      "category": "Sensors",
+      "display_expression": "\"Kilo-Gibbl-O-Meter Sensor\"",
+      "historical_exclusion_reason": "outside_fixed_machine_energy_behavior_tree",
+      "multiplicity": 1,
+      "site_key": "loader:Sensors|31023|MultiTileEntityKiloGibblometer",
+      "source_id_expression": "31023",
+      "source_identity": {
+        "normalized_row_key": "loader:Sensors|31023|MultiTileEntityKiloGibblometer",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+      },
+      "source_line": 1983
+    }
+  ],
+  "status": "INHERITED_DENOMINATOR_READY",
+  "wave_slug": "portfolio/t13c-exclusion-reclaim-r0"
+}

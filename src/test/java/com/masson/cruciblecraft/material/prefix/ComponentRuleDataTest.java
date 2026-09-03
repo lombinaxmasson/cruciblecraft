@@ -223,7 +223,7 @@ class ComponentRuleDataTest {
                         System.nanoTime() - expansionStarted);
         System.out.println("COMPONENT_RULE_EXPANSION_ELAPSED_MS=" + expansionElapsedMs);
         assertEquals(48, rules.size());
-        assertEquals(8426, plans.size());
+        assertEquals(8489, plans.size());
         assertTrue(plans.size() <= 10_000, "component-rule reload expansion budget");
 
         Map<String, MaterialDefinition> byId = materials.stream()
@@ -293,7 +293,7 @@ class ComponentRuleDataTest {
                 id("bender"), 688L,
                 id("assembler"), 626L,
                 id("welder"), 322L,
-                id("press"), 1223L), perMap);
+                id("press"), 1286L), perMap);
         List<MaterialRuleExpansion.Plan> extruderPlans = plans.stream()
                 .filter(plan -> plan.target().equals(id("extruder")))
                 .toList();
@@ -358,14 +358,24 @@ class ComponentRuleDataTest {
                 .collect(Collectors.toSet());
         assertEquals(plans.size(), signatures.size());
         assertEquals(
-                "8f015d006ba9b3a4477f843c84a756b8949786647efbe7aeaac932a3ebad09ed",
-                digest(plans.stream().map(plan -> plan.id().toString()).toList()));
-        assertEquals(
-                "f1339b0a3af20b55dfc6ff928a2c0a13e4e0c056a361e0ccab33ab2326093f7e",
-                digest(plans.stream().map(ComponentRuleDataTest::recipeSignature).toList()));
-        assertEquals(
-                "9fdd1926ef879415a50cd18cf2865600a90c12b67d8a52cd5fb9cfcf811a1823",
-                digest(plans.stream().map(ComponentRuleDataTest::shadowSignature).toList()));
+                Map.of(
+                        "ids",
+                        "55b8c722e4ac7ce7348b3e12661983c295d9d2085a5d207c635a59bbf8355dd6",
+                        "recipes",
+                        "3ba1e9b3608cf0057b13854e52700b3d2827abc12e743a8605d2dd6bc209056f",
+                        "shadows",
+                        "707550764184bfb1fb5258784f572496a8f5a2b75036489f0c548bf339887f6d"),
+                Map.of(
+                        "ids",
+                        digest(plans.stream().map(plan -> plan.id().toString()).toList()),
+                        "recipes",
+                        digest(plans.stream()
+                                .map(ComponentRuleDataTest::recipeSignature)
+                                .toList()),
+                        "shadows",
+                        digest(plans.stream()
+                                .map(ComponentRuleDataTest::shadowSignature)
+                                .toList())));
 
         Set<String> produced = plans.stream()
                 .flatMap(plan -> plan.itemOutputs().stream())

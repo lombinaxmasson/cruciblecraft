@@ -110,10 +110,11 @@ class BlockObjectHarnessTest {
         for (JsonObject document : generatedFamilies) {
             String group = document.get("publication_group").getAsString();
             RecipeMap map = SMELTER_GROUP.toString().equals(group) ? smelter : drying;
-            JsonArray relations = document.getAsJsonArray("relations");
+            java.util.List<JsonObject> relations =
+                    CompactGTRecipeFamilyGeneratedSupport.authoredRelationJsons(document);
             for (int index = 0; index < relations.size(); index++) {
                 relationCount++;
-                JsonObject relationJson = relations.get(index).getAsJsonObject();
+                JsonObject relationJson = relations.get(index);
                 ResourceLocation stableId = ResourceLocation.parse(
                         relationJson.get("stable_id").getAsString());
                 GTRecipe recipe = map.entry(stableId).orElseThrow().recipe();
@@ -244,7 +245,7 @@ class BlockObjectHarnessTest {
             Map<String, List<ResourceLocation>> grouped =
                     byHost.computeIfAbsent(host, ignored -> new HashMap<>());
             for (CompactGTRecipeFamilyDefinition.Relation relation
-                    : source.definition().relations()) {
+                    : source.authoredRelations()) {
                 String signature = GTRecipeMapLoader.inputSignature(
                         relation.materialize());
                 grouped.computeIfAbsent(signature, ignored -> new ArrayList<>())
@@ -289,9 +290,9 @@ class BlockObjectHarnessTest {
         List<CompactGTRecipeFamilyDefinition.Relation> dryingRelations = new ArrayList<>();
         for (CompactRecipeFamilySource source : sources) {
             if (SMELTER_GROUP.equals(source.definition().resolvedPublicationGroup())) {
-                smelterRelations.addAll(source.definition().relations());
+                smelterRelations.addAll(source.authoredRelations());
             } else {
-                dryingRelations.addAll(source.definition().relations());
+                dryingRelations.addAll(source.authoredRelations());
             }
         }
         assertEquals(SMELTER_RELATIONS, smelterRelations.size());

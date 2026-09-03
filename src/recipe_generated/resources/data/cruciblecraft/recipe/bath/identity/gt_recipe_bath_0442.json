@@ -1,62 +1,88 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.bath#0442",
-  "publication_group": "cruciblecraft:bath/identity/exact_multi",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 0,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 72,
-          "id": "cruciblecraft:molten_soldering_alloy"
+          "fluid_inputs": [
+            {
+              "amount": 72,
+              "id": "cruciblecraft:molten_soldering_alloy"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 72,
+              "id": "cruciblecraft:molten_tin"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 72,
+              "id": "cruciblecraft:molten_lead"
+            }
+          ],
+          "fluid_outputs": []
         }
       ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "1a00a1bb83b72c6e1695b032e936dd029c314120e9f1cfb9452c85ae831aeaf9",
+        "8b49f9071b4c7b12255595d79d6f11975c1fa99ae64c938d1f3db9c48770352f",
+        "3a801293c3fa8e16a06c79d986635df9f8109620b1c9c91441cfc8efe3f2096b"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_multiitem/multiitem_technological_m30215"
-        }
+        [
+          {
+            "item": "cruciblecraft:gt_multiitem/multiitem_technological_m30215"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_multiitem/multiitem_technological_m30315"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "1a00a1bb83b72c6e1695b032e936dd029c314120e9f1cfb9452c85ae831aeaf9"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0442",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/9ae4299fdc68fe7b"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gt_multiitem/multiitem_technological_m30315"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:bath/identity/9ae4299fdc68fe7b",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:bath/identity/6f003ad7d62158a6",
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        "cruciblecraft:bath/identity/9a91d22e4a890f45",
+        2,
+        2
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 64,
       "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 72,
-          "id": "cruciblecraft:molten_tin"
-        }
-      ],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -65,76 +91,15 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_multiitem/multiitem_technological_m30215"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_multiitem/multiitem_technological_m30315"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "8b49f9071b4c7b12255595d79d6f11975c1fa99ae64c938d1f3db9c48770352f"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0442",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/6f003ad7d62158a6"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 72,
-          "id": "cruciblecraft:molten_lead"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_multiitem/multiitem_technological_m30215"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_multiitem/multiitem_technological_m30315"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "3a801293c3fa8e16a06c79d986635df9f8109620b1c9c91441cfc8efe3f2096b"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0442",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/9a91d22e4a890f45"
+      "selected_source_recipe": "gt.recipe.bath#0442",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:bath/identity/exact_multi",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:bath",
   "type": "cruciblecraft:compact_gt_recipe_family"

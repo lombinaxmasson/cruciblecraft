@@ -1,62 +1,222 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.bath#0089",
-  "publication_group": "cruciblecraft:bath/remainder/exact_multi",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 432,
-      "eut": 0,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 48,
-          "id": "cruciblecraft:molten_gold"
+          "fluid_inputs": [
+            {
+              "amount": 48,
+              "id": "cruciblecraft:molten_gold"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 48,
+              "id": "cruciblecraft:molten_zinc"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 54,
+              "id": "cruciblecraft:molten_midasium"
+            }
+          ],
+          "fluid_outputs": []
         }
       ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "00678f91b669e75967069071d5bcba4bcc92ade37bf0808530d724bdf23f1ff6",
+        "30351ec173bad80f6d70a8e9aba0f69ffea49e1639df748ad94291c2e7e97e68",
+        "b87710f2c9c8e7ec3026b1abb42096e799a37c30b668fc027df9dd1e9683354f",
+        "100c37373047720d1d357e4f73614da95b8ddfd7a0876713918986de50440e82",
+        "9fb6e0f649d5e46cf224222c5fb14d2ea5677e672b7b171991916f6685b24766",
+        "0efcf10ec0f5bb85b893b113c232096c8e60ac3b3e1aee4aea50502feb1d852e",
+        "df5aff1295960581818c74f95366c70745f8027829a9d866da5a857c26836a4e",
+        "32e47f8aae611c5fd20ca53527c0da9221fb1f98f264699a20ef2f1029e866e3",
+        "e4f9aae7823fd05e5c89ca01410e3a3263d15652f474f6c20c523f155f78f85d",
+        "f21c260677e64b19c9f1f3adfd78cb8aa5c851004e170ccbcf5c8307514d3e0d",
+        "781f018e8541410bc892b526e9e453671361b2275368e40c71d557cb06a90548"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:wrought_iron/triple_plate"
-        }
+        [
+          {
+            "item": "cruciblecraft:wrought_iron/triple_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:pig_iron/triple_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iron_compressed/triple_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steel/triple_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoric_steel/triple_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:knightmetal/triple_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoric_iron/triple_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:cast_iron/triple_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iron/triple_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteorite/triple_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:lead/triple_plate"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gilded_iron/triple_plate"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "00678f91b669e75967069071d5bcba4bcc92ade37bf0808530d724bdf23f1ff6"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gilded_iron/triple_plate"
+          }
         ],
-        "selected_source_recipe": "gt.recipe.bath#0089",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/b71cbdf828e0d7ee"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:steel_galvanized/triple_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gold/triple_plate"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:bath/remainder/b71cbdf828e0d7ee",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:bath/remainder/9cf0933aa1381c5e",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:bath/remainder/8c57ed1cc3e78ab4",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        1,
+        "cruciblecraft:bath/remainder/84b90c9bd3a9c420",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        1,
+        "cruciblecraft:bath/remainder/e74dc2923af26410",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        1,
+        "cruciblecraft:bath/remainder/989b812c466279b7",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:bath/remainder/1e044a10499ba6ce",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:bath/remainder/cfcdb815a30a28b2",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:bath/remainder/7b2b006294e64945",
+        8,
+        8
+      ],
+      [
+        9,
+        0,
+        0,
+        "cruciblecraft:bath/remainder/a1477fd4b96cfa2d",
+        9,
+        9
+      ],
+      [
+        10,
+        2,
+        2,
+        "cruciblecraft:bath/remainder/eca4a6f677675f40",
+        10,
+        10
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 432,
       "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 48,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -65,428 +225,15 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:pig_iron/triple_plate"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gilded_iron/triple_plate"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "30351ec173bad80f6d70a8e9aba0f69ffea49e1639df748ad94291c2e7e97e68"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0089",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/9cf0933aa1381c5e"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 432,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 48,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:iron_compressed/triple_plate"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gilded_iron/triple_plate"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "b87710f2c9c8e7ec3026b1abb42096e799a37c30b668fc027df9dd1e9683354f"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0089",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/8c57ed1cc3e78ab4"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 432,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 48,
-          "id": "cruciblecraft:molten_zinc"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:steel/triple_plate"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:steel_galvanized/triple_plate"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "100c37373047720d1d357e4f73614da95b8ddfd7a0876713918986de50440e82"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0089",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/84b90c9bd3a9c420"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 432,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 48,
-          "id": "cruciblecraft:molten_zinc"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:meteoric_steel/triple_plate"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:steel_galvanized/triple_plate"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "9fb6e0f649d5e46cf224222c5fb14d2ea5677e672b7b171991916f6685b24766"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0089",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 4,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/e74dc2923af26410"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 432,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 48,
-          "id": "cruciblecraft:molten_zinc"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:knightmetal/triple_plate"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:steel_galvanized/triple_plate"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "0efcf10ec0f5bb85b893b113c232096c8e60ac3b3e1aee4aea50502feb1d852e"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0089",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 5,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/989b812c466279b7"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 432,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 48,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:meteoric_iron/triple_plate"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gilded_iron/triple_plate"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "df5aff1295960581818c74f95366c70745f8027829a9d866da5a857c26836a4e"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0089",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 6,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/1e044a10499ba6ce"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 432,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 48,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:cast_iron/triple_plate"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gilded_iron/triple_plate"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "32e47f8aae611c5fd20ca53527c0da9221fb1f98f264699a20ef2f1029e866e3"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0089",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 7,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/cfcdb815a30a28b2"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 432,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 48,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:iron/triple_plate"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gilded_iron/triple_plate"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "e4f9aae7823fd05e5c89ca01410e3a3263d15652f474f6c20c523f155f78f85d"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0089",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 8,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/7b2b006294e64945"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 432,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 48,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:meteorite/triple_plate"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gilded_iron/triple_plate"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "f21c260677e64b19c9f1f3adfd78cb8aa5c851004e170ccbcf5c8307514d3e0d"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0089",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 9,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/a1477fd4b96cfa2d"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 432,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 54,
-          "id": "cruciblecraft:molten_midasium"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:lead/triple_plate"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gold/triple_plate"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "781f018e8541410bc892b526e9e453671361b2275368e40c71d557cb06a90548"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0089",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 10,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/eca4a6f677675f40"
+      "selected_source_recipe": "gt.recipe.bath#0089",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:bath/remainder/exact_multi",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:bath",
   "type": "cruciblecraft:compact_gt_recipe_family"

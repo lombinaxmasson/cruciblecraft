@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "slug": "logistics/cover-net-r0",
+  "title": "Logistics cover network R0",
+  "maturity": "frozen",
+  "workflow": "accepted",
+  "owned_paths": [
+    "src/main/resources/data/cruciblecraft/cover_definitions.json",
+    "src/main/java/com/masson/cruciblecraft/logistics/pipe/cover/**",
+    "tools/waves/portfolio/logistics-cover-net-r0/**",
+    "tools/portfolio_logistics_cover_net.py",
+    "tools/build_logistics_cover_net_r0.py"
+  ],
+  "depends_on": [],
+  "profiles": ["capability-runtime"],
+  "wave_slug": "portfolio/logistics-cover-net-r0",
+  "legacy_readiness": "tools/waves/portfolio/logistics-cover-net-r0/readiness.json",
+  "player_signoff": null,
+  "identity_disposition": [],
+  "note": "Seven inherited kinds. Spec frozen. Not roadmap progress."
+}

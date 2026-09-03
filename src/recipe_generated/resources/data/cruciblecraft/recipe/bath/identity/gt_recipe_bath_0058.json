@@ -1,62 +1,468 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.bath#0058",
-  "publication_group": "cruciblecraft:bath/identity/tool_head",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 32,
-          "id": "cruciblecraft:molten_gold"
+          "fluid_inputs": [
+            {
+              "amount": 32,
+              "id": "cruciblecraft:molten_gold"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 72,
+              "id": "cruciblecraft:molten_netherite"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 500,
+              "id": "cruciblecraft:holy_water"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 32,
+              "id": "cruciblecraft:molten_zinc"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 36,
+              "id": "cruciblecraft:molten_midasium"
+            }
+          ],
+          "fluid_outputs": []
         }
       ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "c535cf6ccf6ca368c56674618c4b4e1798cc7a70c146ef4ba7242b363f07621b",
+        "3f67dc7133c0456847c569ff59968a2121a4391db3a652fee656fc438f9fe959",
+        "06f6fbd132316daf175d5d0c7b29693558ceca5df7f5d916da6bcac379fb8392",
+        "dd5b4c0f798d25e6a1100d79350ee4427382a7e792ccec0aa7e4915be4fd40c4",
+        "85e9abae02cf4c7249aa3517313034c5fc5fed778afb54ebfccb119c11caa114",
+        "02e11b7758db339ea8f05f4532904a4037d8fc6ce7ffa25ab24d347870f56474",
+        "3e0b48b8ffbbceed5df9746553e1a9f4ecedffa7519efbab6bb3877519ed117c",
+        "618cb524ce2e23baa308fe457a2fbd1e473715d719c0b08d3e42328a6b2cc121",
+        "43f62d539db7d200dcd141dd67e6467d514e8c20995c0026e921789b58b60fa2",
+        "189f3b28d9d38efb0d3ee051905cd6c2684199398cfb4073f3a14bb38717eb04",
+        "278e17452a454227a17b19af71c9e0406b23f481f516b5991e852290105ee177",
+        "12578ecf36fcf5bbafedf997e011b46dbe9531f86c59f9146a3637463e2320b7",
+        "71133f4239ac3c2592fabee763486ce6ba90cf5105f07b4eb07bfa1372901fab",
+        "5e787626ff239a1c7d48824622cd373408cc71252374169e312eb17bdb5d435e",
+        "8576544af32637be69175f6aec79becfd2a5e05900787a6e2a730eda6445347b",
+        "d8fef535e7cfd8a388eeb23ed71fc95e401a7ee5b3d1c58cb7cda96f5f86edf9",
+        "f112781822e5082352c132292920b38af47c2d5e11ab574e6a3de6f975d987f7",
+        "0dbc6d4db4d48430fb61441ddc67ea4adb0c190b222f9c2370e79768206d86ce",
+        "1c67135066b813c8c5c04b093470acf51c515c724a8ebdd025694a42a0ea0b73",
+        "674e21f019aff89ff3fd86422783494f3d21344cbac98113e3e27748325f8133",
+        "6927c6cac57d6b238d4043e6320dbe9178162de6e31aca4463b372fee6c87089",
+        "4d0bcccbe316e3f134019cfc7eba5418bfbb441ebda9accf6a17dffe48c63f1c",
+        "d7981b30d64bfc941addd24ed37a860895dc1f71182fdcdc88cad45cc12c1f39",
+        "4a79bd4bc6a3407753e7a97978bd0bce05a5a62f16e6b3bdb4bd236b4573af8b",
+        "481d6b23d9670af856bba2befe37b3d23bc545f2a25485840aa997cd00073dbc",
+        "7b761ee90b72cfb8f49aee4929f6ce095568117a0521e755c371281a8967f93e"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8757"
-        }
+        [
+          {
+            "item": "cruciblecraft:meteorite/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:yellow_diamond/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:pig_iron/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:elven_dragonstone/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:blue_diamond/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:cast_iron/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:wrought_iron/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:mana_diamond/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:amber/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoric_steel/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:pink_diamond/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:enori/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:diamond_industrial/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:lead/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:purple_diamond/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tanzanite/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:green_diamond/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:diamantine/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:red_diamond/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steel/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gravitite/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:diamond/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iron/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:knightmetal/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoric_iron/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iron_compressed/tool_head_chainsaw"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8606"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "c535cf6ccf6ca368c56674618c4b4e1798cc7a70c146ef4ba7242b363f07621b"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gilded_iron/tool_head_chainsaw"
+          }
         ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/9b4cdbdc332254df"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:netherized_diamond/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:golden_amber/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:steel_galvanized/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gold/tool_head_chainsaw"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:zanite/tool_head_chainsaw"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:bath/identity/9b4cdbdc332254df",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        "cruciblecraft:bath/identity/a6917a98b5f98977",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:bath/identity/3033f70405bf2edb",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        1,
+        "cruciblecraft:bath/identity/3dee62f28731da86",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        1,
+        "cruciblecraft:bath/identity/4d0a91db529e83ce",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:bath/identity/2a04868c430f49da",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:bath/identity/bc201cadc43301aa",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        1,
+        "cruciblecraft:bath/identity/8cea5c271406f647",
+        7,
+        7
+      ],
+      [
+        8,
+        2,
+        2,
+        "cruciblecraft:bath/identity/2b54e54406575e90",
+        8,
+        8
+      ],
+      [
+        9,
+        3,
+        3,
+        "cruciblecraft:bath/identity/57d97597f821f797",
+        9,
+        9
+      ],
+      [
+        10,
+        1,
+        1,
+        "cruciblecraft:bath/identity/425a3419ce812986",
+        10,
+        10
+      ],
+      [
+        11,
+        0,
+        0,
+        "cruciblecraft:bath/identity/c4d0c00b61df2645",
+        11,
+        11
+      ],
+      [
+        12,
+        1,
+        1,
+        "cruciblecraft:bath/identity/32001654454e8160",
+        12,
+        12
+      ],
+      [
+        13,
+        4,
+        4,
+        "cruciblecraft:bath/identity/1289c08c7e8a0964",
+        13,
+        13
+      ],
+      [
+        14,
+        1,
+        1,
+        "cruciblecraft:bath/identity/e5051e06eba75ffe",
+        14,
+        14
+      ],
+      [
+        15,
+        5,
+        2,
+        "cruciblecraft:bath/identity/ad68ff517f764513",
+        15,
+        15
+      ],
+      [
+        16,
+        1,
+        1,
+        "cruciblecraft:bath/identity/1b3796b3cf1c62dc",
+        16,
+        16
+      ],
+      [
+        17,
+        1,
+        1,
+        "cruciblecraft:bath/identity/74a145a44c5b9651",
+        17,
+        17
+      ],
+      [
+        18,
+        1,
+        1,
+        "cruciblecraft:bath/identity/2a2158a3df3e97b8",
+        18,
+        18
+      ],
+      [
+        19,
+        3,
+        3,
+        "cruciblecraft:bath/identity/043fadf3b367a8f5",
+        19,
+        19
+      ],
+      [
+        20,
+        1,
+        1,
+        "cruciblecraft:bath/identity/85ca736c6d44977f",
+        20,
+        20
+      ],
+      [
+        21,
+        1,
+        1,
+        "cruciblecraft:bath/identity/5e72368a5e239cce",
+        21,
+        21
+      ],
+      [
+        22,
+        0,
+        0,
+        "cruciblecraft:bath/identity/d5aa6a24a08948a9",
+        22,
+        22
+      ],
+      [
+        23,
+        3,
+        3,
+        "cruciblecraft:bath/identity/22deaddfa0f8339d",
+        23,
+        23
+      ],
+      [
+        24,
+        0,
+        0,
+        "cruciblecraft:bath/identity/9afa0ea342d29fe0",
+        24,
+        24
+      ],
+      [
+        25,
+        0,
+        0,
+        "cruciblecraft:bath/identity/d274e613a74c09c1",
+        25,
+        25
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 288,
       "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 72,
-          "id": "cruciblecraft:molten_netherite"
-        }
-      ],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -65,1088 +471,15 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8468"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8746"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "3f67dc7133c0456847c569ff59968a2121a4391db3a652fee656fc438f9fe959"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/a6917a98b5f98977"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 32,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8642"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8606"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "06f6fbd132316daf175d5d0c7b29693558ceca5df7f5d916da6bcac379fb8392"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/3033f70405bf2edb"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 72,
-          "id": "cruciblecraft:molten_netherite"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8279"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8746"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "dd5b4c0f798d25e6a1100d79350ee4427382a7e792ccec0aa7e4915be4fd40c4"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/3dee62f28731da86"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 72,
-          "id": "cruciblecraft:molten_netherite"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8464"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8746"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "85e9abae02cf4c7249aa3517313034c5fc5fed778afb54ebfccb119c11caa114"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 4,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/4d0a91db529e83ce"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 32,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8803"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8606"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "02e11b7758db339ea8f05f4532904a4037d8fc6ce7ffa25ab24d347870f56474"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 5,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/2a04868c430f49da"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 32,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8643"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8606"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "3e0b48b8ffbbceed5df9746553e1a9f4ecedffa7519efbab6bb3877519ed117c"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 6,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/bc201cadc43301aa"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 72,
-          "id": "cruciblecraft:molten_netherite"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8278"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8746"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "618cb524ce2e23baa308fe457a2fbd1e473715d719c0b08d3e42328a6b2cc121"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 7,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/8cea5c271406f647"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 500,
-          "id": "cruciblecraft:holy_water"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8310"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8469"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "43f62d539db7d200dcd141dd67e6467d514e8c20995c0026e921789b58b60fa2"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 8,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/2b54e54406575e90"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 32,
-          "id": "cruciblecraft:molten_zinc"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8650"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8651"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "189f3b28d9d38efb0d3ee051905cd6c2684199398cfb4073f3a14bb38717eb04"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 9,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/57d97597f821f797"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 72,
-          "id": "cruciblecraft:molten_netherite"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8424"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8746"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "278e17452a454227a17b19af71c9e0406b23f481f516b5991e852290105ee177"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 10,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/425a3419ce812986"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 32,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8380"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8606"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "12578ecf36fcf5bbafedf997e011b46dbe9531f86c59f9146a3637463e2320b7"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 11,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/c4d0c00b61df2645"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 72,
-          "id": "cruciblecraft:molten_netherite"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8423"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8746"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "71133f4239ac3c2592fabee763486ce6ba90cf5105f07b4eb07bfa1372901fab"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 12,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/32001654454e8160"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 36,
-          "id": "cruciblecraft:molten_midasium"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m820"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m790"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "5e787626ff239a1c7d48824622cd373408cc71252374169e312eb17bdb5d435e"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 13,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/1289c08c7e8a0964"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 72,
-          "id": "cruciblecraft:molten_netherite"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8466"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8746"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "8576544af32637be69175f6aec79becfd2a5e05900787a6e2a730eda6445347b"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 14,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/e5051e06eba75ffe"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 500,
-          "id": "cruciblecraft:holy_water"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8308"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8292"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "d8fef535e7cfd8a388eeb23ed71fc95e401a7ee5b3d1c58cb7cda96f5f86edf9"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 15,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/ad68ff517f764513"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 72,
-          "id": "cruciblecraft:molten_netherite"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8465"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8746"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "f112781822e5082352c132292920b38af47c2d5e11ab574e6a3de6f975d987f7"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 16,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/1b3796b3cf1c62dc"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 72,
-          "id": "cruciblecraft:molten_netherite"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8377"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8746"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "0dbc6d4db4d48430fb61441ddc67ea4adb0c190b222f9c2370e79768206d86ce"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 17,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/74a145a44c5b9651"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 72,
-          "id": "cruciblecraft:molten_netherite"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8467"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8746"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "1c67135066b813c8c5c04b093470acf51c515c724a8ebdd025694a42a0ea0b73"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 18,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/2a2158a3df3e97b8"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 32,
-          "id": "cruciblecraft:molten_zinc"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8630"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8651"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "674e21f019aff89ff3fd86422783494f3d21344cbac98113e3e27748325f8133"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 19,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/043fadf3b367a8f5"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 72,
-          "id": "cruciblecraft:molten_netherite"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8294"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8746"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "6927c6cac57d6b238d4043e6320dbe9178162de6e31aca4463b372fee6c87089"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 20,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/85ca736c6d44977f"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 72,
-          "id": "cruciblecraft:molten_netherite"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8300"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8746"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "4d0bcccbe316e3f134019cfc7eba5418bfbb441ebda9accf6a17dffe48c63f1c"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 21,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/5e72368a5e239cce"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 32,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m260"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8606"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "d7981b30d64bfc941addd24ed37a860895dc1f71182fdcdc88cad45cc12c1f39"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 22,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/d5aa6a24a08948a9"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 32,
-          "id": "cruciblecraft:molten_zinc"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8674"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8651"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "4a79bd4bc6a3407753e7a97978bd0bce05a5a62f16e6b3bdb4bd236b4573af8b"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 23,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/22deaddfa0f8339d"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 32,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8649"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8606"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "481d6b23d9670af856bba2befe37b3d23bc545f2a25485840aa997cd00073dbc"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 24,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/9afa0ea342d29fe0"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 288,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 32,
-          "id": "cruciblecraft:molten_gold"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8644"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_tool_head/toolheadchainsaw_m8606"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "7b761ee90b72cfb8f49aee4929f6ce095568117a0521e755c371281a8967f93e"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0058",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 25,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/identity/d274e613a74c09c1"
+      "selected_source_recipe": "gt.recipe.bath#0058",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:bath/identity/tool_head",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:bath",
   "type": "cruciblecraft:compact_gt_recipe_family"

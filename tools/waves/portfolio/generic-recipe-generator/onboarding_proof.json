@@ -1,0 +1,37 @@
+{
+  "added": {
+    "RecipeImportSpec": [
+      "src/test/resources/generic_recipe_import/mixer_exact_multi/recipe_import.json",
+      "src/test/resources/generic_recipe_import/smelter_exact_singleton/recipe_import.json"
+    ],
+    "Source Pack files": [
+      "src/test/resources/generic_recipe_import/smelter_exact_singleton/source_pack/",
+      "src/test/resources/generic_recipe_import/mixer_exact_multi/source_pack/"
+    ],
+    "SourcePackManifest": [
+      "src/test/resources/generic_recipe_import/smelter_exact_singleton/source_pack_manifest.json",
+      "src/test/resources/generic_recipe_import/mixer_exact_multi/source_pack_manifest.json"
+    ],
+    "expected test fixture output": [
+      "src/test/resources/generic_recipe_import/smelter_exact_singleton/source.json",
+      "src/test/resources/generic_recipe_import/mixer_exact_multi/source.json"
+    ]
+  },
+  "discovered_without_python_registry": true,
+  "forbidden": {
+    "new Java RecipeMap": [],
+    "new SEMANTIC_COMPILE_ORDER entry": [],
+    "new WAVE_CHOICES entry": [],
+    "new WaveSpec row": [],
+    "new build_<wave>_source.py": [],
+    "new host-specific adapter": []
+  },
+  "generated_by": "python tools/build_generic_recipe_import_proof.py",
+  "hosts": [
+    "cruciblecraft:smelter",
+    "cruciblecraft:mixer"
+  ],
+  "schema_version": 1,
+  "status": "ONBOARDING_PROOF_READY",
+  "zero_per_host_python_registration": true
+}

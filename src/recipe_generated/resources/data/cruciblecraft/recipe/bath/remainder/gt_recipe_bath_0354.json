@@ -1,62 +1,70 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.bath#0354",
-  "publication_group": "cruciblecraft:bath/remainder/exact_multi",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 0,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 6,
-          "id": "cruciblecraft:dye_watermixed_magenta"
+          "fluid_inputs": [
+            {
+              "amount": 6,
+              "id": "cruciblecraft:dye_watermixed_magenta"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 6,
+              "id": "cruciblecraft:dye_flower_magenta"
+            }
+          ],
+          "fluid_outputs": []
         }
       ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "79d5be54daf8c30ce9e5b184d69aada963df234372808693cd7f534cc92dfd68",
+        "971576da89c953806f2c86f03e49c5af4ff8031246c172ef5cb7bc48367c948d"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_block/cfoam_m0"
-        }
+        [
+          {
+            "item": "cruciblecraft:gt_block/cfoam_m0"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_block/cfoam_m13"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "79d5be54daf8c30ce9e5b184d69aada963df234372808693cd7f534cc92dfd68"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0354",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/b5e6a4c66fa9a203"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gt_block/cfoam_m13"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:bath/remainder/b5e6a4c66fa9a203",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:bath/remainder/7a28f615635670c5",
+        1,
+        1
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 6,
-          "id": "cruciblecraft:dye_flower_magenta"
-        }
-      ],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -65,32 +73,15 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_block/cfoam_m0"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_block/cfoam_m13"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "971576da89c953806f2c86f03e49c5af4ff8031246c172ef5cb7bc48367c948d"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0354",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/7a28f615635670c5"
+      "selected_source_recipe": "gt.recipe.bath#0354",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:bath/remainder/exact_multi",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:bath",
   "type": "cruciblecraft:compact_gt_recipe_family"

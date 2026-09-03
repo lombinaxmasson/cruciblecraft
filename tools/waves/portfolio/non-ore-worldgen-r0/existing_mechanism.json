@@ -1,0 +1,163 @@
+{
+  "already_closed_elsewhere": {
+    "fluid_deposits": {
+      "catalog_entries": 2,
+      "ids": [
+        "crude_oil_deposit",
+        "natural_gas_deposit"
+      ],
+      "owner_here": false,
+      "status": "selected_subset"
+    },
+    "item_scatter": {
+      "owner_here": false,
+      "t33": "T33_READY",
+      "t45": "T45_READY",
+      "t48": "T48_READY"
+    },
+    "ore_veins": {
+      "catalog_entries": 129,
+      "owner_here": false,
+      "status": "T20 selected_subset"
+    },
+    "surface_scatter": {
+      "id": "surface_rock_scatter",
+      "owner_here": false,
+      "status": "T33_READY"
+    }
+  },
+  "authored_configured_features": [
+    "bath_identity_scatter",
+    "bath_mte_scatter",
+    "bath_remainder_scatter",
+    "bath_tiny_washed_scatter",
+    "gt_block_object_scatter",
+    "gt_stone_scatter",
+    "semantic_object_scatter",
+    "smelter_mte_scatter",
+    "surface_rock_scatter"
+  ],
+  "authored_placed_features": [
+    "bath_identity_scatter",
+    "bath_mte_scatter",
+    "bath_remainder_scatter",
+    "bath_tiny_washed_scatter",
+    "gt_block_object_scatter",
+    "gt_stone_scatter",
+    "semantic_object_scatter",
+    "smelter_mte_scatter",
+    "surface_rock_scatter"
+  ],
+  "capability_map_non_ore": [
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "gt6_dump/gt6_recipe_dump/worldgen/other_features.json WorldgenTree*",
+      "gt6_domain": "worldgen",
+      "recheck_condition": "Non-ore worldgen trees. Anchor points at the pinned dump feature list."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "gt6_dump/gt6_recipe_dump/worldgen/other_features.json WorldgenDungeonGT",
+      "gt6_domain": "worldgen",
+      "recheck_condition": "Non-ore worldgen dungeons. Anchor points at the pinned dump feature list."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "gt6_dump/gt6_recipe_dump/worldgen/other_features.json WorldgenPlanetRocks / moon.rocks / mars.rocks",
+      "gt6_domain": "worldgen",
+      "recheck_condition": "Non-ore worldgen planets. Anchor points at the pinned dump feature list."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "gt6_dump/gt6_recipe_dump/worldgen/other_features.json WorldgenCenterBiomes / center.*",
+      "gt6_domain": "worldgen",
+      "recheck_condition": "Non-ore worldgen center. Anchor points at the pinned dump feature list."
+    }
+  ],
+  "capability_map_seed": {
+    "1x_disposition": "not_in_1x",
+    "cc_mechanism": "none",
+    "correspondence_class": "out_of_scope_historical",
+    "growth_blocker": "no_owner",
+    "gt6_anchor": "non-ore worldgen (trees, dungeons, item scatter remainder)",
+    "gt6_domain": "worldgen",
+    "inherited_from_seed": true,
+    "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+  },
+  "dimension_policy": "The existing overworld acquisition contract is retained as DESIGN_POLICY_OVERWORLD_ACCESS; GT6 dimensions are recorded as source facts but are not represented as direct parity.",
+  "fluid_deposit_count": 2,
+  "fluid_deposit_ids": [
+    "crude_oil_deposit",
+    "natural_gas_deposit"
+  ],
+  "fluid_deposits_sha256": "8d72b6c4014ec06a2f8429e3e1689547be577c89b7ff50b6e9a3b0f37a54b03d",
+  "generated_by": "python tools/build_non_ore_worldgen_r0.py",
+  "kinds": [
+    {
+      "adjacent_analog": "Authored placed-feature / scatter JSON is not custom tree growth; wood materials are not WorldgenTree*",
+      "category": "Trees",
+      "cc_mechanism": "none",
+      "gap": "mechanism",
+      "named_runtime_hits": []
+    },
+    {
+      "adjacent_analog": "T20 ore/fluid/scatter catalogs are not a structure pipeline",
+      "category": "Dungeons",
+      "cc_mechanism": "none",
+      "gap": "mechanism",
+      "named_runtime_hits": []
+    },
+    {
+      "adjacent_analog": "DESIGN_POLICY_OVERWORLD_ACCESS is not moon/mars/planet rocks",
+      "category": "Planets",
+      "cc_mechanism": "none",
+      "gap": "mechanism",
+      "named_runtime_hits": []
+    },
+    {
+      "adjacent_analog": "Existing overworld feature JSON is not center biomes, streets, nexus, beacon, or testing",
+      "category": "Center",
+      "cc_mechanism": "none",
+      "gap": "mechanism",
+      "named_runtime_hits": []
+    }
+  ],
+  "note": "The gap is a missing mechanism, not a missing catalog row. The selected 129 ore veins, 2 fluid deposits, surface rocks, and closed T33/T45/T48 item scatter do not cover Trees, Dungeons, Planets, or Center.",
+  "nuclear_started": false,
+  "ore_vein_count": 129,
+  "ore_veins_sha256": "80c66623e3aee77171f732c818da08798b581ec3d78b78d4a96091a260958d90",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "EXISTING_MECHANISM_READY",
+  "surface_scatter_id": "surface_rock_scatter",
+  "surface_scatter_sha256": "b836cc6e880814e5da07618239defe3cbb6109df452e256cf4c2f27a008d897c",
+  "t20_policy_sha256": "585b365382554323e557b9ce44eb68414e2b50748a0882dd398f0722095f7414",
+  "wave_slug": "portfolio/non-ore-worldgen-r0",
+  "worldgen_java": [
+    "GtBlockObjectScatterFeature",
+    "GtItemScatterFeature",
+    "GtStoneScatterFeature",
+    "ItemScatterConfiguration",
+    "LargeVeinConfiguration",
+    "LargeVeinFeature",
+    "LargeVeinLayout",
+    "OreHostStateAdapter",
+    "OreHostVariantCatalog",
+    "SubsurfaceFluidDepositConfiguration",
+    "SubsurfaceFluidDepositFeature",
+    "SurfaceRockConfiguration",
+    "SurfaceRockFeature"
+  ]
+}

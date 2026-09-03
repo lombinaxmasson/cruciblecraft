@@ -119,6 +119,22 @@ neoForge {
                 gameDirectory = project.file('run-t31-compat-client')
             } else if (providers.gradleProperty('t31Compat').orNull == 'optional') {
                 gameDirectory = project.file('run-t31-compat-client-optional')
+            } else if (providers.gradleProperty('wireCodecSmoke').orNull == 'dedicated') {
+                // Isolated from run/ so dedicated runServer can keep session.lock.
+                gameDirectory = project.file('run-wire-codec-client')
+                programArgument '--quickPlayMultiplayer'
+                programArgument '127.0.0.1:25566'
+            } else if (providers.gradleProperty('clientSmoke').isPresent()) {
+                systemProperty 'cruciblecraft.clientSmoke',
+                        providers.gradleProperty('clientSmoke').get()
+                systemProperty 'cruciblecraft.clientSmokeExit', 'true'
+                systemProperty 'cruciblecraft.smokeReceipt',
+                        providers.gradleProperty('smokeReceipt')
+                                .getOrElse(file('build/verification/receipts/client-smoke.json')
+                                        .absolutePath)
+                systemProperty 'cruciblecraft.smokeNonce',
+                        providers.gradleProperty('smokeNonce').getOrElse('')
+                gameDirectory = project.file('run-client-smoke')
             }
         }
 
@@ -130,6 +146,8 @@ neoForge {
                 gameDirectory = project.file('run-t31-compat-server')
             } else if (providers.gradleProperty('t31Compat').orNull == 'optional') {
                 gameDirectory = project.file('run-t31-compat-optional')
+            } else if (providers.gradleProperty('wireCodecSmoke').orNull == 'dedicated') {
+                gameDirectory = project.file('run-wire-codec-server')
             }
         }
 
@@ -159,6 +177,16 @@ neoForge {
             } else {
                 systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
             }
+            if (providers.gradleProperty('clientSmoke').isPresent()) {
+                systemProperty 'cruciblecraft.clientSmoke',
+                        providers.gradleProperty('clientSmoke').get()
+                systemProperty 'cruciblecraft.smokeReceipt',
+                        providers.gradleProperty('smokeReceipt')
+                                .getOrElse(file('build/verification/receipts/gametest-smoke.json')
+                                        .absolutePath)
+                systemProperty 'cruciblecraft.smokeNonce',
+                        providers.gradleProperty('smokeNonce').getOrElse('')
+            }
         }
 
         data {
@@ -168,7 +196,12 @@ neoForge {
             // gameDirectory = project.file('run-data')
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+            def datagenOutput = providers.gradleProperty('datagenOutput')
+                    .map { file(it) }
+                    .getOrElse(file('src/generated/resources/'))
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output',
+                    datagenOutput.getAbsolutePath(), '--existing',
+                    file('src/main/resources/').getAbsolutePath()
         }
 
         // applies to all the run configs above

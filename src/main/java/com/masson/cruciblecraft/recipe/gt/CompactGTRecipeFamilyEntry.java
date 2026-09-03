@@ -1,5 +1,6 @@
 package com.masson.cruciblecraft.recipe.gt;
 
+import java.util.List;
 import java.util.Objects;
 
 import com.masson.cruciblecraft.registry.ModRecipes;
@@ -42,6 +43,16 @@ public record CompactGTRecipeFamilyEntry(CompactGTRecipeFamilyDefinition definit
 
     @Override
     public ItemStack getResultItem(HolderLookup.Provider registries) {
+        if (definition.matrix().isPresent()) {
+            CompactGTRecipeFamilyDefinition.AuthoredMatrixV1 matrix =
+                    definition.matrix().orElseThrow();
+            if (matrix.rows().isEmpty()) {
+                return ItemStack.EMPTY;
+            }
+            List<ItemStack> outputs = matrix.dicts().itemOutputs().get(
+                    matrix.rows().getFirst().outputIdx());
+            return outputs.isEmpty() ? ItemStack.EMPTY : outputs.getFirst().copy();
+        }
         if (definition.relations().isEmpty()) {
             return ItemStack.EMPTY;
         }

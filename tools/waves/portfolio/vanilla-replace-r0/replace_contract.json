@@ -1,0 +1,17 @@
+{
+  "generated_by": "python tools/build_vanilla_replace_r0.py",
+  "implemented": false,
+  "questions": {
+    "add_vs_remove": "Vanilla loader adds GT6 vanilla-adjacent recipes. Replace removes or substitutes vanilla recipes. A later card must keep those axes distinct.",
+    "asm_vs_datapack": "ASM Replacements is bytecode, not a recipe JSON. NeoForge recipe conditions are not a GT6 transformer.",
+    "disposition_policy": "Per-category later cards must choose implemented, planned, deferred, or out_of_scope. R0 does not fill those dispositions.",
+    "fail_closed": "Unknown vanilla recipe must not silent no-op.",
+    "load": "A later implementation card measures recipe addition, deletion, and substitution separately; it cannot share a hopper or mold-firing owner.",
+    "minecraft_namespace": "Whether a later card may write data/minecraft recipe overrides. R0 must not create that tree.",
+    "player_acquisition": "Whether survival still has vanilla crafting-table and furnace recipes."
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "REPLACE_CONTRACT_READY",
+  "wave_slug": "portfolio/vanilla-replace-r0"
+}

@@ -130,6 +130,41 @@ class PipeCoverTest {
         assertFalse(row.contains("type"));
     }
 
+    @Test
+    void networkIdPersistsAndForbiddenKindsFailClosed() {
+        CoverBehaviorRegistry.validateDefinitions();
+        PipeCoverSet original = new PipeCoverSet();
+        PipeCover storage = PipeCover.of(
+                "cruciblecraft:logistics_item_storage")
+                .configure(
+                        CoverDefinition.ConfigField.NETWORK_ID,
+                        3);
+        assertTrue(original.set(Direction.WEST, storage));
+        CompoundTag tag = new CompoundTag();
+        original.save(tag, null);
+        assertEquals(
+                3,
+                tag.getList("covers", 10).getCompound(0).getInt("network_id"));
+        PipeCoverSet restored = new PipeCoverSet();
+        restored.load(tag, null);
+        assertEquals(
+                3,
+                restored.get(Direction.WEST).orElseThrow()
+                        .config().networkId().orElse(0));
+
+        CompoundTag forbidden = new CompoundTag();
+        forbidden.putString("side", "east");
+        forbidden.putString(
+                "definition", "cruciblecraft:logistics_generic_dump");
+        ListTag rows = new ListTag();
+        rows.add(forbidden);
+        CompoundTag bad = new CompoundTag();
+        bad.put("covers", rows);
+        PipeCoverSet quarantined = new PipeCoverSet();
+        assertEquals(1, quarantined.load(bad, null));
+        assertFalse(quarantined.allowsIncoming(Direction.EAST));
+    }
+
     private static CompoundTag coverRow(
             String side, String type, String match) {
         CompoundTag row = new CompoundTag();

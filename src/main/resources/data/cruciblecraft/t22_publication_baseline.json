@@ -8,17 +8,17 @@
     "current_logical": 18882,
     "registered_deltas": [
       {
-        "logical": 4,
         "eager": 4,
-        "lazy": 0,
         "evidence": "src/main/resources/data/cruciblecraft/t21_publication_baseline.json",
+        "lazy": 0,
+        "logical": 4,
         "phase": "T21"
       },
       {
-        "logical": 3,
         "eager": 3,
-        "lazy": 0,
         "evidence": "src/main/resources/data/cruciblecraft/t22_publication_baseline.json",
+        "lazy": 0,
+        "logical": 3,
         "phase": "T22"
       }
     ]
@@ -52,7 +52,6 @@
   ],
   "frozen_baseline": {
     "datagen_tree_files": 2558,
-    "datagen_tree_sha256": "6878b9c8608b2aa0f8fe82e6ac18f5e88daaeac7f06c05a463c180c6c6d51796",
     "emi_configured_maps": 24,
     "evidence": "tools/full_verification_report.json",
     "evidence_status": "READY",
@@ -70,18 +69,9 @@
     "verified_on": "2026-08-11"
   },
   "publication_totals": {
-    "logical_rows": 18882,
     "eager_rows": 16657,
-    "lazy_rows": 2225
-  },
-  "t22_publication_delta": {
-    "logical_rows_added": 3,
-    "eager_rows_added": 3,
-    "lazy_rows_added": 0,
-    "recipe_map_ids_unchanged": true,
-    "emi_recipe_map_ids_unchanged": true,
-    "gt_recipe_rows_added": 3,
-    "vanilla_datapack_entries_added": 0
+    "lazy_rows": 2225,
+    "logical_rows": 18882
   },
   "recipe_map_ids": [
     "cruciblecraft:anvil",
@@ -118,5 +108,14 @@
     "cruciblecraft:wiremill"
   ],
   "schema_version": 1,
-  "status": "T22_PUBLICATION_BASELINE"
+  "status": "T22_PUBLICATION_BASELINE",
+  "t22_publication_delta": {
+    "eager_rows_added": 3,
+    "emi_recipe_map_ids_unchanged": true,
+    "gt_recipe_rows_added": 3,
+    "lazy_rows_added": 0,
+    "logical_rows_added": 3,
+    "recipe_map_ids_unchanged": true,
+    "vanilla_datapack_entries_added": 0
+  }
 }

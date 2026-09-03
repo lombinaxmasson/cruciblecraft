@@ -6,6 +6,8 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Literal
 
+from tools.recipe_bulk.matrix import authored_relations
+
 Archetype = Literal[
     "no_lock_singleton",
     "no_lock_relation_set",
@@ -108,7 +110,7 @@ class WaveIR:
                     "provenance": family.provenance,
                     "publication_group": family.publication_group,
                     "relative_path": family.relative_path,
-                    "relations": list(family.document.get("relations") or []),
+                    "relations": authored_relations(family.document),
                     "resolved_operands": family.resolved_operands,
                     "semantic_family_id": family.semantic_family_id,
                     "source_revision": family.source_revision,

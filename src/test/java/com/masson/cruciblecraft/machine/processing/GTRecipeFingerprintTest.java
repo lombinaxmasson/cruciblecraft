@@ -177,8 +177,7 @@ class GTRecipeFingerprintTest {
                 false,
                 Optional.of(new GTRecipeProvenance(
                         sourceKind,
-                        Optional.of("source-hash"),
-                        List.of("evidence-hash"))));
+                        Optional.of("source-recipe"))));
     }
 
     private static GTRecipe actionRecipe(ItemInputAction toolAction) {

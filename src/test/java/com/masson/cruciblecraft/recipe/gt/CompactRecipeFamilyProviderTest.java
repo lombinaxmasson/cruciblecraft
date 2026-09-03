@@ -769,7 +769,7 @@ class CompactRecipeFamilyProviderTest {
     }
 
     @Test
-    void parameterizedDefinitionIsRejected() {
+    void parameterizedDefinitionFailsClosed() {
         RecipeMap map = new RecipeMap(id("parameterized"));
         CompactGTRecipeFamilyDefinition definition = new CompactGTRecipeFamilyDefinition(
                 "future.bath#0001",
@@ -780,17 +780,66 @@ class CompactRecipeFamilyProviderTest {
                         "bath_template",
                         Map.of("axis", "material"))),
                 Optional.of(id("test_parameterized")));
-        IllegalArgumentException thrown = assertThrows(
-                IllegalArgumentException.class,
-                () -> CompactRecipeFamilyProvider.prepare(
-                        map,
-                        List.of(new CompactRecipeFamilySource(
-                                id("authored/parameterized"), definition)),
-                        1L,
-                        CompactRecipeFamilyProvider.RuntimeSide.SERVER,
-                        CompactRecipeFamilyProvider.MaterializationPolicy.immediate()));
-        assertTrue(thrown.getMessage().contains("not implemented"));
-        assertTrue(thrown.getMessage().contains("bath_template"));
+        var snapshot = CompactRecipeFamilyProvider.prepare(
+                map,
+                List.of(new CompactRecipeFamilySource(
+                        id("authored/parameterized"), definition)),
+                1L,
+                CompactRecipeFamilyProvider.RuntimeSide.SERVER,
+                CompactRecipeFamilyProvider.MaterializationPolicy.immediate());
+        assertEquals(0, snapshot.logicalRecipeCount());
+    }
+
+    @Test
+    void matrixDefinitionExpandsIntoExactRelations() {
+        RecipeMap map = new RecipeMap(id("matrix_expand"));
+        CompactGTRecipeFamilyDefinition.AuthoredMatrixV1 matrix =
+                new CompactGTRecipeFamilyDefinition.AuthoredMatrixV1(
+                        new CompactGTRecipeFamilyDefinition.SharedSpec(
+                                32,
+                                16L,
+                                0L,
+                                true,
+                                List.of(1),
+                                List.of(ItemInputAction.CONSUME),
+                                List.of(GTRecipe.GUARANTEED_CHANCE),
+                                "SOURCE_BACKED",
+                                "gt.recipe.bath#matrix"),
+                        new CompactGTRecipeFamilyDefinition.MatrixDicts(
+                                List.of(
+                                        List.of(Ingredient.of(Items.IRON_INGOT)),
+                                        List.of(Ingredient.of(Items.GOLD_INGOT))),
+                                List.of(
+                                        List.of(new ItemStack(Items.IRON_NUGGET)),
+                                        List.of(new ItemStack(Items.GOLD_NUGGET))),
+                                List.of(new CompactGTRecipeFamilyDefinition.FluidIo(
+                                        List.of(), List.of()))),
+                        List.of(
+                                new CompactGTRecipeFamilyDefinition.MatrixRow(
+                                        0, 0, 0, id("bath/matrix/first"), 0),
+                                new CompactGTRecipeFamilyDefinition.MatrixRow(
+                                        1, 1, 0, id("bath/matrix/second"), 1)));
+        CompactRecipeFamilySource source = new CompactRecipeFamilySource(
+                id("authored/matrix_expand"),
+                new CompactGTRecipeFamilyDefinition(
+                        "future.bath#matrix",
+                        map.id(),
+                        "3703e40308c8c030763fd6297dea8b210d2a77b1",
+                        List.of(),
+                        Optional.empty(),
+                        Optional.of(id("test_matrix_expand")),
+                        Optional.of(matrix)));
+        assertEquals(0, source.definition().relations().size());
+        assertEquals(2, source.authoredRelations().size());
+        var snapshot = CompactRecipeFamilyProvider.prepare(
+                map,
+                List.of(source),
+                1L,
+                CompactRecipeFamilyProvider.RuntimeSide.SERVER,
+                CompactRecipeFamilyProvider.MaterializationPolicy.immediate());
+        assertEquals(2, snapshot.logicalRecipeCount());
+        assertEquals(id("bath/matrix/first"), snapshot.recipeIds().get(0));
+        assertEquals(id("bath/matrix/second"), snapshot.recipeIds().get(1));
     }
 
     @Test
@@ -873,8 +922,7 @@ class CompactRecipeFamilyProviderTest {
                       "shadow_order": 0,
                       "provenance": {
                         "source_kind": "SOURCE_BACKED",
-                        "selected_source_recipe": "gt.recipe.assembler#0002",
-                        "evidence_hashes": ["abc"]
+                        "selected_source_recipe": "gt.recipe.assembler#0002"
                       }
                     }
                   ]
@@ -1105,8 +1153,7 @@ class CompactRecipeFamilyProviderTest {
     private static GTRecipeProvenance provenance(String selected) {
         return new GTRecipeProvenance(
                 "SOURCE_BACKED",
-                Optional.of(selected),
-                List.of("abc"));
+                Optional.of(selected));
     }
 
     private static void assertSameRecipe(GTRecipe expected, GTRecipe actual) {

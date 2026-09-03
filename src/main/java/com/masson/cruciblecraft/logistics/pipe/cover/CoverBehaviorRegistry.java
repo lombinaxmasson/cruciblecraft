@@ -140,6 +140,8 @@ public final class CoverBehaviorRegistry {
     }
 
     public static synchronized void validateDefinitions() {
+        com.masson.cruciblecraft.logistics.itemnet.ItemNetworkCovers.bootstrap();
+        com.masson.cruciblecraft.logistics.fluidnet.FluidNetworkCovers.bootstrap();
         for (CoverDefinition definition
                 : CoverDefinitionCatalog.definitions()) {
             if (!BEHAVIORS.containsKey(definition.behaviorId())) {
