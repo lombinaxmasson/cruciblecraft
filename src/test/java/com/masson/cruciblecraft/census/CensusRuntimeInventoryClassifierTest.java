@@ -76,7 +76,7 @@ class CensusRuntimeInventoryClassifierTest {
         assertTrue(allowlist.get("minecraft_prefix_is_not_proof").getAsBoolean());
         assertTrue(allowlist.get("not_a_121_registry_scrape").getAsBoolean());
         assertEquals(
-                "assembler_aliases_plus_explicit",
+                "t37_t41_aliases_plus_explicit",
                 allowlist.get("provenance").getAsString());
         assertEquals("minecraft-1.21.1", allowlist.get("version").getAsString());
         Set<String> itemIds = jsonArraySet(allowlist, "item_ids");

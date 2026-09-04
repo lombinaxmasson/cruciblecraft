@@ -6,6 +6,7 @@ import argparse
 import fnmatch
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any
@@ -86,6 +87,16 @@ def load_capability(path: Path) -> dict[str, Any]:
             )
         if not document.get("player_signoff"):
             raise ValueError(f"{slug}: player_complete requires player_signoff")
+        required_ids = document.get("required_test_ids")
+        if (
+            not isinstance(required_ids, list)
+            or not required_ids
+            or not all(isinstance(value, str) and value for value in required_ids)
+            or len(required_ids) != len(set(required_ids))
+        ):
+            raise ValueError(
+                f"{slug}: player_complete requires unique required_test_ids"
+            )
     return document
 
 
@@ -195,6 +206,48 @@ def affected_slugs(changed_paths: list[str]) -> list[str]:
             for affected in impact.get(slug, [slug])
         }
     )
+
+
+def _git_show(revision: str, relative: str) -> str | None:
+    completed = subprocess.run(
+        ["git", "show", f"{revision}:{relative.replace('\\', '/')}"],
+        cwd=ROOT,
+        capture_output=True,
+        check=False,
+    )
+    if completed.returncode != 0:
+        return None
+    return completed.stdout.decode("utf-8", errors="replace")
+
+
+def player_complete_promotions(base_revision: str) -> list[str]:
+    """Return slugs whose working-tree maturity newly became player_complete."""
+    if not str(base_revision or "").strip():
+        raise ValueError("player_complete promotions require a git base revision")
+    promoted: list[str] = []
+    for path in capability_files():
+        current = load_capability(path)
+        relative = io.relative(path)
+        previous_text = _git_show(base_revision, relative)
+        previous_maturity = None
+        if previous_text is not None:
+            try:
+                previous = json.loads(previous_text)
+            except json.JSONDecodeError as error:
+                raise ValueError(
+                    f"{relative} at {base_revision} is not JSON: {error}"
+                ) from error
+            if not isinstance(previous, dict):
+                raise ValueError(
+                    f"{relative} at {base_revision} is not a JSON object"
+                )
+            previous_maturity = previous.get("maturity")
+        if (
+            current.get("maturity") == "player_complete"
+            and previous_maturity != "player_complete"
+        ):
+            promoted.append(current["slug"])
+    return promoted
 
 
 def main(argv: list[str] | None = None) -> int:

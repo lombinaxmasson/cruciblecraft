@@ -206,20 +206,50 @@ def exemption_for_path(
 
 
 def exemption_for_token(
-    relative: str, token: str, policy: dict[str, Any]
+    relative: str,
+    token: str,
+    policy: dict[str, Any],
+    scanners: dict[str, Any] | None = None,
 ) -> str | None:
+    compiled = (scanners or compile_scanners(policy))["token_exemptions"]
+    for exemption_id, path_patterns, matcher in compiled:
+        if not _path_matches(relative, path_patterns):
+            continue
+        if matcher.search(token):
+            return exemption_id
+    return None
+
+
+def compile_scanners(policy: dict[str, Any]) -> dict[str, Any]:
+    forbidden: list[tuple[str, re.Pattern[str]]] = []
+    for row in policy.get("forbidden_patterns") or []:
+        if not isinstance(row, dict):
+            continue
+        forbidden.append(
+            (
+                str(row.get("id") or "forbidden"),
+                re.compile(str(row.get("regex") or r"(?!)")),
+            )
+        )
+    token_exemptions: list[tuple[str, list[str], re.Pattern[str]]] = []
     for row in policy.get("token_exemptions") or []:
-        if not isinstance(row, dict) or not _path_matches(
-            relative, row.get("path_patterns") or []
-        ):
+        if not isinstance(row, dict):
             continue
         try:
-            allowed = re.search(str(row.get("token_regex") or r"(?!)"), token)
+            matcher = re.compile(str(row.get("token_regex") or r"(?!)"))
         except re.error as error:
             raise PolicyError(f"invalid token exemption {row!r}: {error}") from error
-        if allowed:
-            return str(row.get("id") or "token_exemption")
-    return None
+        token_exemptions.append(
+            (
+                str(row.get("id") or "token_exemption"),
+                [str(pattern) for pattern in row.get("path_patterns") or []],
+                matcher,
+            )
+        )
+    return {
+        "forbidden": forbidden,
+        "token_exemptions": token_exemptions,
+    }
 
 
 def _line_findings(
@@ -227,20 +257,18 @@ def _line_findings(
     line: str,
     line_number: int,
     policy: dict[str, Any],
+    scanners: dict[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
     findings: list[dict[str, Any]] = []
     occupied: list[tuple[int, int]] = []
-    for row in policy.get("forbidden_patterns") or []:
-        if not isinstance(row, dict):
-            continue
-        rule = str(row.get("id") or "forbidden")
-        matcher = re.compile(str(row.get("regex") or r"(?!)"))
+    compiled = (scanners or compile_scanners(policy))["forbidden"]
+    for rule, matcher in compiled:
         for match in matcher.finditer(line):
             span = match.span()
             if any(start <= span[0] and span[1] <= end for start, end in occupied):
                 continue
             token = match.group(0)
-            if exemption_for_token(relative, token, policy):
+            if exemption_for_token(relative, token, policy, scanners):
                 continue
             occupied.append(span)
             findings.append(
@@ -262,16 +290,20 @@ def scan_text(
     policy: dict[str, Any],
     *,
     include_path: bool = True,
+    scanners: dict[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
     """Scan one reachable text file and return actionable findings."""
     relative = relative.replace("\\", "/")
     if exemption_for_path(relative, policy):
         return []
+    scanners = scanners or compile_scanners(policy)
     findings: list[dict[str, Any]] = []
     if include_path:
-        findings.extend(_line_findings(relative, relative, 0, policy))
+        findings.extend(
+            _line_findings(relative, relative, 0, policy, scanners)
+        )
     for line_number, line in enumerate(text.splitlines(), start=1):
-        findings.extend(_line_findings(relative, line, line_number, policy))
+        findings.extend(_line_findings(relative, line, line_number, policy, scanners))
     return findings
 
 
@@ -318,12 +350,44 @@ def iter_active_files(
     return sorted(files, key=lambda path: path.as_posix())
 
 
+def resolve_scan_files(
+    root: Path,
+    policy: dict[str, Any],
+    paths: Iterable[str] | None = None,
+) -> list[Path]:
+    if paths is None:
+        return iter_active_files(root, policy)
+    patterns = derive_active_patterns(root, policy)
+    files: set[Path] = set()
+    root = root.resolve()
+    for raw in paths:
+        relative = str(raw).replace("\\", "/").removeprefix("./")
+        if not relative:
+            continue
+        path = (root / relative).resolve()
+        try:
+            path.relative_to(root)
+        except ValueError:
+            continue
+        if not path.is_file():
+            continue
+        if exemption_for_path(relative, policy):
+            continue
+        if not _path_matches(relative, patterns):
+            continue
+        if _is_scannable(path, relative, policy):
+            files.add(path)
+    return sorted(files, key=lambda path: path.as_posix())
+
+
 def scan_repository(
     root: Path = ROOT,
     policy: dict[str, Any] | None = None,
+    paths: Iterable[str] | None = None,
 ) -> dict[str, Any]:
     policy = policy or load_policy(root / "tools" / "workflow_hash_policy.json")
-    files = iter_active_files(root, policy)
+    scanners = compile_scanners(policy)
+    files = resolve_scan_files(root, policy, paths)
     findings: list[dict[str, Any]] = []
     for path in files:
         relative = path.relative_to(root.resolve()).as_posix()
@@ -331,12 +395,13 @@ def scan_repository(
             text = path.read_text(encoding="utf-8")
         except (OSError, UnicodeDecodeError):
             continue
-        findings.extend(scan_text(relative, text, policy))
+        findings.extend(scan_text(relative, text, policy, scanners=scanners))
     return {
         "mode": "migration-report",
         "active_files": len(files),
         "findings": findings,
         "finding_count": len(findings),
+        "scoped": paths is not None,
     }
 
 
@@ -382,6 +447,12 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--limit", type=int, default=100)
+    parser.add_argument(
+        "--path",
+        action="append",
+        default=[],
+        help="scan only these reachable files; omit for a full active-set scan",
+    )
     args = parser.parse_args(argv)
 
     root = args.root.resolve()
@@ -390,7 +461,8 @@ def main(argv: list[str] | None = None) -> int:
         policy_path = root / policy_path
     try:
         policy = load_policy(policy_path)
-        result = scan_repository(root, policy)
+        scoped_paths = [str(path) for path in args.path] or None
+        result = scan_repository(root, policy, paths=scoped_paths)
         _print_report(
             result,
             json_output=args.json,

@@ -26,6 +26,66 @@ EMI_PLUGIN_CLASS = (
 )
 LOCAL_RECEIPTS = ROOT / "build" / "verification" / "receipts"
 GAME_TEST_PASS = re.compile(r"All\s+(\d+)\s+required tests passed")
+GAME_TEST_METHOD_RE = re.compile(
+    r"public static void (\w+)\s*\(\s*GameTestHelper"
+)
+
+
+def required_test_ids(capability: dict[str, Any]) -> list[str]:
+    raw = capability.get("required_test_ids")
+    slug = str(capability.get("slug") or "capability")
+    if (
+        not isinstance(raw, list)
+        or not raw
+        or not all(isinstance(value, str) and value for value in raw)
+    ):
+        raise ValueError(f"{slug}: required_test_ids must be unique and non-empty")
+    if len(raw) != len(set(raw)):
+        raise ValueError(f"{slug}: required_test_ids has duplicates")
+    return list(raw)
+
+
+def owned_java_files(capability: dict[str, Any]) -> list[Path]:
+    files: list[Path] = []
+    for pattern in capability.get("owned_paths") or []:
+        posix = str(pattern).replace("\\", "/")
+        if ".java" not in posix and "gametest" not in posix.lower():
+            continue
+        magic = any(character in posix for character in "*?[")
+        if magic:
+            matches = ROOT.glob(posix)
+        else:
+            direct = ROOT / posix
+            matches = (direct,) if direct.exists() else ()
+        for match in matches:
+            if match.is_file() and match.suffix == ".java":
+                files.append(match)
+    return sorted({path.resolve() for path in files}, key=lambda path: path.as_posix())
+
+
+def discover_gametest_method_ids(capability: dict[str, Any]) -> list[str]:
+    ids: set[str] = set()
+    for path in owned_java_files(capability):
+        text = path.read_text(encoding="utf-8")
+        if "@GameTest" not in text:
+            continue
+        ids.update(GAME_TEST_METHOD_RE.findall(text))
+    return sorted(ids)
+
+
+def check_declared_test_ids(capability: dict[str, Any]) -> list[str]:
+    slug = capability["slug"]
+    try:
+        declared = required_test_ids(capability)
+    except ValueError as error:
+        return [str(error)]
+    discovered = discover_gametest_method_ids(capability)
+    if set(declared) != set(discovered):
+        return [
+            f"{slug}: required_test_ids {sorted(declared)} "
+            f"!= GameTest methods {discovered}"
+        ]
+    return []
 
 
 def load_signoff(capability: dict[str, Any]) -> dict[str, Any]:
@@ -259,10 +319,19 @@ def check_gametest_receipt(
         errors.append(f"{slug}: GameTest failed={failed}")
     passed = document.get("passed")
     required = document.get("required_tests")
+    try:
+        declared = required_test_ids(capability)
+    except ValueError as error:
+        errors.append(str(error))
+        declared = []
     if type(passed) is not int or passed <= 0:
         errors.append(f"{slug}: GameTest passed count is invalid")
     if type(required) is not int or required <= 0:
         errors.append(f"{slug}: GameTest required_tests is invalid")
+    if declared and type(required) is int and required != len(declared):
+        errors.append(
+            f"{slug}: GameTest required_tests={required} declared={len(declared)}"
+        )
     if (
         type(passed) is int
         and type(required) is int
@@ -272,14 +341,19 @@ def check_gametest_receipt(
             f"{slug}: GameTest passed={passed} required={required}"
         )
     test_ids = document.get("test_ids")
-    if test_ids is not None:
-        if not isinstance(test_ids, list) or not all(
-            isinstance(value, str) and value for value in test_ids
-        ):
-            errors.append(f"{slug}: GameTest test_ids is invalid")
-            test_ids = []
+    if not isinstance(test_ids, list) or not all(
+        isinstance(value, str) and value for value in test_ids
+    ) or not test_ids:
+        errors.append(f"{slug}: GameTest test_ids is required")
+        test_ids = []
+    else:
         if len(test_ids) != len(set(test_ids)):
             errors.append(f"{slug}: GameTest test_ids has duplicates")
+        if declared and set(test_ids) != set(declared):
+            errors.append(
+                f"{slug}: GameTest test_ids {sorted(set(test_ids))} "
+                f"!= required_test_ids {sorted(declared)}"
+            )
         if type(passed) is int and len(test_ids) != passed:
             errors.append(
                 f"{slug}: GameTest test_ids={len(test_ids)} passed={passed}"
@@ -343,7 +417,13 @@ def check_capability(
     identity = registry_identity.compile_manifest()
     if identity["errors"]:
         errors.extend(identity["errors"])
+    errors.extend(check_declared_test_ids(capability))
     return errors
+
+
+def gradle_isolated() -> bool:
+    value = os.environ.get("CRUCIBLECRAFT_GRADLE_ISOLATED", "").strip().lower()
+    return value in {"1", "true", "yes"}
 
 
 def gradle_command(task: str, properties: dict[str, str], offline: bool) -> list[str]:
@@ -352,10 +432,11 @@ def gradle_command(task: str, properties: dict[str, str], offline: bool) -> list
         str(wrapper),
         task,
         *(f"-P{key}={value}" for key, value in properties.items()),
-        "--rerun-tasks",
-        "--no-daemon",
         "--max-workers=1",
+        "--rerun",
     ]
+    if gradle_isolated():
+        command.append("--no-daemon")
     if offline:
         command.append("--offline")
     return command
@@ -430,7 +511,14 @@ def run_fresh_capability(slug: str, *, offline: bool = False) -> list[str]:
     }
     for path in paths.values():
         path.unlink(missing_ok=True)
+    errors: list[str] = []
     nonce = uuid.uuid4().hex
+    declared_ids: list[str] = []
+    try:
+        declared_ids = required_test_ids(capability)
+        errors.extend(check_declared_test_ids(capability))
+    except ValueError as error:
+        errors.append(str(error))
     namespace = (
         "cruciblecraft_wave_" + wave.replace("/", "_").replace("-", "_")
     )
@@ -453,7 +541,6 @@ def run_fresh_capability(slug: str, *, offline: bool = False) -> list[str]:
         },
         offline,
     )
-    errors: list[str] = []
     game_code, game_output = run_logged(game_command, paths["gametest_log"])
     errors.extend(
         runtime_smoke_errors(
@@ -465,10 +552,15 @@ def run_fresh_capability(slug: str, *, offline: bool = False) -> list[str]:
     )
     passed_rows = GAME_TEST_PASS.findall(game_output)
     passed = int(passed_rows[-1]) if passed_rows else 0
+    observed_ids = discover_gametest_method_ids(capability)
     if game_code != 0:
         errors.append(f"{slug}: GameTestServer exited {game_code}")
     if passed < 1:
         errors.append(f"{slug}: GameTestServer reported no required tests")
+    if declared_ids and passed != len(declared_ids):
+        errors.append(
+            f"{slug}: GameTestServer passed={passed} required={len(declared_ids)}"
+        )
     game_document = {
         "schema_version": 2,
         "status": "PASS" if not errors else "FAIL",
@@ -476,7 +568,8 @@ def run_fresh_capability(slug: str, *, offline: bool = False) -> list[str]:
         "wave_slug": wave,
         "namespace": namespace,
         "passed": passed,
-        "required_tests": passed,
+        "required_tests": len(declared_ids) if declared_ids else passed,
+        "test_ids": observed_ids or list(declared_ids),
         "failed": 0 if game_code == 0 and passed else 1,
         "skip_is_not_pass": True,
         "run_nonce": nonce,
@@ -513,7 +606,8 @@ def run_fresh_capability(slug: str, *, offline: bool = False) -> list[str]:
         "gametest": {
             "exit_code": game_code,
             "passed": passed,
-            "required_tests": passed,
+            "required_tests": len(declared_ids) if declared_ids else passed,
+            "test_ids": observed_ids or list(declared_ids),
         },
         "client": {"exit_code": client_code},
         "errors": errors,

@@ -88,7 +88,9 @@
       "id": "scanner_self_reference",
       "path_patterns": [
         ".github/workflows/build.yml",
-        ".github/workflows/release.yml"
+        ".github/workflows/release.yml",
+        "tools/verify.py",
+        "tools/tests/test_verification_profiles.py"
       ],
       "token_regex": "(?i)(?:check_no_workflow_hashes|test_check_no_workflow_hashes|workflow_hash)"
     },

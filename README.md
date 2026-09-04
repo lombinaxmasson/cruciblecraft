@@ -105,12 +105,16 @@ Source Pack（GT6 来源或明确的项目设计）
 ```powershell
 python tools/verify.py dev
 python tools/verify.py integration --profile verification
+python tools/verify.py integration --profile runtime-java
 python tools/verify.py integration --profile semantic-generators
 python tools/verify.py integration --profile capability-runtime
 python tools/verify.py integration --profile player-complete
+python tools/verify.py promotion
 ```
 
-`dev` 会根据工作区改动选择相关检查。需要运行哪些 profile、测试结果写到哪里，以及
+`dev` 会根据工作区改动选择相关检查：普通 runtime Java 跑 JUnit，不跑 datagen；
+datagen provider 或生成树才会跑两次 `runData`。`promotion` 只在能力晋级到
+`player_complete` 时跑完整 GameTestServer 与客户端。需要运行哪些 profile、测试结果写到哪里，以及
 `player_complete` 如何启动 GameTestServer 和客户端，见
 [开发与验证指南](docs/current/verification.md)和
 [工具链说明](tools/README.md)。

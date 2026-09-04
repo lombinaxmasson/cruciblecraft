@@ -17,6 +17,7 @@ class CompactRecipeRuntimeWaveSliceTest {
             groups.add(group("bath/mte", "cruciblecraft:bath_mte_group_" + index));
         }
         groups.add(group("bath/identity", "cruciblecraft:bath_identity_fake"));
+        groups.add(group("T47", "cruciblecraft:t47_bath_exact"));
         JsonArray sliced = CompactRecipeRuntimeWaveSlice.groupsThroughBathMte(groups);
         assertEquals(13, sliced.size());
         for (int index = 0; index < sliced.size(); index++) {
@@ -25,6 +26,27 @@ class CompactRecipeRuntimeWaveSliceTest {
                             sliced.get(index).getAsJsonObject()));
         }
         assertTrue(CompactRecipeRuntimeWaveSlice.afterBathMte(groups.get(13).getAsJsonObject()));
+        assertTrue(CompactRecipeRuntimeWaveSlice.afterBathMte(groups.get(14).getAsJsonObject()));
+    }
+
+    @Test
+    void composedV2T47T48T49StayOutOfAssemblerThroughBathMteSlice() {
+        JsonArray groups = new JsonArray();
+        for (int index = 0; index < 12; index++) {
+            groups.add(group("T37", "cruciblecraft:historical_" + index));
+        }
+        groups.add(group("T46", "cruciblecraft:t46_bath_mte"));
+        groups.add(group("T47", "cruciblecraft:t47_bath_exact"));
+        groups.add(group("T48", "cruciblecraft:t48_bath_exact"));
+        groups.add(group("T49", "cruciblecraft:t49_bath_exact_multi"));
+        JsonArray sliced = CompactRecipeRuntimeWaveSlice.groupsThroughBathMte(groups);
+        assertEquals(13, sliced.size());
+        assertEquals(
+                "cruciblecraft:t46_bath_mte",
+                sliced.get(12).getAsJsonObject().get("publication_group").getAsString());
+        assertTrue(CompactRecipeRuntimeWaveSlice.afterBathMte(groups.get(13).getAsJsonObject()));
+        assertTrue(CompactRecipeRuntimeWaveSlice.afterBathMte(groups.get(14).getAsJsonObject()));
+        assertTrue(CompactRecipeRuntimeWaveSlice.afterBathMte(groups.get(15).getAsJsonObject()));
     }
 
     @Test

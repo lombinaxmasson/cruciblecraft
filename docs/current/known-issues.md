@@ -23,7 +23,7 @@
 - 历史 full verification report 已从工作树删除，不是当前执行结果
 - 能量链 GameTest 方法名已语义化；历史 `energy_chain_readiness*` token 若仍存在，以 [semantic-naming.md](semantic-naming.md) 为准。
 - 物流 live `logistics` profile 不再重导历史 pipe/cover 信封。那些 builder 在 legacy index。cover definitions 语义集合仍由物品网 Python 测试覆盖。
-- 历史 catalog/count/policy fixture 已按当前权威目录与 semantic ID map 对齐；日常硬门仍是 semantic-generators 的 builder `--check` 与 active Python suite。全量 `gradle test` 未作为每次提交的必跑门。
+- 历史 catalog/count/policy fixture 已按当前权威目录与 semantic ID map 对齐；日常硬门仍是 semantic-generators 的 builder `--check` 与 active Python suite。全量 `gradle test` 由 `runtime-java` 在 Java/测试/资源改动和 `release` 时跑，不是每次提交都跑。
 
 ## Deferred capability
 

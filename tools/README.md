@@ -27,18 +27,23 @@ The layered entry point is:
 ```text
 python tools/verify.py dev
 python tools/verify.py integration --profile <name>
-python tools/verify.py archive-inspect
+python tools/verify.py promotion
 python tools/verify.py release
 ```
 
 - `dev` maps changed paths onto profiles. Unmatched code paths are reported and
   fail closed; they do not escalate to the 110-builder closure.
 - Pure Markdown or `docs/history/` edits only run link/index checks.
+- `runtime-java` owns ordinary Java/test/resource paths and runs `gradle test`.
+  `semantic-generators` owns datagen providers, generated trees, and recipe
+  tools, and runs builders plus double `runData`. Overlap (a provider path)
+  selects both.
 - `integration --profile` runs that profile's builders, Python modules, and
-  declared Gradle tasks.
-- `archive-inspect` reads the historical `full_verification_report.json`
-  receipt. It is not a live currentness proof.
-- `release` is reserved for a future player-facing card.
+  declared Gradle tasks. `--if-changed` skips when a diff base exists and the
+  profile owns none of the changed paths; without a diff base it still runs.
+- `promotion` runs fresh GameTestServer and `runClient` only when a capability
+  maturity becomes `player_complete`.
+- `release` executes every release profile against the current checkout.
 
 The standard-library runner still owns Python test selection:
 

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import tempfile
 import unittest
@@ -87,7 +88,7 @@ class VerificationProfileTest(unittest.TestCase):
             if isinstance(action, argparse._SubParsersAction)
         )
         self.assertEqual(
-            {"dev", "integration", "release"},
+            {"dev", "integration", "promotion", "release"},
             set(subparsers.choices),
         )
 
@@ -132,6 +133,7 @@ class VerificationProfileTest(unittest.TestCase):
             _profiles: dict[str, object],
             _builders: dict[str, object],
             _receipt: dict[str, object],
+            **_kwargs: object,
         ) -> int:
             calls.append(name)
             return 0
@@ -209,10 +211,259 @@ class VerificationProfileTest(unittest.TestCase):
         )
 
     def test_semantic_profile_requires_datagen_and_junit(self) -> None:
-        profile = self.profiles["profiles"]["semantic-generators"]
-        self.assertIs(True, profile["datagen"])
-        self.assertIn("test", profile["gradle_tasks"])
+        semantic = self.profiles["profiles"]["semantic-generators"]
+        runtime = self.profiles["profiles"]["runtime-java"]
+        self.assertIs(True, semantic["datagen"])
+        self.assertNotIn("test", semantic["gradle_tasks"])
+        self.assertIs(False, runtime["datagen"])
+        self.assertIn("test", runtime["gradle_tasks"])
+        self.assertIn("runtime-java", self.profiles["release_profiles"])
         self.assertIn("player-complete", self.profiles["release_profiles"])
+
+    def test_runtime_java_does_not_select_datagen(self) -> None:
+        classified = verify_entry.classify_paths(
+            self.profiles,
+            [
+                "src/main/java/com/masson/cruciblecraft/content/block/HopperBlock.java",
+            ],
+        )
+        self.assertEqual(["runtime-java"], classified["selected_profiles"])
+        self.assertEqual([], classified["unmatched_paths"])
+
+    def test_datagen_provider_selects_runtime_java_and_semantic_generators(self) -> None:
+        classified = verify_entry.classify_paths(
+            self.profiles,
+            [
+                "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+            ],
+        )
+        self.assertEqual(
+            ["runtime-java", "semantic-generators"],
+            classified["selected_profiles"],
+        )
+
+    def test_generated_resource_selects_semantic_generators_only(self) -> None:
+        classified = verify_entry.classify_paths(
+            self.profiles,
+            ["src/generated/resources/data/cruciblecraft/recipe/machines/hopper.json"],
+        )
+        self.assertEqual(["semantic-generators"], classified["selected_profiles"])
+        self.assertEqual([], classified["unmatched_paths"])
+
+    def test_if_changed_skips_when_diff_does_not_own_the_profile(self) -> None:
+        receipt = {"profiles": [], "commands": [], "results": []}
+        with mock.patch.object(
+            verify_entry,
+            "_configuration",
+            return_value=(self.profiles, self.builder_policy),
+        ), mock.patch.object(
+            verify_entry, "has_external_diff_base", return_value=True
+        ), mock.patch.object(
+            verify_entry,
+            "changed_paths",
+            return_value=[
+                "src/main/java/com/masson/cruciblecraft/content/block/HopperBlock.java",
+            ],
+        ), mock.patch.object(verify_entry, "run_profile") as runner:
+            code = verify_entry.cmd_integration(
+                argparse.Namespace(
+                    profile="semantic-generators",
+                    if_changed=True,
+                ),
+                receipt,
+            )
+        self.assertEqual(0, code)
+        runner.assert_not_called()
+        self.assertEqual("SKIP", receipt["profiles"][0]["status"])
+
+    def test_if_changed_runs_when_an_owned_path_changed(self) -> None:
+        receipt = {"profiles": [], "commands": [], "results": []}
+        with mock.patch.object(
+            verify_entry,
+            "_configuration",
+            return_value=(self.profiles, self.builder_policy),
+        ), mock.patch.object(
+            verify_entry, "has_external_diff_base", return_value=True
+        ), mock.patch.object(
+            verify_entry,
+            "changed_paths",
+            return_value=[
+                "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+            ],
+        ), mock.patch.object(verify_entry, "run_profile", return_value=0) as runner:
+            code = verify_entry.cmd_integration(
+                argparse.Namespace(
+                    profile="semantic-generators",
+                    if_changed=True,
+                ),
+                receipt,
+            )
+        self.assertEqual(0, code)
+        runner.assert_called_once()
+
+    def test_if_changed_runs_when_no_diff_base(self) -> None:
+        receipt = {"profiles": [], "commands": [], "results": []}
+        with mock.patch.object(
+            verify_entry,
+            "_configuration",
+            return_value=(self.profiles, self.builder_policy),
+        ), mock.patch.object(
+            verify_entry, "has_external_diff_base", return_value=False
+        ), mock.patch.object(
+            verify_entry, "changed_paths"
+        ) as changed, mock.patch.object(
+            verify_entry, "run_profile", return_value=0
+        ) as runner:
+            code = verify_entry.cmd_integration(
+                argparse.Namespace(
+                    profile="semantic-generators",
+                    if_changed=True,
+                ),
+                receipt,
+            )
+        self.assertEqual(0, code)
+        changed.assert_not_called()
+        runner.assert_called_once()
+
+    def test_if_changed_skips_runtime_java_for_generated_resources(self) -> None:
+        receipt = {"profiles": [], "commands": [], "results": []}
+        with mock.patch.object(
+            verify_entry,
+            "_configuration",
+            return_value=(self.profiles, self.builder_policy),
+        ), mock.patch.object(
+            verify_entry, "has_external_diff_base", return_value=True
+        ), mock.patch.object(
+            verify_entry,
+            "changed_paths",
+            return_value=[
+                "src/generated/resources/data/cruciblecraft/recipe/machines/hopper.json",
+            ],
+        ), mock.patch.object(verify_entry, "run_profile") as runner:
+            code = verify_entry.cmd_integration(
+                argparse.Namespace(
+                    profile="runtime-java",
+                    if_changed=True,
+                ),
+                receipt,
+            )
+        self.assertEqual(0, code)
+        runner.assert_not_called()
+        self.assertEqual("SKIP", receipt["profiles"][0]["status"])
+
+    def test_gradle_files_select_runtime_java_and_semantic_generators(self) -> None:
+        classified = verify_entry.classify_paths(
+            self.profiles,
+            ["build.gradle", "gradle.properties"],
+        )
+        self.assertEqual(
+            ["runtime-java", "semantic-generators"],
+            classified["selected_profiles"],
+        )
+
+    def test_ci_build_splits_runtime_java_and_datagen(self) -> None:
+        text = (ROOT / ".github" / "workflows" / "build.yml").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn(
+            "python3 tools/verify.py integration --profile runtime-java --if-changed",
+            text,
+        )
+        self.assertIn(
+            "python3 tools/verify.py integration --profile semantic-generators --if-changed",
+            text,
+        )
+
+    def test_gradle_command_reruns_only_the_requested_task(self) -> None:
+        os.environ.pop("CRUCIBLECRAFT_GRADLE_ISOLATED", None)
+        command = verify_entry.gradle_command("test")
+        self.assertIn("--rerun", command)
+        self.assertNotIn("--rerun-tasks", command)
+        self.assertNotIn("--no-daemon", command)
+
+    def test_release_isolates_the_gradle_daemon(self) -> None:
+        previous = os.environ.get("CRUCIBLECRAFT_GRADLE_ISOLATED")
+        os.environ["CRUCIBLECRAFT_GRADLE_ISOLATED"] = "1"
+        try:
+            command = verify_entry.gradle_command("test")
+        finally:
+            if previous is None:
+                os.environ.pop("CRUCIBLECRAFT_GRADLE_ISOLATED", None)
+            else:
+                os.environ["CRUCIBLECRAFT_GRADLE_ISOLATED"] = previous
+        self.assertIn("--no-daemon", command)
+        self.assertIn("--rerun", command)
+
+    def test_workflow_hash_dev_scan_is_incremental_unless_policy_changes(self) -> None:
+        row = {"name": "check_no_workflow_hashes"}
+        extra = verify_entry.workflow_hash_builder_extra_args(
+            row,
+            command="dev",
+            changed=["src/main/java/Demo.java", "tools/verify.py"],
+        )
+        self.assertEqual(
+            [
+                "--path",
+                "src/main/java/Demo.java",
+                "--path",
+                "tools/verify.py",
+            ],
+            extra,
+        )
+        full = verify_entry.workflow_hash_builder_extra_args(
+            row,
+            command="dev",
+            changed=["tools/workflow_hash_policy.json"],
+        )
+        self.assertEqual([], full)
+        self.assertEqual(
+            [],
+            verify_entry.workflow_hash_builder_extra_args(
+                row,
+                command="release",
+                changed=["src/main/java/Demo.java"],
+            ),
+        )
+
+    def test_promotion_runs_player_complete_only_for_promoted_slugs(self) -> None:
+        receipt = {"profiles": [], "commands": [], "results": []}
+        calls: list[list[str]] = []
+
+        def record(name: str, command: list[str], _receipt: dict[str, object]) -> int:
+            calls.append(command)
+            return 0
+
+        with mock.patch.object(
+            verify_entry.capability_ledger,
+            "player_complete_promotions",
+            return_value=["logistics/fluid-network/basic-transfer"],
+        ), mock.patch.object(verify_entry, "run_command", side_effect=record):
+            code = verify_entry.cmd_promotion(
+                argparse.Namespace(base="origin/main"),
+                receipt,
+            )
+        self.assertEqual(0, code)
+        self.assertEqual(
+            ["logistics/fluid-network/basic-transfer"],
+            receipt["promotion"]["slugs"],
+        )
+        self.assertEqual(1, len(calls))
+        self.assertIn("tools/build_player_complete.py", calls[0])
+        self.assertIn("--run", calls[0])
+
+    def test_promotion_skips_when_maturity_did_not_change(self) -> None:
+        receipt = {"profiles": [], "commands": [], "results": []}
+        with mock.patch.object(
+            verify_entry.capability_ledger,
+            "player_complete_promotions",
+            return_value=[],
+        ), mock.patch.object(verify_entry, "run_command") as runner:
+            code = verify_entry.cmd_promotion(
+                argparse.Namespace(base="HEAD"),
+                receipt,
+            )
+        self.assertEqual(0, code)
+        runner.assert_not_called()
 
 
 if __name__ == "__main__":

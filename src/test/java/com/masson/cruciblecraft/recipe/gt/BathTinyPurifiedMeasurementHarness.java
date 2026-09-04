@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -72,6 +73,9 @@ class BathTinyPurifiedMeasurementHarness {
         registries = new RegistryAccess.ImmutableRegistryAccess(
                 BuiltInRegistries.REGISTRY.stream().toList());
         Path root = CompactGTRecipeFamilyGeneratedSupport.bathTinyPurifiedGeneratedRoot();
+        Assumptions.assumeTrue(
+                CompactGTRecipeFamilyGeneratedSupport.hasGeneratedFamiliesRecursive(root),
+                () -> "tiny-purified generated compact families are not available at " + root);
         sources = CompactGTRecipeFamilyGeneratedSupport.loadGeneratedSourcesRecursive(
                 root, registries);
         Set<ResourceLocation> eagerStableIds = new HashSet<>();

@@ -134,6 +134,16 @@ class PythonTestWorkflowTest(unittest.TestCase):
         self.assertEqual((), names)
         self.assertEqual(("unexpected/new_domain.json",), unmatched)
 
+    def test_runtime_java_path_is_owned_without_python_modules(self) -> None:
+        names, unmatched = workflow.affected_module_names(
+            self.policy,
+            [
+                "src/main/java/com/masson/cruciblecraft/content/block/HopperBlock.java",
+            ],
+        )
+        self.assertEqual((), unmatched)
+        self.assertEqual((), names)
+
     def test_markdown_path_selects_documentation_modules(self) -> None:
         names, unmatched = workflow.affected_module_names(
             self.policy,

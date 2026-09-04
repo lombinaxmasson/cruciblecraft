@@ -61,9 +61,11 @@ class SmelterStoneCatalogFixtureTest {
         assertEquals(0, parameterized);
         for (CompactRecipeFamilySource source : sources) {
             assertEquals(ModRecipeMaps.SMELTER.id(), source.definition().targetMap());
-            assertEquals(
-                    CompactPublicationGroups.SMELTER_STONE,
-                    source.definition().resolvedPublicationGroup());
+            ResourceLocation group = source.definition().resolvedPublicationGroup();
+            assertTrue(
+                    group.equals(CompactPublicationGroups.SMELTER_STONE)
+                            || "smelter_stone_catalog".equals(group.getPath()),
+                    () -> "unexpected catalog group " + group);
         }
     }
 

@@ -8,13 +8,17 @@ import com.google.gson.JsonObject;
 /**
  * Wave-local composed v2 slice. Historical bath-mte integrated load must keep the
  * assembler-through-bath-mte group set even after later cards append groups.
+ * Composed v2 uses T47/T48/T49 for remainder, identity, and tiny-purified.
  */
 public final class CompactRecipeRuntimeWaveSlice {
     private static final Set<String> AFTER_BATH_MTE = Set.of(
             "bath/remainder",
             "bath/identity",
             "bath/tiny-purified",
-            "bath/tiny_purified");
+            "bath/tiny_purified",
+            "T47",
+            "T48",
+            "T49");
 
     private CompactRecipeRuntimeWaveSlice() {}
 

@@ -65,12 +65,16 @@
 - 创造栏归属与 `en_us` / `zh_cn` 翻译
 - 同一次 `player-complete` 调用实际运行 GameTestServer 与 `runClient`；
   临时 receipt 位于 `build/verification/receipts/`，只供该次调用消费，不提交
+- `required_test_ids` 固定本能力必须出现的 GameTest 方法名；receipt 的测试 ID
+  集合必须与声明精确相等，删除或改名任一要求测试都会失败
 - 本能力声明不触及客户端时可由
   `player-complete` profile 豁免 GUI 项（流体/物品盖板触及客户端，不豁免）
 - 存档 / 重载
 - `player_signoff.json` 人工签收：命名、排序、玩家能否看懂
 
-只有这一档可写入路线图「已实现」。
+只有这一档可写入路线图「已实现」。PR CI 只在 `runtime_ready → player_complete`
+晋级时运行完整 player-complete；普通低风险改动不自动跑客户端。`release` 仍跑
+全部 release profiles。
 
 ### release checkpoint
 
@@ -102,6 +106,7 @@ known-issues 不得再充当「未关门但下一张卡照开」的垃圾桶。
 python tools/build_capability_ledger.py --check
 python tools/build_registry_identity.py --check
 python tools/verify.py integration --profile capability-runtime
+python tools/verify.py promotion
 python tools/build_player_complete.py --run --capability logistics/fluid-network/basic-transfer
 python tools/verify.py integration --profile player-complete
 ```
