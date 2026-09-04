@@ -15,9 +15,9 @@ if str(ROOT) not in sys.path:
 
 from tools import atomic_io
 from tools import capability_ledger
-from tools import t35_common as t35
+from tools import io_common as io
 
-MANIFEST = t35.TOOLS / "registry_identity_manifest.json"
+MANIFEST = io.TOOLS / "registry_identity_manifest.json"
 REGISTER_RE = re.compile(
     r'(?:ITEMS\.register(?:SimpleBlockItem)?|ITEMS\.register)\(\s*"([^"]+)"'
 )
@@ -95,8 +95,8 @@ def collect_covers(records: list[dict[str, str]]) -> None:
     for path in COVER_FILES:
         if not path.is_file():
             continue
-        document = t35.load_json(path)
-        rel = t35.relative(path)
+        document = io.load_json(path)
+        rel = io.relative(path)
         for row in document.get("definitions") or []:
             runtime = str(row["id"])
             path_part = runtime.split(":", 1)[-1]
@@ -113,8 +113,8 @@ def collect_covers(records: list[dict[str, str]]) -> None:
 def collect_identity_catalog(path: Path, prefix: str, records: list[dict[str, str]]) -> None:
     if not path.is_file():
         return
-    document = t35.load_json(path)
-    rel = t35.relative(path)
+    document = io.load_json(path)
+    rel = io.relative(path)
     for row in document.get("identities") or []:
         runtime = str(row.get("runtime_id") or "")
         registry_path = str(row.get("registry_path") or runtime.split(":", 1)[-1])
@@ -136,7 +136,7 @@ def collect_identity_catalog(path: Path, prefix: str, records: list[dict[str, st
 
 def collect_mod_items(records: list[dict[str, str]]) -> None:
     text = MOD_ITEMS.read_text(encoding="utf-8")
-    rel = t35.relative(MOD_ITEMS)
+    rel = io.relative(MOD_ITEMS)
     seen: set[str] = set()
     for match in REGISTER_RE.finditer(text):
         path_part = match.group(1)
@@ -279,7 +279,7 @@ def main(argv: list[str] | None = None) -> int:
             print("\n".join(manifest["errors"]), file=sys.stderr)
             return 1
         atomic_io.write_bytes(MANIFEST, encoded)
-        print(f"Wrote {t35.relative(MANIFEST)}")
+        print(f"Wrote {io.relative(MANIFEST)}")
         return 0
     if manifest["errors"]:
         print("\n".join(manifest["errors"]), file=sys.stderr)

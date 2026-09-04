@@ -1,0 +1,562 @@
+{
+  "candidate": {
+    "families": 22,
+    "family_ids": [
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0008",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0011",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0047",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0055",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0056",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0057",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0060",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0067",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0068",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0073",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0080",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0112",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0113",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0145",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0147",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0168",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0170",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0171",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0206",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0215",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0216",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0217"
+    ],
+    "multi_families": 3,
+    "multi_relations": 13,
+    "player_path": {
+      "inputs_reachable": 32,
+      "outputs_registered": 32,
+      "relations": 32
+    },
+    "publication_groups": [
+      "cruciblecraft:centrifuge/multi",
+      "cruciblecraft:centrifuge/singleton"
+    ],
+    "relations": 32,
+    "selection_sha256": "9aee1c503956a88778e1075e03d8c281d2cea450f12d74b9273b2bb4aefda6e3",
+    "singleton_families": 19,
+    "template_keys": [
+      "gt.recipe.centrifuge#0008",
+      "gt.recipe.centrifuge#0011",
+      "gt.recipe.centrifuge#0047",
+      "gt.recipe.centrifuge#0055",
+      "gt.recipe.centrifuge#0056",
+      "gt.recipe.centrifuge#0057",
+      "gt.recipe.centrifuge#0060",
+      "gt.recipe.centrifuge#0067",
+      "gt.recipe.centrifuge#0068",
+      "gt.recipe.centrifuge#0073",
+      "gt.recipe.centrifuge#0080",
+      "gt.recipe.centrifuge#0112",
+      "gt.recipe.centrifuge#0113",
+      "gt.recipe.centrifuge#0145",
+      "gt.recipe.centrifuge#0147",
+      "gt.recipe.centrifuge#0168",
+      "gt.recipe.centrifuge#0170",
+      "gt.recipe.centrifuge#0171",
+      "gt.recipe.centrifuge#0206",
+      "gt.recipe.centrifuge#0215",
+      "gt.recipe.centrifuge#0216",
+      "gt.recipe.centrifuge#0217"
+    ]
+  },
+  "family_atomic_trusted": {
+    "baseline": "t21_without_t39_or_support",
+    "families": 11,
+    "includes_t39_support": false,
+    "multi_families": 2,
+    "multi_relations": 8,
+    "relations": 17,
+    "singleton_families": 9,
+    "template_keys": [
+      "gt.recipe.centrifuge#0008",
+      "gt.recipe.centrifuge#0047",
+      "gt.recipe.centrifuge#0073",
+      "gt.recipe.centrifuge#0111",
+      "gt.recipe.centrifuge#0112",
+      "gt.recipe.centrifuge#0113",
+      "gt.recipe.centrifuge#0145",
+      "gt.recipe.centrifuge#0170",
+      "gt.recipe.centrifuge#0206",
+      "gt.recipe.centrifuge#0207",
+      "gt.recipe.centrifuge#0215"
+    ]
+  },
+  "gap_projection": {
+    "if_candidate_remaining": 5617,
+    "if_trusted_subset_candidate": 5628,
+    "opening": 5639,
+    "withdrawn_catalog_closing": 5482
+  },
+  "min_support_projection": {
+    "accepted_routes": 34,
+    "families": 22,
+    "if_candidate_remaining": 5617,
+    "multi_families": 3,
+    "multi_relations": 13,
+    "relations": 32,
+    "singleton_families": 19,
+    "status": "REVIEWED",
+    "template_keys": [
+      "gt.recipe.centrifuge#0008",
+      "gt.recipe.centrifuge#0011",
+      "gt.recipe.centrifuge#0047",
+      "gt.recipe.centrifuge#0055",
+      "gt.recipe.centrifuge#0056",
+      "gt.recipe.centrifuge#0057",
+      "gt.recipe.centrifuge#0060",
+      "gt.recipe.centrifuge#0067",
+      "gt.recipe.centrifuge#0068",
+      "gt.recipe.centrifuge#0073",
+      "gt.recipe.centrifuge#0080",
+      "gt.recipe.centrifuge#0112",
+      "gt.recipe.centrifuge#0113",
+      "gt.recipe.centrifuge#0145",
+      "gt.recipe.centrifuge#0147",
+      "gt.recipe.centrifuge#0168",
+      "gt.recipe.centrifuge#0170",
+      "gt.recipe.centrifuge#0171",
+      "gt.recipe.centrifuge#0206",
+      "gt.recipe.centrifuge#0215",
+      "gt.recipe.centrifuge#0216",
+      "gt.recipe.centrifuge#0217"
+    ]
+  },
+  "note": "157/250 remains the withdrawn load fixture. The reviewed family-atomic subset is only a candidate until tools/t39_production_lock.json freezes it. Gap stays 5639 until census closes locked identities.",
+  "player_path": {
+    "alias_fail_closed_relations": 48,
+    "inputs_reachable": 25,
+    "relations": 250,
+    "relations_with_unreachable_inputs": 225
+  },
+  "review": {
+    "rejected": [
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.block.sands",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0085"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.block.sands",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0086"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.block.sands",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0087"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.multiitem.food",
+          "unproven_lossy_alias:item_outputs:gregtech:gt.multiitem.food",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0088"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.multiitem.food",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0089"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.multiitem.food",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0090"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.multiitem.food",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0092"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.multiitem.food",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0093"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.multiitem.food",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0095"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.multiitem.food",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0097"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.multiitem.food",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0099"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.multiitem.food",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0100"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.multiitem.food",
+          "unproven_lossy_alias:item_outputs:gregtech:gt.multiitem.food",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0102"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.multiitem.food",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0105"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.multiitem.food",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0106"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.multiitem.food",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0109"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_outputs:gregtech:gt.multiitem.food"
+        ],
+        "closed_with_support": true,
+        "template_key": "gt.recipe.centrifuge#0111"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.broken.andesite",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0117"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.broken.basalt",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0118"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.broken.blackgranite",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0119"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.broken.blueschist",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0120"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.broken.diorite",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0121"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.broken.granite",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0122"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.broken.greenschist",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0123"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.broken.kimberlite",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0124"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.broken.komatiite",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0125"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.broken.limestone",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0126"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.broken.marble",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0127"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.broken.prismarine.dark",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0128"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.broken.prismarine.light",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0129"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.broken.quartzite",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0130"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.broken.redgranite",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0131"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.broken.shale",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0132"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.broken.slate",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0133"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.normal.default",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0134"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.normal.endstone",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0135"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.normal.gravel",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0136"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.normal.mud",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0137"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.normal.netherrack",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0138"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.normal.redsand",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0139"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.normal.sand",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0140"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.meta.ore.normal.sandstone",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0141"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.multitileentity",
+          "unproven_lossy_alias:item_outputs:gregtech:gt.meta.scrapGt",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0169"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.multitileentity",
+          "unproven_lossy_alias:item_outputs:gregtech:gt.meta.scrapGt",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0176"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.multitileentity",
+          "unproven_lossy_alias:item_outputs:gregtech:gt.meta.scrapGt",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0180"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.multitileentity",
+          "unproven_lossy_alias:item_outputs:gregtech:gt.meta.scrapGt",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0185"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.multitileentity",
+          "unproven_lossy_alias:item_outputs:gregtech:gt.meta.scrapGt",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0188"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.multitileentity",
+          "unproven_lossy_alias:item_outputs:gregtech:gt.meta.scrapGt",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0190"
+      },
+      {
+        "blockers": [
+          "unproven_lossy_alias:item_inputs:gregtech:gt.multitileentity",
+          "unproven_lossy_alias:item_outputs:gregtech:gt.meta.scrapGt",
+          "input_alias_fail_closed"
+        ],
+        "closed_with_support": false,
+        "template_key": "gt.recipe.centrifuge#0191"
+      },
+      {
+        "blockers": [
+          "pahoehoe_lava_collapse:ic2pahoehoelava"
+        ],
+        "closed_with_support": true,
+        "template_key": "gt.recipe.centrifuge#0207"
+      }
+    ],
+    "rejected_families": 50
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T39_PRODUCTION_CANDIDATE",
+  "t21_scan": {
+    "excludes_t39_generated_and_support": true,
+    "includes_t37_t38_compact": true,
+    "parses_compact_gt_recipe_family": true
+  },
+  "withdrawn_catalog": {
+    "family_count": 157,
+    "reason": "Bounded support cannot close the 157-family catalog after T21 compact baseline and unproven alias fail-close. Catalog stays as an isolated router/load fixture.",
+    "relations": 250,
+    "selection_sha256": "3e125fd647b88b0b93e2840f1cf0681c7196a5e91a8b16a321fa9e0b1b4f2c19"
+  }
+}

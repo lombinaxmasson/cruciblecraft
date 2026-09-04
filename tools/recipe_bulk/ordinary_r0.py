@@ -7,12 +7,12 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 
-from tools import t35_common as t35
+from tools import census_common as census
 
-T42_OWNER = t35.TOOLS / "t42_owner_disposition_lock.json"
-T43_LOCK = t35.TOOLS / "t43_production_lock.json"
-T45_LOCK = t35.TOOLS / "t45_production_lock.json"
-T35_FAMILIES = t35.TOOLS / "t35_recipe_families.json"
+T42_OWNER = census.TOOLS / "owner_runtime_disposition_lock.json"
+T43_LOCK = census.TOOLS / "smelter_stone_production_lock.json"
+T45_LOCK = census.TOOLS / "block_object_production_lock.json"
+T35_FAMILIES = census.TOOLS / "census_recipe_families.json"
 DEFERRED_RECYCLING = "later:recycling"
 REMAINDER_HOSTS = (
     "cruciblecraft:drying",
@@ -22,15 +22,15 @@ REMAINDER_HOSTS = (
     "cruciblecraft:compressor",
 )
 FOUNDATION_CLOSED_LOCKS = (
-    t35.TOOLS / "waves" / "smelter" / "ordinary-closure" / "production_lock.json",
-    t35.TOOLS / "waves" / "mixer" / "ordinary-closure" / "production_lock.json",
+    census.TOOLS / "waves" / "smelter" / "ordinary-closure" / "production_lock.json",
+    census.TOOLS / "waves" / "mixer" / "ordinary-closure" / "production_lock.json",
 )
 HOST_ORDINARY_LOCKS = FOUNDATION_CLOSED_LOCKS + (
-    t35.TOOLS / "waves" / "drying" / "ordinary-closure" / "production_lock.json",
-    t35.TOOLS / "waves" / "electrolyzer" / "ordinary-closure" / "production_lock.json",
-    t35.TOOLS / "waves" / "centrifuge" / "ordinary-closure" / "production_lock.json",
-    t35.TOOLS / "waves" / "autoclave" / "ordinary-closure" / "production_lock.json",
-    t35.TOOLS / "waves" / "compressor" / "ordinary-closure" / "production_lock.json",
+    census.TOOLS / "waves" / "drying" / "ordinary-closure" / "production_lock.json",
+    census.TOOLS / "waves" / "electrolyzer" / "ordinary-closure" / "production_lock.json",
+    census.TOOLS / "waves" / "centrifuge" / "ordinary-closure" / "production_lock.json",
+    census.TOOLS / "waves" / "autoclave" / "ordinary-closure" / "production_lock.json",
+    census.TOOLS / "waves" / "compressor" / "ordinary-closure" / "production_lock.json",
 )
 CLOSED_ORDINARY_LOCKS = HOST_ORDINARY_LOCKS
 CLOSED_EXECUTION_HOSTS = (
@@ -51,7 +51,7 @@ COHORT_GROUPS = {
 
 
 def _lock_family_ids(path: Path, host: str | None = None) -> set[str]:
-    document = t35.load_json(path)
+    document = census.load_json(path)
     ids: set[str] = set()
     host_token = f":{host.split(':', 1)[-1]}/" if host else None
     for row in (document.get("production") or {}).get("families") or []:
@@ -70,9 +70,9 @@ def _family_ids_from_lock(path: Path) -> set[str]:
     if not path.is_file():
         return set()
     seal = path.parent / "closeout_seal.json"
-    if not seal.is_file() or t35.load_json(seal).get("status") != "SEALED":
+    if not seal.is_file() or census.load_json(seal).get("status") != "SEALED":
         return set()
-    document = t35.load_json(path)
+    document = census.load_json(path)
     ids = {
         str(row["family_id"])
         for row in (document.get("production") or {}).get("families") or []
@@ -90,7 +90,7 @@ def closed_ordinary_family_ids(*, opening: bool = False) -> set[str]:
 
 
 def remaining_owner_rows(host: str) -> list[dict[str, Any]]:
-    owner = t35.load_json(T42_OWNER)
+    owner = census.load_json(T42_OWNER)
     locked = (
         _lock_family_ids(T43_LOCK, host)
         | _lock_family_ids(T45_LOCK, host)
@@ -121,7 +121,7 @@ def global_remainder_r0() -> dict[str, Any]:
     for host in REMAINDER_HOSTS:
         rows = [
             row
-            for row in t35.load_json(T42_OWNER).get("families") or []
+            for row in census.load_json(T42_OWNER).get("families") or []
             if str(row.get("host") or "") == host
             and str(row.get("future_owner") or "") != DEFERRED_RECYCLING
             and str(row.get("disposition") or "") != "phase_deferred"
@@ -168,7 +168,7 @@ def global_remainder_r0() -> dict[str, Any]:
         "hosts": hosts,
         "program_denominator": 334,
         "relation_total": relation_total,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "GLOBAL_R0_READY" if not errors else "GLOBAL_R0_DRIFT",
     }
 
@@ -229,7 +229,7 @@ def live_remainder_replay() -> dict[str, Any]:
         "family_total": family_total,
         "hosts": hosts,
         "relation_total": relation_total,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "LIVE_REMAINDER_ZERO" if not errors else "LIVE_REMAINDER_OPEN",
     }
 

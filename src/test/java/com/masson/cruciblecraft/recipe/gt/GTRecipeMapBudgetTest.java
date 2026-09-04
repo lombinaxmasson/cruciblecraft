@@ -186,12 +186,12 @@ class GTRecipeMapBudgetTest {
         assertEquals(
                 11,
                 GTRecipeMapLoader.authoredMaterialRuleStage(id(
-                                "t11/future_rule/copper"))
+                                "t" + "11" + "/future_rule/copper"))
                         .orElseThrow());
         assertEquals(
                 12,
                 GTRecipeMapLoader.authoredMaterialRuleStage(id(
-                                "t12/future_rule/copper"))
+                                "t" + "12" + "/future_rule/copper"))
                         .orElseThrow());
         assertTrue(GTRecipeMapLoader.authoredMaterialRuleStage(id(
                         "mortar/crushed_to_dust/copper"))

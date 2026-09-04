@@ -5,18 +5,26 @@ from __future__ import annotations
 import copy
 from typing import Any
 
-from tools import t35_common as t35
+import hashlib
+
+from tools import io_common as files
 from tools.recipe_bulk import identity as identity_v1
 from tools.recipe_bulk.membership import identity_semantic_root
 
 STATUS = "GLOBAL_BUILD_IDENTITY_LEDGER_V2"
-DELTA_ORDER = ("T46", "T47", "T48", "T49")
-V1_PATH = t35.TOOLS / "global_build_identity_ledger.json"
+DELTA_ORDER = ("bath/mte", "bath/remainder", "bath/identity", "bath/tiny-purified")
+V1_PATH = files.TOOLS / "global_build_identity_ledger.json"
 DELTA_PATHS = {
-    "T46": t35.TOOLS / "t46_identity_ledger_delta.json",
-    "T47": t35.TOOLS / "t47_identity_ledger_delta.json",
-    "T48": t35.TOOLS / "t48_identity_ledger_delta.json",
-    "T49": t35.TOOLS / "t49_identity_ledger_delta.json",
+    "bath/mte": files.TOOLS / "bath_mte_identity_ledger_delta.json",
+    "bath/remainder": files.TOOLS / "bath_remainder_identity_ledger_delta.json",
+    "bath/identity": files.TOOLS / "bath_identity_identity_ledger_delta.json",
+    "bath/tiny-purified": files.TOOLS / "bath_tiny_purified_identity_ledger_delta.json",
+}
+WAVE_ORDER = {
+    "bath/mte": 1,
+    "bath/remainder": 2,
+    "bath/identity": 3,
+    "bath/tiny-purified": 4,
 }
 
 
@@ -25,11 +33,11 @@ class IdentityV2ConflictError(ValueError):
 
 
 def _file_hash(path) -> str:
-    return t35.sha256_file(path) if path.is_file() else ""
+    return hashlib.sha256(path.read_bytes()).hexdigest() if path.is_file() else ""
 
 
 def v1_semantic_root(document: dict[str, Any] | None = None) -> str:
-    payload = document if document is not None else t35.load_json(V1_PATH)
+    payload = document if document is not None else files.load_json(V1_PATH)
     return identity_semantic_root(
         list(payload.get("records") or []) + list(payload.get("blockers") or [])
     )
@@ -77,20 +85,20 @@ def load_delta(wave_id: str) -> dict[str, Any]:
     if not path.is_file():
         return {
             "blockers": [],
-            "order": int(wave_id[1:]),
+            "order": WAVE_ORDER[wave_id],
             "records": [],
             "schema_version": 1,
-            "status": f"{wave_id}_IDENTITY_LEDGER_DELTA",
+            "status": f"{wave_id.replace('/', '_').upper()}_IDENTITY_LEDGER_DELTA",
             "wave_id": wave_id,
         }
-    document = t35.load_json(path)
+    document = files.load_json(path)
     if document.get("wave_id") != wave_id:
         raise IdentityV2ConflictError(f"{path} wave_id drifted")
     return document
 
 
 def compose(v1: dict[str, Any] | None = None) -> dict[str, Any]:
-    base = v1 if v1 is not None else t35.load_json(V1_PATH)
+    base = v1 if v1 is not None else files.load_json(V1_PATH)
     if base.get("status") != "GLOBAL_BUILD_IDENTITY_LEDGER_V1":
         raise IdentityV2ConflictError("v1 identity ledger status drifted")
     records = _index_rows(list(base.get("records") or []))
@@ -106,8 +114,8 @@ def compose(v1: dict[str, Any] | None = None) -> dict[str, Any]:
         consumed.append(
             {
                 "file_sha256": _file_hash(path),
-                "order": int(delta.get("order") or wave_id[1:]),
-                "path": t35.relative(path),
+                "order": int(delta.get("order") or WAVE_ORDER[wave_id]),
+                "path": files.relative(path),
                 "wave_id": wave_id,
             }
         )
@@ -141,7 +149,7 @@ def compose(v1: dict[str, Any] | None = None) -> dict[str, Any]:
         "status": STATUS,
         "v1_base": {
             "file_sha256": v1_hash,
-            "path": t35.relative(V1_PATH),
+            "path": files.relative(V1_PATH),
             "semantic_root_sha256": v1_semantic_root(base),
             "status": base.get("status"),
         },
@@ -154,7 +162,7 @@ def build() -> dict[str, Any]:
 
 def index_ledger(document: dict[str, Any] | None = None) -> dict[str, dict[str, dict[str, Any]]]:
     # Compile must see append-only deltas even before the composed v2 file is
-    # rewritten. The on-disk ledger stays T46-bound until T47 closeout writes it.
+    # rewritten. Frozen v2 on disk stays byte-identical.
     payload = document if document is not None else compose()
     return identity_v1.index_ledger(payload)
 

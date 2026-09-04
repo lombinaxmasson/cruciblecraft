@@ -367,7 +367,7 @@ class RoasterCompactMeasurementHarness {
         scenario.put("candidates", rows);
 
         Map<String, Object> input = new LinkedHashMap<>();
-        input.put("kind", "t38_73_relation_rows");
+        input.put("kind", "roaster_73_relation_rows");
         input.put("logical_rows", LOGICAL_ROWS);
         input.put("measured_logical_rows", List.of(LOGICAL_ROWS));
         input.put("generated_datapack_present", true);
@@ -390,10 +390,10 @@ class RoasterCompactMeasurementHarness {
 
         Map<String, Object> root = new LinkedHashMap<>();
         root.put("schema_version", 1);
-        root.put("status", "T38_MATERIALIZATION_MEASUREMENT_READY");
+        root.put("status", "ROASTER_COMPACT_MATERIALIZATION_MEASUREMENT_READY");
         root.put("production_winner_claimed", false);
         root.put("protocol", Map.of(
-                "id", "t38_materialization_73_row_v1",
+                "id", "roaster_materialization_73_row_v1",
                 "ranking_scale", "1x",
                 "diagnostic_scales_not_for_production", List.of("5x", "20x"),
                 "single_wall_clock_sample_forbidden", true,
@@ -401,7 +401,7 @@ class RoasterCompactMeasurementHarness {
                 "sample_count", SAMPLE_COUNT));
         root.put("input", input);
         Map<String, Object> assemblerOpening = new LinkedHashMap<>();
-        assemblerOpening.put("source", "tools/t37_census_delta.json#t14_load.closing");
+        assemblerOpening.put("source", "tools/assembler_compact_census_delta.json#recipe_load.closing");
         assemblerOpening.put("datapack_authored_entries", 3616);
         assemblerOpening.put("eager_publication_rows", 16611);
         assemblerOpening.put("lazy_logical_rows", 2261);
@@ -416,7 +416,7 @@ class RoasterCompactMeasurementHarness {
         assemblerOpening.put("lookup_p95_ns", 87368);
         assemblerOpening.put("lookup_candidate_count", 42);
         assemblerOpening.put("pending_runtime_axes", List.of());
-        root.put("t37_opening", assemblerOpening);
+        root.put("assembler_compact_opening", assemblerOpening);
         root.put("family_work_set", family);
         root.put("scenarios", List.of(scenario));
         root.put("diagnostic_scales", Map.of(

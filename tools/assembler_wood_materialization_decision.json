@@ -1,0 +1,306 @@
+{
+  "currentness": {
+    "builder_path": "tools/build_assembler_wood_recipe_load_benchmark.py",
+    "builder_sha256": "19b6cfd09007cfecb1669eefab9e61f075eaf829d65d17ddeefcfd7974d104fb",
+    "measurement_sha256": "fdc8eb7423659837d97eea058052a3644eee64592dd166be9053746b0efdb0de",
+    "policy_path": "tools/assembler_wood_materialization_policy.json",
+    "policy_sha256": "d251863653e6bd221443f1e013ff704996f0c83112fe17e62d54c46daa61b771",
+    "production_lock_sha256": "ddfe50fabb0944dc2001f5b09b205c1ee82a6f55d5493733878e21b52eed8349"
+  },
+  "decision": {
+    "algorithm": {
+      "card_aggregate_required": true,
+      "composite_score_forbidden": true,
+      "correctness_gates": [
+        "field_equivalence",
+        "full_enumeration",
+        "client_consistency",
+        "player_execution"
+      ],
+      "diagnostic_5x_20x_must_not_fill_1x": true,
+      "eager_margin": "If every survivor is inside the cumulative eager soft budget, treat eager_margin as tied and continue.",
+      "gate_order": [
+        "correctness",
+        "hard_ceiling",
+        "cumulative_soft_budget"
+      ],
+      "hard_ceiling_fail_eliminates": true,
+      "implementation_complexity_order": [
+        "immediate",
+        "on_demand",
+        "hybrid"
+      ],
+      "max_interval_soft_budget_does_not_eliminate": [
+        "lookup_candidate_count"
+      ],
+      "max_interval_soft_note": "T14 lookup_candidate_count is max_interval across groups. The Extruder-calibrated soft 64 is recorded as SOFT_BUDGET_EXCEEDED and must not copy assembler/compact/roaster/compact envelopes as a assembler/wood veto. Hard ceiling 128 is not raised.",
+      "pending_axis_zero_fill_forbidden": true,
+      "per_group_winners_required": true,
+      "production_candidate_must_sit_inside_cumulative_soft_budget": true,
+      "production_guard": "Emit production winners only when 1x=292 logical rows are actually measured per group and card aggregate, every ranking axis used is PASS (not PENDING), and winners are derived by tools/build_assembler_wood_recipe_load_benchmark.py.",
+      "ranking_logical_rows": 292,
+      "ranking_order_after_all_gates_pass": [
+        "eager_margin",
+        "retained_memory",
+        "reload_index",
+        "lookup",
+        "sync",
+        "implementation_complexity"
+      ],
+      "ranking_scale": "1x"
+    },
+    "card_aggregate_winner": "hybrid",
+    "composite_score_used": false,
+    "diagnostic_5x_20x_used_for_1x": false,
+    "group_winners": {
+      "fireproof": "hybrid",
+      "planks": "hybrid",
+      "planks2": "on_demand"
+    },
+    "production_blockers": [],
+    "ranking_logical_rows": 292,
+    "ranking_scale": "1x",
+    "scenarios": {
+      "card": {
+        "eliminated": {},
+        "logical_rows": 292,
+        "production_winner": "hybrid",
+        "ranking": [
+          {
+            "candidate": "hybrid",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 2,
+            "lookup_p95_ns": 84600,
+            "reload_index_p95_ns": {
+              "client_index": 216800,
+              "client_reload": 12129800,
+              "server_index": 218600,
+              "server_reload": 11919000
+            },
+            "retained_memory_bytes": 30076,
+            "sync_bytes": 30076
+          },
+          {
+            "candidate": "on_demand",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 1,
+            "lookup_p95_ns": 96412,
+            "reload_index_p95_ns": {
+              "client_index": 215800,
+              "client_reload": 26272900,
+              "server_index": 282900,
+              "server_reload": 31357700
+            },
+            "retained_memory_bytes": 30076,
+            "sync_bytes": 30076
+          },
+          {
+            "candidate": "immediate",
+            "eager_margin": "tied",
+            "eager_publication_rows": 292,
+            "implementation_complexity": 0,
+            "lookup_p95_ns": 420112,
+            "reload_index_p95_ns": {
+              "client_index": 1720200,
+              "client_reload": 30761000,
+              "server_index": 1406100,
+              "server_reload": 38427800
+            },
+            "retained_memory_bytes": 30076,
+            "sync_bytes": 30076
+          }
+        ],
+        "scenario_id": "card",
+        "soft_budget_warnings": {},
+        "survivors": [
+          "immediate",
+          "on_demand",
+          "hybrid"
+        ]
+      },
+      "fireproof": {
+        "eliminated": {},
+        "logical_rows": 144,
+        "production_winner": "hybrid",
+        "ranking": [
+          {
+            "candidate": "hybrid",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 2,
+            "lookup_p95_ns": 148506,
+            "reload_index_p95_ns": {
+              "client_index": 143500,
+              "client_reload": 5403400,
+              "server_index": 123000,
+              "server_reload": 5894400
+            },
+            "retained_memory_bytes": 14832,
+            "sync_bytes": 14832
+          },
+          {
+            "candidate": "on_demand",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 1,
+            "lookup_p95_ns": 93312,
+            "reload_index_p95_ns": {
+              "client_index": 122000,
+              "client_reload": 8036900,
+              "server_index": 89900,
+              "server_reload": 7672500
+            },
+            "retained_memory_bytes": 14832,
+            "sync_bytes": 14832
+          },
+          {
+            "candidate": "immediate",
+            "eager_margin": "tied",
+            "eager_publication_rows": 144,
+            "implementation_complexity": 0,
+            "lookup_p95_ns": 132768,
+            "reload_index_p95_ns": {
+              "client_index": 1590600,
+              "client_reload": 9053700,
+              "server_index": 1731800,
+              "server_reload": 10763700
+            },
+            "retained_memory_bytes": 14832,
+            "sync_bytes": 14832
+          }
+        ],
+        "scenario_id": "fireproof",
+        "soft_budget_warnings": {},
+        "survivors": [
+          "immediate",
+          "on_demand",
+          "hybrid"
+        ]
+      },
+      "planks": {
+        "eliminated": {},
+        "logical_rows": 85,
+        "production_winner": "hybrid",
+        "ranking": [
+          {
+            "candidate": "hybrid",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 2,
+            "lookup_p95_ns": 102712,
+            "reload_index_p95_ns": {
+              "client_index": 329100,
+              "client_reload": 5870500,
+              "server_index": 131900,
+              "server_reload": 5843700
+            },
+            "retained_memory_bytes": 8755,
+            "sync_bytes": 8755
+          },
+          {
+            "candidate": "on_demand",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 1,
+            "lookup_p95_ns": 165818,
+            "reload_index_p95_ns": {
+              "client_index": 227000,
+              "client_reload": 8449200,
+              "server_index": 127400,
+              "server_reload": 10401500
+            },
+            "retained_memory_bytes": 8755,
+            "sync_bytes": 8755
+          },
+          {
+            "candidate": "immediate",
+            "eager_margin": "tied",
+            "eager_publication_rows": 85,
+            "implementation_complexity": 0,
+            "lookup_p95_ns": 568400,
+            "reload_index_p95_ns": {
+              "client_index": 2551900,
+              "client_reload": 21537700,
+              "server_index": 5745300,
+              "server_reload": 16946900
+            },
+            "retained_memory_bytes": 8755,
+            "sync_bytes": 8755
+          }
+        ],
+        "scenario_id": "planks",
+        "soft_budget_warnings": {},
+        "survivors": [
+          "immediate",
+          "on_demand",
+          "hybrid"
+        ]
+      },
+      "planks2": {
+        "eliminated": {},
+        "logical_rows": 63,
+        "production_winner": "on_demand",
+        "ranking": [
+          {
+            "candidate": "on_demand",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 1,
+            "lookup_p95_ns": 86325,
+            "reload_index_p95_ns": {
+              "client_index": 42200,
+              "client_reload": 1766200,
+              "server_index": 41800,
+              "server_reload": 1830500
+            },
+            "retained_memory_bytes": 6489,
+            "sync_bytes": 6489
+          },
+          {
+            "candidate": "hybrid",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 2,
+            "lookup_p95_ns": 89068,
+            "reload_index_p95_ns": {
+              "client_index": 66900,
+              "client_reload": 2567300,
+              "server_index": 71000,
+              "server_reload": 1936500
+            },
+            "retained_memory_bytes": 6489,
+            "sync_bytes": 6489
+          },
+          {
+            "candidate": "immediate",
+            "eager_margin": "tied",
+            "eager_publication_rows": 63,
+            "implementation_complexity": 0,
+            "lookup_p95_ns": 102012,
+            "reload_index_p95_ns": {
+              "client_index": 471000,
+              "client_reload": 3727300,
+              "server_index": 531100,
+              "server_reload": 3553300
+            },
+            "retained_memory_bytes": 6489,
+            "sync_bytes": 6489
+          }
+        ],
+        "scenario_id": "planks2",
+        "soft_budget_warnings": {},
+        "survivors": [
+          "immediate",
+          "on_demand",
+          "hybrid"
+        ]
+      }
+    },
+    "status": "PRODUCTION_WINNER_READY"
+  },
+  "measurement_status": "ASSEMBLER_WOOD_MATERIALIZATION_MEASUREMENT_READY",
+  "schema_version": 1,
+  "status": "ASSEMBLER_WOOD_MATERIALIZATION_DECISION_READY"
+}

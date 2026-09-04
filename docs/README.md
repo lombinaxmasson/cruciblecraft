@@ -11,13 +11,14 @@
 - [开发与验证指南](current/verification.md)
 - [Ordinary recipe wave 与 Card / Group / Shard / Source Pack 规范](current/recipe-wave-workflow.md)
 - [当前已知问题](current/known-issues.md)
-- [语义命名长期清单](current/semantic-naming.md)（除 `card-plans/` 外清零里程碑卡号；未实施代码）
+- [语义命名长期清单](current/semantic-naming.md)（日常门是 `--quick`；计划文档豁免在 `card-plans/`）
+- [语义命名收口执行清单](current/semantic-naming-closeout-checklist.md)
 - [玩家指南](current/player-guide.md)
 - [决策记录](decisions/)
 
 ## 历史
 
-- [历史档案](history/INDEX.md)（工作日志、阶段档案、关闭计划）
+- [历史档案](history/INDEX.md)（关闭计划在 `card-plans/closed/`）
 - 当前无 unique active **card**。现行能力：`logistics/fluid-network/basic-transfer`。最近关闭的 runtime 卡：[物品网络核心](history/card-plans/closed/物品网络核心详细计划.md)（slug `runtime/item-network-core`；物品两行 `runtime_ready`）
 - 上一张关闭的注册卡：[工具头前缀折回](history/card-plans/closed/工具头前缀折回详细计划.md)（slug `registry/tool-head-prefix`）
 - 上一张关闭的 runtime 卡：[紧凑配方作者矩阵](history/card-plans/closed/紧凑配方作者矩阵详细计划.md)（slug `runtime/compact-recipe-authored-matrix`）

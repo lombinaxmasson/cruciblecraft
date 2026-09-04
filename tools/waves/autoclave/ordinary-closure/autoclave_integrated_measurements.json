@@ -1,24 +1,45 @@
 {
-  "schema_version": 1,
-  "status": "AUTOCLAVE_ORDINARY_CLOSEOUT_INTEGRATED_MEASUREMENT_READY",
-  "id": "integrated",
-  "scale": "1x",
-  "mix": "autoclave",
-  "group_count": 43,
-  "compact_group_count": 19,
-  "smelter_group_count": 6,
-  "mixer_group_count": 3,
-  "measured_from": "OrdinaryCloseoutIntegratedMeasurementHarness",
   "candidates": [
     {
+      "allocation": {
+        "p50_bytes": 1178102200,
+        "p95_bytes": 1178153848,
+        "window": "reload"
+      },
       "candidate": "immediate",
+      "dedicated_client": {
+        "index": {
+          "p50_ns": 49402400,
+          "p95_ns": 67103700
+        },
+        "reload": {
+          "p50_ns": 433169200,
+          "p95_ns": 538611200
+        }
+      },
       "eager_publication_rows": 74218,
-      "lazy_logical_rows": 0,
       "lazy_cache_ceiling_rows": 0,
+      "lazy_logical_rows": 0,
       "logical_rows": 74218,
-      "status": "PASS",
-      "sync": {
-        "bytes": 8734679
+      "lookup": {
+        "candidates_p95": 4737,
+        "p50_ns": 3649630,
+        "p95_ns": 4905395,
+        "window": "lookup"
+      },
+      "lookup_allocation": {
+        "operations": 20,
+        "p50_bytes": 5385533,
+        "p95_bytes": 5392419,
+        "window": "lookup"
+      },
+      "retained_memory": {
+        "histogram_total_bytes": 318996976,
+        "jcmd": "DiagnosticCommand.gcClassHistogram",
+        "method": "controlled_gc_histogram",
+        "p50_bytes": 27974512,
+        "recipe_class_bytes": 27974512,
+        "window": "retained_after_controlled_gc"
       },
       "server": {
         "index": {
@@ -30,51 +51,51 @@
           "p95_ns": 505703700
         }
       },
-      "dedicated_client": {
-        "index": {
-          "p50_ns": 49402400,
-          "p95_ns": 67103700
-        },
-        "reload": {
-          "p50_ns": 433169200,
-          "p95_ns": 538611200
-        }
-      },
-      "lookup": {
-        "candidates_p95": 4737,
-        "window": "lookup",
-        "p50_ns": 3649630,
-        "p95_ns": 4905395
-      },
-      "retained_memory": {
-        "p50_bytes": 27974512,
-        "method": "controlled_gc_histogram",
-        "window": "retained_after_controlled_gc",
-        "jcmd": "DiagnosticCommand.gcClassHistogram",
-        "histogram_total_bytes": 318996976,
-        "recipe_class_bytes": 27974512
-      },
-      "allocation": {
-        "p50_bytes": 1178102200,
-        "window": "reload",
-        "p95_bytes": 1178153848
-      },
-      "lookup_allocation": {
-        "operations": 20,
-        "window": "lookup",
-        "p95_bytes": 5392419,
-        "p50_bytes": 5385533
-      }
-    },
-    {
-      "candidate": "on_demand",
-      "eager_publication_rows": 0,
-      "lazy_logical_rows": 74218,
-      "lazy_cache_ceiling_rows": 1384,
-      "logical_rows": 74218,
       "status": "PASS",
       "sync": {
         "bytes": 8734679
+      }
+    },
+    {
+      "allocation": {
+        "p50_bytes": 1046933336,
+        "p95_bytes": 1046934248,
+        "window": "reload"
+      },
+      "candidate": "on_demand",
+      "dedicated_client": {
+        "index": {
+          "p50_ns": 4701300,
+          "p95_ns": 8627600
+        },
+        "reload": {
+          "p50_ns": 423400300,
+          "p95_ns": 523184600
+        }
+      },
+      "eager_publication_rows": 0,
+      "lazy_cache_ceiling_rows": 1384,
+      "lazy_logical_rows": 74218,
+      "logical_rows": 74218,
+      "lookup": {
+        "candidates_p95": 5,
+        "p50_ns": 148620,
+        "p95_ns": 199705,
+        "window": "lookup"
+      },
+      "lookup_allocation": {
+        "operations": 20,
+        "p50_bytes": 224649,
+        "p95_bytes": 230566,
+        "window": "lookup"
+      },
+      "retained_memory": {
+        "histogram_total_bytes": 267397016,
+        "jcmd": "DiagnosticCommand.gcClassHistogram",
+        "method": "controlled_gc_histogram",
+        "p50_bytes": 13763832,
+        "recipe_class_bytes": 13763832,
+        "window": "retained_after_controlled_gc"
       },
       "server": {
         "index": {
@@ -86,51 +107,51 @@
           "p95_ns": 614859800
         }
       },
-      "dedicated_client": {
-        "index": {
-          "p50_ns": 4701300,
-          "p95_ns": 8627600
-        },
-        "reload": {
-          "p50_ns": 423400300,
-          "p95_ns": 523184600
-        }
-      },
-      "lookup": {
-        "candidates_p95": 5,
-        "window": "lookup",
-        "p50_ns": 148620,
-        "p95_ns": 199705
-      },
-      "retained_memory": {
-        "p50_bytes": 13763832,
-        "method": "controlled_gc_histogram",
-        "window": "retained_after_controlled_gc",
-        "jcmd": "DiagnosticCommand.gcClassHistogram",
-        "histogram_total_bytes": 267397016,
-        "recipe_class_bytes": 13763832
-      },
-      "allocation": {
-        "p50_bytes": 1046933336,
-        "window": "reload",
-        "p95_bytes": 1046934248
-      },
-      "lookup_allocation": {
-        "operations": 20,
-        "window": "lookup",
-        "p95_bytes": 230566,
-        "p50_bytes": 224649
-      }
-    },
-    {
-      "candidate": "hybrid",
-      "eager_publication_rows": 20647,
-      "lazy_logical_rows": 53571,
-      "lazy_cache_ceiling_rows": 1384,
-      "logical_rows": 74218,
       "status": "PASS",
       "sync": {
         "bytes": 8734679
+      }
+    },
+    {
+      "allocation": {
+        "p50_bytes": 1084449448,
+        "p95_bytes": 1084449472,
+        "window": "reload"
+      },
+      "candidate": "hybrid",
+      "dedicated_client": {
+        "index": {
+          "p50_ns": 17469200,
+          "p95_ns": 24466200
+        },
+        "reload": {
+          "p50_ns": 433370800,
+          "p95_ns": 707239300
+        }
+      },
+      "eager_publication_rows": 20647,
+      "lazy_cache_ceiling_rows": 1384,
+      "lazy_logical_rows": 53571,
+      "logical_rows": 74218,
+      "lookup": {
+        "candidates_p95": 2270,
+        "p50_ns": 65945,
+        "p95_ns": 144720,
+        "window": "lookup"
+      },
+      "lookup_allocation": {
+        "operations": 20,
+        "p50_bytes": 213260,
+        "p95_bytes": 315951,
+        "window": "lookup"
+      },
+      "retained_memory": {
+        "histogram_total_bytes": 279523264,
+        "jcmd": "DiagnosticCommand.gcClassHistogram",
+        "method": "controlled_gc_histogram",
+        "p50_bytes": 17728160,
+        "recipe_class_bytes": 17728160,
+        "window": "retained_after_controlled_gc"
       },
       "server": {
         "index": {
@@ -142,45 +163,24 @@
           "p95_ns": 629992100
         }
       },
-      "dedicated_client": {
-        "index": {
-          "p50_ns": 17469200,
-          "p95_ns": 24466200
-        },
-        "reload": {
-          "p50_ns": 433370800,
-          "p95_ns": 707239300
-        }
-      },
-      "lookup": {
-        "candidates_p95": 2270,
-        "window": "lookup",
-        "p50_ns": 65945,
-        "p95_ns": 144720
-      },
-      "retained_memory": {
-        "p50_bytes": 17728160,
-        "method": "controlled_gc_histogram",
-        "window": "retained_after_controlled_gc",
-        "jcmd": "DiagnosticCommand.gcClassHistogram",
-        "histogram_total_bytes": 279523264,
-        "recipe_class_bytes": 17728160
-      },
-      "allocation": {
-        "p50_bytes": 1084449448,
-        "window": "reload",
-        "p95_bytes": 1084449472
-      },
-      "lookup_allocation": {
-        "operations": 20,
-        "window": "lookup",
-        "p95_bytes": 315951,
-        "p50_bytes": 213260
+      "status": "PASS",
+      "sync": {
+        "bytes": 8734679
       }
     }
   ],
+  "compact_group_count": 19,
+  "group_count": 43,
+  "id": "integrated",
+  "measured_from": "OrdinaryCloseoutIntegratedMeasurementHarness",
+  "mix": "autoclave",
+  "mixer_group_count": 3,
+  "note": "Measured historical compact plus ordinary-closure groups. lookup_allocation is a stable-epoch lookup-only ThreadMXBean window. retained_memory is controlled-GC class histogram, not syncPayloadBytes. Closing census uses this snapshot, not opening+delta arithmetic.",
+  "scale": "1x",
+  "schema_version": 1,
+  "smelter_group_count": 6,
+  "status": "AUTOCLAVE_ORDINARY_CLOSEOUT_INTEGRATED_MEASUREMENT_READY",
   "unverified_scale": [
     "UNVERIFIED_SCALE:lookup_candidates_p95:2270>128"
-  ],
-  "note": "Measured historical compact plus ordinary-closure groups. lookup_allocation is a stable-epoch lookup-only ThreadMXBean window. retained_memory is controlled-GC class histogram, not syncPayloadBytes. Closing census uses this snapshot, not opening+delta arithmetic."
+  ]
 }

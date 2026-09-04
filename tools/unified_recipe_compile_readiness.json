@@ -3,6 +3,7 @@
   "gates": {
     "baseline_schema": true,
     "byte_stable_id_parity": true,
+    "compact_wave_ledger_coverage": true,
     "dual_rebuild_identical": true,
     "identity_schema": true,
     "no_legacy_emit_delegate": true,
@@ -10,13 +11,12 @@
     "phase1_shadow_ready": true,
     "phase2_cutover_ready": true,
     "relation_cardinality_order": true,
-    "seven_wave_ledger_coverage": true,
     "unique_write_authority": true,
     "zero_production_blocker_overlap": true
   },
   "generated_by": "python tools/build_recipe_compile_cutover_readiness.py",
-  "identity_semantic_root_sha256": "ee0f1b3a6801bc683307963b6eaf3869592222f21ebc7ab54cb1839108570f26",
-  "note": "UNIFIED_RECIPE_COMPILE_READY closes the Phase-3 compile-authority cutover. recipe_bulk is the sole production family emitter. Family JSON bytes stay frozen. T46 is not issued and owns_families remains 0.",
+  "identity_semantic_root_sha256": "981c346b86c9b87f609ed19e66e828e3a8aaaa55a378f1c4aa9b243f66d4b15a",
+  "note": "UNIFIED_RECIPE_COMPILE_READY closes the Phase-3 compile-authority cutover. recipe_bulk is the sole production family emitter. Family JSON bytes stay frozen. bath/mte remains an explicitly scoped forward wave and owns_families remains 0.",
   "owns_families": 0,
   "rebuilds_identical": true,
   "schema_version": 1,
@@ -27,85 +27,85 @@
       "blocker_overlap": 0,
       "compile_authority": "recipe_bulk",
       "family_count": 50,
-      "generated_root": "src/t37_recipe_generated/resources/data/cruciblecraft/recipe/t37/assembler",
-      "generated_tree_sha256": "2a5b246169f3560ccac08166774dc7f24ef5bb26059e85fa90c70021a290ffa6",
+      "generated_root": "src/recipe_generated/resources/data/cruciblecraft/recipe/assembler/compact",
+      "generated_tree_sha256": "fe1372a079bfa57808bacb6b68523c9467aac7f854e043bcc7043da208eb7b74",
       "ledger_proven_operands": 150,
       "lock_sha256": null,
       "relation_count": 50,
-      "source_sha256": "03eea97f21acfd8e71bfaec6b6e873a50c4083577d4419933f4a5514f34ecf70",
-      "wave_id": "T37"
+      "source_sha256": "a487321d2c3a883d95249e9587192322ad5103c15855017e370de3a5f4fc0184",
+      "wave_id": "assembler/compact"
     },
     {
       "blocker_overlap": 0,
       "compile_authority": "recipe_bulk",
       "family_count": 29,
-      "generated_root": "src/t38_recipe_generated/resources/data/cruciblecraft/recipe/t38/roaster",
-      "generated_tree_sha256": "0744417f3dbd5fc19ee59092eba61c46b6961b34d5964874fdd91527daafee57",
+      "generated_root": "src/recipe_generated/resources/data/cruciblecraft/recipe/roaster/compact",
+      "generated_tree_sha256": "835a1a0f477cf15b3902b9e28025fa4c7f8e3994f70da1bbb237c9fe7398f4d0",
       "ledger_proven_operands": 271,
       "lock_sha256": null,
       "relation_count": 73,
-      "source_sha256": "fd0ee3a4471ff5e4a7001bc7bfbfc1c0f0c33183a31739e9c6c09456d1ec9a50",
-      "wave_id": "T38"
+      "source_sha256": "6939d11266642cfe00e6f946a7265b669c1cfb75c1dd34a258447b14e3f349f7",
+      "wave_id": "roaster/compact"
     },
     {
       "blocker_overlap": 0,
       "compile_authority": "recipe_bulk",
       "family_count": 22,
-      "generated_root": "src/t39_recipe_generated/resources/data/cruciblecraft/recipe/t39/centrifuge",
-      "generated_tree_sha256": "4b87d90c36bb3e9669bb82c8dd27cec71eb0d4f6c3e181a132183a7f69558283",
+      "generated_root": "src/recipe_generated/resources/data/cruciblecraft/recipe/centrifuge/compact",
+      "generated_tree_sha256": "1c680dc838d86b6fdb71b9658de96864685014f537a7208a77b8f73662d74522",
       "ledger_proven_operands": 109,
-      "lock_sha256": "b9034b2950a41b8905ef6668de793d04136432070cd238e577754148d7aa8600",
+      "lock_sha256": "efcbd5519c91052422de36049ccc1daf3968433192a98aa2a92cb64afa971501",
       "relation_count": 32,
-      "source_sha256": "e69256be5bbbf8b719ac4f2cf80b8d46ee541964e2027d22c024672c4443b84d",
-      "wave_id": "T39"
+      "source_sha256": "95e2dedcc9a773bb5f08dc2589d69a03f3aedebac27ac0f9b3822b73954f54c4",
+      "wave_id": "centrifuge/compact"
     },
     {
       "blocker_overlap": 0,
       "compile_authority": "recipe_bulk",
       "family_count": 13,
-      "generated_root": "src/t40_recipe_generated/resources/data/cruciblecraft/recipe/t40/electrolyzer",
-      "generated_tree_sha256": "3baf81ecfd05fe2984e153e6fcd8e62fd1134c91530a38e0b2ff47886f9c6d44",
+      "generated_root": "src/recipe_generated/resources/data/cruciblecraft/recipe/electrolyzer/compact",
+      "generated_tree_sha256": "deb04174ef02b4dd31a80e86b6506ff0c549d5667d44324cb584f36b5d355f8c",
       "ledger_proven_operands": 119,
-      "lock_sha256": "26cca29698c34039cc8aa19ff8e584a0ec7a521165ec39e8dcece03cf75488e5",
+      "lock_sha256": "6ff09ce0e808561974b597f00ab2d4cea72d2b171a865cca4f9f887f1b72852b",
       "relation_count": 22,
-      "source_sha256": "a2bb73aa5d61fed528cb0efbf4b1dcc5e0ce086a9aa410324b5465734bc60e41",
-      "wave_id": "T40"
+      "source_sha256": "23d5fef89ae8eb49199202950fd355c47968dee0cd45002d4c828cd01d84da63",
+      "wave_id": "electrolyzer/compact"
     },
     {
       "blocker_overlap": 0,
       "compile_authority": "recipe_bulk",
       "family_count": 292,
-      "generated_root": "src/t41_recipe_generated/resources/data/cruciblecraft/recipe/t41/assembler",
-      "generated_tree_sha256": "f62f575c7b90c926f270da8211fdcaee98c3f017c723619ec40e1acdaab232ae",
+      "generated_root": "src/recipe_generated/resources/data/cruciblecraft/recipe/assembler/wood",
+      "generated_tree_sha256": "6fed604ced27a8156940f24fe4511222eb04b98bd23c1ab26d553313b9e37525",
       "ledger_proven_operands": 876,
-      "lock_sha256": "ddfe50fabb0944dc2001f5b09b205c1ee82a6f55d5493733878e21b52eed8349",
+      "lock_sha256": "1db248c8f488dda80b83709d274f31081bcea8190d2769b28eb9bbb0f466265b",
       "relation_count": 292,
-      "source_sha256": "b60eb7ad8d553518f3a07a84dc365e13a76b6ed828568d2bd2db901de0608a56",
-      "wave_id": "T41"
+      "source_sha256": "a4408b59ba352319eb0eb0d593833ed74eeeaeb4a5f71169c4bd336abf153320",
+      "wave_id": "assembler/wood"
     },
     {
       "blocker_overlap": 0,
       "compile_authority": "recipe_bulk",
       "family_count": 407,
-      "generated_root": "src/t43_recipe_generated/resources/data/cruciblecraft/recipe/t43/smelter",
-      "generated_tree_sha256": "e93c972b71374b031913bd3336723a26be1f6f7f574afd2621f68b4e90133385",
+      "generated_root": "src/recipe_generated/resources/data/cruciblecraft/recipe/smelter/stone",
+      "generated_tree_sha256": "da0b49f1678389645d4252de9210ebc96a237a894954855bc15a32bf6bd521ea",
       "ledger_proven_operands": 814,
-      "lock_sha256": "c6a63280ee036a9cad53fbbddc721480f2479d51598ef99e18d57495b48da484",
+      "lock_sha256": "1efe8b1a09da51c3134f8ec1784e943b6cd67acd842697b0d639a0712ff2c40b",
       "relation_count": 407,
-      "source_sha256": "4406e7a6d9a643c8c1921f2a54c364dcc226ed12f4f1ae3b2d56a347ac2a99b6",
-      "wave_id": "T43"
+      "source_sha256": "ea12aff697ad30bb9b5661bbff1113d6fceca2575f4146aaecbe7f4d622f41ec",
+      "wave_id": "smelter/stone"
     },
     {
       "blocker_overlap": 0,
       "compile_authority": "recipe_bulk",
       "family_count": 379,
-      "generated_root": "src/t45_recipe_generated/resources/data/cruciblecraft/recipe/t45",
-      "generated_tree_sha256": "393df791bdf1404ef4ed0413798fc24b4da048987da67a1ed59cc6917ec26ab7",
+      "generated_root": "src/recipe_generated/resources/data/cruciblecraft/recipe",
+      "generated_tree_sha256": "85ab2a88ec75d10f6cbf097e70ed725e737b6f35a476cd60a7c027f98dd930c8",
       "ledger_proven_operands": 850,
-      "lock_sha256": "c64576f8f14cf19d6a6f62dfc3995355318ecd34fb0537ab406fab741b99aaba",
+      "lock_sha256": "f0dc7329c5e2864b560a5826832d88d9c5dc2e9737ac5676892b1afb9094c49a",
       "relation_count": 379,
-      "source_sha256": "b3ef945fbec48a1ee79a6b0e271d35f792b14bea160f0f539c0ea0e644b714c3",
-      "wave_id": "T45"
+      "source_sha256": "48d8a3ebc0cc6587205a9ee7b30d209d1c96e9fada206e5173097c4c8d8ae967",
+      "wave_id": "block/object"
     }
   ]
 }

@@ -7,8 +7,8 @@ from typing import Any
 
 from tools import closeout_seal
 from tools import currentness
-from tools import t35_common as t35
-from tools import t36_common as t36
+from tools import census_common as census
+from tools import repair_common as repair
 from tools.recipe_bulk.slugs import KNOWN_SEMANTIC_SLUGS
 from tools.wave_closeout import known_slugs
 from tools.wave_closeout import spec_for
@@ -17,7 +17,7 @@ from tools.wave_closeout import wave_dir
 PROGRAM = "portfolio/one-x-joint-exit"
 NEXT_MAJOR = "portfolio/source-capability-map"
 RECYCLING = "recycling/deferred-ordinary-runtime"
-SOURCE_REVISION = t35.SOURCE_REVISION
+SOURCE_REVISION = census.SOURCE_REVISION
 HANGING_LATER = (
     "later:recycling",
     "later:cross_mod",
@@ -115,13 +115,13 @@ BUDGET_REFERENCES = (
         "role": "unit test pins the constant; overage must not throw",
     },
 )
-T44_SIDECARS = (
-    t35.TOOLS / "t44_readiness.json",
-    t35.TOOLS / "t44_storage_production_lock.json",
-    t35.TOOLS / "t44_storage_census_delta.json",
+STORAGE_LOCK_SIDECARS = (
+    census.TOOLS / "storage_readiness.json",
+    census.TOOLS / "storage_production_lock.json",
+    census.TOOLS / "storage_census_delta.json",
 )
 STORAGE_VARIANTS = (
-    t35.ROOT
+    census.ROOT
     / "src"
     / "main"
     / "resources"
@@ -130,65 +130,65 @@ STORAGE_VARIANTS = (
     / "storage_variants.json"
 )
 DEFERRED_MEASUREMENT = (
-    t35.TOOLS
+    census.TOOLS
     / "waves"
     / "smelter"
     / "deferred-recycling"
     / "smelter_deferred_recycling_integrated_measurements.json"
 )
 DEFERRED_LOAD_PROJECTION = (
-    t35.TOOLS / "waves" / "smelter" / "deferred-recycling" / "load_projection.json"
+    census.TOOLS / "waves" / "smelter" / "deferred-recycling" / "load_projection.json"
 )
 SMELTER_CLOSEOUT_MEASUREMENT = (
-    t35.TOOLS
+    census.TOOLS
     / "waves"
     / "ordinary-wave"
     / "closeout-integrity-repair"
     / "smelter_integrated_measurements.json"
 )
 MIXER_CLOSEOUT_MEASUREMENT = (
-    t35.TOOLS
+    census.TOOLS
     / "waves"
     / "ordinary-wave"
     / "closeout-integrity-repair"
     / "mixer_integrated_measurements.json"
 )
 IDENTITY_DELTAS = (
-    t35.TOOLS / "t37_census_delta.json",
-    t35.TOOLS / "t38_census_delta.json",
-    t35.TOOLS / "t43_census_delta.json",
+    census.TOOLS / "assembler_compact_census_delta.json",
+    census.TOOLS / "roaster_census_delta.json",
+    census.TOOLS / "smelter_stone_census_delta.json",
 )
 PRODUCTION_LOCKS = (
-    (t35.TOOLS / "t39_production_lock.json", "t39", "portfolio:track_a/t39_centrifuge"),
-    (t35.TOOLS / "t40_production_lock.json", "t40", "portfolio:track_a/t40_electrolyzer"),
-    (t35.TOOLS / "t41_production_lock.json", "t41", "portfolio:track_a/t41_assembler"),
-    (t35.TOOLS / "t43_production_lock.json", "t43", "portfolio:track_a/t43_smelter_stone"),
-    (t35.TOOLS / "t45_production_lock.json", "t45", "portfolio:track_a/t45_block_object"),
-    (t35.TOOLS / "t46_production_lock.json", "t46", "portfolio:track_a/t46"),
-    (t35.TOOLS / "t47_production_lock.json", "t47", "portfolio:track_a/t47"),
-    (t35.TOOLS / "t48_production_lock.json", "t48", "portfolio:track_a/t48"),
+    (census.TOOLS / "centrifuge_production_lock.json", "centrifuge/compact", "portfolio:track_a/centrifuge_centrifuge"),
+    (census.TOOLS / "electrolyzer_production_lock.json", "electrolyzer/compact", "portfolio:track_a/electrolyzer_electrolyzer"),
+    (census.TOOLS / "assembler_wood_production_lock.json", "assembler/wood", "portfolio:track_a/assembler_wood_assembler"),
+    (census.TOOLS / "smelter_stone_production_lock.json", "smelter/stone", "portfolio:track_a/smelter_stone_smelter_stone"),
+    (census.TOOLS / "block_object_production_lock.json", "block/object", "portfolio:track_a/block_object_block_object"),
+    (census.TOOLS / "bath_mte_production_lock.json", "bath/mte", "portfolio:track_a/bath/mte"),
+    (census.TOOLS / "bath_remainder_production_lock.json", "bath/remainder", "portfolio:track_a/bath/remainder"),
+    (census.TOOLS / "bath_identity_production_lock.json", "bath/identity", "portfolio:track_a/bath/identity"),
     (
-        t35.TOOLS / "waves" / "bath" / "tiny-purified" / "t49_production_lock.json",
+        census.TOOLS / "waves" / "bath" / "tiny-purified" / "bath_tiny_purified_production_lock.json",
         "bath/tiny-purified",
-        "portfolio:track_a/t49",
+        "portfolio:track_a/bath/tiny-purified",
     ),
     (
-        t35.TOOLS / "waves" / "smelter" / "ordinary-closure" / "production_lock.json",
+        census.TOOLS / "waves" / "smelter" / "ordinary-closure" / "production_lock.json",
         "smelter/ordinary-closure",
         "smelter/ordinary-closure",
     ),
     (
-        t35.TOOLS / "waves" / "mixer" / "ordinary-closure" / "production_lock.json",
+        census.TOOLS / "waves" / "mixer" / "ordinary-closure" / "production_lock.json",
         "mixer/ordinary-closure",
         "mixer/ordinary-closure",
     ),
     (
-        t35.TOOLS / "waves" / "drying" / "ordinary-closure" / "production_lock.json",
+        census.TOOLS / "waves" / "drying" / "ordinary-closure" / "production_lock.json",
         "drying/ordinary-closure",
         "drying/ordinary-closure",
     ),
     (
-        t35.TOOLS
+        census.TOOLS
         / "waves"
         / "electrolyzer"
         / "ordinary-closure"
@@ -197,22 +197,22 @@ PRODUCTION_LOCKS = (
         "electrolyzer/ordinary-closure",
     ),
     (
-        t35.TOOLS / "waves" / "centrifuge" / "ordinary-closure" / "production_lock.json",
+        census.TOOLS / "waves" / "centrifuge" / "ordinary-closure" / "production_lock.json",
         "centrifuge/ordinary-closure",
         "centrifuge/ordinary-closure",
     ),
     (
-        t35.TOOLS / "waves" / "autoclave" / "ordinary-closure" / "production_lock.json",
+        census.TOOLS / "waves" / "autoclave" / "ordinary-closure" / "production_lock.json",
         "autoclave/ordinary-closure",
         "autoclave/ordinary-closure",
     ),
     (
-        t35.TOOLS / "waves" / "compressor" / "ordinary-closure" / "production_lock.json",
+        census.TOOLS / "waves" / "compressor" / "ordinary-closure" / "production_lock.json",
         "compressor/ordinary-closure",
         "compressor/ordinary-closure",
     ),
     (
-        t35.TOOLS / "waves" / "smelter" / "deferred-recycling" / "production_lock.json",
+        census.TOOLS / "waves" / "smelter" / "deferred-recycling" / "production_lock.json",
         "smelter/deferred-recycling",
         "smelter/deferred-recycling",
     ),
@@ -238,7 +238,7 @@ def generated_by(slug: str) -> str:
 
 
 def nuclear_started() -> bool:
-    contract = t35.load_json(t35.TOOLS / "phase5_portfolio_contract.json")
+    contract = census.load_json(census.TOOLS / "phase5_portfolio_contract.json")
     tracks = (contract.get("tracks") or {}).get("C") or {}
     return bool(tracks.get("started"))
 
@@ -317,7 +317,7 @@ def capability_map_seed_rows() -> list[dict[str, str]]:
         _seed_row(
             "tileentity",
             "Storage MTE 28 source sites",
-            "storage_variants.json + T44 624+1 lock",
+            "storage_variants.json + storage/lock 624+1 lock",
             "selected_subset",
             "none",
             "in_1x_selected",
@@ -487,7 +487,7 @@ def capability_map_seed(slug: str) -> dict[str, Any]:
 def post_1x_scope_rows() -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     for slug in POST_1X_SCOPE_SLUGS:
-        document = t35.load_json(t35.TOOLS / "waves" / slug / "scope_dispositions.json")
+        document = census.load_json(census.TOOLS / "waves" / slug / "scope_dispositions.json")
         for row in document.get("dispositions") or []:
             copied = dict(row)
             copied["scope_wave"] = slug
@@ -538,13 +538,13 @@ def replay_post_1x_scope() -> dict[str, Any]:
 
 
 def storage_currentness() -> dict[str, Any]:
-    readiness = t35.load_json(t35.TOOLS / "t44_readiness.json")
-    lock = t35.load_json(t35.TOOLS / "t44_storage_production_lock.json")
-    catalog = t35.load_json(STORAGE_VARIANTS)
+    readiness = census.load_json(census.TOOLS / "storage_readiness.json")
+    lock = census.load_json(census.TOOLS / "storage_production_lock.json")
+    catalog = census.load_json(STORAGE_VARIANTS)
     sidecar_errors: list[str] = []
-    for path in T44_SIDECARS:
+    for path in STORAGE_LOCK_SIDECARS:
         sidecar_errors.extend(currentness.check_sidecar(path))
-    seal_errors = closeout_seal.check_closed_card("T44")
+    seal_errors = closeout_seal.check_closed_card("storage/lock")
     lock_ids = {
         str(row.get("runtime_id"))
         for row in lock.get("mappings") or []
@@ -563,7 +563,7 @@ def storage_currentness() -> dict[str, Any]:
         and len(catalog_ids) == 625
         and int(readiness.get("storage_complete_registrations") or 0) == 624
         and int(readiness.get("logistics_complete_registrations") or 0) == 1
-        and str(readiness.get("status") or "") == "T44_STORAGE_READY"
+        and str(readiness.get("status") or "") == "STORAGE_LOCK_STORAGE_READY"
     )
     lock_ok = lock_ids == catalog_ids and len(lock_ids) == 625
     sidecar_ok = not sidecar_errors
@@ -584,8 +584,8 @@ def storage_currentness() -> dict[str, Any]:
 
 
 def energy_projection() -> dict[str, Any]:
-    catalog = t35.load_json(t35.MACHINE_TIERS)
-    frozen_rows = t35.load_json(t35.MACHINE_TRACK).get("variants") or []
+    catalog = census.load_json(census.MACHINE_TIERS)
+    frozen_rows = census.load_json(census.MACHINE_TRACK).get("variants") or []
     frozen = {
         str(row["id"]): row
         for row in frozen_rows
@@ -596,7 +596,7 @@ def energy_projection() -> dict[str, Any]:
         for row in catalog.get("variants") or []
         if isinstance(row, dict) and row.get("id")
     }
-    opening = t36.opening_variants(catalog)
+    opening = repair.opening_variants(catalog)
     policy = catalog.get("namingPolicy") or {}
     source_rows = (catalog.get("source") or {}).get("variant_rows") or {}
     errors: list[str] = []
@@ -640,8 +640,8 @@ def energy_projection() -> dict[str, Any]:
 def load_interpretation_evidence() -> dict[str, Any]:
     if not DEFERRED_LOAD_PROJECTION.is_file() or not DEFERRED_MEASUREMENT.is_file():
         raise ValueError("deferred recycling integrated measurement is missing")
-    projection = t35.load_json(DEFERRED_LOAD_PROJECTION)
-    measurement = t35.load_json(DEFERRED_MEASUREMENT)
+    projection = census.load_json(DEFERRED_LOAD_PROJECTION)
+    measurement = census.load_json(DEFERRED_MEASUREMENT)
     decision = projection.get("decision") or {}
     axes = decision.get("axes") or {}
     errors: list[str] = []
@@ -696,10 +696,10 @@ def load_interpretation_evidence() -> dict[str, Any]:
         "count_verdicts": count_verdicts,
         "errors": errors,
         "evidence_paths": [
-            t35.relative(DEFERRED_MEASUREMENT),
-            t35.relative(DEFERRED_LOAD_PROJECTION),
-            t35.relative(SMELTER_CLOSEOUT_MEASUREMENT),
-            t35.relative(MIXER_CLOSEOUT_MEASUREMENT),
+            census.relative(DEFERRED_MEASUREMENT),
+            census.relative(DEFERRED_LOAD_PROJECTION),
+            census.relative(SMELTER_CLOSEOUT_MEASUREMENT),
+            census.relative(MIXER_CLOSEOUT_MEASUREMENT),
         ],
         "hard_axis_verdicts": axis_verdicts,
         "interpretation": LOAD_INTERPRETATION,
@@ -708,8 +708,8 @@ def load_interpretation_evidence() -> dict[str, Any]:
     }
 
 
-def t42_owner_checkpoint() -> dict[str, Any]:
-    lock = t35.load_json(t35.TOOLS / "t42_owner_disposition_lock.json")
+def owner_track_checkpoint() -> dict[str, Any]:
+    lock = census.load_json(census.TOOLS / "owner_runtime_disposition_lock.json")
     retained = 0
     recycling = 0
     for row in lock.get("families") or []:
@@ -719,17 +719,17 @@ def t42_owner_checkpoint() -> dict[str, Any]:
             recycling += 1
     errors: list[str] = []
     if retained != 3483:
-        errors.append(f"T42-Owner retained {retained} != 3483")
+        errors.append(f"owner track retained {retained} != 3483")
     if recycling != 1817:
-        errors.append(f"T42-Owner later:recycling {recycling} != 1817")
+        errors.append(f"owner track later:recycling {recycling} != 1817")
     if int(lock.get("retained_current_execution_gap") or 0) != 3483:
-        errors.append("T42-Owner retained_current_execution_gap field drifted")
+        errors.append("owner track retained_current_execution_gap field drifted")
     return {
         "errors": errors,
         "family_count": int(lock.get("family_count") or 0),
         "later_recycling": recycling,
         "not_current_proof": True,
-        "path": "tools/t42_owner_readiness.json",
+        "path": "tools/owner_readiness.json",
         "retained_current_execution_gap": retained,
     }
 
@@ -775,8 +775,8 @@ def _iter_lock_rows(document: dict[str, Any]) -> list[tuple[dict[str, Any], str]
 
 
 def build_disposition_ledger() -> dict[str, Any]:
-    families_doc = t35.load_json(t35.RECIPE_FAMILIES)
-    census = t35.load_json(t35.CENSUS)
+    families_doc = census.load_json(census.RECIPE_FAMILIES)
+    census = census.load_json(census.CENSUS)
     identities = census.get("identities") or {}
     membership = [
         str(row["family_id"])
@@ -785,13 +785,13 @@ def build_disposition_ledger() -> dict[str, Any]:
     ]
     if len(membership) != 5718:
         raise ValueError(f"recipe family membership {len(membership)} != 5718")
-    t42_lock = t35.load_json(t35.TOOLS / "t42_disposition_lock.json")
+    t42_lock = census.load_json(census.TOOLS / "owner_disposition_lock.json")
     t42_ids = {
         str(row["family_id"])
         for row in t42_lock.get("families") or []
         if isinstance(row, dict) and row.get("family_id")
     }
-    owner_lock = t35.load_json(t35.TOOLS / "t42_owner_disposition_lock.json")
+    owner_lock = census.load_json(census.TOOLS / "owner_runtime_disposition_lock.json")
     retained_ids = {
         str(row["family_id"])
         for row in owner_lock.get("families") or []
@@ -818,8 +818,8 @@ def build_disposition_ledger() -> dict[str, Any]:
             "closing": dict(opening),
             "expressed_by": None,
             "family_id": family_id,
-            "in_t42_disposition_lock": family_id in t42_ids,
-            "in_t42_owner_retained": family_id in retained_ids,
+            "in_owner_disposition_lock": family_id in t42_ids,
+            "in_owner_track_retained": family_id in retained_ids,
             "opening": opening,
         }
     if missing_opening:
@@ -836,10 +836,10 @@ def build_disposition_ledger() -> dict[str, Any]:
             family_id,
             disposition="implemented",
             owner=str(row.get("expressed_by") or row.get("host") or "existing_expression"),
-            expressed_by="t42_closed_by_existing_expression",
+            expressed_by="owner_closed_by_existing_expression",
         )
     for path in IDENTITY_DELTAS:
-        document = t35.load_json(path)
+        document = census.load_json(path)
         expressed_by = str(document.get("host") or path.name)
         for identity in document.get("identities") or []:
             family_id = str(identity.get("canonical_id") or identity.get("family_id") or "")
@@ -852,7 +852,7 @@ def build_disposition_ledger() -> dict[str, Any]:
                 expressed_by=str(closing.get("expressed_by") or expressed_by),
             )
     for path, expressed_by, default_owner in PRODUCTION_LOCKS:
-        document = t35.load_json(path)
+        document = census.load_json(path)
         for row, kind in _iter_lock_rows(document):
             family_id = str(row["family_id"])
             if kind == "phase_deferred":
@@ -888,7 +888,7 @@ def build_disposition_ledger() -> dict[str, Any]:
             future_owner=future,
             portfolio_scope="post_1x",
         )
-    checkpoint = t42_owner_checkpoint()
+    checkpoint = owner_track_checkpoint()
     if checkpoint["errors"]:
         raise ValueError("; ".join(checkpoint["errors"]))
     families = [ledger[family_id] for family_id in membership]
@@ -944,13 +944,13 @@ def build_disposition_ledger() -> dict[str, Any]:
         "family_count": len(families),
         "families": families,
         "generated_by": generated_by("portfolio/census-disposition-replay"),
-        "outside_t42_disposition_lock": 5718 - len(t42_ids),
+        "outside_owner_disposition_lock": 5718 - len(t42_ids),
         "post_1x_scope_count": post_1x_count,
         "remaining_execution_gap": 0,
         "schema_version": 1,
         "source_revision": SOURCE_REVISION,
         "status": "DISPOSITION_LEDGER_READY",
-        "t42_owner_checkpoint": {
+        "owner_runtime_checkpoint": {
             "later_recycling": checkpoint["later_recycling"],
             "not_current_proof": True,
             "path": checkpoint["path"],
@@ -961,8 +961,8 @@ def build_disposition_ledger() -> dict[str, Any]:
 
 
 def recycling_gap_replay() -> dict[str, Any]:
-    return t35.load_json(
-        t35.TOOLS / "waves" / "recycling" / "deferred-ordinary-runtime" / "gap_replay.json"
+    return census.load_json(
+        census.TOOLS / "waves" / "recycling" / "deferred-ordinary-runtime" / "gap_replay.json"
     )
 
 
@@ -980,14 +980,14 @@ def require_predecessor(slug: str) -> list[str]:
         errors: list[str] = []
         for child in CHILD_SLUGS[:-1]:
             errors.extend(closeout_seal.check_wave_seal(child))
-            readiness = t35.load_json(wave_dir(child) / "readiness.json")
+            readiness = census.load_json(wave_dir(child) / "readiness.json")
             expected = STATUSES[child]
             if readiness.get("status") != expected:
                 errors.append(f"{child} status {readiness.get('status')} != {expected}")
         return errors
     predecessor, status = PREDECESSORS[slug]
     errors = closeout_seal.check_wave_seal(predecessor)
-    readiness = t35.load_json(t35.TOOLS / "waves" / predecessor / "readiness.json")
+    readiness = census.load_json(census.TOOLS / "waves" / predecessor / "readiness.json")
     if readiness.get("status") != status:
         errors.append(
             f"{predecessor} status {readiness.get('status')} != {status}"
@@ -1079,7 +1079,7 @@ def r0_exit_condition_ledger(storage: dict[str, Any]) -> dict[str, Any]:
                 "tools/t35_recipe_families.json",
                 "tools/waves/recycling/deferred-ordinary-runtime/gap_replay.json",
             ],
-            "note": "t42_owner_readiness 3483 is a historical snapshot, not current proof.",
+            "note": "owner_readiness 3483 is a historical snapshot, not current proof.",
         },
         {
             "condition": "energy_matrix_selected_projection",
@@ -1110,19 +1110,19 @@ def r0_exit_condition_ledger(storage: dict[str, Any]) -> dict[str, Any]:
             "condition": "storage_28_624_logistics_1_1",
             "color": storage_color,
             "evidence": [
-                "tools/t44_readiness.json",
-                "tools/t44_storage_production_lock.json",
+                "tools/storage_readiness.json",
+                "tools/storage_storage_production_lock.json",
                 "src/main/resources/data/cruciblecraft/storage_variants.json",
             ],
-            "note": "T44 currentness sidecar/seal "
+            "note": "storage/lock currentness sidecar/seal "
             + ("current." if storage["current"] else "needs written replay."),
         },
         {
             "condition": "load_ceiling_interpretation",
             "color": "YELLOW",
             "evidence": [
-                t35.relative(DEFERRED_LOAD_PROJECTION),
-                t35.relative(DEFERRED_MEASUREMENT),
+                census.relative(DEFERRED_LOAD_PROJECTION),
+                census.relative(DEFERRED_MEASUREMENT),
             ],
             "interpretation": LOAD_INTERPRETATION,
             "note": "Count telemetry is not a 1.x exit hard ceiling. Load child must write interpretation A.",
@@ -1147,7 +1147,7 @@ def r0_replay_needed(storage: dict[str, Any]) -> dict[str, Any]:
         {
             "child": "portfolio/census-disposition-replay",
             "decision": "MUST_REPLAY",
-            "reason": "t42_owner_readiness is not current census proof.",
+            "reason": "owner_readiness is not current census proof.",
         },
         {
             "child": "portfolio/energy-matrix-replay",
@@ -1157,7 +1157,7 @@ def r0_replay_needed(storage: dict[str, Any]) -> dict[str, Any]:
         {
             "child": "portfolio/storage-currentness-replay",
             "decision": storage_decision,
-            "reason": "T44 catalog/lock/sidecar currentness "
+            "reason": "storage/lock catalog/lock/sidecar currentness "
             + ("holds." if storage["current"] else "must be written even if ALREADY_CURRENT is false."),
         },
         {
@@ -1240,7 +1240,7 @@ def build_census_documents() -> dict[str, Any]:
         "schema_version": 1,
         "source_revision": SOURCE_REVISION,
         "status": "GAP_REPLAY_READY",
-        "t42_owner_checkpoint_not_current_proof": True,
+        "owner_runtime_checkpoint_not_current_proof": True,
         "wave_slug": "portfolio/census-disposition-replay",
     }
     evidence = {
@@ -1257,7 +1257,7 @@ def build_census_documents() -> dict[str, Any]:
     documents = common_documents(
         "portfolio/census-disposition-replay",
         evidence=evidence,
-        note="Replayed 5718 historical families from immutable T35 plus sealed overlays. t42_owner_readiness is checkpoint only.",
+        note="Replayed 5718 historical families from immutable T35 plus sealed overlays. owner_readiness is checkpoint only.",
     )
     documents["disposition_ledger.json"] = ledger
     documents["gap_replay.json"] = gap
@@ -1322,7 +1322,7 @@ def build_storage_documents() -> dict[str, Any]:
         raise ValueError("; ".join(errors))
     storage = storage_currentness()
     if not (storage["catalog_ok"] and storage["lock_ok"]):
-        raise ValueError("T44 catalog/lock is not current; GameTest rerun required")
+        raise ValueError("storage/lock catalog/lock is not current; GameTest rerun required")
     evidence = {
         "catalog_ok": True,
         "completion_delta": 0,
@@ -1335,16 +1335,16 @@ def build_storage_documents() -> dict[str, Any]:
         "seal_ok": storage["seal_ok"],
         "sidecar_ok": storage["sidecar_ok"],
         "storage_count": 624,
-        "t44_current": storage["current"] or (storage["catalog_ok"] and storage["lock_ok"]),
+        "storage_current": storage["current"] or (storage["catalog_ok"] and storage["lock_ok"]),
     }
     documents = common_documents(
         "portfolio/storage-currentness-replay",
         evidence=evidence,
-        note="T44 28/624 + logistics 1/1 catalog/lock still match. No storage behavior reopened. GameTest not rerun while catalog/lock hold.",
+        note="storage/lock 28/624 + logistics 1/1 catalog/lock still match. No storage behavior reopened. GameTest not rerun while catalog/lock hold.",
     )
     documents["storage_currentness.json"] = {
         "catalog_ok": storage["catalog_ok"],
-        "current": bool(evidence["t44_current"]),
+        "current": bool(evidence["storage_current"]),
         "generated_by": generated_by("portfolio/storage-currentness-replay"),
         "lock_ok": storage["lock_ok"],
         "logistics_count": 1,
@@ -1420,7 +1420,7 @@ def build_load_documents() -> dict[str, Any]:
 
 def program_exit_condition_ledger() -> dict[str, Any]:
     conditions = []
-    r0 = t35.load_json(wave_dir("portfolio/one-x-exit-r0") / "exit_condition_ledger.json")
+    r0 = census.load_json(wave_dir("portfolio/one-x-exit-r0") / "exit_condition_ledger.json")
     updates = {
         "census_disposition_owner": wave_dir("portfolio/census-disposition-replay")
         / "exit_condition_update.json",
@@ -1435,7 +1435,7 @@ def program_exit_condition_ledger() -> dict[str, Any]:
         copied = dict(row)
         path = updates.get(str(row.get("condition")))
         if path is not None:
-            update = t35.load_json(path)
+            update = census.load_json(path)
             copied["color"] = update["color"]
             copied["closed_by"] = update["wave_slug"]
         if copied["color"] not in {"GREEN"}:
@@ -1460,7 +1460,7 @@ def build_program_documents() -> dict[str, Any]:
         raise ValueError("; ".join(errors))
     if nuclear_started():
         raise ValueError("nuclear Track C must stay started=false")
-    seed = t35.load_json(wave_dir("portfolio/one-x-exit-r0") / "capability_map_seed.json")
+    seed = census.load_json(wave_dir("portfolio/one-x-exit-r0") / "capability_map_seed.json")
     handed = dict(seed)
     handed["generated_by"] = generated_by(PROGRAM)
     handed["handed_to"] = NEXT_MAJOR
@@ -1515,32 +1515,32 @@ BUILDERS = {
 def write_seal(slug: str) -> dict[str, Any]:
     root = wave_dir(slug)
     hashes = {
-        "census": t35.sha256_file(root / "census_delta.json"),
+        "census": census.sha256_file(root / "census_delta.json"),
         "gametest_java": None,
         "gametest_log": None,
         "generated_recipes": None,
         "locked_support": None,
         "production_lock": None,
         "publication_group_manifest": None,
-        "readiness": t35.sha256_file(root / "readiness.json"),
+        "readiness": census.sha256_file(root / "readiness.json"),
         "receipt": None,
         "runtime_dependency_manifest": None,
         "shard_manifest": None,
-        "topology": t35.sha256_file(root / "topology.json"),
+        "topology": census.sha256_file(root / "topology.json"),
     }
     seal = {
         "card_id": slug,
         "complete_family_count": 0,
-        "composed_identity_ledger_v2_sha256": t35.sha256_file(
+        "composed_identity_ledger_v2_sha256": census.sha256_file(
             closeout_seal.IDENTITY_LEDGER_V2
         ),
-        "composed_runtime_manifest_v2_sha256": t35.sha256_file(
+        "composed_runtime_manifest_v2_sha256": census.sha256_file(
             closeout_seal.RUNTIME_MANIFEST_V2
         ),
         "gametest_status": "NONE",
         "generated_by": f"{generated_by(slug)} --write",
         "hashes": hashes,
-        "note": t35.load_json(root / "readiness.json").get("note"),
+        "note": census.load_json(root / "readiness.json").get("note"),
         "production_lock_sha256": None,
         "receipt_sha256": None,
         "reclassification_delta": 0,
@@ -1551,7 +1551,7 @@ def write_seal(slug: str) -> dict[str, Any]:
         "source_revision": SOURCE_REVISION,
         "status": "SEALED",
     }
-    t35.write_stable(root / "closeout_seal.json", seal)
+    census.write_stable(root / "closeout_seal.json", seal)
     return seal
 
 
@@ -1560,7 +1560,7 @@ def write_artifacts(slug: str) -> dict[str, Any]:
     root = wave_dir(slug)
     root.mkdir(parents=True, exist_ok=True)
     for name, document in documents.items():
-        t35.write_stable(root / name, document)
+        census.write_stable(root / name, document)
     write_seal(slug)
     spec = spec_for(slug)
     return {
@@ -1592,11 +1592,11 @@ def check_artifacts(slug: str) -> list[str]:
     except ValueError as error:
         return errors + [str(error)]
     for name, document in live.items():
-        committed = t35.load_json(root / name)
-        drift = t35.first_json_diff(document, committed)
+        committed = census.load_json(root / name)
+        drift = census.first_json_diff(document, committed)
         if drift:
             errors.append(f"{name} drifted: {drift}")
-    readiness = t35.load_json(root / "readiness.json")
+    readiness = census.load_json(root / "readiness.json")
     if readiness.get("status") != STATUSES[slug]:
         errors.append(f"{slug} status drifted")
     if readiness.get("unique_active_wave") != spec.unique_active_wave:

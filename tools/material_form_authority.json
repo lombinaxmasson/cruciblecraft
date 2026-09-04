@@ -1,11 +1,11 @@
 {
   "generated_by": "python tools/material_form_authority.py",
   "java_overlay_sections": [
-    "t38_source_backed_acquisition_forms",
-    "t38_required_forms",
-    "t39_required_forms",
-    "t40_required_forms",
-    "t48_required_forms",
+    "worldgen_acquisition_forms",
+    "roaster_required_forms",
+    "centrifuge_required_forms",
+    "electrolyzer_required_forms",
+    "bath_required_forms",
     "tool_head_required_forms",
     "smelter_ordinary_closure_required_forms",
     "mixer_ordinary_closure_required_forms",
@@ -23,11 +23,11 @@
         "ore"
       ],
       "field": "required_forms",
-      "gate_section": "t38_source_backed_acquisition_forms",
-      "id": "t38_source_backed_acquisition",
+      "gate_section": "worldgen_acquisition_forms",
+      "id": "worldgen_acquisition",
       "java_runtime_visible": true,
-      "owner": "T38",
-      "path": "tools/t38_source_backed_acquisition.json",
+      "owner": "worldgen",
+      "path": "tools/worldgen_source_backed_acquisition.json",
       "required_factual_prereqs": {}
     },
     {
@@ -36,11 +36,11 @@
         "small_dust"
       ],
       "field": "required_forms",
-      "gate_section": "t38_required_forms",
-      "id": "t38_compact_required_forms",
+      "gate_section": "roaster_required_forms",
+      "id": "roaster_compact_required_forms",
       "java_runtime_visible": true,
-      "owner": "T38",
-      "path": "tools/t38_required_forms.json",
+      "owner": "roaster",
+      "path": "tools/roaster_required_forms.json",
       "required_factual_prereqs": {
         "dust_div72": [
           "dust"
@@ -58,11 +58,11 @@
         "tiny_centrifuged_crushed_ore"
       ],
       "field": "required_forms",
-      "gate_section": "t39_required_forms",
-      "id": "t39_compact_required_forms",
+      "gate_section": "centrifuge_required_forms",
+      "id": "centrifuge_compact_required_forms",
       "java_runtime_visible": true,
-      "owner": "T39",
-      "path": "tools/t39_required_forms.json",
+      "owner": "centrifuge",
+      "path": "tools/centrifuge_required_forms.json",
       "required_factual_prereqs": {
         "dust_div72": [
           "dust"
@@ -77,11 +77,11 @@
         "small_dust"
       ],
       "field": "required_forms",
-      "gate_section": "t40_required_forms",
-      "id": "t40_compact_required_forms",
+      "gate_section": "electrolyzer_required_forms",
+      "id": "electrolyzer_compact_required_forms",
       "java_runtime_visible": true,
-      "owner": "T40",
-      "path": "tools/t40_required_forms.json",
+      "owner": "electrolyzer",
+      "path": "tools/electrolyzer_required_forms.json",
       "required_factual_prereqs": {
         "small_dust": [
           "dust"
@@ -123,11 +123,11 @@
         "triple_ingot"
       ],
       "field": "required_forms",
-      "gate_section": "t48_required_forms",
-      "id": "t48_compact_required_forms",
+      "gate_section": "bath_required_forms",
+      "id": "bath_compact_required_forms",
       "java_runtime_visible": true,
-      "owner": "T48",
-      "path": "tools/t48_required_forms.json",
+      "owner": "bath",
+      "path": "tools/bath_required_forms.json",
       "required_factual_prereqs": {}
     },
     {
@@ -470,10 +470,10 @@
   ],
   "status": "MATERIAL_FORM_AUTHORITY",
   "typed_ore_denominators": {
+    "chemical_semantic_vein_ledger": 8,
     "factual_ore_materials": 137,
     "registered_ore_materials": 147,
-    "t38_acquisition_ore_delta": 10,
-    "t5_semantic_vein_ledger": 8,
-    "worldgen_catalog": "independent catalog, not the T5 ledger"
+    "worldgen_acquisition_ore_delta": 10,
+    "worldgen_catalog": "independent catalog, not the chemical vein ledger"
   }
 }

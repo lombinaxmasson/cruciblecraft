@@ -38,7 +38,7 @@ import net.minecraft.world.item.crafting.Ingredient;
  * set but does not retain long-tail rows.
  */
 public final class ExtruderRecipeFamilyProvider {
-    public static final String FAMILY_ID = "t14_extruder";
+    public static final String FAMILY_ID = "pipe/extruder";
     public static final int LOGICAL_RELATIONS = 2782;
     public static final int AUTHORED_ENTRIES = 20;
     public static final int HOT_MODULO = 5;

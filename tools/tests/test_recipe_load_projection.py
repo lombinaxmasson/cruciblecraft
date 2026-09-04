@@ -11,7 +11,7 @@ FIXTURES = (
     / "tools"
     / "tests"
     / "fixtures"
-    / "t14_load_projection_t15_t19.json"
+    / "recipe_load_load_projection_t15_t19.json"
 )
 
 
@@ -120,7 +120,7 @@ class RecipeLoadProjectionTest(unittest.TestCase):
             policy=self.policy,
             schema=self.schema,
         )
-        reference = valid["families"][0]["t13_references"][0]
+        reference = valid["families"][0]["machine_tree_references"][0]
         self.assertEqual("gt.recipe.extruder", reference["canonical_id"])
         self.assertEqual("in_scope", reference["classification"])
 
@@ -144,9 +144,9 @@ class RecipeLoadProjectionTest(unittest.TestCase):
                 schema=self.schema,
             )
 
-    def test_t38_reissues_deferred_roaster_without_rewriting_t13(self):
+    def test_roaster_compact_reissues_deferred_without_rewriting_t13(self):
         payload = document(copy.deepcopy(self.on_demand))
-        payload["families"][0]["family"] = "t38/roaster-wave"
+        payload["families"][0]["family"] = "roaster/compact/roaster-wave"
         payload["families"][0]["canonical_ids"] = ["gt.recipe.roaster"]
         with self.assertRaises(projection.ProjectionError):
             projection.project(
@@ -156,14 +156,14 @@ class RecipeLoadProjectionTest(unittest.TestCase):
                 schema=self.schema,
             )
 
-        payload["delivery_phase"] = "T38"
+        payload["delivery_phase"] = "roaster/compact"
         result = projection.project(
             payload,
             t13=self.t13,
             policy=self.policy,
             schema=self.schema,
         )
-        reference = result["families"][0]["t13_references"][0]
+        reference = result["families"][0]["machine_tree_references"][0]
         self.assertEqual("gt.recipe.roaster", reference["canonical_id"])
         self.assertEqual("in_scope", reference["classification"])
         original = next(
@@ -395,15 +395,19 @@ class RecipeLoadProjectionTest(unittest.TestCase):
         self.assertEqual(6600, metric["hard_ceiling"])
 
     def test_v2_authored_reference_overage_is_report_only(self):
-        from tools import build_t14_load_budget_policy_v2 as policy_v2
+        policy_v2 = copy.deepcopy(self.policy)
+        policy_v2["schema_version"] = 2
+        policy_v2["status"] = projection.FORWARD_POLICY_STATUS
+        policy_v2["budgets"]["datapack_authored_entries"][
+            "readiness_verdict"
+        ] = "REPORT_ONLY"
 
-        v2 = policy_v2.build()
         over = document(copy.deepcopy(self.immediate))
         over["families"][0]["authored_entries"] = 6601
         result = projection.project(
             over,
             t13=self.t13,
-            policy=v2,
+            policy=policy_v2,
             schema=self.schema,
         )
         metric = result["budget_evaluation"]["metrics"]["datapack_authored_entries"]
@@ -412,14 +416,19 @@ class RecipeLoadProjectionTest(unittest.TestCase):
         self.assertEqual([], result["budget_evaluation"]["hard_failures"])
 
     def test_v2_authored_overage_is_report_only(self):
-        from tools import build_t14_load_budget_policy_v2 as policy_v2
+        policy_v2 = copy.deepcopy(self.policy)
+        policy_v2["schema_version"] = 2
+        policy_v2["status"] = projection.FORWARD_POLICY_STATUS
+        policy_v2["budgets"]["datapack_authored_entries"][
+            "readiness_verdict"
+        ] = "REPORT_ONLY"
 
         over = document(copy.deepcopy(self.immediate))
         over["families"][0]["authored_entries"] = 6601
         result = projection.project(
             over,
             t13=self.t13,
-            policy=policy_v2.build(),
+            policy=policy_v2,
             schema=self.schema,
         )
         metric = result["budget_evaluation"]["metrics"]["datapack_authored_entries"]
@@ -472,7 +481,7 @@ class RecipeLoadProjectionTest(unittest.TestCase):
         selected_input = projection.load(
             projection.ROOT
             / "tools"
-            / "t14_extruder_load_projection_input.json"
+            / "extruder_load_projection_input.json"
         )
         selected = projection.project(
             selected_input,
@@ -483,7 +492,7 @@ class RecipeLoadProjectionTest(unittest.TestCase):
         committed = projection.load(
             projection.ROOT
             / "tools"
-            / "t14_extruder_load_projection.json"
+            / "extruder_load_projection.json"
         )
         self.assertEqual(selected, committed)
         self.assertEqual("PASS", selected["status"])
@@ -522,7 +531,7 @@ class RecipeLoadProjectionTest(unittest.TestCase):
 
     def test_committed_t21_projection_is_current_small_immediate_family(self):
         selected_input = projection.load(
-            projection.ROOT / "tools" / "t21_load_projection_input.json"
+            projection.ROOT / "tools" / "chemical_axis_load_projection_input.json"
         )
         selected = projection.project(
             selected_input,
@@ -531,7 +540,7 @@ class RecipeLoadProjectionTest(unittest.TestCase):
             schema=self.schema,
         )
         committed = projection.load(
-            projection.ROOT / "tools" / "t21_load_projection.json"
+            projection.ROOT / "tools" / "chemical_axis_load_projection.json"
         )
         self.assertEqual(selected, committed)
         self.assertEqual("T21", selected["delivery_phase"])
@@ -550,7 +559,7 @@ class RecipeLoadProjectionTest(unittest.TestCase):
 
     def test_committed_t15_projection_is_current_zero_workload(self):
         selected_input = projection.load(
-            projection.ROOT / "tools" / "t15_load_projection_input.json"
+            projection.ROOT / "tools" / "matcher_load_projection_input.json"
         )
         selected = projection.project(
             selected_input,
@@ -559,7 +568,7 @@ class RecipeLoadProjectionTest(unittest.TestCase):
             schema=self.schema,
         )
         committed = projection.load(
-            projection.ROOT / "tools" / "t15_load_projection.json"
+            projection.ROOT / "tools" / "matcher_load_projection.json"
         )
         self.assertEqual(selected, committed)
         self.assertEqual("T15", selected["delivery_phase"])
@@ -576,7 +585,7 @@ class RecipeLoadProjectionTest(unittest.TestCase):
 
     def test_committed_t16_projection_is_current_zero_workload(self):
         selected_input = projection.load(
-            projection.ROOT / "tools" / "t16_load_projection_input.json"
+            projection.ROOT / "tools" / "ku_machine_load_projection_input.json"
         )
         selected = projection.project(
             selected_input,
@@ -585,7 +594,7 @@ class RecipeLoadProjectionTest(unittest.TestCase):
             schema=self.schema,
         )
         committed = projection.load(
-            projection.ROOT / "tools" / "t16_load_projection.json"
+            projection.ROOT / "tools" / "ku_machine_load_projection.json"
         )
         self.assertEqual(selected, committed)
         self.assertEqual("T16", selected["delivery_phase"])
@@ -610,7 +619,7 @@ class RecipeLoadProjectionTest(unittest.TestCase):
 
     def test_committed_t17_projection_is_current_zero_workload(self):
         selected_input = projection.load(
-            projection.ROOT / "tools" / "t17_load_projection_input.json"
+            projection.ROOT / "tools" / "ru_machine_load_projection_input.json"
         )
         selected = projection.project(
             selected_input,
@@ -619,7 +628,7 @@ class RecipeLoadProjectionTest(unittest.TestCase):
             schema=self.schema,
         )
         committed = projection.load(
-            projection.ROOT / "tools" / "t17_load_projection.json"
+            projection.ROOT / "tools" / "ru_machine_load_projection.json"
         )
         self.assertEqual(selected, committed)
         self.assertEqual("T17", selected["delivery_phase"])
@@ -644,7 +653,7 @@ class RecipeLoadProjectionTest(unittest.TestCase):
 
     def test_committed_t18_projection_is_current_zero_workload(self):
         selected_input = projection.load(
-            projection.ROOT / "tools" / "t18_load_projection_input.json"
+            projection.ROOT / "tools" / "energy_chain_load_projection_input.json"
         )
         selected = projection.project(
             selected_input,
@@ -653,7 +662,7 @@ class RecipeLoadProjectionTest(unittest.TestCase):
             schema=self.schema,
         )
         committed = projection.load(
-            projection.ROOT / "tools" / "t18_load_projection.json"
+            projection.ROOT / "tools" / "energy_chain_load_projection.json"
         )
         self.assertEqual(selected, committed)
         self.assertEqual("T18", selected["delivery_phase"])
@@ -676,9 +685,9 @@ class RecipeLoadProjectionTest(unittest.TestCase):
             ].values()
         ))
 
-    def test_delivery_phase_t37_is_accepted(self):
+    def test_delivery_phase_assembler_compact_is_accepted(self):
         selected_input = projection.load(
-            projection.ROOT / "tools" / "t37_load_projection_input.json"
+            projection.ROOT / "tools" / "assembler_compact_load_projection_input.json"
         )
         selected = projection.project(
             selected_input,
@@ -686,8 +695,11 @@ class RecipeLoadProjectionTest(unittest.TestCase):
             policy=self.policy,
             schema=self.schema,
         )
-        self.assertEqual("T37", selected["delivery_phase"])
-        self.assertEqual("t37/assembler-pilot", selected["projection_id"])
+        self.assertEqual("assembler/compact", selected["delivery_phase"])
+        self.assertEqual(
+            "assembler/compact/assembler-pilot",
+            selected["projection_id"],
+        )
         self.assertEqual(50, selected["ledger"]["counts"]["logical_rows"])
         self.assertEqual(50, selected["families"][0]["authored_entries"])
         self.assertIn(
@@ -697,7 +709,7 @@ class RecipeLoadProjectionTest(unittest.TestCase):
         self.assertEqual("hybrid", selected["families"][0]["strategy"])
 
         unknown = copy.deepcopy(selected_input)
-        unknown["delivery_phase"] = "T99"
+        unknown["delivery_phase"] = "unknown/phase"
         with self.assertRaises(projection.ProjectionError):
             projection.validate_input(unknown, self.t13)
 
@@ -722,7 +734,7 @@ class RecipeLoadProjectionTest(unittest.TestCase):
         pending_policy["pending_measurements"] = sorted(pending_axes)
 
         selected_input = projection.load(
-            projection.ROOT / "tools" / "t37_load_projection_input.json"
+            projection.ROOT / "tools" / "assembler_compact_load_projection_input.json"
         )
         result = projection.project(
             selected_input,

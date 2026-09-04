@@ -5,7 +5,7 @@ from __future__ import annotations
 import unittest
 
 from tools import portfolio_generic_recipe_import as importer
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk.slugs import KNOWN_SEMANTIC_SLUGS
 from tools.wave_closeout import spec_for
 
@@ -42,10 +42,10 @@ class GenericRecipeImportRegistrationTest(unittest.TestCase):
 
 class GenericRecipeImportR0ArtifactsTest(unittest.TestCase):
     def test_r0_when_present(self) -> None:
-        root = t35.TOOLS / "waves" / "portfolio" / "generic-recipe-generator-r0"
+        root = census.TOOLS / "waves" / "portfolio" / "generic-recipe-generator-r0"
         if not (root / "readiness.json").is_file():
             self.skipTest("R0 artifacts not written yet")
-        readiness = t35.load_json(root / "readiness.json")
+        readiness = census.load_json(root / "readiness.json")
         self.assertEqual("GENERIC_RECIPE_IMPORT_R0_READY", readiness["status"])
         self.assertEqual(
             "portfolio/generic-recipe-import-core",
@@ -55,7 +55,7 @@ class GenericRecipeImportR0ArtifactsTest(unittest.TestCase):
         self.assertFalse(readiness["evidence"]["recipe_files_generated"])
         self.assertEqual(0, int(readiness["evidence"]["combinatorial_completed"]))
         self.assertEqual(0, int(readiness["evidence"]["combinatorial_imported"]))
-        inventory = t35.load_json(root / "manual_glue_inventory.json")
+        inventory = census.load_json(root / "manual_glue_inventory.json")
         kinds = {item["disposition"] for item in inventory["items"]}
         self.assertEqual(
             {
@@ -67,32 +67,32 @@ class GenericRecipeImportR0ArtifactsTest(unittest.TestCase):
             },
             kinds,
         )
-        later = t35.load_json(root / "later_combinatorial.json")
+        later = census.load_json(root / "later_combinatorial.json")
         self.assertEqual(4, len(later["families"]))
         self.assertEqual(1274, int(later["relation_count"]))
         self.assertEqual(0, int(later["completed"]))
         self.assertTrue(
-            (t35.TOOLS / "source_pack_manifest.schema.json").is_file()
+            (census.TOOLS / "source_pack_manifest.schema.json").is_file()
         )
         self.assertTrue(
-            (t35.TOOLS / "recipe_import_spec.schema.json").is_file()
+            (census.TOOLS / "recipe_import_spec.schema.json").is_file()
         )
 
 
 class GenericRecipeImportProgramArtifactsTest(unittest.TestCase):
     def test_program_when_present(self) -> None:
-        root = t35.TOOLS / "waves" / "portfolio" / "generic-recipe-generator"
+        root = census.TOOLS / "waves" / "portfolio" / "generic-recipe-generator"
         if not (root / "readiness.json").is_file():
             self.skipTest("program artifacts not written yet")
-        readiness = t35.load_json(root / "readiness.json")
+        readiness = census.load_json(root / "readiness.json")
         self.assertEqual("GENERIC_RECIPE_IMPORT_READY", readiness["status"])
         self.assertIsNone(readiness["unique_active_wave"])
         self.assertTrue(readiness["next_unassigned"])
         self.assertEqual(0, int(readiness["evidence"]["combinatorial_completed"]))
-        later = t35.load_json(root / "later_star_disposition.json")
+        later = census.load_json(root / "later_star_disposition.json")
         self.assertEqual(4, len(later["families"]))
         self.assertFalse(later["started"])
-        contract = t35.load_json(root / "import_contract.json")
+        contract = census.load_json(root / "import_contract.json")
         self.assertFalse(
             contract["existing_host_new_source_pack"]["requires_per_wave_builder"]
         )

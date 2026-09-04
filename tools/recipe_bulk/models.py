@@ -68,6 +68,7 @@ class WaveSpec:
     depends_on_slugs: tuple[str, ...] = ()
     path_prefix: str | None = None
     dry_run_without_lock: bool = False
+    tree_prefixes: tuple[str, ...] = ()
 
 
 @dataclass

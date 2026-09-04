@@ -19,7 +19,7 @@ import net.minecraft.resources.ResourceLocation;
  */
 public final class CatalogTestSupport {
     public static final String OVERLAY_ROOT =
-            "/data/cruciblecraft/t36_repair_overlay/";
+            "/data/cruciblecraft/repair_overlay/";
 
     public static Loaded loadProduction() {
         return new Loaded(

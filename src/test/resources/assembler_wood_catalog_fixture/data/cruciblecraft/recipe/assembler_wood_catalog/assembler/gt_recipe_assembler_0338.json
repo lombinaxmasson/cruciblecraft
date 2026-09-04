@@ -1,0 +1,59 @@
+{
+  "family_id": "gt.recipe.assembler#0338",
+  "publication_group": "cruciblecraft:assembler_wood_catalog_planks2",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 48,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        3,
+        0
+      ],
+      "item_inputs": [
+        {
+          "item": "minecraft:dark_oak_planks"
+        },
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 3
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "minecraft:oak_trapdoor"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "5bce85e6e76968e81f119964f7b2da53d55f5f5d4c9398808f5ea97c2ef331b2"
+        ],
+        "selected_source_recipe": "gt.recipe.assembler#0338",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:assembler/wood/ba83a706c8439817"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:assembler",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -1,0 +1,304 @@
+{
+  "budget_evaluation": {
+    "hard_failures": [],
+    "metrics": {
+      "allocation_bytes": {
+        "actual": {
+          "max": 467210984,
+          "min": 467210984
+        },
+        "comparison_value": 467210984,
+        "hard_ceiling": 536870912,
+        "soft_budget": 134217728,
+        "status": "SOFT_BUDGET_EXCEEDED"
+      },
+      "client_index_ms": {
+        "actual": {
+          "max": 3,
+          "min": 2
+        },
+        "comparison_value": 3,
+        "hard_ceiling": 3000,
+        "soft_budget": 1000,
+        "status": "PASS"
+      },
+      "client_reload_ms": {
+        "actual": {
+          "max": 275,
+          "min": 204
+        },
+        "comparison_value": 275,
+        "hard_ceiling": 10000,
+        "soft_budget": 5000,
+        "status": "PASS"
+      },
+      "datapack_authored_entries": {
+        "actual": 150,
+        "comparison_value": 150,
+        "hard_ceiling": 6600,
+        "soft_budget": 6000,
+        "status": "PASS"
+      },
+      "eager_publication_rows": {
+        "actual": 0,
+        "comparison_value": 0,
+        "hard_ceiling": 21000,
+        "soft_budget": 18000,
+        "status": "PASS"
+      },
+      "lazy_cache_ceiling_rows": {
+        "actual": 128,
+        "comparison_value": 128,
+        "hard_ceiling": 4096,
+        "soft_budget": 1024,
+        "status": "PASS"
+      },
+      "lazy_logical_rows": {
+        "actual": 34091,
+        "comparison_value": 34091,
+        "hard_ceiling": 56000,
+        "soft_budget": 16000,
+        "status": "SOFT_BUDGET_EXCEEDED"
+      },
+      "lookup_candidate_count": {
+        "actual": {
+          "max": 5,
+          "min": 5
+        },
+        "comparison_value": 5,
+        "hard_ceiling": 128,
+        "soft_budget": 64,
+        "status": "PASS"
+      },
+      "lookup_p95_ns": {
+        "actual": {
+          "max": 10306,
+          "min": 7925
+        },
+        "comparison_value": 10306,
+        "hard_ceiling": 2000000,
+        "soft_budget": 1000000,
+        "status": "PASS"
+      },
+      "retained_memory_bytes": {
+        "actual": {
+          "max": 3391802,
+          "min": 3391802
+        },
+        "comparison_value": 3391802,
+        "hard_ceiling": 536870912,
+        "soft_budget": 134217728,
+        "status": "PASS"
+      },
+      "server_index_ms": {
+        "actual": {
+          "max": 3,
+          "min": 2
+        },
+        "comparison_value": 3,
+        "hard_ceiling": 1000,
+        "soft_budget": 500,
+        "status": "PASS"
+      },
+      "server_reload_ms": {
+        "actual": {
+          "max": 260,
+          "min": 197
+        },
+        "comparison_value": 260,
+        "hard_ceiling": 10000,
+        "soft_budget": 5000,
+        "status": "PASS"
+      },
+      "sync_bytes": {
+        "actual": 3391802,
+        "comparison_value": 3391802,
+        "hard_ceiling": 67108864,
+        "soft_budget": 16777216,
+        "status": "PASS"
+      }
+    },
+    "pending_measurements": [],
+    "soft_exceeded": [
+      "lazy_logical_rows",
+      "allocation_bytes"
+    ],
+    "status": "SOFT_BUDGET_EXCEEDED"
+  },
+  "currentness": {
+    "budget_policy": "tools/t14_load_budget_policy.v2.json",
+    "budget_policy_file_sha256": "30a07ad20ca443d9108665157b351471ffeb45d71fdd3d4b7d75076a11cb2c35",
+    "budget_policy_sha256": "7656980164350b4960c803c863ab0e7cc280a03b223ef4ef3ad7ba45001970c3",
+    "integrated_measurements": "tools/bath_identity_integrated_measurements.json",
+    "load_budget_policy_v2_sha256": "30a07ad20ca443d9108665157b351471ffeb45d71fdd3d4b7d75076a11cb2c35",
+    "projection_schema": "tools/recipe_load_projection.schema.json",
+    "projection_schema_sha256": "51e97fc4a0cbffc000773fa1805d6223ea369d26ae46256381e344119e20c674",
+    "t13_canonical_rows": 95,
+    "t13_map_row_sha256": "e8a635d62d4c11b7995d64ec3c6cfe2a7038b24338bfb00920a614f442f9af99",
+    "t13_recipe_maps": "tools/machine_tree_denominators/recipe_maps.json"
+  },
+  "delivery_phase": "bath/identity",
+  "families": [
+    {
+      "authored_entries": 150,
+      "canonical_ids": [
+        "gt.recipe.bath"
+      ],
+      "eager_publication_rows": 0,
+      "family": "bath/identity/bath-remainder-wave",
+      "lazy_cache_ceiling_rows": 128,
+      "lazy_logical_rows": 34091,
+      "logical_rows": 34091,
+      "measurement_basis": {
+        "kind": "family_specific_measurement",
+        "measured_logical_rows": [
+          34091
+        ],
+        "source": "bath/identity R3 card 1x CompactRecipeFamilybath/identityMeasurementHarness on_demand winner. Card partition is the measured 34091-row bath/identity groups. The 18-group integrated mix is census T14 closing only; its allocation exceeds the frozen 512 MiB hard ceiling and bath/identity does not raise that gate."
+      },
+      "measurement_intervals": {
+        "allocation_bytes": {
+          "max": 467210984,
+          "min": 467210984
+        },
+        "client_index_ms": {
+          "max": 3,
+          "min": 2
+        },
+        "client_reload_ms": {
+          "max": 275,
+          "min": 204
+        },
+        "lookup_candidate_count": {
+          "max": 5,
+          "min": 5
+        },
+        "lookup_p95_ns": {
+          "max": 10306,
+          "min": 7925
+        },
+        "retained_memory_bytes": {
+          "max": 3391802,
+          "min": 3391802
+        },
+        "server_index_ms": {
+          "max": 3,
+          "min": 2
+        },
+        "server_reload_ms": {
+          "max": 260,
+          "min": 197
+        }
+      },
+      "publication_account": {
+        "domain": "gt_recipe_family",
+        "gt_authored_entries": 150,
+        "gt_logical_rows": 34091,
+        "vanilla_datapack_entries": 0
+      },
+      "publication_domain": "gt_recipe_family",
+      "ratios": {
+        "authored_to_eager": {
+          "denominator": 150,
+          "formula": "eager_publication_rows / authored_entries",
+          "numerator": 0,
+          "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+          "value": 0.0
+        },
+        "authored_to_logical": {
+          "denominator": 150,
+          "formula": "logical_rows / authored_entries",
+          "numerator": 34091,
+          "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+          "value": 227.27333333333334
+        }
+      },
+      "strategy": "group_scoped",
+      "sync_bytes": 3391802,
+      "t13_references": [
+        {
+          "canonical_id": "gt.recipe.bath",
+          "classification": "in_scope",
+          "owner": "T15"
+        }
+      ],
+      "vanilla_datapack_entries": 0
+    }
+  ],
+  "family_count": 150,
+  "ledger": {
+    "aggregation": {
+      "counts": "sum of explicit family counts",
+      "lookup": "maximum family interval bounds; one lookup is not additive",
+      "reload_index_memory": "sum of family interval bounds"
+    },
+    "counts": {
+      "datapack_authored_entries": 150,
+      "eager_publication_rows": 0,
+      "lazy_cache_ceiling_rows": 128,
+      "lazy_logical_rows": 34091,
+      "logical_rows": 34091,
+      "sync_bytes": 3391802
+    },
+    "measurement_intervals": {
+      "allocation_bytes": {
+        "max": 467210984,
+        "min": 467210984
+      },
+      "client_index_ms": {
+        "max": 3,
+        "min": 2
+      },
+      "client_reload_ms": {
+        "max": 275,
+        "min": 204
+      },
+      "lookup_candidate_count": {
+        "max": 5,
+        "min": 5
+      },
+      "lookup_p95_ns": {
+        "max": 10306,
+        "min": 7925
+      },
+      "retained_memory_bytes": {
+        "max": 3391802,
+        "min": 3391802
+      },
+      "server_index_ms": {
+        "max": 3,
+        "min": 2
+      },
+      "server_reload_ms": {
+        "max": 260,
+        "min": 197
+      }
+    },
+    "publication_domains": {
+      "gt_authored_entries": 150,
+      "gt_logical_rows": 34091,
+      "vanilla_datapack_entries": 0
+    },
+    "ratios": {
+      "authored_to_eager": {
+        "denominator": 150,
+        "formula": "eager_publication_rows / authored_entries",
+        "numerator": 0,
+        "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+        "value": 0.0
+      },
+      "authored_to_logical": {
+        "denominator": 150,
+        "formula": "logical_rows / authored_entries",
+        "numerator": 34091,
+        "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+        "value": 227.27333333333334
+      }
+    }
+  },
+  "logical": 34091,
+  "production_lock_sha256": "40414d2e7ab1c60631601752e81f1241741fdc53ca8b2b31d6dc5696d980decd",
+  "projection_id": "bath/identity/bath-remainder-wave",
+  "schema_version": 2,
+  "status": "SOFT_BUDGET_EXCEEDED"
+}

@@ -13,12 +13,12 @@ import com.google.gson.JsonParser;
 
 /**
  * Scale workload identity. Counts, seed and ticks come only from
- * {@code tools/t24_workload_manifest.json}; this class does not keep a
+ * {@code tools/scale_workload_manifest.json}; this class does not keep a
  * second 500/2,000 constant table.
  */
 public final class ScaleWorkloadSpec {
     public static final String MANIFEST_RELATIVE =
-            "tools/t24_workload_manifest.json";
+            "tools/scale_workload_manifest.json";
 
     private final String workloadIdentity;
     private final Map<String, Scenario> scenarios;

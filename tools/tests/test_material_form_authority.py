@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from tools import material_form_authority as authority
-from tools import t40_vr_common as vr
+from tools import verification_runtime as vr
 
 
 class MaterialFormAuthorityTest(unittest.TestCase):
@@ -20,12 +20,12 @@ class MaterialFormAuthorityTest(unittest.TestCase):
     def test_java_overlay_sections_are_explicit_and_stable(self) -> None:
         declared = authority.java_overlay_sections(self.document)
         self.assertEqual(declared, self.document["java_overlay_sections"])
-        self.assertIn("t48_required_forms", declared)
+        self.assertIn("bath_required_forms", declared)
         self.assertIn("tool_head_required_forms", declared)
         self.assertEqual(137, self.document["typed_ore_denominators"]["factual_ore_materials"])
         self.assertEqual(147, self.document["typed_ore_denominators"]["registered_ore_materials"])
-        self.assertEqual(10, self.document["typed_ore_denominators"]["t38_acquisition_ore_delta"])
-        self.assertEqual(8, self.document["typed_ore_denominators"]["t5_semantic_vein_ledger"])
+        self.assertEqual(10, self.document["typed_ore_denominators"]["worldgen_acquisition_ore_delta"])
+        self.assertEqual(8, self.document["typed_ore_denominators"]["chemical_semantic_vein_ledger"])
 
     def test_gate_overlay_reads_authority_not_hardcoded_card_lists(self) -> None:
         gate = vr.gate_document()
@@ -36,7 +36,7 @@ class MaterialFormAuthorityTest(unittest.TestCase):
         self.assertIn("overlay_forms_from_gate", compare)
         self.assertIn("overlay_forms_from_gate", veins)
         self.assertNotIn(
-            '"t38_source_backed_acquisition_forms",\n        "t38_required_forms"',
+            '"worldgen_acquisition_forms",\n        "roaster_required_forms"',
             compare,
         )
 

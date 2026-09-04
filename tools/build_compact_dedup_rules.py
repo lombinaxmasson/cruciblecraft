@@ -10,7 +10,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools import builder_cli
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk import runtime as runtime_mod
 
 
@@ -29,14 +29,14 @@ def write() -> dict[str, dict]:
     documents = build()
     runtime_mod.datapack_dedup_root().mkdir(parents=True, exist_ok=True)
     for rule_id, document in documents.items():
-        t35.write_stable(_path_for(rule_id), document)
+        census.write_stable(_path_for(rule_id), document)
     return documents
 
 
 def check() -> list[str]:
     errors: list[str] = []
     for rule_id, document in build().items():
-        errors.extend(t35.check_generated_document(_path_for(rule_id), document))
+        errors.extend(census.check_generated_document(_path_for(rule_id), document))
     return errors
 
 

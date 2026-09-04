@@ -1,15 +1,18 @@
 # Tools
 
 Live content uses semantic paths (`tool/assembler/`, `mortar/`, `pipe/`,
-`ingot_form/`, wave slugs). Daily verification is `python tools/verify.py`.
+`ingot_form/`, wave slugs such as `assembler/compact` and `bath/identity`).
+Daily verification is `python tools/verify.py`. Compact / Bath /
+ordinary-closure live ledgers, receipts, and currentness sidecars already use
+those slugs.
 
-`build_t*.py`, `t16_*.json`, and other T-numbered files in this folder are
-**closed-card ledgers**. They keep milestone filenames so historical `--check`
-receipts stay stable. Do not start new tools, machines, or waves from those
-scripts; they are not the current authoring API. Bound runtime ids such as
-`t14_extruder`, `t11_materials/`, and `t16_publication_baseline.json` stay
-until a dedicated migration. Leftover inventory and resume order:
-`docs/current/semantic-naming.md`.
+`build_t*.py` builders were deleted. Numbered JSON that remains is either an
+earlier independent stage, a frozen v2 snapshot, or the translation map
+`semantic_id_map.json`. Those are **historical receipts / wave replay**, not
+the current authoring API. Bound runtime ids such as `pipe/extruder` and
+`hydrocarbon_materials/` are already semantic. Remaining docs and the full
+scan: `docs/current/semantic-naming.md` and
+`docs/current/semantic-naming-closeout-checklist.md`.
 
 The rest of this file is the historical GT6 regression and closed-card
 runbook. Use it to replay a closed ledger, not to choose the next content
@@ -54,26 +57,8 @@ python tools/run_python_tests.py --suite source-replay
 - `source-replay` is explicit and reports unavailable raw/cache inputs as
   `SKIP`.
 
-The historical phase-closing entry point remains available, but it is not the
-daily developer gate:
-
-```text
-python tools/run_full_verification.py --check-ready
-python tools/run_full_verification.py --check
-python tools/run_full_verification.py --record
-python tools/run_full_verification.py --record --resume
-```
-
-It fails on the first unsuccessful builder, datagen, Java, GameTest, Python, or
-report stage. `--check` remains the full read-only closure; `--record` builds
-the candidate in memory and atomically replaces `full_verification_report.json`
-only after every stage passes. `--check-ready` performs snapshot/committed
-`READY` validation only and never launches Gradle, GameTest, or Python.
-`--resume` starts at the first pending/failed stage after revalidating every
-earlier evidence digest and output/XML/tree hash. Sessions under
-`build/verification/sessions` are locked to the exact tooling snapshot, Python
-test policy, builder proof policy, and toolchain; drift refuses reuse and opens
-a new session.
+The historical phase-closing runner (`run_full_verification.py`) was deleted.
+Daily gates are `python tools/verify.py` and the semantic recipe compiler.
 
 `verification_builder_policy.json` is the single ordered owner for all 50
 current builder checks. `rederived` rebuilds from ordinary repository inputs;

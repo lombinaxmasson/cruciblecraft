@@ -1,0 +1,64 @@
+{
+  "delivery_phase": "bath/remainder",
+  "families": [
+    {
+      "authored_entries": 407,
+      "canonical_ids": [
+        "gt.recipe.bath"
+      ],
+      "eager_publication_rows": 0,
+      "family": "bath/remainder/bath-remainder-wave",
+      "lazy_cache_ceiling_rows": 128,
+      "lazy_logical_rows": 13708,
+      "logical_rows": 13708,
+      "measurement_basis": {
+        "kind": "family_specific_measurement",
+        "measured_logical_rows": [
+          13708
+        ],
+        "source": "bath/remainder R3 integrated T37-bath/remainder co-load CompactRecipeFamilybath/remainderIntegratedMeasurementHarness. Card partition remains the measured 13708-row bath/remainder groups. Runtime intervals are the 15-group production-mix snapshot, not bath/mte opening plus bath/remainder card arithmetic."
+      },
+      "measurement_intervals": {
+        "allocation_bytes": {
+          "max": 218225712,
+          "min": 218225688
+        },
+        "client_index_ms": {
+          "max": 2,
+          "min": 1
+        },
+        "client_reload_ms": {
+          "max": 116,
+          "min": 95
+        },
+        "lookup_candidate_count": {
+          "max": 10,
+          "min": 10
+        },
+        "lookup_p95_ns": {
+          "max": 121687,
+          "min": 59537
+        },
+        "retained_memory_bytes": {
+          "max": 1617643,
+          "min": 1617643
+        },
+        "server_index_ms": {
+          "max": 2,
+          "min": 1
+        },
+        "server_reload_ms": {
+          "max": 130,
+          "min": 92
+        }
+      },
+      "publication_domain": "gt_recipe_family",
+      "strategy": "group_scoped",
+      "sync_bytes": 1617643,
+      "vanilla_datapack_entries": 0
+    }
+  ],
+  "projection_id": "bath/remainder/bath-remainder-wave",
+  "schema_version": 2,
+  "status": "FAMILY_LOAD_PROJECTION_INPUT"
+}

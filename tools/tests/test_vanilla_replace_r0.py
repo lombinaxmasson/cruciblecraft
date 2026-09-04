@@ -5,7 +5,7 @@ from __future__ import annotations
 import unittest
 
 from tools import portfolio_vanilla_replace as vanilla
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk.slugs import KNOWN_SEMANTIC_SLUGS
 from tools.wave_closeout import spec_for
 
@@ -28,10 +28,10 @@ class VanillaReplaceR0RegistrationTest(unittest.TestCase):
 
 class VanillaReplaceR0ArtifactsTest(unittest.TestCase):
     def test_artifacts_when_present(self) -> None:
-        root = t35.TOOLS / "waves" / "portfolio" / "vanilla-replace-r0"
+        root = census.TOOLS / "waves" / "portfolio" / "vanilla-replace-r0"
         if not (root / "readiness.json").is_file():
             self.skipTest("R0 artifacts not written yet")
-        readiness = t35.load_json(root / "readiness.json")
+        readiness = census.load_json(root / "readiness.json")
         self.assertEqual("VANILLA_REPLACE_R0_READY", readiness["status"])
         self.assertIsNone(readiness["unique_active_wave"])
         self.assertTrue(readiness["next_unassigned"])
@@ -44,7 +44,7 @@ class VanillaReplaceR0ArtifactsTest(unittest.TestCase):
         self.assertEqual(2, int(evidence["inherited_category_count"]))
         self.assertEqual(3, int(evidence["inherited_source_file_count"]))
         self.assertEqual(0, int(evidence["minecraft_recipe_override_count"]))
-        self.assertEqual(121, int(evidence["t30_hopper_vanilla_count"]))
+        self.assertEqual(121, int(evidence["hopper_hopper_vanilla_count"]))
         self.assertEqual(24, int(evidence["worldgen_ores_vanilla_count"]))
         self.assertFalse(evidence["nuclear_track_c_started"])
         self.assertFalse(evidence["allows_implementation_child"])
@@ -53,7 +53,7 @@ class VanillaReplaceR0ArtifactsTest(unittest.TestCase):
                 "requires_new_runtime",
                 evidence["feasibility_by_category"][name],
             )
-        inherited = t35.load_json(root / "inherited_denominator.json")
+        inherited = census.load_json(root / "inherited_denominator.json")
         self.assertEqual(
             list(PINNED),
             [row["category"] for row in inherited["categories"]],
@@ -92,8 +92,8 @@ class VanillaReplaceR0ArtifactsTest(unittest.TestCase):
             replace_row["source_files"][1]["git_blob_sha1"],
         )
         closed = inherited["already_closed_elsewhere"]
-        self.assertFalse(closed["t30_hopper_vanilla"]["owner_here"])
-        self.assertEqual(121, int(closed["t30_hopper_vanilla"]["recipe_count"]))
+        self.assertFalse(closed["hopper_hopper_vanilla"]["owner_here"])
+        self.assertEqual(121, int(closed["hopper_hopper_vanilla"]["recipe_count"]))
         self.assertFalse(closed["empty_dump_maps"]["is_census"])
         self.assertEqual(
             0,
@@ -103,7 +103,7 @@ class VanillaReplaceR0ArtifactsTest(unittest.TestCase):
             24,
             int(closed["worldgen_ores_vanilla"]["feature_count"]),
         )
-        feasibility = t35.load_json(root / "feasibility.json")
+        feasibility = census.load_json(root / "feasibility.json")
         by_category = {row["category"]: row for row in feasibility["categories"]}
         self.assertEqual(list(PINNED), list(by_category))
         for name in PINNED:
@@ -111,23 +111,23 @@ class VanillaReplaceR0ArtifactsTest(unittest.TestCase):
             self.assertFalse(by_category[name]["allows_implementation_child"])
             self.assertIn(by_category[name]["verdict"], vanilla.FEASIBILITY_VALUES)
             self.assertIsNone(by_category[name]["destination"])
-        topology = t35.load_json(root / "topology.json")
+        topology = census.load_json(root / "topology.json")
         self.assertIsNone(topology["unique_active_wave"])
         self.assertTrue(topology["next_unassigned"])
         self.assertEqual(set(vanilla.ALLOWED_TOPOLOGY_KEYS), set(topology))
-        census = t35.load_json(root / "census_delta.json")
+        census = census.load_json(root / "census_delta.json")
         self.assertEqual(39, int(census["leftover_later_count"]))
-        wave = t35.load_json(root / "wave.json")
+        wave = census.load_json(root / "wave.json")
         self.assertEqual(SLUG, wave["program"])
         self.assertEqual(["portfolio/non-ore-worldgen-r0"], wave["depends_on"])
-        contract = t35.load_json(root / "replace_contract.json")
+        contract = census.load_json(root / "replace_contract.json")
         self.assertFalse(contract["implemented"])
         self.assertIn("load", contract["questions"])
         self.assertIn("separately", contract["questions"]["load"])
         self.assertIn("add_vs_remove", contract["questions"])
         self.assertIn("asm_vs_datapack", contract["questions"])
-        mechanism = t35.load_json(root / "existing_mechanism.json")
-        self.assertEqual(121, int(mechanism["t30_hopper_vanilla_count"]))
+        mechanism = census.load_json(root / "existing_mechanism.json")
+        self.assertEqual(121, int(mechanism["hopper_hopper_vanilla_count"]))
         self.assertEqual(0, int(mechanism["minecraft_recipe_override_count"]))
         self.assertFalse(mechanism["generic_importer_removes_minecraft_recipes"])
         self.assertEqual("GENERIC_RECIPE_IMPORT_READY", mechanism["generic_importer_status"])
@@ -140,7 +140,7 @@ class VanillaReplaceR0ArtifactsTest(unittest.TestCase):
             any("mold_firing" in path or "crucible_firing" in path
                 for path in mechanism["authored_minecraft_smelting"])
         )
-        semantics = t35.load_json(root / "source_semantics.json")
+        semantics = census.load_json(root / "source_semantics.json")
         names = [row["category"] for row in semantics["categories"]]
         self.assertEqual(list(PINNED), names)
         vanilla_sem = semantics["categories"][0]

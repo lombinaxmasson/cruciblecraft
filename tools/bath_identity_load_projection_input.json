@@ -1,0 +1,64 @@
+{
+  "delivery_phase": "bath/identity",
+  "families": [
+    {
+      "authored_entries": 150,
+      "canonical_ids": [
+        "gt.recipe.bath"
+      ],
+      "eager_publication_rows": 0,
+      "family": "bath/identity/bath-remainder-wave",
+      "lazy_cache_ceiling_rows": 128,
+      "lazy_logical_rows": 34091,
+      "logical_rows": 34091,
+      "measurement_basis": {
+        "kind": "family_specific_measurement",
+        "measured_logical_rows": [
+          34091
+        ],
+        "source": "bath/identity R3 card 1x CompactRecipeFamilybath/identityMeasurementHarness on_demand winner. Card partition is the measured 34091-row bath/identity groups. The 18-group integrated mix is census T14 closing only; its allocation exceeds the frozen 512 MiB hard ceiling and bath/identity does not raise that gate."
+      },
+      "measurement_intervals": {
+        "allocation_bytes": {
+          "max": 467210984,
+          "min": 467210984
+        },
+        "client_index_ms": {
+          "max": 3,
+          "min": 2
+        },
+        "client_reload_ms": {
+          "max": 275,
+          "min": 204
+        },
+        "lookup_candidate_count": {
+          "max": 5,
+          "min": 5
+        },
+        "lookup_p95_ns": {
+          "max": 10306,
+          "min": 7925
+        },
+        "retained_memory_bytes": {
+          "max": 3391802,
+          "min": 3391802
+        },
+        "server_index_ms": {
+          "max": 3,
+          "min": 2
+        },
+        "server_reload_ms": {
+          "max": 260,
+          "min": 197
+        }
+      },
+      "publication_domain": "gt_recipe_family",
+      "strategy": "group_scoped",
+      "sync_bytes": 3391802,
+      "vanilla_datapack_entries": 0
+    }
+  ],
+  "projection_id": "bath/identity/bath-remainder-wave",
+  "schema_version": 2,
+  "status": "FAMILY_LOAD_PROJECTION_INPUT"
+}

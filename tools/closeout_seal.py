@@ -19,14 +19,14 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools import legacy_seal_resolver as seal_resolver
-from tools import t35_common as t35
+from tools import io_common as io
 
-TOOLS = t35.TOOLS
+TOOLS = io.TOOLS
 SCHEMA = TOOLS / "closeout_seal.schema.json"
 IDENTITY_LEDGER_V2 = TOOLS / "global_build_identity_ledger.v2.json"
 RUNTIME_MANIFEST_V2 = TOOLS / "compact_recipe_runtime_manifest.v2.json"
-T48_LIVE_GENERATED = (
-    t35.ROOT
+BATH_IDENTITY_LIVE_GENERATED = (
+    io.ROOT
     / "src/recipe_generated/resources/data/cruciblecraft/recipe/bath/identity"
 )
 
@@ -78,7 +78,7 @@ def is_sealed(card_id: str) -> bool:
 def _file_hash(path: Path | None) -> str | None:
     if path is None or not path.is_file():
         return None
-    return t35.sha256_file(path)
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def _tree_hash(root: Path | None) -> str | None:
@@ -98,7 +98,7 @@ def _tree_hash(root: Path | None) -> str | None:
 
 
 def _load_json(path: Path) -> dict[str, Any]:
-    return t35.load_json(path)
+    return io.load_json(path)
 
 
 def _path_from_manifest(manifest: dict[str, Any], spec_field: str) -> Path | None:
@@ -108,7 +108,7 @@ def _path_from_manifest(manifest: dict[str, Any], spec_field: str) -> Path | Non
             continue
         live = str(row.get("live") or "")
         if live:
-            return t35.ROOT / live
+            return io.ROOT / live
     return None
 
 
@@ -116,9 +116,9 @@ def _spec_from_archive(card_id: str) -> CardSpec:
     manifest = seal_resolver.load_manifest(card_id)
     return CardSpec(
         card_id=card_id,
-        census=_path_from_manifest(manifest, "census") or t35.TOOLS / "missing_census.json",
-        topology=_path_from_manifest(manifest, "topology") or t35.TOOLS / "missing_topology.json",
-        readiness=_path_from_manifest(manifest, "readiness") or t35.TOOLS / "missing_readiness.json",
+        census=_path_from_manifest(manifest, "census") or io.TOOLS / "missing_census.json",
+        topology=_path_from_manifest(manifest, "topology") or io.TOOLS / "missing_topology.json",
+        readiness=_path_from_manifest(manifest, "readiness") or io.TOOLS / "missing_readiness.json",
         receipt=_path_from_manifest(manifest, "receipt"),
         production_lock=_path_from_manifest(manifest, "production_lock"),
         generated_root=_path_from_manifest(manifest, "generated_root"),
@@ -238,16 +238,16 @@ def _validate_seal_shape(document: dict[str, Any], card_id: str) -> list[str]:
 def load_seal(card_id: str) -> dict[str, Any]:
     path = _seal_document_path(card_id)
     if not path.is_file():
-        raise FileNotFoundError(f"missing closeout seal: {t35.relative(path)}")
+        raise FileNotFoundError(f"missing closeout seal: {io.relative(path)}")
     try:
         document = _load_json(path)
     except json.JSONDecodeError as error:
         raise ValueError(
-            f"CORRUPT: {t35.relative(path)} JSON line={error.lineno} "
+            f"CORRUPT: {io.relative(path)} JSON line={error.lineno} "
             f"column={error.colno}"
         ) from error
     if not isinstance(document, dict):
-        raise ValueError(f"CORRUPT: {t35.relative(path)} is not an object")
+        raise ValueError(f"CORRUPT: {io.relative(path)} is not an object")
     errors = _validate_seal_shape(document, card_id)
     if errors:
         raise ValueError("; ".join(errors))
@@ -257,7 +257,7 @@ def load_seal(card_id: str) -> dict[str, Any]:
 def build_seal(card_id: str) -> dict[str, Any]:
     spec = spec_for(card_id)
     missing = [
-        t35.relative(path)
+        io.relative(path)
         for path in (spec.census, spec.topology, spec.readiness)
         if not path.is_file()
     ]
@@ -289,8 +289,8 @@ def build_seal(card_id: str) -> dict[str, Any]:
         "schema_version": 1,
         "status": "SEALED",
         "card_id": card_id,
-        "sealed_at_wave": "T47-VR",
-        "source_revision": t35.SOURCE_REVISION,
+        "sealed_at_wave": "bath/remainder-VR",
+        "source_revision": io.SOURCE_REVISION,
         "generated_by": "python tools/closeout_seal.py --write",
         "complete_family_count": ledger["complete_family_count"],
         "relation_count": ledger["relation_count"],
@@ -311,7 +311,7 @@ def build_seal(card_id: str) -> dict[str, Any]:
 
 def pre_repair_hash_path() -> Path:
     return (
-        t35.TOOLS
+        io.TOOLS
         / "waves"
         / "ordinary-wave"
         / "closeout-integrity-repair"
@@ -391,7 +391,7 @@ def write_wave_seal(
 
     spec = wave_spec_for(slug)
     missing = [
-        t35.relative(path)
+        io.relative(path)
         for path in (spec.census, spec.topology, spec.readiness)
         if not path.is_file()
     ]
@@ -427,7 +427,7 @@ def write_wave_seal(
         "status": "SEALED",
         "card_id": slug,
         "sealed_at_wave": slug,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": io.SOURCE_REVISION,
         "generated_by": "python tools/closeout_seal.py --write --wave",
         "complete_family_count": ledger["complete_family_count"],
         "relation_count": ledger["relation_count"],
@@ -453,15 +453,15 @@ def write_wave_seal(
     output = wave_seal_path(slug)
     if output.is_file():
         existing = output.read_text(encoding="utf-8")
-        if existing == t35.stable_json(document):
+        if existing == io.stable_json(document):
             return _load_json(output)
         existing_sha = _file_bytes_sha256(output)
         allowed = supersedes_sha256 or recorded_pre_repair_sha(slug)
         if not allowed or existing_sha != allowed:
             raise ValueError(
-                f"refusing to replace {t35.relative(output)}; closeout seals are write-once"
+                f"refusing to replace {io.relative(output)}; closeout seals are write-once"
             )
-    t35.write_stable(output, document)
+    io.write_stable(output, document)
     return document
 
 
@@ -478,11 +478,11 @@ def write_seal(
             raise ValueError("--supersedes requires --repair-wave")
         spec = spec_for(card_id)
         if (
-            card_id == "T48"
+            card_id == "bath/identity"
             and (spec.generated_root is None or not spec.generated_root.exists())
-            and T48_LIVE_GENERATED.exists()
+            and BATH_IDENTITY_LIVE_GENERATED.exists()
         ):
-            document["hashes"]["generated_recipes"] = _tree_hash(T48_LIVE_GENERATED)
+            document["hashes"]["generated_recipes"] = _tree_hash(BATH_IDENTITY_LIVE_GENERATED)
         document["schema_version"] = 2
         document["supersedes_sha256"] = supersedes_sha256
         document["repair_wave"] = repair_wave
@@ -495,7 +495,7 @@ def write_seal(
         )
         if output.is_file():
             existing_text = output.read_text(encoding="utf-8")
-            if existing_text == t35.stable_json(document):
+            if existing_text == io.stable_json(document):
                 return _load_json(output)
             existing_sha = _file_bytes_sha256(output)
             existing_doc = _load_json(output)
@@ -504,18 +504,18 @@ def write_seal(
                 and existing_doc.get("supersedes_sha256") != supersedes_sha256
             ):
                 raise ValueError(
-                    f"--supersedes does not match current {t35.relative(output)}"
+                    f"--supersedes does not match current {io.relative(output)}"
                 )
-        t35.write_stable(output, document)
+        io.write_stable(output, document)
         return document
     if output.is_file():
         existing = output.read_text(encoding="utf-8")
-        if existing != t35.stable_json(document):
+        if existing != io.stable_json(document):
             raise ValueError(
-                f"refusing to replace {t35.relative(output)}; closeout seals are write-once"
+                f"refusing to replace {io.relative(output)}; closeout seals are write-once"
             )
         return _load_json(output)
-    t35.write_stable(output, document)
+    io.write_stable(output, document)
     return document
 
 
@@ -523,7 +523,7 @@ def write_all() -> dict[str, str]:
     written: dict[str, str] = {}
     for card_id in closed_card_ids():
         write_seal(card_id)
-        written[card_id] = t35.relative(seal_path(card_id))
+        written[card_id] = io.relative(seal_path(card_id))
     return written
 
 
@@ -532,26 +532,26 @@ def _hash_mismatch(card_id: str, label: str, path: Path | None, expected: str | 
         return []
     actual = _file_hash(path)
     if actual != expected:
-        rel = t35.relative(path) if path is not None else label
+        rel = io.relative(path) if path is not None else label
         return [f"{card_id} {label} hash drifted from seal: {rel}"]
     return []
 
 
 def _parse_seal_file(path: Path, card_id: str) -> list[str]:
     if not path.is_file():
-        return [f"missing closeout seal: {t35.relative(path)}"]
+        return [f"missing closeout seal: {io.relative(path)}"]
     try:
         text = path.read_text(encoding="utf-8")
         document = json.loads(text)
     except json.JSONDecodeError as error:
         return [
-            f"CORRUPT: {t35.relative(path)} JSON line={error.lineno} "
+            f"CORRUPT: {io.relative(path)} JSON line={error.lineno} "
             f"column={error.colno} size={path.stat().st_size}"
         ]
     except OSError as error:
-        return [f"CORRUPT: {t35.relative(path)} {error}"]
+        return [f"CORRUPT: {io.relative(path)} {error}"]
     if not isinstance(document, dict):
-        return [f"CORRUPT: {t35.relative(path)} is not an object"]
+        return [f"CORRUPT: {io.relative(path)} is not an object"]
     return _validate_seal_shape(document, card_id)
 
 
@@ -580,12 +580,12 @@ def check_census(card_id: str) -> list[str]:
     spec = resolved_spec(card_id)
     seal = load_seal(card_id)
     if not spec.census.is_file():
-        return [f"missing census: {t35.relative(spec.census)}"]
+        return [f"missing census: {io.relative(spec.census)}"]
     try:
         census = _load_json(spec.census)
     except json.JSONDecodeError as error:
         return [
-            f"CORRUPT: {t35.relative(spec.census)} JSON line={error.lineno} "
+            f"CORRUPT: {io.relative(spec.census)} JSON line={error.lineno} "
             f"column={error.colno}"
         ]
     errors.extend(_hash_mismatch(card_id, "census", spec.census, (seal.get("hashes") or {}).get("census")))
@@ -610,12 +610,12 @@ def check_topology(card_id: str) -> list[str]:
     spec = resolved_spec(card_id)
     seal = load_seal(card_id)
     if not spec.topology.is_file():
-        return [f"missing topology: {t35.relative(spec.topology)}"]
+        return [f"missing topology: {io.relative(spec.topology)}"]
     try:
         topology = _load_json(spec.topology)
     except json.JSONDecodeError as error:
         return [
-            f"CORRUPT: {t35.relative(spec.topology)} JSON line={error.lineno} "
+            f"CORRUPT: {io.relative(spec.topology)} JSON line={error.lineno} "
             f"column={error.colno}"
         ]
     errors.extend(
@@ -623,8 +623,8 @@ def check_topology(card_id: str) -> list[str]:
     )
     if not topology.get(spec.complete_key):
         errors.append(f"{card_id} topology {spec.complete_key} is not complete in the seal snapshot")
-    if topology.get("unique_active_card") == "T47-VR":
-        errors.append("unique_active_card must not be occupied by T47-VR")
+    if topology.get("unique_active_card") == "bath/remainder-VR":
+        errors.append("unique_active_card must not be occupied by bath/remainder-VR")
     if spec.next_issue_id and topology.get("next_issue_id") != spec.next_issue_id:
         errors.append(f"{card_id} next_issue_id must stay {spec.next_issue_id}")
     if topology.get("unique_active_card") is not None and topology.get(spec.complete_key):
@@ -639,12 +639,12 @@ def check_readiness(card_id: str) -> list[str]:
     spec = resolved_spec(card_id)
     seal = load_seal(card_id)
     if not spec.readiness.is_file():
-        return [f"missing readiness: {t35.relative(spec.readiness)}"]
+        return [f"missing readiness: {io.relative(spec.readiness)}"]
     try:
         readiness = _load_json(spec.readiness)
     except json.JSONDecodeError as error:
         return [
-            f"CORRUPT: {t35.relative(spec.readiness)} JSON line={error.lineno} "
+            f"CORRUPT: {io.relative(spec.readiness)} JSON line={error.lineno} "
             f"column={error.colno}"
         ]
     errors.extend(
@@ -656,10 +656,10 @@ def check_readiness(card_id: str) -> list[str]:
     if status and "READY" not in status and "SEALED" not in status:
         errors.append(f"{card_id} readiness status {status} is not READY")
     evidence = readiness.get("evidence") or {}
-    if evidence.get("unique_active_card") == "T47-VR":
-        errors.append("readiness unique_active_card must not be T47-VR")
+    if evidence.get("unique_active_card") == "bath/remainder-VR":
+        errors.append("readiness unique_active_card must not be bath/remainder-VR")
     if spec.next_issue_id:
-        opening = readiness.get("t48_opening") or {}
+        opening = readiness.get("bath_identity_opening") or {}
         if opening.get("next_issue_id") not in (None, spec.next_issue_id) and evidence.get(
             "next_issue_id"
         ) not in (None, spec.next_issue_id):
@@ -693,12 +693,12 @@ def check_hashed_sidecar(card_id: str, field: str) -> list[str]:
     if path is None or not expected:
         return errors
     if not path.is_file():
-        return [f"missing {field}: {t35.relative(path)}"]
+        return [f"missing {field}: {io.relative(path)}"]
     try:
         _load_json(path)
     except json.JSONDecodeError as error:
         return [
-            f"CORRUPT: {t35.relative(path)} JSON line={error.lineno} column={error.colno}"
+            f"CORRUPT: {io.relative(path)} JSON line={error.lineno} column={error.colno}"
         ]
     errors.extend(_hash_mismatch(card_id, field, path, expected))
     return errors
@@ -731,9 +731,14 @@ def check_closed_card(card_id: str) -> list[str]:
 
 
 def check_all() -> list[str]:
+    """Check semantic wave seals. Numbered-card seals are no longer a live gate."""
+    from tools.wave_closeout import known_slugs
+    from tools.wave_closeout import seal_path as wave_seal_path
+
     errors: list[str] = []
-    for card_id in closed_card_ids():
-        errors.extend(check_closed_card(card_id))
+    for slug in known_slugs():
+        if wave_seal_path(slug).is_file():
+            errors.extend(check_wave_seal(slug))
     return errors
 
 
@@ -805,7 +810,7 @@ def check_wave_seal(slug: str) -> list[str]:
     errors: list[str] = []
     path = wave_seal_path(slug)
     if not path.is_file():
-        return [f"missing closeout seal: {t35.relative(path)}"]
+        return [f"missing closeout seal: {io.relative(path)}"]
     document = _load_json(path)
     errors.extend(_validate_seal_shape(document, slug))
     spec = wave_spec_for(slug)
@@ -872,7 +877,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--waves-only",
         action="store_true",
-        help="Check semantic wave seals only; skip numbered card seals.",
+        help="Check semantic wave seals only (default for --check without --card).",
     )
     parser.add_argument(
         "--supersedes",
@@ -895,6 +900,10 @@ def main(argv: list[str] | None = None) -> int:
         parser.error("--repair-wave requires --supersedes")
     if args.supersedes and not args.waves and not args.cards:
         parser.error("--supersedes requires --card or --wave")
+    if args.write and not args.cards and not args.waves:
+        parser.error("--write requires --wave or --card")
+    if args.check and not args.cards and not args.waves:
+        args.waves_only = True
     if args.waves_only and not args.waves:
         from tools.wave_closeout import known_slugs
         from tools.wave_closeout import seal_path as wave_seal_path
@@ -918,7 +927,7 @@ def main(argv: list[str] | None = None) -> int:
                     )
                     from tools.wave_closeout import seal_path as wave_seal_path
 
-                    print(f"Wrote {t35.relative(wave_seal_path(slug))}")
+                    print(f"Wrote {io.relative(wave_seal_path(slug))}")
                 return 0
             errors: list[str] = []
             for slug in args.waves:
@@ -940,7 +949,7 @@ def main(argv: list[str] | None = None) -> int:
                     supersedes_sha256=args.supersedes,
                     repair_wave=args.repair_wave,
                 )
-                print(f"Wrote {t35.relative(seal_path(card_id))}")
+                print(f"Wrote {io.relative(seal_path(card_id))}")
             return 0
         errors: list[str] = []
         for card_id in cards:

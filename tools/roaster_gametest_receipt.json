@@ -1,0 +1,34 @@
+{
+  "behavior_root_sha256": "d38d714e38a30646cbf4779a493653bb861e3f49046aee5fbd3b79a19253c2eb",
+  "bound_artifacts": {
+    "gametest_java": "dbbe6b6b6f1bab7dcad5cd3b6927bed35ebfca0d49ad6dbdf59364a6e3f1c64d",
+    "material_registration_gate_java": "f68f87d8eef8cf832987b726e01a2e9b592269cfcc5baf10e46502680704bb84",
+    "material_registration_gate_json": "51cf948867ca73af6be51defa2c95f3870bdc546986c396d7662ea58a865e569",
+    "roaster_generated_recipes": "835a1a0f477cf15b3902b9e28025fa4c7f8e3994f70da1bbb237c9fe7398f4d0",
+    "roaster_player_path_recovery": null
+  },
+  "command": ".\\gradlew.bat runGameTestServer -PwaveRecipes=roaster/compact --no-daemon",
+  "currentness_root_sha256": "530b232f38ef206233f9e30244465b22b75471befa8a656890852c89913bc83d",
+  "equivalence_root_sha256": "fff7de9916ea05acb20d985666135bd5476fc783e3299190306563b57d1ff4b9",
+  "failed": 0,
+  "java_sha256": "dbbe6b6b6f1bab7dcad5cd3b6927bed35ebfca0d49ad6dbdf59364a6e3f1c64d",
+  "java_source": "src/main/java/com/masson/cruciblecraft/gametest/RoasterCompactGameTests.java",
+  "log_fingerprint": "60dac6460a7e3f8e8287ac86a198b26945bf605c2f3c6390c215ae2f9b78debb",
+  "log_path": "tools/roaster_gametest.log",
+  "namespace": "cruciblecraft_wave_roaster_compact",
+  "note": "Source markers are not a pass. This receipt is the isolated -PwaveRecipes=roaster/compact result bound to MaterialRegistrationGate, the roaster/compact recipe resource trees, and the committed UTF-8 evidence log. The gitignored run-roaster/compact-recipes directory is not evidence. Injecting recipe inputs still does not prove a player path.",
+  "pass_marker": "All 5 required tests passed :)",
+  "passed": 5,
+  "required_tests": 5,
+  "schema_version": 3,
+  "semantic_tree_sha256": "168a96313b6b7fb45b16f111f29515667f3ef60d230561cfa3c8d906e7ac0dc8",
+  "skip_is_not_pass": true,
+  "status": "PASS",
+  "test_ids": [
+    "compactfamiliespublished",
+    "emiplanincludesroasterfamilies",
+    "roastercompactstableidssurvivereload",
+    "roasterexecutesrepresentative",
+    "singletonfamilyexecutes"
+  ]
+}

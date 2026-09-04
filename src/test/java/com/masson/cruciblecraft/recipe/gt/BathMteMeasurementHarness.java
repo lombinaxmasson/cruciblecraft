@@ -362,7 +362,7 @@ class BathMteMeasurementHarness {
         Map<String, Object> card = scenario("card", rows);
 
         Map<String, Object> input = new LinkedHashMap<>();
-        input.put("kind", "t46_production_lock_1517_relation_rows");
+        input.put("kind", "bath_mte_production_lock_1517_relation_rows");
         input.put("logical_rows", LOGICAL_ROWS);
         input.put("measured_logical_rows", List.of(LOGICAL_ROWS, LOGICAL_ROWS));
         input.put("generated_datapack_present", true);
@@ -371,7 +371,7 @@ class BathMteMeasurementHarness {
                 "BathMteMeasurementHarness 1517 JUnit samples; "
                         + "retained_memory uses snapshot.syncPayloadBytes, not a naive JVM "
                         + "heap delta. player_execution evidenced by BathMteHarnessTest "
-                        + "and T46RecipeGameTests. bath_mte and card are the same 1517-row group.");
+                        + "and BathMteGameTests. bath_mte and card are the same 1517-row group.");
 
         Map<String, Object> family = new LinkedHashMap<>();
         family.put("family_count", FAMILY_COUNT);
@@ -384,17 +384,17 @@ class BathMteMeasurementHarness {
 
         Map<String, Object> root = new LinkedHashMap<>();
         root.put("schema_version", 1);
-        root.put("status", "T46_MATERIALIZATION_MEASUREMENT_READY");
+        root.put("status", "BATH_MTE_MATERIALIZATION_MEASUREMENT_READY");
         root.put("production_winner_claimed", false);
         root.put("protocol", Map.of(
-                "id", "t46_materialization_production_lock_v1",
+                "id", "bath_mte_materialization_production_lock_v1",
                 "ranking_scale", "1x",
                 "diagnostic_scales_not_for_production", List.of("5x", "20x"),
                 "single_wall_clock_sample_forbidden", true,
                 "p50_p95_invented", false,
                 "sample_count", SAMPLE_COUNT));
         root.put("input", input);
-        root.put("t46_opening", t46Opening());
+        root.put("bath_mte_opening", bathMteOpening());
         root.put("family_work_set", family);
         root.put("scenarios", List.of(bath, card));
         root.put("diagnostic_scales", Map.of(
@@ -422,9 +422,9 @@ class BathMteMeasurementHarness {
         return scenario;
     }
 
-    private static Map<String, Object> t46Opening() {
+    private static Map<String, Object> bathMteOpening() {
         Map<String, Object> opening = new LinkedHashMap<>();
-        opening.put("source", "tools/t45_census_delta.json#t14_load.closing");
+        opening.put("source", "tools/block_object_census_delta.json#recipe_load.closing");
         opening.put("datapack_authored_entries", 4865);
         opening.put("eager_publication_rows", 16659);
         opening.put("lazy_logical_rows", 3466);

@@ -1,0 +1,26 @@
+{
+  "$id": "https://cruciblecraft.invalid/schema/t42-reachability-baseline.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "excludes_t42_outputs": {
+      "const": true
+    },
+    "fluid_reachability_approximate": {
+      "const": true
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "const": "T42_REACHABILITY_BASELINE"
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "b0_semantic_root",
+    "excludes_t42_outputs"
+  ],
+  "type": "object"
+}

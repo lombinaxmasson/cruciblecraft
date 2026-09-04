@@ -13,13 +13,13 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools import closeout_seal
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk import ordinary_r0 as r0
 from tools.wave_closeout import known_slugs
 from tools.wave_closeout import spec_for
 
 SLUG = "recipe-portfolio/ordinary-remainder-closure"
-ROOT_DIR = t35.TOOLS / "waves" / "recipe-portfolio" / "ordinary-remainder-closure"
+ROOT_DIR = census.TOOLS / "waves" / "recipe-portfolio" / "ordinary-remainder-closure"
 OPENING_FAMILIES = 334
 OPENING_RELATIONS = 2047
 OPENING_DEFERRED_RECYCLING = 1819
@@ -39,7 +39,7 @@ PREREQ_SLUGS = (
 
 
 def _wave_root(slug: str) -> Path:
-    return t35.TOOLS / "waves" / Path(*slug.split("/"))
+    return census.TOOLS / "waves" / Path(*slug.split("/"))
 
 
 def _require_sealed_ready(slug: str) -> list[str]:
@@ -51,8 +51,8 @@ def _require_sealed_ready(slug: str) -> list[str]:
         return [f"{slug} missing readiness.json"]
     if not seal.is_file():
         return [f"{slug} missing closeout_seal.json"]
-    ready = t35.load_json(readiness)
-    sealed = t35.load_json(seal)
+    ready = census.load_json(readiness)
+    sealed = census.load_json(seal)
     if ready.get("status") != "WAVE_READY":
         errors.append(f"{slug} readiness is {ready.get('status')}")
     if ready.get("unique_active_wave") is not None:
@@ -64,8 +64,8 @@ def _require_sealed_ready(slug: str) -> list[str]:
 
 
 def _child_account(slug: str) -> dict[str, Any]:
-    census = t35.load_json(_wave_root(slug) / "census_delta.json")
-    lock = t35.load_json(_wave_root(slug) / "production_lock.json")
+    census = census.load_json(_wave_root(slug) / "census_delta.json")
+    lock = census.load_json(_wave_root(slug) / "production_lock.json")
     remaining = census.get("remaining_ordinary") or {}
     reclassified: list[dict[str, Any]] = []
     for row in lock.get("reclassified") or []:
@@ -182,7 +182,7 @@ def program_proof() -> dict[str, Any]:
         "partial_family_count": partial,
         "proven_new_deferred": proven_new,
         "reclassification_delta": reclass,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": (
             "ORDINARY_REMAINDER_CLOSURE_READY" if not errors else "PROGRAM_DRIFT"
         ),
@@ -216,7 +216,7 @@ def write_artifacts() -> dict[str, Any]:
         "reclassification_delta": proof["reclassification_delta"],
         "remaining_recipe_gap": 0,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "GAP_REPLAY_ZERO",
         "wave_slug": SLUG,
     }
@@ -235,7 +235,7 @@ def write_artifacts() -> dict[str, Any]:
         "one_x_joint_exit": False,
         "proven_new_deferred": proof["proven_new_deferred"],
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "DEFERRED_LEDGER_READY",
         "wave_slug": SLUG,
     }
@@ -262,7 +262,7 @@ def write_artifacts() -> dict[str, Any]:
         },
         "remaining_recipe_gap": 0,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "CENSUS_DELTA_READY",
         "wave_slug": SLUG,
         "work_set": {"family_count": 0, "source_rows": 0},
@@ -274,7 +274,7 @@ def write_artifacts() -> dict[str, Any]:
         "next_unassigned": True,
         "remaining_recipe_gap": 0,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "WAVE_READY",
         "unique_active_wave": None,
         "wave_slug": SLUG,
@@ -296,22 +296,22 @@ def write_artifacts() -> dict[str, Any]:
         "generated_by": generated_by,
         "next_unassigned": True,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "WAVE_READY",
         "unique_active_wave": None,
         "wave_complete": True,
         "wave_slug": SLUG,
     }
-    t35.write_stable(ROOT_DIR / "wave.json", wave)
-    t35.write_stable(ROOT_DIR / "gap_replay.json", gap_replay)
-    t35.write_stable(ROOT_DIR / "deferred_ledger.json", deferred)
-    t35.write_stable(ROOT_DIR / "census_delta.json", census)
-    t35.write_stable(ROOT_DIR / "topology.json", topology)
-    t35.write_stable(ROOT_DIR / "readiness.json", readiness)
+    census.write_stable(ROOT_DIR / "wave.json", wave)
+    census.write_stable(ROOT_DIR / "gap_replay.json", gap_replay)
+    census.write_stable(ROOT_DIR / "deferred_ledger.json", deferred)
+    census.write_stable(ROOT_DIR / "census_delta.json", census)
+    census.write_stable(ROOT_DIR / "topology.json", topology)
+    census.write_stable(ROOT_DIR / "readiness.json", readiness)
     hashes = {
-        "census": t35.sha256_file(ROOT_DIR / "census_delta.json"),
-        "topology": t35.sha256_file(ROOT_DIR / "topology.json"),
-        "readiness": t35.sha256_file(ROOT_DIR / "readiness.json"),
+        "census": census.sha256_file(ROOT_DIR / "census_delta.json"),
+        "topology": census.sha256_file(ROOT_DIR / "topology.json"),
+        "readiness": census.sha256_file(ROOT_DIR / "readiness.json"),
         "receipt": None,
         "gametest_java": None,
         "gametest_log": None,
@@ -327,7 +327,7 @@ def write_artifacts() -> dict[str, Any]:
         "status": "SEALED",
         "card_id": SLUG,
         "sealed_at_wave": SLUG,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "generated_by": "python tools/build_ordinary_remainder_closure.py --write",
         "complete_family_count": 0,
         "relation_count": 0,
@@ -336,10 +336,10 @@ def write_artifacts() -> dict[str, Any]:
         "production_lock_sha256": None,
         "gametest_status": "NONE",
         "receipt_sha256": None,
-        "composed_identity_ledger_v2_sha256": t35.sha256_file(
+        "composed_identity_ledger_v2_sha256": census.sha256_file(
             closeout_seal.IDENTITY_LEDGER_V2
         ),
-        "composed_runtime_manifest_v2_sha256": t35.sha256_file(
+        "composed_runtime_manifest_v2_sha256": census.sha256_file(
             closeout_seal.RUNTIME_MANIFEST_V2
         ),
         "hashes": hashes,
@@ -351,7 +351,7 @@ def write_artifacts() -> dict[str, Any]:
             "and nuclear census stay closed."
         ),
     }
-    t35.write_stable(ROOT_DIR / "closeout_seal.json", seal)
+    census.write_stable(ROOT_DIR / "closeout_seal.json", seal)
     return {
         "accounted_families": proof["accounted_families"],
         "deferred_recycling": proof["closing_deferred_recycling"],
@@ -370,7 +370,7 @@ def check() -> list[str]:
     readiness = ROOT_DIR / "readiness.json"
     if not readiness.is_file():
         return errors + ["missing program readiness.json"]
-    document = t35.load_json(readiness)
+    document = census.load_json(readiness)
     if document.get("status") != "WAVE_READY":
         errors.append("program readiness is not WAVE_READY")
     if document.get("unique_active_wave") is not None:
@@ -382,14 +382,14 @@ def check() -> list[str]:
         errors.append("missing ORDINARY_REMAINDER_CLOSURE_READY")
     if evidence.get("one_x_joint_exit") is not False:
         errors.append("1.x joint exit must stay false")
-    census = t35.load_json(ROOT_DIR / "census_delta.json")
+    census = census.load_json(ROOT_DIR / "census_delta.json")
     if int(census.get("complete_family_count", -1)) != 0:
         errors.append("program must not claim family completion")
     if int(census.get("remaining_recipe_gap", -1)) != 0:
         errors.append("program remaining_recipe_gap must be 0")
     if int(census.get("program_accounted_families", -1)) != OPENING_FAMILIES:
         errors.append("program accounted families drifted from 334")
-    deferred = t35.load_json(ROOT_DIR / "deferred_ledger.json")
+    deferred = census.load_json(ROOT_DIR / "deferred_ledger.json")
     if deferred.get("next_owner") != NEXT_MAJOR:
         errors.append("deferred ledger next_owner drifted")
     if int(deferred.get("inherited_recycling", {}).get("count") or 0) != OPENING_DEFERRED_RECYCLING:

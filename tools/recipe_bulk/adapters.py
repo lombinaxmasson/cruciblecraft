@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from typing import Any
 
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk.compile import compile_wave
 from tools.recipe_bulk.ir import validate_wave_ir
 from tools.recipe_bulk.models import ShadowFamily, WaveIR, WaveSpec
@@ -18,7 +18,7 @@ from tools.recipe_bulk.templates import expand_family
 from tools.recipe_bulk.waves import recipe_wave
 from tools.recipe_bulk.matrix import authored_relation_count, authored_relations
 
-SOURCE_REVISION = t35.SOURCE_REVISION
+SOURCE_REVISION = census.SOURCE_REVISION
 
 
 def _resolved_operands(document: dict[str, Any]) -> list[dict[str, Any]]:
@@ -70,9 +70,9 @@ def _package_family(
         },
         provenance={
             "archetype": spec.archetype,
-            "authority": t35.relative(spec.lock_path)
+            "authority": census.relative(spec.lock_path)
             if spec.lock_path is not None
-            else t35.relative(spec.source_path),
+            else census.relative(spec.source_path),
             "compile_authority": spec.compile_authority,
             "wave": spec.wave_id,
         },
@@ -110,12 +110,12 @@ def adapt_wave(spec: WaveSpec | str) -> WaveIR:
         archetype=spec.archetype,
         template_kind=spec.template_kind,
         source_revision=SOURCE_REVISION,
-        source_path=t35.relative(spec.source_path),
-        source_sha256=t35.sha256_file(spec.source_path),
+        source_path=census.relative(spec.source_path),
+        source_sha256=census.sha256_file(spec.source_path),
         target_map=spec.target_map,
         families=families,
-        lock_path=t35.relative(spec.lock_path) if spec.lock_path else None,
-        lock_sha256=t35.sha256_file(spec.lock_path) if spec.lock_path else None,
+        lock_path=census.relative(spec.lock_path) if spec.lock_path else None,
+        lock_sha256=census.sha256_file(spec.lock_path) if spec.lock_path else None,
     )
     errors = validate_wave_ir(ir)
     if errors:

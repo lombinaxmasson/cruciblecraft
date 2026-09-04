@@ -1,18 +1,12 @@
 #!/usr/bin/python3
-"""Deterministic fail-closed V1 build-time identity ledger from T37–T45 facts."""
+"""Deterministic fail-closed V1 build-time identity ledger from compact-wave facts."""
 from __future__ import annotations
 
+import hashlib
 from typing import Any
 
-from tools import t35_common as t35
-from tools import t38_common as t38
-from tools import t39_common as t39
-from tools import t40_common as t40
-from tools import t41_common as t41
-from tools import t43_common as t43
-from tools import t44_common as t44
-from tools import t45_common as t45
-from tools.recipe_bulk.waves import IDENTITY_ONLY_WAVES, T37_OPERAND_MAP, recipe_wave
+from tools import io_common as files
+from tools.recipe_bulk.waves import ASSEMBLER_COMPACT_OPERAND_MAP, identity_only_waves, recipe_wave
 
 STATUS = "GLOBAL_BUILD_IDENTITY_LEDGER_V1"
 MAPPING_CLASSES = (
@@ -31,32 +25,94 @@ MAPPING_CLASSES = (
     "stateful_identity",
 )
 
-OPERAND_MAPS = (
-    ("T37", T37_OPERAND_MAP),
-    ("T38", t38.OPERAND_RUNTIME_MAP),
-    ("T39", t39.OPERAND_RUNTIME_MAP),
-    ("T40", t40.OPERAND_RUNTIME_MAP),
-    ("T41", t41.OPERAND_RUNTIME_MAP),
-    ("T43", t43.OPERAND_RUNTIME_MAP),
-    ("T45", t45.OPERAND_RUNTIME_MAP),
-)
-REQUIRED_FORMS = (
-    ("T38", t38.REQUIRED_FORMS),
-    ("T39", t39.REQUIRED_FORMS),
-    ("T40", t40.REQUIRED_FORMS),
-    ("T41", t41.REQUIRED_FORMS),
-    ("T43", t43.REQUIRED_FORMS),
-    ("T45", t45.REQUIRED_FORMS),
-)
-COMPACT_SOURCES = (
-    ("T37", recipe_wave("T37").source_path),
-    ("T38", t38.SOURCE),
-    ("T39", t39.SOURCE),
-    ("T40", t40.SOURCE),
-    ("T41", t41.SOURCE),
-    ("T43", t43.SOURCE),
-    ("T45", t45.SOURCE),
-)
+CIRCUIT_ITEM = "gregapi:gt.integrated_circuit"
+CIRCUIT_CONFIG = "cruciblecraft:circuit_config"
+FIREPROOF_COMPONENT = "cruciblecraft:fireproof"
+LEDGER_PATH = files.TOOLS / "global_build_identity_ledger.json"
+
+
+def _historical_commons():
+    from tools import roaster_common as roaster
+    from tools import centrifuge_common as centrifuge
+    from tools import electrolyzer_common as electrolyzer
+    from tools import assembler_wood_common as assembler_wood
+    from tools import smelter_stone_common as smelter_stone
+    from tools import storage_common as storage
+    from tools import block_object_common as block_object
+
+    return roaster, centrifuge, electrolyzer, assembler_wood, smelter_stone, storage, block_object
+
+
+def _operand_maps():
+    (
+        roaster,
+        centrifuge,
+        electrolyzer,
+        assembler_wood,
+        smelter_stone,
+        _storage,
+        block_object,
+    ) = _historical_commons()
+    return (
+        ("assembler/compact", ASSEMBLER_COMPACT_OPERAND_MAP),
+        ("roaster/compact", roaster.OPERAND_RUNTIME_MAP),
+        ("centrifuge/compact", centrifuge.OPERAND_RUNTIME_MAP),
+        ("electrolyzer/compact", electrolyzer.OPERAND_RUNTIME_MAP),
+        ("assembler/wood", assembler_wood.OPERAND_RUNTIME_MAP),
+        ("smelter/stone", smelter_stone.OPERAND_RUNTIME_MAP),
+        ("block/object", block_object.OPERAND_RUNTIME_MAP),
+    )
+
+
+def _required_forms():
+    (
+        roaster,
+        centrifuge,
+        electrolyzer,
+        assembler_wood,
+        smelter_stone,
+        _storage,
+        block_object,
+    ) = _historical_commons()
+    return (
+        ("roaster/compact", roaster.REQUIRED_FORMS),
+        ("centrifuge/compact", centrifuge.REQUIRED_FORMS),
+        ("electrolyzer/compact", electrolyzer.REQUIRED_FORMS),
+        ("assembler/wood", assembler_wood.REQUIRED_FORMS),
+        ("smelter/stone", smelter_stone.REQUIRED_FORMS),
+        ("block/object", block_object.REQUIRED_FORMS),
+    )
+
+
+def _compact_sources():
+    (
+        roaster,
+        centrifuge,
+        electrolyzer,
+        assembler_wood,
+        smelter_stone,
+        _storage,
+        block_object,
+    ) = _historical_commons()
+    return (
+        ("assembler/compact", recipe_wave("assembler/compact").source_path),
+        ("roaster/compact", roaster.SOURCE),
+        ("centrifuge/compact", centrifuge.SOURCE),
+        ("electrolyzer/compact", electrolyzer.SOURCE),
+        ("assembler/wood", assembler_wood.SOURCE),
+        ("smelter/stone", smelter_stone.SOURCE),
+        ("block/object", block_object.SOURCE),
+    )
+
+
+def __getattr__(name: str):
+    if name == "OPERAND_MAPS":
+        return _operand_maps()
+    if name == "REQUIRED_FORMS":
+        return _required_forms()
+    if name == "COMPACT_SOURCES":
+        return _compact_sources()
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 
 
 class IdentityConflictError(ValueError):
@@ -64,7 +120,7 @@ class IdentityConflictError(ValueError):
 
 
 def _file_hash(path) -> str:
-    return t35.sha256_file(path) if path.is_file() else ""
+    return hashlib.sha256(path.read_bytes()).hexdigest() if path.is_file() else ""
 
 
 def _meta_suffix(meta: Any) -> str:
@@ -128,12 +184,12 @@ class LedgerBuilder:
 
 
 def _add_material_forms(builder: LedgerBuilder) -> None:
-    authority_path = t35.TOOLS / "material_form_authority.json"
+    authority_path = files.TOOLS / "material_form_authority.json"
     authority_hash = _file_hash(authority_path)
-    for wave_id, path in REQUIRED_FORMS:
+    for wave_id, path in _required_forms():
         if not path.is_file():
             continue
-        document = t35.load_json(path)
+        document = files.load_json(path)
         forms = document.get("required_forms") or {}
         file_hash = _file_hash(path)
         for material, material_forms in forms.items():
@@ -145,7 +201,7 @@ def _add_material_forms(builder: LedgerBuilder) -> None:
                     target_kind="material_form",
                     mapping_class="material_form",
                     authority=wave_id,
-                    input_path=t35.relative(path),
+                    input_path=files.relative(path),
                     input_hash=file_hash,
                     evidence=f"required_forms:{authority_hash}",
                     disposition="proven",
@@ -182,11 +238,11 @@ def _operand_source_key(authority: str, row: dict[str, Any]) -> tuple[str, str, 
     mapping_class = "exact_item"
     components = runtime.get("components") if isinstance(runtime.get("components"), dict) else {}
     if (
-        runtime.get("component") == t41.FIREPROOF_COMPONENT
-        or t41.FIREPROOF_COMPONENT in components
+        runtime.get("component") == FIREPROOF_COMPONENT
+        or FIREPROOF_COMPONENT in components
     ):
         extra = "#fireproof=1"
-        target = f"{runtime_id}#{t41.FIREPROOF_COMPONENT}=1"
+        target = f"{runtime_id}#{FIREPROOF_COMPONENT}=1"
         mapping_class = "component_circuit"
     return (
         f"{authority}|item:{item}{_meta_suffix(meta)}{extra}",
@@ -196,10 +252,10 @@ def _operand_source_key(authority: str, row: dict[str, Any]) -> tuple[str, str, 
 
 
 def _add_operand_maps(builder: LedgerBuilder) -> None:
-    for authority, path in OPERAND_MAPS:
+    for authority, path in _operand_maps():
         if not path.is_file():
             continue
-        document = t35.load_json(path)
+        document = files.load_json(path)
         file_hash = _file_hash(path)
         for row in document.get("operands") or []:
             parsed = _operand_source_key(authority, row)
@@ -215,7 +271,7 @@ def _add_operand_maps(builder: LedgerBuilder) -> None:
                 target_kind=target_kind,
                 mapping_class=mapping_class,
                 authority=authority,
-                input_path=t35.relative(path),
+                input_path=files.relative(path),
                 input_hash=file_hash,
                 evidence=str(row.get("class") or row.get("reason") or "operand_runtime_map"),
                 disposition="proven",
@@ -223,8 +279,17 @@ def _add_operand_maps(builder: LedgerBuilder) -> None:
 
 
 def _add_stone_catalog(builder: LedgerBuilder) -> None:
-    path = t43.STONE_CATALOG
-    document = t35.load_json(path)
+    (
+        _roaster,
+        _centrifuge,
+        _electrolyzer,
+        _assembler_wood,
+        smelter_stone,
+        _storage,
+        _block_object,
+    ) = _historical_commons()
+    path = smelter_stone.STONE_CATALOG
+    document = files.load_json(path)
     file_hash = _file_hash(path)
     for identity in (document.get("bundled") or {}).get("identities") or []:
         source_item = identity.get("source_item")
@@ -238,8 +303,8 @@ def _add_stone_catalog(builder: LedgerBuilder) -> None:
                 target_identity=str(runtime),
                 target_kind="item",
                 mapping_class="stone_object",
-                authority="T43",
-                input_path=t35.relative(path),
+                authority="smelter/stone",
+                input_path=files.relative(path),
                 input_hash=file_hash,
                 evidence=str(identity.get("stone") or source_item),
                 disposition="proven",
@@ -247,8 +312,17 @@ def _add_stone_catalog(builder: LedgerBuilder) -> None:
 
 
 def _add_block_catalog(builder: LedgerBuilder) -> None:
-    path = t45.BLOCK_CATALOG
-    document = t35.load_json(path)
+    (
+        _roaster,
+        _centrifuge,
+        _electrolyzer,
+        _assembler_wood,
+        _smelter_stone,
+        _storage,
+        block_object,
+    ) = _historical_commons()
+    path = block_object.BLOCK_CATALOG
+    document = files.load_json(path)
     file_hash = _file_hash(path)
     for identity in document.get("identities") or []:
         source_item = identity.get("source_item")
@@ -261,8 +335,8 @@ def _add_block_catalog(builder: LedgerBuilder) -> None:
             target_identity=str(runtime),
             target_kind="item",
             mapping_class="block_object",
-            authority="T45",
-            input_path=t35.relative(path),
+            authority="block/object",
+            input_path=files.relative(path),
             input_hash=file_hash,
             evidence=str(identity.get("kind") or source_item),
             disposition="proven",
@@ -270,8 +344,17 @@ def _add_block_catalog(builder: LedgerBuilder) -> None:
 
 
 def _add_storage(builder: LedgerBuilder) -> None:
-    path = t44.PRODUCTION_LOCK
-    document = t35.load_json(path)
+    (
+        _roaster,
+        _centrifuge,
+        _electrolyzer,
+        _assembler_wood,
+        _smelter_stone,
+        storage,
+        _block_object,
+    ) = _historical_commons()
+    path = storage.PRODUCTION_LOCK
+    document = files.load_json(path)
     file_hash = _file_hash(path)
     for row in document.get("mappings") or []:
         site = row.get("source_site_id")
@@ -284,8 +367,8 @@ def _add_storage(builder: LedgerBuilder) -> None:
             target_identity=str(runtime),
             target_kind="item",
             mapping_class="storage_identity",
-            authority="T44",
-            input_path=t35.relative(path),
+            authority="storage/lock",
+            input_path=files.relative(path),
             input_hash=file_hash,
             evidence=str(row.get("family") or site),
             disposition="proven",
@@ -299,20 +382,20 @@ def _iter_source_operands(relation: dict[str, Any]):
 
 
 def _add_source_blockers(builder: LedgerBuilder) -> None:
-    recovery = t35.TOOLS / "t38_player_path_recovery.json"
+    recovery = files.TOOLS / "roaster_player_path_recovery.json"
     if recovery.is_file():
-        document = t35.load_json(recovery)
+        document = files.load_json(recovery)
         file_hash = _file_hash(recovery)
         for row in document.get("rows") or document.get("aliases") or []:
             alias = row.get("alias") if isinstance(row, dict) else None
             if alias == "AnyDiamond" or (isinstance(row, dict) and "AnyDiamond" in str(row)):
                 builder.commit(
-                    source_key="T38|alias:AnyDiamond",
+                    source_key="roaster/compact|alias:AnyDiamond",
                     target_identity=None,
                     target_kind="item",
                     mapping_class="unproven_alias",
-                    authority="T38",
-                    input_path=t35.relative(recovery),
+                    authority="roaster/compact",
+                    input_path=files.relative(recovery),
                     input_hash=file_hash,
                     evidence="AnyDiamond",
                     disposition="blocker",
@@ -321,23 +404,32 @@ def _add_source_blockers(builder: LedgerBuilder) -> None:
         text = recovery.read_text(encoding="utf-8")
         if "AnyDiamond" in text:
             builder.commit(
-                source_key="T38|alias:AnyDiamond",
+                source_key="roaster/compact|alias:AnyDiamond",
                 target_identity=None,
                 target_kind="item",
                 mapping_class="unproven_alias",
-                authority="T38",
-                input_path=t35.relative(recovery),
+                authority="roaster/compact",
+                input_path=files.relative(recovery),
                 input_hash=file_hash,
-                evidence="t38_player_path_recovery",
+                evidence="roaster_player_path_recovery",
                 disposition="blocker",
                 blocker_reason="unproven_alias",
             )
-    for authority, path in COMPACT_SOURCES:
+    (
+        _roaster,
+        centrifuge,
+        _electrolyzer,
+        _assembler_wood,
+        _smelter_stone,
+        _storage,
+        _block_object,
+    ) = _historical_commons()
+    for authority, path in _compact_sources():
         if not path.is_file():
             continue
-        document = t35.load_json(path)
+        document = files.load_json(path)
         file_hash = _file_hash(path)
-        relative = t35.relative(path)
+        relative = files.relative(path)
         for relation in document.get("relations") or []:
             for field, operand in _iter_source_operands(relation):
                 tag = operand.get("tag")
@@ -390,7 +482,7 @@ def _add_source_blockers(builder: LedgerBuilder) -> None:
                         disposition="blocker",
                         blocker_reason="unproven_alias",
                     )
-                if authority in {"T39", "T40", "T41"} and t39.source_operand_is_unproven_lossy_alias(
+                if authority in {"centrifuge/compact", "electrolyzer/compact", "assembler/wood"} and centrifuge.source_operand_is_unproven_lossy_alias(
                     operand
                 ):
                     source = operand.get("source") or {}
@@ -409,18 +501,18 @@ def _add_source_blockers(builder: LedgerBuilder) -> None:
                         disposition="blocker",
                         blocker_reason="unproven_lossy_alias",
                     )
-    lock = t35.load_json(t39.PRODUCTION_LOCK)
-    lock_hash = _file_hash(t39.PRODUCTION_LOCK)
+    lock = files.load_json(centrifuge.PRODUCTION_LOCK)
+    lock_hash = _file_hash(centrifuge.PRODUCTION_LOCK)
     for row in lock.get("phase_deferred") or []:
         for obj in row.get("source_objects") or []:
             item = obj.get("item")
             builder.commit(
-                source_key=f"T39|stateful:{item}{_meta_suffix(obj.get('meta'))}",
+                source_key=f"centrifuge/compact|stateful:{item}{_meta_suffix(obj.get('meta'))}",
                 target_identity=None,
                 target_kind="item",
                 mapping_class="stateful_identity",
-                authority="T39",
-                input_path=t35.relative(t39.PRODUCTION_LOCK),
+                authority="centrifuge/compact",
+                input_path=files.relative(centrifuge.PRODUCTION_LOCK),
                 input_hash=lock_hash,
                 evidence=str(row.get("reason") or "phase_deferred"),
                 disposition="blocker",
@@ -446,7 +538,7 @@ def build() -> dict[str, Any]:
         "blockers": blockers,
         "counts": dict(sorted(counts.items())),
         "generated_by": "python tools/build_global_build_identity_ledger.py",
-        "identity_only_waves": sorted(IDENTITY_ONLY_WAVES),
+        "identity_only_waves": sorted(identity_only_waves()),
         "note": (
             "V1 build-time identity ledger. Does not mint runtime IDs. "
             "Unproven alias/tag/stateful facts stay typed blockers."
@@ -458,9 +550,6 @@ def build() -> dict[str, Any]:
     }
 
 
-LEDGER_PATH = t35.TOOLS / "global_build_identity_ledger.json"
-CIRCUIT_ITEM = t41.CIRCUIT_ITEM
-CIRCUIT_CONFIG = t41.CIRCUIT_CONFIG
 KIND_EVIDENCE = frozenset({"DESIGN_POLICY", "SOURCE_DERIVED", "SOURCE_BACKED"})
 
 _INDEX_CACHE: dict[str, dict[str, dict[str, Any]]] | None = None
@@ -471,7 +560,7 @@ def meta_suffix(meta: Any) -> str:
 
 
 def load_committed_ledger(path=None) -> dict[str, Any]:
-    return t35.load_json(path or LEDGER_PATH)
+    return files.load_json(path or LEDGER_PATH)
 
 
 def index_ledger(document: dict[str, Any] | None = None) -> dict[str, dict[str, dict[str, Any]]]:
@@ -503,17 +592,17 @@ def candidate_keys(wave_id: str | None, operand: dict[str, Any]) -> list[str]:
     keys: list[str] = []
     if fluid:
         keys.append(f"fluid:{fluid}")
-    fireproof = bool(operand.get("fireproof")) or operand.get("t41_component") in {
-        t41.FIREPROOF_COMPONENT,
+    fireproof = bool(operand.get("fireproof")) or operand.get("assembler_wood_component") in {
+        FIREPROOF_COMPONENT,
         "cruciblecraft:fireproof",
-    } or operand.get("component") == t41.FIREPROOF_COMPONENT
+    } or operand.get("component") == FIREPROOF_COMPONENT
     if wave_id and item == CIRCUIT_ITEM:
         keys.append(
             f"{wave_id}|item:{item}{_meta_suffix(meta)}#{CIRCUIT_CONFIG}={meta}"
         )
     if wave_id and fireproof and item:
         keys.append(
-            f"{wave_id}|item:{item}{_meta_suffix(meta)}#{t41.FIREPROOF_COMPONENT}=1"
+            f"{wave_id}|item:{item}{_meta_suffix(meta)}#{FIREPROOF_COMPONENT}=1"
         )
         keys.append(f"{wave_id}|item:{item}{_meta_suffix(meta)}#fireproof=1")
     if wave_id and item:
@@ -546,7 +635,7 @@ def lookup_first(
 
 
 def source_kind_from_record(operand: dict[str, Any], record: dict[str, Any]) -> str:
-    for field in ("t41_class", "t43_class", "t45_class", "expression_class"):
+    for field in ("assembler_wood_class", "smelter_stone_class", "block_object_class", "expression_class"):
         value = operand.get(field)
         if value in KIND_EVIDENCE:
             return str(value)

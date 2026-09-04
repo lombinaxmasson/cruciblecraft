@@ -186,7 +186,7 @@ public final class SubsurfaceFluidDepositBlockEntity extends BlockEntity {
         tag.putString("replaced_host", replacedHost.toString());
         tag.putLong("initial_amount_mb", initialAmountMb);
         tag.putLong("remaining_amount_mb", remainingAmountMb);
-        tag.putInt("t11_schema_version", SCHEMA_VERSION);
+        tag.putInt("fluid_deposit_schema_version", SCHEMA_VERSION);
         tag.putInt("production_amount_mb", productionAmountMb);
         tag.putInt("production_interval_ticks", productionIntervalTicks);
         tag.putInt("accumulation_cap_mb", accumulationCapMb);
@@ -220,7 +220,7 @@ public final class SubsurfaceFluidDepositBlockEntity extends BlockEntity {
         remainingAmountMb = loadedRemaining;
         HydrocarbonRuntimePolicy.Production policy =
                 HydrocarbonRuntimePolicy.production(material);
-        int loadedVersion = tag.getInt("t11_schema_version");
+        int loadedVersion = tag.getInt("fluid_deposit_schema_version");
         if (loadedVersion >= SCHEMA_VERSION) {
             productionAmountMb = tag.getInt("production_amount_mb");
             productionIntervalTicks =

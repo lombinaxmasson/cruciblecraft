@@ -8,6 +8,7 @@ from pathlib import Path
 
 from tools.recipe_bulk import runtime as runtime_mod
 from tools.recipe_bulk.membership import membership_root
+from tools.recipe_bulk.matrix import authored_relations
 
 ROOT = Path(__file__).resolve().parents[2]
 FIXTURES = ROOT / "src/test/resources/compact_recipe_runtime_fixtures"
@@ -27,53 +28,63 @@ class CompactRecipeRuntimeManifestTest(unittest.TestCase):
         self.assertEqual(12, self.document["group_count"])
         self.assertEqual(12, len(self.document["groups"]))
         self.assertEqual(4, len(self.document["dedup_rules"]))
-        self.assertEqual(14, self.document["t37_eager_count"])
-        self.assertEqual(36, self.document["t37_lazy_count"])
-        self.assertEqual(292, self.document["t41_authored_relation_count"])
-        self.assertEqual(242, self.document["t41_live_relation_count"])
+        self.assertEqual(14, self.document["assembler_compact_eager_count"])
+        self.assertEqual(36, self.document["assembler_compact_lazy_count"])
+        self.assertEqual(292, self.document["assembler_wood_authored_relation_count"])
+        self.assertEqual(242, self.document["assembler_wood_live_relation_count"])
 
-    def test_t37_hybrid_is_fourteen_explicit_eager_ids(self) -> None:
-        row = self.groups["cruciblecraft:t37_assembler"]
+    def test_assembler_compact_hybrid_is_fourteen_explicit_eager_ids(self) -> None:
+        row = self.groups["cruciblecraft:assembler/compact"]
         self.assertEqual("hybrid", row["policy_type"])
         self.assertEqual(8, row["cache_ceiling"])
         self.assertEqual(14, len(row["eager_stable_ids"]))
         self.assertEqual(50, row["effective_relation_count"])
         self.assertTrue(
-            all(value.startswith("cruciblecraft:t37/") for value in row["eager_stable_ids"])
+            all(
+                value.startswith("cruciblecraft:assembler/compact/")
+                for value in row["eager_stable_ids"]
+            )
         )
 
-    def test_t41_policy_membership_binds_live_counts(self) -> None:
-        planks2 = self.groups["cruciblecraft:t41_assembler_planks2"]
+    def test_assembler_wood_policy_membership_binds_live_counts(self) -> None:
+        planks2 = self.groups["cruciblecraft:assembler/wood/planks2"]
         self.assertEqual(63, planks2["authored_relation_count"])
         self.assertEqual(13, planks2["effective_relation_count"])
-        self.assertEqual(85, self.groups["cruciblecraft:t41_assembler_planks"]["effective_relation_count"])
+        self.assertEqual(
+            85,
+            self.groups["cruciblecraft:assembler/wood/planks"][
+                "effective_relation_count"
+            ],
+        )
         self.assertEqual(
             144,
-            self.groups["cruciblecraft:t41_assembler_fireproof"]["effective_relation_count"],
+            self.groups["cruciblecraft:assembler/wood/fireproof"][
+                "effective_relation_count"
+            ],
         )
         live = sum(
             self.groups[group_id]["effective_relation_count"]
             for group_id in (
-                "cruciblecraft:t41_assembler_planks",
-                "cruciblecraft:t41_assembler_fireproof",
-                "cruciblecraft:t41_assembler_planks2",
+                "cruciblecraft:assembler/wood/planks",
+                "cruciblecraft:assembler/wood/fireproof",
+                "cruciblecraft:assembler/wood/planks2",
             )
         )
         self.assertEqual(242, live)
 
     def test_membership_root_matches_java_line_algorithm(self) -> None:
-        row = self.groups["cruciblecraft:t38_roaster"]
+        row = self.groups["cruciblecraft:roaster/compact"]
         families = [
             family
-            for family in runtime_mod.load_wave_families("T38")
+            for family in runtime_mod.load_wave_families("roaster/compact")
             if runtime_mod.resolved_publication_group(family)
-            == "cruciblecraft:t38_roaster"
+            == "cruciblecraft:roaster/compact"
         ]
         family_ids = [str(family["family_id"]) for family in families]
         stable_ids = [
             str(relation["stable_id"])
             for family in families
-            for relation in family.get("relations") or []
+            for relation in authored_relations(family)
         ]
         self.assertEqual(
             membership_root(family_ids, stable_ids),
@@ -118,7 +129,7 @@ class CompactRecipeRuntimeManifestTest(unittest.TestCase):
         )
         live = membership_root(fixture["family_ids"], fixture["stable_ids"])
         self.assertNotEqual(fixture["membership_root_sha256"], live)
-        row = self.groups["cruciblecraft:t38_roaster"]
+        row = self.groups["cruciblecraft:roaster/compact"]
         self.assertNotEqual(fixture["membership_root_sha256"], row["membership_root_sha256"])
 
     def test_nine_cutover_policies_and_four_dedup_resources_exist(self) -> None:

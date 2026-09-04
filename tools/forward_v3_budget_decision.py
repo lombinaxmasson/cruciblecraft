@@ -23,9 +23,9 @@ from tools.forward_v2_budget_decision import (
     axis_verdict,
     classify_axis,
 )
-from tools import t35_common as t35
+from tools import census_common as census
 
-LOAD_POLICY_V3 = t35.TOOLS / "runtime_load_budget_policy.v3.json"
+LOAD_POLICY_V3 = census.TOOLS / "runtime_load_budget_policy.v3.json"
 SPLIT_AXES = (
     "reload_transient_allocation_bytes",
     "lookup_allocation_bytes_per_operation",
@@ -54,7 +54,7 @@ class ForwardV3BudgetError(ValueError):
 
 
 def load_policy(path=None) -> dict[str, Any]:
-    document = t35.load_json(path or LOAD_POLICY_V3)
+    document = census.load_json(path or LOAD_POLICY_V3)
     if document.get("status") != "FORWARD_LOAD_BUDGET_POLICY_V3":
         raise ForwardV3BudgetError("forward-v3 load budget policy status drifted")
     if document.get("schema_version") != 3:
@@ -75,7 +75,7 @@ def policy_sha256(path=None) -> str:
     target = path or LOAD_POLICY_V3
     if not target.is_file():
         raise FileNotFoundError(target)
-    return t35.sha256_file(target)
+    return census.sha256_file(target)
 
 
 def limit_maps(policy: Mapping[str, Any] | None = None) -> dict[str, dict[str, Any]]:

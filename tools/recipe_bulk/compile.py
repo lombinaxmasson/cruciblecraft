@@ -7,8 +7,9 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
-from tools import t35_common as t35
-from tools import t45_common as common
+import hashlib
+
+from tools import io_common as files
 from tools import tool_head_prefix as thp
 from tools.recipe_bulk.emit import emit_wave_document
 from tools.recipe_bulk.matrix import authored_relation_count, authored_relations
@@ -22,67 +23,67 @@ from tools.recipe_bulk.selection import (
     target_map_for,
 )
 from tools.recipe_bulk.templates import expand_family
-from tools.recipe_bulk.waves import COMPILE_ORDER, recipe_wave
+from tools.recipe_bulk.waves import BATH_WAVES, COMPILE_ORDER, recipe_wave
 
 
-def _load_t46_spec() -> dict[str, Any]:
-    from tools import t46_common as t46
+def _load_bath_mte_spec() -> dict[str, Any]:
+    from tools import bath_mte_common as bath_mte
 
-    if not t46.COMPILE_SPEC.is_file():
-        raise FileNotFoundError("t46_recipe_compile_spec.json is required for compile")
-    spec = common.load_json(t46.COMPILE_SPEC)
-    lock = t46.load_production_lock()
-    if spec.get("production_lock_sha256") != t46.production_lock_sha256():
-        raise ValueError("T46 compile spec is not bound to the issued production lock")
+    if not bath_mte.COMPILE_SPEC.is_file():
+        raise FileNotFoundError("bath_mte_recipe_compile_spec.json is required for compile")
+    spec = files.load_json(bath_mte.COMPILE_SPEC)
+    lock = bath_mte.load_production_lock()
+    if spec.get("production_lock_sha256") != bath_mte.production_lock_sha256():
+        raise ValueError("bath/mte compile spec is not bound to the issued production lock")
     if spec.get("selection_sha256") != lock["production"]["selection_sha256"]:
-        raise ValueError("T46 compile spec selection_sha256 drifted from lock")
+        raise ValueError("bath/mte compile spec selection_sha256 drifted from lock")
     return spec
 
 
-def _load_t47_spec() -> dict[str, Any]:
-    from tools import t47_common as t47
+def _load_bath_remainder_spec() -> dict[str, Any]:
+    from tools import bath_remainder_common as bath_remainder
 
-    if not t47.COMPILE_SPEC.is_file():
-        raise FileNotFoundError("t47_recipe_compile_spec.json is required for compile")
-    spec = common.load_json(t47.COMPILE_SPEC)
-    lock = t47.load_production_lock()
-    if spec.get("production_lock_sha256") != t47.production_lock_sha256():
-        raise ValueError("T47 compile spec is not bound to the issued production lock")
+    if not bath_remainder.COMPILE_SPEC.is_file():
+        raise FileNotFoundError("bath_remainder_recipe_compile_spec.json is required for compile")
+    spec = files.load_json(bath_remainder.COMPILE_SPEC)
+    lock = bath_remainder.load_production_lock()
+    if spec.get("production_lock_sha256") != bath_remainder.production_lock_sha256():
+        raise ValueError("bath/remainder compile spec is not bound to the issued production lock")
     if spec.get("selection_sha256") != lock["production"]["selection_sha256"]:
-        raise ValueError("T47 compile spec selection_sha256 drifted from lock")
+        raise ValueError("bath/remainder compile spec selection_sha256 drifted from lock")
     return spec
 
 
-def _load_t48_spec() -> dict[str, Any]:
-    from tools import t48_common as t48
+def _load_bath_identity_spec() -> dict[str, Any]:
+    from tools import bath_identity_common as bath_identity
 
-    if not t48.COMPILE_SPEC.is_file():
-        raise FileNotFoundError("t48_recipe_compile_spec.json is required for compile")
-    spec = common.load_json(t48.COMPILE_SPEC)
-    lock = t48.load_production_lock()
-    if spec.get("production_lock_sha256") != t48.production_lock_sha256():
-        raise ValueError("T48 compile spec is not bound to the issued production lock")
+    if not bath_identity.COMPILE_SPEC.is_file():
+        raise FileNotFoundError("bath_identity_recipe_compile_spec.json is required for compile")
+    spec = files.load_json(bath_identity.COMPILE_SPEC)
+    lock = bath_identity.load_production_lock()
+    if spec.get("production_lock_sha256") != bath_identity.production_lock_sha256():
+        raise ValueError("bath/identity compile spec is not bound to the issued production lock")
     if spec.get("selection_sha256") != lock["production"]["selection_sha256"]:
-        raise ValueError("T48 compile spec selection_sha256 drifted from lock")
+        raise ValueError("bath/identity compile spec selection_sha256 drifted from lock")
     return spec
 
 
-def _load_t49_spec() -> dict[str, Any]:
+def _load_bath_tiny_purified_spec() -> dict[str, Any]:
     from tools import wave_bath_tiny_purified as tiny_purified
 
     if not tiny_purified.COMPILE_SPEC.is_file():
-        raise FileNotFoundError("t49_recipe_compile_spec.json is required for compile")
-    spec = common.load_json(tiny_purified.COMPILE_SPEC)
+        raise FileNotFoundError("bath_tiny_purified_recipe_compile_spec.json is required for compile")
+    spec = files.load_json(tiny_purified.COMPILE_SPEC)
     lock = tiny_purified.load_production_lock()
     if spec.get("production_lock_sha256") != tiny_purified.production_lock_sha256():
-        raise ValueError("T49 compile spec is not bound to the issued production lock")
+        raise ValueError("bath/tiny-purified compile spec is not bound to the issued production lock")
     if spec.get("selection_sha256") != lock["production"]["selection_sha256"]:
-        raise ValueError("T49 compile spec selection_sha256 drifted from lock")
+        raise ValueError("bath/tiny-purified compile spec selection_sha256 drifted from lock")
     return spec
 
 
 def _ledger_index_for(wave_id: str):
-    if wave_id in {"T46", "T47", "T48", "T49"}:
+    if wave_id in BATH_WAVES:
         from tools.recipe_bulk import identity_v2
 
         return identity_v2.index_ledger()
@@ -94,10 +95,17 @@ def _ledger_index_for(wave_id: str):
     return index_ledger()
 
 
-def _load_t45_spec() -> dict[str, Any]:
+def _block_object_common():
+    from tools import block_object_common as common
+
+    return common
+
+
+def _load_block_object_spec() -> dict[str, Any]:
+    common = _block_object_common()
     if not common.COMPILE_SPEC.is_file():
-        raise FileNotFoundError("t45_recipe_compile_spec.json is required for compile")
-    spec = common.load_json(common.COMPILE_SPEC)
+        raise FileNotFoundError("block_object_recipe_compile_spec.json is required for compile")
+    spec = files.load_json(common.COMPILE_SPEC)
     lock = common.load_production_lock()
     lock_hash = spec.get("production_lock_sha256")
     if lock_hash != common.production_lock_sha256():
@@ -122,9 +130,9 @@ def _consume_identity(relation: dict[str, Any], *, wave_id: str) -> str:
         "item_input_counts": relation.get("item_input_counts") or [],
         "item_inputs": relation.get("item_inputs") or [],
     }
-    if wave_id == "T45":
+    if wave_id == "block/object":
         payload = {"item_inputs": relation.get("item_inputs") or []}
-    if wave_id in {"T47", "T48", "T49"} or "/" in wave_id:
+    if wave_id in BATH_WAVES or "/" in wave_id:
         payload = {
             "fluid_inputs": relation.get("fluid_inputs") or [],
             "fluid_outputs": relation.get("fluid_outputs") or [],
@@ -144,16 +152,16 @@ def planned_documents_for(wave_id: str) -> list[tuple[Path, dict[str, Any]]]:
         spec.lock_path is None or not spec.lock_path.is_file()
     ):
         return []
-    if wave_id == "T45":
-        _load_t45_spec()
-    if wave_id == "T46":
-        _load_t46_spec()
-    if wave_id == "T47":
-        _load_t47_spec()
-    if wave_id == "T48":
-        _load_t48_spec()
-    if wave_id == "T49":
-        _load_t49_spec()
+    if wave_id == "block/object":
+        _load_block_object_spec()
+    if wave_id == "bath/mte":
+        _load_bath_mte_spec()
+    if wave_id == "bath/remainder":
+        _load_bath_remainder_spec()
+    if wave_id == "bath/identity":
+        _load_bath_identity_spec()
+    if wave_id == "bath/tiny-purified":
+        _load_bath_tiny_purified_spec()
     ledger_index = _ledger_index_for(wave_id)
     relations, lock_rows = select_source_relations(spec)
     grouped = group_relations(spec, relations)
@@ -231,7 +239,7 @@ def planned_documents_for(wave_id: str) -> list[tuple[Path, dict[str, Any]]]:
 
 
 def planned_documents() -> list[tuple[Path, dict[str, Any]]]:
-    return planned_documents_for("T45")
+    return planned_documents_for("block/object")
 
 
 def write_tree(
@@ -240,26 +248,39 @@ def write_tree(
     generated_root: Path | None = None,
     *,
     path_prefix: str | None = None,
+    tree_prefixes: tuple[str, ...] = (),
 ) -> None:
-    origin = generated_root or common.GENERATED_ROOT
+    origin = generated_root or _block_object_common().GENERATED_ROOT
     if root.exists():
-        marker = None
-        if path_prefix:
-            marker = "/" + path_prefix.replace("\\", "/").strip("/") + "/"
+        path_marker = (
+            "/" + path_prefix.replace("\\", "/").strip("/") + "/"
+            if path_prefix
+            else None
+        )
+        tree_markers = tuple(
+            "/" + prefix.replace("\\", "/").strip("/") + "/"
+            for prefix in tree_prefixes
+        )
         for path in root.rglob("gt_recipe_*.json"):
-            if marker and marker not in str(path).replace("\\", "/"):
+            normalized = "/" + path.relative_to(root).as_posix()
+            if path_marker and path_marker not in normalized:
+                continue
+            if tree_markers and not any(
+                normalized.startswith(marker) for marker in tree_markers
+            ):
                 continue
             path.unlink()
     for path, document in planned:
         rel = path.relative_to(origin)
         dest = root / rel
         dest.parent.mkdir(parents=True, exist_ok=True)
-        payload = t35.stable_json(document)
-        thp.assert_text_has_no_mapped_unique_tool_heads(payload, t35.relative(dest))
-        t35.write_stable(dest, document)
+        payload = files.stable_json(document)
+        thp.assert_text_has_no_mapped_unique_tool_heads(payload, files.relative(dest))
+        files.write_stable(dest, document)
 
 
 def compile_report(planned: list[tuple[Path, dict[str, Any]]]) -> dict[str, Any]:
+    common = _block_object_common()
     lock = common.load_production_lock()
     by_group: dict[str, int] = defaultdict(int)
     for _path, document in planned:
@@ -280,8 +301,8 @@ def compile_report(planned: list[tuple[Path, dict[str, Any]]]) -> dict[str, Any]
         "relation_count": len(planned),
         "schema_version": 1,
         "selection_sha256": lock["production"]["selection_sha256"],
-        "status": "T45_COMPILE_REPORT",
-        "t43_rewritten": False,
+        "status": "BLOCK_OBJECT_COMPILE_REPORT",
+        "smelter_stone_rewritten": False,
     }
 
 
@@ -300,9 +321,17 @@ def wave_compile_report(
     return {
         "family_count": len(planned),
         "groups": dict(sorted(by_group.items())),
-        "lock_sha256": t35.sha256_file(spec.lock_path) if spec.lock_path and spec.lock_path.is_file() else None,
+        "lock_sha256": (
+            hashlib.sha256(spec.lock_path.read_bytes()).hexdigest()
+            if spec.lock_path and spec.lock_path.is_file()
+            else None
+        ),
         "relation_count": relation_count,
-        "source_sha256": t35.sha256_file(spec.source_path) if spec.source_path.is_file() else None,
+        "source_sha256": (
+            hashlib.sha256(spec.source_path.read_bytes()).hexdigest()
+            if spec.source_path.is_file()
+            else None
+        ),
         "wave_id": wave_id,
         "wave_slug": spec.wave_slug,
     }
@@ -317,7 +346,7 @@ def compile_wave(wave_id: str) -> dict[str, Any]:
         "report": wave_compile_report(wave_id, planned),
         "wave_id": wave_id,
     }
-    if wave_id == "T45":
+    if wave_id == "block/object":
         payload["fixture"] = {
             str(path.relative_to(spec.generated_root)): doc for path, doc in planned
         }
@@ -326,7 +355,7 @@ def compile_wave(wave_id: str) -> dict[str, Any]:
 
 
 def compile(wave_id: str | None = None) -> dict[str, Any]:
-    return compile_wave(wave_id or "T45")
+    return compile_wave(wave_id or "block/object")
 
 
 def compile_all() -> dict[str, Any]:

@@ -5,7 +5,7 @@ from __future__ import annotations
 import unittest
 
 from tools import portfolio_crops_food_bees as crops
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk.slugs import KNOWN_SEMANTIC_SLUGS
 from tools.wave_closeout import spec_for
 
@@ -38,10 +38,10 @@ class CropsFoodBeesR0RegistrationTest(unittest.TestCase):
 
 class CropsFoodBeesR0ArtifactsTest(unittest.TestCase):
     def test_artifacts_when_present(self) -> None:
-        root = t35.TOOLS / "waves" / "portfolio" / "crops-food-bees-r0"
+        root = census.TOOLS / "waves" / "portfolio" / "crops-food-bees-r0"
         if not (root / "readiness.json").is_file():
             self.skipTest("R0 artifacts not written yet")
-        readiness = t35.load_json(root / "readiness.json")
+        readiness = census.load_json(root / "readiness.json")
         self.assertEqual("CROPS_FOOD_BEES_R0_READY", readiness["status"])
         self.assertIsNone(readiness["unique_active_wave"])
         self.assertTrue(readiness["next_unassigned"])
@@ -64,7 +64,7 @@ class CropsFoodBeesR0ArtifactsTest(unittest.TestCase):
                 "requires_new_runtime",
                 evidence["feasibility_by_category"][name],
             )
-        inherited = t35.load_json(root / "inherited_denominator.json")
+        inherited = census.load_json(root / "inherited_denominator.json")
         self.assertEqual(
             list(PINNED),
             [row["category"] for row in inherited["categories"]],
@@ -130,7 +130,7 @@ class CropsFoodBeesR0ArtifactsTest(unittest.TestCase):
             int(closed["non_ore_worldgen_r0"]["remainder_after_slice"]),
         )
         self.assertTrue(closed["count_ceiling_kind_envelope"]["telemetry_report_only"])
-        feasibility = t35.load_json(root / "feasibility.json")
+        feasibility = census.load_json(root / "feasibility.json")
         by_category = {row["category"]: row for row in feasibility["categories"]}
         self.assertEqual(list(PINNED), list(by_category))
         for name in PINNED:
@@ -138,16 +138,16 @@ class CropsFoodBeesR0ArtifactsTest(unittest.TestCase):
             self.assertFalse(by_category[name]["allows_implementation_child"])
             self.assertIn(by_category[name]["verdict"], crops.FEASIBILITY_VALUES)
             self.assertIsNone(by_category[name]["destination"])
-        topology = t35.load_json(root / "topology.json")
+        topology = census.load_json(root / "topology.json")
         self.assertIsNone(topology["unique_active_wave"])
         self.assertTrue(topology["next_unassigned"])
         self.assertEqual(set(crops.ALLOWED_TOPOLOGY_KEYS), set(topology))
-        census = t35.load_json(root / "census_delta.json")
+        census = census.load_json(root / "census_delta.json")
         self.assertEqual(39, int(census["leftover_later_count"]))
-        wave = t35.load_json(root / "wave.json")
+        wave = census.load_json(root / "wave.json")
         self.assertEqual(SLUG, wave["program"])
         self.assertEqual(["portfolio/vanilla-replace-r0"], wave["depends_on"])
-        contract = t35.load_json(root / "crops_contract.json")
+        contract = census.load_json(root / "crops_contract.json")
         self.assertFalse(contract["implemented"])
         for key in (
             "disposition_policy",
@@ -161,7 +161,7 @@ class CropsFoodBeesR0ArtifactsTest(unittest.TestCase):
         ):
             self.assertIn(key, contract["questions"])
         self.assertIn("13,373", contract["questions"]["scale"])
-        mechanism = t35.load_json(root / "existing_mechanism.json")
+        mechanism = census.load_json(root / "existing_mechanism.json")
         self.assertEqual("GENERIC_RECIPE_IMPORT_READY", mechanism["generic_importer_status"])
         self.assertFalse(mechanism["generic_importer_creates_recipe_maps"])
         self.assertEqual(3, len(mechanism["capability_map_crops_food_bees"]))
@@ -171,11 +171,11 @@ class CropsFoodBeesR0ArtifactsTest(unittest.TestCase):
         self.assertEqual([], mechanism["worldgen_catalog_slice_hits"])
         self.assertIn(
             "MultiTileEntitySqueezer",
-            mechanism["t35_excluded_mtes"][
+            mechanism["census_excluded_mtes"][
                 "multiblock/multi_tile_entity_squeezer"
             ]["behavior_class"],
         )
-        semantics = t35.load_json(root / "source_semantics.json")
+        semantics = census.load_json(root / "source_semantics.json")
         names = [row["category"] for row in semantics["categories"]]
         self.assertEqual(list(PINNED), names)
         crops_sem = semantics["categories"][0]

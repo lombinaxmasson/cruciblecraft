@@ -1,0 +1,166 @@
+{
+  "bath_identity_trees": {
+    "generated_recipes": {
+      "path": "src/recipe_generated/resources/data/cruciblecraft/recipe/bath/identity",
+      "sha256": "9e33e030e794703a2c692c35730860bb27c38e58030498fa060c0b21be8b17d6"
+    },
+    "locked_support": {
+      "path": "src/bath_identity_support_generated/resources/data/cruciblecraft/recipe/bath_identity_player_path_support",
+      "sha256": "22f8061c991282eef9e1bf4c29b176e4e02cb4e2f2f412aa20618a09ce40a88e"
+    }
+  },
+  "centrifuge_premerge_whitelist_relaxed": false,
+  "compact_runtime": {
+    "bath_identity_identity_catalog": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/item/bath/identityIdentityCatalog.java",
+      "sha256": "63ff15055a11135c767bed45fb3349d4be5e843d49e610e1b319613a81b0af99"
+    },
+    "codec": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactGTRecipeFamilyDefinition.java",
+      "sha256": "f616f0fe07f7d14ee5822ccb67c806d66995fa2bbf50f068fd877d763ebf57e8"
+    },
+    "component_index": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/ComponentIngredientIndex.java",
+      "sha256": "8b1e0fc3eb3148ea9cea71a16aca351e2de06bee468091e4b004cc2e4ebf2423"
+    },
+    "dedup_rule_definition": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactDedupRuleDefinition.java",
+      "sha256": "9482a0b92aa0f88523aa843dfc45f918a097cdf881548573b154b95283e19a63"
+    },
+    "dedup_rule_schema": {
+      "path": "src/main/resources/data/cruciblecraft/schema/compact_dedup_rule.schema.json",
+      "sha256": "71eaca72e18bb5d807c1220fcfca9a1f25f7206b98f1af938f0746c234ca268c"
+    },
+    "dedup_rules": {
+      "path": "src/compact_recipe_policy_generated/resources",
+      "sha256": "ccd59321ce3768e87675dc364320197590dc9f0a9d5bf5a76d63a7a6fa16519f"
+    },
+    "deduplicator": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeDeduplicator.java",
+      "sha256": "f3da2b6bd7af9a262193999030f474a4a7039dda1955704b16e63957eae38909"
+    },
+    "loader": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeMapLoader.java",
+      "sha256": "7ece7f59209401e679ff58caaf2ff7fdb50f20e71f840f6a0b095422a807946b"
+    },
+    "provider": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeFamilyProvider.java",
+      "sha256": "0e622d17c2b14d4c1330de24bdc7bbf796c09912cea8f9e6e89577fa6320c0d4"
+    },
+    "publication_group_key": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/PublicationGroupKey.java",
+      "sha256": "d667253794440ebda9437565bda38293294820333da635fb89f0e27c6f235b51"
+    },
+    "publication_policy": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactPublicationPolicy.java",
+      "sha256": "074b99fce4e2ce25e4c636d7f14e1af9e44288c83bb240d78d0760d22c09c19e"
+    },
+    "publication_policy_definition": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactPublicationPolicyDefinition.java",
+      "sha256": "a0212b400d574a9a0e9e572a66a194ba135619c93b4da2533e8720709348e5e8"
+    },
+    "publication_policy_schema": {
+      "path": "src/main/resources/data/cruciblecraft/schema/compact_publication_policy.schema.json",
+      "sha256": "7c4f9a640001b4c76afccf41e6f2c8f3668065b4507b52a8b1597621b6e2ced8"
+    },
+    "schema": {
+      "path": "tools/compact_recipe_family_source.schema.json",
+      "sha256": "8457c6c942c99506fe861611eba7a679ae1b4b4d2071a42a1593aa1f1a46f2d1"
+    },
+    "shard_router": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeShardRouter.java",
+      "sha256": "67fba469163b506be0d309d6f03d51b40a69ad46523901d82a0ea26ae34cb514"
+    }
+  },
+  "historical_java_bath_identity_whitelist": false,
+  "hosts": {
+    "bath_identity_identity_catalog_java": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/item/bath/identityIdentityCatalog.java",
+      "sha256": "63ff15055a11135c767bed45fb3349d4be5e843d49e610e1b319613a81b0af99"
+    },
+    "bath_identity_identity_catalog_json": {
+      "path": "src/main/resources/data/cruciblecraft/bath_identity_identity_catalog.json",
+      "sha256": "861d9f0c5b8e1450841cb2cc004d739216b42185a4624f5721ff53efca124bff"
+    },
+    "blocks": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+      "sha256": "5bf99317a721ffae5814ec74ebc4025765fa51269156a918e205c199fac5e1b0"
+    },
+    "fluids": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModFluids.java",
+      "sha256": "1c230476b4444dfb0badae613d2ba4f021f3fd189c9956ae3f057726fc0a82c3"
+    },
+    "items": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+      "sha256": "6965b8925ac1339bfc229bf97ca8f964086b3a9e1ffe795083068210e06df206"
+    },
+    "processing_machines": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+      "sha256": "f8863bfa7b48d568f9366a75b5d45b50e202bcf2130c090f358221dc63d1d1ab"
+    },
+    "recipe_maps": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "sha256": "f6408d65eb64a1781e81e8f0eadc6f8db117133e4bcae26fbdfd00e7e01ae8fe"
+    }
+  },
+  "isolation": {
+    "build_gradle": {
+      "path": "build.gradle",
+      "sha256": "6e2871ef7b0ae3eddf4c0c3a81264dda6426615d7e01593ce3673313a658a8d2"
+    },
+    "gametest_java": {
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/bath/identityRecipeGameTests.java",
+      "sha256": "f35608d859bddf4fd4a1723c730a7d14f75577ca1791f997dddc5f436cb152b1"
+    },
+    "gitignore": {
+      "path": ".gitignore",
+      "sha256": "5a4355813088ef64b5107744868b26c6980c3fa48f46fc96d3b55123c58854b2"
+    }
+  },
+  "overlays": {
+    "bundled_identity_catalog": {
+      "path": "src/main/resources/data/cruciblecraft/bath_identity_identity_catalog.json",
+      "sha256": "861d9f0c5b8e1450841cb2cc004d739216b42185a4624f5721ff53efca124bff"
+    },
+    "candidate_selection": {
+      "path": "tools/bath_identity_candidate_selection.json",
+      "sha256": "d4af08ac23ae36db9a456b468d6adee132928279a6167cd6a29d88425e39af8f"
+    },
+    "catalog_work_set": {
+      "path": "tools/bath_identity_work_set.json",
+      "sha256": "4cf5c875c073db616739c4b56e320066a6d47acff63fefc0b8dabc00a346449d"
+    },
+    "fluid_mapping": {
+      "path": "tools/bath_identity_fluid_mapping.json",
+      "sha256": "47e864a22ef1370d43cbb3ec3f624c05b2c76dd1358b50c70cc8c330101e9837"
+    },
+    "identity_catalog": {
+      "path": "tools/bath_identity_identity_catalog.json",
+      "sha256": "861d9f0c5b8e1450841cb2cc004d739216b42185a4624f5721ff53efca124bff"
+    },
+    "production_lock": {
+      "path": "tools/bath_identity_production_lock.json",
+      "sha256": "40414d2e7ab1c60631601752e81f1241741fdc53ca8b2b31d6dc5696d980decd"
+    },
+    "publication_group_manifest": {
+      "path": "tools/bath_identity_publication_group_manifest.json",
+      "sha256": "b73b714471fe3c098ed6339eea04bbe39541d4ff9dc65c85439f54044785539d"
+    },
+    "shard_manifest": {
+      "path": "tools/bath_identity_shard_manifest.json",
+      "sha256": "c3fc6cb4d28583e05c93897cb5b7963de122154cd2ccdbfb2748c2ea6801701d"
+    },
+    "source": {
+      "path": "tools/bath_identity_source.json",
+      "sha256": "dafbcd2a1ae1f1f9deca8a6a987a294c82d179369f45644cd46cae3fdba5685d"
+    }
+  },
+  "schema_version": 1,
+  "status": "BATH_IDENTITY_RUNTIME_DEPENDENCIES_BOUND",
+  "verification": {
+    "builder_policy": {
+      "path": "tools/verification_builder_policy.json",
+      "sha256": "254cb0d8f8993f9ccae22f195598035a02f6235dff755056e679f334501e83be"
+    }
+  }
+}

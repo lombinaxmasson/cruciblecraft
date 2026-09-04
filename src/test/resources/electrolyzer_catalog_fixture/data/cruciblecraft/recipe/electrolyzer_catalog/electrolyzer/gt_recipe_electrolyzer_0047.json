@@ -1,0 +1,66 @@
+{
+  "family_id": "gt.recipe.electrolyzer#0047",
+  "publication_group": "cruciblecraft:electrolyzer_catalog_singleton",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 2628,
+      "eut": 126,
+      "fluid_inputs": [
+        {
+          "amount": 9000,
+          "id": "cruciblecraft:hexafluorosilicic_acid"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 2000,
+          "id": "cruciblecraft:hydrogen"
+        },
+        {
+          "amount": 6000,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:silicon/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "e3cebf313f6edfc911a5dcfad49ad288e73942fa89ca1d9a7906d5636457d409"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#0047",
+        "source_kind": "DESIGN_POLICY"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:electrolyzer_catalog/4aac0f91d7369829"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:electrolyzer",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -115,10 +115,10 @@ neoForge {
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
-            if (providers.gradleProperty('t31Compat').orNull == 'ccOnly') {
-                gameDirectory = project.file('run-t31-compat-client')
-            } else if (providers.gradleProperty('t31Compat').orNull == 'optional') {
-                gameDirectory = project.file('run-t31-compat-client-optional')
+            if (providers.gradleProperty('optionalCompat').orNull == 'ccOnly') {
+                gameDirectory = project.file('run-optional-compat-client')
+            } else if (providers.gradleProperty('optionalCompat').orNull == 'optional') {
+                gameDirectory = project.file('run-optional-compat-client-optional')
             } else if (providers.gradleProperty('wireCodecSmoke').orNull == 'dedicated') {
                 // Isolated from run/ so dedicated runServer can keep session.lock.
                 gameDirectory = project.file('run-wire-codec-client')
@@ -142,10 +142,10 @@ neoForge {
             server()
             programArgument '--nogui'
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
-            if (providers.gradleProperty('t31Compat').orNull == 'ccOnly') {
-                gameDirectory = project.file('run-t31-compat-server')
-            } else if (providers.gradleProperty('t31Compat').orNull == 'optional') {
-                gameDirectory = project.file('run-t31-compat-optional')
+            if (providers.gradleProperty('optionalCompat').orNull == 'ccOnly') {
+                gameDirectory = project.file('run-optional-compat-server')
+            } else if (providers.gradleProperty('optionalCompat').orNull == 'optional') {
+                gameDirectory = project.file('run-optional-compat-optional')
             } else if (providers.gradleProperty('wireCodecSmoke').orNull == 'dedicated') {
                 gameDirectory = project.file('run-wire-codec-server')
             }
@@ -227,7 +227,7 @@ neoForge {
                 systemProperty 'cruciblecraft.scale',
                         providers.gradleProperty('scale').get()
                 systemProperty 'cruciblecraft.scale.output',
-                        project.file('tools/t31_scale_samples').absolutePath
+                        project.file('tools/scale_samples').absolutePath
             }
         }
     }
@@ -275,10 +275,10 @@ tasks.named('runData').configure {
 // a dependency that will be present for runtime testing but that is
 // "optional", meaning it will not be pulled by dependents of this mod.
 configurations {
-    // Always declare localRuntime so -Pt31Compat=ccOnly can still parse
+    // Always declare localRuntime so -PoptionalCompat=ccOnly can still parse
     // dependencies { localRuntime ... } without putting EMI/Jade on the run.
     localRuntime
-    if (providers.gradleProperty('t31Compat').orNull != 'ccOnly') {
+    if (providers.gradleProperty('optionalCompat').orNull != 'ccOnly') {
         runtimeClasspath.extendsFrom localRuntime
     }
 }
@@ -302,10 +302,10 @@ dependencies {
 sourceSets.test.compileClasspath += sourceSets.main.compileClasspath
 sourceSets.test.runtimeClasspath += sourceSets.main.runtimeClasspath
 
-// T14b prototypes are deliberately isolated from production Minecraft types.
+// Recipe-load prototypes are deliberately isolated from production Minecraft types.
 sourceSets {
-    t14Benchmark {
-        java.srcDir('src/t14Benchmark/java')
+    recipeLoadBenchmark {
+        java.srcDir('src/recipeLoadBenchmark/java')
     }
 }
 
@@ -327,216 +327,121 @@ tasks.register('materialRegistryStress', JavaExec) {
     jvmArgs '-Xmx4G'
 }
 
-tasks.register('t12CapacityMatcherBenchmark', JavaExec) {
+tasks.register('capacityMatcherBenchmark', JavaExec) {
     group = 'verification'
-    description = 'Refreshes the repeatable T12a CapacityMatcher benchmark artifact.'
+    description = 'Refreshes the repeatable CapacityMatcher benchmark artifact.'
     dependsOn tasks.named('testClasses')
     classpath = sourceSets.test.runtimeClasspath
     mainClass = 'com.masson.cruciblecraft.recipe.gt.CapacityMatcherBenchmarkHarness'
-    args file('tools/t12_capacity_matcher_benchmark.json').absolutePath
+    args file('tools/capacity_matcher_benchmark.json').absolutePath
 }
 
-tasks.register('t14RecipeLoadContractTest', JavaExec) {
+tasks.register('recipeLoadContractTest', JavaExec) {
     group = 'verification'
-    description = 'Runs isolated T14 materialization candidate contract tests.'
-    dependsOn tasks.named('t14BenchmarkClasses')
-    classpath = sourceSets.t14Benchmark.runtimeClasspath
+    description = 'Runs isolated recipe-load materialization candidate contract tests.'
+    dependsOn tasks.named('recipeLoadBenchmarkClasses')
+    classpath = sourceSets.recipeLoadBenchmark.runtimeClasspath
     mainClass = 'com.masson.cruciblecraft.benchmark.recipe.RecipeFamilyProviderContractTest'
 }
 
-def t14RecipeLoadBenchmarkRaw = tasks.register(
-        't14RecipeLoadBenchmarkRaw', JavaExec) {
+def recipeLoadBenchmarkRaw = tasks.register(
+        'recipeLoadBenchmarkRaw', JavaExec) {
     group = 'verification'
-    description = 'Collects T14c measurements from actual compact relations.'
-    dependsOn tasks.named('t14BenchmarkClasses')
-    classpath = sourceSets.t14Benchmark.runtimeClasspath
+    description = 'Collects recipe-load measurements from actual compact relations.'
+    dependsOn tasks.named('recipeLoadBenchmarkClasses')
+    classpath = sourceSets.recipeLoadBenchmark.runtimeClasspath
     mainClass = 'com.masson.cruciblecraft.benchmark.recipe.RecipeLoadBenchmarkHarness'
-    args file('build/t14-benchmark/raw_measurements.json').absolutePath,
-            file('tools/t14_materialization_policy.json').absolutePath,
+    args file('build/recipe-load-benchmark/raw_measurements.json').absolutePath,
+            file('tools/recipe_load_materialization_policy.json').absolutePath,
             projectDir.absolutePath,
-            file('build/t14-benchmark/jfr').absolutePath
+            file('build/recipe-load-benchmark/jfr').absolutePath
     jvmArgs '-Xms256m', '-Xmx2G', '-XX:+UseG1GC'
-    inputs.files file('tools/t14_materialization_policy.json'),
-            file('tools/t14_extruder_compact.json')
-    outputs.file file('build/t14-benchmark/raw_measurements.json')
+    inputs.files file('tools/recipe_load_materialization_policy.json'),
+            file('tools/extruder_compact.json')
+    outputs.file file('build/recipe-load-benchmark/raw_measurements.json')
 }
 
-tasks.register('t37MaterializationMeasurements', Test) {
-    group = 'verification'
-    description = 'Writes tools/t37_materialization_measurements.json from the 50-row T37 harness.'
-    systemProperty 'cruciblecraft.writeT37Measurements', 'true'
-    filter {
-        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyT37MeasurementHarness'
+def materializationMeasurement = { String taskName, String harness, String writeProperty, String description, boolean largeHeap = false ->
+    tasks.register(taskName, Test) {
+        group = 'verification'
+        it.description = description
+        dependsOn tasks.named('testClasses')
+        testClassesDirs = sourceSets.test.output.classesDirs
+        classpath = sourceSets.test.runtimeClasspath
+        useJUnitPlatform()
+        if (largeHeap) {
+            maxHeapSize = '6g'
+        }
+        systemProperty "cruciblecraft.${writeProperty}", 'true'
+        filter {
+            includeTestsMatching harness
+        }
     }
 }
 
-tasks.register('t38MaterializationMeasurements', Test) {
-    group = 'verification'
-    description = 'Writes tools/t38_materialization_measurements.json from the 73-row T38 harness.'
-    systemProperty 'cruciblecraft.writeT38Measurements', 'true'
-    filter {
-        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyT38MeasurementHarness'
-    }
-}
-
-tasks.register('t40MaterializationMeasurements', Test) {
-    group = 'verification'
-    description = 'Writes tools/t40_materialization_measurements.json from the production-lock harness.'
-    dependsOn tasks.named('testClasses')
-    testClassesDirs = sourceSets.test.output.classesDirs
-    classpath = sourceSets.test.runtimeClasspath
-    useJUnitPlatform()
-    systemProperty 'cruciblecraft.writeT40Measurements', 'true'
-    filter {
-        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyT40MeasurementHarness'
-    }
-}
-
-tasks.register('t41MaterializationMeasurements', Test) {
-    group = 'verification'
-    description = 'Writes tools/t41_materialization_measurements.json from the production-lock harness.'
-    dependsOn tasks.named('testClasses')
-    testClassesDirs = sourceSets.test.output.classesDirs
-    classpath = sourceSets.test.runtimeClasspath
-    useJUnitPlatform()
-    systemProperty 'cruciblecraft.writeT41Measurements', 'true'
-    filter {
-        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyT41MeasurementHarness'
-    }
-}
-
-tasks.register('t43MaterializationMeasurements', Test) {
-    group = 'verification'
-    description = 'Writes tools/t43_materialization_measurements.json from the production-lock harness.'
-    dependsOn tasks.named('testClasses')
-    testClassesDirs = sourceSets.test.output.classesDirs
-    classpath = sourceSets.test.runtimeClasspath
-    useJUnitPlatform()
-    systemProperty 'cruciblecraft.writeT43Measurements', 'true'
-    filter {
-        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyT43MeasurementHarness'
-    }
-}
-
-tasks.register('t45MaterializationMeasurements', Test) {
-    group = 'verification'
-    description = 'Writes tools/t45_materialization_measurements.json from the production-lock harness.'
-    dependsOn tasks.named('testClasses')
-    testClassesDirs = sourceSets.test.output.classesDirs
-    classpath = sourceSets.test.runtimeClasspath
-    useJUnitPlatform()
-    systemProperty 'cruciblecraft.writeT45Measurements', 'true'
-    filter {
-        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyT45MeasurementHarness'
-    }
-}
-
-tasks.register('t46MaterializationMeasurements', Test) {
-    group = 'verification'
-    description = 'Writes tools/t46_materialization_measurements.json from the production-lock harness.'
-    dependsOn tasks.named('testClasses')
-    testClassesDirs = sourceSets.test.output.classesDirs
-    classpath = sourceSets.test.runtimeClasspath
-    useJUnitPlatform()
-    systemProperty 'cruciblecraft.writeT46Measurements', 'true'
-    filter {
-        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyT46MeasurementHarness'
-    }
-}
-
-tasks.register('t46IntegratedMeasurements', Test) {
-    group = 'verification'
-    description = 'Writes tools/t46_integrated_measurements.json from the T37-T46 co-load harness.'
-    dependsOn tasks.named('testClasses')
-    testClassesDirs = sourceSets.test.output.classesDirs
-    classpath = sourceSets.test.runtimeClasspath
-    useJUnitPlatform()
-    systemProperty 'cruciblecraft.writeT46Measurements', 'true'
-    filter {
-        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyT46IntegratedMeasurementHarness'
-    }
-}
-
-tasks.register('t47MaterializationMeasurements', Test) {
-    group = 'verification'
-    description = 'Writes tools/t47_materialization_measurements.json from the production-lock harness.'
-    dependsOn tasks.named('testClasses')
-    testClassesDirs = sourceSets.test.output.classesDirs
-    classpath = sourceSets.test.runtimeClasspath
-    useJUnitPlatform()
-    systemProperty 'cruciblecraft.writeT47Measurements', 'true'
-    filter {
-        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyT47MeasurementHarness'
-    }
-}
-
-tasks.register('t47IntegratedMeasurements', Test) {
-    group = 'verification'
-    description = 'Writes tools/t47_integrated_measurements.json from the T37-T47 co-load harness.'
-    dependsOn tasks.named('testClasses')
-    testClassesDirs = sourceSets.test.output.classesDirs
-    classpath = sourceSets.test.runtimeClasspath
-    useJUnitPlatform()
-    systemProperty 'cruciblecraft.writeT47Measurements', 'true'
-    filter {
-        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyT47IntegratedMeasurementHarness'
-    }
-}
-
-tasks.register('t48MaterializationMeasurements', Test) {
-    group = 'verification'
-    description = 'Writes tools/t48_materialization_measurements.json from the production-lock harness.'
-    dependsOn tasks.named('testClasses')
-    testClassesDirs = sourceSets.test.output.classesDirs
-    classpath = sourceSets.test.runtimeClasspath
-    useJUnitPlatform()
-    maxHeapSize = '6g'
-    systemProperty 'cruciblecraft.writeT48Measurements', 'true'
-    filter {
-        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyT48MeasurementHarness'
-    }
-}
-
-tasks.register('t48IntegratedMeasurements', Test) {
-    group = 'verification'
-    description = 'Writes tools/t48_integrated_measurements.json from the T37-T48 co-load harness.'
-    dependsOn tasks.named('testClasses')
-    testClassesDirs = sourceSets.test.output.classesDirs
-    classpath = sourceSets.test.runtimeClasspath
-    useJUnitPlatform()
-    maxHeapSize = '6g'
-    systemProperty 'cruciblecraft.writeT48Measurements', 'true'
-    filter {
-        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyT48IntegratedMeasurementHarness'
-    }
-}
-
-tasks.register('t49MaterializationMeasurements', Test) {
-    group = 'verification'
-    description = 'Writes tools/t49_materialization_measurements.json from the production-lock harness.'
-    dependsOn tasks.named('testClasses')
-    testClassesDirs = sourceSets.test.output.classesDirs
-    classpath = sourceSets.test.runtimeClasspath
-    useJUnitPlatform()
-    systemProperty 'cruciblecraft.writeT49Measurements', 'true'
-    filter {
-        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyT49MeasurementHarness'
-    }
-}
-
-tasks.register('t49IntegratedMeasurements', Test) {
-    group = 'verification'
-    description = 'Writes tools/t49_integrated_measurements.json from the T37-T49 co-load harness.'
-    dependsOn tasks.named('testClasses')
-    testClassesDirs = sourceSets.test.output.classesDirs
-    classpath = sourceSets.test.runtimeClasspath
-    useJUnitPlatform()
-    maxHeapSize = '6g'
-    systemProperty 'cruciblecraft.writeT49Measurements', 'true'
-    filter {
-        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyT49IntegratedMeasurementHarness'
-    }
-}
+materializationMeasurement('assemblerCompactMaterializationMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.AssemblerCompactMeasurementHarness',
+        'writeAssemblerCompactMeasurements',
+        'Writes assembler compact materialization measurements.')
+materializationMeasurement('roasterCompactMaterializationMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.RoasterCompactMeasurementHarness',
+        'writeRoasterCompactMeasurements',
+        'Writes roaster compact materialization measurements.')
+materializationMeasurement('centrifugeCompactMaterializationMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.CentrifugeCompactMeasurementHarness',
+        'writeCentrifugeCompactMeasurements',
+        'Writes centrifuge compact materialization measurements.')
+materializationMeasurement('electrolyzerCompactMaterializationMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.ElectrolyzerCompactMeasurementHarness',
+        'writeElectrolyzerCompactMeasurements',
+        'Writes electrolyzer compact materialization measurements.')
+materializationMeasurement('assemblerWoodMaterializationMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.AssemblerWoodMeasurementHarness',
+        'writeAssemblerWoodMeasurements',
+        'Writes assembler wood materialization measurements.')
+materializationMeasurement('smelterStoneMaterializationMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.SmelterStoneMeasurementHarness',
+        'writeSmelterStoneMeasurements',
+        'Writes smelter stone materialization measurements.')
+materializationMeasurement('blockObjectMaterializationMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.BlockObjectMeasurementHarness',
+        'writeBlockObjectMeasurements',
+        'Writes block-object materialization measurements.')
+materializationMeasurement('bathMteMaterializationMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.BathMteMeasurementHarness',
+        'writeBathMteMeasurements',
+        'Writes bath MTE materialization measurements.')
+materializationMeasurement('bathMteIntegratedMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.BathMteIntegratedMeasurementHarness',
+        'writeBathMteMeasurements',
+        'Writes bath MTE integrated measurements.')
+materializationMeasurement('bathRemainderMaterializationMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.BathRemainderMeasurementHarness',
+        'writeBathRemainderMeasurements',
+        'Writes bath remainder materialization measurements.')
+materializationMeasurement('bathRemainderIntegratedMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.BathRemainderIntegratedMeasurementHarness',
+        'writeBathRemainderMeasurements',
+        'Writes bath remainder integrated measurements.')
+materializationMeasurement('bathIdentityMaterializationMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.BathIdentityMeasurementHarness',
+        'writeBathIdentityMeasurements',
+        'Writes bath identity materialization measurements.',
+        true)
+materializationMeasurement('bathIdentityIntegratedMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.BathIdentityIntegratedMeasurementHarness',
+        'writeBathIdentityMeasurements',
+        'Writes bath identity integrated measurements.',
+        true)
+materializationMeasurement('bathTinyPurifiedMaterializationMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.BathTinyPurifiedMeasurementHarness',
+        'writeBathTinyPurifiedMeasurements',
+        'Writes bath tiny-purified materialization measurements.')
+materializationMeasurement('bathTinyPurifiedIntegratedMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.BathTinyPurifiedIntegratedMeasurementHarness',
+        'writeBathTinyPurifiedMeasurements',
+        'Writes bath tiny-purified integrated measurements.',
+        true)
 
 tasks.register('ordinaryCloseoutSmelterIntegratedMeasurements', Test) {
     group = 'verification'
@@ -611,26 +516,10 @@ tasks.register('ordinaryCloseoutIntegratedMeasurements') {
             tasks.named('ordinaryCloseoutMixerIntegratedMeasurements')
 }
 
-def t14RecipeLoadBenchmarkArtifact = tasks.register(
-        't14RecipeLoadBenchmarkArtifact', Exec) {
+tasks.register('recipeLoadBenchmark') {
     group = 'verification'
-    description = 'Validates T14c evidence and derives the production winner.'
-    dependsOn t14RecipeLoadBenchmarkRaw
-    commandLine providers.gradleProperty('pythonExecutable').getOrElse('python'),
-            file('tools/build_t14_recipe_load_benchmark.py').absolutePath,
-            '--raw',
-            file('build/t14-benchmark/raw_measurements.json').absolutePath
-    inputs.files file('build/t14-benchmark/raw_measurements.json'),
-            file('tools/t14_materialization_policy.json'),
-            file('tools/t14_extruder_compact.json'),
-            file('tools/build_t14_recipe_load_benchmark.py')
-    outputs.file file('tools/t14_materialization_decision.json')
-}
-
-tasks.register('t14RecipeLoadBenchmark') {
-    group = 'verification'
-    description = 'Refreshes actual compact T14c materialization measurements.'
-    dependsOn t14RecipeLoadBenchmarkArtifact
+    description = 'Refreshes actual compact recipe-load materialization measurements.'
+    dependsOn recipeLoadBenchmarkRaw
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

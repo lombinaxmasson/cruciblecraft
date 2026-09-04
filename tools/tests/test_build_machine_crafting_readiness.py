@@ -246,7 +246,7 @@ class MachineCraftingReadinessTest(unittest.TestCase):
             with self.subTest(machine=row["machine_id"]):
                 self.assertEqual(
                     (
-                        "t12_source_projected_machine_recipe"
+                        "machine_tier_source_projected_machine_recipe"
                         if row["machine_id"]
                         in MODULE.SOURCE_PROJECTED_CONFIGURED_IDS
                         else "generated_copper_furnace_placeholder"

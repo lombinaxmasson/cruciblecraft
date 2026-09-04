@@ -36,7 +36,7 @@ class RecipeBulkCompilerTest(unittest.TestCase):
                         "meta": 0,
                     }
                 },
-                wave_id="T37",
+                wave_id="assembler/compact",
                 require_proven=True,
             )
 
@@ -44,12 +44,12 @@ class RecipeBulkCompilerTest(unittest.TestCase):
         with self.assertRaises(ResolutionError):
             resolve_operand(
                 {"tag": "c:unbound_dummy", "source": {}},
-                wave_id="T38",
+                wave_id="roaster/compact",
                 index={
                     "records": {},
                     "blockers": {
-                        "T38|tag:c:unbound_dummy": {
-                            "source_key": "T38|tag:c:unbound_dummy",
+                        "roaster/compact|tag:c:unbound_dummy": {
+                            "source_key": "roaster/compact|tag:c:unbound_dummy",
                             "mapping_class": "unbound_tag",
                             "blocker_reason": "tag_only",
                             "target_identity": None,
@@ -66,11 +66,11 @@ class RecipeBulkCompilerTest(unittest.TestCase):
                     "runtime_id": "minecraft:oak_planks",
                     "source": {"item": "gregtech:gt.block.planks", "meta": 0},
                 },
-                wave_id="T37",
+                wave_id="assembler/compact",
                 index={
                     "records": {
-                        "T37|item:gregtech:gt.block.planks@0": {
-                            "source_key": "T37|item:gregtech:gt.block.planks@0",
+                        "assembler/compact|item:gregtech:gt.block.planks@0": {
+                            "source_key": "assembler/compact|item:gregtech:gt.block.planks@0",
                             "target_identity": "minecraft:spruce_planks",
                             "mapping_class": "exact_item",
                             "evidence": ["SOURCE_DERIVED"],
@@ -89,7 +89,7 @@ class RecipeBulkCompilerTest(unittest.TestCase):
                     "meta": 1,
                 }
             },
-            wave_id="T37",
+            wave_id="assembler/compact",
             require_proven=True,
         )
         self.assertEqual("cruciblecraft:programmed_circuit", result["runtime_id"])
@@ -97,28 +97,28 @@ class RecipeBulkCompilerTest(unittest.TestCase):
 
     def test_stable_id_hex_suffix_transform(self) -> None:
         self.assertEqual(
-            "cruciblecraft:t37/a5d684f67018b8a3",
-            hex_stable_id("cruciblecraft:gt6/a5d684f67018b8a3", "t37"),
+            "cruciblecraft:assembler/compact/a5d684f67018b8a3",
+            hex_stable_id(
+                "cruciblecraft:gt6/a5d684f67018b8a3",
+                "assembler/compact",
+            ),
         )
 
-    def test_t37_and_t38_omit_publication_group(self) -> None:
-        t37 = compile_mod.planned_documents_for("T37")[0][1]
-        t38 = compile_mod.planned_documents_for("T38")[0][1]
-        self.assertNotIn("publication_group", t37)
-        self.assertNotIn("publication_group", t38)
+    def test_compact_waves_use_semantic_publication_group(self) -> None:
+        assembler = compile_mod.planned_documents_for("assembler/compact")[0][1]
+        roaster = compile_mod.planned_documents_for("roaster/compact")[0][1]
+        self.assertEqual("cruciblecraft:assembler/compact", assembler["publication_group"])
+        self.assertEqual("cruciblecraft:roaster/compact", roaster["publication_group"])
 
-    def test_legacy_builders_cannot_write_production(self) -> None:
+    def test_compiler_cannot_write_production(self) -> None:
         from tools.recipe_bulk.write_guard import ProductionWriteError
-        from tools import build_t37_assembler_recipes as t37
-        from tools import build_t41_assembler_recipes as t41
-        from tools import build_t43_smelter_recipes as t43
+        from tools.recipe_bulk.waves import recipe_wave
 
-        with self.assertRaises(ProductionWriteError):
-            t37.write()
-        with self.assertRaises(ProductionWriteError):
-            t41.write()
-        with self.assertRaises(ProductionWriteError):
-            t43.write()
+        for wave_id in COMPILE_ORDER:
+            with self.subTest(wave=wave_id), self.assertRaises(ProductionWriteError):
+                from tools.recipe_bulk.write_guard import assert_not_production_write
+
+                assert_not_production_write(recipe_wave(wave_id).generated_root)
 
     def test_all_recipe_waves_use_recipe_bulk_compile_authority(self) -> None:
         for wave_id, spec in WAVES.items():
@@ -128,18 +128,30 @@ class RecipeBulkCompilerTest(unittest.TestCase):
 
     def test_compile_order_covers_seven_historical_waves(self) -> None:
         self.assertEqual(
-            ("T37", "T38", "T39", "T40", "T41", "T43", "T45"),
+            (
+                "assembler/compact",
+                "roaster/compact",
+                "centrifuge/compact",
+                "electrolyzer/compact",
+                "assembler/wood",
+                "smelter/stone",
+                "block/object",
+            ),
             COMPILE_ORDER,
         )
 
     def test_forward_compile_order_appends_t46(self) -> None:
         from tools.recipe_bulk.waves import FORWARD_COMPILE_ORDER
 
-        self.assertEqual(COMPILE_ORDER + ("T46", "T47", "T48", "T49"), FORWARD_COMPILE_ORDER)
-        self.assertEqual("lock_relation_set", WAVES["T46"].archetype)
-        self.assertEqual("exact_relation_set", WAVES["T46"].template_kind)
-        self.assertEqual("lock_relation_set", WAVES["T47"].archetype)
-        self.assertEqual("exact_relation_set", WAVES["T47"].template_kind)
+        self.assertEqual(
+            COMPILE_ORDER
+            + ("bath/mte", "bath/remainder", "bath/identity", "bath/tiny-purified"),
+            FORWARD_COMPILE_ORDER,
+        )
+        self.assertEqual("lock_relation_set", WAVES["bath/mte"].archetype)
+        self.assertEqual("exact_relation_set", WAVES["bath/mte"].template_kind)
+        self.assertEqual("lock_relation_set", WAVES["bath/remainder"].archetype)
+        self.assertEqual("exact_relation_set", WAVES["bath/remainder"].template_kind)
 
     def test_exact_singleton_rejects_multi_relation(self) -> None:
         with self.assertRaises(ValueError):
@@ -149,19 +161,19 @@ class RecipeBulkCompilerTest(unittest.TestCase):
                 template_kind="exact_singleton",
             )
 
-    def test_t43_replay_matches_generated_root(self) -> None:
-        from tools import t43_common as t43
+    def test_smelter_stone_replay_matches_generated_root(self) -> None:
+        from tools import smelter_stone_common as smelter_stone
 
-        if not t43.GENERATED_ROOT.is_dir():
-            self.skipTest("T43 generated compact tree is not present")
-        document = replay_mod.replay_t43()
+        if not smelter_stone.GENERATED_ROOT.is_dir():
+            self.skipTest("smelter/stone generated compact tree is not present")
+        document = replay_mod.replay_smelter_stone()
         self.assertTrue(document["ok"], document.get("mismatches"))
         self.assertEqual(407, document["compared"])
 
     def test_semantic_replay_key_compares_complete_relation_sets(self) -> None:
         truncated = {
             "family_id": "gt.recipe.centrifuge#0008",
-            "publication_group": "cruciblecraft:t39_centrifuge_multi",
+            "publication_group": "cruciblecraft:centrifuge/multi",
             "target_map": "cruciblecraft:centrifuge",
             "relations": [{"duration": 1, "shadow_order": 0}],
         }

@@ -15,9 +15,29 @@ Progress only counts a **capability** at `player_complete`, and only after a fre
 - Current capability: `logistics/fluid-network/basic-transfer` (`player_complete`)
 - Item storage / transfer covers are `runtime_ready`, not seven-kind complete
 - Generic / Dump covers, crops / bees, vanilla furnace replace, nuclear, and the rest live in [unimplemented-gap.md](docs/current/unimplemented-gap.md)
-- The numbered-card era (T7–T49) is over. No new milestone numbers. No player release, RC soak, or GA
+- The numbered-card era is over. No new milestone numbers. No player release, RC soak, or GA
 
 Only one active delivery lane at a time. Work packets can be archived; they **do not** mint `*_READY`.
+
+## How to author content
+
+Work units are **semantic slugs** (`logistics/fluid-network/basic-transfer`, `assembler/compact`, `smelter/ordinary-closure`), not numbers such as `T38`. New recipes, receipts, and test paths use those names.
+
+Live waves include compact / wood / stone / `block/object` / `storage/lock`, Bath (`bath/mte`, `bath/remainder`, `bath/identity`, `bath/tiny-purified`), ordinary-closure, and `smelter/deferred-recycling`. Publication groups look like `cruciblecraft:<host>/<cohort>`. Historical numbered ids map through `tools/semantic_id_map.json`.
+
+Recipe import:
+
+```text
+Source Pack (GT6 / future GT6U / design, append-only)
+  -> human scope + frozen production lock
+  -> tools/recipe_bulk compiles exact / exact_multi
+  -> publication groups / shards
+  -> CompactRecipeFamilyProvider materializes at runtime
+```
+
+Generated trees live in `src/recipe_generated/` and `src/recipe_support_generated/`. `build.gradle` mounts them into `sourceSets.main.resources`. Do not add new content under numbered recipe paths or `src/tXX_*_generated`. The `build_t*.py` builders are gone. Gradle `-PwaveRecipes` rejects `T` plus digits. Giant Bath sources (`tools/bath_*_source.json`) and `owner_family_operand_snapshot.json` stay local replay inputs; they are not tracked.
+
+Unknown `parameterized()` templates fail closed (empty expansion, no throw). Markdown plans are not production authority. Capability declarations live in `tools/capabilities/<slug>/capability.json`.
 
 ## Build
 
@@ -35,21 +55,9 @@ Only one active delivery lane at a time. Work packets can be archived; they **do
 .\gradlew.bat test
 ```
 
-Put proxies in user-level `~/.gradle/gradle.properties`. Do not commit them. `run-client-smoke/`, `run-wire-codec-*`, `build/`, and local GT6 dumps are not the canonical tree either.
+Put proxies in user-level `~/.gradle/gradle.properties`. Do not commit them. `run/`, `run-client-smoke/`, `run-wire-codec-*`, `build/`, and local GT6 dumps are not the canonical tree either.
 
-## How development works
-
-Work units are **semantic slugs** (`logistics/fluid-network/basic-transfer`, `smelter/ordinary-closure`). Recipe import:
-
-```text
-Source Pack (GT6 / future GT6U / design, append-only)
-  -> human scope + frozen production lock
-  -> tools/recipe_bulk compiles exact / exact_multi
-  -> publication groups / shards
-  -> CompactRecipeFamilyProvider materializes at runtime
-```
-
-Unknown `parameterized()` templates fail closed (empty expansion, no throw). Markdown plans are not production authority. Capability declarations live in `tools/capabilities/<slug>/capability.json`.
+## Daily verification
 
 Daily verification is the command you just ran, not a committed currentness sidecar, seal, or historical READY report:
 
@@ -60,6 +68,10 @@ python tools/verify.py integration --profile semantic-generators
 python tools/verify.py integration --profile capability-runtime
 python tools/verify.py integration --profile player-complete
 ```
+
+The `verification` profile runs `python tools/check_zero_milestone_names.py --quick`. That scan covers the live logistics / capability surface and must stay at zero hits.
+
+Do not treat `python tools/check_zero_milestone_names.py --summary` as a daily gate. The full scan reads generated trees and historical receipts, takes a long time, and legitimately hits frozen v2 ledgers, `semantic_id_map.json`, and earlier independent-stage numbered JSON. Live authoring is already semantic; a zero-hit full scan is not the current acceptance bar.
 
 `dev` maps dirty paths onto profiles. Results go to gitignored `build/verification/latest.json` (revision, commands, PASS/FAIL; no workflow content digests). `player-complete` must launch an isolated GameTestServer and a real `runClient` in the same call.
 
@@ -89,20 +101,25 @@ tools/waves/<slug>/     Per-card lock / census (archive or domain plugin)
 tools/capabilities/     Live capability declarations
 ```
 
-`build.gradle` mounts several generated trees into `sourceSets.main.resources`. Semantic-wave compact recipes go in `src/recipe_generated/` and `src/recipe_support_generated/`. Do not add new content under `recipe/tXX/`.
-
 Tools are also split:
 
-- **Current entry points:** `tools/verify.py`, `tools/recipe_bulk/`, `tools/build_capability_ledger.py`, `tools/build_player_complete.py`, `tools/check_no_workflow_hashes.py`
-- **Closed-card ledgers:** `tools/build_t*.py` and similar. Milestone filenames stay so historical receipts remain stable. They are not the current authoring API
+- **Current entry points:** `tools/verify.py`, `tools/recipe_bulk/`, `tools/build_semantic_recipes.py`, `tools/build_capability_ledger.py`, `tools/build_player_complete.py`, `tools/check_no_workflow_hashes.py`, `tools/check_zero_milestone_names.py --quick`
+- **Historical receipts:** earlier independent-stage numbered JSON, frozen v2 ledgers, and `tools/semantic_id_map.json`. Compact / Bath / ordinary-closure live ledgers already use semantic names; they are not the current authoring API
 
 Docs: [docs/current/](docs/current/) is live, [docs/history/](docs/history/INDEX.md) is read-only archive.
 
-## Naming debt
+## Where numbers still appear
 
-Early work used numbered cards (T7, T20, T45). Those numbers leaked into paths, test names, and runtime ids. Live authoring now uses semantic paths: `recipe/mortar/`, `recipe/pipe/`, `assembler/compact`, capability slugs.
+Early work used numbered cards. Those numbers leaked into paths, test names, and runtime ids. Closeout checklist A–E moved live waves, receipts, currentness, test consumers, and operational docs onto semantic slugs.
 
-Remaining `TXX` tokens are unfinished migration. The only planned keep is `docs/history/card-plans/`. Tests load frozen fixtures through `archive/sealed/forward-v2/semantic_id_map.json` and do not rewrite those bytes. Inventory: [semantic-naming.md](docs/current/semantic-naming.md). Do not rename them as a side effect of a content card. `GT6` / `gt6_*` means GregTech 6, not a card number.
+Numbers still appear in:
+
+- `docs/history/card-plans/`: the only planned keep for numbered plan docs
+- Frozen v2 identity / runtime / load-budget JSON: bytes stay unchanged
+- `tools/semantic_id_map.json`: maps historical fixtures onto semantic group names
+- Earlier independent-stage closed-card receipts, plus test strings that reject old numbers (for example `T50`)
+
+Do not rename those as a side effect of a content card. `GT6` / `gt6_*` means GregTech 6, not a card number. Long-term rules: [semantic-naming.md](docs/current/semantic-naming.md). This round’s execution record: [closeout checklist](docs/current/semantic-naming-closeout-checklist.md).
 
 ## Docs map
 
@@ -112,6 +129,7 @@ Remaining `TXX` tokens are unfinished migration. The only planned keep is `docs/
 - [Verification](docs/current/verification.md)
 - [Ordinary recipe-wave rules](docs/current/recipe-wave-workflow.md)
 - [Semantic naming inventory](docs/current/semantic-naming.md)
+- [Semantic naming closeout checklist](docs/current/semantic-naming-closeout-checklist.md)
 - [Known issues](docs/current/known-issues.md)
 - [Doc index](docs/README.md) · [History](docs/history/INDEX.md)
 - [Tools](tools/README.md)

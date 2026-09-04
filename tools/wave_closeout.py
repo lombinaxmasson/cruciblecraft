@@ -6,10 +6,10 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from tools import t35_common as t35
+from tools import io_common as io
 from tools.recipe_bulk.slugs import parse_wave_token
 
-TOOLS = t35.TOOLS
+TOOLS = io.TOOLS
 WAVES_ROOT = TOOLS / "waves"
 
 
@@ -84,8 +84,8 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             owns_families=0,
         )
 
-    generated = t35.ROOT / "src/recipe_generated/resources/data/cruciblecraft/recipe"
-    support = t35.ROOT / "src/recipe_support_generated/resources/data/cruciblecraft/recipe"
+    generated = io.ROOT / "src/recipe_generated/resources/data/cruciblecraft/recipe"
+    support = io.ROOT / "src/recipe_support_generated/resources/data/cruciblecraft/recipe"
 
     def _ordinary(host: str) -> WaveCloseoutSpec:
         slug = f"{host}/ordinary-closure"
@@ -100,7 +100,7 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             generated_root=generated / host / "ordinary_closure",
             support_root=support / host / "ordinary_closure",
             gametest_java=(
-                t35.ROOT
+                io.ROOT
                 / "src/main/java/com/masson/cruciblecraft/gametest"
                 / f"{host.title()}OrdinaryClosureGameTests.java"
             ),
@@ -163,7 +163,7 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             generated_root=generated / "smelter" / "ordinary_closure",
             support_root=support / "smelter" / "ordinary_closure",
             gametest_java=(
-                t35.ROOT
+                io.ROOT
                 / "src/main/java/com/masson/cruciblecraft/gametest"
                 / "SmelterOrdinaryClosureGameTests.java"
             ),
@@ -186,7 +186,7 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             generated_root=generated / "mixer" / "ordinary_closure",
             support_root=support / "mixer" / "ordinary_closure",
             gametest_java=(
-                t35.ROOT
+                io.ROOT
                 / "src/main/java/com/masson/cruciblecraft/gametest"
                 / "MixerOrdinaryClosureGameTests.java"
             ),
@@ -285,7 +285,7 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             generated_root=generated / "smelter" / "deferred_recycling",
             support_root=None,
             gametest_java=(
-                t35.ROOT
+                io.ROOT
                 / "src/main/java/com/masson/cruciblecraft/gametest"
                 / "SmelterDeferredRecyclingGameTests.java"
             ),
@@ -451,8 +451,8 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             None,
             True,
         ),
-        "portfolio/t13c-exclusion-reclaim-r0": _portfolio(
-            "portfolio/t13c-exclusion-reclaim-r0",
+        "portfolio/exclusion-reclaim-r0": _portfolio(
+            "portfolio/exclusion-reclaim-r0",
             None,
             True,
         ),
@@ -481,7 +481,7 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             generated_root=None,
             support_root=None,
             gametest_java=(
-                t35.ROOT
+                io.ROOT
                 / "src/main/java/com/masson/cruciblecraft/gametest"
                 / "ItemNetworkCoreGameTests.java"
             ),
@@ -506,7 +506,7 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             generated_root=None,
             support_root=None,
             gametest_java=(
-                t35.ROOT
+                io.ROOT
                 / "src/main/java/com/masson/cruciblecraft/gametest"
                 / "FluidNetworkCoreGameTests.java"
             ),

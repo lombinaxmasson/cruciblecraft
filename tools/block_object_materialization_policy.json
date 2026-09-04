@@ -1,0 +1,311 @@
+{
+  "candidate_contract": {
+    "candidates": [
+      "immediate",
+      "on_demand",
+      "hybrid"
+    ],
+    "ranking_order": [
+      "eager_margin",
+      "retained_memory",
+      "reload_index",
+      "lookup",
+      "sync",
+      "implementation_complexity"
+    ]
+  },
+  "hard_ceilings": {
+    "allocation_bytes": 536870912,
+    "client_index_ms": 3000,
+    "client_reload_ms": 10000,
+    "datapack_authored_entries": 6600,
+    "eager_publication_rows": 21000,
+    "lazy_cache_ceiling_rows": 4096,
+    "lazy_logical_rows": 56000,
+    "lookup_candidate_count": 128,
+    "lookup_p95_ns": 2000000,
+    "retained_memory_bytes": 536870912,
+    "server_index_ms": 1000,
+    "server_reload_ms": 10000,
+    "sync_bytes": 67108864
+  },
+  "hard_limits_1x": {
+    "allocation_bytes": 536870912,
+    "client_index_ms": 3000,
+    "client_reload_ms": 10000,
+    "datapack_authored_entries": 6600,
+    "eager_publication_rows": 21000,
+    "lazy_cache_ceiling_rows": 4096,
+    "lazy_logical_rows": 56000,
+    "lookup_candidate_count": 128,
+    "lookup_p95_ns": 2000000,
+    "retained_memory_bytes": 536870912,
+    "server_index_ms": 1000,
+    "server_reload_ms": 10000,
+    "sync_bytes": 67108864
+  },
+  "publication_group_contract": {
+    "card_aggregate": {
+      "cache_policies": {
+        "hybrid": "eager selector frozen below; bounded cache ceiling 24",
+        "immediate": "fully eager; lookup cache disabled; cache ceiling 0",
+        "on_demand": "all lazy; bounded cache ceiling 24"
+      },
+      "candidates": [
+        "immediate",
+        "on_demand",
+        "hybrid"
+      ],
+      "family_count": 379,
+      "hybrid_boundary": {
+        "cache_ceiling": 24,
+        "declared_before_measurement": true,
+        "declared_eager_count": 0,
+        "declared_lazy_count": 379,
+        "eager_selector": {
+          "duration_ticks_lte": 0
+        },
+        "eager_stable_ids": [],
+        "forbidden_extruder_hot_modulo": 5,
+        "hot_modulo": null,
+        "justification": "T45 card aggregate has 379 relations (smelter 271 + drying 108). Hybrid remains duration_ticks_lte 0."
+      },
+      "logical_rows": 379,
+      "partitions": {
+        "hybrid": [
+          0,
+          379,
+          24
+        ],
+        "immediate": [
+          379,
+          0,
+          0
+        ],
+        "on_demand": [
+          0,
+          379,
+          24
+        ]
+      },
+      "publication_group": "card_aggregate"
+    },
+    "drying": {
+      "cache_policies": {
+        "hybrid": "eager selector frozen below; bounded cache ceiling 24",
+        "immediate": "fully eager; lookup cache disabled; cache ceiling 0",
+        "on_demand": "all lazy; bounded cache ceiling 24"
+      },
+      "candidates": [
+        "immediate",
+        "on_demand",
+        "hybrid"
+      ],
+      "family_count": 108,
+      "hybrid_boundary": {
+        "cache_ceiling": 24,
+        "declared_before_measurement": true,
+        "declared_eager_count": 0,
+        "declared_lazy_count": 108,
+        "eager_selector": {
+          "duration_ticks_lte": 0
+        },
+        "eager_stable_ids": [],
+        "forbidden_extruder_hot_modulo": 5,
+        "hot_modulo": null,
+        "justification": "T45 drying group has 108 relations across 108 families with duration histogram {'16': 16, '128': 72, '360': 20}; median duration 128. duration_ticks_lte 0 freezes hybrid as zero-eager (0 eager / 108 lazy). Cache ceiling 24 is T45's declared-before-measure bound, not T37 8, T38 16, T39 19, T40 11, T41 16, or T43 24 copied as a winner."
+      },
+      "logical_rows": 108,
+      "partitions": {
+        "hybrid": [
+          0,
+          108,
+          24
+        ],
+        "immediate": [
+          108,
+          0,
+          0
+        ],
+        "on_demand": [
+          0,
+          108,
+          24
+        ]
+      },
+      "publication_group": "cruciblecraft:drying/block"
+    },
+    "smelter": {
+      "cache_policies": {
+        "hybrid": "eager selector frozen below; bounded cache ceiling 24",
+        "immediate": "fully eager; lookup cache disabled; cache ceiling 0",
+        "on_demand": "all lazy; bounded cache ceiling 24"
+      },
+      "candidates": [
+        "immediate",
+        "on_demand",
+        "hybrid"
+      ],
+      "family_count": 271,
+      "hybrid_boundary": {
+        "cache_ceiling": 24,
+        "declared_before_measurement": true,
+        "declared_eager_count": 0,
+        "declared_lazy_count": 271,
+        "eager_selector": {
+          "duration_ticks_lte": 0
+        },
+        "eager_stable_ids": [],
+        "forbidden_extruder_hot_modulo": 5,
+        "hot_modulo": null,
+        "justification": "T45 smelter group has 271 relations across 271 families with duration histogram {'16': 226, '61': 1, '67': 1, '109': 1, '253': 1, '274': 1, '396': 1, '421': 1, '511': 1, '519': 1, '958': 1, '1001': 1, '1826': 1, '1890': 1, '2176': 3, '2427': 1, '4574': 1, '4676': 3, '5958': 3, '6175': 3, '7765': 3, '8626': 3, '8673': 3, '12581': 3, '21843': 3, '41170': 3}; median duration 16. duration_ticks_lte 0 freezes hybrid as zero-eager (0 eager / 271 lazy). Cache ceiling 24 is T45's declared-before-measure bound, not T37 8, T38 16, T39 19, T40 11, T41 16, or T43 24 copied as a winner."
+      },
+      "logical_rows": 271,
+      "partitions": {
+        "hybrid": [
+          0,
+          271,
+          24
+        ],
+        "immediate": [
+          271,
+          0,
+          0
+        ],
+        "on_demand": [
+          0,
+          271,
+          24
+        ]
+      },
+      "publication_group": "cruciblecraft:smelter/block"
+    }
+  },
+  "schema_version": 1,
+  "scope": {
+    "does_not_modify": [
+      "T37 14/36/8",
+      "T38 0/73/16",
+      "T39 19/13",
+      "T40 cache 11",
+      "T41 cache 16",
+      "T43 cache 24"
+    ],
+    "family_count": 379,
+    "production_lock_sha256": "c64576f8f14cf19d6a6f62dfc3995355318ecd34fb0537ab406fab741b99aaba",
+    "production_logical_rows": 379
+  },
+  "soft_budgets_1x": {
+    "allocation_bytes": 134217728,
+    "client_index_ms": 1000,
+    "client_reload_ms": 5000,
+    "datapack_authored_entries": 6000,
+    "eager_publication_rows": 18000,
+    "lazy_cache_ceiling_rows": 1024,
+    "lazy_logical_rows": 16000,
+    "lookup_candidate_count": 64,
+    "lookup_p95_ns": 1000000,
+    "retained_memory_bytes": 134217728,
+    "server_index_ms": 500,
+    "server_reload_ms": 5000,
+    "sync_bytes": 16777216
+  },
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T45_MATERIALIZATION_CANDIDATE_POLICY",
+  "t45_opening": {
+    "allocation_bytes": {
+      "closing": 8333800,
+      "hard_ceiling": 536870912,
+      "measured": true,
+      "pending": false
+    },
+    "client_index_ms": {
+      "closing": 6,
+      "hard_ceiling": 3000,
+      "measured": true,
+      "pending": false
+    },
+    "client_reload_ms": {
+      "closing": 23,
+      "hard_ceiling": 10000,
+      "measured": true,
+      "pending": false
+    },
+    "datapack_authored_entries": {
+      "closing": 4484,
+      "hard_ceiling": 6600,
+      "measured": true,
+      "pending": false
+    },
+    "eager_publication_rows": {
+      "closing": 16659,
+      "hard_ceiling": 21000,
+      "measured": true,
+      "pending": false
+    },
+    "lazy_cache_ceiling_rows": {
+      "closing": 150,
+      "hard_ceiling": 4096,
+      "measured": true,
+      "pending": false
+    },
+    "lazy_logical_rows": {
+      "closing": 3087,
+      "hard_ceiling": 56000,
+      "measured": true,
+      "pending": false
+    },
+    "lookup_candidate_count": {
+      "closing": 73,
+      "hard_ceiling": 128,
+      "measured": true,
+      "pending": false
+    },
+    "lookup_p95_ns": {
+      "closing": 685725,
+      "hard_ceiling": 2000000,
+      "measured": true,
+      "pending": false
+    },
+    "pending_runtime_axes_zero_fill": false,
+    "retained_memory_bytes": {
+      "closing": 88210,
+      "hard_ceiling": 536870912,
+      "measured": true,
+      "pending": false
+    },
+    "server_index_ms": {
+      "closing": 6,
+      "hard_ceiling": 1000,
+      "measured": true,
+      "pending": false
+    },
+    "server_reload_ms": {
+      "closing": 21,
+      "hard_ceiling": 10000,
+      "measured": true,
+      "pending": false
+    },
+    "source": "tools/t44_storage_census_delta.json#t14_load.closing",
+    "sync_bytes": {
+      "closing": 88210,
+      "hard_ceiling": 67108864,
+      "measured": true,
+      "pending": false
+    }
+  },
+  "winner_algorithm": {
+    "card_aggregate_required": true,
+    "composite_score_forbidden": true,
+    "gate_order": [],
+    "implementation_complexity_order": [
+      "immediate",
+      "on_demand",
+      "hybrid"
+    ],
+    "max_interval_soft_budget_does_not_eliminate": [
+      "lookup_candidate_count"
+    ],
+    "per_group_winners_required": true
+  }
+}

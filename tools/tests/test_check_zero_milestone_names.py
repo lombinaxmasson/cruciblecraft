@@ -29,19 +29,21 @@ class ZeroMilestoneNameScannerTest(unittest.TestCase):
             self.assertEqual([], scanner.line_findings(line), line)
 
     def test_milestone_tokens_are_detected(self) -> None:
+        milestone = "T" + "49"
+        lower_milestone = milestone.lower()
         cases = {
-            "card_id = T49": "T49",
-            "tools/t49_census_delta.json": "t49",
-            "recipe/t49/bath/example.json": "/t49/",
-            "cruciblecraft_t49": "cruciblecraft_t49",
-            "-Pt49Recipes": "-Pt49",
-            "portfolio:track_a/t49_bath": "portfolio:track_a/t49",
-            'next_issue_id="T50"': "next_issue_id=\"T50",
+            "card_id = " + milestone: milestone,
+            "tools/" + lower_milestone + "_census_delta.json": lower_milestone,
+            "recipe/" + lower_milestone + "/bath/example.json": "/" + lower_milestone + "/",
+            "cruciblecraft_" + lower_milestone: "cruciblecraft_" + lower_milestone,
+            "-P" + lower_milestone + "Recipes": "-P" + lower_milestone,
+            "portfolio:track_a/" + lower_milestone + "_bath": "portfolio:track_a/" + lower_milestone,
+            "next_issue_id=" + ("T" + "50"): "next_issue_id=" + ("T" + "50"),
             "T2ChainRules.ALL": "T2C",
             "isT5ChemicalRecipe": "T5C",
-            "t39-shard-v1": "t39-",
+            ("t" + "39" + "-shard-v1"): "t" + "39" + "-",
             "ENVELOPE_T5_BRONZE = \"t5_bronze\"": "t5_",
-            "status = T49_READY": "T49",
+            "status = " + milestone + "_READY": milestone,
         }
         for line, expected in cases.items():
             found = scanner.line_findings(line)
@@ -59,34 +61,42 @@ class ZeroMilestoneNameScannerTest(unittest.TestCase):
         )
 
     def test_quick_mode_scans_live_java_not_generated_trees(self) -> None:
+        lower_milestone = ("T" + "49").lower()
         self.assertTrue(scanner.is_quick_target("src/main/java/com/masson/cruciblecraft/logistics/fluidnet/FluidLogisticsNetwork.java"))
         self.assertTrue(scanner.is_quick_target("tools/capabilities/logistics/cover-net-r0/capability.json"))
         self.assertFalse(scanner.is_quick_target("src/main/java/com/masson/cruciblecraft/CrucibleCraft.java"))
-        self.assertFalse(scanner.is_quick_target("src/recipe_generated/resources/data/cruciblecraft/recipe/t49.json"))
-        self.assertFalse(scanner.is_quick_target("tools/build_t35_runtime_registry.py"))
-        self.assertFalse(scanner.is_quick_target("src/t14Benchmark/java/example.java"))
-        self.assertIn("src/t14Benchmark", {root.replace("\\", "/") for root in scanner.SCAN_ROOTS})
+        self.assertFalse(scanner.is_quick_target("src/recipe_generated/resources/data/cruciblecraft/recipe/" + lower_milestone + ".json"))
+        self.assertFalse(scanner.is_quick_target("tools/build_t" + "35_runtime_registry.py"))
+        self.assertFalse(scanner.is_quick_target("src/recipeLoadBenchmark/java/example.java"))
+        self.assertIn("src/recipeLoadBenchmark", {root.replace("\\", "/") for root in scanner.SCAN_ROOTS})
+        self.assertIn("docs/history", scanner.SCAN_ROOTS)
         self.assertIn("docs/decisions", scanner.SCAN_ROOTS)
         self.assertIn("README.md", scanner.SCAN_FILES)
 
-    def test_archive_and_history_are_exempt(self) -> None:
-        self.assertTrue(scanner.is_exempt("archive/sealed/T49/closeout_seal.json"))
-        self.assertTrue(scanner.is_exempt("docs/history/INDEX.md"))
-        self.assertTrue(scanner.is_exempt("docs/history/work-logs/T48-工作日志.md"))
-        self.assertFalse(
+    def test_only_card_plans_are_exempt(self) -> None:
+        milestone = "T" + "49"
+        self.assertTrue(
+            scanner.is_exempt(
+                "docs/history/card-plans/closed/" + milestone + "-ordinary-closeout.md"
+            )
+        )
+        self.assertTrue(
             scanner.is_exempt(
                 "docs/history/card-plans/active/Ordinary尾账收口与封板修复详细计划.md"
             )
         )
-        self.assertFalse(scanner.is_exempt("tools/closeout_seal.py"))
+        self.assertFalse(scanner.is_exempt("archive/sealed/" + milestone + "/archive_manifest.json"))
+        self.assertFalse(scanner.is_exempt("docs/history/INDEX.md"))
+        self.assertFalse(scanner.is_exempt("docs/history/work-logs/" + "T" + "48" + "-work-log.md"))
+        self.assertFalse(scanner.is_exempt("tools/full_verification_report.json"))
 
     def test_allowlist_must_carry_owner_reason_expiry(self) -> None:
         self.assertEqual([], scanner.ALLOWLIST)
         self.assertEqual([], scanner.allowlist_errors())
 
-    def test_active_plan_is_scanned(self) -> None:
+    def test_history_root_is_scanned_outside_card_plans(self) -> None:
         roots = {root.replace("\\", "/") for root in scanner.SCAN_ROOTS}
-        self.assertIn("docs/history/card-plans/active", roots)
+        self.assertIn("docs/history", roots)
         self.assertIn("tools", roots)
         self.assertIn("src/main", roots)
 

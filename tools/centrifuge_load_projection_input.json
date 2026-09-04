@@ -1,0 +1,66 @@
+{
+  "delivery_phase": "centrifuge/compact",
+  "families": [
+    {
+      "authored_entries": 22,
+      "canonical_ids": [
+        "gt.recipe.centrifuge"
+      ],
+      "eager_publication_rows": 0,
+      "family": "centrifuge/compact/centrifuge-wave",
+      "lazy_cache_ceiling_rows": 32,
+      "lazy_logical_rows": 32,
+      "logical_rows": 32,
+      "measurement_basis": {
+        "kind": "family_specific_measurement",
+        "measured_logical_rows": [
+          13,
+          19,
+          32
+        ],
+        "source": "T39 R4 production-lock JUnit CompactRecipeFamilyT39MeasurementHarness. Production partitions are summed from the independently derived singleton/multi winners. Their aggregate is exactly equivalent to the measured on_demand card candidate. Intervals are p50-p95; ns timings convert with ceil-to-ms. Card-level cache is not copied into per-family rows."
+      },
+      "measurement_intervals": {
+        "allocation_bytes": {
+          "max": 335032,
+          "min": 335032
+        },
+        "client_index_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "client_reload_ms": {
+          "max": 2,
+          "min": 1
+        },
+        "lookup_candidate_count": {
+          "max": 28,
+          "min": 28
+        },
+        "lookup_p95_ns": {
+          "max": 34256,
+          "min": 27943
+        },
+        "retained_memory_bytes": {
+          "max": 3380,
+          "min": 3380
+        },
+        "server_index_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "server_reload_ms": {
+          "max": 1,
+          "min": 1
+        }
+      },
+      "publication_domain": "gt_recipe_family",
+      "strategy": "group_scoped",
+      "sync_bytes": 3380,
+      "vanilla_datapack_entries": 0
+    }
+  ],
+  "projection_id": "centrifuge/compact/centrifuge-wave",
+  "schema_version": 2,
+  "status": "FAMILY_LOAD_PROJECTION_INPUT"
+}

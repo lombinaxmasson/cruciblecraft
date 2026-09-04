@@ -5,15 +5,19 @@ from __future__ import annotations
 from collections import defaultdict
 from typing import Any
 
-from tools import t35_common as t35
-from tools import t41_common as t41
-from tools import t45_common as t45
+from tools import io_common as files
 from tools.recipe_bulk.emit import family_filename
 from tools.recipe_bulk.models import WaveSpec
 
 
+def _publication_group_for_relation(relation: dict[str, Any]) -> str:
+    from tools import assembler_wood_common as assembler_wood
+
+    return assembler_wood.publication_group_for_relation(relation)
+
+
 def load_source_relations(spec: WaveSpec) -> list[dict[str, Any]]:
-    source = t35.load_json(spec.source_path)
+    source = files.load_json(spec.source_path)
     relations = list(source.get("relations") or [])
     if not relations:
         raise ValueError(f"{spec.wave_id} source has no relations")
@@ -23,7 +27,7 @@ def load_source_relations(spec: WaveSpec) -> list[dict[str, Any]]:
 def lock_by_template(spec: WaveSpec) -> dict[str, dict[str, Any]]:
     if spec.lock_path is None:
         return {}
-    lock = t35.load_json(spec.lock_path)
+    lock = files.load_json(spec.lock_path)
     families = (lock.get("production") or {}).get("families") or []
     return {str(row["template_key"]): row for row in families}
 
@@ -117,7 +121,7 @@ def publication_group(
             raise ValueError(f"{spec.wave_id} relation publication group missing relation")
         return str(
             relation.get("publication_group")
-            or t41.publication_group_for_relation(relation)
+            or _publication_group_for_relation(relation)
         )
     raise ValueError(f"unsupported publication_policy {spec.publication_policy}")
 
@@ -142,10 +146,18 @@ def relative_path(
         if cohort:
             return f"{prefix}/{cohort}/{filename}"
         return f"{prefix}/{filename}"
-    if lock_row is None:
-        raise ValueError(f"{spec.wave_id} host-nested path requires a lock row")
-    host = str(lock_row["host"]).split(":", 1)[-1]
-    return f"{host}/{filename}"
+    if spec.path_layout == "host_nested":
+        if lock_row is None:
+            raise ValueError(f"{spec.wave_id} host-nested path requires a lock row")
+        host = str(lock_row["host"]).split(":", 1)[-1]
+        if spec.tree_prefixes:
+            prefix = next(
+                (item for item in spec.tree_prefixes if item.startswith(f"{host}/")),
+                f"{host}/block",
+            )
+            return f"{prefix}/{filename}"
+        return f"{host}/{filename}"
+    raise ValueError(f"unsupported path_layout {spec.path_layout}")
 
 
 def target_map_for(
@@ -164,9 +176,11 @@ def target_map_for(
         if lock_row is None:
             raise ValueError(f"{spec.wave_id} lock-host target_map missing lock row")
         host = str(lock_row["host"])
-        return str(t45.HOST_CONFIG[host]["target_map"])
+        from tools import block_object_common as block_object
+
+        return str(block_object.HOST_CONFIG[host]["target_map"])
     raise ValueError(f"unsupported target_map_policy {spec.target_map_policy}")
 
 
 def source_revision_for(relation: dict[str, Any]) -> str:
-    return str(relation.get("source_revision") or t35.SOURCE_REVISION)
+    return str(relation.get("source_revision") or files.SOURCE_REVISION)

@@ -7890,7 +7890,7 @@ public final class CrucibleCraftGameTests {
                                         actualEnumeration).size(),
                 "Kinetic EMI recipe enumeration is not exact");
 
-        JsonObject acquisition = baseline.getAsJsonObject("t16_acquisition");
+        JsonObject acquisition = baseline.getAsJsonObject("acquisition");
         Set<String> expectedCraftingIds = jsonStringSet(
                 acquisition, "vanilla_recipe_ids");
         Set<Item> selectedResults = kineticMachineCraftingCases().stream()
@@ -7929,17 +7929,17 @@ public final class CrucibleCraftGameTests {
      *  later publication baseline files.  Each baseline may
      *  carry a phase-specific key (publication_delta) or the generic
      *  {@code publication_delta}.  The Python side uses the same logic
-     *  (see {@code _compute_registered_deltas} in build_t14_readiness.py).
+     *  (see the publication-delta helpers on the Python side).
      *  A missing or unparseable baseline is a hard error — it must not
      *  silently reduce the expected delta. */
     private static int registeredPublicationDelta(String key) {
         int delta = 0;
         for (String baselineName : List.of(
-                "t21_publication_baseline",
-                "t22_publication_baseline",
-                "t23_publication_baseline",
-                "t26_5_publication_baseline",
-                "t28_publication_baseline")) {
+                "chemical_publication_baseline",
+                "fluid_publication_baseline",
+                "recipe_expansion_publication_baseline",
+                "later_wave_publication_baseline",
+                "closing_publication_baseline")) {
             var stream = CrucibleCraftGameTests.class.getClassLoader()
                     .getResourceAsStream(
                             "data/cruciblecraft/" + baselineName + ".json");
@@ -7983,7 +7983,7 @@ public final class CrucibleCraftGameTests {
     private static JsonObject selectedKineticPublicationBaseline() {
         var stream = CrucibleCraftGameTests.class.getClassLoader()
                 .getResourceAsStream(
-                        "data/cruciblecraft/t16_publication_baseline.json");
+                        "data/cruciblecraft/kinetic_publication_baseline.json");
         if (stream == null) {
             throw new IllegalStateException(
                     "Missing kinetic publication baseline resource");
@@ -8075,7 +8075,7 @@ public final class CrucibleCraftGameTests {
                                         actualEnumeration).size(),
                 "Heat EMI recipe enumeration is not exact");
 
-        JsonObject acquisition = baseline.getAsJsonObject("t17_acquisition");
+        JsonObject acquisition = baseline.getAsJsonObject("acquisition");
         Set<String> expectedCraftingIds = jsonStringSet(
                 acquisition, "vanilla_recipe_ids");
         Set<Item> selectedResults = heatMachineCraftingCases().stream()
@@ -8113,7 +8113,7 @@ public final class CrucibleCraftGameTests {
     private static JsonObject selectedHeatPublicationBaseline() {
         var stream = CrucibleCraftGameTests.class.getClassLoader()
                 .getResourceAsStream(
-                        "data/cruciblecraft/t17_publication_baseline.json");
+                        "data/cruciblecraft/heat_publication_baseline.json");
         if (stream == null) {
             throw new IllegalStateException(
                     "Missing heat publication baseline resource");

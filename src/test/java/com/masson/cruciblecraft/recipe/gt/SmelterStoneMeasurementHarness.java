@@ -365,7 +365,7 @@ class SmelterStoneMeasurementHarness {
         Map<String, Object> card = scenario("card", rows);
 
         Map<String, Object> input = new LinkedHashMap<>();
-        input.put("kind", "t43_production_lock_407_relation_rows");
+        input.put("kind", "smelter_stone_production_lock_407_relation_rows");
         input.put("logical_rows", LOGICAL_ROWS);
         input.put("measured_logical_rows", List.of(LOGICAL_ROWS, LOGICAL_ROWS));
         input.put("generated_datapack_present", true);
@@ -387,17 +387,17 @@ class SmelterStoneMeasurementHarness {
 
         Map<String, Object> root = new LinkedHashMap<>();
         root.put("schema_version", 1);
-        root.put("status", "T43_MATERIALIZATION_MEASUREMENT_READY");
+        root.put("status", "SMELTER_STONE_MATERIALIZATION_MEASUREMENT_READY");
         root.put("production_winner_claimed", false);
         root.put("protocol", Map.of(
-                "id", "t43_materialization_production_lock_v1",
+                "id", "smelter_stone_materialization_production_lock_v1",
                 "ranking_scale", "1x",
                 "diagnostic_scales_not_for_production", List.of("5x", "20x"),
                 "single_wall_clock_sample_forbidden", true,
                 "p50_p95_invented", false,
                 "sample_count", SAMPLE_COUNT));
         root.put("input", input);
-        root.put("t43_opening", t43Opening());
+        root.put("smelter_stone_opening", t43Opening());
         root.put("family_work_set", family);
         root.put("scenarios", List.of(stone, card));
         root.put("diagnostic_scales", Map.of(
@@ -427,7 +427,7 @@ class SmelterStoneMeasurementHarness {
 
     private static Map<String, Object> t43Opening() {
         Map<String, Object> opening = new LinkedHashMap<>();
-        opening.put("source", "tools/t41_census_delta.json#t14_load.closing");
+        opening.put("source", "tools/assembler_wood_census_delta.json#recipe_load.closing");
         opening.put("datapack_authored_entries", 4058);
         opening.put("eager_publication_rows", 16659);
         opening.put("lazy_logical_rows", 2680);

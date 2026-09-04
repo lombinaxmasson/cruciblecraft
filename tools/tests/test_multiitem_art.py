@@ -5,7 +5,7 @@ from __future__ import annotations
 import unittest
 
 from tools import multiitem_art as art
-from tools import t35_common as t35
+from tools import census_common as census
 
 
 class MultiitemArtTest(unittest.TestCase):
@@ -54,9 +54,9 @@ class MultiitemArtTest(unittest.TestCase):
     def test_committed_manifest_and_models_match_copied_pngs(self) -> None:
         if not art.MANIFEST.is_file():
             self.skipTest("multiitem art manifest not generated")
-        document = t35.load_json(art.MANIFEST)
+        document = census.load_json(art.MANIFEST)
         self.assertEqual(art.STATUS, document["status"])
-        self.assertEqual(t35.SOURCE_REVISION, document["source_revision"])
+        self.assertEqual(census.SOURCE_REVISION, document["source_revision"])
         self.assertEqual(art.EXPECTED_BIND_COUNT, document["identity_count"])
         errors = art.check_models_and_pngs(document)
         self.assertEqual([], errors)

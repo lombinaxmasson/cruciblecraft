@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Plan or check the T40-VR verification dependency DAG."""
+"""Plan or check the electrolyzer/compact-VR verification dependency DAG."""
 from __future__ import annotations
 
 import argparse
@@ -12,23 +12,23 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tools import t35_common as t35
-from tools import t40_vr_common as vr
+from tools import census_common as census
+from tools import verification_runtime as vr
 
 DAG = vr.VERIFICATION_DAG
 MANIFESTS = (
-    ROOT / "tools" / "t39_runtime_dependency_manifest.json",
-    ROOT / "tools" / "t40_runtime_dependency_manifest.json",
+    ROOT / "tools" / "centrifuge_runtime_dependency_manifest.json",
+    ROOT / "tools" / "electrolyzer_runtime_dependency_manifest.json",
 )
 RECEIPTS = (
-    ROOT / "tools" / "t38_gametest_receipt.json",
-    ROOT / "tools" / "t39_gametest_receipt.json",
-    ROOT / "tools" / "t40_gametest_receipt.json",
+    ROOT / "tools" / "roaster_gametest_receipt.json",
+    ROOT / "tools" / "centrifuge_gametest_receipt.json",
+    ROOT / "tools" / "electrolyzer_gametest_receipt.json",
 )
 
 
 def load_dag() -> dict[str, Any]:
-    document = t35.load_json(DAG)
+    document = census.load_json(DAG)
     nodes = document.get("nodes") or []
     ids = [node["id"] for node in nodes]
     if len(ids) != len(set(ids)):
@@ -48,26 +48,26 @@ def load_dag() -> dict[str, Any]:
         "census_delta",
         "topology",
         "readiness",
-        "t42_freeze",
-        "t42_snapshot",
-        "t42_inventory",
-        "t42_b0",
-        "t42_overlay",
-        "t42_lock",
-        "t42_gap_partition",
-        "t42_census_delta",
-        "t42_topology",
-        "t42_readiness",
-        "t42_repair_freeze",
-        "t42_repair_readiness",
-        "t42_owner_freeze",
-        "t42_owner_overlay",
-        "t42_owner_lock",
-        "t42_owner_gap_partition",
-        "t42_owner_readiness",
-        "t36_repair_freeze",
-        "t36_repair_inventory",
-        "t36_repair_readiness",
+        "owner_freeze",
+        "owner_snapshot",
+        "owner_inventory",
+        "owner_b0",
+        "owner_overlay",
+        "owner_lock",
+        "owner_gap_partition",
+        "owner_census_delta",
+        "owner_topology",
+        "owner_readiness",
+        "owner_repair_freeze",
+        "owner_repair_readiness",
+        "owner_runtime_freeze",
+        "owner_runtime_overlay",
+        "owner_runtime_lock",
+        "owner_runtime_gap_partition",
+        "owner_runtime_readiness",
+        "repair_freeze",
+        "repair_inventory",
+        "repair_readiness",
     ]
     actual = [node["id"] for node in nodes]
     if actual != expected:
@@ -143,9 +143,9 @@ def refuse_receipt_write() -> str | None:
 
 def lifecycle_audit() -> dict[str, Any]:
     """Report frozen issuance metadata without rewriting snapshots."""
-    work_set = t35.load_json(ROOT / "tools" / "t40_work_set.json")
-    topology = t35.load_json(ROOT / "tools" / "t40_card_topology.json")
-    readiness = t35.load_json(ROOT / "tools" / "t40_readiness.json")
+    work_set = census.load_json(ROOT / "tools" / "electrolyzer_work_set.json")
+    topology = census.load_json(ROOT / "tools" / "electrolyzer_card_topology.json")
+    readiness = census.load_json(ROOT / "tools" / "electrolyzer_readiness.json")
     return {
         "work_set_unique_active_card": work_set.get("unique_active_card"),
         "topology_unique_active_card": topology.get("unique_active_card"),
@@ -154,8 +154,8 @@ def lifecycle_audit() -> dict[str, Any]:
         ),
         "frozen_issuance_not_rewritten": True,
         "note": (
-            "t40_work_set.json still records unique_active_card=T40; "
-            "topology/readiness already use null. T41+ schema owns snapshot_phase."
+            "electrolyzer_work_set.json still records unique_active_card=electrolyzer/compact; "
+            "topology/readiness already use null. assembler/wood+ schema owns snapshot_phase."
         ),
     }
 

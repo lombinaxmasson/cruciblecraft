@@ -650,7 +650,7 @@ class BlockObjectMeasurementHarness {
             List<CandidateMeasurement> drying,
             List<CandidateMeasurement> card) {
         Map<String, Object> input = new LinkedHashMap<>();
-        input.put("kind", "t45_production_lock_379_relation_rows");
+        input.put("kind", "block_object_production_lock_379_relation_rows");
         input.put("logical_rows", LOGICAL_ROWS);
         input.put("measured_logical_rows", List.of(SMELTER_ROWS, DRYING_ROWS, LOGICAL_ROWS));
         input.put("generated_datapack_present", true);
@@ -672,17 +672,17 @@ class BlockObjectMeasurementHarness {
 
         Map<String, Object> root = new LinkedHashMap<>();
         root.put("schema_version", 1);
-        root.put("status", "T45_MATERIALIZATION_MEASUREMENT_READY");
+        root.put("status", "BLOCK_OBJECT_MATERIALIZATION_MEASUREMENT_READY");
         root.put("production_winner_claimed", false);
         root.put("protocol", Map.of(
-                "id", "t45_materialization_production_lock_v1",
+                "id", "block_object_materialization_production_lock_v1",
                 "ranking_scale", "1x",
                 "diagnostic_scales_not_for_production", List.of("5x", "20x"),
                 "single_wall_clock_sample_forbidden", true,
                 "p50_p95_invented", false,
                 "sample_count", SAMPLE_COUNT));
         root.put("input", input);
-        root.put("t45_opening", t45Opening());
+        root.put("block_object_opening", t45Opening());
         root.put("family_work_set", family);
         root.put("scenarios", List.of(
                 scenario("smelter", SMELTER_ROWS, SMELTER_ROWS, smelter),
@@ -723,7 +723,7 @@ class BlockObjectMeasurementHarness {
 
     private static Map<String, Object> t45Opening() {
         Map<String, Object> opening = new LinkedHashMap<>();
-        opening.put("source", "tools/t44_storage_census_delta.json#t14_load.closing");
+        opening.put("source", "tools/storage_census_delta.json#recipe_load.closing");
         opening.put("datapack_authored_entries", 4484);
         opening.put("eager_publication_rows", 16659);
         opening.put("lazy_logical_rows", 3087);

@@ -13,7 +13,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools import closeout_seal
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk import compile as compile_mod
 from tools.recipe_bulk import identity_v2
 from tools.recipe_bulk import identity_v3
@@ -22,20 +22,20 @@ from tools.recipe_bulk import runtime_v3
 from tools.recipe_bulk.slugs import WaveSlugError, parse_wave_token
 from tools.recipe_bulk.waves import SEMANTIC_COMPILE_ORDER, recipe_wave
 
-BOOTSTRAP_DIR = t35.TOOLS / "waves" / "semantic-wave-bootstrap"
+BOOTSTRAP_DIR = census.TOOLS / "waves" / "semantic-wave-bootstrap"
 READINESS = BOOTSTRAP_DIR / "readiness.json"
 TOPOLOGY = BOOTSTRAP_DIR / "topology.json"
 CENSUS = BOOTSTRAP_DIR / "census_delta.json"
 STATUS = "SEMANTIC_WAVE_BOOTSTRAP_READY"
 UNIQUE_ACTIVE = "runtime-load/allocation-split"
-V2_LEDGER = t35.TOOLS / "global_build_identity_ledger.v2.json"
-V2_RUNTIME = t35.TOOLS / "compact_recipe_runtime_manifest.v2.json"
+V2_LEDGER = census.TOOLS / "global_build_identity_ledger.v2.json"
+V2_RUNTIME = census.TOOLS / "compact_recipe_runtime_manifest.v2.json"
 
 
 def _pin(path: Path) -> dict[str, str]:
     return {
-        "path": t35.relative(path),
-        "sha256": t35.sha256_file(path) if path.is_file() else "",
+        "path": census.relative(path),
+        "sha256": census.sha256_file(path) if path.is_file() else "",
     }
 
 
@@ -44,7 +44,7 @@ def _dry_run_reports() -> dict[str, Any]:
     for slug in SEMANTIC_COMPILE_ORDER:
         built = compile_mod.compile_wave(slug)
         payload = hashlib.sha256(
-            t35.stable_json(built["report"]).encode("utf-8")
+            census.stable_json(built["report"]).encode("utf-8")
         ).hexdigest()
         reports[slug] = {
             "family_count": built["report"]["family_count"],
@@ -64,7 +64,7 @@ def build_census() -> dict[str, Any]:
         "reclassification_delta": 0,
         "remaining_recipe_gap": 1349,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "CENSUS_DELTA_READY",
         "wave_slug": "semantic-wave-bootstrap",
     }
@@ -81,7 +81,7 @@ def build_topology() -> dict[str, Any]:
         "preassigned_host": False,
         "remaining_recipe_gap": 1349,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": STATUS,
         "t50_issued": False,
         "unique_active_wave": UNIQUE_ACTIVE,
@@ -99,8 +99,8 @@ def build_readiness() -> dict[str, Any]:
     except WaveSlugError:
         pass
     dry_run = _dry_run_reports()
-    v2_ledger_hash = t35.sha256_file(V2_LEDGER)
-    v2_runtime_hash = t35.sha256_file(V2_RUNTIME)
+    v2_ledger_hash = census.sha256_file(V2_LEDGER)
+    v2_runtime_hash = census.sha256_file(V2_RUNTIME)
     return {
         "dry_run": dry_run,
         "evidence": {
@@ -134,7 +134,7 @@ def build_readiness() -> dict[str, Any]:
             "sync_bytes": 5021175,
         },
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": STATUS,
         "t50_issued": False,
         "unique_active_wave": UNIQUE_ACTIVE,
@@ -158,11 +158,11 @@ def check() -> list[str]:
         (runtime_v3.OUTPUT, runtime_v3.build),
     ):
         if not path.is_file():
-            errors.append(f"missing {t35.relative(path)}")
+            errors.append(f"missing {census.relative(path)}")
             continue
-        diff = t35.first_json_diff(builder(), t35.load_json(path))
+        diff = census.first_json_diff(builder(), census.load_json(path))
         if diff:
-            errors.append(f"{t35.relative(path)}: {diff}")
+            errors.append(f"{census.relative(path)}: {diff}")
     try:
         parse_wave_token("T50", schema="semantic-v3")
         errors.append("semantic schema accepted T50")
@@ -191,7 +191,7 @@ def check() -> list[str]:
         errors.append("v3 runtime group_count drifted from v2")
     for forbidden in ("t50_", "recipe/t50/", "cruciblecraft_t50", "isT50CompactRecipe"):
         pass
-    topology = t35.load_json(TOPOLOGY) if TOPOLOGY.is_file() else {}
+    topology = census.load_json(TOPOLOGY) if TOPOLOGY.is_file() else {}
     if topology.get("unique_active_wave") != UNIQUE_ACTIVE:
         errors.append("unique_active_wave must be runtime-load/allocation-split")
     if topology.get("t50_issued"):
@@ -201,11 +201,11 @@ def check() -> list[str]:
 
 def write() -> None:
     BOOTSTRAP_DIR.mkdir(parents=True, exist_ok=True)
-    t35.write_stable(identity_v3.OUTPUT, identity_v3.build())
-    t35.write_stable(runtime_v3.OUTPUT, runtime_v3.build())
-    t35.write_stable(CENSUS, build_census())
-    t35.write_stable(TOPOLOGY, build_topology())
-    t35.write_stable(READINESS, build_readiness())
+    census.write_stable(identity_v3.OUTPUT, identity_v3.build())
+    census.write_stable(runtime_v3.OUTPUT, runtime_v3.build())
+    census.write_stable(CENSUS, build_census())
+    census.write_stable(TOPOLOGY, build_topology())
+    census.write_stable(READINESS, build_readiness())
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -216,7 +216,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     if args.write:
         write()
-        print(f"Wrote {t35.relative(READINESS)}")
+        print(f"Wrote {census.relative(READINESS)}")
         return 0
     errors = check()
     if errors:

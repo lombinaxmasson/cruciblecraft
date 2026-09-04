@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk import identity_v3
 
 OUTPUT = identity_v3.OUTPUT
@@ -20,7 +20,7 @@ def build():
 
 
 def _write() -> None:
-    t35.write_stable(OUTPUT, build())
+    census.write_stable(OUTPUT, build())
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -34,13 +34,13 @@ def main(argv: list[str] | None = None) -> int:
     expected = build()
     if args.write:
         _write()
-        print(f"Wrote {t35.relative(OUTPUT)}")
+        print(f"Wrote {census.relative(OUTPUT)}")
         return 0
     if not OUTPUT.is_file():
-        print(f"missing {t35.relative(OUTPUT)}", file=sys.stderr)
+        print(f"missing {census.relative(OUTPUT)}", file=sys.stderr)
         return 1
-    actual = t35.load_json(OUTPUT)
-    errors = t35.first_json_diff(expected, actual)
+    actual = census.load_json(OUTPUT)
+    errors = census.first_json_diff(expected, actual)
     if errors:
         print(errors, file=sys.stderr)
         return 1

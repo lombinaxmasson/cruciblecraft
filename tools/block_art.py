@@ -1,6 +1,6 @@
 """SOURCE_BACKED static block icons from gregtech6_w.
 
-Replaces vanilla stand-ins for T45 / remainder / stone / leftover semantic
+Replaces vanilla stand-ins for block/object / remainder / stone / leftover semantic
 block identities. Catalog JSON stays sealed. Models and PNGs are authority.
 """
 from __future__ import annotations
@@ -8,11 +8,11 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-from tools import t35_common as t35
+from tools import census_common as census
 
-ROOT = t35.ROOT
-TOOLS = t35.TOOLS
-SOURCE_REVISION = t35.SOURCE_REVISION
+ROOT = census.ROOT
+TOOLS = census.TOOLS
+SOURCE_REVISION = census.SOURCE_REVISION
 GT6_W_BLOCKS = (
     ROOT
     / "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech"
@@ -268,7 +268,7 @@ def catalog_rows() -> list[dict[str, Any]]:
             }
         )
 
-    block_cat = t35.load_json(
+    block_cat = census.load_json(
         ROOT / "src/main/resources/data/cruciblecraft/gt_block_object_catalog.json"
     )
     for identity in block_cat.get("identities") or []:
@@ -279,7 +279,7 @@ def catalog_rows() -> list[dict[str, Any]]:
             str(identity["source_item"]),
             int(identity["meta"]),
         )
-    remainder = t35.load_json(
+    remainder = census.load_json(
         ROOT
         / "src/main/resources/data/cruciblecraft/bath_remainder_identity_catalog.json"
     )
@@ -291,7 +291,7 @@ def catalog_rows() -> list[dict[str, Any]]:
             str(identity["source_item"]),
             int(identity["meta"]),
         )
-    stones = t35.load_json(
+    stones = census.load_json(
         ROOT / "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
     )
     for identity in stones.get("identities") or []:
@@ -304,7 +304,7 @@ def catalog_rows() -> list[dict[str, Any]]:
                 source,
                 int(variant["meta"]),
             )
-    semantic = t35.load_json(
+    semantic = census.load_json(
         ROOT / "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
     )
     for identity in semantic.get("identities") or []:
@@ -328,12 +328,12 @@ def _copy_rel(rel: str) -> str:
     dest = dest_png(rel)
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_bytes(source.read_bytes())
-    return t35.relative(dest)
+    return census.relative(dest)
 
 
 def _write_json(path: Path, document: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    t35.write_stable(path, document)
+    census.write_stable(path, document)
 
 
 def _model_id(registry_path: str) -> str:
@@ -484,7 +484,7 @@ def copy_and_write(rows: list[dict[str, Any]] | None = None) -> dict[str, Any]:
     if not GT6_W_BLOCKS.is_dir():
         raise ValueError(
             "gregtech6_w block textures missing; "
-            f"expected {t35.relative(GT6_W_BLOCKS)}"
+            f"expected {census.relative(GT6_W_BLOCKS)}"
         )
     identities = []
     copied: dict[str, str] = {}
@@ -501,7 +501,7 @@ def copy_and_write(rows: list[dict[str, Any]] | None = None) -> dict[str, Any]:
                 "model": row["model"],
                 "registry_path": row["registry_path"],
                 "runtime_id": row["runtime_id"],
-                "sha256": t35.sha256_file(dest_png(row["sources"][0])),
+                "sha256": census.sha256_file(dest_png(row["sources"][0])),
                 "source_item": row["source_item"],
                 "source_paths": row["sources"],
                 "texture": textures[0],
@@ -519,8 +519,8 @@ def copy_and_write(rows: list[dict[str, Any]] | None = None) -> dict[str, Any]:
         "identities": identities,
         "identity_count": len(identities),
         "note": (
-            "Static T45 / remainder / stone / leftover semantic block icons "
-            "from gregtech6_w. Catalog texture fields stay vanilla so T43/T45 "
+            "Static block/object / remainder / stone / leftover semantic block icons "
+            "from gregtech6_w. Catalog texture fields stay vanilla so smelter/stone/block/object "
             "hashes do not move. Dye-tinted kinds share one PNG + GT6 DYES_INT."
         ),
         "schema_version": 1,
@@ -561,22 +561,22 @@ def check_models_and_pngs(document: dict[str, Any]) -> list[str]:
         block_model = Path(str(MODEL_GEN / registry) + ".json")
         for path in model_paths(row):
             if not path.is_file():
-                errors.append(f"missing block art model {t35.relative(path)}")
+                errors.append(f"missing block art model {census.relative(path)}")
                 continue
             try:
-                model = t35.load_json(path)
+                model = census.load_json(path)
             except ValueError as exc:
-                errors.append(f"{t35.relative(path)}: {exc}")
+                errors.append(f"{census.relative(path)}: {exc}")
                 continue
             parent = str(model.get("parent") or "")
             if path == block_model and parent == _model_id(registry):
-                errors.append(f"self-parent stub {t35.relative(path)}")
+                errors.append(f"self-parent stub {census.relative(path)}")
             textures = model.get("textures") or {}
             used = " ".join(str(value) for value in textures.values())
             if not textures:
                 continue
             if expected and expected not in used:
-                errors.append(f"{t35.relative(path)} does not reference {expected}")
+                errors.append(f"{census.relative(path)} does not reference {expected}")
     return errors
 
 
@@ -605,8 +605,8 @@ def check_payload(document: dict[str, Any]) -> list[str]:
             continue
         dest = dest_png(str(rels[0]))
         if not dest.is_file():
-            errors.append(f"missing copied block PNG: {t35.relative(dest)}")
-        elif t35.sha256_file(dest) != str(row.get("sha256") or ""):
-            errors.append(f"block PNG hash drifted: {t35.relative(dest)}")
+            errors.append(f"missing copied block PNG: {census.relative(dest)}")
+        elif census.sha256_file(dest) != str(row.get("sha256") or ""):
+            errors.append(f"block PNG hash drifted: {census.relative(dest)}")
     errors.extend(check_models_and_pngs(document))
     return errors

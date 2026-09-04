@@ -31,7 +31,7 @@ class SteamChainResourceTest {
             resource("data/cruciblecraft/loot_table/blocks/" + id + ".json");
             resource("data/cruciblecraft/recipe/" + id + ".json");
         }
-        resource("assets/cruciblecraft/t34_gt6_energy_art_manifest.json");
+        resource("assets/cruciblecraft/gt6_energy_art_manifest.json");
         resource("assets/cruciblecraft/models/block/machine_3face_2_layer.json");
         resource("assets/cruciblecraft/models/block/machine_boiler_2_layer.json");
         resource("assets/cruciblecraft/models/item/steam_bucket.json", GENERATED);
@@ -51,9 +51,9 @@ class SteamChainResourceTest {
         for (String path : java.util.List.of(
                 "assets/cruciblecraft/models/block/firebox_unlit.json",
                 "assets/cruciblecraft/models/block/firebox_lit.json",
-                "assets/cruciblecraft/textures/block/t34_gt6/firebox/colored_front.png",
-                "assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_active_front.png",
-                "assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_active_front.png.mcmeta")) {
+                "assets/cruciblecraft/textures/block/gt6_import/firebox/colored_front.png",
+                "assets/cruciblecraft/textures/block/gt6_import/firebox/overlay_active_front.png",
+                "assets/cruciblecraft/textures/block/gt6_import/firebox/overlay_active_front.png.mcmeta")) {
             assertTrue(Files.isRegularFile(ROOT.resolve(path)), path);
         }
         var variants = JsonParser.parseString(Files.readString(GENERATED.resolve(

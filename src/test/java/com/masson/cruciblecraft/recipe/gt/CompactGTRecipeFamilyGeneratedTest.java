@@ -69,7 +69,7 @@ class CompactGTRecipeFamilyGeneratedTest {
                 {
                   "family_id": "gt.recipe.roaster#0001",
                   "target_map": "cruciblecraft:roaster",
-                  "source_revision": "t38-test",
+                  "source_revision": "roaster-test",
                   "relations": [
                     {
                       "stable_id": "cruciblecraft:roaster/compact/roaster_water",

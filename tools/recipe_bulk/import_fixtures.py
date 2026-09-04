@@ -5,13 +5,13 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk.dialects import gt6
 from tools.recipe_bulk.source_pack import sha256_file
 
-FIXTURE_ROOT = t35.ROOT / "src" / "test" / "resources" / "generic_recipe_import"
-SMELTER_SOURCE = t35.TOOLS / "waves" / "smelter" / "ordinary-closure" / "source.json"
-MIXER_SOURCE = t35.TOOLS / "waves" / "mixer" / "ordinary-closure" / "source.json"
+FIXTURE_ROOT = census.ROOT / "src" / "test" / "resources" / "generic_recipe_import"
+SMELTER_SOURCE = census.TOOLS / "waves" / "smelter" / "ordinary-closure" / "source.json"
+MIXER_SOURCE = census.TOOLS / "waves" / "mixer" / "ordinary-closure" / "source.json"
 SMELTER_TEMPLATE = "gt.recipe.smelter#0490"
 MIXER_TEMPLATE = (
     "sha256:088c098eff19f1e3e175529457c75de92b023c7bbe59c6f3b9ab9c4eebba1fe1"
@@ -19,7 +19,7 @@ MIXER_TEMPLATE = (
 
 
 def extract_relations(source_path: Path, template_key: str) -> list[dict[str, Any]]:
-    document = t35.load_json(source_path)
+    document = census.load_json(source_path)
     relations = [
         row
         for row in document.get("relations") or []
@@ -27,7 +27,7 @@ def extract_relations(source_path: Path, template_key: str) -> list[dict[str, An
     ]
     relations.sort(key=lambda row: int(row.get("shadow_order") or 0))
     if not relations:
-        raise ValueError(f"{t35.relative(source_path)} missing {template_key}")
+        raise ValueError(f"{census.relative(source_path)} missing {template_key}")
     return relations
 
 
@@ -69,7 +69,7 @@ def fixture_pack(
     dump_document = {
         "recipes": dump_recipes,
         "source_map": source_map,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
     }
     work_document = {
         "families": [
@@ -80,11 +80,11 @@ def fixture_pack(
             }
         ],
         "host": host,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
     }
     provenance = {
         "family_id": family_id,
-        "original_source_path": t35.relative(source_path).replace("\\", "/"),
+        "original_source_path": census.relative(source_path).replace("\\", "/"),
         "relation_identities": [
             {
                 "shadow_order": int(row["shadow_order"]),
@@ -96,9 +96,9 @@ def fixture_pack(
         "template_key": template_key,
     }
     corpus = {
-        "original_source_path": t35.relative(source_path).replace("\\", "/"),
+        "original_source_path": census.relative(source_path).replace("\\", "/"),
         "relations": relations,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
     }
     return {
         "corpus": corpus,
@@ -123,16 +123,16 @@ def fixture_pack(
 
 
 def _rel(path: Path) -> str:
-    return t35.relative(path).replace("\\", "/")
+    return census.relative(path).replace("\\", "/")
 
 
 def write_pack(pack: dict[str, Any]) -> dict[str, Path]:
     pack["root"].mkdir(parents=True, exist_ok=True)
     pack["dump_path"].parent.mkdir(parents=True, exist_ok=True)
-    t35.write_stable(pack["dump_path"], pack["dump"])
-    t35.write_stable(pack["work_path"], pack["work"])
-    t35.write_stable(pack["corpus_path"], pack["corpus"])
-    t35.write_stable(pack["provenance_path"], pack["provenance"])
+    census.write_stable(pack["dump_path"], pack["dump"])
+    census.write_stable(pack["work_path"], pack["work"])
+    census.write_stable(pack["corpus_path"], pack["corpus"])
+    census.write_stable(pack["provenance_path"], pack["provenance"])
     files = [
         {
             "path": _rel(pack["dump_path"]),
@@ -160,10 +160,10 @@ def write_pack(pack: dict[str, Any]) -> dict[str, Path]:
         "schema_version": 1,
         "source_dialect": "gt6",
         "source_pack_id": pack["import_slug"],
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "source_system": "gt6",
     }
-    t35.write_stable(pack["manifest_path"], manifest)
+    census.write_stable(pack["manifest_path"], manifest)
     spec = {
         "compare_corpus": _rel(pack["corpus_path"]),
         "family_membership_source": {
@@ -194,7 +194,7 @@ def write_pack(pack: dict[str, Any]) -> dict[str, Path]:
         },
         "target_map": pack["target_map"],
     }
-    t35.write_stable(pack["spec_path"], spec)
+    census.write_stable(pack["spec_path"], spec)
     return {
         "manifest": pack["manifest_path"],
         "spec": pack["spec_path"],

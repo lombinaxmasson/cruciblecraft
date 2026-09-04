@@ -1,0 +1,29 @@
+{
+  "artifact": "tools/census_readiness.json",
+  "artifact_file_sha256": "e3566b3a06430868d71e9287dfd6c6c520a3da027aabea01951d407ee131dc2f",
+  "builder_sha256": "305c688b1e39ba2c23a26ec4ab85511ab8a08bcd4598aa8732f755f2d21a3929",
+  "dependency_semantic_roots": {
+    "tools/census.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "b9dc8d48bc17f2227a7d8d3b428672c5badebda39c529eef8b7bbd53717c63a4"
+    },
+    "tools/census_card_topology.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "b3ff01344875e2b4c8e9c954986eb5d48f4b08355586c8189f1d5a0314f66230"
+    }
+  },
+  "envelope_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "generated_by": "python tools/rebind_currentness.py --envelope",
+  "giant_body": false,
+  "schema_version": 2,
+  "semantic_projection_kind": "json_ledger",
+  "semantic_projection_version": 1,
+  "semantic_root_sha256": "5d1f9b58627f2d9312cb18be3e7fb133a8e630bdc31f40776db3ec0fdf6b02f0",
+  "source_replay_receipt": {
+    "proof_tier": "compact",
+    "status": "unavailable"
+  },
+  "status": "CURRENTNESS_SIDECAR"
+}

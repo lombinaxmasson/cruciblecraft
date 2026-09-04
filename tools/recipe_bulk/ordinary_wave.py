@@ -12,9 +12,9 @@ from typing import Any
 
 from tools import block_art as block_art
 from tools import multiitem_art as art
-from tools import t35_common as t35
-from tools import t41_shard_router as router
-from tools import t48_identities as identities
+from tools import census_common as census
+from tools import assembler_wood_shard_router as router
+from tools import bath_identities as identities
 from tools import tool_head_prefix as thp
 from tools.recipe_bulk import compile as compile_mod
 from tools.recipe_bulk import membership as membership_mod
@@ -24,9 +24,9 @@ from tools.recipe_bulk.waves import RECIPE_SUPPORT_ROOT, recipe_wave
 from tools.recipe_bulk.matrix import authored_relations
 from tools.recipe_bulk.slugs import parse_wave_token
 
-ROOT = t35.ROOT
-TOOLS = t35.TOOLS
-SOURCE_REVISION = t35.SOURCE_REVISION
+ROOT = census.ROOT
+TOOLS = census.TOOLS
+SOURCE_REVISION = census.SOURCE_REVISION
 OPENING_GAP = 1349
 OPENING_COMPACT_EAGER = 14
 OPENING_CONCRETE_EAGER = 16966
@@ -35,8 +35,8 @@ OPENING_LAZY = 50652
 OPENING_CACHE = 876
 OPENING_AUTHORED = 6269
 OPENING_SYNC = 5021175
-T49_CENSUS = TOOLS / "waves" / "bath" / "tiny-purified" / "t49_census_delta.json"
-T49_LOCK = TOOLS / "waves" / "bath" / "tiny-purified" / "t49_production_lock.json"
+BATH_TINY_PURIFIED_CENSUS = TOOLS / "waves" / "bath" / "tiny-purified" / "census_delta.json"
+BATH_TINY_PURIFIED_LOCK = TOOLS / "waves" / "bath" / "tiny-purified" / "production_lock.json"
 POLICY_SCHEMA = (
     ROOT
     / "src/main/resources/data/cruciblecraft/schema/compact_publication_policy.schema.json"
@@ -79,12 +79,12 @@ def _operands(relation: dict[str, Any]) -> list[dict[str, Any]]:
     )
 
 
-def _t48_identity_keys() -> set[tuple[str, int]]:
-    path = TOOLS / "t48_identity_catalog.json"
+def _bath_identity_keys() -> set[tuple[str, int]]:
+    path = TOOLS / "bath_identity_identity_catalog.json"
     if not path.is_file():
         return set()
     keys: set[tuple[str, int]] = set()
-    for identity in t35.load_json(path).get("identities") or []:
+    for identity in census.load_json(path).get("identities") or []:
         item = str(identity.get("source_item") or "")
         meta = identity.get("meta")
         if item and isinstance(meta, int):
@@ -125,7 +125,7 @@ def build_fluid_mapping(slug: str, replay: dict[str, Any]) -> dict[str, Any]:
         )
     existing_path = wave_dir(slug) / "fluid_mapping.json"
     if existing_path.is_file():
-        for row in t35.load_json(existing_path).get("mapping") or []:
+        for row in census.load_json(existing_path).get("mapping") or []:
             source = str(row.get("source_fluid") or "")
             if source and source not in seen:
                 seen.add(source)
@@ -160,7 +160,7 @@ def _metadata_only_materials() -> set[str]:
 
 
 def build_object_catalog(slug: str, relations: list[dict[str, Any]]) -> dict[str, Any]:
-    reused = _t48_identity_keys()
+    reused = _bath_identity_keys()
     wanted: dict[tuple[str, int], dict[str, Any]] = {}
     for relation in relations:
         for operand in list(relation.get("item_inputs") or []) + list(
@@ -292,7 +292,7 @@ def build_object_catalog(slug: str, relations: list[dict[str, Any]]) -> dict[str
         "identity_count": len(identities_out),
         "kind_counts": dict(sorted(kinds.items())),
         "note": (
-            "Semantic object identities not already registered by the T48 catalog. "
+            "Semantic object identities not already registered by the bath/identity catalog. "
             "Mapped tool heads leave this catalog and resolve as material prefixes."
         ),
         "schema_version": 1,
@@ -595,7 +595,7 @@ _LEDGER_MAPPING = {
 def build_identity_delta(slug: str, operand_map: dict[str, Any]) -> dict[str, Any]:
     parse_wave_token(slug, schema="semantic-v3")
     path = wave_dir(slug) / "operand_runtime_map.json"
-    digest = t35.sha256_file(path) if path.is_file() else ""
+    digest = census.sha256_file(path) if path.is_file() else ""
     records: list[dict[str, Any]] = []
     for row in operand_map.get("records") or []:
         source = str(row.get("source_key") or "")
@@ -623,7 +623,7 @@ def build_identity_delta(slug: str, operand_map: dict[str, Any]) -> dict[str, An
         "generated_by": "python tools/build_ordinary_wave.py",
         "note": (
             "Semantic identity delta. Wave-prefixed source keys only; "
-            "does not rewrite frozen v2 records or write T50."
+            "does not rewrite frozen v2 records or write numbered wave IDs."
         ),
         "order": slug,
         "records": records,
@@ -670,7 +670,7 @@ def build_runtime_delta(
                 "phase": dedup["phase"],
                 "resource": (
                     "src/recipe_generated/resources/data/cruciblecraft/recipe/"
-                    f"dedup_rule/{dedup['rule_id'].split(':', 1)[1]}.json"
+                    f"dedup_rule/{str(dedup['rule_id']).split(':', 1)[1].replace('/', '_')}.json"
                 ),
                 "rule_id": dedup["rule_id"],
                 "target_map": dedup["target_map"],
@@ -680,7 +680,7 @@ def build_runtime_delta(
         "groups": groups,
         "note": (
             "Semantic runtime group delta. Frozen v2 groups stay unchanged; "
-            "no T50 publication groups."
+            "no numbered publication groups."
         ),
         "order": slug,
         "schema_version": 1,
@@ -742,9 +742,9 @@ def previous_opening(slug: str) -> dict[str, int]:
         }
     prev_slug = PREVIOUS_LOAD_SLUG.get(slug, "mixer/ordinary-closure")
     prev = wave_dir(prev_slug)
-    meas = t35.load_json(prev / "measurements.json") if (prev / "measurements.json").is_file() else {}
-    load = t35.load_json(prev / "load_projection.json") if (prev / "load_projection.json").is_file() else {}
-    census = t35.load_json(prev / "census_delta.json") if (prev / "census_delta.json").is_file() else {}
+    meas = census.load_json(prev / "measurements.json") if (prev / "measurements.json").is_file() else {}
+    load = census.load_json(prev / "load_projection.json") if (prev / "load_projection.json").is_file() else {}
+    census = census.load_json(prev / "census_delta.json") if (prev / "census_delta.json").is_file() else {}
     return {
         "authored_entries": int(
             load.get("datapack_authored_entries") or OPENING_AUTHORED
@@ -832,7 +832,7 @@ def build_publication(
             "target_map": spec_host,
             "type": "cruciblecraft:compact_publication_policy",
         }
-        schema = t35.load_json(POLICY_SCHEMA)
+        schema = census.load_json(POLICY_SCHEMA)
         missing = sorted(set(schema.get("required") or []) - set(policies[group_id]))
         if missing:
             raise ValueError(f"{slug} publication policy missing {missing}")
@@ -857,7 +857,7 @@ def build_publication(
                 "note": (
                     "Count is UNVERIFIED_SCALE telemetry, not a runtime throw. "
                     "41000 is a temporary Smelter+Mixer compatibility watermark. "
-                    "Mixer opening is Smelter closing, not T49 opening."
+                    "Mixer opening is Smelter closing, not bath/tiny-purified opening."
                 ),
             },
             "status": "PUBLICATION_READY",
@@ -872,10 +872,11 @@ def build_support_supersede_dedup(slug: str) -> dict[str, Any]:
     spec = recipe_wave(slug)
     prefix = str(spec.path_prefix or "").rstrip("/") + "/"
     stem = str(spec.path_prefix or "").replace("/", "_")
-    victims = ["t39_player_path_support/", "player_path_support/"]
-    if slug.startswith("mixer/"):
-        # T5 bronze mixer fluid-closure shares input signatures with ordinary families.
-        victims.extend(["t5/", "chemical/"])
+    victims = ["player_path_support/"]
+    mixer_rule = slug.startswith("mixer/")
+    if mixer_rule:
+        # Chemical mixer fluid-closure shares input signatures with ordinary families.
+        victims.append("chemical/")
     if slug.startswith("drying/"):
         victims.append("drying/block/")
     if slug.startswith("electrolyzer/"):
@@ -883,7 +884,6 @@ def build_support_supersede_dedup(slug: str) -> dict[str, Any]:
             [
                 "electrolyzer/compact/",
                 "player_path_support/electrolyzer/",
-                "t5/",
                 "chemical/electrolyzer/",
             ]
         )
@@ -902,7 +902,11 @@ def build_support_supersede_dedup(slug: str) -> dict[str, Any]:
         "owner": slug,
         "phase": "post_enumeration",
         "require_output_match": False,
-        "rule_id": f"cruciblecraft:{stem}_t39_support_post_enumeration",
+        "rule_id": (
+            "cruciblecraft:mixer/ordinary_closure/centrifuge_support_post_enumeration"
+            if mixer_rule
+            else f"cruciblecraft:{stem}_player_path_support_post_enumeration"
+        ),
         "target_map": spec.target_map,
         "type": "cruciblecraft:compact_dedup_rule",
         "victim_selector": {
@@ -1078,21 +1082,21 @@ def _axis(
 
 def previous_gap(slug: str) -> int:
     if slug == "smelter/ordinary-closure":
-        return int(t35.load_json(T49_CENSUS)["remaining_recipe_gap"])
+        return int(census.load_json(BATH_TINY_PURIFIED_CENSUS)["remaining_recipe_gap"])
     prev = PREVIOUS_GAP_SLUG.get(slug, "mixer/ordinary-closure")
-    return int(t35.load_json(wave_dir(prev) / "census_delta.json")["remaining_recipe_gap"])
+    return int(census.load_json(wave_dir(prev) / "census_delta.json")["remaining_recipe_gap"])
 
 
 def previous_deferred_recycling(slug: str) -> int:
     if slug == "smelter/ordinary-closure":
         return int(
-            (t35.load_json(T49_CENSUS).get("remaining_ordinary") or {}).get(
+            (census.load_json(BATH_TINY_PURIFIED_CENSUS).get("remaining_ordinary") or {}).get(
                 "deferred_recycling_count"
             )
             or 1817
         )
     prev = PREVIOUS_GAP_SLUG.get(slug, "mixer/ordinary-closure")
-    census = t35.load_json(wave_dir(prev) / "census_delta.json")
+    census = census.load_json(wave_dir(prev) / "census_delta.json")
     return int((census.get("remaining_ordinary") or {}).get("deferred_recycling_count") or 1819)
 
 
@@ -1147,7 +1151,7 @@ def build_census(
         "schema_version": 1,
         "source_revision": SOURCE_REVISION,
         "status": "CENSUS_DELTA_READY",
-        "t14_load": {
+        "recipe_load_load": {
             "axes": [
                 _axis(
                     "datapack_authored_entries",
@@ -1550,7 +1554,7 @@ def load_closeout_inputs(slug: str) -> dict[str, Any]:
         player_path = root / "player_path.json"
 
     def _optional(path: Path) -> dict[str, Any] | None:
-        return t35.load_json(path) if path.is_file() else None
+        return census.load_json(path) if path.is_file() else None
 
     return {
         "census": _optional(root / "census_delta.json"),
@@ -1600,7 +1604,7 @@ def build_topology(
         "complete_family_count": lock["production"]["family_count"],
         "generated_by": "python tools/build_ordinary_wave.py",
         "next_unassigned": bool(next_unassigned and ready),
-        "opening_card": "T49",
+        "opening_card": "bath/tiny-purified",
         "remaining_recipe_gap": census["remaining_recipe_gap"],
         "schema_version": 1,
         "source_revision": SOURCE_REVISION,
@@ -1689,9 +1693,9 @@ def parse_gametest_log(text: str, required: int) -> dict[str, Any]:
 
 
 def mixer_membership_note() -> dict[str, Any]:
-    from tools import t42_common as t42
+    from tools import owner_partition_common as owner
 
-    idx = t42.mixer_ordinary_optional_recipe_indexes()
+    idx = owner.mixer_ordinary_optional_recipe_indexes()
     extra = "sha256:7b9b3cac317ebf58c7fcd0437fd9a9262ecb1ff0264f779aef594560825a9acb"
     extra_rows = len(idx.get(extra) or [])
     remaining = ordinary_r0.remaining_summary("cruciblecraft:mixer")
@@ -1703,7 +1707,7 @@ def mixer_membership_note() -> dict[str, Any]:
         "live_remaining_relations": remaining["relation_count"],
         "note": (
             "Membership index has 664 ordinary templates / historical 7193 rows. "
-            "T42 owner lock retains 663 families / 7192 relations because "
+            "owner lock retains 663 families / 7192 relations because "
             f"{extra} ({extra_rows} row) is already_expressed and is not remaining work. "
             "That is the 7192/7193 one-row historical difference."
         ),
@@ -1715,7 +1719,7 @@ def write_item_models(catalog: dict[str, Any]) -> None:
         path = ITEM_MODEL_ROOT / f"{identity['registry_path']}.json"
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(
-            t35.stable_json(
+            census.stable_json(
                 {
                     "parent": "minecraft:item/generated",
                     "textures": {
@@ -1745,11 +1749,11 @@ def write_b1_scatter(catalog: dict[str, Any]) -> None:
         if identity.get("runtime_id")
     )
     resources = ROOT / "src/main/resources/data/cruciblecraft"
-    t35.write_stable(
+    census.write_stable(
         resources / "tags/item/semantic_ordinary_b1_items.json",
         {"replace": False, "values": tag_ids},
     )
-    t35.write_stable(
+    census.write_stable(
         resources / "worldgen/configured_feature/semantic_object_scatter.json",
         {
             "config": {
@@ -1759,11 +1763,11 @@ def write_b1_scatter(catalog: dict[str, Any]) -> None:
             "type": "cruciblecraft:semantic_object_scatter",
         },
     )
-    t35.write_stable(
+    census.write_stable(
         resources / "worldgen/placed_feature/semantic_object_scatter.json",
         {"feature": "cruciblecraft:semantic_object_scatter", "placement": []},
     )
-    t35.write_stable(
+    census.write_stable(
         resources / "neoforge/biome_modifier/add_semantic_object_scatter.json",
         {
             "biomes": "#minecraft:is_overworld",
@@ -1772,7 +1776,7 @@ def write_b1_scatter(catalog: dict[str, Any]) -> None:
             "type": "neoforge:add_features",
         },
     )
-    t35.write_stable(
+    census.write_stable(
         resources / "worldgen_catalog/semantic_object_scatter.json",
         {
             "biome_modifier": {
@@ -1801,12 +1805,12 @@ def _already_registered_item_ids() -> set[str]:
         ROOT / "src/main/resources/data/cruciblecraft/bath_remainder_identity_catalog.json",
         ROOT / "src/main/resources/data/cruciblecraft/gt_block_object_catalog.json",
         ROOT / "src/main/resources/data/cruciblecraft/gt_stone_catalog.json",
-        TOOLS / "t45_block_object_catalog.json",
-        TOOLS / "t48_identity_catalog.json",
+        TOOLS / "block_object_catalog.json",
+        TOOLS / "bath_identity_identity_catalog.json",
     ):
         if not path.is_file():
             continue
-        for identity in t35.load_json(path).get("identities") or []:
+        for identity in census.load_json(path).get("identities") or []:
             runtime = str(identity.get("runtime_id") or "")
             if runtime:
                 ids.add(runtime)
@@ -1824,7 +1828,7 @@ def merge_object_catalogs() -> dict[str, Any]:
         path = wave_dir(slug) / "object_catalog.json"
         if not path.is_file():
             continue
-        for identity in t35.load_json(path).get("identities") or []:
+        for identity in census.load_json(path).get("identities") or []:
             runtime = str(identity.get("runtime_id") or "")
             if not runtime or runtime in seen or runtime in registered:
                 continue
@@ -1851,7 +1855,7 @@ def merge_fluid_mappings() -> dict[str, Any]:
         path = wave_dir(slug) / "fluid_mapping.json"
         if not path.is_file():
             continue
-        for row in t35.load_json(path).get("mapping") or []:
+        for row in census.load_json(path).get("mapping") or []:
             source = str(row.get("source_fluid") or "")
             if not source or source in seen:
                 continue

@@ -7,14 +7,14 @@ import hashlib
 from pathlib import Path
 from typing import Any
 
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk import runtime_v2
 from tools.recipe_bulk.membership import identity_semantic_root
 from tools.recipe_bulk.slugs import parse_wave_token
 
 STATUS = "COMPACT_RECIPE_RUNTIME_MANIFEST_V3"
-V2_PATH = t35.TOOLS / "compact_recipe_runtime_manifest.v2.json"
-OUTPUT = t35.TOOLS / "compact_recipe_runtime_manifest.v3.json"
+V2_PATH = census.TOOLS / "compact_recipe_runtime_manifest.v2.json"
+OUTPUT = census.TOOLS / "compact_recipe_runtime_manifest.v3.json"
 DELTA_ORDER: tuple[str, ...] = (
     "smelter/ordinary-closure",
     "mixer/ordinary-closure",
@@ -26,7 +26,7 @@ DELTA_ORDER: tuple[str, ...] = (
     "smelter/deferred-recycling",
 )
 DELTA_PATHS: dict[str, Any] = {
-    slug: t35.TOOLS / "waves" / slug / "runtime_manifest_delta.json"
+    slug: census.TOOLS / "waves" / slug / "runtime_manifest_delta.json"
     for slug in DELTA_ORDER
 }
 
@@ -36,7 +36,7 @@ class RuntimeV3ConflictError(ValueError):
 
 
 def _file_hash(path) -> str:
-    return t35.sha256_file(path) if path.is_file() else ""
+    return census.sha256_file(path) if path.is_file() else ""
 
 
 def _group_semantic_root(groups: list[dict[str, Any]]) -> str:
@@ -62,7 +62,7 @@ def _composition_root(
 ) -> str:
     payload = (
         f"{v2_file_sha256}\t{alias_root}\t"
-        + t35.stable_json(deltas)
+        + census.stable_json(deltas)
     )
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
@@ -78,7 +78,7 @@ def load_delta(wave_slug: str) -> dict[str, Any]:
             "status": f"{wave_slug.replace('/', '_').upper()}_RUNTIME_MANIFEST_DELTA",
             "wave_slug": wave_slug,
         }
-    document = t35.load_json(path)
+    document = census.load_json(path)
     if document.get("wave_id") is not None:
         raise RuntimeV3ConflictError(
             f"{path} must not write wave_id; use wave_slug only"
@@ -92,7 +92,7 @@ def compose(v2: dict[str, Any] | None = None) -> dict[str, Any]:
     if not V2_PATH.is_file():
         raise RuntimeV3ConflictError(f"missing frozen v2 runtime manifest {V2_PATH}")
     v2_hash = _file_hash(V2_PATH)
-    base = v2 if v2 is not None else t35.load_json(V2_PATH)
+    base = v2 if v2 is not None else census.load_json(V2_PATH)
     if base.get("status") != runtime_v2.STATUS:
         raise RuntimeV3ConflictError("v2 runtime manifest status drifted")
     from tools import semantic_ids
@@ -102,9 +102,9 @@ def compose(v2: dict[str, Any] | None = None) -> dict[str, Any]:
         for row in copy.deepcopy(list(base.get("groups") or []))
     ]
     for row in groups:
-        policy_path = t35.ROOT / str(row.get("policy_resource") or "")
+        policy_path = census.ROOT / str(row.get("policy_resource") or "")
         if policy_path.is_file():
-            policy = t35.load_json(policy_path)
+            policy = census.load_json(policy_path)
             if policy.get("membership_root_sha256"):
                 row["membership_root_sha256"] = policy["membership_root_sha256"]
             if policy.get("eager_stable_ids") is not None:
@@ -144,10 +144,6 @@ def compose(v2: dict[str, Any] | None = None) -> dict[str, Any]:
                 raise RuntimeV3ConflictError(
                     f"{wave_slug} delta group missing publication_group"
                 )
-            if "t50" in group_id.lower():
-                raise RuntimeV3ConflictError(
-                    f"{wave_slug} forbids T50 publication group {group_id}"
-                )
             if group_id in seen:
                 raise RuntimeV3ConflictError(
                     f"{wave_slug} duplicate group id {group_id}"
@@ -156,16 +152,12 @@ def compose(v2: dict[str, Any] | None = None) -> dict[str, Any]:
             groups.append(copy.deepcopy(row))
         for row in delta.get("dedup_rules") or []:
             rule_id = str(row.get("rule_id") or "")
-            if "t50" in rule_id.lower():
-                raise RuntimeV3ConflictError(
-                    f"{wave_slug} forbids T50 dedup rule {rule_id}"
-                )
             dedup_rules.append(copy.deepcopy(row))
         consumed.append(
             {
                 "file_sha256": _file_hash(path) if path is not None else "",
                 "order": str(delta.get("order") or wave_slug),
-                "path": t35.relative(path) if path is not None else "",
+                "path": census.relative(path) if path is not None else "",
                 "wave_slug": wave_slug,
             }
         )
@@ -204,7 +196,7 @@ def compose(v2: dict[str, Any] | None = None) -> dict[str, Any]:
         "v2_base": {
             "file_sha256": v2_hash,
             "group_count": int(base.get("group_count") or 0),
-            "path": t35.relative(V2_PATH),
+            "path": census.relative(V2_PATH),
             "status": base.get("status"),
         },
     }

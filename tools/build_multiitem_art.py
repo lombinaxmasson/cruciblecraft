@@ -11,8 +11,8 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools import multiitem_art as art
-from tools import t48_common as common
-from tools import t35_common as t35
+from tools import bath_identity_common as common
+from tools import census_common as census
 
 OUTPUT = art.MANIFEST
 
@@ -27,7 +27,7 @@ def write() -> dict[str, Any]:
     errors = art.check_models_and_pngs(document)
     if errors:
         raise ValueError("; ".join(errors))
-    t35.write_stable(OUTPUT, document)
+    census.write_stable(OUTPUT, document)
     return document
 
 

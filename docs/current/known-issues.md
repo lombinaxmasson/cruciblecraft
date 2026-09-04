@@ -17,12 +17,12 @@
 这些行保持 open，不得标 PASS。它们挡所列 profile，不挡范围外能力的范围内门。
 
 - compact family 作者正文已改为 `matrix_v1`（`COMPACT_RECIPE_AUTHORED_MATRIX_READY`），线上 `StreamCodec` v2 编矩阵而不是展开表。修的仍是写法，不是 Holder 粒度。compact snapshot `13845 != 14201` 仍是 scope-external 债（mortar / assembler fingerprints），未 `--update-baseline`。它不挡 `semantic-generators` 的 fresh 结构/字节比较。
-- 物品网关卡后仍开着的证明债（不挡 `ITEM_NETWORK_CORE_READY`，也不是流体网 `player_complete` 的替身）：chunk unload GameTest 只调 `onChunkUnloaded()` / `onLoad()`，没有真卸 chunk；`/reload` 测的是 classpath 静态 catalog；load 轴只有 `load_axis.json` 软顶。T35 隔离 census 的 `cover_behaviors` 冻结表已扩到含物品网 + 流体网行为；extra 仍用 identity gate 精确比对。三件**物品**封面贴图暂借 conveyor / retriever / robot_arm。
+- 隔离 census 的 `cover_behaviors` 冻结表已扩到含物品网 + 流体网行为；extra 仍用 identity gate 精确比对。三件**物品**封面贴图暂借 conveyor / retriever / robot_arm。
 - 化学语义 artifact 与现行生成器存在结构漂移：留给后续配方工作
 - 历史 READY 已退出 active verification；日常门不再消费历史收据
-- `full_verification_report.json` 是历史报告，不是当前执行结果
-- GameTest T18 方法名已语义化，`t18_readiness*` token 仍钉旧名。语义命名总账见 [semantic-naming.md](semantic-naming.md)。
-- 物流 live `logistics` profile 不再重导 T8/T19 历史信封。那些 builder 在 legacy index。T19 9 行 `cover_definitions.json` 语义集合仍由物品网 Python 测试覆盖。
+- 历史 full verification report 已从工作树删除，不是当前执行结果
+- 能量链 GameTest 方法名已语义化；历史 `energy_chain_readiness*` token 若仍存在，以 [semantic-naming.md](semantic-naming.md) 为准。
+- 物流 live `logistics` profile 不再重导历史 pipe/cover 信封。那些 builder 在 legacy index。cover definitions 语义集合仍由物品网 Python 测试覆盖。
 - 历史 catalog/count/policy fixture 已按当前权威目录与 semantic ID map 对齐；日常硬门仍是 semantic-generators 的 builder `--check` 与 active Python suite。全量 `gradle test` 未作为每次提交的必跑门。
 
 ## Deferred capability
@@ -36,6 +36,6 @@
 
 ## 历史记录
 
-- 早期 Electrolyzer 闭卡曾被门闸 overlay、跨卡摘要链与超大 JSON 拖住：现场记录在 `docs/history/work-logs/`。这些工具已冻结为 legacy
+- 早期 Electrolyzer 闭卡曾被门闸 overlay、跨卡摘要链与超大 JSON 拖住。现场工作日志已从工作树删除，工具链仍在 legacy index
 - 历史 census/topology 曾因后波 composed v2 / profiles 变更把已关闭卡重算成 incomplete；现已从 active verification 彻底断开
 - Java CRLF：工程卫生阶段已把当时的 31 个文件转为 LF

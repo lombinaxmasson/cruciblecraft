@@ -7,10 +7,10 @@ import re
 from pathlib import Path
 from typing import Any
 
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk.schema_lite import SchemaError, validate
 
-SOURCE_REVISION = t35.SOURCE_REVISION
+SOURCE_REVISION = census.SOURCE_REVISION
 ALLOWED_SOURCE_SYSTEMS = frozenset({"gt6"})
 ALLOWED_DIALECTS = frozenset({"gt6"})
 FORBIDDEN_SYSTEMS = frozenset({"gt6u", "gt6U", "GT6U"})
@@ -18,8 +18,8 @@ FILE_ROLE = frozenset({"dump_slice", "work_set", "authority", "compare_corpus", 
 SHA256_HEX = re.compile(r"^[0-9a-f]{64}$")
 
 ALLOWED_ROOTS = (
-    t35.TOOLS / "waves",
-    t35.ROOT / "src" / "test" / "resources" / "generic_recipe_import",
+    census.TOOLS / "waves",
+    census.ROOT / "src" / "test" / "resources" / "generic_recipe_import",
 )
 
 MANIFEST_SCHEMA: dict[str, Any] = {
@@ -95,7 +95,7 @@ class SourcePackError(ValueError):
 
 
 def schema_path() -> Path:
-    return t35.TOOLS / "source_pack_manifest.schema.json"
+    return census.TOOLS / "source_pack_manifest.schema.json"
 
 
 def sha256_file(path: Path) -> str:
@@ -103,7 +103,7 @@ def sha256_file(path: Path) -> str:
 
 
 def posix_relative(path: Path) -> str:
-    return t35.relative(path).replace("\\", "/")
+    return census.relative(path).replace("\\", "/")
 
 
 def resolve_contained(raw: str, *, origin: Path | None = None) -> Path:
@@ -112,10 +112,10 @@ def resolve_contained(raw: str, *, origin: Path | None = None) -> Path:
         raise SourcePackError("empty source pack path")
     if text.startswith("/") or re.match(r"^[A-Za-z]:/", text):
         raise SourcePackError(f"absolute path rejected: {text}")
-    candidate = (origin or t35.ROOT).joinpath(*text.split("/"))
+    candidate = (origin or census.ROOT).joinpath(*text.split("/"))
     try:
         resolved = candidate.resolve()
-        root = t35.ROOT.resolve()
+        root = census.ROOT.resolve()
         resolved.relative_to(root)
     except (OSError, ValueError) as error:
         raise SourcePackError(f"path escape rejected: {text}") from error
@@ -167,7 +167,7 @@ def validate_manifest_document(document: dict[str, Any]) -> None:
 
 
 def load_manifest(path: Path) -> dict[str, Any]:
-    document = t35.load_json(path)
+    document = census.load_json(path)
     if not isinstance(document, dict):
         raise SourcePackError("source pack manifest must be an object")
     validate_manifest_document(document)

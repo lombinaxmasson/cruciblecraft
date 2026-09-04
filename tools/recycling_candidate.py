@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""Effective recycling_candidate: frozen T42 overlay plus append-only corrections."""
+"""Effective recycling_candidate: frozen owner overlay plus append-only corrections."""
 from __future__ import annotations
 
 from pathlib import Path
 from typing import Any, Mapping
 
-from tools import t35_common as t35
-from tools import t42_common as t42
+from tools import census_common as census
+from tools import owner_partition_common as owner
 
 CORRECTION_PATH = (
-    t35.TOOLS / "waves" / "bath" / "tiny-purified" / "t49_recycling_candidate_correction.json"
+    census.TOOLS / "waves" / "bath" / "tiny-purified" / "bath_tiny_purified_recycling_candidate_correction.json"
 )
 
 
@@ -24,9 +24,9 @@ def correction_false_ids(document: Mapping[str, Any] | None = None) -> set[str]:
     if payload is None:
         if not CORRECTION_PATH.is_file():
             return set()
-        payload = t35.load_json(CORRECTION_PATH)
+        payload = census.load_json(CORRECTION_PATH)
     if payload.get("status") not in {
-        "T49_RECYCLING_CANDIDATE_CORRECTION",
+        "BATH_TINY_PURIFIED_RECYCLING_CANDIDATE_CORRECTION",
         "RECYCLING_CANDIDATE_CORRECTION",
     }:
         raise ValueError("recycling correction status is not frozen")
@@ -50,7 +50,7 @@ def effective_recycling_candidate(
     correction: Mapping[str, Any] | None = None,
 ) -> bool:
     if overlay_row is None:
-        overlay = t35.load_json(t42.BLOCKER_OVERLAY)
+        overlay = census.load_json(owner.BLOCKER_OVERLAY)
         overlay_row = next(
             (
                 row
@@ -65,5 +65,5 @@ def effective_recycling_candidate(
 
 
 def overlay_by_id(overlay: Mapping[str, Any] | None = None) -> dict[str, dict[str, Any]]:
-    payload = overlay if overlay is not None else t35.load_json(t42.BLOCKER_OVERLAY)
+    payload = overlay if overlay is not None else census.load_json(owner.BLOCKER_OVERLAY)
     return {str(row["family_id"]): row for row in payload.get("families") or []}

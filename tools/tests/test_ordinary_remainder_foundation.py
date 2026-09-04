@@ -63,12 +63,12 @@ class OrdinaryRemainderFoundationTest(unittest.TestCase):
         )
 
     def test_foundation_closing_has_no_completion(self) -> None:
-        from tools import t35_common as t35
+        from tools import census_common as census
 
-        path = t35.TOOLS / "waves" / "ordinary-remainder" / "operand-foundation" / "census_delta.json"
+        path = census.TOOLS / "waves" / "ordinary-remainder" / "operand-foundation" / "census_delta.json"
         if not path.is_file():
             self.skipTest("foundation census not written yet")
-        census = t35.load_json(path)
+        census = census.load_json(path)
         self.assertEqual(0, int(census["complete_family_count"]))
         self.assertEqual(334, int(census["remaining_recipe_gap"]))
         self.assertEqual(44, int((census.get("drying_candidate") or {}).get("family_count") or 0))

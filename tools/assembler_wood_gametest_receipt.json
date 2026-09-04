@@ -1,0 +1,41 @@
+{
+  "behavior_root_sha256": "351cea35733294a47611d7cdbd7c453114d8f7813b79b4f9acaaf01e506c2cda",
+  "bound_artifacts": {
+    "assembler_wood_generated_recipes": "6fed604ced27a8156940f24fe4511222eb04b98bd23c1ab26d553313b9e37525",
+    "assembler_wood_locked_support": null,
+    "gametest_java": "6516ecf83b8f6ac7b499b951b5cc7308e769d5ef81f286e10c4c595b170a542e",
+    "material_registration_gate_java": "f68f87d8eef8cf832987b726e01a2e9b592269cfcc5baf10e46502680704bb84",
+    "material_registration_gate_json": "51cf948867ca73af6be51defa2c95f3870bdc546986c396d7662ea58a865e569",
+    "production_lock": "1db248c8f488dda80b83709d274f31081bcea8190d2769b28eb9bbb0f466265b",
+    "publication_group_manifest": "a15058b77b2b58c16b0b27d8daf0f39a96571f4beaad8d4cede19887370c0c41",
+    "runtime_dependency_manifest": "1f97649232a74ac5a137195bce96400d8ecb223cb47a652c03097f7594c319bc",
+    "shard_manifest": "ac3e9166e850d602424dbee0acb53d561dd13ddad0a63bf2022b9712e5778cc9"
+  },
+  "command": ".\\gradlew.bat runGameTestServer -PwaveRecipes=assembler/wood --no-daemon",
+  "currentness_root_sha256": "278f1b336468a0eeb7ed36ef20177cdd12237f06b320f9b170826c881de3e83f",
+  "equivalence_root_sha256": "03e5092f906d63a9dfbcec68ddf4f853d0534639ce4c8d76352068316da93929",
+  "failed": 0,
+  "java_sha256": "6516ecf83b8f6ac7b499b951b5cc7308e769d5ef81f286e10c4c595b170a542e",
+  "java_source": "src/main/java/com/masson/cruciblecraft/gametest/AssemblerWoodGameTests.java",
+  "log_fingerprint": "53d4b8746e3d212f74618cd2b9143dfd3e5fb831635f2552c07c0830ec0d8e13",
+  "log_path": "tools/assembler_wood_gametest.log",
+  "namespace": "cruciblecraft_wave_assembler_wood",
+  "note": "Source markers are not a pass. This receipt is the isolated -PwaveRecipes=assembler/wood result bound to MaterialRegistrationGate, the assembler/wood recipe resource trees, and the committed UTF-8 evidence log. The gitignored run-assembler/wood-recipes directory is not evidence. Injecting recipe inputs still does not prove a player path.",
+  "pass_marker": "All 8 required tests passed :)",
+  "passed": 8,
+  "required_tests": 8,
+  "schema_version": 3,
+  "semantic_tree_sha256": "69a5dc3a07b0aa9ecd723b487d7a3845e4c1b2cb237f6f7853767f515e4a8435",
+  "skip_is_not_pass": true,
+  "status": "PASS",
+  "test_ids": [
+    "assemblercompactfamiliesremain",
+    "assemblerexecutesrepresentative",
+    "assemblerwoodstableidssurvivereload",
+    "compactfamiliespublished",
+    "emiplanincludesassemblerfamilies",
+    "fireprooffamilyexecutes",
+    "planksfamilyexecutes",
+    "rejectsnonmatchinginputs"
+  ]
+}

@@ -1,0 +1,301 @@
+{
+  "budget_evaluation": {
+    "hard_failures": [],
+    "metrics": {
+      "allocation_bytes": {
+        "actual": {
+          "max": 4701776,
+          "min": 4694672
+        },
+        "comparison_value": 4701776,
+        "hard_ceiling": 536870912,
+        "soft_budget": 134217728,
+        "status": "PASS"
+      },
+      "client_index_ms": {
+        "actual": {
+          "max": 1,
+          "min": 1
+        },
+        "comparison_value": 1,
+        "hard_ceiling": 3000,
+        "soft_budget": 1000,
+        "status": "PASS"
+      },
+      "client_reload_ms": {
+        "actual": {
+          "max": 13,
+          "min": 10
+        },
+        "comparison_value": 13,
+        "hard_ceiling": 10000,
+        "soft_budget": 5000,
+        "status": "PASS"
+      },
+      "datapack_authored_entries": {
+        "actual": 292,
+        "comparison_value": 292,
+        "hard_ceiling": 6600,
+        "soft_budget": 6000,
+        "status": "PASS"
+      },
+      "eager_publication_rows": {
+        "actual": 0,
+        "comparison_value": 0,
+        "hard_ceiling": 21000,
+        "soft_budget": 18000,
+        "status": "PASS"
+      },
+      "lazy_cache_ceiling_rows": {
+        "actual": 48,
+        "comparison_value": 48,
+        "hard_ceiling": 4096,
+        "soft_budget": 1024,
+        "status": "PASS"
+      },
+      "lazy_logical_rows": {
+        "actual": 292,
+        "comparison_value": 292,
+        "hard_ceiling": 56000,
+        "soft_budget": 16000,
+        "status": "PASS"
+      },
+      "lookup_candidate_count": {
+        "actual": {
+          "max": 2,
+          "min": 2
+        },
+        "comparison_value": 2,
+        "hard_ceiling": 128,
+        "soft_budget": 64,
+        "status": "PASS"
+      },
+      "lookup_p95_ns": {
+        "actual": {
+          "max": 84600,
+          "min": 40743
+        },
+        "comparison_value": 84600,
+        "hard_ceiling": 2000000,
+        "soft_budget": 1000000,
+        "status": "PASS"
+      },
+      "retained_memory_bytes": {
+        "actual": {
+          "max": 30076,
+          "min": 30076
+        },
+        "comparison_value": 30076,
+        "hard_ceiling": 536870912,
+        "soft_budget": 134217728,
+        "status": "PASS"
+      },
+      "server_index_ms": {
+        "actual": {
+          "max": 1,
+          "min": 1
+        },
+        "comparison_value": 1,
+        "hard_ceiling": 1000,
+        "soft_budget": 500,
+        "status": "PASS"
+      },
+      "server_reload_ms": {
+        "actual": {
+          "max": 12,
+          "min": 10
+        },
+        "comparison_value": 12,
+        "hard_ceiling": 10000,
+        "soft_budget": 5000,
+        "status": "PASS"
+      },
+      "sync_bytes": {
+        "actual": 30076,
+        "comparison_value": 30076,
+        "hard_ceiling": 67108864,
+        "soft_budget": 16777216,
+        "status": "PASS"
+      }
+    },
+    "pending_measurements": [],
+    "soft_exceeded": [],
+    "status": "PASS"
+  },
+  "currentness": {
+    "budget_policy": "tools/t14_load_budget_policy.json",
+    "budget_policy_sha256": "d4e934d9753cd6d4bcac5867e9fb78b97d4191e1a5cb67042bb8886ee78d8e87",
+    "projection_schema": "tools/recipe_load_projection.schema.json",
+    "projection_schema_sha256": "51e97fc4a0cbffc000773fa1805d6223ea369d26ae46256381e344119e20c674",
+    "t13_canonical_rows": 95,
+    "t13_map_row_sha256": "e8a635d62d4c11b7995d64ec3c6cfe2a7038b24338bfb00920a614f442f9af99",
+    "t13_recipe_maps": "tools/machine_tree_denominators/recipe_maps.json"
+  },
+  "delivery_phase": "assembler/wood",
+  "families": [
+    {
+      "authored_entries": 292,
+      "canonical_ids": [
+        "gt.recipe.assembler"
+      ],
+      "eager_publication_rows": 0,
+      "family": "assembler/wood/assembler-wave",
+      "lazy_cache_ceiling_rows": 48,
+      "lazy_logical_rows": 292,
+      "logical_rows": 292,
+      "measurement_basis": {
+        "kind": "family_specific_measurement",
+        "measured_logical_rows": [
+          63,
+          85,
+          144,
+          292
+        ],
+        "source": "assembler/wood R4 production-lock JUnit CompactRecipeFamilyT41MeasurementHarness. Production partitions are summed from the independently derived planks/fireproof/planks2 winners. Their aggregate is exactly equivalent to the measured hybrid card candidate. Intervals are p50-p95; ns timings convert with ceil-to-ms. Card-level cache is not copied into per-family rows."
+      },
+      "measurement_intervals": {
+        "allocation_bytes": {
+          "max": 4701776,
+          "min": 4694672
+        },
+        "client_index_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "client_reload_ms": {
+          "max": 13,
+          "min": 10
+        },
+        "lookup_candidate_count": {
+          "max": 2,
+          "min": 2
+        },
+        "lookup_p95_ns": {
+          "max": 84600,
+          "min": 40743
+        },
+        "retained_memory_bytes": {
+          "max": 30076,
+          "min": 30076
+        },
+        "server_index_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "server_reload_ms": {
+          "max": 12,
+          "min": 10
+        }
+      },
+      "publication_account": {
+        "domain": "gt_recipe_family",
+        "gt_authored_entries": 292,
+        "gt_logical_rows": 292,
+        "vanilla_datapack_entries": 0
+      },
+      "publication_domain": "gt_recipe_family",
+      "ratios": {
+        "authored_to_eager": {
+          "denominator": 292,
+          "formula": "eager_publication_rows / authored_entries",
+          "numerator": 0,
+          "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+          "value": 0.0
+        },
+        "authored_to_logical": {
+          "denominator": 292,
+          "formula": "logical_rows / authored_entries",
+          "numerator": 292,
+          "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+          "value": 1.0
+        }
+      },
+      "strategy": "group_scoped",
+      "sync_bytes": 30076,
+      "t13_references": [
+        {
+          "canonical_id": "gt.recipe.assembler",
+          "classification": "in_scope",
+          "owner": "T15"
+        }
+      ],
+      "vanilla_datapack_entries": 0
+    }
+  ],
+  "family_count": 292,
+  "ledger": {
+    "aggregation": {
+      "counts": "sum of explicit family counts",
+      "lookup": "maximum family interval bounds; one lookup is not additive",
+      "reload_index_memory": "sum of family interval bounds"
+    },
+    "counts": {
+      "datapack_authored_entries": 292,
+      "eager_publication_rows": 0,
+      "lazy_cache_ceiling_rows": 48,
+      "lazy_logical_rows": 292,
+      "logical_rows": 292,
+      "sync_bytes": 30076
+    },
+    "measurement_intervals": {
+      "allocation_bytes": {
+        "max": 4701776,
+        "min": 4694672
+      },
+      "client_index_ms": {
+        "max": 1,
+        "min": 1
+      },
+      "client_reload_ms": {
+        "max": 13,
+        "min": 10
+      },
+      "lookup_candidate_count": {
+        "max": 2,
+        "min": 2
+      },
+      "lookup_p95_ns": {
+        "max": 84600,
+        "min": 40743
+      },
+      "retained_memory_bytes": {
+        "max": 30076,
+        "min": 30076
+      },
+      "server_index_ms": {
+        "max": 1,
+        "min": 1
+      },
+      "server_reload_ms": {
+        "max": 12,
+        "min": 10
+      }
+    },
+    "publication_domains": {
+      "gt_authored_entries": 292,
+      "gt_logical_rows": 292,
+      "vanilla_datapack_entries": 0
+    },
+    "ratios": {
+      "authored_to_eager": {
+        "denominator": 292,
+        "formula": "eager_publication_rows / authored_entries",
+        "numerator": 0,
+        "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+        "value": 0.0
+      },
+      "authored_to_logical": {
+        "denominator": 292,
+        "formula": "logical_rows / authored_entries",
+        "numerator": 292,
+        "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+        "value": 1.0
+      }
+    }
+  },
+  "logical": 292,
+  "production_lock_sha256": "ddfe50fabb0944dc2001f5b09b205c1ee82a6f55d5493733878e21b52eed8349",
+  "projection_id": "assembler/wood/assembler-wave",
+  "schema_version": 2,
+  "status": "PASS"
+}

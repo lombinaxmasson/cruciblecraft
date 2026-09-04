@@ -1,0 +1,139 @@
+{
+  "baseline": "fluid_gap",
+  "delta_ledger_policy": {
+    "base_eager": 16657,
+    "contract": "GameTest eager assertion MUST equal base_eager + sum(registered_deltas[*].eager). Any new delta registration must include per-family evidence.",
+    "current_eager": 16657,
+    "current_lazy": 2225,
+    "current_logical": 18882,
+    "registered_deltas": [
+      {
+        "eager": 0,
+        "evidence": "src/main/resources/data/cruciblecraft/recipe/machines/distillation_tower.json",
+        "lazy": 0,
+        "logical": 0,
+        "phase": "distillation_tower",
+        "vanilla_datapack_entries": 1
+      },
+      {
+        "eager": 0,
+        "evidence": "src/main/resources/data/cruciblecraft/recipe/machines/large_boiler.json",
+        "lazy": 0,
+        "logical": 0,
+        "phase": "large_boiler",
+        "vanilla_datapack_entries": 1
+      },
+      {
+        "eager": 0,
+        "evidence": "src/main/resources/data/cruciblecraft/recipe/machines/tank_3x3x3.json",
+        "lazy": 0,
+        "logical": 0,
+        "phase": "tank_3x3x3",
+        "vanilla_datapack_entries": 1
+      }
+    ]
+  },
+  "emi_enumeration_contract": "Every logical RecipeMap entry from each configured processing map is enumerated exactly once under its stable machine category and recipe id.",
+  "emi_recipe_map_ids": [
+    "cruciblecraft:assembler",
+    "cruciblecraft:autoclave",
+    "cruciblecraft:bath",
+    "cruciblecraft:bender",
+    "cruciblecraft:centrifuge",
+    "cruciblecraft:compressor",
+    "cruciblecraft:cutter",
+    "cruciblecraft:distillery",
+    "cruciblecraft:drying",
+    "cruciblecraft:electrolyzer",
+    "cruciblecraft:extruder",
+    "cruciblecraft:generifier",
+    "cruciblecraft:lathe",
+    "cruciblecraft:mixer",
+    "cruciblecraft:mortar",
+    "cruciblecraft:press",
+    "cruciblecraft:rollbender",
+    "cruciblecraft:rollingmill",
+    "cruciblecraft:shredder",
+    "cruciblecraft:sifter",
+    "cruciblecraft:sluice",
+    "cruciblecraft:smelter",
+    "cruciblecraft:welder",
+    "cruciblecraft:wiremill"
+  ],
+  "frozen_baseline": {
+    "builders": 74,
+    "datagen_tree_files": 2558,
+    "emi_configured_maps": 24,
+    "evidence": "tools/full_verification_report.json",
+    "evidence_status": "FLUID_GAP_READY",
+    "evidence_verified_on": "2026-08-13",
+    "gametest_count": 89,
+    "java_source_test_count": 539,
+    "logical_headroom": 2118,
+    "multiblock_structures": 2,
+    "python_test_count": 636,
+    "recipe_map_count": 32,
+    "fluid_gap_publication_delta": {
+      "eager_rows_added": 0,
+      "lazy_rows_added": 0,
+      "logical_rows_added": 0
+    },
+    "fluid_gap_readiness": "FLUID_GAP_READY",
+    "fluid_publication_delta": {
+      "eager_rows_added": 3,
+      "lazy_rows_added": 0,
+      "logical_rows_added": 3
+    },
+    "verified_on": "2026-08-13"
+  },
+  "publication_totals": {
+    "eager_rows": 16657,
+    "lazy_rows": 2225,
+    "logical_rows": 18882
+  },
+  "recipe_map_ids": [
+    "cruciblecraft:anvil",
+    "cruciblecraft:anvil_bend_big",
+    "cruciblecraft:anvil_bend_small",
+    "cruciblecraft:assembler",
+    "cruciblecraft:autoclave",
+    "cruciblecraft:bath",
+    "cruciblecraft:bender",
+    "cruciblecraft:centrifuge",
+    "cruciblecraft:coke_oven",
+    "cruciblecraft:compressor",
+    "cruciblecraft:cooling",
+    "cruciblecraft:crusher",
+    "cruciblecraft:cutter",
+    "cruciblecraft:distillery",
+    "cruciblecraft:drying",
+    "cruciblecraft:electrolyzer",
+    "cruciblecraft:extruder",
+    "cruciblecraft:fuels_engine",
+    "cruciblecraft:fuels_gas",
+    "cruciblecraft:generifier",
+    "cruciblecraft:lathe",
+    "cruciblecraft:mixer",
+    "cruciblecraft:mortar",
+    "cruciblecraft:press",
+    "cruciblecraft:rollbender",
+    "cruciblecraft:rollingmill",
+    "cruciblecraft:shredder",
+    "cruciblecraft:sifter",
+    "cruciblecraft:sluice",
+    "cruciblecraft:smelter",
+    "cruciblecraft:welder",
+    "cruciblecraft:wiremill"
+  ],
+  "schema_version": 1,
+  "status": "RECIPE_EXPANSION_PUBLICATION_BASELINE",
+  "recipe_expansion_publication_delta": {
+    "eager_rows_added": 0,
+    "emi_recipe_map_ids_unchanged": true,
+    "gt_recipe_rows_added": 0,
+    "lazy_rows_added": 0,
+    "logical_rows_added": 0,
+    "recipe_map_ids_unchanged": true,
+    "vanilla_datapack_entries_added": 3
+  }
+}

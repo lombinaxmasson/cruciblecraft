@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Forward-v2 materialization budget classification for T47 and later waves.
+"""Forward-v2 materialization budget classification for bath/remainder and later waves.
 
 Hard ceilings eliminate non-authored axes. Soft budgets warn and never
 eliminate. ``datapack_authored_entries`` is REPORT_ONLY for both soft and
 hard reference overage and never participates in winner or failed_gates.
-T37-T46 builders keep their frozen elimination rules.
+assembler/compact-bath/mte builders keep their frozen elimination rules.
 """
 
 from __future__ import annotations
@@ -13,9 +13,9 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Iterable, Mapping
 
-from tools import t35_common as t35
+from tools import census_common as census
 
-LOAD_POLICY_V2 = t35.TOOLS / "t14_load_budget_policy.v2.json"
+LOAD_POLICY_V2 = census.TOOLS / "recipe_load_load_budget_policy.v2.json"
 AUTHORED_AXIS = "datapack_authored_entries"
 VERDICT_HARD = "HARD"
 VERDICT_REPORT_ONLY = "REPORT_ONLY"
@@ -52,7 +52,7 @@ class CandidateBudgetResult:
 
 
 def load_policy(path: Path | None = None) -> dict[str, Any]:
-    document = t35.load_json(path or LOAD_POLICY_V2)
+    document = census.load_json(path or LOAD_POLICY_V2)
     if document.get("status") != "FORWARD_LOAD_BUDGET_POLICY_V2":
         raise ValueError("forward-v2 load budget policy status drifted")
     if document.get("schema_version") != 2:
@@ -64,7 +64,7 @@ def policy_sha256(path: Path | None = None) -> str:
     target = path or LOAD_POLICY_V2
     if not target.is_file():
         raise FileNotFoundError(target)
-    return t35.sha256_file(target)
+    return census.sha256_file(target)
 
 
 def axis_verdict(spec: Mapping[str, Any]) -> str:

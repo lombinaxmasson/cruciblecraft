@@ -667,7 +667,7 @@ class BathRemainderMeasurementHarness {
             List<CandidateMeasurement> multi,
             List<CandidateMeasurement> card) {
         Map<String, Object> input = new LinkedHashMap<>();
-        input.put("kind", "t47_bath_remainder_generated_rows");
+        input.put("kind", "bath_remainder_generated_rows");
         input.put("logical_rows", LOCKED_RELATIONS);
         input.put("measured_logical_rows", List.of(EXACT_ROWS, EXACT_MULTI_ROWS, LOCKED_RELATIONS));
         input.put("generated_datapack_present", true);
@@ -676,7 +676,7 @@ class BathRemainderMeasurementHarness {
                 "BathRemainderMeasurementHarness JUnit samples; "
                         + "retained_memory uses snapshot.syncPayloadBytes, not a naive JVM "
                         + "heap delta. player_execution evidenced by BathRemainderHarnessTest "
-                        + "and T47RecipeGameTests. exact, exact_multi, and card are independent.");
+                        + "and BathRemainderGameTests. exact, exact_multi, and card are independent.");
 
         Map<String, Object> family = new LinkedHashMap<>();
         family.put("family_count", LOCKED_FAMILIES);
@@ -690,17 +690,17 @@ class BathRemainderMeasurementHarness {
 
         Map<String, Object> root = new LinkedHashMap<>();
         root.put("schema_version", 1);
-        root.put("status", "T47_MATERIALIZATION_MEASUREMENT_READY");
+        root.put("status", "BATH_REMAINDER_MATERIALIZATION_MEASUREMENT_READY");
         root.put("production_winner_claimed", false);
         root.put("protocol", Map.of(
-                "id", "t47_materialization_production_lock_v1",
+                "id", "bath_remainder_materialization_production_lock_v1",
                 "ranking_scale", "1x",
                 "diagnostic_scales_not_for_production", List.of("5x", "20x"),
                 "single_wall_clock_sample_forbidden", true,
                 "p50_p95_invented", false,
                 "sample_count", SAMPLE_COUNT));
         root.put("input", input);
-        root.put("t47_opening", t47Opening());
+        root.put("bath_remainder_opening", bathRemainderOpening());
         root.put("family_work_set", family);
         root.put("scenarios", List.of(
                 scenario("exact", EXACT_ROWS, EXACT_FAMILIES, exact),
@@ -739,9 +739,9 @@ class BathRemainderMeasurementHarness {
         return scenario;
     }
 
-    private static Map<String, Object> t47Opening() {
+    private static Map<String, Object> bathRemainderOpening() {
         Map<String, Object> opening = new LinkedHashMap<>();
-        opening.put("source", "tools/t46_readiness.json#t47_opening.t14_closing");
+        opening.put("source", "tools/bath_mte_readiness.json#bath_remainder_opening.recipe_load_closing");
         opening.put("datapack_authored_entries", 5706);
         opening.put("eager_publication_rows", 14);
         opening.put("lazy_logical_rows", 2758);

@@ -79,7 +79,7 @@ class FireboxHeatBufferTest {
     }
 
     @Test
-    void t18BronzeProfileAppliesSourceOutputAndEfficiency() {
+    void bronzeProfileAppliesSourceOutputAndEfficiency() {
         var profile = EnergyConverterCatalog.require(
                 "cruciblecraft:bronze_firebox");
         FireboxHeatBuffer buffer = new FireboxHeatBuffer();

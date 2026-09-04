@@ -1,0 +1,64 @@
+{
+  "delivery_phase": "bath/tiny-purified",
+  "families": [
+    {
+      "authored_entries": 6,
+      "canonical_ids": [
+        "gt.recipe.bath"
+      ],
+      "eager_publication_rows": 0,
+      "family": "bath/tiny-purified/bath-remainder-wave",
+      "lazy_cache_ceiling_rows": 95,
+      "lazy_logical_rows": 95,
+      "logical_rows": 95,
+      "measurement_basis": {
+        "kind": "family_specific_measurement",
+        "measured_logical_rows": [
+          95
+        ],
+        "source": "bath/tiny-purified R3 card 1x CompactRecipeFamilybath/tiny-purifiedMeasurementHarness hybrid winner (0 eager / 95 lazy). Card partition is the measured 95-row bath/tiny-purified/exact_multi group. The 19-group integrated mix is census T14 closing only; its allocation exceeds the frozen 512 MiB hard ceiling and bath/tiny-purified does not raise that gate."
+      },
+      "measurement_intervals": {
+        "allocation_bytes": {
+          "max": 635720,
+          "min": 635720
+        },
+        "client_index_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "client_reload_ms": {
+          "max": 2,
+          "min": 1
+        },
+        "lookup_candidate_count": {
+          "max": 1,
+          "min": 1
+        },
+        "lookup_p95_ns": {
+          "max": 11075,
+          "min": 6850
+        },
+        "retained_memory_bytes": {
+          "max": 11730,
+          "min": 11730
+        },
+        "server_index_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "server_reload_ms": {
+          "max": 1,
+          "min": 1
+        }
+      },
+      "publication_domain": "gt_recipe_family",
+      "strategy": "group_scoped",
+      "sync_bytes": 11730,
+      "vanilla_datapack_entries": 0
+    }
+  ],
+  "projection_id": "bath/tiny-purified/bath-remainder-wave",
+  "schema_version": 2,
+  "status": "FAMILY_LOAD_PROJECTION_INPUT"
+}

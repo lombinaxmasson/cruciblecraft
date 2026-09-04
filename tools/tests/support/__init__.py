@@ -1,1 +1,1 @@
-"""Test-only helpers for T40-VR authority isolation."""
+"""Test-only helpers for runtime verification authority isolation."""

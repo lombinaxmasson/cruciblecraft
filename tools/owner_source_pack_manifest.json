@@ -1,0 +1,26 @@
+{
+  "catalog": {
+    "families": 5305,
+    "ordinary_source_rows": 78206
+  },
+  "dump_required_for_full_replay": true,
+  "files": {
+    "freeze": {
+      "path": "tools/t42_partition_freeze.json"
+    },
+    "remaining_catalog": {
+      "path": "tools/t42_remaining_catalog.json"
+    }
+  },
+  "full_replay": {
+    "dump_present": true,
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "generated_by": "python tools/build_t42_partition_freeze.py",
+  "note": "T42 is a partition card. This pack pins remaining-family identity only; it is not a production work-set and does not publish recipes.",
+  "owner": "portfolio:track_a/owner_partition",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T42_SOURCE_PACK_FROZEN"
+}

@@ -1,0 +1,64 @@
+{
+  "delivery_phase": "T38",
+  "families": [
+    {
+      "authored_entries": 29,
+      "canonical_ids": [
+        "gt.recipe.roaster"
+      ],
+      "eager_publication_rows": 0,
+      "family": "roaster/compact/roaster-wave",
+      "lazy_cache_ceiling_rows": 16,
+      "lazy_logical_rows": 73,
+      "logical_rows": 73,
+      "measurement_basis": {
+        "kind": "family_specific_measurement",
+        "measured_logical_rows": [
+          73
+        ],
+        "source": "T38 R4 1x=73 JUnit CompactRecipeFamilyT38MeasurementHarness. Production winner on_demand derived by tools/build_t38_recipe_load_benchmark.py (0 eager / 73 lazy / cache 16). Intervals are p50–p95 of the current on_demand candidate; ns timings convert with ceil-to-ms. Card-level cache 16 is not copied into per-family rows."
+      },
+      "measurement_intervals": {
+        "allocation_bytes": {
+          "max": 236984,
+          "min": 236984
+        },
+        "client_index_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "client_reload_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "lookup_candidate_count": {
+          "max": 73,
+          "min": 73
+        },
+        "lookup_p95_ns": {
+          "max": 685725,
+          "min": 514062
+        },
+        "retained_memory_bytes": {
+          "max": 7581,
+          "min": 7581
+        },
+        "server_index_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "server_reload_ms": {
+          "max": 1,
+          "min": 1
+        }
+      },
+      "publication_domain": "gt_recipe_family",
+      "strategy": "on_demand",
+      "sync_bytes": 7581,
+      "vanilla_datapack_entries": 0
+    }
+  ],
+  "projection_id": "roaster/compact/roaster-wave",
+  "schema_version": 2,
+  "status": "FAMILY_LOAD_PROJECTION_INPUT"
+}

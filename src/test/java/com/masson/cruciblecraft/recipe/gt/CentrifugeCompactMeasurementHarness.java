@@ -817,7 +817,7 @@ class CentrifugeCompactMeasurementHarness {
             List<CandidateMeasurement> multiCandidates,
             List<CandidateMeasurement> cardCandidates) {
         Map<String, Object> input = new LinkedHashMap<>();
-        input.put("kind", "t39_production_lock_32_relation_rows");
+        input.put("kind", "centrifuge_production_lock_32_relation_rows");
         input.put("logical_rows", CARD_LOGICAL);
         input.put("measured_logical_rows", List.of(SINGLETON_LOGICAL, MULTI_LOGICAL, CARD_LOGICAL));
         input.put("generated_datapack_present", true);
@@ -841,17 +841,17 @@ class CentrifugeCompactMeasurementHarness {
 
         Map<String, Object> root = new LinkedHashMap<>();
         root.put("schema_version", 1);
-        root.put("status", "T39_MATERIALIZATION_MEASUREMENT_READY");
+        root.put("status", "CENTRIFUGE_COMPACT_MATERIALIZATION_MEASUREMENT_READY");
         root.put("production_winner_claimed", false);
         root.put("protocol", Map.of(
-                "id", "t39_materialization_production_lock_v2",
+                "id", "centrifuge_materialization_production_lock_v2",
                 "ranking_scale", "1x",
                 "diagnostic_scales_not_for_production", List.of("5x", "20x"),
                 "single_wall_clock_sample_forbidden", true,
                 "p50_p95_invented", false,
                 "sample_count", SAMPLE_COUNT));
         root.put("input", input);
-        root.put("t39_opening", t39Opening());
+        root.put("centrifuge_opening", t39Opening());
         root.put("family_work_set", family);
         root.put("scenarios", List.of(
                 scenario("singleton", SINGLETON_LOGICAL, SINGLETON_FAMILIES, singletonCandidates),
@@ -873,7 +873,7 @@ class CentrifugeCompactMeasurementHarness {
 
     private static Map<String, Object> t39Opening() {
         Map<String, Object> opening = new LinkedHashMap<>();
-        opening.put("source", "tools/t38_census_delta.json#t14_load.closing");
+        opening.put("source", "tools/roaster_census_delta.json#recipe_load.closing");
         opening.put("datapack_authored_entries", 3664);
         opening.put("eager_publication_rows", 16626);
         opening.put("lazy_logical_rows", 2334);

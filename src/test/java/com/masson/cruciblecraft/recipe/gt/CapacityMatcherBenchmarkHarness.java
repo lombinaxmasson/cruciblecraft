@@ -178,7 +178,7 @@ public final class CapacityMatcherBenchmarkHarness {
         StringBuilder json = new StringBuilder();
         json.append("{\n");
         json.append("  \"schema_version\": 1,\n");
-        json.append("  \"status\": \"T12A_BENCHMARK_READY\",\n");
+        json.append("  \"status\": \"CAPACITY_MATCHER_BENCHMARK_READY\",\n");
         json.append("  \"harness\": \"")
                 .append(CapacityMatcherBenchmarkHarness.class.getName())
                 .append("\",\n");

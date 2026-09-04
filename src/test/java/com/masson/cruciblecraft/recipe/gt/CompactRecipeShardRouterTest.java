@@ -101,7 +101,7 @@ class CompactRecipeShardRouterTest {
                 new CompactGTRecipeFamilyDefinition(
                         "gt.recipe.centrifuge#router_selective",
                         ModRecipeMaps.CENTRIFUGE.id(),
-                        "t39-router-test",
+                        "centrifuge-router-test",
                         relations,
                         group));
         CompactRecipeFamilyProvider.Snapshot snapshot =

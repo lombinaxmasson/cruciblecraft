@@ -123,16 +123,16 @@ class BathMteIntegratedMeasurementHarness {
         assertEquals(immediate.logical, onDemand.logical);
         assertEquals(immediate.logical, hybrid.logical);
         assertTrue(hybrid.logical > 1517);
-        PublicationGroupKey t46 = new PublicationGroupKey(
+        PublicationGroupKey bathMte = new PublicationGroupKey(
                 ModRecipeMaps.BATH.id(),
                 ResourceLocation.parse("cruciblecraft:bath/mte"));
         var production = CompactRecipeFamilyProvider.prepareByPublicationGroup(
                 sources, knownMaps, EPOCH,
                 CompactRecipeFamilyProvider.RuntimeSide.SERVER,
                 productionPolicies);
-        assertEquals(0, production.get(t46).eagerRecipeCount());
-        assertEquals(1517, production.get(t46).lazyRecipeCount());
-        assertEquals(24, production.get(t46).cacheCeiling());
+        assertEquals(0, production.get(bathMte).eagerRecipeCount());
+        assertEquals(1517, production.get(bathMte).lazyRecipeCount());
+        assertEquals(24, production.get(bathMte).cacheCeiling());
         assertTrue(
                 hybrid.candidatesP95() <= CompactRecipeShardRouter.HARD_SHARD_CEILING,
                 () -> "integrated hybrid lookup scanned " + hybrid.candidatesP95());
@@ -331,7 +331,7 @@ class BathMteIntegratedMeasurementHarness {
         candidates.forEach(candidate -> rows.add(candidateRow(candidate)));
         Map<String, Object> root = new LinkedHashMap<>();
         root.put("schema_version", 1);
-        root.put("status", "T46_INTEGRATED_MEASUREMENT_READY");
+        root.put("status", "BATH_MTE_INTEGRATED_MEASUREMENT_READY");
         root.put("id", "integrated");
         root.put("scale", "1x");
         root.put("group_count", 13);

@@ -5,18 +5,24 @@ from __future__ import annotations
 import copy
 from typing import Any
 
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk.membership import identity_semantic_root
 
 STATUS = "COMPACT_RECIPE_RUNTIME_MANIFEST_V2"
 BASE_GROUP_COUNT = 12
-DELTA_ORDER = ("T46", "T47", "T48", "T49")
-V1_PATH = t35.TOOLS / "compact_recipe_runtime_manifest.json"
+DELTA_ORDER = ("bath/mte", "bath/remainder", "bath/identity", "bath/tiny-purified")
+V1_PATH = census.TOOLS / "compact_recipe_runtime_manifest.json"
 DELTA_PATHS = {
-    "T46": t35.TOOLS / "t46_runtime_manifest_delta.json",
-    "T47": t35.TOOLS / "t47_runtime_manifest_delta.json",
-    "T48": t35.TOOLS / "t48_runtime_manifest_delta.json",
-    "T49": t35.TOOLS / "t49_runtime_manifest_delta.json",
+    "bath/mte": census.TOOLS / "bath_mte_runtime_manifest_delta.json",
+    "bath/remainder": census.TOOLS / "bath_remainder_runtime_manifest_delta.json",
+    "bath/identity": census.TOOLS / "bath_identity_runtime_manifest_delta.json",
+    "bath/tiny-purified": census.TOOLS / "bath_tiny_purified_runtime_manifest_delta.json",
+}
+WAVE_ORDER = {
+    "bath/mte": 1,
+    "bath/remainder": 2,
+    "bath/identity": 3,
+    "bath/tiny-purified": 4,
 }
 
 
@@ -25,7 +31,7 @@ class RuntimeV2ConflictError(ValueError):
 
 
 def _file_hash(path) -> str:
-    return t35.sha256_file(path) if path.is_file() else ""
+    return census.sha256_file(path) if path.is_file() else ""
 
 
 def _group_semantic_root(groups: list[dict[str, Any]]) -> str:
@@ -45,19 +51,19 @@ def load_delta(wave_id: str) -> dict[str, Any]:
     if not path.is_file():
         return {
             "groups": [],
-            "order": int(wave_id[1:]),
+            "order": WAVE_ORDER[wave_id],
             "schema_version": 1,
-            "status": f"{wave_id}_RUNTIME_MANIFEST_DELTA",
+            "status": f"{wave_id.replace('/', '_').upper()}_RUNTIME_MANIFEST_DELTA",
             "wave_id": wave_id,
         }
-    document = t35.load_json(path)
+    document = census.load_json(path)
     if document.get("wave_id") != wave_id:
         raise RuntimeV2ConflictError(f"{path} wave_id drifted")
     return document
 
 
 def compose(v1: dict[str, Any] | None = None) -> dict[str, Any]:
-    base = v1 if v1 is not None else t35.load_json(V1_PATH)
+    base = v1 if v1 is not None else census.load_json(V1_PATH)
     if base.get("status") != "COMPACT_RECIPE_RUNTIME_MANIFEST":
         raise RuntimeV2ConflictError("v1 runtime manifest status drifted")
     if int(base.get("group_count") or 0) != BASE_GROUP_COUNT:
@@ -83,8 +89,8 @@ def compose(v1: dict[str, Any] | None = None) -> dict[str, Any]:
         consumed.append(
             {
                 "file_sha256": _file_hash(path),
-                "order": int(delta.get("order") or wave_id[1:]),
-                "path": t35.relative(path),
+                "order": int(delta.get("order") or WAVE_ORDER[wave_id]),
+                "path": census.relative(path),
                 "wave_id": wave_id,
             }
         )
@@ -121,7 +127,7 @@ def compose(v1: dict[str, Any] | None = None) -> dict[str, Any]:
         "v1_base": {
             "file_sha256": v1_hash,
             "group_count": BASE_GROUP_COUNT,
-            "path": t35.relative(V1_PATH),
+            "path": census.relative(V1_PATH),
             "status": base.get("status"),
         },
     }

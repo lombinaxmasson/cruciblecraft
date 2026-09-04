@@ -1,0 +1,35 @@
+{
+  "catalog": {
+    "families": 61,
+    "relations": 151,
+    "selection_sha256": "6bd160457fe8472997fb0781b465b4264c4a5b74b838d11fcc0e06e340033a5c"
+  },
+  "files": {
+    "receipt": {
+      "path": "tools/electrolyzer_electrolyzer_source_receipt.json"
+    },
+    "review": {
+      "path": "tools/electrolyzer_electrolyzer_source_review.json"
+    },
+    "source": {
+      "path": "tools/electrolyzer_source.json",
+      "sha256": "a2bb73aa5d61fed528cb0efbf4b1dcc5e0ce086a9aa410324b5465734bc60e41"
+    },
+    "work_set": {
+      "path": "tools/electrolyzer_work_set.json",
+      "sha256": "18f7477db96f06fc43e2d4371b266e3b6dd54f25025d94f93b9c047645808b1f"
+    }
+  },
+  "full_replay": {
+    "dump_present": true,
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "host": "cruciblecraft:electrolyzer",
+  "note": "61/151 is catalog source, not the production lock. A missing GT6 dump is a closed failure, never a skipped PASS.",
+  "owner": "portfolio:track_a/electrolyzer_electrolyzer",
+  "review_status": "ELECTROLYZER_COMPACT_ELECTROLYZER_SOURCE_FROZEN",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "ELECTROLYZER_COMPACT_SOURCE_PACK_FROZEN"
+}

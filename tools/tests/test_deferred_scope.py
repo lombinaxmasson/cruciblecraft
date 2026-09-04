@@ -5,7 +5,7 @@ from __future__ import annotations
 import unittest
 
 from tools import recycling_deferred_scope as scope
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk.slugs import KNOWN_SEMANTIC_SLUGS
 from tools.wave_closeout import spec_for
 
@@ -50,18 +50,18 @@ class DeferredScopeChildTest(unittest.TestCase):
 
     def test_written_dispositions_when_present(self) -> None:
         for slug, child in scope.CHILDREN.items():
-            root = t35.TOOLS / "waves" / slug
+            root = census.TOOLS / "waves" / slug
             path = root / "scope_dispositions.json"
             if not path.is_file():
                 continue
-            document = t35.load_json(path)
+            document = census.load_json(path)
             rows = document["dispositions"]
             self.assertEqual(child.owns_families, len(rows))
             for row in rows:
                 self.assertEqual("post_1x_scope", row["disposition"])
                 self.assertIn(row["disposition"], scope.ALLOWED)
                 self.assertFalse(str(row["future_owner"]).startswith("later:"))
-            census = t35.load_json(root / "census_delta.json")
+            census = census.load_json(root / "census_delta.json")
             self.assertEqual(0, int(census["completion_delta"]))
             self.assertEqual(0, int(census["remaining_recipe_gap"]))
             remaining = census["remaining_ordinary"]
@@ -77,19 +77,19 @@ class DeferredScopeChildTest(unittest.TestCase):
 
 class DeferredOrdinaryRuntimeTest(unittest.TestCase):
     def test_program_artifacts_when_present(self) -> None:
-        root = t35.TOOLS / "waves" / "recycling" / "deferred-ordinary-runtime"
+        root = census.TOOLS / "waves" / "recycling" / "deferred-ordinary-runtime"
         if not (root / "readiness.json").is_file():
             self.skipTest("program artifacts not written yet")
-        readiness = t35.load_json(root / "readiness.json")
+        readiness = census.load_json(root / "readiness.json")
         self.assertEqual("DEFERRED_ORDINARY_RUNTIME_READY", readiness["status"])
         self.assertIsNone(readiness["unique_active_wave"])
         self.assertTrue(readiness["next_unassigned"])
-        ledger = t35.load_json(root / "deferred_ledger.json")
+        ledger = census.load_json(root / "deferred_ledger.json")
         buckets = ledger["deferred_buckets"]
         self.assertEqual(0, int(buckets["later:recycling"]))
         self.assertEqual(0, int(buckets["later:cross_mod"]))
         self.assertEqual(0, int(buckets["later:execution_envelope/gt6_panel"]))
-        replay = t35.load_json(root / "gap_replay.json")
+        replay = census.load_json(root / "gap_replay.json")
         self.assertEqual(0, int(replay["execution_gap"]))
         self.assertEqual(1817, int(replay["complete_family_count"]))
         self.assertEqual(28, int(replay["post_1x_scope_count"]))

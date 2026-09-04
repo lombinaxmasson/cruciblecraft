@@ -1,0 +1,398 @@
+{
+  "$defs": {
+    "item_action": {
+      "additionalProperties": false,
+      "properties": {
+        "damage": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "kind": {
+          "enum": [
+            "CONSUME",
+            "PRESERVE",
+            "WEAR"
+          ]
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "type": "object"
+    },
+    "mapping_kind": {
+      "enum": [
+        "exact_runtime_id",
+        "registered_material_form",
+        "canonical_tag",
+        "source_derived_alias",
+        "blocked_unmapped"
+      ]
+    },
+    "operand": {
+      "additionalProperties": false,
+      "properties": {
+        "alias": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "form": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "mapping": {
+          "$ref": "#/$defs/mapping_kind"
+        },
+        "material": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reachable": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "runtime_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "slot_class": {
+          "type": "string"
+        },
+        "source": {
+          "type": "object"
+        },
+        "tag": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "mapping",
+        "source"
+      ],
+      "type": "object"
+    },
+    "provenance_kind": {
+      "enum": [
+        "SOURCE_BACKED",
+        "SOURCE_DERIVED",
+        "DESIGN_POLICY"
+      ]
+    },
+    "relation": {
+      "additionalProperties": false,
+      "properties": {
+        "can_be_buffered": {
+          "type": "boolean"
+        },
+        "duration": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "eut": {
+          "type": "integer"
+        },
+        "family_id": {
+          "type": "string"
+        },
+        "fluid_inputs": {
+          "items": {
+            "$ref": "#/$defs/operand"
+          },
+          "type": "array"
+        },
+        "fluid_outputs": {
+          "items": {
+            "$ref": "#/$defs/operand"
+          },
+          "type": "array"
+        },
+        "item_input_actions": {
+          "items": {
+            "$ref": "#/$defs/item_action"
+          },
+          "type": "array"
+        },
+        "item_input_counts": {
+          "items": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "item_inputs": {
+          "items": {
+            "$ref": "#/$defs/operand"
+          },
+          "type": "array"
+        },
+        "item_outputs": {
+          "items": {
+            "$ref": "#/$defs/operand"
+          },
+          "type": "array"
+        },
+        "needs_empty_output": {
+          "type": "boolean"
+        },
+        "no_nbt_checks": {
+          "type": "boolean"
+        },
+        "output_chances": {
+          "items": {
+            "maximum": 10000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "provenance": {
+          "additionalProperties": false,
+          "properties": {
+            "fields": {
+              "additionalProperties": {
+                "$ref": "#/$defs/provenance_kind"
+              },
+              "type": "object"
+            },
+            "kinds": {
+              "items": {
+                "$ref": "#/$defs/provenance_kind"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "kinds",
+            "fields"
+          ],
+          "type": "object"
+        },
+        "shadow_order": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "slot_notes": {
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "source_map": {
+          "type": "string"
+        },
+        "source_recipe_index": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "source_revision": {
+          "type": "string"
+        },
+        "source_row_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "special_value": {
+          "type": "integer"
+        },
+        "stable_id": {
+          "type": "string"
+        },
+        "target_map": {
+          "type": "string"
+        },
+        "template_key": {
+          "type": "string"
+        },
+        "unsupported_semantics": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "family_id",
+        "source_map",
+        "source_recipe_index",
+        "source_revision",
+        "source_row_sha256",
+        "stable_id",
+        "target_map",
+        "item_inputs",
+        "item_input_counts",
+        "item_input_actions",
+        "item_outputs",
+        "fluid_inputs",
+        "fluid_outputs",
+        "output_chances",
+        "duration",
+        "eut",
+        "special_value",
+        "can_be_buffered",
+        "shadow_order",
+        "provenance"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://cruciblecraft.dev/schema/assembler_compact_recipe_family_source.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Host-neutral compact source freeze for exact GT6 recipe-family rows. assembler/compact R0 writes the Assembler singleton work set; later waves reuse this contract.",
+  "properties": {
+    "assignment": {
+      "additionalProperties": false,
+      "properties": {
+        "assigned": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "duplicate": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "extra": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "missing": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "assigned",
+        "missing",
+        "extra",
+        "duplicate"
+      ],
+      "type": "object"
+    },
+    "blockers": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "generated_by": {
+      "type": "string"
+    },
+    "host": {
+      "const": "cruciblecraft:assembler"
+    },
+    "owner": {
+      "const": "portfolio:track_a/assembler_compact_pilot"
+    },
+    "provenance_kinds": {
+      "items": {
+        "$ref": "#/$defs/provenance_kind"
+      },
+      "type": "array"
+    },
+    "relations": {
+      "items": {
+        "$ref": "#/$defs/relation"
+      },
+      "maxItems": 50,
+      "minItems": 50,
+      "type": "array"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "source_map": {
+      "const": "gt.recipe.assembler"
+    },
+    "source_revision": {
+      "maxLength": 40,
+      "minLength": 40,
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "ASSEMBLER_COMPACT_ASSEMBLER_SOURCE_FROZEN",
+        "ASSEMBLER_COMPACT_ASSEMBLER_SOURCE_BLOCKED"
+      ]
+    },
+    "target_map": {
+      "const": "cruciblecraft:assembler"
+    },
+    "work_set": {
+      "additionalProperties": false,
+      "properties": {
+        "family_count": {
+          "const": 50
+        },
+        "family_ids": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 50,
+          "minItems": 50,
+          "type": "array"
+        },
+        "source_rows": {
+          "const": 50
+        },
+        "template_keys": {
+          "items": {
+            "pattern": "^gt\\.recipe\\.assembler#[0-9]{4}$",
+            "type": "string"
+          },
+          "maxItems": 50,
+          "minItems": 50,
+          "type": "array"
+        }
+      },
+      "required": [
+        "family_ids",
+        "template_keys",
+        "family_count",
+        "source_rows"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "source_revision",
+    "generated_by",
+    "host",
+    "owner",
+    "source_map",
+    "target_map",
+    "work_set",
+    "assignment",
+    "relations",
+    "provenance_kinds"
+  ],
+  "title": "assembler/compact compact recipe-family source",
+  "type": "object"
+}

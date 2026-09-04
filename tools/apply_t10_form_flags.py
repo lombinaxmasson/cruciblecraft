@@ -18,7 +18,7 @@ MATERIALS = (
     / "cruciblecraft"
     / "materials"
 )
-PROJECTION = ROOT / "tools" / "t10_preflight_projection.json"
+PROJECTION = ROOT / "tools" / "known_ingot_preflight_projection.json"
 
 MULTI_FLAG = "gt6:itemgenerator/multiingots"
 HOT_FLAG = "gt6:itemgenerator/hotingots"

@@ -18,7 +18,7 @@ if str(ROOT) not in sys.path:
 
 from tools import capability_ledger
 from tools import registry_identity
-from tools import t35_common as t35
+from tools import io_common as io
 
 GENERATED = ROOT / "src" / "generated" / "resources"
 EMI_PLUGIN_CLASS = (
@@ -35,7 +35,7 @@ def load_signoff(capability: dict[str, Any]) -> dict[str, Any]:
     path = ROOT / rel
     if not path.is_file():
         raise ValueError(f"{capability['slug']}: missing {rel}")
-    return t35.load_json(path)
+    return io.load_json(path)
 
 
 def check_signoff(
@@ -78,10 +78,10 @@ def check_signoff(
 
 def check_static_player_surface(slug: str, item_ids: list[str]) -> list[str]:
     errors: list[str] = []
-    english = t35.load_json(
+    english = io.load_json(
         GENERATED / "assets/cruciblecraft/lang/en_us.json"
     )
-    chinese = t35.load_json(
+    chinese = io.load_json(
         GENERATED / "assets/cruciblecraft/lang/zh_cn.json"
     )
     for item in item_ids:
@@ -147,7 +147,7 @@ def load_fresh_receipt(
         ]
     if not path.is_file():
         return None, [f"{slug}: missing {kind} receipt {path}"]
-    document = t35.load_json(path)
+    document = io.load_json(path)
     if not isinstance(document, dict):
         return None, [f"{slug}: {kind} receipt must be a JSON object"]
     return document, []
@@ -397,7 +397,7 @@ def runtime_smoke_errors(
 ) -> list[str]:
     if not path.is_file():
         return [f"{slug}: {runtime} did not write a smoke receipt"]
-    document = t35.load_json(path)
+    document = io.load_json(path)
     errors: list[str] = []
     if document.get("capability") != slug:
         errors.append(f"{slug}: {runtime} smoke capability mismatch")

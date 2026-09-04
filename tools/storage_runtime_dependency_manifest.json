@@ -1,0 +1,32 @@
+{
+  "b0_inputs": [
+    "minecraft:oak_planks",
+    "minecraft:chest",
+    "minecraft:book",
+    "minecraft:glass_bottle",
+    "cruciblecraft:steel",
+    "cruciblecraft:plastic",
+    "cruciblecraft:wood_treated",
+    "cruciblecraft:programmed_circuit"
+  ],
+  "external_cards": [
+    "T30",
+    "T36",
+    "T36-Repair",
+    "smelter/stone"
+  ],
+  "generated_by": "python tools/build_storage_runtime_dependency_manifest.py",
+  "must_not_expand": {
+    "recipe_gap": 3076,
+    "t36_machine_rows": 85
+  },
+  "notes": [
+    "Hopper remains T30 and is not re-registered by storage/lock.",
+    "Storage recipes are vanilla/GT shaped acquisition, not ordinary family completion."
+  ],
+  "recipe_closing_execution_gap": 3076,
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "STORAGE_LOCK_RUNTIME_DEPENDENCY_MANIFEST",
+  "t36_live_machine_rows": 85
+}

@@ -1,0 +1,295 @@
+{
+  "budget_evaluation": {
+    "hard_failures": [],
+    "metrics": {
+      "allocation_bytes": {
+        "actual": {
+          "max": 1048576,
+          "min": 0
+        },
+        "comparison_value": 1048576,
+        "hard_ceiling": 536870912,
+        "soft_budget": 134217728,
+        "status": "PASS"
+      },
+      "client_index_ms": {
+        "actual": {
+          "max": 10,
+          "min": 0
+        },
+        "comparison_value": 10,
+        "hard_ceiling": 3000,
+        "soft_budget": 1000,
+        "status": "PASS"
+      },
+      "client_reload_ms": {
+        "actual": {
+          "max": 3265,
+          "min": 0
+        },
+        "comparison_value": 3265,
+        "hard_ceiling": 10000,
+        "soft_budget": 5000,
+        "status": "PASS"
+      },
+      "datapack_authored_entries": {
+        "actual": 4,
+        "comparison_value": 4,
+        "hard_ceiling": 6600,
+        "soft_budget": 6000,
+        "status": "PASS"
+      },
+      "eager_publication_rows": {
+        "actual": 4,
+        "comparison_value": 4,
+        "hard_ceiling": 21000,
+        "soft_budget": 18000,
+        "status": "PASS"
+      },
+      "lazy_cache_ceiling_rows": {
+        "actual": 0,
+        "comparison_value": 0,
+        "hard_ceiling": 4096,
+        "soft_budget": 1024,
+        "status": "PASS"
+      },
+      "lazy_logical_rows": {
+        "actual": 0,
+        "comparison_value": 0,
+        "hard_ceiling": 56000,
+        "soft_budget": 16000,
+        "status": "PASS"
+      },
+      "lookup_candidate_count": {
+        "actual": {
+          "max": 1,
+          "min": 1
+        },
+        "comparison_value": 1,
+        "hard_ceiling": 128,
+        "soft_budget": 64,
+        "status": "PASS"
+      },
+      "lookup_p95_ns": {
+        "actual": {
+          "max": 1000000,
+          "min": 0
+        },
+        "comparison_value": 1000000,
+        "hard_ceiling": 2000000,
+        "soft_budget": 1000000,
+        "status": "PASS"
+      },
+      "retained_memory_bytes": {
+        "actual": {
+          "max": 65536,
+          "min": 0
+        },
+        "comparison_value": 65536,
+        "hard_ceiling": 536870912,
+        "soft_budget": 134217728,
+        "status": "PASS"
+      },
+      "server_index_ms": {
+        "actual": {
+          "max": 10,
+          "min": 0
+        },
+        "comparison_value": 10,
+        "hard_ceiling": 1000,
+        "soft_budget": 500,
+        "status": "PASS"
+      },
+      "server_reload_ms": {
+        "actual": {
+          "max": 3265,
+          "min": 0
+        },
+        "comparison_value": 3265,
+        "hard_ceiling": 10000,
+        "soft_budget": 5000,
+        "status": "PASS"
+      },
+      "sync_bytes": {
+        "actual": 2865,
+        "comparison_value": 2865,
+        "hard_ceiling": 67108864,
+        "soft_budget": 16777216,
+        "status": "PASS"
+      }
+    },
+    "pending_measurements": [],
+    "soft_exceeded": [],
+    "status": "PASS"
+  },
+  "currentness": {
+    "budget_policy": "tools/recipe_load_load_budget_policy.json",
+    "budget_policy_sha256": "d4e934d9753cd6d4bcac5867e9fb78b97d4191e1a5cb67042bb8886ee78d8e87",
+    "machine_tree_canonical_rows": 95,
+    "machine_tree_map_row_sha256": "e8a635d62d4c11b7995d64ec3c6cfe2a7038b24338bfb00920a614f442f9af99",
+    "machine_tree_recipe_maps": "tools/machine_tree_denominators/recipe_maps.json",
+    "projection_schema": "tools/recipe_load_projection.schema.json",
+    "projection_schema_sha256": "51e97fc4a0cbffc000773fa1805d6223ea369d26ae46256381e344119e20c674"
+  },
+  "delivery_phase": "T21",
+  "families": [
+    {
+      "authored_entries": 4,
+      "canonical_ids": [
+        "gt.recipe.mixer"
+      ],
+      "eager_publication_rows": 4,
+      "family": "t21/mixer-gunpowder-template",
+      "lazy_cache_ceiling_rows": 0,
+      "lazy_logical_rows": 0,
+      "logical_rows": 4,
+      "machine_tree_references": [
+        {
+          "canonical_id": "gt.recipe.mixer",
+          "classification": "in_scope",
+          "owner": "T15"
+        }
+      ],
+      "measurement_basis": {
+        "kind": "family_specific_measurement",
+        "measured_logical_rows": [
+          4
+        ],
+        "source": "Count: MEASURED — 4 source rows → 4 authored entries → 4 logical → 4 eager → 0 lazy, deterministic from fixed GT6 template replay. Timing: STATIC_INFERENCE — server_reload/client_index upper bounds include Python startup and artifact writes; isolated runtime measurement deferred to T21-K dedicated GameTest server."
+      },
+      "measurement_intervals": {
+        "allocation_bytes": {
+          "max": 1048576,
+          "min": 0
+        },
+        "client_index_ms": {
+          "max": 10,
+          "min": 0
+        },
+        "client_reload_ms": {
+          "max": 3265,
+          "min": 0
+        },
+        "lookup_candidate_count": {
+          "max": 1,
+          "min": 1
+        },
+        "lookup_p95_ns": {
+          "max": 1000000,
+          "min": 0
+        },
+        "retained_memory_bytes": {
+          "max": 65536,
+          "min": 0
+        },
+        "server_index_ms": {
+          "max": 10,
+          "min": 0
+        },
+        "server_reload_ms": {
+          "max": 3265,
+          "min": 0
+        }
+      },
+      "publication_account": {
+        "domain": "gt_recipe_family",
+        "gt_authored_entries": 4,
+        "gt_logical_rows": 4,
+        "vanilla_datapack_entries": 0
+      },
+      "publication_domain": "gt_recipe_family",
+      "ratios": {
+        "authored_to_eager": {
+          "denominator": 4,
+          "formula": "eager_publication_rows / authored_entries",
+          "numerator": 4,
+          "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+          "value": 1.0
+        },
+        "authored_to_logical": {
+          "denominator": 4,
+          "formula": "logical_rows / authored_entries",
+          "numerator": 4,
+          "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+          "value": 1.0
+        }
+      },
+      "strategy": "immediate",
+      "sync_bytes": 2865,
+      "vanilla_datapack_entries": 0
+    }
+  ],
+  "ledger": {
+    "aggregation": {
+      "counts": "sum of explicit family counts",
+      "lookup": "maximum family interval bounds; one lookup is not additive",
+      "reload_index_memory": "sum of family interval bounds"
+    },
+    "counts": {
+      "datapack_authored_entries": 4,
+      "eager_publication_rows": 4,
+      "lazy_cache_ceiling_rows": 0,
+      "lazy_logical_rows": 0,
+      "logical_rows": 4,
+      "sync_bytes": 2865
+    },
+    "measurement_intervals": {
+      "allocation_bytes": {
+        "max": 1048576,
+        "min": 0
+      },
+      "client_index_ms": {
+        "max": 10,
+        "min": 0
+      },
+      "client_reload_ms": {
+        "max": 3265,
+        "min": 0
+      },
+      "lookup_candidate_count": {
+        "max": 1,
+        "min": 1
+      },
+      "lookup_p95_ns": {
+        "max": 1000000,
+        "min": 0
+      },
+      "retained_memory_bytes": {
+        "max": 65536,
+        "min": 0
+      },
+      "server_index_ms": {
+        "max": 10,
+        "min": 0
+      },
+      "server_reload_ms": {
+        "max": 3265,
+        "min": 0
+      }
+    },
+    "publication_domains": {
+      "gt_authored_entries": 4,
+      "gt_logical_rows": 4,
+      "vanilla_datapack_entries": 0
+    },
+    "ratios": {
+      "authored_to_eager": {
+        "denominator": 4,
+        "formula": "eager_publication_rows / authored_entries",
+        "numerator": 4,
+        "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+        "value": 1.0
+      },
+      "authored_to_logical": {
+        "denominator": 4,
+        "formula": "logical_rows / authored_entries",
+        "numerator": 4,
+        "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+        "value": 1.0
+      }
+    }
+  },
+  "projection_id": "t21/mixer-gunpowder-template",
+  "schema_version": 2,
+  "status": "PASS"
+}

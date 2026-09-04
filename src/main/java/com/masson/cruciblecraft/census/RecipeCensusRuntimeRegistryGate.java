@@ -7,7 +7,7 @@ import net.minecraft.server.level.ServerLevel;
 
 /**
  * Bidirectional runtime registry equality gate for recipe census. Uses the
- * committed classpath fixture derived from {@code tools/t35_runtime_registry.json}.
+ * committed classpath fixture derived from the tooling runtime-registry artifact.
  * Test evidence only; not part of player runtime.
  */
 public final class RecipeCensusRuntimeRegistryGate {

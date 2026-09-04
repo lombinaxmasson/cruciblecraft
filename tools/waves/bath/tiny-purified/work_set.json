@@ -1,0 +1,157 @@
+{
+  "candidate_universe": true,
+  "families": [
+    {
+      "blocking_axes": [
+        "b0_acquisition"
+      ],
+      "current_owner": "coordination/multi_axis",
+      "expanded_count": 53,
+      "family_id": "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0072",
+      "host": "cruciblecraft:bath",
+      "missing_fluids": false,
+      "publication_group": "cruciblecraft:bath/tiny-purified/candidate",
+      "representation": "exact_multi",
+      "secondary_owner_tracks": [
+        "material_expression/form",
+        "object_expression/gt_prefix:crushedPurifiedTiny"
+      ],
+      "template_key": "gt.recipe.bath#0072",
+      "unique_kinds": [
+        "gt_prefix:crushedPurifiedTiny"
+      ]
+    },
+    {
+      "blocking_axes": [
+        "b0_acquisition"
+      ],
+      "current_owner": "coordination/multi_axis",
+      "expanded_count": 14,
+      "family_id": "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0098",
+      "host": "cruciblecraft:bath",
+      "missing_fluids": false,
+      "publication_group": "cruciblecraft:bath/tiny-purified/candidate",
+      "representation": "exact_multi",
+      "secondary_owner_tracks": [
+        "material_expression/form",
+        "object_expression/gt_prefix:crushedPurifiedTiny"
+      ],
+      "template_key": "gt.recipe.bath#0098",
+      "unique_kinds": [
+        "gt_prefix:crushedPurifiedTiny"
+      ]
+    },
+    {
+      "blocking_axes": [
+        "b0_acquisition"
+      ],
+      "current_owner": "object_expression/gt_prefix:crushedPurifiedTiny",
+      "expanded_count": 12,
+      "family_id": "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0107",
+      "host": "cruciblecraft:bath",
+      "missing_fluids": false,
+      "publication_group": "cruciblecraft:bath/tiny-purified/candidate",
+      "representation": "exact_multi",
+      "secondary_owner_tracks": [],
+      "template_key": "gt.recipe.bath#0107",
+      "unique_kinds": [
+        "gt_prefix:crushedPurifiedTiny"
+      ]
+    },
+    {
+      "blocking_axes": [
+        "b0_acquisition"
+      ],
+      "current_owner": "coordination/multi_axis",
+      "expanded_count": 11,
+      "family_id": "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0110",
+      "host": "cruciblecraft:bath",
+      "missing_fluids": false,
+      "publication_group": "cruciblecraft:bath/tiny-purified/candidate",
+      "representation": "exact_multi",
+      "secondary_owner_tracks": [
+        "material_expression/form",
+        "object_expression/gt_prefix:crushedPurifiedTiny"
+      ],
+      "template_key": "gt.recipe.bath#0110",
+      "unique_kinds": [
+        "gt_prefix:crushedPurifiedTiny"
+      ]
+    },
+    {
+      "blocking_axes": [
+        "b0_acquisition"
+      ],
+      "current_owner": "coordination/multi_axis",
+      "expanded_count": 5,
+      "family_id": "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0188",
+      "host": "cruciblecraft:bath",
+      "missing_fluids": false,
+      "publication_group": "cruciblecraft:bath/tiny-purified/candidate",
+      "representation": "exact_multi",
+      "secondary_owner_tracks": [
+        "material_expression/form",
+        "object_expression/gt_prefix:crushedPurifiedTiny"
+      ],
+      "template_key": "gt.recipe.bath#0188",
+      "unique_kinds": [
+        "gt_prefix:crushedPurifiedTiny"
+      ]
+    }
+  ],
+  "family_count": 5,
+  "family_ids": [
+    "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0072",
+    "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0098",
+    "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0107",
+    "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0110",
+    "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0188"
+  ],
+  "generated_by": "python tools/build_bath_tiny_purified_work_set.py",
+  "host": "cruciblecraft:bath",
+  "opening": {
+    "authored_entries": 6263,
+    "bath_identity_production_lock_sha256": "40414d2e7ab1c60631601752e81f1241741fdc53ca8b2b31d6dc5696d980decd",
+    "cache_ceiling_rows": 781,
+    "eager_rows": 14,
+    "execution_gap": 1354,
+    "lazy_rows": 50557
+  },
+  "owner": "portfolio:track_a/bath_tiny_purified_recycling_correction",
+  "owner_counts": {
+    "coordination/multi_axis": 4,
+    "object_expression/gt_prefix:crushedPurifiedTiny": 1
+  },
+  "production_authority": false,
+  "relation_count": 95,
+  "representation": {
+    "exact": 0,
+    "exact_multi": 5,
+    "exact_multi_relations": 95
+  },
+  "schema_version": 1,
+  "selection_rule": "family_id in bath/identity leftover Bath tiny-purified set and not in bath/mte/bath/remainder/bath/identity lock host==cruciblecraft:bath exact_multi",
+  "selection_sha256": "96f7c0766affc51c443ddf2f67f640027f941ac4773455729b4688c3c2d6253c",
+  "size_exception": {
+    "candidate_family_ceiling": 5,
+    "candidate_relation_ceiling": 95,
+    "correction_family_count": 13,
+    "exception_kind": "bath_host_remainder_recycling_correction",
+    "minimum_N": 1,
+    "padding_hosts_forbidden": [
+      "Mixer",
+      "Smelter",
+      "Centrifuge production"
+    ]
+  },
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "BATH_TINY_PURIFIED_WORK_SET_FROZEN",
+  "template_keys": [
+    "gt.recipe.bath#0072",
+    "gt.recipe.bath#0098",
+    "gt.recipe.bath#0107",
+    "gt.recipe.bath#0110",
+    "gt.recipe.bath#0188"
+  ],
+  "unique_active_card": "bath/tiny-purified"
+}

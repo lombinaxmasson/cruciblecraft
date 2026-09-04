@@ -12,7 +12,7 @@ from unittest import mock
 
 from tools import capability_ledger
 from tools import player_complete
-from tools import t35_common as t35
+from tools import io_common as files
 
 SLUG = "logistics/fluid-network/basic-transfer"
 
@@ -141,7 +141,7 @@ class PlayerCompleteTest(unittest.TestCase):
 
     def test_committed_receipt_cannot_be_used_as_fresh_proof(self) -> None:
         committed = (
-            t35.TOOLS
+            files.TOOLS
             / "waves"
             / "runtime"
             / "fluid-network-basic-transfer"

@@ -32,7 +32,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * tiny-purified Bath remainder compact-family harness. Mirrors
- * {@link BathMteHarnessTest} for namespace {@code t49}.
+ * {@link BathMteHarnessTest} for namespace {@code bath/tiny-purified}.
  * Locked equivalence fields: {@code shadow_order}, selected source recipe.
  */
 class BathTinyPurifiedHarnessTest {

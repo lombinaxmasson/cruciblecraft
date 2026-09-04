@@ -10,8 +10,8 @@ from tools.recipe_bulk.emit import semantic_replay_key
 from tools.recipe_bulk import shadow as shadow_mod
 from tools.recipe_bulk.waves import SHADOW_ORDER
 from tools.recipe_bulk.write_guard import ProductionWriteError, assert_not_production_write
-from tools import t37_common as t37
-from tools import t45_common as t45
+from tools import assembler_compact_common as assembler
+from tools import block_object_common as block_object
 
 ROOT = Path(__file__).resolve().parents[2]
 FIXTURES = ROOT / "src/test/resources/recipe_wave_shadow_fixtures"
@@ -47,30 +47,38 @@ class RecipeWaveShadowParityTest(unittest.TestCase):
 
         self.assertFalse(hasattr(shadow, "write_tree"))
         self.assertNotIn("write_tree", shadow.__dict__)
-        self.assertNotIn("tools.build_t37_assembler_recipes", getattr(adapters, "__dict__", {}))
-        self.assertNotIn("tools.build_t38_roaster_recipes", getattr(adapters, "__dict__", {}))
-        self.assertNotIn("tools.build_t41_assembler_recipes", getattr(adapters, "__dict__", {}))
+        self.assertNotIn("tools.build_assembler_compact_recipes", getattr(adapters, "__dict__", {}))
+        self.assertNotIn("tools.build_roaster_compact_recipes", getattr(adapters, "__dict__", {}))
+        self.assertNotIn("tools.build_assembler_wood_recipes", getattr(adapters, "__dict__", {}))
         self.assertIn("compile_wave", adapters.__dict__)
 
     def test_shadow_cannot_write_production_trees(self) -> None:
         with self.assertRaises(ProductionWriteError):
-            assert_not_production_write(t37.generated_family_files()[0])
+            assert_not_production_write(assembler.generated_family_files()[0])
         with self.assertRaises(ProductionWriteError):
-            assert_not_production_write(t45.generated_family_files()[0])
+            assert_not_production_write(block_object.generated_family_files()[0])
 
-    def test_shadow_order_is_t45_through_t37(self) -> None:
+    def test_shadow_order_is_semantic_reverse_dependency_order(self) -> None:
         self.assertEqual(
-            ("T45", "T43", "T41", "T40", "T39", "T38", "T37"),
+            (
+                "block/object",
+                "smelter/stone",
+                "assembler/wood",
+                "electrolyzer/compact",
+                "centrifuge/compact",
+                "roaster/compact",
+                "assembler/compact",
+            ),
             SHADOW_ORDER,
         )
 
-    def test_t45_and_t38_shadow_match_production(self) -> None:
-        t45_row = shadow_mod.compare_wave("T45")
-        self.assertTrue(t45_row["ok"], t45_row.get("mismatches"))
-        self.assertTrue(t45_row["byte_identity"])
-        t38_row = shadow_mod.compare_wave("T38")
-        self.assertTrue(t38_row["ok"], t38_row.get("mismatches"))
-        self.assertGreater(t38_row["relation_count"], t38_row["family_count"])
+    def test_block_and_roaster_shadow_match_production(self) -> None:
+        block_row = shadow_mod.compare_wave("block/object")
+        self.assertTrue(block_row["ok"], block_row.get("mismatches"))
+        self.assertTrue(block_row["byte_identity"])
+        roaster_row = shadow_mod.compare_wave("roaster/compact")
+        self.assertTrue(roaster_row["ok"], roaster_row.get("mismatches"))
+        self.assertGreater(roaster_row["relation_count"], roaster_row["family_count"])
 
     def test_full_shadow_rebuild_is_deterministic(self) -> None:
         document = shadow_mod.compare_all(persist_ir=False)

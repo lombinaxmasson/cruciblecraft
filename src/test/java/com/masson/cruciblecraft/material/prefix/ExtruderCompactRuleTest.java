@@ -33,9 +33,9 @@ class ExtruderCompactRuleTest {
             "src/component_rule_generated/resources/data/cruciblecraft/"
                     + "recipe/extruder/compact");
     private static final Path EXPECTED =
-            Path.of("tools/t14_extruder_expected.json");
+            Path.of("tools/extruder_expected.json");
     private static final Path READINESS =
-            Path.of("tools/t14_extruder_readiness.json");
+            Path.of("tools/extruder_readiness.json");
 
     @BeforeEach
     void bootstrapPrefixes() {
@@ -122,7 +122,7 @@ class ExtruderCompactRuleTest {
         assertEquals(2782, scope.get("runtime_publication").getAsInt());
         assertEquals(
                 257,
-                scope.get("t8_pipe_publication_separate_owner").getAsInt());
+                scope.get("pipe_publication_separate_owner").getAsInt());
     }
 
     @Test

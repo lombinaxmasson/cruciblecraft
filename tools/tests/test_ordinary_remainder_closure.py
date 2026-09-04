@@ -6,13 +6,13 @@ import unittest
 from pathlib import Path
 
 from tools import closeout_seal
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk import ordinary_r0 as r0
 from tools.recipe_bulk.slugs import KNOWN_SEMANTIC_SLUGS
 from tools.wave_closeout import spec_for
 
 SLUG = "recipe-portfolio/ordinary-remainder-closure"
-ROOT = t35.TOOLS / "waves" / "recipe-portfolio" / "ordinary-remainder-closure"
+ROOT = census.TOOLS / "waves" / "recipe-portfolio" / "ordinary-remainder-closure"
 HOSTS = (
     "drying/ordinary-closure",
     "electrolyzer/ordinary-closure",
@@ -57,8 +57,8 @@ class OrdinaryRemainderClosureTest(unittest.TestCase):
         completion = 0
         reclass = 0
         for slug in HOSTS:
-            census = t35.load_json(
-                t35.TOOLS / "waves" / Path(*slug.split("/")) / "census_delta.json"
+            census = census.load_json(
+                census.TOOLS / "waves" / Path(*slug.split("/")) / "census_delta.json"
             )
             completion += int(census["completion_delta"])
             reclass += int(census["reclassification_delta"])
@@ -68,10 +68,10 @@ class OrdinaryRemainderClosureTest(unittest.TestCase):
         self.assertEqual(334, completion + reclass)
 
     def test_program_artifacts_are_ready(self) -> None:
-        readiness = t35.load_json(ROOT / "readiness.json")
-        census = t35.load_json(ROOT / "census_delta.json")
-        deferred = t35.load_json(ROOT / "deferred_ledger.json")
-        gap = t35.load_json(ROOT / "gap_replay.json")
+        readiness = census.load_json(ROOT / "readiness.json")
+        census = census.load_json(ROOT / "census_delta.json")
+        deferred = census.load_json(ROOT / "deferred_ledger.json")
+        gap = census.load_json(ROOT / "gap_replay.json")
         self.assertEqual("WAVE_READY", readiness["status"])
         self.assertIsNone(readiness["unique_active_wave"])
         self.assertTrue(readiness["next_unassigned"])
@@ -95,7 +95,7 @@ class OrdinaryRemainderClosureTest(unittest.TestCase):
         self.assertFalse(deferred["one_x_joint_exit"])
 
     def test_proven_new_deferred_have_owner_and_recheck(self) -> None:
-        deferred = t35.load_json(ROOT / "deferred_ledger.json")
+        deferred = census.load_json(ROOT / "deferred_ledger.json")
         rows = deferred["proven_new_deferred"]
         self.assertEqual(26, len(rows))
         recycling = [row for row in rows if row["future_owner"] == "later:recycling"]
@@ -114,14 +114,14 @@ class OrdinaryRemainderClosureTest(unittest.TestCase):
 
     def test_program_seal_is_current(self) -> None:
         self.assertEqual([], closeout_seal.check_wave_seal(SLUG))
-        seal = t35.load_json(ROOT / "closeout_seal.json")
+        seal = census.load_json(ROOT / "closeout_seal.json")
         self.assertEqual("SEALED", seal["status"])
         self.assertEqual(0, int(seal["remaining_recipe_gap"]))
         self.assertEqual(0, int(seal["complete_family_count"]))
 
     def test_card_plan_is_archived(self) -> None:
         closed = (
-            t35.ROOT
+            census.ROOT
             / "docs"
             / "history"
             / "card-plans"
@@ -129,7 +129,7 @@ class OrdinaryRemainderClosureTest(unittest.TestCase):
             / "Ordinary尾账收口与封板修复详细计划.md"
         )
         active = (
-            t35.ROOT
+            census.ROOT
             / "docs"
             / "history"
             / "card-plans"

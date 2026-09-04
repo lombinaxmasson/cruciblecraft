@@ -12,9 +12,9 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tools import t35_common as t35
+from tools import io_common as io
 
-TOOLS = t35.TOOLS
+TOOLS = io.TOOLS
 AUTHORITY = TOOLS / "material_form_authority.json"
 SCHEMA = TOOLS / "material_form_authority.schema.json"
 OUTPUT = AUTHORITY
@@ -29,7 +29,7 @@ GATE_OUT = (
 )
 
 def load_authority() -> dict[str, Any]:
-    document = t35.load_json(AUTHORITY)
+    document = io.load_json(AUTHORITY)
     if document.get("schema_version") != 1:
         raise ValueError("material form authority schema_version must be 1")
     if document.get("status") != "MATERIAL_FORM_AUTHORITY":
@@ -121,7 +121,7 @@ def source_by_id(source_id: str, document: dict[str, Any] | None = None) -> dict
 
 
 def build() -> dict[str, Any]:
-    document = json.loads(t35.stable_json(load_authority()))
+    document = json.loads(io.stable_json(load_authority()))
     java_overlay_sections(document)
     for source in document.get("sources") or []:
         path = ROOT / str(source["path"])
@@ -131,8 +131,8 @@ def build() -> dict[str, Any]:
     for key, expected in (
         ("factual_ore_materials", 137),
         ("registered_ore_materials", 147),
-        ("t38_acquisition_ore_delta", 10),
-        ("t5_semantic_vein_ledger", 8),
+        ("worldgen_acquisition_ore_delta", 10),
+        ("chemical_semantic_vein_ledger", 8),
     ):
         if int(denominators.get(key) or 0) != expected:
             raise ValueError(f"typed ore denominator {key} drifted")
@@ -142,13 +142,13 @@ def build() -> dict[str, Any]:
 
 def write() -> dict[str, Any]:
     document = build()
-    t35.write_stable(OUTPUT, document)
+    io.write_stable(OUTPUT, document)
     return document
 
 
 def patch_committed_gate_schema() -> None:
     """Add schema-v2 authority metadata without changing registered materials."""
-    gate = without_workflow_metadata(t35.load_json(GATE_OUT))
+    gate = without_workflow_metadata(io.load_json(GATE_OUT))
     materials = gate.get("materials")
     gate["schema_version"] = 2
     gate["authority"] = {
@@ -160,17 +160,17 @@ def patch_committed_gate_schema() -> None:
     )
     if gate.get("materials") != materials:
         raise ValueError("refusing to change materials while patching gate schema")
-    t35.write_stable(GATE_OUT, gate)
+    io.write_stable(GATE_OUT, gate)
 
 
 def check() -> list[str]:
-    expected = t35.stable_json(build())
+    expected = io.stable_json(build())
     if not OUTPUT.is_file():
         return ["missing tools/material_form_authority.json"]
     actual = OUTPUT.read_text(encoding="utf-8")
     if actual != expected:
-        return [t35.stale_error(OUTPUT, expected, actual)]
-    gate = t35.load_json(GATE_OUT)
+        return [io.stale_error(OUTPUT, expected, actual)]
+    gate = io.load_json(GATE_OUT)
     cleaned_gate = without_workflow_metadata(gate)
     errors: list[str] = []
     if gate != cleaned_gate:

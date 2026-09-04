@@ -6,7 +6,7 @@ Git 负责保存和审查变更；内容摘要不作为开发流程的防篡改�
 
 全项目进度按
 [能力交付流程](capability-delivery-workflow.md) 晋级。编号卡、历史波次和
-`tools/full_verification_report.json` 都只保留为只读档案。
+编号卡历史收据都已退出工作树；不要再把它们当现行门。
 
 ## 日常入口
 
@@ -61,12 +61,14 @@ python tools/build_player_complete.py --run `
 边界由 `python tools/check_no_workflow_hashes.py --check` 锁定。active profile 可达文件中
 不得新增 `inputs_sha256`、`builder_sha256`、`semantic_root_sha256`、
 `currentness_root_sha256`、`output_hashes` 或等价的开发证明链。
+`verification` profile 同时跑 `python tools/check_zero_milestone_names.py --quick`。
 
 ## 历史档案
 
-编号 builders、currentness sidecars、verification sessions、DAG 与 closeout seals
-列入 `tools/legacy_verification_index.json`。它们保持可读但不会被 active policy import、
-调度、重签或用于路线图进度。需要历史调查时直接读取原字节；不要把它们重新接回 CI。
+编号 builders、currentness sidecars、verification sessions 与 DAG
+列入 `tools/legacy_verification_index.json`。它们不会被 active policy import、
+调度、重签或用于路线图进度。numbered closeout seal 与 `archive/sealed` 已从工作树
+删除；需要历史调查时从 Git 历史读原字节。不要把它们重新接回 CI。
 
 已知验证债务见
 [`tools/known_issues/verification-debt.json`](../../tools/known_issues/verification-debt.json)。

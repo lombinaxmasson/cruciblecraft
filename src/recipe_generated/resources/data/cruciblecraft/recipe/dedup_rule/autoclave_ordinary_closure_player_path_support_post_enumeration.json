@@ -1,0 +1,21 @@
+{
+  "match_mode": "logical_input_and_output_identity",
+  "owner": "autoclave/ordinary-closure",
+  "phase": "post_enumeration",
+  "require_output_match": false,
+  "rule_id": "cruciblecraft:autoclave_ordinary_closure_player_path_support_post_enumeration",
+  "target_map": "cruciblecraft:autoclave",
+  "type": "cruciblecraft:compact_dedup_rule",
+  "victim_selector": {
+    "kind": "recipe_id_prefix",
+    "prefixes": [
+      "player_path_support/"
+    ]
+  },
+  "winner_selector": {
+    "kind": "recipe_id_prefix",
+    "prefixes": [
+      "autoclave/ordinary_closure/"
+    ]
+  }
+}

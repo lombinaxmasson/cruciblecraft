@@ -1,0 +1,273 @@
+{
+  "core_catalog": {
+    "path": "src/main/resources/data/cruciblecraft/worldgen_catalog/ore_veins.json",
+    "preserved_rows": 129
+  },
+  "generated_by": "python tools/build_t38_source_backed_acquisition.py",
+  "required_forms": {
+    "arsenopyrite": [
+      "ore",
+      "raw_ore",
+      "crushed_ore",
+      "washed_crushed_ore",
+      "centrifuged_crushed_ore",
+      "purified_dust",
+      "dust"
+    ],
+    "chalcopyrite": [
+      "ore",
+      "raw_ore",
+      "crushed_ore",
+      "washed_crushed_ore",
+      "centrifuged_crushed_ore",
+      "purified_dust",
+      "dust"
+    ],
+    "cooperite": [
+      "ore",
+      "raw_ore",
+      "crushed_ore",
+      "washed_crushed_ore",
+      "centrifuged_crushed_ore",
+      "purified_dust",
+      "dust"
+    ],
+    "gold": [
+      "ore",
+      "raw_ore"
+    ],
+    "iridium": [
+      "ore",
+      "raw_ore"
+    ],
+    "molybdenite": [
+      "ore",
+      "raw_ore",
+      "crushed_ore",
+      "washed_crushed_ore",
+      "centrifuged_crushed_ore",
+      "purified_dust",
+      "dust"
+    ],
+    "molybdenum": [
+      "ore",
+      "raw_ore"
+    ],
+    "palladium": [
+      "ore",
+      "raw_ore"
+    ],
+    "powellite": [
+      "ore",
+      "raw_ore"
+    ],
+    "pyrite": [
+      "ore",
+      "raw_ore"
+    ],
+    "sperrylite": [
+      "ore",
+      "raw_ore"
+    ],
+    "wulfenite": [
+      "ore",
+      "raw_ore"
+    ]
+  },
+  "required_materials": [
+    "arsenopyrite",
+    "chalcopyrite",
+    "cooperite",
+    "molybdenite"
+  ],
+  "schema_version": 1,
+  "source": {
+    "path": "tools/t20_gt6_worldgen_source.json",
+    "sha256": "b6f47482eb0fa1489bccc53a230cafebb34c6138766abd543fddf0f88678c392"
+  },
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T38_SOURCE_BACKED_ACQUISITION_READY",
+  "veins": [
+    {
+      "between": [
+        {
+          "material": "arsenopyrite",
+          "weight": 1
+        }
+      ],
+      "bottom": [
+        {
+          "material": "chalcopyrite",
+          "weight": 1
+        }
+      ],
+      "catalog_material": "gold",
+      "density": 0.1875,
+      "generation_chance": 0.270833,
+      "horizontal_radius": 16,
+      "id": "large_gold_sulfide_vein",
+      "max_y": 30,
+      "min_y": 20,
+      "profile_version": 2,
+      "provenance": {
+        "field_status": {
+          "dimension": "DESIGN_POLICY",
+          "distribution": "SOURCE_DERIVED",
+          "geometry": "SOURCE_DERIVED",
+          "material_layers": "SOURCE_BACKED",
+          "max_y": "SOURCE_BACKED",
+          "min_y": "SOURCE_BACKED"
+        },
+        "role_substitutions": [],
+        "source_fact_id": "ore.large.gold",
+        "source_kind": "UNIQUE_LARGE_ROLE_SOURCE",
+        "source_line": 903,
+        "status": "SOURCE_DERIVED",
+        "t38_player_path_materials": [
+          "arsenopyrite",
+          "chalcopyrite"
+        ],
+        "transformations": [
+          "large_geometry_v1",
+          "identity_preserving_profile_v2",
+          "DESIGN_POLICY_OVERWORLD_ACCESS"
+        ]
+      },
+      "region_size_chunks": 32,
+      "salt": 7481171,
+      "spread": [
+        {
+          "material": "gold",
+          "weight": 1
+        }
+      ],
+      "top": [
+        {
+          "material": "pyrite",
+          "weight": 1
+        }
+      ],
+      "vertical_radius": 3
+    },
+    {
+      "between": [
+        {
+          "material": "sperrylite",
+          "weight": 1
+        }
+      ],
+      "bottom": [
+        {
+          "material": "palladium",
+          "weight": 1
+        }
+      ],
+      "catalog_material": "platinum",
+      "density": 0.1875,
+      "generation_chance": 0.270833,
+      "horizontal_radius": 16,
+      "id": "large_platinum_group_vein",
+      "max_y": 50,
+      "min_y": 40,
+      "profile_version": 2,
+      "provenance": {
+        "field_status": {
+          "dimension": "DESIGN_POLICY",
+          "distribution": "SOURCE_DERIVED",
+          "geometry": "SOURCE_DERIVED",
+          "material_layers": "SOURCE_BACKED",
+          "max_y": "SOURCE_BACKED",
+          "min_y": "SOURCE_BACKED"
+        },
+        "role_substitutions": [],
+        "source_fact_id": "ore.large.platinum",
+        "source_kind": "UNIQUE_LARGE_ROLE_SOURCE",
+        "source_line": 904,
+        "status": "SOURCE_DERIVED",
+        "t38_player_path_materials": [
+          "cooperite"
+        ],
+        "transformations": [
+          "large_geometry_v1",
+          "identity_preserving_profile_v2",
+          "DESIGN_POLICY_OVERWORLD_ACCESS"
+        ]
+      },
+      "region_size_chunks": 32,
+      "salt": -1062450783,
+      "spread": [
+        {
+          "material": "iridium",
+          "weight": 1
+        }
+      ],
+      "top": [
+        {
+          "material": "cooperite",
+          "weight": 1
+        }
+      ],
+      "vertical_radius": 3
+    },
+    {
+      "between": [
+        {
+          "material": "molybdenum",
+          "weight": 1
+        }
+      ],
+      "bottom": [
+        {
+          "material": "molybdenite",
+          "weight": 1
+        }
+      ],
+      "catalog_material": "molybdenum",
+      "density": 0.1875,
+      "generation_chance": 0.270833,
+      "horizontal_radius": 16,
+      "id": "large_molybdenum_vein",
+      "max_y": 50,
+      "min_y": 20,
+      "profile_version": 2,
+      "provenance": {
+        "field_status": {
+          "dimension": "DESIGN_POLICY",
+          "distribution": "SOURCE_DERIVED",
+          "geometry": "SOURCE_DERIVED",
+          "material_layers": "SOURCE_BACKED",
+          "max_y": "SOURCE_BACKED",
+          "min_y": "SOURCE_BACKED"
+        },
+        "role_substitutions": [],
+        "source_fact_id": "ore.large.molybdenum",
+        "source_kind": "UNIQUE_LARGE_ROLE_SOURCE",
+        "source_line": 905,
+        "status": "SOURCE_DERIVED",
+        "t38_player_path_materials": [
+          "molybdenite"
+        ],
+        "transformations": [
+          "large_geometry_v1",
+          "identity_preserving_profile_v2",
+          "DESIGN_POLICY_OVERWORLD_ACCESS"
+        ]
+      },
+      "region_size_chunks": 32,
+      "salt": -646567941,
+      "spread": [
+        {
+          "material": "powellite",
+          "weight": 1
+        }
+      ],
+      "top": [
+        {
+          "material": "wulfenite",
+          "weight": 1
+        }
+      ],
+      "vertical_radius": 3
+    }
+  ]
+}

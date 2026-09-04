@@ -11,15 +11,15 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools import block_art as art
-from tools import t35_common as t35
-from tools import t48_common as common
+from tools import census_common as census
+from tools import bath_identity_common as common
 
 OUTPUT = art.MANIFEST
 
 
 def build() -> dict[str, Any]:
     if OUTPUT.is_file():
-        return t35.load_json(OUTPUT)
+        return census.load_json(OUTPUT)
     return art.copy_and_write()
 
 
@@ -28,25 +28,25 @@ def write() -> dict[str, Any]:
     errors = art.check_payload(document)
     if errors:
         raise ValueError("; ".join(errors))
-    t35.write_stable(OUTPUT, document)
-    t35.write_stable(art.BUNDLED_INDEX, art.bundled_index(document))
+    census.write_stable(OUTPUT, document)
+    census.write_stable(art.BUNDLED_INDEX, art.bundled_index(document))
     return document
 
 
 def check() -> list[str]:
     if not OUTPUT.is_file():
-        return [f"missing {t35.relative(OUTPUT)}"]
+        return [f"missing {census.relative(OUTPUT)}"]
     try:
-        document = t35.load_json(OUTPUT)
+        document = census.load_json(OUTPUT)
     except ValueError as exc:
         return [str(exc)]
     errors = art.check_payload(document)
     if art.BUNDLED_INDEX.is_file():
-        bundled = t35.load_json(art.BUNDLED_INDEX)
+        bundled = census.load_json(art.BUNDLED_INDEX)
         if bundled != art.bundled_index(document):
             errors.append("bundled block art index drifted from manifest")
     else:
-        errors.append(f"missing bundled index {t35.relative(art.BUNDLED_INDEX)}")
+        errors.append(f"missing bundled index {census.relative(art.BUNDLED_INDEX)}")
     return errors
 
 

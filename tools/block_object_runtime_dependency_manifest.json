@@ -1,0 +1,154 @@
+{
+  "block_object_trees": {
+    "generated_recipes": {
+      "path": "src/recipe_generated/resources/data/cruciblecraft/recipe",
+      "sha256": "59a6f1c96a6fde445dd244bd1574af6e10b4af3e8f07aba0e8c2434be9056fd0"
+    },
+    "locked_support": {
+      "path": "src/block_object_support_generated/resources/data/cruciblecraft/block_object_player_path_support",
+      "sha256": "942dc6589bd3e12dc24fc2c57779c3da00cd6a1a91a9dc6e49a522c11292aa9e"
+    }
+  },
+  "centrifuge_premerge_whitelist_relaxed": false,
+  "compact_runtime": {
+    "codec": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactGTRecipeFamilyDefinition.java",
+      "sha256": "c3331a5f0d662b81965a02c880c7b66cfb9be657bd379f45c32e98c4337ac8da"
+    },
+    "component_index": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/ComponentIngredientIndex.java",
+      "sha256": "8b1e0fc3eb3148ea9cea71a16aca351e2de06bee468091e4b004cc2e4ebf2423"
+    },
+    "dedup_rule_definition": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactDedupRuleDefinition.java",
+      "sha256": "9482a0b92aa0f88523aa843dfc45f918a097cdf881548573b154b95283e19a63"
+    },
+    "dedup_rule_schema": {
+      "path": "src/main/resources/data/cruciblecraft/schema/compact_dedup_rule.schema.json",
+      "sha256": "71eaca72e18bb5d807c1220fcfca9a1f25f7206b98f1af938f0746c234ca268c"
+    },
+    "dedup_rules": {
+      "path": "src/compact_recipe_policy_generated/resources",
+      "sha256": "ccd59321ce3768e87675dc364320197590dc9f0a9d5bf5a76d63a7a6fa16519f"
+    },
+    "deduplicator": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeDeduplicator.java",
+      "sha256": "f3da2b6bd7af9a262193999030f474a4a7039dda1955704b16e63957eae38909"
+    },
+    "gt_block_object_catalog": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/item/GtBlockObjectCatalog.java",
+      "sha256": "0d05b4b45ebf20dd82829d9b655c231a206cf56bd0b840a99e7d33f9389dcaf6"
+    },
+    "loader": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeMapLoader.java",
+      "sha256": "4271b1282e558c71ea156440a2c4cb7414208310735a19f6fbc04574549624b9"
+    },
+    "provider": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeFamilyProvider.java",
+      "sha256": "0e622d17c2b14d4c1330de24bdc7bbf796c09912cea8f9e6e89577fa6320c0d4"
+    },
+    "publication_group_key": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/PublicationGroupKey.java",
+      "sha256": "d667253794440ebda9437565bda38293294820333da635fb89f0e27c6f235b51"
+    },
+    "publication_policy": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactPublicationPolicy.java",
+      "sha256": "074b99fce4e2ce25e4c636d7f14e1af9e44288c83bb240d78d0760d22c09c19e"
+    },
+    "publication_policy_definition": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactPublicationPolicyDefinition.java",
+      "sha256": "a0212b400d574a9a0e9e572a66a194ba135619c93b4da2533e8720709348e5e8"
+    },
+    "publication_policy_schema": {
+      "path": "src/main/resources/data/cruciblecraft/schema/compact_publication_policy.schema.json",
+      "sha256": "7c4f9a640001b4c76afccf41e6f2c8f3668065b4507b52a8b1597621b6e2ced8"
+    },
+    "schema": {
+      "path": "tools/compact_recipe_family_source.schema.json",
+      "sha256": "8457c6c942c99506fe861611eba7a679ae1b4b4d2071a42a1593aa1f1a46f2d1"
+    },
+    "shard_router": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeShardRouter.java",
+      "sha256": "67fba469163b506be0d309d6f03d51b40a69ad46523901d82a0ea26ae34cb514"
+    }
+  },
+  "historical_java_block_object_whitelist": false,
+  "hosts": {
+    "blocks": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+      "sha256": "bf9767651de2437959066c50e39749a7b3e968db955c8a9fcea46bd0db3bb2b7"
+    },
+    "items": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+      "sha256": "0b50cbd47534463a5abc80fe78f30f3dde627ab52ad69a3f5d8ca4322fdfeb99"
+    },
+    "processing_machines": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+      "sha256": "f8863bfa7b48d568f9366a75b5d45b50e202bcf2130c090f358221dc63d1d1ab"
+    },
+    "recipe_maps": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "sha256": "f6408d65eb64a1781e81e8f0eadc6f8db117133e4bcae26fbdfd00e7e01ae8fe"
+    }
+  },
+  "isolation": {
+    "build_gradle": {
+      "path": "build.gradle",
+      "sha256": "b579f35c92fa9a1bc0f23a104e59cc5f13630209a23881f945a43319f1e7e4cf"
+    },
+    "gametest_java": {
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/BlockObjectGameTests.java",
+      "sha256": "4bb0d3fb9c1fdfd76e78cbc1f1584c82f01095f5f419a55561b332b48eb2ca6c"
+    },
+    "gitignore": {
+      "path": ".gitignore",
+      "sha256": "91274a928d9a9508434e983ad673128fdf979cf69d8abe089ccc6b1a865531ad"
+    }
+  },
+  "overlays": {
+    "block_object_catalog": {
+      "path": "tools/block_object_catalog.json",
+      "sha256": "0bb6f4664b3057146ebc04d6c2522a2f3c2a0d5e5e5f20308f25f0310b9454ae"
+    },
+    "candidate_selection": {
+      "path": "tools/block_object_candidate_selection.json",
+      "sha256": "53f81e41b4e1c2bc2b4605abab02ee4b00af88a092b80c1cfe09a824eb940105"
+    },
+    "catalog_work_set": {
+      "path": "tools/block_object_work_set.json",
+      "sha256": "ae34f1464690c484d54c640ed16215afe758217c91d93b86c71bfb5a49d292af"
+    },
+    "production_lock": {
+      "path": "tools/block_object_production_lock.json",
+      "sha256": "c64576f8f14cf19d6a6f62dfc3995355318ecd34fb0537ab406fab741b99aaba"
+    },
+    "publication_group_manifest": {
+      "path": "tools/block_object_publication_group_manifest.json",
+      "sha256": "272c67ef7571e4d13a6f4f706d86c3d74783afd0126b2eff2202244a165e948c"
+    },
+    "shard_manifest": {
+      "path": "tools/block_object_shard_manifest.json",
+      "sha256": "5b00de3f973679320adf30d1c736fb40868cafca877110ced0e92bda2ad35193"
+    },
+    "source": {
+      "path": "tools/block_object_source.json",
+      "sha256": "b3ef945fbec48a1ee79a6b0e271d35f792b14bea160f0f539c0ea0e644b714c3"
+    }
+  },
+  "schema_version": 1,
+  "status": "BLOCK_OBJECT_RUNTIME_DEPENDENCIES_BOUND",
+  "verification": {
+    "builder_policy": {
+      "path": "tools/verification_builder_policy.json",
+      "sha256": "dc729c5d5647300b5ffec2582a3ab7e8368a002bce6efff9babc1d54f3efc90b"
+    },
+    "profiles": {
+      "path": "tools/verification_profiles.json",
+      "sha256": "002623de6bdd43e817db96fa52335ea8c4718132e46f1b1466d860a8185fd18e"
+    },
+    "workflow": {
+      "path": "docs/current/recipe-wave-workflow.md",
+      "sha256": "00d7a2fd5a68843239f0d72e1478f1c9bb0fdb6a89aaad106108cc8e1fdedb25"
+    }
+  }
+}

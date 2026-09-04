@@ -14,7 +14,7 @@ if str(ROOT) not in sys.path:
 
 from tools import closeout_seal
 from tools import recycling_deferred_scope as scope
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk.slugs import KNOWN_SEMANTIC_SLUGS
 from tools.wave_closeout import known_slugs
 from tools.wave_closeout import spec_for
@@ -30,14 +30,14 @@ def write_child(slug: str) -> dict[str, Any]:
     documents = scope.documents(child)
     root = _root(slug)
     root.mkdir(parents=True, exist_ok=True)
-    t35.write_stable(root / "wave.json", documents["wave"])
-    t35.write_stable(root / "scope_dispositions.json", documents["scope"])
-    t35.write_stable(root / "census_delta.json", documents["census"])
-    t35.write_stable(root / "topology.json", documents["topology"])
-    t35.write_stable(root / "readiness.json", documents["readiness"])
-    t35.write_stable(root / "closeout_seal.json", scope.seal_document(child, root))
+    census.write_stable(root / "wave.json", documents["wave"])
+    census.write_stable(root / "scope_dispositions.json", documents["scope"])
+    census.write_stable(root / "census_delta.json", documents["census"])
+    census.write_stable(root / "topology.json", documents["topology"])
+    census.write_stable(root / "readiness.json", documents["readiness"])
+    census.write_stable(root / "closeout_seal.json", scope.seal_document(child, root))
     generated = (
-        t35.ROOT
+        census.ROOT
         / "src"
         / "recipe_generated"
         / "resources"
@@ -93,16 +93,16 @@ def check_child(slug: str) -> list[str]:
         ("scope_dispositions.json", "scope"),
         ("wave.json", "wave"),
     ):
-        committed = t35.load_json(root / name)
-        drift = t35.first_json_diff(live[key], committed)
+        committed = census.load_json(root / name)
+        drift = census.first_json_diff(live[key], committed)
         if drift:
             errors.append(f"{name} drifted: {drift}")
-    readiness = t35.load_json(root / "readiness.json")
+    readiness = census.load_json(root / "readiness.json")
     if readiness.get("status") != child.status:
         errors.append(f"readiness status {readiness.get('status')}")
     if int(readiness.get("evidence", {}).get("completion_delta") or 0) != 0:
         errors.append("scope child must not complete families as recipes")
-    census = t35.load_json(root / "census_delta.json")
+    census = census.load_json(root / "census_delta.json")
     remaining = census.get("remaining_ordinary") or {}
     expected_recycling = child.opening_deferred_recycling - child.drop_recycling
     expected_total = child.opening_deferred_total - child.drop_total
@@ -110,7 +110,7 @@ def check_child(slug: str) -> list[str]:
         errors.append("deferred recycling arithmetic drifted")
     if remaining.get("deferred_total") != expected_total:
         errors.append("deferred total arithmetic drifted")
-    dispositions = t35.load_json(root / "scope_dispositions.json").get("dispositions") or []
+    dispositions = census.load_json(root / "scope_dispositions.json").get("dispositions") or []
     if len(dispositions) != child.owns_families:
         errors.append("disposition count drifted from owns_families")
     kinds = {str(row.get("disposition") or "") for row in dispositions}

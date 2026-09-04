@@ -1,0 +1,64 @@
+{
+  "delivery_phase": "assembler/compact",
+  "families": [
+    {
+      "authored_entries": 50,
+      "canonical_ids": [
+        "gt.recipe.assembler"
+      ],
+      "eager_publication_rows": 14,
+      "family": "assembler/compact/assembler-pilot",
+      "lazy_cache_ceiling_rows": 8,
+      "lazy_logical_rows": 36,
+      "logical_rows": 50,
+      "measurement_basis": {
+        "kind": "family_specific_measurement",
+        "measured_logical_rows": [
+          50
+        ],
+        "source": "assembler/compact R4 1x=50 JUnit CompactRecipeFamilyT37MeasurementHarness. Production winner hybrid derived by tools/build_assembler_compact_recipe_load_benchmark.py (14 eager / 36 lazy / cache 8). Intervals are p50–p95 of the current hybrid candidate; ns timings convert with ceil-to-ms. Card-level cache 8 is not copied into per-family rows."
+      },
+      "measurement_intervals": {
+        "allocation_bytes": {
+          "max": 236336,
+          "min": 236168
+        },
+        "client_index_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "client_reload_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "lookup_candidate_count": {
+          "max": 42,
+          "min": 42
+        },
+        "lookup_p95_ns": {
+          "max": 87368,
+          "min": 68362
+        },
+        "retained_memory_bytes": {
+          "max": 5150,
+          "min": 5150
+        },
+        "server_index_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "server_reload_ms": {
+          "max": 1,
+          "min": 1
+        }
+      },
+      "publication_domain": "gt_recipe_family",
+      "strategy": "hybrid",
+      "sync_bytes": 5150,
+      "vanilla_datapack_entries": 0
+    }
+  ],
+  "projection_id": "assembler/compact/assembler-pilot",
+  "schema_version": 2,
+  "status": "FAMILY_LOAD_PROJECTION_INPUT"
+}

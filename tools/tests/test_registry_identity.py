@@ -5,7 +5,7 @@ from __future__ import annotations
 import unittest
 
 from tools import registry_identity as identity
-from tools import t35_common as t35
+from tools import io_common as io
 
 
 class RegistryIdentityTest(unittest.TestCase):

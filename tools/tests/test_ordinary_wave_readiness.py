@@ -117,15 +117,15 @@ class OrdinaryWaveReadyTest(unittest.TestCase):
         self.assertIn("write-once", str(raised.exception))
 
     def test_live_on_disk_status_matches_derivation(self) -> None:
-        from tools import t35_common as t35
+        from tools import census_common as census
 
         for slug in ("smelter/ordinary-closure", "mixer/ordinary-closure"):
             verdict = wave.evaluate_live_wave_ready(slug)
-            document = t35.load_json(wave.wave_dir(slug) / "readiness.json")
+            document = census.load_json(wave.wave_dir(slug) / "readiness.json")
             self.assertEqual(verdict["status"], document.get("status"))
             self.assertTrue(verdict["ready"])
             self.assertEqual("WAVE_READY", document.get("status"))
-        mixer = t35.load_json(wave.wave_dir("mixer/ordinary-closure") / "census_delta.json")
+        mixer = census.load_json(wave.wave_dir("mixer/ordinary-closure") / "census_delta.json")
         self.assertEqual(334, int(mixer["remaining_recipe_gap"]))
 
 

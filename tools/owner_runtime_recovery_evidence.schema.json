@@ -1,0 +1,25 @@
+{
+  "$id": "https://cruciblecraft.invalid/schema/t42-owner-recovery-evidence.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "opening_execution_gap": {
+      "const": 5300
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "const": "T42_OWNER_RECOVERY_EVIDENCE"
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "opening_execution_gap",
+    "family_count",
+    "families",
+    "eligible_phase_deferred_count"
+  ],
+  "type": "object"
+}

@@ -20,10 +20,10 @@ KIND_LEDGER = "json_ledger"
 KIND_RECIPE_TREE = "datapack_recipe_tree"
 
 SCHEMA_V1_OVERLAY_SECTIONS = (
-    "t38_source_backed_acquisition_forms",
-    "t38_required_forms",
-    "t39_required_forms",
-    "t40_required_forms",
+    "worldgen_acquisition_forms",
+    "roaster_required_forms",
+    "centrifuge_required_forms",
+    "electrolyzer_required_forms",
 )
 
 GATE_ENVELOPE_KEYS = (
@@ -38,11 +38,11 @@ GATE_ENVELOPE_KEYS = (
 )
 
 NON_JAVA_GATE_SECTIONS = (
-    "t3_acceptance_forms",
-    "t5_required_forms",
-    "t6_electrical_wire_forms",
-    "t8_pipe_forms",
-    "t10_known_forms",
+    "acceptance_forms",
+    "chemical_required_forms",
+    "electrical_wire_forms",
+    "pipe_forms",
+    "known_ingot_forms",
 )
 
 LEGACY_LEDGER_KEYS = frozenset(

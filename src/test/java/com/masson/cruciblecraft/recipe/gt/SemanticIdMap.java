@@ -18,13 +18,12 @@ import com.google.gson.JsonParser;
 import net.minecraft.resources.ResourceLocation;
 
 /**
- * Test-side load of {@code archive/sealed/forward-v2/semantic_id_map.json}.
+ * Test-side load of {@code tools/semantic_id_map.json}.
  * Frozen v2 manifests and catalog fixtures keep historical TXX ids; live
  * generated families and {@link CompactPublicationGroups} use semantic ids.
  */
 final class SemanticIdMap {
-    private static final Path MAP = Path.of(
-            "archive/sealed/forward-v2/semantic_id_map.json");
+    private static final Path MAP = Path.of("tools/semantic_id_map.json");
 
     private static final Map<String, String> PUBLICATION_GROUPS;
     private static final List<PrefixRule> STABLE_PREFIXES;

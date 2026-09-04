@@ -469,7 +469,7 @@ def configured_rows(
                     / f"{T36_RECIPE_PATHS.get(machine_id, machine_id)}.json"
                 ).relative_to(ROOT).as_posix(),
                 "kind": (
-                    "t12_source_projected_machine_recipe"
+                    "machine_tier_source_projected_machine_recipe"
                     if source_projected
                     else template["kind"]
                 ),

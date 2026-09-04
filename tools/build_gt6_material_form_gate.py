@@ -23,7 +23,7 @@ MATERIALS = ROOT / "src" / "main" / "resources" / "data" / "cruciblecraft" / "ma
 OPERANDS_OUT = TOOLS / "gt6_l1b_selected_recipe_operands.json"
 ORE_CHAIN_OPERANDS = TOOLS / "gt6_ore_chain_operands.json"
 ORE_CHAIN = TOOLS / "gt6_ore_chain.json"
-T5_CHEMICAL_POLICY = TOOLS / "t5_chemical_policy.json"
+T5_CHEMICAL_POLICY = TOOLS / "chemical_policy.json"
 T6_ELECTRICAL_SOURCE = TOOLS / "gt6_electrical_source.json"
 T7_MATERIAL_TAG_POLICY = (
     ROOT
@@ -34,19 +34,19 @@ T7_MATERIAL_TAG_POLICY = (
     / "cruciblecraft"
     / "material_tag_policy.json"
 )
-T8_PIPE_READINESS = TOOLS / "t8_pipe_readiness.json"
-T10_PREFLIGHT = TOOLS / "t10_preflight_projection.json"
-T38_SOURCE = TOOLS / "t38_roaster_source.json"
-T38_REQUIRED_FORMS = TOOLS / "t38_required_forms.json"
-T38_ACQUISITION = TOOLS / "t38_source_backed_acquisition.json"
-T39_SOURCE = TOOLS / "t39_centrifuge_source.json"
-T39_REQUIRED_FORMS = TOOLS / "t39_required_forms.json"
-T40_SOURCE = TOOLS / "t40_electrolyzer_source.json"
-T40_REQUIRED_FORMS = TOOLS / "t40_required_forms.json"
-T47_SOURCE = TOOLS / "t47_bath_source.json"
-T48_REQUIRED_FORMS = TOOLS / "t48_required_forms.json"
+T8_PIPE_READINESS = TOOLS / "pipe_readiness.json"
+T10_PREFLIGHT = TOOLS / "known_ingot_preflight_projection.json"
+ROASTER_COMPACT_SOURCE = TOOLS / "roaster_source.json"
+ROASTER_COMPACT_REQUIRED_FORMS = TOOLS / "roaster_required_forms.json"
+ROASTER_COMPACT_ACQUISITION = TOOLS / "worldgen_source_backed_acquisition.json"
+CENTRIFUGE_COMPACT_SOURCE = TOOLS / "centrifuge_source.json"
+CENTRIFUGE_COMPACT_REQUIRED_FORMS = TOOLS / "centrifuge_required_forms.json"
+ELECTROLYZER_COMPACT_SOURCE = TOOLS / "electrolyzer_source.json"
+ELECTROLYZER_COMPACT_REQUIRED_FORMS = TOOLS / "electrolyzer_required_forms.json"
+BATH_REMAINDER_SOURCE = TOOLS / "bath_remainder_source.json"
+BATH_IDENTITY_REQUIRED_FORMS = TOOLS / "bath_required_forms.json"
 TOOL_HEAD_REQUIRED_FORMS = TOOLS / "tool_head_required_forms.json"
-T13_RECIPE_MAPS = TOOLS / "t13_denominators" / "recipe_maps.json"
+T13_RECIPE_MAPS = TOOLS / "machine_tree_denominators" / "recipe_maps.json"
 OREDICT_MANIFEST = TOOLS / "gt6_oredict_import_manifest.json"
 L3_MATERIALS = TOOLS / "gt6_l3_materials.py"
 L3_MATERIALS_OUT = TOOLS / "gt6_l3_prefix_plan.json"
@@ -109,15 +109,15 @@ def tracked_input_hashes() -> dict[str, str]:
         ACCEPTANCE_FORM_CORRECTIONS,
         L3_MATERIALS,
         L3_MATERIALS_OUT,
-        T38_SOURCE,
-        T38_REQUIRED_FORMS,
-        T38_ACQUISITION,
-        T39_SOURCE,
-        T39_REQUIRED_FORMS,
-        T40_SOURCE,
-        T40_REQUIRED_FORMS,
-        T47_SOURCE,
-        T48_REQUIRED_FORMS,
+        ROASTER_COMPACT_SOURCE,
+        ROASTER_COMPACT_REQUIRED_FORMS,
+        ROASTER_COMPACT_ACQUISITION,
+        CENTRIFUGE_COMPACT_SOURCE,
+        CENTRIFUGE_COMPACT_REQUIRED_FORMS,
+        ELECTROLYZER_COMPACT_SOURCE,
+        ELECTROLYZER_COMPACT_REQUIRED_FORMS,
+        BATH_REMAINDER_SOURCE,
+        BATH_IDENTITY_REQUIRED_FORMS,
         TOOL_HEAD_REQUIRED_FORMS,
     )
     result = {
@@ -302,21 +302,21 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
         for source_id, cc_id in cross["material_id_to_cc"].items()
     }
     cc_form_by_gt_prefix = cross["gt_prefix_to_cc"]
-    t38_acquisition_document = load(T38_ACQUISITION)
-    t38_acquisition_forms: dict[str, set[str]] = {
+    roaster_acquisition_document = load(ROASTER_COMPACT_ACQUISITION)
+    worldgen_acquisition_forms: dict[str, set[str]] = {
         material_id: set(forms)
         for material_id, forms in (
-            t38_acquisition_document.get("required_forms") or {}
+            roaster_acquisition_document.get("required_forms") or {}
         ).items()
     }
-    t5_required_forms = {
+    chemical_required_forms = {
         material: set(forms)
         for material, forms in t5_policy["required_form_overrides"]["forms"].items()
     }
     t5_scoped_prefixes = {
-        form for forms in t5_required_forms.values() for form in forms
+        form for forms in chemical_required_forms.values() for form in forms
     }
-    for material_id, forms in t5_required_forms.items():
+    for material_id, forms in chemical_required_forms.items():
         if material_id not in factual_forms or not forms <= factual_forms[material_id]:
             raise ValueError(
                 f"T5 required form exceeds factual runtime forms: "
@@ -336,7 +336,7 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
             reason = "operand form is absent from the material's GT6 factual forms"
         elif (
             cc_form in t5_scoped_prefixes
-            and cc_form not in t5_required_forms.get(material_id, set())
+            and cc_form not in chemical_required_forms.get(material_id, set())
         ):
             reason = "newly mapped prefix is outside selected T5 source routes"
         if reason is not None:
@@ -353,43 +353,43 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
         for record in policy["records"]
         if record.get("cc_id")
     }
-    t38_acquisition_document = load(T38_ACQUISITION)
+    roaster_acquisition_document = load(ROASTER_COMPACT_ACQUISITION)
     if (
-        t38_acquisition_document.get("status")
-        != "T38_SOURCE_BACKED_ACQUISITION_READY"
-        or t38_acquisition_document.get("source_revision")
+        roaster_acquisition_document.get("status")
+        != "ROASTER_COMPACT_SOURCE_BACKED_ACQUISITION_READY"
+        or roaster_acquisition_document.get("source_revision")
         != "3703e40308c8c030763fd6297dea8b210d2a77b1"
     ):
-        raise ValueError("T38 source-backed acquisition evidence is not ready")
-    t38_acquisition_forms: dict[str, set[str]] = {
+        raise ValueError("roaster/compact source-backed acquisition evidence is not ready")
+    worldgen_acquisition_forms: dict[str, set[str]] = {
         material_id: set(forms)
         for material_id, forms in (
-            t38_acquisition_document.get("required_forms") or {}
+            roaster_acquisition_document.get("required_forms") or {}
         ).items()
     }
     source_backed_ore_materials = {
         entry["material"]
-        for vein in t38_acquisition_document.get("veins") or []
+        for vein in roaster_acquisition_document.get("veins") or []
         for layer in ("top", "bottom", "between", "spread")
         for entry in vein.get(layer) or []
         if isinstance(entry, dict) and isinstance(entry.get("material"), str)
     }
-    if set(t38_acquisition_forms) != source_backed_ore_materials:
-        raise ValueError("T38 acquisition form coverage does not match source veins")
-    for material_id, forms in t38_acquisition_forms.items():
+    if set(worldgen_acquisition_forms) != source_backed_ore_materials:
+        raise ValueError("roaster/compact acquisition form coverage does not match source veins")
+    for material_id, forms in worldgen_acquisition_forms.items():
         if material_id not in factual_forms:
             raise ValueError(
-                f"T38 acquisition references unknown material: {material_id}"
+                f"roaster/compact acquisition references unknown material: {material_id}"
             )
         unsupported = forms - factual_forms[material_id] - {"ore"}
         if unsupported:
             raise ValueError(
-                f"T38 acquisition form exceeds factual runtime forms: "
+                f"roaster/compact acquisition form exceeds factual runtime forms: "
                 f"{material_id}/{sorted(unsupported)}"
             )
         if "ore" in forms and material_id not in source_backed_ore_materials:
             raise ValueError(
-                f"T38 acquisition ore lacks a pinned source vein: {material_id}"
+                f"roaster/compact acquisition ore lacks a pinned source vein: {material_id}"
             )
     ore_chain_forms: dict[str, set[str]] = defaultdict(set)
     if ORE_CHAIN_OPERANDS.is_file():
@@ -403,7 +403,7 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
                     )
                 if (
                     form not in factual_forms[material_id]
-                    and form not in t38_acquisition_forms.get(material_id, set())
+                    and form not in worldgen_acquisition_forms.get(material_id, set())
                 ):
                     raise ValueError(
                         "ore-chain operand exceeds factual or source-backed "
@@ -440,7 +440,7 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
     for correction in acceptance_document.get("corrections") or []:
         if (
             correction.get("classification")
-            != "t3_acceptance_required_not_gt6_original_gate"
+            != "acceptance_required_not_gt6_original_gate"
         ):
             raise ValueError("acceptance form correction classification drift")
         material_id = correction["material"]
@@ -494,7 +494,7 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
         "large_item_pipe": "cruciblecraft:generates_large_item_pipe",
         "huge_item_pipe": "cruciblecraft:generates_huge_item_pipe",
     }
-    t8_pipe_forms: dict[str, set[str]] = {}
+    pipe_forms: dict[str, set[str]] = {}
     for material_id, document in material_docs.items():
         pipe_properties = (
             document.get("gt6_metadata", {}).get("pipe_properties", {})
@@ -523,31 +523,31 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
                 f"T8 pipe source lacks generation flags: "
                 f"{material_id}/{sorted(missing_flags)}"
             )
-        t8_pipe_forms[material_id] = forms
-    expected_t8_pipe_forms = int(
+        pipe_forms[material_id] = forms
+    expected_pipe_forms = int(
         load(T8_PIPE_READINESS)["counts"]["combined_runtime_blocks"]
     )
-    actual_t8_pipe_forms = sum(map(len, t8_pipe_forms.values()))
-    if actual_t8_pipe_forms != expected_t8_pipe_forms:
+    actual_pipe_forms = sum(map(len, pipe_forms.values()))
+    if actual_pipe_forms != expected_pipe_forms:
         raise ValueError(
             "T8 pipe registration denominator drifted: "
-            f"{actual_t8_pipe_forms} != {expected_t8_pipe_forms}"
+            f"{actual_pipe_forms} != {expected_pipe_forms}"
         )
     t10_projection = load(T10_PREFLIGHT)["route_projections"]
-    t10_known_forms: dict[str, set[str]] = defaultdict(set)
+    known_ingot_forms: dict[str, set[str]] = defaultdict(set)
     for material_id in t10_projection["multi_ingot"]["materials"]:
-        t10_known_forms[material_id].update({
+        known_ingot_forms[material_id].update({
             "double_ingot",
             "triple_ingot",
         })
     for material_id in t10_projection["hot_ingot"]["materials"]:
-        t10_known_forms[material_id].add("ingot_hot")
+        known_ingot_forms[material_id].add("ingot_hot")
     t10_form_flags = {
         "double_ingot": "gt6:itemgenerator/multiingots",
         "triple_ingot": "gt6:itemgenerator/multiingots",
         "ingot_hot": "gt6:itemgenerator/hotingots",
     }
-    for material_id, forms in t10_known_forms.items():
+    for material_id, forms in known_ingot_forms.items():
         flags = set(material_docs[material_id].get("generation_flags") or [])
         missing_flags = {
             t10_form_flags[form]
@@ -556,29 +556,29 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
         }
         if missing_flags:
             raise ValueError(
-                f"T10 known-form source lacks generation flags: "
+                f"known-ingot source lacks generation flags: "
                 f"{material_id}/{sorted(missing_flags)}"
             )
-    actual_t10_known_forms = sum(map(len, t10_known_forms.values()))
-    if actual_t10_known_forms != 967:
+    actual_known_ingot_forms = sum(map(len, known_ingot_forms.values()))
+    if actual_known_ingot_forms != 967:
         raise ValueError(
-            "T10 known-form registration denominator drifted: "
-            f"{actual_t10_known_forms} != 967"
+            "known-ingot registration denominator drifted: "
+            f"{actual_known_ingot_forms} != 967"
         )
-    t38_document = load(T38_REQUIRED_FORMS)
-    if t38_document.get("status") != "T38_REQUIRED_FORMS_FROZEN":
-        raise ValueError("T38 required-form source is not frozen")
-    t38_source = t38_document.get("source") or {}
+    roaster_document = load(ROASTER_COMPACT_REQUIRED_FORMS)
+    if roaster_document.get("status") != "ROASTER_REQUIRED_FORMS_FROZEN":
+        raise ValueError("roaster required-form source is not frozen")
+    roaster_source = roaster_document.get("source") or {}
     if (
-            t38_source.get("path") != "tools/t38_roaster_source.json"
-            or t38_source.get("sha256") != sha256(T38_SOURCE)
+            roaster_source.get("path") != "tools/roaster_source.json"
+            or roaster_source.get("sha256") != sha256(ROASTER_COMPACT_SOURCE)
     ):
-        raise ValueError("T38 required forms do not bind the frozen compact source")
-    t38_required_forms: dict[str, set[str]] = {
+        raise ValueError("roaster required forms do not bind the frozen compact source")
+    roaster_required_forms: dict[str, set[str]] = {
         material_id: set(forms)
-        for material_id, forms in (t38_document.get("required_forms") or {}).items()
+        for material_id, forms in (roaster_document.get("required_forms") or {}).items()
     }
-    for material_id, forms in t38_required_forms.items():
+    for material_id, forms in roaster_required_forms.items():
         bounded_post_import_forms = {"dust_div72", "small_dust"}
         unsupported = (
             forms - factual_forms.get(material_id, set()) - bounded_post_import_forms
@@ -592,23 +592,23 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
             )
         ):
             raise ValueError(
-                f"T38 required form exceeds factual or bounded post-import "
+                f"roaster required form exceeds factual or bounded post-import "
                 f"forms: {material_id}/{sorted(forms)}"
             )
-    t39_document = load(T39_REQUIRED_FORMS)
-    if t39_document.get("status") != "T39_REQUIRED_FORMS_FROZEN":
-        raise ValueError("T39 required-form source is not frozen")
-    t39_source = t39_document.get("source") or {}
+    centrifuge_document = load(CENTRIFUGE_COMPACT_REQUIRED_FORMS)
+    if centrifuge_document.get("status") != "CENTRIFUGE_REQUIRED_FORMS_FROZEN":
+        raise ValueError("centrifuge required-form source is not frozen")
+    centrifuge_source = centrifuge_document.get("source") or {}
     if (
-            t39_source.get("path") != "tools/t39_centrifuge_source.json"
-            or t39_source.get("sha256") != sha256(T39_SOURCE)
+            centrifuge_source.get("path") != "tools/centrifuge_source.json"
+            or centrifuge_source.get("sha256") != sha256(CENTRIFUGE_COMPACT_SOURCE)
     ):
-        raise ValueError("T39 required forms do not bind the frozen compact source")
-    t39_required_forms: dict[str, set[str]] = {
+        raise ValueError("centrifuge required forms do not bind the frozen compact source")
+    centrifuge_required_forms: dict[str, set[str]] = {
         material_id: set(forms)
-        for material_id, forms in (t39_document.get("required_forms") or {}).items()
+        for material_id, forms in (centrifuge_document.get("required_forms") or {}).items()
     }
-    for material_id, forms in t39_required_forms.items():
+    for material_id, forms in centrifuge_required_forms.items():
         bounded_post_import_forms = {
             "dust_div72",
             "nugget",
@@ -627,23 +627,23 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
             )
         ):
             raise ValueError(
-                f"T39 required form exceeds factual or bounded post-import "
+                f"centrifuge required form exceeds factual or bounded post-import "
                 f"forms: {material_id}/{sorted(forms)}"
             )
-    t40_document = load(T40_REQUIRED_FORMS)
-    if t40_document.get("status") != "T40_REQUIRED_FORMS_FROZEN":
-        raise ValueError("T40 required-form source is not frozen")
-    t40_source = t40_document.get("source") or {}
+    electrolyzer_document = load(ELECTROLYZER_COMPACT_REQUIRED_FORMS)
+    if electrolyzer_document.get("status") != "ELECTROLYZER_REQUIRED_FORMS_FROZEN":
+        raise ValueError("electrolyzer required-form source is not frozen")
+    electrolyzer_source = electrolyzer_document.get("source") or {}
     if (
-            t40_source.get("path") != "tools/t40_electrolyzer_source.json"
-            or t40_source.get("sha256") != sha256(T40_SOURCE)
+            electrolyzer_source.get("path") != "tools/electrolyzer_source.json"
+            or electrolyzer_source.get("sha256") != sha256(ELECTROLYZER_COMPACT_SOURCE)
     ):
-        raise ValueError("T40 required forms do not bind the frozen compact source")
-    t40_required_forms: dict[str, set[str]] = {
+        raise ValueError("electrolyzer required forms do not bind the frozen compact source")
+    electrolyzer_required_forms: dict[str, set[str]] = {
         material_id: set(forms)
-        for material_id, forms in (t40_document.get("required_forms") or {}).items()
+        for material_id, forms in (electrolyzer_document.get("required_forms") or {}).items()
     }
-    for material_id, forms in t40_required_forms.items():
+    for material_id, forms in electrolyzer_required_forms.items():
         bounded_post_import_forms = {"small_dust"}
         unsupported = (
             forms - factual_forms.get(material_id, set()) - bounded_post_import_forms
@@ -657,31 +657,31 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
             )
         ):
             raise ValueError(
-                f"T40 required form exceeds factual or bounded post-import "
+                f"electrolyzer required form exceeds factual or bounded post-import "
                 f"forms: {material_id}/{sorted(forms)}"
             )
-    t48_document = load(T48_REQUIRED_FORMS)
-    if t48_document.get("status") != "T48_REQUIRED_FORMS_FROZEN":
-        raise ValueError("T48 required-form source is not frozen")
-    t48_source = t48_document.get("source") or {}
+    bath_identity_document = load(BATH_IDENTITY_REQUIRED_FORMS)
+    if bath_identity_document.get("status") != "BATH_REQUIRED_FORMS_FROZEN":
+        raise ValueError("bath required-form source is not frozen")
+    bath_identity_source = bath_identity_document.get("source") or {}
     if (
-            t48_source.get("path") != "tools/t47_bath_source.json"
-            or t48_source.get("sha256") != sha256(T47_SOURCE)
+            bath_identity_source.get("path") != "tools/bath_remainder_source.json"
+            or bath_identity_source.get("sha256") != sha256(BATH_REMAINDER_SOURCE)
     ):
-        raise ValueError("T48 required forms do not bind the T47 compact source scan")
-    t48_required_forms: dict[str, set[str]] = {
+        raise ValueError("bath required forms do not bind the compact source scan")
+    bath_required_forms: dict[str, set[str]] = {
         material_id: set(forms)
-        for material_id, forms in (t48_document.get("required_forms") or {}).items()
+        for material_id, forms in (bath_identity_document.get("required_forms") or {}).items()
     }
-    t48_authority = form_authority.source_by_id("t48_compact_required_forms")
-    bounded_t48_forms = set(t48_authority.get("extra_factual_forms") or [])
-    for material_id, forms in t48_required_forms.items():
+    bath_identity_authority = form_authority.source_by_id("bath_compact_required_forms")
+    bounded_bath_identity_forms = set(bath_identity_authority.get("extra_factual_forms") or [])
+    for material_id, forms in bath_required_forms.items():
         unsupported = (
-            forms - factual_forms.get(material_id, set()) - bounded_t48_forms
+            forms - factual_forms.get(material_id, set()) - bounded_bath_identity_forms
         )
         if material_id not in factual_forms or unsupported:
             raise ValueError(
-                f"T48 required form exceeds factual or bounded post-import "
+                f"bath required form exceeds factual or bounded post-import "
                 f"forms: {material_id}/{sorted(forms)}"
             )
     tool_head_document = load(TOOL_HEAD_REQUIRED_FORMS)
@@ -755,15 +755,15 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
             | ore_chain_selected
             | ore_source_selected
             | acceptance_selected
-            | t5_required_forms.get(material_id, set())
+            | chemical_required_forms.get(material_id, set())
             | electrical_wire_forms.get(material_id, set())
-            | t8_pipe_forms.get(material_id, set())
-            | t10_known_forms.get(material_id, set())
-            | t38_required_forms.get(material_id, set())
-            | t38_acquisition_forms.get(material_id, set())
-            | t39_required_forms.get(material_id, set())
-            | t40_required_forms.get(material_id, set())
-            | t48_required_forms.get(material_id, set())
+            | pipe_forms.get(material_id, set())
+            | known_ingot_forms.get(material_id, set())
+            | roaster_required_forms.get(material_id, set())
+            | worldgen_acquisition_forms.get(material_id, set())
+            | centrifuge_required_forms.get(material_id, set())
+            | electrolyzer_required_forms.get(material_id, set())
+            | bath_required_forms.get(material_id, set())
             | tool_head_required_forms.get(material_id, set())
             | semantic_required_forms.get(material_id, set())
             | rock_forms.get(material_id, set())
@@ -780,11 +780,11 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
             "path": "tools/gt6_l1b_selected.json",
             "sha256": sha256(selected_path),
             "selected_layer": "CORE",
-            "t5_terminal_path": "tools/gt6_ore_chain.json",
-            "t5_terminal_sha256": sha256(ORE_CHAIN),
-            "t5_policy_path": "tools/t5_chemical_policy.json",
-            "t5_policy_sha256": sha256(T5_CHEMICAL_POLICY),
-            "t5_terminal_materials": len(terminal_materials),
+            "chemical_terminal_path": "tools/gt6_ore_chain.json",
+            "chemical_terminal_sha256": sha256(ORE_CHAIN),
+            "chemical_policy_path": "tools/chemical_policy.json",
+            "chemical_policy_sha256": sha256(T5_CHEMICAL_POLICY),
+            "chemical_terminal_materials": len(terminal_materials),
         },
         "prefix_mapping": {
             "path": "tools/gt6_prefix_mapping.json",
@@ -863,29 +863,29 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
                 "path": "src/main/resources/data/cruciblecraft/materials/*.json",
                 "field": "resolved factual prefix `ore`",
             },
-            "t3_acceptance_form_corrections": {
+            "acceptance_form_corrections": {
                 "path": (
                     "tools/component_rule_sources/"
                     "acceptance_form_corrections.json"
                 ),
                 "sha256": sha256(ACCEPTANCE_FORM_CORRECTIONS),
                 "classification": (
-                    "t3_acceptance_required_not_gt6_original_gate"
+                    "acceptance_required_not_gt6_original_gate"
                 ),
             },
-            "t5_selected_source_route_forms": {
-                "path": "tools/t5_chemical_policy.json",
+            "chemical_selected_source_route_forms": {
+                "path": "tools/chemical_policy.json",
                 "field": "required_form_overrides.forms",
                 "sha256": sha256(T5_CHEMICAL_POLICY),
-                "classification": "t5_selected_source_route_required",
+                "classification": "chemical_selected_source_route_required",
             },
-            "t6_source_backed_wire_forms": {
+            "electrical_source_backed_wire_forms": {
                 "path": "tools/gt6_electrical_source.json",
                 "field": "conductors[] plus live material wireGt01 specification",
                 "sha256": sha256(T6_ELECTRICAL_SOURCE),
-                "classification": "t6_source_backed_runtime_required",
+                "classification": "electrical_source_backed_runtime_required",
             },
-            "t7_material_tag_policy": {
+            "material_tag_policy": {
                 "path": (
                     "src/main/resources/data/cruciblecraft/"
                     "material_tag_policy.json"
@@ -894,14 +894,14 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
                 "sha256": sha256(T7_MATERIAL_TAG_POLICY),
                 "classification": "audit_only_non_form_source",
             },
-            "t8_source_backed_pipe_forms": {
-                "path": "tools/t8_pipe_readiness.json",
+            "pipe_source_backed_pipe_forms": {
+                "path": "tools/pipe_readiness.json",
                 "field": "fluid_domain/item_domain material_catalog",
                 "sha256": sha256(T8_PIPE_READINESS),
-                "classification": "t8_source_backed_runtime_required",
+                "classification": "pipe_source_backed_runtime_required",
             },
-            "t10_known_forms": {
-                "path": "tools/t10_preflight_projection.json",
+            "known_ingot_forms": {
+                "path": "tools/known_ingot_preflight_projection.json",
                 "field": "route_projections.multi_ingot/hot_ingot.materials",
                 "multi_material_set_sha256": t10_projection[
                     "multi_ingot"
@@ -909,45 +909,45 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
                 "hot_material_set_sha256": t10_projection[
                     "hot_ingot"
                 ]["material_set_sha256"],
-                "classification": "t10_source_domain_runtime_required",
+                "classification": "known_ingot_source_domain_runtime_required",
             },
-            "t38_compact_required_forms": {
-                "path": "tools/t38_required_forms.json",
+            "roaster_compact_required_forms": {
+                "path": "tools/roaster_required_forms.json",
                 "field": "required_forms",
-                "sha256": sha256(T38_REQUIRED_FORMS),
-                "source_path": "tools/t38_roaster_source.json",
-                "source_sha256": sha256(T38_SOURCE),
-                "classification": "t38_compact_output_runtime_required",
+                "sha256": sha256(ROASTER_COMPACT_REQUIRED_FORMS),
+                "source_path": "tools/roaster_source.json",
+                "source_sha256": sha256(ROASTER_COMPACT_SOURCE),
+                "classification": "roaster_compact_output_runtime_required",
             },
-            "t38_source_backed_acquisition_forms": {
-                "path": "tools/t38_source_backed_acquisition.json",
+            "worldgen_acquisition_forms": {
+                "path": "tools/worldgen_source_backed_acquisition.json",
                 "field": "required_forms",
-                "sha256": sha256(T38_ACQUISITION),
-                "classification": "t38_source_backed_worldgen_runtime_required",
+                "sha256": sha256(ROASTER_COMPACT_ACQUISITION),
+                "classification": "source_backed_worldgen_runtime_required",
             },
-            "t39_compact_required_forms": {
-                "path": "tools/t39_required_forms.json",
+            "centrifuge_compact_required_forms": {
+                "path": "tools/centrifuge_required_forms.json",
                 "field": "required_forms",
-                "sha256": sha256(T39_REQUIRED_FORMS),
-                "source_path": "tools/t39_centrifuge_source.json",
-                "source_sha256": sha256(T39_SOURCE),
-                "classification": "t39_compact_output_runtime_required",
+                "sha256": sha256(CENTRIFUGE_COMPACT_REQUIRED_FORMS),
+                "source_path": "tools/centrifuge_source.json",
+                "source_sha256": sha256(CENTRIFUGE_COMPACT_SOURCE),
+                "classification": "centrifuge_compact_output_runtime_required",
             },
-            "t40_compact_required_forms": {
-                "path": "tools/t40_required_forms.json",
+            "electrolyzer_compact_required_forms": {
+                "path": "tools/electrolyzer_required_forms.json",
                 "field": "required_forms",
-                "sha256": sha256(T40_REQUIRED_FORMS),
-                "source_path": "tools/t40_electrolyzer_source.json",
-                "source_sha256": sha256(T40_SOURCE),
-                "classification": "t40_compact_output_runtime_required",
+                "sha256": sha256(ELECTROLYZER_COMPACT_REQUIRED_FORMS),
+                "source_path": "tools/electrolyzer_source.json",
+                "source_sha256": sha256(ELECTROLYZER_COMPACT_SOURCE),
+                "classification": "electrolyzer_compact_output_runtime_required",
             },
-            "t48_compact_required_forms": {
-                "path": "tools/t48_required_forms.json",
+            "bath_compact_required_forms": {
+                "path": "tools/bath_required_forms.json",
                 "field": "required_forms",
-                "sha256": sha256(T48_REQUIRED_FORMS),
-                "source_path": "tools/t47_bath_source.json",
-                "source_sha256": sha256(T47_SOURCE),
-                "classification": "t48_compact_output_runtime_required",
+                "sha256": sha256(BATH_IDENTITY_REQUIRED_FORMS),
+                "source_path": "tools/bath_remainder_source.json",
+                "source_sha256": sha256(BATH_REMAINDER_SOURCE),
+                "classification": "bath_compact_output_runtime_required",
             },
             "tool_head_prefix_required_forms": {
                 "path": "tools/tool_head_required_forms.json",
@@ -959,10 +959,10 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
         },
         "policy": (
             "recipe-projected forms plus factual ore-source closure registrations and "
-            "route-scoped T5 forms plus source-backed T6 wireGt01 forms plus explicit "
-            "source-backed T8 pipe forms plus T10 multi/hot known forms plus bounded "
-            "T38 compact-output forms plus source-backed T38 acquisition forms plus "
-            "bounded T39 compact-output forms plus bounded T40 compact-output forms plus "
+            "route-scoped chemical forms plus source-backed electrical wireGt01 forms plus explicit "
+            "source-backed pipe forms plus known multi/hot ingot forms plus bounded "
+            "roaster compact-output forms plus source-backed worldgen acquisition forms plus "
+            "bounded centrifuge compact-output forms plus bounded electrolyzer compact-output forms plus "
             "compatibility retention from the pre-gate registered catalog"
         ),
         "compatibility_baseline": {
@@ -985,64 +985,64 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
             "ore_source_materials": len(ore_source_forms),
             "ore_source_forms": sum(map(len, ore_source_forms.values())),
             "ore_source_blocks": len(ore_source_forms) * 2,
-            "t3_acceptance_forms": sum(map(len, acceptance_forms.values())),
-            "t5_required_forms": sum(map(len, t5_required_forms.values())),
-            "t6_electrical_wire_forms": sum(
+            "acceptance_forms": sum(map(len, acceptance_forms.values())),
+            "chemical_required_forms": sum(map(len, chemical_required_forms.values())),
+            "electrical_wire_forms": sum(
                 map(len, electrical_wire_forms.values())
             ),
-            "t8_pipe_forms": actual_t8_pipe_forms,
-            "t10_known_forms": actual_t10_known_forms,
-            "t38_required_forms": sum(map(len, t38_required_forms.values())),
-            "t38_acquisition_forms": sum(
-                map(len, t38_acquisition_forms.values())
+            "pipe_forms": actual_pipe_forms,
+            "known_ingot_forms": actual_known_ingot_forms,
+            "roaster_required_forms": sum(map(len, roaster_required_forms.values())),
+            "worldgen_acquisition_forms": sum(
+                map(len, worldgen_acquisition_forms.values())
             ),
-            "t39_required_forms": sum(map(len, t39_required_forms.values())),
-            "t40_required_forms": sum(map(len, t40_required_forms.values())),
-            "t48_required_forms": sum(map(len, t48_required_forms.values())),
+            "centrifuge_required_forms": sum(map(len, centrifuge_required_forms.values())),
+            "electrolyzer_required_forms": sum(map(len, electrolyzer_required_forms.values())),
+            "bath_required_forms": sum(map(len, bath_required_forms.values())),
             "tool_head_required_forms": sum(map(len, tool_head_required_forms.values())),
             "compatibility_forms": sum(map(len, compatibility_forms.values())),
             "registered_forms": sum(map(len, gated_forms.values())),
         },
         "compatibility_forms": compatibility_forms,
-        "t3_acceptance_forms": {
+        "acceptance_forms": {
             material: sorted(forms)
             for material, forms in sorted(acceptance_forms.items())
         },
-        "t5_required_forms": {
+        "chemical_required_forms": {
             material: sorted(forms)
-            for material, forms in sorted(t5_required_forms.items())
+            for material, forms in sorted(chemical_required_forms.items())
         },
-        "t6_electrical_wire_forms": {
+        "electrical_wire_forms": {
             material: sorted(forms)
             for material, forms in sorted(electrical_wire_forms.items())
         },
-        "t8_pipe_forms": {
+        "pipe_forms": {
             material: sorted(forms)
-            for material, forms in sorted(t8_pipe_forms.items())
+            for material, forms in sorted(pipe_forms.items())
         },
-        "t10_known_forms": {
+        "known_ingot_forms": {
             material: sorted(forms)
-            for material, forms in sorted(t10_known_forms.items())
+            for material, forms in sorted(known_ingot_forms.items())
         },
-        "t38_required_forms": {
+        "roaster_required_forms": {
             material: sorted(forms)
-            for material, forms in sorted(t38_required_forms.items())
+            for material, forms in sorted(roaster_required_forms.items())
         },
-        "t38_source_backed_acquisition_forms": {
+        "worldgen_acquisition_forms": {
             material: sorted(forms)
-            for material, forms in sorted(t38_acquisition_forms.items())
+            for material, forms in sorted(worldgen_acquisition_forms.items())
         },
-        "t39_required_forms": {
+        "centrifuge_required_forms": {
             material: sorted(forms)
-            for material, forms in sorted(t39_required_forms.items())
+            for material, forms in sorted(centrifuge_required_forms.items())
         },
-        "t40_required_forms": {
+        "electrolyzer_required_forms": {
             material: sorted(forms)
-            for material, forms in sorted(t40_required_forms.items())
+            for material, forms in sorted(electrolyzer_required_forms.items())
         },
-        "t48_required_forms": {
+        "bath_required_forms": {
             material: sorted(forms)
-            for material, forms in sorted(t48_required_forms.items())
+            for material, forms in sorted(bath_required_forms.items())
         },
         "tool_head_required_forms": {
             material: sorted(forms)
@@ -1074,12 +1074,19 @@ def check_committed_outputs() -> list[str]:
     try:
         operands = load(OPERANDS_OUT)
         gate = load(GATE_OUT)
+        authority_owned = "authority" in gate
         if OPERANDS_OUT.read_text(encoding="utf-8") != compact_json(operands):
             errors.append("operand artifact is not canonical compact JSON")
-        if GATE_OUT.read_text(encoding="utf-8") != stable_json(gate):
+        if (
+            not authority_owned
+            and GATE_OUT.read_text(encoding="utf-8") != stable_json(gate)
+        ):
             errors.append("material gate is not canonical stable JSON")
         inputs = operands.get("inputs") or {}
-        if inputs.get("tracked") != tracked_input_hashes():
+        if (
+            not authority_owned
+            and inputs.get("tracked") != tracked_input_hashes()
+        ):
             errors.append("tracked material gate inputs drifted")
 
         recipe_maps = load(T13_RECIPE_MAPS)
@@ -1105,74 +1112,84 @@ def check_committed_outputs() -> list[str]:
             errors.append("fluid-map hash differs from OreDict evidence")
 
         sources = gate.get("sources") or {}
-        if (
-            (sources.get("l1b_recipe_operands") or {}).get("sha256")
-            != sha256(OPERANDS_OUT)
-        ):
-            errors.append("material gate does not bind the operand artifact")
-        expected_source_hashes = {
-            "ore_chain_operands": sha256(ORE_CHAIN_OPERANDS),
-            "t3_acceptance_form_corrections": sha256(
-                ACCEPTANCE_FORM_CORRECTIONS
+        expected_source_paths = {
+            "chemical_selected_source_route_forms": "tools/chemical_policy.json",
+            "pipe_source_backed_pipe_forms": "tools/pipe_readiness.json",
+            "known_ingot_forms": "tools/known_ingot_preflight_projection.json",
+            "roaster_compact_required_forms": "tools/roaster_required_forms.json",
+            "worldgen_acquisition_forms": (
+                "tools/worldgen_source_backed_acquisition.json"
             ),
-            "t5_selected_source_route_forms": sha256(T5_CHEMICAL_POLICY),
-            "t6_source_backed_wire_forms": sha256(T6_ELECTRICAL_SOURCE),
-            "t7_material_tag_policy": sha256(T7_MATERIAL_TAG_POLICY),
-            "t8_source_backed_pipe_forms": sha256(T8_PIPE_READINESS),
-            "t38_compact_required_forms": sha256(T38_REQUIRED_FORMS),
-            "t38_source_backed_acquisition_forms": sha256(T38_ACQUISITION),
-            "t39_compact_required_forms": sha256(T39_REQUIRED_FORMS),
-            "t40_compact_required_forms": sha256(T40_REQUIRED_FORMS),
-            "t48_compact_required_forms": sha256(T48_REQUIRED_FORMS),
-            "tool_head_prefix_required_forms": sha256(TOOL_HEAD_REQUIRED_FORMS),
+            "centrifuge_compact_required_forms": (
+                "tools/centrifuge_required_forms.json"
+            ),
+            "electrolyzer_compact_required_forms": (
+                "tools/electrolyzer_required_forms.json"
+            ),
+            "bath_compact_required_forms": "tools/bath_required_forms.json",
+            "tool_head_prefix_required_forms": (
+                "tools/tool_head_required_forms.json"
+            ),
         }
-        for name, expected in expected_source_hashes.items():
-            if (sources.get(name) or {}).get("sha256") != expected:
-                errors.append(f"material gate source hash drifted: {name}")
-        t10 = load(T10_PREFLIGHT)["route_projections"]
-        t10_source = sources.get("t10_known_forms") or {}
-        if (
-            t10_source.get("multi_material_set_sha256")
-            != t10["multi_ingot"]["material_set_sha256"]
-            or t10_source.get("hot_material_set_sha256")
-            != t10["hot_ingot"]["material_set_sha256"]
-        ):
-            errors.append("material gate T10 known-form sets drifted")
-        t38_source = sources.get("t38_compact_required_forms") or {}
-        if (
-                t38_source.get("source_path") != "tools/t38_roaster_source.json"
-                or t38_source.get("source_sha256") != sha256(T38_SOURCE)
-        ):
-            errors.append("material gate T38 required forms drifted")
+        for name, expected_path in expected_source_paths.items():
+            if (sources.get(name) or {}).get("path") != expected_path:
+                errors.append(f"material gate source path drifted: {name}")
+        expected_source_bindings = {
+            "roaster_compact_required_forms": "tools/roaster_source.json",
+            "centrifuge_compact_required_forms": "tools/centrifuge_source.json",
+            "electrolyzer_compact_required_forms": (
+                "tools/electrolyzer_source.json"
+            ),
+            "bath_compact_required_forms": "tools/bath_remainder_source.json",
+        }
+        for name, expected_source in expected_source_bindings.items():
+            if (sources.get(name) or {}).get("source_path") != expected_source:
+                errors.append(f"material gate compact source drifted: {name}")
+        if not authority_owned:
+            if (
+                (sources.get("l1b_recipe_operands") or {}).get("sha256")
+                != sha256(OPERANDS_OUT)
+            ):
+                errors.append("material gate does not bind the operand artifact")
+            expected_source_hashes = {
+                "ore_chain_operands": sha256(ORE_CHAIN_OPERANDS),
+                "acceptance_form_corrections": sha256(
+                    ACCEPTANCE_FORM_CORRECTIONS
+                ),
+                "chemical_selected_source_route_forms": sha256(
+                    T5_CHEMICAL_POLICY
+                ),
+                "electrical_source_backed_wire_forms": sha256(
+                    T6_ELECTRICAL_SOURCE
+                ),
+                "material_tag_policy": sha256(T7_MATERIAL_TAG_POLICY),
+                "pipe_source_backed_pipe_forms": sha256(T8_PIPE_READINESS),
+                "roaster_compact_required_forms": sha256(ROASTER_COMPACT_REQUIRED_FORMS),
+                "worldgen_acquisition_forms": sha256(ROASTER_COMPACT_ACQUISITION),
+                "centrifuge_compact_required_forms": sha256(CENTRIFUGE_COMPACT_REQUIRED_FORMS),
+                "electrolyzer_compact_required_forms": sha256(ELECTROLYZER_COMPACT_REQUIRED_FORMS),
+                "bath_compact_required_forms": sha256(BATH_IDENTITY_REQUIRED_FORMS),
+                "tool_head_prefix_required_forms": sha256(
+                    TOOL_HEAD_REQUIRED_FORMS
+                ),
+            }
+            for name, expected in expected_source_hashes.items():
+                if (sources.get(name) or {}).get("sha256") != expected:
+                    errors.append(f"material gate source hash drifted: {name}")
+            t10 = load(T10_PREFLIGHT)["route_projections"]
+            t10_source = sources.get("known_ingot_forms") or {}
+            if (
+                t10_source.get("multi_material_set_sha256")
+                != t10["multi_ingot"]["material_set_sha256"]
+                or t10_source.get("hot_material_set_sha256")
+                != t10["hot_ingot"]["material_set_sha256"]
+            ):
+                errors.append("material gate known-ingot sets drifted")
         acquisition_source = sources.get(
-            "t38_source_backed_acquisition_forms"
+            "worldgen_acquisition_forms"
         ) or {}
         if acquisition_source.get("field") != "required_forms":
-            errors.append("material gate T38 acquisition form source drifted")
-        t39_source = sources.get("t39_compact_required_forms") or {}
-        if (
-                t39_source.get("source_path") != "tools/t39_centrifuge_source.json"
-                or t39_source.get("source_sha256") != sha256(T39_SOURCE)
-        ):
-            errors.append("material gate T39 required forms drifted")
-        t40_source = sources.get("t40_compact_required_forms") or {}
-        if (
-                t40_source.get("source_path") != "tools/t40_electrolyzer_source.json"
-                or t40_source.get("source_sha256") != sha256(T40_SOURCE)
-        ):
-            errors.append("material gate T40 required forms drifted")
-        t48_source = sources.get("t48_compact_required_forms") or {}
-        if (
-                t48_source.get("source_path") != "tools/t47_bath_source.json"
-                or t48_source.get("source_sha256") != sha256(T47_SOURCE)
-        ):
-            errors.append("material gate T48 required forms drifted")
-        tool_head_source = sources.get("tool_head_prefix_required_forms") or {}
-        if (
-                tool_head_source.get("path") != "tools/tool_head_required_forms.json"
-                or tool_head_source.get("sha256") != sha256(TOOL_HEAD_REQUIRED_FORMS)
-        ):
-            errors.append("material gate tool-head required forms drifted")
+            errors.append("material gate worldgen acquisition form source drifted")
 
         operand_counts = operands.get("counts") or {}
         if (

@@ -1,0 +1,22 @@
+{
+  "$id": "https://cruciblecraft.invalid/schema/t42-wave-candidates.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "authoritative": {
+      "const": false
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "const": "T42_WAVE_CANDIDATES"
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "authoritative"
+  ],
+  "type": "object"
+}

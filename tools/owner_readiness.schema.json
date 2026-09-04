@@ -1,0 +1,23 @@
+{
+  "$id": "https://cruciblecraft.invalid/schema/t42-readiness.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "failed_gates": {
+      "type": "array"
+    },
+    "owns_families": {
+      "const": 0
+    },
+    "schema_version": {
+      "const": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "failed_gates",
+    "owns_families"
+  ],
+  "type": "object"
+}

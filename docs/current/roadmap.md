@@ -1,7 +1,7 @@
 # CrucibleCraft 总体规划
 
 > 唯一总体规划与项目导航
-> 最后更新：2026-09-03
+> 最后更新：2026-09-04
 > 当前状态：能力交付合同已生效，见
 > [capability-delivery-workflow.md](capability-delivery-workflow.md)。
 > 进度只计 `player_complete`。现行能力
@@ -14,7 +14,7 @@
 > [工具头前缀折回](../history/card-plans/closed/工具头前缀折回详细计划.md)
 > （slug `registry/tool-head-prefix`）为
 > `TOOL_HEAD_PREFIX_READY`。mapped tool head 折回 `材料 × 前缀`；
-> bath identity `71`，semantic `244`；T48 `145 / 34091` 未改。
+> bath identity `71`，semantic `244`；`bath/identity` 分母 `145 / 34091` 未改。
 > [紧凑配方作者矩阵](../history/card-plans/closed/紧凑配方作者矩阵详细计划.md)
 > （slug `runtime/compact-recipe-authored-matrix`）为
 > `COMPACT_RECIPE_AUTHORED_MATRIX_READY`。改 compact family 作者写法
@@ -24,7 +24,7 @@
 > （slug `runtime/compact-recipe-wire-codec`）为
 > `COMPACT_RECIPE_WIRE_CODEC_READY`。修的是线上写法，不是 Holder
 > 粒度；dedicated 进世界不再撞 `NbtAccounter`；整包仍靠 splitter；
-> T48 语义分母未改。
+> `bath/identity` 语义分母未改。
 > [原版替换 MVP](../history/card-plans/closed/原版替换MVP详细计划.md)
 > （slug `content/vanilla-replace-mvp`）为 `VANILLA_REPLACE_MVP_READY`。
 > 纸 3 甘蔗 → 1 纸；熔炉 / 骨头 deferred（无铁前 firestarter）。
@@ -54,7 +54,7 @@
 > 四类可行性均为 `requires_new_runtime`；不实现世界生成，不预分配
 > implementation child。
 > [T13c 排除表收回 R0](../history/card-plans/closed/T13c排除表收回R0详细计划.md)
-> （slug `portfolio/t13c-exclusion-reclaim-r0`）为 `T13C_EXCLUSION_RECLAIM_R0_READY`。
+> （slug `portfolio/exclusion-reclaim-r0`）为 `T13C_EXCLUSION_RECLAIM_R0_READY`。
 > 五类 T13c exclusion（129/471）与现有机制适配面已冻结；不实现 MTE，
 > 不预分配 implementation child。
 > [物流封面网络 R0](../history/card-plans/closed/物流封面网络R0详细计划.md)
@@ -69,8 +69,10 @@
 > current execution gap = 0；deferred ledger = 0。不自动
 > 启动核能。`portfolio/count-ceiling-kind-envelope` 仍是 telemetry /
 > report-only，未预分配为后继。机制卡 `*_READY` 不是内容完成；缺口总账
-> [冻结与未实现账本](unimplemented-gap.md)。语义命名剩余项见
-> [semantic-naming.md](semantic-naming.md)（长期清单，不占用 active child）。不签发新的里程碑编号。不进行
+> [冻结与未实现账本](unimplemented-gap.md)。语义命名收口 A–D 已落地；剩余文档与全量扫描见
+> [semantic-naming.md](semantic-naming.md) 与
+> [semantic-naming-closeout-checklist.md](semantic-naming-closeout-checklist.md)
+> （长期清单，不占用 active child）。不签发新的里程碑编号。不进行
 > 玩家发行、RC soak 或 GA。
 
 ## 1. 项目目标
@@ -85,8 +87,8 @@ CrucibleCraft 是 Minecraft 1.21.1 NeoForge 上的 GT6 风格工业模组。技�
 
 - 已关闭阶段的档案、工作日志与编号卡计划在 [docs/history](../history/INDEX.md)。
 - `0.1.0-rc.1` 是历史工程候选版本，不是 `1.0.0`、GA 或玩家发行承诺。
-- [`tools/full_verification_report.json`](../../tools/full_verification_report.json) 是历史
-  verification report；内容开发不以 `--check-ready` 通过与否作为日常完成判据。
+- 历史 full verification report 已从工作树删除；内容开发不以旧 `--check-ready`
+  通过与否作为日常完成判据。
 - 当前进度只接受当前 revision 上 fresh 执行的 capability profile PASS；
   `capability.json` 不保存可自行刷新的 `evidence=current`。
 - 分层验证、机器契约与文档历史区的现行用法见 [验证指南](verification.md)；
@@ -177,7 +179,7 @@ lock，不发布配方，也不预分配实现 child。
 
 已关闭的
 [T13c 排除表收回 R0](../history/card-plans/closed/T13c排除表收回R0详细计划.md)
-（slug `portfolio/t13c-exclusion-reclaim-r0`）为 `T13C_EXCLUSION_RECLAIM_R0_READY`。
+（slug `portfolio/exclusion-reclaim-r0`）为 `T13C_EXCLUSION_RECLAIM_R0_READY`。
 它是 `portfolio/existing-mechanism-bounded-domains` 的第二个切片：冻结五类
 T13c exclusion（129 source sites / 471 expanded）的 lineage 与现有机制
 适配面，不实现 MTE，不签 production lock，不发布配方，也不预分配实现
@@ -229,7 +231,7 @@ portfolio/generic-recipe-generator-r0
 telemetry / report-only，不写入 topology 后继。不自动启动核能 census。
 已关闭的 `portfolio/logistics-cover-net-r0` 为
 `LOGISTICS_COVER_NET_R0_READY`，可行性 `requires_new_runtime`，不预分配
-core。已关闭的 `portfolio/t13c-exclusion-reclaim-r0` 为
+core。已关闭的 `portfolio/exclusion-reclaim-r0` 为
 `T13C_EXCLUSION_RECLAIM_R0_READY`，不预分配 implementation child。已关闭
 `portfolio/non-ore-worldgen-r0` 为 `NON_ORE_WORLDGEN_R0_READY`，四类
 可行性均为 `requires_new_runtime`，不预分配 implementation child。已关闭
