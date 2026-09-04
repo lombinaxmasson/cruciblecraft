@@ -240,6 +240,76 @@ class NoWorkflowHashesTest(unittest.TestCase):
         self.assertIn("non-blocking", migration_output.getvalue())
         self.assertIn("blocking", check_output.getvalue())
 
+    def test_scoped_scan_only_covers_requested_active_files(self) -> None:
+        result = scanner.scan_repository(
+            ROOT,
+            self.policy,
+            paths=["tools/tree_compare.py", "README.md"],
+        )
+        self.assertTrue(result["scoped"])
+        self.assertEqual(1, result["active_files"])
+        self.assertTrue(
+            all(row["path"] == "tools/tree_compare.py" for row in result["findings"])
+        )
+
+    def test_regex_patterns_are_compiled_once_per_policy(self) -> None:
+        scanners = scanner.compile_scanners(self.policy)
+        self.assertEqual(3, len(scanners["forbidden"]))
+        again = scanner.compile_scanners(self.policy)
+        self.assertEqual(
+            [pattern.pattern for _rule, pattern in scanners["forbidden"]],
+            [pattern.pattern for _rule, pattern in again["forbidden"]],
+        )
+
+    def test_incremental_path_scan_skips_unlisted_active_files(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            dirty = root / "tools" / "profile_owned.py"
+            clean = root / "tools" / "from_python_policy.py"
+            dirty.parent.mkdir(parents=True)
+            dirty.write_text('row = {"input_sha256": "abc"}\n', encoding="utf-8")
+            clean.write_text('row = {"input_sha256": "abc"}\n', encoding="utf-8")
+            (root / "tools" / "verification_profiles.json").write_text(
+                json.dumps(
+                    {
+                        "profiles": {
+                            "active": {
+                                "owned_paths": [
+                                    "tools/profile_owned.py",
+                                    "tools/from_python_policy.py",
+                                ],
+                                "builders": [],
+                                "python_modules": [],
+                            }
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (root / "tools" / "verification_builder_policy.json").write_text(
+                json.dumps({"pre_chain_builders": [], "builders": []}),
+                encoding="utf-8",
+            )
+            (root / "tools" / "python_test_policy.json").write_text(
+                json.dumps({"affected_rules": []}),
+                encoding="utf-8",
+            )
+            policy = copy.deepcopy(self.policy)
+            policy["always_active_patterns"] = []
+            result = scanner.scan_repository(
+                root,
+                policy,
+                paths=["tools/profile_owned.py"],
+            )
+        self.assertTrue(result["scoped"])
+        self.assertEqual(1, result["active_files"])
+        self.assertEqual(["tools/profile_owned.py"], [row["path"] for row in result["findings"]])
+
+    def test_compile_scanners_reuses_regex_objects(self) -> None:
+        compiled = scanner.compile_scanners(self.policy)
+        self.assertTrue(compiled["forbidden"])
+        self.assertTrue(all(row[1].pattern for row in compiled["forbidden"]))
+
 
 if __name__ == "__main__":
     unittest.main()

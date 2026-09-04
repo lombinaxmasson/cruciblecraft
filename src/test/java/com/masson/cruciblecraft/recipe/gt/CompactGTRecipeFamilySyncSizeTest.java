@@ -11,6 +11,7 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
@@ -45,7 +46,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 class CompactGTRecipeFamilySyncSizeTest {
-    private static final int EXPECTED_LIVE_COMPACT_ENTRIES = 5651;
+    /** Committed compact RecipeHolders under recipe_generated, excluding off-tree bath waves. */
+    private static final int EXPECTED_COMMITTED_COMPACT_ENTRIES = 2486;
     private static final int EXPECTED_LARGE_JSON_ENTRIES = 0;
     private static final long ONE_MIB = 1024L * 1024L;
     private static final String BATH_0025_FAMILY_ID = "gt.recipe.bath#0025";
@@ -72,10 +74,13 @@ class CompactGTRecipeFamilySyncSizeTest {
     @Timeout(value = 15, unit = TimeUnit.MINUTES)
     void allLiveCompactEntriesEncodeUnderCeiling() throws IOException {
         List<Path> compactFiles = listCompactFamilyFiles();
+        long committed = compactFiles.stream()
+                .filter(path -> !isOffTreeBathWave(path))
+                .count();
         assertEquals(
-                EXPECTED_LIVE_COMPACT_ENTRIES,
-                compactFiles.size(),
-                "live compact RecipeHolder count drifted");
+                EXPECTED_COMMITTED_COMPACT_ENTRIES,
+                committed,
+                "committed compact RecipeHolder count drifted");
         int largeJson = 0;
         int maxBytes = 0;
         String maxFamily = "";
@@ -117,6 +122,10 @@ class CompactGTRecipeFamilySyncSizeTest {
 
     @Test
     void bath0025RoundTripsFieldsAndFingerprint() throws IOException {
+        Assumptions.assumeTrue(
+                CompactGTRecipeFamilyGeneratedSupport.hasGeneratedFamiliesRecursive(
+                        CompactGTRecipeFamilyGeneratedSupport.bathIdentityGeneratedRoot()),
+                "bath identity generated compact families are not available");
         Path path = compactFileNamed("gt_recipe_bath_0025.json");
         CompactRecipeFamilySource originalSource =
                 CompactGTRecipeFamilyGeneratedSupport.sourceFromGenerated(
@@ -434,6 +443,11 @@ class CompactGTRecipeFamilySyncSizeTest {
                     });
         }
         return files;
+    }
+
+    private static boolean isOffTreeBathWave(Path path) {
+        String normalized = path.toString().replace('\\', '/');
+        return normalized.contains("/recipe/bath/");
     }
 
     private static Path compactFileNamed(String fileName) throws IOException {

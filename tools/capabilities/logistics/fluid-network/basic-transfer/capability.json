@@ -28,6 +28,17 @@
   "wave_slug": "runtime/fluid-network-basic-transfer",
   "legacy_readiness": null,
   "player_signoff": "tools/capabilities/logistics/fluid-network/basic-transfer/player_signoff.json",
+  "required_test_ids": [
+    "coverIdentitySurvivesBlockEntityReload",
+    "coversAreSurvivalCraftable",
+    "differentIdentityIsInvisible",
+    "disconnectedPipesAreNotOneNetwork",
+    "importPullsFromStorage",
+    "loadAxisCapsAreRecorded",
+    "noTargetDoesNotSwallowFluids",
+    "playerSurfaceIsRegistered",
+    "sameIdentityConnectedExportsIntoStorage"
+  ],
   "identity_disposition": [
     {
       "semantic_key": "cover:logistics_fluid_storage",

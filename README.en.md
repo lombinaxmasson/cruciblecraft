@@ -127,12 +127,18 @@ Common verification entry points are:
 ```powershell
 python tools/verify.py dev
 python tools/verify.py integration --profile verification
+python tools/verify.py integration --profile runtime-java
 python tools/verify.py integration --profile semantic-generators
 python tools/verify.py integration --profile capability-runtime
 python tools/verify.py integration --profile player-complete
+python tools/verify.py promotion
 ```
 
-`dev` selects relevant checks from the working-tree changes. The
+`dev` selects relevant checks from the working-tree changes: ordinary runtime
+Java runs JUnit without datagen; datagen providers and generated trees run the
+double `runData` profile. `promotion` runs
+the full GameTestServer and client only when a capability is raised to
+`player_complete`. The
 [verification guide](docs/current/verification.md) and
 [tooling guide](tools/README.md) explain profile selection, result locations,
 and the GameTestServer and client checks used for `player_complete`.

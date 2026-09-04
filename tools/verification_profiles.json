@@ -13,12 +13,14 @@
   "active_profiles": [
     "docs",
     "verification",
+    "runtime-java",
     "semantic-generators",
     "capability-runtime",
     "player-complete"
   ],
   "release_profiles": [
     "verification",
+    "runtime-java",
     "semantic-generators",
     "capability-runtime",
     "player-complete"
@@ -80,13 +82,31 @@
         ".github/workflows/release.yml"
       ]
     },
+    "runtime-java": {
+      "owner": "runtime",
+      "tier": "integration",
+      "datagen": false,
+      "gradle_tasks": [
+        "test"
+      ],
+      "python_modules": [],
+      "builders": [],
+      "owned_paths": [
+        "build.gradle",
+        "gradle.properties",
+        "settings.gradle",
+        "gradle/**",
+        "src/main/java/**",
+        "src/test/java/**",
+        "src/main/resources/**",
+        "src/test/resources/**"
+      ]
+    },
     "semantic-generators": {
       "owner": "semantic-content",
       "tier": "integration",
       "datagen": true,
-      "gradle_tasks": [
-        "test"
-      ],
+      "gradle_tasks": [],
       "python_modules": [
         "test_material_form_authority",
         "test_build_semantic_recipes"
@@ -109,9 +129,8 @@
         "tools/recipe_bulk/**",
         "tools/source_pack_manifest.schema.json",
         "tools/recipe_import_spec.schema.json",
-        "src/main/java/**",
-        "src/test/java/**",
-        "src/main/resources/**",
+        "src/main/java/com/masson/cruciblecraft/datagen/**",
+        "src/test/java/com/masson/cruciblecraft/datagen/**",
         "src/generated/**",
         "src/recipe_generated/**",
         "src/compact_recipe_policy_generated/**"

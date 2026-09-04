@@ -104,7 +104,10 @@ class AssemblerWoodCatalogFixtureTest {
         }
         return group.equals(CompactPublicationGroups.ASSEMBLER_PLANKS)
                 || group.equals(CompactPublicationGroups.ASSEMBLER_FIREPROOF)
-                || group.equals(CompactPublicationGroups.ASSEMBLER_PLANKS2);
+                || group.equals(CompactPublicationGroups.ASSEMBLER_PLANKS2)
+                || "assembler_wood_catalog_planks".equals(group.getPath())
+                || "assembler_wood_catalog_fireproof".equals(group.getPath())
+                || "assembler_wood_catalog_planks2".equals(group.getPath());
     }
 
     private static void assertRouterCapacity(

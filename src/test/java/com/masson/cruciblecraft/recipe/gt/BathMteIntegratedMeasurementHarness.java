@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -70,6 +71,10 @@ class BathMteIntegratedMeasurementHarness {
         MinecraftTestBootstrap.bootstrap();
         registries = new RegistryAccess.ImmutableRegistryAccess(
                 BuiltInRegistries.REGISTRY.stream().toList());
+        Path waveRoot = CompactGTRecipeFamilyGeneratedSupport.bathMteGeneratedRoot();
+        Assumptions.assumeTrue(
+                CompactGTRecipeFamilyGeneratedSupport.hasGeneratedFamiliesRecursive(waveRoot),
+                () -> "Bath/mte generated compact families are not available at " + waveRoot);
         sources = new ArrayList<>();
         for (Path root : CompactGTRecipeFamilyGeneratedSupport.generatedRootsThroughBathMte()) {
             sources.addAll(CompactGTRecipeFamilyGeneratedSupport

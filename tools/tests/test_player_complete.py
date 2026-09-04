@@ -15,6 +15,17 @@ from tools import player_complete
 from tools import io_common as files
 
 SLUG = "logistics/fluid-network/basic-transfer"
+FLUID_TEST_IDS = [
+    "coverIdentitySurvivesBlockEntityReload",
+    "coversAreSurvivalCraftable",
+    "differentIdentityIsInvisible",
+    "disconnectedPipesAreNotOneNetwork",
+    "importPullsFromStorage",
+    "loadAxisCapsAreRecorded",
+    "noTargetDoesNotSwallowFluids",
+    "playerSurfaceIsRegistered",
+    "sameIdentityConnectedExportsIntoStorage",
+]
 
 
 class PlayerCompleteTest(unittest.TestCase):
@@ -42,9 +53,9 @@ class PlayerCompleteTest(unittest.TestCase):
                 + str(wave).replace("/", "_").replace("-", "_")
             ),
             "failed": 0,
-            "passed": 2,
-            "required_tests": 2,
-            "test_ids": ["reload", "transfer"],
+            "passed": len(FLUID_TEST_IDS),
+            "required_tests": len(FLUID_TEST_IDS),
+            "test_ids": list(FLUID_TEST_IDS),
             "skip_is_not_pass": True,
         }
 
@@ -155,14 +166,40 @@ class PlayerCompleteTest(unittest.TestCase):
 
     def test_gametest_counts_must_match_test_ids(self) -> None:
         receipt = self.gametest_receipt()
-        receipt["passed"] = 3
+        receipt["passed"] = len(FLUID_TEST_IDS) + 1
         with tempfile.TemporaryDirectory() as directory:
             path = self.write_receipt(directory, "gametest.json", receipt)
             errors = player_complete.check_gametest_receipt(
                 self.capability,
                 path,
             )
-        self.assertTrue(any("test_ids=2 passed=3" in row for row in errors))
+        self.assertTrue(
+            any(f"test_ids={len(FLUID_TEST_IDS)} passed=" in row for row in errors)
+        )
+
+    def test_renamed_or_dropped_required_test_fails(self) -> None:
+        receipt = self.gametest_receipt()
+        receipt["test_ids"] = ["renamedTest"] + FLUID_TEST_IDS[1:]
+        with tempfile.TemporaryDirectory() as directory:
+            path = self.write_receipt(directory, "gametest.json", receipt)
+            errors = player_complete.check_gametest_receipt(
+                self.capability,
+                path,
+            )
+        self.assertTrue(any("!= required_test_ids" in row for row in errors))
+
+    def test_declared_test_ids_match_java_methods(self) -> None:
+        self.assertEqual([], player_complete.check_declared_test_ids(self.capability))
+        self.assertEqual(
+            FLUID_TEST_IDS,
+            player_complete.discover_gametest_method_ids(self.capability),
+        )
+
+    def test_renamed_java_method_breaks_declared_contract(self) -> None:
+        capability = dict(self.capability)
+        capability["required_test_ids"] = ["renamedTest"] + FLUID_TEST_IDS[1:]
+        errors = player_complete.check_declared_test_ids(capability)
+        self.assertTrue(any("!= GameTest methods" in row for row in errors))
 
     def test_gametest_server_receipt_is_not_client_evidence(self) -> None:
         receipt = self.client_receipt()
@@ -221,6 +258,9 @@ class PlayerCompleteTest(unittest.TestCase):
         self.assertEqual([], errors, errors)
         self.assertEqual(2, len(calls))
         self.assertEqual("PASS", saved["status"])
+        self.assertTrue(all("--rerun" in command for command in calls))
+        self.assertTrue(all("--rerun-tasks" not in command for command in calls))
+        self.assertTrue(all("--no-daemon" not in command for command in calls))
         nonces = {
             property_value(command, "smokeNonce")
             for command in calls

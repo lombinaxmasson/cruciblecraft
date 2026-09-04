@@ -28,13 +28,13 @@ public final class CompactPublicationGroups {
                     "cruciblecraft", "electrolyzer/multi");
     public static final ResourceLocation ASSEMBLER_PLANKS =
             ResourceLocation.fromNamespaceAndPath(
-                    "cruciblecraft", "assembler/planks");
+                    "cruciblecraft", "assembler/wood/planks");
     public static final ResourceLocation ASSEMBLER_FIREPROOF =
             ResourceLocation.fromNamespaceAndPath(
-                    "cruciblecraft", "assembler/fireproof");
+                    "cruciblecraft", "assembler/wood/fireproof");
     public static final ResourceLocation ASSEMBLER_PLANKS2 =
             ResourceLocation.fromNamespaceAndPath(
-                    "cruciblecraft", "assembler/planks2");
+                    "cruciblecraft", "assembler/wood/planks2");
     public static final ResourceLocation SMELTER_STONE =
             ResourceLocation.fromNamespaceAndPath(
                     "cruciblecraft", "smelter/stone");

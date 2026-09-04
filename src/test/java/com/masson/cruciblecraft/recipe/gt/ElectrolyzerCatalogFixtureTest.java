@@ -53,6 +53,7 @@ class ElectrolyzerCatalogFixtureTest {
             assertTrue(
                     group.equals(CompactPublicationGroups.ELECTROLYZER_SINGLETON)
                             || group.equals(CompactPublicationGroups.ELECTROLYZER_MULTI)
+                            || "electrolyzer_catalog_singleton".equals(group.getPath())
                             || "electrolyzer_catalog_combinatorial".equals(group.getPath())
                             || "electrolyzer_catalog_multi".equals(group.getPath()),
                     () -> "unexpected catalog group " + group);

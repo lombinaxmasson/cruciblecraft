@@ -28,7 +28,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Assemble production artifacts
-        run: ./gradlew assemble --no-daemon
+        run: ./gradlew assemble
 
       - name: Verify no common→client imports
         run: |
@@ -42,11 +42,14 @@ jobs:
       - name: Verify active tooling
         run: python3 tools/verify.py integration --profile verification
 
-      - name: Reject development workflow hashes
-        run: python3 tools/check_no_workflow_hashes.py --check
+      - name: Verify runtime Java
+        run: python3 tools/verify.py integration --profile runtime-java --if-changed
 
       - name: Verify semantic generators
-        run: python3 tools/verify.py integration --profile semantic-generators
+        run: python3 tools/verify.py integration --profile semantic-generators --if-changed
 
       - name: Verify capability runtime
         run: python3 tools/verify.py integration --profile capability-runtime
+
+      - name: Verify player-complete on maturity promotion
+        run: xvfb-run -a python3 tools/verify.py promotion

@@ -13,20 +13,41 @@ Git 负责保存和审查变更；内容摘要不作为开发流程的防篡改�
 ```powershell
 python tools/verify.py dev
 python tools/verify.py integration --profile verification
+python tools/verify.py integration --profile runtime-java
 python tools/verify.py integration --profile semantic-generators
 python tools/verify.py integration --profile capability-runtime
 python tools/verify.py integration --profile player-complete
+python tools/verify.py promotion
 python tools/verify.py release
 ```
 
 - `dev` 根据显式 `--path` 或 Git dirty paths 选择 active profile。
-- `integration --profile` 总是 fresh 执行该 profile 的 builders、Python tests、
-  Gradle tasks 和 datagen；不复用旧 PASS。
+- `runtime-java` 跑全量 `gradle test`，不跑 datagen。普通 runtime Java / 测试 /
+  `src/main/resources` 只命中这个 profile。
+- `semantic-generators` 跑 recipe builders、相关 Python tests 和两次 `runData`。
+  命中面是 datagen provider、生成树和配方工具；不跑 JUnit。
+- 改 datagen provider 会同时命中两个 profile：JUnit 加上双 datagen。
+- `integration --profile` 默认 fresh 执行该 profile 的 builders、Python tests、
+  Gradle tasks 和 datagen；不复用旧 PASS。CI 对 `runtime-java` 与
+  `semantic-generators` 加 `--if-changed`：有 diff base 且本 profile 未命中则
+  SKIP；没有 diff base（无 `GITHUB_BASE_REF`，且 `GITHUB_EVENT_BEFORE` 为空或全零）
+  时仍执行，避免覆盖收缩。`release` 始终跑全部 release profiles。
+- 新增方块或物品但只改 registry、不改 `datagen/` 时，这次 PR 不会跑 `runData`。
+  `*ResourceTest` 与 `release` 仍覆盖生成树。
+- `promotion` 只在 capability 从非 `player_complete` 晋级时运行 GameTestServer 与
+  `runClient`。普通 PR 和低风险改动不会自动启动客户端。
 - `release` 对当前 checkout fresh 执行 release profiles。它不读取历史报告来代替运行。
 - 每次结果写到被 Git 忽略的 `build/verification/latest.json`。报告只包含 revision、
   dirty paths、命令、测试计数、环境和 PASS/FAIL，不包含文件摘要。
 
 无法映射的代码路径必须报错。纯文档改动只运行文档链接与 profile 合同检查。
+
+Gradle 验证任务使用 `--rerun`，只强制命令行上的目标任务执行；未变化的
+`compileJava` / `processResources` 可以 UP-TO-DATE。本地和同一 CI job 复用
+Gradle daemon。`release` 通过 `CRUCIBLECRAFT_GRADLE_ISOLATED=1` 隔离 daemon。
+
+workflow-hash 扫描器在 `dev` 和带 diff base 的 CI `integration` 中只扫变更文件；
+policy / 可达性输入变化以及 `release` 仍全量扫描。CI 不再单独重复执行一次扫描。
 
 ## 即时证据
 

@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import unittest
 from pathlib import Path
+from unittest import mock
 
 from tools import capability_ledger as ledger
 from tools import io_common as io
@@ -19,6 +20,7 @@ class CapabilityLedgerTest(unittest.TestCase):
         schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
         self.assertEqual(2, schema["properties"]["schema_version"]["const"])
         self.assertNotIn("evidence", schema["properties"])
+        self.assertIn("required_test_ids", schema["properties"])
         documents = [
             ledger.load_capability(path) for path in ledger.capability_files()
         ]
@@ -39,6 +41,20 @@ class CapabilityLedgerTest(unittest.TestCase):
             row for row in documents if row["slug"] == "logistics/item-network-core"
         )
         self.assertEqual("runtime_ready", item["maturity"])
+        self.assertEqual(
+            [
+                "coverIdentitySurvivesBlockEntityReload",
+                "coversAreSurvivalCraftable",
+                "differentIdentityIsInvisible",
+                "disconnectedPipesAreNotOneNetwork",
+                "importPullsFromStorage",
+                "loadAxisCapsAreRecorded",
+                "noTargetDoesNotSwallowFluids",
+                "playerSurfaceIsRegistered",
+                "sameIdentityConnectedExportsIntoStorage",
+            ],
+            fluid["required_test_ids"],
+        )
 
     def test_compiled_ledger_has_no_legacy_progress_adapter(self) -> None:
         compiled = ledger.compile_ledger()
@@ -96,6 +112,38 @@ class CapabilityLedgerTest(unittest.TestCase):
             ]
         )
         self.assertEqual([FLUID], hit)
+
+    def test_player_complete_promotions_detect_maturity_change(self) -> None:
+        previous = json.dumps({"maturity": "runtime_ready"})
+        with mock.patch.object(
+            ledger,
+            "_git_show",
+            side_effect=lambda revision, relative: (
+                previous
+                if relative.endswith("basic-transfer/capability.json")
+                else json.dumps({"maturity": "frozen"})
+            ),
+        ):
+            self.assertEqual(
+                [FLUID],
+                ledger.player_complete_promotions("origin/main"),
+            )
+
+    def test_player_complete_promotions_ignore_already_complete(self) -> None:
+        with mock.patch.object(
+            ledger,
+            "_git_show",
+            side_effect=lambda revision, relative: json.dumps(
+                {
+                    "maturity": (
+                        "player_complete"
+                        if relative.endswith("basic-transfer/capability.json")
+                        else "frozen"
+                    )
+                }
+            ),
+        ):
+            self.assertEqual([], ledger.player_complete_promotions("HEAD"))
 
 
 if __name__ == "__main__":
