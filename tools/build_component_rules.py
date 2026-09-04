@@ -28,11 +28,11 @@ SOURCE_FILES = (
 )
 EXTRUDER_INDEX = ROOT / "tools" / "gt6_extruder_templates_index_v5.json"
 EXTRUDER_REPORT = ROOT / "tools" / "gt6_extruder_templates_report.json"
-T14_EXTRUDER_POLICY = ROOT / "tools" / "t14_extruder_policy.json"
-T14_EXTRUDER_COMPACT = ROOT / "tools" / "t14_extruder_compact.json"
-T14_EXTRUDER_EXPECTED = ROOT / "tools" / "t14_extruder_expected.json"
-T14_EXTRUDER_READINESS = ROOT / "tools" / "t14_extruder_readiness.json"
-T14_EXTRUDER_LEGACY_REPLAY = ROOT / "tools" / "t14_extruder_legacy_replay.json"
+T14_EXTRUDER_POLICY = ROOT / "tools" / "extruder_policy.json"
+T14_EXTRUDER_COMPACT = ROOT / "tools" / "extruder_compact.json"
+T14_EXTRUDER_EXPECTED = ROOT / "tools" / "extruder_expected.json"
+T14_EXTRUDER_READINESS = ROOT / "tools" / "extruder_readiness.json"
+T14_EXTRUDER_LEGACY_REPLAY = ROOT / "tools" / "extruder_legacy_replay.json"
 SELECTOR_POLICY = ROOT / "tools" / "component_selector_policy.json"
 MATERIAL_REGISTRATION_GATE = (
     ROOT
@@ -200,7 +200,7 @@ def _build_t6_electrical_expansion_overlay(
     registration_gate_path: Path,
 ) -> list[dict[str, str]]:
     gate = _read_json(registration_gate_path)
-    t6_forms = gate.get("t6_electrical_wire_forms")
+    t6_forms = gate.get("electrical_wire_forms")
     materials = gate.get("materials")
     if not isinstance(t6_forms, dict) or not isinstance(materials, dict):
         raise SourceError(
@@ -260,7 +260,7 @@ def _build_t6_electrical_expansion_overlay(
             "material": material,
             "form": "wire",
             "rule": "wiremill/ingot_to_wire",
-            "classification": "t6_source_backed_runtime_required",
+            "classification": "electrical_source_backed_runtime_required",
         }
         for material in enabled
     ]
@@ -1257,17 +1257,17 @@ def build_bundle(
     adjusted_id_digest = _sha256(_stable_bytes({
         "baseline": baseline["digests"]["expanded_recipe_ids_sha256"],
         "acceptance_form_corrections": corrections,
-        "t6_electrical_form_expansion": t6_overlay,
+        "electrical_form_expansion": t6_overlay,
     }))
     adjusted_signature_digest = _sha256(_stable_bytes({
         "baseline": baseline["digests"]["expanded_recipe_signatures_sha256"],
         "acceptance_form_corrections": corrections,
-        "t6_electrical_form_expansion": t6_overlay,
+        "electrical_form_expansion": t6_overlay,
     }))
     adjusted_shadow_digest = _sha256(_stable_bytes({
         "baseline": baseline["digests"]["shadow_signatures_sha256"],
         "acceptance_form_corrections": corrections,
-        "t6_electrical_form_expansion": t6_overlay,
+        "electrical_form_expansion": t6_overlay,
     }))
     composite_id_digest = _sha256(_stable_bytes({
         "non_extruder": adjusted_id_digest,
@@ -1373,8 +1373,8 @@ def build_bundle(
             "expansion_delta": correction_delta,
             "entries": corrections,
         },
-        "t6_electrical_form_expansion": {
-            "classification": "t6_source_backed_runtime_required",
+        "electrical_form_expansion": {
+            "classification": "electrical_source_backed_runtime_required",
             "expansion_delta": t6_overlay_delta,
             "entries": t6_overlay,
         },

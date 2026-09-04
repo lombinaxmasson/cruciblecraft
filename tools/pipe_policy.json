@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "gate": "T8_PIPE_SOURCE_BUDGET_READINESS",
+  "authoritative_facts": {
+    "pipe_source": "tools/gt6_pipe_source.json",
+    "normalized_materials": "tools/gt6_oredict_materials_normalized.json",
+    "normalized_prefixes": "tools/gt6_oredict_prefixes_normalized.json",
+    "live_material_index": "src/main/resources/data/cruciblecraft/materials/index.json"
+  },
+  "classification_policy": {
+    "direct_source": "The exact live or raw source_name is an argument of the domain's pinned GT6 addFluidPipes or addItemPipes call.",
+    "acceptance_extension": "The exact live or raw source_name is an explicit CrucibleCraft copper/tin/iron acceptance extension for this domain and is absent from that domain's direct GT6 calls.",
+    "not_applicable": "The exact source_name is neither direct GT6 pipe source nor an explicit acceptance extension for this domain.",
+    "unclassified_allowed": false
+  },
+  "acceptance_materials": [
+    "copper",
+    "tin",
+    "iron"
+  ],
+  "acceptance_extensions": {
+    "fluid": [
+      {
+        "material": "tin",
+        "source_name": "Tin"
+      },
+      {
+        "material": "iron",
+        "source_name": "Iron"
+      }
+    ],
+    "item": [
+      {
+        "material": "copper",
+        "source_name": "Copper"
+      },
+      {
+        "material": "tin",
+        "source_name": "Tin"
+      },
+      {
+        "material": "iron",
+        "source_name": "Iron"
+      }
+    ]
+  },
+  "extension_defaults": {
+    "fluid": {
+      "base_capacity": 100,
+      "gas_proof": false,
+      "acid_proof": false,
+      "plasma_proof": false,
+      "magic_proof": false,
+      "contact_damage": true,
+      "flammable": false,
+      "recipe": true,
+      "blocking": true,
+      "max_temperature_rule": "floor(source_melting_kelvin*1.25)"
+    },
+    "item": {
+      "base_step_size": 16384,
+      "base_stacks_per_second": 1,
+      "recipe": true,
+      "blocking": true
+    }
+  },
+  "fluid_domain": {
+    "selected_gauges": [
+      {
+        "name": "tiny",
+        "logical_prefix": "fluid/tiny",
+        "source_prefix": "pipeTiny",
+        "capacity_multiplier": 1
+      },
+      {
+        "name": "small",
+        "logical_prefix": "fluid/small",
+        "source_prefix": "pipeSmall",
+        "capacity_multiplier": 2
+      },
+      {
+        "name": "normal",
+        "logical_prefix": "fluid/normal",
+        "source_prefix": "pipeMedium",
+        "capacity_multiplier": 6
+      },
+      {
+        "name": "large",
+        "logical_prefix": "fluid/large",
+        "source_prefix": "pipeLarge",
+        "capacity_multiplier": 12
+      },
+      {
+        "name": "huge",
+        "logical_prefix": "fluid/huge",
+        "source_prefix": "pipeHuge",
+        "capacity_multiplier": 24
+      }
+    ],
+    "deferred_gauges": [
+      {
+        "name": "quadruple",
+        "source_prefix": "pipeQuadruple",
+        "reason": "Multi-channel fluid routing is outside the first T8 vertical."
+      },
+      {
+        "name": "nonuple",
+        "source_prefix": "pipeNonuple",
+        "reason": "Multi-channel fluid routing is outside the first T8 vertical."
+      }
+    ]
+  },
+  "item_domain": {
+    "selected_gauges": [
+      {
+        "name": "normal",
+        "logical_prefix": "item/normal",
+        "source_prefix": "pipeMedium",
+        "step_size_divisor": 1,
+        "inventory_multiplier": 1
+      },
+      {
+        "name": "large",
+        "logical_prefix": "item/large",
+        "source_prefix": "pipeLarge",
+        "step_size_divisor": 2,
+        "inventory_multiplier": 2
+      },
+      {
+        "name": "huge",
+        "logical_prefix": "item/huge",
+        "source_prefix": "pipeHuge",
+        "step_size_divisor": 4,
+        "inventory_multiplier": 4
+      }
+    ],
+    "deferred_gauges": [
+      {
+        "name": "small",
+        "reference": "GTM ItemPipeType.SMALL",
+        "reason": "GT6 addItemPipes does not generate a non-restrictive small item pipe."
+      },
+      {
+        "name": "restrictive_small",
+        "reference": "GTM ItemPipeType.RESTRICTIVE_SMALL",
+        "reason": "All restrictive item routing is deferred; GT6 addItemPipes also has no restrictive-small output."
+      },
+      {
+        "name": "restrictive_normal",
+        "source_prefix": "pipeRestrictiveMedium",
+        "reference": "GTM ItemPipeType.RESTRICTIVE_NORMAL",
+        "reason": "All restrictive item routing is deferred."
+      },
+      {
+        "name": "restrictive_large",
+        "source_prefix": "pipeRestrictiveLarge",
+        "reference": "GTM ItemPipeType.RESTRICTIVE_LARGE",
+        "reason": "All restrictive item routing is deferred."
+      },
+      {
+        "name": "restrictive_huge",
+        "source_prefix": "pipeRestrictiveHuge",
+        "reference": "GTM ItemPipeType.RESTRICTIVE_HUGE",
+        "reason": "All restrictive item routing is deferred."
+      }
+    ]
+  },
+  "expected_counts": {
+    "raw_material_count": 2214,
+    "live_material_count": 1773,
+    "fluid_raw_direct": 40,
+    "fluid_raw_extensions": 2,
+    "fluid_live_direct": 40,
+    "fluid_live_extensions": 2,
+    "item_raw_direct": 21,
+    "item_raw_extensions": 3,
+    "item_live_direct": 21,
+    "item_live_extensions": 3,
+    "fluid_runtime_blocks": 210,
+    "item_runtime_blocks": 72,
+    "combined_runtime_blocks": 282,
+    "logical_states": 18048,
+    "selected_prefixes": 8,
+    "unclassified": 0
+  },
+  "budget": {
+    "connection_directions": 6,
+    "max_combined_runtime_blocks": 300,
+    "max_logical_states": 20000,
+    "required_selected_prefix_count": 8
+  },
+  "recipe_projection": {
+    "architecture": "one_generic_material_rule_per_selected_domain_gauge",
+    "generic_rule_count": 8,
+    "material_expansion_count": 257,
+    "material_rule_budget": 320,
+    "status": "IMPLEMENTED_GENERIC_MATERIAL_RULES"
+  },
+  "runtime_api_decisions": {
+    "outgoing_cover_guard": {
+      "status": "REMOVED",
+      "reason": "T8 one-way valves intentionally restrict face-to-pipe input only; the former allowsOutgoing(Direction) method always returned true and made four guards non-falsifiable."
+    },
+    "cover_set_version": {
+      "status": "REMOVED",
+      "reason": "PipeCoverSet.version had no production consumer; cover mutations already invalidate PipeTopology and synchronize the owning block entity."
+    }
+  },
+  "nonmetal_fluid_pipe_acquisition": {
+    "open_item": "O-27",
+    "status": "CLOSED_T19C",
+    "artifact": "tools/t19_pipe_acquisition.json",
+    "materials": [
+      "carbon",
+      "plastic",
+      "rubber",
+      "wood",
+      "wood_treated"
+    ],
+    "expected_gauge_count": 5,
+    "expected_form_count": 25,
+    "decision": "Keep all GT6 recipe flags false; use the five exact GT6 Wood crafting rows and twenty explicit CrucibleCraft DESIGN_POLICY_NON_GT6 shaped rows recorded by the T19c acquisition artifact."
+  },
+  "import_architecture": {
+    "source_of_truth": "tools/gt6_pipe_source.json plus explicit tools/t8_pipe_policy.json acceptance extensions",
+    "per_material_java_required": false,
+    "runtime_catalog_generation": "derive every selected material/gauge row from exact source_name and policy classification"
+  },
+  "readiness_policy": {
+    "ready_status": "READY",
+    "requirements": [
+      "pinned_gt6_and_gtm_source_identity_and_hashes",
+      "exact_direct_call_extraction",
+      "raw_and_live_domain_classification_closure",
+      "acceptance_extensions_never_labeled_direct_gt6_source",
+      "exactly_eight_selected_domain_prefixes",
+      "combined_runtime_blocks_at_most_300",
+      "logical_states_equal_blocks_times_64_and_at_most_20000",
+      "all_unselected_and_restrictive_gauges_are_explicitly_deferred",
+      "recipe_projection_is_generic_and_requires_no_per_material_java",
+      "t19c_nonmetal_pipe_acquisition_is_closed_without_changing_gt6_recipe_flags"
+    ],
+    "runtime_implementation_status": "IMPLEMENTED_AND_GAME_TESTED"
+  }
+}

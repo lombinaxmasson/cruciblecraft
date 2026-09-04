@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Shadow-compile T45→T37 and record zero-drift parity against production trees."""
+"""Shadow-compile block/object→assembler/compact and record zero-drift parity against production trees."""
 from __future__ import annotations
 
 import sys
@@ -10,11 +10,11 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools import builder_cli
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk import shadow as shadow_mod
 from tools.recipe_bulk.write_guard import assert_ledger_write
 
-OUTPUT = t35.TOOLS / "recipe_wave_shadow_parity.json"
+OUTPUT = census.TOOLS / "recipe_wave_shadow_parity.json"
 
 
 def build(*, persist_ir: bool = False):
@@ -31,7 +31,7 @@ def _write() -> list[str]:
                 errors.append(f"{wave_id}: {','.join(row.get('mismatches') or [])}")
         return errors
     assert_ledger_write(OUTPUT)
-    t35.write_stable(OUTPUT, document)
+    census.write_stable(OUTPUT, document)
     from tools import currentness
 
     if currentness.target_row(OUTPUT) is not None:
@@ -47,33 +47,33 @@ def _check() -> list[str]:
         for wave_id, row in (document.get("waves") or {}).items():
             if not row.get("ok"):
                 errors.append(f"{wave_id}: {','.join(row.get('mismatches') or [])}")
-    errors.extend(t35.check_generated_document(OUTPUT, document))
+    errors.extend(census.check_generated_document(OUTPUT, document))
     return errors
 
 
 def main(argv: list[str] | None = None) -> int:
     args = builder_cli.parse_managed(
-        "Shadow-compile T45 through T37 and prove production parity",
+        "Shadow-compile block/object through assembler/compact and prove production parity",
         argv,
     )
     if args.rebind_currentness_only:
         from tools import currentness
 
         currentness.rebind_sidecar(OUTPUT)
-        print(f"rebound currentness sidecar for {t35.relative(OUTPUT)}")
+        print(f"rebound currentness sidecar for {census.relative(OUTPUT)}")
         return 0
     if args.write:
         errors = _write()
         if errors:
             print("\n".join(errors), file=sys.stderr)
             return 1
-        print(f"Wrote {t35.relative(OUTPUT)}")
+        print(f"Wrote {census.relative(OUTPUT)}")
         return 0
     errors = _check()
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1
-    print(f"{t35.relative(OUTPUT)} is current")
+    print(f"{census.relative(OUTPUT)} is current")
     return 0
 
 

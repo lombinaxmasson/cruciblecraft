@@ -1,20 +1,28 @@
 #!/usr/bin/env python3
 """Fail if active roots still use milestone-style TXX names.
 
-Exempt only archive/sealed/** and docs/history/** (except the active card-plan
-tree). Temporary allowlist entries must carry owner, reason, and expiry.
-Program closeout requires an empty allowlist.
+Exempt only docs/history/card-plans/** (closed and active). Temporary allowlist
+entries must carry owner, reason, and expiry. Program closeout requires an
+empty allowlist. --quick is the verify gate: live logistics/capability Java
+and capability tools, never generated recipe trees.
+
+Full --summary streams files with os.walk and scans line-by-line. It does not
+build a complete Path list or slurp giant JSON into one string.
 """
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
+import time
+from collections.abc import Iterator
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+ROOT_S = os.fspath(ROOT)
 
 SCAN_ROOTS = (
     "src/main",
@@ -32,9 +40,9 @@ SCAN_ROOTS = (
     "src/recipe_support_generated",
     "tools",
     "docs/current",
-    "docs/history/card-plans/active",
+    "docs/history",
     "docs/decisions",
-    "src/t14Benchmark",
+    "src/recipeLoadBenchmark",
 )
 
 SCAN_FILES = (
@@ -87,6 +95,9 @@ FALSE_POSITIVE_SPAN = re.compile(
     re.IGNORECASE,
 )
 
+# Cheap reject for the common case: no T/t + digit anywhere on the line.
+_PREFILTER = re.compile(r"[Tt]\d")
+
 # Program closeout requires this list to stay empty.
 ALLOWLIST: list[dict[str, str]] = []
 
@@ -96,11 +107,7 @@ def relative(path: Path) -> str:
 
 
 def is_exempt(rel: str) -> bool:
-    if rel.startswith("archive/sealed/"):
-        return True
-    if rel.startswith("docs/history/card-plans/active/"):
-        return False
-    return rel.startswith("docs/history/")
+    return rel.startswith("docs/history/card-plans/")
 
 
 def is_allowlisted(rel: str, line: str, match: str) -> bool:
@@ -136,6 +143,8 @@ def _spans_false_positive(line: str, start: int, end: int) -> bool:
 
 
 def line_findings(line: str) -> list[str]:
+    if not _PREFILTER.search(line):
+        return []
     found: list[str] = []
     seen: set[str] = set()
     for pattern in MILESTONE_PATTERNS:
@@ -154,7 +163,7 @@ def scan_text(rel: str, text: str) -> list[dict[str, Any]]:
     findings: list[dict[str, Any]] = []
     for lineno, line in enumerate(text.splitlines(), start=1):
         for token in line_findings(line):
-            if is_allowlisted(rel, line, token):
+            if ALLOWLIST and is_allowlisted(rel, line, token):
                 continue
             findings.append(
                 {
@@ -167,64 +176,137 @@ def scan_text(rel: str, text: str) -> list[dict[str, Any]]:
     return findings
 
 
-def iter_scan_files(*, quick: bool = False) -> list[Path]:
+def _prefix_for(rel: str) -> str:
+    if rel.startswith("src/"):
+        return "/".join(rel.split("/")[:2])
+    return rel.split("/")[0]
+
+
+def _scan_line_tokens(
+    rel: str, line: str, lineno: int, *, collect: bool
+) -> tuple[int, list[dict[str, Any]]]:
+    tokens = line_findings(line)
+    if not tokens:
+        return 0, []
+    rows: list[dict[str, Any]] = []
+    count = 0
+    stripped = line.strip()[:200] if collect else ""
+    for token in tokens:
+        if ALLOWLIST and is_allowlisted(rel, line, token):
+            continue
+        count += 1
+        if collect:
+            rows.append(
+                {
+                    "file": rel,
+                    "line": lineno,
+                    "match": token,
+                    "text": rel if lineno == 0 else stripped,
+                }
+            )
+    return count, rows
+
+
+def _scan_file_body(
+    rel: str, full: str, *, collect: bool
+) -> tuple[int, list[dict[str, Any]]]:
+    count = 0
+    rows: list[dict[str, Any]] = []
+    try:
+        with open(full, encoding="utf-8", errors="strict", newline="") as handle:
+            for lineno, raw in enumerate(handle, start=1):
+                line = raw.rstrip("\r\n")
+                added, extra = _scan_line_tokens(
+                    rel, line, lineno, collect=collect
+                )
+                count += added
+                if extra:
+                    rows.extend(extra)
+    except (OSError, UnicodeDecodeError):
+        return 0, []
+    return count, rows
+
+
+def _walk_dir(root_rel: str) -> Iterator[tuple[str, str]]:
+    abs_root = os.path.join(ROOT_S, *root_rel.split("/"))
+    if not os.path.isdir(abs_root):
+        return
+    skip = SKIP_DIR_NAMES
+    suffixes = TEXT_SUFFIXES
+    prune_card_plans = root_rel == "docs/history" or root_rel.startswith(
+        "docs/history/"
+    )
+    for dirpath, dirnames, filenames in os.walk(abs_root, topdown=True, followlinks=False):
+        dirnames[:] = [name for name in dirnames if name not in skip]
+        if prune_card_plans:
+            rel_dir = os.path.relpath(dirpath, ROOT_S).replace("\\", "/")
+            if rel_dir == "docs/history" and "card-plans" in dirnames:
+                dirnames.remove("card-plans")
+        for name in filenames:
+            suffix = os.path.splitext(name)[1].lower()
+            if suffix not in suffixes:
+                continue
+            full = os.path.join(dirpath, name)
+            rel = os.path.relpath(full, ROOT_S).replace("\\", "/")
+            if is_exempt(rel):
+                continue
+            yield rel, full
+
+
+def iter_scan_entries(*, quick: bool = False) -> Iterator[tuple[str, str]]:
+    seen: set[str] = set()
+
+    def emit(rel: str, full: str) -> Iterator[tuple[str, str]]:
+        posix = rel.replace("\\", "/")
+        if posix in seen or is_exempt(posix):
+            return
+        seen.add(posix)
+        yield posix, full
+
     if quick:
-        files: list[Path] = []
         for prefix in QUICK_PREFIXES:
-            root = ROOT / prefix.rstrip("/")
-            if root.is_file():
-                files.append(root)
+            abs_path = os.path.join(ROOT_S, *prefix.rstrip("/").split("/"))
+            if os.path.isfile(abs_path):
+                rel = prefix.replace("\\", "/").rstrip("/")
+                yield from emit(rel, abs_path)
                 continue
-            if not root.is_dir():
+            if not os.path.isdir(abs_path):
                 continue
-            for path in root.rglob("*"):
-                if path.is_file() and path.suffix.lower() in TEXT_SUFFIXES:
-                    files.append(path)
-        for name in QUICK_FILES:
-            path = ROOT / name
-            if path.is_file():
-                files.append(path)
-        unique: list[Path] = []
-        seen: set[Path] = set()
-        for path in files:
-            resolved = path.resolve()
-            if resolved in seen:
-                continue
-            seen.add(resolved)
-            unique.append(resolved)
-        return unique
-    files = []
+            for rel, full in _walk_dir(prefix.rstrip("/")):
+                yield from emit(rel, full)
+        for name in sorted(QUICK_FILES):
+            abs_path = os.path.join(ROOT_S, *name.split("/"))
+            if os.path.isfile(abs_path):
+                yield from emit(name.replace("\\", "/"), abs_path)
+        return
+
     for raw in SCAN_ROOTS:
-        root = ROOT / raw
-        if root.is_file():
-            files.append(root)
+        abs_path = os.path.join(ROOT_S, *raw.split("/"))
+        if os.path.isfile(abs_path):
+            yield from emit(raw.replace("\\", "/"), abs_path)
             continue
-        if not root.is_dir():
+        if not os.path.isdir(abs_path):
             continue
-        for path in root.rglob("*"):
-            if not path.is_file():
-                continue
-            if any(part in SKIP_DIR_NAMES for part in path.parts):
-                continue
-            if path.suffix.lower() not in TEXT_SUFFIXES:
-                continue
-            files.append(path)
+        for rel, full in _walk_dir(raw):
+            yield from emit(rel, full)
     for name in SCAN_FILES:
-        path = ROOT / name
-        if path.is_file():
-            files.append(path)
-    for path in ROOT.glob("settings.gradle*"):
-        if path.is_file():
-            files.append(path)
-    unique: list[Path] = []
-    seen: set[Path] = set()
-    for path in files:
-        resolved = path.resolve()
-        if resolved in seen:
-            continue
-        seen.add(resolved)
-        unique.append(resolved)
-    return unique
+        abs_path = os.path.join(ROOT_S, *name.split("/"))
+        if os.path.isfile(abs_path):
+            yield from emit(name.replace("\\", "/"), abs_path)
+    try:
+        names = os.listdir(ROOT_S)
+    except OSError:
+        names = []
+    for name in names:
+        if name.startswith("settings.gradle"):
+            abs_path = os.path.join(ROOT_S, name)
+            if os.path.isfile(abs_path):
+                yield from emit(name.replace("\\", "/"), abs_path)
+
+
+def iter_scan_files(*, quick: bool = False) -> Iterator[Path]:
+    for _rel, full in iter_scan_entries(quick=quick):
+        yield Path(full)
 
 
 QUICK_PREFIXES = (
@@ -271,34 +353,34 @@ def collect_findings(
     findings: list[dict[str, Any]] = []
     by_prefix: dict[str, int] = {}
     count = 0
-    for path in iter_scan_files(quick=quick):
-        rel = relative(path)
-        if is_exempt(rel):
-            continue
+    scanned = 0
+    last_progress = time.monotonic()
+    collect = not summary
+    for rel, full in iter_scan_entries(quick=quick):
         if quick and not is_quick_target(rel):
             continue
-        path_tokens = line_findings(rel.replace("\\", "/"))
-        rows = [
-            {
-                "file": rel,
-                "line": 0,
-                "match": token,
-                "text": rel,
-            }
-            for token in path_tokens
-        ]
-        try:
-            text = path.read_text(encoding="utf-8")
-            rows.extend(scan_text(rel, text))
-        except (OSError, UnicodeDecodeError):
-            pass
-        if not rows:
-            continue
-        count += len(rows)
-        prefix = "/".join(rel.split("/")[:2]) if rel.startswith("src/") else rel.split("/")[0]
-        by_prefix[prefix] = by_prefix.get(prefix, 0) + 1
-        if not summary:
-            findings.extend(rows)
+        scanned += 1
+        file_count, rows = _scan_line_tokens(rel, rel, 0, collect=collect)
+        body_count, body_rows = _scan_file_body(rel, full, collect=collect)
+        file_count += body_count
+        if collect:
+            rows.extend(body_rows)
+        if file_count:
+            count += file_count
+            prefix = _prefix_for(rel)
+            by_prefix[prefix] = by_prefix.get(prefix, 0) + 1
+            if collect:
+                findings.extend(rows)
+        if summary:
+            now = time.monotonic()
+            if now - last_progress >= 2.0:
+                print(
+                    f"summary progress: files={scanned} hit_files={sum(by_prefix.values())} "
+                    f"findings={count} last={rel}",
+                    file=sys.stderr,
+                    flush=True,
+                )
+                last_progress = now
     return count, findings, by_prefix
 
 
@@ -317,6 +399,8 @@ def main(argv: list[str] | None = None) -> int:
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1
+    if args.summary:
+        print("summary scan started", file=sys.stderr, flush=True)
     count, findings, by_prefix = collect_findings(
         summary=args.summary, quick=args.quick
     )

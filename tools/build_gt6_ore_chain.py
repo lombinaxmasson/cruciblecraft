@@ -29,7 +29,7 @@ REGISTRATION_GATE = (
     ROOT
     / "src/main/resources/data/cruciblecraft/material_registration_gate.json"
 )
-T38_ACQUISITION = TOOLS / "t38_source_backed_acquisition.json"
+ROASTER_COMPACT_ACQUISITION = TOOLS / "roaster_source_backed_acquisition.json"
 PREFIX_ROOT = (
     ROOT / "src/main/resources/data/cruciblecraft/material_prefixes"
 )

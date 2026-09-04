@@ -4684,16 +4684,16 @@
     "ore_source_materials": 137,
     "recipe_gated_forms": 13338,
     "registered_forms": 31480,
-    "t10_known_forms": 967,
-    "t38_acquisition_forms": 44,
-    "t38_required_forms": 12,
-    "t39_required_forms": 5,
-    "t3_acceptance_forms": 1,
-    "t40_required_forms": 3,
-    "t48_required_forms": 1679,
-    "t5_required_forms": 7,
-    "t6_electrical_wire_forms": 29,
-    "t8_pipe_forms": 282,
+    "known_ingot_forms": 967,
+    "worldgen_acquisition_forms": 44,
+    "roaster_required_forms": 12,
+    "centrifuge_required_forms": 5,
+    "acceptance_forms": 1,
+    "electrolyzer_required_forms": 3,
+    "bath_required_forms": 1679,
+    "chemical_required_forms": 7,
+    "electrical_wire_forms": 29,
+    "pipe_forms": 282,
     "tool_head_required_forms": 7990
   },
   "drying_ordinary_closure_required_forms": {
@@ -5043,11 +5043,11 @@
     ]
   },
   "java_overlay_sections": [
-    "t38_source_backed_acquisition_forms",
-    "t38_required_forms",
-    "t39_required_forms",
-    "t40_required_forms",
-    "t48_required_forms",
+    "worldgen_acquisition_forms",
+    "roaster_required_forms",
+    "centrifuge_required_forms",
+    "electrolyzer_required_forms",
+    "bath_required_forms",
     "tool_head_required_forms",
     "smelter_ordinary_closure_required_forms",
     "mixer_ordinary_closure_required_forms",
@@ -41030,7 +41030,7 @@
       "small_dust"
     ]
   },
-  "policy": "recipe-projected forms plus factual ore-source closure registrations and route-scoped T5 forms plus source-backed T6 wireGt01 forms plus explicit source-backed T8 pipe forms plus T10 multi/hot known forms plus bounded T38 compact-output forms plus source-backed T38 acquisition forms plus bounded T39 compact-output forms plus bounded T40 compact-output forms plus compatibility retention from the pre-gate registered catalog",
+  "policy": "recipe-projected forms plus factual ore-source closure registrations and route-scoped chemical forms plus source-backed electrical wireGt01 forms plus explicit source-backed pipe forms plus known multi/hot ingot forms plus bounded roaster compact-output forms plus source-backed worldgen acquisition forms plus bounded centrifuge compact-output forms plus bounded electrolyzer compact-output forms plus compatibility retention from the pre-gate registered catalog",
   "schema_version": 2,
   "smelter_ordinary_closure_required_forms": {
     "abyssalnite": [
@@ -51642,63 +51642,63 @@
       "field": "required_forms",
       "path": "tools/waves/smelter/ordinary-closure/required_forms.json"
     },
-    "t10_known_forms": {
-      "classification": "t10_source_domain_runtime_required",
+    "known_ingot_forms": {
+      "classification": "known_ingot_source_domain_runtime_required",
       "field": "route_projections.multi_ingot/hot_ingot.materials",
-      "path": "tools/t10_preflight_projection.json"
+      "path": "tools/known_ingot_preflight_projection.json"
     },
-    "t38_compact_required_forms": {
-      "classification": "t38_compact_output_runtime_required",
+    "roaster_compact_required_forms": {
+      "classification": "roaster_compact_output_runtime_required",
       "field": "required_forms",
-      "path": "tools/t38_required_forms.json",
-      "source_path": "tools/t38_roaster_source.json"
+      "path": "tools/roaster_required_forms.json",
+      "source_path": "tools/roaster_source.json"
     },
-    "t38_source_backed_acquisition_forms": {
-      "classification": "t38_source_backed_worldgen_runtime_required",
+    "worldgen_acquisition_forms": {
+      "classification": "source_backed_worldgen_runtime_required",
       "field": "required_forms",
-      "path": "tools/t38_source_backed_acquisition.json"
+      "path": "tools/worldgen_source_backed_acquisition.json"
     },
-    "t39_compact_required_forms": {
-      "classification": "t39_compact_output_runtime_required",
+    "centrifuge_compact_required_forms": {
+      "classification": "centrifuge_compact_output_runtime_required",
       "field": "required_forms",
-      "path": "tools/t39_required_forms.json",
-      "source_path": "tools/t39_centrifuge_source.json"
+      "path": "tools/centrifuge_required_forms.json",
+      "source_path": "tools/centrifuge_source.json"
     },
-    "t3_acceptance_form_corrections": {
-      "classification": "t3_acceptance_required_not_gt6_original_gate",
+    "acceptance_form_corrections": {
+      "classification": "acceptance_required_not_gt6_original_gate",
       "path": "tools/component_rule_sources/acceptance_form_corrections.json"
     },
-    "t40_compact_required_forms": {
-      "classification": "t40_compact_output_runtime_required",
+    "electrolyzer_compact_required_forms": {
+      "classification": "electrolyzer_compact_output_runtime_required",
       "field": "required_forms",
-      "path": "tools/t40_required_forms.json",
-      "source_path": "tools/t40_electrolyzer_source.json"
+      "path": "tools/electrolyzer_required_forms.json",
+      "source_path": "tools/electrolyzer_source.json"
     },
-    "t48_compact_required_forms": {
-      "classification": "t48_compact_output_runtime_required",
+    "bath_compact_required_forms": {
+      "classification": "bath_compact_output_runtime_required",
       "field": "required_forms",
-      "path": "tools/t48_required_forms.json",
-      "source_path": "tools/t47_bath_source.json"
+      "path": "tools/bath_required_forms.json",
+      "source_path": "tools/bath_remainder_source.json"
     },
-    "t5_selected_source_route_forms": {
-      "classification": "t5_selected_source_route_required",
+    "chemical_selected_source_route_forms": {
+      "classification": "chemical_selected_source_route_required",
       "field": "required_form_overrides.forms",
-      "path": "tools/t5_chemical_policy.json"
+      "path": "tools/chemical_policy.json"
     },
-    "t6_source_backed_wire_forms": {
-      "classification": "t6_source_backed_runtime_required",
+    "electrical_source_backed_wire_forms": {
+      "classification": "electrical_source_backed_runtime_required",
       "field": "conductors[] plus live material wireGt01 specification",
       "path": "tools/gt6_electrical_source.json"
     },
-    "t7_material_tag_policy": {
+    "material_tag_policy": {
       "classification": "audit_only_non_form_source",
       "field": "tags[] classification and acceptance",
       "path": "src/main/resources/data/cruciblecraft/material_tag_policy.json"
     },
-    "t8_source_backed_pipe_forms": {
-      "classification": "t8_source_backed_runtime_required",
+    "pipe_source_backed_pipe_forms": {
+      "classification": "pipe_source_backed_runtime_required",
       "field": "fluid_domain/item_domain material_catalog",
-      "path": "tools/t8_pipe_readiness.json"
+      "path": "tools/pipe_readiness.json"
     },
     "tool_head_prefix_required_forms": {
       "classification": "tool_head_prefix_runtime_required",
@@ -51706,7 +51706,7 @@
       "path": "tools/tool_head_required_forms.json"
     }
   },
-  "t10_known_forms": {
+  "known_ingot_forms": {
     "abyssalnite": [
       "double_ingot",
       "ingot_hot",
@@ -53321,7 +53321,7 @@
       "triple_ingot"
     ]
   },
-  "t38_required_forms": {
+  "roaster_required_forms": {
     "antimony": [
       "dust_div72"
     ],
@@ -53353,7 +53353,7 @@
       "small_dust"
     ]
   },
-  "t38_source_backed_acquisition_forms": {
+  "worldgen_acquisition_forms": {
     "arsenopyrite": [
       "centrifuged_crushed_ore",
       "crushed_ore",
@@ -53423,7 +53423,7 @@
       "raw_ore"
     ]
   },
-  "t39_required_forms": {
+  "centrifuge_required_forms": {
     "cobalt": [
       "tiny_centrifuged_crushed_ore"
     ],
@@ -53440,12 +53440,12 @@
       "nugget"
     ]
   },
-  "t3_acceptance_forms": {
+  "acceptance_forms": {
     "iron": [
       "wire"
     ]
   },
-  "t40_required_forms": {
+  "electrolyzer_required_forms": {
     "lithium_hydroxide": [
       "small_dust"
     ],
@@ -53456,7 +53456,7 @@
       "small_dust"
     ]
   },
-  "t48_required_forms": {
+  "bath_required_forms": {
     "acacia": [
       "arrow_gt_plastic",
       "arrow_gt_wood",
@@ -55703,7 +55703,7 @@
       "tiny_washed_crushed_ore"
     ]
   },
-  "t5_required_forms": {
+  "chemical_required_forms": {
     "chimerite": [
       "plate_gem"
     ],
@@ -55726,7 +55726,7 @@
       "plate_gem"
     ]
   },
-  "t6_electrical_wire_forms": {
+  "electrical_wire_forms": {
     "aluminium": [
       "wire"
     ],
@@ -55815,7 +55815,7 @@
       "wire"
     ]
   },
-  "t8_pipe_forms": {
+  "pipe_forms": {
     "adamantium": [
       "fluid_pipe",
       "huge_fluid_pipe",
@@ -65090,8 +65090,8 @@
   "typed_ore_denominators": {
     "factual_ore_materials": 137,
     "registered_ore_materials": 147,
-    "t38_acquisition_ore_delta": 10,
-    "t5_semantic_vein_ledger": 8,
-    "worldgen_catalog": "independent catalog, not the T5 ledger"
+    "worldgen_acquisition_ore_delta": 10,
+    "chemical_semantic_vein_ledger": 8,
+    "worldgen_catalog": "independent catalog, not the chemical vein ledger"
   }
 }

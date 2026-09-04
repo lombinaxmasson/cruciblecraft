@@ -18,8 +18,8 @@ if str(ROOT) not in sys.path:
 
 from tools import closeout_seal
 from tools import recycling_deferred_r0 as r0
-from tools import t35_common as t35
-from tools import t42_common as t42
+from tools import census_common as census
+from tools import owner_partition_common as owner
 from tools.recipe_bulk.slugs import KNOWN_SEMANTIC_SLUGS
 from tools.wave_closeout import known_slugs
 from tools.wave_closeout import spec_for
@@ -30,11 +30,11 @@ GENERATED_BY = "python tools/build_smelter_mte_identity.py"
 MTE_ITEM = "gregtech:gt.multitileentity"
 SOURCE_META_COUNT = 1817
 R0_SLUG = "recycling/deferred-ordinary-ledger-r0"
-R0_DIR = t35.TOOLS / "waves" / "recycling" / "deferred-ordinary-ledger-r0"
-ROOT_DIR = t35.TOOLS / "waves" / "recycling" / "smelter-mte-identity"
-TOOLS_CATALOG = t35.TOOLS / "smelter_mte_identity_catalog.json"
+R0_DIR = census.TOOLS / "waves" / "recycling" / "deferred-ordinary-ledger-r0"
+ROOT_DIR = census.TOOLS / "waves" / "recycling" / "smelter-mte-identity"
+TOOLS_CATALOG = census.TOOLS / "smelter_mte_identity_catalog.json"
 BUNDLED_CATALOG = (
-    t35.ROOT
+    census.ROOT
     / "src"
     / "main"
     / "resources"
@@ -43,10 +43,10 @@ BUNDLED_CATALOG = (
     / "smelter_mte_identity_catalog.json"
 )
 MODEL_ROOT = (
-    t35.ROOT / "src" / "main" / "resources" / "assets" / "cruciblecraft" / "models" / "item"
+    census.ROOT / "src" / "main" / "resources" / "assets" / "cruciblecraft" / "models" / "item"
 )
 TAG_PATH = (
-    t35.ROOT
+    census.ROOT
     / "src"
     / "main"
     / "resources"
@@ -56,15 +56,15 @@ TAG_PATH = (
     / "item"
     / "smelter_mte_items.json"
 )
-DATA_ROOT = t35.ROOT / "src" / "main" / "resources" / "data" / "cruciblecraft"
+DATA_ROOT = census.ROOT / "src" / "main" / "resources" / "data" / "cruciblecraft"
 
 
 def _require_r0() -> list[str]:
     errors = closeout_seal.check_wave_seal(R0_SLUG)
-    readiness = t35.load_json(R0_DIR / "readiness.json")
+    readiness = census.load_json(R0_DIR / "readiness.json")
     if readiness.get("status") != "RECYCLING_DEFERRED_LEDGER_R0_READY":
         errors.append("R0 is not RECYCLING_DEFERRED_LEDGER_R0_READY")
-    candidate = t35.load_json(R0_DIR / "identity_candidate.json")
+    candidate = census.load_json(R0_DIR / "identity_candidate.json")
     if not candidate.get("unique_meta_equals_proven_family_count"):
         errors.append("R0 identity candidate unique meta proof failed")
     if int(candidate.get("proven_family_count") or 0) != SOURCE_META_COUNT:
@@ -73,7 +73,7 @@ def _require_r0() -> list[str]:
 
 
 def _dump_names(candidate: dict[str, Any]) -> dict[int, str]:
-    recipes = t42.load_map_recipes("gt.recipe.smelter")
+    recipes = owner.load_map_recipes("gt.recipe.smelter")
     names: dict[int, str] = {}
     for row in candidate.get("identities") or []:
         meta = int(row["meta"])
@@ -99,7 +99,7 @@ def build_catalog() -> dict[str, Any]:
     errors = _require_r0()
     if errors:
         raise ValueError("; ".join(errors))
-    candidate = t35.load_json(R0_DIR / "identity_candidate.json")
+    candidate = census.load_json(R0_DIR / "identity_candidate.json")
     names = _dump_names(candidate)
     identities: list[dict[str, Any]] = []
     seen_meta: set[int] = set()
@@ -146,7 +146,7 @@ def build_catalog() -> dict[str, Any]:
                 "runtime_id": runtime_id,
                 "source_evidence": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.smelter.json",
                 "source_item": MTE_ITEM,
-                "source_revision": t35.SOURCE_REVISION,
+                "source_revision": census.SOURCE_REVISION,
                 "template_key": row["template_key"],
             }
         )
@@ -163,7 +163,7 @@ def build_catalog() -> dict[str, Any]:
         "schema_version": 1,
         "source_item": MTE_ITEM,
         "source_meta_count": SOURCE_META_COUNT,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "SMELTER_MTE_IDENTITY_CATALOG",
         "wave_slug": SLUG,
     }
@@ -175,7 +175,7 @@ def _write_models(catalog: dict[str, Any]) -> None:
             continue
         path = MODEL_ROOT / f"{identity['registry_path']}.json"
         path.parent.mkdir(parents=True, exist_ok=True)
-        t35.write_stable(
+        census.write_stable(
             path,
             {
                 "parent": "minecraft:item/generated",
@@ -191,7 +191,7 @@ def _write_acquisition(catalog: dict[str, Any]) -> None:
         if identity["registry_kind"] == "item"
     ]
     TAG_PATH.parent.mkdir(parents=True, exist_ok=True)
-    t35.write_stable(TAG_PATH, {"replace": False, "values": new_ids})
+    census.write_stable(TAG_PATH, {"replace": False, "values": new_ids})
     configured = DATA_ROOT / "worldgen" / "configured_feature" / "smelter_mte_scatter.json"
     placed = DATA_ROOT / "worldgen" / "placed_feature" / "smelter_mte_scatter.json"
     biome = DATA_ROOT / "neoforge" / "biome_modifier" / "add_smelter_mte_scatter.json"
@@ -200,7 +200,7 @@ def _write_acquisition(catalog: dict[str, Any]) -> None:
     placed.parent.mkdir(parents=True, exist_ok=True)
     biome.parent.mkdir(parents=True, exist_ok=True)
     catalog_row.parent.mkdir(parents=True, exist_ok=True)
-    t35.write_stable(
+    census.write_stable(
         configured,
         {
             "type": "cruciblecraft:smelter_mte_scatter",
@@ -210,8 +210,8 @@ def _write_acquisition(catalog: dict[str, Any]) -> None:
             },
         },
     )
-    t35.write_stable(placed, {"feature": "cruciblecraft:smelter_mte_scatter", "placement": []})
-    t35.write_stable(
+    census.write_stable(placed, {"feature": "cruciblecraft:smelter_mte_scatter", "placement": []})
+    census.write_stable(
         biome,
         {
             "biomes": "#minecraft:is_overworld",
@@ -220,7 +220,7 @@ def _write_acquisition(catalog: dict[str, Any]) -> None:
             "type": "neoforge:add_features",
         },
     )
-    t35.write_stable(
+    census.write_stable(
         catalog_row,
         {
             "biome_modifier": {
@@ -243,7 +243,7 @@ def _write_acquisition(catalog: dict[str, Any]) -> None:
 
 def _identity_delta(catalog: dict[str, Any]) -> dict[str, Any]:
     catalog_rel = "tools/smelter_mte_identity_catalog.json"
-    catalog_hash = t35.sha256_file(TOOLS_CATALOG)
+    catalog_hash = census.sha256_file(TOOLS_CATALOG)
     records = []
     for identity in catalog["identities"]:
         meta = int(identity["meta"])
@@ -278,12 +278,12 @@ def _identity_delta(catalog: dict[str, Any]) -> dict[str, Any]:
 def write_artifacts() -> dict[str, Any]:
     catalog = build_catalog()
     ROOT_DIR.mkdir(parents=True, exist_ok=True)
-    t35.write_stable(TOOLS_CATALOG, catalog)
+    census.write_stable(TOOLS_CATALOG, catalog)
     BUNDLED_CATALOG.parent.mkdir(parents=True, exist_ok=True)
-    t35.write_stable(BUNDLED_CATALOG, catalog)
+    census.write_stable(BUNDLED_CATALOG, catalog)
     _write_models(catalog)
     _write_acquisition(catalog)
-    t35.write_stable(ROOT_DIR / "identity_ledger_delta.json", _identity_delta(catalog))
+    census.write_stable(ROOT_DIR / "identity_ledger_delta.json", _identity_delta(catalog))
     wave = {
         "cohort": "smelter-mte-identity",
         "depends_on": [R0_SLUG],
@@ -302,7 +302,7 @@ def write_artifacts() -> dict[str, Any]:
         "remaining_recipe_gap": 0,
         "schema_version": 1,
         "source_meta_count": SOURCE_META_COUNT,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "CENSUS_DELTA_READY",
         "wave_slug": SLUG,
         "work_set": {"family_count": 0, "source_rows": 0},
@@ -314,7 +314,7 @@ def write_artifacts() -> dict[str, Any]:
         "next_unassigned": False,
         "remaining_recipe_gap": 0,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "WAVE_READY",
         "unique_active_wave": NEXT_CHILD,
         "wave_slug": SLUG,
@@ -338,37 +338,37 @@ def write_artifacts() -> dict[str, Any]:
         "generated_by": GENERATED_BY,
         "next_unassigned": False,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "SMELTER_MTE_IDENTITY_READY",
         "unique_active_wave": NEXT_CHILD,
         "wave_complete": True,
         "wave_slug": SLUG,
     }
-    t35.write_stable(ROOT_DIR / "wave.json", wave)
-    t35.write_stable(ROOT_DIR / "census_delta.json", census)
-    t35.write_stable(ROOT_DIR / "topology.json", topology)
-    t35.write_stable(ROOT_DIR / "readiness.json", readiness)
+    census.write_stable(ROOT_DIR / "wave.json", wave)
+    census.write_stable(ROOT_DIR / "census_delta.json", census)
+    census.write_stable(ROOT_DIR / "topology.json", topology)
+    census.write_stable(ROOT_DIR / "readiness.json", readiness)
     hashes = {
-        "census": t35.sha256_file(ROOT_DIR / "census_delta.json"),
+        "census": census.sha256_file(ROOT_DIR / "census_delta.json"),
         "gametest_java": None,
         "gametest_log": None,
         "generated_recipes": None,
         "locked_support": None,
         "production_lock": None,
         "publication_group_manifest": None,
-        "readiness": t35.sha256_file(ROOT_DIR / "readiness.json"),
+        "readiness": census.sha256_file(ROOT_DIR / "readiness.json"),
         "receipt": None,
         "runtime_dependency_manifest": None,
         "shard_manifest": None,
-        "topology": t35.sha256_file(ROOT_DIR / "topology.json"),
+        "topology": census.sha256_file(ROOT_DIR / "topology.json"),
     }
     seal = {
         "card_id": SLUG,
         "complete_family_count": 0,
-        "composed_identity_ledger_v2_sha256": t35.sha256_file(
+        "composed_identity_ledger_v2_sha256": census.sha256_file(
             closeout_seal.IDENTITY_LEDGER_V2
         ),
-        "composed_runtime_manifest_v2_sha256": t35.sha256_file(
+        "composed_runtime_manifest_v2_sha256": census.sha256_file(
             closeout_seal.RUNTIME_MANIFEST_V2
         ),
         "gametest_status": "NONE",
@@ -386,10 +386,10 @@ def write_artifacts() -> dict[str, Any]:
         "remaining_recipe_gap": 0,
         "schema_version": 1,
         "sealed_at_wave": SLUG,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "SEALED",
     }
-    t35.write_stable(ROOT_DIR / "closeout_seal.json", seal)
+    census.write_stable(ROOT_DIR / "closeout_seal.json", seal)
     return {
         "bath_overlap_count": catalog["bath_overlap_count"],
         "new_item_count": catalog["new_item_count"],
@@ -418,17 +418,17 @@ def check() -> list[str]:
         errors.append("identity closeout spec must be zero-family infrastructure")
     if not TOOLS_CATALOG.is_file():
         return errors + ["missing smelter MTE identity catalog"]
-    committed = t35.load_json(TOOLS_CATALOG)
-    drift = t35.first_json_diff(live, committed)
+    committed = census.load_json(TOOLS_CATALOG)
+    drift = census.first_json_diff(live, committed)
     if drift:
         errors.append(f"smelter MTE catalog drifted: {drift}")
     if BUNDLED_CATALOG.is_file():
-        bundled = t35.load_json(BUNDLED_CATALOG)
+        bundled = census.load_json(BUNDLED_CATALOG)
         if bundled != committed:
             errors.append("bundled smelter MTE catalog drifted from tools catalog")
     else:
         errors.append("missing bundled smelter MTE identity catalog")
-    readiness = t35.load_json(ROOT_DIR / "readiness.json")
+    readiness = census.load_json(ROOT_DIR / "readiness.json")
     if readiness.get("status") != "SMELTER_MTE_IDENTITY_READY":
         errors.append("identity readiness is not SMELTER_MTE_IDENTITY_READY")
     if readiness.get("evidence", {}).get("recipe_files_generated") is not False:

@@ -1,0 +1,679 @@
+{
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T19a-d, publication/load accounting, bounded pipe performance, blocked-transfer conservation and currentness are closed; repository-wide verification is bound separately by the snapshot report."
+  },
+  "closure_summary": {
+    "active_recipe_registration": {
+      "recipe_serializer_count": 2,
+      "recipe_serializers": [
+        "gt_recipe",
+        "material_rule"
+      ],
+      "recipe_type_count": 2,
+      "recipe_types": [
+        "gt_recipe",
+        "material_rule"
+      ]
+    },
+    "cover_denominator": {
+      "canonical": 47,
+      "deferred_with_reason": 28,
+      "implemented": 4,
+      "out_of_scope": 10,
+      "selected_t19": 5,
+      "unclassified": 0
+    },
+    "emi_configured_maps": 24,
+    "gt_recipe_rows_added": 0,
+    "localization": {
+      "chinese_translations": 948,
+      "english_keys": 3316,
+      "missing_material_names": 1566,
+      "visible_chinese_debt": 2368
+    },
+    "o20": "CLOSED",
+    "o27": "CLOSED",
+    "o28": "CLOSED",
+    "pending": 0,
+    "pipe_acquisition": 25,
+    "publication_totals": {
+      "eager_rows": 16650,
+      "lazy_rows": 2225,
+      "logical_rows": 18875
+    },
+    "recipe_map_count": 32,
+    "selected_cover_acquisition": 5,
+    "vanilla_datapack_entries_added": 30,
+    "verification_expectations": {
+      "java_unit_tests": 538,
+      "production_game_tests": 83,
+      "python_unit_tests": 501
+    }
+  },
+  "completed_stages": [
+    "T19a",
+    "T19b",
+    "T19c",
+    "T19d"
+  ],
+  "currentness": {
+    "completed_stage_sources": [
+      "behavior_registry",
+      "coke_oven_host_audit",
+      "coke_oven_menu_audit",
+      "configuration_junit",
+      "configuration_payload",
+      "configured_machine_host",
+      "configured_machine_menu",
+      "cover_set_bounds",
+      "crusher_host_audit",
+      "crusher_menu_audit",
+      "definition_catalog",
+      "definition_junit",
+      "definition_loader",
+      "definition_record",
+      "definition_schema",
+      "fluid_pipe_runtime",
+      "generated_language_chinese",
+      "generated_language_english",
+      "item_pipe_runtime",
+      "item_route_cache",
+      "item_route_discovery",
+      "item_transfer_conservation",
+      "language_junit",
+      "language_provider",
+      "material_rule_expansion",
+      "menu_junit",
+      "pipe_catalog",
+      "pipe_recipe_catalog",
+      "pipe_transfer_phase",
+      "processing_language_junit",
+      "processing_machine_screen",
+      "processing_progress_sync",
+      "production_gametest",
+      "progress_junit",
+      "recipe_registry",
+      "recipe_registry_junit",
+      "rule_expression",
+      "shared_processing_menu"
+    ],
+    "owned_inputs": [
+      "tools/t19_readiness_policy.json",
+      "tools/build_t19_readiness.py",
+      "tools/t19_load_projection_input.json",
+      "src/main/resources/data/cruciblecraft/t19_publication_baseline.json",
+      "src/main/resources/data/cruciblecraft/recipe/t8"
+    ],
+    "pending_report": {
+      "evidence": "tools/full_verification_report.json",
+      "pending": [],
+      "reason": "Pre-release cleanup is bound to the snapshot report after builder, double runData, full JUnit, full GameTest and Python closure verification.",
+      "status": "BOUND_TO_FULL_VERIFICATION_REPORT",
+      "this_refresh_final_closure_attempted": true
+    },
+    "verification_targets": {
+      "gametest": {
+        "command": ".\\gradlew.bat runGameTestServer",
+        "expected_tests": 83
+      },
+      "junit": {
+        "command": ".\\gradlew.bat test",
+        "expected_tests": 538
+      },
+      "lint": [
+        "IDE diagnostics for edited Java files"
+      ],
+      "python": {
+        "command": "python tools/run_python_tests.py --suite closure",
+        "expected_tests": 501
+      }
+    }
+  },
+  "dependencies": {
+    "T18": {
+      "path": "tools/t18_readiness.json",
+      "sha256": "fe0546b0d26eb1f5db2a764de01f7b4f64f4b1233989dbf76cd3d252b727533e",
+      "status": "T18_READY"
+    },
+    "acquisition": {
+      "path": "tools/t19_cover_acquisition.json",
+      "sha256": "4ee73a2645030a0694b45a5e2eeef8649b1a99bc067b45feb85c9c554e79f730",
+      "status": "T19_COVER_ACQUISITION_READY"
+    },
+    "denominator": {
+      "path": "tools/t19_cover_denominator.json",
+      "sha256": "122f267b4c073f8eec0f662dd71dbf89df1bc1a7e7dc9711fd3b4a4ee486c08d",
+      "status": "T19_COVER_DENOMINATOR_READY"
+    },
+    "load_projection": {
+      "path": "tools/t19_load_projection.json",
+      "sha256": "b0d3aac69b0f92b3b008ca1065d2f53b4bbf92279fb94ddd06e9936f13ae189e",
+      "status": "PASS"
+    },
+    "pipe_acquisition": {
+      "path": "tools/t19_pipe_acquisition.json",
+      "sha256": "b2ef4e44f0559b544e855c557b0e688f5abfbaf4fb721d24eec04eecf284998f",
+      "status": "T19_PIPE_ACQUISITION_READY"
+    }
+  },
+  "pending_stages": [],
+  "performance_gate": {
+    "blocked_conservation": {
+      "confirmed_item_commit": "consumed == delivered",
+      "game_tests": [
+        "t19ConveyorActivelyExportsAtConfiguredRate",
+        "t19RetrieverPullsOnlyDestinationDemand",
+        "t19RobotArmRequiresExactConfiguredCount",
+        "t19PressureValveCapsFluidAndRetainsBackpressure",
+        "t19ManualSelectorPersistsBoundedSideConfig",
+        "t19cAllNonmetalPipeRecipesMatchAndAssemble"
+      ],
+      "item_execution_invariant": "0 <= delivered <= consumed",
+      "pending": [],
+      "pressure_valve_backpressure_accounted": true,
+      "retriever_blocked_source_retained": true,
+      "robot_arm_partial_commit_forbidden": true
+    },
+    "memory": {
+      "maximum_cover_slots_per_pipe": 6,
+      "maximum_cover_summary_characters": 768,
+      "maximum_route_cache_entries_per_item_pipe": 256
+    },
+    "pending": [],
+    "route_discovery": {
+      "loaded_chunks_only": true,
+      "maximum_discovered_route_rows": 163840,
+      "maximum_endpoint_rows_per_visited_pipe": 5,
+      "maximum_visited_pipes": 32768
+    },
+    "status": "PASS",
+    "synchronization": {
+      "fluid_client_sync_interval_ticks": 5,
+      "maximum_configuration_payload_bytes": 13,
+      "per_tick_full_block_entity_sync": false
+    },
+    "tick_schedule": {
+      "distribution": "position-phased exact 1/5 partition",
+      "fixture_pipes": 500,
+      "interval_ticks": 5,
+      "maximum_due_per_tick": 100
+    }
+  },
+  "publication_load_gate": {
+    "emi_enumeration": {
+      "configured_maps": 24,
+      "equal_to_t18": true,
+      "recipe_map_ids": [
+        "cruciblecraft:assembler",
+        "cruciblecraft:autoclave",
+        "cruciblecraft:bath",
+        "cruciblecraft:bender",
+        "cruciblecraft:centrifuge",
+        "cruciblecraft:compressor",
+        "cruciblecraft:cutter",
+        "cruciblecraft:distillery",
+        "cruciblecraft:drying",
+        "cruciblecraft:electrolyzer",
+        "cruciblecraft:extruder",
+        "cruciblecraft:generifier",
+        "cruciblecraft:lathe",
+        "cruciblecraft:mixer",
+        "cruciblecraft:mortar",
+        "cruciblecraft:press",
+        "cruciblecraft:rollbender",
+        "cruciblecraft:rollingmill",
+        "cruciblecraft:shredder",
+        "cruciblecraft:sifter",
+        "cruciblecraft:sluice",
+        "cruciblecraft:smelter",
+        "cruciblecraft:welder",
+        "cruciblecraft:wiremill"
+      ]
+    },
+    "load_projection": {
+      "counts": {
+        "datapack_authored_entries": 30,
+        "eager_publication_rows": 0,
+        "lazy_cache_ceiling_rows": 0,
+        "lazy_logical_rows": 0,
+        "logical_rows": 0,
+        "sync_bytes": 0
+      },
+      "input": "tools/t19_load_projection_input.json",
+      "input_sha256": "ebaa105cb4970d539756503e0ea9cd09ae8603269e964e5e32e5f27ad20a9138",
+      "measurement_intervals": {
+        "allocation_bytes": {
+          "max": 0,
+          "min": 0
+        },
+        "client_index_ms": {
+          "max": 0,
+          "min": 0
+        },
+        "client_reload_ms": {
+          "max": 0,
+          "min": 0
+        },
+        "lookup_candidate_count": {
+          "max": 0,
+          "min": 0
+        },
+        "lookup_p95_ns": {
+          "max": 0,
+          "min": 0
+        },
+        "retained_memory_bytes": {
+          "max": 0,
+          "min": 0
+        },
+        "server_index_ms": {
+          "max": 0,
+          "min": 0
+        },
+        "server_reload_ms": {
+          "max": 0,
+          "min": 0
+        }
+      },
+      "output": "tools/t19_load_projection.json",
+      "output_sha256": "b0d3aac69b0f92b3b008ca1065d2f53b4bbf92279fb94ddd06e9936f13ae189e",
+      "pending": [],
+      "publication_domains": {
+        "gt_authored_entries": 0,
+        "gt_logical_rows": 0,
+        "vanilla_datapack_entries": 30
+      },
+      "schema_version": 2
+    },
+    "o28_rationale": {
+      "existing_rules_updated_in_place": 8,
+      "fluid_gauge_rules": 5,
+      "gt_recipe_rows_added": 0,
+      "item_gauge_rules": 3,
+      "logical_t8_expansion_after": 257,
+      "logical_t8_expansion_before": 257,
+      "material_rule_rows_added": 0,
+      "predicate_scope": "one output/specification gauge per existing T8 rule"
+    },
+    "pending": [],
+    "publication_baseline": {
+      "baseline": "T18",
+      "gt_publication_delta": 0,
+      "path": "src/main/resources/data/cruciblecraft/t19_publication_baseline.json",
+      "publication_totals": {
+        "eager_rows": 16650,
+        "lazy_rows": 2225,
+        "logical_rows": 18875
+      },
+      "recipe_map_count": 32,
+      "recipe_map_ids": [
+        "cruciblecraft:anvil",
+        "cruciblecraft:anvil_bend_big",
+        "cruciblecraft:anvil_bend_small",
+        "cruciblecraft:assembler",
+        "cruciblecraft:autoclave",
+        "cruciblecraft:bath",
+        "cruciblecraft:bender",
+        "cruciblecraft:centrifuge",
+        "cruciblecraft:coke_oven",
+        "cruciblecraft:compressor",
+        "cruciblecraft:cooling",
+        "cruciblecraft:crusher",
+        "cruciblecraft:cutter",
+        "cruciblecraft:distillery",
+        "cruciblecraft:drying",
+        "cruciblecraft:electrolyzer",
+        "cruciblecraft:extruder",
+        "cruciblecraft:fuels_engine",
+        "cruciblecraft:fuels_gas",
+        "cruciblecraft:generifier",
+        "cruciblecraft:lathe",
+        "cruciblecraft:mixer",
+        "cruciblecraft:mortar",
+        "cruciblecraft:press",
+        "cruciblecraft:rollbender",
+        "cruciblecraft:rollingmill",
+        "cruciblecraft:shredder",
+        "cruciblecraft:sifter",
+        "cruciblecraft:sluice",
+        "cruciblecraft:smelter",
+        "cruciblecraft:welder",
+        "cruciblecraft:wiremill"
+      ],
+      "sha256": "8d31a440154d605aa67c6182acc0fbc95f55fa8af4181c63ca7955c465d749e1"
+    },
+    "status": "PASS",
+    "vanilla_acquisition": {
+      "cover_entries": 5,
+      "derivation": "actual generated recipe id set minus exact T19 set + exact T19 set",
+      "entries_added": 30,
+      "generated_recipe_files_after_t19": 1031,
+      "generated_recipe_files_before_t19": 1001,
+      "gt_recipe_rows_added": 0,
+      "pipe_entries": 25,
+      "recipe_ids": [
+        "cruciblecraft:conveyor_cover",
+        "cruciblecraft:pipe_acquisition/carbon/fluid_pipe",
+        "cruciblecraft:pipe_acquisition/carbon/huge_fluid_pipe",
+        "cruciblecraft:pipe_acquisition/carbon/large_fluid_pipe",
+        "cruciblecraft:pipe_acquisition/carbon/small_fluid_pipe",
+        "cruciblecraft:pipe_acquisition/carbon/tiny_fluid_pipe",
+        "cruciblecraft:pipe_acquisition/plastic/fluid_pipe",
+        "cruciblecraft:pipe_acquisition/plastic/huge_fluid_pipe",
+        "cruciblecraft:pipe_acquisition/plastic/large_fluid_pipe",
+        "cruciblecraft:pipe_acquisition/plastic/small_fluid_pipe",
+        "cruciblecraft:pipe_acquisition/plastic/tiny_fluid_pipe",
+        "cruciblecraft:pipe_acquisition/rubber/fluid_pipe",
+        "cruciblecraft:pipe_acquisition/rubber/huge_fluid_pipe",
+        "cruciblecraft:pipe_acquisition/rubber/large_fluid_pipe",
+        "cruciblecraft:pipe_acquisition/rubber/small_fluid_pipe",
+        "cruciblecraft:pipe_acquisition/rubber/tiny_fluid_pipe",
+        "cruciblecraft:pipe_acquisition/wood/fluid_pipe",
+        "cruciblecraft:pipe_acquisition/wood/huge_fluid_pipe",
+        "cruciblecraft:pipe_acquisition/wood/large_fluid_pipe",
+        "cruciblecraft:pipe_acquisition/wood/small_fluid_pipe",
+        "cruciblecraft:pipe_acquisition/wood/tiny_fluid_pipe",
+        "cruciblecraft:pipe_acquisition/wood_treated/fluid_pipe",
+        "cruciblecraft:pipe_acquisition/wood_treated/huge_fluid_pipe",
+        "cruciblecraft:pipe_acquisition/wood_treated/large_fluid_pipe",
+        "cruciblecraft:pipe_acquisition/wood_treated/small_fluid_pipe",
+        "cruciblecraft:pipe_acquisition/wood_treated/tiny_fluid_pipe",
+        "cruciblecraft:pressure_valve_cover",
+        "cruciblecraft:retriever_item_cover",
+        "cruciblecraft:robot_arm_cover",
+        "cruciblecraft:selector_manual_cover"
+      ],
+      "recipe_type": "minecraft:crafting_shaped"
+    }
+  },
+  "schema_version": 1,
+  "source_contracts": {
+    "behavior_registry": {
+      "path": "src/main/java/com/masson/cruciblecraft/logistics/pipe/cover/CoverBehaviorRegistry.java",
+      "sha256": "93e0ba80b6e4cb140a33ea3ffeb6a7e2a2f4e87d6e31cd5c12422373cb6d06bb"
+    },
+    "coke_oven_host_audit": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/CokeOvenBlockEntity.java",
+      "sha256": "edb0bb8f2a306cec7210cc1e63453ecc19b1511e2bfe96eaacb1c2ba91da23d9"
+    },
+    "coke_oven_menu_audit": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/menu/CokeOvenMenu.java",
+      "sha256": "63faa9c7a1a895e48b59f6944c5eea512f55c3517c6168da8d91ed09b2497ced"
+    },
+    "configuration_junit": {
+      "path": "src/test/java/com/masson/cruciblecraft/network/CoverConfigurationPayloadTest.java",
+      "sha256": "60b6d2b2fe00b825c1f0a211e583104555f37772ccc45f6f64b2ea5fceef8e02"
+    },
+    "configuration_payload": {
+      "path": "src/main/java/com/masson/cruciblecraft/network/CoverConfigurationPayload.java",
+      "sha256": "5888908ddfc6ed6a5c7108a1764f4d6355e181b5b3c0a0e181c0723b522f8759"
+    },
+    "configured_machine_host": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/ConfiguredProcessingMachineBlockEntity.java",
+      "sha256": "655813074a8b57190eb20167a015974a2b037690a4a5f3d485a43ed082846a5d"
+    },
+    "configured_machine_menu": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/menu/ConfiguredProcessingMachineMenu.java",
+      "sha256": "35a3d154b93d7ed3844bda25941db5d0eb36b61f1912ec0ee05e55da9322a151"
+    },
+    "cover_set_bounds": {
+      "path": "src/main/java/com/masson/cruciblecraft/logistics/pipe/cover/PipeCoverSet.java",
+      "sha256": "85566eb7407c019c03d6de85004771c55b0d8cc2290b7db85963b514ecd5776e"
+    },
+    "crusher_host_audit": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/CrusherBlockEntity.java",
+      "sha256": "b3e837e3ff940bcf2d2939b5598316dd4927ae7956087c9fbeb87e4c0a040bda"
+    },
+    "crusher_menu_audit": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/menu/CrusherMenu.java",
+      "sha256": "1b4e175e9cac41e1a72351261f9899101b4ba2a2ec09f284d8169507f9ccd783"
+    },
+    "definition_catalog": {
+      "path": "src/main/resources/data/cruciblecraft/cover_definitions.json",
+      "sha256": "207b4d03a66bf088574c1e6fef01971de307255eedf68c8a661741d839e857ec"
+    },
+    "definition_junit": {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/pipe/cover/CoverDefinitionCatalogTest.java",
+      "sha256": "e95d6aa8e241eec5be607225a8593c23478bf47c4908fcc61ece906cb7d8340d"
+    },
+    "definition_loader": {
+      "path": "src/main/java/com/masson/cruciblecraft/logistics/pipe/cover/CoverDefinitionCatalog.java",
+      "sha256": "02d091f7180b352c75ef342964f7f3fb19e5c6bdd36d8479db222a883f58c009"
+    },
+    "definition_record": {
+      "path": "src/main/java/com/masson/cruciblecraft/logistics/pipe/cover/CoverDefinition.java",
+      "sha256": "8a645191e372b67f82442374a08087bc16b3cfab3b278f41e9301f9a1728ddc4"
+    },
+    "definition_schema": {
+      "path": "src/main/resources/data/cruciblecraft/schema/cover_definitions.schema.json",
+      "sha256": "11c25306249808d75d3456b3461bdd3fc8c7a6f0ad6a626349219beb49936947"
+    },
+    "fluid_pipe_runtime": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/FluidPipeBlockEntity.java",
+      "sha256": "50713d2214f1693f5f739e7e0ae7ba7a26bbe273455e1733b125799321801608"
+    },
+    "generated_language_chinese": {
+      "path": "src/generated/resources/assets/cruciblecraft/lang/zh_cn.json",
+      "sha256": "e024a3fe0bb0b08bff8431cd099215e4f50b0a278fd0fdb8a108fa7625341d98"
+    },
+    "generated_language_english": {
+      "path": "src/generated/resources/assets/cruciblecraft/lang/en_us.json",
+      "sha256": "e9cacb8bf0af3b6bc14148086d278af2feb075d6fbfaa3bb565cca26eb39769e"
+    },
+    "item_pipe_runtime": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/ItemPipeBlockEntity.java",
+      "sha256": "112c41119c1c199df7e314b36870704dd75f00aa6ee556f116979d27626a1d3b"
+    },
+    "item_route_cache": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/ItemPipeRouteCache.java",
+      "sha256": "ae42ac326d13dd0ff9aa7d0dca2769b6ba3bb9f9ea883f72c7ab02a4f1840850"
+    },
+    "item_route_discovery": {
+      "path": "src/main/java/com/masson/cruciblecraft/logistics/pipe/item/ItemPipeNetworkTraversal.java",
+      "sha256": "333400372cf443da288d23c3aeaa6d39f4332a8b20898616cd27a332ca812c33"
+    },
+    "item_transfer_conservation": {
+      "path": "src/main/java/com/masson/cruciblecraft/logistics/pipe/item/ItemPipeTransferPlan.java",
+      "sha256": "3809ed2cdb9a966d06029d04737b592bdacbd77f974b867275dbf0be23d2d119"
+    },
+    "language_junit": {
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/CoverResourceTest.java",
+      "sha256": "0e0f237acdd88231f4a91be10b3740586cd03affe6ea5fd290577dcb1c4b9337"
+    },
+    "language_provider": {
+      "path": "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+      "sha256": "ca5346d0dff1d18491c4307fdebba1ed5b220ba363464123b474323013f2fe54"
+    },
+    "material_rule_expansion": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/rule/MaterialRuleExpansion.java",
+      "sha256": "03ce46c8a62e54a0527d1b3e6c616583781a9692a9cf232e198b53c669a6677f"
+    },
+    "menu_junit": {
+      "path": "src/test/java/com/masson/cruciblecraft/content/menu/ProcessingMachineMenuTest.java",
+      "sha256": "e07de29339e49b9fd21db81fefe9ea4837334b2f9d5bdedf073b06bad643e6c9"
+    },
+    "pipe_catalog": {
+      "path": "src/main/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalog.java",
+      "sha256": "978ce19f010d0079722f999d5b6f11618e476bef2462c023543b8c19ea4296b8"
+    },
+    "pipe_recipe_catalog": {
+      "path": "src/main/java/com/masson/cruciblecraft/logistics/pipe/PipeAcquisitionRecipeCatalog.java",
+      "sha256": "40d2061edf045f0bdaf50a576c9855317eb732d3974177dad5382b104e9dc836"
+    },
+    "pipe_transfer_phase": {
+      "path": "src/main/java/com/masson/cruciblecraft/logistics/pipe/PipeTransferPhase.java",
+      "sha256": "f1be0a0f6c38f80c96ffb2658de04eaf18e955b6074dca959c66156b3bf1d792"
+    },
+    "processing_language_junit": {
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/ProcessingMachineResourceTest.java",
+      "sha256": "c5f89e06ccc050ad5b7761a04f4180f00fd4e4df951f647ff1aef165ec2de79d"
+    },
+    "processing_machine_screen": {
+      "path": "src/main/java/com/masson/cruciblecraft/client/screen/ProcessingMachineScreen.java",
+      "sha256": "7b43ef110ca22baab8a727451af2770226d6b91166cd29d90441f5d70e0ce6bb"
+    },
+    "processing_progress_sync": {
+      "path": "src/main/java/com/masson/cruciblecraft/machine/processing/ProcessingProgressSync.java",
+      "sha256": "f882a3f9da8a3ea40f7eb2b61cdaecefaf24e26e0f814a9008b17c070e5a12d9"
+    },
+    "production_gametest": {
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "sha256": "fe3c84d0d3d6ec302d1d5e2f7865dcbe21799bc0b2282e46dd34882c624f4337"
+    },
+    "progress_junit": {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingProgressSyncTest.java",
+      "sha256": "adebe0cde9ce731af14f0200cb6d7a83c6f55917349cfe04899d2c4fa72ad325"
+    },
+    "recipe_registry": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModRecipes.java",
+      "sha256": "60e3e643f620b0866e80ec738a6f5f1b35d713bc8735ac1765ae4662d8585ff4"
+    },
+    "recipe_registry_junit": {
+      "path": "src/test/java/com/masson/cruciblecraft/registry/ModRecipesRegistrationTest.java",
+      "sha256": "2d5df1768fa9e47186f5294688967c161fda602ab562b10ecad9e4585a1e9cc7"
+    },
+    "rule_expression": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/rule/RuleExpression.java",
+      "sha256": "ec0e0240eee73b3a99e8f1ed5f4932962860aa7f93a484f8ed16e96c5fae94cf"
+    },
+    "shared_processing_menu": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/menu/ProcessingMachineMenu.java",
+      "sha256": "eceff5ad24191b34dffdca335f8fe6a00781e90f5fd4d8a683d8acf685f28d6d"
+    }
+  },
+  "stage_gates": {
+    "T19a": {
+      "acceptance": "Implement conveyor, retriever_item, robot_arm, pressure_valve and selector_manual on the shared five-tick pipe phase with simulated/executed conservation, blocked retention, route invalidation and bounded synchronization.",
+      "name": "selected_cover_runtime",
+      "status": "COMPLETE"
+    },
+    "T19b": {
+      "acceptance": "Load strict bounded CoverDefinition rows, resolve only registered CoverBehavior plugins, adapt T8 identities through the active cover boundary, fail closed on unknown/conflicting persistence, and prove a second conveyor definition changes only JSON.",
+      "name": "definition_behavior_boundary",
+      "status": "COMPLETE"
+    },
+    "T19c": {
+      "acceptance": "Close O-27 with five pinned GT6 Wood crafting rows plus twenty explicit CrucibleCraft shaped-policy rows, and close O-28 with exact output/specification predicate lookup shared with PipeCatalog.",
+      "name": "pipe_acquisition_and_gauge_predicates",
+      "status": "COMPLETE"
+    },
+    "T19d": {
+      "acceptance": "Close O-20 for ConfiguredProcessingMachine with per-tick bounded progress permille, exact long-work handling and completion/reset lifecycle while preserving exact block-entity state; audit Crusher and CokeOven as already covered by per-tick ContainerData.",
+      "name": "short_recipe_progress",
+      "status": "COMPLETE"
+    }
+  },
+  "status": "T19_READY",
+  "t19ab_evidence": {
+    "acquisition": {
+      "item_models": 5,
+      "language_rows": 10,
+      "recipe_operand_rows": 14,
+      "registered_items": 5,
+      "selected_kinds": 5,
+      "unreachable": 0,
+      "vanilla_crafting_recipes": 5
+    },
+    "denominator": {
+      "canonical": 47,
+      "deferred_with_reason": 28,
+      "implemented": 4,
+      "out_of_scope": 10,
+      "selected_t19": 5,
+      "unclassified": 0
+    },
+    "maximum_cover_slots_per_pipe": 6,
+    "pure_json_reuse": {
+      "base": "cruciblecraft:conveyor",
+      "base_rate": 16,
+      "java_plugin_delta": 0,
+      "required_behavior": "cruciblecraft:conveyor",
+      "second": "cruciblecraft:conveyor_fast",
+      "second_rate": 32
+    },
+    "selected_definitions": [
+      "cruciblecraft:conveyor",
+      "cruciblecraft:pressure_valve",
+      "cruciblecraft:retriever_item",
+      "cruciblecraft:robot_arm",
+      "cruciblecraft:selector_manual"
+    ],
+    "shared_pipe_phase_ticks": 5,
+    "status": "CLOSED",
+    "unreachable": []
+  },
+  "t19c_evidence": {
+    "classifications": {
+      "DESIGN_POLICY_NON_GT6": 20,
+      "GT6_SOURCE_CRAFTING": 5
+    },
+    "gauge_predicate_mapping": "PipeCatalog output/specification key",
+    "gt6_recipe_flags_modified": false,
+    "logical_t8_expansion_count": 257,
+    "material_rule_rows_added": 0,
+    "o28_rationale": {
+      "existing_rules_updated_in_place": 8,
+      "fluid_gauge_rules": 5,
+      "gt_recipe_rows_added": 0,
+      "item_gauge_rules": 3,
+      "logical_t8_expansion_after": 257,
+      "logical_t8_expansion_before": 257,
+      "material_rule_rows_added": 0,
+      "predicate_scope": "one output/specification gauge per existing T8 rule"
+    },
+    "pipe_acquisition": {
+      "block_models": 25,
+      "block_tags": 25,
+      "design_policy_non_gt6": 20,
+      "gauges": 5,
+      "gt6_source_crafting": 5,
+      "item_models": 25,
+      "item_tags": 25,
+      "loot_tables": 25,
+      "materials": 5,
+      "registered_blocks": 25,
+      "registered_items": 25,
+      "rows": 25,
+      "unreachable": 0,
+      "vanilla_shaped_recipes": 25
+    },
+    "source_evidence": {
+      "line_range": [
+        1887,
+        1891
+      ],
+      "path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "repository": "GregTech6/gregtech6",
+      "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "sha256": "96f579dd5c0a26a759ddee34c312dadbc5d52123e2b85e82da6a40f68b494393"
+    },
+    "status": "CLOSED",
+    "unreachable": []
+  },
+  "t19d_evidence": {
+    "container_data_slots": [
+      "status",
+      "status_argument",
+      "progress_permille"
+    ],
+    "exact_block_entity_progress_preserved": true,
+    "existing_host_audit": {
+      "CokeOven": "EXISTING_PER_TICK_CONTAINER_DATA_SUFFICIENT",
+      "CokeOven_container_data_slots": 6,
+      "Crusher": "EXISTING_PER_TICK_CONTAINER_DATA_SUFFICIENT",
+      "Crusher_container_data_slots": 7,
+      "strategy_extended": false
+    },
+    "long_work_supported": true,
+    "menu_updates_each_active_tick": true,
+    "o20_scope": "ConfiguredProcessingMachine",
+    "per_tick_full_block_entity_sync": false,
+    "progress_permille_bounds": [
+      0,
+      1000
+    ],
+    "status": "CLOSED"
+  }
+}

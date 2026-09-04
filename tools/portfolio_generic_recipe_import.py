@@ -10,7 +10,7 @@ from typing import Any
 
 from tools import closeout_seal
 from tools import portfolio_one_x as one_x
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk.import_spec import IMPORT_SPEC_SCHEMA, schema_path as import_schema_path
 from tools.recipe_bulk.slugs import KNOWN_SEMANTIC_SLUGS
 from tools.recipe_bulk.source_pack import MANIFEST_SCHEMA, schema_path as manifest_schema_path
@@ -24,7 +24,7 @@ R0 = "portfolio/generic-recipe-generator-r0"
 CORE = "portfolio/generic-recipe-import-core"
 PROOF = "portfolio/generic-recipe-import-proof"
 CAPABILITY = "portfolio/source-capability-map"
-SOURCE_REVISION = t35.SOURCE_REVISION
+SOURCE_REVISION = census.SOURCE_REVISION
 CHILD_SLUGS = (R0, CORE, PROOF, PROGRAM)
 STATUSES = {
     R0: "GENERIC_RECIPE_IMPORT_R0_READY",
@@ -103,29 +103,29 @@ RECHECK_CONDITION = [
 ]
 LEGACY_SOURCE_BUILDERS = (
     "tools/build_t20_worldgen_source.py",
-    "tools/build_t37_assembler_source.py",
-    "tools/build_t38_roaster_source.py",
-    "tools/build_t39_centrifuge_source.py",
-    "tools/build_t40_electrolyzer_source.py",
-    "tools/build_t41_assembler_source.py",
-    "tools/build_t43_smelter_source.py",
-    "tools/build_t44_storage_source.py",
-    "tools/build_t45_block_object_source.py",
-    "tools/build_t46_bath_source.py",
-    "tools/build_t47_bath_source.py",
-    "tools/build_t48_bath_source.py",
-    "tools/build_t49_bath_source.py",
+    "tools/build_assembler_compact_assembler_source.py",
+    "tools/build_roaster_roaster_source.py",
+    "tools/build_centrifuge_centrifuge_source.py",
+    "tools/build_electrolyzer_electrolyzer_source.py",
+    "tools/build_assembler_wood_assembler_source.py",
+    "tools/build_smelter_stone_smelter_source.py",
+    "tools/build_storage_storage_source.py",
+    "tools/block_object_common.py",
+    "tools/build_bath_mte_bath_source.py",
+    "tools/build_bath_remainder_bath_source.py",
+    "tools/build_bath_identity_bath_source.py",
+    "tools/build_bath_tiny_purified_bath_source.py",
 )
 FIXTURE_SLUGS = (
     "generic-import/smelter-exact-singleton",
     "generic-import/mixer-exact-multi",
 )
 SMELTER_SPEC = (
-    t35.ROOT
+    census.ROOT
     / "src/test/resources/generic_recipe_import/smelter_exact_singleton/recipe_import.json"
 )
 MIXER_SPEC = (
-    t35.ROOT
+    census.ROOT
     / "src/test/resources/generic_recipe_import/mixer_exact_multi/recipe_import.json"
 )
 MODULE_PATHS = (
@@ -165,14 +165,14 @@ def require_predecessor(slug: str) -> list[str]:
         errors: list[str] = []
         for child in CHILD_SLUGS[:-1]:
             errors.extend(closeout_seal.check_wave_seal(child))
-            readiness = t35.load_json(wave_dir(child) / "readiness.json")
+            readiness = census.load_json(wave_dir(child) / "readiness.json")
             expected = STATUSES[child]
             if readiness.get("status") != expected:
                 errors.append(f"{child} status {readiness.get('status')} != {expected}")
         return errors
     predecessor, status = PREDECESSORS[slug]
     errors = closeout_seal.check_wave_seal(predecessor)
-    readiness = t35.load_json(wave_dir(predecessor) / "readiness.json")
+    readiness = census.load_json(wave_dir(predecessor) / "readiness.json")
     if readiness.get("status") != status:
         errors.append(f"{predecessor} status {readiness.get('status')} != {status}")
     return errors
@@ -257,29 +257,29 @@ def glue_inventory() -> dict[str, Any]:
     items = [
         {
             "disposition": "extract_to_source_dialect",
-            "id": "t37_dump_read_map_fingerprint_receipt",
-            "path": "tools/build_t37_assembler_source.py",
+            "id": "assembler_compact_dump_read_map_fingerprint_receipt",
+            "path": "tools/build_assembler_compact_assembler_source.py",
             "replacement_boundary": "GT6 dialect adapter owned by source_system=gt6",
             "responsibility": "dump read, operand mapping, fingerprint, receipt, review",
         },
         {
             "disposition": "extract_to_source_dialect",
-            "id": "t40_electrolyzer_source_builder",
-            "path": "tools/build_t40_electrolyzer_source.py",
+            "id": "electrolyzer_source_builder",
+            "path": "tools/build_electrolyzer_electrolyzer_source.py",
             "replacement_boundary": "same GT6 dialect; no host-copied adapter",
             "responsibility": "per-wave dump replay and source pack pin",
         },
         {
             "disposition": "extract_to_source_dialect",
-            "id": "t41_assembler_source_builder",
-            "path": "tools/build_t41_assembler_source.py",
+            "id": "assembler_wood_source_builder",
+            "path": "tools/build_assembler_wood_assembler_source.py",
             "replacement_boundary": "same GT6 dialect; no host-copied adapter",
             "responsibility": "per-wave dump replay and source pack pin",
         },
         {
             "disposition": "legacy_frozen",
             "id": "remaining_per_wave_source_builders",
-            "path": "tools/build_t38_roaster_source.py through tools/build_t49_bath_source.py",
+            "path": "tools/build_roaster_roaster_source.py through tools/build_bath_tiny_purified_bath_source.py",
             "replacement_boundary": "archive/replay keeps them; new imports must not copy them",
             "responsibility": "historical host-specific source builders",
         },
@@ -321,7 +321,7 @@ def glue_inventory() -> dict[str, Any]:
         {
             "disposition": "replace_with_declarative_spec",
             "id": "legacy_source_pack_manifest_gap",
-            "path": "tools/t40_source_pack_manifest.json",
+            "path": "tools/electrolyzer_source_pack_manifest.json",
             "replacement_boundary": "tools/source_pack_manifest.schema.json describes import identity",
             "responsibility": "old manifests pin counts/files/revision only",
         },
@@ -437,8 +437,8 @@ def import_contract() -> dict[str, Any]:
 
 def _source_builder_paths() -> list[str]:
     return sorted(
-        t35.relative(path).replace("\\", "/")
-        for path in (t35.TOOLS).glob("build_*_source.py")
+        census.relative(path).replace("\\", "/")
+        for path in (census.TOOLS).glob("build_*_source.py")
     )
 
 
@@ -448,7 +448,7 @@ def onboarding_proof() -> dict[str, Any]:
 
     discovered = load_discovered()
     fixture_specs = {
-        slug: t35.relative(path).replace("\\", "/")
+        slug: census.relative(path).replace("\\", "/")
         for slug, path in discovered.items()
         if slug in FIXTURE_SLUGS
     }
@@ -479,8 +479,8 @@ def onboarding_proof() -> dict[str, Any]:
             if path not in LEGACY_SOURCE_BUILDERS
         ],
         "new host-specific adapter": [
-            t35.relative(path).replace("\\", "/")
-            for path in (t35.TOOLS / "recipe_bulk" / "dialects").glob("*.py")
+            census.relative(path).replace("\\", "/")
+            for path in (census.TOOLS / "recipe_bulk" / "dialects").glob("*.py")
             if path.name not in {"__init__.py", "gt6.py"}
         ],
         "new Java RecipeMap": [],
@@ -528,12 +528,12 @@ def r0_evidence() -> dict[str, Any]:
         "completion_delta": 0,
         "glue_inventory_items": len(inventory["items"]),
         "glue_inventory_kinds": sorted(dispositions),
-        "import_spec_schema": t35.relative(import_schema_path()).replace("\\", "/"),
+        "import_spec_schema": census.relative(import_schema_path()).replace("\\", "/"),
         "nuclear_track_c_started": nuclear_started(),
         "owns_families": 0,
         "recipe_files_generated": False,
         "schemas_frozen": True,
-        "source_pack_manifest_schema": t35.relative(manifest_schema_path()).replace(
+        "source_pack_manifest_schema": census.relative(manifest_schema_path()).replace(
             "\\", "/"
         ),
     }
@@ -543,7 +543,7 @@ def core_evidence() -> dict[str, Any]:
     missing = [
         path
         for path in MODULE_PATHS
-        if not (t35.ROOT / path).is_file()
+        if not (census.ROOT / path).is_file()
     ]
     if missing:
         raise ValueError("import modules missing: " + ",".join(missing))
@@ -573,8 +573,8 @@ def proof_evidence() -> dict[str, Any]:
     mixer = import_documents(MIXER_SPEC)
     smelter_source = smelter["documents"]["source"]
     mixer_source = mixer["documents"]["source"]
-    smelter_sample = t35.load_json(SMELTER_SPEC.parent / "compare_corpus.json")
-    mixer_sample = t35.load_json(MIXER_SPEC.parent / "compare_corpus.json")
+    smelter_sample = census.load_json(SMELTER_SPEC.parent / "compare_corpus.json")
+    mixer_sample = census.load_json(MIXER_SPEC.parent / "compare_corpus.json")
     def parity(imported: dict[str, Any], sample: dict[str, Any]) -> bool:
         left = [gt6.semantic_payload(row) for row in imported.get("relations") or []]
         right = [gt6.semantic_payload(row) for row in sample.get("relations") or []]
@@ -620,8 +620,8 @@ def program_evidence() -> dict[str, Any]:
 
 
 def write_frozen_schemas() -> None:
-    t35.write_stable(manifest_schema_path(), MANIFEST_SCHEMA)
-    t35.write_stable(import_schema_path(), IMPORT_SPEC_SCHEMA)
+    census.write_stable(manifest_schema_path(), MANIFEST_SCHEMA)
+    census.write_stable(import_schema_path(), IMPORT_SPEC_SCHEMA)
 
 
 def build_r0_documents() -> dict[str, Any]:
@@ -681,32 +681,32 @@ BUILDERS = {
 def write_seal(slug: str) -> dict[str, Any]:
     root = wave_dir(slug)
     hashes = {
-        "census": t35.sha256_file(root / "census_delta.json"),
+        "census": census.sha256_file(root / "census_delta.json"),
         "gametest_java": None,
         "gametest_log": None,
         "generated_recipes": None,
         "locked_support": None,
         "production_lock": None,
         "publication_group_manifest": None,
-        "readiness": t35.sha256_file(root / "readiness.json"),
+        "readiness": census.sha256_file(root / "readiness.json"),
         "receipt": None,
         "runtime_dependency_manifest": None,
         "shard_manifest": None,
-        "topology": t35.sha256_file(root / "topology.json"),
+        "topology": census.sha256_file(root / "topology.json"),
     }
     seal = {
         "card_id": slug,
         "complete_family_count": 0,
-        "composed_identity_ledger_v2_sha256": t35.sha256_file(
+        "composed_identity_ledger_v2_sha256": census.sha256_file(
             closeout_seal.IDENTITY_LEDGER_V2
         ),
-        "composed_runtime_manifest_v2_sha256": t35.sha256_file(
+        "composed_runtime_manifest_v2_sha256": census.sha256_file(
             closeout_seal.RUNTIME_MANIFEST_V2
         ),
         "gametest_status": "NONE",
         "generated_by": f"{generated_by(slug)} --write",
         "hashes": hashes,
-        "note": t35.load_json(root / "readiness.json").get("note"),
+        "note": census.load_json(root / "readiness.json").get("note"),
         "production_lock_sha256": None,
         "receipt_sha256": None,
         "reclassification_delta": 0,
@@ -717,7 +717,7 @@ def write_seal(slug: str) -> dict[str, Any]:
         "source_revision": SOURCE_REVISION,
         "status": "SEALED",
     }
-    t35.write_stable(root / "closeout_seal.json", seal)
+    census.write_stable(root / "closeout_seal.json", seal)
     return seal
 
 
@@ -726,7 +726,7 @@ def write_artifacts(slug: str) -> dict[str, Any]:
     root = wave_dir(slug)
     root.mkdir(parents=True, exist_ok=True)
     for name, document in documents.items():
-        t35.write_stable(root / name, document)
+        census.write_stable(root / name, document)
     write_seal(slug)
     spec = spec_for(slug)
     return {
@@ -758,11 +758,11 @@ def check_artifacts(slug: str) -> list[str]:
     except ValueError as error:
         return errors + [str(error)]
     for name, document in live.items():
-        committed = t35.load_json(root / name)
-        drift = t35.first_json_diff(document, committed)
+        committed = census.load_json(root / name)
+        drift = census.first_json_diff(document, committed)
         if drift:
             errors.append(f"{name} drifted: {drift}")
-    readiness = t35.load_json(root / "readiness.json")
+    readiness = census.load_json(root / "readiness.json")
     if readiness.get("status") != STATUSES[slug]:
         errors.append(f"{slug} status drifted")
     if readiness.get("unique_active_wave") != spec.unique_active_wave:

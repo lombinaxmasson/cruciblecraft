@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import unittest
 
-from tools import t35_common as t35
+from tools import census_common as census
 from tools import vanilla_replace_mvp as mvp
 
 SLUG = "content/vanilla-replace-mvp"
@@ -15,7 +15,7 @@ class VanillaReplaceMvpLockTest(unittest.TestCase):
     def test_lock_when_present(self) -> None:
         if not mvp.LOCK_PATH.is_file():
             self.skipTest("MVP lock not written yet")
-        lock = t35.load_json(mvp.LOCK_PATH)
+        lock = census.load_json(mvp.LOCK_PATH)
         self.assertEqual(SLUG, lock["wave_slug"])
         self.assertEqual("VANILLA_REPLACE_MVP_READY", lock["status"])
         self.assertEqual(0, int(lock["owns_families"]))
@@ -36,11 +36,11 @@ class VanillaReplaceMvpLockTest(unittest.TestCase):
         self.assertEqual("substitute", paper["action"])
         self.assertEqual([43, 44, 52], paper["gt6_pointer"]["lines"])
         self.assertEqual(1, int(paper["io"]["result"]["count"]))
-        deferred_text = t35.stable_json(lock["deferred"])
+        deferred_text = census.stable_json(lock["deferred"])
         self.assertIn("minecraft:furnace", deferred_text)
         self.assertIn("itemGrassDry", deferred_text)
         self.assertIn("minecraft:bone_meal", deferred_text)
-        equivalent = t35.stable_json(lock["no_1_21_equivalent"])
+        equivalent = census.stable_json(lock["no_1_21_equivalent"])
         self.assertIn("rem_smelting", equivalent)
         self.assertIn("WiMo_Thick_Bone", equivalent)
 
@@ -57,7 +57,7 @@ class VanillaReplaceMvpReadinessTest(unittest.TestCase):
     def test_readiness_when_present(self) -> None:
         if not mvp.READINESS_PATH.is_file():
             self.skipTest("MVP readiness not written yet")
-        readiness = t35.load_json(mvp.READINESS_PATH)
+        readiness = census.load_json(mvp.READINESS_PATH)
         self.assertEqual("VANILLA_REPLACE_MVP_READY", readiness["status"])
         self.assertIsNone(readiness["unique_active_wave"])
         self.assertTrue(readiness["next_unassigned"])

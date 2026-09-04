@@ -14,20 +14,20 @@ if str(ROOT) not in sys.path:
 
 from tools import closeout_seal
 from tools import recycling_deferred_r0 as r0
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk.slugs import KNOWN_SEMANTIC_SLUGS
 from tools.wave_closeout import known_slugs
 from tools.wave_closeout import spec_for
 
 SLUG = r0.SLUG
-ROOT_DIR = t35.TOOLS / "waves" / "recycling" / "deferred-ordinary-ledger-r0"
+ROOT_DIR = census.TOOLS / "waves" / "recycling" / "deferred-ordinary-ledger-r0"
 
 
 def _require_remainder_sealed() -> list[str]:
     errors: list[str] = []
     slug = "recipe-portfolio/ordinary-remainder-closure"
-    root = t35.TOOLS / "waves" / "recipe-portfolio" / "ordinary-remainder-closure"
-    readiness = t35.load_json(root / "readiness.json")
+    root = census.TOOLS / "waves" / "recipe-portfolio" / "ordinary-remainder-closure"
+    readiness = census.load_json(root / "readiness.json")
     if readiness.get("status") != "WAVE_READY":
         errors.append(f"{slug} readiness is {readiness.get('status')}")
     errors.extend(closeout_seal.check_wave_seal(slug))
@@ -48,7 +48,7 @@ def build_documents() -> dict[str, Any]:
         "generated_by": r0.GENERATED_BY,
         "padding_forbidden": True,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "N300_EXCEPTIONS",
         "wave_slug": SLUG,
     }
@@ -81,7 +81,7 @@ def build_documents() -> dict[str, Any]:
         },
         "remaining_recipe_gap": 0,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "CENSUS_DELTA_READY",
         "wave_slug": SLUG,
         "work_set": {"family_count": 0, "source_rows": 0},
@@ -93,7 +93,7 @@ def build_documents() -> dict[str, Any]:
         "next_unassigned": False,
         "remaining_recipe_gap": 0,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "WAVE_READY",
         "unique_active_wave": r0.NEXT_CHILD,
         "wave_slug": SLUG,
@@ -137,7 +137,7 @@ def build_documents() -> dict[str, Any]:
         "generated_by": r0.GENERATED_BY,
         "next_unassigned": False,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "RECYCLING_DEFERRED_LEDGER_R0_READY",
         "unique_active_wave": r0.NEXT_CHILD,
         "wave_complete": True,
@@ -159,35 +159,35 @@ def build_documents() -> dict[str, Any]:
 def write_artifacts() -> dict[str, Any]:
     documents = build_documents()
     ROOT_DIR.mkdir(parents=True, exist_ok=True)
-    t35.write_stable(ROOT_DIR / "wave.json", documents["wave"])
-    t35.write_stable(ROOT_DIR / "deferred_universe.json", documents["universe"])
-    t35.write_stable(ROOT_DIR / "cohort_partition.json", documents["partition"])
-    t35.write_stable(ROOT_DIR / "identity_candidate.json", documents["candidate"])
-    t35.write_stable(ROOT_DIR / "n300_exceptions.json", documents["n300"])
-    t35.write_stable(ROOT_DIR / "census_delta.json", documents["census"])
-    t35.write_stable(ROOT_DIR / "topology.json", documents["topology"])
-    t35.write_stable(ROOT_DIR / "readiness.json", documents["readiness"])
+    census.write_stable(ROOT_DIR / "wave.json", documents["wave"])
+    census.write_stable(ROOT_DIR / "deferred_universe.json", documents["universe"])
+    census.write_stable(ROOT_DIR / "cohort_partition.json", documents["partition"])
+    census.write_stable(ROOT_DIR / "identity_candidate.json", documents["candidate"])
+    census.write_stable(ROOT_DIR / "n300_exceptions.json", documents["n300"])
+    census.write_stable(ROOT_DIR / "census_delta.json", documents["census"])
+    census.write_stable(ROOT_DIR / "topology.json", documents["topology"])
+    census.write_stable(ROOT_DIR / "readiness.json", documents["readiness"])
     hashes = {
-        "census": t35.sha256_file(ROOT_DIR / "census_delta.json"),
+        "census": census.sha256_file(ROOT_DIR / "census_delta.json"),
         "gametest_java": None,
         "gametest_log": None,
         "generated_recipes": None,
         "locked_support": None,
         "production_lock": None,
         "publication_group_manifest": None,
-        "readiness": t35.sha256_file(ROOT_DIR / "readiness.json"),
+        "readiness": census.sha256_file(ROOT_DIR / "readiness.json"),
         "receipt": None,
         "runtime_dependency_manifest": None,
         "shard_manifest": None,
-        "topology": t35.sha256_file(ROOT_DIR / "topology.json"),
+        "topology": census.sha256_file(ROOT_DIR / "topology.json"),
     }
     seal = {
         "card_id": SLUG,
         "complete_family_count": 0,
-        "composed_identity_ledger_v2_sha256": t35.sha256_file(
+        "composed_identity_ledger_v2_sha256": census.sha256_file(
             closeout_seal.IDENTITY_LEDGER_V2
         ),
-        "composed_runtime_manifest_v2_sha256": t35.sha256_file(
+        "composed_runtime_manifest_v2_sha256": census.sha256_file(
             closeout_seal.RUNTIME_MANIFEST_V2
         ),
         "gametest_status": "NONE",
@@ -206,10 +206,10 @@ def write_artifacts() -> dict[str, Any]:
         "remaining_recipe_gap": 0,
         "schema_version": 1,
         "sealed_at_wave": SLUG,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "SEALED",
     }
-    t35.write_stable(ROOT_DIR / "closeout_seal.json", seal)
+    census.write_stable(ROOT_DIR / "closeout_seal.json", seal)
     return {
         "ledger_total": r0.LEDGER_TOTAL,
         "reclassification_delta": documents["reclassification_delta"],
@@ -240,7 +240,7 @@ def check() -> list[str]:
     readiness_path = ROOT_DIR / "readiness.json"
     if not readiness_path.is_file():
         return errors + ["missing R0 readiness.json"]
-    readiness = t35.load_json(readiness_path)
+    readiness = census.load_json(readiness_path)
     if readiness.get("status") != "RECYCLING_DEFERRED_LEDGER_R0_READY":
         errors.append("R0 readiness is not RECYCLING_DEFERRED_LEDGER_R0_READY")
     if readiness.get("unique_active_wave") != r0.NEXT_CHILD:
@@ -252,10 +252,10 @@ def check() -> list[str]:
         errors.append("R0 must not generate recipe files")
     if int(evidence.get("completion_delta", -1)) != 0:
         errors.append("R0 must not claim family completion")
-    census = t35.load_json(ROOT_DIR / "census_delta.json")
+    census = census.load_json(ROOT_DIR / "census_delta.json")
     if int(census.get("complete_family_count", -1)) != 0:
         errors.append("R0 census claimed family completion")
-    universe = t35.load_json(ROOT_DIR / "deferred_universe.json")
+    universe = census.load_json(ROOT_DIR / "deferred_universe.json")
     if universe.get("enumerated") is not True:
         errors.append("deferred_universe.enumerated must be true")
     if int(universe.get("family_count") or 0) != r0.LEDGER_TOTAL:
@@ -265,7 +265,7 @@ def check() -> list[str]:
     if universe.get("inherited_recycling", {}).get("silently_discarded") is not False:
         errors.append("inherited recycling was silently discarded")
     generated = (
-        t35.ROOT
+        census.ROOT
         / "src"
         / "recipe_generated"
         / "resources"
@@ -278,7 +278,7 @@ def check() -> list[str]:
         errors.append("R0 generated recycling recipe files")
     errors.extend(closeout_seal.check_wave_seal(SLUG))
     live = r0.universe_document(enumerated)
-    drift = t35.first_json_diff(live, universe)
+    drift = census.first_json_diff(live, universe)
     if drift:
         errors.append(f"deferred_universe drifted from live enumeration: {drift}")
     return errors

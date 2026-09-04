@@ -1,0 +1,240 @@
+{
+  "counts": {
+    "item_models": 5,
+    "language_rows": 10,
+    "recipe_operand_rows": 14,
+    "registered_items": 5,
+    "selected_kinds": 5,
+    "unreachable": 0,
+    "vanilla_crafting_recipes": 5
+  },
+  "currentness": {
+    "owned_inputs": [
+      "tools/t19_cover_acquisition_policy.json",
+      "tools/build_t19_cover_acquisition.py"
+    ],
+    "registration_source": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+      "sha256": "0b50cbd47534463a5abc80fe78f30f3dde627ab52ad69a3f5d8ca4322fdfeb99"
+    },
+    "resources": {
+      "src/generated/resources/assets/cruciblecraft/lang/en_us.json": "e9cacb8bf0af3b6bc14148086d278af2feb075d6fbfaa3bb565cca26eb39769e",
+      "src/generated/resources/assets/cruciblecraft/lang/zh_cn.json": "e024a3fe0bb0b08bff8431cd099215e4f50b0a278fd0fdb8a108fa7625341d98",
+      "src/generated/resources/assets/cruciblecraft/models/item/conveyor_cover.json": "519a213a4f8f3d4b567f6d95258ee2763d55da95b6314f5195143a6c55b6b4a7",
+      "src/generated/resources/assets/cruciblecraft/models/item/pressure_valve_cover.json": "c977f0e94c00957aa95fd12bbcb9ebfe0c993d3cb89b0b796cd399cff1f4d5c2",
+      "src/generated/resources/assets/cruciblecraft/models/item/retriever_item_cover.json": "89d00ca42e355aaddd5ef5d14a56ec62f76b41cb21ccf24b877d695867da9801",
+      "src/generated/resources/assets/cruciblecraft/models/item/robot_arm_cover.json": "9eaef18d41faea83c40b79f1fd1ead005264a6775748ca86cd21e3e01b7ee6dc",
+      "src/generated/resources/assets/cruciblecraft/models/item/selector_manual_cover.json": "b661e3de87f7adf605a0729d2811d5547f7b135ee45fb3299a0af387272142ad",
+      "src/generated/resources/data/cruciblecraft/recipe/conveyor_cover.json": "bf7d72f14119d42b6c342a7c57c43abaa3b25ffcc895c890ccf8977034bb0850",
+      "src/generated/resources/data/cruciblecraft/recipe/pressure_valve_cover.json": "b7950e565a1adf7219cbb7288bce46ff908c0fc092af47e5a0d70b2c5fd11f7a",
+      "src/generated/resources/data/cruciblecraft/recipe/retriever_item_cover.json": "488f79498df360f151264dd247eb46e0aa90c6fdcc054ca1b008dc3167daa32f",
+      "src/generated/resources/data/cruciblecraft/recipe/robot_arm_cover.json": "078f6d7ad57b410ec8d8af26ec1d0cf54afa91847f0f1defa55ae85ecf54ff51",
+      "src/generated/resources/data/cruciblecraft/recipe/selector_manual_cover.json": "b6adc0211d7e091d5a1e9c540a47fab12c4422a4714fd4fa2c6f6f312bc441ec"
+    }
+  },
+  "expected_set": {
+    "canonical_ids": [
+      "conveyor",
+      "pressure_valve",
+      "retriever_item",
+      "robot_arm",
+      "selector_manual"
+    ],
+    "item_ids": [
+      "cruciblecraft:conveyor_cover",
+      "cruciblecraft:pressure_valve_cover",
+      "cruciblecraft:retriever_item_cover",
+      "cruciblecraft:robot_arm_cover",
+      "cruciblecraft:selector_manual_cover"
+    ],
+    "source": "independent_t19_selected_cover_policy"
+  },
+  "rows": [
+    {
+      "canonical_id": "conveyor",
+      "ingredients": [
+        {
+          "identity": "minecraft:hopper",
+          "producer": "minecraft_survival",
+          "reachable": true,
+          "registered": true,
+          "symbol": "H"
+        },
+        {
+          "identity": "minecraft:iron_ingot",
+          "producer": "minecraft_survival",
+          "reachable": true,
+          "registered": true,
+          "symbol": "I"
+        },
+        {
+          "identity": "minecraft:powered_rail",
+          "producer": "minecraft_survival",
+          "reachable": true,
+          "registered": true,
+          "symbol": "R"
+        }
+      ],
+      "item": "cruciblecraft:conveyor_cover",
+      "reachable": true,
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/conveyor_cover.json",
+      "recipe_id": "cruciblecraft:conveyor_cover",
+      "registered": true,
+      "resources": {
+        "languages": {
+          "en_us": true,
+          "zh_cn": true
+        },
+        "model": "src/generated/resources/assets/cruciblecraft/models/item/conveyor_cover.json"
+      }
+    },
+    {
+      "canonical_id": "pressure_valve",
+      "ingredients": [
+        {
+          "identity": "minecraft:copper_ingot",
+          "producer": "minecraft_survival",
+          "reachable": true,
+          "registered": true,
+          "symbol": "C"
+        },
+        {
+          "identity": "minecraft:tripwire_hook",
+          "producer": "minecraft_survival",
+          "reachable": true,
+          "registered": true,
+          "symbol": "T"
+        }
+      ],
+      "item": "cruciblecraft:pressure_valve_cover",
+      "reachable": true,
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pressure_valve_cover.json",
+      "recipe_id": "cruciblecraft:pressure_valve_cover",
+      "registered": true,
+      "resources": {
+        "languages": {
+          "en_us": true,
+          "zh_cn": true
+        },
+        "model": "src/generated/resources/assets/cruciblecraft/models/item/pressure_valve_cover.json"
+      }
+    },
+    {
+      "canonical_id": "retriever_item",
+      "ingredients": [
+        {
+          "identity": "minecraft:compass",
+          "producer": "minecraft_survival",
+          "reachable": true,
+          "registered": true,
+          "symbol": "C"
+        },
+        {
+          "identity": "minecraft:hopper",
+          "producer": "minecraft_survival",
+          "reachable": true,
+          "registered": true,
+          "symbol": "H"
+        },
+        {
+          "identity": "minecraft:redstone",
+          "producer": "minecraft_survival",
+          "reachable": true,
+          "registered": true,
+          "symbol": "R"
+        }
+      ],
+      "item": "cruciblecraft:retriever_item_cover",
+      "reachable": true,
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/retriever_item_cover.json",
+      "recipe_id": "cruciblecraft:retriever_item_cover",
+      "registered": true,
+      "resources": {
+        "languages": {
+          "en_us": true,
+          "zh_cn": true
+        },
+        "model": "src/generated/resources/assets/cruciblecraft/models/item/retriever_item_cover.json"
+      }
+    },
+    {
+      "canonical_id": "robot_arm",
+      "ingredients": [
+        {
+          "identity": "minecraft:iron_ingot",
+          "producer": "minecraft_survival",
+          "reachable": true,
+          "registered": true,
+          "symbol": "I"
+        },
+        {
+          "identity": "minecraft:piston",
+          "producer": "minecraft_survival",
+          "reachable": true,
+          "registered": true,
+          "symbol": "P"
+        },
+        {
+          "identity": "minecraft:redstone",
+          "producer": "minecraft_survival",
+          "reachable": true,
+          "registered": true,
+          "symbol": "R"
+        }
+      ],
+      "item": "cruciblecraft:robot_arm_cover",
+      "reachable": true,
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/robot_arm_cover.json",
+      "recipe_id": "cruciblecraft:robot_arm_cover",
+      "registered": true,
+      "resources": {
+        "languages": {
+          "en_us": true,
+          "zh_cn": true
+        },
+        "model": "src/generated/resources/assets/cruciblecraft/models/item/robot_arm_cover.json"
+      }
+    },
+    {
+      "canonical_id": "selector_manual",
+      "ingredients": [
+        {
+          "identity": "minecraft:comparator",
+          "producer": "minecraft_survival",
+          "reachable": true,
+          "registered": true,
+          "symbol": "C"
+        },
+        {
+          "identity": "minecraft:lever",
+          "producer": "minecraft_survival",
+          "reachable": true,
+          "registered": true,
+          "symbol": "L"
+        },
+        {
+          "identity": "minecraft:redstone",
+          "producer": "minecraft_survival",
+          "reachable": true,
+          "registered": true,
+          "symbol": "R"
+        }
+      ],
+      "item": "cruciblecraft:selector_manual_cover",
+      "reachable": true,
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/selector_manual_cover.json",
+      "recipe_id": "cruciblecraft:selector_manual_cover",
+      "registered": true,
+      "resources": {
+        "languages": {
+          "en_us": true,
+          "zh_cn": true
+        },
+        "model": "src/generated/resources/assets/cruciblecraft/models/item/selector_manual_cover.json"
+      }
+    }
+  ],
+  "schema_version": 1,
+  "status": "T19_COVER_ACQUISITION_READY",
+  "unreachable": []
+}

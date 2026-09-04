@@ -20,14 +20,14 @@
     {
       "id": "generated_resources_and_runtime_manifest",
       "kind": "resources",
-      "builder": "build_t41_runtime_dependency_manifest",
+      "builder": "build_runtime_dependency_manifest",
       "depends_on": [
         "source_and_material_gate"
       ],
       "outputs": [
-        "tools/t39_runtime_dependency_manifest.json",
-        "tools/t40_runtime_dependency_manifest.json",
-        "tools/t41_runtime_dependency_manifest.json"
+        "tools/centrifuge_runtime_dependency_manifest.json",
+        "tools/electrolyzer_runtime_dependency_manifest.json",
+        "tools/assembler_wood_runtime_dependency_manifest.json"
       ],
       "modes": [
         "check",
@@ -41,10 +41,10 @@
         "generated_resources_and_runtime_manifest"
       ],
       "outputs": [
-        "tools/t38_gametest.log",
-        "tools/t39_gametest.log",
-        "tools/t40_gametest.log",
-        "tools/t41_gametest.log"
+        "tools/roaster_gametest.log",
+        "tools/centrifuge_gametest.log",
+        "tools/electrolyzer_gametest.log",
+        "tools/assembler_wood_gametest.log"
       ],
       "modes": [
         "check"
@@ -53,7 +53,7 @@
     {
       "id": "receipt",
       "kind": "receipt",
-      "builder": "build_t41_gametest_receipt",
+      "builder": "build_gametest_receipt",
       "depends_on": [
         "java_and_gametest_behavior"
       ],
@@ -71,15 +71,15 @@
     {
       "id": "census_delta",
       "kind": "census",
-      "builder": "build_t41_census_delta",
+      "builder": "build_census_delta",
       "depends_on": [
         "receipt"
       ],
       "outputs": [
-        "tools/t38_census_delta.json",
-        "tools/t39_census_delta.json",
-        "tools/t40_census_delta.json",
-        "tools/t41_census_delta.json"
+        "tools/roaster_census_delta.json",
+        "tools/centrifuge_census_delta.json",
+        "tools/electrolyzer_census_delta.json",
+        "tools/assembler_wood_census_delta.json"
       ],
       "modes": [
         "check",
@@ -90,15 +90,15 @@
     {
       "id": "topology",
       "kind": "topology",
-      "builder": "build_t41_card_topology",
+      "builder": "build_card_topology",
       "depends_on": [
         "census_delta"
       ],
       "outputs": [
-        "tools/t35_card_topology.json",
-        "tools/t39_card_topology.json",
-        "tools/t40_card_topology.json",
-        "tools/t41_card_topology.json"
+        "tools/recipe_card_topology.json",
+        "tools/centrifuge_card_topology.json",
+        "tools/electrolyzer_card_topology.json",
+        "tools/assembler_wood_card_topology.json"
       ],
       "modes": [
         "check",
@@ -109,15 +109,15 @@
     {
       "id": "readiness",
       "kind": "readiness",
-      "builder": "build_t41_readiness",
+      "builder": "build_readiness",
       "depends_on": [
         "topology"
       ],
       "outputs": [
-        "tools/t35_readiness.json",
-        "tools/t39_readiness.json",
-        "tools/t40_readiness.json",
-        "tools/t41_readiness.json"
+        "tools/recipe_readiness.json",
+        "tools/centrifuge_readiness.json",
+        "tools/electrolyzer_readiness.json",
+        "tools/assembler_wood_readiness.json"
       ],
       "modes": [
         "check",
@@ -126,179 +126,179 @@
       ]
     },
     {
-      "id": "t42_freeze",
+      "id": "owner_freeze",
       "kind": "partition",
-      "builder": "build_t42_partition_freeze",
+      "builder": "build_owner_partition_freeze",
       "depends_on": [
         "source_and_material_gate"
       ],
       "outputs": [
-        "tools/t42_partition_freeze.json",
-        "tools/t42_remaining_catalog.json",
-        "tools/t42_source_pack_manifest.json"
+        "tools/owner_partition_freeze.json",
+        "tools/owner_remaining_catalog.json",
+        "tools/owner_source_pack_manifest.json"
       ],
       "modes": ["check", "write", "rebind"]
     },
     {
-      "id": "t42_snapshot",
+      "id": "owner_snapshot",
       "kind": "partition",
-      "builder": "build_t42_family_operand_snapshot",
-      "depends_on": ["t42_freeze"],
-      "outputs": ["tools/t42_family_operand_snapshot.json"],
+      "builder": "build_owner_family_operand_snapshot",
+      "depends_on": ["owner_freeze"],
+      "outputs": ["tools/owner_family_operand_snapshot.json"],
       "modes": ["check", "write", "rebind"]
     },
     {
-      "id": "t42_inventory",
+      "id": "owner_inventory",
       "kind": "partition",
-      "builder": "build_t42_runtime_expression_inventory",
-      "depends_on": ["t42_freeze"],
+      "builder": "build_owner_runtime_expression_inventory",
+      "depends_on": ["owner_freeze"],
       "outputs": [
-        "tools/t42_runtime_expression_inventory.json",
-        "tools/t42_vanilla_item_allowlist.json"
+        "tools/owner_runtime_expression_inventory.json",
+        "tools/owner_vanilla_item_allowlist.json"
       ],
       "modes": ["check", "write", "rebind"]
     },
     {
-      "id": "t42_b0",
+      "id": "owner_b0",
       "kind": "partition",
-      "builder": "build_t42_reachability_baseline",
-      "depends_on": ["t42_freeze"],
-      "outputs": ["tools/t42_reachability_baseline.json"],
+      "builder": "build_owner_reachability_baseline",
+      "depends_on": ["owner_freeze"],
+      "outputs": ["tools/owner_reachability_baseline.json"],
       "modes": ["check", "write", "rebind"]
     },
     {
-      "id": "t42_overlay",
+      "id": "owner_overlay",
       "kind": "partition",
-      "builder": "build_t42_blocker_overlay",
-      "depends_on": ["t42_snapshot", "t42_inventory", "t42_b0"],
+      "builder": "build_owner_blocker_overlay",
+      "depends_on": ["owner_snapshot", "owner_inventory", "owner_b0"],
       "outputs": [
-        "tools/t42_blocker_overlay.json",
-        "tools/t42_operand_disposition.json",
-        "tools/t42_wave_candidates.json"
+        "tools/owner_blocker_overlay.json",
+        "tools/owner_operand_disposition.json",
+        "tools/owner_wave_candidates.json"
       ],
       "modes": ["check", "write", "rebind"]
     },
     {
-      "id": "t42_lock",
+      "id": "owner_lock",
       "kind": "partition",
-      "builder": "build_t42_disposition_lock",
-      "depends_on": ["t42_overlay"],
-      "outputs": ["tools/t42_disposition_lock.json"],
+      "builder": "build_owner_disposition_lock",
+      "depends_on": ["owner_overlay"],
+      "outputs": ["tools/owner_disposition_lock.json"],
       "modes": ["check", "write", "rebind"]
     },
     {
-      "id": "t42_gap_partition",
+      "id": "owner_gap_partition",
       "kind": "partition",
-      "builder": "build_t42_gap_partition",
-      "depends_on": ["t42_lock"],
-      "outputs": ["tools/t42_gap_partition.json"],
+      "builder": "build_owner_gap_partition",
+      "depends_on": ["owner_lock"],
+      "outputs": ["tools/owner_gap_partition.json"],
       "modes": ["check", "write", "rebind"]
     },
     {
-      "id": "t42_census_delta",
+      "id": "owner_census_delta",
       "kind": "census",
-      "builder": "build_t42_census_delta",
-      "depends_on": ["t42_gap_partition"],
-      "outputs": ["tools/t42_census_delta.json"],
+      "builder": "build_owner_census_delta",
+      "depends_on": ["owner_gap_partition"],
+      "outputs": ["tools/owner_census_delta.json"],
       "modes": ["check", "write", "rebind"]
     },
     {
-      "id": "t42_topology",
+      "id": "owner_topology",
       "kind": "topology",
-      "builder": "build_t42_card_topology",
-      "depends_on": ["t42_census_delta"],
-      "outputs": ["tools/t42_card_topology.json"],
+      "builder": "build_owner_card_topology",
+      "depends_on": ["owner_census_delta"],
+      "outputs": ["tools/owner_card_topology.json"],
       "modes": ["check", "write", "rebind"]
     },
     {
-      "id": "t42_readiness",
+      "id": "owner_readiness",
       "kind": "readiness",
-      "builder": "build_t42_readiness",
-      "depends_on": ["t42_topology"],
-      "outputs": ["tools/t42_readiness.json"],
+      "builder": "build_owner_readiness",
+      "depends_on": ["owner_topology"],
+      "outputs": ["tools/owner_readiness.json"],
       "modes": ["check", "write", "rebind"]
     },
     {
-      "id": "t42_repair_freeze",
+      "id": "owner_repair_freeze",
       "kind": "partition_repair",
-      "builder": "build_t42_repair_pre_freeze",
-      "depends_on": ["t42_readiness"],
-      "outputs": ["tools/t42_repair_pre_freeze.json"],
+      "builder": "build_owner_repair_pre_freeze",
+      "depends_on": ["owner_readiness"],
+      "outputs": ["tools/owner_repair_pre_freeze.json"],
       "modes": ["check", "write", "rebind"]
     },
     {
-      "id": "t42_repair_readiness",
+      "id": "owner_repair_readiness",
       "kind": "readiness",
-      "builder": "build_t42_repair_readiness",
-      "depends_on": ["t42_repair_freeze"],
-      "outputs": ["tools/t42_repair_readiness.json"],
+      "builder": "build_owner_repair_readiness",
+      "depends_on": ["owner_repair_freeze"],
+      "outputs": ["tools/owner_repair_readiness.json"],
       "modes": ["check", "write", "rebind"]
     },
     {
-      "id": "t42_owner_freeze",
+      "id": "owner_runtime_freeze",
       "kind": "partition_repair",
-      "builder": "build_t42_owner_pre_freeze",
-      "depends_on": ["t42_repair_readiness"],
-      "outputs": ["tools/t42_owner_pre_freeze.json"],
+      "builder": "build_owner_owner_pre_freeze",
+      "depends_on": ["owner_repair_readiness"],
+      "outputs": ["tools/owner_owner_pre_freeze.json"],
       "modes": ["check", "write", "rebind"]
     },
     {
-      "id": "t42_owner_overlay",
+      "id": "owner_runtime_overlay",
       "kind": "partition_repair",
-      "builder": "build_t42_owner_track_overlay",
-      "depends_on": ["t42_owner_freeze"],
+      "builder": "build_owner_owner_track_overlay",
+      "depends_on": ["owner_runtime_freeze"],
       "outputs": [
-        "tools/t42_owner_track_overlay.json",
-        "tools/t42_owner_recovery_evidence.json"
+        "tools/owner_owner_track_overlay.json",
+        "tools/owner_owner_recovery_evidence.json"
       ],
       "modes": ["check", "write", "rebind"]
     },
     {
-      "id": "t42_owner_lock",
+      "id": "owner_runtime_lock",
       "kind": "partition_repair",
-      "builder": "build_t42_owner_disposition_lock",
-      "depends_on": ["t42_owner_overlay"],
-      "outputs": ["tools/t42_owner_disposition_lock.json"],
+      "builder": "build_owner_owner_disposition_lock",
+      "depends_on": ["owner_runtime_overlay"],
+      "outputs": ["tools/owner_owner_disposition_lock.json"],
       "modes": ["check", "write", "rebind"]
     },
     {
-      "id": "t42_owner_gap_partition",
+      "id": "owner_runtime_gap_partition",
       "kind": "partition_repair",
-      "builder": "build_t42_owner_gap_partition",
-      "depends_on": ["t42_owner_lock"],
-      "outputs": ["tools/t42_owner_gap_partition.json"],
+      "builder": "build_owner_runtime_gap_partition",
+      "depends_on": ["owner_runtime_lock"],
+      "outputs": ["tools/owner_runtime_gap_partition.json"],
       "modes": ["check", "write", "rebind"]
     },
     {
-      "id": "t42_owner_readiness",
+      "id": "owner_runtime_readiness",
       "kind": "readiness",
-      "builder": "build_t42_owner_readiness",
-      "depends_on": ["t42_owner_gap_partition"],
-      "outputs": ["tools/t42_owner_readiness.json"],
+      "builder": "build_owner_runtime_readiness",
+      "depends_on": ["owner_runtime_gap_partition"],
+      "outputs": ["tools/owner_runtime_readiness.json"],
       "modes": ["check", "write", "rebind"]
     },
     {
-      "id": "t36_repair_freeze",
+      "id": "repair_freeze",
       "kind": "partition_repair",
-      "builder": "build_t36_repair_pre_freeze",
-      "depends_on": ["t42_owner_readiness"],
-      "outputs": ["tools/t36_repair_pre_freeze.json"],
+      "builder": "build_repair_pre_freeze",
+      "depends_on": ["owner_runtime_readiness"],
+      "outputs": ["tools/repair_pre_freeze.json"],
       "modes": ["check", "write", "rebind"]
     },
     {
-      "id": "t36_repair_inventory",
+      "id": "repair_inventory",
       "kind": "partition_repair",
-      "builder": "build_t36_repair_second_list_inventory",
-      "depends_on": ["t36_repair_freeze"],
-      "outputs": ["tools/t36_repair_second_list_inventory.json"],
+      "builder": "build_repair_second_list_inventory",
+      "depends_on": ["repair_freeze"],
+      "outputs": ["tools/repair_second_list_inventory.json"],
       "modes": ["check", "write", "rebind"]
     },
     {
-      "id": "t36_repair_readiness",
+      "id": "repair_readiness",
       "kind": "readiness",
-      "builder": "build_t36_repair_readiness",
-      "depends_on": ["t36_repair_inventory"],
-      "outputs": ["tools/t36_repair_readiness.json"],
+      "builder": "build_repair_readiness",
+      "depends_on": ["repair_inventory"],
+      "outputs": ["tools/repair_readiness.json"],
       "modes": ["check", "write", "rebind"]
     }
   ]

@@ -5,7 +5,7 @@ from __future__ import annotations
 from collections import defaultdict
 from typing import Any
 
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk.dialects import gt6
 from tools.recipe_bulk.import_spec import (
     ImportSpecError,
@@ -21,8 +21,8 @@ from tools.recipe_bulk.source_pack import (
 )
 
 AUTHORITY_PATHS = {
-    "identity_ledger_v3": t35.TOOLS / "global_build_identity_ledger.v3.json",
-    "material_form_authority": t35.TOOLS / "material_form_authority.json",
+    "identity_ledger_v3": census.TOOLS / "global_build_identity_ledger.v3.json",
+    "material_form_authority": census.TOOLS / "material_form_authority.json",
 }
 FORBIDDEN_OUTPUT_NAMES = frozenset(
     {
@@ -42,10 +42,10 @@ def _raise(error: Exception) -> None:
 
 
 def load_work_set(path: Path) -> dict[str, Any]:
-    document = t35.load_json(path)
+    document = census.load_json(path)
     families = document.get("families") or []
     if not families:
-        raise SourceImportError(f"{t35.relative(path)} has no families")
+        raise SourceImportError(f"{census.relative(path)} has no families")
     seen_ids: set[str] = set()
     for family in families:
         family_id = str(family.get("family_id") or "")
@@ -64,10 +64,10 @@ def load_work_set(path: Path) -> dict[str, Any]:
 
 
 def load_dump_slice(path: Path) -> dict[str, Any]:
-    document = t35.load_json(path)
+    document = census.load_json(path)
     recipes = document.get("recipes")
     if not isinstance(recipes, list) or not recipes:
-        raise SourceImportError(f"{t35.relative(path)} dump slice has no recipes")
+        raise SourceImportError(f"{census.relative(path)} dump slice has no recipes")
     return document
 
 
@@ -86,7 +86,7 @@ def _authority_hashes(spec: dict[str, Any]) -> dict[str, str]:
 
 def _output_paths(spec: dict[str, Any]) -> dict[str, Path]:
     paths = {
-        key: t35.ROOT / str(raw)
+        key: census.ROOT / str(raw)
         for key, raw in spec["output_paths"].items()
     }
     for key, path in paths.items():
@@ -134,8 +134,8 @@ def _load_compare_corpus(spec: dict[str, Any]) -> list[dict[str, Any]]:
     raw = spec.get("compare_corpus")
     if not raw:
         return []
-    path = t35.ROOT / str(raw)
-    document = t35.load_json(path)
+    path = census.ROOT / str(raw)
+    document = census.load_json(path)
     if isinstance(document, dict) and isinstance(document.get("relations"), list):
         return list(document["relations"])
     if isinstance(document, list):
@@ -193,7 +193,7 @@ def import_documents(spec_path: Path) -> dict[str, Any]:
     except (ImportSpecError, SourcePackError) as error:
         _raise(error)
     try:
-        manifest = load_manifest(t35.ROOT / str(spec["source_pack"]))
+        manifest = load_manifest(census.ROOT / str(spec["source_pack"]))
     except SourcePackError as error:
         _raise(error)
     if dialect_name(spec) != manifest.get("source_dialect"):
@@ -223,8 +223,8 @@ def import_documents(spec_path: Path) -> dict[str, Any]:
     work_rel = str(spec["family_membership_source"]["path"])
     if not dump_rel:
         raise SourceImportError("source pack missing dump_slice")
-    dump = load_dump_slice(t35.ROOT / dump_rel)
-    work = load_work_set(t35.ROOT / work_rel)
+    dump = load_dump_slice(census.ROOT / dump_rel)
+    work = load_work_set(census.ROOT / work_rel)
     dump_index = _index_dump(dump)
     corpus = _load_compare_corpus(spec)
     maps = gt6._maps()
@@ -330,7 +330,7 @@ def import_documents(spec_path: Path) -> dict[str, Any]:
         "full_replay": tier == "full_replay",
         "generated_by": "python tools/build_recipe_bulk.py import-source",
         "import_slug": spec["import_slug"],
-        "manifest_sha256": sha256_file(t35.ROOT / str(spec["source_pack"])),
+        "manifest_sha256": sha256_file(census.ROOT / str(spec["source_pack"])),
         "proof_tier": tier,
         "schema_version": 1,
         "skip_is_not_pass": True,
@@ -398,11 +398,11 @@ def write_import(spec_path: Path) -> dict[str, Any]:
                 "lock_candidate": "lock_candidate",
             }[key]
         ]
-        t35.write_stable(path, document)
+        census.write_stable(path, document)
     return {
         "import_slug": built["spec"]["import_slug"],
         "proof_tier": built["proof_tier"],
-        "wrote": sorted(t35.relative(path) for path in built["paths"].values()),
+        "wrote": sorted(census.relative(path) for path in built["paths"].values()),
     }
 
 
@@ -418,9 +418,9 @@ def check_import(spec_path: Path) -> list[str]:
     for key, document in built["documents"].items():
         path = built["paths"][mapping[key]]
         if not path.is_file():
-            errors.append(f"missing {t35.relative(path)}")
+            errors.append(f"missing {census.relative(path)}")
             continue
-        drift = t35.first_json_diff(document, t35.load_json(path))
+        drift = census.first_json_diff(document, census.load_json(path))
         if drift:
             errors.append(f"{path.name} drifted: {drift}")
     return errors
@@ -436,7 +436,7 @@ def currentness_binds(
     expected = {
         "adapter_sha256": gt6.adapter_sha256(),
         "manifest_sha256": sha256_file(
-            t35.ROOT / str(built["spec"]["source_pack"])
+            census.ROOT / str(built["spec"]["source_pack"])
         ),
         "spec_sha256": sha256_file(spec_path),
         **{

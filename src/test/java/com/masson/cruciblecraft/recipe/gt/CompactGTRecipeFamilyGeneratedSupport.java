@@ -75,8 +75,8 @@ final class CompactGTRecipeFamilyGeneratedSupport {
     static Path centrifugeCatalogFixtureRoot() {
         return Path.of(System.getProperty("user.dir"))
                 .resolve(
-                        "src/test/resources/t39_catalog_fixture/data/cruciblecraft/"
-                                + "recipe/t39_catalog/centrifuge");
+                        "src/test/resources/centrifuge_catalog_fixture/data/cruciblecraft/"
+                                + "recipe/centrifuge_catalog/centrifuge");
     }
 
     static Path electrolyzerGeneratedRoot() {
@@ -86,8 +86,8 @@ final class CompactGTRecipeFamilyGeneratedSupport {
     static Path electrolyzerCatalogFixtureRoot() {
         return Path.of(System.getProperty("user.dir"))
                 .resolve(
-                        "src/test/resources/t40_catalog_fixture/data/cruciblecraft/"
-                                + "recipe/t40_catalog/electrolyzer");
+                        "src/test/resources/electrolyzer_catalog_fixture/data/cruciblecraft/"
+                                + "recipe/electrolyzer_catalog/electrolyzer");
     }
 
     static Path assemblerWoodGeneratedRoot() {
@@ -97,8 +97,8 @@ final class CompactGTRecipeFamilyGeneratedSupport {
     static Path assemblerWoodCatalogFixtureRoot() {
         return Path.of(System.getProperty("user.dir"))
                 .resolve(
-                        "src/test/resources/t41_catalog_fixture/data/cruciblecraft/"
-                                + "recipe/t41_catalog/assembler");
+                        "src/test/resources/assembler_wood_catalog_fixture/data/cruciblecraft/"
+                                + "recipe/assembler_wood_catalog/assembler");
     }
 
     static Path smelterStoneGeneratedRoot() {
@@ -108,8 +108,8 @@ final class CompactGTRecipeFamilyGeneratedSupport {
     static Path smelterStoneCatalogFixtureRoot() {
         return Path.of(System.getProperty("user.dir"))
                 .resolve(
-                        "src/test/resources/t43_catalog_fixture/data/cruciblecraft/"
-                                + "recipe/t43_catalog/smelter");
+                        "src/test/resources/smelter_stone_catalog_fixture/data/cruciblecraft/"
+                                + "recipe/smelter_stone_catalog/smelter");
     }
 
     static Path smelterBlockGeneratedRoot() {

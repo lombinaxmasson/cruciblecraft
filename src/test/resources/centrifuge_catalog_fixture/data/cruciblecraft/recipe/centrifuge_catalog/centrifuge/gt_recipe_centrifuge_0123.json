@@ -1,0 +1,58 @@
+{
+  "family_id": "gt.recipe.centrifuge#0123",
+  "publication_group": "cruciblecraft:centrifuge_catalog_singleton",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 128,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 500,
+          "id": "cruciblecraft:oil"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:greenschist/rock"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 4,
+          "id": "cruciblecraft:sand/dust"
+        },
+        {
+          "count": 4,
+          "id": "cruciblecraft:greenschist/dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "663e334a6892e2936eba97ee6edb20d9f3c3fd848477d2f5c0ee70a99514fcaf"
+        ],
+        "selected_source_recipe": "gt.recipe.centrifuge#0123",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:centrifuge_catalog/4c81cea8c987700d"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:centrifuge",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

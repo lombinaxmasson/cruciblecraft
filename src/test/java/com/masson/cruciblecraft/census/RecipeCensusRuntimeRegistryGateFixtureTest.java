@@ -16,7 +16,7 @@ class RecipeCensusRuntimeRegistryGateFixtureTest {
         RecipeCensusRuntimeRegistryGateFixture fixture =
                 RecipeCensusRuntimeRegistryGateFixture.load();
         Path gatePath = Path.of(
-                "src/main/resources/census/t35_runtime_registry_gate.json");
+                "src/main/resources/census/runtime_registry_gate.json");
         assertTrue(
                 Files.isRegularFile(gatePath),
                 "committed gate fixture must exist");

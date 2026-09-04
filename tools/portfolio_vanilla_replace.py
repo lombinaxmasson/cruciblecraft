@@ -9,7 +9,7 @@ from typing import Any
 
 from tools import closeout_seal
 from tools import portfolio_one_x as one_x
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk.slugs import KNOWN_SEMANTIC_SLUGS
 from tools.wave_closeout import known_slugs
 from tools.wave_closeout import spec_for
@@ -18,12 +18,12 @@ from tools.wave_closeout import wave_dir
 SLUG = "portfolio/vanilla-replace-r0"
 PREDECESSOR = "portfolio/non-ore-worldgen-r0"
 PREDECESSOR_STATUS = "NON_ORE_WORLDGEN_R0_READY"
-T13C_SLUG = "portfolio/t13c-exclusion-reclaim-r0"
+T13C_SLUG = "portfolio/exclusion-reclaim-r0"
 LOGISTICS_SLUG = "portfolio/logistics-cover-net-r0"
 GENERIC_IMPORT_SLUG = "portfolio/generic-recipe-generator"
 GENERIC_IMPORT_STATUS = "GENERIC_RECIPE_IMPORT_READY"
 STATUS = "VANILLA_REPLACE_R0_READY"
-SOURCE_REVISION = t35.SOURCE_REVISION
+SOURCE_REVISION = census.SOURCE_REVISION
 GENERATED_BY = "python tools/build_vanilla_replace_r0.py"
 PINNED_NAMES = ("Vanilla", "Replace")
 SEED_ANCHOR = "GT6 Vanilla replace loaders"
@@ -152,27 +152,27 @@ REPLACE_QUESTIONS = {
     ),
 }
 CAPABILITY_MAP = (
-    t35.TOOLS / "waves" / "portfolio" / "source-capability-map" / "capability_map.json"
+    census.TOOLS / "waves" / "portfolio" / "source-capability-map" / "capability_map.json"
 )
 GROWTH_ORDER = (
-    t35.TOOLS
+    census.TOOLS
     / "waves"
     / "portfolio"
     / "source-capability-growth-order"
     / "growth_order.json"
 )
-TREE_MANIFEST = t35.TOOLS / "t13_gt6_tree_manifest.json"
-SYMBOL_INVENTORY = t35.TOOLS / "t13_source_symbol_inventory.json"
-RECIPE_MAPS = t35.TOOLS / "t13_denominators" / "recipe_maps.json"
-T30_READINESS = t35.TOOLS / "t30_readiness.json"
+TREE_MANIFEST = census.TOOLS / "machine_tree_gt6_tree_manifest.json"
+SYMBOL_INVENTORY = census.TOOLS / "machine_tree_source_symbol_inventory.json"
+RECIPE_MAPS = census.TOOLS / "machine_tree_denominators" / "recipe_maps.json"
+T30_READINESS = census.TOOLS / "hopper_readiness.json"
 LEFTOVER_LATER = (
-    t35.TOOLS / "waves" / "portfolio" / "source-capability-map-r0" / "leftover_later.json"
+    census.TOOLS / "waves" / "portfolio" / "source-capability-map-r0" / "leftover_later.json"
 )
 AUTHORED_RECIPES = (
-    t35.ROOT / "src" / "main" / "resources" / "data" / "cruciblecraft" / "recipe"
+    census.ROOT / "src" / "main" / "resources" / "data" / "cruciblecraft" / "recipe"
 )
 HOPPER_RECIPES = (
-    t35.ROOT
+    census.ROOT
     / "src"
     / "generated"
     / "resources"
@@ -181,12 +181,12 @@ HOPPER_RECIPES = (
     / "recipe"
     / "hoppers"
 )
-MIXINS_JSON = t35.ROOT / "src" / "main" / "resources" / "cruciblecraft.mixins.json"
-SOURCE_IMPORT = t35.TOOLS / "recipe_bulk" / "source_import.py"
-RECIPE_GENERATED = t35.ROOT / "src" / "recipe_generated"
+MIXINS_JSON = census.ROOT / "src" / "main" / "resources" / "cruciblecraft.mixins.json"
+SOURCE_IMPORT = census.TOOLS / "recipe_bulk" / "source_import.py"
+RECIPE_GENERATED = census.ROOT / "src" / "recipe_generated"
 RESOURCE_ROOTS = (
-    t35.ROOT / "src" / "main" / "resources",
-    t35.ROOT / "src" / "generated" / "resources",
+    census.ROOT / "src" / "main" / "resources",
+    census.ROOT / "src" / "generated" / "resources",
 )
 
 
@@ -199,7 +199,7 @@ def nuclear_started() -> bool:
 
 
 def leftover_later_count() -> int:
-    leftover = t35.load_json(LEFTOVER_LATER)
+    leftover = census.load_json(LEFTOVER_LATER)
     total = int(leftover["counts"]["total"])
     if total != 39:
         raise ValueError(f"leftover_later_count {total} != 39")
@@ -217,7 +217,7 @@ def require_registered(slug: str) -> list[str]:
 
 def require_predecessor() -> list[str]:
     errors = closeout_seal.check_wave_seal(PREDECESSOR)
-    readiness = t35.load_json(wave_dir(PREDECESSOR) / "readiness.json")
+    readiness = census.load_json(wave_dir(PREDECESSOR) / "readiness.json")
     if readiness.get("status") != PREDECESSOR_STATUS:
         errors.append(
             f"{PREDECESSOR} status {readiness.get('status')} != {PREDECESSOR_STATUS}"
@@ -227,24 +227,24 @@ def require_predecessor() -> list[str]:
 
 def authority_hashes() -> dict[str, str]:
     return {
-        "capability_map": t35.sha256_file(CAPABILITY_MAP),
-        "growth_order": t35.sha256_file(GROWTH_ORDER),
-        "logistics_cover_net_r0_seal": t35.sha256_file(
+        "capability_map": census.sha256_file(CAPABILITY_MAP),
+        "growth_order": census.sha256_file(GROWTH_ORDER),
+        "logistics_cover_net_r0_seal": census.sha256_file(
             wave_dir(LOGISTICS_SLUG) / "closeout_seal.json"
         ),
-        "non_ore_worldgen_r0_seal": t35.sha256_file(
+        "non_ore_worldgen_r0_seal": census.sha256_file(
             wave_dir(PREDECESSOR) / "closeout_seal.json"
         ),
-        "t13_gt6_tree_manifest": t35.sha256_file(TREE_MANIFEST),
-        "t13_source_symbol_inventory": t35.sha256_file(SYMBOL_INVENTORY),
-        "t13c_exclusion_reclaim_r0_seal": t35.sha256_file(
+        "machine_tree_gt6_tree_manifest": census.sha256_file(TREE_MANIFEST),
+        "machine_tree_source_symbol_inventory": census.sha256_file(SYMBOL_INVENTORY),
+        "t13c_exclusion_reclaim_r0_seal": census.sha256_file(
             wave_dir(T13C_SLUG) / "closeout_seal.json"
         ),
     }
 
 
 def tree_entries() -> dict[str, dict[str, Any]]:
-    manifest = t35.load_json(TREE_MANIFEST)
+    manifest = census.load_json(TREE_MANIFEST)
     if manifest.get("revision") != SOURCE_REVISION:
         raise ValueError(
             f"T13 tree revision {manifest.get('revision')} != {SOURCE_REVISION}"
@@ -254,7 +254,7 @@ def tree_entries() -> dict[str, dict[str, Any]]:
 
 
 def symbol_classes_for(path: str) -> list[str]:
-    inventory = t35.load_json(SYMBOL_INVENTORY)
+    inventory = census.load_json(SYMBOL_INVENTORY)
     if inventory.get("source_revision") != SOURCE_REVISION:
         raise ValueError(
             f"symbol inventory revision {inventory.get('source_revision')} "
@@ -283,7 +283,7 @@ def source_file_record(path: str) -> dict[str, Any]:
     expected_classes = EXPECTED_NESTED[path]
     if classes != expected_classes:
         raise ValueError(f"{path} nested classes {classes} != {expected_classes}")
-    inventory = t35.load_json(SYMBOL_INVENTORY)
+    inventory = census.load_json(SYMBOL_INVENTORY)
     blobs = {
         str(row.get("blob_sha1") or "")
         for row in inventory.get("declarations") or []
@@ -300,7 +300,7 @@ def source_file_record(path: str) -> dict[str, Any]:
 
 
 def capability_rows() -> list[dict[str, Any]]:
-    document = t35.load_json(CAPABILITY_MAP)
+    document = census.load_json(CAPABILITY_MAP)
     wanted = set(CAPABILITY_ANCHORS.values())
     rows = [
         dict(row)
@@ -345,7 +345,7 @@ def capability_row_for(category: str) -> dict[str, Any]:
 
 
 def capability_seed_row() -> dict[str, Any]:
-    document = t35.load_json(CAPABILITY_MAP)
+    document = census.load_json(CAPABILITY_MAP)
     for row in document.get("rows") or []:
         if row.get("gt6_anchor") == SEED_ANCHOR:
             return dict(row)
@@ -353,7 +353,7 @@ def capability_seed_row() -> dict[str, Any]:
 
 
 def empty_dump_maps() -> dict[str, int]:
-    document = t35.load_json(RECIPE_MAPS)
+    document = census.load_json(RECIPE_MAPS)
     by_name = {
         str(row.get("name_internal") or ""): row.get("recipe_count")
         for row in document.get("rows") or []
@@ -370,7 +370,7 @@ def empty_dump_maps() -> dict[str, int]:
 
 
 def hopper_vanilla_count() -> int:
-    hopper = t35.load_json(T30_READINESS)
+    hopper = census.load_json(T30_READINESS)
     if hopper.get("status") != "T30_READY":
         raise ValueError(f"T30 status {hopper.get('status')} != T30_READY")
     count = int(hopper.get("vanilla_recipe_count") or -1)
@@ -385,7 +385,7 @@ def hopper_vanilla_count() -> int:
 
 
 def worldgen_ores_vanilla() -> dict[str, Any]:
-    inherited = t35.load_json(
+    inherited = census.load_json(
         wave_dir(PREDECESSOR) / "inherited_denominator.json"
     )
     remainder = inherited.get("remainder_after_slice") or {}
@@ -413,10 +413,10 @@ def authored_smelting_recipes() -> list[str]:
         raise ValueError("authored cruciblecraft recipe tree is missing")
     hits: list[str] = []
     for path in sorted(AUTHORED_RECIPES.rglob("*.json")):
-        document = t35.load_json(path)
+        document = census.load_json(path)
         if document.get("type") != "minecraft:smelting":
             continue
-        relative = t35.relative(path)
+        relative = census.relative(path)
         if "data/minecraft/" in relative.replace("\\", "/"):
             raise ValueError(f"authored smelting leaked into minecraft: {relative}")
         hits.append(relative)
@@ -431,12 +431,12 @@ def minecraft_recipe_files() -> list[str]:
         recipe = root / "data" / "minecraft" / "recipe"
         if not recipe.exists():
             continue
-        hits.extend(t35.relative(path) for path in sorted(recipe.rglob("*")) if path.is_file())
+        hits.extend(census.relative(path) for path in sorted(recipe.rglob("*")) if path.is_file())
     return hits
 
 
 def mixin_classes() -> list[str]:
-    document = t35.load_json(MIXINS_JSON)
+    document = census.load_json(MIXINS_JSON)
     mixins = [str(name) for name in document.get("mixins") or []]
     if mixins != ["ItemStackMixin"]:
         raise ValueError(f"mixins {mixins} != ['ItemStackMixin']")
@@ -444,7 +444,7 @@ def mixin_classes() -> list[str]:
 
 
 def generic_importer_status() -> str:
-    readiness = t35.load_json(wave_dir(GENERIC_IMPORT_SLUG) / "readiness.json")
+    readiness = census.load_json(wave_dir(GENERIC_IMPORT_SLUG) / "readiness.json")
     status = str(readiness.get("status") or "")
     if status != GENERIC_IMPORT_STATUS:
         raise ValueError(f"generic importer status {status} != {GENERIC_IMPORT_STATUS}")
@@ -461,7 +461,7 @@ def runtime_corpus() -> str:
     # content/vanilla-replace-mvp and must not drift this snapshot.
     parts = [
         *mixin_classes(),
-        t35.relative(MIXINS_JSON),
+        census.relative(MIXINS_JSON),
     ]
     return " ".join(parts).lower()
 
@@ -478,7 +478,7 @@ def already_closed_elsewhere() -> dict[str, Any]:
             "is_census": False,
             "recipe_counts": empty_dump_maps(),
         },
-        "t30_hopper_vanilla": {
+        "hopper_hopper_vanilla": {
             "owner_here": False,
             "recipe_count": hopper,
             "status": "T30_READY",
@@ -494,7 +494,7 @@ def inherited_denominator_document() -> dict[str, Any]:
     files: list[dict[str, Any]] = []
     for name in PINNED_NAMES:
         row = capability_row_for(name)
-        drift = t35.first_json_diff(row, next(
+        drift = census.first_json_diff(row, next(
             live for live in capability if live["gt6_anchor"] == row["gt6_anchor"]
         ))
         if drift:
@@ -633,7 +633,7 @@ def existing_mechanism_document() -> dict[str, Any]:
         "schema_version": 1,
         "source_revision": SOURCE_REVISION,
         "status": "EXISTING_MECHANISM_READY",
-        "t30_hopper_vanilla_count": hopper,
+        "hopper_hopper_vanilla_count": hopper,
         "wave_slug": SLUG,
     }
 
@@ -775,7 +775,7 @@ def evidence_document(
         "partial_family_count": 0,
         "production_lock": None,
         "recipe_files_generated": False,
-        "t30_hopper_vanilla_count": closed["t30_hopper_vanilla"]["recipe_count"],
+        "hopper_hopper_vanilla_count": closed["hopper_hopper_vanilla"]["recipe_count"],
         "worldgen_ores_vanilla_count": closed["worldgen_ores_vanilla"]["feature_count"],
     }
 
@@ -874,32 +874,32 @@ def build_r0_documents() -> dict[str, Any]:
 def write_seal() -> dict[str, Any]:
     root = wave_dir(SLUG)
     hashes = {
-        "census": t35.sha256_file(root / "census_delta.json"),
+        "census": census.sha256_file(root / "census_delta.json"),
         "gametest_java": None,
         "gametest_log": None,
         "generated_recipes": None,
         "locked_support": None,
         "production_lock": None,
         "publication_group_manifest": None,
-        "readiness": t35.sha256_file(root / "readiness.json"),
+        "readiness": census.sha256_file(root / "readiness.json"),
         "receipt": None,
         "runtime_dependency_manifest": None,
         "shard_manifest": None,
-        "topology": t35.sha256_file(root / "topology.json"),
+        "topology": census.sha256_file(root / "topology.json"),
     }
     seal = {
         "card_id": SLUG,
         "complete_family_count": 0,
-        "composed_identity_ledger_v2_sha256": t35.sha256_file(
+        "composed_identity_ledger_v2_sha256": census.sha256_file(
             closeout_seal.IDENTITY_LEDGER_V2
         ),
-        "composed_runtime_manifest_v2_sha256": t35.sha256_file(
+        "composed_runtime_manifest_v2_sha256": census.sha256_file(
             closeout_seal.RUNTIME_MANIFEST_V2
         ),
         "gametest_status": "NONE",
         "generated_by": f"{GENERATED_BY} --write",
         "hashes": hashes,
-        "note": t35.load_json(root / "readiness.json").get("note"),
+        "note": census.load_json(root / "readiness.json").get("note"),
         "production_lock_sha256": None,
         "receipt_sha256": None,
         "reclassification_delta": 0,
@@ -910,7 +910,7 @@ def write_seal() -> dict[str, Any]:
         "source_revision": SOURCE_REVISION,
         "status": "SEALED",
     }
-    t35.write_stable(root / "closeout_seal.json", seal)
+    census.write_stable(root / "closeout_seal.json", seal)
     return seal
 
 
@@ -919,7 +919,7 @@ def write_artifacts() -> dict[str, Any]:
     root = wave_dir(SLUG)
     root.mkdir(parents=True, exist_ok=True)
     for name, document in documents.items():
-        t35.write_stable(root / name, document)
+        census.write_stable(root / name, document)
     write_seal()
     spec = spec_for(SLUG)
     return {
@@ -959,11 +959,11 @@ def check_artifacts() -> list[str]:
     except ValueError as error:
         return errors + [str(error)]
     for name, document in live.items():
-        committed = t35.load_json(root / name)
-        drift = t35.first_json_diff(document, committed)
+        committed = census.load_json(root / name)
+        drift = census.first_json_diff(document, committed)
         if drift:
             errors.append(f"{name} drifted: {drift}")
-    readiness = t35.load_json(root / "readiness.json")
+    readiness = census.load_json(root / "readiness.json")
     if readiness.get("status") != STATUS:
         errors.append(f"{SLUG} status drifted")
     if readiness.get("unique_active_wave") is not None:
@@ -983,14 +983,14 @@ def check_artifacts() -> list[str]:
         errors.append("inherited_source_file_count must be 3")
     if int(evidence.get("minecraft_recipe_override_count", 1)) != 0:
         errors.append("minecraft_recipe_override_count must be 0")
-    if int(evidence.get("t30_hopper_vanilla_count", 0)) != EXPECTED_HOPPER_VANILLA:
+    if int(evidence.get("hopper_hopper_vanilla_count", 0)) != EXPECTED_HOPPER_VANILLA:
         errors.append("t30_hopper_vanilla_count must be 121")
-    topology = t35.load_json(root / "topology.json")
+    topology = census.load_json(root / "topology.json")
     extra = sorted(set(topology) - set(ALLOWED_TOPOLOGY_KEYS))
     if extra:
         errors.append(f"topology has forbidden keys: {extra}")
     errors.extend(check_forbidden_successors(json.dumps(topology, sort_keys=True)))
-    feasibility = t35.load_json(root / "feasibility.json")
+    feasibility = census.load_json(root / "feasibility.json")
     by_category = {row["category"]: row for row in feasibility.get("categories") or []}
     if tuple(by_category) != PINNED_NAMES:
         errors.append("feasibility categories drifted from the pinned two")
@@ -1007,7 +1007,7 @@ def check_artifacts() -> list[str]:
             errors.append(f"{name} must not allow an implementation child")
         if row.get("verdict") == "defer_to_portfolio":
             errors.append(f"{name} must not defer_to_portfolio on this slice")
-    inherited = t35.load_json(root / "inherited_denominator.json")
+    inherited = census.load_json(root / "inherited_denominator.json")
     if int(inherited.get("category_count", 0)) != 2:
         errors.append("inherited category_count must be 2")
     if int(inherited.get("source_file_count", 0)) != 3:
@@ -1018,7 +1018,7 @@ def check_artifacts() -> list[str]:
         if live_row is None:
             errors.append(f"{category.get('category')} missing from live capability map")
             continue
-        drift = t35.first_json_diff(live_row, category.get("capability_row"))
+        drift = census.first_json_diff(live_row, category.get("capability_row"))
         if drift:
             errors.append(
                 f"{category.get('category')} is not byte-identical to capability map: "

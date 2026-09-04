@@ -6,10 +6,10 @@ from dataclasses import dataclass
 from typing import Any
 
 from tools import closeout_seal
-from tools import t35_common as t35
+from tools import census_common as census
 
 R0_SLUG = "recycling/deferred-ordinary-ledger-r0"
-R0_DIR = t35.TOOLS / "waves" / "recycling" / "deferred-ordinary-ledger-r0"
+R0_DIR = census.TOOLS / "waves" / "recycling" / "deferred-ordinary-ledger-r0"
 PROGRAM = "recycling/deferred-ordinary-runtime"
 ALLOWED = (
     "proven_equivalent",
@@ -132,7 +132,7 @@ CHILDREN: dict[str, ScopeChild] = {
 
 
 def universe() -> dict[str, Any]:
-    return t35.load_json(R0_DIR / "deferred_universe.json")
+    return census.load_json(R0_DIR / "deferred_universe.json")
 
 
 def families_for(child: ScopeChild) -> list[dict[str, Any]]:
@@ -195,15 +195,15 @@ def dispositions(child: ScopeChild) -> list[dict[str, Any]]:
 
 def require_predecessor(child: ScopeChild) -> list[str]:
     errors = closeout_seal.check_wave_seal(child.predecessor)
-    root = t35.TOOLS / "waves" / child.predecessor
-    readiness = t35.load_json(root / "readiness.json")
+    root = census.TOOLS / "waves" / child.predecessor
+    readiness = census.load_json(root / "readiness.json")
     status = str(readiness.get("status") or "")
     if status != child.predecessor_status:
         errors.append(
             f"{child.predecessor} status {status} != {child.predecessor_status}"
         )
     if child.slug == "smelter/deferred-recycling-edge":
-        census = t35.load_json(root / "census_delta.json")
+        census = census.load_json(root / "census_delta.json")
         remaining = census.get("remaining_ordinary") or {}
         if int(remaining.get("deferred_recycling_count") or 0) != 26:
             errors.append("1817 closing deferred recycling must be 26")
@@ -251,7 +251,7 @@ def documents(child: ScopeChild) -> dict[str, Any]:
         },
         "remaining_recipe_gap": 0,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "CENSUS_DELTA_READY",
         "wave_slug": child.slug,
         "work_set": {"family_count": child.owns_families, "source_rows": len(rows)},
@@ -263,7 +263,7 @@ def documents(child: ScopeChild) -> dict[str, Any]:
         "next_unassigned": child.next_unassigned,
         "remaining_recipe_gap": 0,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "WAVE_READY",
         "unique_active_wave": unique_active,
         "wave_slug": child.slug,
@@ -284,7 +284,7 @@ def documents(child: ScopeChild) -> dict[str, Any]:
         "generated_by": GENERATED_BY,
         "next_unassigned": child.next_unassigned,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": child.status,
         "unique_active_wave": unique_active,
         "wave_complete": True,
@@ -296,7 +296,7 @@ def documents(child: ScopeChild) -> dict[str, Any]:
         "owns_families": child.owns_families,
         "padding_forbidden": True,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "POST_1X_SCOPE",
         "wave_slug": child.slug,
     }
@@ -311,26 +311,26 @@ def documents(child: ScopeChild) -> dict[str, Any]:
 
 def seal_document(child: ScopeChild, root) -> dict[str, Any]:
     hashes = {
-        "census": t35.sha256_file(root / "census_delta.json"),
+        "census": census.sha256_file(root / "census_delta.json"),
         "gametest_java": None,
         "gametest_log": None,
         "generated_recipes": None,
         "locked_support": None,
         "production_lock": None,
         "publication_group_manifest": None,
-        "readiness": t35.sha256_file(root / "readiness.json"),
+        "readiness": census.sha256_file(root / "readiness.json"),
         "receipt": None,
         "runtime_dependency_manifest": None,
         "shard_manifest": None,
-        "topology": t35.sha256_file(root / "topology.json"),
+        "topology": census.sha256_file(root / "topology.json"),
     }
     return {
         "card_id": child.slug,
         "complete_family_count": 0,
-        "composed_identity_ledger_v2_sha256": t35.sha256_file(
+        "composed_identity_ledger_v2_sha256": census.sha256_file(
             closeout_seal.IDENTITY_LEDGER_V2
         ),
-        "composed_runtime_manifest_v2_sha256": t35.sha256_file(
+        "composed_runtime_manifest_v2_sha256": census.sha256_file(
             closeout_seal.RUNTIME_MANIFEST_V2
         ),
         "gametest_status": "NONE",
@@ -344,6 +344,6 @@ def seal_document(child: ScopeChild, root) -> dict[str, Any]:
         "remaining_recipe_gap": 0,
         "schema_version": 1,
         "sealed_at_wave": child.slug,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "SEALED",
     }

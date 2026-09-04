@@ -1,0 +1,55 @@
+{
+  "ceiling": {
+    "adjustment": "not required",
+    "current_logical": 18882,
+    "hard_ceiling": 21000,
+    "headroom": 2118,
+    "justification": "The v1 column is zero: no optional row was promoted to v1, so the 21,000 logical hard ceiling is not touched before v1 (headroom 2,118). The unlockable and portfolio columns are post-1.0 work.",
+    "trigger": "If v1_incremental_unpublished > headroom, start the T14 four-protocol measurement (server reload/index, client re-expansion, peak memory, steady-state lookup) before adjusting the ceiling.",
+    "v1_incremental_unpublished": 0
+  },
+  "column_rules": {
+    "out_of_scope": "B1 out_of_scope minus unlockable",
+    "post_1_0_portfolio": "all remaining portfolio classes (ordinary_optional, cross_mod_compat, post_1_0_g10, post_1_0_nuclear, ore_processing_byproduct, generic_processing, already_covered) minus unlockable",
+    "unlockable": "rows whose only blocking operand is an A2 no_cc_fluid fluid name or an A3-remappable equivalence item (crushed_ore / block / dense_plate)",
+    "v1": "B1 v1_required (promotion rule); zero by universe construction"
+  },
+  "columns": {
+    "out_of_scope": 4858,
+    "post_1_0_portfolio": 140981,
+    "unlockable": 1002,
+    "v1": 0
+  },
+  "independent_paths": {
+    "b1_classification_total": 146841,
+    "equal": true,
+    "ledger_2_diagnostic": 146841
+  },
+  "inputs": {
+    "tools/build_t22_5_denominator_recompute.py": "1669e4f3b77c24d57a685297518dbdc4d207e29120d59e4d12c551d6ab097306",
+    "tools/t21_template_denominator.json": "e0c6b910ac4744e24ecdb69f386fd92007b3bdc0620b3e9f7d9e74afe0db347c",
+    "tools/t22_5_fluid_mapping.json": "293014581378f98b1545ebc53e7aba3e7e6b25cc2009310c6456dc4996a0a82c",
+    "tools/t22_5_item_classification.json": "9f9b4a81fa2650dd8b51deda305224da2847e21b24a51f61295f284916ab12cd",
+    "tools/t22_5_row_classification.json": "535c60dafbdfee939b2fa212dad1b6163c78d2bc8db4300ffb0c532293dfbb29",
+    "tools/t22_readiness.json": "735a21907ed1bce2c0d7dcc78ddeb205d99f182a12c1b4f5b2717b4514bfa8c3"
+  },
+  "portfolio_breakdown": {
+    "already_covered": 8,
+    "cross_mod_compat": 48247,
+    "generic_processing": 102,
+    "ordinary_optional": 78682,
+    "ore_processing_byproduct": 894,
+    "post_1_0_g10": 13042,
+    "post_1_0_nuclear": 6
+  },
+  "schema_version": 1,
+  "status": "T22_5_DENOMINATOR_RECOMPUTE_READY",
+  "universe": {
+    "rows": 146841,
+    "source": "ledger-2 ordinary_optional expanded rows"
+  },
+  "unlockable_scan": {
+    "definition": "cross_mod_compat + out_of_scope rows scanned for mapping-only blockers",
+    "scanned_rows": 54107
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "$id": "https://cruciblecraft.invalid/schema/t42-disposition-lock.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "append_only": {
+      "const": true
+    },
+    "family_count": {
+      "const": 5305
+    },
+    "owns_families": {
+      "const": 0
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "const": "T42_DISPOSITION_LOCKED"
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "append_only",
+    "family_count",
+    "owns_families"
+  ],
+  "type": "object"
+}

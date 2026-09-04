@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "gate": "T7_MATERIAL_FACTS_IN_RULE_LANGUAGE",
+  "gate": "MATERIAL_FACTS_IN_RULE_LANGUAGE",
   "gt6_source": {
     "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
     "version": "6.17.06-22-g3703e4030",
@@ -19,175 +19,175 @@
       "tag": "PROCESSING.UUM_SYNTHESISABLE",
       "classification": "deferred",
       "expected_material_count": 664,
-      "expected_consumer": "POST_T12",
+      "expected_consumer": "post_capacity",
       "reason": "UUM synthesis requires the completed voltage and late-game technology tree."
     },
     {
       "tag": "PROCESSING.MELTING",
       "classification": "rule-input",
       "expected_material_count": 650,
-      "expected_consumer": "T10",
+      "expected_consumer": "containers",
       "reason": "Controls material melting and hot-ingot processing eligibility."
     },
     {
       "tag": "PROCESSING.MORTAR_GRINDABLE",
       "classification": "rule-input",
       "expected_material_count": 603,
-      "expected_consumer": "T7",
+      "expected_consumer": "material_tags",
       "reason": "Direct predicate for the T7 mortar ingot and gem rules."
     },
     {
       "tag": "PROCESSING.EXTRUDABLE",
       "classification": "build-time-only",
       "expected_material_count": 414,
-      "expected_consumer": "T3",
+      "expected_consumer": "chemical",
       "reason": "Already participates in the audited T3 component-rule source selection."
     },
     {
       "tag": "PROCESSING.SMITHABLE",
       "classification": "rule-input",
       "expected_material_count": 310,
-      "expected_consumer": "T12",
+      "expected_consumer": "capacity",
       "reason": "Suitable for declarative machine-tier and forging route eligibility."
     },
     {
       "tag": "PROCESSING.FURNACE",
       "classification": "rule-input",
       "expected_material_count": 189,
-      "expected_consumer": "T10",
+      "expected_consumer": "containers",
       "reason": "Direct evidence for furnace-route eligibility."
     },
     {
       "tag": "PROCESSING.EXTRUDABLE_SIMPLE",
       "classification": "build-time-only",
       "expected_material_count": 177,
-      "expected_consumer": "T3",
+      "expected_consumer": "chemical",
       "reason": "Distinguishes the simple extruder generation domain during rule construction."
     },
     {
       "tag": "PROCESSING.CENTRIFUGABLE",
       "classification": "rule-input",
       "expected_material_count": 176,
-      "expected_consumer": "T5",
+      "expected_consumer": "chemical_machines",
       "reason": "Direct evidence for centrifuge decomposition routes."
     },
     {
       "tag": "PROCESSING.ELECTROLYSABLE",
       "classification": "rule-input",
       "expected_material_count": 149,
-      "expected_consumer": "T5",
+      "expected_consumer": "chemical_machines",
       "reason": "Direct evidence for electrolyzer decomposition routes."
     },
     {
       "tag": "PROCESSING.CRUCIBLE_ALLOY",
       "classification": "rule-input",
       "expected_material_count": 91,
-      "expected_consumer": "T11",
+      "expected_consumer": "hydrocarbons",
       "reason": "Direct evidence for future crucible alloy route eligibility."
     },
     {
       "tag": "PROCESSING.BLACKLISTED_SMELTER",
       "classification": "rule-input",
       "expected_material_count": 88,
-      "expected_consumer": "T10",
+      "expected_consumer": "containers",
       "reason": "Negative runtime predicate for smelter publication."
     },
     {
       "tag": "PROCESSING.FUSION_SYNTHESISABLE",
       "classification": "deferred",
       "expected_material_count": 63,
-      "expected_consumer": "POST_T12",
+      "expected_consumer": "post_capacity",
       "reason": "Fusion is explicitly outside the second-stage scope."
     },
     {
       "tag": "PROCESSING.CRYSTALLISABLE",
       "classification": "rule-input",
       "expected_material_count": 63,
-      "expected_consumer": "T10",
+      "expected_consumer": "containers",
       "reason": "Direct evidence for cooling and crystallisation routes."
     },
     {
       "tag": "PROCESSING.WASHING_FIRESTONE",
       "classification": "rule-input",
       "expected_material_count": 29,
-      "expected_consumer": "T9",
+      "expected_consumer": "covers",
       "reason": "Selects the source-backed Firestone ore-washing route."
     },
     {
       "tag": "PROCESSING.UNRECYCLABLE",
       "classification": "rule-input",
       "expected_material_count": 20,
-      "expected_consumer": "T12",
+      "expected_consumer": "capacity",
       "reason": "Negative predicate for future recycling routes."
     },
     {
       "tag": "PROCESSING.WASHING_MERCURY",
       "classification": "rule-input",
       "expected_material_count": 20,
-      "expected_consumer": "T9",
+      "expected_consumer": "covers",
       "reason": "Selects the source-backed mercury ore-washing route."
     },
     {
       "tag": "PROCESSING.WASHING_PERSULFATE",
       "classification": "rule-input",
       "expected_material_count": 12,
-      "expected_consumer": "T9",
+      "expected_consumer": "covers",
       "reason": "Selects the source-backed persulfate ore-washing route."
     },
     {
       "tag": "PROCESSING.NEVER_FURNACE",
       "classification": "rule-input",
       "expected_material_count": 5,
-      "expected_consumer": "T10",
+      "expected_consumer": "containers",
       "reason": "Hard negative predicate for furnace-route publication."
     },
     {
       "tag": "PROCESSING.PULVERIZING_CINNABAR",
       "classification": "rule-input",
       "expected_material_count": 3,
-      "expected_consumer": "T9",
+      "expected_consumer": "covers",
       "reason": "Selects the source-backed cinnabar pulverising special case."
     },
     {
       "tag": "PROCESSING.SOLDERING_MATERIAL",
       "classification": "rule-input",
       "expected_material_count": 3,
-      "expected_consumer": "T12",
+      "expected_consumer": "capacity",
       "reason": "Direct evidence for soldering material eligibility."
     },
     {
       "tag": "PROCESSING.COOL2CRYSTAL",
       "classification": "rule-input",
       "expected_material_count": 2,
-      "expected_consumer": "T10",
+      "expected_consumer": "containers",
       "reason": "Direct evidence for hot material cooling into a crystal form."
     },
     {
       "tag": "PROCESSING.SOLDERING_MATERIAL_BAD",
       "classification": "rule-input",
       "expected_material_count": 1,
-      "expected_consumer": "T12",
+      "expected_consumer": "capacity",
       "reason": "Source quality category for soldering rules."
     },
     {
       "tag": "PROCESSING.SOLDERING_MATERIAL_GOOD",
       "classification": "rule-input",
       "expected_material_count": 1,
-      "expected_consumer": "T12",
+      "expected_consumer": "capacity",
       "reason": "Source quality category for soldering rules."
     },
     {
       "tag": "PROPERTIES.HAS_TOOL_STATS",
       "classification": "rule-input",
       "expected_material_count": 546,
-      "expected_consumer": "T4",
+      "expected_consumer": "tools",
       "reason": "Already consumed by exact T4 MaterialRule predicates."
     },
     {
       "tag": "PROPERTIES.NO_ADVANCED_TOOLS",
       "classification": "rule-input",
       "expected_material_count": 329,
-      "expected_consumer": "T4",
+      "expected_consumer": "tools",
       "reason": "Direct negative evidence for advanced tool eligibility."
     },
     {
@@ -201,105 +201,105 @@
       "tag": "PROPERTIES.BRITTLE",
       "classification": "rule-input",
       "expected_material_count": 211,
-      "expected_consumer": "T10",
+      "expected_consumer": "containers",
       "reason": "Suitable for declarative forming and breakage behavior."
     },
     {
       "tag": "PROPERTIES.FLAMMABLE",
       "classification": "deferred",
       "expected_material_count": 199,
-      "expected_consumer": "T11",
+      "expected_consumer": "hydrocarbons",
       "reason": "T11 owns fuel, leak, and combustion behavior."
     },
     {
       "tag": "PROPERTIES.COMMON_ORE",
       "classification": "build-time-only",
       "expected_material_count": 148,
-      "expected_consumer": "T2",
+      "expected_consumer": "catalog",
       "reason": "Already consumed as a source fact by ore-domain generation policy."
     },
     {
       "tag": "PROPERTIES.WOOD",
       "classification": "rule-input",
       "expected_material_count": 130,
-      "expected_consumer": "T4",
+      "expected_consumer": "tools",
       "reason": "Already consumed by exact T4 MaterialRule predicates."
     },
     {
       "tag": "PROPERTIES.CRYSTAL",
       "classification": "rule-input",
       "expected_material_count": 129,
-      "expected_consumer": "T10",
+      "expected_consumer": "containers",
       "reason": "Direct predicate for crystal and container-form behavior."
     },
     {
       "tag": "PROPERTIES.TRANSPARENT",
       "classification": "build-time-only",
       "expected_material_count": 115,
-      "expected_consumer": "POST_T12",
+      "expected_consumer": "post_capacity",
       "reason": "Rendering/model generation concern rather than recipe lookup."
     },
     {
       "tag": "PROPERTIES.VALUABLE",
       "classification": "deferred",
       "expected_material_count": 100,
-      "expected_consumer": "POST_T12",
+      "expected_consumer": "post_capacity",
       "reason": "Reserved for prospecting and progression value behavior."
     },
     {
       "tag": "PROPERTIES.MAGICAL",
       "classification": "deferred",
       "expected_material_count": 85,
-      "expected_consumer": "POST_T12",
+      "expected_consumer": "post_capacity",
       "reason": "No second-stage machine or rule consumes magical behavior."
     },
     {
       "tag": "PROPERTIES.STONE",
       "classification": "rule-input",
       "expected_material_count": 83,
-      "expected_consumer": "T10",
+      "expected_consumer": "containers",
       "reason": "Suitable for forming and material-behavior predicates."
     },
     {
       "tag": "PROPERTIES.UNBURNABLE",
       "classification": "deferred",
       "expected_material_count": 73,
-      "expected_consumer": "T11",
+      "expected_consumer": "hydrocarbons",
       "reason": "T11 owns combustion behavior."
     },
     {
       "tag": "PROPERTIES.FOOD",
       "classification": "deferred",
       "expected_material_count": 62,
-      "expected_consumer": "POST_T12",
+      "expected_consumer": "post_capacity",
       "reason": "Food and agriculture are explicitly outside the second stage."
     },
     {
       "tag": "PROPERTIES.RANDOM_SMALL_GEM_ORE",
       "classification": "build-time-only",
       "expected_material_count": 61,
-      "expected_consumer": "T9",
+      "expected_consumer": "covers",
       "reason": "World-generation placement policy rather than a runtime recipe predicate."
     },
     {
       "tag": "PROPERTIES.GLOWING",
       "classification": "deferred",
       "expected_material_count": 56,
-      "expected_consumer": "POST_T12",
+      "expected_consumer": "post_capacity",
       "reason": "Requires a separate visual-lighting implementation."
     },
     {
       "tag": "PROPERTIES.ACID",
       "classification": "deferred",
       "expected_material_count": 37,
-      "expected_consumer": "T8",
+      "expected_consumer": "pipes",
       "reason": "T8 fluid pipes own corrosion and containment behavior."
     },
     {
       "tag": "PROPERTIES.SOFT",
       "classification": "rule-input",
       "expected_material_count": 37,
-      "expected_consumer": "T10",
+      "expected_consumer": "containers",
       "reason": "Suitable for declarative forming behavior."
     },
     {
@@ -313,7 +313,7 @@
       "tag": "PROPERTIES.WITHER_PROOF",
       "classification": "deferred",
       "expected_material_count": 29,
-      "expected_consumer": "POST_T12",
+      "expected_consumer": "post_capacity",
       "reason": "No second-stage system exposes wither-proof material behavior."
     },
     {
@@ -327,105 +327,105 @@
       "tag": "PROPERTIES.QUARTZ",
       "classification": "rule-input",
       "expected_material_count": 20,
-      "expected_consumer": "T10",
+      "expected_consumer": "containers",
       "reason": "Direct material-family predicate for forming and container routes."
     },
     {
       "tag": "PROPERTIES.AUTO_COLLECTING",
       "classification": "deferred",
       "expected_material_count": 19,
-      "expected_consumer": "POST_T12",
+      "expected_consumer": "post_capacity",
       "reason": "Requires a future collection/equipment gameplay system."
     },
     {
       "tag": "PROPERTIES.DONT_SHOW_THIS_COMPONENT",
       "classification": "build-time-only",
       "expected_material_count": 18,
-      "expected_consumer": "T4",
+      "expected_consumer": "tools",
       "reason": "Controls generated component visibility, not live recipe matching."
     },
     {
       "tag": "PROPERTIES.EXPLOSIVE",
       "classification": "deferred",
       "expected_material_count": 18,
-      "expected_consumer": "T11",
+      "expected_consumer": "hydrocarbons",
       "reason": "T11 owns gas, fuel, and explosion behavior."
     },
     {
       "tag": "PROPERTIES.MAGNETIC_ACTIVE",
       "classification": "deferred",
       "expected_material_count": 18,
-      "expected_consumer": "T12",
+      "expected_consumer": "capacity",
       "reason": "Material magnetism is a machine/material property, not an EnergyType."
     },
     {
       "tag": "PROPERTIES.LIGHTING",
       "classification": "deferred",
       "expected_material_count": 16,
-      "expected_consumer": "POST_T12",
+      "expected_consumer": "post_capacity",
       "reason": "Requires a separate lighting behavior implementation."
     },
     {
       "tag": "PROPERTIES.ENDER_DRAGON_PROOF",
       "classification": "deferred",
       "expected_material_count": 15,
-      "expected_consumer": "POST_T12",
+      "expected_consumer": "post_capacity",
       "reason": "No second-stage system exposes dragon-proof material behavior."
     },
     {
       "tag": "PROPERTIES.BURNING",
       "classification": "deferred",
       "expected_material_count": 11,
-      "expected_consumer": "T11",
+      "expected_consumer": "hydrocarbons",
       "reason": "T11 owns burning and fuel behavior."
     },
     {
       "tag": "PROPERTIES.COAL",
       "classification": "rule-input",
       "expected_material_count": 10,
-      "expected_consumer": "T11",
+      "expected_consumer": "hydrocarbons",
       "reason": "Direct predicate for solid-fuel behavior."
     },
     {
       "tag": "PROPERTIES.BOUNCY",
       "classification": "rule-input",
       "expected_material_count": 6,
-      "expected_consumer": "T4",
+      "expected_consumer": "tools",
       "reason": "Already consumed by exact T4 MaterialRule predicates."
     },
     {
       "tag": "PROPERTIES.MEAT",
       "classification": "deferred",
       "expected_material_count": 6,
-      "expected_consumer": "POST_T12",
+      "expected_consumer": "post_capacity",
       "reason": "Food and agriculture are explicitly outside the second stage."
     },
     {
       "tag": "PROPERTIES.AUTO_BLACKLIST",
       "classification": "build-time-only",
       "expected_material_count": 2,
-      "expected_consumer": "T4",
+      "expected_consumer": "tools",
       "reason": "Importer/generator exclusion marker rather than a live rule."
     },
     {
       "tag": "PROPERTIES.PEARL",
       "classification": "deferred",
       "expected_material_count": 2,
-      "expected_consumer": "POST_T12",
+      "expected_consumer": "post_capacity",
       "reason": "No second-stage consumer requires pearl behavior."
     },
     {
       "tag": "PROPERTIES.ROTTEN",
       "classification": "deferred",
       "expected_material_count": 2,
-      "expected_consumer": "POST_T12",
+      "expected_consumer": "post_capacity",
       "reason": "Food and agriculture are explicitly outside the second stage."
     },
     {
       "tag": "PROPERTIES.WARPING",
       "classification": "deferred",
       "expected_material_count": 2,
-      "expected_consumer": "POST_T12",
+      "expected_consumer": "post_capacity",
       "reason": "No second-stage consumer requires warping behavior."
     },
     {
@@ -439,14 +439,14 @@
       "tag": "PROPERTIES.STRETCHY",
       "classification": "rule-input",
       "expected_material_count": 1,
-      "expected_consumer": "T4",
+      "expected_consumer": "tools",
       "reason": "Already consumed by exact T4 MaterialRule predicates."
     },
     {
       "tag": "PROPERTIES.MAGNETIC_PASSIVE",
       "classification": "deferred",
       "expected_material_count": 66,
-      "expected_consumer": "T12",
+      "expected_consumer": "capacity",
       "reason": "Material magnetism is a machine/material property, not an EnergyType."
     }
   ],

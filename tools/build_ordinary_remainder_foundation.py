@@ -14,16 +14,16 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools import closeout_seal
-from tools import t35_common as t35
-from tools import t42_common as t42
-from tools import t48_identities as identities
+from tools import census_common as census
+from tools import owner_partition_common as owner
+from tools import bath_identities as identities
 from tools.recipe_bulk import ordinary_r0 as r0
 from tools.recipe_bulk import ordinary_source as source
 from tools.recipe_bulk import ordinary_wave as wave
 from tools.wave_closeout import seal_path as wave_seal_path
 
 SLUG = "ordinary-remainder/operand-foundation"
-ROOT_DIR = t35.TOOLS / "waves" / "ordinary-remainder" / "operand-foundation"
+ROOT_DIR = census.TOOLS / "waves" / "ordinary-remainder" / "operand-foundation"
 N_EXCEPTION = {
     "exception_kind": "final_execution_gap_host_partition",
     "padding_forbidden": True,
@@ -44,10 +44,10 @@ def _scan_remainder() -> dict[str, Any]:
     except OSError:
         fluid_overlay = {}
         mixer_fluids = (
-            t35.TOOLS / "waves" / "mixer" / "ordinary-closure" / "fluid_mapping.json"
+            census.TOOLS / "waves" / "mixer" / "ordinary-closure" / "fluid_mapping.json"
         )
         if mixer_fluids.is_file():
-            for row in t35.load_json(mixer_fluids).get("mapping") or []:
+            for row in census.load_json(mixer_fluids).get("mapping") or []:
                 source_fluid = str(row.get("source_fluid") or "")
                 runtime = str(row.get("cc_fluid_id") or "")
                 if source_fluid and runtime:
@@ -55,7 +55,7 @@ def _scan_remainder() -> dict[str, Any]:
                     fluid_overlay[source_fluid.split(":", 1)[-1]] = runtime
     for host in r0.REMAINDER_HOSTS:
         work = source.load_work(host)
-        recipes = t42.load_map_recipes(source.source_map_for(host))
+        recipes = owner.load_map_recipes(source.source_map_for(host))
         ordinary = source.load_ordinary_indices(host)
         assigned = source.assign_rows(recipes, work, ordinary, host)
         for item in work:
@@ -158,7 +158,7 @@ def _identity_row(
         "registry_path": identities.registry_path_for(mapped, item, meta),
         "runtime_id": runtime,
         "source_item": item,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "texture": "minecraft:item/iron_ingot",
     }
 
@@ -185,7 +185,7 @@ def write_artifacts() -> dict[str, Any]:
         "identity_count": len(identities_out),
         "kinds": dict(sorted(Counter(str(row["kind"]) for row in identities_out).items())),
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "TYPED_OBJECT_CATALOG",
         "wave_slug": SLUG,
     }
@@ -208,7 +208,7 @@ def write_artifacts() -> dict[str, Any]:
                 "hosts": sorted(row["hosts"]),
                 "owner": SLUG,
                 "source_fluid": fluid,
-                "source_revision": t35.SOURCE_REVISION,
+                "source_revision": census.SOURCE_REVISION,
             }
         )
     fluids = {
@@ -221,7 +221,7 @@ def write_artifacts() -> dict[str, Any]:
         "generated_by": "python tools/build_ordinary_remainder_foundation.py",
         "mapping": fluid_rows,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "TYPED_FLUID_CATALOG",
         "wave_slug": SLUG,
     }
@@ -229,7 +229,7 @@ def write_artifacts() -> dict[str, Any]:
         "generated_by": "python tools/build_ordinary_remainder_foundation.py",
         "required_forms": scan["required_forms"],
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "REQUIRED_FORMS",
         "wave_slug": SLUG,
     }
@@ -257,7 +257,7 @@ def write_artifacts() -> dict[str, Any]:
         "generated_by": "python tools/build_ordinary_remainder_foundation.py",
         "rows": acquisition_rows,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "ACQUISITION_MANIFEST",
         "wave_slug": SLUG,
     }
@@ -276,7 +276,7 @@ def write_artifacts() -> dict[str, Any]:
         "owns_families": 0,
         "remaining_recipe_gap": 334,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "WORK_SET",
         "wave_slug": SLUG,
     }
@@ -289,12 +289,12 @@ def write_artifacts() -> dict[str, Any]:
         "frozen_overlay_is_diagnosis_only": True,
         "generated_by": "python tools/build_ordinary_remainder_foundation.py",
         "note": (
-            "Frozen t42_blocker_overlay needs_unique_block_or_mte is not treated "
+            "Frozen owner_blocker_overlay needs_unique_block_or_mte is not treated "
             "as a live MTE deficit. Current projection uses owner rows + dump operands."
         ),
         "recycling_families": scan["recycling"],
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "BLOCKER_AUDIT",
         "wave_slug": SLUG,
     }
@@ -323,7 +323,7 @@ def write_artifacts() -> dict[str, Any]:
         },
         "remaining_recipe_gap": 334,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "CENSUS_DELTA_READY",
         "wave_slug": SLUG,
         "work_set": {"family_count": 0, "source_rows": 0},
@@ -335,7 +335,7 @@ def write_artifacts() -> dict[str, Any]:
         "next_unassigned": True,
         "remaining_recipe_gap": 334,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "WAVE_READY",
         "unique_active_wave": None,
         "wave_slug": SLUG,
@@ -357,13 +357,13 @@ def write_artifacts() -> dict[str, Any]:
         "generated_by": "python tools/build_ordinary_remainder_foundation.py",
         "next_unassigned": True,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "WAVE_READY",
         "unique_active_wave": None,
         "wave_complete": True,
         "wave_slug": SLUG,
     }
-    t35.write_stable(
+    census.write_stable(
         ROOT_DIR / "wave.json",
         {
             "cohort": "operand-foundation",
@@ -374,8 +374,8 @@ def write_artifacts() -> dict[str, Any]:
             "wave_slug": SLUG,
         },
     )
-    t35.write_stable(ROOT_DIR / "work_set.json", work_set)
-    t35.write_stable(
+    census.write_stable(ROOT_DIR / "work_set.json", work_set)
+    census.write_stable(
         ROOT_DIR / "r0.json",
         {
             **r0_doc,
@@ -385,24 +385,24 @@ def write_artifacts() -> dict[str, Any]:
             "wave_slug": SLUG,
         },
     )
-    t35.write_stable(ROOT_DIR / "blocker_audit.json", blocker)
-    t35.write_stable(ROOT_DIR / "object_catalog.json", catalog)
-    t35.write_stable(ROOT_DIR / "required_forms.json", forms)
-    t35.write_stable(ROOT_DIR / "fluid_mapping.json", fluids)
-    t35.write_stable(ROOT_DIR / "acquisition_manifest.json", acquisition)
-    t35.write_stable(ROOT_DIR / "census_delta.json", census)
-    t35.write_stable(ROOT_DIR / "topology.json", topology)
-    t35.write_stable(ROOT_DIR / "readiness.json", readiness)
+    census.write_stable(ROOT_DIR / "blocker_audit.json", blocker)
+    census.write_stable(ROOT_DIR / "object_catalog.json", catalog)
+    census.write_stable(ROOT_DIR / "required_forms.json", forms)
+    census.write_stable(ROOT_DIR / "fluid_mapping.json", fluids)
+    census.write_stable(ROOT_DIR / "acquisition_manifest.json", acquisition)
+    census.write_stable(ROOT_DIR / "census_delta.json", census)
+    census.write_stable(ROOT_DIR / "topology.json", topology)
+    census.write_stable(ROOT_DIR / "readiness.json", readiness)
     merged_objects = wave.merge_object_catalogs()
-    t35.write_stable(wave.BUNDLED_OBJECT_CATALOG, merged_objects)
+    census.write_stable(wave.BUNDLED_OBJECT_CATALOG, merged_objects)
     wave.write_item_models(merged_objects)
     wave.write_b1_scatter(merged_objects)
     merged_fluids = wave.merge_fluid_mappings()
-    t35.write_stable(wave.BUNDLED_FLUID_MAPPING, merged_fluids)
+    census.write_stable(wave.BUNDLED_FLUID_MAPPING, merged_fluids)
     hashes = {
-        "census": t35.sha256_file(ROOT_DIR / "census_delta.json"),
-        "topology": t35.sha256_file(ROOT_DIR / "topology.json"),
-        "readiness": t35.sha256_file(ROOT_DIR / "readiness.json"),
+        "census": census.sha256_file(ROOT_DIR / "census_delta.json"),
+        "topology": census.sha256_file(ROOT_DIR / "topology.json"),
+        "readiness": census.sha256_file(ROOT_DIR / "readiness.json"),
         "receipt": None,
         "gametest_java": None,
         "gametest_log": None,
@@ -418,7 +418,7 @@ def write_artifacts() -> dict[str, Any]:
         "status": "SEALED",
         "card_id": SLUG,
         "sealed_at_wave": SLUG,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "generated_by": "python tools/build_ordinary_remainder_foundation.py --write",
         "complete_family_count": 0,
         "relation_count": 0,
@@ -427,10 +427,10 @@ def write_artifacts() -> dict[str, Any]:
         "production_lock_sha256": None,
         "gametest_status": "NONE",
         "receipt_sha256": None,
-        "composed_identity_ledger_v2_sha256": t35.sha256_file(
+        "composed_identity_ledger_v2_sha256": census.sha256_file(
             closeout_seal.IDENTITY_LEDGER_V2
         ),
-        "composed_runtime_manifest_v2_sha256": t35.sha256_file(
+        "composed_runtime_manifest_v2_sha256": census.sha256_file(
             closeout_seal.RUNTIME_MANIFEST_V2
         ),
         "hashes": hashes,
@@ -438,7 +438,7 @@ def write_artifacts() -> dict[str, Any]:
         "repair_wave": "ordinary-wave/closeout-integrity-repair",
         "supersedes_sha256": "ordinary-remainder-operand-foundation-opening",
     }
-    t35.write_stable(ROOT_DIR / "closeout_seal.json", seal)
+    census.write_stable(ROOT_DIR / "closeout_seal.json", seal)
     return {
         "drying_candidate_families": drying["family_count"],
         "fluid_count": len(fluid_rows),
@@ -456,10 +456,10 @@ def check() -> list[str]:
     readiness = ROOT_DIR / "readiness.json"
     if not readiness.is_file():
         return errors + ["missing foundation readiness.json"]
-    document = t35.load_json(readiness)
+    document = census.load_json(readiness)
     if document.get("status") != "WAVE_READY":
         errors.append("foundation readiness is not WAVE_READY")
-    census = t35.load_json(ROOT_DIR / "census_delta.json")
+    census = census.load_json(ROOT_DIR / "census_delta.json")
     if int(census.get("complete_family_count", -1)) != 0:
         errors.append("foundation must not claim family completion")
     if int(census.get("remaining_recipe_gap", -1)) != 334:

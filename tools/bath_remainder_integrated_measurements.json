@@ -1,0 +1,140 @@
+{
+  "candidates": [
+    {
+      "allocation": {
+        "p50_bytes": 246275240,
+        "p95_bytes": 246978760
+      },
+      "candidate": "immediate",
+      "dedicated_client": {
+        "index": {
+          "p50_ns": 10136900,
+          "p95_ns": 17893000
+        },
+        "reload": {
+          "p50_ns": 122923500,
+          "p95_ns": 173405500
+        }
+      },
+      "eager_publication_rows": 16480,
+      "lazy_cache_ceiling_rows": 0,
+      "lazy_logical_rows": 0,
+      "logical_rows": 16480,
+      "lookup": {
+        "candidates_p95": 54,
+        "p50_ns": 208537,
+        "p95_ns": 873725
+      },
+      "retained_memory": {
+        "p50_bytes": 1617643
+      },
+      "server": {
+        "index": {
+          "p50_ns": 10160600,
+          "p95_ns": 18876200
+        },
+        "reload": {
+          "p50_ns": 111444900,
+          "p95_ns": 183495700
+        }
+      },
+      "status": "PASS",
+      "sync": {
+        "bytes": 1617643
+      }
+    },
+    {
+      "allocation": {
+        "p50_bytes": 218201328,
+        "p95_bytes": 218241104
+      },
+      "candidate": "on_demand",
+      "dedicated_client": {
+        "index": {
+          "p50_ns": 1037000,
+          "p95_ns": 1326500
+        },
+        "reload": {
+          "p50_ns": 105144200,
+          "p95_ns": 130639900
+        }
+      },
+      "eager_publication_rows": 0,
+      "lazy_cache_ceiling_rows": 478,
+      "lazy_logical_rows": 16480,
+      "logical_rows": 16480,
+      "lookup": {
+        "candidates_p95": 2,
+        "p50_ns": 129075,
+        "p95_ns": 243887
+      },
+      "retained_memory": {
+        "p50_bytes": 1617643
+      },
+      "server": {
+        "index": {
+          "p50_ns": 1025900,
+          "p95_ns": 1320500
+        },
+        "reload": {
+          "p50_ns": 101346000,
+          "p95_ns": 136664200
+        }
+      },
+      "status": "PASS",
+      "sync": {
+        "bytes": 1617643
+      }
+    },
+    {
+      "allocation": {
+        "p50_bytes": 218225688,
+        "p95_bytes": 218225712
+      },
+      "candidate": "hybrid",
+      "dedicated_client": {
+        "index": {
+          "p50_ns": 883800,
+          "p95_ns": 1141400
+        },
+        "reload": {
+          "p50_ns": 94441000,
+          "p95_ns": 115329900
+        }
+      },
+      "eager_publication_rows": 14,
+      "lazy_cache_ceiling_rows": 478,
+      "lazy_logical_rows": 16466,
+      "logical_rows": 16480,
+      "lookup": {
+        "candidates_p95": 10,
+        "p50_ns": 59537,
+        "p95_ns": 121687
+      },
+      "retained_memory": {
+        "p50_bytes": 1617643
+      },
+      "server": {
+        "index": {
+          "p50_ns": 970000,
+          "p95_ns": 1403400
+        },
+        "reload": {
+          "p50_ns": 91968500,
+          "p95_ns": 129512000
+        }
+      },
+      "status": "PASS",
+      "sync": {
+        "bytes": 1617643
+      }
+    }
+  ],
+  "group_count": 15,
+  "id": "integrated",
+  "load_budget_policy_v2_sha256": "30a07ad20ca443d9108665157b351471ffeb45d71fdd3d4b7d75076a11cb2c35",
+  "note": "Measured T37-bath/remainder compact families. group_count is 13 closed groups plus bath/remainder groups once runtime manifest v2 includes bath/remainder. Closing census uses this snapshot, not opening+delta arithmetic.",
+  "scale": "1x",
+  "schema_version": 1,
+  "status": "BATH_REMAINDER_INTEGRATED_MEASUREMENT_READY"
+}

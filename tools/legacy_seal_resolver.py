@@ -1,4 +1,4 @@
-"""Resolve T38-T49 seal-bound paths through archive/sealed when present.
+"""Resolve roaster/compact-bath/tiny-purified seal-bound paths through archive/sealed when present.
 
 Live closeout seal JSON stays at tools/*_closeout_seal.json and is never
 rewritten. After archive, --check reads the byte-identical snapshot tree.
@@ -8,9 +8,9 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-from tools import t35_common as t35
+from tools import census_common as census
 
-ARCHIVE_ROOT = t35.ROOT / "archive" / "sealed"
+ARCHIVE_ROOT = census.ROOT / "archive" / "sealed"
 MANIFEST_NAME = "archive_manifest.json"
 SEAL_COPY_NAME = "closeout_seal.json"
 
@@ -64,8 +64,8 @@ def has_archive(card_id: str) -> bool:
 def load_manifest(card_id: str) -> dict[str, Any]:
     path = manifest_path(card_id)
     if not path.is_file():
-        raise FileNotFoundError(f"missing archive manifest: {t35.relative(path)}")
-    return t35.load_json(path)
+        raise FileNotFoundError(f"missing archive manifest: {census.relative(path)}")
+    return census.load_json(path)
 
 
 def archived_card_ids() -> tuple[str, ...]:
@@ -83,7 +83,7 @@ def resolve(card_id: str, live_path: Path | None) -> Path | None:
         return None
     if not has_archive(card_id):
         return live_path
-    rel = t35.relative(live_path)
+    rel = census.relative(live_path)
     archived = card_dir(card_id) / Path(rel)
     if archived.exists():
         return archived
@@ -100,13 +100,13 @@ def resolve_field(card_id: str, field: str, live_path: Path | None) -> Path | No
         manifest = load_manifest(card_id)
     except FileNotFoundError:
         return resolve(card_id, live_path)
-    live_rel = t35.relative(live_path)
+    live_rel = census.relative(live_path)
     for row in manifest.get("artifacts") or []:
         if row.get("field") != hash_field:
             continue
         archive_rel = str(row.get("archive") or "")
         if archive_rel:
-            archived = t35.ROOT / archive_rel
+            archived = census.ROOT / archive_rel
             if archived.exists():
                 return archived
         live_row = str(row.get("live") or "")

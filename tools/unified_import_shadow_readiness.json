@@ -11,8 +11,8 @@
     "typed_identity_blockers_only": true
   },
   "generated_by": "python tools/build_unified_import_shadow_readiness.py",
-  "identity_semantic_root_sha256": "ee0f1b3a6801bc683307963b6eaf3869592222f21ebc7ab54cb1839108570f26",
-  "note": "UNIFIED_IMPORT_SHADOW_READY closes the Phase-1 shadow repair gate. Known typed identity blockers stay recorded and do not block the runtime-policy cutover. Unclassified blockers fail closed. This does not occupy T46 or deduct the 2,697 gap.",
+  "identity_semantic_root_sha256": "981c346b86c9b87f609ed19e66e828e3a8aaaa55a378f1c4aa9b243f66d4b15a",
+  "note": "UNIFIED_IMPORT_SHADOW_READY closes the Phase-1 shadow repair gate. Known typed identity blockers stay recorded and do not block the runtime-policy cutover. Unclassified blockers fail closed. This does not occupy bath/mte or deduct the 2,697 gap.",
   "owns_families": 0,
   "rebuilds_identical": true,
   "schema_version": 1,
@@ -25,7 +25,7 @@
       "generated_tree_sha256": "393df791bdf1404ef4ed0413798fc24b4da048987da67a1ed59cc6917ec26ab7",
       "relation_count": 379,
       "stable_id_sha256": "c30befbb42a2fad9e0f0f5f9ab522ecdd41ea3c3434f289949a491810e1ef00d",
-      "wave_id": "T45"
+      "wave_id": "block/object"
     },
     {
       "byte_identity": true,
@@ -33,7 +33,7 @@
       "generated_tree_sha256": "e93c972b71374b031913bd3336723a26be1f6f7f574afd2621f68b4e90133385",
       "relation_count": 407,
       "stable_id_sha256": "0c231bdde4e6358bc48a0f46ad1bc2709c129b467e31be89340df31cfe4006c9",
-      "wave_id": "T43"
+      "wave_id": "smelter/stone"
     },
     {
       "byte_identity": true,
@@ -41,7 +41,7 @@
       "generated_tree_sha256": "f62f575c7b90c926f270da8211fdcaee98c3f017c723619ec40e1acdaab232ae",
       "relation_count": 292,
       "stable_id_sha256": "2d181ed35cd6d334b24c890b7ce5b0135699cdee0160939e085ca03c978a494f",
-      "wave_id": "T41"
+      "wave_id": "assembler/wood"
     },
     {
       "byte_identity": true,
@@ -49,7 +49,7 @@
       "generated_tree_sha256": "3baf81ecfd05fe2984e153e6fcd8e62fd1134c91530a38e0b2ff47886f9c6d44",
       "relation_count": 22,
       "stable_id_sha256": "3bde46ae0428958e6a265f7606ee77576079f315366f7d252035a2c8ca410bcc",
-      "wave_id": "T40"
+      "wave_id": "electrolyzer/compact"
     },
     {
       "byte_identity": true,
@@ -57,7 +57,7 @@
       "generated_tree_sha256": "4b87d90c36bb3e9669bb82c8dd27cec71eb0d4f6c3e181a132183a7f69558283",
       "relation_count": 32,
       "stable_id_sha256": "8434bfaadc3af7da743513132ee4d8662caf6894464f49cacb949eda6167dd93",
-      "wave_id": "T39"
+      "wave_id": "centrifuge/compact"
     },
     {
       "byte_identity": true,
@@ -65,7 +65,7 @@
       "generated_tree_sha256": "0744417f3dbd5fc19ee59092eba61c46b6961b34d5964874fdd91527daafee57",
       "relation_count": 73,
       "stable_id_sha256": "cd0ada7c5cbd0026aa8a2fd2282393487c19061c54380222ffa89116b7b27e21",
-      "wave_id": "T38"
+      "wave_id": "roaster/compact"
     },
     {
       "byte_identity": true,
@@ -73,7 +73,7 @@
       "generated_tree_sha256": "2a5b246169f3560ccac08166774dc7f24ef5bb26059e85fa90c70021a290ffa6",
       "relation_count": 50,
       "stable_id_sha256": "aebf58d74ad720731c26fe6cce3c64d8ca7ab1dde7e249852ac85a312cb72337",
-      "wave_id": "T37"
+      "wave_id": "assembler/compact"
     }
   ]
 }

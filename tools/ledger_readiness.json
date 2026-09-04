@@ -1,0 +1,89 @@
+{
+  "closure": {
+    "aggregate_canonical": 765,
+    "aggregate_unclassified": 0,
+    "aggregate_validators_clear": true,
+    "canonical_total": 765,
+    "open_item_orphan": 0,
+    "opening_bound_to_t26_ready": true,
+    "t28_plus_covers_work_set": true,
+    "t28_plus_not_started": true,
+    "tracks_not_started": true,
+    "unclassified": 0,
+    "work_set_size": 0
+  },
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T27 freezes the v1.0 portfolio. Publication delta remains 0/0/0. Unclosed v1_required identities generate T28+ topology only. T27 does not implement crucible, O-36, or any 1.x content. F003/F005 stay on the T27 RC candidate contract."
+  },
+  "completed_stages": [],
+  "currentness": {
+    "full_verification": {
+      "evidence": "tools/full_verification_report.json",
+      "pending": [],
+      "status": "BOUND_TO_FULL_VERIFICATION_REPORT"
+    },
+    "owned_inputs": {
+      "tools/build_t27_readiness.py": "20eae55eb14543c06e86bc17fd3cc9268eb504a9e2ffb7d3b514b22cf8f657f4",
+      "tools/t27_readiness_policy.json": "58da02710d403a69da69a35b72dc6df4f7ea327133ab6b8a1b3ef76e7e2162fe"
+    }
+  },
+  "fidelity": {
+    "anvil_bend_post_1_0": true,
+    "crucible_collision_forbidden": true,
+    "f003_f005_rc_contract": true,
+    "map_level_not_row_level": true,
+    "o36_v1_required": true,
+    "o41_post_1_0": true,
+    "rc_number_absent": true,
+    "source_revision_pinned": true,
+    "t13_classification_kept": true,
+    "t28_plus_card_count_unfilled": true
+  },
+  "load": {
+    "eager_hard_ceiling_is_21000": true,
+    "opening_from_t26_ready_report": true,
+    "opening_publication": {
+      "eager": 16862,
+      "lazy": 2225,
+      "logical": 19087
+    },
+    "pending_not_filled_with_zero": true,
+    "publication_delta": {
+      "eager": 0,
+      "lazy": 0,
+      "logical": 0,
+      "scope": "T27_CARD"
+    },
+    "t14_policy_current": true,
+    "topology_delta_zero": true,
+    "tracks_delta_zero": true
+  },
+  "owned_inputs": {
+    "tools/build_t27_readiness.py": "20eae55eb14543c06e86bc17fd3cc9268eb504a9e2ffb7d3b514b22cf8f657f4",
+    "tools/phase5_portfolio_contract.json": "ca9be41df6cb391c4076ab0acbf35950dca868b5569fb7ce03388ef0cfab2cc7",
+    "tools/t14_load_budget_policy.json": "7e87ddb3b987f52fd8fd918a426bd6a2c640682fb89b52cb7b3cc5731c339270",
+    "tools/t27_card_topology.json": "36cc3f25f5287f7cd766589028b2f900e07667b1596c547e99c31d2f6eb30d49",
+    "tools/t27_opening_snapshot.json": "91cdbe33de4c56781e38dba507c90179e3ed7b7ea3342b8d8a15336a3fa5c9e3",
+    "tools/t27_portfolio.json": "5aa061c2966e5a0b4f820e7d79e810e8d2a42fb224579ede60a090ba76a3cc33",
+    "tools/t27_portfolio/cover_kinds.json": "82533621b8f3db4fc642d6b2f1355135f347485064c8a4f072c4ea39bb333bf6",
+    "tools/t27_portfolio/deferred_open_items.json": "2b63f52aa1ac3602f316dd570dcf27eb547d9e114101809430b5f995d8b5c2b7",
+    "tools/t27_portfolio/energy_identities.json": "a3ba43e2eebf9ee1f1068c5eab1c3e730675415557b1213a153cff96de61a1eb",
+    "tools/t27_portfolio/itemgenerator_domains.json": "f6e8c7d29d483c07cf23e598bdfe1b6a46dae4132266ad0253acc21f3ca9fa8e",
+    "tools/t27_portfolio/machine_kinds.json": "23908ebdfff78b3a5cc0d8b8f93b38deabbfb8b6d32a6e305ba33cbba00aea3e",
+    "tools/t27_portfolio/multiblock_kinds.json": "528b687a9c30993bf25b6796858f35caf5f5be3f29f031f329ec95cf9901d926",
+    "tools/t27_portfolio/prefixes.json": "3881251d82bbad747e98b8980c93f171f384630da54928a7f328c19d66997534",
+    "tools/t27_portfolio/recipe_maps.json": "e5f68b08defec438d76e25e4a31a7e19fc881b3b0180eeafbad7df352ec51b99",
+    "tools/t27_portfolio/tracks.json": "3083ca3b83febbda03fcfb367e9c9b64b815fa6a78cd36e7694185578db3ad7f",
+    "tools/t27_readiness_policy.json": "58da02710d403a69da69a35b72dc6df4f7ea327133ab6b8a1b3ef76e7e2162fe"
+  },
+  "pending_stages": [],
+  "policy": "The status field is derived from evidence by build(). Any mismatch between the committed value and a fresh build is detected by check(). T27_READY cannot be hand-written.",
+  "runtime": {
+    "gametest_passing": true,
+    "gametest_total": 137
+  },
+  "schema_version": 1,
+  "status_owner": "run_full_verification"
+}

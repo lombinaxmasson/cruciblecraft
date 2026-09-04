@@ -1,0 +1,41 @@
+{
+  "behavior_root_sha256": "8c8b2dcdd31fd199e5b347589dc0c371a623d2bc005dce7195cabe6c7dff9c10",
+  "bound_artifacts": {
+    "electrolyzer_generated_recipes": "deb04174ef02b4dd31a80e86b6506ff0c549d5667d44324cb584f36b5d355f8c",
+    "electrolyzer_locked_support": null,
+    "gametest_java": "a796c288ea23b6a928a5324bec0f43a44b218ab49880d0090bcfae3fde672044",
+    "material_registration_gate_java": "f68f87d8eef8cf832987b726e01a2e9b592269cfcc5baf10e46502680704bb84",
+    "material_registration_gate_json": "51cf948867ca73af6be51defa2c95f3870bdc546986c396d7662ea58a865e569",
+    "production_lock": "6ff09ce0e808561974b597f00ab2d4cea72d2b171a865cca4f9f887f1b72852b",
+    "publication_group_manifest": "17bf5d05f29f7056622cc3eff65ef82744d353617ffa6151dad04a9e4450e120",
+    "runtime_dependency_manifest": "aa98e56f769e5697b69511fff9f3c8374cd6ac1f28fd15e00ad873fffa23eeff",
+    "shard_manifest": "9ad6ce1b396e485ec14758230f998ee8209075fabf77234a1b1eaff855baa2d9"
+  },
+  "command": ".\\gradlew.bat runGameTestServer -PwaveRecipes=electrolyzer/compact --no-daemon",
+  "currentness_root_sha256": "741055b41d20846be2007ad449065228adf03cd99b3651e4461fc34b0c032b77",
+  "equivalence_root_sha256": "61af9a5ba31eb370fca7cfa75158776a4c48942e2aaa11c4bd6e27d89076cf77",
+  "failed": 0,
+  "java_sha256": "a796c288ea23b6a928a5324bec0f43a44b218ab49880d0090bcfae3fde672044",
+  "java_source": "src/main/java/com/masson/cruciblecraft/gametest/ElectrolyzerCompactGameTests.java",
+  "log_fingerprint": "432ccb5c092b6925fb156982cff084fe1623b3c296255516b85352886534a310",
+  "log_path": "tools/electrolyzer_gametest.log",
+  "namespace": "cruciblecraft_wave_electrolyzer_compact",
+  "note": "Source markers are not a pass. This receipt is the isolated -PwaveRecipes=electrolyzer/compact result bound to MaterialRegistrationGate, the electrolyzer/compact recipe resource trees, and the committed UTF-8 evidence log. The gitignored run-electrolyzer/compact-recipes directory is not evidence. Injecting recipe inputs still does not prove a player path.",
+  "pass_marker": "All 8 required tests passed :)",
+  "passed": 8,
+  "required_tests": 8,
+  "schema_version": 3,
+  "semantic_tree_sha256": "9e97aaf7ac07ef6309c1410329f8439ab45e91f03294ffb9d1d80a9c79021d0c",
+  "skip_is_not_pass": true,
+  "status": "PASS",
+  "test_ids": [
+    "compactfamiliespublished",
+    "electrolyzercompactstableidssurvivereload",
+    "electrolyzerexecutesrepresentative",
+    "emiplanincludeselectrolyzerfamilies",
+    "lockedsupportpublished",
+    "multifamilyexecutes",
+    "singletonfamilyexecutes",
+    "threevariantsaccepteu"
+  ]
+}

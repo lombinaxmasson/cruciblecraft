@@ -12,12 +12,14 @@
     {
       "kind": "numbered_builders",
       "path_pattern": "tools/build_t*.py",
-      "file_count": 352
+      "file_count": 0,
+      "deleted": true
     },
     {
       "kind": "numbered_builder_tests",
       "path_pattern": "tools/tests/test_build_t*.py",
-      "file_count": 229
+      "file_count": 0,
+      "deleted": true
     },
     {
       "kind": "currentness_sidecars",
@@ -27,7 +29,7 @@
     {
       "kind": "closeout_seals",
       "path_pattern": "tools/**/*closeout_seal.json",
-      "file_count": 49
+      "file_count": 38
     },
     {
       "kind": "retired_card_closeout_builders",
@@ -54,12 +56,9 @@
         "tools/run_verification_dag.py",
         "tools/closeout_seal.py",
         "tools/closeout_seal.schema.json",
-        "tools/legacy_seal_resolver.py",
-        "tools/run_full_verification.py",
-        "tools/verify_full_verification_report.py",
-        "tools/full_verification_report.json"
+        "tools/legacy_seal_resolver.py"
       ]
     }
   ],
-  "note": "Paths remain at their historical locations so links and investigations preserve original bytes. Active profiles and Python discovery must not reference these groups."
+  "note": "Numbered closeout seals, archive/sealed, build_t* builders, test_build_t* tests, and run_full_verification were deleted. Remaining groups stay at historical paths for investigation only. Active profiles and Python discovery must not reference these groups."
 }

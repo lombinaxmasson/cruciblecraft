@@ -31,7 +31,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RoasterCompactHarnessTest {
-    private static final ResourceLocation T36_COAL_DUST_BOOTSTRAP =
+    private static final ResourceLocation COAL_DUST_BOOTSTRAP =
             ResourceLocation.fromNamespaceAndPath(
                     "cruciblecraft", "machine/bootstrap/roaster/coal_dust_bootstrap");
 
@@ -76,7 +76,7 @@ class RoasterCompactHarnessTest {
             assertTrue(id.getPath().startsWith("roaster/compact/"), id::toString);
         }
         assertTrue(
-                !stableIds.contains(T36_COAL_DUST_BOOTSTRAP),
+                !stableIds.contains(COAL_DUST_BOOTSTRAP),
                 "machine-bootstrap coal_dust_bootstrap must not appear in the compact roaster-compact snapshot");
 
         int relationCount = 0;

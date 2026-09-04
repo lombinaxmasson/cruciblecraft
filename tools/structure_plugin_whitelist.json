@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "status_owner": "B2",
+  "plugins": [
+    {
+      "id": "cruciblecraft:processing_host",
+      "consumers": [
+        "large_centrifuge",
+        "distillation_tower"
+      ]
+    },
+    {
+      "id": "cruciblecraft:shared_port_supply",
+      "consumers": [
+        "large_centrifuge",
+        "distillation_tower",
+        "large_boiler",
+        "tank_3x3x3",
+        "large_crucible"
+      ]
+    },
+    {
+      "id": "cruciblecraft:heat_energy_input",
+      "consumers": [
+        "large_boiler",
+        "large_crucible"
+      ]
+    },
+    {
+      "id": "cruciblecraft:steam_conversion",
+      "consumers": [
+        "large_boiler"
+      ]
+    },
+    {
+      "id": "cruciblecraft:storage_host",
+      "consumers": [
+        "tank_3x3x3"
+      ]
+    },
+    {
+      "id": "cruciblecraft:thermal_steelmaking_host",
+      "consumers": [
+        "large_crucible"
+      ]
+    }
+  ],
+  "quarantine_policy": "PluginQuarantinePolicy: blank first-save ids adopt the current id; every nonblank mismatch stays quarantined unchanged; unknown ids fail closed at the registry."
+}

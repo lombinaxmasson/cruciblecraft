@@ -6,7 +6,7 @@ from collections import Counter
 from typing import Any
 
 from tools import recycling_candidate
-from tools import t45_common as common
+from tools import block_object_common as common
 
 
 def analyze() -> dict[str, Any]:

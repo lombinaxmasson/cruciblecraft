@@ -1,0 +1,43 @@
+{
+  "behavior_root_sha256": "b6ca670467816d107f07796e295e1b86e403aa5bad2047fe4d0e1f292da822d7",
+  "bound_artifacts": {
+    "bath_remainder_generated_recipes": "ab54a2937325f21f90884e5b58f267efde34308d41f5e58c546f1169e26c60b8",
+    "bath_remainder_locked_support": "edd92d5507e96f8969c9a87821ac165441dac8763f7d38e9da7f570bdfe56bf1",
+    "gametest_java": "b53a04286956a08099265ee74cfaf900b502d83e99fd25b79a066cb212981f99",
+    "material_registration_gate_java": "f68f87d8eef8cf832987b726e01a2e9b592269cfcc5baf10e46502680704bb84",
+    "material_registration_gate_json": "51cf948867ca73af6be51defa2c95f3870bdc546986c396d7662ea58a865e569",
+    "production_lock": "d4435ef4b071c6f09b8268599070b649029a43340549a45a65fe2d59a3cbea14",
+    "publication_group_manifest": "99b563ace5d7a12c83258115611bafbc3145fb5b87f8de8de11a1e5cf0d235ef",
+    "runtime_dependency_manifest": "48a90945b06e5b43e7eb3ed41a906ad0e45f1227b82aae31fbc12d53fafd5620",
+    "shard_manifest": "3fcd1898b0bc2769f11680d176284d7de34a5a6900eeb8529f4311b8359e63f1"
+  },
+  "command": ".\\gradlew.bat runGameTestServer -PwaveRecipes=bath/remainder --no-daemon",
+  "currentness_root_sha256": "81c67840350528d4fb95e34aa13e6e2be01b16c087a9f05314f8766f489b23e3",
+  "equivalence_root_sha256": "5e5d2ee68e15e4457a417204866aaac76ee4fb9db7b8ddd2178c617b52fed165",
+  "failed": 0,
+  "java_sha256": "b53a04286956a08099265ee74cfaf900b502d83e99fd25b79a066cb212981f99",
+  "java_source": "src/main/java/com/masson/cruciblecraft/gametest/BathRemainderGameTests.java",
+  "log_fingerprint": "02eea84b21a53b4029d5a0d92d093302149610d0a8e5cdd10c7a8df7c5730452",
+  "log_path": "tools/bath_remainder_gametest.log",
+  "namespace": "cruciblecraft_wave_bath_remainder",
+  "note": "Source markers are not a pass. This receipt is the isolated -PwaveRecipes=bath/remainder result bound to the bath/remainder production lock, recipe and support trees, and the committed UTF-8 evidence log. Composed identity/runtime v2 is a close-time snapshot, not a live pin.",
+  "pass_marker": "All 10 required tests passed :)",
+  "passed": 10,
+  "required_tests": 10,
+  "schema_version": 3,
+  "semantic_tree_sha256": "fadca96e57f864a3e6db6a8d6a030852d022396f620e3634415e82fc6abda01d",
+  "skip_is_not_pass": true,
+  "status": "PASS",
+  "test_ids": [
+    "b1supportreachable",
+    "bathexactexecution",
+    "bathexactmultiexecution",
+    "bathmtegroupunchanged",
+    "consumepreservecatalyst",
+    "emiplanincludesremainder",
+    "lockedcounts",
+    "reloadrootsstable",
+    "shardhardgate",
+    "wrongidentityrejected"
+  ]
+}

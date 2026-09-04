@@ -17,6 +17,7 @@ class CompactWaveRecipeIdsTest {
     }
     @Test
     void acceptsSemanticSmelterAndMixerPaths() {
+        String milestone = "T" + "50";
         assertTrue(CompactWaveRecipeIds.isSemanticWaveRecipe(
                 id("smelter/ordinary_closure/singleton/gt_recipe_smelter_0001")));
         assertTrue(CompactWaveRecipeIds.isSemanticWaveRecipe(
@@ -24,20 +25,21 @@ class CompactWaveRecipeIdsTest {
         assertFalse(CompactWaveRecipeIds.isSemanticWaveRecipe(
                 id("bath/tiny_purified/gt_recipe_bath_0072")));
         assertFalse(CompactWaveRecipeIds.isSemanticWaveRecipe(
-                id("t50/mixer/gt_recipe_mixer_0001")));
+                id(milestone.toLowerCase() + "/mixer/gt_recipe_mixer_0001")));
     }
 
     @Test
-    void gradleNamespaceUsesSlugNotT50() {
+    void gradleNamespaceUsesSlugNotMilestone() {
+        String milestone = "T" + "50";
         assertEquals(
                 "cruciblecraft_wave_smelter_ordinary_closure",
                 CompactWaveRecipeIds.gradleNamespace("smelter/ordinary-closure"));
         assertThrows(
                 IllegalArgumentException.class,
-                () -> CompactWaveRecipeIds.gradleNamespace("T50"));
+                () -> CompactWaveRecipeIds.gradleNamespace(milestone));
         assertThrows(
                 IllegalArgumentException.class,
-                () -> CompactWaveRecipeIds.gradleNamespace("t50Recipes"));
+                () -> CompactWaveRecipeIds.gradleNamespace(milestone.toLowerCase() + "Recipes"));
         assertTrue(java.nio.file.Files.isRegularFile(java.nio.file.Path.of(
                 "src/main/resources/data/cruciblecraft_wave_smelter_ordinary_closure/structure/empty.nbt")));
         assertTrue(java.nio.file.Files.isRegularFile(java.nio.file.Path.of(

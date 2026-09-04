@@ -1,0 +1,73 @@
+{
+  "closure": {
+    "capacity_432": true,
+    "large_crucible_registered": true,
+    "lifecycle_gametests_present": true,
+    "replacement_condition_text": true,
+    "replacement_satisfied": true,
+    "single_block_crucible_retained": true,
+    "single_capacity_8": true,
+    "structure_positions_27": true
+  },
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T29 registers cruciblecraft:large_crucible as a 27-position open-top thermal/steelmaking multiblock with 432-ingot capacity. It does not replace cruciblecraft:crucible, start RC numbering, or close F003/F005."
+  },
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t29_readiness.py": "209b7f3c60f95f2eb3e51c16fffa7ce255773d1964b68f793ce15856614da58d",
+      "tools/t29_crucible_source_evidence.json": "4fbe44a3fac4648da83a0b8679a12413c229008902c2e28fe56382e36a1c67bd",
+      "tools/t29_load_projection.json": "873554c441a73b7f83f3cdeb24bdb3290bcb08b35e931da11be340e4f1aca923",
+      "tools/t29_publication_delta.json": "76b44a93fece14e1895695af1baa19a11979b6a95abfbf0be7ae2a77959755d2",
+      "tools/t29_readiness_policy.json": "2ea65e929b35d8c7bb0abddb970e194951920adcffcd0ddab4f24303ea282f68"
+    }
+  },
+  "fidelity": {
+    "capacity_432_source_backed": true,
+    "heat_scale_design_policy": true,
+    "layer_ports_source_backed": true,
+    "not_processing_host": true,
+    "plugin_mirrors_agree": true,
+    "source_revision_pinned": true,
+    "steelmaking_source_derived": true,
+    "structure_27_source_backed": true,
+    "t23_positions_27": true
+  },
+  "generated_by": "python tools/build_t29_readiness.py --write",
+  "load": {
+    "eager_hard_ceiling_is_21000": true,
+    "gametest_projected_131": true,
+    "gt_delta_zero": true,
+    "measured_zero": true,
+    "same_sign_when_measured": true,
+    "vanilla_controller_accounted": true
+  },
+  "owned_inputs": {
+    "tools/build_t29_readiness.py": "209b7f3c60f95f2eb3e51c16fffa7ce255773d1964b68f793ce15856614da58d",
+    "tools/t29_crucible_source_evidence.json": "4fbe44a3fac4648da83a0b8679a12413c229008902c2e28fe56382e36a1c67bd",
+    "tools/t29_load_projection.json": "873554c441a73b7f83f3cdeb24bdb3290bcb08b35e931da11be340e4f1aca923",
+    "tools/t29_publication_delta.json": "76b44a93fece14e1895695af1baa19a11979b6a95abfbf0be7ae2a77959755d2",
+    "tools/t29_readiness_policy.json": "2ea65e929b35d8c7bb0abddb970e194951920adcffcd0ddab4f24303ea282f68"
+  },
+  "plugin_set": [
+    "cruciblecraft:heat_energy_input",
+    "cruciblecraft:shared_port_supply",
+    "cruciblecraft:thermal_steelmaking_host"
+  ],
+  "policy": "The status field is derived from evidence by build(). T29_READY cannot be hand-written.",
+  "replacement_condition": "Generated T28+ bounded thermal/steelmaking behavior card implements cruciblecraft:large_crucible without colliding with cruciblecraft:crucible.",
+  "runtime": {
+    "gametest_passing": true,
+    "gametest_total": 137,
+    "java_unit_tests_passing": true,
+    "rc_number": null,
+    "report_status": "READY",
+    "t28_status": "T28_READY"
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T29_READY",
+  "status_owner": "run_full_verification",
+  "t29_gametests_found": 10
+}

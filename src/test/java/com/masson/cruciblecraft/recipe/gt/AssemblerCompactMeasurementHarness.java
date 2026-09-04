@@ -354,7 +354,7 @@ class AssemblerCompactMeasurementHarness {
         scenario.put("candidates", rows);
 
         Map<String, Object> input = new LinkedHashMap<>();
-        input.put("kind", "t37_50_singleton_rows");
+        input.put("kind", "assembler_compact_50_singleton_rows");
         input.put("logical_rows", 50);
         input.put("measured_logical_rows", List.of(50));
         input.put("generated_datapack_present", true);
@@ -377,18 +377,18 @@ class AssemblerCompactMeasurementHarness {
 
         Map<String, Object> root = new LinkedHashMap<>();
         root.put("schema_version", 1);
-        root.put("status", "T37_MATERIALIZATION_MEASUREMENT_READY");
+        root.put("status", "ASSEMBLER_COMPACT_MATERIALIZATION_MEASUREMENT_READY");
         root.put("production_winner_claimed", false);
         root.put("protocol", Map.of(
-                "id", "t37_materialization_50_row_v1",
+                "id", "assembler_compact_materialization_50_row_v1",
                 "ranking_scale", "1x",
                 "diagnostic_scales_not_for_production", List.of("5x", "20x"),
                 "single_wall_clock_sample_forbidden", true,
                 "p50_p95_invented", false,
                 "sample_count", SAMPLE_COUNT));
         root.put("input", input);
-        root.put("t36_opening", Map.of(
-                "source", "tools/t36_census_delta.json#t14_load",
+        root.put("repair_opening", Map.of(
+                "source", "tools/repair_census_delta.json#recipe_load",
                 "datapack_authored_entries", 3566,
                 "eager_publication_rows", 16597,
                 "lazy_logical_rows", 2225,

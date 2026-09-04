@@ -1,0 +1,122 @@
+{
+  "evidence": {
+    "assembler_compact_complete": true,
+    "census_status": "ASSEMBLER_COMPACT_CENSUS_DELTA_READY",
+    "equivalence": {
+      "current": true,
+      "file_count": 50,
+      "generated_files": 50,
+      "logical_ids": 50
+    },
+    "generated_file_count": 50,
+    "load": {
+      "authored_closing": 3616,
+      "current": true,
+      "decision_recomputable": true,
+      "hard_ceiling_raised": false,
+      "measurements_current": true,
+      "pending_zero_filled": false,
+      "winner_derived": true
+    },
+    "player_path": {
+      "current": true,
+      "families": 50,
+      "inputs_reachable": 50,
+      "outputs_registered": 50
+    },
+    "publication_status": "ASSEMBLER_COMPACT_PUBLICATION_DELTA_READY",
+    "runtime": {
+      "current": true,
+      "java_codec_tests_present": true,
+      "player_gametest_present": true
+    },
+    "source": {
+      "blockers": [],
+      "compact_current": true,
+      "dump_present": true,
+      "dump_skip": false,
+      "dump_verified": true,
+      "receipt_present": true,
+      "skip_is_not_pass": true
+    },
+    "topology_epoch": "ASSEMBLER_COMPACT_RECIPE_THEN_STORAGE",
+    "unique_active_card": "roaster/compact"
+  },
+  "failed_gates": [],
+  "gates": {
+    "census_structural_validators_zero": true,
+    "decision_recomputable_from_measurements": true,
+    "equivalence_current": true,
+    "fifty_files_not_sufficient": true,
+    "full_replay_dump_verified": true,
+    "full_replay_receipt_present": true,
+    "hard_ceiling_not_raised": true,
+    "identity_closeout_complete": true,
+    "load_measured": true,
+    "pending_not_zero_filled": true,
+    "player_gametest_present": true,
+    "player_path_current": true,
+    "remaining_ordinary_not_bulk_complete": true,
+    "roaster_not_stolen": true,
+    "runtime_java_tests_present": true,
+    "source_compact_current": true,
+    "t35_foundation_unchanged": true,
+    "t36_ready": true,
+    "topology_assembler_compact_status_honest": true,
+    "topology_roaster_frozen_29": true,
+    "topology_storage_after_recipes": true,
+    "topology_t36_complete": true,
+    "work_set_fixed_50": true
+  },
+  "generated_by": "python tools/build_assembler_compact_readiness.py",
+  "identity_closeout": {
+    "blockers": [],
+    "closure_closed": true,
+    "complete": true,
+    "disposition_implemented": true,
+    "fidelity_not_dropped": true,
+    "fidelity_retained": true,
+    "load_measured": true,
+    "opening": {
+      "closure": "incomplete",
+      "disposition": "planned",
+      "fidelity": "source_backed",
+      "load": "pending"
+    },
+    "opening_statuses_match_t35": true,
+    "owner_unchanged": true,
+    "required": {
+      "closure": "closed",
+      "disposition": "implemented",
+      "fidelity": "source_backed",
+      "load": "measured"
+    }
+  },
+  "note": "ASSEMBLER_COMPACT_READY is derived from source currentness, equivalence, runtime, player path, load, census and topology. Fifty generated files are not sufficient. Missing full-replay dump verification or measurements keeps the card blocked.",
+  "roaster_opening": {
+    "families": 29,
+    "host": "cruciblecraft:roaster",
+    "load_opening_source": "tools/assembler_compact_census_delta.json#t14_load",
+    "t14_closing": {
+      "allocation_bytes": 236168,
+      "client_index_ms": 1,
+      "client_reload_ms": 1,
+      "datapack_authored_entries": 3616,
+      "eager_publication_rows": 16611,
+      "lazy_cache_ceiling_rows": 8,
+      "lazy_logical_rows": 2261,
+      "lookup_candidate_count": 42,
+      "lookup_p95_ns": 87368,
+      "retained_memory_bytes": 5150,
+      "server_index_ms": 1,
+      "server_reload_ms": 1,
+      "sync_bytes": 5150
+    },
+    "unique_active_after_assembler_compact_ready": true
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "ASSEMBLER_COMPACT_READY",
+  "t35_history_readonly": true,
+  "t36_history_readonly": true
+}

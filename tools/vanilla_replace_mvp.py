@@ -9,22 +9,22 @@ from pathlib import Path
 from typing import Any
 
 from tools import closeout_seal
-from tools import t35_common as t35
+from tools import census_common as census
 
 SLUG = "content/vanilla-replace-mvp"
 STATUS = "VANILLA_REPLACE_MVP_READY"
 R0_SLUG = "portfolio/vanilla-replace-r0"
 R0_STATUS = "VANILLA_REPLACE_R0_READY"
-SOURCE_REVISION = t35.SOURCE_REVISION
+SOURCE_REVISION = census.SOURCE_REVISION
 VANILLA_BLOB = "4c459acd2c7729d4186c5ada9ccd76181745bacf"
 GENERATED_BY = "python tools/build_vanilla_replace_mvp.py"
-WAVE_DIR = t35.TOOLS / "waves" / "content" / "vanilla-replace-mvp"
+WAVE_DIR = census.TOOLS / "waves" / "content" / "vanilla-replace-mvp"
 LOCK_PATH = WAVE_DIR / "vanilla_replace_lock.json"
 READINESS_PATH = WAVE_DIR / "readiness.json"
-RECIPE_GENERATED = t35.ROOT / "src" / "recipe_generated"
+RECIPE_GENERATED = census.ROOT / "src" / "recipe_generated"
 MINECRAFT_RECIPE_ROOTS = (
-    t35.ROOT / "src" / "main" / "resources" / "data" / "minecraft" / "recipe",
-    t35.ROOT / "src" / "generated" / "resources" / "data" / "minecraft" / "recipe",
+    census.ROOT / "src" / "main" / "resources" / "data" / "minecraft" / "recipe",
+    census.ROOT / "src" / "generated" / "resources" / "data" / "minecraft" / "recipe",
 )
 POINTER_KEYS = ("file", "files", "lines", "calls", "note")
 
@@ -32,7 +32,7 @@ POINTER_KEYS = ("file", "files", "lines", "calls", "note")
 def load_lock() -> dict[str, Any]:
     if not LOCK_PATH.is_file():
         raise ValueError(f"missing lock: {LOCK_PATH.as_posix()}")
-    return t35.load_json(LOCK_PATH)
+    return census.load_json(LOCK_PATH)
 
 
 def pointer_ok(pointer: Any) -> bool:
@@ -61,12 +61,12 @@ def owned_minecraft_paths(lock: dict[str, Any]) -> set[str]:
 
 def check_row_io(row: dict[str, Any]) -> list[str]:
     errors: list[str] = []
-    path = t35.ROOT / str(row.get("datapack_path") or "")
+    path = census.ROOT / str(row.get("datapack_path") or "")
     recipe_id = str(row.get("recipe_id") or "")
     if not path.is_file():
         errors.append(f"{recipe_id} missing datapack {path.as_posix()}")
         return errors
-    document = t35.load_json(path)
+    document = census.load_json(path)
     expected = row.get("io") or {}
     result = document.get("result") or {}
     want = expected.get("result") or {}
@@ -91,12 +91,12 @@ def check_row_io(row: dict[str, Any]) -> list[str]:
 
 def check_removed_row(row: dict[str, Any]) -> list[str]:
     errors: list[str] = []
-    path = t35.ROOT / str(row.get("datapack_path") or "")
+    path = census.ROOT / str(row.get("datapack_path") or "")
     recipe_id = str(row.get("recipe_id") or "")
     if not path.is_file():
         errors.append(f"{recipe_id} missing disable datapack {path.as_posix()}")
         return errors
-    document = t35.load_json(path)
+    document = census.load_json(path)
     conditions = document.get("neoforge:conditions") or []
     if not any(
         isinstance(row, dict) and row.get("type") == "neoforge:false"
@@ -153,7 +153,7 @@ def check_lock(lock: dict[str, Any] | None = None) -> list[str]:
             errors.extend(check_removed_row(row))
     if document.get("added"):
         for row in document["added"]:
-            path = t35.ROOT / str(row.get("datapack_path") or "")
+            path = census.ROOT / str(row.get("datapack_path") or "")
             if not path.is_file():
                 errors.append(f"added {row.get('recipe_id')} missing {path.as_posix()}")
     for row in document.get("substituted") or []:
@@ -163,7 +163,7 @@ def check_lock(lock: dict[str, Any] | None = None) -> list[str]:
 
     owned = owned_minecraft_paths(document)
     for path in minecraft_recipe_files():
-        relative = t35.relative(path).replace("\\", "/")
+        relative = census.relative(path).replace("\\", "/")
         if relative not in owned:
             errors.append(f"lock-outside minecraft recipe: {relative}")
 
@@ -173,11 +173,11 @@ def check_lock(lock: dict[str, Any] | None = None) -> list[str]:
                 errors.append(f"recipe_generated mentions mvp: {path.as_posix()}")
 
     for tag in document.get("supporting_tags") or []:
-        path = t35.ROOT / str(tag.get("datapack_path") or "")
+        path = census.ROOT / str(tag.get("datapack_path") or "")
         if not path.is_file():
             errors.append(f"missing tag {path.as_posix()}")
             continue
-        live = t35.load_json(path)
+        live = census.load_json(path)
         values = [str(item) for item in live.get("values") or []]
         expected = [str(item) for item in tag.get("members") or []]
         if values != expected:
@@ -189,11 +189,11 @@ def check_lock(lock: dict[str, Any] | None = None) -> list[str]:
 
 def check_r0_seal() -> list[str]:
     errors = closeout_seal.check_wave_seal(R0_SLUG)
-    root = t35.TOOLS / "waves" / "portfolio" / "vanilla-replace-r0"
-    mechanism = t35.load_json(root / "existing_mechanism.json")
+    root = census.TOOLS / "waves" / "portfolio" / "vanilla-replace-r0"
+    mechanism = census.load_json(root / "existing_mechanism.json")
     if mechanism.get("minecraft_recipe_override_count") != 0:
         errors.append("R0 existing_mechanism override count was rewritten")
-    readiness = t35.load_json(root / "readiness.json")
+    readiness = census.load_json(root / "readiness.json")
     if readiness.get("status") != R0_STATUS:
         errors.append("R0 readiness status drifted")
     evidence = readiness.get("evidence") or {}
@@ -223,7 +223,7 @@ def readiness_document() -> dict[str, Any]:
 def write_readiness() -> dict[str, Any]:
     WAVE_DIR.mkdir(parents=True, exist_ok=True)
     document = readiness_document()
-    t35.write_stable(READINESS_PATH, document)
+    census.write_stable(READINESS_PATH, document)
     return document
 
 
@@ -231,8 +231,8 @@ def check_readiness() -> list[str]:
     if not READINESS_PATH.is_file():
         return [f"missing {READINESS_PATH.as_posix()}"]
     live = readiness_document()
-    committed = t35.load_json(READINESS_PATH)
-    drift = t35.first_json_diff(live, committed)
+    committed = census.load_json(READINESS_PATH)
+    drift = census.first_json_diff(live, committed)
     if drift:
         return [f"readiness drifted: {drift}"]
     if committed.get("unique_active_wave") is not None:

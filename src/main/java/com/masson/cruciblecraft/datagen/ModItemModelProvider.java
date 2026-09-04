@@ -118,7 +118,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     private void generatedImportedGt6(String name) {
         withExistingParent(name, mcLoc("item/generated"))
-                .texture("layer0", modLoc("item/t34_gt6/" + name));
+                .texture("layer0", modLoc("item/gt6_import/" + name));
     }
 
     private void generatedMachineItem(String machine, String face) {

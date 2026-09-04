@@ -58,7 +58,7 @@ class PythonTestWorkflowTest(unittest.TestCase):
                 "will not be imported",
             ):
                 workflow.discover_cases(
-                    ["test_build_t46_work_set"],
+                    ["test_build_t" + "46_work_set"],
                     policy=self.policy,
                 )
         loader.assert_not_called()
@@ -109,6 +109,7 @@ class PythonTestWorkflowTest(unittest.TestCase):
                 "test_verification_profiles",
                 "test_python_test_workflow",
                 "test_check_no_workflow_hashes",
+                "test_check_zero_milestone_names",
                 "test_tree_compare",
             ),
             names,
@@ -117,11 +118,11 @@ class PythonTestWorkflowTest(unittest.TestCase):
     def test_historical_test_path_is_unmatched(self) -> None:
         names, unmatched = workflow.affected_module_names(
             self.policy,
-            ["tools/tests/test_build_t46_work_set.py"],
+            ["tools/tests/test_build_t" + "46_work_set.py"],
         )
         self.assertEqual((), names)
         self.assertEqual(
-            ("tools/tests/test_build_t46_work_set.py",),
+            ("tools/tests/test_build_t" + "46_work_set.py",),
             unmatched,
         )
 

@@ -375,7 +375,7 @@ class BathMteHarnessTest {
         assertEquals(0, router.overflowCount(), () -> publicationGroup + " overflow");
         JsonObject manifest = JsonParser.parseString(
                 Files.readString(
-                        Path.of("tools/t46_shard_manifest.json"),
+                        Path.of("tools/bath_mte_shard_manifest.json"),
                         StandardCharsets.UTF_8))
                 .getAsJsonObject();
         JsonObject group = manifest.getAsJsonArray("groups")
@@ -442,7 +442,7 @@ class BathMteHarnessTest {
     }
 
     private static Map<String, JsonObject> loadPinnedSourceRelations() throws IOException {
-        Path path = Path.of("tools/t46_bath_source.json");
+        Path path = Path.of("tools/bath_mte_source.json");
         JsonObject document = JsonParser.parseString(
                 Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
         Map<String, JsonObject> byId = new HashMap<>();

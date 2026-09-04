@@ -24,6 +24,6 @@ class MaterialRegistrationGateTest {
         var arsenopyrite = registered.get("arsenopyrite");
         assertTrue(
                 arsenopyrite != null && arsenopyrite.contains(MaterialPrefixes.ORE),
-                "T38 source-backed acquisition may register ore beyond GT6 factual forms");
+                "source-backed acquisition may register ore beyond GT6 factual forms");
     }
 }

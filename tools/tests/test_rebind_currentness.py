@@ -7,8 +7,8 @@ from tools import rebind_currentness as rebind
 
 
 class RebindCurrentnessTest(unittest.TestCase):
-    def test_plan_lists_t35_and_card_closeout(self) -> None:
-        self.assertEqual(0, rebind.main(["--plan", "--scope", "t35"]))
+    def test_plan_lists_census_and_card_closeout(self) -> None:
+        self.assertEqual(0, rebind.main(["--plan", "--scope", "census"]))
         self.assertEqual(0, rebind.main(["--plan", "--scope", "card-closeout"]))
         self.assertEqual(0, rebind.main(["--plan", "--scope", "recipes"]))
 

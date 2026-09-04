@@ -39,17 +39,17 @@ class EnergyConverterCatalogTest {
                                         == EnergyConverterProfile.Status.COMPLETE)
                         .count());
         assertTrue(profiles.values().stream()
-                .filter(profile -> profile.stage().equals("T18a"))
+                .filter(profile -> profile.stage().equals("steam_ku_chain"))
                 .allMatch(profile ->
                         profile.status()
                                 == EnergyConverterProfile.Status.COMPLETE));
         assertTrue(profiles.values().stream()
-                .filter(profile -> profile.stage().equals("T18b"))
+                .filter(profile -> profile.stage().equals("liquid_fuel_ru_chain"))
                 .allMatch(profile ->
                         profile.status()
                                 == EnergyConverterProfile.Status.COMPLETE));
         assertTrue(profiles.values().stream()
-                .filter(profile -> profile.stage().equals("T18c"))
+                .filter(profile -> profile.stage().equals("gas_hu_chain"))
                 .allMatch(profile ->
                         profile.status()
                                 == EnergyConverterProfile.Status.COMPLETE));
@@ -143,7 +143,7 @@ class EnergyConverterCatalogTest {
     }
 
     @Test
-    void t18bDynamoCorrectsLegacy24To24WithAuditableSourceLoss() {
+    void dynamoCorrectsLegacy24To24WithAuditableSourceLoss() {
         EnergyConverterProfile dynamo = EnergyConverterCatalog.require(
                 "cruciblecraft:bronze_dynamo");
 
@@ -169,7 +169,7 @@ class EnergyConverterCatalogTest {
     }
 
     @Test
-    void t18bFuelEngineLocksMotorLiquidSourceAndRuPacket() {
+    void fuelEngineLocksMotorLiquidSourceAndRuPacket() {
         EnergyConverterProfile engine = EnergyConverterCatalog.require(
                 "cruciblecraft:bronze_fuel_engine");
 
@@ -189,7 +189,7 @@ class EnergyConverterCatalogTest {
     }
 
     @Test
-    void t18cGasGeneratorLocksBurnFuelHuRateAndEfficiency() {
+    void gasGeneratorLocksBurnFuelHuRateAndEfficiency() {
         EnergyConverterProfile generator = EnergyConverterCatalog.require(
                 "cruciblecraft:bronze_gas_generator");
 

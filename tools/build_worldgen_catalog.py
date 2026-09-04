@@ -17,7 +17,7 @@ TOOLS = ROOT / "tools"
 sys.path.insert(0, str(ROOT))
 
 from tools import build_gt6_veins as vein_builder  # noqa: E402
-from tools import t20_worldgen_rows  # noqa: E402
+from tools import worldgen_rows  # noqa: E402
 
 ORE_DECLARATIONS = (
     ROOT
@@ -57,16 +57,16 @@ MATERIAL_REGISTRATION_GATE = (
 T11_RUNTIME_POLICY = (
     ROOT
     / "src/main/resources/data/cruciblecraft"
-    / "t11_hydrocarbon_runtime_policy.json"
+    / "hydrocarbon_runtime_policy.json"
 )
 T11_NATURAL_GAS_MATERIAL = (
     ROOT
-    / "src/main/resources/data/cruciblecraft/t11_materials"
+    / "src/main/resources/data/cruciblecraft/hydrocarbon_materials"
     / "natural_gas.json"
 )
 CLOSURE_LEDGER = TOOLS / "gt6_ore_chain_closure.json"
-T20_SOURCE_POLICY = TOOLS / "t20_worldgen_source_policy.json"
-T38_ACQUISITION = TOOLS / "t38_source_backed_acquisition.json"
+T20_SOURCE_POLICY = TOOLS / "worldgen_worldgen_source_policy.json"
+ROASTER_COMPACT_ACQUISITION = TOOLS / "roaster_source_backed_acquisition.json"
 OUTPUT_RESOURCE_ROOT = ROOT / "src/worldgen_catalog_generated/resources"
 READINESS = TOOLS / "worldgen_catalog_readiness.json"
 RESOURCE_PATH = re.compile(r"[a-z0-9_.-]+")
@@ -223,25 +223,25 @@ def load_closure_veins(
         raise ValueError("Closure ore declarations contain duplicate materials")
 
     actual = set(materials)
-    # T38 projects complete pinned GT6 layer facts through a separate,
+    # roaster/compact projects complete pinned GT6 layer facts through a separate,
     # additive overlay.  Do not force those newly covered materials back into
     # the immutable T20 closure declaration.  A material already present in
     # the core rows (for example iridium) remains owned by that core ledger.
-    t38_document = require_mapping(load(T38_ACQUISITION), str(T38_ACQUISITION))
-    if t38_document.get("status") != "T38_SOURCE_BACKED_ACQUISITION_READY":
-        raise ValueError("T38 source-backed acquisition overlay is not ready")
-    t38_veins = t38_document.get("veins")
-    if not isinstance(t38_veins, list):
-        raise ValueError("T38 source-backed acquisition veins are invalid")
-    t38_materials = {
+    roaster_document = require_mapping(load(ROASTER_COMPACT_ACQUISITION), str(ROASTER_COMPACT_ACQUISITION))
+    if roaster_document.get("status") != "ROASTER_COMPACT_SOURCE_BACKED_ACQUISITION_READY":
+        raise ValueError("roaster/compact source-backed acquisition overlay is not ready")
+    roaster_veins = roaster_document.get("veins")
+    if not isinstance(roaster_veins, list):
+        raise ValueError("roaster/compact source-backed acquisition veins are invalid")
+    roaster_materials = {
         entry.get("material")
-        for vein in t38_veins
+        for vein in roaster_veins
         if isinstance(vein, dict)
         for layer in ("top", "bottom", "between", "spread")
         for entry in vein.get(layer) or []
         if isinstance(entry, dict) and isinstance(entry.get("material"), str)
     }
-    expected = closure_vein_materials() - (t38_materials - actual)
+    expected = closure_vein_materials() - (roaster_materials - actual)
     if actual != expected:
         raise ValueError(
             "Closure vein ledger mismatch; "
@@ -261,34 +261,34 @@ def load_closure_veins(
     return veins
 
 
-def load_t38_player_path_veins(
+def load_roaster_player_path_veins(
     capabilities: dict[str, dict[str, set[str]]],
 ) -> tuple[list[dict[str, Any]], list[str]]:
-    """Load T38's additive, source-backed player-path vein overlay.
+    """Load roaster/compact's additive, source-backed player-path vein overlay.
 
     These rows are deliberately outside the immutable 129-row T20 closure
     ledger.  They must nevertheless be concrete runtime worldgen rows, not
     reachability-only assertions.
     """
-    document = require_mapping(load(T38_ACQUISITION), str(T38_ACQUISITION))
+    document = require_mapping(load(ROASTER_COMPACT_ACQUISITION), str(ROASTER_COMPACT_ACQUISITION))
     if (
         document.get("schema_version") != 1
-        or document.get("status") != "T38_SOURCE_BACKED_ACQUISITION_READY"
+        or document.get("status") != "ROASTER_COMPACT_SOURCE_BACKED_ACQUISITION_READY"
         or document.get("source_revision")
         != "3703e40308c8c030763fd6297dea8b210d2a77b1"
     ):
-        raise ValueError("T38 source-backed acquisition overlay is invalid")
+        raise ValueError("roaster/compact source-backed acquisition overlay is invalid")
     rows = document.get("veins")
     required = document.get("required_materials")
     if not isinstance(rows, list) or len(rows) != 3:
-        raise ValueError("T38 source-backed acquisition must contain three veins")
+        raise ValueError("roaster/compact source-backed acquisition must contain three veins")
     if not isinstance(required, list) or set(required) != {
         "arsenopyrite",
         "chalcopyrite",
         "cooperite",
         "molybdenite",
     }:
-        raise ValueError("T38 source-backed acquisition material set drifted")
+        raise ValueError("roaster/compact source-backed acquisition material set drifted")
     veins = [
         vein_builder.validate_vein(
             Path(f"{row['id']}.json"), row, capabilities
@@ -298,7 +298,7 @@ def load_t38_player_path_veins(
     ids = [vein["id"] for vein in veins]
     salts = [vein["salt"] for vein in veins]
     if len(ids) != len(set(ids)) or len(salts) != len(set(salts)):
-        raise ValueError("T38 source-backed acquisition ids or salts collide")
+        raise ValueError("roaster/compact source-backed acquisition ids or salts collide")
     covered = {
         entry["material"]
         for vein in veins
@@ -306,7 +306,7 @@ def load_t38_player_path_veins(
         for entry in vein[layer]
     }
     if not set(required) <= covered:
-        raise ValueError("T38 source-backed acquisition does not place every input")
+        raise ValueError("roaster/compact source-backed acquisition does not place every input")
     return veins, sorted(required)
 
 
@@ -320,7 +320,7 @@ def load_geometry_policy(rows: list[dict[str, Any]]) -> dict[str, Any]:
     ):
         raise ValueError("T20 authored geometry is not fully classified")
     return {
-        "status": "T20_CLASSIFIED",
+        "status": "ORE_VEIN_CLASSIFIED",
         "profile_version": 2,
         "source_revision": (
             "3703e40308c8c030763fd6297dea8b210d2a77b1"
@@ -802,7 +802,7 @@ def build_documents() -> tuple[
 ]:
     capabilities = vein_builder.material_capabilities()
     closure_veins = load_closure_veins(capabilities)
-    t38_veins, t38_materials = load_t38_player_path_veins(capabilities)
+    roaster_veins, roaster_materials = load_roaster_player_path_veins(capabilities)
     geometry_policy = load_geometry_policy(closure_veins)
     deposits = load_fluid_deposits()
     surface_scatter = load_surface_scatter()
@@ -820,9 +820,9 @@ def build_documents() -> tuple[
         for layer in vein_builder.LAYERS
         for entry in vein[layer]
     }
-    t38_worldgen_materials = {
+    roaster_worldgen_materials = {
         entry["material"]
-        for vein in t38_veins
+        for vein in roaster_veins
         for layer in vein_builder.LAYERS
         for entry in vein[layer]
     }
@@ -830,30 +830,30 @@ def build_documents() -> tuple[
         material
         for material, forms in capabilities.items()
         if "ore" in forms["factual"] and "ore" in forms["registered"]
-    } | t38_worldgen_materials
+    } | roaster_worldgen_materials
     if t2_materials & closure_materials:
         raise ValueError(
             "Base and closure vein material sets overlap: "
             f"{sorted(t2_materials & closure_materials)}"
         )
     if (
-        t2_materials | closure_materials | t38_worldgen_materials
+        t2_materials | closure_materials | roaster_worldgen_materials
         != registered_ore_materials
     ):
         raise ValueError(
-            "Base + closure + T38 worldgen does not cover the registered ore "
+            "Base + closure + roaster/compact worldgen does not cover the registered ore "
             "domain; "
-            f"missing={sorted(registered_ore_materials - t2_materials - closure_materials - t38_worldgen_materials)}, "
-            f"stale={sorted((t2_materials | closure_materials | t38_worldgen_materials) - registered_ore_materials)}"
+            f"missing={sorted(registered_ore_materials - t2_materials - closure_materials - roaster_worldgen_materials)}, "
+            f"stale={sorted((t2_materials | closure_materials | roaster_worldgen_materials) - registered_ore_materials)}"
         )
 
-    ids = [vein["id"] for vein in closure_veins + t38_veins] + [
+    ids = [vein["id"] for vein in closure_veins + roaster_veins] + [
         deposit["id"] for deposit in deposits
     ]
     salts = (
         [vein["salt"] for vein in t2_veins]
         + [vein["salt"] for vein in closure_veins]
-        + [vein["salt"] for vein in t38_veins]
+        + [vein["salt"] for vein in roaster_veins]
         + [deposit["salt"] for deposit in deposits]
     )
     if len(ids) != len(set(ids)):
@@ -862,7 +862,7 @@ def build_documents() -> tuple[
         raise ValueError("Worldgen salts must be globally unique")
 
     files: dict[str, str] = {}
-    for vein in closure_veins + t38_veins:
+    for vein in closure_veins + roaster_veins:
         vein_id = vein["id"]
         files[
             f"data/cruciblecraft/worldgen/configured_feature/{vein_id}.json"
@@ -901,9 +901,9 @@ def build_documents() -> tuple[
         vein["generation_chance"] / vein["region_size_chunks"] ** 2
         for vein in closure_veins
     )
-    t38_hits = sum(
+    roaster_hits = sum(
         vein["generation_chance"] / vein["region_size_chunks"] ** 2
-        for vein in t38_veins
+        for vein in roaster_veins
     )
     fluid_hits = sum(
         deposit["generation_chance"]
@@ -924,13 +924,13 @@ def build_documents() -> tuple[
                 ),
                 "sha256": sha256(ORE_DECLARATIONS),
             },
-            "t20_source_policy": {
+            "worldgen_source_policy": {
                 "path": "tools/t20_worldgen_source_policy.json",
                 "sha256": sha256(T20_SOURCE_POLICY),
             },
-            "t38_source_backed_acquisition": {
-                "path": "tools/t38_source_backed_acquisition.json",
-                "sha256": sha256(T38_ACQUISITION),
+            "roaster_source_backed_acquisition": {
+                "path": "tools/roaster_source_backed_acquisition.json",
+                "sha256": sha256(ROASTER_COMPACT_ACQUISITION),
             },
             "fluid_declarations": {
                 "path": (
@@ -939,17 +939,17 @@ def build_documents() -> tuple[
                 ),
                 "sha256": sha256(FLUID_DECLARATIONS),
             },
-            "t11_runtime_policy": {
+            "hydrocarbon_runtime_policy": {
                 "path": (
                     "src/main/resources/data/cruciblecraft/"
-                    "t11_hydrocarbon_runtime_policy.json"
+                    "hydrocarbon_runtime_policy.json"
                 ),
                 "sha256": sha256(T11_RUNTIME_POLICY),
             },
-            "t11_natural_gas_material": {
+            "hydrocarbon_natural_gas_material": {
                 "path": (
                     "src/main/resources/data/cruciblecraft/"
-                    "t11_materials/natural_gas.json"
+                    "hydrocarbon_materials/natural_gas.json"
                 ),
                 "sha256": sha256(T11_NATURAL_GAS_MATERIAL),
             },
@@ -1000,13 +1000,13 @@ def build_documents() -> tuple[
             "t2_vein_families": len(t2_veins),
             "t2_worldgen_materials": len(t2_materials),
             "closure_vein_classifications": len(closure_veins),
-            "t20_profile_v2_veins": sum(
+            "profile_v2_veins": sum(
                 vein["profile_version"] == 2 for vein in closure_veins
             ),
             "closure_configured_ore_features": len(closure_veins),
             "closure_placed_ore_features": len(closure_veins),
-            "t38_player_path_source_backed_veins": len(t38_veins),
-            "t38_player_path_materials": len(t38_materials),
+            "roaster_player_path_source_backed_veins": len(roaster_veins),
+            "roaster_player_path_materials": len(roaster_materials),
             "registered_ore_materials": len(registered_ore_materials),
             "ore_host_types": 2,
             "registered_ore_blocks": len(registered_ore_materials) * 2,
@@ -1018,12 +1018,12 @@ def build_documents() -> tuple[
         "density": {
             "t2_expected_ore_veins_per_chunk": t2_hits,
             "closure_expected_ore_veins_per_chunk": closure_hits,
-            "t38_expected_ore_veins_per_chunk": t38_hits,
+            "roaster_expected_ore_veins_per_chunk": roaster_hits,
             "combined_expected_ore_veins_per_chunk": (
-                t2_hits + closure_hits + t38_hits
+                t2_hits + closure_hits + roaster_hits
             ),
             "combined_expected_chunks_per_ore_vein": 1.0 / (
-                t2_hits + closure_hits + t38_hits
+                t2_hits + closure_hits + roaster_hits
             ),
             "expected_fluid_deposits_per_chunk": fluid_hits,
             "expected_chunks_per_fluid_deposit": 1.0 / fluid_hits,
@@ -1034,17 +1034,17 @@ def build_documents() -> tuple[
             "decision": "keep_two_hosts",
         },
         "geometry_policy": geometry_policy,
-        "t20_fidelity": t20_worldgen_rows.row_count_summary(closure_veins),
+        "worldgen_fidelity": t20_worldgen_rows.row_count_summary(closure_veins),
         "closure_vein_materials": sorted(closure_materials),
         "closure_vein_feature_ids": sorted(vein["id"] for vein in closure_veins),
-        "t38_player_path_worldgen": {
-            "path": "tools/t38_source_backed_acquisition.json",
-            "source_backed_veins": len(t38_veins),
-            "required_materials": t38_materials,
-            "feature_ids": sorted(vein["id"] for vein in t38_veins),
+        "roaster_player_path_worldgen": {
+            "path": "tools/roaster_source_backed_acquisition.json",
+            "source_backed_veins": len(roaster_veins),
+            "required_materials": roaster_materials,
+            "feature_ids": sorted(vein["id"] for vein in roaster_veins),
         },
         "all_worldgen_ore_materials": sorted(
-            t2_materials | closure_materials | t38_worldgen_materials
+            t2_materials | closure_materials | roaster_worldgen_materials
         ),
         "fluid_deposits": [
             {

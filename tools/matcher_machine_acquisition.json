@@ -1,0 +1,1618 @@
+{
+  "casing_recipes": [
+    {
+      "ingredients": [
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "declared_survival_source",
+              "inputs": [],
+              "item": "cruciblecraft:aluminium/ingot",
+              "producer": "src/main/resources/data/cruciblecraft/materials/aluminium.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:aluminium/plate",
+          "occurrences": 8,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "P"
+        }
+      ],
+      "pattern": [
+        "PPP",
+        "P P",
+        "PPP"
+      ],
+      "reachable": true,
+      "recipe_id": "cruciblecraft:components/aluminium_machine_casing",
+      "recipe_path": "src/generated/resources/data/cruciblecraft/recipe/components/aluminium_machine_casing.json",
+      "result_item": "cruciblecraft:aluminium_machine_casing"
+    },
+    {
+      "ingredients": [
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "declared_survival_source",
+                  "inputs": [],
+                  "item": "cruciblecraft:bronze/ingot",
+                  "producer": "src/main/resources/data/cruciblecraft/materials/bronze.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:bronze/plate",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+              "reachable": true,
+              "registered": true
+            },
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "declared_survival_source",
+                  "inputs": [],
+                  "item": "cruciblecraft:bronze/ingot",
+                  "producer": "src/main/resources/data/cruciblecraft/materials/bronze.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:bronze/plate",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:bronze/double_plate",
+          "occurrences": 8,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/welder/plates_to_double_plate.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "P"
+        }
+      ],
+      "pattern": [
+        "PPP",
+        "P P",
+        "PPP"
+      ],
+      "reachable": true,
+      "recipe_id": "cruciblecraft:components/bronze_double_machine_casing",
+      "recipe_path": "src/generated/resources/data/cruciblecraft/recipe/components/bronze_double_machine_casing.json",
+      "result_item": "cruciblecraft:bronze_double_machine_casing"
+    },
+    {
+      "ingredients": [
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "declared_survival_source",
+              "inputs": [],
+              "item": "cruciblecraft:stainless_steel/ingot",
+              "producer": "src/main/resources/data/cruciblecraft/materials/stainless_steel.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:stainless_steel/plate",
+          "occurrences": 8,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "P"
+        }
+      ],
+      "pattern": [
+        "PPP",
+        "P P",
+        "PPP"
+      ],
+      "reachable": true,
+      "recipe_id": "cruciblecraft:components/stainless_steel_machine_casing",
+      "recipe_path": "src/generated/resources/data/cruciblecraft/recipe/components/stainless_steel_machine_casing.json",
+      "result_item": "cruciblecraft:stainless_steel_machine_casing"
+    },
+    {
+      "ingredients": [
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "declared_survival_source",
+                  "inputs": [],
+                  "item": "cruciblecraft:steel/ingot",
+                  "producer": "src/main/resources/data/cruciblecraft/materials/steel.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:steel/plate",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+              "reachable": true,
+              "registered": true
+            },
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "declared_survival_source",
+                  "inputs": [],
+                  "item": "cruciblecraft:steel/ingot",
+                  "producer": "src/main/resources/data/cruciblecraft/materials/steel.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:steel/plate",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:steel/double_plate",
+          "occurrences": 8,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/welder/plates_to_double_plate.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "P"
+        }
+      ],
+      "pattern": [
+        "PPP",
+        "P P",
+        "PPP"
+      ],
+      "reachable": true,
+      "recipe_id": "cruciblecraft:components/steel_double_machine_casing",
+      "recipe_path": "src/generated/resources/data/cruciblecraft/recipe/components/steel_double_machine_casing.json",
+      "result_item": "cruciblecraft:steel_double_machine_casing"
+    },
+    {
+      "ingredients": [
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "declared_survival_source",
+              "inputs": [],
+              "item": "cruciblecraft:steel_galvanized/ingot",
+              "producer": "src/main/resources/data/cruciblecraft/materials/steel_galvanized.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:steel_galvanized/plate",
+          "occurrences": 8,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "P"
+        }
+      ],
+      "pattern": [
+        "PPP",
+        "P P",
+        "PPP"
+      ],
+      "reachable": true,
+      "recipe_id": "cruciblecraft:components/steel_galvanized_machine_casing",
+      "recipe_path": "src/generated/resources/data/cruciblecraft/recipe/components/steel_galvanized_machine_casing.json",
+      "result_item": "cruciblecraft:steel_galvanized_machine_casing"
+    },
+    {
+      "ingredients": [
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "declared_survival_source",
+                  "inputs": [],
+                  "item": "cruciblecraft:titanium/ingot",
+                  "producer": "src/main/resources/data/cruciblecraft/materials/titanium.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:titanium/plate",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+              "reachable": true,
+              "registered": true
+            },
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "declared_survival_source",
+                  "inputs": [],
+                  "item": "cruciblecraft:titanium/ingot",
+                  "producer": "src/main/resources/data/cruciblecraft/materials/titanium.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:titanium/plate",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:titanium/double_plate",
+          "occurrences": 8,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/welder/plates_to_double_plate.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "P"
+        }
+      ],
+      "pattern": [
+        "PPP",
+        "P P",
+        "PPP"
+      ],
+      "reachable": true,
+      "recipe_id": "cruciblecraft:components/titanium_double_machine_casing",
+      "recipe_path": "src/generated/resources/data/cruciblecraft/recipe/components/titanium_double_machine_casing.json",
+      "result_item": "cruciblecraft:titanium_double_machine_casing"
+    }
+  ],
+  "counts": {
+    "casing_recipes": 6,
+    "ingredient_rows": 36,
+    "machine_variant_recipes": 9,
+    "registered_results": 15,
+    "source_declarations": 11,
+    "unreachable": 0
+  },
+  "currentness": {
+    "crafting_recipes": {
+      "src/generated/resources/data/cruciblecraft/recipe/components/aluminium_machine_casing.json": "0e7db004aebea78aa92625f5938e389c0cae22bc26c998df47bc60119e59520a",
+      "src/generated/resources/data/cruciblecraft/recipe/components/bronze_double_machine_casing.json": "1b4a75d89c6d508bd324eb528769efcd40a1ebb5a78ab3f5a2d98895afbfa798",
+      "src/generated/resources/data/cruciblecraft/recipe/components/stainless_steel_machine_casing.json": "677a8276c89279fe0d1b4416fded1564570c572a51c0afb89df43853fc4d754e",
+      "src/generated/resources/data/cruciblecraft/recipe/components/steel_double_machine_casing.json": "b1fd5d55d391e5a466f2a00e6e0ba13787a1e51e2ef21f2128028dd255aef2a3",
+      "src/generated/resources/data/cruciblecraft/recipe/components/steel_galvanized_machine_casing.json": "8fc17a9abdfedf55d77758ce02c937c727c1301e39d3e0e585e31c48b8ed3bff",
+      "src/generated/resources/data/cruciblecraft/recipe/components/titanium_double_machine_casing.json": "a1f4f5daa3c9114a4407279097882499252f8307a34087a62c67486733be6428",
+      "src/generated/resources/data/cruciblecraft/recipe/machines/aluminium_electrolyzer.json": "253fbf565e0d9689605091d6726cb28b661b8fead82f6a4a0ebee405776166fb",
+      "src/generated/resources/data/cruciblecraft/recipe/machines/centrifuge.json": "1fb85e3c64e4e45b8ea32c3f2b48b238fc88f91f46a5813a8670af6894f6e45e",
+      "src/generated/resources/data/cruciblecraft/recipe/machines/electrolyzer.json": "e615033e0467b4f77ad306e6e3f863a8c119a347cf888a15063928b6b5398301",
+      "src/generated/resources/data/cruciblecraft/recipe/machines/sifter.json": "64ca38bd1a836086334eaa0594c55b9aefb57172030d9f588f2b625a852043fb",
+      "src/generated/resources/data/cruciblecraft/recipe/machines/stainless_steel_electrolyzer.json": "bc167db42a7399e1a0b7ef07cb4731d28df9a3298ccebc14475223a157f85824",
+      "src/generated/resources/data/cruciblecraft/recipe/machines/steel_centrifuge.json": "9509d1b44d6615a84b0d393615886273c5ee2f520111a9be53376a3e21e6bbe5",
+      "src/generated/resources/data/cruciblecraft/recipe/machines/steel_sifter.json": "5645c2d56260f1daf74a37ad298d9b610b9ee2f2b0546b3e51ae77720b00b199",
+      "src/generated/resources/data/cruciblecraft/recipe/machines/titanium_centrifuge.json": "473bf6e7c5629ec40af5984f0116369623941a0a89e8a5136e127d23e8ad747a",
+      "src/generated/resources/data/cruciblecraft/recipe/machines/titanium_sifter.json": "ad9e57a8f6a6bc7ffbf6a8703481423ad5c6e342fd8ea674ea6801b68bf31a43"
+    },
+    "owned_inputs": {
+      "tools/build_t15_machine_acquisition.py": "e272bc64d5c4b85d722fe1fab754867975e5ac1ac883b27cd56c2abcdeead6f7",
+      "tools/t15_machine_acquisition_policy.json": "0cba1d86ce34660a05993370e183dc7438aa2432d83a93206523dfd5be79c1e4"
+    },
+    "producer_rules": {
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/plates_to_gear.json": "7e32458ea8f7b6a12e364888999377ffa492bf1a0227431c131493041751e84f",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/wire_and_rubber_to_cable.json": "81f46a2698f09c7bcd385edf46a95f1db6bd19c1809f894e2f85ad917de7b3d3",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/bender/long_rod_to_spring.json": "16e960939a744c4a45dfa88a1c65a1add8d29249784f45f8831c403680ed7c0a",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/cutter/plate_to_foil.json": "e01d9553879ebf31d673f53ad3f9866a908ae077553d244d124a2d8a72f5a465",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/low_heat_long_rod.json": "61a28ec990a1fa6a9338f27162726d3cda04d40b60d2491630086d3c4f10f00a",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/normal_long_rod.json": "c71efa218b25e2383ef6d44ecfcc65e747f5a1392eee25203519866114b076ac",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/lathe/ingot_to_rods.json": "31164a81c71407534ccf833ba67beeb874ec195ef69cb12b770198d0fe4a5693",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json": "69885ea9e6dbb555f460d512a7d77227e3e2787b559bfeac0e76eb933475b994",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/welder/plates_to_double_plate.json": "bd9c95d8da6386ef6a2ad54259a1425a1c2fe38db134f41a0db841bac9e1aeb3",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/wiremill/foil_to_fine_wire.json": "b0899b86b0ab8facc9b8226b636fe010e37093200ddbc2861429bdadad541db9",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/wiremill/ingot_to_wire.json": "56396d567ab6a6bb3b400103688b5736de6480865d25b4950ded73307cfc14fc"
+    },
+    "registration_sources": {
+      "src/main/java/com/masson/cruciblecraft/registry/ModItems.java": "90453f4ddb6ea64e11c4cf35b56d890fca2b2766b49c3c8252652afc35c162ec",
+      "src/main/resources/data/cruciblecraft/machine_tiers.json": "a6f36da6f1fe8b7a21c7d9abe38f4eaeadf9da9a95c92ab5167d364c6ad30663",
+      "src/main/resources/data/cruciblecraft/material_registration_gate.json": "80271812ac9a6a9051a2aad29c4479ebc3c83de81a75b025f1f94e0fde68abf3"
+    },
+    "source_materials": {
+      "src/main/resources/data/cruciblecraft/materials/aluminium.json": "bed2ba42908d513e4d3134181b0068b35c963a7b4a357d1af485e46d9050b1c4",
+      "src/main/resources/data/cruciblecraft/materials/bronze.json": "8b5eaca6c080bd74a75e708ac8625f96a15d60c66f3e53f9d1a7a183c52b1d4f",
+      "src/main/resources/data/cruciblecraft/materials/copper.json": "75d152a596202659b0d6d7ef6a86f80c82a53401d7591743780190873514d717",
+      "src/main/resources/data/cruciblecraft/materials/gold.json": "e6a24bd05bb93a2f6894b202b7445f23cbf13eb1859710a0f97247644e5e3425",
+      "src/main/resources/data/cruciblecraft/materials/platinum.json": "0780d22db7699325b9a41731756aa11cb0a82cf13153bebb9942acb78b80e6de",
+      "src/main/resources/data/cruciblecraft/materials/rubber.json": "65bf410b2773685a658c303f1d3a194de4ff3489fdc357e19d30c98111e0d592",
+      "src/main/resources/data/cruciblecraft/materials/stainless_steel.json": "bb6e291e5ba116b84373751c4d7c14b0c9aab5d1e4ff39186d62de9f9faca862",
+      "src/main/resources/data/cruciblecraft/materials/steel.json": "49c6d9d9ecc1d290cf9c89e80aa6f9c49ef1457c4d3c1e0121c3a1c28b1e44b6",
+      "src/main/resources/data/cruciblecraft/materials/steel_galvanized.json": "4ea90e5a59175b7e46f84fb4ca9352ff9dd8d42cb8298813d9af727af20ced84",
+      "src/main/resources/data/cruciblecraft/materials/tin.json": "0080cc1bb0ae8362bea9f7475ce25512fdd28dd5afff986af1ce007fb46a4ab5",
+      "src/main/resources/data/cruciblecraft/materials/titanium.json": "ca262abbc593a4c27fc08f96b141c38c1b20552f81962c78cbdfd72044cbf3f0"
+    },
+    "tag_sources": {
+      "src/component_rule_generated/resources/data/cruciblecraft/tags/item/any_rubber_plates.json": "b3cca6a965759b95b61f801d241087b0cb724d3047b109cfa33c2747746eab59"
+    }
+  },
+  "delivery": "T15c",
+  "expected_set": {
+    "casing_recipe_ids": [
+      "cruciblecraft:components/aluminium_machine_casing",
+      "cruciblecraft:components/bronze_double_machine_casing",
+      "cruciblecraft:components/stainless_steel_machine_casing",
+      "cruciblecraft:components/steel_double_machine_casing",
+      "cruciblecraft:components/steel_galvanized_machine_casing",
+      "cruciblecraft:components/titanium_double_machine_casing"
+    ],
+    "machine_variant_recipe_ids": [
+      "cruciblecraft:machines/aluminium_electrolyzer",
+      "cruciblecraft:machines/centrifuge",
+      "cruciblecraft:machines/electrolyzer",
+      "cruciblecraft:machines/sifter",
+      "cruciblecraft:machines/stainless_steel_electrolyzer",
+      "cruciblecraft:machines/steel_centrifuge",
+      "cruciblecraft:machines/steel_sifter",
+      "cruciblecraft:machines/titanium_centrifuge",
+      "cruciblecraft:machines/titanium_sifter"
+    ],
+    "production_mapping_reused": false,
+    "source": "independent_t15c_acceptance_policy"
+  },
+  "item_registrations": {
+    "cruciblecraft:aluminium_electrolyzer": {
+      "field": "ALUMINIUM_ELECTROLYZER",
+      "registered_id": "cruciblecraft:aluminium_electrolyzer"
+    },
+    "cruciblecraft:aluminium_machine_casing": {
+      "field": "ALUMINIUM_MACHINE_CASING",
+      "registered_id": "cruciblecraft:aluminium_machine_casing"
+    },
+    "cruciblecraft:bronze_double_machine_casing": {
+      "field": "BRONZE_DOUBLE_MACHINE_CASING",
+      "registered_id": "cruciblecraft:bronze_double_machine_casing"
+    },
+    "cruciblecraft:centrifuge": {
+      "field": "CENTRIFUGE",
+      "registered_id": "cruciblecraft:centrifuge"
+    },
+    "cruciblecraft:electrolyzer": {
+      "field": "ELECTROLYZER",
+      "registered_id": "cruciblecraft:electrolyzer"
+    },
+    "cruciblecraft:sifter": {
+      "field": "SIFTER",
+      "registered_id": "cruciblecraft:sifter"
+    },
+    "cruciblecraft:stainless_steel_electrolyzer": {
+      "field": "STAINLESS_STEEL_ELECTROLYZER",
+      "registered_id": "cruciblecraft:stainless_steel_electrolyzer"
+    },
+    "cruciblecraft:stainless_steel_machine_casing": {
+      "field": "STAINLESS_STEEL_MACHINE_CASING",
+      "registered_id": "cruciblecraft:stainless_steel_machine_casing"
+    },
+    "cruciblecraft:steel_centrifuge": {
+      "field": "STEEL_CENTRIFUGE",
+      "registered_id": "cruciblecraft:steel_centrifuge"
+    },
+    "cruciblecraft:steel_double_machine_casing": {
+      "field": "STEEL_DOUBLE_MACHINE_CASING",
+      "registered_id": "cruciblecraft:steel_double_machine_casing"
+    },
+    "cruciblecraft:steel_galvanized_machine_casing": {
+      "field": "STEEL_GALVANIZED_MACHINE_CASING",
+      "registered_id": "cruciblecraft:steel_galvanized_machine_casing"
+    },
+    "cruciblecraft:steel_sifter": {
+      "field": "STEEL_SIFTER",
+      "registered_id": "cruciblecraft:steel_sifter"
+    },
+    "cruciblecraft:titanium_centrifuge": {
+      "field": "TITANIUM_CENTRIFUGE",
+      "registered_id": "cruciblecraft:titanium_centrifuge"
+    },
+    "cruciblecraft:titanium_double_machine_casing": {
+      "field": "TITANIUM_DOUBLE_MACHINE_CASING",
+      "registered_id": "cruciblecraft:titanium_double_machine_casing"
+    },
+    "cruciblecraft:titanium_sifter": {
+      "field": "TITANIUM_SIFTER",
+      "registered_id": "cruciblecraft:titanium_sifter"
+    }
+  },
+  "machine_variant_recipes": [
+    {
+      "ingredients": [
+        {
+          "classification": "concrete_shaped_recipe",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "declared_survival_source",
+                  "inputs": [],
+                  "item": "cruciblecraft:aluminium/ingot",
+                  "producer": "src/main/resources/data/cruciblecraft/materials/aluminium.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:aluminium/plate",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:aluminium_machine_casing",
+          "occurrences": 1,
+          "producer": "cruciblecraft:components/aluminium_machine_casing",
+          "producer_path": "src/generated/resources/data/cruciblecraft/recipe/components/aluminium_machine_casing.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "M"
+        },
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "declared_survival_source",
+              "inputs": [],
+              "item": "cruciblecraft:platinum/ingot",
+              "producer": "src/main/resources/data/cruciblecraft/materials/platinum.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:platinum/wire",
+          "occurrences": 2,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/wiremill/ingot_to_wire.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "S"
+        },
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "declared_survival_source",
+                  "inputs": [],
+                  "item": "cruciblecraft:copper/ingot",
+                  "producer": "src/main/resources/data/cruciblecraft/materials/copper.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:copper/wire",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/wiremill/ingot_to_wire.json",
+              "reachable": true,
+              "registered": true
+            },
+            {
+              "classification": "declared_survival_source",
+              "inputs": [],
+              "item": "cruciblecraft:rubber/plate",
+              "producer": "src/main/resources/data/cruciblecraft/materials/rubber.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:copper/cable",
+          "occurrences": 2,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/wire_and_rubber_to_cable.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "W"
+        }
+      ],
+      "pattern": [
+        "SMS",
+        "W W"
+      ],
+      "reachable": true,
+      "recipe_id": "cruciblecraft:machines/aluminium_electrolyzer",
+      "recipe_path": "src/generated/resources/data/cruciblecraft/recipe/machines/aluminium_electrolyzer.json",
+      "result_item": "cruciblecraft:aluminium_electrolyzer",
+      "selected_casing": "cruciblecraft:aluminium_machine_casing"
+    },
+    {
+      "ingredients": [
+        {
+          "classification": "concrete_shaped_recipe",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "material_rule",
+                  "inputs": [
+                    {
+                      "classification": "declared_survival_source",
+                      "inputs": [],
+                      "item": "cruciblecraft:bronze/ingot",
+                      "producer": "src/main/resources/data/cruciblecraft/materials/bronze.json",
+                      "reachable": true,
+                      "registered": true
+                    }
+                  ],
+                  "item": "cruciblecraft:bronze/plate",
+                  "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+                  "reachable": true,
+                  "registered": true
+                },
+                {
+                  "classification": "material_rule",
+                  "inputs": [
+                    {
+                      "classification": "declared_survival_source",
+                      "inputs": [],
+                      "item": "cruciblecraft:bronze/ingot",
+                      "producer": "src/main/resources/data/cruciblecraft/materials/bronze.json",
+                      "reachable": true,
+                      "registered": true
+                    }
+                  ],
+                  "item": "cruciblecraft:bronze/plate",
+                  "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:bronze/double_plate",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/welder/plates_to_double_plate.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:bronze_double_machine_casing",
+          "occurrences": 1,
+          "producer": "cruciblecraft:components/bronze_double_machine_casing",
+          "producer_path": "src/generated/resources/data/cruciblecraft/recipe/components/bronze_double_machine_casing.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "C"
+        },
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "declared_survival_source",
+                  "inputs": [],
+                  "item": "cruciblecraft:bronze/ingot",
+                  "producer": "src/main/resources/data/cruciblecraft/materials/bronze.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:bronze/plate",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:bronze/gear",
+          "occurrences": 2,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/plates_to_gear.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "G"
+        },
+        {
+          "classification": "compact_material_rule",
+          "inputs": [
+            {
+              "classification": "declared_survival_source",
+              "inputs": [],
+              "item": "cruciblecraft:bronze/ingot",
+              "producer": "src/main/resources/data/cruciblecraft/materials/bronze.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:bronze/long_rod",
+          "occurrences": 1,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/low_heat_long_rod.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "S"
+        }
+      ],
+      "pattern": [
+        "G ",
+        "SC",
+        "G "
+      ],
+      "reachable": true,
+      "recipe_id": "cruciblecraft:machines/centrifuge",
+      "recipe_path": "src/generated/resources/data/cruciblecraft/recipe/machines/centrifuge.json",
+      "result_item": "cruciblecraft:centrifuge",
+      "selected_casing": "cruciblecraft:bronze_double_machine_casing"
+    },
+    {
+      "ingredients": [
+        {
+          "classification": "concrete_shaped_recipe",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "declared_survival_source",
+                  "inputs": [],
+                  "item": "cruciblecraft:steel_galvanized/ingot",
+                  "producer": "src/main/resources/data/cruciblecraft/materials/steel_galvanized.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:steel_galvanized/plate",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:steel_galvanized_machine_casing",
+          "occurrences": 1,
+          "producer": "cruciblecraft:components/steel_galvanized_machine_casing",
+          "producer_path": "src/generated/resources/data/cruciblecraft/recipe/components/steel_galvanized_machine_casing.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "M"
+        },
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "declared_survival_source",
+              "inputs": [],
+              "item": "cruciblecraft:platinum/ingot",
+              "producer": "src/main/resources/data/cruciblecraft/materials/platinum.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:platinum/wire",
+          "occurrences": 2,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/wiremill/ingot_to_wire.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "S"
+        },
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "declared_survival_source",
+                  "inputs": [],
+                  "item": "cruciblecraft:tin/ingot",
+                  "producer": "src/main/resources/data/cruciblecraft/materials/tin.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:tin/wire",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/wiremill/ingot_to_wire.json",
+              "reachable": true,
+              "registered": true
+            },
+            {
+              "classification": "declared_survival_source",
+              "inputs": [],
+              "item": "cruciblecraft:rubber/plate",
+              "producer": "src/main/resources/data/cruciblecraft/materials/rubber.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:tin/cable",
+          "occurrences": 2,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/wire_and_rubber_to_cable.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "W"
+        }
+      ],
+      "pattern": [
+        "SMS",
+        "W W"
+      ],
+      "reachable": true,
+      "recipe_id": "cruciblecraft:machines/electrolyzer",
+      "recipe_path": "src/generated/resources/data/cruciblecraft/recipe/machines/electrolyzer.json",
+      "result_item": "cruciblecraft:electrolyzer",
+      "selected_casing": "cruciblecraft:steel_galvanized_machine_casing"
+    },
+    {
+      "ingredients": [
+        {
+          "classification": "concrete_shaped_recipe",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "material_rule",
+                  "inputs": [
+                    {
+                      "classification": "declared_survival_source",
+                      "inputs": [],
+                      "item": "cruciblecraft:bronze/ingot",
+                      "producer": "src/main/resources/data/cruciblecraft/materials/bronze.json",
+                      "reachable": true,
+                      "registered": true
+                    }
+                  ],
+                  "item": "cruciblecraft:bronze/plate",
+                  "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+                  "reachable": true,
+                  "registered": true
+                },
+                {
+                  "classification": "material_rule",
+                  "inputs": [
+                    {
+                      "classification": "declared_survival_source",
+                      "inputs": [],
+                      "item": "cruciblecraft:bronze/ingot",
+                      "producer": "src/main/resources/data/cruciblecraft/materials/bronze.json",
+                      "reachable": true,
+                      "registered": true
+                    }
+                  ],
+                  "item": "cruciblecraft:bronze/plate",
+                  "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:bronze/double_plate",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/welder/plates_to_double_plate.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:bronze_double_machine_casing",
+          "occurrences": 1,
+          "producer": "cruciblecraft:components/bronze_double_machine_casing",
+          "producer_path": "src/generated/resources/data/cruciblecraft/recipe/components/bronze_double_machine_casing.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "C"
+        },
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "declared_survival_source",
+              "inputs": [],
+              "item": "cruciblecraft:bronze/ingot",
+              "producer": "src/main/resources/data/cruciblecraft/materials/bronze.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:bronze/rod",
+          "occurrences": 2,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/lathe/ingot_to_rods.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "R"
+        },
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "compact_material_rule",
+              "inputs": [
+                {
+                  "classification": "declared_survival_source",
+                  "inputs": [],
+                  "item": "cruciblecraft:bronze/ingot",
+                  "producer": "src/main/resources/data/cruciblecraft/materials/bronze.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:bronze/long_rod",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/low_heat_long_rod.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:bronze/spring",
+          "occurrences": 2,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/bender/long_rod_to_spring.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "S"
+        },
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "material_rule",
+                  "inputs": [
+                    {
+                      "classification": "declared_survival_source",
+                      "inputs": [],
+                      "item": "cruciblecraft:bronze/ingot",
+                      "producer": "src/main/resources/data/cruciblecraft/materials/bronze.json",
+                      "reachable": true,
+                      "registered": true
+                    }
+                  ],
+                  "item": "cruciblecraft:bronze/plate",
+                  "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:bronze/foil",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/cutter/plate_to_foil.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:bronze/fine_wire",
+          "occurrences": 2,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/wiremill/foil_to_fine_wire.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "W"
+        }
+      ],
+      "pattern": [
+        "W W",
+        "RCR",
+        "S S"
+      ],
+      "reachable": true,
+      "recipe_id": "cruciblecraft:machines/sifter",
+      "recipe_path": "src/generated/resources/data/cruciblecraft/recipe/machines/sifter.json",
+      "result_item": "cruciblecraft:sifter",
+      "selected_casing": "cruciblecraft:bronze_double_machine_casing"
+    },
+    {
+      "ingredients": [
+        {
+          "classification": "concrete_shaped_recipe",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "declared_survival_source",
+                  "inputs": [],
+                  "item": "cruciblecraft:stainless_steel/ingot",
+                  "producer": "src/main/resources/data/cruciblecraft/materials/stainless_steel.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:stainless_steel/plate",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:stainless_steel_machine_casing",
+          "occurrences": 1,
+          "producer": "cruciblecraft:components/stainless_steel_machine_casing",
+          "producer_path": "src/generated/resources/data/cruciblecraft/recipe/components/stainless_steel_machine_casing.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "M"
+        },
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "declared_survival_source",
+              "inputs": [],
+              "item": "cruciblecraft:platinum/ingot",
+              "producer": "src/main/resources/data/cruciblecraft/materials/platinum.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:platinum/wire",
+          "occurrences": 2,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/wiremill/ingot_to_wire.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "S"
+        },
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "declared_survival_source",
+                  "inputs": [],
+                  "item": "cruciblecraft:gold/ingot",
+                  "producer": "src/main/resources/data/cruciblecraft/materials/gold.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:gold/wire",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/wiremill/ingot_to_wire.json",
+              "reachable": true,
+              "registered": true
+            },
+            {
+              "classification": "declared_survival_source",
+              "inputs": [],
+              "item": "cruciblecraft:rubber/plate",
+              "producer": "src/main/resources/data/cruciblecraft/materials/rubber.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:gold/cable",
+          "occurrences": 2,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/wire_and_rubber_to_cable.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "W"
+        }
+      ],
+      "pattern": [
+        "SMS",
+        "W W"
+      ],
+      "reachable": true,
+      "recipe_id": "cruciblecraft:machines/stainless_steel_electrolyzer",
+      "recipe_path": "src/generated/resources/data/cruciblecraft/recipe/machines/stainless_steel_electrolyzer.json",
+      "result_item": "cruciblecraft:stainless_steel_electrolyzer",
+      "selected_casing": "cruciblecraft:stainless_steel_machine_casing"
+    },
+    {
+      "ingredients": [
+        {
+          "classification": "concrete_shaped_recipe",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "material_rule",
+                  "inputs": [
+                    {
+                      "classification": "declared_survival_source",
+                      "inputs": [],
+                      "item": "cruciblecraft:steel/ingot",
+                      "producer": "src/main/resources/data/cruciblecraft/materials/steel.json",
+                      "reachable": true,
+                      "registered": true
+                    }
+                  ],
+                  "item": "cruciblecraft:steel/plate",
+                  "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+                  "reachable": true,
+                  "registered": true
+                },
+                {
+                  "classification": "material_rule",
+                  "inputs": [
+                    {
+                      "classification": "declared_survival_source",
+                      "inputs": [],
+                      "item": "cruciblecraft:steel/ingot",
+                      "producer": "src/main/resources/data/cruciblecraft/materials/steel.json",
+                      "reachable": true,
+                      "registered": true
+                    }
+                  ],
+                  "item": "cruciblecraft:steel/plate",
+                  "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:steel/double_plate",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/welder/plates_to_double_plate.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:steel_double_machine_casing",
+          "occurrences": 1,
+          "producer": "cruciblecraft:components/steel_double_machine_casing",
+          "producer_path": "src/generated/resources/data/cruciblecraft/recipe/components/steel_double_machine_casing.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "C"
+        },
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "declared_survival_source",
+                  "inputs": [],
+                  "item": "cruciblecraft:steel/ingot",
+                  "producer": "src/main/resources/data/cruciblecraft/materials/steel.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:steel/plate",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:steel/gear",
+          "occurrences": 2,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/plates_to_gear.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "G"
+        },
+        {
+          "classification": "compact_material_rule",
+          "inputs": [
+            {
+              "classification": "declared_survival_source",
+              "inputs": [],
+              "item": "cruciblecraft:steel/ingot",
+              "producer": "src/main/resources/data/cruciblecraft/materials/steel.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:steel/long_rod",
+          "occurrences": 1,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/normal_long_rod.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "S"
+        }
+      ],
+      "pattern": [
+        "G ",
+        "SC",
+        "G "
+      ],
+      "reachable": true,
+      "recipe_id": "cruciblecraft:machines/steel_centrifuge",
+      "recipe_path": "src/generated/resources/data/cruciblecraft/recipe/machines/steel_centrifuge.json",
+      "result_item": "cruciblecraft:steel_centrifuge",
+      "selected_casing": "cruciblecraft:steel_double_machine_casing"
+    },
+    {
+      "ingredients": [
+        {
+          "classification": "concrete_shaped_recipe",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "material_rule",
+                  "inputs": [
+                    {
+                      "classification": "declared_survival_source",
+                      "inputs": [],
+                      "item": "cruciblecraft:steel/ingot",
+                      "producer": "src/main/resources/data/cruciblecraft/materials/steel.json",
+                      "reachable": true,
+                      "registered": true
+                    }
+                  ],
+                  "item": "cruciblecraft:steel/plate",
+                  "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+                  "reachable": true,
+                  "registered": true
+                },
+                {
+                  "classification": "material_rule",
+                  "inputs": [
+                    {
+                      "classification": "declared_survival_source",
+                      "inputs": [],
+                      "item": "cruciblecraft:steel/ingot",
+                      "producer": "src/main/resources/data/cruciblecraft/materials/steel.json",
+                      "reachable": true,
+                      "registered": true
+                    }
+                  ],
+                  "item": "cruciblecraft:steel/plate",
+                  "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:steel/double_plate",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/welder/plates_to_double_plate.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:steel_double_machine_casing",
+          "occurrences": 1,
+          "producer": "cruciblecraft:components/steel_double_machine_casing",
+          "producer_path": "src/generated/resources/data/cruciblecraft/recipe/components/steel_double_machine_casing.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "C"
+        },
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "declared_survival_source",
+              "inputs": [],
+              "item": "cruciblecraft:steel/ingot",
+              "producer": "src/main/resources/data/cruciblecraft/materials/steel.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:steel/rod",
+          "occurrences": 2,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/lathe/ingot_to_rods.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "R"
+        },
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "compact_material_rule",
+              "inputs": [
+                {
+                  "classification": "declared_survival_source",
+                  "inputs": [],
+                  "item": "cruciblecraft:steel/ingot",
+                  "producer": "src/main/resources/data/cruciblecraft/materials/steel.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:steel/long_rod",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/normal_long_rod.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:steel/spring",
+          "occurrences": 2,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/bender/long_rod_to_spring.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "S"
+        },
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "material_rule",
+                  "inputs": [
+                    {
+                      "classification": "declared_survival_source",
+                      "inputs": [],
+                      "item": "cruciblecraft:steel/ingot",
+                      "producer": "src/main/resources/data/cruciblecraft/materials/steel.json",
+                      "reachable": true,
+                      "registered": true
+                    }
+                  ],
+                  "item": "cruciblecraft:steel/plate",
+                  "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:steel/foil",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/cutter/plate_to_foil.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:steel/fine_wire",
+          "occurrences": 2,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/wiremill/foil_to_fine_wire.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "W"
+        }
+      ],
+      "pattern": [
+        "W W",
+        "RCR",
+        "S S"
+      ],
+      "reachable": true,
+      "recipe_id": "cruciblecraft:machines/steel_sifter",
+      "recipe_path": "src/generated/resources/data/cruciblecraft/recipe/machines/steel_sifter.json",
+      "result_item": "cruciblecraft:steel_sifter",
+      "selected_casing": "cruciblecraft:steel_double_machine_casing"
+    },
+    {
+      "ingredients": [
+        {
+          "classification": "concrete_shaped_recipe",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "material_rule",
+                  "inputs": [
+                    {
+                      "classification": "declared_survival_source",
+                      "inputs": [],
+                      "item": "cruciblecraft:titanium/ingot",
+                      "producer": "src/main/resources/data/cruciblecraft/materials/titanium.json",
+                      "reachable": true,
+                      "registered": true
+                    }
+                  ],
+                  "item": "cruciblecraft:titanium/plate",
+                  "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+                  "reachable": true,
+                  "registered": true
+                },
+                {
+                  "classification": "material_rule",
+                  "inputs": [
+                    {
+                      "classification": "declared_survival_source",
+                      "inputs": [],
+                      "item": "cruciblecraft:titanium/ingot",
+                      "producer": "src/main/resources/data/cruciblecraft/materials/titanium.json",
+                      "reachable": true,
+                      "registered": true
+                    }
+                  ],
+                  "item": "cruciblecraft:titanium/plate",
+                  "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:titanium/double_plate",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/welder/plates_to_double_plate.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:titanium_double_machine_casing",
+          "occurrences": 1,
+          "producer": "cruciblecraft:components/titanium_double_machine_casing",
+          "producer_path": "src/generated/resources/data/cruciblecraft/recipe/components/titanium_double_machine_casing.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "C"
+        },
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "declared_survival_source",
+                  "inputs": [],
+                  "item": "cruciblecraft:titanium/ingot",
+                  "producer": "src/main/resources/data/cruciblecraft/materials/titanium.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:titanium/plate",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:titanium/gear",
+          "occurrences": 2,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/plates_to_gear.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "G"
+        },
+        {
+          "classification": "compact_material_rule",
+          "inputs": [
+            {
+              "classification": "declared_survival_source",
+              "inputs": [],
+              "item": "cruciblecraft:titanium/ingot",
+              "producer": "src/main/resources/data/cruciblecraft/materials/titanium.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:titanium/long_rod",
+          "occurrences": 1,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/normal_long_rod.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "S"
+        }
+      ],
+      "pattern": [
+        "G ",
+        "SC",
+        "G "
+      ],
+      "reachable": true,
+      "recipe_id": "cruciblecraft:machines/titanium_centrifuge",
+      "recipe_path": "src/generated/resources/data/cruciblecraft/recipe/machines/titanium_centrifuge.json",
+      "result_item": "cruciblecraft:titanium_centrifuge",
+      "selected_casing": "cruciblecraft:titanium_double_machine_casing"
+    },
+    {
+      "ingredients": [
+        {
+          "classification": "concrete_shaped_recipe",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "material_rule",
+                  "inputs": [
+                    {
+                      "classification": "declared_survival_source",
+                      "inputs": [],
+                      "item": "cruciblecraft:titanium/ingot",
+                      "producer": "src/main/resources/data/cruciblecraft/materials/titanium.json",
+                      "reachable": true,
+                      "registered": true
+                    }
+                  ],
+                  "item": "cruciblecraft:titanium/plate",
+                  "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+                  "reachable": true,
+                  "registered": true
+                },
+                {
+                  "classification": "material_rule",
+                  "inputs": [
+                    {
+                      "classification": "declared_survival_source",
+                      "inputs": [],
+                      "item": "cruciblecraft:titanium/ingot",
+                      "producer": "src/main/resources/data/cruciblecraft/materials/titanium.json",
+                      "reachable": true,
+                      "registered": true
+                    }
+                  ],
+                  "item": "cruciblecraft:titanium/plate",
+                  "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:titanium/double_plate",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/welder/plates_to_double_plate.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:titanium_double_machine_casing",
+          "occurrences": 1,
+          "producer": "cruciblecraft:components/titanium_double_machine_casing",
+          "producer_path": "src/generated/resources/data/cruciblecraft/recipe/components/titanium_double_machine_casing.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "C"
+        },
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "declared_survival_source",
+              "inputs": [],
+              "item": "cruciblecraft:titanium/ingot",
+              "producer": "src/main/resources/data/cruciblecraft/materials/titanium.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:titanium/rod",
+          "occurrences": 2,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/lathe/ingot_to_rods.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "R"
+        },
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "compact_material_rule",
+              "inputs": [
+                {
+                  "classification": "declared_survival_source",
+                  "inputs": [],
+                  "item": "cruciblecraft:titanium/ingot",
+                  "producer": "src/main/resources/data/cruciblecraft/materials/titanium.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:titanium/long_rod",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/normal_long_rod.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:titanium/spring",
+          "occurrences": 2,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/bender/long_rod_to_spring.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "S"
+        },
+        {
+          "classification": "material_rule",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "material_rule",
+                  "inputs": [
+                    {
+                      "classification": "declared_survival_source",
+                      "inputs": [],
+                      "item": "cruciblecraft:titanium/ingot",
+                      "producer": "src/main/resources/data/cruciblecraft/materials/titanium.json",
+                      "reachable": true,
+                      "registered": true
+                    }
+                  ],
+                  "item": "cruciblecraft:titanium/plate",
+                  "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:titanium/foil",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/cutter/plate_to_foil.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:titanium/fine_wire",
+          "occurrences": 2,
+          "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/wiremill/foil_to_fine_wire.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "W"
+        }
+      ],
+      "pattern": [
+        "W W",
+        "RCR",
+        "S S"
+      ],
+      "reachable": true,
+      "recipe_id": "cruciblecraft:machines/titanium_sifter",
+      "recipe_path": "src/generated/resources/data/cruciblecraft/recipe/machines/titanium_sifter.json",
+      "result_item": "cruciblecraft:titanium_sifter",
+      "selected_casing": "cruciblecraft:titanium_double_machine_casing"
+    }
+  ],
+  "schema_version": 1,
+  "source_declarations": [
+    {
+      "classification": "declared_survival_source",
+      "inputs": [],
+      "item": "cruciblecraft:aluminium/ingot",
+      "producer": "src/main/resources/data/cruciblecraft/materials/aluminium.json",
+      "reachable": true,
+      "registered": true
+    },
+    {
+      "classification": "declared_survival_source",
+      "inputs": [],
+      "item": "cruciblecraft:bronze/ingot",
+      "producer": "src/main/resources/data/cruciblecraft/materials/bronze.json",
+      "reachable": true,
+      "registered": true
+    },
+    {
+      "classification": "declared_survival_source",
+      "inputs": [],
+      "item": "cruciblecraft:copper/ingot",
+      "producer": "src/main/resources/data/cruciblecraft/materials/copper.json",
+      "reachable": true,
+      "registered": true
+    },
+    {
+      "classification": "declared_survival_source",
+      "inputs": [],
+      "item": "cruciblecraft:gold/ingot",
+      "producer": "src/main/resources/data/cruciblecraft/materials/gold.json",
+      "reachable": true,
+      "registered": true
+    },
+    {
+      "classification": "declared_survival_source",
+      "inputs": [],
+      "item": "cruciblecraft:platinum/ingot",
+      "producer": "src/main/resources/data/cruciblecraft/materials/platinum.json",
+      "reachable": true,
+      "registered": true
+    },
+    {
+      "classification": "declared_survival_source",
+      "inputs": [],
+      "item": "cruciblecraft:rubber/plate",
+      "producer": "src/main/resources/data/cruciblecraft/materials/rubber.json",
+      "reachable": true,
+      "registered": true
+    },
+    {
+      "classification": "declared_survival_source",
+      "inputs": [],
+      "item": "cruciblecraft:stainless_steel/ingot",
+      "producer": "src/main/resources/data/cruciblecraft/materials/stainless_steel.json",
+      "reachable": true,
+      "registered": true
+    },
+    {
+      "classification": "declared_survival_source",
+      "inputs": [],
+      "item": "cruciblecraft:steel/ingot",
+      "producer": "src/main/resources/data/cruciblecraft/materials/steel.json",
+      "reachable": true,
+      "registered": true
+    },
+    {
+      "classification": "declared_survival_source",
+      "inputs": [],
+      "item": "cruciblecraft:steel_galvanized/ingot",
+      "producer": "src/main/resources/data/cruciblecraft/materials/steel_galvanized.json",
+      "reachable": true,
+      "registered": true
+    },
+    {
+      "classification": "declared_survival_source",
+      "inputs": [],
+      "item": "cruciblecraft:tin/ingot",
+      "producer": "src/main/resources/data/cruciblecraft/materials/tin.json",
+      "reachable": true,
+      "registered": true
+    },
+    {
+      "classification": "declared_survival_source",
+      "inputs": [],
+      "item": "cruciblecraft:titanium/ingot",
+      "producer": "src/main/resources/data/cruciblecraft/materials/titanium.json",
+      "reachable": true,
+      "registered": true
+    }
+  ],
+  "status": "T15C_MACHINE_ACQUISITION_READY",
+  "unreachable": []
+}

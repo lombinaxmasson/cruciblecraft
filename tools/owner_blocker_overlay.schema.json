@@ -1,0 +1,24 @@
+{
+  "$id": "https://cruciblecraft.invalid/schema/t42-blocker-overlay.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "family_count": {
+      "const": 5305
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "const": "T42_BLOCKER_OVERLAY"
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "family_count",
+    "families",
+    "bucket_counts"
+  ],
+  "type": "object"
+}

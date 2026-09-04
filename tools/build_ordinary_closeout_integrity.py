@@ -15,14 +15,14 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools import closeout_seal
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.build_ordinary_wave import check_wave, rebuild_closeout
 from tools.recipe_bulk import ordinary_wave as wave
 from tools.wave_closeout import seal_path as wave_seal_path
 
 REPAIR_SLUG = "ordinary-wave/closeout-integrity-repair"
 AFFECTED = ("smelter/ordinary-closure", "mixer/ordinary-closure")
-REPAIR_ROOT = t35.TOOLS / "waves" / "ordinary-wave" / "closeout-integrity-repair"
+REPAIR_ROOT = census.TOOLS / "waves" / "ordinary-wave" / "closeout-integrity-repair"
 FLAT_AXES = (
     "client_reload_ms",
     "client_index_ms",
@@ -73,16 +73,16 @@ def snapshot_pre_repair() -> dict[str, Any]:
         dest = REPAIR_ROOT / f"pre_repair_{slug.replace('/', '_')}_closeout_seal.json"
         if not dest.is_file():
             shutil.copyfile(seal, dest)
-        copies[slug] = t35.relative(dest)
+        copies[slug] = census.relative(dest)
         seals[slug] = {
-            "path": t35.relative(seal),
-            "pre_repair_copy": t35.relative(dest),
+            "path": census.relative(seal),
+            "pre_repair_copy": census.relative(dest),
             "sha256": _sha_file(dest),
         }
         lock = spec_root / "production_lock.json"
-        locks[slug] = t35.sha256_file(lock)
+        locks[slug] = census.sha256_file(lock)
         generated = (
-            t35.ROOT
+            census.ROOT
             / "src/recipe_generated/resources/data/cruciblecraft/recipe"
             / slug.split("/")[0]
             / "ordinary_closure"
@@ -98,8 +98,8 @@ def snapshot_pre_repair() -> dict[str, Any]:
         "status": "PRE_REPAIR_SNAPSHOT",
         "wave_slug": REPAIR_SLUG,
     }
-    t35.write_stable(REPAIR_ROOT / "pre_repair_hashes.json", document)
-    t35.write_stable(
+    census.write_stable(REPAIR_ROOT / "pre_repair_hashes.json", document)
+    census.write_stable(
         REPAIR_ROOT / "affected_seals.json",
         {
             "copies": copies,
@@ -121,10 +121,10 @@ def apply_integrated_measurements() -> dict[str, str]:
     for slug, path in mapping.items():
         if not path.is_file():
             continue
-        flat = flatten_integrated(t35.load_json(path))
+        flat = flatten_integrated(census.load_json(path))
         dest = wave.wave_dir(slug) / "measurements.json"
-        t35.write_stable(dest, flat)
-        written[slug] = t35.relative(dest)
+        census.write_stable(dest, flat)
+        written[slug] = census.relative(dest)
     return written
 
 
@@ -136,13 +136,13 @@ def rebuild_affected() -> dict[str, Any]:
 
 
 def write_repair_artifacts(summaries: dict[str, Any]) -> dict[str, Any]:
-    mixer = t35.load_json(wave.wave_dir("mixer/ordinary-closure") / "census_delta.json")
-    smelter = t35.load_json(wave.wave_dir("smelter/ordinary-closure") / "census_delta.json")
+    mixer = census.load_json(wave.wave_dir("mixer/ordinary-closure") / "census_delta.json")
+    smelter = census.load_json(wave.wave_dir("smelter/ordinary-closure") / "census_delta.json")
     smelter_ready = wave.evaluate_live_wave_ready("smelter/ordinary-closure")
     mixer_ready = wave.evaluate_live_wave_ready("mixer/ordinary-closure")
     pending = 0
     for slug in AFFECTED:
-        load = t35.load_json(wave.wave_dir(slug) / "load_projection.json")
+        load = census.load_json(wave.wave_dir(slug) / "load_projection.json")
         pending += len(wave.load_measurement_blockers(load))
     both_ready = bool(smelter_ready.get("ready") and mixer_ready.get("ready"))
     unique_active = None if both_ready else REPAIR_SLUG
@@ -156,7 +156,7 @@ def write_repair_artifacts(summaries: dict[str, Any]) -> dict[str, Any]:
         "remaining_recipe_gap": int(mixer["remaining_recipe_gap"]),
         "schema_version": 1,
         "smelter_remaining_recipe_gap": int(smelter["remaining_recipe_gap"]),
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "CENSUS_DELTA_READY",
         "wave_slug": REPAIR_SLUG,
         "work_set": {"family_count": 0, "source_rows": 0},
@@ -168,7 +168,7 @@ def write_repair_artifacts(summaries: dict[str, Any]) -> dict[str, Any]:
         "next_unassigned": both_ready,
         "remaining_recipe_gap": int(mixer["remaining_recipe_gap"]),
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "WAVE_READY" if both_ready else "LOAD_PENDING_MEASUREMENT",
         "unique_active_wave": unique_active,
         "wave_slug": REPAIR_SLUG,
@@ -188,13 +188,13 @@ def write_repair_artifacts(summaries: dict[str, Any]) -> dict[str, Any]:
         "generated_by": "python tools/build_ordinary_closeout_integrity.py",
         "next_unassigned": both_ready,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "WAVE_READY" if both_ready else "LOAD_PENDING_MEASUREMENT",
         "unique_active_wave": unique_active,
         "wave_complete": both_ready,
         "wave_slug": REPAIR_SLUG,
     }
-    t35.write_stable(
+    census.write_stable(
         REPAIR_ROOT / "wave.json",
         {
             "cohort": "closeout-integrity-repair",
@@ -205,19 +205,19 @@ def write_repair_artifacts(summaries: dict[str, Any]) -> dict[str, Any]:
             "wave_slug": REPAIR_SLUG,
         },
     )
-    t35.write_stable(
+    census.write_stable(
         REPAIR_ROOT / "measurement_manifest.json",
         {
             "generated_by": "python tools/build_ordinary_closeout_integrity.py",
             "mixes": {
                 "mixer": {
-                    "artifact": t35.relative(
+                    "artifact": census.relative(
                         REPAIR_ROOT / "mixer_integrated_measurements.json"
                     ),
                     "groups": "historical compact + Smelter + Mixer",
                 },
                 "smelter": {
-                    "artifact": t35.relative(
+                    "artifact": census.relative(
                         REPAIR_ROOT / "smelter_integrated_measurements.json"
                     ),
                     "groups": "historical compact + Smelter",
@@ -228,14 +228,14 @@ def write_repair_artifacts(summaries: dict[str, Any]) -> dict[str, Any]:
             "wave_slug": REPAIR_SLUG,
         },
     )
-    t35.write_stable(REPAIR_ROOT / "census_delta.json", census)
-    t35.write_stable(REPAIR_ROOT / "topology.json", topology)
-    t35.write_stable(REPAIR_ROOT / "readiness.json", readiness)
+    census.write_stable(REPAIR_ROOT / "census_delta.json", census)
+    census.write_stable(REPAIR_ROOT / "topology.json", topology)
+    census.write_stable(REPAIR_ROOT / "readiness.json", readiness)
     if both_ready:
         hashes = {
-            "census": t35.sha256_file(REPAIR_ROOT / "census_delta.json"),
-            "topology": t35.sha256_file(REPAIR_ROOT / "topology.json"),
-            "readiness": t35.sha256_file(REPAIR_ROOT / "readiness.json"),
+            "census": census.sha256_file(REPAIR_ROOT / "census_delta.json"),
+            "topology": census.sha256_file(REPAIR_ROOT / "topology.json"),
+            "readiness": census.sha256_file(REPAIR_ROOT / "readiness.json"),
             "receipt": None,
             "gametest_java": None,
             "gametest_log": None,
@@ -251,7 +251,7 @@ def write_repair_artifacts(summaries: dict[str, Any]) -> dict[str, Any]:
             "status": "SEALED",
             "card_id": REPAIR_SLUG,
             "sealed_at_wave": REPAIR_SLUG,
-            "source_revision": t35.SOURCE_REVISION,
+            "source_revision": census.SOURCE_REVISION,
             "generated_by": "python tools/build_ordinary_closeout_integrity.py --write",
             "complete_family_count": 0,
             "relation_count": 0,
@@ -260,10 +260,10 @@ def write_repair_artifacts(summaries: dict[str, Any]) -> dict[str, Any]:
             "production_lock_sha256": None,
             "gametest_status": "NONE",
             "receipt_sha256": None,
-            "composed_identity_ledger_v2_sha256": t35.sha256_file(
+            "composed_identity_ledger_v2_sha256": census.sha256_file(
                 closeout_seal.IDENTITY_LEDGER_V2
             ),
-            "composed_runtime_manifest_v2_sha256": t35.sha256_file(
+            "composed_runtime_manifest_v2_sha256": census.sha256_file(
                 closeout_seal.RUNTIME_MANIFEST_V2
             ),
             "hashes": hashes,
@@ -271,7 +271,7 @@ def write_repair_artifacts(summaries: dict[str, Any]) -> dict[str, Any]:
             "repair_wave": REPAIR_SLUG,
             "supersedes_sha256": "ordinary-wave-closeout-integrity-opening",
         }
-        t35.write_stable(REPAIR_ROOT / "closeout_seal.json", seal)
+        census.write_stable(REPAIR_ROOT / "closeout_seal.json", seal)
     return {
         "load_pending_axes": pending,
         "mixer_ready": mixer_ready.get("ready"),
@@ -284,16 +284,16 @@ def write_repair_artifacts(summaries: dict[str, Any]) -> dict[str, Any]:
 
 def prove_unchanged_locks() -> list[str]:
     errors: list[str] = []
-    snapshot = t35.load_json(REPAIR_ROOT / "pre_repair_hashes.json")
+    snapshot = census.load_json(REPAIR_ROOT / "pre_repair_hashes.json")
     locks = snapshot.get("production_lock_sha256") or {}
     trees = snapshot.get("generated_tree_sha256") or {}
     for slug in AFFECTED:
-        live_lock = t35.sha256_file(wave.wave_dir(slug) / "production_lock.json")
+        live_lock = census.sha256_file(wave.wave_dir(slug) / "production_lock.json")
         expected = locks.get(slug)
         if expected and live_lock != expected:
             errors.append(f"{slug} production_lock hash drifted during repair")
         generated = (
-            t35.ROOT
+            census.ROOT
             / "src/recipe_generated/resources/data/cruciblecraft/recipe"
             / slug.split("/")[0]
             / "ordinary_closure"
@@ -301,7 +301,7 @@ def prove_unchanged_locks() -> list[str]:
         live_tree = _tree_hash(generated)
         if trees.get(slug) and live_tree != trees.get(slug):
             errors.append(f"{slug} generated tree hash drifted during repair")
-        census = t35.load_json(wave.wave_dir(slug) / "census_delta.json")
+        census = census.load_json(wave.wave_dir(slug) / "census_delta.json")
         if slug == "smelter/ordinary-closure":
             if int(census["complete_family_count"]) != 338:
                 errors.append("smelter completion drifted")
@@ -319,7 +319,7 @@ def prove_unchanged_locks() -> list[str]:
 
 def rewrite_content_seals() -> dict[str, str]:
     written: dict[str, str] = {}
-    snapshot = t35.load_json(REPAIR_ROOT / "pre_repair_hashes.json")
+    snapshot = census.load_json(REPAIR_ROOT / "pre_repair_hashes.json")
     seals = snapshot.get("seals") or {}
     for slug in AFFECTED:
         pre_sha = str((seals.get(slug) or {}).get("sha256") or "")
@@ -328,7 +328,7 @@ def rewrite_content_seals() -> dict[str, str]:
             supersedes_sha256=pre_sha,
             repair_wave=REPAIR_SLUG,
         )
-        written[slug] = t35.relative(wave_seal_path(slug))
+        written[slug] = census.relative(wave_seal_path(slug))
     return written
 
 
@@ -340,10 +340,10 @@ def check() -> list[str]:
     for slug in AFFECTED:
         errors.extend(check_wave(slug))
         errors.extend(closeout_seal.check_wave_seal(slug))
-    mixer = t35.load_json(wave.wave_dir("mixer/ordinary-closure") / "census_delta.json")
+    mixer = census.load_json(wave.wave_dir("mixer/ordinary-closure") / "census_delta.json")
     if int(mixer.get("remaining_recipe_gap") or 0) != 334:
         errors.append("mixer remaining_recipe_gap must stay 334 during repair")
-    readiness = t35.load_json(REPAIR_ROOT / "readiness.json") if (
+    readiness = census.load_json(REPAIR_ROOT / "readiness.json") if (
         REPAIR_ROOT / "readiness.json"
     ).is_file() else {}
     smelter_ready = wave.evaluate_live_wave_ready("smelter/ordinary-closure")
@@ -382,7 +382,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.snapshot:
             snapshot_pre_repair()
-            print(f"Wrote {t35.relative(REPAIR_ROOT / 'pre_repair_hashes.json')}")
+            print(f"Wrote {census.relative(REPAIR_ROOT / 'pre_repair_hashes.json')}")
             return 0
         if args.write:
             payload = write()

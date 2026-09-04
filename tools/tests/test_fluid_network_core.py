@@ -2,16 +2,17 @@
 """Fluid network basic-transfer slug, sidecar catalog, and frozen generic dump."""
 from __future__ import annotations
 
+import hashlib
 import re
 import unittest
 
-from tools import t35_common as t35
+from tools import io_common as io
 from tools.recipe_bulk.slugs import KNOWN_SEMANTIC_SLUGS
 from tools.wave_closeout import spec_for
 
 SLUG = "runtime/fluid-network-basic-transfer"
-ROOT = t35.ROOT
-WAVE = t35.TOOLS / "waves" / "runtime" / "fluid-network-basic-transfer"
+ROOT = io.ROOT
+WAVE = io.TOOLS / "waves" / "runtime" / "fluid-network-basic-transfer"
 T19 = ROOT / "src" / "main" / "resources" / "data" / "cruciblecraft" / "cover_definitions.json"
 SIDECAR = (
     ROOT
@@ -53,12 +54,15 @@ class FluidNetworkCoreRegistrationTest(unittest.TestCase):
 
 class FluidNetworkCoreCatalogLockTest(unittest.TestCase):
     def test_base_cover_file_stays_nine_rows_without_logistics_ids(self) -> None:
-        catalog = t35.load_json(T19)
+        catalog = io.load_json(T19)
         rows = catalog["definitions"]
         self.assertEqual(9, len(rows))
         for row in rows:
             self.assertNotIn("logistics_", row["id"])
-        self.assertEqual(PINNED_T19_HASH, t35.sha256_file(T19))
+        self.assertEqual(
+            PINNED_T19_HASH,
+            hashlib.sha256(T19.read_bytes()).hexdigest(),
+        )
 
     def test_register_builtin_stays_eight(self) -> None:
         text = REGISTRY.read_text(encoding="utf-8")
@@ -83,7 +87,7 @@ class FluidNetworkCoreCatalogLockTest(unittest.TestCase):
         self.assertNotIn("registerBuiltin(", body)
 
     def test_sidecar_has_three_fluid_network_definitions(self) -> None:
-        sidecar = t35.load_json(SIDECAR)
+        sidecar = io.load_json(SIDECAR)
         rows = sidecar["definitions"]
         self.assertEqual(3, len(rows))
         ids = [row["id"] for row in rows]
@@ -112,13 +116,13 @@ class FluidNetworkCoreCatalogLockTest(unittest.TestCase):
 
 class FluidNetworkCoreArtifactsTest(unittest.TestCase):
     def test_ready_artifacts(self) -> None:
-        readiness = t35.load_json(WAVE / "readiness.json")
+        readiness = io.load_json(WAVE / "readiness.json")
         self.assertEqual("runtime_ready", readiness["evidence"]["item_kinds_status"])
         self.assertEqual(
             "player_complete", readiness["evidence"]["fluid_basic_transfer_status"]
         )
         self.assertEqual("frozen", readiness["evidence"]["fluid_generic_dump_status"])
-        receipt = t35.load_json(WAVE / "gametest_receipt.json")
+        receipt = io.load_json(WAVE / "gametest_receipt.json")
         self.assertEqual("PASS", receipt["status"])
         self.assertEqual(0, int(receipt["failed"]))
         self.assertGreaterEqual(int(receipt["passed"]), int(receipt["required_tests"]))
@@ -126,7 +130,7 @@ class FluidNetworkCoreArtifactsTest(unittest.TestCase):
             "-PwaveRecipes=runtime/fluid-network-basic-transfer", receipt["command"]
         )
         self.assertTrue((WAVE / "gametest.log").is_file())
-        wave = t35.load_json(WAVE / "wave.json")
+        wave = io.load_json(WAVE / "wave.json")
         self.assertEqual(SLUG, wave["program"])
         network = (
             ROOT

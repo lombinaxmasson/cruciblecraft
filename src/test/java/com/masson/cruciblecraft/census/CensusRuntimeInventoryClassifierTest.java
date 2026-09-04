@@ -43,7 +43,7 @@ class CensusRuntimeInventoryClassifierTest {
         RecipeCensusRuntimeRegistryGateFixture fixture =
                 RecipeCensusRuntimeRegistryGateFixture.load();
         Path inventoryPath = Path.of(
-                "tools/t42_runtime_expression_inventory.json");
+                "tools/owner_runtime_expression_inventory.json");
         assertTrue(
                 Files.isRegularFile(inventoryPath),
                 "Census runtime inventory must exist for classifier checks");
@@ -68,7 +68,7 @@ class CensusRuntimeInventoryClassifierTest {
 
     @Test
     void vanillaAllowlistDoesNotTreatMinecraftPrefixAsProof() throws Exception {
-        Path allowlistPath = Path.of("tools/t42_vanilla_item_allowlist.json");
+        Path allowlistPath = Path.of("tools/owner_vanilla_item_allowlist.json");
         assertTrue(Files.isRegularFile(allowlistPath));
         JsonObject allowlist = JsonParser.parseString(
                 Files.readString(allowlistPath, StandardCharsets.UTF_8))
@@ -76,7 +76,7 @@ class CensusRuntimeInventoryClassifierTest {
         assertTrue(allowlist.get("minecraft_prefix_is_not_proof").getAsBoolean());
         assertTrue(allowlist.get("not_a_121_registry_scrape").getAsBoolean());
         assertEquals(
-                "t37_t41_aliases_plus_explicit",
+                "assembler_aliases_plus_explicit",
                 allowlist.get("provenance").getAsString());
         assertEquals("minecraft-1.21.1", allowlist.get("version").getAsString());
         Set<String> itemIds = jsonArraySet(allowlist, "item_ids");

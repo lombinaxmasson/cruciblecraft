@@ -1,7 +1,7 @@
 # 冻结与未实现账本
 
 > 现行人读索引，不是 production authority。
-> 最后核对：2026-09-03（能力交付合同 + 流体网基础传输）。
+> 最后核对：2026-09-04（能力交付合同 + 流体网基础传输；语义命名活动账本已改 slug）。
 > 读法：机制卡 `*_READY` 只记录当时冻结的分母和可行性，不证明游戏里有这些东西。
 > 状态词三套互不替代：`frozen` / `runtime_ready` / `player_complete`。
 > 路线图进度只计 `player_complete` 声明与当前 revision 的 fresh profile PASS，见
@@ -103,7 +103,7 @@ Network child。
 | growth-order 五轨（sealed，不重写） | [`tools/waves/portfolio/source-capability-growth-order/growth_order.json`](../../tools/waves/portfolio/source-capability-growth-order/growth_order.json) |
 | leftover 39 条 family | [`tools/waves/portfolio/source-capability-map-r0/leftover_later.json`](../../tools/waves/portfolio/source-capability-map-r0/leftover_later.json) |
 | 各 R0 可行性 | 各波目录下 `feasibility.json`（下表有路径） |
-| T35 排除表 | [`tools/t35_excluded_object_reclaim.json`](../../tools/t35_excluded_object_reclaim.json) |
+| census 排除表 | [`tools/census_excluded_object_reclaim.json`](../../tools/census_excluded_object_reclaim.json) |
 | 非矿 dump 特征 | `gt6_dump/gt6_recipe_dump/worldgen/other_features.json` |
 
 `python tools/build_<slug>.py --check` 只检查那张 legacy 冻结 artifact，
@@ -123,7 +123,7 @@ topology 预分配 implementation child。不想要的类在 realization 卡标
 | 人类名 | slug / `--check` | 冻了什么 | 判定 | 可行性文件 |
 | --- | --- | --- | --- | --- |
 | 物流封面网 | `portfolio/logistics-cover-net-r0` | 7 个 kind：`logistics_item_storage` / `transfer`、`logistics_fluid_storage` / `transfer`、`logistics_generic_storage` / `transfer` / `dump` | `requires_new_runtime`；**物品两行** [`runtime/item-network-core`](../history/card-plans/closed/物品网络核心详细计划.md) 为 `runtime_ready`。**流体传输三定义** [`logistics/fluid-network/basic-transfer`](capability-delivery-workflow.md) 为 `player_complete`（仓储/导入/导出盖板；不是 Fluid storage 作为独立 kind 的全部 GT6 行为，也不是 Generic / Dump / `logistics_core`）。Fluid Generic / Dump 与 `logistics_core` 多方块仍 `frozen` | [`feasibility.json`](../../tools/waves/portfolio/logistics-cover-net-r0/feasibility.json) |
-| T13c Panels | `portfolio/t13c-exclusion-reclaim-r0` | 6 sites / 348 expanded | `requires_new_runtime` | [`feasibility.json`](../../tools/waves/portfolio/t13c-exclusion-reclaim-r0/feasibility.json) |
+| T13c Panels | `portfolio/exclusion-reclaim-r0` | 6 sites / 348 expanded | `requires_new_runtime` | [`feasibility.json`](../../tools/waves/portfolio/exclusion-reclaim-r0/feasibility.json) |
 | T13c Sensors | 同上 | 21 / 21 | `requires_new_runtime` | 同上 |
 | T13c Portals | 同上 | 19 / 19 | `requires_new_runtime` | 同上 |
 | T13c Batteries | 同上 | 37 / 37 | `requires_new_runtime` | 同上 |
@@ -190,7 +190,7 @@ topology 预分配 implementation child。不想要的类在 realization 卡标
 | dump recipeCount 合计 13,373（作物卡） | squeezer+juicer+fermenter+bumble* | 规模上下文。`owns_families` 仍为 0。`gt.recipe.plantalyzer` recipeCount=0 不是分母 |
 | capability map 37 行 `none` | inventory | 多数已在第 1 节判过 |
 
-已有 1.x 子集、不要当成缺口重开：T20 矿脉 129、流体矿 2、地表石子 scatter；T33/T45/T48 item scatter；T44 Storage 28/624；T19 9 张 adjacent cover。
+已有 1.x 子集、不要当成缺口重开：世界生成矿脉 129、流体矿 2、地表石子 scatter；item scatter（含 `block/object` 与 `bath/identity`）；`storage/lock` 28/624；9 张 adjacent cover。
 
 ---
 

@@ -1,0 +1,109 @@
+{
+  "currentness": {
+    "builder_path": "tools/build_assembler_compact_recipe_load_benchmark.py",
+    "builder_sha256": "b74e837b2dab4aaab48a363e624322a304b25f4b798432e173489a72974d85dd",
+    "measurement_sha256": "c1e71d37304792407cfdd1c33ace892057eba499c22cc17c453be8af76f5d092",
+    "policy_path": "tools/assembler_compact_materialization_policy.json",
+    "policy_sha256": "91a5c8ddfd210334188c8ce3bc9f9b1daebcb51be5b310254b2f490da0a86b1d"
+  },
+  "decision": {
+    "algorithm": {
+      "composite_score_forbidden": true,
+      "correctness_gates": [
+        "field_equivalence",
+        "full_enumeration",
+        "client_consistency",
+        "player_execution"
+      ],
+      "diagnostic_5x_20x_must_not_fill_1x": true,
+      "eager_margin": "If every survivor is inside the cumulative eager soft budget, treat eager_margin as tied and continue. Do not rank remaining hard-ceiling headroom as a score that prefers on_demand solely because it publishes zero eager rows.",
+      "gate_order": [
+        "correctness",
+        "hard_ceiling",
+        "cumulative_soft_budget"
+      ],
+      "hard_ceiling_fail_eliminates": true,
+      "implementation_complexity_order": [
+        "immediate",
+        "on_demand",
+        "hybrid"
+      ],
+      "pending_axis_zero_fill_forbidden": true,
+      "production_candidate_must_sit_inside_cumulative_soft_budget": true,
+      "production_guard": "Emit a production winner only when 1x=50 logical rows are actually measured, every ranking axis used for the winner is PASS (not PENDING), and the winner is derived by tools/build_assembler_compact_recipe_load_benchmark.py. Hand-filled production_winner is invalid.",
+      "ranking_logical_rows": 50,
+      "ranking_order_after_all_gates_pass": [
+        "eager_margin",
+        "retained_memory",
+        "reload_index",
+        "lookup",
+        "sync",
+        "implementation_complexity"
+      ],
+      "ranking_scale": "1x"
+    },
+    "composite_score_used": false,
+    "diagnostic_5x_20x_used_for_1x": false,
+    "eliminated": {},
+    "production_blockers": [],
+    "production_winner": "hybrid",
+    "ranking": [
+      {
+        "candidate": "hybrid",
+        "eager_margin": "tied",
+        "eager_publication_rows": 14,
+        "implementation_complexity": 2,
+        "lookup_p95_ns": 87368,
+        "reload_index_p95_ns": {
+          "client_index": 14400,
+          "client_reload": 235000,
+          "server_index": 16900,
+          "server_reload": 234300
+        },
+        "retained_memory_bytes": 5150,
+        "sync_bytes": 5150
+      },
+      {
+        "candidate": "on_demand",
+        "eager_margin": "tied",
+        "eager_publication_rows": 0,
+        "implementation_complexity": 1,
+        "lookup_p95_ns": 191050,
+        "reload_index_p95_ns": {
+          "client_index": 22600,
+          "client_reload": 331300,
+          "server_index": 25200,
+          "server_reload": 388400
+        },
+        "retained_memory_bytes": 5150,
+        "sync_bytes": 5150
+      },
+      {
+        "candidate": "immediate",
+        "eager_margin": "tied",
+        "eager_publication_rows": 50,
+        "implementation_complexity": 0,
+        "lookup_p95_ns": 157312,
+        "reload_index_p95_ns": {
+          "client_index": 154800,
+          "client_reload": 561900,
+          "server_index": 214500,
+          "server_reload": 509700
+        },
+        "retained_memory_bytes": 5150,
+        "sync_bytes": 5150
+      }
+    ],
+    "ranking_logical_rows": 50,
+    "ranking_scale": "1x",
+    "status": "PRODUCTION_WINNER_READY",
+    "survivors": [
+      "immediate",
+      "on_demand",
+      "hybrid"
+    ]
+  },
+  "measurement_status": "ASSEMBLER_COMPACT_MATERIALIZATION_MEASUREMENT_READY",
+  "schema_version": 1,
+  "status": "ASSEMBLER_COMPACT_MATERIALIZATION_DECISION_READY"
+}

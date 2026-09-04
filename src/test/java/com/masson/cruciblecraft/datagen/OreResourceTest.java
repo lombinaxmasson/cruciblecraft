@@ -402,21 +402,21 @@ class OreResourceTest {
                 "retriever_item_cover.json",
                 "robot_arm_cover.json",
                 "selector_manual_cover.json");
-        Set<String> t19RecipeSet = generatedRecipeSet.stream()
+        Set<String> preStorageRecipeSet = generatedRecipeSet.stream()
                 .filter(path -> path.startsWith("pipe_acquisition/")
                         || coverRecipes.contains(path))
                 .collect(Collectors.toUnmodifiableSet());
-        // Keep the pre-T19 actual set distinct and derive the new total from
+        // Keep the pre-storage actual set distinct and derive the new total from
         // that set plus the exact 5-cover + 25-pipe generated acquisition set.
-        assertEquals(30, t19RecipeSet.size());
-        // 877 + wire cutter additions: tool pattern recipe + 2 T4 route rules.
-        // T30 adds 121 hopper-family acquisition recipes (60 hopper, 60 queue,
-        // 1 steel dust funnel). T36 adds catalog-driven machine recipes plus
-        // five source-backed casings beyond the T15 six. T44 adds 18
+        assertEquals(30, preStorageRecipeSet.size());
+        // 877 + wire cutter additions: tool pattern recipe + two route rules.
+        // The hopper catalog adds 121 acquisition recipes (60 hopper, 60 queue,
+        // 1 steel dust funnel). The machine catalog adds catalog-driven recipes
+        // plus five source-backed casings beyond the early six. Storage adds 18
         // source-visible storage acquisition recipes.
-        assertEquals(1_068, generatedRecipeSet.size() - t19RecipeSet.size());
+        assertEquals(1_068, generatedRecipeSet.size() - preStorageRecipeSet.size());
         assertEquals(
-                1_068 + t19RecipeSet.size(),
+                1_068 + preStorageRecipeSet.size(),
                 generatedRecipeSet.size());
         assertEquals(48, countRegularFiles(COMPONENT_RULE_RESOURCES.resolve(
                 "data/cruciblecraft/recipe")));

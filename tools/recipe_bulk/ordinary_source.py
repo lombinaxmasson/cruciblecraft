@@ -10,14 +10,14 @@ from pathlib import Path
 from typing import Any
 
 from gt6_recipe_templates import _stable_json
-from tools import build_t37_assembler_source as t37
-from tools import t35_common as t35
-from tools import t42_common as t42
-from tools import t43_common as t43
-from tools import t45_common as t45
-from tools import t47_identities as t47_ids
-from tools import t48_common as t48
-from tools import t48_identities as identities
+from tools import build_assembler_source as assembler
+from tools import census_common as census
+from tools import owner_partition_common as owner
+from tools import smelter_stone_common as smelter_stone
+from tools import block_object_common as block_object
+from tools import bath_remainder_identities as bath_remainder_ids
+from tools import bath_identity_common as bath_identity
+from tools import bath_identities as identities
 from tools import tool_head_prefix as thp
 from tools.recipe_bulk.ordinary_r0 import (
     publication_group_for,
@@ -27,7 +27,7 @@ from tools.recipe_bulk.ordinary_r0 import (
 )
 from tools.recipe_bulk.waves import recipe_wave
 
-SOURCE_REVISION = t35.SOURCE_REVISION
+SOURCE_REVISION = census.SOURCE_REVISION
 ORDINARY_CLASS = "ordinary_optional"
 FINGERPRINT_EXCLUDE = frozenset(
     {
@@ -97,7 +97,7 @@ class WorkFamily:
 
 
 def wave_root(slug: str) -> Path:
-    return t35.TOOLS / "waves" / slug
+    return census.TOOLS / "waves" / slug
 
 
 def source_map_for(host: str) -> str:
@@ -105,7 +105,7 @@ def source_map_for(host: str) -> str:
 
 
 def dump_path_for(host: str) -> Path:
-    return t42.DUMP_MAPS / f"{source_map_for(host)}.json"
+    return owner.DUMP_MAPS / f"{source_map_for(host)}.json"
 
 
 def dump_exists(host: str) -> bool:
@@ -113,7 +113,7 @@ def dump_exists(host: str) -> bool:
 
 
 def load_work(host: str) -> list[WorkFamily]:
-    families_doc = t35.load_json(t35.RECIPE_FAMILIES)
+    families_doc = census.load_json(census.RECIPE_FAMILIES)
     if families_doc.get("source_revision") != SOURCE_REVISION:
         raise ValueError("t35_recipe_families source_revision drifted")
     by_id = {
@@ -142,8 +142,8 @@ def load_work(host: str) -> list[WorkFamily]:
     return work
 
 
-def load_catalogs(required_forms: dict[str, set[str]] | None = None) -> t37.Catalogs:
-    catalogs = t37.load_catalogs()
+def load_catalogs(required_forms: dict[str, set[str]] | None = None) -> assembler.Catalogs:
+    catalogs = assembler.load_catalogs()
     prefix = dict(catalogs.prefix_item_to_form)
     prefix.update(identities.PREFIX_ITEM_TO_FORM_OVERLAY)
     prefix.update(EXTRA_PREFIX_ITEM_TO_FORM)
@@ -155,7 +155,7 @@ def load_catalogs(required_forms: dict[str, set[str]] | None = None) -> t37.Cata
     for form in list(identities.PREFIX_FORM_UNITS) + list(EXTRA_PREFIX_ITEM_TO_FORM.values()):
         if form not in prefix_tags:
             prefix_tags[form] = ("c", f"{form}s")
-    return t37.Catalogs(
+    return assembler.Catalogs(
         prefix_item_to_form=prefix,
         material_id_to_cc=catalogs.material_id_to_cc,
         registered_forms=registered,
@@ -167,7 +167,7 @@ def load_catalogs(required_forms: dict[str, set[str]] | None = None) -> t37.Cata
 
 
 def load_stone_runtime() -> dict[tuple[str, int], str]:
-    catalog = t35.load_json(t43.STONE_CATALOG)
+    catalog = census.load_json(smelter_stone.STONE_CATALOG)
     mapped: dict[tuple[str, int], str] = {}
     for identity in catalog.get("identities") or []:
         source_item = str(identity["source_item"])
@@ -178,9 +178,9 @@ def load_stone_runtime() -> dict[tuple[str, int], str]:
 
 def load_mte_runtime() -> dict[tuple[str, int], str]:
     mapped = identities.load_mte_runtime_map()
-    smelter = t35.TOOLS / "smelter_mte_identity_catalog.json"
+    smelter = census.TOOLS / "smelter_mte_identity_catalog.json"
     if smelter.is_file():
-        catalog = t35.load_json(smelter)
+        catalog = census.load_json(smelter)
         for identity in catalog.get("identities") or []:
             mapped[(str(identity["source_item"]), int(identity["meta"]))] = str(
                 identity["runtime_id"]
@@ -206,7 +206,7 @@ def load_semantic_object_overlay() -> dict[tuple[str, int | None], dict[str, Any
         path = wave_root(slug) / "object_catalog.json"
         if not path.is_file():
             continue
-        document = t35.load_json(path)
+        document = census.load_json(path)
         for identity in document.get("identities") or []:
             source_item = str(identity.get("source_item") or "")
             meta = identity.get("meta")
@@ -216,8 +216,8 @@ def load_semantic_object_overlay() -> dict[tuple[str, int | None], dict[str, Any
 
 
 def load_item_overlay() -> dict[tuple[str, int | None], dict[str, Any]]:
-    overlay = dict(t47_ids.load_t47_item_overlay())
-    overlay.update(identities.load_t48_item_overlay())
+    overlay = dict(bath_remainder_ids.load_bath_remainder_item_overlay())
+    overlay.update(identities.load_bath_identity_item_overlay())
     overlay.update(load_semantic_object_overlay())
     return overlay
 
@@ -250,10 +250,10 @@ def load_ledger_item_runtime() -> dict[tuple[str, int], str]:
     global _LEDGER_ITEM_RUNTIME
     if _LEDGER_ITEM_RUNTIME is not None:
         return _LEDGER_ITEM_RUNTIME
-    path = t35.TOOLS / "global_build_identity_ledger.v2.json"
+    path = census.TOOLS / "global_build_identity_ledger.v2.json"
     mapped: dict[tuple[str, int], str] = {}
     if path.is_file():
-        for row in t35.load_json(path).get("records") or []:
+        for row in census.load_json(path).get("records") or []:
             key = str(row.get("source_key") or "")
             if "|" in key:
                 key = key.split("|", 1)[1]
@@ -298,10 +298,10 @@ def load_ledger_fluid_overlay() -> dict[str, str]:
     global _LEDGER_FLUID_OVERLAY
     if _LEDGER_FLUID_OVERLAY is not None:
         return _LEDGER_FLUID_OVERLAY
-    path = t35.TOOLS / "global_build_identity_ledger.v2.json"
+    path = census.TOOLS / "global_build_identity_ledger.v2.json"
     overlay: dict[str, str] = {}
     if path.is_file():
-        for row in t35.load_json(path).get("records") or []:
+        for row in census.load_json(path).get("records") or []:
             key = str(row.get("source_key") or "")
             target = str(row.get("target_identity") or "")
             if key.startswith("fluid:") and target:
@@ -311,8 +311,8 @@ def load_ledger_fluid_overlay() -> dict[str, str]:
 
 
 def load_fluid_overlay() -> dict[str, str]:
-    overlay = dict(t47_ids.load_fluid_base_overlay())
-    overlay.update(identities.load_t48_fluid_overlay())
+    overlay = dict(bath_remainder_ids.load_fluid_base_overlay())
+    overlay.update(identities.load_bath_identity_fluid_overlay())
     for slug in (
         "smelter/ordinary-closure",
         "mixer/ordinary-closure",
@@ -325,7 +325,7 @@ def load_fluid_overlay() -> dict[str, str]:
         path = wave_root(slug) / "fluid_mapping.json"
         if not path.is_file():
             continue
-        document = t35.load_json(path)
+        document = census.load_json(path)
         for row in document.get("mapping") or []:
             source_fluid = str(row.get("source_fluid") or "")
             runtime = str(row.get("cc_fluid_id") or "")
@@ -364,7 +364,7 @@ def _assert_runtime(runtime: str) -> str:
 
 def map_item_operand(
     item: dict[str, Any],
-    catalogs: t37.Catalogs,
+    catalogs: assembler.Catalogs,
     *,
     stone_runtime: dict[tuple[str, int], str],
     mte_runtime: dict[tuple[str, int], str],
@@ -414,7 +414,7 @@ def map_item_operand(
                 }
             )
             return operand, []
-    if t43.is_stone_item(item_id) and isinstance(meta, int):
+    if smelter_stone.is_stone_item(item_id) and isinstance(meta, int):
         operand = _empty_operand(item)
         runtime = stone_runtime.get((item_id, meta))
         if runtime:
@@ -424,7 +424,7 @@ def map_item_operand(
                     "value": runtime,
                     "runtime_id": _assert_runtime(runtime),
                     "reachable": True,
-                    "t43_class": "SOURCE_BACKED",
+                    "smelter_stone_class": "SOURCE_BACKED",
                 }
             )
             return operand, []
@@ -436,7 +436,7 @@ def map_item_operand(
                     "value": native,
                     "runtime_id": _assert_runtime(native),
                     "reachable": True,
-                    "t43_class": "SOURCE_BACKED",
+                    "smelter_stone_class": "SOURCE_BACKED",
                 }
             )
             return operand, []
@@ -565,7 +565,7 @@ def map_item_operand(
                 }
             )
             return operand, []
-    operand, errors = t37.map_item_operand(item, catalogs, side=side)
+    operand, errors = assembler.map_item_operand(item, catalogs, side=side)
     runtime = str(operand.get("runtime_id") or "")
     renamed = identities.VANILLA_RENAMES.get(runtime)
     if renamed:
@@ -589,12 +589,12 @@ def map_item_operand(
 
 def map_fluid_operand(
     fluid: dict[str, Any],
-    catalogs: t37.Catalogs,
+    catalogs: assembler.Catalogs,
     fluid_overlay: dict[str, str],
     *,
     side: str,
 ) -> tuple[dict[str, Any], list[str]]:
-    operand, errors = t37.map_fluid_operand(fluid, catalogs, side=side)
+    operand, errors = assembler.map_fluid_operand(fluid, catalogs, side=side)
     if operand.get("runtime_id"):
         return operand, errors
     fluid_id = str((operand.get("source") or {}).get("fluid") or fluid.get("fluid") or "")
@@ -620,19 +620,19 @@ def map_fluid_operand(
 def load_ordinary_indices(host: str) -> set[int]:
     source_map = source_map_for(host)
     if host.endswith(":mixer"):
-        by_template = t42.mixer_ordinary_optional_recipe_indexes()
+        by_template = owner.mixer_ordinary_optional_recipe_indexes()
         indices: set[int] = set()
         for members in by_template.values():
             indices.update(members)
         return indices
     maps = list(
-        (t35.load_json(t42.T21_TEMPLATE_DENOMINATOR).get("encoding") or {}).get("maps") or []
+        (census.load_json(owner.T21_TEMPLATE_DENOMINATOR).get("encoding") or {}).get("maps") or []
     )
     map_index = maps.index(source_map)
-    classes = list(t35.load_json(t42.ROW_CLASSIFICATION).get("classes") or [])
+    classes = list(census.load_json(owner.ROW_CLASSIFICATION).get("classes") or [])
     ordinary_index = classes.index(ORDINARY_CLASS)
     ordinary: set[int] = set()
-    for row in t35.load_json(t42.ROW_CLASSIFICATION).get("non_mixer_rows") or []:
+    for row in census.load_json(owner.ROW_CLASSIFICATION).get("non_mixer_rows") or []:
         dump_index, recipe_index, class_index = row
         if dump_index == map_index and class_index == ordinary_index:
             ordinary.add(int(recipe_index))
@@ -663,7 +663,7 @@ def compile_relation(
     recipe: dict[str, Any],
     recipe_index: int,
     shadow_order: int,
-    catalogs: t37.Catalogs,
+    catalogs: assembler.Catalogs,
     maps: dict[str, Any],
     host: str,
     slug: str,
@@ -675,14 +675,14 @@ def compile_relation(
         unsupported.append("hidden")
     if recipe.get("fake") is True:
         unsupported.append("fake")
-    extra_keys = sorted(set(recipe) - t37.CONSUMED_RECIPE_KEYS)
+    extra_keys = sorted(set(recipe) - assembler.CONSUMED_RECIPE_KEYS)
     if extra_keys:
         slot_notes.append({"side": "recipe", "slot": 0, "class": "extra_keys", "keys": extra_keys})
     item_inputs: list[dict[str, Any]] = []
     item_input_counts: list[int] = []
     item_input_actions: list[dict[str, Any]] = []
     for slot, item in enumerate(recipe.get("inputs") or []):
-        if t37._empty_item(item):
+        if assembler._empty_item(item):
             slot_notes.append({"side": "item_input", "slot": slot, "class": "empty_slot"})
             continue
         operand, operand_errors = map_item_operand(
@@ -696,7 +696,7 @@ def compile_relation(
             side="item_input",
         )
         errors.extend(operand_errors)
-        action = t37.classify_item_action(item)
+        action = assembler.classify_item_action(item)
         count = int(item.get("count") or 0)
         if action["kind"] != "CONSUME":
             count = 0
@@ -705,7 +705,7 @@ def compile_relation(
         item_input_actions.append(action)
     item_outputs: list[dict[str, Any]] = []
     for slot, item in enumerate(recipe.get("outputs") or []):
-        if t37._empty_item(item):
+        if assembler._empty_item(item):
             slot_notes.append({"side": "item_output", "slot": slot, "class": "empty_slot"})
             continue
         operand, operand_errors = map_item_operand(
@@ -893,14 +893,14 @@ def assign_rows(
     wanted = {item.template_key for item in work}
     grouped: dict[str, list[tuple[int, dict[str, Any]]]] = defaultdict(list)
     if host.endswith(":mixer"):
-        for template_key, indexes in t42.mixer_ordinary_optional_recipe_indexes().items():
+        for template_key, indexes in owner.mixer_ordinary_optional_recipe_indexes().items():
             if template_key not in wanted:
                 continue
             for recipe_index in sorted(indexes):
                 if recipe_index < len(recipes):
                     grouped[template_key].append((recipe_index, recipes[recipe_index]))
         return dict(grouped)
-    membership = t42.recipe_template_ids(source_map_for(host), recipes)
+    membership = owner.recipe_template_ids(source_map_for(host), recipes)
     for recipe_index in sorted(ordinary_indices):
         if recipe_index >= len(recipes):
             continue
@@ -1178,7 +1178,7 @@ def replay(slug: str) -> dict[str, Any]:
     if not dump_exists(host):
         raise OSError(f"missing GT6 dump for {host}: {dump_path_for(host)}")
     work = load_work(host)
-    recipes = t42.load_map_recipes(source_map_for(host))
+    recipes = owner.load_map_recipes(source_map_for(host))
     ordinary = load_ordinary_indices(host)
     assigned = assign_rows(recipes, work, ordinary, host)
     maps = {
@@ -1293,8 +1293,8 @@ def replay(slug: str) -> dict[str, Any]:
         "assigned": sum(len(rows) for rows in assigned.values()),
         "blockers": blocked,
         "classifications": classifications,
-        "dump_path": t35.relative(dump_path_for(host)),
-        "dump_sha256": t35.sha256_file(dump_path_for(host)),
+        "dump_path": census.relative(dump_path_for(host)),
+        "dump_sha256": census.sha256_file(dump_path_for(host)),
         "expected": summary,
         "family_count": len(work),
         "host": host,

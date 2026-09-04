@@ -1,0 +1,2293 @@
+{
+  "canonical_kinds": [
+    {
+      "canonical_id": "asphalt",
+      "canonical_rule_id": "cover-canonical-asphalt",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-out-asphalt",
+      "deferred": null,
+      "disposition": "out_of_scope",
+      "implementation_status": "out_of_scope",
+      "normalization_reason": "CoverAsphalt is a concrete movement-surface cover behavior.",
+      "raw_members": [
+        "CoverAsphalt"
+      ],
+      "roadmap_bucket": "third_stage_excluded",
+      "scope_reason": "Movement-surface decoration is outside the third-stage pipe automation axis."
+    },
+    {
+      "canonical_id": "controller_auto",
+      "canonical_rule_id": "cover-canonical-controller-auto",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-controller-auto",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "CoverControllerAuto is a concrete automatic machine-control behavior.",
+      "raw_members": [
+        "CoverControllerAuto"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Automatic machine control needs a later machine-control cover batch."
+    },
+    {
+      "canonical_id": "controller_auto_redstone",
+      "canonical_rule_id": "cover-canonical-controller-auto-redstone",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-controller-auto-redstone",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "CoverControllerAutoRedstone adds a distinct redstone-conditioned control behavior.",
+      "raw_members": [
+        "CoverControllerAutoRedstone"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Redstone-conditioned machine control needs a later machine-control batch."
+    },
+    {
+      "canonical_id": "controller_auto_timer",
+      "canonical_rule_id": "cover-canonical-controller-auto-timer",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-controller-auto-timer",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "CoverControllerAutoTimer adds a distinct timed control behavior.",
+      "raw_members": [
+        "CoverControllerAutoTimer"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Timed machine control needs a later tick-bearing cover batch."
+    },
+    {
+      "canonical_id": "controller_covers",
+      "canonical_rule_id": "cover-canonical-controller-covers",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-controller-covers",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "CoverControllerCovers is a concrete behavior controlling sibling covers.",
+      "raw_members": [
+        "CoverControllerCovers"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Cross-cover control requires a later cover orchestration contract."
+    },
+    {
+      "canonical_id": "controller_display",
+      "canonical_rule_id": "cover-canonical-controller-display",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-controller-display",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "CoverControllerDisplay has a distinct display-driven controller contract.",
+      "raw_members": [
+        "CoverControllerDisplay"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Display-driven control requires a later UI and synchronization contract."
+    },
+    {
+      "canonical_id": "controller_redstone",
+      "canonical_rule_id": "cover-canonical-controller-redstone",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-controller-redstone",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "CoverControllerRedstone is a concrete redstone controller behavior.",
+      "raw_members": [
+        "CoverControllerRedstone"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "General redstone machine control is not in the selected T19 batch."
+    },
+    {
+      "canonical_id": "conveyor",
+      "canonical_rule_id": "cover-canonical-conveyor",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-select-conveyor",
+      "deferred": null,
+      "disposition": "in_scope",
+      "implementation_status": "selected_t19",
+      "normalization_reason": "CoverConveyor implements active adjacent item movement.",
+      "raw_members": [
+        "CoverConveyor"
+      ],
+      "roadmap_bucket": "T19",
+      "scope_reason": "Configurable item movement materially expands the T19 automation surface."
+    },
+    {
+      "canonical_id": "crafting",
+      "canonical_rule_id": "cover-canonical-crafting",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-out-crafting",
+      "deferred": null,
+      "disposition": "out_of_scope",
+      "implementation_status": "out_of_scope",
+      "normalization_reason": "CoverCrafting exposes a distinct crafting interaction.",
+      "raw_members": [
+        "CoverCrafting"
+      ],
+      "roadmap_bucket": "third_stage_excluded",
+      "scope_reason": "Attached crafting UI is outside T19 pipe automation."
+    },
+    {
+      "canonical_id": "detector_running_actively",
+      "canonical_rule_id": "cover-canonical-detector-running-actively",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-detector-active",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "The actively-running predicate is behaviorally distinct and is not a numeric variant.",
+      "raw_members": [
+        "CoverDetectorRunningActively"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Machine-state detector integration needs a later machine diagnostics batch."
+    },
+    {
+      "canonical_id": "detector_running_passively",
+      "canonical_rule_id": "cover-canonical-detector-running-passively",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-detector-passive",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "The passively-running predicate is behaviorally distinct and is not a numeric variant.",
+      "raw_members": [
+        "CoverDetectorRunningPassively"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Machine-state detector integration needs a later machine diagnostics batch."
+    },
+    {
+      "canonical_id": "detector_running_possible",
+      "canonical_rule_id": "cover-canonical-detector-running-possible",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-detector-possible",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "The can-run predicate is behaviorally distinct and is not a numeric variant.",
+      "raw_members": [
+        "CoverDetectorRunningPossible"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Machine-state detector integration needs a later machine diagnostics batch."
+    },
+    {
+      "canonical_id": "detector_running_successfully",
+      "canonical_rule_id": "cover-canonical-detector-running-successfully",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-detector-success",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "The successful-run predicate is behaviorally distinct and is not a numeric variant.",
+      "raw_members": [
+        "CoverDetectorRunningSuccessfully"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Machine-state detector integration needs a later machine diagnostics batch."
+    },
+    {
+      "canonical_id": "display_energy",
+      "canonical_rule_id": "cover-canonical-display-energy",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-display-energy",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "CoverDisplayEnergy is a concrete energy display behavior.",
+      "raw_members": [
+        "CoverDisplayEnergy"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Energy display needs a later UI and energy-identity-aware display contract."
+    },
+    {
+      "canonical_id": "drain",
+      "canonical_rule_id": "cover-canonical-drain",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-out-drain",
+      "deferred": null,
+      "disposition": "out_of_scope",
+      "implementation_status": "out_of_scope",
+      "normalization_reason": "CoverDrain performs distinct world-fluid interaction.",
+      "raw_members": [
+        "CoverDrain"
+      ],
+      "roadmap_bucket": "third_stage_excluded",
+      "scope_reason": "World-fluid harvesting is outside the selected cover and pipe acquisition scope."
+    },
+    {
+      "canonical_id": "filter_fluid",
+      "canonical_rule_id": "cover-canonical-filter-fluid",
+      "cc_behavior": "FILTER",
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-map-filter-fluid",
+      "deferred": null,
+      "disposition": "in_scope",
+      "implementation_status": "implemented",
+      "normalization_reason": "Fluid matching is a concrete resource-specific filtering behavior.",
+      "raw_members": [
+        "CoverFilterFluid"
+      ],
+      "roadmap_bucket": "existing_cc",
+      "scope_reason": "CC FILTER already represents source fluid filtering on fluid pipes."
+    },
+    {
+      "canonical_id": "filter_item",
+      "canonical_rule_id": "cover-canonical-filter-item",
+      "cc_behavior": "FILTER",
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-map-filter-item",
+      "deferred": null,
+      "disposition": "in_scope",
+      "implementation_status": "implemented",
+      "normalization_reason": "Item matching is a concrete resource-specific filtering behavior.",
+      "raw_members": [
+        "CoverFilterItem"
+      ],
+      "roadmap_bucket": "existing_cc",
+      "scope_reason": "CC FILTER already represents source item filtering on item pipes."
+    },
+    {
+      "canonical_id": "logistics_display_cpu_control",
+      "canonical_rule_id": "cover-canonical-logistics-display-control",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-out-logistics-display-control",
+      "deferred": null,
+      "disposition": "out_of_scope",
+      "implementation_status": "out_of_scope",
+      "normalization_reason": "The control CPU display targets a distinct logistics role.",
+      "raw_members": [
+        "CoverLogisticsDisplayCPUControl"
+      ],
+      "roadmap_bucket": "third_stage_excluded",
+      "scope_reason": "GT6 logistics CPU display infrastructure is not part of the CC pipe runtime."
+    },
+    {
+      "canonical_id": "logistics_display_cpu_conversion",
+      "canonical_rule_id": "cover-canonical-logistics-display-conversion",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-out-logistics-display-conversion",
+      "deferred": null,
+      "disposition": "out_of_scope",
+      "implementation_status": "out_of_scope",
+      "normalization_reason": "The conversion CPU display targets a distinct logistics role.",
+      "raw_members": [
+        "CoverLogisticsDisplayCPUConversion"
+      ],
+      "roadmap_bucket": "third_stage_excluded",
+      "scope_reason": "GT6 logistics CPU display infrastructure is not part of the CC pipe runtime."
+    },
+    {
+      "canonical_id": "logistics_display_cpu_logic",
+      "canonical_rule_id": "cover-canonical-logistics-display-logic",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-out-logistics-display-logic",
+      "deferred": null,
+      "disposition": "out_of_scope",
+      "implementation_status": "out_of_scope",
+      "normalization_reason": "The logic CPU display targets a distinct logistics role.",
+      "raw_members": [
+        "CoverLogisticsDisplayCPULogic"
+      ],
+      "roadmap_bucket": "third_stage_excluded",
+      "scope_reason": "GT6 logistics CPU display infrastructure is not part of the CC pipe runtime."
+    },
+    {
+      "canonical_id": "logistics_display_cpu_storage",
+      "canonical_rule_id": "cover-canonical-logistics-display-storage",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-out-logistics-display-storage",
+      "deferred": null,
+      "disposition": "out_of_scope",
+      "implementation_status": "out_of_scope",
+      "normalization_reason": "The storage CPU display targets a distinct logistics role.",
+      "raw_members": [
+        "CoverLogisticsDisplayCPUStorage"
+      ],
+      "roadmap_bucket": "third_stage_excluded",
+      "scope_reason": "GT6 logistics CPU display infrastructure is not part of the CC pipe runtime."
+    },
+    {
+      "canonical_id": "logistics_fluid_storage",
+      "canonical_rule_id": "cover-canonical-logistics-fluid-storage",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-logistics-fluid-storage",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "Fluid storage policy is distinct from directional transfer.",
+      "raw_members": [
+        "CoverLogisticsFluidStorage"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "GT6 logistics-network storage policy requires a later network runtime."
+    },
+    {
+      "canonical_id": "logistics_fluid_transfer",
+      "canonical_rule_id": "cover-collapse-logistics-fluid-direction",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-logistics-fluid-transfer",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "Fluid import/export direction is data on one logistics transfer behavior.",
+      "raw_members": [
+        "CoverLogisticsFluidExport",
+        "CoverLogisticsFluidImport"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "GT6 logistics-network fluid routing exceeds adjacent T19 transfer scope."
+    },
+    {
+      "canonical_id": "logistics_generic_dump",
+      "canonical_rule_id": "cover-canonical-logistics-generic-dump",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-logistics-generic-dump",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "Generic dump semantics are distinct from import/export and storage.",
+      "raw_members": [
+        "CoverLogisticsGenericDump"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "GT6 generic logistics dumping requires a later network runtime."
+    },
+    {
+      "canonical_id": "logistics_generic_storage",
+      "canonical_rule_id": "cover-canonical-logistics-generic-storage",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-logistics-generic-storage",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "Generic storage policy is distinct from directional transfer.",
+      "raw_members": [
+        "CoverLogisticsGenericStorage"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "GT6 generic logistics storage requires a later network runtime."
+    },
+    {
+      "canonical_id": "logistics_generic_transfer",
+      "canonical_rule_id": "cover-collapse-logistics-generic-direction",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-logistics-generic-transfer",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "Generic import/export direction is data on one logistics transfer behavior.",
+      "raw_members": [
+        "CoverLogisticsGenericExport",
+        "CoverLogisticsGenericImport"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "GT6 generic logistics routing requires a later network runtime."
+    },
+    {
+      "canonical_id": "logistics_item_storage",
+      "canonical_rule_id": "cover-canonical-logistics-item-storage",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-logistics-item-storage",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "Item storage policy is distinct from directional transfer.",
+      "raw_members": [
+        "CoverLogisticsItemStorage"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "GT6 logistics-network item storage requires a later network runtime."
+    },
+    {
+      "canonical_id": "logistics_item_transfer",
+      "canonical_rule_id": "cover-collapse-logistics-item-direction",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-logistics-item-transfer",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "Item import/export direction is data on one logistics transfer behavior.",
+      "raw_members": [
+        "CoverLogisticsItemExport",
+        "CoverLogisticsItemImport"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "GT6 logistics-network item routing exceeds adjacent T19 transfer scope."
+    },
+    {
+      "canonical_id": "pressure_valve",
+      "canonical_rule_id": "cover-canonical-pressure-valve",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-select-pressure-valve",
+      "deferred": null,
+      "disposition": "in_scope",
+      "implementation_status": "selected_t19",
+      "normalization_reason": "CoverPressureValve applies a distinct pressure-aware fluid gate.",
+      "raw_members": [
+        "CoverPressureValve"
+      ],
+      "roadmap_bucket": "T19",
+      "scope_reason": "A pressure-aware fluid gate complements the existing one-way valve."
+    },
+    {
+      "canonical_id": "pump",
+      "canonical_rule_id": "cover-canonical-pump",
+      "cc_behavior": "OUTPUT_PUMP",
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-map-pump",
+      "deferred": null,
+      "disposition": "in_scope",
+      "implementation_status": "implemented",
+      "normalization_reason": "CoverPump implements active adjacent fluid movement.",
+      "raw_members": [
+        "CoverPump"
+      ],
+      "roadmap_bucket": "existing_cc",
+      "scope_reason": "CC OUTPUT_PUMP represents active outward adjacent transfer."
+    },
+    {
+      "canonical_id": "redstone_conductor",
+      "canonical_rule_id": "cover-collapse-redstone-conductor-direction",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-redstone-conductor",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "Conductor IN/OUT direction is data on one redstone bridge behavior.",
+      "raw_members": [
+        "CoverRedstoneConductorIN",
+        "CoverRedstoneConductorOUT"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Redstone network bridging is outside the selected T19 batch."
+    },
+    {
+      "canonical_id": "redstone_emitter",
+      "canonical_rule_id": "cover-canonical-redstone-emitter",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-redstone-emitter",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "CoverRedstoneEmitter has an independently configurable emission behavior.",
+      "raw_members": [
+        "CoverRedstoneEmitter"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Configurable emission needs a later redstone-cover batch."
+    },
+    {
+      "canonical_id": "redstone_repeater",
+      "canonical_rule_id": "cover-canonical-redstone-repeater",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-redstone-repeater",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "CoverRedstoneRepeater supplies a distinct delayed redstone behavior.",
+      "raw_members": [
+        "CoverRedstoneRepeater"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Tick-delayed redstone behavior needs a later redstone-cover batch."
+    },
+    {
+      "canonical_id": "redstone_torch",
+      "canonical_rule_id": "cover-canonical-redstone-torch",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-redstone-torch",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "CoverRedstoneTorch supplies a distinct inversion/emission behavior.",
+      "raw_members": [
+        "CoverRedstoneTorch"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Redstone inversion needs a later redstone-cover batch."
+    },
+    {
+      "canonical_id": "retriever_item",
+      "canonical_rule_id": "cover-canonical-retriever-item",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-select-retriever-item",
+      "deferred": null,
+      "disposition": "in_scope",
+      "implementation_status": "selected_t19",
+      "normalization_reason": "CoverRetrieverItem actively requests matching items and is not a passive filter.",
+      "raw_members": [
+        "CoverRetrieverItem"
+      ],
+      "roadmap_bucket": "T19",
+      "scope_reason": "Demand-driven retrieval is a high-value automation behavior."
+    },
+    {
+      "canonical_id": "robot_arm",
+      "canonical_rule_id": "cover-canonical-robot-arm",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-select-robot-arm",
+      "deferred": null,
+      "disposition": "in_scope",
+      "implementation_status": "selected_t19",
+      "normalization_reason": "CoverRobotArm provides configurable item transfer behavior.",
+      "raw_members": [
+        "CoverRobotArm"
+      ],
+      "roadmap_bucket": "T19",
+      "scope_reason": "Count-aware item transfer is a high-value automation behavior."
+    },
+    {
+      "canonical_id": "scale_energy",
+      "canonical_rule_id": "cover-canonical-scale-energy",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-scale-energy",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "CoverScaleEnergy samples energy capacity for a scale output.",
+      "raw_members": [
+        "CoverScaleEnergy"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Energy scale display needs a later diagnostics/UI batch."
+    },
+    {
+      "canonical_id": "scale_progress",
+      "canonical_rule_id": "cover-canonical-scale-progress",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-scale-progress",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "CoverScaleProgress samples machine progress for a scale output.",
+      "raw_members": [
+        "CoverScaleProgress"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Progress scale display remains owned by later diagnostics work after T19."
+    },
+    {
+      "canonical_id": "selector_button_panel",
+      "canonical_rule_id": "cover-canonical-selector-button-panel",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-selector-button",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "CoverSelectorButtonPanel exposes a distinct multi-button interaction.",
+      "raw_members": [
+        "CoverSelectorButtonPanel"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Multi-button UI is outside the bounded T19 selector selection."
+    },
+    {
+      "canonical_id": "selector_manual",
+      "canonical_rule_id": "cover-canonical-selector-manual",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-select-selector-manual",
+      "deferred": null,
+      "disposition": "in_scope",
+      "implementation_status": "selected_t19",
+      "normalization_reason": "CoverSelectorManual exposes direct manual selection.",
+      "raw_members": [
+        "CoverSelectorManual"
+      ],
+      "roadmap_bucket": "T19",
+      "scope_reason": "Manual side configuration supplies a bounded selector behavior for T19."
+    },
+    {
+      "canonical_id": "selector_redstone",
+      "canonical_rule_id": "cover-canonical-selector-redstone",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-selector-redstone",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "CoverSelectorRedstone derives selection from redstone input.",
+      "raw_members": [
+        "CoverSelectorRedstone"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Redstone-driven selection needs a later selector batch."
+    },
+    {
+      "canonical_id": "selector_tag",
+      "canonical_rule_id": "cover-canonical-selector-tag",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-selector-tag",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "CoverSelectorTag derives selection from a tag identity.",
+      "raw_members": [
+        "CoverSelectorTag"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Tag-driven selection needs a later selector and tag-identity contract."
+    },
+    {
+      "canonical_id": "shutter",
+      "canonical_rule_id": "cover-canonical-shutter",
+      "cc_behavior": "ONE_WAY_VALVE",
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-map-shutter",
+      "deferred": null,
+      "disposition": "in_scope",
+      "implementation_status": "implemented",
+      "normalization_reason": "CoverShutter gates side access and transfer direction.",
+      "raw_members": [
+        "CoverShutter"
+      ],
+      "roadmap_bucket": "existing_cc",
+      "scope_reason": "CC ONE_WAY_VALVE represents the existing one-direction side gate."
+    },
+    {
+      "canonical_id": "texture_canvas",
+      "canonical_rule_id": "cover-canonical-texture-canvas",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-out-texture-canvas",
+      "deferred": null,
+      "disposition": "out_of_scope",
+      "implementation_status": "out_of_scope",
+      "normalization_reason": "CoverTextureCanvas is a concrete player-configurable decorative cover.",
+      "raw_members": [
+        "CoverTextureCanvas"
+      ],
+      "roadmap_bucket": "third_stage_excluded",
+      "scope_reason": "Decorative texture covers are outside T19 behavior and acquisition closure."
+    },
+    {
+      "canonical_id": "texture_multi",
+      "canonical_rule_id": "cover-canonical-texture-multi",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-out-texture-multi",
+      "deferred": null,
+      "disposition": "out_of_scope",
+      "implementation_status": "out_of_scope",
+      "normalization_reason": "CoverTextureMulti is a concrete multi-texture decorative cover.",
+      "raw_members": [
+        "CoverTextureMulti"
+      ],
+      "roadmap_bucket": "third_stage_excluded",
+      "scope_reason": "Decorative texture covers are outside T19 behavior and acquisition closure."
+    },
+    {
+      "canonical_id": "texture_simple",
+      "canonical_rule_id": "cover-canonical-texture-simple",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-out-texture-simple",
+      "deferred": null,
+      "disposition": "out_of_scope",
+      "implementation_status": "out_of_scope",
+      "normalization_reason": "CoverTextureSimple is a concrete fixed-texture decorative cover.",
+      "raw_members": [
+        "CoverTextureSimple"
+      ],
+      "roadmap_bucket": "third_stage_excluded",
+      "scope_reason": "Decorative texture covers are outside T19 behavior and acquisition closure."
+    },
+    {
+      "canonical_id": "vent",
+      "canonical_rule_id": "cover-canonical-vent",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-vent",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "CoverVent performs a distinct machine ventilation interaction.",
+      "raw_members": [
+        "CoverVent"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Machine ventilation is outside the selected pipe automation batch."
+    }
+  ],
+  "counts": {
+    "canonical": 47,
+    "classifications": {
+      "deferred_with_reason": 28,
+      "in_scope": 9,
+      "out_of_scope": 10
+    },
+    "classified": 47,
+    "excluded": 14,
+    "implementation_statuses": {
+      "deferred_with_reason": 28,
+      "implemented": 4,
+      "out_of_scope": 10,
+      "selected_t19": 5
+    },
+    "raw_classes": 65,
+    "raw_files": 65,
+    "unclassified": 0
+  },
+  "declared_transformations": [
+    {
+      "canonical_id": "logistics_fluid_transfer",
+      "id": "cover-collapse-direction-logistics-fluid",
+      "raw_members": [
+        "CoverLogisticsFluidExport",
+        "CoverLogisticsFluidImport"
+      ],
+      "source_evidence": "Both concrete classes inherit AbstractCoverAttachmentLogistics and differ in their import/export direction hooks.",
+      "statement": "Import and export use the same fluid logistics transfer behavior with opposite direction.",
+      "variant_dimensions": [
+        "direction"
+      ]
+    },
+    {
+      "canonical_id": "logistics_generic_transfer",
+      "id": "cover-collapse-direction-logistics-generic",
+      "raw_members": [
+        "CoverLogisticsGenericExport",
+        "CoverLogisticsGenericImport"
+      ],
+      "source_evidence": "The two concrete wrappers select opposite transfer direction on the shared logistics base.",
+      "statement": "Import and export use the same generic logistics transfer behavior with opposite direction.",
+      "variant_dimensions": [
+        "direction"
+      ]
+    },
+    {
+      "canonical_id": "logistics_item_transfer",
+      "id": "cover-collapse-direction-logistics-item",
+      "raw_members": [
+        "CoverLogisticsItemExport",
+        "CoverLogisticsItemImport"
+      ],
+      "source_evidence": "Both concrete classes share item logistics matching and differ in import/export direction hooks.",
+      "statement": "Import and export use the same item logistics transfer behavior with opposite direction.",
+      "variant_dimensions": [
+        "direction"
+      ]
+    },
+    {
+      "canonical_id": "redstone_conductor",
+      "id": "cover-collapse-direction-redstone-conductor",
+      "raw_members": [
+        "CoverRedstoneConductorIN",
+        "CoverRedstoneConductorOUT"
+      ],
+      "source_evidence": "The two classes bridge the same redstone signal contract in opposite directions.",
+      "statement": "Input and output are opposite directions of one redstone-conductor behavior.",
+      "variant_dimensions": [
+        "direction"
+      ]
+    }
+  ],
+  "exclusions": [
+    {
+      "abstract": true,
+      "declaration": "public abstract class AbstractCoverAttachment extends AbstractCoverDefault {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "AbstractCoverAttachment",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-abstract-attachment",
+      "rule_reason": "AbstractCoverAttachment supplies shared attachment hooks and is not instantiable.",
+      "source_blob": "7810143ac85642bdb37923a16fabaa42a8af84b7",
+      "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachment.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "AbstractCoverAttachment",
+      "source_symbol_or_extraction_key": "AbstractCoverAttachment"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class AbstractCoverAttachmentController extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "AbstractCoverAttachmentController",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-abstract-controller",
+      "rule_reason": "AbstractCoverAttachmentController supplies controller plumbing for concrete covers.",
+      "source_blob": "b8e5dcd3ed3aaee2f73837cd5be210cc65bcc7d8",
+      "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentController.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "AbstractCoverAttachmentController",
+      "source_symbol_or_extraction_key": "AbstractCoverAttachmentController"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class AbstractCoverAttachmentDetector extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "AbstractCoverAttachmentDetector",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-abstract-detector",
+      "rule_reason": "AbstractCoverAttachmentDetector supplies detector plumbing for concrete covers.",
+      "source_blob": "9c9c2e797e2e7f72cab8a06e5bd0dfbbe7cf0e9a",
+      "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentDetector.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "AbstractCoverAttachmentDetector",
+      "source_symbol_or_extraction_key": "AbstractCoverAttachmentDetector"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class AbstractCoverAttachmentDisplay extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "AbstractCoverAttachmentDisplay",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-abstract-display",
+      "rule_reason": "AbstractCoverAttachmentDisplay supplies display plumbing for concrete covers.",
+      "source_blob": "08b8343bb4d0c9431e13f3af046ffe06264d9b81",
+      "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentDisplay.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "AbstractCoverAttachmentDisplay",
+      "source_symbol_or_extraction_key": "AbstractCoverAttachmentDisplay"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class AbstractCoverAttachmentLogistics extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "AbstractCoverAttachmentLogistics",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-abstract-logistics",
+      "rule_reason": "AbstractCoverAttachmentLogistics supplies logistics plumbing for concrete covers.",
+      "source_blob": "b5ad382abbf44bb9789222f91acaacb835d6d05e",
+      "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentLogistics.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "AbstractCoverAttachmentLogistics",
+      "source_symbol_or_extraction_key": "AbstractCoverAttachmentLogistics"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class AbstractCoverAttachmentLogisticsDisplay extends AbstractCoverAttachmentLogistics {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "AbstractCoverAttachmentLogisticsDisplay",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-abstract-logistics-display",
+      "rule_reason": "AbstractCoverAttachmentLogisticsDisplay supplies shared logistics display plumbing.",
+      "source_blob": "7fca7909ad8ba7f49e4165a14b3b88082ca7959a",
+      "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentLogisticsDisplay.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "AbstractCoverAttachmentLogisticsDisplay",
+      "source_symbol_or_extraction_key": "AbstractCoverAttachmentLogisticsDisplay"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class AbstractCoverAttachmentScale extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "AbstractCoverAttachmentScale",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-abstract-scale",
+      "rule_reason": "AbstractCoverAttachmentScale supplies shared scale rendering and sampling hooks.",
+      "source_blob": "3cfe4de5cc906546287f195214b83482233eff1e",
+      "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentScale.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "AbstractCoverAttachmentScale",
+      "source_symbol_or_extraction_key": "AbstractCoverAttachmentScale"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class AbstractCoverAttachmentSelector extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "AbstractCoverAttachmentSelector",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-abstract-selector",
+      "rule_reason": "AbstractCoverAttachmentSelector supplies shared selector state handling.",
+      "source_blob": "9857195495c11d22a4826696317198c703162f70",
+      "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentSelector.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "AbstractCoverAttachmentSelector",
+      "source_symbol_or_extraction_key": "AbstractCoverAttachmentSelector"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class AbstractCoverAttachmentTorch extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "AbstractCoverAttachmentTorch",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-abstract-torch",
+      "rule_reason": "AbstractCoverAttachmentTorch supplies shared torch attachment behavior.",
+      "source_blob": "ce69aca2a38418fa4e35bf88ea7b67d300545941",
+      "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentTorch.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "AbstractCoverAttachmentTorch",
+      "source_symbol_or_extraction_key": "AbstractCoverAttachmentTorch"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class AbstractCoverDefault implements ICover {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "AbstractCoverDefault",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-abstract-default",
+      "rule_reason": "AbstractCoverDefault supplies default ICover implementations and is not instantiable.",
+      "source_blob": "3084e223ba0505b6b7afa0679a58da7e6418a627",
+      "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverDefault.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "AbstractCoverDefault",
+      "source_symbol_or_extraction_key": "AbstractCoverDefault"
+    },
+    {
+      "abstract": false,
+      "declaration": "public class CoverData {",
+      "declaration_kind": "class",
+      "exclusion_kind": "data_only_companion",
+      "normalized_row_key": "CoverData",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-cover-data",
+      "rule_reason": "CoverData stores per-side cover state and is not a concrete cover behavior.",
+      "source_blob": "886d2de150ea3dce59971c1369ed98fbb002787a",
+      "source_path": "src/main/java/gregapi/cover/CoverData.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverData",
+      "source_symbol_or_extraction_key": "CoverData"
+    },
+    {
+      "abstract": false,
+      "declaration": "public class CoverRegistry {",
+      "declaration_kind": "class",
+      "exclusion_kind": "registry_helper",
+      "normalized_row_key": "CoverRegistry",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-cover-registry",
+      "rule_reason": "CoverRegistry registers cover instances and is not itself a cover behavior.",
+      "source_blob": "9dff1fe8e9f4857b1df552b4fd2900776c709e01",
+      "source_path": "src/main/java/gregapi/cover/CoverRegistry.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverRegistry",
+      "source_symbol_or_extraction_key": "CoverRegistry"
+    },
+    {
+      "abstract": true,
+      "declaration": "public interface ICover {",
+      "declaration_kind": "interface",
+      "exclusion_kind": "interface",
+      "normalized_row_key": "ICover",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-i-cover",
+      "rule_reason": "ICover defines the behavior contract and has no concrete behavior identity.",
+      "source_blob": "ce068f7e249ecf79316e2dcf1586ffd970a7ec3e",
+      "source_path": "src/main/java/gregapi/cover/ICover.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "ICover",
+      "source_symbol_or_extraction_key": "ICover"
+    },
+    {
+      "abstract": true,
+      "declaration": "public interface ITileEntityCoverable extends ITileEntity {",
+      "declaration_kind": "interface",
+      "exclusion_kind": "interface",
+      "normalized_row_key": "ITileEntityCoverable",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-i-tile-coverable",
+      "rule_reason": "ITileEntityCoverable is the host contract rather than a cover behavior.",
+      "source_blob": "62e145a150916ceb57e17834e0783de3dcaae23c",
+      "source_path": "src/main/java/gregapi/cover/ITileEntityCoverable.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "ITileEntityCoverable",
+      "source_symbol_or_extraction_key": "ITileEntityCoverable"
+    }
+  ],
+  "expected_path_set": {
+    "construction": "literal package path plus independently authored expected public symbol list; canonical rules are not consulted",
+    "count": 65,
+    "paths": [
+      "src/main/java/gregapi/cover/CoverData.java",
+      "src/main/java/gregapi/cover/CoverRegistry.java",
+      "src/main/java/gregapi/cover/ICover.java",
+      "src/main/java/gregapi/cover/ITileEntityCoverable.java",
+      "src/main/java/gregapi/cover/covers/AbstractCoverAttachment.java",
+      "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentController.java",
+      "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentDetector.java",
+      "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentDisplay.java",
+      "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentLogistics.java",
+      "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentLogisticsDisplay.java",
+      "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentScale.java",
+      "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentSelector.java",
+      "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentTorch.java",
+      "src/main/java/gregapi/cover/covers/AbstractCoverDefault.java",
+      "src/main/java/gregapi/cover/covers/CoverAsphalt.java",
+      "src/main/java/gregapi/cover/covers/CoverControllerAuto.java",
+      "src/main/java/gregapi/cover/covers/CoverControllerAutoRedstone.java",
+      "src/main/java/gregapi/cover/covers/CoverControllerAutoTimer.java",
+      "src/main/java/gregapi/cover/covers/CoverControllerCovers.java",
+      "src/main/java/gregapi/cover/covers/CoverControllerDisplay.java",
+      "src/main/java/gregapi/cover/covers/CoverControllerRedstone.java",
+      "src/main/java/gregapi/cover/covers/CoverConveyor.java",
+      "src/main/java/gregapi/cover/covers/CoverCrafting.java",
+      "src/main/java/gregapi/cover/covers/CoverDetectorRunningActively.java",
+      "src/main/java/gregapi/cover/covers/CoverDetectorRunningPassively.java",
+      "src/main/java/gregapi/cover/covers/CoverDetectorRunningPossible.java",
+      "src/main/java/gregapi/cover/covers/CoverDetectorRunningSuccessfully.java",
+      "src/main/java/gregapi/cover/covers/CoverDisplayEnergy.java",
+      "src/main/java/gregapi/cover/covers/CoverDrain.java",
+      "src/main/java/gregapi/cover/covers/CoverFilterFluid.java",
+      "src/main/java/gregapi/cover/covers/CoverFilterItem.java",
+      "src/main/java/gregapi/cover/covers/CoverLogisticsDisplayCPUControl.java",
+      "src/main/java/gregapi/cover/covers/CoverLogisticsDisplayCPUConversion.java",
+      "src/main/java/gregapi/cover/covers/CoverLogisticsDisplayCPULogic.java",
+      "src/main/java/gregapi/cover/covers/CoverLogisticsDisplayCPUStorage.java",
+      "src/main/java/gregapi/cover/covers/CoverLogisticsFluidExport.java",
+      "src/main/java/gregapi/cover/covers/CoverLogisticsFluidImport.java",
+      "src/main/java/gregapi/cover/covers/CoverLogisticsFluidStorage.java",
+      "src/main/java/gregapi/cover/covers/CoverLogisticsGenericDump.java",
+      "src/main/java/gregapi/cover/covers/CoverLogisticsGenericExport.java",
+      "src/main/java/gregapi/cover/covers/CoverLogisticsGenericImport.java",
+      "src/main/java/gregapi/cover/covers/CoverLogisticsGenericStorage.java",
+      "src/main/java/gregapi/cover/covers/CoverLogisticsItemExport.java",
+      "src/main/java/gregapi/cover/covers/CoverLogisticsItemImport.java",
+      "src/main/java/gregapi/cover/covers/CoverLogisticsItemStorage.java",
+      "src/main/java/gregapi/cover/covers/CoverPressureValve.java",
+      "src/main/java/gregapi/cover/covers/CoverPump.java",
+      "src/main/java/gregapi/cover/covers/CoverRedstoneConductorIN.java",
+      "src/main/java/gregapi/cover/covers/CoverRedstoneConductorOUT.java",
+      "src/main/java/gregapi/cover/covers/CoverRedstoneEmitter.java",
+      "src/main/java/gregapi/cover/covers/CoverRedstoneRepeater.java",
+      "src/main/java/gregapi/cover/covers/CoverRedstoneTorch.java",
+      "src/main/java/gregapi/cover/covers/CoverRetrieverItem.java",
+      "src/main/java/gregapi/cover/covers/CoverRobotArm.java",
+      "src/main/java/gregapi/cover/covers/CoverScaleEnergy.java",
+      "src/main/java/gregapi/cover/covers/CoverScaleProgress.java",
+      "src/main/java/gregapi/cover/covers/CoverSelectorButtonPanel.java",
+      "src/main/java/gregapi/cover/covers/CoverSelectorManual.java",
+      "src/main/java/gregapi/cover/covers/CoverSelectorRedstone.java",
+      "src/main/java/gregapi/cover/covers/CoverSelectorTag.java",
+      "src/main/java/gregapi/cover/covers/CoverShutter.java",
+      "src/main/java/gregapi/cover/covers/CoverTextureCanvas.java",
+      "src/main/java/gregapi/cover/covers/CoverTextureMulti.java",
+      "src/main/java/gregapi/cover/covers/CoverTextureSimple.java",
+      "src/main/java/gregapi/cover/covers/CoverVent.java"
+    ],
+    "sha256": "5157144dc89bb2016214156ab09ba4a1d9bcadf7924965950575832320b62c56"
+  },
+  "field_cardinality": {
+    "canonical_output": {
+      "canonical_id": 47,
+      "disposition": 3,
+      "implementation_status": 4,
+      "roadmap_bucket": 4
+    },
+    "raw_source": {
+      "declaration_kind": 2,
+      "source_blob": 65,
+      "source_path": 65,
+      "source_symbol": 65
+    }
+  },
+  "generation_command": "python tools/build_t13_cover_multiblock_denominators.py --refresh-source-manifest --write",
+  "identity_fields": [
+    "source_revision",
+    "source_blob",
+    "source_path",
+    "source_symbol_or_extraction_key",
+    "normalized_row_key"
+  ],
+  "raw_records": [
+    {
+      "abstract": true,
+      "declaration": "public abstract class AbstractCoverAttachment extends AbstractCoverDefault {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "AbstractCoverAttachment",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-abstract-attachment",
+      "rule_reason": "AbstractCoverAttachment supplies shared attachment hooks and is not instantiable.",
+      "source_blob": "7810143ac85642bdb37923a16fabaa42a8af84b7",
+      "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachment.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "AbstractCoverAttachment",
+      "source_symbol_or_extraction_key": "AbstractCoverAttachment"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class AbstractCoverAttachmentController extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "AbstractCoverAttachmentController",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-abstract-controller",
+      "rule_reason": "AbstractCoverAttachmentController supplies controller plumbing for concrete covers.",
+      "source_blob": "b8e5dcd3ed3aaee2f73837cd5be210cc65bcc7d8",
+      "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentController.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "AbstractCoverAttachmentController",
+      "source_symbol_or_extraction_key": "AbstractCoverAttachmentController"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class AbstractCoverAttachmentDetector extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "AbstractCoverAttachmentDetector",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-abstract-detector",
+      "rule_reason": "AbstractCoverAttachmentDetector supplies detector plumbing for concrete covers.",
+      "source_blob": "9c9c2e797e2e7f72cab8a06e5bd0dfbbe7cf0e9a",
+      "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentDetector.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "AbstractCoverAttachmentDetector",
+      "source_symbol_or_extraction_key": "AbstractCoverAttachmentDetector"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class AbstractCoverAttachmentDisplay extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "AbstractCoverAttachmentDisplay",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-abstract-display",
+      "rule_reason": "AbstractCoverAttachmentDisplay supplies display plumbing for concrete covers.",
+      "source_blob": "08b8343bb4d0c9431e13f3af046ffe06264d9b81",
+      "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentDisplay.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "AbstractCoverAttachmentDisplay",
+      "source_symbol_or_extraction_key": "AbstractCoverAttachmentDisplay"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class AbstractCoverAttachmentLogistics extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "AbstractCoverAttachmentLogistics",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-abstract-logistics",
+      "rule_reason": "AbstractCoverAttachmentLogistics supplies logistics plumbing for concrete covers.",
+      "source_blob": "b5ad382abbf44bb9789222f91acaacb835d6d05e",
+      "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentLogistics.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "AbstractCoverAttachmentLogistics",
+      "source_symbol_or_extraction_key": "AbstractCoverAttachmentLogistics"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class AbstractCoverAttachmentLogisticsDisplay extends AbstractCoverAttachmentLogistics {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "AbstractCoverAttachmentLogisticsDisplay",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-abstract-logistics-display",
+      "rule_reason": "AbstractCoverAttachmentLogisticsDisplay supplies shared logistics display plumbing.",
+      "source_blob": "7fca7909ad8ba7f49e4165a14b3b88082ca7959a",
+      "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentLogisticsDisplay.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "AbstractCoverAttachmentLogisticsDisplay",
+      "source_symbol_or_extraction_key": "AbstractCoverAttachmentLogisticsDisplay"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class AbstractCoverAttachmentScale extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "AbstractCoverAttachmentScale",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-abstract-scale",
+      "rule_reason": "AbstractCoverAttachmentScale supplies shared scale rendering and sampling hooks.",
+      "source_blob": "3cfe4de5cc906546287f195214b83482233eff1e",
+      "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentScale.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "AbstractCoverAttachmentScale",
+      "source_symbol_or_extraction_key": "AbstractCoverAttachmentScale"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class AbstractCoverAttachmentSelector extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "AbstractCoverAttachmentSelector",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-abstract-selector",
+      "rule_reason": "AbstractCoverAttachmentSelector supplies shared selector state handling.",
+      "source_blob": "9857195495c11d22a4826696317198c703162f70",
+      "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentSelector.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "AbstractCoverAttachmentSelector",
+      "source_symbol_or_extraction_key": "AbstractCoverAttachmentSelector"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class AbstractCoverAttachmentTorch extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "AbstractCoverAttachmentTorch",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-abstract-torch",
+      "rule_reason": "AbstractCoverAttachmentTorch supplies shared torch attachment behavior.",
+      "source_blob": "ce69aca2a38418fa4e35bf88ea7b67d300545941",
+      "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentTorch.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "AbstractCoverAttachmentTorch",
+      "source_symbol_or_extraction_key": "AbstractCoverAttachmentTorch"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class AbstractCoverDefault implements ICover {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "AbstractCoverDefault",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-abstract-default",
+      "rule_reason": "AbstractCoverDefault supplies default ICover implementations and is not instantiable.",
+      "source_blob": "3084e223ba0505b6b7afa0679a58da7e6418a627",
+      "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverDefault.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "AbstractCoverDefault",
+      "source_symbol_or_extraction_key": "AbstractCoverDefault"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "asphalt",
+      "declaration": "public class CoverAsphalt extends CoverTextureSimple {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverAsphalt",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-asphalt",
+      "rule_reason": "CoverAsphalt is a concrete movement-surface cover behavior.",
+      "source_blob": "793324d9a2868d1034f4a6afb1a210660621337e",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverAsphalt.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverAsphalt",
+      "source_symbol_or_extraction_key": "CoverAsphalt"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "controller_auto",
+      "declaration": "public class CoverControllerAuto extends AbstractCoverAttachmentController {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverControllerAuto",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-controller-auto",
+      "rule_reason": "CoverControllerAuto is a concrete automatic machine-control behavior.",
+      "source_blob": "e3b98e41158a439a7c7052b3689b1ee693ad6f95",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverControllerAuto.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverControllerAuto",
+      "source_symbol_or_extraction_key": "CoverControllerAuto"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "controller_auto_redstone",
+      "declaration": "public class CoverControllerAutoRedstone extends AbstractCoverAttachmentController {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverControllerAutoRedstone",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-controller-auto-redstone",
+      "rule_reason": "CoverControllerAutoRedstone adds a distinct redstone-conditioned control behavior.",
+      "source_blob": "e3b481370ef270f734b6972b329d8dde87cd196f",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverControllerAutoRedstone.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverControllerAutoRedstone",
+      "source_symbol_or_extraction_key": "CoverControllerAutoRedstone"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "controller_auto_timer",
+      "declaration": "public class CoverControllerAutoTimer extends AbstractCoverAttachmentController {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverControllerAutoTimer",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-controller-auto-timer",
+      "rule_reason": "CoverControllerAutoTimer adds a distinct timed control behavior.",
+      "source_blob": "ba4746616e0946676e9efcb9cd8f1ab78d201574",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverControllerAutoTimer.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverControllerAutoTimer",
+      "source_symbol_or_extraction_key": "CoverControllerAutoTimer"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "controller_covers",
+      "declaration": "public class CoverControllerCovers extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverControllerCovers",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-controller-covers",
+      "rule_reason": "CoverControllerCovers is a concrete behavior controlling sibling covers.",
+      "source_blob": "25aad11a7378738d6a81c8d0e1eee3ee2419c6af",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverControllerCovers.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverControllerCovers",
+      "source_symbol_or_extraction_key": "CoverControllerCovers"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "controller_display",
+      "declaration": "public class CoverControllerDisplay extends AbstractCoverAttachmentController {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverControllerDisplay",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-controller-display",
+      "rule_reason": "CoverControllerDisplay has a distinct display-driven controller contract.",
+      "source_blob": "32f0eea1aa9fb547ee89c99945f6a3316ddea9cb",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverControllerDisplay.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverControllerDisplay",
+      "source_symbol_or_extraction_key": "CoverControllerDisplay"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "controller_redstone",
+      "declaration": "public class CoverControllerRedstone extends AbstractCoverAttachmentController {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverControllerRedstone",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-controller-redstone",
+      "rule_reason": "CoverControllerRedstone is a concrete redstone controller behavior.",
+      "source_blob": "9d9098a8efed34fbdbff3dbb3e08a884df8fc87b",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverControllerRedstone.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverControllerRedstone",
+      "source_symbol_or_extraction_key": "CoverControllerRedstone"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "conveyor",
+      "declaration": "public class CoverConveyor extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverConveyor",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-conveyor",
+      "rule_reason": "CoverConveyor implements active adjacent item movement.",
+      "source_blob": "15b2c5a70ef760dc65b9ce743185fafa108b4c83",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverConveyor.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverConveyor",
+      "source_symbol_or_extraction_key": "CoverConveyor"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "crafting",
+      "declaration": "public class CoverCrafting extends CoverTextureMulti {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverCrafting",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-crafting",
+      "rule_reason": "CoverCrafting exposes a distinct crafting interaction.",
+      "source_blob": "f425c4220c9515c858a9619cd78d529b405cf75f",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverCrafting.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverCrafting",
+      "source_symbol_or_extraction_key": "CoverCrafting"
+    },
+    {
+      "abstract": false,
+      "declaration": "public class CoverData {",
+      "declaration_kind": "class",
+      "exclusion_kind": "data_only_companion",
+      "normalized_row_key": "CoverData",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-cover-data",
+      "rule_reason": "CoverData stores per-side cover state and is not a concrete cover behavior.",
+      "source_blob": "886d2de150ea3dce59971c1369ed98fbb002787a",
+      "source_path": "src/main/java/gregapi/cover/CoverData.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverData",
+      "source_symbol_or_extraction_key": "CoverData"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "detector_running_actively",
+      "declaration": "public class CoverDetectorRunningActively extends AbstractCoverAttachmentDetector {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverDetectorRunningActively",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-detector-running-actively",
+      "rule_reason": "The actively-running predicate is behaviorally distinct and is not a numeric variant.",
+      "source_blob": "54ecfebf2f2a679f8b4de425a8ca87e74f73d443",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverDetectorRunningActively.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverDetectorRunningActively",
+      "source_symbol_or_extraction_key": "CoverDetectorRunningActively"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "detector_running_passively",
+      "declaration": "public class CoverDetectorRunningPassively extends AbstractCoverAttachmentDetector {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverDetectorRunningPassively",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-detector-running-passively",
+      "rule_reason": "The passively-running predicate is behaviorally distinct and is not a numeric variant.",
+      "source_blob": "44dc0a045362eafd73f6d925a1c966e9cd57d3c0",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverDetectorRunningPassively.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverDetectorRunningPassively",
+      "source_symbol_or_extraction_key": "CoverDetectorRunningPassively"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "detector_running_possible",
+      "declaration": "public class CoverDetectorRunningPossible extends AbstractCoverAttachmentDetector {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverDetectorRunningPossible",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-detector-running-possible",
+      "rule_reason": "The can-run predicate is behaviorally distinct and is not a numeric variant.",
+      "source_blob": "ebe50b66e4df9be32dcc026eb95843add4aafb75",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverDetectorRunningPossible.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverDetectorRunningPossible",
+      "source_symbol_or_extraction_key": "CoverDetectorRunningPossible"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "detector_running_successfully",
+      "declaration": "public class CoverDetectorRunningSuccessfully extends AbstractCoverAttachmentDetector {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverDetectorRunningSuccessfully",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-detector-running-successfully",
+      "rule_reason": "The successful-run predicate is behaviorally distinct and is not a numeric variant.",
+      "source_blob": "e4469793f37271d6fa7d2f1a59f9d1e759ab33b0",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverDetectorRunningSuccessfully.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverDetectorRunningSuccessfully",
+      "source_symbol_or_extraction_key": "CoverDetectorRunningSuccessfully"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "display_energy",
+      "declaration": "public class CoverDisplayEnergy extends AbstractCoverAttachmentDisplay {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverDisplayEnergy",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-display-energy",
+      "rule_reason": "CoverDisplayEnergy is a concrete energy display behavior.",
+      "source_blob": "5ee0471f31e3f04815996404236ed63db7e3fef1",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverDisplayEnergy.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverDisplayEnergy",
+      "source_symbol_or_extraction_key": "CoverDisplayEnergy"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "drain",
+      "declaration": "public class CoverDrain extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverDrain",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-drain",
+      "rule_reason": "CoverDrain performs distinct world-fluid interaction.",
+      "source_blob": "2d172f6f7cfd6c93008cf0b257c7f6bda5d87524",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverDrain.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverDrain",
+      "source_symbol_or_extraction_key": "CoverDrain"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "filter_fluid",
+      "declaration": "public class CoverFilterFluid extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverFilterFluid",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-filter-fluid",
+      "rule_reason": "Fluid matching is a concrete resource-specific filtering behavior.",
+      "source_blob": "ee2148dda58c56f4677446d226431ac804ee62fd",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverFilterFluid.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverFilterFluid",
+      "source_symbol_or_extraction_key": "CoverFilterFluid"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "filter_item",
+      "declaration": "public class CoverFilterItem extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverFilterItem",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-filter-item",
+      "rule_reason": "Item matching is a concrete resource-specific filtering behavior.",
+      "source_blob": "6323ab371a7056fa8cb2e3b6b6e966fc9dc85eb3",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverFilterItem.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverFilterItem",
+      "source_symbol_or_extraction_key": "CoverFilterItem"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "logistics_display_cpu_control",
+      "declaration": "public class CoverLogisticsDisplayCPUControl extends AbstractCoverAttachmentLogisticsDisplay {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverLogisticsDisplayCPUControl",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-logistics-display-control",
+      "rule_reason": "The control CPU display targets a distinct logistics role.",
+      "source_blob": "9ada0e778e4c38e42e597e62ba6089dc921aa25c",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsDisplayCPUControl.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverLogisticsDisplayCPUControl",
+      "source_symbol_or_extraction_key": "CoverLogisticsDisplayCPUControl"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "logistics_display_cpu_conversion",
+      "declaration": "public class CoverLogisticsDisplayCPUConversion extends AbstractCoverAttachmentLogisticsDisplay {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverLogisticsDisplayCPUConversion",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-logistics-display-conversion",
+      "rule_reason": "The conversion CPU display targets a distinct logistics role.",
+      "source_blob": "18e90236cafb9bcae070505f2f73ddd1f48efefe",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsDisplayCPUConversion.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverLogisticsDisplayCPUConversion",
+      "source_symbol_or_extraction_key": "CoverLogisticsDisplayCPUConversion"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "logistics_display_cpu_logic",
+      "declaration": "public class CoverLogisticsDisplayCPULogic extends AbstractCoverAttachmentLogisticsDisplay {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverLogisticsDisplayCPULogic",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-logistics-display-logic",
+      "rule_reason": "The logic CPU display targets a distinct logistics role.",
+      "source_blob": "f272e2bb5f7f26e30568c39d1526672d0e847b3f",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsDisplayCPULogic.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverLogisticsDisplayCPULogic",
+      "source_symbol_or_extraction_key": "CoverLogisticsDisplayCPULogic"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "logistics_display_cpu_storage",
+      "declaration": "public class CoverLogisticsDisplayCPUStorage extends AbstractCoverAttachmentLogisticsDisplay {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverLogisticsDisplayCPUStorage",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-logistics-display-storage",
+      "rule_reason": "The storage CPU display targets a distinct logistics role.",
+      "source_blob": "5f69781a8c7411b09138b2e8535b9221d11042ee",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsDisplayCPUStorage.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverLogisticsDisplayCPUStorage",
+      "source_symbol_or_extraction_key": "CoverLogisticsDisplayCPUStorage"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "logistics_fluid_transfer",
+      "declaration": "public class CoverLogisticsFluidExport extends AbstractCoverAttachmentLogistics {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverLogisticsFluidExport",
+      "partition": "canonical",
+      "rule_id": "cover-collapse-logistics-fluid-direction",
+      "rule_reason": "Fluid import/export direction is data on one logistics transfer behavior.",
+      "source_blob": "f862d8d7055a0d518aeeb53f4cef9e3b0a51b7fa",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsFluidExport.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverLogisticsFluidExport",
+      "source_symbol_or_extraction_key": "CoverLogisticsFluidExport"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "logistics_fluid_transfer",
+      "declaration": "public class CoverLogisticsFluidImport extends AbstractCoverAttachmentLogistics {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverLogisticsFluidImport",
+      "partition": "canonical",
+      "rule_id": "cover-collapse-logistics-fluid-direction",
+      "rule_reason": "Fluid import/export direction is data on one logistics transfer behavior.",
+      "source_blob": "993883e1c59fe5e23ebca68110a3efdbb03bdd41",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsFluidImport.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverLogisticsFluidImport",
+      "source_symbol_or_extraction_key": "CoverLogisticsFluidImport"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "logistics_fluid_storage",
+      "declaration": "public class CoverLogisticsFluidStorage extends AbstractCoverAttachmentLogistics {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverLogisticsFluidStorage",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-logistics-fluid-storage",
+      "rule_reason": "Fluid storage policy is distinct from directional transfer.",
+      "source_blob": "47f930514ee67064400fb45f17846423a4d0e39a",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsFluidStorage.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverLogisticsFluidStorage",
+      "source_symbol_or_extraction_key": "CoverLogisticsFluidStorage"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "logistics_generic_dump",
+      "declaration": "public class CoverLogisticsGenericDump extends AbstractCoverAttachmentLogistics {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverLogisticsGenericDump",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-logistics-generic-dump",
+      "rule_reason": "Generic dump semantics are distinct from import/export and storage.",
+      "source_blob": "8555056a570f09a4fd9102902cef00f141ea7b04",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsGenericDump.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverLogisticsGenericDump",
+      "source_symbol_or_extraction_key": "CoverLogisticsGenericDump"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "logistics_generic_transfer",
+      "declaration": "public class CoverLogisticsGenericExport extends AbstractCoverAttachmentLogistics {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverLogisticsGenericExport",
+      "partition": "canonical",
+      "rule_id": "cover-collapse-logistics-generic-direction",
+      "rule_reason": "Generic import/export direction is data on one logistics transfer behavior.",
+      "source_blob": "ea1e3a77abb1587d80ad7659d5f8f4a9dc1edbbf",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsGenericExport.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverLogisticsGenericExport",
+      "source_symbol_or_extraction_key": "CoverLogisticsGenericExport"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "logistics_generic_transfer",
+      "declaration": "public class CoverLogisticsGenericImport extends AbstractCoverAttachmentLogistics {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverLogisticsGenericImport",
+      "partition": "canonical",
+      "rule_id": "cover-collapse-logistics-generic-direction",
+      "rule_reason": "Generic import/export direction is data on one logistics transfer behavior.",
+      "source_blob": "d813ee56edaccf4338a72b0f6d15900a323f5953",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsGenericImport.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverLogisticsGenericImport",
+      "source_symbol_or_extraction_key": "CoverLogisticsGenericImport"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "logistics_generic_storage",
+      "declaration": "public class CoverLogisticsGenericStorage extends AbstractCoverAttachmentLogistics {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverLogisticsGenericStorage",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-logistics-generic-storage",
+      "rule_reason": "Generic storage policy is distinct from directional transfer.",
+      "source_blob": "fa456df044dfe83915b7aeab5f383e26e779706e",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsGenericStorage.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverLogisticsGenericStorage",
+      "source_symbol_or_extraction_key": "CoverLogisticsGenericStorage"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "logistics_item_transfer",
+      "declaration": "public class CoverLogisticsItemExport extends AbstractCoverAttachmentLogistics {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverLogisticsItemExport",
+      "partition": "canonical",
+      "rule_id": "cover-collapse-logistics-item-direction",
+      "rule_reason": "Item import/export direction is data on one logistics transfer behavior.",
+      "source_blob": "042f195d31b78084cd5949d26354ae02bc1567e2",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsItemExport.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverLogisticsItemExport",
+      "source_symbol_or_extraction_key": "CoverLogisticsItemExport"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "logistics_item_transfer",
+      "declaration": "public class CoverLogisticsItemImport extends AbstractCoverAttachmentLogistics {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverLogisticsItemImport",
+      "partition": "canonical",
+      "rule_id": "cover-collapse-logistics-item-direction",
+      "rule_reason": "Item import/export direction is data on one logistics transfer behavior.",
+      "source_blob": "4e4428095110c92a6403de618ba6f7fbf317a10c",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsItemImport.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverLogisticsItemImport",
+      "source_symbol_or_extraction_key": "CoverLogisticsItemImport"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "logistics_item_storage",
+      "declaration": "public class CoverLogisticsItemStorage extends AbstractCoverAttachmentLogistics {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverLogisticsItemStorage",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-logistics-item-storage",
+      "rule_reason": "Item storage policy is distinct from directional transfer.",
+      "source_blob": "039871aad038a082adadfd1f5bd1ed0cd7fb227b",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsItemStorage.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverLogisticsItemStorage",
+      "source_symbol_or_extraction_key": "CoverLogisticsItemStorage"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "pressure_valve",
+      "declaration": "public class CoverPressureValve extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverPressureValve",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-pressure-valve",
+      "rule_reason": "CoverPressureValve applies a distinct pressure-aware fluid gate.",
+      "source_blob": "87313c8f97ac9ca431c23de42a3c275e19034016",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverPressureValve.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverPressureValve",
+      "source_symbol_or_extraction_key": "CoverPressureValve"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "pump",
+      "declaration": "public class CoverPump extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverPump",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-pump",
+      "rule_reason": "CoverPump implements active adjacent fluid movement.",
+      "source_blob": "d29e2faa23a229bcf0e6ce45213708ff4624c4b1",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverPump.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverPump",
+      "source_symbol_or_extraction_key": "CoverPump"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "redstone_conductor",
+      "declaration": "public class CoverRedstoneConductorIN extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverRedstoneConductorIN",
+      "partition": "canonical",
+      "rule_id": "cover-collapse-redstone-conductor-direction",
+      "rule_reason": "Conductor IN/OUT direction is data on one redstone bridge behavior.",
+      "source_blob": "743c9b55080eb040adf4d457070525aaba3eaadf",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverRedstoneConductorIN.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverRedstoneConductorIN",
+      "source_symbol_or_extraction_key": "CoverRedstoneConductorIN"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "redstone_conductor",
+      "declaration": "public class CoverRedstoneConductorOUT extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverRedstoneConductorOUT",
+      "partition": "canonical",
+      "rule_id": "cover-collapse-redstone-conductor-direction",
+      "rule_reason": "Conductor IN/OUT direction is data on one redstone bridge behavior.",
+      "source_blob": "8337a057b9e093e86557258845d67fc3ceaa1fde",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverRedstoneConductorOUT.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverRedstoneConductorOUT",
+      "source_symbol_or_extraction_key": "CoverRedstoneConductorOUT"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "redstone_emitter",
+      "declaration": "public class CoverRedstoneEmitter extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverRedstoneEmitter",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-redstone-emitter",
+      "rule_reason": "CoverRedstoneEmitter has an independently configurable emission behavior.",
+      "source_blob": "6cf4b74ee7fd2c7732beed759f979070013d4b5b",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverRedstoneEmitter.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverRedstoneEmitter",
+      "source_symbol_or_extraction_key": "CoverRedstoneEmitter"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "redstone_repeater",
+      "declaration": "public class CoverRedstoneRepeater extends AbstractCoverAttachmentTorch {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverRedstoneRepeater",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-redstone-repeater",
+      "rule_reason": "CoverRedstoneRepeater supplies a distinct delayed redstone behavior.",
+      "source_blob": "e0e2e7dea5c445dd3fc9f781dc96194768a8c02d",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverRedstoneRepeater.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverRedstoneRepeater",
+      "source_symbol_or_extraction_key": "CoverRedstoneRepeater"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "redstone_torch",
+      "declaration": "public class CoverRedstoneTorch extends AbstractCoverAttachmentTorch {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverRedstoneTorch",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-redstone-torch",
+      "rule_reason": "CoverRedstoneTorch supplies a distinct inversion/emission behavior.",
+      "source_blob": "e48933111ccc362322fb55944fec2ef2ca38ba22",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverRedstoneTorch.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverRedstoneTorch",
+      "source_symbol_or_extraction_key": "CoverRedstoneTorch"
+    },
+    {
+      "abstract": false,
+      "declaration": "public class CoverRegistry {",
+      "declaration_kind": "class",
+      "exclusion_kind": "registry_helper",
+      "normalized_row_key": "CoverRegistry",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-cover-registry",
+      "rule_reason": "CoverRegistry registers cover instances and is not itself a cover behavior.",
+      "source_blob": "9dff1fe8e9f4857b1df552b4fd2900776c709e01",
+      "source_path": "src/main/java/gregapi/cover/CoverRegistry.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverRegistry",
+      "source_symbol_or_extraction_key": "CoverRegistry"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "retriever_item",
+      "declaration": "public class CoverRetrieverItem extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverRetrieverItem",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-retriever-item",
+      "rule_reason": "CoverRetrieverItem actively requests matching items and is not a passive filter.",
+      "source_blob": "7717b7b3f64b5c113858cc935299199880dc4d79",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverRetrieverItem.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverRetrieverItem",
+      "source_symbol_or_extraction_key": "CoverRetrieverItem"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "robot_arm",
+      "declaration": "public class CoverRobotArm extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverRobotArm",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-robot-arm",
+      "rule_reason": "CoverRobotArm provides configurable item transfer behavior.",
+      "source_blob": "c4d692529ae4e2fd4b8c2279d80a89b00a266b2c",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverRobotArm.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverRobotArm",
+      "source_symbol_or_extraction_key": "CoverRobotArm"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "scale_energy",
+      "declaration": "public class CoverScaleEnergy extends AbstractCoverAttachmentScale {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverScaleEnergy",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-scale-energy",
+      "rule_reason": "CoverScaleEnergy samples energy capacity for a scale output.",
+      "source_blob": "ac635e1f926d817b5bc07d7b309b61cf17b6ca9b",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverScaleEnergy.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverScaleEnergy",
+      "source_symbol_or_extraction_key": "CoverScaleEnergy"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "scale_progress",
+      "declaration": "public class CoverScaleProgress extends AbstractCoverAttachmentScale {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverScaleProgress",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-scale-progress",
+      "rule_reason": "CoverScaleProgress samples machine progress for a scale output.",
+      "source_blob": "f737ad591409ec4f75163d50ca5dd05093359dff",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverScaleProgress.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverScaleProgress",
+      "source_symbol_or_extraction_key": "CoverScaleProgress"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "selector_button_panel",
+      "declaration": "public class CoverSelectorButtonPanel extends AbstractCoverAttachmentSelector {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverSelectorButtonPanel",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-selector-button-panel",
+      "rule_reason": "CoverSelectorButtonPanel exposes a distinct multi-button interaction.",
+      "source_blob": "968004827f6736f9be8709692d2239b9ab15930f",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverSelectorButtonPanel.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverSelectorButtonPanel",
+      "source_symbol_or_extraction_key": "CoverSelectorButtonPanel"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "selector_manual",
+      "declaration": "public class CoverSelectorManual extends AbstractCoverAttachmentSelector {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverSelectorManual",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-selector-manual",
+      "rule_reason": "CoverSelectorManual exposes direct manual selection.",
+      "source_blob": "da346879c9a62b8a4906f876b76042aa083cdc14",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverSelectorManual.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverSelectorManual",
+      "source_symbol_or_extraction_key": "CoverSelectorManual"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "selector_redstone",
+      "declaration": "public class CoverSelectorRedstone extends AbstractCoverAttachmentSelector {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverSelectorRedstone",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-selector-redstone",
+      "rule_reason": "CoverSelectorRedstone derives selection from redstone input.",
+      "source_blob": "5b382fc95ec5b93e2f3a70ac9b7951d2f336b04a",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverSelectorRedstone.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverSelectorRedstone",
+      "source_symbol_or_extraction_key": "CoverSelectorRedstone"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "selector_tag",
+      "declaration": "public class CoverSelectorTag extends AbstractCoverAttachmentSelector {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverSelectorTag",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-selector-tag",
+      "rule_reason": "CoverSelectorTag derives selection from a tag identity.",
+      "source_blob": "6fa9e7a50ec08945f90bf51eb5f19ba84d7ae881",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverSelectorTag.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverSelectorTag",
+      "source_symbol_or_extraction_key": "CoverSelectorTag"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "shutter",
+      "declaration": "public class CoverShutter extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverShutter",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-shutter",
+      "rule_reason": "CoverShutter gates side access and transfer direction.",
+      "source_blob": "367a0462740f4a67d885ebbee0383eae52a54efc",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverShutter.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverShutter",
+      "source_symbol_or_extraction_key": "CoverShutter"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "texture_canvas",
+      "declaration": "public class CoverTextureCanvas extends AbstractCoverDefault {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverTextureCanvas",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-texture-canvas",
+      "rule_reason": "CoverTextureCanvas is a concrete player-configurable decorative cover.",
+      "source_blob": "f50b149583644d1eaa22e69a71e6a18efdbf671a",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverTextureCanvas.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverTextureCanvas",
+      "source_symbol_or_extraction_key": "CoverTextureCanvas"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "texture_multi",
+      "declaration": "public class CoverTextureMulti extends AbstractCoverDefault {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverTextureMulti",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-texture-multi",
+      "rule_reason": "CoverTextureMulti is a concrete multi-texture decorative cover.",
+      "source_blob": "4bbca803933a97eb7163df8d1fc8ec3011883387",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverTextureMulti.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverTextureMulti",
+      "source_symbol_or_extraction_key": "CoverTextureMulti"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "texture_simple",
+      "declaration": "public class CoverTextureSimple extends AbstractCoverDefault {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverTextureSimple",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-texture-simple",
+      "rule_reason": "CoverTextureSimple is a concrete fixed-texture decorative cover.",
+      "source_blob": "689a133dff55fce50570bbfa9990b17903787b80",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverTextureSimple.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverTextureSimple",
+      "source_symbol_or_extraction_key": "CoverTextureSimple"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "vent",
+      "declaration": "public class CoverVent extends AbstractCoverAttachment {",
+      "declaration_kind": "class",
+      "normalized_row_key": "CoverVent",
+      "partition": "canonical",
+      "rule_id": "cover-canonical-vent",
+      "rule_reason": "CoverVent performs a distinct machine ventilation interaction.",
+      "source_blob": "610fff6f5034fe6b466b40ccdb9139aa341289c7",
+      "source_path": "src/main/java/gregapi/cover/covers/CoverVent.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "CoverVent",
+      "source_symbol_or_extraction_key": "CoverVent"
+    },
+    {
+      "abstract": true,
+      "declaration": "public interface ICover {",
+      "declaration_kind": "interface",
+      "exclusion_kind": "interface",
+      "normalized_row_key": "ICover",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-i-cover",
+      "rule_reason": "ICover defines the behavior contract and has no concrete behavior identity.",
+      "source_blob": "ce068f7e249ecf79316e2dcf1586ffd970a7ec3e",
+      "source_path": "src/main/java/gregapi/cover/ICover.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "ICover",
+      "source_symbol_or_extraction_key": "ICover"
+    },
+    {
+      "abstract": true,
+      "declaration": "public interface ITileEntityCoverable extends ITileEntity {",
+      "declaration_kind": "interface",
+      "exclusion_kind": "interface",
+      "normalized_row_key": "ITileEntityCoverable",
+      "partition": "excluded",
+      "rule_id": "cover-exclude-i-tile-coverable",
+      "rule_reason": "ITileEntityCoverable is the host contract rather than a cover behavior.",
+      "source_blob": "62e145a150916ceb57e17834e0783de3dcaae23c",
+      "source_path": "src/main/java/gregapi/cover/ITileEntityCoverable.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "ITileEntityCoverable",
+      "source_symbol_or_extraction_key": "ITileEntityCoverable"
+    }
+  ],
+  "schema_version": 1,
+  "source": {
+    "category_manifest_sha256": "5aca0f5747ab6dbe86bf70b3e78f9265d043c8394096b3b933864dc6b34ac17f",
+    "repository": "https://github.com/GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "source_digest": "sha256:5aca0f5747ab6dbe86bf70b3e78f9265d043c8394096b3b933864dc6b34ac17f;git-tree-sha1:a164302f62a326208fd2076de6fb7cdb0b4602ee",
+    "source_packages": [
+      "src/main/java/gregapi/cover",
+      "src/main/java/gregapi/cover/covers"
+    ],
+    "tree_sha1": "a164302f62a326208fd2076de6fb7cdb0b4602ee"
+  },
+  "status": "READY",
+  "table": "cover_kinds",
+  "uniform_audit": {
+    "block_on_undeclared_many_to_one": true,
+    "compared_fields": {
+      "canonical_output": [
+        "canonical_id",
+        "disposition",
+        "implementation_status",
+        "roadmap_bucket"
+      ],
+      "raw_source": [
+        "declaration_kind",
+        "source_blob",
+        "source_path",
+        "source_symbol"
+      ]
+    },
+    "declared_many_to_one_count": 4,
+    "open_items": [],
+    "status": "PASS",
+    "undeclared_many_to_one": [],
+    "unexplained_field_cardinality_reductions": [],
+    "uniform_statuses": []
+  }
+}

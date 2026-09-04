@@ -90,9 +90,9 @@ class ChemicalPublicationBudgetTest {
         assertFalse(CompactWaveRecipeIds.isCompactHostRecipe(
                 id("chemical/electrolyzer/split_solution")));
         assertFalse(CompactWaveRecipeIds.isCompactHostRecipe(
-                id("t40_catalog/electrolyzer/gt_recipe_electrolyzer_0000")));
+                id("electrolyzer_catalog/electrolyzer/gt_recipe_electrolyzer_0000")));
         assertFalse(CompactWaveRecipeIds.isCompactHostRecipe(
-                id("t41_catalog/assembler/gt_recipe_assembler_0000")));
+                id("assembler_wood_catalog/assembler/gt_recipe_assembler_0000")));
         assertTrue(CompactWaveRecipeIds.isRoasterRecoveryRecipe(
                 id("player_path_recovery/roaster/mixer_aluminium_fluoride")));
         assertTrue(CompactWaveRecipeIds.isSemanticWaveRecipe(

@@ -19,26 +19,26 @@ class VerificationDagTest(unittest.TestCase):
                 "census_delta",
                 "topology",
                 "readiness",
-                "t42_freeze",
-                "t42_snapshot",
-                "t42_inventory",
-                "t42_b0",
-                "t42_overlay",
-                "t42_lock",
-                "t42_gap_partition",
-                "t42_census_delta",
-                "t42_topology",
-                "t42_readiness",
-                "t42_repair_freeze",
-                "t42_repair_readiness",
-                "t42_owner_freeze",
-                "t42_owner_overlay",
-                "t42_owner_lock",
-                "t42_owner_gap_partition",
-                "t42_owner_readiness",
-                "t36_repair_freeze",
-                "t36_repair_inventory",
-                "t36_repair_readiness",
+                "owner_freeze",
+                "owner_snapshot",
+                "owner_inventory",
+                "owner_b0",
+                "owner_overlay",
+                "owner_lock",
+                "owner_gap_partition",
+                "owner_census_delta",
+                "owner_topology",
+                "owner_readiness",
+                "owner_repair_freeze",
+                "owner_repair_readiness",
+                "owner_runtime_freeze",
+                "owner_runtime_overlay",
+                "owner_runtime_lock",
+                "owner_runtime_gap_partition",
+                "owner_runtime_readiness",
+                "repair_freeze",
+                "repair_inventory",
+                "repair_readiness",
             ],
             ids,
         )
@@ -49,7 +49,7 @@ class VerificationDagTest(unittest.TestCase):
 
     def test_lifecycle_audit_does_not_rewrite_work_set(self) -> None:
         audit = dag.lifecycle_audit()
-        self.assertEqual("T40", audit["work_set_unique_active_card"])
+        self.assertEqual("electrolyzer/compact", audit["work_set_unique_active_card"])
         self.assertIsNone(audit["topology_unique_active_card"])
         self.assertTrue(audit["frozen_issuance_not_rewritten"])
 

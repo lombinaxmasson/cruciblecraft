@@ -11,22 +11,22 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk.slugs import parse_wave_token
 
-WAVE_DIR = t35.TOOLS / "waves" / "runtime-load" / "allocation-split"
-POLICY_V2 = t35.TOOLS / "t14_load_budget_policy.v2.json"
-POLICY_V3 = t35.TOOLS / "runtime_load_budget_policy.v3.json"
+WAVE_DIR = census.TOOLS / "waves" / "runtime-load" / "allocation-split"
+POLICY_V2 = census.TOOLS / "recipe_load_load_budget_policy.v2.json"
+POLICY_V3 = census.TOOLS / "runtime_load_budget_policy.v3.json"
 WORKLOAD = WAVE_DIR / "workload_manifest.json"
 CALIBRATION = WAVE_DIR / "calibration.json"
 READINESS = WAVE_DIR / "readiness.json"
 TOPOLOGY = WAVE_DIR / "topology.json"
 CENSUS = WAVE_DIR / "census_delta.json"
-T49_INTEGRATED = (
-    t35.TOOLS / "waves" / "bath" / "tiny-purified" / "t49_integrated_measurements.json"
+BATH_TINY_PURIFIED_INTEGRATED = (
+    census.TOOLS / "waves" / "bath" / "tiny-purified" / "bath_tiny_purified_integrated_measurements.json"
 )
-T49_CENSUS = (
-    t35.TOOLS / "waves" / "bath" / "tiny-purified" / "t49_census_delta.json"
+BATH_TINY_PURIFIED_CENSUS = (
+    census.TOOLS / "waves" / "bath" / "tiny-purified" / "bath_tiny_purified_census_delta.json"
 )
 STATUS = "RUNTIME_LOAD_ALLOCATION_SPLIT_READY"
 OPENING_LOGICAL_ROWS = 50666
@@ -55,11 +55,11 @@ LOOKUP_SOFT = 1048576
 
 
 def _hybrid_row() -> dict[str, Any]:
-    document = t35.load_json(T49_INTEGRATED)
+    document = census.load_json(BATH_TINY_PURIFIED_INTEGRATED)
     for row in document.get("candidates") or []:
         if row.get("candidate") == "hybrid":
             return row
-    raise ValueError("T49 integrated measurements missing hybrid winner")
+    raise ValueError("bath/tiny-purified integrated measurements missing hybrid winner")
 
 
 def build_workload() -> dict[str, Any]:
@@ -72,12 +72,12 @@ def build_workload() -> dict[str, Any]:
         },
         "generated_by": "python tools/build_runtime_load_allocation_split.py",
         "gc": "controlled full GC before retained sampling",
-        "heap": "userdev GameTest / dedicated client as recorded by T49 integrated",
+        "heap": "userdev GameTest / dedicated client as recorded by bath/tiny-purified integrated",
         "jfr_events": [
             "jdk.ObjectAllocationInNewTLAB",
             "jdk.ObjectAllocationOutsideTLAB",
         ],
-        "jvm": "same as T49 integrated measurement harness",
+        "jvm": "same as bath/tiny-purified integrated measurement harness",
         "measurement_windows": {
             "lookup": "stable epoch after publication; enumeration excluded",
             "reload": "explicit reload/publish window only",
@@ -85,7 +85,7 @@ def build_workload() -> dict[str, Any]:
         },
         "opening_19_group": {
             "client_repetitions": REPETITIONS,
-            "evidence": t35.relative(T49_INTEGRATED),
+            "evidence": census.relative(BATH_TINY_PURIFIED_INTEGRATED),
             "group_count": 19,
             "hybrid_allocation_p95_bytes": int(
                 ((hybrid.get("allocation") or {}).get("p95_bytes")) or OPENING_RELOAD_P95
@@ -93,7 +93,7 @@ def build_workload() -> dict[str, Any]:
             "logical_rows": OPENING_LOGICAL_ROWS,
             "recipe_candidates_included": False,
             "server_repetitions": REPETITIONS,
-            "source": "T49 19-group integrated production mix; p50/p95 already aggregated",
+            "source": "bath/tiny-purified 19-group integrated production mix; p50/p95 already aggregated",
         },
         "lookup_only_20x": {
             "evidence": "tools/t14_load_budget_policy.v2.json allocation_bytes source (lookup-only)",
@@ -169,22 +169,22 @@ def _axis(
 
 
 def build_policy() -> dict[str, Any]:
-    v2 = t35.load_json(POLICY_V2)
-    v2_hash = t35.sha256_file(POLICY_V2)
+    v2 = census.load_json(POLICY_V2)
+    v2_hash = census.sha256_file(POLICY_V2)
     budgets = {
         "client_index_ms": _axis(
             hard=3000,
             soft=1000,
             unit="ms",
             workload="opening_19_group_dedicated_client",
-            source="T49 integrated dedicated-client index p95 remains under the predeclared 3 s hard gate.",
+            source="bath/tiny-purified integrated dedicated-client index p95 remains under the predeclared 3 s hard gate.",
         ),
         "client_reload_ms": _axis(
             hard=10000,
             soft=5000,
             unit="ms",
             workload="opening_19_group_dedicated_client",
-            source="T49 integrated dedicated-client reload p95 remains under the 10 s hard gate.",
+            source="bath/tiny-purified integrated dedicated-client reload p95 remains under the 10 s hard gate.",
         ),
         "datapack_authored_entries": _axis(
             hard=6600,
@@ -322,7 +322,7 @@ def build_policy() -> dict[str, Any]:
         "status": "FORWARD_LOAD_BUDGET_POLICY_V3",
         "v2_base": {
             "file_sha256": v2_hash,
-            "path": t35.relative(POLICY_V2),
+            "path": census.relative(POLICY_V2),
             "status": v2.get("status"),
         },
         "wave_slug": "runtime-load/allocation-split",
@@ -339,7 +339,7 @@ def build_census() -> dict[str, Any]:
         "reclassification_delta": 0,
         "remaining_recipe_gap": 1349,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": "CENSUS_DELTA_READY",
         "wave_slug": "runtime-load/allocation-split",
     }
@@ -355,7 +355,7 @@ def build_topology() -> dict[str, Any]:
         "owns_families": 0,
         "remaining_recipe_gap": 1349,
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": STATUS,
         "unique_active_wave": "smelter/ordinary-closure",
         "wave_slug": "runtime-load/allocation-split",
@@ -367,13 +367,13 @@ def build_readiness() -> dict[str, Any]:
     return {
         "allocation_split_complete": True,
         "evidence": {
-            "calibration": t35.relative(CALIBRATION),
+            "calibration": census.relative(CALIBRATION),
             "no_pending_axis": True,
-            "opening_19_group": t35.relative(T49_INTEGRATED),
-            "policy_v3": t35.relative(POLICY_V3),
+            "opening_19_group": census.relative(BATH_TINY_PURIFIED_INTEGRATED),
+            "policy_v3": census.relative(POLICY_V3),
             "recipe_candidates_in_calibration": False,
-            "v2_policy_unchanged": t35.sha256_file(POLICY_V2),
-            "workload_manifest": t35.relative(WORKLOAD),
+            "v2_policy_unchanged": census.sha256_file(POLICY_V2),
+            "workload_manifest": census.relative(WORKLOAD),
         },
         "generated_by": "python tools/build_runtime_load_allocation_split.py",
         "opening_remeasured": {
@@ -396,7 +396,7 @@ def build_readiness() -> dict[str, Any]:
             "sync_bytes": SYNC,
         },
         "schema_version": 1,
-        "source_revision": t35.SOURCE_REVISION,
+        "source_revision": census.SOURCE_REVISION,
         "status": STATUS,
         "unique_active_wave": "smelter/ordinary-closure",
         "wave_slug": "runtime-load/allocation-split",
@@ -418,15 +418,15 @@ def check() -> list[str]:
     from tools import forward_v3_budget_decision as v3
 
     errors: list[str] = []
-    v2_before = t35.sha256_file(POLICY_V2)
+    v2_before = census.sha256_file(POLICY_V2)
     for path, expected in artifacts():
         if not path.is_file():
-            errors.append(f"missing {t35.relative(path)}")
+            errors.append(f"missing {census.relative(path)}")
             continue
-        diff = t35.first_json_diff(expected, t35.load_json(path))
+        diff = census.first_json_diff(expected, census.load_json(path))
         if diff:
-            errors.append(f"{t35.relative(path)}: {diff}")
-    if t35.sha256_file(POLICY_V2) != v2_before:
+            errors.append(f"{census.relative(path)}: {diff}")
+    if census.sha256_file(POLICY_V2) != v2_before:
         errors.append("v2 load policy must stay byte-identical")
     policy = v3.load_policy()
     limits = v3.limit_maps(policy)
@@ -464,7 +464,7 @@ def check() -> list[str]:
 def write() -> None:
     WAVE_DIR.mkdir(parents=True, exist_ok=True)
     for path, document in artifacts():
-        t35.write_stable(path, document)
+        census.write_stable(path, document)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -475,7 +475,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     if args.write:
         write()
-        print(f"Wrote {t35.relative(READINESS)}")
+        print(f"Wrote {census.relative(READINESS)}")
         return 0
     errors = check()
     if errors:

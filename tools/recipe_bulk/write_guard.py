@@ -6,10 +6,10 @@ import fnmatch
 import json
 from pathlib import Path
 
-from tools import t35_common as t35
+from tools import io_common as files
 
-ROOT = t35.ROOT
-TOOLS = t35.TOOLS
+ROOT = files.ROOT
+TOOLS = files.TOOLS
 MANIFEST = TOOLS / "authority_manifest.json"
 SHADOW_IR_ROOT = ROOT / "build" / "shadow_ir"
 
@@ -38,7 +38,7 @@ class ProductionWriteError(PermissionError):
 
 
 def relative(path: Path) -> str:
-    return t35.relative(Path(path))
+    return files.relative(Path(path))
 
 
 def protected_globs() -> tuple[str, ...]:
@@ -58,8 +58,11 @@ def is_authority_protected(path: Path) -> bool:
 
 def is_production_generated(path: Path) -> bool:
     relative_path = relative(path)
-    return "_recipe_generated/" in relative_path or relative_path.startswith(
-        "src/main/java/"
+    return (
+        "_recipe_generated/" in relative_path
+        or relative_path.startswith("src/recipe_generated/")
+        or relative_path.startswith("src/recipe_support_generated/")
+        or relative_path.startswith("src/main/java/")
     )
 
 

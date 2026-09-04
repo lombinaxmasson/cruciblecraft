@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Load the archive-exempt semantic ID map and remap live compact identities.
+"""Load the semantic ID map and remap live compact identities.
 
-Active source must not embed historical milestone literals. The map lives under
-archive/sealed/forward-v2/ and is the only place those keys are listed.
+Active source must not embed historical milestone literals. The map is the
+only place those keys are listed.
 """
 from __future__ import annotations
 
@@ -11,11 +11,9 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
-from tools import t35_common as t35
+from tools import io_common as io
 
-MAP_PATH = (
-    t35.ROOT / "archive" / "sealed" / "forward-v2" / "semantic_id_map.json"
-)
+MAP_PATH = io.TOOLS / "semantic_id_map.json"
 
 
 class SemanticIdError(ValueError):
@@ -25,7 +23,7 @@ class SemanticIdError(ValueError):
 @lru_cache(maxsize=1)
 def load_map() -> dict[str, Any]:
     if not MAP_PATH.is_file():
-        raise SemanticIdError(f"missing semantic id map {t35.relative(MAP_PATH)}")
+        raise SemanticIdError(f"missing semantic id map {io.relative(MAP_PATH)}")
     document = json.loads(MAP_PATH.read_text(encoding="utf-8"))
     if not isinstance(document, dict):
         raise SemanticIdError("semantic id map must be an object")
@@ -149,7 +147,7 @@ def remap_policy_resource(path: str) -> str:
 
 def live_generated_roots() -> tuple[Path, ...]:
     rows = load_map().get("live_generated_roots") or []
-    return tuple(t35.ROOT / str(row) for row in rows)
+    return tuple(io.ROOT / str(row) for row in rows)
 
 
 def remap_json_value(value: Any, source_path: str = "") -> Any:

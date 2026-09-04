@@ -743,7 +743,7 @@ class BathIdentityMeasurementHarness {
             List<CandidateMeasurement> toolHead,
             List<CandidateMeasurement> card) {
         Map<String, Object> input = new LinkedHashMap<>();
-        input.put("kind", "t48_bath_remainder_generated_rows");
+        input.put("kind", "bath_identity_generated_rows");
         input.put("logical_rows", LOCKED_RELATIONS);
         input.put("measured_logical_rows", List.of(
                 EXACT_ROWS, EXACT_MULTI_ROWS, TOOL_HEAD_ROWS, LOCKED_RELATIONS));
@@ -753,7 +753,7 @@ class BathIdentityMeasurementHarness {
                 "BathIdentityMeasurementHarness JUnit samples; "
                         + "retained_memory uses snapshot.syncPayloadBytes, not a naive JVM "
                         + "heap delta. player_execution evidenced by BathIdentityHarnessTest "
-                        + "and T48RecipeGameTests. exact, exact_multi, tool_head, and card are independent.");
+                        + "and BathIdentityGameTests. exact, exact_multi, tool_head, and card are independent.");
 
         Map<String, Object> family = new LinkedHashMap<>();
         family.put("family_count", LOCKED_FAMILIES);
@@ -767,17 +767,17 @@ class BathIdentityMeasurementHarness {
 
         Map<String, Object> root = new LinkedHashMap<>();
         root.put("schema_version", 1);
-        root.put("status", "T48_MATERIALIZATION_MEASUREMENT_READY");
+        root.put("status", "BATH_IDENTITY_MATERIALIZATION_MEASUREMENT_READY");
         root.put("production_winner_claimed", false);
         root.put("protocol", Map.of(
-                "id", "t48_materialization_production_lock_v1",
+                "id", "bath_identity_materialization_production_lock_v1",
                 "ranking_scale", "1x",
                 "diagnostic_scales_not_for_production", List.of("5x", "20x"),
                 "single_wall_clock_sample_forbidden", true,
                 "p50_p95_invented", false,
                 "sample_count", SAMPLE_COUNT));
         root.put("input", input);
-        root.put("t48_opening", t48Opening());
+        root.put("bath_identity_opening", bathIdentityOpening());
         root.put("family_work_set", family);
         root.put("scenarios", List.of(
                 scenario("exact", EXACT_ROWS, EXACT_FAMILIES, exact),
@@ -817,9 +817,9 @@ class BathIdentityMeasurementHarness {
         return scenario;
     }
 
-    private static Map<String, Object> t48Opening() {
+    private static Map<String, Object> bathIdentityOpening() {
         Map<String, Object> opening = new LinkedHashMap<>();
-        opening.put("source", "tools/t47_readiness.json#t48_opening.t14_closing");
+        opening.put("source", "tools/bath_remainder_readiness.json#bath_identity_opening.recipe_load_closing");
         opening.put("datapack_authored_entries", 6113);
         opening.put("eager_publication_rows", 14);
         opening.put("lazy_logical_rows", 16466);

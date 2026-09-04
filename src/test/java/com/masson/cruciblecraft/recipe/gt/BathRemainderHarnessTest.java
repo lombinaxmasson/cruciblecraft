@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * bath-remainder Bath remainder compact-family harness. Mirrors
- * {@link BathMteHarnessTest} for namespace {@code t47}.
+ * {@link BathMteHarnessTest} for namespace {@code bath/remainder}.
  * Locked equivalence fields: {@code shadow_order}, selected source recipe.
  */
 class BathRemainderHarnessTest {

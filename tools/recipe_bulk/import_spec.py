@@ -6,13 +6,13 @@ import re
 from pathlib import Path
 from typing import Any
 
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk.schema_lite import SchemaError, validate
 from tools.recipe_bulk.slugs import SCHEMA_SEMANTIC, WaveSlugError, parse_wave_token
 from tools.recipe_bulk.source_pack import SourcePackError, resolve_contained
 
 MOD_RECIPE_MAPS_JAVA = (
-    t35.ROOT
+    census.ROOT
     / "src"
     / "main"
     / "java"
@@ -155,7 +155,7 @@ class ImportSpecError(ValueError):
 
 
 def schema_path() -> Path:
-    return t35.TOOLS / "recipe_import_spec.schema.json"
+    return census.TOOLS / "recipe_import_spec.schema.json"
 
 
 def existing_recipe_maps() -> dict[str, str]:
@@ -241,7 +241,7 @@ def validate_import_spec_document(document: dict[str, Any]) -> None:
 
 
 def load_import_spec(path: Path) -> dict[str, Any]:
-    document = t35.load_json(path)
+    document = census.load_json(path)
     if not isinstance(document, dict):
         raise ImportSpecError("recipe import spec must be an object")
     validate_import_spec_document(document)

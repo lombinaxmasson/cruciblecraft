@@ -1,0 +1,31 @@
+{
+  "$id": "https://cruciblecraft.invalid/schema/t42-owner-gap-partition.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "completion_delta": {
+      "const": 0
+    },
+    "opening_execution_gap": {
+      "const": 5300
+    },
+    "publication_delta": {
+      "const": 0
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "const": "T42_OWNER_GAP_PARTITION"
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "opening_execution_gap",
+    "completion_delta",
+    "publication_delta",
+    "closing_execution_gap"
+  ],
+  "type": "object"
+}

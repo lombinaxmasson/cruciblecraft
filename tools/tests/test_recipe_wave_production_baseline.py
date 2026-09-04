@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Contract tests for the frozen T37–T45 production baseline."""
+"""Contract tests for the frozen compact production baseline."""
 from __future__ import annotations
 
 import unittest
 from pathlib import Path
 
-from tools import t45_common as t45
+from tools import block_object_common as block_object
 from tools.recipe_bulk import baseline as baseline_mod
 from tools.recipe_bulk.write_guard import (
     ProductionWriteError,
@@ -34,27 +34,27 @@ class RecipeWaveProductionBaselineTest(unittest.TestCase):
         document = baseline_mod.build()
         roots = document["write_guard"]["protected_generated_roots"]
         self.assertEqual(len(SHADOW_ORDER), len(roots))
-        self.assertTrue(any("t45_recipe_generated" in path for path in roots))
-        self.assertTrue(any("t37_recipe_generated" in path for path in roots))
+        self.assertTrue(any(path.endswith("/recipe") for path in roots))
+        self.assertTrue(any("recipe/assembler/compact" in path for path in roots))
 
     def test_generated_roots_are_authority_protected(self) -> None:
-        t37 = (
+        assembler = (
             ROOT
-            / "src/t37_recipe_generated/resources/data/cruciblecraft/recipe/t37/assembler"
+            / "src/recipe_generated/resources/data/cruciblecraft/recipe/assembler/compact"
             / "gt_recipe_assembler_0002.json"
         )
-        self.assertTrue(t37.is_file())
-        self.assertTrue(is_authority_protected(t37))
-        self.assertTrue(is_authority_protected(t45.generated_family_files()[0]))
+        self.assertTrue(assembler.is_file())
+        self.assertTrue(is_authority_protected(assembler))
+        self.assertTrue(is_authority_protected(block_object.generated_family_files()[0]))
 
     def test_shadow_write_guard_rejects_generated_root(self) -> None:
-        target = t45.generated_family_files()[0]
+        target = block_object.generated_family_files()[0]
         with self.assertRaises(ProductionWriteError):
             assert_not_production_write(target)
 
-    def test_direct_write_to_t45_generated_is_forbidden(self) -> None:
+    def test_direct_write_to_block_object_generated_is_forbidden(self) -> None:
         authority_sandbox.install_write_guard()
-        target = t45.generated_family_files()[0]
+        target = block_object.generated_family_files()[0]
         with self.assertRaises(authority_sandbox.AuthorityWriteError):
             target.write_text("{}\n", encoding="utf-8")
 

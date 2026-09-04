@@ -7,7 +7,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk import source_import
 from tools.recipe_bulk.dialects import gt6
 from tools.recipe_bulk.import_spec import ImportSpecError, load_import_spec
@@ -18,11 +18,11 @@ from tools.build_recipe_bulk import WAVE_CHOICES
 
 
 SMELTER = (
-    t35.ROOT
+    census.ROOT
     / "src/test/resources/generic_recipe_import/smelter_exact_singleton/recipe_import.json"
 )
 MIXER = (
-    t35.ROOT
+    census.ROOT
     / "src/test/resources/generic_recipe_import/mixer_exact_multi/recipe_import.json"
 )
 
@@ -56,7 +56,7 @@ class GenericRecipeImportParityTest(unittest.TestCase):
                 gt6.semantic_payload(row)
                 for row in built["documents"]["source"]["relations"]
             ]
-            sample = t35.load_json(spec_path.parent / "compare_corpus.json")
+            sample = census.load_json(spec_path.parent / "compare_corpus.json")
             expected = [
                 gt6.semantic_payload(row) for row in sample.get("relations") or []
             ]
@@ -96,7 +96,7 @@ class GenericRecipeImportNegativeTest(unittest.TestCase):
     def test_unknown_field_fails_closed(self) -> None:
         if not SMELTER.is_file():
             self.skipTest("fixtures not written yet")
-        document = t35.load_json(SMELTER)
+        document = census.load_json(SMELTER)
         document["python_delegate"] = "tools/build_t40_electrolyzer_source.py"
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "recipe_import.json"
@@ -107,7 +107,7 @@ class GenericRecipeImportNegativeTest(unittest.TestCase):
     def test_wrong_target_map_fails_closed(self) -> None:
         if not SMELTER.is_file():
             self.skipTest("fixtures not written yet")
-        document = t35.load_json(SMELTER)
+        document = census.load_json(SMELTER)
         document["target_map"] = "cruciblecraft:not_a_map"
         document["host"] = "cruciblecraft:not_a_map"
         with tempfile.TemporaryDirectory() as tmp:
@@ -119,7 +119,7 @@ class GenericRecipeImportNegativeTest(unittest.TestCase):
     def test_path_escape_fails_closed(self) -> None:
         if not SMELTER.is_file():
             self.skipTest("fixtures not written yet")
-        document = t35.load_json(SMELTER)
+        document = census.load_json(SMELTER)
         document["output_paths"]["source"] = "../secret/source.json"
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "recipe_import.json"
@@ -131,7 +131,7 @@ class GenericRecipeImportNegativeTest(unittest.TestCase):
         if not SMELTER.is_file():
             self.skipTest("fixtures not written yet")
         dump_path = SMELTER.parent / "source_pack" / "dump_slice.json"
-        dump = t35.load_json(dump_path)
+        dump = census.load_json(dump_path)
         dump["recipes"][0]["inputs"] = [
             {
                 "count": 1,
@@ -141,7 +141,7 @@ class GenericRecipeImportNegativeTest(unittest.TestCase):
             }
         ]
         root = (
-            t35.ROOT
+            census.ROOT
             / "src/test/resources/generic_recipe_import/_negative_unmapped"
         )
         try:
@@ -168,20 +168,20 @@ class GenericRecipeImportNegativeTest(unittest.TestCase):
         dump_path = pack / "dump_slice.json"
         work_src = SMELTER.parent / "source_pack" / "work_set.json"
         work_path = pack / "work_set.json"
-        t35.write_stable(dump_path, dump)
-        t35.write_stable(work_path, t35.load_json(work_src))
+        census.write_stable(dump_path, dump)
+        census.write_stable(work_path, census.load_json(work_src))
         corpus_src = SMELTER.parent / "compare_corpus.json"
         corpus_path = root / "compare_corpus.json"
-        t35.write_stable(corpus_path, t35.load_json(corpus_src))
+        census.write_stable(corpus_path, census.load_json(corpus_src))
         manifest = {
             "files": [
                 {
-                    "path": t35.relative(dump_path).replace("\\", "/"),
+                    "path": census.relative(dump_path).replace("\\", "/"),
                     "role": "dump_slice",
                     "sha256": sha256_file(dump_path),
                 },
                 {
-                    "path": t35.relative(work_path).replace("\\", "/"),
+                    "path": census.relative(work_path).replace("\\", "/"),
                     "role": "work_set",
                     "sha256": sha256_file(work_path),
                 },
@@ -194,26 +194,26 @@ class GenericRecipeImportNegativeTest(unittest.TestCase):
             "schema_version": 1,
             "source_dialect": "gt6",
             "source_pack_id": "generic-import/smelter-exact-singleton",
-            "source_revision": t35.SOURCE_REVISION,
+            "source_revision": census.SOURCE_REVISION,
             "source_system": "gt6",
         }
         manifest_path = root / "source_pack_manifest.json"
-        t35.write_stable(manifest_path, manifest)
-        spec = t35.load_json(SMELTER)
+        census.write_stable(manifest_path, manifest)
+        spec = census.load_json(SMELTER)
         spec["import_slug"] = "generic-import/negative-unmapped"
-        spec["source_pack"] = t35.relative(manifest_path).replace("\\", "/")
-        spec["family_membership_source"]["path"] = t35.relative(work_path).replace(
+        spec["source_pack"] = census.relative(manifest_path).replace("\\", "/")
+        spec["family_membership_source"]["path"] = census.relative(work_path).replace(
             "\\", "/"
         )
         spec["output_paths"] = {
-            "lock_candidate": t35.relative(root / "lock_candidate.json").replace(
+            "lock_candidate": census.relative(root / "lock_candidate.json").replace(
                 "\\", "/"
             ),
-            "receipt": t35.relative(root / "source_receipt.json").replace("\\", "/"),
-            "review": t35.relative(root / "source_review.json").replace("\\", "/"),
-            "source": t35.relative(root / "source.json").replace("\\", "/"),
+            "receipt": census.relative(root / "source_receipt.json").replace("\\", "/"),
+            "review": census.relative(root / "source_review.json").replace("\\", "/"),
+            "source": census.relative(root / "source.json").replace("\\", "/"),
         }
-        t35.write_stable(root / "recipe_import.json", spec)
+        census.write_stable(root / "recipe_import.json", spec)
 
 
 class GenericRecipeImportCurrentnessTest(unittest.TestCase):

@@ -1,0 +1,1190 @@
+{
+  "closure_summary": {
+    "cross_owner_deferred_kinds": 1,
+    "deferred_kinds": 24,
+    "denominator_kinds": 28,
+    "electric_mixer_tier_variants": 0,
+    "electric_tier4_5_deferred": 32,
+    "energy_disposition_audit": "AUDITED",
+    "energy_kind_counts": {
+      "EU": 16,
+      "HU": 12
+    },
+    "eu_reference_variants": 3,
+    "gt_recipe_row_mutation": 0,
+    "heat_tier4_deferred": 10,
+    "hu_execution_variants": 9,
+    "machine_acquisition_unreachable": 0,
+    "machine_acquisition_variants": 9,
+    "preimplemented_electrolyzer_variants": 3,
+    "preimplemented_reference_kinds": 1,
+    "processing_machine_energy_audit": "PROCESSING_MACHINE_ENERGY_AUDIT_READY",
+    "publication_delta": 0,
+    "resources_acquisition_full_closure": "COMPLETE_T17C",
+    "selected_kinds": 3,
+    "selected_variants": 9,
+    "unclassified": 0
+  },
+  "completed_stages": [
+    "T17a",
+    "T17b",
+    "T17c",
+    "T17d"
+  ],
+  "currentness": {
+    "completed_stage_sources": {
+      "T17a": {
+        "behavior_carriers": "c9d1a100013b40ac3d33612f652c251abf39584a65275d4fe770d9afd4ab4a1f",
+        "block_registry": "010a25260547e487f33e06e4882edd87abe54383938095a7a64f0dea91ad6a14",
+        "catalog_loader": "91e02b123173462a67c71e4a303cc3ee69b2c1d034bff43ec7d8260b8821ae83",
+        "denominator_builder": "d18b96b9cb150add06e4ca92f7aa95da1970bc0b224d51445a4cb53998888b7d",
+        "denominator_policy": "1451c472f01e9c31a718b6f02707588531531635d429c8e0c6bcec5250945993",
+        "denominator_python_test": "b2a0ea68095511e791bf2475fe304ab275138aec64f5faae4fb6653b3d3b2c0d",
+        "energy_audit_builder": "8cc65f9c419b2ed74af478e6ed677bb9683d7187111d6b9f67f517486a30cd15",
+        "energy_audit_junit": "161dc322bdab7c67de94e3a3a401956eaf33f6e5f57f89b2a1754d454a212620",
+        "energy_audit_policy": "716d22c48bf3ab9f966f0f8538febe42710e9fc6d2a33eb7a5607936e1ac4fa2",
+        "energy_audit_python_test": "83331b416639d006202264a2af5b687b4990bd952784904e18bb2e5b294eaac2",
+        "item_registry": "90453f4ddb6ea64e11c4cf35b56d890fca2b2766b49c3c8252652afc35c162ec",
+        "junit_matrix": "3a1d6f3633371e72151eb0ed39ad0e76e7304c35ba1411538c045814d9f1a9b7",
+        "machine_tier_catalog": "a6f36da6f1fe8b7a21c7d9abe38f4eaeadf9da9a95c92ab5167d364c6ad30663",
+        "python_test_policy": "d2ded396ca7e3c6b0797bc33bab2874a95930463c6c5a7cd563c940fd885625e",
+        "source_expected": "589af11d09e7ec43186962dba1556b4ba3360c52ea5fd0d904c3817be034249f",
+        "variant_registry": "534b71b5fad0dd949063ed42c78644ee841ebbadaaaa7dc7cb785aa252478890"
+      },
+      "T17b": {
+        "energy_placement": "ebc0001c24c5c7efb422847e5ff0288ee19ee4df8ebbfb44de120f7b6aaee97a",
+        "execution_plan": "b86e4f1af3e7bd50d2813e5c658210b4beba8d1ed8f39b46ce62d08f483ac199",
+        "parallel_outputs": "4b3959776731ff1a39fcfacecb303fb572b16cfd529fd3366cf9c358ff3ea016",
+        "t17b_gametest": "b51223198d376180aec0d07b9eca039ddf558f73fc4db4e8b332cc3730fab34f",
+        "t17b_junit_matrix": "3a1d6f3633371e72151eb0ed39ad0e76e7304c35ba1411538c045814d9f1a9b7",
+        "t17b_readiness_python_test": "01ea3587b2763fa2c6424df7b230892c2452dfc1b1a3059a5dea736819282e29"
+      },
+      "T17c": {
+        "t17c_acquisition_builder": "77ad5eb0385201a3fda5de5f5c0896074133286e4609ae7341183d7574c4c6c2",
+        "t17c_acquisition_policy": "ba821f764a63cc5363b280b885b5f7fcf1c80bf9f896724aa11faec40238e08c",
+        "t17c_block_models": "a6df7e64d2b912de246ca828289c5ded99f5c4906300bd99081fae53a145efe8",
+        "t17c_crafting_ledger": "41c044eb11997e44a51f4132e2dc00e15d8fda9acc81d8c11a3dd9580e3c7c4f",
+        "t17c_gametest": "b51223198d376180aec0d07b9eca039ddf558f73fc4db4e8b332cc3730fab34f",
+        "t17c_identity_policy": "59b4e367c77172e4883c1cf0c1508c79ae252788ff82bc20e25e726230285667",
+        "t17c_language": "5163b3e3bd115d360485a6fedf68a99070ec7b3c5e58f93cf42409203567ba02",
+        "t17c_loot": "d277e0a6e619cbd063e5bf0a2023678a0f9716d31fcd60e4fb7920cbdd207425",
+        "t17c_persistence_junit": "028a46166ba55c586e63b05620b05efddf83b097a030f5b26e369dbd7e3eb01f",
+        "t17c_python_test": "729a5e77882742f7b6c4cb155c6226c6527c4ac8328673be67804e19e8931f31",
+        "t17c_recipes": "0fc95c81472e01da51d4689349fb6d498e07355bcf9efb15e24b610c30f54777",
+        "t17c_resource_junit": "4317e90bed1905779845b7ebdd022315cb96ec1ad6186ab526ca68f6efca61fd",
+        "t17c_tags": "ae96988d5005a9f0e566b175f8b135c066060ad63ff7c8d86c81b8688c3d6eff"
+      },
+      "T17d": {
+        "t17d_full_builder": "b698bc222cdfd4fe723568df12cddb1d82e943813d5000d919a7d324fbd70ce6",
+        "t17d_full_report": "b8bb29d574dc8242f4fb46a9b0fc4484aa16c7e34d770f1ac510831c1f442247",
+        "t17d_gametest_publication": "b51223198d376180aec0d07b9eca039ddf558f73fc4db4e8b332cc3730fab34f",
+        "t17d_history_archive": "0595e76071c437eb21e68bfc7a6c16e4aeb2df0bb66b48b76fc0d2ea20d7f752",
+        "t17d_load_projection_input": "5c5f81fd36f80135a39d0d666580f3408466da0227ca997844e64818108a5701",
+        "t17d_load_projection_output": "83badf101ead8278200e1507b7a4f8a6e4019a1c332e466a359b47183614e628",
+        "t17d_load_python_test": "165bc04a9f7e29c78e172e0c95122e7a62f9166fb9c4edd6ef3d7598925a8b7f",
+        "t17d_overall_status": "0595e76071c437eb21e68bfc7a6c16e4aeb2df0bb66b48b76fc0d2ea20d7f752",
+        "t17d_project_readme": "0595e76071c437eb21e68bfc7a6c16e4aeb2df0bb66b48b76fc0d2ea20d7f752",
+        "t17d_publication_baseline": "7acd05da0882583d1072e70ea8a40ef2031c6aa78bb2ac92da8ee272c8f0dbb6",
+        "t17d_python_affected_closure": "d2ded396ca7e3c6b0797bc33bab2874a95930463c6c5a7cd563c940fd885625e",
+        "t17d_readiness_builder": "ed8a8d999b9118d7340b6672cdbfc874696ba29c04668c7ef32869ebd401fec5",
+        "t17d_readiness_python_test": "01ea3587b2763fa2c6424df7b230892c2452dfc1b1a3059a5dea736819282e29",
+        "t17d_third_phase_status": "0595e76071c437eb21e68bfc7a6c16e4aeb2df0bb66b48b76fc0d2ea20d7f752",
+        "t17d_tools_readme": "0595e76071c437eb21e68bfc7a6c16e4aeb2df0bb66b48b76fc0d2ea20d7f752"
+      }
+    },
+    "dependencies": {
+      "T16": {
+        "path": "tools/t16_readiness.json",
+        "sha256": "32d3d433a01e659f5a64955583145dca0931714844b881e96f5f0a66b10bd506",
+        "status": "T16_READY"
+      },
+      "acquisition": {
+        "path": "tools/t17_machine_acquisition.json",
+        "sha256": "478fbf2798da28ff2c88f164796f365d79070ce2c5080c9ab3bbba668c4eecf6",
+        "status": "T17C_MACHINE_ACQUISITION_READY"
+      },
+      "denominator": {
+        "path": "tools/t17_machine_denominator.json",
+        "sha256": "89a1e073101a02cef22ecfd65c22893d78965e33054639bcce8499682507a949",
+        "status": "T17_MACHINE_DENOMINATOR_READY"
+      },
+      "energy_audit": {
+        "path": "tools/processing_machine_energy_audit.json",
+        "sha256": "3e732731facaf260a4dc989947203e08bd0b59280506a05028079d7d8266e052",
+        "status": "PROCESSING_MACHINE_ENERGY_AUDIT_READY"
+      }
+    },
+    "owned_inputs": {
+      "tools/build_t17_readiness.py": "ed8a8d999b9118d7340b6672cdbfc874696ba29c04668c7ef32869ebd401fec5",
+      "tools/t17_readiness_policy.json": "7c893302b0006ff4c2a2d52bf640c3ac53907b1c0ea6bb81b3fe000ee3f6ec83"
+    },
+    "pending_report": {
+      "evidence": "tools/full_verification_report.json",
+      "pending": [],
+      "status": "BOUND_TO_FULL_VERIFICATION_REPORT",
+      "this_refresh_final_closure_attempted": true
+    }
+  },
+  "pending_stages": [],
+  "publication_gate": {
+    "emi_recipe_enumeration_equal_to_t16": true,
+    "logical_eager_lazy_totals_equal_to_t16": true,
+    "publication_delta": 0,
+    "publication_unchanged_claimed": true,
+    "recipe_map_stable_id_set_equal_to_t16": true,
+    "status": "PASS"
+  },
+  "resource_acquisition_identity_gate": {
+    "acceptance": "Provide models, real English and Chinese names, loot, tags, nine reachable HU crafting recipes, three preimplemented Electrolyzer references and current-only fail-closed identities for all selected T17 variants.",
+    "runtime_registrations_are_closure": true,
+    "selected_variants": 9,
+    "status": "T17C_COMPLETE",
+    "unreachable": 0
+  },
+  "schema_version": 1,
+  "source_contracts": {
+    "behavior_carriers": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+      "required_tokens": [
+        "\"distillery\"",
+        "\"drying\"",
+        "\"smelter\"",
+        "EnergyType.HEAT",
+        "ProcessingMachineSpec.EnergyMode.ADJACENT"
+      ],
+      "sha256": "c9d1a100013b40ac3d33612f652c251abf39584a65275d4fe770d9afd4ab4a1f",
+      "stage": "T17a"
+    },
+    "block_registry": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+      "required_tokens": [
+        "tieredProcessing(\"distillery\")",
+        "INVAR_DISTILLERY",
+        "TITANIUM_DRYING",
+        "INVAR_SMELTER",
+        "TITANIUM_SMELTER"
+      ],
+      "sha256": "010a25260547e487f33e06e4882edd87abe54383938095a7a64f0dea91ad6a14",
+      "stage": "T17a"
+    },
+    "catalog_loader": {
+      "path": "src/main/java/com/masson/cruciblecraft/machine/processing/MachineTierCatalog.java",
+      "required_tokens": [
+        "TierBandCapabilities",
+        "tierBandId()",
+        "sourceMaterial",
+        "materialRegistered",
+        "acquisitionBlocker",
+        "Heat tier source material mapping is incomplete"
+      ],
+      "sha256": "91e02b123173462a67c71e4a303cc3ee69b2c1d034bff43ec7d8260b8821ae83",
+      "stage": "T17a"
+    },
+    "denominator_builder": {
+      "path": "tools/build_t17_machine_denominator.py",
+      "required_tokens": [
+        "T17_MACHINE_DENOMINATOR_READY",
+        "T13 exposes",
+        "energy_counts != {\"EU\": 16, \"HU\": 12}",
+        "DEFERRED_HEAT_TIER4",
+        "DEFERRED_ELECTRIC_TIER"
+      ],
+      "sha256": "d18b96b9cb150add06e4ca92f7aa95da1970bc0b224d51445a4cb53998888b7d",
+      "stage": "T17a"
+    },
+    "denominator_policy": {
+      "path": "tools/t17_machine_denominator_policy.json",
+      "required_tokens": [
+        "\"RM.Distillery\"",
+        "\"RM.Drying\"",
+        "\"RM.Smelter\"",
+        "\"RM.Electrolyzer\"",
+        "\"RM.Compressor\"",
+        "\"CROSS_OWNER_DEFERRED\"",
+        "\"ANY.Steel\"",
+        "\"Invar\"",
+        "\"Ti\""
+      ],
+      "sha256": "1451c472f01e9c31a718b6f02707588531531635d429c8e0c6bcec5250945993",
+      "stage": "T17a"
+    },
+    "denominator_python_test": {
+      "path": "tools/tests/test_build_t17_machine_denominator.py",
+      "required_tokens": [
+        "test_t13_hu_eu_owner_set_is_bidirectionally_classified",
+        "test_energy_disposition_audit_locks_deferred_extruder_and_compressor",
+        "test_selected_heat_tiers_lock_source_materials_windows_and_policy",
+        "test_fixed_hu_rows_remain_explicitly_deferred_not_fake_tiers",
+        "test_artifact_matches_current_builder"
+      ],
+      "sha256": "b2a0ea68095511e791bf2475fe304ab275138aec64f5faae4fb6653b3d3b2c0d",
+      "stage": "T17a"
+    },
+    "energy_audit_builder": {
+      "path": "tools/build_processing_machine_energy_audit.py",
+      "required_tokens": [
+        "PROCESSING_MACHINE_ENERGY_AUDIT_READY",
+        "DEFAULT_ENERGY_OVERLOAD_TOKEN_FORBIDDEN",
+        "legacy KINETIC set changed",
+        "expected exactly one explicit EnergyType"
+      ],
+      "sha256": "8cc65f9c419b2ed74af478e6ed677bb9683d7187111d6b9f67f517486a30cd15",
+      "stage": "T17a"
+    },
+    "energy_audit_junit": {
+      "path": "src/test/java/com/masson/cruciblecraft/registry/ProcessingMachineEnergyAuditTest.java",
+      "required_tokens": [
+        "allConfiguredSpecsKeepTheirExplicitEnergyValues",
+        "legacyKineticSetRemainsTheOpeningOnlyHosts",
+        "EnergyType.KINETIC",
+        "EnergyType.TIME"
+      ],
+      "sha256": "161dc322bdab7c67de94e3a3a401956eaf33f6e5f57f89b2a1754d454a212620",
+      "stage": "T17a"
+    },
+    "energy_audit_policy": {
+      "path": "tools/processing_machine_energy_audit_policy.json",
+      "required_tokens": [
+        "\"allowed_legacy_kinetic_ids\"",
+        "\"EXTRUDER\"",
+        "\"COMPRESSOR\"",
+        "\"CROSS_OWNER_DEFERRED\""
+      ],
+      "sha256": "716d22c48bf3ab9f966f0f8538febe42710e9fc6d2a33eb7a5607936e1ac4fa2",
+      "stage": "T17a"
+    },
+    "energy_audit_python_test": {
+      "path": "tools/tests/test_build_processing_machine_energy_audit.py",
+      "required_tokens": [
+        "test_all_25_specs_have_explicit_unchanged_energy_arguments",
+        "test_default_energy_overloads_are_forbidden",
+        "test_exact_four_legacy_kinetic_hosts_have_fixed_or_deferred_ledgers",
+        "test_compressor_is_explicit_ku_cross_owner_debt"
+      ],
+      "sha256": "83331b416639d006202264a2af5b687b4990bd952784904e18bb2e5b294eaac2",
+      "stage": "T17a"
+    },
+    "energy_placement": {
+      "path": "src/main/java/com/masson/cruciblecraft/machine/processing/ProcessingMachineEnergyPlacement.java",
+      "required_tokens": [
+        "isHeatMachine",
+        "ModProcessingMachines.DISTILLERY",
+        "ModProcessingMachines.DRYING",
+        "ModProcessingMachines.SMELTER",
+        "Direction.DOWN",
+        "Direction.UP"
+      ],
+      "sha256": "ebc0001c24c5c7efb422847e5ff0288ee19ee4df8ebbfb44de120f7b6aaee97a",
+      "stage": "T17b"
+    },
+    "execution_plan": {
+      "path": "src/main/java/com/masson/cruciblecraft/machine/processing/MachineExecutionPlan.java",
+      "required_tokens": [
+        "requestedOperations > tier.parallelLimit()",
+        "kind.parallelDuration()",
+        "MachineKindSpec.OverclockPolicy.STANDARD",
+        "catch (ArithmeticException overflow)"
+      ],
+      "sha256": "b86e4f1af3e7bd50d2813e5c658210b4beba8d1ed8f39b46ce62d08f483ac199",
+      "stage": "T17b"
+    },
+    "item_registry": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+      "required_tokens": [
+        "INVAR_DISTILLERY",
+        "TITANIUM_DISTILLERY",
+        "INVAR_DRYING",
+        "TITANIUM_DRYING",
+        "INVAR_SMELTER",
+        "TITANIUM_SMELTER"
+      ],
+      "sha256": "90453f4ddb6ea64e11c4cf35b56d890fca2b2766b49c3c8252652afc35c162ec",
+      "stage": "T17a"
+    },
+    "junit_matrix": {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/HeatMachineTierMatrixTest.java",
+      "required_tokens": [
+        "independentHeatExpectedMatchesCatalogAndRuntimeVariants",
+        "tierOneBindingsAndSixHighTierBlocksAndItemsAreExact",
+        "distilleryDryerAndSmelterUseAdjacentHeatBehavior",
+        "variantProjectionDoesNotMutateAnyGtRecipeRow"
+      ],
+      "sha256": "3a1d6f3633371e72151eb0ed39ad0e76e7304c35ba1411538c045814d9f1a9b7",
+      "stage": "T17a"
+    },
+    "machine_tier_catalog": {
+      "path": "src/main/resources/data/cruciblecraft/machine_tiers.json",
+      "required_tokens": [
+        "\"schemaVersion\": 3",
+        "\"tierBand\": \"cruciblecraft:heat_tier_2\"",
+        "\"cruciblecraft:invar_distillery\"",
+        "\"cruciblecraft:titanium_drying\"",
+        "\"cruciblecraft:invar_smelter\"",
+        "\"sourceMaterial\": \"ANY.Steel\"",
+        "\"overclock\": \"CHEAP\"",
+        "\"parallel\": 1000"
+      ],
+      "sha256": "a6f36da6f1fe8b7a21c7d9abe38f4eaeadf9da9a95c92ab5167d364c6ad30663",
+      "stage": "T17a"
+    },
+    "parallel_outputs": {
+      "path": "src/main/java/com/masson/cruciblecraft/machine/processing/ParallelRecipeOperations.java",
+      "required_tokens": [
+        "maximumItemOutputs",
+        "Math.multiplyExact",
+        "appendCompacted",
+        "rollItemOutputs"
+      ],
+      "sha256": "4b3959776731ff1a39fcfacecb303fb572b16cfd529fd3366cf9c358ff3ea016",
+      "stage": "T17b"
+    },
+    "python_test_policy": {
+      "path": "tools/python_test_policy.json",
+      "required_tokens": [
+        "tools/build_t17_*.py",
+        "tools/t17_*.json",
+        "test_build_t17_machine_acquisition",
+        "test_build_t17_machine_denominator",
+        "test_build_t17_readiness"
+      ],
+      "sha256": "d2ded396ca7e3c6b0797bc33bab2874a95930463c6c5a7cd563c940fd885625e",
+      "stage": "T17a"
+    },
+    "source_expected": {
+      "path": "src/test/resources/heat_machine_tier_expected.json",
+      "required_tokens": [
+        "\"schema_version\": 2",
+        "\"tier_band\"",
+        "\"catalog_count\": 33",
+        "\"source_material\":\"ANY.Steel\"",
+        "\"source_material\":\"Invar\"",
+        "\"source_material\":\"Ti\"",
+        "\"parallel\":1000"
+      ],
+      "sha256": "589af11d09e7ec43186962dba1556b4ba3360c52ea5fd0d904c3817be034249f",
+      "stage": "T17a"
+    },
+    "t17b_gametest": {
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "required_tokens": [
+        "fireboxesRunAllThreeHuMachineKinds",
+        "t17bHigherTierHuUsesControlledAdjacentHandlers",
+        "t17bElectrolyzerCableEndpointsRespectEveryTierWindow",
+        "dynamoFeedsElectrolyzerThroughThreeCables",
+        "t17bFailureStatesExposeWrongEnergyUnderpoweredAndLimits",
+        "blockedElectrolyzerOutputPreservesInput"
+      ],
+      "sha256": "b51223198d376180aec0d07b9eca039ddf558f73fc4db4e8b332cc3730fab34f",
+      "stage": "T17b"
+    },
+    "t17b_junit_matrix": {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/HeatMachineTierMatrixTest.java",
+      "required_tokens": [
+        "huExecutionMatrixCoversThreeKindsThreeTiersAndCheapParallelDuration",
+        "smelterParallelThousandBoundaryRejectsOverflowAndCompactsOutputs",
+        "electrolyzerReferenceCoversThreeBufferedElectricTierEndpoints",
+        "heatFailureStatesRemainObservableInTheSharedRuntime"
+      ],
+      "sha256": "3a1d6f3633371e72151eb0ed39ad0e76e7304c35ba1411538c045814d9f1a9b7",
+      "stage": "T17b"
+    },
+    "t17b_readiness_python_test": {
+      "path": "tools/tests/test_build_t17_readiness.py",
+      "required_tokens": [
+        "test_t17a_through_t17d_are_complete_and_ready",
+        "test_t17b_records_execution_tests_and_source_contracts",
+        "test_t17b_evidence_keeps_electrolyzer_as_reference_without_mixer_tiers",
+        "test_artifact_matches_current_builder"
+      ],
+      "sha256": "01ea3587b2763fa2c6424df7b230892c2452dfc1b1a3059a5dea736819282e29",
+      "stage": "T17b"
+    },
+    "t17c_acquisition_builder": {
+      "path": "tools/build_t17_machine_acquisition.py",
+      "required_tokens": [
+        "T17C_MACHINE_ACQUISITION_READY",
+        "preimplemented_references",
+        "generated_by_t17c",
+        "gt_recipe_rows_added",
+        "unreachable"
+      ],
+      "sha256": "77ad5eb0385201a3fda5de5f5c0896074133286e4609ae7341183d7574c4c6c2",
+      "stage": "T17c"
+    },
+    "t17c_acquisition_policy": {
+      "path": "tools/t17_machine_acquisition_policy.json",
+      "required_tokens": [
+        "independent_t17c_acceptance_policy",
+        "\"cruciblecraft:machines/distillery\"",
+        "\"cruciblecraft:machines/invar_drying\"",
+        "\"cruciblecraft:machines/titanium_smelter\"",
+        "\"preimplemented_reference_recipes\""
+      ],
+      "sha256": "ba821f764a63cc5363b280b885b5f7fcf1c80bf9f896724aa11faec40238e08c",
+      "stage": "T17c"
+    },
+    "t17c_block_models": {
+      "path": "src/main/java/com/masson/cruciblecraft/datagen/ModBlockStateProvider.java",
+      "required_tokens": [
+        "ModMachineVariants.ALL",
+        "\"invar_distillery\", \"titanium_distillery\"",
+        "\"drying\", \"invar_drying\", \"titanium_drying\"",
+        "\"invar_smelter\", \"titanium_smelter\""
+      ],
+      "sha256": "a6df7e64d2b912de246ca828289c5ded99f5c4906300bd99081fae53a145efe8",
+      "stage": "T17c"
+    },
+    "t17c_crafting_ledger": {
+      "path": "tools/build_machine_crafting_readiness.py",
+      "required_tokens": [
+        "T17_SOURCE_PROJECTED_CONFIGURED_IDS",
+        "\"distillery\"",
+        "\"drying\"",
+        "\"smelter\"",
+        "t17HeatMachineCrafting"
+      ],
+      "sha256": "41c044eb11997e44a51f4132e2dc00e15d8fda9acc81d8c11a3dd9580e3c7c4f",
+      "stage": "T17c"
+    },
+    "t17c_gametest": {
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "required_tokens": [
+        "selectedHuRecipesExecuteFromLiveRecipeManager",
+        "heatMachineCraftingCases",
+        "Live RecipeManager did not match",
+        "assembled"
+      ],
+      "sha256": "b51223198d376180aec0d07b9eca039ddf558f73fc4db4e8b332cc3730fab34f",
+      "stage": "T17c"
+    },
+    "t17c_identity_policy": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModMachineIdentities.java",
+      "required_tokens": [
+        "MachineIdentityPolicy.resolve(",
+        "ProcessingMachineState state)",
+        "MachineVariant variant)"
+      ],
+      "sha256": "59b4e367c77172e4883c1cf0c1508c79ae252788ff82bc20e25e726230285667",
+      "stage": "T17c"
+    },
+    "t17c_language": {
+      "path": "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+      "required_tokens": [
+        "ModMachineVariants.SELECTED_HEAT_VARIANTS",
+        "catalogMachineName",
+        "殷钢",
+        "Drying Machine"
+      ],
+      "sha256": "5163b3e3bd115d360485a6fedf68a99070ec7b3c5e58f93cf42409203567ba02",
+      "stage": "T17c"
+    },
+    "t17c_loot": {
+      "path": "src/main/java/com/masson/cruciblecraft/datagen/ModBlockLootTables.java",
+      "required_tokens": [
+        "ModMachineVariants.ALL",
+        "dropSelf",
+        "configuredProcessingBlock"
+      ],
+      "sha256": "d277e0a6e619cbd063e5bf0a2023678a0f9716d31fcd60e4fb7920cbdd207425",
+      "stage": "T17c"
+    },
+    "t17c_persistence_junit": {
+      "path": "src/test/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineIdentityPersistenceTest.java",
+      "required_tokens": [
+        "currentIdentityReloadResumesAndPreservesState",
+        "blankIdentityAdoptsCurrentWithoutQuarantine",
+        "777L,"
+      ],
+      "sha256": "028a46166ba55c586e63b05620b05efddf83b097a030f5b26e369dbd7e3eb01f",
+      "stage": "T17c"
+    },
+    "t17c_python_test": {
+      "path": "tools/tests/test_build_t17_machine_acquisition.py",
+      "required_tokens": [
+        "test_independent_expected_set_locks_three_by_three_hu_variants",
+        "test_results_casings_ingredients_and_producer_graph_are_closed",
+        "test_electrolyzers_are_preimplemented_evidence_not_t17_generation",
+        "test_artifact_matches_current_builder"
+      ],
+      "sha256": "729a5e77882742f7b6c4cb155c6226c6527c4ac8328673be67804e19e8931f31",
+      "stage": "T17c"
+    },
+    "t17c_recipes": {
+      "path": "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
+      "required_tokens": [
+        "heatMachineCrafting",
+        "INVAR_DISTILLERY",
+        "TITANIUM_DRYING",
+        "INVAR_SMELTER",
+        "MaterialPrefixes.OCTUPLE_WIRE"
+      ],
+      "sha256": "0fc95c81472e01da51d4689349fb6d498e07355bcf9efb15e24b610c30f54777",
+      "stage": "T17c"
+    },
+    "t17c_resource_junit": {
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/HeatMachineAcquisitionResourceTest.java",
+      "required_tokens": [
+        "independentNineRecipeSetIsBidirectionalWithSelectedHeatVariants",
+        "selectedModelsLanguagesLootAndTagsUseRealNamesAndTextures",
+        "ModMachineVariants.SELECTED_HEAT_VARIANTS"
+      ],
+      "sha256": "4317e90bed1905779845b7ebdd022315cb96ec1ad6186ab526ca68f6efca61fd",
+      "stage": "T17c"
+    },
+    "t17c_tags": {
+      "path": "src/main/java/com/masson/cruciblecraft/datagen/ModBlockTagProvider.java",
+      "required_tokens": [
+        "configuredProcessingBlockEntries",
+        "MINEABLE_WITH_PICKAXE",
+        "NEEDS_STONE_TOOL"
+      ],
+      "sha256": "ae96988d5005a9f0e566b175f8b135c066060ad63ff7c8d86c81b8688c3d6eff",
+      "stage": "T17c"
+    },
+    "t17d_full_builder": {
+      "path": "tools/verification_builder_policy.json",
+      "required_tokens": [
+        "tools/build_t17_machine_denominator.py",
+        "tools/build_t17_machine_acquisition.py",
+        "tools/build_t17_readiness.py",
+        "tools/build_processing_machine_energy_audit.py"
+      ],
+      "sha256": "b698bc222cdfd4fe723568df12cddb1d82e943813d5000d919a7d324fbd70ce6",
+      "stage": "T17d"
+    },
+    "t17d_full_report": {
+      "path": "tools/verify_full_verification_report.py",
+      "required_tokens": [
+        "\"t17_load_projection_input.json\"",
+        "\"t17_load_projection.json\"",
+        "\"processing_machine_energy_audit.json\"",
+        "derived_t17_readiness_acceptance",
+        "\"t17_readiness_acceptance\"",
+        "\"tools/build_t17_readiness.py\", \"T17 readiness gate\""
+      ],
+      "sha256": "b8bb29d574dc8242f4fb46a9b0fc4484aa16c7e34d770f1ac510831c1f442247",
+      "stage": "T17d"
+    },
+    "t17d_gametest_publication": {
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "required_tokens": [
+        "recipePublicationMatchesPriorBaseline",
+        "expectedMapIds.equals(t16MapIds)",
+        "expectedEmiIds.equals(t16EmiIds)",
+        "expectedEnumeration.equals(actualEnumeration)",
+        "metrics.allPublishedRecipes()"
+      ],
+      "sha256": "b51223198d376180aec0d07b9eca039ddf558f73fc4db4e8b332cc3730fab34f",
+      "stage": "T17d"
+    },
+    "t17d_history_archive": {
+      "path": "tools/contracts/narrative_archive.json",
+      "required_tokens": [
+        "T17 已关闭",
+        "T17_READY",
+        "selected 3",
+        "deferred 24",
+        "publication delta = 0"
+      ],
+      "sha256": "0595e76071c437eb21e68bfc7a6c16e4aeb2df0bb66b48b76fc0d2ea20d7f752",
+      "stage": "T17d"
+    },
+    "t17d_load_projection_input": {
+      "path": "tools/t17_load_projection_input.json",
+      "required_tokens": [
+        "\"delivery_phase\": \"T17\"",
+        "\"kind\": \"zero_workload_fixture\"",
+        "\"authored_entries\": 0",
+        "\"logical_rows\": 0",
+        "\"eager_publication_rows\": 0",
+        "\"lazy_logical_rows\": 0",
+        "\"sync_bytes\": 0"
+      ],
+      "sha256": "5c5f81fd36f80135a39d0d666580f3408466da0227ca997844e64818108a5701",
+      "stage": "T17d"
+    },
+    "t17d_load_projection_output": {
+      "path": "tools/t17_load_projection.json",
+      "required_tokens": [
+        "\"delivery_phase\": \"T17\"",
+        "\"status\": \"PASS\"",
+        "\"datapack_authored_entries\": 0",
+        "\"eager_publication_rows\": 0",
+        "\"lazy_logical_rows\": 0",
+        "\"sync_bytes\": 0"
+      ],
+      "sha256": "83badf101ead8278200e1507b7a4f8a6e4019a1c332e466a359b47183614e628",
+      "stage": "T17d"
+    },
+    "t17d_load_python_test": {
+      "path": "tools/tests/test_recipe_load_projection.py",
+      "required_tokens": [
+        "test_committed_t17_projection_is_current_zero_workload",
+        "t17_load_projection_input.json",
+        "t17_load_projection.json"
+      ],
+      "sha256": "165bc04a9f7e29c78e172e0c95122e7a62f9166fb9c4edd6ef3d7598925a8b7f",
+      "stage": "T17d"
+    },
+    "t17d_overall_status": {
+      "path": "tools/contracts/narrative_archive.json",
+      "required_tokens": [
+        "T17_READY",
+        "selected 3",
+        "deferred 24"
+      ],
+      "sha256": "0595e76071c437eb21e68bfc7a6c16e4aeb2df0bb66b48b76fc0d2ea20d7f752",
+      "stage": "T17d"
+    },
+    "t17d_project_readme": {
+      "path": "tools/contracts/narrative_archive.json",
+      "required_tokens": [
+        "T17_READY",
+        "T19 is now `T19_READY`"
+      ],
+      "sha256": "0595e76071c437eb21e68bfc7a6c16e4aeb2df0bb66b48b76fc0d2ea20d7f752",
+      "stage": "T17d"
+    },
+    "t17d_publication_baseline": {
+      "path": "src/main/resources/data/cruciblecraft/t17_publication_baseline.json",
+      "required_tokens": [
+        "T17D_PUBLICATION_BASELINE",
+        "\"baseline\": \"T16\"",
+        "\"logical_rows\": 18875",
+        "\"eager_rows\": 16650",
+        "\"lazy_rows\": 2225",
+        "\"vanilla_crafting_rows\": 9",
+        "\"gt_recipe_rows\": 0"
+      ],
+      "sha256": "7acd05da0882583d1072e70ea8a40ef2031c6aa78bb2ac92da8ee272c8f0dbb6",
+      "stage": "T17d"
+    },
+    "t17d_python_affected_closure": {
+      "path": "tools/python_test_policy.json",
+      "required_tokens": [
+        "tools/build_t17_*.py",
+        "tools/t17_*.json",
+        "test_recipe_load_projection",
+        "test_full_verification_report"
+      ],
+      "sha256": "d2ded396ca7e3c6b0797bc33bab2874a95930463c6c5a7cd563c940fd885625e",
+      "stage": "T17d"
+    },
+    "t17d_readiness_builder": {
+      "path": "tools/build_t17_readiness.py",
+      "required_tokens": [
+        "T17_MACHINE_DENOMINATOR_READY",
+        "energy_disposition_audit",
+        "T17d RecipeMap stable ids must equal the T16 baseline",
+        "recipe_enumeration_equal_to_t16",
+        "publication_delta"
+      ],
+      "sha256": "ed8a8d999b9118d7340b6672cdbfc874696ba29c04668c7ef32869ebd401fec5",
+      "stage": "T17d"
+    },
+    "t17d_readiness_python_test": {
+      "path": "tools/tests/test_build_t17_readiness.py",
+      "required_tokens": [
+        "test_t17a_through_t17d_are_complete_and_ready",
+        "test_t17d_closes_zero_load_publication_and_emi",
+        "test_currentness_covers_every_completed_t17_source_contract",
+        "test_artifact_matches_current_builder"
+      ],
+      "sha256": "01ea3587b2763fa2c6424df7b230892c2452dfc1b1a3059a5dea736819282e29",
+      "stage": "T17d"
+    },
+    "t17d_third_phase_status": {
+      "path": "tools/contracts/narrative_archive.json",
+      "required_tokens": [
+        "T17_READY",
+        "selected 3",
+        "deferred 24",
+        "publication delta = 0"
+      ],
+      "sha256": "0595e76071c437eb21e68bfc7a6c16e4aeb2df0bb66b48b76fc0d2ea20d7f752",
+      "stage": "T17d"
+    },
+    "t17d_tools_readme": {
+      "path": "tools/contracts/narrative_archive.json",
+      "required_tokens": [
+        "T17 HU/EU readiness",
+        "t17_load_projection.json",
+        "T17_READY"
+      ],
+      "sha256": "0595e76071c437eb21e68bfc7a6c16e4aeb2df0bb66b48b76fc0d2ea20d7f752",
+      "stage": "T17d"
+    },
+    "variant_registry": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModMachineVariants.java",
+      "required_tokens": [
+        "DISTILLERY",
+        "DRYING",
+        "SMELTER",
+        "SELECTED_HEAT_KINDS",
+        "SELECTED_HEAT_VARIANTS"
+      ],
+      "sha256": "534b71b5fad0dd949063ed42c78644ee841ebbadaaaa7dc7cb785aa252478890",
+      "stage": "T17a"
+    }
+  },
+  "stage_gates": {
+    "T17a": {
+      "acceptance": "Bidirectionally classify all 28 T17 HU/EU owner kinds, preserve Electrolyzer as the preimplemented electric reference, bind Distillery, Dryer and Smelter to exact Heat_T tiers 1-3 without GT recipe-row mutation, and audit explicit deferred dispositions for Extruder plus cross-owner Compressor without treating deferral as completion.",
+      "name": "hu_selected_machine_tiers",
+      "status": "COMPLETE"
+    },
+    "T17b": {
+      "acceptance": "Execute all nine selected Distillery, Dryer and Smelter HU variants through bottom-adjacent Heat while retaining the existing three-tier Electrolyzer family as the bounded buffered-EU cable reference; no Electric Mixer tier family is introduced.",
+      "game_tests": [
+        "fireboxesRunAllThreeHuMachineKinds",
+        "t17bHigherTierHuUsesControlledAdjacentHandlers",
+        "t17bElectrolyzerCableEndpointsRespectEveryTierWindow",
+        "dynamoFeedsElectrolyzerThroughThreeCables",
+        "t17bFailureStatesExposeWrongEnergyUnderpoweredAndLimits",
+        "blockedElectrolyzerOutputPreservesInput"
+      ],
+      "junit_tests": [
+        "huExecutionMatrixCoversThreeKindsThreeTiersAndCheapParallelDuration",
+        "smelterParallelThousandBoundaryRejectsOverflowAndCompactsOutputs",
+        "electrolyzerReferenceCoversThreeBufferedElectricTierEndpoints",
+        "heatFailureStatesRemainObservableInTheSharedRuntime"
+      ],
+      "name": "hu_eu_execution_contracts",
+      "source_contracts": [
+        "energy_placement",
+        "execution_plan",
+        "parallel_outputs",
+        "t17b_junit_matrix",
+        "t17b_gametest",
+        "t17b_readiness_python_test"
+      ],
+      "status": "COMPLETE"
+    },
+    "T17c": {
+      "acceptance": "Provide models, real English and Chinese names, loot, tags, nine reachable HU crafting recipes, three preimplemented Electrolyzer references and current-only fail-closed identities for all selected T17 variants.",
+      "game_tests": [
+        "selectedHuRecipesExecuteFromLiveRecipeManager"
+      ],
+      "junit_tests": [
+        "independentNineRecipeSetIsBidirectionalWithSelectedHeatVariants",
+        "selectedModelsLanguagesLootAndTagsUseRealNamesAndTextures",
+        "kindTierMaterialAndEnergyMismatchesAllQuarantine",
+        "currentIdentityReloadResumesAndPreservesState",
+        "variantProjectionDoesNotMutateAnyGtRecipeRow"
+      ],
+      "name": "resources_acquisition_and_identity",
+      "source_contracts": [
+        "t17c_acquisition_builder",
+        "t17c_acquisition_policy",
+        "t17c_crafting_ledger",
+        "t17c_block_models",
+        "t17c_language",
+        "t17c_recipes",
+        "t17c_loot",
+        "t17c_tags",
+        "t17c_identity_policy",
+        "t17c_resource_junit",
+        "t17c_persistence_junit",
+        "t17c_gametest",
+        "t17c_python_test"
+      ],
+      "status": "COMPLETE"
+    },
+    "T17d": {
+      "acceptance": "Lock the T17 RecipeMap stable ids, 18,875 logical / 16,650 eager / 2,225 lazy publication totals and exact EMI enumeration to the T16 baseline; add only nine vanilla crafting acquisition recipes, keep every GT/load increment at zero, and integrate T17 into the unified full-verification workflow.",
+      "name": "publication_and_full_verification",
+      "status": "COMPLETE"
+    }
+  },
+  "status": "T17_READY",
+  "t17a_evidence": {
+    "catalog_variants": 33,
+    "deferred_kinds": 24,
+    "electric_tier4_5_deferred": 32,
+    "energy_disposition_audit": {
+      "criterion": "INCORRECT_ENERGY_IDENTITIES_HAVE_EXPLICIT_DISPOSITIONS",
+      "deferred": 2,
+      "implemented": 0,
+      "rows": [
+        {
+          "accepted_energy": "HU",
+          "current_local_energy_type": "KINETIC",
+          "disposition": "MAPPED_DEFERRED",
+          "owner": "T17",
+          "reason": "The local Extruder is a legacy kinetic tool host; T17a does not silently rewrite it to HU.",
+          "recheck_point": "Recheck after T17a selected HU machines stabilize.",
+          "recipe_map": "RM.Extruder",
+          "replacement_condition": "Approve HU Extruder current identity while preserving shape tools, recipes and acquisition.",
+          "source_local_energy_type": "HEAT"
+        },
+        {
+          "accepted_energy": "KU",
+          "current_local_energy_type": "ELECTRIC",
+          "disposition": "CROSS_OWNER_DEFERRED",
+          "local_map": "cruciblecraft:compressor",
+          "owner": "T16",
+          "reason": "Compressor is a KU kind owned by T16 while the live T5 host remains explicitly ELECTRIC; the energy disposition audit records the mismatch without stealing owner scope or silently rewriting runtime semantics.",
+          "recheck_point": "Recheck in the next T16-owned KU machine batch before changing Compressor energy.",
+          "recipe_map": "RM.Compressor",
+          "replacement_condition": "The T16 owner must approve a KU Compressor batch with adjacent-push supply, current identity, resources and acquisition evidence.",
+          "source_local_energy_type": "KINETIC_PUSH"
+        }
+      ],
+      "status": "AUDITED"
+    },
+    "energy_kind_counts": {
+      "EU": 16,
+      "HU": 12
+    },
+    "gt_recipe_row_mutation": 0,
+    "heat_tier4_deferred": 10,
+    "implemented_kinds": [
+      "RM.Distillery",
+      "RM.Drying",
+      "RM.Smelter"
+    ],
+    "implemented_variants": 9,
+    "new_block_registrations": 6,
+    "new_item_registrations": 6,
+    "owner_kinds": 28,
+    "preimplemented_reference": "RM.Electrolyzer",
+    "processing_machine_energy_audit": {
+      "implicit_energy_arguments": 0,
+      "legacy_kinetic": 4,
+      "machine_specs": 25,
+      "new_legacy_kinetic": 0,
+      "path": "tools/processing_machine_energy_audit.json",
+      "sha256": "3e732731facaf260a4dc989947203e08bd0b59280506a05028079d7d8266e052",
+      "status": "PROCESSING_MACHINE_ENERGY_AUDIT_READY"
+    },
+    "selected_catalog_variants": [
+      "cruciblecraft:distillery",
+      "cruciblecraft:drying",
+      "cruciblecraft:invar_distillery",
+      "cruciblecraft:invar_drying",
+      "cruciblecraft:invar_smelter",
+      "cruciblecraft:smelter",
+      "cruciblecraft:titanium_distillery",
+      "cruciblecraft:titanium_drying",
+      "cruciblecraft:titanium_smelter"
+    ],
+    "unclassified": 0
+  },
+  "t17b_evidence": {
+    "electric_mixer_tier_variants": 0,
+    "eu_energy_contract": "ELECTRIC_BUFFERED_CABLE_ENDPOINT",
+    "eu_parallel_limits": [
+      1,
+      2,
+      4
+    ],
+    "eu_reference": "cruciblecraft:electrolyzer",
+    "eu_reference_variants": [
+      "cruciblecraft:electrolyzer",
+      "cruciblecraft:aluminium_electrolyzer",
+      "cruciblecraft:stainless_steel_electrolyzer"
+    ],
+    "game_tests": [
+      "fireboxesRunAllThreeHuMachineKinds",
+      "t17bHigherTierHuUsesControlledAdjacentHandlers",
+      "t17bElectrolyzerCableEndpointsRespectEveryTierWindow",
+      "dynamoFeedsElectrolyzerThroughThreeCables",
+      "t17bFailureStatesExposeWrongEnergyUnderpoweredAndLimits",
+      "blockedElectrolyzerOutputPreservesInput"
+    ],
+    "hu_energy_contract": "HEAT_ADJACENT_BOTTOM_FIREBOX",
+    "hu_execution_kinds": [
+      "cruciblecraft:distillery",
+      "cruciblecraft:drying",
+      "cruciblecraft:smelter"
+    ],
+    "hu_execution_variants": 9,
+    "hu_parallel_limits": {
+      "cruciblecraft:distillery": [
+        8,
+        16,
+        32
+      ],
+      "cruciblecraft:drying": [
+        8,
+        16,
+        32
+      ],
+      "cruciblecraft:smelter": [
+        1000,
+        1000,
+        1000
+      ]
+    },
+    "junit_tests": [
+      "huExecutionMatrixCoversThreeKindsThreeTiersAndCheapParallelDuration",
+      "smelterParallelThousandBoundaryRejectsOverflowAndCompactsOutputs",
+      "electrolyzerReferenceCoversThreeBufferedElectricTierEndpoints",
+      "heatFailureStatesRemainObservableInTheSharedRuntime"
+    ],
+    "source_contracts": [
+      "energy_placement",
+      "execution_plan",
+      "parallel_outputs",
+      "t17b_junit_matrix",
+      "t17b_gametest",
+      "t17b_readiness_python_test"
+    ]
+  },
+  "t17c_evidence": {
+    "casing_dependencies": 2,
+    "game_tests": [
+      "selectedHuRecipesExecuteFromLiveRecipeManager"
+    ],
+    "gt_recipe_rows_added": 0,
+    "junit_tests": [
+      "independentNineRecipeSetIsBidirectionalWithSelectedHeatVariants",
+      "selectedModelsLanguagesLootAndTagsUseRealNamesAndTextures",
+      "kindTierMaterialAndEnergyMismatchesAllQuarantine",
+      "currentIdentityReloadResumesAndPreservesState",
+      "variantProjectionDoesNotMutateAnyGtRecipeRow"
+    ],
+    "machine_ingredient_rows": 42,
+    "machine_variant_recipe_ids": [
+      "cruciblecraft:machines/distillery",
+      "cruciblecraft:machines/drying",
+      "cruciblecraft:machines/invar_distillery",
+      "cruciblecraft:machines/invar_drying",
+      "cruciblecraft:machines/invar_smelter",
+      "cruciblecraft:machines/smelter",
+      "cruciblecraft:machines/titanium_distillery",
+      "cruciblecraft:machines/titanium_drying",
+      "cruciblecraft:machines/titanium_smelter"
+    ],
+    "preimplemented_electrolyzer_variants": [
+      "cruciblecraft:aluminium_electrolyzer",
+      "cruciblecraft:electrolyzer",
+      "cruciblecraft:stainless_steel_electrolyzer"
+    ],
+    "producer_forms": 6,
+    "selected_kinds": 3,
+    "selected_variants": 9,
+    "source_contracts": [
+      "t17c_acquisition_builder",
+      "t17c_acquisition_policy",
+      "t17c_crafting_ledger",
+      "t17c_block_models",
+      "t17c_language",
+      "t17c_recipes",
+      "t17c_loot",
+      "t17c_tags",
+      "t17c_identity_policy",
+      "t17c_resource_junit",
+      "t17c_persistence_junit",
+      "t17c_gametest",
+      "t17c_python_test"
+    ],
+    "unreachable": 0
+  },
+  "t17d_evidence": {
+    "denominator": {
+      "cross_owner_deferred_kinds": 1,
+      "deferred_kinds": 24,
+      "electric_tier4_5_deferred": 32,
+      "energy_disposition_audit": {
+        "criterion": "INCORRECT_ENERGY_IDENTITIES_HAVE_EXPLICIT_DISPOSITIONS",
+        "deferred": 2,
+        "implemented": 0,
+        "rows": [
+          {
+            "accepted_energy": "HU",
+            "current_local_energy_type": "KINETIC",
+            "disposition": "MAPPED_DEFERRED",
+            "owner": "T17",
+            "reason": "The local Extruder is a legacy kinetic tool host; T17a does not silently rewrite it to HU.",
+            "recheck_point": "Recheck after T17a selected HU machines stabilize.",
+            "recipe_map": "RM.Extruder",
+            "replacement_condition": "Approve HU Extruder current identity while preserving shape tools, recipes and acquisition.",
+            "source_local_energy_type": "HEAT"
+          },
+          {
+            "accepted_energy": "KU",
+            "current_local_energy_type": "ELECTRIC",
+            "disposition": "CROSS_OWNER_DEFERRED",
+            "local_map": "cruciblecraft:compressor",
+            "owner": "T16",
+            "reason": "Compressor is a KU kind owned by T16 while the live T5 host remains explicitly ELECTRIC; the energy disposition audit records the mismatch without stealing owner scope or silently rewriting runtime semantics.",
+            "recheck_point": "Recheck in the next T16-owned KU machine batch before changing Compressor energy.",
+            "recipe_map": "RM.Compressor",
+            "replacement_condition": "The T16 owner must approve a KU Compressor batch with adjacent-push supply, current identity, resources and acquisition evidence.",
+            "source_local_energy_type": "KINETIC_PUSH"
+          }
+        ],
+        "status": "AUDITED"
+      },
+      "energy_kinds": {
+        "EU": 16,
+        "HU": 12
+      },
+      "heat_tier4_deferred": 10,
+      "kinds": 28,
+      "preimplemented_reference_kinds": 1,
+      "selected_kinds": 3,
+      "selected_variants": 9,
+      "status": "T17_MACHINE_DENOMINATOR_READY",
+      "unclassified": 0
+    },
+    "emi_enumeration": {
+      "configured_maps": 24,
+      "contract": "Every logical RecipeMap entry from each configured processing map is enumerated exactly once under its stable machine category and recipe id.",
+      "recipe_enumeration_equal_to_t16": true,
+      "recipe_map_ids": [
+        "cruciblecraft:assembler",
+        "cruciblecraft:autoclave",
+        "cruciblecraft:bath",
+        "cruciblecraft:bender",
+        "cruciblecraft:centrifuge",
+        "cruciblecraft:compressor",
+        "cruciblecraft:cutter",
+        "cruciblecraft:distillery",
+        "cruciblecraft:drying",
+        "cruciblecraft:electrolyzer",
+        "cruciblecraft:extruder",
+        "cruciblecraft:generifier",
+        "cruciblecraft:lathe",
+        "cruciblecraft:mixer",
+        "cruciblecraft:mortar",
+        "cruciblecraft:press",
+        "cruciblecraft:rollbender",
+        "cruciblecraft:rollingmill",
+        "cruciblecraft:shredder",
+        "cruciblecraft:sifter",
+        "cruciblecraft:sluice",
+        "cruciblecraft:smelter",
+        "cruciblecraft:welder",
+        "cruciblecraft:wiremill"
+      ]
+    },
+    "energy_topology": {
+      "EU": "ELECTRIC_BUFFERED_CABLE_ENDPOINT",
+      "HU": "HEAT_ADJACENT_BOTTOM_FIREBOX",
+      "electric_mixer_tier_variants": 0,
+      "eu_reference_variants": 3,
+      "hu_execution_variants": 9
+    },
+    "gametest": {
+      "full_suite_test_count": 138,
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "t17_test_count": 8,
+      "tests": [
+        "fireboxesRunAllThreeHuMachineKinds",
+        "t17bHigherTierHuUsesControlledAdjacentHandlers",
+        "t17bElectrolyzerCableEndpointsRespectEveryTierWindow",
+        "dynamoFeedsElectrolyzerThroughThreeCables",
+        "t17bFailureStatesExposeWrongEnergyUnderpoweredAndLimits",
+        "blockedElectrolyzerOutputPreservesInput",
+        "selectedHuRecipesExecuteFromLiveRecipeManager",
+        "recipePublicationMatchesPriorBaseline"
+      ]
+    },
+    "identity_acquisition": {
+      "gt_recipe_rows": 0,
+      "identity_policy": "CURRENT_ONLY_FAIL_CLOSED",
+      "unreachable": 0,
+      "vanilla_crafting_rows": 9
+    },
+    "load_projection": {
+      "delivery_phase": "T17",
+      "incremental_counts": {
+        "datapack_authored_entries": 0,
+        "eager_publication_rows": 0,
+        "lazy_cache_ceiling_rows": 0,
+        "lazy_logical_rows": 0,
+        "logical_rows": 0,
+        "sync_bytes": 0
+      },
+      "input": "tools/t17_load_projection_input.json",
+      "input_sha256": "5c5f81fd36f80135a39d0d666580f3408466da0227ca997844e64818108a5701",
+      "measurement_intervals": {
+        "allocation_bytes": {
+          "max": 0,
+          "min": 0
+        },
+        "client_index_ms": {
+          "max": 0,
+          "min": 0
+        },
+        "client_reload_ms": {
+          "max": 0,
+          "min": 0
+        },
+        "lookup_candidate_count": {
+          "max": 0,
+          "min": 0
+        },
+        "lookup_p95_ns": {
+          "max": 0,
+          "min": 0
+        },
+        "retained_memory_bytes": {
+          "max": 0,
+          "min": 0
+        },
+        "server_index_ms": {
+          "max": 0,
+          "min": 0
+        },
+        "server_reload_ms": {
+          "max": 0,
+          "min": 0
+        }
+      },
+      "output": "tools/t17_load_projection.json",
+      "output_sha256": "83badf101ead8278200e1507b7a4f8a6e4019a1c332e466a359b47183614e628",
+      "status": "PASS"
+    },
+    "publication_baseline": {
+      "path": "src/main/resources/data/cruciblecraft/t17_publication_baseline.json",
+      "publication_delta": 0,
+      "publication_totals": {
+        "eager_rows": 16650,
+        "lazy_rows": 2225,
+        "logical_rows": 18875
+      },
+      "recipe_map_ids": [
+        "cruciblecraft:anvil",
+        "cruciblecraft:anvil_bend_big",
+        "cruciblecraft:anvil_bend_small",
+        "cruciblecraft:assembler",
+        "cruciblecraft:autoclave",
+        "cruciblecraft:bath",
+        "cruciblecraft:bender",
+        "cruciblecraft:centrifuge",
+        "cruciblecraft:coke_oven",
+        "cruciblecraft:compressor",
+        "cruciblecraft:cooling",
+        "cruciblecraft:crusher",
+        "cruciblecraft:cutter",
+        "cruciblecraft:distillery",
+        "cruciblecraft:drying",
+        "cruciblecraft:electrolyzer",
+        "cruciblecraft:extruder",
+        "cruciblecraft:fuels_engine",
+        "cruciblecraft:fuels_gas",
+        "cruciblecraft:generifier",
+        "cruciblecraft:lathe",
+        "cruciblecraft:mixer",
+        "cruciblecraft:mortar",
+        "cruciblecraft:press",
+        "cruciblecraft:rollbender",
+        "cruciblecraft:rollingmill",
+        "cruciblecraft:shredder",
+        "cruciblecraft:sifter",
+        "cruciblecraft:sluice",
+        "cruciblecraft:smelter",
+        "cruciblecraft:welder",
+        "cruciblecraft:wiremill"
+      ],
+      "sha256": "7acd05da0882583d1072e70ea8a40ef2031c6aa78bb2ac92da8ee272c8f0dbb6",
+      "stable_id_set_equal_to_t16": true,
+      "t16_path": "src/main/resources/data/cruciblecraft/t16_publication_baseline.json",
+      "t16_sha256": "0560b4a3960b6a0d88a61736f334430c25adea41031a68914454c1232a8bc167"
+    },
+    "status": "PASS"
+  }
+}

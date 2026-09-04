@@ -1,0 +1,338 @@
+{
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t35_census_inputs.py": "4bb41ce4f5c83192b3fc414889ff04fc2b3589187bac40858f1b2792ba612e25",
+      "tools/t35_census_policy.json": "0482afb37dd8aa3558071f9c3488d7e7d89e42cc53cd7e75b36553b1258af7e4",
+      "tools/t35_machine_track.json": "4549afc65b3234a82ae4c350c73b3e92a2e73e358cea19ab1bacdd894246f4f4",
+      "tools/t35_storage_scope.json": "0478cd1d2dc9794338ddf02e1c6432aef4fe95468132136388a0d180bb60a66d"
+    }
+  },
+  "exclusion_counts": {
+    "artifact": "tools/t13_denominators/machine_kinds.json",
+    "artifact_sha256": "b7faf744c5def30031c2d50b857e4ddd5f8f9c2c0217966996fcb20ebdf4316e",
+    "excluded_call_sites": 763,
+    "excluded_expanded_registrations": 1701,
+    "exclusion_rows": 763
+  },
+  "fixed_card_nodes": {
+    "T36": {
+      "generated_card": false,
+      "id": "T36",
+      "title": "machine registration/tier matrix"
+    },
+    "T37": {
+      "generated_card": false,
+      "id": "T37",
+      "title": "ordinary_optional pilot"
+    }
+  },
+  "generated_by": "python tools/build_t35_census_inputs.py",
+  "generated_topology_card_count_before_census": null,
+  "inputs": {
+    "acquisition": {
+      "tools/t15_machine_acquisition.json": {
+        "path": "tools/t15_machine_acquisition.json",
+        "sha256": "5cf3c843eb8b6e9e5388dd244b5e5fcdab03bd13e8e37e248a2c62df6dcf6944"
+      },
+      "tools/t16_machine_acquisition.json": {
+        "path": "tools/t16_machine_acquisition.json",
+        "sha256": "030987b9fab1da3eb51c97165b35ff1b269c68eefa3fff9da345bceab8f4ab35"
+      },
+      "tools/t17_machine_acquisition.json": {
+        "path": "tools/t17_machine_acquisition.json",
+        "sha256": "76cbe8fb901057ee043145c89eccd64977edc367cdeb69ea4aba49f221674336"
+      },
+      "tools/t18_converter_acquisition.json": {
+        "path": "tools/t18_converter_acquisition.json",
+        "sha256": "aa24c98e0c9b695b492ff76d4a9b7fb041def75a6e46a7a5507f8c898ddb61b8"
+      },
+      "tools/t19_cover_acquisition.json": {
+        "path": "tools/t19_cover_acquisition.json",
+        "sha256": "4ee73a2645030a0694b45a5e2eeef8649b1a99bc067b45feb85c9c554e79f730"
+      },
+      "tools/t19_pipe_acquisition.json": {
+        "path": "tools/t19_pipe_acquisition.json",
+        "sha256": "b2ef4e44f0559b544e855c557b0e688f5abfbaf4fb721d24eec04eecf284998f"
+      }
+    },
+    "presentation": {
+      "tools/t34_gt6_art_manifest.json": {
+        "path": "tools/t34_gt6_art_manifest.json",
+        "sha256": "9618c75e6e00a0d4d2cd1bd87e5335b97cd6a40ad9e9a24d96d2d19030e41375"
+      },
+      "tools/t34_presentation.json": {
+        "path": "tools/t34_presentation.json",
+        "sha256": "8c05b749a892ee702cdaf2e30230d92102efa4dfccae757de1ceca9f3afc3c42"
+      }
+    },
+    "reachability": {
+      "path": "tools/t21_operand_reachability.json",
+      "sha256": "af19917f8b1c4389a20d92efdddcad13cbf4b9ae5209ea59e54133bba337283c"
+    },
+    "roadmap": {
+      "currentness": "narrative",
+      "path": "docs/current/roadmap.md"
+    },
+    "t22_5": {
+      "tools/t22_5_machine_playability.json": {
+        "path": "tools/t22_5_machine_playability.json",
+        "sha256": "8a284602185714e26c29298a574af05990ded15f37774a7ed2c4825ac49a8a9c"
+      },
+      "tools/t22_5_row_classification.json": {
+        "path": "tools/t22_5_row_classification.json",
+        "sha256": "535c60dafbdfee939b2fa212dad1b6163c78d2bc8db4300ffb0c532293dfbb29"
+      },
+      "tools/t22_5_shape_analysis.json": {
+        "path": "tools/t22_5_shape_analysis.json",
+        "sha256": "c51d00b3a1ffe551ec81d9fb52c7e01baa3705a9a06d9e71c9862221983206a9"
+      }
+    },
+    "t31_load": {
+      "tools/t31_load_report.json": {
+        "path": "tools/t31_load_report.json",
+        "sha256": "a9aace9a4245d1165786b126bfcc322091be94b1b2ab677cdbba6c51ccbd9c18"
+      },
+      "tools/t31_scale_recheck.json": {
+        "path": "tools/t31_scale_recheck.json",
+        "sha256": "41b46ac404992b34ce11aa526b1474ea31bf88a2d9097b3dc4dd98c4a4241d0d"
+      }
+    },
+    "t34_art_manifest": {
+      "path": "tools/t34_gt6_art_manifest.json",
+      "sha256": "9618c75e6e00a0d4d2cd1bd87e5335b97cd6a40ad9e9a24d96d2d19030e41375"
+    },
+    "t35_machine_track": {
+      "path": "tools/t35_machine_track.json",
+      "sha256": "4549afc65b3234a82ae4c350c73b3e92a2e73e358cea19ab1bacdd894246f4f4",
+      "status": "available"
+    },
+    "t35_storage_scope": {
+      "path": "tools/t35_storage_scope.json",
+      "sha256": "0478cd1d2dc9794338ddf02e1c6432aef4fe95468132136388a0d180bb60a66d"
+    },
+    "verification_debt": {
+      "path": "tools/known_issues/verification-debt.json",
+      "sha256": "d3d4faae9085cd3a4586e9fbf1105afd81de4dc5797123cbcf608358bb3aad90"
+    },
+    "worldgen": {
+      "path": "tools/worldgen_catalog_readiness.json",
+      "sha256": "ed917fb4b8cd4e9b37c7abb63b8ea22b6c027278e77e154d18d8a3dcdbf3834e"
+    }
+  },
+  "policy": "tools/t35_census_policy.json",
+  "policy_sha256": "0482afb37dd8aa3558071f9c3488d7e7d89e42cc53cd7e75b36553b1258af7e4",
+  "publication_delta": {
+    "eager": 0,
+    "lazy": 0,
+    "logical": 0
+  },
+  "publication_opening": {
+    "authority_chain": "T30/T31 current planning chain",
+    "eager": 16541,
+    "lazy": 2225,
+    "logical": 18766,
+    "projection_artifact": "tools/t30_load_projection.json",
+    "projection_sha256": "c9ee28c26b696bfa2ae4021e4fea2e9d5131ef85f9185b06682eef13afb765eb",
+    "publication_artifact": "tools/t30_publication_delta.json",
+    "publication_delta": {
+      "eager": 0,
+      "lazy": 0,
+      "logical": 0
+    },
+    "publication_sha256": "ab2a86805bbffc36cb630932993d17d12ff550962261862cd4c055b9395c76e0",
+    "supersedes": "T27 opening snapshot for current 1.x planning"
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T35_CENSUS_INPUTS",
+  "storage_counts": {
+    "artifact": "tools/t13_denominators/machine_kinds.json",
+    "artifact_sha256": "b7faf744c5def30031c2d50b857e4ddd5f8f9c2c0217966996fcb20ebdf4316e",
+    "behavior_classes": [
+      "MultiTileEntityBookShelf",
+      "MultiTileEntityBottleCrate",
+      "MultiTileEntityDrawerQuad",
+      "MultiTileEntityLocker",
+      "MultiTileEntityLockerCharging",
+      "MultiTileEntityMassStorageBarrel",
+      "MultiTileEntityMassStorageBox",
+      "MultiTileEntityMassStorageStandard",
+      "MultiTileEntityStorageInserter"
+    ],
+    "category": "Storage",
+    "expanded_registrations": 624,
+    "note": "mass_storage_logistics is Logistics cross-category and must not inflate Storage 624",
+    "source_sites": 28
+  },
+  "storage_scope": {
+    "artifact": "tools/t35_storage_scope.json",
+    "artifact_sha256": "0478cd1d2dc9794338ddf02e1c6432aef4fe95468132136388a0d180bb60a66d",
+    "denominators": {
+      "mass_storage_logistics": {
+        "counts_toward_storage_624": false,
+        "expanded_rows": 1,
+        "source_sites": 1
+      },
+      "storage": {
+        "counts_toward_storage_624": true,
+        "expanded_rows": 624,
+        "source_sites": 28
+      }
+    },
+    "family_scopes": {
+      "bookshelf": "in_scope_1x",
+      "bottle_crate": "in_scope_1x",
+      "chest": "post_1x",
+      "drawer": "in_scope_1x",
+      "fluid_container": "candidate_1x",
+      "hopper": "in_scope_1x",
+      "locker": "in_scope_1x",
+      "mass_storage_barrel": "in_scope_1x",
+      "mass_storage_box": "in_scope_1x",
+      "mass_storage_logistics": "in_scope_1x",
+      "mass_storage_standard": "in_scope_1x",
+      "pump": "post_1x",
+      "safe": "post_1x",
+      "sorting": "post_1x",
+      "storage_inserter": "in_scope_1x",
+      "tank": "post_1x"
+    },
+    "locker_charging_lineage": {
+      "base": {
+        "behavior_class": "MultiTileEntityLocker",
+        "display_expression": "\"Locker (\" +aMat.getLocal()+\")\"",
+        "source_id_expression": "7300+aID"
+      },
+      "charging": {
+        "behavior_class": "MultiTileEntityLockerCharging",
+        "behavior_diff": "Adds item charging to locker inventory; retains locker storage lineage.",
+        "display_expression": "\"Charging Locker (\" +aMat.getLocal()+\")\"",
+        "source_id_expression": "7500+aID"
+      }
+    },
+    "schema_version": 1
+  },
+  "t13_seven_tables": {
+    "canonical_identities_total": 765,
+    "cover_kinds": {
+      "artifact": "tools/t13_denominators/cover_kinds.json",
+      "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+      "canonical_count": 47,
+      "id_field": "canonical_id",
+      "unclassified": 0
+    },
+    "energy_identities": {
+      "artifact": "tools/t13_denominators/energy_identities.json",
+      "artifact_sha256": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+      "canonical_count": 20,
+      "id_field": "symbol",
+      "unclassified": 0
+    },
+    "itemgenerator_domains": {
+      "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+      "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+      "canonical_count": 25,
+      "id_field": "canonical_id",
+      "unclassified": 0
+    },
+    "machine_kinds": {
+      "artifact": "tools/t13_denominators/machine_kinds.json",
+      "artifact_sha256": "b7faf744c5def30031c2d50b857e4ddd5f8f9c2c0217966996fcb20ebdf4316e",
+      "canonical_count": 96,
+      "id_field": "canonical_key",
+      "unclassified": 0
+    },
+    "manifest": {
+      "path": "tools/t13_denominator_manifest.json",
+      "sha256": "9bf87bdbd4bda82d4417f899ef44b920d1cb147ed30f1adee7d917c1d23ec400",
+      "status": "T13_DENOMINATOR_MANIFEST_READY"
+    },
+    "multiblock_kinds": {
+      "artifact": "tools/t13_denominators/multiblock_kinds.json",
+      "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+      "canonical_count": 30,
+      "id_field": "canonical_id",
+      "unclassified": 0
+    },
+    "prefixes": {
+      "artifact": "tools/t13_denominators/prefixes.json",
+      "artifact_sha256": "fc7c5b9f84eda867a057442e0e37697ce198e7c5167783b12176fd6a31312205",
+      "canonical_count": 452,
+      "id_field": "canonical_id",
+      "unclassified": 0
+    },
+    "recipe_maps": {
+      "artifact": "tools/t13_denominators/recipe_maps.json",
+      "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+      "canonical_count": 95,
+      "id_field": "normalized_row_key",
+      "unclassified": 0
+    }
+  },
+  "t14_authority": {
+    "axis_count": 13,
+    "axis_ids": [
+      "allocation_bytes",
+      "client_index_ms",
+      "client_reload_ms",
+      "datapack_authored_entries",
+      "eager_publication_rows",
+      "lazy_cache_ceiling_rows",
+      "lazy_logical_rows",
+      "lookup_candidate_count",
+      "lookup_p95_ns",
+      "retained_memory_bytes",
+      "server_index_ms",
+      "server_reload_ms",
+      "sync_bytes"
+    ],
+    "hard_ceiling_mutation": "forbidden",
+    "policy": "tools/t14_load_budget_policy.json",
+    "policy_sha256": "7e87ddb3b987f52fd8fd918a426bd6a2c640682fb89b52cb7b3cc5731c339270",
+    "status": "T14D_LOAD_BUDGET_POLICY_MEASURED"
+  },
+  "t22_5_counts": {
+    "classification_artifact": "tools/t22_5_row_classification.json",
+    "classification_sha256": "535c60dafbdfee939b2fa212dad1b6163c78d2bc8db4300ffb0c532293dfbb29",
+    "ordinary_optional": 78682,
+    "row_universe": 146841,
+    "unclassified": 0
+  },
+  "vocabularies": {
+    "closure_statuses": [
+      "closed",
+      "incomplete",
+      "not_applicable"
+    ],
+    "dispositions": [
+      "deferred",
+      "implemented",
+      "out_of_scope",
+      "planned"
+    ],
+    "fidelity_statuses": [
+      "design_policy",
+      "source_backed",
+      "source_derived"
+    ],
+    "load_statuses": [
+      "measured",
+      "not_applicable",
+      "pending",
+      "projected"
+    ],
+    "pending_load_verdict": "BLOCKED_PENDING_MEASUREMENT",
+    "portfolio_priorities": [
+      "P0",
+      "P1",
+      "P2",
+      "P3"
+    ],
+    "portfolio_scopes": [
+      "in_scope_1x",
+      "candidate_1x",
+      "post_1x",
+      "out_of_scope"
+    ]
+  }
+}

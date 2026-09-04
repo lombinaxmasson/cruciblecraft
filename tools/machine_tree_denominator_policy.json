@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "status": "POLICY",
+  "delivery_boundary": "T13_CANONICAL_DENOMINATORS",
+  "source": {
+    "repository": "https://github.com/GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "tree_sha1": "a164302f62a326208fd2076de6fb7cdb0b4602ee",
+    "recipe_dump": {
+      "map_count": 95,
+      "recipe_count": 720841
+    },
+    "oredict_dump": {
+      "material_count": 2214,
+      "prefix_count": 468
+    }
+  },
+  "classification_vocabulary": {
+    "in_scope": "The canonical source identity may be consumed by T14-T19 or is already represented by a closed runtime slice. This does not promise complete implementation.",
+    "deferred_with_reason": "The source identity is valid but requires a named later owner, reason, replacement condition and recheck point.",
+    "out_of_scope": "The source identity belongs to an explicitly excluded gameplay or compatibility axis.",
+    "unclassified": "No reviewed disposition exists. Any occurrence blocks T13 readiness."
+  },
+  "required_deferred_fields": [
+    "reason",
+    "owner",
+    "replacement_condition",
+    "recheck_point"
+  ],
+  "canonical_identity_fields": [
+    "source_revision",
+    "source_blob",
+    "source_path",
+    "source_symbol_or_extraction_key",
+    "normalized_row_key"
+  ],
+  "tables": [
+    "recipe_maps",
+    "prefixes",
+    "itemgenerator_domains",
+    "machine_kinds",
+    "energy_identities",
+    "cover_kinds",
+    "multiblock_kinds"
+  ],
+  "declared_transformations": {
+    "recipe_maps": [
+      "empty nameInternal is represented by the explicit canonical id unnamed"
+    ],
+    "prefixes": [
+      "source aliases and compatibility variants may map to one OP canonical prefix only through an attributed mapping rule"
+    ],
+    "itemgenerator_domains": [
+      "one domain may map to multiple prefixes or a declared Boolean expression"
+    ],
+    "machine_kinds": [
+      "registrations differing only by material, input window, parallel or other numeric tier values collapse into variants"
+    ],
+    "energy_identities": [
+      "local enum/topology mapping does not merge distinct GT6 TagData identities"
+    ],
+    "cover_kinds": [
+      "abstract bases, interfaces, helpers, renderers and data-only companions are exclusions rather than canonical behaviors"
+    ],
+    "multiblock_kinds": [
+      "parts, ports, abstract bases and data-only companions are exclusions rather than canonical controllers"
+    ]
+  },
+  "owner_map": {
+    "T14": "load architecture and recipe-family projection",
+    "T15": "T12 residual alignment",
+    "T16": "RU/KU machine tiers",
+    "T17": "HU/EU machine tiers",
+    "T18": "steam, fuel and energy conversion",
+    "T19": "Cover behavior and pipe obtainability",
+    "POST_T19": "later industrial or peripheral family",
+    "OUT_OF_SCOPE": "third-stage excluded axis"
+  },
+  "normalization_audit": {
+    "status_prefix": "UNIFORM_",
+    "block_on_undeclared_many_to_one": true,
+    "block_on_unexplained_field_cardinality_reduction": true,
+    "frequency_threshold_is_diagnostic_only": true
+  },
+  "zero_content_delta": {
+    "datapack_recipe_entries": 6150,
+    "published_recipes": 18875,
+    "authored_material_rules": 0
+  }
+}

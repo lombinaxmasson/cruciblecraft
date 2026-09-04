@@ -1,0 +1,72 @@
+{
+  "closure": {
+    "disposition_vocabulary_ok": true,
+    "dispositions_are_bijection": true,
+    "findings_disposed": 5,
+    "findings_total": 5,
+    "selected": 0,
+    "t24_scenario_gametests_expected": 5,
+    "t24_scenario_gametests_present": 5,
+    "zero_content_close": true
+  },
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T25 is a zero-content close: the T24 ledger has zero blocking findings, so selected = 0 with complete dispositions; repository-wide verification is bound separately by the full snapshot report."
+  },
+  "completed_stages": [
+    "T25a",
+    "T25b"
+  ],
+  "currentness": {
+    "full_verification": {
+      "evidence": "tools/full_verification_report.json",
+      "pending": [],
+      "status": "BOUND_TO_FULL_VERIFICATION_REPORT"
+    },
+    "owned_inputs": {
+      "tools/build_t25_readiness.py": "1760a6b18cce31e39875c5995d26ec10c7f74bf15b709d77bf7a146160e10c6d",
+      "tools/t25_readiness_policy.json": "76760ae1b2d6e341e925185f4cdf9c402388e09682d62fabecfc4b7e5f481e9f"
+    }
+  },
+  "fidelity": {
+    "design_policy_declared": "Zero-content close: no fixes were applied, so no source-backed input/output, duration, energy, chance or order changed and no approximation or degradation strategy was introduced.",
+    "fixes_applied": 0,
+    "no_approximation_introduced": true,
+    "source_backed_facts_untouched": true
+  },
+  "load": {
+    "before_after_pairs": 0,
+    "findings_blocking": 0,
+    "headroom_remaining": 2118,
+    "publication_baseline_consistent": true,
+    "publication_delta": {
+      "eager": 0,
+      "lazy": 0,
+      "logical": 0
+    },
+    "remeasurement": "NOT_APPLICABLE_NO_SELECTED_FIXES",
+    "skipped_contracts_complete": true,
+    "t26_recheck_contracts": [
+      {
+        "id": "T24-F003",
+        "recheck_point": "T26 Beta candidate",
+        "replacement_condition": "Re-run on a declared environment with >= 16 GB RAM and record tools/t24_scale_evidence.json measured_at_scale.target"
+      },
+      {
+        "id": "T24-F005",
+        "recheck_point": "T26 Beta candidate",
+        "replacement_condition": "Re-run on a declared environment with >= 16 GB RAM and record tools/t24_scale_evidence.json measured_at_scale.target"
+      }
+    ]
+  },
+  "pending_stages": [],
+  "policy": "The status field is derived from evidence by build(). Any mismatch between the committed value and a fresh build is detected by check().",
+  "runtime": {
+    "gametest_passing": true,
+    "gametest_total": 137
+  },
+  "schema_version": 1,
+  "status": "T25_READY",
+  "status_owner": "run_full_verification"
+}

@@ -1,0 +1,23 @@
+{
+  "$id": "https://cruciblecraft.invalid/schema/t42-family-operand-snapshot.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "family_count": {
+      "const": 5305
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "const": "T42_FAMILY_OPERAND_SNAPSHOT"
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "family_count",
+    "families"
+  ],
+  "type": "object"
+}

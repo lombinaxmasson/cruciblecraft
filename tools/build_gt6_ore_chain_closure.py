@@ -41,10 +41,10 @@ REGISTRATION_GATE_SOURCES = {
 }
 VEIN_ROOT = ROOT / "src/main/resources/data/cruciblecraft/veins"
 L3_PLAN = TOOLS / "gt6_l3_prefix_plan.json"
-T5_CHEMICAL_POLICY = TOOLS / "t5_chemical_policy.json"
+T5_CHEMICAL_POLICY = TOOLS / "chemical_policy.json"
 
-CRUSHER_CLASSIFICATIONS = {"vein", "byproduct_only", "t5_chemical"}
-SIFTER_CLASSIFICATIONS = {"add_smelter", "t5_chemical", "gt6_dead_end"}
+CRUSHER_CLASSIFICATIONS = {"vein", "byproduct_only", "chemical_chemical"}
+SIFTER_CLASSIFICATIONS = {"add_smelter", "chemical_chemical", "gt6_dead_end"}
 CHEMICAL_TAG_TERMS = (
     "CENTRIF",
     "CHEMICAL",
@@ -292,7 +292,7 @@ def classify_crusher(
             )
     return {
         "material": material,
-        "classification": "t5_chemical",
+        "classification": "chemical_chemical",
         "evidence": evidence,
         "rationale": rationale,
         "target_phase": "T5_chemical_closure",
@@ -423,7 +423,7 @@ def classify_sifter(
             ))
         return {
             "material": material,
-            "classification": "t5_chemical",
+            "classification": "chemical_chemical",
             "evidence": evidence,
             "rationale": (
                 "Direct GT6 smelting/composition/chemical metadata exists, but "
@@ -608,7 +608,7 @@ def build_document() -> dict[str, Any]:
                 "path": "tools/gt6_l3_prefix_plan.json",
                 "sha256": sha256(L3_PLAN),
             },
-            "t5_source_dead_end_policy": {
+            "chemical_source_dead_end_policy": {
                 "path": "tools/t5_chemical_policy.json",
                 "sha256": sha256(T5_CHEMICAL_POLICY),
             },

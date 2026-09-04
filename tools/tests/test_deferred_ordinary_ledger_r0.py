@@ -6,12 +6,12 @@ import unittest
 
 from tools import closeout_seal
 from tools import recycling_deferred_r0 as r0
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk.slugs import KNOWN_SEMANTIC_SLUGS
 from tools.wave_closeout import spec_for
 
 SLUG = "recycling/deferred-ordinary-ledger-r0"
-ROOT = t35.TOOLS / "waves" / "recycling" / "deferred-ordinary-ledger-r0"
+ROOT = census.TOOLS / "waves" / "recycling" / "deferred-ordinary-ledger-r0"
 
 
 class DeferredOrdinaryLedgerR0Test(unittest.TestCase):
@@ -70,9 +70,9 @@ class DeferredOrdinaryLedgerR0Test(unittest.TestCase):
         self.assertEqual(118, candidate["bath_catalog_meta_count"])
 
     def test_artifacts_are_ready(self) -> None:
-        readiness = t35.load_json(ROOT / "readiness.json")
-        universe = t35.load_json(ROOT / "deferred_universe.json")
-        census = t35.load_json(ROOT / "census_delta.json")
+        readiness = census.load_json(ROOT / "readiness.json")
+        universe = census.load_json(ROOT / "deferred_universe.json")
+        census = census.load_json(ROOT / "census_delta.json")
         self.assertEqual("RECYCLING_DEFERRED_LEDGER_R0_READY", readiness["status"])
         self.assertEqual(
             "recycling/smelter-mte-identity", readiness["unique_active_wave"]
@@ -90,7 +90,7 @@ class DeferredOrdinaryLedgerR0Test(unittest.TestCase):
 
     def test_seal_is_current(self) -> None:
         self.assertEqual([], closeout_seal.check_wave_seal(SLUG))
-        seal = t35.load_json(ROOT / "closeout_seal.json")
+        seal = census.load_json(ROOT / "closeout_seal.json")
         self.assertEqual("SEALED", seal["status"])
         self.assertEqual(0, int(seal["complete_family_count"]))
         self.assertEqual("NONE", seal["gametest_status"])
@@ -98,7 +98,7 @@ class DeferredOrdinaryLedgerR0Test(unittest.TestCase):
 
     def test_no_recipe_tree(self) -> None:
         generated = (
-            t35.ROOT
+            census.ROOT
             / "src"
             / "recipe_generated"
             / "resources"

@@ -1,0 +1,23 @@
+{
+  "match_mode": "logical_input_and_output_identity",
+  "owner": "assembler/compact",
+  "phase": "pre_snapshot",
+  "require_output_match": true,
+  "rule_id": "cruciblecraft:assembler/compact_wood_pre_snapshot",
+  "target_map": "cruciblecraft:assembler",
+  "type": "cruciblecraft:compact_dedup_rule",
+  "victim_selector": {
+    "kind": "publication_group",
+    "publication_groups": [
+      "cruciblecraft:assembler/wood/planks",
+      "cruciblecraft:assembler/wood/fireproof",
+      "cruciblecraft:assembler/wood/planks2"
+    ]
+  },
+  "winner_selector": {
+    "kind": "publication_group",
+    "publication_groups": [
+      "cruciblecraft:assembler/compact"
+    ]
+  }
+}

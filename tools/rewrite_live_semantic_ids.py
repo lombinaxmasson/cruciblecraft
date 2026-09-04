@@ -19,7 +19,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools import semantic_ids
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk.membership import membership_root
 
 RECIPE_GENERATED = Path("src/recipe_generated")
@@ -42,10 +42,10 @@ def _is_archive(path: Path) -> bool:
 
 
 def dest_for_generated(path: Path) -> Path | None:
-    rel = path.resolve().relative_to(t35.ROOT).as_posix()
+    rel = path.resolve().relative_to(census.ROOT).as_posix()
     mapped = None
     for root in semantic_ids.live_generated_roots():
-        old = t35.relative(root)
+        old = census.relative(root)
         prefix = old.rstrip("/") + "/"
         if rel == old or rel.startswith(prefix):
             rest = rel[len(old) :].lstrip("/")
@@ -61,7 +61,7 @@ def dest_for_generated(path: Path) -> Path | None:
     if "/publication_policy/" in mapped + "/":
         name = semantic_ids.remap_policy_filename(name)
         mapped = f"{parent}/{name}" if slash else name
-    return t35.ROOT / mapped
+    return census.ROOT / mapped
 
 
 def dest_for_named_json(path: Path) -> Path:
@@ -77,7 +77,7 @@ def rewrite_json_file(src: Path, dest: Path) -> None:
     if dest.exists() and dest.resolve() != src.resolve():
         existing = json.loads(dest.read_text(encoding="utf-8"))
         if existing != remapped:
-            raise SystemExit(f"refusing to overwrite drifted dest {t35.relative(dest)}")
+            raise SystemExit(f"refusing to overwrite drifted dest {census.relative(dest)}")
     _write_json(dest, remapped)
     if dest.resolve() != src.resolve():
         src.unlink()
@@ -99,14 +99,14 @@ def rewrite_generated_trees() -> list[str]:
                 dest.parent.mkdir(parents=True, exist_ok=True)
                 if dest.resolve() != src.resolve():
                     shutil.move(str(src), str(dest))
-            moved.append(t35.relative(dest))
+            moved.append(census.relative(dest))
         _remove_empty_dirs(root)
     return moved
 
 
 def rewrite_main_recovery() -> list[str]:
     moved: list[str] = []
-    recipe_root = t35.ROOT / "src/main/resources/data/cruciblecraft/recipe"
+    recipe_root = census.ROOT / "src/main/resources/data/cruciblecraft/recipe"
     if not recipe_root.is_dir():
         return moved
     for row in semantic_ids._prefix_rows("support_path_prefixes"):
@@ -121,7 +121,7 @@ def rewrite_main_recovery() -> list[str]:
         for src in sorted(src_dir.rglob("*.json")):
             dest = dest_dir / src.relative_to(src_dir)
             rewrite_json_file(src, dest)
-            moved.append(t35.relative(dest))
+            moved.append(census.relative(dest))
         _remove_empty_dirs(src_dir)
     return moved
 
@@ -129,9 +129,9 @@ def rewrite_main_recovery() -> list[str]:
 def rewrite_policy_and_dedup_trees() -> list[str]:
     moved: list[str] = []
     roots = [
-        t35.ROOT / "src/compact_recipe_policy_generated",
-        t35.ROOT / "src/recipe_generated/resources/data/cruciblecraft/recipe/dedup_rule",
-        t35.ROOT / "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy",
+        census.ROOT / "src/compact_recipe_policy_generated",
+        census.ROOT / "src/recipe_generated/resources/data/cruciblecraft/recipe/dedup_rule",
+        census.ROOT / "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy",
     ]
     for root in roots:
         if not root.exists():
@@ -139,13 +139,13 @@ def rewrite_policy_and_dedup_trees() -> list[str]:
         for src in sorted(root.rglob("*.json")):
             dest = dest_for_named_json(src)
             rewrite_json_file(src, dest)
-            moved.append(t35.relative(dest))
+            moved.append(census.relative(dest))
     return moved
 
 
 def rewrite_wave_routing_schema() -> list[str]:
     updated: list[str] = []
-    waves = t35.ROOT / "tools" / "waves"
+    waves = census.ROOT / "tools" / "waves"
     if not waves.is_dir():
         return updated
     old_versions = set(semantic_ids.routing_schema_old())
@@ -157,13 +157,13 @@ def rewrite_wave_routing_schema() -> list[str]:
             text = text.replace(old, new_version)
         if text != original:
             path.write_text(text, encoding="utf-8")
-            updated.append(t35.relative(path))
+            updated.append(census.relative(path))
     return updated
 
 
 def recompute_policy_membership() -> list[str]:
     family_root = (
-        t35.ROOT
+        census.ROOT
         / "src/recipe_generated/resources/data/cruciblecraft/recipe"
     )
     if not family_root.is_dir():
@@ -209,7 +209,7 @@ def recompute_policy_membership() -> list[str]:
         document["family_count"] = len(bucket["family_ids"])
         document["relation_count"] = len(bucket["stable_ids"])
         _write_json(path, document)
-        updated.append(t35.relative(path))
+        updated.append(census.relative(path))
     return updated
 
 
@@ -238,7 +238,7 @@ def main(argv: list[str] | None = None) -> int:
         print("choose --write or --check", file=sys.stderr)
         return 2
     remaining = [
-        t35.relative(root)
+        census.relative(root)
         for root in semantic_ids.live_generated_roots()
         if root.exists()
     ]

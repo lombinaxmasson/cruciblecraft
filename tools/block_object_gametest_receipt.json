@@ -1,0 +1,39 @@
+{
+  "behavior_root_sha256": "b5e242d6e3834b685c5086dfaaf71cbe19ed6958524a93d2cd82a8df5bbf1569",
+  "bound_artifacts": {
+    "block_object_generated_recipes": "e405c15882fd2c94f9762e2c054314512412f9f58cd77a6351afec192870fe54",
+    "block_object_locked_support": null,
+    "gametest_java": "8dd85d06f62b099e31d17b30db8a6b74b4cbab0766a9e58af32d36c3d011e874",
+    "material_registration_gate_java": "f68f87d8eef8cf832987b726e01a2e9b592269cfcc5baf10e46502680704bb84",
+    "material_registration_gate_json": "51cf948867ca73af6be51defa2c95f3870bdc546986c396d7662ea58a865e569",
+    "production_lock": "f0dc7329c5e2864b560a5826832d88d9c5dc2e9737ac5676892b1afb9094c49a",
+    "publication_group_manifest": "28d18d709780ff4326711303592ec62b3a6fbb8935af377059a2c5bd947954fc",
+    "runtime_dependency_manifest": "f49f3991e9d629d6654c87233f91866fbb9325b3eac2f38469690f651d201ead",
+    "shard_manifest": "b577b0191af7b9159a978795e8b4878e95bf655c8a36f896460c5a83eafa01bd"
+  },
+  "command": ".\\gradlew.bat runGameTestServer -PwaveRecipes=block/object --no-daemon",
+  "currentness_root_sha256": "673a40b8d3467ea2ded506035f1ed3eab6892629889f08307fdd243a02e9e156",
+  "equivalence_root_sha256": "8c2e37d1ed46d761f2e4f5c84a5f4dd8dc1db6d5e23b5fdfc55d3c1d456e344d",
+  "failed": 0,
+  "java_sha256": "8dd85d06f62b099e31d17b30db8a6b74b4cbab0766a9e58af32d36c3d011e874",
+  "java_source": "src/main/java/com/masson/cruciblecraft/gametest/BlockObjectGameTests.java",
+  "log_fingerprint": "aaa9340d6f67bfb870807ab99ebce4a4a4e4d0f8b7ea4e12b8a784f6c16702f2",
+  "log_path": "tools/block_object_gametest.log",
+  "namespace": "cruciblecraft_wave_block_object",
+  "note": "Source markers are not a pass. This receipt is the isolated -PwaveRecipes=block/object result bound to MaterialRegistrationGate, the block/object recipe resource trees, and the committed UTF-8 evidence log. The gitignored run-block/object-recipes directory is not evidence. Injecting recipe inputs still does not prove a player path.",
+  "pass_marker": "All 6 required tests passed :)",
+  "passed": 6,
+  "required_tests": 6,
+  "schema_version": 3,
+  "semantic_tree_sha256": "bee1a5fd4f588fc81a0179cd09774868acfd6342eff4f648eb84a8f1da5a6804",
+  "skip_is_not_pass": true,
+  "status": "PASS",
+  "test_ids": [
+    "blockobjectstableidssurvivereload",
+    "compactfamiliespublished",
+    "dryingexecutesrepresentative",
+    "emiplanincludesfamilies",
+    "lockedsupportpublished",
+    "smelterexecutesrepresentative"
+  ]
+}

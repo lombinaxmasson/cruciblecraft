@@ -10,7 +10,7 @@ from typing import Any
 
 from tools import closeout_seal
 from tools import portfolio_one_x as one_x
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk.slugs import KNOWN_SEMANTIC_SLUGS
 from tools.wave_closeout import known_slugs
 from tools.wave_closeout import spec_for
@@ -24,7 +24,7 @@ NON_ORE_STATUS = "NON_ORE_WORLDGEN_R0_READY"
 GENERIC_IMPORT_SLUG = "portfolio/generic-recipe-generator"
 GENERIC_IMPORT_STATUS = "GENERIC_RECIPE_IMPORT_READY"
 STATUS = "CROPS_FOOD_BEES_R0_READY"
-SOURCE_REVISION = t35.SOURCE_REVISION
+SOURCE_REVISION = census.SOURCE_REVISION
 GENERATED_BY = "python tools/build_crops_food_bees_r0.py"
 PINNED_NAMES = ("Crops", "Food", "Bees")
 SEED_ANCHOR = "crops / food / bees"
@@ -185,61 +185,61 @@ CROPS_QUESTIONS = {
         "lock separately from this R0 denominator."
     ),
 }
-DUMP_ROOT = t35.ROOT / "gt6_dump" / "gt6_recipe_dump"
+DUMP_ROOT = census.ROOT / "gt6_dump" / "gt6_recipe_dump"
 DUMP_INDEX = DUMP_ROOT / "index.json"
 WORLDGEN_OTHER = DUMP_ROOT / "worldgen" / "other_features.json"
 CAPABILITY_MAP = (
-    t35.TOOLS / "waves" / "portfolio" / "source-capability-map" / "capability_map.json"
+    census.TOOLS / "waves" / "portfolio" / "source-capability-map" / "capability_map.json"
 )
 GROWTH_ORDER = (
-    t35.TOOLS
+    census.TOOLS
     / "waves"
     / "portfolio"
     / "source-capability-growth-order"
     / "growth_order.json"
 )
-T35_EXCLUSION = t35.TOOLS / "t35_excluded_object_reclaim.json"
-T20_POLICY = t35.TOOLS / "t20_worldgen_source_policy.json"
+T35_EXCLUSION = census.TOOLS / "census_excluded_object_reclaim.json"
+T20_POLICY = census.TOOLS / "worldgen_worldgen_source_policy.json"
 COUNT_CEILING_REFS = (
-    t35.TOOLS / "waves" / "portfolio" / "source-capability-map-r0" / "count_ceiling_refs.json"
+    census.TOOLS / "waves" / "portfolio" / "source-capability-map-r0" / "count_ceiling_refs.json"
 )
 LEFTOVER_LATER = (
-    t35.TOOLS / "waves" / "portfolio" / "source-capability-map-r0" / "leftover_later.json"
+    census.TOOLS / "waves" / "portfolio" / "source-capability-map-r0" / "leftover_later.json"
 )
 MACHINE_TIERS = (
-    t35.ROOT / "src/main/resources/data/cruciblecraft/machine_tiers.json"
+    census.ROOT / "src/main/resources/data/cruciblecraft/machine_tiers.json"
 )
 PROCESSING_MACHINES = (
-    t35.ROOT
+    census.ROOT
     / "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java"
 )
 RECIPE_MAPS_JAVA = (
-    t35.ROOT / "src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java"
+    census.ROOT / "src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java"
 )
-SOURCE_IMPORT = t35.TOOLS / "recipe_bulk" / "source_import.py"
+SOURCE_IMPORT = census.TOOLS / "recipe_bulk" / "source_import.py"
 ORE_VEINS = (
-    t35.ROOT / "src/main/resources/data/cruciblecraft/worldgen_catalog/ore_veins.json"
+    census.ROOT / "src/main/resources/data/cruciblecraft/worldgen_catalog/ore_veins.json"
 )
 FLUID_DEPOSITS = (
-    t35.ROOT
+    census.ROOT
     / "src/main/resources/data/cruciblecraft/worldgen_catalog/fluid_deposits.json"
 )
 SURFACE_SCATTER = (
-    t35.ROOT
+    census.ROOT
     / "src/main/resources/data/cruciblecraft/worldgen_catalog/surface_scatter.json"
 )
 WORLDGEN_CATALOG = (
-    t35.ROOT / "src/main/resources/data/cruciblecraft/worldgen_catalog"
+    census.ROOT / "src/main/resources/data/cruciblecraft/worldgen_catalog"
 )
 CONFIGURED_FEATURE = (
-    t35.ROOT
+    census.ROOT
     / "src/main/resources/data/cruciblecraft/worldgen/configured_feature"
 )
 PLACED_FEATURE = (
-    t35.ROOT / "src/main/resources/data/cruciblecraft/worldgen/placed_feature"
+    census.ROOT / "src/main/resources/data/cruciblecraft/worldgen/placed_feature"
 )
-WORLDGEN_JAVA = t35.ROOT / "src/main/java/com/masson/cruciblecraft/worldgen"
-RECIPE_GENERATED = t35.ROOT / "src" / "recipe_generated"
+WORLDGEN_JAVA = census.ROOT / "src/main/java/com/masson/cruciblecraft/worldgen"
+RECIPE_GENERATED = census.ROOT / "src" / "recipe_generated"
 
 
 def generated_by(_slug: str = SLUG) -> str:
@@ -251,7 +251,7 @@ def nuclear_started() -> bool:
 
 
 def leftover_later_count() -> int:
-    leftover = t35.load_json(LEFTOVER_LATER)
+    leftover = census.load_json(LEFTOVER_LATER)
     total = int(leftover["counts"]["total"])
     if total != 39:
         raise ValueError(f"leftover_later_count {total} != 39")
@@ -269,14 +269,14 @@ def require_registered(slug: str) -> list[str]:
 
 def require_predecessor() -> list[str]:
     errors = closeout_seal.check_wave_seal(PREDECESSOR)
-    readiness = t35.load_json(wave_dir(PREDECESSOR) / "readiness.json")
+    readiness = census.load_json(wave_dir(PREDECESSOR) / "readiness.json")
     if readiness.get("status") != PREDECESSOR_STATUS:
         errors.append(
             f"{PREDECESSOR} status {readiness.get('status')} != {PREDECESSOR_STATUS}"
         )
     non_ore_errors = closeout_seal.check_wave_seal(NON_ORE_SLUG)
     errors.extend(non_ore_errors)
-    non_ore = t35.load_json(wave_dir(NON_ORE_SLUG) / "readiness.json")
+    non_ore = census.load_json(wave_dir(NON_ORE_SLUG) / "readiness.json")
     if non_ore.get("status") != NON_ORE_STATUS:
         errors.append(
             f"{NON_ORE_SLUG} status {non_ore.get('status')} != {NON_ORE_STATUS}"
@@ -286,16 +286,16 @@ def require_predecessor() -> list[str]:
 
 def authority_hashes() -> dict[str, str]:
     return {
-        "capability_map": t35.sha256_file(CAPABILITY_MAP),
-        "dump_index": t35.sha256_file(DUMP_INDEX),
-        "growth_order": t35.sha256_file(GROWTH_ORDER),
-        "non_ore_worldgen_r0_seal": t35.sha256_file(
+        "capability_map": census.sha256_file(CAPABILITY_MAP),
+        "dump_index": census.sha256_file(DUMP_INDEX),
+        "growth_order": census.sha256_file(GROWTH_ORDER),
+        "non_ore_worldgen_r0_seal": census.sha256_file(
             wave_dir(NON_ORE_SLUG) / "closeout_seal.json"
         ),
-        "other_features": t35.sha256_file(WORLDGEN_OTHER),
-        "t20_worldgen_source_policy": t35.sha256_file(T20_POLICY),
-        "t35_excluded_object_reclaim": t35.sha256_file(T35_EXCLUSION),
-        "vanilla_replace_r0_seal": t35.sha256_file(
+        "other_features": census.sha256_file(WORLDGEN_OTHER),
+        "worldgen_worldgen_source_policy": census.sha256_file(T20_POLICY),
+        "census_excluded_object_reclaim": census.sha256_file(T35_EXCLUSION),
+        "vanilla_replace_r0_seal": census.sha256_file(
             wave_dir(PREDECESSOR) / "closeout_seal.json"
         ),
     }
@@ -304,7 +304,7 @@ def authority_hashes() -> dict[str, str]:
 def load_other_features() -> list[dict[str, Any]]:
     if not WORLDGEN_OTHER.is_file():
         raise ValueError("dump worldgen/other_features.json missing")
-    document = t35.load_json(WORLDGEN_OTHER)
+    document = census.load_json(WORLDGEN_OTHER)
     if not isinstance(document, list):
         raise ValueError("other_features.json is not a list")
     return [dict(row) for row in document]
@@ -329,7 +329,7 @@ def category_of(row: dict[str, Any]) -> str | None:
 
 
 def non_ore_owned_names() -> set[str]:
-    inherited = t35.load_json(wave_dir(NON_ORE_SLUG) / "inherited_denominator.json")
+    inherited = census.load_json(wave_dir(NON_ORE_SLUG) / "inherited_denominator.json")
     names = {str(row.get("name") or "") for row in inherited.get("features") or []}
     if len(names) != NON_ORE_SLICE:
         raise ValueError(f"non-ore owned features {len(names)} != 18")
@@ -337,7 +337,7 @@ def non_ore_owned_names() -> set[str]:
 
 
 def dump_maps() -> dict[str, dict[str, Any]]:
-    document = t35.load_json(DUMP_INDEX)
+    document = census.load_json(DUMP_INDEX)
     rows = {
         str(row.get("nameInternal") or ""): dict(row)
         for row in document.get("maps") or []
@@ -368,7 +368,7 @@ def dump_map_record(row: dict[str, Any], *, is_census: bool) -> dict[str, Any]:
 
 
 def capability_rows() -> list[dict[str, Any]]:
-    document = t35.load_json(CAPABILITY_MAP)
+    document = census.load_json(CAPABILITY_MAP)
     wanted = set(CAPABILITY_ANCHORS.values())
     rows = [
         dict(row)
@@ -413,7 +413,7 @@ def capability_row_for(category: str) -> dict[str, Any]:
 
 
 def capability_seed_row() -> dict[str, Any]:
-    document = t35.load_json(CAPABILITY_MAP)
+    document = census.load_json(CAPABILITY_MAP)
     for row in document.get("rows") or []:
         if row.get("gt6_anchor") == SEED_ANCHOR:
             return dict(row)
@@ -421,7 +421,7 @@ def capability_seed_row() -> dict[str, Any]:
 
 
 def generic_importer_status() -> str:
-    readiness = t35.load_json(wave_dir(GENERIC_IMPORT_SLUG) / "readiness.json")
+    readiness = census.load_json(wave_dir(GENERIC_IMPORT_SLUG) / "readiness.json")
     status = str(readiness.get("status") or "")
     if status != GENERIC_IMPORT_STATUS:
         raise ValueError(f"generic importer status {status} != {GENERIC_IMPORT_STATUS}")
@@ -445,7 +445,7 @@ def importer_creates_recipe_maps() -> bool:
 
 
 def dimension_policy() -> str:
-    policy = t35.load_json(T20_POLICY)
+    policy = census.load_json(T20_POLICY)
     text = str(policy["classification"]["dimension_policy"])
     if "DESIGN_POLICY_OVERWORLD_ACCESS" not in text:
         raise ValueError("T20 dimension_policy missing DESIGN_POLICY_OVERWORLD_ACCESS")
@@ -453,7 +453,7 @@ def dimension_policy() -> str:
 
 
 def count_ceiling_status() -> str:
-    document = t35.load_json(COUNT_CEILING_REFS)
+    document = census.load_json(COUNT_CEILING_REFS)
     status = str(document.get("status") or "")
     if status != "COUNT_CEILING_REFS_READY":
         raise ValueError(f"count-ceiling status {status} != COUNT_CEILING_REFS_READY")
@@ -461,7 +461,7 @@ def count_ceiling_status() -> str:
 
 
 def processing_host_kinds() -> list[str]:
-    document = t35.load_json(MACHINE_TIERS)
+    document = census.load_json(MACHINE_TIERS)
     kinds = sorted(
         {
             str(row.get("kind") or "")
@@ -501,7 +501,7 @@ def processing_machine_text() -> str:
 
 
 def t35_excluded_records() -> dict[str, dict[str, Any]]:
-    document = t35.load_json(T35_EXCLUSION)
+    document = census.load_json(T35_EXCLUSION)
     families = {
         str(row["canonical_family"]): dict(row)
         for row in document.get("family_summaries") or []
@@ -539,9 +539,9 @@ def t35_excluded_records() -> dict[str, dict[str, Any]]:
 
 
 def t20_catalog_counts() -> dict[str, Any]:
-    veins = t35.load_json(ORE_VEINS)
-    deposits = t35.load_json(FLUID_DEPOSITS)
-    scatter = t35.load_json(SURFACE_SCATTER)
+    veins = census.load_json(ORE_VEINS)
+    deposits = census.load_json(FLUID_DEPOSITS)
+    scatter = census.load_json(SURFACE_SCATTER)
     vein_count = len(veins.get("veins") or [])
     deposit_count = len(deposits.get("deposits") or [])
     scatter_id = str(scatter.get("id") or "")
@@ -598,7 +598,7 @@ def named_runtime_hits(category: str) -> list[str]:
 
 
 def already_closed_elsewhere() -> dict[str, Any]:
-    non_ore = t35.load_json(wave_dir(NON_ORE_SLUG) / "inherited_denominator.json")
+    non_ore = census.load_json(wave_dir(NON_ORE_SLUG) / "inherited_denominator.json")
     remainder = non_ore.get("remainder_after_slice") or {}
     histogram = remainder.get("type_histogram") or {}
     if int(non_ore.get("feature_count") or -1) != NON_ORE_SLICE:
@@ -630,7 +630,7 @@ def already_closed_elsewhere() -> dict[str, Any]:
             "remainder_after_slice": REMAINDER_AFTER_NON_ORE,
             "status": NON_ORE_STATUS,
         },
-        "t20_worldgen_catalog": t20,
+        "worldgen_worldgen_catalog": t20,
         "vanilla_replace_r0": {
             "owner_here": False,
             "status": PREDECESSOR_STATUS,
@@ -689,7 +689,7 @@ def inherited_denominator_document() -> dict[str, Any]:
             raise ValueError(f"{name} worldgen names {names} != {expected_names}")
         for row in rows:
             live = live_by_name[feature_name(row)]
-            drift = t35.first_json_diff(live, row)
+            drift = census.first_json_diff(live, row)
             if drift:
                 raise ValueError(
                     f"{feature_name(row)} is not byte-identical to dump: {drift}"
@@ -698,7 +698,7 @@ def inherited_denominator_document() -> dict[str, Any]:
         live_capability = next(
             row for row in capability if row["gt6_anchor"] == capability_row["gt6_anchor"]
         )
-        drift = t35.first_json_diff(live_capability, capability_row)
+        drift = census.first_json_diff(live_capability, capability_row)
         if drift:
             raise ValueError(f"{name} capability row is not byte-identical: {drift}")
         dump_rows = [
@@ -733,9 +733,9 @@ def inherited_denominator_document() -> dict[str, Any]:
         "category_count": 3,
         "dump": {
             "feature_count": FULL_OTHER_FEATURES,
-            "path": t35.relative(WORLDGEN_OTHER),
-            "recipe_index": t35.relative(DUMP_INDEX),
-            "sha256": t35.sha256_file(WORLDGEN_OTHER),
+            "path": census.relative(WORLDGEN_OTHER),
+            "recipe_index": census.relative(DUMP_INDEX),
+            "sha256": census.sha256_file(WORLDGEN_OTHER),
         },
         "dump_recipe_count_context": EXPECTED_DUMP_CONTEXT,
         "feature_count": EXPECTED_SLICE,
@@ -856,7 +856,7 @@ def existing_mechanism_document() -> dict[str, Any]:
                 "cc_mechanism": mechanism,
                 "gap": "mechanism" if mechanism == "none" else "none",
                 "named_runtime_hits": hits,
-                "t35_excluded_mtes": [
+                "census_excluded_mtes": [
                     excluded[family]
                     for family in EXPECTED_T35_FAMILIES[name]
                 ],
@@ -888,8 +888,8 @@ def existing_mechanism_document() -> dict[str, Any]:
         "schema_version": 1,
         "source_revision": SOURCE_REVISION,
         "status": "EXISTING_MECHANISM_READY",
-        "t20_worldgen_catalog": t20_catalog_counts(),
-        "t35_excluded_mtes": excluded,
+        "worldgen_worldgen_catalog": t20_catalog_counts(),
+        "census_excluded_mtes": excluded,
         "wave_slug": SLUG,
         "worldgen_catalog_slice_hits": catalog_hits,
     }
@@ -1144,32 +1144,32 @@ def build_r0_documents() -> dict[str, Any]:
 def write_seal() -> dict[str, Any]:
     root = wave_dir(SLUG)
     hashes = {
-        "census": t35.sha256_file(root / "census_delta.json"),
+        "census": census.sha256_file(root / "census_delta.json"),
         "gametest_java": None,
         "gametest_log": None,
         "generated_recipes": None,
         "locked_support": None,
         "production_lock": None,
         "publication_group_manifest": None,
-        "readiness": t35.sha256_file(root / "readiness.json"),
+        "readiness": census.sha256_file(root / "readiness.json"),
         "receipt": None,
         "runtime_dependency_manifest": None,
         "shard_manifest": None,
-        "topology": t35.sha256_file(root / "topology.json"),
+        "topology": census.sha256_file(root / "topology.json"),
     }
     seal = {
         "card_id": SLUG,
         "complete_family_count": 0,
-        "composed_identity_ledger_v2_sha256": t35.sha256_file(
+        "composed_identity_ledger_v2_sha256": census.sha256_file(
             closeout_seal.IDENTITY_LEDGER_V2
         ),
-        "composed_runtime_manifest_v2_sha256": t35.sha256_file(
+        "composed_runtime_manifest_v2_sha256": census.sha256_file(
             closeout_seal.RUNTIME_MANIFEST_V2
         ),
         "gametest_status": "NONE",
         "generated_by": f"{GENERATED_BY} --write",
         "hashes": hashes,
-        "note": t35.load_json(root / "readiness.json").get("note"),
+        "note": census.load_json(root / "readiness.json").get("note"),
         "production_lock_sha256": None,
         "receipt_sha256": None,
         "reclassification_delta": 0,
@@ -1180,7 +1180,7 @@ def write_seal() -> dict[str, Any]:
         "source_revision": SOURCE_REVISION,
         "status": "SEALED",
     }
-    t35.write_stable(root / "closeout_seal.json", seal)
+    census.write_stable(root / "closeout_seal.json", seal)
     return seal
 
 
@@ -1189,7 +1189,7 @@ def write_artifacts() -> dict[str, Any]:
     root = wave_dir(SLUG)
     root.mkdir(parents=True, exist_ok=True)
     for name, document in documents.items():
-        t35.write_stable(root / name, document)
+        census.write_stable(root / name, document)
     write_seal()
     spec = spec_for(SLUG)
     return {
@@ -1229,11 +1229,11 @@ def check_artifacts() -> list[str]:
     except ValueError as error:
         return errors + [str(error)]
     for name, document in live.items():
-        committed = t35.load_json(root / name)
-        drift = t35.first_json_diff(document, committed)
+        committed = census.load_json(root / name)
+        drift = census.first_json_diff(document, committed)
         if drift:
             errors.append(f"{name} drifted: {drift}")
-    readiness = t35.load_json(root / "readiness.json")
+    readiness = census.load_json(root / "readiness.json")
     if readiness.get("status") != STATUS:
         errors.append(f"{SLUG} status drifted")
     if readiness.get("unique_active_wave") is not None:
@@ -1259,12 +1259,12 @@ def check_artifacts() -> list[str]:
         errors.append("remainder_after_this_slice must be 160")
     if evidence.get("plantalyzer_used_as_census"):
         errors.append("plantalyzer must not be used as census")
-    topology = t35.load_json(root / "topology.json")
+    topology = census.load_json(root / "topology.json")
     extra = sorted(set(topology) - set(ALLOWED_TOPOLOGY_KEYS))
     if extra:
         errors.append(f"topology has forbidden keys: {extra}")
     errors.extend(check_forbidden_successors(json.dumps(topology, sort_keys=True)))
-    feasibility = t35.load_json(root / "feasibility.json")
+    feasibility = census.load_json(root / "feasibility.json")
     by_category = {row["category"]: row for row in feasibility.get("categories") or []}
     if tuple(by_category) != PINNED_NAMES:
         errors.append("feasibility categories drifted from the pinned three")
@@ -1281,7 +1281,7 @@ def check_artifacts() -> list[str]:
             errors.append(f"{name} must not allow an implementation child")
         if row.get("verdict") == "defer_to_portfolio":
             errors.append(f"{name} must not defer_to_portfolio on this slice")
-    inherited = t35.load_json(root / "inherited_denominator.json")
+    inherited = census.load_json(root / "inherited_denominator.json")
     if int(inherited.get("category_count", 0)) != 3:
         errors.append("inherited category_count must be 3")
     if int(inherited.get("feature_count", 0)) != EXPECTED_SLICE:
@@ -1294,7 +1294,7 @@ def check_artifacts() -> list[str]:
         if live_row is None:
             errors.append(f"{category.get('category')} missing from live capability map")
             continue
-        drift = t35.first_json_diff(live_row, category.get("capability_row"))
+        drift = census.first_json_diff(live_row, category.get("capability_row"))
         if drift:
             errors.append(
                 f"{category.get('category')} is not byte-identical to capability map: "
@@ -1307,7 +1307,7 @@ def check_artifacts() -> list[str]:
         if live_row is None:
             errors.append(f"{feature_name(row)} missing from live dump")
             continue
-        drift = t35.first_json_diff(live_row, row)
+        drift = census.first_json_diff(live_row, row)
         if drift:
             errors.append(
                 f"{feature_name(row)} is not byte-identical to dump: {drift}"

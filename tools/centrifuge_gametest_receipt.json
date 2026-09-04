@@ -1,0 +1,41 @@
+{
+  "behavior_root_sha256": "6d5668ad3c182ae1e038563551044868e50a700619264f5f17f3434421a65f5c",
+  "bound_artifacts": {
+    "centrifuge_generated_recipes": "1c680dc838d86b6fdb71b9658de96864685014f537a7208a77b8f73662d74522",
+    "centrifuge_locked_support": null,
+    "gametest_java": "73275f51ae0aba2fcb637d2ca03f1f98e17f8a8737d5fe5c6cb7dc363fdd7842",
+    "material_registration_gate_java": "f68f87d8eef8cf832987b726e01a2e9b592269cfcc5baf10e46502680704bb84",
+    "material_registration_gate_json": "51cf948867ca73af6be51defa2c95f3870bdc546986c396d7662ea58a865e569",
+    "production_lock": "efcbd5519c91052422de36049ccc1daf3968433192a98aa2a92cb64afa971501",
+    "publication_group_manifest": "c8cc4b46d1c17dcecd9984266275bfcef55c87a539dde513be15f0ad3f9af35c",
+    "runtime_dependency_manifest": "607ff5586374f3154f8cbd1958128f97f82d03fe877c94729032196a5f67b092",
+    "shard_manifest": "a74d29291a12e7db57ff16158bc5653d7014b0676ae444c81e0ab822e43ef38a"
+  },
+  "command": ".\\gradlew.bat runGameTestServer -PwaveRecipes=centrifuge/compact --no-daemon",
+  "currentness_root_sha256": "3d244dcf8ddcbfd999693fb44c817f6d39a72ea273b2b4ec88606248a38a2608",
+  "equivalence_root_sha256": "ee42a80ce499556da68d593cca161106149d9941998a684fd947184e6006c4f9",
+  "failed": 0,
+  "java_sha256": "73275f51ae0aba2fcb637d2ca03f1f98e17f8a8737d5fe5c6cb7dc363fdd7842",
+  "java_source": "src/main/java/com/masson/cruciblecraft/gametest/CentrifugeCompactGameTests.java",
+  "log_fingerprint": "23377c1f7042c7b99ec3e43392679606fc4b4e0fd5ab7251c4b7b78e5e7f6965",
+  "log_path": "tools/centrifuge_gametest.log",
+  "namespace": "cruciblecraft_wave_centrifuge_compact",
+  "note": "Source markers are not a pass. This receipt is the isolated -PwaveRecipes=centrifuge/compact result bound to MaterialRegistrationGate, the centrifuge/compact recipe resource trees, and the committed UTF-8 evidence log. The gitignored run-centrifuge/compact-recipes directory is not evidence. Injecting recipe inputs still does not prove a player path.",
+  "pass_marker": "All 8 required tests passed :)",
+  "passed": 8,
+  "required_tests": 8,
+  "schema_version": 3,
+  "semantic_tree_sha256": "a5541b0d7a37f0930c34841f1b26cc95c0b02dd148b7cbca2619d236ae3ce81f",
+  "skip_is_not_pass": true,
+  "status": "PASS",
+  "test_ids": [
+    "centrifugecompactstableidssurvivereload",
+    "centrifugeexecutesrepresentative",
+    "compactfamiliespublished",
+    "emiplanincludescentrifugefamilies",
+    "fourvariantsacceptku",
+    "lockedsupportpublished",
+    "multifamilyexecutes",
+    "singletonfamilyexecutes"
+  ]
+}

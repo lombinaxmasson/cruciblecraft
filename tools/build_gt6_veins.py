@@ -88,10 +88,10 @@ def material_capabilities() -> dict[str, dict[str, set[str]]]:
             T8_PIPE_FORMS | t10_forms | acquisition_forms
         ):
             raise ValueError(
-                "registration gate exceeds factual or source-backed T8/T10/T38/T39 "
+                "registration gate exceeds factual or source-backed T8/T10/roaster/compact/centrifuge/compact "
                 f"forms for {material_id}"
             )
-        # T38's pinned GT6 large-vein facts are the factual source for their
+        # roaster/compact's pinned GT6 large-vein facts are the factual source for their
         # runtime ORE form; the material-level L3 plan intentionally did not
         # claim that broader domain before this overlay existed.
         if "ore" in acquisition_forms:

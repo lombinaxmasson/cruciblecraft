@@ -6,12 +6,12 @@ import json
 from pathlib import Path
 from typing import Any
 
-from tools import t35_common as t35
+from tools import io_common as files
 
 AUTHORED_FORM_MATRIX_V1 = "matrix_v1"
 COMPACT_FAMILY_TYPE = "cruciblecraft:compact_gt_recipe_family"
 LIVE_RECIPE_ROOT = (
-    t35.ROOT / "src/recipe_generated/resources/data/cruciblecraft/recipe"
+    files.ROOT / "src/recipe_generated/resources/data/cruciblecraft/recipe"
 )
 
 
@@ -210,7 +210,7 @@ def load_compact_family_documents(root: Path) -> dict[str, dict[str, Any]]:
     for path in sorted(root.rglob("*.json")):
         if not path.is_file():
             continue
-        document = t35.load_json(path)
+        document = files.load_json(path)
         if isinstance(document, dict) and document.get("type") == COMPACT_FAMILY_TYPE:
             documents[str(path)] = document
     return documents
@@ -223,7 +223,7 @@ def rewrite_tree(root: Path) -> dict[str, int]:
     for path in sorted(root.rglob("*.json")):
         if not path.is_file():
             continue
-        document = t35.load_json(path)
+        document = files.load_json(path)
         if document.get("type") != COMPACT_FAMILY_TYPE:
             continue
         files += 1
@@ -231,6 +231,6 @@ def rewrite_tree(root: Path) -> dict[str, int]:
         if updated is document or updated == document:
             kept += 1
             continue
-        t35.write_stable(path, updated)
+        files.write_stable(path, updated)
         rewritten += 1
     return {"files": files, "rewritten": rewritten, "kept_inline": kept}

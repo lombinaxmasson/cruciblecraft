@@ -7,10 +7,10 @@ import unittest
 from pathlib import Path
 
 from tools import capability_ledger as ledger
-from tools import t35_common as t35
+from tools import io_common as io
 
-ROOT = t35.ROOT
-SCHEMA = t35.TOOLS / "capabilities" / "schema.json"
+ROOT = io.ROOT
+SCHEMA = io.TOOLS / "capabilities" / "schema.json"
 FLUID = "logistics/fluid-network/basic-transfer"
 
 
@@ -73,7 +73,7 @@ class CapabilityLedgerTest(unittest.TestCase):
             self.assertNotIn("owned_hash_count", capability)
 
     def test_committed_ledger_is_deterministic(self) -> None:
-        committed = (t35.TOOLS / "capabilities" / "ledger.json").read_bytes()
+        committed = (io.TOOLS / "capabilities" / "ledger.json").read_bytes()
         self.assertEqual(ledger.dumps(ledger.compile_ledger()), committed)
 
     def test_shared_cover_code_hits_cover_and_dependents(self) -> None:

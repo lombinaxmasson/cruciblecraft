@@ -11,7 +11,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools import currentness
-from tools import t35_common as t35
+from tools import census_common as census
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -22,7 +22,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     mode.add_argument("--write", action="store_true")
     parser.add_argument(
         "--scope",
-        choices=("t35", "card-closeout", "recipes", "all"),
+        choices=("census", "card-closeout", "recipes", "all"),
         default="all",
     )
     parser.add_argument(
@@ -57,8 +57,8 @@ def main(argv: list[str] | None = None) -> int:
     rows = rows_for_scope(args.scope)
     if args.plan:
         for row in rows:
-            artifact = t35.ROOT / row["artifact"]
-            sidecar = t35.ROOT / row["sidecar"]
+            artifact = census.ROOT / row["artifact"]
+            sidecar = census.ROOT / row["sidecar"]
             status = "missing-artifact"
             if artifact.is_file():
                 status = "current" if sidecar.is_file() else "sidecar-missing"
@@ -68,7 +68,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.check:
         errors: list[str] = []
         for row in rows:
-            artifact = t35.ROOT / row["artifact"]
+            artifact = census.ROOT / row["artifact"]
             if not artifact.is_file():
                 errors.append(f"MISSING: {row['artifact']} is stale (missing)")
                 continue
@@ -81,11 +81,11 @@ def main(argv: list[str] | None = None) -> int:
         print(f"currentness sidecars are current for scope {args.scope}")
         return 0
     for row in rows:
-        artifact = t35.ROOT / row["artifact"]
+        artifact = census.ROOT / row["artifact"]
         if not artifact.is_file():
             print(f"skip missing {row['artifact']}", file=sys.stderr)
             continue
-        sidecar = t35.ROOT / row["sidecar"]
+        sidecar = census.ROOT / row["sidecar"]
         if args.rebind and sidecar.is_file():
             currentness.rebind_sidecar(artifact, mode="envelope")
         elif args.builder and sidecar.is_file():

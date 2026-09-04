@@ -1,0 +1,51 @@
+{
+  "$id": "https://cruciblecraft.invalid/schema/t42-owner-object-expression-evidence.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "approvals": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "family_id": {
+            "type": "string"
+          },
+          "future_owner": {
+            "pattern": "^later:object_expression/.+",
+            "type": "string"
+          },
+          "object_boundary_root_sha256": {
+            "type": "string"
+          },
+          "recheck_condition": {
+            "type": "string"
+          },
+          "runtime_behavior_root_sha256": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "family_id",
+          "future_owner",
+          "object_boundary_root_sha256",
+          "runtime_behavior_root_sha256",
+          "recheck_condition"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "const": "T42_OWNER_OBJECT_EXPRESSION_EVIDENCE"
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "approvals"
+  ],
+  "type": "object"
+}

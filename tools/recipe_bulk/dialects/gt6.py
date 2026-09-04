@@ -6,7 +6,7 @@ import hashlib
 from pathlib import Path
 from typing import Any
 
-from tools import t35_common as t35
+from tools import census_common as census
 
 ADAPTER_ID = "gt6"
 ADAPTER_ABI = "gt6-canonical-v1"
@@ -65,7 +65,7 @@ def compile_row(
     source_row_sha256: str,
     maps: dict[str, Any] | None = None,
 ) -> tuple[dict[str, Any], list[str]]:
-    from tools import build_t37_assembler_source as t37
+    from tools import build_assembler_source as assembler
     from tools.recipe_bulk import ordinary_source as ordinary
 
     loaded = maps or _maps()
@@ -73,7 +73,7 @@ def compile_row(
     errors: list[str] = []
     unsupported: list[str] = []
     slot_notes: list[dict[str, Any]] = []
-    extra_keys = sorted(set(recipe) - t37.CONSUMED_RECIPE_KEYS)
+    extra_keys = sorted(set(recipe) - assembler.CONSUMED_RECIPE_KEYS)
     if extra_keys:
         raise DialectError(
             f"{template_key}: unknown dump field {extra_keys[0]}"
@@ -86,7 +86,7 @@ def compile_row(
     item_input_counts: list[int] = []
     item_input_actions: list[dict[str, Any]] = []
     for slot, item in enumerate(recipe.get("inputs") or []):
-        if t37._empty_item(item):
+        if assembler._empty_item(item):
             slot_notes.append({"side": "item_input", "slot": slot, "class": "empty_slot"})
             continue
         operand, operand_errors = ordinary.map_item_operand(
@@ -100,7 +100,7 @@ def compile_row(
             side="item_input",
         )
         errors.extend(operand_errors)
-        action = t37.classify_item_action(item)
+        action = assembler.classify_item_action(item)
         count = int(item.get("count") or 0)
         if action["kind"] != "CONSUME":
             count = 0
@@ -111,7 +111,7 @@ def compile_row(
         item_input_actions.append(action)
     item_outputs: list[dict[str, Any]] = []
     for slot, item in enumerate(recipe.get("outputs") or []):
-        if t37._empty_item(item):
+        if assembler._empty_item(item):
             slot_notes.append({"side": "item_output", "slot": slot, "class": "empty_slot"})
             continue
         operand, operand_errors = ordinary.map_item_operand(
@@ -215,7 +215,7 @@ def stable_id_for(
         "source_revision": source_revision,
         "source_system": source_system,
     }
-    digest = hashlib.sha256(t35.stable_json(payload).encode("utf-8")).hexdigest()[:16]
+    digest = hashlib.sha256(census.stable_json(payload).encode("utf-8")).hexdigest()[:16]
     return f"cruciblecraft:gt6/{digest}"
 
 

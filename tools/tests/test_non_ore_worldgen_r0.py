@@ -5,7 +5,7 @@ from __future__ import annotations
 import unittest
 
 from tools import portfolio_non_ore_worldgen as worldgen
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk.slugs import KNOWN_SEMANTIC_SLUGS
 from tools.wave_closeout import spec_for
 
@@ -36,10 +36,10 @@ class NonOreWorldgenR0RegistrationTest(unittest.TestCase):
 
 class NonOreWorldgenR0ArtifactsTest(unittest.TestCase):
     def test_artifacts_when_present(self) -> None:
-        root = t35.TOOLS / "waves" / "portfolio" / "non-ore-worldgen-r0"
+        root = census.TOOLS / "waves" / "portfolio" / "non-ore-worldgen-r0"
         if not (root / "readiness.json").is_file():
             self.skipTest("R0 artifacts not written yet")
-        readiness = t35.load_json(root / "readiness.json")
+        readiness = census.load_json(root / "readiness.json")
         self.assertEqual("NON_ORE_WORLDGEN_R0_READY", readiness["status"])
         self.assertIsNone(readiness["unique_active_wave"])
         self.assertTrue(readiness["next_unassigned"])
@@ -59,7 +59,7 @@ class NonOreWorldgenR0ArtifactsTest(unittest.TestCase):
                 "requires_new_runtime",
                 evidence["feasibility_by_category"][name],
             )
-        inherited = t35.load_json(root / "inherited_denominator.json")
+        inherited = census.load_json(root / "inherited_denominator.json")
         self.assertEqual(
             list(PINNED),
             [row["category"] for row in inherited["categories"]],
@@ -99,7 +99,7 @@ class NonOreWorldgenR0ArtifactsTest(unittest.TestCase):
         self.assertEqual(90, int(histogram["WorldgenStone"]))
         self.assertEqual(16, int(histogram["WorldgenFluidSpring"]))
         self.assertEqual(10, int(histogram["WorldgenHives"]))
-        feasibility = t35.load_json(root / "feasibility.json")
+        feasibility = census.load_json(root / "feasibility.json")
         by_category = {row["category"]: row for row in feasibility["categories"]}
         self.assertEqual(list(PINNED), list(by_category))
         for name in PINNED:
@@ -107,28 +107,28 @@ class NonOreWorldgenR0ArtifactsTest(unittest.TestCase):
             self.assertFalse(by_category[name]["allows_implementation_child"])
             self.assertIn(by_category[name]["verdict"], worldgen.FEASIBILITY_VALUES)
             self.assertIsNone(by_category[name]["destination"])
-        topology = t35.load_json(root / "topology.json")
+        topology = census.load_json(root / "topology.json")
         self.assertIsNone(topology["unique_active_wave"])
         self.assertTrue(topology["next_unassigned"])
         self.assertEqual(set(worldgen.ALLOWED_TOPOLOGY_KEYS), set(topology))
-        census = t35.load_json(root / "census_delta.json")
+        census = census.load_json(root / "census_delta.json")
         self.assertEqual(39, int(census["leftover_later_count"]))
-        wave = t35.load_json(root / "wave.json")
+        wave = census.load_json(root / "wave.json")
         self.assertEqual(SLUG, wave["program"])
-        self.assertEqual(["portfolio/t13c-exclusion-reclaim-r0"], wave["depends_on"])
-        contract = t35.load_json(root / "worldgen_contract.json")
+        self.assertEqual(["portfolio/exclusion-reclaim-r0"], wave["depends_on"])
+        contract = census.load_json(root / "worldgen_contract.json")
         self.assertFalse(contract["implemented"])
         self.assertIn("load", contract["questions"])
         self.assertIn("tree_identities", contract["questions"])
         self.assertIn("planet_semantics", contract["questions"])
-        mechanism = t35.load_json(root / "existing_mechanism.json")
+        mechanism = census.load_json(root / "existing_mechanism.json")
         self.assertEqual(129, int(mechanism["ore_vein_count"]))
         self.assertEqual(2, int(mechanism["fluid_deposit_count"]))
         self.assertEqual("surface_rock_scatter", mechanism["surface_scatter_id"])
         self.assertEqual(4, len(mechanism["capability_map_non_ore"]))
         self.assertTrue(all(row["cc_mechanism"] == "none" for row in mechanism["kinds"]))
         self.assertFalse(mechanism["nuclear_started"])
-        semantics = t35.load_json(root / "source_semantics.json")
+        semantics = census.load_json(root / "source_semantics.json")
         names = [row["category"] for row in semantics["categories"]]
         self.assertEqual(list(PINNED), names)
         trees_sem = semantics["categories"][0]

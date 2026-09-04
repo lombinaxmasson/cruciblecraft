@@ -15,11 +15,11 @@ import com.google.gson.JsonParser;
 
 /**
  * Classpath snapshot of the Python expected runtime registry gate. The full
- * {@code tools/t35_runtime_registry.json} artifact stays tooling-only; this
+ * {@code tools} runtime-registry artifact stays tooling-only; this
  * slim fixture is verification metadata with sorted category ids only.
  */
 public final class RecipeCensusRuntimeRegistryGateFixture {
-    public static final String RESOURCE = "/census/t35_runtime_registry_gate.json";
+    public static final String RESOURCE = "/census/runtime_registry_gate.json";
 
     private final int schemaVersion;
     private final int compatibleSchemaVersion;

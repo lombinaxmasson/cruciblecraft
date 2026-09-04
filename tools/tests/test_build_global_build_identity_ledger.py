@@ -17,7 +17,7 @@ class GlobalBuildIdentityLedgerTest(unittest.TestCase):
         self.assertGreater(self.document["record_count"], 0)
         self.assertEqual(self.document["record_count"], len(self.document["records"]))
         self.assertEqual(self.document["blocker_count"], len(self.document["blockers"]))
-        self.assertIn("T44", self.document["identity_only_waves"])
+        self.assertIn("storage/lock", self.document["identity_only_waves"])
         source_keys = [row["source_key"] for row in self.document["records"]]
         self.assertEqual(source_keys, sorted(source_keys))
         self.assertEqual(len(source_keys), len(set(source_keys)))
@@ -36,7 +36,7 @@ class GlobalBuildIdentityLedgerTest(unittest.TestCase):
         any_diamond = [
             row
             for row in self.document["blockers"]
-            if row["source_key"] == "T38|alias:AnyDiamond"
+            if row["source_key"] == "roaster/compact|alias:AnyDiamond"
         ]
         self.assertEqual(1, len(any_diamond))
         self.assertIsNone(any_diamond[0]["target_identity"])
@@ -54,8 +54,8 @@ class GlobalBuildIdentityLedgerTest(unittest.TestCase):
             target_identity="cruciblecraft:oxygen",
             target_kind="fluid",
             mapping_class="fluid",
-            authority="T38",
-            input_path="tools/t38_operand_runtime_map.json",
+            authority="roaster/compact",
+            input_path="tools/roaster_operand_runtime_map.json",
             input_hash="a" * 64,
             evidence="test",
             disposition="proven",
@@ -66,8 +66,8 @@ class GlobalBuildIdentityLedgerTest(unittest.TestCase):
                 target_identity="minecraft:water",
                 target_kind="fluid",
                 mapping_class="fluid",
-                authority="T39",
-                input_path="tools/t39_operand_runtime_map.json",
+                authority="centrifuge/compact",
+                input_path="tools/centrifuge_operand_runtime_map.json",
                 input_hash="b" * 64,
                 evidence="test",
                 disposition="proven",
@@ -80,15 +80,15 @@ class GlobalBuildIdentityLedgerTest(unittest.TestCase):
             target_identity="cruciblecraft:oxygen",
             target_kind="fluid",
             mapping_class="fluid",
-            input_path="tools/t38_operand_runtime_map.json",
+            input_path="tools/roaster_operand_runtime_map.json",
             input_hash="a" * 64,
             evidence="oxygen",
             disposition="proven",
         )
-        builder.commit(authority="T38", **kwargs)
-        builder.commit(authority="T45", **kwargs)
+        builder.commit(authority="roaster/compact", **kwargs)
+        builder.commit(authority="block/object", **kwargs)
         record = builder.records["fluid:oxygen"]
-        self.assertEqual(["T38", "T45"], record["authorities"])
+        self.assertEqual(["block/object", "roaster/compact"], record["authorities"])
 
 
 if __name__ == "__main__":

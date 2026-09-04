@@ -367,7 +367,7 @@ class BathTinyPurifiedMeasurementHarness {
         Map<String, Object> card = scenario("card", rows);
 
         Map<String, Object> input = new LinkedHashMap<>();
-        input.put("kind", "t49_production_lock_95_relation_rows");
+        input.put("kind", "bath_tiny_purified_production_lock_95_relation_rows");
         input.put("logical_rows", LOGICAL_ROWS);
         input.put("measured_logical_rows", List.of(LOGICAL_ROWS, LOGICAL_ROWS));
         input.put("generated_datapack_present", true);
@@ -389,17 +389,17 @@ class BathTinyPurifiedMeasurementHarness {
 
         Map<String, Object> root = new LinkedHashMap<>();
         root.put("schema_version", 1);
-        root.put("status", "T49_MATERIALIZATION_MEASUREMENT_READY");
+        root.put("status", "BATH_TINY_PURIFIED_MATERIALIZATION_MEASUREMENT_READY");
         root.put("production_winner_claimed", false);
         root.put("protocol", Map.of(
-                "id", "t49_materialization_production_lock_v1",
+                "id", "bath_tiny_purified_materialization_production_lock_v1",
                 "ranking_scale", "1x",
                 "diagnostic_scales_not_for_production", List.of("5x", "20x"),
                 "single_wall_clock_sample_forbidden", true,
                 "p50_p95_invented", false,
                 "sample_count", SAMPLE_COUNT));
         root.put("input", input);
-        root.put("t49_opening", t49Opening());
+        root.put("bath_tiny_purified_opening", bathTinyPurifiedOpening());
         root.put("family_work_set", family);
         root.put("scenarios", List.of(bath, card));
         root.put("diagnostic_scales", Map.of(
@@ -427,9 +427,9 @@ class BathTinyPurifiedMeasurementHarness {
         return scenario;
     }
 
-    private static Map<String, Object> t49Opening() {
+    private static Map<String, Object> bathTinyPurifiedOpening() {
         Map<String, Object> opening = new LinkedHashMap<>();
-        opening.put("source", "tools/t48_readiness.json#t48_opening.t14_closing");
+        opening.put("source", "tools/bath_identity_readiness.json#bath_identity_opening.recipe_load_closing");
         opening.put("datapack_authored_entries", 6263);
         opening.put("eager_publication_rows", 14);
         opening.put("lazy_logical_rows", 50557);

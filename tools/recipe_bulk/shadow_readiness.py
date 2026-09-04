@@ -5,13 +5,13 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Callable
 
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk import identity as identity_mod
 from tools.recipe_bulk import schema_lite
 from tools.recipe_bulk.membership import identity_semantic_root
 from tools.recipe_bulk.waves import SHADOW_ORDER
 
-TOOLS = t35.TOOLS
+TOOLS = census.TOOLS
 STATUS_READY = "UNIFIED_IMPORT_SHADOW_READY"
 STATUS_BLOCKED = "UNIFIED_IMPORT_SHADOW_BLOCKED"
 TYPED_BLOCKER_CLASSES = frozenset(
@@ -32,7 +32,7 @@ IDENTITY_SCHEMA = TOOLS / "global_build_identity_ledger.schema.json"
 
 
 def _load(path: Path) -> dict[str, Any]:
-    return t35.load_json(path)
+    return census.load_json(path)
 
 
 def _schema_ok(path: Path, schema_path: Path) -> bool:
@@ -151,7 +151,7 @@ def build() -> dict[str, Any]:
             "UNIFIED_IMPORT_SHADOW_READY closes the Phase-1 shadow repair gate. "
             "Known typed identity blockers stay recorded and do not block the "
             "runtime-policy cutover. Unclassified blockers fail closed. "
-            "This does not occupy T46 or deduct the 2,697 gap."
+            "This does not occupy bath/mte or deduct the 2,697 gap."
         ),
         "owns_families": 0,
         "rebuilds_identical": shadow.get("rebuilds_identical"),

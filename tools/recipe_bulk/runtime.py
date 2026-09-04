@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Aggregate T37–T45 compact publication + dedup runtime authority."""
+"""Aggregate compact publication + dedup runtime authority."""
 from __future__ import annotations
 
 import json
@@ -7,199 +7,199 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
-from tools import t35_common as t35
-from tools import t37_common as t37
-from tools import t38_common as t38
-from tools import t39_common as t39
-from tools import t40_common as t40
-from tools import t41_common as t41
-from tools import t43_common as t43
-from tools import t45_common as t45
+from tools import census_common as census
+from tools import assembler_compact_common as assembler
+from tools import roaster_common as roaster
+from tools import centrifuge_common as centrifuge
+from tools import electrolyzer_common as electrolyzer
+from tools import assembler_wood_common as assembler_wood
+from tools import smelter_stone_common as smelter_stone
+from tools import block_object_common as block_object
 from tools.recipe_bulk.membership import identity_semantic_root, membership_root
+from tools.recipe_bulk.matrix import authored_relations
 from tools.recipe_bulk.waves import SHADOW_ORDER
 from tools.recipe_bulk.write_guard import relative
 
-ROOT = t35.ROOT
-TOOLS = t35.TOOLS
+ROOT = census.ROOT
+TOOLS = census.TOOLS
 POLICY_TYPE = "cruciblecraft:compact_publication_policy"
 DEDUP_TYPE = "cruciblecraft:compact_dedup_rule"
 ROUTING_SCHEMA_VERSION = "compact-shard-v1"
 STATUS = "COMPACT_RECIPE_RUNTIME_MANIFEST"
 EXPECTED_GROUP_COUNT = 12
-T37_EAGER_COUNT = 14
-T37_LAZY_COUNT = 36
-T41_AUTHORED_RELATIONS = 292
-T41_LIVE_RELATIONS = 242
+ASSEMBLER_COMPACT_EAGER_COUNT = 14
+ASSEMBLER_COMPACT_LAZY_COUNT = 36
+ASSEMBLER_WOOD_AUTHORED_RELATIONS = 292
+ASSEMBLER_WOOD_LIVE_RELATIONS = 242
 HISTORICAL_GROUPS = {
     "cruciblecraft:assembler": "cruciblecraft:assembler/compact",
     "cruciblecraft:roaster": "cruciblecraft:roaster/compact",
 }
 FAMILY_LOADERS = {
-    "T37": t37.generated_family_files,
-    "T38": t38.generated_family_files,
-    "T39": t39.generated_family_files,
-    "T40": t40.generated_family_files,
-    "T41": t41.generated_family_files,
-    "T43": t43.generated_family_files,
-    "T45": t45.generated_family_files,
+    "assembler/compact": assembler.generated_family_files,
+    "roaster/compact": roaster.generated_family_files,
+    "centrifuge/compact": centrifuge.generated_family_files,
+    "electrolyzer/compact": electrolyzer.generated_family_files,
+    "assembler/wood": assembler_wood.generated_family_files,
+    "smelter/stone": smelter_stone.generated_family_files,
+    "block/object": block_object.generated_family_files,
 }
 
-# Frozen production winners/cache. T37 eager IDs are computed, then pinned.
+# Frozen production winners/cache. Assembler compact eager IDs are computed, then pinned.
 GROUP_SPECS: tuple[dict[str, Any], ...] = (
     {
-        "wave_id": "T37",
+        "wave_id": "assembler/compact",
         "target_map": "cruciblecraft:assembler",
         "publication_group": "cruciblecraft:assembler/compact",
         "policy_type": "hybrid",
         "cache_ceiling": 8,
-        "eager_mode": "t37_hybrid_selector",
-        "resource_name": "t37_assembler.json",
+        "eager_mode": "assembler_compact_hybrid_selector",
+        "resource_name": "assembler_compact.json",
         "expected_authored_families": 50,
         "expected_authored_relations": 50,
         "bind_live_membership": False,
     },
     {
-        "wave_id": "T38",
+        "wave_id": "roaster/compact",
         "target_map": "cruciblecraft:roaster",
         "publication_group": "cruciblecraft:roaster/compact",
         "policy_type": "on_demand",
         "cache_ceiling": 16,
         "eager_mode": "empty",
-        "resource_name": "t38_roaster.json",
+        "resource_name": "roaster_compact.json",
         "expected_authored_families": 29,
         "expected_authored_relations": 73,
         "bind_live_membership": False,
     },
     {
-        "wave_id": "T39",
+        "wave_id": "centrifuge/compact",
         "target_map": "cruciblecraft:centrifuge",
         "publication_group": "cruciblecraft:centrifuge/singleton",
         "policy_type": "on_demand",
         "cache_ceiling": 19,
         "eager_mode": "empty",
-        "resource_name": "t39_centrifuge_singleton.json",
+        "resource_name": "centrifuge_singleton.json",
         "expected_authored_families": 19,
         "expected_authored_relations": 19,
         "bind_live_membership": False,
     },
     {
-        "wave_id": "T39",
+        "wave_id": "centrifuge/compact",
         "target_map": "cruciblecraft:centrifuge",
         "publication_group": "cruciblecraft:centrifuge/multi",
         "policy_type": "hybrid",
         "cache_ceiling": 13,
         "eager_mode": "empty",
-        "resource_name": "t39_centrifuge_multi.json",
+        "resource_name": "centrifuge_multi.json",
         "expected_authored_families": 3,
         "expected_authored_relations": 13,
         "bind_live_membership": False,
     },
     {
-        "wave_id": "T40",
+        "wave_id": "electrolyzer/compact",
         "target_map": "cruciblecraft:electrolyzer",
         "publication_group": "cruciblecraft:electrolyzer/singleton",
         "policy_type": "on_demand",
         "cache_ceiling": 11,
         "eager_mode": "empty",
-        "resource_name": "t40_electrolyzer_singleton.json",
+        "resource_name": "electrolyzer_singleton.json",
         "expected_authored_families": 11,
         "expected_authored_relations": 11,
         "bind_live_membership": False,
     },
     {
-        "wave_id": "T40",
+        "wave_id": "electrolyzer/compact",
         "target_map": "cruciblecraft:electrolyzer",
         "publication_group": "cruciblecraft:electrolyzer/multi",
         "policy_type": "hybrid",
         "cache_ceiling": 11,
         "eager_mode": "empty",
-        "resource_name": "t40_electrolyzer_multi.json",
+        "resource_name": "electrolyzer_multi.json",
         "expected_authored_families": 2,
         "expected_authored_relations": 11,
         "bind_live_membership": False,
     },
     {
-        "wave_id": "T41",
+        "wave_id": "assembler/wood",
         "target_map": "cruciblecraft:assembler",
-        "publication_group": "cruciblecraft:assembler/planks",
+        "publication_group": "cruciblecraft:assembler/wood/planks",
         "policy_type": "hybrid",
         "cache_ceiling": 16,
         "eager_mode": "empty",
-        "resource_name": "t41_assembler_planks.json",
+        "resource_name": "assembler_planks.json",
         "expected_authored_families": 85,
         "expected_authored_relations": 85,
         "bind_live_membership": True,
     },
     {
-        "wave_id": "T41",
+        "wave_id": "assembler/wood",
         "target_map": "cruciblecraft:assembler",
-        "publication_group": "cruciblecraft:assembler/fireproof",
+        "publication_group": "cruciblecraft:assembler/wood/fireproof",
         "policy_type": "hybrid",
         "cache_ceiling": 16,
         "eager_mode": "empty",
-        "resource_name": "t41_assembler_fireproof.json",
+        "resource_name": "assembler_fireproof.json",
         "expected_authored_families": 144,
         "expected_authored_relations": 144,
         "bind_live_membership": True,
     },
     {
-        "wave_id": "T41",
+        "wave_id": "assembler/wood",
         "target_map": "cruciblecraft:assembler",
-        "publication_group": "cruciblecraft:assembler/planks2",
+        "publication_group": "cruciblecraft:assembler/wood/planks2",
         "policy_type": "on_demand",
         "cache_ceiling": 16,
         "eager_mode": "empty",
-        "resource_name": "t41_assembler_planks2.json",
+        "resource_name": "assembler_planks2.json",
         "expected_authored_families": 63,
         "expected_authored_relations": 63,
         "bind_live_membership": True,
     },
     {
-        "wave_id": "T43",
+        "wave_id": "smelter/stone",
         "target_map": "cruciblecraft:smelter",
         "publication_group": "cruciblecraft:smelter/stone",
         "policy_type": "hybrid",
         "cache_ceiling": 24,
-        "eager_mode": "t43_hybrid",
-        "resource_name": "t43_smelter_stone.json",
+        "eager_mode": "smelter_stone_hybrid",
+        "resource_name": "smelter_stone.json",
         "expected_authored_families": 407,
         "expected_authored_relations": 407,
         "bind_live_membership": False,
     },
     {
-        "wave_id": "T45",
+        "wave_id": "block/object",
         "target_map": "cruciblecraft:smelter",
         "publication_group": "cruciblecraft:smelter/block",
         "policy_type": "hybrid",
         "cache_ceiling": 24,
         "eager_mode": "empty",
-        "resource_name": "t45_smelter_block.json",
+        "resource_name": "smelter_block.json",
         "expected_authored_families": 271,
         "expected_authored_relations": 271,
         "bind_live_membership": False,
     },
     {
-        "wave_id": "T45",
+        "wave_id": "block/object",
         "target_map": "cruciblecraft:drying",
         "publication_group": "cruciblecraft:drying/block",
         "policy_type": "on_demand",
         "cache_ceiling": 24,
         "eager_mode": "empty",
-        "resource_name": "t45_drying_block.json",
+        "resource_name": "drying_block.json",
         "expected_authored_families": 108,
         "expected_authored_relations": 108,
         "bind_live_membership": False,
     },
 )
 
-CUTOVER_WAVES = ("T37", "T38", "T39", "T40", "T41")
+CUTOVER_WAVES = ("assembler/compact", "roaster/compact", "centrifuge/compact", "electrolyzer/compact", "assembler/wood")
 
 
 def datapack_policy_path(spec: dict[str, Any]) -> Path:
-    wave = str(spec["wave_id"]).lower()
     return (
         ROOT
-        / f"src/{wave}_recipe_generated/resources/data/cruciblecraft/recipe/publication_policy"
+        / "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy"
         / spec["resource_name"]
     )
 
@@ -211,11 +211,16 @@ def datapack_dedup_root() -> Path:
     )
 
 
-def t37_policy_resource() -> Path:
+def dedup_rule_path(rule: dict[str, Any]) -> Path:
+    name = rule["rule_id"].split(":", 1)[1].replace("/", "_") + ".json"
+    return datapack_dedup_root() / name
+
+
+def assembler_compact_policy_resource() -> Path:
     return (
         ROOT
-        / "src/t37_recipe_generated/resources/data/cruciblecraft/recipe/publication_policy"
-        / "t37_assembler.json"
+        / "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy"
+        / "assembler_compact.json"
     )
 
 
@@ -322,24 +327,24 @@ def recipe_output_identity(relation: dict[str, Any]) -> str:
 
 
 def _family_stable_ids(family: dict[str, Any]) -> list[str]:
-    return [str(relation["stable_id"]) for relation in family.get("relations") or []]
+    return [str(relation["stable_id"]) for relation in authored_relations(family)]
 
 
-def apply_t41_source_dedup(
-    t37_families: list[dict[str, Any]],
-    t41_families: list[dict[str, Any]],
+def apply_assembler_wood_source_dedup(
+    compact_families: list[dict[str, Any]],
+    wood_families: list[dict[str, Any]],
 ) -> list[dict[str, Any]]:
-    t37_outputs: dict[str, str] = {}
-    for family in t37_families:
+    compact_outputs: dict[str, str] = {}
+    for family in compact_families:
         for relation in family.get("relations") or []:
-            t37_outputs[logical_input_identity(relation)] = recipe_output_identity(
+            compact_outputs[logical_input_identity(relation)] = recipe_output_identity(
                 relation
             )
     kept: list[dict[str, Any]] = []
-    for family in t41_families:
+    for family in wood_families:
         remaining = []
         for relation in family.get("relations") or []:
-            expected = t37_outputs.get(logical_input_identity(relation))
+            expected = compact_outputs.get(logical_input_identity(relation))
             if expected is None or expected != recipe_output_identity(relation):
                 remaining.append(relation)
         if not remaining:
@@ -353,7 +358,7 @@ def apply_t41_source_dedup(
     return kept
 
 
-def t37_eager_stable_ids(families: list[dict[str, Any]]) -> list[str]:
+def assembler_compact_eager_stable_ids(families: list[dict[str, Any]]) -> list[str]:
     family_ids = sorted(str(family["family_id"]) for family in families)
     first_ten = set(family_ids[:10])
     eager: set[str] = set()
@@ -363,15 +368,15 @@ def t37_eager_stable_ids(families: list[dict[str, Any]]) -> list[str]:
             if int(relation["duration"]) <= 16 or family_id in first_ten:
                 eager.add(str(relation["stable_id"]))
     ordered = sorted(eager)
-    if len(ordered) != T37_EAGER_COUNT:
+    if len(ordered) != ASSEMBLER_COMPACT_EAGER_COUNT:
         raise ValueError(
-            f"T37 hybrid eager count drifted: {len(ordered)} != {T37_EAGER_COUNT}"
+            f"assembler/compact hybrid eager count drifted: {len(ordered)} != {ASSEMBLER_COMPACT_EAGER_COUNT}"
         )
     return ordered
 
 
-def t43_eager_stable_ids() -> list[str]:
-    return sorted(str(value) for value in t43.hybrid_eager_stable_ids("stone"))
+def smelter_stone_eager_stable_ids() -> list[str]:
+    return sorted(str(value) for value in smelter_stone.hybrid_eager_stable_ids("stone"))
 
 
 def grouped_membership(
@@ -403,10 +408,10 @@ def _eager_ids(spec: dict[str, Any], families: list[dict[str, Any]]) -> list[str
     mode = spec["eager_mode"]
     if mode == "empty":
         return []
-    if mode == "t37_hybrid_selector":
-        return t37_eager_stable_ids(families)
-    if mode == "t43_hybrid":
-        return t43_eager_stable_ids()
+    if mode == "assembler_compact_hybrid_selector":
+        return assembler_compact_eager_stable_ids(families)
+    if mode == "smelter_stone_hybrid":
+        return smelter_stone_eager_stable_ids()
     raise ValueError(f"unknown eager_mode {mode}")
 
 
@@ -434,8 +439,8 @@ def dedup_rules() -> list[dict[str, Any]]:
     return [
         {
             "type": DEDUP_TYPE,
-            "rule_id": "cruciblecraft:t37_t41_assembler_pre_snapshot",
-            "owner": "T37",
+            "rule_id": "cruciblecraft:assembler/compact_wood_pre_snapshot",
+            "owner": "assembler/compact",
             "phase": "pre_snapshot",
             "target_map": "cruciblecraft:assembler",
             "match_mode": "logical_input_and_output_identity",
@@ -447,16 +452,16 @@ def dedup_rules() -> list[dict[str, Any]]:
             "victim_selector": {
                 "kind": "publication_group",
                 "publication_groups": [
-                    "cruciblecraft:assembler/planks",
-                    "cruciblecraft:assembler/fireproof",
-                    "cruciblecraft:assembler/planks2",
+                    "cruciblecraft:assembler/wood/planks",
+                    "cruciblecraft:assembler/wood/fireproof",
+                    "cruciblecraft:assembler/wood/planks2",
                 ],
             },
         },
         {
             "type": DEDUP_TYPE,
-            "rule_id": "cruciblecraft:t37_t41_assembler_post_enumeration",
-            "owner": "T37",
+            "rule_id": "cruciblecraft:assembler/compact_wood_post_enumeration",
+            "owner": "assembler/compact",
             "phase": "post_enumeration",
             "target_map": "cruciblecraft:assembler",
             "match_mode": "logical_input_and_output_identity",
@@ -472,8 +477,8 @@ def dedup_rules() -> list[dict[str, Any]]:
         },
         {
             "type": DEDUP_TYPE,
-            "rule_id": "cruciblecraft:t39_t5_centrifuge_post_enumeration",
-            "owner": "T39",
+            "rule_id": "cruciblecraft:centrifuge/chemical_post_enumeration",
+            "owner": "centrifuge/compact",
             "phase": "post_enumeration",
             "target_map": "cruciblecraft:centrifuge",
             "match_mode": "input_and_output_signature",
@@ -484,13 +489,13 @@ def dedup_rules() -> list[dict[str, Any]]:
             },
             "victim_selector": {
                 "kind": "recipe_id_prefix",
-                "prefixes": ["t5/"],
+                "prefixes": ["chemical/"],
             },
         },
         {
             "type": DEDUP_TYPE,
-            "rule_id": "cruciblecraft:t40_t5_electrolyzer_post_enumeration",
-            "owner": "T40",
+            "rule_id": "cruciblecraft:electrolyzer/chemical_post_enumeration",
+            "owner": "electrolyzer/compact",
             "phase": "post_enumeration",
             "target_map": "cruciblecraft:electrolyzer",
             "match_mode": "input_and_output_signature",
@@ -501,7 +506,7 @@ def dedup_rules() -> list[dict[str, Any]]:
             },
             "victim_selector": {
                 "kind": "recipe_id_prefix",
-                "prefixes": ["t5/"],
+                "prefixes": ["chemical/"],
             },
         },
     ]
@@ -514,7 +519,7 @@ def validate_dedup_rules(rules: list[dict[str, Any]]) -> None:
         "logical_input_and_output_identity",
         "input_and_output_signature",
     }
-    known_owner = {"T37", "T38", "T39", "T40", "T41", "T43", "T45"}
+    known_owner = {"assembler/compact", "roaster/compact", "centrifuge/compact", "electrolyzer/compact", "assembler/wood", "smelter/stone", "block/object"}
     victim_keys: dict[tuple[str, str], set[str]] = {}
     for rule in rules:
         rule_id = str(rule.get("rule_id") or "")
@@ -563,17 +568,17 @@ def _selector_values(selector: dict[str, Any]) -> set[str]:
 
 
 def _ledger_bindings() -> dict[str, str]:
-    baseline = t35.load_json(TOOLS / "recipe_wave_production_baseline.json")
-    shadow = t35.load_json(TOOLS / "recipe_wave_shadow_parity.json")
-    identity = t35.load_json(TOOLS / "global_build_identity_ledger.json")
+    baseline = census.load_json(TOOLS / "recipe_wave_production_baseline.json")
+    shadow = census.load_json(TOOLS / "recipe_wave_shadow_parity.json")
+    identity = census.load_json(TOOLS / "global_build_identity_ledger.json")
     return {
         "identity_semantic_root_sha256": identity_semantic_root(
             list(identity.get("records") or []) + list(identity.get("blockers") or [])
         ),
-        "production_baseline_sha256": t35.sha256_file(
+        "production_baseline_sha256": census.sha256_file(
             TOOLS / "recipe_wave_production_baseline.json"
         ),
-        "shadow_parity_sha256": t35.sha256_file(
+        "shadow_parity_sha256": census.sha256_file(
             TOOLS / "recipe_wave_shadow_parity.json"
         ),
         "shadow_status": str(shadow.get("status") or ""),
@@ -583,29 +588,29 @@ def _ledger_bindings() -> dict[str, str]:
 
 def build_group_rows() -> list[dict[str, Any]]:
     families_by_wave = {wave_id: load_wave_families(wave_id) for wave_id in SHADOW_ORDER}
-    live_t41 = apply_t41_source_dedup(
-        families_by_wave["T37"],
-        families_by_wave["T41"],
+    live_wood = apply_assembler_wood_source_dedup(
+        families_by_wave["assembler/compact"],
+        families_by_wave["assembler/wood"],
     )
     authored_by_wave = {
         wave_id: grouped_membership(documents)
         for wave_id, documents in families_by_wave.items()
     }
     live_by_wave = dict(authored_by_wave)
-    live_by_wave["T41"] = grouped_membership(live_t41)
-    t41_live_total = sum(
-        row["relation_count"] for row in live_by_wave["T41"].values()
+    live_by_wave["assembler/wood"] = grouped_membership(live_wood)
+    wood_live_total = sum(
+        row["relation_count"] for row in live_by_wave["assembler/wood"].values()
     )
-    if t41_live_total != T41_LIVE_RELATIONS:
+    if wood_live_total != ASSEMBLER_WOOD_LIVE_RELATIONS:
         raise ValueError(
-            f"T41 live relation count drifted: {t41_live_total} != {T41_LIVE_RELATIONS}"
+            f"assembler/wood live relation count drifted: {wood_live_total} != {ASSEMBLER_WOOD_LIVE_RELATIONS}"
         )
-    t41_authored_total = sum(
-        row["relation_count"] for row in authored_by_wave["T41"].values()
+    wood_authored_total = sum(
+        row["relation_count"] for row in authored_by_wave["assembler/wood"].values()
     )
-    if t41_authored_total != T41_AUTHORED_RELATIONS:
+    if wood_authored_total != ASSEMBLER_WOOD_AUTHORED_RELATIONS:
         raise ValueError(
-            f"T41 authored relation count drifted: {t41_authored_total} != {T41_AUTHORED_RELATIONS}"
+            f"assembler/wood authored relation count drifted: {wood_authored_total} != {ASSEMBLER_WOOD_AUTHORED_RELATIONS}"
         )
     rows: list[dict[str, Any]] = []
     seen_groups: set[str] = set()
@@ -634,20 +639,20 @@ def build_group_rows() -> list[dict[str, Any]]:
         if spec["bind_live_membership"]:
             families = [
                 family
-                for family in live_t41
+                for family in live_wood
                 if resolved_publication_group(family) == group_id
             ]
-        elif wave_id == "T37":
-            families = families_by_wave["T37"]
+        elif wave_id == "assembler/compact":
+            families = families_by_wave["assembler/compact"]
         eager = _eager_ids(spec, families)
-        if spec["eager_mode"] == "t37_hybrid_selector":
-            if len(eager) != T37_EAGER_COUNT:
-                raise ValueError("T37 eager stable IDs drifted")
-            if membership["relation_count"] - len(eager) != T37_LAZY_COUNT:
-                raise ValueError("T37 lazy count drifted")
+        if spec["eager_mode"] == "assembler_compact_hybrid_selector":
+            if len(eager) != ASSEMBLER_COMPACT_EAGER_COUNT:
+                raise ValueError("assembler/compact eager stable IDs drifted")
+            if membership["relation_count"] - len(eager) != ASSEMBLER_COMPACT_LAZY_COUNT:
+                raise ValueError("assembler/compact lazy count drifted")
             unknown = [value for value in eager if not value.startswith("cruciblecraft:")]
             if unknown:
-                raise ValueError(f"T37 eager id missing prefix: {unknown[0]}")
+                raise ValueError(f"assembler/compact eager id missing prefix: {unknown[0]}")
         policy_path = datapack_policy_path(spec)
         rows.append(
             {
@@ -682,9 +687,7 @@ def build() -> dict[str, Any]:
             {
                 "owner": rule["owner"],
                 "phase": rule["phase"],
-                "resource": relative(
-                    datapack_dedup_root() / f"{rule['rule_id'].split(':', 1)[1]}.json"
-                ),
+                "resource": relative(dedup_rule_path(rule)),
                 "rule_id": rule["rule_id"],
                 "target_map": rule["target_map"],
             }
@@ -694,17 +697,17 @@ def build() -> dict[str, Any]:
         "group_count": len(groups),
         "groups": groups,
         "note": (
-            "Aggregate runtime compatibility authority for T37–T45 publication "
+            "Aggregate runtime compatibility authority for compact publication "
             "groups and the four compact dedup rules. Does not rewrite family JSON. "
-            "T41 policy membership binds post-source-dedup live counts."
+            "assembler/wood policy membership binds post-source-dedup live counts."
         ),
         "owns_families": 0,
         "schema_version": 1,
         "status": STATUS,
-        "t37_eager_count": T37_EAGER_COUNT,
-        "t37_lazy_count": T37_LAZY_COUNT,
-        "t41_authored_relation_count": T41_AUTHORED_RELATIONS,
-        "t41_live_relation_count": T41_LIVE_RELATIONS,
+        "assembler_compact_eager_count": ASSEMBLER_COMPACT_EAGER_COUNT,
+        "assembler_compact_lazy_count": ASSEMBLER_COMPACT_LAZY_COUNT,
+        "assembler_wood_authored_relation_count": ASSEMBLER_WOOD_AUTHORED_RELATIONS,
+        "assembler_wood_live_relation_count": ASSEMBLER_WOOD_LIVE_RELATIONS,
     }
 
 

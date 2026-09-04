@@ -6,9 +6,9 @@ import unittest
 
 from tools.recipe_bulk import schema_lite
 from tools.recipe_bulk import shadow_readiness as readiness
-from tools import t35_common as t35
+from tools import census_common as census
 
-TOOLS = t35.TOOLS
+TOOLS = census.TOOLS
 
 
 class UnifiedImportShadowReadinessTest(unittest.TestCase):
@@ -29,7 +29,7 @@ class UnifiedImportShadowReadinessTest(unittest.TestCase):
         )
         for path, schema in pairs:
             with self.subTest(path=path.name):
-                schema_lite.validate(t35.load_json(path), t35.load_json(schema))
+                schema_lite.validate(census.load_json(path), census.load_json(schema))
 
     def test_readiness_is_ready_with_cross_ledger_stable_ids(self) -> None:
         document = readiness.build()

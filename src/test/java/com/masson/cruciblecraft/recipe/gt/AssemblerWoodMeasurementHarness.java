@@ -806,7 +806,7 @@ class AssemblerWoodMeasurementHarness {
             List<CandidateMeasurement> planks2Candidates,
             List<CandidateMeasurement> cardCandidates) {
         Map<String, Object> input = new LinkedHashMap<>();
-        input.put("kind", "t41_production_lock_292_relation_rows");
+        input.put("kind", "assembler_wood_production_lock_292_relation_rows");
         input.put("logical_rows", CARD_LOGICAL);
         input.put(
                 "measured_logical_rows",
@@ -833,17 +833,17 @@ class AssemblerWoodMeasurementHarness {
 
         Map<String, Object> root = new LinkedHashMap<>();
         root.put("schema_version", 1);
-        root.put("status", "T41_MATERIALIZATION_MEASUREMENT_READY");
+        root.put("status", "ASSEMBLER_WOOD_MATERIALIZATION_MEASUREMENT_READY");
         root.put("production_winner_claimed", false);
         root.put("protocol", Map.of(
-                "id", "t41_materialization_production_lock_v1",
+                "id", "assembler_wood_materialization_production_lock_v1",
                 "ranking_scale", "1x",
                 "diagnostic_scales_not_for_production", List.of("5x", "20x"),
                 "single_wall_clock_sample_forbidden", true,
                 "p50_p95_invented", false,
                 "sample_count", SAMPLE_COUNT));
         root.put("input", input);
-        root.put("t41_opening", t41Opening());
+        root.put("assembler_wood_opening", t41Opening());
         root.put("family_work_set", family);
         root.put("scenarios", List.of(
                 scenario("planks", planksLogical, planksSources.size(), planksCandidates),
@@ -866,7 +866,7 @@ class AssemblerWoodMeasurementHarness {
 
     private static Map<String, Object> t41Opening() {
         Map<String, Object> opening = new LinkedHashMap<>();
-        opening.put("source", "tools/t40_readiness.json#t41_opening.t14_closing");
+        opening.put("source", "tools/electrolyzer_readiness.json#assembler_wood_opening.recipe_load_closing");
         opening.put("datapack_authored_entries", 3733);
         opening.put("eager_publication_rows", 16659);
         opening.put("lazy_logical_rows", 2388);

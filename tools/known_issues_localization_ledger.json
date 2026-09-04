@@ -1,0 +1,119 @@
+{
+  "currentness": {
+    "owned_inputs": {
+      "src/generated/resources/assets/cruciblecraft/lang/en_us.json": "b062e0e67e9e660908b1da67020c6363993054ce9e308b10d664fffc62214483",
+      "src/generated/resources/assets/cruciblecraft/lang/zh_cn.json": "9d779e6a5c985ab45555a6422e58cc05ad03a81c2bc7d244416ba1dd282f5401",
+      "src/main/resources/data/cruciblecraft/material_zh_cn.json": "0da2c523752bedf94ff30ce970588cfd99eb46c33e7f4534d16ec5b24a23db0a",
+      "tools/build_t26_localization.py": "22065064e1b8555130b30469758be9f757a308bfe5abbe334a316e2684e27b57"
+    }
+  },
+  "domains": {
+    "block": {
+      "en_keys": 891,
+      "gap": 550,
+      "zero_gap": false,
+      "zh_keys": 341
+    },
+    "config": {
+      "en_keys": 4,
+      "gap": 0,
+      "zero_gap": true,
+      "zh_keys": 4
+    },
+    "container": {
+      "en_keys": 4,
+      "gap": 0,
+      "zero_gap": true,
+      "zh_keys": 4
+    },
+    "disconnect": {
+      "en_keys": 3,
+      "gap": 0,
+      "zero_gap": true,
+      "zh_keys": 3
+    },
+    "emi": {
+      "en_keys": 40,
+      "gap": 0,
+      "zero_gap": true,
+      "zh_keys": 40
+    },
+    "fluid": {
+      "en_keys": 316,
+      "gap": 207,
+      "zero_gap": false,
+      "zh_keys": 109
+    },
+    "item": {
+      "en_keys": 150,
+      "gap": 46,
+      "zero_gap": false,
+      "zh_keys": 104
+    },
+    "item_group": {
+      "en_keys": 13,
+      "gap": 0,
+      "zero_gap": true,
+      "zh_keys": 13
+    },
+    "jade": {
+      "en_keys": 32,
+      "gap": 0,
+      "zero_gap": true,
+      "zh_keys": 32
+    },
+    "material": {
+      "en_keys": 1774,
+      "gap": 1566,
+      "zero_gap": false,
+      "zh_keys": 208
+    },
+    "message": {
+      "en_keys": 38,
+      "gap": 0,
+      "zero_gap": true,
+      "zh_keys": 38
+    },
+    "screen": {
+      "en_keys": 17,
+      "gap": 0,
+      "zero_gap": true,
+      "zh_keys": 17
+    },
+    "tooltip": {
+      "en_keys": 28,
+      "gap": 0,
+      "zero_gap": true,
+      "zh_keys": 28
+    }
+  },
+  "o15_reclassification": {
+    "classification": "v1_required",
+    "item": "O-15",
+    "material_domain": {
+      "critical_path_translated": 208,
+      "long_tail_count": 1566,
+      "long_tail_disposition": "post_1_0",
+      "no_english_copy_fake_translations": true
+    },
+    "owner": "T26",
+    "residual": "non-critical domains (block/fluid/item long tail composed from post_1_0 materials) fall back to en_us by policy",
+    "v1_critical_domains": {
+      "config": true,
+      "container": true,
+      "disconnect": true,
+      "item_group": true,
+      "screen": true
+    }
+  },
+  "policy": "zh_cn is accounted per player-visible domain, never by an arbitrary global percentage. The v1 critical path uses real translations from the bundled table; everything else is explicitly post_1_0 and falls back to en_us. English-copy fake translations are forbidden.",
+  "schema_version": 1,
+  "status": "T26_LOCALIZATION_ACCOUNTED",
+  "status_owner": "build_t26_localization",
+  "totals": {
+    "en_keys": 3316,
+    "post_1_0_materials": 1566,
+    "table_materials": 208,
+    "zh_keys": 946
+  }
+}

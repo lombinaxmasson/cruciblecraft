@@ -1,0 +1,32 @@
+{
+  "$id": "https://cruciblecraft.invalid/schema/t42-owner-track-overlay.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "base_t42_closing_execution_gap": {
+      "const": 5300
+    },
+    "family_count": {
+      "const": 5300
+    },
+    "interleave_gate": {
+      "const": "owner_partition_complete"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "const": "T42_OWNER_TRACK_OVERLAY"
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "base_t42_closing_execution_gap",
+    "family_count",
+    "families",
+    "current_owner_counts",
+    "interleave_gate"
+  ],
+  "type": "object"
+}

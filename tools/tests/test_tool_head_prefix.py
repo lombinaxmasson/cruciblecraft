@@ -65,10 +65,10 @@ class ToolHeadPrefixTest(unittest.TestCase):
         )
 
     def test_bundled_catalogs_drop_mapped_tool_heads(self) -> None:
-        from tools import t35_common as t35
+        from tools import census_common as census
 
-        bath = t35.load_json(thp.BUNDLED_BATH)
-        semantic = t35.load_json(thp.BUNDLED_SEMANTIC)
+        bath = census.load_json(thp.BUNDLED_BATH)
+        semantic = census.load_json(thp.BUNDLED_SEMANTIC)
         self.assertEqual("BATH_IDENTITY_CATALOG", bath["status"])
         self.assertEqual(71, bath["identity_count"])
         self.assertEqual("SEMANTIC_OBJECT_CATALOG", semantic["status"])

@@ -18,7 +18,7 @@ MATERIALS = (
     / "cruciblecraft"
     / "materials"
 )
-READINESS = ROOT / "tools" / "t8_pipe_readiness.json"
+READINESS = ROOT / "tools" / "pipe_readiness.json"
 
 FLUID_FORMS = {
     "tiny": ("pipeTiny", "cruciblecraft:generates_tiny_fluid_pipe"),

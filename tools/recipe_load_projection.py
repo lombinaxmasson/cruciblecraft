@@ -14,9 +14,9 @@ from typing import Any, Iterable
 
 
 ROOT = Path(__file__).resolve().parents[1]
-T13_RECIPE_MAPS = ROOT / "tools" / "t13_denominators" / "recipe_maps.json"
+T13_RECIPE_MAPS = ROOT / "tools" / "machine_tree_denominators" / "recipe_maps.json"
 SCHEMA = ROOT / "tools" / "recipe_load_projection.schema.json"
-POLICY = ROOT / "tools" / "t14_load_budget_policy.json"
+POLICY = ROOT / "tools" / "recipe_load_load_budget_policy.json"
 
 PENDING = "PENDING_MEASUREMENT"
 POLICY_STATUSES = {
@@ -26,18 +26,18 @@ POLICY_STATUSES = {
 STRATEGIES = ("immediate", "on_demand", "hybrid", "group_scoped")
 DELIVERY_PHASES = (
     "T15", "T16", "T17", "T18", "T19", "T21",
-    "T37", "T38", "T39", "T40", "T41", "T43", "T45",
+    "assembler/compact", "roaster/compact", "centrifuge/compact", "electrolyzer/compact", "assembler/wood", "smelter/stone", "block/object",
 )
-# T46+ stays off DELIVERY_PHASES so v1 schema/currentness is unchanged.
-FORWARD_DELIVERY_PHASES = ("T46", "T47", "T48", "T49")
+# bath/mte+ stays off DELIVERY_PHASES so v1 schema/currentness is unchanged.
+FORWARD_DELIVERY_PHASES = ("bath/mte", "bath/remainder", "bath/identity", "bath/tiny-purified")
 PROJECTION_PHASES = ("T14",) + DELIVERY_PHASES
 FORWARD_PROJECTION_PHASES = PROJECTION_PHASES + FORWARD_DELIVERY_PHASES
 # T13 still classifies these maps deferred_with_reason. Later cards reissued
 # the live host without rewriting the historical T13 denominator.
 REISSUED_IN_SCOPE_CANONICAL_IDS = {
-    "T38": frozenset({"gt.recipe.roaster"}),
-    "T39": frozenset({"gt.recipe.centrifuge"}),
-    "T40": frozenset({"gt.recipe.electrolyzer"}),
+    "roaster/compact": frozenset({"gt.recipe.roaster"}),
+    "centrifuge/compact": frozenset({"gt.recipe.centrifuge"}),
+    "electrolyzer/compact": frozenset({"gt.recipe.electrolyzer"}),
 }
 COUNT_FIELDS = (
     "authored_entries",
@@ -454,7 +454,7 @@ def _validate_family(
 
     return {
         **family,
-        "t13_references": references,
+        "machine_tree_references": references,
         "measurement_intervals": validated_intervals,
         "publication_account": {
             "domain": publication_domain,
@@ -510,7 +510,7 @@ def validate_input(
         raise ProjectionError("projection_id is not a stable lowercase id")
     if document["delivery_phase"] not in FORWARD_PROJECTION_PHASES:
         raise ProjectionError(
-            "delivery_phase must be a declared T14–T21, T37–T45, or forward T46+ phase"
+            "delivery_phase must be a declared T14–T21, assembler/compact–block/object, or forward bath/mte+ phase"
         )
     families = document["families"]
     if not isinstance(families, list) or not families:
@@ -859,9 +859,9 @@ def project(
         "ledger": ledger,
         "budget_evaluation": budget_evaluation,
         "currentness": {
-            "t13_recipe_maps": T13_RECIPE_MAPS.relative_to(ROOT).as_posix(),
-            "t13_map_row_sha256": t13.get("map_row_sha256"),
-            "t13_canonical_rows": t13.get("counts", {}).get("rows"),
+            "machine_tree_recipe_maps": T13_RECIPE_MAPS.relative_to(ROOT).as_posix(),
+            "machine_tree_map_row_sha256": t13.get("map_row_sha256"),
+            "machine_tree_canonical_rows": t13.get("counts", {}).get("rows"),
             "projection_schema": SCHEMA.relative_to(ROOT).as_posix(),
             "projection_schema_sha256": canonical_digest(schema),
             "budget_policy": POLICY.relative_to(ROOT).as_posix(),
@@ -889,7 +889,7 @@ def main(argv: list[str] | None = None) -> int:
         print(encoded, end="")
     else:
         args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(encoded, encoding="utf-8", newline="\n")
+        args.output.write_text(encoded, encoding="utf-8")
     return 0
 
 

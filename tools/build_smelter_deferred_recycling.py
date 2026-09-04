@@ -13,7 +13,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools import closeout_seal
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk import compile as compile_mod
 from tools.recipe_bulk import deferred_recycling
 from tools.recipe_bulk import identity_v3
@@ -31,7 +31,7 @@ GENERATED_BY = "python tools/build_smelter_deferred_recycling.py"
 OPENING_DEFERRED_RECYCLING = 1843
 OPENING_DEFERRED_TOTAL = 1845
 PROVEN_COUNT = deferred_recycling.PROVEN_COUNT
-R0_DIR = t35.TOOLS / "waves" / "recycling" / "deferred-ordinary-ledger-r0"
+R0_DIR = census.TOOLS / "waves" / "recycling" / "deferred-ordinary-ledger-r0"
 
 
 def _write_publication_policies(policies: dict[str, dict[str, Any]]) -> None:
@@ -39,7 +39,7 @@ def _write_publication_policies(policies: dict[str, dict[str, Any]]) -> None:
     root.mkdir(parents=True, exist_ok=True)
     for group_id, document in policies.items():
         name = group_id.split(":", 1)[-1].replace("/", "_") + ".json"
-        t35.write_stable(root / name, document)
+        census.write_stable(root / name, document)
 
 
 def _write_support_supersede_dedup() -> None:
@@ -47,13 +47,13 @@ def _write_support_supersede_dedup() -> None:
     root = RECIPE_GENERATED_ROOT / "dedup_rule"
     root.mkdir(parents=True, exist_ok=True)
     name = str(document["rule_id"]).split(":", 1)[1] + ".json"
-    t35.write_stable(root / name, document)
+    census.write_stable(root / name, document)
 
 
 def _runtime_manifest(lock: dict[str, Any], publication: dict[str, Any]) -> dict[str, Any]:
     return {
         "execution_envelopes": {
-            group: "t5_bronze" for group in publication["group_winners"]
+            group: "chemical_bronze" for group in publication["group_winners"]
         },
         "generated_by": GENERATED_BY,
         "group_winners": publication["group_winners"],
@@ -118,19 +118,19 @@ def emit_wave() -> dict[str, Any]:
     if replayed.get("reclassified"):
         raise ValueError(f"{SLUG} must not reclassify proven recovery families")
     source = wave.build_source(SLUG, replayed)
-    t35.write_stable(spec.source_path, source)
+    census.write_stable(spec.source_path, source)
     candidate = wave.build_candidate(SLUG, replayed)
-    t35.write_stable(root / "candidate_selection.json", candidate)
+    census.write_stable(root / "candidate_selection.json", candidate)
     lock = wave.build_lock(SLUG, replayed, candidate)
     if int(lock["production"]["family_count"]) != PROVEN_COUNT:
         raise ValueError("production lock drifted from 1817")
     if int(lock["production"]["exact_multi_families"] or 0) != 0:
         raise ValueError("deferred recycling must be compact exact singletons")
-    t35.write_stable(spec.lock_path, lock)
+    census.write_stable(spec.lock_path, lock)
     operand_map = wave.build_operand_map(SLUG, replayed["production_relations"])
-    t35.write_stable(spec.operand_map_path, operand_map)
+    census.write_stable(spec.operand_map_path, operand_map)
     identity_delta = wave.build_identity_delta(SLUG, operand_map)
-    t35.write_stable(root / "identity_ledger_delta.json", identity_delta)
+    census.write_stable(root / "identity_ledger_delta.json", identity_delta)
     compiled = compile_mod.compile_wave(SLUG)
     if any(
         relation.get("parameterized")
@@ -144,30 +144,30 @@ def emit_wave() -> dict[str, Any]:
         spec.generated_root,
         path_prefix=spec.path_prefix,
     )
-    t35.write_stable(root / "compile_report.json", compiled["report"])
+    census.write_stable(root / "compile_report.json", compiled["report"])
     publication, policies = wave.build_publication(SLUG, lock, spec.target_map)
-    t35.write_stable(root / "publication_group_manifest.json", publication)
+    census.write_stable(root / "publication_group_manifest.json", publication)
     _write_publication_policies(policies)
     _write_support_supersede_dedup()
     runtime_delta = wave.build_runtime_delta(SLUG, publication, policies)
-    t35.write_stable(root / "runtime_manifest_delta.json", runtime_delta)
-    t35.write_stable(identity_v3.OUTPUT, identity_v3.build())
-    t35.write_stable(runtime_v3.OUTPUT, runtime_v3.build())
+    census.write_stable(root / "runtime_manifest_delta.json", runtime_delta)
+    census.write_stable(identity_v3.OUTPUT, identity_v3.build())
+    census.write_stable(runtime_v3.OUTPUT, runtime_v3.build())
     shards = wave.build_shards(SLUG, lock, spec.target_map)
-    t35.write_stable(root / "shard_manifest.json", shards)
+    census.write_stable(root / "shard_manifest.json", shards)
     equivalence = wave.build_equivalence(SLUG, compiled["planned"], source)
-    t35.write_stable(spec.equivalence_path, equivalence)
+    census.write_stable(spec.equivalence_path, equivalence)
     player_path = wave.build_player_path(SLUG, compiled["planned"])
-    t35.write_stable(root / "player_path.json", player_path)
+    census.write_stable(root / "player_path.json", player_path)
     measurements_path = root / "measurements.json"
-    measurements = t35.load_json(measurements_path) if measurements_path.is_file() else {}
+    measurements = census.load_json(measurements_path) if measurements_path.is_file() else {}
     load = wave.build_load(SLUG, publication, lock, measurements)
-    t35.write_stable(root / "load_projection.json", load)
+    census.write_stable(root / "load_projection.json", load)
     runtime = _runtime_manifest(lock, publication)
-    t35.write_stable(root / "runtime_dependency_manifest.json", runtime)
+    census.write_stable(root / "runtime_dependency_manifest.json", runtime)
     census = build_census(lock, publication, load)
-    t35.write_stable(root / "census_delta.json", census)
-    t35.write_stable(
+    census.write_stable(root / "census_delta.json", census)
+    census.write_stable(
         root / "wave.json",
         {
             "cohort": "deferred_recycling",
@@ -180,7 +180,7 @@ def emit_wave() -> dict[str, Any]:
     )
     closeout = spec_for(SLUG)
     receipt_path = root / "gametest_receipt.json"
-    receipt = t35.load_json(receipt_path) if receipt_path.is_file() else None
+    receipt = census.load_json(receipt_path) if receipt_path.is_file() else None
     passed = bool(receipt and receipt.get("status") == "PASS")
     unique_active = closeout.unique_active_wave if passed else SLUG
     next_unassigned = closeout.next_unassigned if passed else False
@@ -203,7 +203,7 @@ def emit_wave() -> dict[str, Any]:
         next_unassigned,
         verdict=verdict,
     )
-    t35.write_stable(root / "topology.json", topology)
+    census.write_stable(root / "topology.json", topology)
     readiness = wave.build_readiness(
         SLUG,
         census=census,
@@ -215,7 +215,7 @@ def emit_wave() -> dict[str, Any]:
         verdict=verdict,
         load=load,
     )
-    t35.write_stable(root / "readiness.json", readiness)
+    census.write_stable(root / "readiness.json", readiness)
     generated = RECIPE_GENERATED_ROOT / "smelter" / "deferred_recycling"
     recipe_files = list(generated.rglob("gt_recipe_*.json")) if generated.is_dir() else []
     return {
@@ -232,30 +232,30 @@ def emit_wave() -> dict[str, Any]:
 def rebuild_closeout() -> dict[str, Any]:
     spec = recipe_wave(SLUG)
     root = wave.wave_dir(SLUG)
-    lock = t35.load_json(spec.lock_path)
-    publication = t35.load_json(root / "publication_group_manifest.json")
-    source = t35.load_json(spec.source_path)
+    lock = census.load_json(spec.lock_path)
+    publication = census.load_json(root / "publication_group_manifest.json")
+    source = census.load_json(spec.source_path)
     measurements = (
-        t35.load_json(root / "measurements.json")
+        census.load_json(root / "measurements.json")
         if (root / "measurements.json").is_file()
         else {}
     )
     load = wave.build_load(SLUG, publication, lock, measurements)
-    t35.write_stable(root / "load_projection.json", load)
+    census.write_stable(root / "load_projection.json", load)
     census = build_census(lock, publication, load)
-    t35.write_stable(root / "census_delta.json", census)
+    census.write_stable(root / "census_delta.json", census)
     closeout = spec_for(SLUG)
     receipt = (
-        t35.load_json(root / "gametest_receipt.json")
+        census.load_json(root / "gametest_receipt.json")
         if (root / "gametest_receipt.json").is_file()
         else None
     )
     passed = bool(receipt and receipt.get("status") == "PASS")
     unique_active = closeout.unique_active_wave if passed else SLUG
     next_unassigned = closeout.next_unassigned if passed else False
-    equivalence = t35.load_json(spec.equivalence_path) if spec.equivalence_path.is_file() else None
+    equivalence = census.load_json(spec.equivalence_path) if spec.equivalence_path.is_file() else None
     player_path = (
-        t35.load_json(root / "player_path.json")
+        census.load_json(root / "player_path.json")
         if (root / "player_path.json").is_file()
         else None
     )
@@ -278,7 +278,7 @@ def rebuild_closeout() -> dict[str, Any]:
         next_unassigned,
         verdict=verdict,
     )
-    t35.write_stable(root / "topology.json", topology)
+    census.write_stable(root / "topology.json", topology)
     readiness = wave.build_readiness(
         SLUG,
         census=census,
@@ -290,7 +290,7 @@ def rebuild_closeout() -> dict[str, Any]:
         verdict=verdict,
         load=load,
     )
-    t35.write_stable(root / "readiness.json", readiness)
+    census.write_stable(root / "readiness.json", readiness)
     return {
         "blockers": verdict["blockers"],
         "status": readiness["status"],
@@ -350,7 +350,7 @@ def check_wave() -> list[str]:
             errors.append("deferred recycling must drop by exactly 1817 to 26")
         if int(census.get("partial_family_count") or 0) != 0:
             errors.append("partial_family_count must be 0")
-    r0_census = t35.load_json(R0_DIR / "census_delta.json")
+    r0_census = census.load_json(R0_DIR / "census_delta.json")
     if int(r0_census.get("remaining_ordinary", {}).get("deferred_recycling_count") or 0) != 1843:
         errors.append("must not rewrite R0 deferred recycling opening 1843")
     receipt = inputs["receipt"]
@@ -367,7 +367,7 @@ def check_wave() -> list[str]:
         census=inputs["census"],
         unique_active=unique_active,
     )
-    readiness = t35.load_json(wave.wave_dir(SLUG) / "readiness.json") if (
+    readiness = census.load_json(wave.wave_dir(SLUG) / "readiness.json") if (
         wave.wave_dir(SLUG) / "readiness.json"
     ).is_file() else {}
     if readiness.get("status") == "WAVE_READY" and not verdict.get("ready"):
@@ -403,9 +403,9 @@ def main(argv: list[str] | None = None) -> int:
         )
     try:
         if args.from_integrated is not None:
-            document = t35.load_json(args.from_integrated)
+            document = census.load_json(args.from_integrated)
             flat = wave.flatten_integrated(document)
-            t35.write_stable(wave.wave_dir(SLUG) / "measurements.json", flat)
+            census.write_stable(wave.wave_dir(SLUG) / "measurements.json", flat)
             summary = rebuild_closeout()
             print(json.dumps(summary, sort_keys=True))
             return 0
@@ -421,7 +421,7 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         if args.seal:
             closeout_seal.write_wave_seal(SLUG)
-            print(f"Wrote {t35.relative(seal_path(SLUG))}")
+            print(f"Wrote {census.relative(seal_path(SLUG))}")
             return 0
         if args.write:
             summary = emit_wave()

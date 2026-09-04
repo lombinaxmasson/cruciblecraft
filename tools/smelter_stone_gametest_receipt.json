@@ -1,0 +1,39 @@
+{
+  "behavior_root_sha256": "bf013b417efca893445a34f738c96080afe3625855988bf7a03e0a30d0b5d4f5",
+  "bound_artifacts": {
+    "gametest_java": "bb4acdd4b2943992e147a8b458cd473338a60b4db93830b80db95ef0536a7bb2",
+    "material_registration_gate_java": "f68f87d8eef8cf832987b726e01a2e9b592269cfcc5baf10e46502680704bb84",
+    "material_registration_gate_json": "51cf948867ca73af6be51defa2c95f3870bdc546986c396d7662ea58a865e569",
+    "production_lock": "1efe8b1a09da51c3134f8ec1784e943b6cd67acd842697b0d639a0712ff2c40b",
+    "publication_group_manifest": "168e9b6b8a5e1aa5dfe609daedacf13bfc9903a7bad9d43be136b12cd52afefc",
+    "runtime_dependency_manifest": "9776f2eb4453f69791135fb7494e6cecc0d38d4fab1eea0cea11886fe581ca1c",
+    "shard_manifest": "cc93477c957cbeb7e30e56e29f203722d71e7652439358319ae6aa0551a3a2f1",
+    "smelter_stone_generated_recipes": "da0b49f1678389645d4252de9210ebc96a237a894954855bc15a32bf6bd521ea",
+    "smelter_stone_locked_support": null
+  },
+  "command": ".\\gradlew.bat runGameTestServer -PwaveRecipes=smelter/stone --no-daemon",
+  "currentness_root_sha256": "6bed89cc61876cd0de0719914696f27974c8b1a3be179c80cc6b1946fc0a5bc8",
+  "equivalence_root_sha256": "193e1a04a748a1f4d4289d227c412c46524204a224d837fe9bc8772dd69745b1",
+  "failed": 0,
+  "java_sha256": "bb4acdd4b2943992e147a8b458cd473338a60b4db93830b80db95ef0536a7bb2",
+  "java_source": "src/main/java/com/masson/cruciblecraft/gametest/SmelterStoneGameTests.java",
+  "log_fingerprint": "7d9998b1348b822a9bfac6becf233e080f0d48aae4483aea6caae28726c538a2",
+  "log_path": "tools/smelter_stone_gametest.log",
+  "namespace": "cruciblecraft_wave_smelter_stone",
+  "note": "Source markers are not a pass. This receipt is the isolated -PwaveRecipes=smelter/stone result bound to MaterialRegistrationGate, the smelter/stone recipe resource trees, and the committed UTF-8 evidence log. The gitignored run-smelter/stone-recipes directory is not evidence. Injecting recipe inputs still does not prove a player path.",
+  "pass_marker": "All 6 required tests passed :)",
+  "passed": 6,
+  "required_tests": 6,
+  "schema_version": 3,
+  "semantic_tree_sha256": "a649accd8f49de3483d6fe92edcf185c3737028079f469547c649dd0f55b9299",
+  "skip_is_not_pass": true,
+  "status": "PASS",
+  "test_ids": [
+    "compactfamiliespublished",
+    "emiplanincludessmelterfamilies",
+    "lockedsupportpublished",
+    "noteblockfamilyexecutes",
+    "smelterexecutesrepresentative",
+    "smelterstonestableidssurvivereload"
+  ]
+}

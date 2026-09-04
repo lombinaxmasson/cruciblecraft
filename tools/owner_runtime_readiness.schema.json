@@ -1,0 +1,35 @@
+{
+  "$id": "https://cruciblecraft.invalid/schema/t42-owner-readiness.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "completion_delta": {
+      "const": 0
+    },
+    "owns_families": {
+      "const": 0
+    },
+    "publication_delta": {
+      "const": 0
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "enum": [
+        "T42_OWNER_READY",
+        "T42_OWNER_BLOCKED"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "failed_gates",
+    "gates",
+    "owns_families",
+    "completion_delta",
+    "publication_delta"
+  ],
+  "type": "object"
+}

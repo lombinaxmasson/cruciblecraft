@@ -1,0 +1,131 @@
+{
+  "evidence": {
+    "census_status": "T38_CENSUS_DELTA_READY",
+    "equivalence": {
+      "current": true,
+      "file_count": 29,
+      "generated_files": 29,
+      "logical_ids": 73
+    },
+    "generated_file_count": 29,
+    "load": {
+      "authored_closing": 3664,
+      "current": true,
+      "decision_recomputable": true,
+      "hard_ceiling_raised": false,
+      "measurements_current": true,
+      "pending_zero_filled": false,
+      "winner_derived": true,
+      "winner_on_demand": true
+    },
+    "next_issue_id": "centrifuge/compact",
+    "player_path": {
+      "current": true,
+      "families": 29,
+      "inputs_reachable": 73,
+      "outputs_registered": 73
+    },
+    "publication_status": "T38_PUBLICATION_DELTA_READY",
+    "remaining_recipe_gap": 5639,
+    "runtime": {
+      "current": true,
+      "java_tests_present": true,
+      "player_gametest_present": true
+    },
+    "source": {
+      "blockers": [],
+      "compact_current": true,
+      "dump_present": true,
+      "dump_skip": false,
+      "dump_verified": true,
+      "receipt_present": true,
+      "skip_is_not_pass": true
+    },
+    "t38_complete": true,
+    "topology_epoch": "T38_RECIPE_THEN_STORAGE",
+    "unique_active_card": null
+  },
+  "failed_gates": [],
+  "gates": {
+    "census_structural_validators_zero": true,
+    "decision_recomputable_from_measurements": true,
+    "equivalence_current": true,
+    "full_replay_dump_verified": true,
+    "full_replay_receipt_present": true,
+    "hard_ceiling_not_raised": true,
+    "identity_closeout_complete": true,
+    "load_measured": true,
+    "pending_not_zero_filled": true,
+    "player_gametest_present": true,
+    "player_path_current": true,
+    "remaining_gap_5639": true,
+    "remaining_ordinary_not_bulk_complete": true,
+    "runtime_java_tests_present": true,
+    "source_compact_current": true,
+    "t35_foundation_unchanged": true,
+    "t37_not_stolen": true,
+    "t37_ready": true,
+    "topology_storage_after_recipes": true,
+    "topology_t36_complete": true,
+    "topology_t37_complete": true,
+    "topology_t38_complete": true,
+    "topology_t39_not_preassigned": true,
+    "topology_unique_active_honest": true,
+    "twenty_nine_files_not_sufficient": true,
+    "winner_on_demand": true,
+    "work_set_fixed_29": true
+  },
+  "generated_by": "python tools/build_t38_readiness.py",
+  "identity_closeout": {
+    "blockers": [],
+    "closure_closed": true,
+    "complete": true,
+    "disposition_implemented": true,
+    "fidelity_not_dropped": true,
+    "fidelity_retained": true,
+    "load_measured": true,
+    "opening": {
+      "closure": "incomplete",
+      "disposition": "planned",
+      "fidelity": "source_backed",
+      "load": "pending"
+    },
+    "opening_statuses_match_t38": true,
+    "owner_closing": true,
+    "partial_families": 0,
+    "required": {
+      "closure": "closed",
+      "disposition": "implemented",
+      "fidelity": "source_backed",
+      "load": "measured"
+    }
+  },
+  "note": "T38_READY is derived from source currentness, equivalence, runtime, player path, load, census and topology. Twenty-nine generated files are not sufficient. Missing full-replay dump verification, player path, or measurements keeps the card blocked. A missing dump is not a pass.",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T38_READY",
+  "t35_history_readonly": true,
+  "t36_history_readonly": true,
+  "t37_history_readonly": true,
+  "t39_opening": {
+    "next_issue_id": "centrifuge/compact",
+    "preassigned_family_ids": false,
+    "preassigned_host": false,
+    "t14_closing": {
+      "allocation_bytes": 473152,
+      "client_index_ms": 2,
+      "client_reload_ms": 2,
+      "datapack_authored_entries": 3664,
+      "eager_publication_rows": 16626,
+      "lazy_cache_ceiling_rows": 24,
+      "lazy_logical_rows": 2334,
+      "lookup_candidate_count": 73,
+      "lookup_p95_ns": 685725,
+      "retained_memory_bytes": 12731,
+      "server_index_ms": 2,
+      "server_reload_ms": 2,
+      "sync_bytes": 12731
+    },
+    "unique_active_after_t38_ready": true
+  }
+}

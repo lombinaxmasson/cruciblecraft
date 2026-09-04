@@ -5,13 +5,13 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Callable
 
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk import runtime as runtime_mod
 from tools.recipe_bulk.membership import membership_root
 from tools.recipe_bulk.shadow_readiness import STATUS_READY as SHADOW_READY
 
-TOOLS = t35.TOOLS
-ROOT = t35.ROOT
+TOOLS = census.TOOLS
+ROOT = census.ROOT
 STATUS_READY = "COMPACT_RECIPE_MANIFEST_CUTOVER_READY"
 STATUS_BLOCKED = "COMPACT_RECIPE_MANIFEST_CUTOVER_BLOCKED"
 PROVIDER = (
@@ -26,15 +26,13 @@ POLICY = (
     / "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactPublicationPolicy.java"
 )
 SHADOW_READINESS = TOOLS / "unified_import_shadow_readiness.json"
-T43_POLICY = (
-    ROOT
-    / "src/t43_recipe_generated/resources/data/cruciblecraft/recipe/publication_policy"
-    / "t43_smelter_stone.json"
+SMELTER_STONE_POLICY = runtime_mod.datapack_policy_path(
+    runtime_mod.spec_for_group("cruciblecraft:smelter/stone")
 )
 
 
 def _load(path: Path) -> dict[str, Any]:
-    return t35.load_json(path)
+    return census.load_json(path)
 
 
 def _shadow_ready() -> bool:
@@ -48,8 +46,8 @@ def _runtime_ok() -> bool:
     return (
         document.get("status") == runtime_mod.STATUS
         and document.get("group_count") == 12
-        and document.get("t37_eager_count") == 14
-        and document.get("t41_live_relation_count") == 242
+        and document.get("assembler_compact_eager_count") == 14
+        and document.get("assembler_wood_live_relation_count") == 242
         and len(document.get("dedup_rules") or []) == 4
     )
 
@@ -62,7 +60,7 @@ def _policies_current() -> bool:
     for group_id, document in documents.items():
         spec = runtime_mod.spec_for_group(group_id)
         path = runtime_mod.datapack_policy_path(spec)
-        if t35.check_generated_document(path, document):
+        if census.check_generated_document(path, document):
             return False
     return True
 
@@ -74,17 +72,17 @@ def _dedup_current() -> bool:
     except (OSError, ValueError, KeyError):
         return False
     for rule_id, document in rules.items():
-        path = runtime_mod.datapack_dedup_root() / f"{rule_id.split(':', 1)[1]}.json"
-        if t35.check_generated_document(path, document):
+        path = runtime_mod.dedup_rule_path(document)
+        if census.check_generated_document(path, document):
             return False
     return True
 
 
-def _t43_membership_unified() -> bool:
-    if not T43_POLICY.is_file():
+def _smelter_stone_membership_unified() -> bool:
+    if not SMELTER_STONE_POLICY.is_file():
         return False
-    policy = _load(T43_POLICY)
-    families = runtime_mod.load_wave_families("T43")
+    policy = _load(SMELTER_STONE_POLICY)
+    families = runtime_mod.load_wave_families("smelter/stone")
     family_ids = [str(family["family_id"]) for family in families]
     stable_ids = [
         str(relation["stable_id"])
@@ -99,10 +97,10 @@ def _t43_membership_unified() -> bool:
 def _java_policy_methods_removed() -> bool:
     text = PROVIDER.read_text(encoding="utf-8")
     forbidden = (
-        "t37ProductionPolicy",
-        "t38ProductionPolicy",
-        "t39SingletonPolicy",
-        "t41PlanksPolicy",
+        "assemblerCompactProductionPolicy",
+        "roasterCompactProductionPolicy",
+        "centrifugeSingletonPolicy",
+        "assemblerWoodPlanksPolicy",
     )
     return not any(name in text for name in forbidden)
 
@@ -110,17 +108,17 @@ def _java_policy_methods_removed() -> bool:
 def _java_dedup_methods_removed() -> bool:
     text = LOADER.read_text(encoding="utf-8")
     forbidden = (
-        "dropT41AssemblerSourcesAlreadyExpressedByT37",
-        "dropEquivalentT41RowsAlreadyExpressedByT37",
-        "dropEquivalentT5RowsSupersededByT39",
-        "dropEquivalentT5RowsSupersededByT40",
+        "dropAssemblerWoodSourcesAlreadyExpressedByAssemblerCompact",
+        "dropEquivalentAssemblerWoodRowsAlreadyExpressedByAssemblerCompact",
+        "dropEquivalentChemicalRowsSupersededByCentrifugeCompact",
+        "dropEquivalentChemicalRowsSupersededByElectrolyzerCompact",
     )
     return not any(name in text for name in forbidden)
 
 
-def _t43_skip_removed() -> bool:
+def _smelter_stone_membership_skip_removed() -> bool:
     text = POLICY.read_text(encoding="utf-8")
-    return "T43_SMELTER_STONE_PUBLICATION_GROUP" not in text
+    return "SMELTER_STONE_PUBLICATION_GROUP" not in text
 
 
 GATE_PROBES: tuple[tuple[str, Callable[[], bool]], ...] = (
@@ -128,10 +126,10 @@ GATE_PROBES: tuple[tuple[str, Callable[[], bool]], ...] = (
     ("runtime_twelve_groups", _runtime_ok),
     ("cutover_policies_current", _policies_current),
     ("dedup_rules_current", _dedup_current),
-    ("t43_membership_unified", _t43_membership_unified),
+    ("smelter_stone_membership_unified", _smelter_stone_membership_unified),
     ("java_policy_methods_removed", _java_policy_methods_removed),
     ("java_dedup_methods_removed", _java_dedup_methods_removed),
-    ("t43_membership_skip_removed", _t43_skip_removed),
+    ("smelter_stone_membership_skip_removed", _smelter_stone_membership_skip_removed),
     ("owns_no_families", lambda: True),
 )
 
@@ -145,8 +143,8 @@ def build() -> dict[str, Any]:
         "generated_by": "python tools/build_compact_recipe_manifest_cutover_readiness.py",
         "note": (
             "COMPACT_RECIPE_MANIFEST_CUTOVER_READY closes the Phase-2 runtime "
-            "manifest cutover. Family JSON bytes stay frozen. T37/T38 historical "
-            "publication_group decode remains. New recipe imports stay paused."
+            "manifest cutover. Family JSON bytes stay frozen. Historical compact "
+            "publication-group decoding remains. New recipe imports stay paused."
         ),
         "owns_families": 0,
         "schema_version": 1,

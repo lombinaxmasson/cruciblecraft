@@ -1,0 +1,210 @@
+{
+  "assembler_compact_opening": {
+    "datapack_authored_entries": {
+      "closing": 3566,
+      "hard_ceiling": 6600,
+      "measured": true,
+      "pending": false
+    },
+    "eager_publication_rows": {
+      "closing": 16597,
+      "hard_ceiling": 21000,
+      "measured": true,
+      "pending": false
+    },
+    "lazy_cache_ceiling_rows_historical_opening": {
+      "note": "T14 Extruder family fact only; assembler/compact added ceiling must be measured",
+      "value": 512
+    },
+    "lazy_logical_rows": {
+      "closing": 2225,
+      "hard_ceiling": 56000,
+      "measured": true,
+      "pending": false
+    },
+    "pending_runtime_axes": [
+      "lazy_cache_ceiling_rows",
+      "sync_bytes",
+      "server_reload_ms",
+      "server_index_ms",
+      "client_reload_ms",
+      "client_index_ms",
+      "retained_memory_bytes",
+      "allocation_bytes",
+      "lookup_p95_ns",
+      "lookup_candidate_count"
+    ],
+    "pending_runtime_axes_zero_fill": false,
+    "source": "tools/t36_census_delta.json#t14_load"
+  },
+  "candidate_contract": {
+    "cache_policies": {
+      "hybrid": "eager selector frozen below; bounded cache ceiling 8",
+      "immediate": "fully eager; lookup cache disabled; cache ceiling 0",
+      "on_demand": "all lazy; bounded cache ceiling 8"
+    },
+    "candidates": [
+      "immediate",
+      "on_demand",
+      "hybrid"
+    ],
+    "client_gate": {
+      "dedicated_client": "re-expand from the synchronized compact relation payload",
+      "integrated_client": "skip re-expansion and reuse the server snapshot; not a second wall-clock sample",
+      "server": "prepare CompactRecipeFamilyProvider snapshot on the server side"
+    },
+    "enumeration": "complete epoch-bound view of every logical recipe; must not pre-warm or grow past the cache ceiling",
+    "lookup": "indexed candidate then stable-id selection; p50/p95 from sample intervals, never one wall-clock reading"
+  },
+  "hard_limits_1x": {
+    "allocation_bytes": 536870912,
+    "client_index_ms": 3000,
+    "client_reload_ms": 10000,
+    "datapack_authored_entries": 6600,
+    "eager_publication_rows": 21000,
+    "lazy_cache_ceiling_rows": 4096,
+    "lazy_logical_rows": 56000,
+    "lookup_candidate_count": 128,
+    "lookup_p95_ns": 2000000,
+    "retained_memory_bytes": 536870912,
+    "server_index_ms": 1000,
+    "server_reload_ms": 10000,
+    "sync_bytes": 67108864
+  },
+  "hybrid_boundary": {
+    "cache_ceiling": 8,
+    "declared_before_measurement": true,
+    "declared_eager_count": 14,
+    "declared_lazy_count": 36,
+    "eager_family_ids": [
+      "gt.recipe.assembler#0002",
+      "gt.recipe.assembler#0003",
+      "gt.recipe.assembler#0004",
+      "gt.recipe.assembler#0005",
+      "gt.recipe.assembler#0006",
+      "gt.recipe.assembler#0007",
+      "gt.recipe.assembler#0008",
+      "gt.recipe.assembler#0009",
+      "gt.recipe.assembler#0010",
+      "gt.recipe.assembler#0011",
+      "gt.recipe.assembler#0020",
+      "gt.recipe.assembler#0029",
+      "gt.recipe.assembler#0038",
+      "gt.recipe.assembler#0047"
+    ],
+    "eager_selector": {
+      "any_of": [
+        {
+          "duration_ticks_lte": 16
+        },
+        {
+          "first_n_by_family_id_sort": 10
+        }
+      ]
+    },
+    "forbidden_extruder_hot_modulo": 5,
+    "hot_modulo": null,
+    "justification": "assembler/compact is a 50-singleton-row Assembler card. Duration<=16 ticks selects the six short exact rows. The first 10 family_id-sorted relations add a bounded eager prefix without copying Extruder's modulo-5 hot partition. Union is 14 eager / 36 lazy. Cache ceiling 8 is the 50-row on-demand/hybrid bound, not Extruder's 512-row cache."
+  },
+  "scales": [
+    {
+      "id": "1x",
+      "logical_rows": 50,
+      "purpose": "production candidate comparison denominator; actual assembler/compact work set"
+    },
+    {
+      "id": "5x",
+      "logical_rows": 250,
+      "purpose": "diagnostic pressure only; must not fill 1x unmeasured fields"
+    },
+    {
+      "id": "20x",
+      "logical_rows": 1000,
+      "purpose": "diagnostic pressure only; must not fill 1x unmeasured fields or copy Extruder 55640"
+    }
+  ],
+  "schema_version": 1,
+  "scope": {
+    "authored_entries_per_family": 1,
+    "benchmark_only": false,
+    "card": "assembler/compact",
+    "does_not_modify": [
+      "Extruder HOT_MODULO",
+      "Extruder CACHE_CEILING=512",
+      "T14 20x ranking ratios",
+      "T35/T36 historical READY artifacts"
+    ],
+    "family_count": 50,
+    "host": "cruciblecraft:assembler",
+    "logical_rows_per_family": 1,
+    "production_logical_rows": 50,
+    "production_switch_allowed": true,
+    "production_target": "cruciblecraft:assembler",
+    "source_rows_per_family": 1,
+    "work_set": "gt.recipe.assembler#0002 .. #0051"
+  },
+  "soft_budgets_1x": {
+    "allocation_bytes": 134217728,
+    "client_index_ms": 1000,
+    "client_reload_ms": 5000,
+    "datapack_authored_entries": 6000,
+    "eager_publication_rows": 18000,
+    "lazy_cache_ceiling_rows": 1024,
+    "lazy_logical_rows": 16000,
+    "lookup_candidate_count": 64,
+    "lookup_p95_ns": 1000000,
+    "retained_memory_bytes": 134217728,
+    "server_index_ms": 500,
+    "server_reload_ms": 5000,
+    "sync_bytes": 16777216
+  },
+  "status": "ASSEMBLER_COMPACT_MATERIALIZATION_CANDIDATE_POLICY",
+  "winner_algorithm": {
+    "composite_score_forbidden": true,
+    "correctness_gates": [
+      "field_equivalence",
+      "full_enumeration",
+      "client_consistency",
+      "player_execution"
+    ],
+    "diagnostic_5x_20x_must_not_fill_1x": true,
+    "eager_margin": "If every survivor is inside the cumulative eager soft budget, treat eager_margin as tied and continue. Do not rank remaining hard-ceiling headroom as a score that prefers on_demand solely because it publishes zero eager rows.",
+    "gate_order": [
+      "correctness",
+      "hard_ceiling",
+      "cumulative_soft_budget"
+    ],
+    "hard_ceiling_fail_eliminates": true,
+    "implementation_complexity_order": [
+      "immediate",
+      "on_demand",
+      "hybrid"
+    ],
+    "pending_axis_zero_fill_forbidden": true,
+    "production_candidate_must_sit_inside_cumulative_soft_budget": true,
+    "production_guard": "Emit a production winner only when 1x=50 logical rows are actually measured, every ranking axis used for the winner is PASS (not PENDING), and the winner is derived by tools/build_assembler_compact_recipe_load_benchmark.py. Hand-filled production_winner is invalid.",
+    "ranking_logical_rows": 50,
+    "ranking_order_after_all_gates_pass": [
+      "eager_margin",
+      "retained_memory",
+      "reload_index",
+      "lookup",
+      "sync",
+      "implementation_complexity"
+    ],
+    "ranking_scale": "1x"
+  },
+  "workload": {
+    "enumeration_samples": 5,
+    "enumeration_warmup_iterations": 1,
+    "lookup_operations_per_sample": 16,
+    "lookup_samples": 21,
+    "lookup_warmup_operations": 32,
+    "production_scale": "1x",
+    "reload_samples": 7,
+    "reload_warmup_iterations": 2,
+    "retained_error_bar": "sample_min_max",
+    "single_wall_clock_sample_forbidden": true,
+    "timing_error_bar": "nonparametric_95_percent_median_order_statistic"
+  }
+}

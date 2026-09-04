@@ -8,11 +8,11 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from tools import t35_common as t35
+from tools import io_common as files
 
-ROOT = t35.ROOT
-TOOLS = t35.TOOLS
-SOURCE_REVISION = t35.SOURCE_REVISION
+ROOT = files.ROOT
+TOOLS = files.TOOLS
+SOURCE_REVISION = files.SOURCE_REVISION
 
 REMAP_TOOLS = TOOLS / "tool_head_prefix_remap.json"
 REQUIRED_FORMS = TOOLS / "tool_head_required_forms.json"
@@ -38,7 +38,7 @@ BUNDLED_BATH = (
 BUNDLED_SEMANTIC = (
     ROOT / "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
 )
-T48_IDENTITY_CATALOG = TOOLS / "t48_identity_catalog.json"
+BATH_IDENTITY_IDENTITY_CATALOG = TOOLS / "bath_identity_identity_catalog.json"
 
 _CAMEL_RE = re.compile(r"([a-z0-9])([A-Z])")
 _META_PREFIX = "gregtech:gt.meta."
@@ -159,7 +159,7 @@ def load_gt_prefix_units() -> dict[str, tuple[int, str]]:
     cached = _CACHE.get("gt_prefix_units")
     if cached is not None:
         return cached
-    document = t35.load_json(OREDICT_PREFIXES)
+    document = files.load_json(OREDICT_PREFIXES)
     mapped: dict[str, tuple[int, str]] = {}
     for row in document.get("records") or []:
         name = str(row.get("source_name") or "")
@@ -180,7 +180,7 @@ def load_material_id_to_cc() -> dict[int, str]:
     cached = _CACHE.get("material_id_to_cc")
     if cached is not None:
         return cached
-    xref = t35.load_json(OREDICT_XREF)
+    xref = files.load_json(OREDICT_XREF)
     mapped = {
         int(key): str(value)
         for key, value in (xref.get("material_id_to_cc") or {}).items()
@@ -217,14 +217,14 @@ def prefix_document(form: str, gt_prefix: str) -> dict[str, Any]:
 def _catalog_identities(path: Path) -> list[dict[str, Any]]:
     if not path.is_file():
         return []
-    document = t35.load_json(path)
+    document = files.load_json(path)
     return [row for row in document.get("identities") or [] if isinstance(row, dict)]
 
 
 def collect_tool_head_rows() -> dict[tuple[str, int], dict[str, Any]]:
     wanted: dict[tuple[str, int], dict[str, Any]] = {}
     paths = [
-        T48_IDENTITY_CATALOG,
+        BATH_IDENTITY_IDENTITY_CATALOG,
         BUNDLED_BATH,
         BUNDLED_SEMANTIC,
         *[
@@ -233,7 +233,7 @@ def collect_tool_head_rows() -> dict[tuple[str, int], dict[str, Any]]:
         ],
     ]
     if REMAP_TOOLS.is_file():
-        previous = t35.load_json(REMAP_TOOLS)
+        previous = files.load_json(REMAP_TOOLS)
         for row in list(previous.get("mapped") or []) + list(previous.get("remainder") or []):
             source_item = str(row.get("source_item") or "")
             meta = row.get("meta")
@@ -413,7 +413,7 @@ def load_remap() -> dict[str, Any]:
     path = REMAP_TOOLS if REMAP_TOOLS.is_file() else BUNDLED_REMAP
     if not path.is_file():
         return {}
-    document = t35.load_json(path)
+    document = files.load_json(path)
     _CACHE["remap"] = document
     return document
 
@@ -489,7 +489,7 @@ def copy_source_backed_textures(remap: dict[str, Any]) -> list[str]:
     if not GT6_METALLIC.is_dir():
         raise ValueError(
             "GT6 METALLIC toolHead textures missing; "
-            f"expected {t35.relative(GT6_METALLIC)}"
+            f"expected {files.relative(GT6_METALLIC)}"
         )
     TEXTURE_DEST.mkdir(parents=True, exist_ok=True)
     written: list[str] = []
@@ -500,32 +500,32 @@ def copy_source_backed_textures(remap: dict[str, Any]) -> list[str]:
             raise ValueError(f"missing SOURCE_BACKED tool head texture: {source}")
         dest = TEXTURE_DEST / f"{prefix}.png"
         dest.write_bytes(source.read_bytes())
-        written.append(t35.relative(dest))
+        written.append(files.relative(dest))
     return written
 
 
 def write_prefix_json(remap: dict[str, Any]) -> None:
     PREFIX_ROOT.mkdir(parents=True, exist_ok=True)
-    index = list(t35.load_json(PREFIX_INDEX)) if PREFIX_INDEX.is_file() else []
+    index = list(files.load_json(PREFIX_INDEX)) if PREFIX_INDEX.is_file() else []
     known = set(index)
     for prefix, meta in sorted((remap.get("prefixes") or {}).items()):
         gt_prefix = str(meta.get("gt_prefix") or "")
         filename = f"{prefix}.json"
-        t35.write_stable(PREFIX_ROOT / filename, prefix_document(prefix, gt_prefix))
+        files.write_stable(PREFIX_ROOT / filename, prefix_document(prefix, gt_prefix))
         if filename not in known:
             index.append(filename)
             known.add(filename)
-    t35.write_stable(PREFIX_INDEX, index)
+    files.write_stable(PREFIX_INDEX, index)
 
 
 def write_zh_prefix_names(remap: dict[str, Any]) -> None:
     path = ROOT / "src/main/resources/data/cruciblecraft/material_zh_cn.json"
-    document = t35.load_json(path)
+    document = files.load_json(path)
     prefixes = dict(document.get("prefixes") or {})
     for prefix, meta in (remap.get("prefixes") or {}).items():
         prefixes[prefix] = str(meta.get("chinese_form") or CHINESE_FORM[prefix])
     document["prefixes"] = dict(sorted(prefixes.items()))
-    t35.write_stable(path, document)
+    files.write_stable(path, document)
 
 
 def clear_cache() -> None:

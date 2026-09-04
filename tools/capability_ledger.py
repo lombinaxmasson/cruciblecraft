@@ -15,11 +15,11 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools import atomic_io
-from tools import t35_common as t35
+from tools import io_common as io
 
-CAP_ROOT = t35.TOOLS / "capabilities"
+CAP_ROOT = io.TOOLS / "capabilities"
 LEDGER = CAP_ROOT / "ledger.json"
-VERIFICATION_PROFILES = t35.TOOLS / "verification_profiles.json"
+VERIFICATION_PROFILES = io.TOOLS / "verification_profiles.json"
 SLUG_RE = re.compile(
     r"^[a-z][a-z0-9]*(?:-[a-z0-9]+)*(?:/[a-z][a-z0-9]*(?:-[a-z0-9]+)*)+$"
 )
@@ -46,20 +46,20 @@ def capability_files() -> list[Path]:
 
 
 def load_capability(path: Path) -> dict[str, Any]:
-    document = t35.load_json(path)
+    document = io.load_json(path)
     if document.get("schema_version") != 2:
-        raise ValueError(f"{t35.relative(path)}: unsupported schema")
+        raise ValueError(f"{io.relative(path)}: unsupported schema")
     if "evidence" in document:
         raise ValueError(
-            f"{t35.relative(path)}: schema v2 forbids static evidence"
+            f"{io.relative(path)}: schema v2 forbids static evidence"
         )
     slug = str(document.get("slug") or "")
     if not SLUG_RE.match(slug):
-        raise ValueError(f"{t35.relative(path)}: invalid slug {slug!r}")
+        raise ValueError(f"{io.relative(path)}: invalid slug {slug!r}")
     expected = path.relative_to(CAP_ROOT).parent.as_posix()
     if slug != expected:
         raise ValueError(
-            f"{t35.relative(path)}: slug {slug!r} != directory {expected!r}"
+            f"{io.relative(path)}: slug {slug!r} != directory {expected!r}"
         )
     if document.get("maturity") not in MATURITY:
         raise ValueError(f"{slug}: invalid maturity")
@@ -126,7 +126,7 @@ def compile_ledger() -> dict[str, Any]:
             "depends_on": list(document.get("depends_on") or []),
             "maturity": document["maturity"],
             "owned_paths": list(document["owned_paths"]),
-            "path": t35.relative(path),
+            "path": io.relative(path),
             "player_signoff": document.get("player_signoff"),
             "profiles": list(document.get("profiles") or []),
             "slug": document["slug"],
@@ -138,7 +138,7 @@ def compile_ledger() -> dict[str, Any]:
     if len(slugs) != len(set(slugs)):
         raise ValueError("duplicate capability slug")
     known = set(slugs)
-    profile_document = t35.load_json(VERIFICATION_PROFILES)
+    profile_document = io.load_json(VERIFICATION_PROFILES)
     active_profiles = set(profile_document.get("active_profiles") or [])
     for row in capabilities:
         for dep in row["depends_on"]:
@@ -217,7 +217,7 @@ def main(argv: list[str] | None = None) -> int:
     encoded = dumps(ledger)
     if args.write:
         atomic_io.write_bytes(LEDGER, encoded)
-        print(f"Wrote {t35.relative(LEDGER)}")
+        print(f"Wrote {io.relative(LEDGER)}")
         return 0
     if not LEDGER.is_file():
         print("missing tools/capabilities/ledger.json", file=sys.stderr)

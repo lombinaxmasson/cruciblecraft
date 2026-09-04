@@ -23,13 +23,13 @@ T8_PIPE_FORMS = {
 T38_REQUIRED_FORMS = {
     material: set(forms)
     for material, forms in json.loads(
-        (TOOLS / "t38_required_forms.json").read_text(encoding="utf-8")
+        (TOOLS / "roaster_required_forms.json").read_text(encoding="utf-8")
     )["required_forms"].items()
 }
 T38_ACQUISITION_FORMS = {
     material: set(forms)
     for material, forms in json.loads(
-        (TOOLS / "t38_source_backed_acquisition.json").read_text(
+        (TOOLS / "worldgen_source_backed_acquisition.json").read_text(
             encoding="utf-8"
         )
     )["required_forms"].items()
@@ -37,13 +37,13 @@ T38_ACQUISITION_FORMS = {
 T39_REQUIRED_FORMS = {
     material: set(forms)
     for material, forms in json.loads(
-        (TOOLS / "t39_required_forms.json").read_text(encoding="utf-8")
+        (TOOLS / "centrifuge_required_forms.json").read_text(encoding="utf-8")
     )["required_forms"].items()
 }
 T40_REQUIRED_FORMS = {
     material: set(forms)
     for material, forms in json.loads(
-        (TOOLS / "t40_required_forms.json").read_text(encoding="utf-8")
+        (TOOLS / "electrolyzer_required_forms.json").read_text(encoding="utf-8")
     )["required_forms"].items()
 }
 
@@ -82,7 +82,7 @@ class MaterialFormGateTest(unittest.TestCase):
             factual = gt6_l3_materials.resolve_material_forms(material, self.l3)
             registered = set(self.gate["materials"][material["id"]])
             t10_forms = set(
-                self.gate["t10_known_forms"].get(material["id"], ())
+                self.gate["known_ingot_forms"].get(material["id"], ())
             )
             extra = set(T8_PIPE_FORMS) | t10_forms
             for section in self.gate.get("java_overlay_sections") or []:
@@ -101,67 +101,67 @@ class MaterialFormGateTest(unittest.TestCase):
             else:
                 self.assertTrue(factual, material["id"])
         self.assertEqual(663, metadata_only)
-        self.assertEqual(282, self.gate["counts"]["t8_pipe_forms"])
-        self.assertEqual(967, self.gate["counts"]["t10_known_forms"])
-        self.assertEqual(12, self.gate["counts"]["t38_required_forms"])
+        self.assertEqual(282, self.gate["counts"]["pipe_forms"])
+        self.assertEqual(967, self.gate["counts"]["known_ingot_forms"])
+        self.assertEqual(12, self.gate["counts"]["roaster_required_forms"])
         self.assertEqual(
             sum(map(len, T39_REQUIRED_FORMS.values())),
-            self.gate["counts"]["t39_required_forms"],
+            self.gate["counts"]["centrifuge_required_forms"],
         )
-        self.assertEqual(3, self.gate["counts"]["t40_required_forms"])
+        self.assertEqual(3, self.gate["counts"]["electrolyzer_required_forms"])
         self.assertEqual(7990, self.gate["counts"]["tool_head_required_forms"])
         self.assertIn("tool_head_required_forms", self.gate["java_overlay_sections"])
         self.assertEqual(
             sum(map(len, T38_ACQUISITION_FORMS.values())),
-            self.gate["counts"]["t38_acquisition_forms"],
+            self.gate["counts"]["worldgen_acquisition_forms"],
         )
         self.assertEqual(
             {
                 material: sorted(forms)
                 for material, forms in sorted(T38_REQUIRED_FORMS.items())
             },
-            self.gate["t38_required_forms"],
+            self.gate["roaster_required_forms"],
         )
         self.assertEqual(
             {
                 material: sorted(forms)
                 for material, forms in sorted(T39_REQUIRED_FORMS.items())
             },
-            self.gate["t39_required_forms"],
+            self.gate["centrifuge_required_forms"],
         )
         self.assertEqual(
             {
                 material: sorted(forms)
                 for material, forms in sorted(T40_REQUIRED_FORMS.items())
             },
-            self.gate["t40_required_forms"],
+            self.gate["electrolyzer_required_forms"],
         )
         self.assertEqual(
             {
                 material: sorted(forms)
                 for material, forms in sorted(T38_ACQUISITION_FORMS.items())
             },
-            self.gate["t38_source_backed_acquisition_forms"],
+            self.gate["worldgen_acquisition_forms"],
         )
         self.assertEqual(
             323,
             sum(
                 "double_ingot" in forms
-                for forms in self.gate["t10_known_forms"].values()
+                for forms in self.gate["known_ingot_forms"].values()
             ),
         )
         self.assertEqual(
             323,
             sum(
                 "triple_ingot" in forms
-                for forms in self.gate["t10_known_forms"].values()
+                for forms in self.gate["known_ingot_forms"].values()
             ),
         )
         self.assertEqual(
             321,
             sum(
                 "ingot_hot" in forms
-                for forms in self.gate["t10_known_forms"].values()
+                for forms in self.gate["known_ingot_forms"].values()
             ),
         )
 
@@ -170,29 +170,29 @@ class MaterialFormGateTest(unittest.TestCase):
         self.assertGreater(counts["recipe_gated_forms"], 0)
         self.assertGreater(counts["compatibility_forms"], 0)
         self.assertGreater(counts["ore_chain_forms"], 0)
-        self.assertEqual(1, counts["t3_acceptance_forms"])
-        self.assertEqual({"iron": ["wire"]}, self.gate["t3_acceptance_forms"])
+        self.assertEqual(1, counts["acceptance_forms"])
+        self.assertEqual({"iron": ["wire"]}, self.gate["acceptance_forms"])
         self.assertEqual(
-            "t3_acceptance_required_not_gt6_original_gate",
-            self.gate["sources"]["t3_acceptance_form_corrections"][
+            "acceptance_required_not_gt6_original_gate",
+            self.gate["sources"]["acceptance_form_corrections"][
                 "classification"
             ],
         )
         self.assertEqual(
-            "t38_compact_output_runtime_required",
-            self.gate["sources"]["t38_compact_required_forms"][
+            "roaster_compact_output_runtime_required",
+            self.gate["sources"]["roaster_compact_required_forms"][
                 "classification"
             ],
         )
         self.assertEqual(
-            "t39_compact_output_runtime_required",
-            self.gate["sources"]["t39_compact_required_forms"][
+            "centrifuge_compact_output_runtime_required",
+            self.gate["sources"]["centrifuge_compact_required_forms"][
                 "classification"
             ],
         )
         self.assertEqual(
-            "t40_compact_output_runtime_required",
-            self.gate["sources"]["t40_compact_required_forms"][
+            "electrolyzer_compact_output_runtime_required",
+            self.gate["sources"]["electrolyzer_compact_required_forms"][
                 "classification"
             ],
         )
@@ -204,12 +204,12 @@ class MaterialFormGateTest(unittest.TestCase):
             counts["compatibility_forms"],
             sum(map(len, self.gate["compatibility_forms"].values())),
         )
-        self.assertEqual(29, counts["t6_electrical_wire_forms"])
+        self.assertEqual(29, counts["electrical_wire_forms"])
         self.assertEqual(
-            29, len(self.gate["t6_electrical_wire_forms"])
+            29, len(self.gate["electrical_wire_forms"])
         )
         for material, forms in self.gate[
-            "t6_electrical_wire_forms"
+            "electrical_wire_forms"
         ].items():
             self.assertEqual(["wire"], forms, material)
             self.assertIn("wire", self.gate["materials"][material])
@@ -286,7 +286,7 @@ class MaterialFormGateTest(unittest.TestCase):
         self.assertEqual(210, len(crusher_materials - ore_materials))
         self.assertLessEqual(
             ore_materials
-            - set(self.gate["t38_source_backed_acquisition_forms"]),
+            - set(self.gate["worldgen_acquisition_forms"]),
             {
                 material_id
                 for material_id, forms in (

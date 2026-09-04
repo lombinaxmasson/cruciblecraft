@@ -1,0 +1,83 @@
+{
+  "closure": {
+    "anvil_bend_post_1_0": true,
+    "blocks_beta": 0,
+    "crucible_owner_t27": true,
+    "future_version_gametest_present": true,
+    "inherited_t25_rows": 5,
+    "known_issues_complete": true,
+    "known_issues_status": "T26_KNOWN_ISSUES_COMPLETE",
+    "known_issues_total": 15,
+    "localization_accounted": true,
+    "o15_closed": true,
+    "packaging_version": "0.1.0-beta.1",
+    "packaging_version_current": true,
+    "playtest_rows": 10
+  },
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T26 freeze closes the public Beta gate with a complete known-issue ledger, O-15 accounting, anvil_bend post_1_0 reserved slots and crucible owned by T27. Publication delta remains 0/0/0. F003/F005 are not remeasured here; their SKIP contracts transfer to T27 RC. Repository-wide verification is bound separately by the full snapshot report."
+  },
+  "completed_stages": [
+    "T26a",
+    "T26b",
+    "T26c",
+    "T26d",
+    "T26e"
+  ],
+  "currentness": {
+    "full_verification": {
+      "evidence": "tools/full_verification_report.json",
+      "pending": [],
+      "status": "BOUND_TO_FULL_VERIFICATION_REPORT"
+    },
+    "owned_inputs": {
+      "tools/build_t26_readiness.py": "a8895fe88b502ba01408f477a7189158f0464432f51998344edbfd9f0ac64cfa",
+      "tools/t26_readiness_policy.json": "ac04275d5fbc08671551a4a3d801df5fabc2cc13da884f967395eddee0003b6e"
+    }
+  },
+  "fidelity": {
+    "design_policy_declared": "T26 close publishes no new GT recipes or registrations. Player docs distinguish SOURCE_BACKED, SOURCE_DERIVED and DESIGN_POLICY. 4.5 P0-P9 remain post_beta_polish. anvil_bend slots are explicit post_1_0 reserved maps; crucible stays unimplemented v1_required with owner T27.",
+    "new_registrations": 0,
+    "no_placeholder_on_mainline": true,
+    "source_license_traceable": true
+  },
+  "load": {
+    "findings_blocking": 0,
+    "headroom_axis": "logical_legacy_t25",
+    "headroom_remaining": 2118,
+    "publication_baseline_consistent": true,
+    "publication_delta": {
+      "eager": 0,
+      "lazy": 0,
+      "logical": 0
+    },
+    "remeasurement": "SKIPPED_TRANSFERRED_TO_T27_RC",
+    "skipped_contracts_complete": true,
+    "t25_blocker_count": 0,
+    "t27_recheck_contracts": [
+      {
+        "id": "T24-F003",
+        "owner": "T27 RC",
+        "recheck_point": "T27 RC candidate",
+        "replacement_condition": "Re-run on a declared environment with >= 16 GB RAM and record tools/t24_scale_evidence.json measured_at_scale.target"
+      },
+      {
+        "id": "T24-F005",
+        "owner": "T27 RC",
+        "recheck_point": "T27 RC candidate",
+        "replacement_condition": "Re-run on a declared environment with >= 16 GB RAM and record tools/t24_scale_evidence.json measured_at_scale.target"
+      }
+    ]
+  },
+  "pending_stages": [],
+  "policy": "The status field is derived from evidence by build(). Any mismatch between the committed value and a fresh build is detected by check().",
+  "runtime": {
+    "gametest_passing": true,
+    "gametest_total": 137
+  },
+  "schema_version": 1,
+  "status": "T26_READY",
+  "status_owner": "run_full_verification"
+}

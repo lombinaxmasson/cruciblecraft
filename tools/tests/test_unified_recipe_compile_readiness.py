@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import unittest
 
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk import compile_readiness as readiness
 from tools.recipe_bulk import schema_lite
 from tools.recipe_bulk.waves import COMPILE_ORDER, WAVES
@@ -25,11 +25,11 @@ class UnifiedRecipeCompileReadinessTest(unittest.TestCase):
         self.assertEqual(7, len(document["wave_bindings"]))
         self.assertTrue(document["gates"]["unique_write_authority"])
         self.assertTrue(document["gates"]["no_legacy_emit_delegate"])
-        self.assertTrue(document["gates"]["seven_wave_ledger_coverage"])
+        self.assertTrue(document["gates"]["compact_wave_ledger_coverage"])
         self.assertTrue(document["gates"]["byte_stable_id_parity"])
 
     def test_schema_accepts_ready_document(self) -> None:
-        schema = t35.load_json(t35.TOOLS / "unified_recipe_compile_readiness.schema.json")
+        schema = census.load_json(census.TOOLS / "unified_recipe_compile_readiness.schema.json")
         schema_lite.validate(readiness.build(), schema)
 
 

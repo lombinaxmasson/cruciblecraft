@@ -1,0 +1,1047 @@
+{
+  "cards": [
+    {
+      "axes": {
+        "closure": {
+          "entry": "tools/t35_excluded_object_reclaim.json",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "entry": "763/1701 exclusion reclaim lineage",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "source_backed"
+        },
+        "load": {
+          "entry": "Exclusion family load requires bounded storage-track measurement.",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "depends_on": [
+        "T36",
+        "T37"
+      ],
+      "expected_player_path": "Source-backed storage family on the announced 1.x storage track; retains exact lineage (4 sites / 301 expanded).",
+      "id": "T38",
+      "identities": [
+        {
+          "canonical_id": "exclusion/bookshelf",
+          "closure": "incomplete",
+          "disposition": "planned",
+          "domain": "exclusion",
+          "historical_classification": {
+            "t13": "excluded_before_classification",
+            "t27": null
+          },
+          "owner": "portfolio:storage/bookshelf",
+          "portfolio_priority": "P1",
+          "portfolio_scope": "in_scope_1x",
+          "source_lineage": {
+            "artifact": "tools/t35_excluded_object_reclaim.json",
+            "expanded_rows": 301,
+            "record_keys": [],
+            "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+            "source_sites": 4
+          }
+        }
+      ],
+      "integration_profile": "census",
+      "kind": "generated",
+      "merge_key": {
+        "domain": "exclusion",
+        "fidelity": "source_backed",
+        "load": "pending",
+        "load_verdict": "BLOCKED_PENDING_MEASUREMENT",
+        "owner": "portfolio:storage/bookshelf"
+      },
+      "owner_keys": [
+        "portfolio:storage/bookshelf"
+      ],
+      "projected_load_interval": null,
+      "publication_delta": {
+        "eager": 0,
+        "lazy": 0,
+        "logical": 0
+      },
+      "recheck_points": [
+        "generated T38+ storage-track card"
+      ],
+      "replacement_conditions": [
+        "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage."
+      ],
+      "source_lineage": [
+        {
+          "canonical_id": "exclusion/bookshelf",
+          "disposition": "planned",
+          "owner": "portfolio:storage/bookshelf",
+          "portfolio_priority": "P1",
+          "portfolio_scope": "in_scope_1x",
+          "recheck_point": "generated T38+ storage-track card",
+          "replacement_condition": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "source": {
+            "artifact": "tools/t35_excluded_object_reclaim.json",
+            "expanded_rows": 301,
+            "record_keys": [],
+            "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+            "source_sites": 4
+          }
+        }
+      ],
+      "started": false,
+      "track": "exclusion"
+    },
+    {
+      "axes": {
+        "closure": {
+          "entry": "tools/t35_excluded_object_reclaim.json",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "entry": "763/1701 exclusion reclaim lineage",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "source_backed"
+        },
+        "load": {
+          "entry": "Exclusion family load requires bounded storage-track measurement.",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "depends_on": [
+        "T36",
+        "T37"
+      ],
+      "expected_player_path": "Source-backed storage family on the announced 1.x storage track; retains exact lineage (2 sites / 301 expanded).",
+      "id": "T39",
+      "identities": [
+        {
+          "canonical_id": "exclusion/bottle_crate",
+          "closure": "incomplete",
+          "disposition": "planned",
+          "domain": "exclusion",
+          "historical_classification": {
+            "t13": "excluded_before_classification",
+            "t27": null
+          },
+          "owner": "portfolio:storage/bottle_crate",
+          "portfolio_priority": "P1",
+          "portfolio_scope": "in_scope_1x",
+          "source_lineage": {
+            "artifact": "tools/t35_excluded_object_reclaim.json",
+            "expanded_rows": 301,
+            "record_keys": [],
+            "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+            "source_sites": 2
+          }
+        }
+      ],
+      "integration_profile": "census",
+      "kind": "generated",
+      "merge_key": {
+        "domain": "exclusion",
+        "fidelity": "source_backed",
+        "load": "pending",
+        "load_verdict": "BLOCKED_PENDING_MEASUREMENT",
+        "owner": "portfolio:storage/bottle_crate"
+      },
+      "owner_keys": [
+        "portfolio:storage/bottle_crate"
+      ],
+      "projected_load_interval": null,
+      "publication_delta": {
+        "eager": 0,
+        "lazy": 0,
+        "logical": 0
+      },
+      "recheck_points": [
+        "generated T38+ storage-track card"
+      ],
+      "replacement_conditions": [
+        "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage."
+      ],
+      "source_lineage": [
+        {
+          "canonical_id": "exclusion/bottle_crate",
+          "disposition": "planned",
+          "owner": "portfolio:storage/bottle_crate",
+          "portfolio_priority": "P1",
+          "portfolio_scope": "in_scope_1x",
+          "recheck_point": "generated T38+ storage-track card",
+          "replacement_condition": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "source": {
+            "artifact": "tools/t35_excluded_object_reclaim.json",
+            "expanded_rows": 301,
+            "record_keys": [],
+            "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+            "source_sites": 2
+          }
+        }
+      ],
+      "started": false,
+      "track": "exclusion"
+    },
+    {
+      "axes": {
+        "closure": {
+          "entry": "tools/t35_excluded_object_reclaim.json",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "entry": "763/1701 exclusion reclaim lineage",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "source_backed"
+        },
+        "load": {
+          "entry": "Exclusion family load requires bounded storage-track measurement.",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "depends_on": [
+        "T36",
+        "T37"
+      ],
+      "expected_player_path": "Source-backed storage family on the announced 1.x storage track; retains exact lineage (1 sites / 1 expanded).",
+      "id": "T40",
+      "identities": [
+        {
+          "canonical_id": "exclusion/drawer",
+          "closure": "incomplete",
+          "disposition": "planned",
+          "domain": "exclusion",
+          "historical_classification": {
+            "t13": "excluded_before_classification",
+            "t27": null
+          },
+          "owner": "portfolio:storage/drawer",
+          "portfolio_priority": "P1",
+          "portfolio_scope": "in_scope_1x",
+          "source_lineage": {
+            "artifact": "tools/t35_excluded_object_reclaim.json",
+            "expanded_rows": 1,
+            "record_keys": [],
+            "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+            "source_sites": 1
+          }
+        }
+      ],
+      "integration_profile": "census",
+      "kind": "generated",
+      "merge_key": {
+        "domain": "exclusion",
+        "fidelity": "source_backed",
+        "load": "pending",
+        "load_verdict": "BLOCKED_PENDING_MEASUREMENT",
+        "owner": "portfolio:storage/drawer"
+      },
+      "owner_keys": [
+        "portfolio:storage/drawer"
+      ],
+      "projected_load_interval": null,
+      "publication_delta": {
+        "eager": 0,
+        "lazy": 0,
+        "logical": 0
+      },
+      "recheck_points": [
+        "generated T38+ storage-track card"
+      ],
+      "replacement_conditions": [
+        "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage."
+      ],
+      "source_lineage": [
+        {
+          "canonical_id": "exclusion/drawer",
+          "disposition": "planned",
+          "owner": "portfolio:storage/drawer",
+          "portfolio_priority": "P1",
+          "portfolio_scope": "in_scope_1x",
+          "recheck_point": "generated T38+ storage-track card",
+          "replacement_condition": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "source": {
+            "artifact": "tools/t35_excluded_object_reclaim.json",
+            "expanded_rows": 1,
+            "record_keys": [],
+            "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+            "source_sites": 1
+          }
+        }
+      ],
+      "started": false,
+      "track": "exclusion"
+    },
+    {
+      "axes": {
+        "closure": {
+          "entry": "tools/t35_excluded_object_reclaim.json",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "entry": "763/1701 exclusion reclaim lineage",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "source_backed"
+        },
+        "load": {
+          "entry": "Exclusion family load requires bounded storage-track measurement.",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "depends_on": [
+        "T36",
+        "T37"
+      ],
+      "expected_player_path": "Source-backed storage family on the announced 1.x storage track; retains exact lineage (2 sites / 2 expanded).",
+      "id": "T41",
+      "identities": [
+        {
+          "canonical_id": "exclusion/locker",
+          "closure": "incomplete",
+          "disposition": "planned",
+          "domain": "exclusion",
+          "historical_classification": {
+            "t13": "excluded_before_classification",
+            "t27": null
+          },
+          "owner": "portfolio:storage/locker",
+          "portfolio_priority": "P1",
+          "portfolio_scope": "in_scope_1x",
+          "source_lineage": {
+            "artifact": "tools/t35_excluded_object_reclaim.json",
+            "expanded_rows": 2,
+            "record_keys": [],
+            "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+            "source_sites": 2
+          }
+        }
+      ],
+      "integration_profile": "census",
+      "kind": "generated",
+      "merge_key": {
+        "domain": "exclusion",
+        "fidelity": "source_backed",
+        "load": "pending",
+        "load_verdict": "BLOCKED_PENDING_MEASUREMENT",
+        "owner": "portfolio:storage/locker"
+      },
+      "owner_keys": [
+        "portfolio:storage/locker"
+      ],
+      "projected_load_interval": null,
+      "publication_delta": {
+        "eager": 0,
+        "lazy": 0,
+        "logical": 0
+      },
+      "recheck_points": [
+        "generated T38+ storage-track card"
+      ],
+      "replacement_conditions": [
+        "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage."
+      ],
+      "source_lineage": [
+        {
+          "canonical_id": "exclusion/locker",
+          "disposition": "planned",
+          "owner": "portfolio:storage/locker",
+          "portfolio_priority": "P1",
+          "portfolio_scope": "in_scope_1x",
+          "recheck_point": "generated T38+ storage-track card",
+          "replacement_condition": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "source": {
+            "artifact": "tools/t35_excluded_object_reclaim.json",
+            "expanded_rows": 2,
+            "record_keys": [],
+            "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+            "source_sites": 2
+          }
+        }
+      ],
+      "started": false,
+      "track": "exclusion"
+    },
+    {
+      "axes": {
+        "closure": {
+          "entry": "tools/t35_excluded_object_reclaim.json",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "entry": "763/1701 exclusion reclaim lineage",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "source_backed"
+        },
+        "load": {
+          "entry": "Exclusion family load requires bounded storage-track measurement.",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "depends_on": [
+        "T36",
+        "T37"
+      ],
+      "expected_player_path": "Source-backed storage family on the announced 1.x storage track; retains exact lineage (13 sites / 13 expanded).",
+      "id": "T42",
+      "identities": [
+        {
+          "canonical_id": "exclusion/mass_storage_barrel",
+          "closure": "incomplete",
+          "disposition": "planned",
+          "domain": "exclusion",
+          "historical_classification": {
+            "t13": "excluded_before_classification",
+            "t27": null
+          },
+          "owner": "portfolio:storage/mass_storage_barrel",
+          "portfolio_priority": "P1",
+          "portfolio_scope": "in_scope_1x",
+          "source_lineage": {
+            "artifact": "tools/t35_excluded_object_reclaim.json",
+            "expanded_rows": 13,
+            "record_keys": [],
+            "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+            "source_sites": 13
+          }
+        }
+      ],
+      "integration_profile": "census",
+      "kind": "generated",
+      "merge_key": {
+        "domain": "exclusion",
+        "fidelity": "source_backed",
+        "load": "pending",
+        "load_verdict": "BLOCKED_PENDING_MEASUREMENT",
+        "owner": "portfolio:storage/mass_storage_barrel"
+      },
+      "owner_keys": [
+        "portfolio:storage/mass_storage_barrel"
+      ],
+      "projected_load_interval": null,
+      "publication_delta": {
+        "eager": 0,
+        "lazy": 0,
+        "logical": 0
+      },
+      "recheck_points": [
+        "generated T38+ storage-track card"
+      ],
+      "replacement_conditions": [
+        "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage."
+      ],
+      "source_lineage": [
+        {
+          "canonical_id": "exclusion/mass_storage_barrel",
+          "disposition": "planned",
+          "owner": "portfolio:storage/mass_storage_barrel",
+          "portfolio_priority": "P1",
+          "portfolio_scope": "in_scope_1x",
+          "recheck_point": "generated T38+ storage-track card",
+          "replacement_condition": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "source": {
+            "artifact": "tools/t35_excluded_object_reclaim.json",
+            "expanded_rows": 13,
+            "record_keys": [],
+            "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+            "source_sites": 13
+          }
+        }
+      ],
+      "started": false,
+      "track": "exclusion"
+    },
+    {
+      "axes": {
+        "closure": {
+          "entry": "tools/t35_excluded_object_reclaim.json",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "entry": "763/1701 exclusion reclaim lineage",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "source_backed"
+        },
+        "load": {
+          "entry": "Exclusion family load requires bounded storage-track measurement.",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "depends_on": [
+        "T36",
+        "T37"
+      ],
+      "expected_player_path": "Source-backed storage family on the announced 1.x storage track; retains exact lineage (4 sites / 4 expanded).",
+      "id": "T43",
+      "identities": [
+        {
+          "canonical_id": "exclusion/mass_storage_box",
+          "closure": "incomplete",
+          "disposition": "planned",
+          "domain": "exclusion",
+          "historical_classification": {
+            "t13": "excluded_before_classification",
+            "t27": null
+          },
+          "owner": "portfolio:storage/mass_storage_box",
+          "portfolio_priority": "P1",
+          "portfolio_scope": "in_scope_1x",
+          "source_lineage": {
+            "artifact": "tools/t35_excluded_object_reclaim.json",
+            "expanded_rows": 4,
+            "record_keys": [],
+            "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+            "source_sites": 4
+          }
+        }
+      ],
+      "integration_profile": "census",
+      "kind": "generated",
+      "merge_key": {
+        "domain": "exclusion",
+        "fidelity": "source_backed",
+        "load": "pending",
+        "load_verdict": "BLOCKED_PENDING_MEASUREMENT",
+        "owner": "portfolio:storage/mass_storage_box"
+      },
+      "owner_keys": [
+        "portfolio:storage/mass_storage_box"
+      ],
+      "projected_load_interval": null,
+      "publication_delta": {
+        "eager": 0,
+        "lazy": 0,
+        "logical": 0
+      },
+      "recheck_points": [
+        "generated T38+ storage-track card"
+      ],
+      "replacement_conditions": [
+        "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage."
+      ],
+      "source_lineage": [
+        {
+          "canonical_id": "exclusion/mass_storage_box",
+          "disposition": "planned",
+          "owner": "portfolio:storage/mass_storage_box",
+          "portfolio_priority": "P1",
+          "portfolio_scope": "in_scope_1x",
+          "recheck_point": "generated T38+ storage-track card",
+          "replacement_condition": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "source": {
+            "artifact": "tools/t35_excluded_object_reclaim.json",
+            "expanded_rows": 4,
+            "record_keys": [],
+            "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+            "source_sites": 4
+          }
+        }
+      ],
+      "started": false,
+      "track": "exclusion"
+    },
+    {
+      "axes": {
+        "closure": {
+          "entry": "tools/t35_excluded_object_reclaim.json",
+          "exit": "Storage-track card must link logistics mass storage separately.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "entry": "763/1701 exclusion reclaim lineage",
+          "exit": "Storage-track card must link logistics mass storage separately.",
+          "status": "source_backed"
+        },
+        "load": {
+          "entry": "Exclusion family load requires bounded storage-track measurement.",
+          "exit": "Storage-track card must link logistics mass storage separately.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "depends_on": [
+        "T36",
+        "T37"
+      ],
+      "expected_player_path": "Cross-category Logistics storage behavior adjacent to Storage 28/624; included on storage track without inflating Storage 624 denominator.",
+      "id": "T44",
+      "identities": [
+        {
+          "canonical_id": "exclusion/mass_storage_logistics",
+          "closure": "incomplete",
+          "disposition": "planned",
+          "domain": "exclusion",
+          "historical_classification": {
+            "t13": "excluded_before_classification",
+            "t27": null
+          },
+          "owner": "portfolio:storage/mass_storage_logistics",
+          "portfolio_priority": "P1",
+          "portfolio_scope": "in_scope_1x",
+          "source_lineage": {
+            "artifact": "tools/t35_excluded_object_reclaim.json",
+            "expanded_rows": 1,
+            "record_keys": [],
+            "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+            "source_sites": 1
+          }
+        }
+      ],
+      "integration_profile": "census",
+      "kind": "generated",
+      "merge_key": {
+        "domain": "exclusion",
+        "fidelity": "source_backed",
+        "load": "pending",
+        "load_verdict": "BLOCKED_PENDING_MEASUREMENT",
+        "owner": "portfolio:storage/mass_storage_logistics"
+      },
+      "owner_keys": [
+        "portfolio:storage/mass_storage_logistics"
+      ],
+      "projected_load_interval": null,
+      "publication_delta": {
+        "eager": 0,
+        "lazy": 0,
+        "logical": 0
+      },
+      "recheck_points": [
+        "generated T38+ storage-track card"
+      ],
+      "replacement_conditions": [
+        "Storage-track card must link logistics mass storage separately."
+      ],
+      "source_lineage": [
+        {
+          "canonical_id": "exclusion/mass_storage_logistics",
+          "disposition": "planned",
+          "owner": "portfolio:storage/mass_storage_logistics",
+          "portfolio_priority": "P1",
+          "portfolio_scope": "in_scope_1x",
+          "recheck_point": "generated T38+ storage-track card",
+          "replacement_condition": "Storage-track card must link logistics mass storage separately.",
+          "source": {
+            "artifact": "tools/t35_excluded_object_reclaim.json",
+            "expanded_rows": 1,
+            "record_keys": [],
+            "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+            "source_sites": 1
+          }
+        }
+      ],
+      "started": false,
+      "track": "exclusion"
+    },
+    {
+      "axes": {
+        "closure": {
+          "entry": "tools/t35_excluded_object_reclaim.json",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "entry": "763/1701 exclusion reclaim lineage",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "source_backed"
+        },
+        "load": {
+          "entry": "Exclusion family load requires bounded storage-track measurement.",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "depends_on": [
+        "T36",
+        "T37"
+      ],
+      "expected_player_path": "Source-backed storage family on the announced 1.x storage track; retains exact lineage (1 sites / 1 expanded).",
+      "id": "T45",
+      "identities": [
+        {
+          "canonical_id": "exclusion/mass_storage_standard",
+          "closure": "incomplete",
+          "disposition": "planned",
+          "domain": "exclusion",
+          "historical_classification": {
+            "t13": "excluded_before_classification",
+            "t27": null
+          },
+          "owner": "portfolio:storage/mass_storage_standard",
+          "portfolio_priority": "P1",
+          "portfolio_scope": "in_scope_1x",
+          "source_lineage": {
+            "artifact": "tools/t35_excluded_object_reclaim.json",
+            "expanded_rows": 1,
+            "record_keys": [],
+            "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+            "source_sites": 1
+          }
+        }
+      ],
+      "integration_profile": "census",
+      "kind": "generated",
+      "merge_key": {
+        "domain": "exclusion",
+        "fidelity": "source_backed",
+        "load": "pending",
+        "load_verdict": "BLOCKED_PENDING_MEASUREMENT",
+        "owner": "portfolio:storage/mass_storage_standard"
+      },
+      "owner_keys": [
+        "portfolio:storage/mass_storage_standard"
+      ],
+      "projected_load_interval": null,
+      "publication_delta": {
+        "eager": 0,
+        "lazy": 0,
+        "logical": 0
+      },
+      "recheck_points": [
+        "generated T38+ storage-track card"
+      ],
+      "replacement_conditions": [
+        "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage."
+      ],
+      "source_lineage": [
+        {
+          "canonical_id": "exclusion/mass_storage_standard",
+          "disposition": "planned",
+          "owner": "portfolio:storage/mass_storage_standard",
+          "portfolio_priority": "P1",
+          "portfolio_scope": "in_scope_1x",
+          "recheck_point": "generated T38+ storage-track card",
+          "replacement_condition": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "source": {
+            "artifact": "tools/t35_excluded_object_reclaim.json",
+            "expanded_rows": 1,
+            "record_keys": [],
+            "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+            "source_sites": 1
+          }
+        }
+      ],
+      "started": false,
+      "track": "exclusion"
+    },
+    {
+      "axes": {
+        "closure": {
+          "entry": "tools/t35_excluded_object_reclaim.json",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "entry": "763/1701 exclusion reclaim lineage",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "source_backed"
+        },
+        "load": {
+          "entry": "Exclusion family load requires bounded storage-track measurement.",
+          "exit": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "depends_on": [
+        "T36",
+        "T37"
+      ],
+      "expected_player_path": "Source-backed storage family on the announced 1.x storage track; retains exact lineage (1 sites / 1 expanded).",
+      "id": "T46",
+      "identities": [
+        {
+          "canonical_id": "exclusion/storage_inserter",
+          "closure": "incomplete",
+          "disposition": "planned",
+          "domain": "exclusion",
+          "historical_classification": {
+            "t13": "excluded_before_classification",
+            "t27": null
+          },
+          "owner": "portfolio:storage/storage_inserter",
+          "portfolio_priority": "P1",
+          "portfolio_scope": "in_scope_1x",
+          "source_lineage": {
+            "artifact": "tools/t35_excluded_object_reclaim.json",
+            "expanded_rows": 1,
+            "record_keys": [],
+            "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+            "source_sites": 1
+          }
+        }
+      ],
+      "integration_profile": "census",
+      "kind": "generated",
+      "merge_key": {
+        "domain": "exclusion",
+        "fidelity": "source_backed",
+        "load": "pending",
+        "load_verdict": "BLOCKED_PENDING_MEASUREMENT",
+        "owner": "portfolio:storage/storage_inserter"
+      },
+      "owner_keys": [
+        "portfolio:storage/storage_inserter"
+      ],
+      "projected_load_interval": null,
+      "publication_delta": {
+        "eager": 0,
+        "lazy": 0,
+        "logical": 0
+      },
+      "recheck_points": [
+        "generated T38+ storage-track card"
+      ],
+      "replacement_conditions": [
+        "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage."
+      ],
+      "source_lineage": [
+        {
+          "canonical_id": "exclusion/storage_inserter",
+          "disposition": "planned",
+          "owner": "portfolio:storage/storage_inserter",
+          "portfolio_priority": "P1",
+          "portfolio_scope": "in_scope_1x",
+          "recheck_point": "generated T38+ storage-track card",
+          "replacement_condition": "Future storage-track card must preserve canonical family boundary and source multiplicity; not equivalent to generic chests or material storage.",
+          "source": {
+            "artifact": "tools/t35_excluded_object_reclaim.json",
+            "expanded_rows": 1,
+            "record_keys": [],
+            "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+            "source_sites": 1
+          }
+        }
+      ],
+      "started": false,
+      "track": "exclusion"
+    }
+  ],
+  "currentness": {
+    "census_source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "census_status": "T35_CENSUS_AGGREGATED",
+    "census_validators": {
+      "dependency_cycles": 0,
+      "dependency_errors": 0,
+      "duplicate_runtime_mapping": 0,
+      "orphan_runtime_targets": 0,
+      "owner_violations": 0,
+      "scope_errors": 0,
+      "source_publication_delta": 0,
+      "unclassified": 0,
+      "unmapped_runtime": 0,
+      "unscoped": 0
+    },
+    "owned_inputs": {
+      "tools/build_t35_card_topology.py": "009b99232b460e5f3e150934647722a19f5f4117dfee4434d5b1d315f4f9d9e5",
+      "tools/t35_census.json": "c179b888f7abacfd0a34861d47e92653c1fbdbf386e598cb19b17f66915bbb36",
+      "tools/t35_census_policy.json": "0482afb37dd8aa3558071f9c3488d7e7d89e42cc53cd7e75b36553b1258af7e4"
+    }
+  },
+  "epoch_b": {
+    "admission": "candidate_1x families with ADMITTED_UNDER_SOFT after T37 closure",
+    "admitted_family_count": 0,
+    "appended_card_count": 0,
+    "may_renumber_epoch_a": false,
+    "policy": "append_only"
+  },
+  "exclusion": {
+    "p2_blocked_count": 781,
+    "p3_disposition_count": 8005,
+    "t37_pilot_families": [
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0002",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0003",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0004",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0005",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0006",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0007",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0008",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0009",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0010",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0011",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0012",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0013",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0014",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0015",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0016",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0017",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0018",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0019",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0020",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0021",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0022",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0023",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0024",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0025",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0026",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0027",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0028",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0029",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0030",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0031",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0032",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0033",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0034",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0035",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0036",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0037",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0038",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0039",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0040",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0041",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0042",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0043",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0044",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0045",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0046",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0047",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0048",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0049",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0050",
+      "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0051"
+    ],
+    "t37_pilot_host_map": "cruciblecraft:assembler",
+    "t37_pilot_source_rows": 50
+  },
+  "fixed_card_nodes": {
+    "T36": {
+      "generated_card": false,
+      "id": "T36",
+      "title": "machine registration/tier matrix"
+    },
+    "T37": {
+      "generated_card": false,
+      "id": "T37",
+      "title": "ordinary_optional pilot"
+    }
+  },
+  "fixed_cards": [
+    {
+      "generated_card": false,
+      "id": "T36",
+      "publication_delta": {
+        "eager": 0,
+        "lazy": 0,
+        "logical": 0
+      },
+      "started": false,
+      "title": "machine registration/tier matrix"
+    },
+    {
+      "generated_card": false,
+      "id": "T37",
+      "pilot": {
+        "family_ids": [
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0002",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0003",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0004",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0005",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0006",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0007",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0008",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0009",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0010",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0011",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0012",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0013",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0014",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0015",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0016",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0017",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0018",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0019",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0020",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0021",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0022",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0023",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0024",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0025",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0026",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0027",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0028",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0029",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0030",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0031",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0032",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0033",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0034",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0035",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0036",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0037",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0038",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0039",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0040",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0041",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0042",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0043",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0044",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0045",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0046",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0047",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0048",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0049",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0050",
+          "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0051"
+        ],
+        "host_map": "cruciblecraft:assembler",
+        "selection_method": "deterministic_bundle: first playable non-bath/smelter/mixer host by cc_host_map; accumulate families by family_id until source_rows in [50, 200]",
+        "source_rows": 50
+      },
+      "publication_delta": {
+        "eager": 0,
+        "lazy": 0,
+        "logical": 0
+      },
+      "started": false,
+      "title": "ordinary_optional pilot"
+    }
+  ],
+  "generated_by": "python tools/build_t35_card_topology.py --write",
+  "generated_card_count": 9,
+  "global_execution_gate": "T37",
+  "merge_rule": "same owner, domain, fidelity status, load status, and load verdict; must not cross fixed-card gates",
+  "numbering_policy": "regenerate_once_then_append_only",
+  "owner_resolution": {
+    "portfolio:storage/bookshelf": "T38",
+    "portfolio:storage/bottle_crate": "T39",
+    "portfolio:storage/drawer": "T40",
+    "portfolio:storage/locker": "T41",
+    "portfolio:storage/mass_storage_barrel": "T42",
+    "portfolio:storage/mass_storage_box": "T43",
+    "portfolio:storage/mass_storage_logistics": "T44",
+    "portfolio:storage/mass_storage_standard": "T45",
+    "portfolio:storage/storage_inserter": "T46"
+  },
+  "publication_delta": {
+    "eager": 0,
+    "lazy": 0,
+    "logical": 0
+  },
+  "schema_version": 1,
+  "selection": "portfolio_scope == in_scope_1x AND disposition == planned AND closure != closed AND (portfolio_priority in {P0,P1} OR (portfolio_priority == P2 AND p2_admission == ADMITTED_UNDER_SOFT))",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "start_number": 38,
+  "started": false,
+  "status": "T35_CARD_TOPOLOGY",
+  "topology_epoch": "T35R_A",
+  "validators": {
+    "broken_dependencies": 0,
+    "cycles": 0,
+    "duplicate_owner_resolution": 0,
+    "started_generated_cards": 0,
+    "t37_gate_bypass": 0,
+    "t37_pilot_in_generated_cards": 0
+  }
+}

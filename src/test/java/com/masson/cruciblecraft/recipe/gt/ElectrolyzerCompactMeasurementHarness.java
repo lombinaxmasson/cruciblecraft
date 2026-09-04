@@ -817,7 +817,7 @@ class ElectrolyzerCompactMeasurementHarness {
             List<CandidateMeasurement> multiCandidates,
             List<CandidateMeasurement> cardCandidates) {
         Map<String, Object> input = new LinkedHashMap<>();
-        input.put("kind", "t40_production_lock_22_relation_rows");
+        input.put("kind", "electrolyzer_production_lock_22_relation_rows");
         input.put("logical_rows", CARD_LOGICAL);
         input.put("measured_logical_rows", List.of(SINGLETON_LOGICAL, MULTI_LOGICAL, CARD_LOGICAL));
         input.put("generated_datapack_present", true);
@@ -841,17 +841,17 @@ class ElectrolyzerCompactMeasurementHarness {
 
         Map<String, Object> root = new LinkedHashMap<>();
         root.put("schema_version", 1);
-        root.put("status", "T40_MATERIALIZATION_MEASUREMENT_READY");
+        root.put("status", "ELECTROLYZER_COMPACT_MATERIALIZATION_MEASUREMENT_READY");
         root.put("production_winner_claimed", false);
         root.put("protocol", Map.of(
-                "id", "t40_materialization_production_lock_v2",
+                "id", "electrolyzer_materialization_production_lock_v2",
                 "ranking_scale", "1x",
                 "diagnostic_scales_not_for_production", List.of("5x", "20x"),
                 "single_wall_clock_sample_forbidden", true,
                 "p50_p95_invented", false,
                 "sample_count", SAMPLE_COUNT));
         root.put("input", input);
-        root.put("t40_opening", t40Opening());
+        root.put("electrolyzer_opening", t40Opening());
         root.put("family_work_set", family);
         root.put("scenarios", List.of(
                 scenario("singleton", SINGLETON_LOGICAL, SINGLETON_FAMILIES, singletonCandidates),
@@ -873,7 +873,7 @@ class ElectrolyzerCompactMeasurementHarness {
 
     private static Map<String, Object> t40Opening() {
         Map<String, Object> opening = new LinkedHashMap<>();
-        opening.put("source", "tools/t39_readiness.json#t40_opening.t14_closing");
+        opening.put("source", "tools/centrifuge_readiness.json#electrolyzer_opening.recipe_load_closing");
         opening.put("datapack_authored_entries", 3720);
         opening.put("eager_publication_rows", 16659);
         opening.put("lazy_logical_rows", 2366);

@@ -14,9 +14,9 @@ class CompactRecipeRuntimeWaveSliceTest {
     void extraComposedGroupKeepsAssemblerThroughBathMteSliceAt13() {
         JsonArray groups = new JsonArray();
         for (int index = 0; index < 13; index++) {
-            groups.add(group("T46", "cruciblecraft:t46_group_" + index));
+            groups.add(group("bath/mte", "cruciblecraft:bath_mte_group_" + index));
         }
-        groups.add(group("T48", "cruciblecraft:t48_fake"));
+        groups.add(group("bath/identity", "cruciblecraft:bath_identity_fake"));
         JsonArray sliced = CompactRecipeRuntimeWaveSlice.groupsThroughBathMte(groups);
         assertEquals(13, sliced.size());
         for (int index = 0; index < sliced.size(); index++) {
@@ -33,7 +33,7 @@ class CompactRecipeRuntimeWaveSliceTest {
         JsonObject legacy = new JsonObject();
         legacy.addProperty("publication_group", "cruciblecraft:legacy");
         groups.add(legacy);
-        groups.add(group("T47", "cruciblecraft:bath/remainder/exact"));
+        groups.add(group("bath/remainder", "cruciblecraft:bath/remainder/exact"));
         JsonArray sliced = CompactRecipeRuntimeWaveSlice.groupsThroughBathMte(groups);
         assertEquals(1, sliced.size());
         assertEquals(

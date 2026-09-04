@@ -54,7 +54,7 @@ class ComponentRuleBuilderTest(unittest.TestCase):
         self.assertEqual("iron", correction["entries"][0]["material"])
         self.assertEqual(["wire"], correction["entries"][0]["add_forms"])
         self.assertEqual(64, len(correction["digest"]))
-        electrical = manifest["t6_electrical_form_expansion"]
+        electrical = manifest["electrical_form_expansion"]
         self.assertEqual(5, electrical["expansion_delta"])
         self.assertEqual(
             [

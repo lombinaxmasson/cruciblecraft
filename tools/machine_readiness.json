@@ -1,0 +1,94 @@
+{
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T22.5 mapping, classification and denominator recompute gates are complete; repository-wide verification is bound separately by the full snapshot report."
+  },
+  "completed_stages": [
+    "T22_5a",
+    "T22_5b",
+    "T22_5c",
+    "T22_5d"
+  ],
+  "currentness": {
+    "full_verification": {
+      "evidence": "tools/full_verification_report.json",
+      "pending": [],
+      "status": "BOUND_TO_FULL_VERIFICATION_REPORT"
+    },
+    "owned_inputs": {
+      "tools/build_t22_5_readiness.py": "3497a7b5f81eae50c3cf8101985994290a119e56c66a055769e5ee421b64a783",
+      "tools/t22_5_readiness_policy.json": "e80549549c0c2a16ff48d22a1a17ba86c6a61fd847e5a3098fbafb92f7efcff5"
+    }
+  },
+  "evidence": {
+    "a0_ledger_terminology": {
+      "marked": true,
+      "superseded_by": "tools/t21_template_denominator.json"
+    },
+    "a1_shape_analysis": {
+      "bath_rows_per_unit": 43.5309,
+      "duplicate": 0,
+      "maps": 9,
+      "publication_delta": 0,
+      "unassigned": 0
+    },
+    "a2_fluid_mapping": {
+      "mapped": 302,
+      "no_cc_fluid": 18,
+      "out_of_scope": 2,
+      "publication_delta": 0,
+      "total": 322,
+      "unclassified": 0
+    },
+    "a3_item_classification": {
+      "total_occurrences": 115481,
+      "unclassified": 0
+    },
+    "b1_row_classification": {
+      "by_class": {
+        "already_covered": 8,
+        "cross_mod_compat": 48247,
+        "generic_processing": 102,
+        "ordinary_optional": 78682,
+        "ore_processing_byproduct": 894,
+        "out_of_scope": 5860,
+        "post_1_0_g10": 13042,
+        "post_1_0_nuclear": 6,
+        "v1_required": 0
+      },
+      "total": 146841,
+      "unclassified": 0
+    },
+    "b2_fluid_gap_disposition": {
+      "material_tree_matches": true,
+      "materials": 15,
+      "no_registration": 15,
+      "register": 0
+    },
+    "c0_machine_playability": {
+      "blockers": [
+        "cruciblecraft:anvil_bend_big",
+        "cruciblecraft:anvil_bend_small",
+        "cruciblecraft:cooling"
+      ],
+      "blockers_all_owned": true,
+      "registered_maps": 32,
+      "zero_blockers": 3
+    },
+    "c1_denominator_recompute": {
+      "ceiling_adjustment": "not required",
+      "column_sum": 146841,
+      "justification_present": true,
+      "v1": 0
+    },
+    "c2_beta_wording": {
+      "wording_updated": true
+    }
+  },
+  "pending_stages": [],
+  "policy": "The status field is derived from evidence by build(). Any mismatch between the committed value and a fresh build is detected by check().",
+  "schema_version": 1,
+  "status": "T22_5_READY",
+  "status_owner": "run_full_verification"
+}

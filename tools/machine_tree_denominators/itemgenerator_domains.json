@@ -1,0 +1,890 @@
+{
+  "artifact_kind": "t13_itemgenerator_domain_denominator",
+  "declared_transformations": [
+    {
+      "description": "TagData.createTagData serialized identities are canonical source identities.",
+      "id": "DOMAIN_TD_IDENTITY",
+      "kind": "identity"
+    },
+    {
+      "description": "GASSES is a source field alias of GASES and never creates a second domain.",
+      "id": "DOMAIN_SOURCE_ALIAS",
+      "kind": "many_to_one"
+    },
+    {
+      "description": "The denominator contains the 25 TD identities observed by the fixed GT6 material dump; eight source-declared but unobserved identities remain in an exclusion ledger.",
+      "id": "DOMAIN_OBSERVED_FILTER",
+      "kind": "selection"
+    },
+    {
+      "description": "The frozen second-stage boundary identifies exactly 16 current CrucibleCraft domains.",
+      "id": "DOMAIN_CC_CURRENT_MAPPING",
+      "kind": "mapping"
+    }
+  ],
+  "field_cardinality": {
+    "output_domain_records": {
+      "distinct_count_distribution": {
+        "10": 3,
+        "14": 1,
+        "2": 2,
+        "24": 1,
+        "25": 4,
+        "3": 3,
+        "5": 1
+      },
+      "field_count": 15,
+      "fields": {
+        "canonical_id": {
+          "distinct_count": 25,
+          "missing_count": 0,
+          "null_count": 0,
+          "present_count": 25,
+          "type_distribution": {
+            "string": 25
+          }
+        },
+        "cc_current_domain": {
+          "distinct_count": 2,
+          "missing_count": 0,
+          "null_count": 0,
+          "present_count": 25,
+          "type_distribution": {
+            "boolean": 25
+          }
+        },
+        "classification": {
+          "distinct_count": 3,
+          "missing_count": 0,
+          "null_count": 0,
+          "present_count": 25,
+          "type_distribution": {
+            "string": 25
+          }
+        },
+        "direct_cc_generation_flag_forms": {
+          "distinct_count": 10,
+          "missing_count": 0,
+          "null_count": 0,
+          "present_count": 25,
+          "type_distribution": {
+            "array": 25
+          }
+        },
+        "exact_single_tag_cc_runtime_forms": {
+          "distinct_count": 10,
+          "missing_count": 0,
+          "null_count": 0,
+          "present_count": 25,
+          "type_distribution": {
+            "array": 25
+          }
+        },
+        "exact_single_tag_prefixes": {
+          "distinct_count": 14,
+          "missing_count": 0,
+          "null_count": 0,
+          "present_count": 25,
+          "type_distribution": {
+            "array": 25
+          }
+        },
+        "generation_flag": {
+          "distinct_count": 25,
+          "missing_count": 0,
+          "null_count": 0,
+          "present_count": 25,
+          "type_distribution": {
+            "string": 25
+          }
+        },
+        "owner": {
+          "distinct_count": 5,
+          "missing_count": 0,
+          "null_count": 0,
+          "present_count": 25,
+          "type_distribution": {
+            "string": 25
+          }
+        },
+        "reason": {
+          "distinct_count": 10,
+          "missing_count": 0,
+          "null_count": 0,
+          "present_count": 25,
+          "type_distribution": {
+            "string": 25
+          }
+        },
+        "recheck_point": {
+          "distinct_count": 2,
+          "missing_count": 22,
+          "null_count": 0,
+          "present_count": 3,
+          "type_distribution": {
+            "string": 3
+          }
+        },
+        "replacement_condition": {
+          "distinct_count": 3,
+          "missing_count": 22,
+          "null_count": 0,
+          "present_count": 3,
+          "type_distribution": {
+            "string": 3
+          }
+        },
+        "scope_group": {
+          "distinct_count": 3,
+          "missing_count": 0,
+          "null_count": 0,
+          "present_count": 25,
+          "type_distribution": {
+            "string": 25
+          }
+        },
+        "source_field": {
+          "distinct_count": 25,
+          "missing_count": 0,
+          "null_count": 0,
+          "present_count": 25,
+          "type_distribution": {
+            "string": 25
+          }
+        },
+        "source_material_count": {
+          "distinct_count": 24,
+          "missing_count": 0,
+          "null_count": 0,
+          "present_count": 25,
+          "type_distribution": {
+            "integer": 25
+          }
+        },
+        "source_material_id_set_sha256": {
+          "distinct_count": 25,
+          "missing_count": 0,
+          "null_count": 0,
+          "present_count": 25,
+          "type_distribution": {
+            "string": 25
+          }
+        }
+      },
+      "row_count": 25
+    },
+    "source_report_rows": {
+      "distinct_count_distribution": {
+        "24": 1,
+        "25": 1
+      },
+      "field_count": 2,
+      "fields": {
+        "material_count": {
+          "distinct_count": 24,
+          "missing_count": 0,
+          "null_count": 0,
+          "present_count": 25,
+          "type_distribution": {
+            "integer": 25
+          }
+        },
+        "tag": {
+          "distinct_count": 25,
+          "missing_count": 0,
+          "null_count": 0,
+          "present_count": 25,
+          "type_distribution": {
+            "string": 25
+          }
+        }
+      },
+      "row_count": 25
+    }
+  },
+  "generation": {
+    "builder_sha256": "e5204949d7ee0af7d47c41e11ffe3b013ae2142795c12ceca81859a64b5c427a",
+    "command": "python tools/build_t13_prefix_domain_denominators.py",
+    "policy": "tools/t13_prefix_domain_policy.json",
+    "policy_sha256": "28cca3d473bdfae4e73d7defcc667a33be30ad17ddbc7952137be4757786154c",
+    "proof_tier": "full_replay"
+  },
+  "identity_policy": {
+    "material_key": "source_id >= 0",
+    "observed_filter": "identity must be present in the fixed tag report, generation bits, and independent nonnegative source_id material scan",
+    "source_declaration": "TD.ItemGenerator TagData.createTagData"
+  },
+  "records": [
+    {
+      "canonical_id": "ITEMGENERATOR.ARMORS",
+      "cc_current_domain": false,
+      "classification": "out_of_scope",
+      "direct_cc_generation_flag_forms": [],
+      "exact_single_tag_cc_runtime_forms": [],
+      "exact_single_tag_prefixes": [],
+      "generation_flag": "gt6:itemgenerator/armors",
+      "owner": "out",
+      "reason": "Material-derived armor generation is a G10 peripheral domain outside T14-T19.",
+      "scope_group": "G10_peripheral",
+      "source_field": "ARMORS",
+      "source_material_count": 613,
+      "source_material_id_set_sha256": "e087df19d27f41f9e63ab98c4c89a98e3509e5c4ffcd6544f7eb755cbe04eb43"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.CONTAINERS",
+      "cc_current_domain": false,
+      "classification": "deferred_with_reason",
+      "direct_cc_generation_flag_forms": [],
+      "exact_single_tag_cc_runtime_forms": [],
+      "exact_single_tag_prefixes": [],
+      "generation_flag": "gt6:itemgenerator/containers",
+      "owner": "post-T19",
+      "reason": "Generic containers are broader than the current fluid/gas cell routes.",
+      "recheck_point": "Recheck after T19.",
+      "replacement_condition": "A source-backed generic container identity and acquisition model is selected.",
+      "scope_group": "G10_peripheral",
+      "source_field": "CONTAINERS",
+      "source_material_count": 95,
+      "source_material_id_set_sha256": "817faea339c72b2db2e444aa3d193d86e4af32d54f43fd06ef77ca9c946d1ef7"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.CONTAINERS_FLUID",
+      "cc_current_domain": true,
+      "classification": "in_scope",
+      "direct_cc_generation_flag_forms": [],
+      "exact_single_tag_cc_runtime_forms": [],
+      "exact_single_tag_prefixes": [],
+      "generation_flag": "gt6:itemgenerator/containers_fluid",
+      "owner": "T15",
+      "reason": "Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "scope_group": "current_cc_16",
+      "source_field": "CONTAINERS_FLUID",
+      "source_material_count": 61,
+      "source_material_id_set_sha256": "3353c197e8d4a16eedd1efd957d9a4855eec5b9a74a6bd6c6c0caa3737ad8169"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.CONTAINERS_GAS",
+      "cc_current_domain": true,
+      "classification": "in_scope",
+      "direct_cc_generation_flag_forms": [],
+      "exact_single_tag_cc_runtime_forms": [],
+      "exact_single_tag_prefixes": [],
+      "generation_flag": "gt6:itemgenerator/containers_gas",
+      "owner": "T15",
+      "reason": "Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "scope_group": "current_cc_16",
+      "source_field": "CONTAINERS_GAS",
+      "source_material_count": 48,
+      "source_material_id_set_sha256": "5554b6f531fb55fe97498460f1f99de9c308f5f6b536ccba3eb4cc5625ad7080"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.DENSEPLATES",
+      "cc_current_domain": true,
+      "classification": "in_scope",
+      "direct_cc_generation_flag_forms": [
+        "cruciblecraft:dense_plate"
+      ],
+      "exact_single_tag_cc_runtime_forms": [
+        "cruciblecraft:dense_plate"
+      ],
+      "exact_single_tag_prefixes": [
+        "plateDense"
+      ],
+      "generation_flag": "gt6:itemgenerator/denseplates",
+      "owner": "T14",
+      "reason": "Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "scope_group": "current_cc_16",
+      "source_field": "DENSEPLATES",
+      "source_material_count": 436,
+      "source_material_id_set_sha256": "66f5194a1c793583bc14b9b658ab67450fffd054a4b2219cf2e8c150f4edab69"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.DUSTS",
+      "cc_current_domain": true,
+      "classification": "in_scope",
+      "direct_cc_generation_flag_forms": [],
+      "exact_single_tag_cc_runtime_forms": [
+        "cruciblecraft:small_dust",
+        "cruciblecraft:tiny_dust"
+      ],
+      "exact_single_tag_prefixes": [
+        "blockDust",
+        "crateGt64Dust",
+        "crateGtDust",
+        "dustDiv72",
+        "dustSmall",
+        "dustTiny"
+      ],
+      "generation_flag": "gt6:itemgenerator/dusts",
+      "owner": "T14",
+      "reason": "Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "scope_group": "current_cc_16",
+      "source_field": "DUSTS",
+      "source_material_count": 1096,
+      "source_material_id_set_sha256": "32b68013dbb43fa9c978f5ab133373e43e7111b59e06afc69684347b2beabe42"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.EMPTY",
+      "cc_current_domain": false,
+      "classification": "out_of_scope",
+      "direct_cc_generation_flag_forms": [],
+      "exact_single_tag_cc_runtime_forms": [],
+      "exact_single_tag_prefixes": [
+        "book",
+        "paper"
+      ],
+      "generation_flag": "gt6:itemgenerator/empty",
+      "owner": "out",
+      "reason": "EMPTY is a source sentinel/material shortcut, not a standalone CrucibleCraft generated form.",
+      "scope_group": "G10_peripheral",
+      "source_field": "EMPTY",
+      "source_material_count": 1,
+      "source_material_id_set_sha256": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.FOILS",
+      "cc_current_domain": true,
+      "classification": "in_scope",
+      "direct_cc_generation_flag_forms": [
+        "cruciblecraft:foil"
+      ],
+      "exact_single_tag_cc_runtime_forms": [
+        "cruciblecraft:foil"
+      ],
+      "exact_single_tag_prefixes": [
+        "foil"
+      ],
+      "generation_flag": "gt6:itemgenerator/foils",
+      "owner": "T14",
+      "reason": "Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "scope_group": "current_cc_16",
+      "source_field": "FOILS",
+      "source_material_count": 566,
+      "source_material_id_set_sha256": "3ba78dd8afef72a23ab4344ec64df2a5d3d0ac6b73b7ba22e3e99df65cf6b362"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.GASES",
+      "cc_current_domain": false,
+      "classification": "out_of_scope",
+      "direct_cc_generation_flag_forms": [],
+      "exact_single_tag_cc_runtime_forms": [],
+      "exact_single_tag_prefixes": [],
+      "generation_flag": "gt6:itemgenerator/gases",
+      "owner": "out",
+      "reason": "Gas is represented by fluid state and container eligibility rather than a generated material item domain.",
+      "scope_group": "G10_peripheral",
+      "source_field": "GASES",
+      "source_material_count": 32,
+      "source_material_id_set_sha256": "30bcc24e73bdc7eb53b784fb6651727aaa633b65f9cd98e7c3ae90fa408881d9"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.GEMS",
+      "cc_current_domain": true,
+      "classification": "in_scope",
+      "direct_cc_generation_flag_forms": [
+        "cruciblecraft:gem"
+      ],
+      "exact_single_tag_cc_runtime_forms": [],
+      "exact_single_tag_prefixes": [],
+      "generation_flag": "gt6:itemgenerator/gems",
+      "owner": "T14",
+      "reason": "Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "scope_group": "current_cc_16",
+      "source_field": "GEMS",
+      "source_material_count": 217,
+      "source_material_id_set_sha256": "7ecfe6d21439bac2088edc4ebad6aa64781b242e60ac9d13e7b864f39de65466"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.INGOTS",
+      "cc_current_domain": true,
+      "classification": "in_scope",
+      "direct_cc_generation_flag_forms": [],
+      "exact_single_tag_cc_runtime_forms": [
+        "cruciblecraft:block"
+      ],
+      "exact_single_tag_prefixes": [
+        "billet",
+        "blockIngot",
+        "chunkGt",
+        "crateGt64Ingot",
+        "crateGtIngot"
+      ],
+      "generation_flag": "gt6:itemgenerator/ingots",
+      "owner": "T14",
+      "reason": "Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "scope_group": "current_cc_16",
+      "source_field": "INGOTS",
+      "source_material_count": 483,
+      "source_material_id_set_sha256": "e017ac79646392f2ac6ee7ad9d846925719358f2fa9915380f2ef63401a4c2ef"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.INGOTS_HOT",
+      "cc_current_domain": true,
+      "classification": "in_scope",
+      "direct_cc_generation_flag_forms": [
+        "cruciblecraft:ingot_hot"
+      ],
+      "exact_single_tag_cc_runtime_forms": [],
+      "exact_single_tag_prefixes": [],
+      "generation_flag": "gt6:itemgenerator/ingots_hot",
+      "owner": "T15",
+      "reason": "Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "scope_group": "current_cc_16",
+      "source_field": "INGOTS_HOT",
+      "source_material_count": 433,
+      "source_material_id_set_sha256": "03f44644a6b7fb6f7442d74db339285cf02978f567b8bcbe3576040340bfcb28"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.LENSES",
+      "cc_current_domain": false,
+      "classification": "deferred_with_reason",
+      "direct_cc_generation_flag_forms": [],
+      "exact_single_tag_cc_runtime_forms": [],
+      "exact_single_tag_prefixes": [
+        "lens"
+      ],
+      "generation_flag": "gt6:itemgenerator/lenses",
+      "owner": "T16-19",
+      "reason": "Lens forms are not in the current 56-prefix runtime set.",
+      "recheck_point": "Recheck at each T16-T19 batch selection.",
+      "replacement_condition": "A selected T16-T19 machine batch requires source-backed lens generation and acquisition.",
+      "scope_group": "industrial_deferred",
+      "source_field": "LENSES",
+      "source_material_count": 121,
+      "source_material_id_set_sha256": "414e1c657c743852dc8c92de80e1c87a6bc359227d4418ccf9f60edb90f0fe2e"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.LIQUID",
+      "cc_current_domain": false,
+      "classification": "out_of_scope",
+      "direct_cc_generation_flag_forms": [],
+      "exact_single_tag_cc_runtime_forms": [],
+      "exact_single_tag_prefixes": [],
+      "generation_flag": "gt6:itemgenerator/liquid",
+      "owner": "out",
+      "reason": "LIQUID is a material state tag and is not a standalone item-prefix publication domain.",
+      "scope_group": "G10_peripheral",
+      "source_field": "LIQUID",
+      "source_material_count": 32,
+      "source_material_id_set_sha256": "65bac752f28d4313f3e66b2995977a4d24d21c207d6a667bdbb0ca558bf971c9"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.MOLTEN",
+      "cc_current_domain": true,
+      "classification": "in_scope",
+      "direct_cc_generation_flag_forms": [],
+      "exact_single_tag_cc_runtime_forms": [],
+      "exact_single_tag_prefixes": [],
+      "generation_flag": "gt6:itemgenerator/molten",
+      "owner": "T14",
+      "reason": "Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "scope_group": "current_cc_16",
+      "source_field": "MOLTEN",
+      "source_material_count": 184,
+      "source_material_id_set_sha256": "88bb4ee2a6cffcffd75ce4d21de047e51ab6efe298dfed61261be4b79570d906"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.MULTIINGOTS",
+      "cc_current_domain": true,
+      "classification": "in_scope",
+      "direct_cc_generation_flag_forms": [
+        "cruciblecraft:double_ingot",
+        "cruciblecraft:triple_ingot"
+      ],
+      "exact_single_tag_cc_runtime_forms": [
+        "cruciblecraft:double_ingot",
+        "cruciblecraft:triple_ingot"
+      ],
+      "exact_single_tag_prefixes": [
+        "ingotDouble",
+        "ingotQuadruple",
+        "ingotQuintuple",
+        "ingotTriple"
+      ],
+      "generation_flag": "gt6:itemgenerator/multiingots",
+      "owner": "T15",
+      "reason": "Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "scope_group": "current_cc_16",
+      "source_field": "MULTIINGOTS",
+      "source_material_count": 435,
+      "source_material_id_set_sha256": "c7ce3c3075f51c465e29d75685570d34e82aaaff8a9322d93d47d483d104480a"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.MULTIPLATES",
+      "cc_current_domain": true,
+      "classification": "in_scope",
+      "direct_cc_generation_flag_forms": [
+        "cruciblecraft:double_plate",
+        "cruciblecraft:quadruple_plate",
+        "cruciblecraft:quintuple_plate",
+        "cruciblecraft:triple_plate"
+      ],
+      "exact_single_tag_cc_runtime_forms": [
+        "cruciblecraft:double_plate",
+        "cruciblecraft:quadruple_plate",
+        "cruciblecraft:quintuple_plate",
+        "cruciblecraft:triple_plate"
+      ],
+      "exact_single_tag_prefixes": [
+        "plateDouble",
+        "plateQuadruple",
+        "plateQuintuple",
+        "plateTriple"
+      ],
+      "generation_flag": "gt6:itemgenerator/multiplates",
+      "owner": "T15",
+      "reason": "Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "scope_group": "current_cc_16",
+      "source_field": "MULTIPLATES",
+      "source_material_count": 434,
+      "source_material_id_set_sha256": "486ecd131224c80f741163a9b55e5b0d639a17ed908698036affb65448ab9e9a"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.ORES",
+      "cc_current_domain": true,
+      "classification": "in_scope",
+      "direct_cc_generation_flag_forms": [
+        "cruciblecraft:raw_ore"
+      ],
+      "exact_single_tag_cc_runtime_forms": [
+        "cruciblecraft:raw_ore"
+      ],
+      "exact_single_tag_prefixes": [
+        "blockRaw",
+        "crateGt64Raw",
+        "crateGtRaw",
+        "oreAndesite",
+        "oreBasalt",
+        "oreBedrock",
+        "oreBlackgranite",
+        "oreBlueschist",
+        "oreDarkprismarine",
+        "oreDiorite",
+        "oreEndstone",
+        "oreGravel",
+        "oreGreenschist",
+        "oreKimberlite",
+        "oreKomatiite",
+        "oreLightprismarine",
+        "oreLimestone",
+        "oreMarble",
+        "oreMud",
+        "oreNetherrack",
+        "oreQuartzite",
+        "oreRaw",
+        "oreRedSand",
+        "oreRedgranite",
+        "oreSand",
+        "oreSandstone",
+        "oreShale",
+        "oreSlate",
+        "oreSmall",
+        "oreVanillagranite",
+        "oreVanillastone"
+      ],
+      "generation_flag": "gt6:itemgenerator/ores",
+      "owner": "T14",
+      "reason": "Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "scope_group": "current_cc_16",
+      "source_field": "ORES",
+      "source_material_count": 618,
+      "source_material_id_set_sha256": "1adb1e9c72c41a4e580ffdcef8392b612332935da289bd8ab1cc5adb94ac45e3"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.PARTS",
+      "cc_current_domain": true,
+      "classification": "in_scope",
+      "direct_cc_generation_flag_forms": [
+        "cruciblecraft:gear",
+        "cruciblecraft:ring",
+        "cruciblecraft:rotor",
+        "cruciblecraft:small_gear"
+      ],
+      "exact_single_tag_cc_runtime_forms": [
+        "cruciblecraft:gear",
+        "cruciblecraft:ring",
+        "cruciblecraft:rotor",
+        "cruciblecraft:small_gear"
+      ],
+      "exact_single_tag_prefixes": [
+        "casingSmall",
+        "chain",
+        "gearGt",
+        "gearGtSmall",
+        "ring",
+        "rotor"
+      ],
+      "generation_flag": "gt6:itemgenerator/parts",
+      "owner": "T14",
+      "reason": "Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "scope_group": "current_cc_16",
+      "source_field": "PARTS",
+      "source_material_count": 572,
+      "source_material_id_set_sha256": "08072c5749ac3db2e3f4d3da0e90b062c0a98247644f78f3ba68eeacbbd9d9a7"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.PLANTS",
+      "cc_current_domain": false,
+      "classification": "out_of_scope",
+      "direct_cc_generation_flag_forms": [],
+      "exact_single_tag_cc_runtime_forms": [],
+      "exact_single_tag_prefixes": [
+        "plantGtBerry",
+        "plantGtBlossom",
+        "plantGtFiber",
+        "plantGtTwig",
+        "plantGtWart"
+      ],
+      "generation_flag": "gt6:itemgenerator/plants",
+      "owner": "out",
+      "reason": "Plant drops are a G10 peripheral domain outside T14-T19.",
+      "scope_group": "G10_peripheral",
+      "source_field": "PLANTS",
+      "source_material_count": 1179,
+      "source_material_id_set_sha256": "90c1c3e37fb64bb1c7b9297094eb46a4259f9dbafdaa13adbc21d9dfdc8bf6b5"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.PLATES",
+      "cc_current_domain": true,
+      "classification": "in_scope",
+      "direct_cc_generation_flag_forms": [],
+      "exact_single_tag_cc_runtime_forms": [],
+      "exact_single_tag_prefixes": [],
+      "generation_flag": "gt6:itemgenerator/plates",
+      "owner": "T14",
+      "reason": "Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "scope_group": "current_cc_16",
+      "source_field": "PLATES",
+      "source_material_count": 862,
+      "source_material_id_set_sha256": "799e6ae05e1c7af971f9d76c364aa3f231a1cd177663710a2e3f8164acbfdec2"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.PROJECTILES",
+      "cc_current_domain": false,
+      "classification": "out_of_scope",
+      "direct_cc_generation_flag_forms": [],
+      "exact_single_tag_cc_runtime_forms": [],
+      "exact_single_tag_prefixes": [],
+      "generation_flag": "gt6:itemgenerator/projectiles",
+      "owner": "out",
+      "reason": "Projectile and ammunition forms are a G10 peripheral domain outside T14-T19.",
+      "scope_group": "G10_peripheral",
+      "source_field": "PROJECTILES",
+      "source_material_count": 854,
+      "source_material_id_set_sha256": "e288e4af036836baa0affcc704794e369dd6a91c17a7650bad21e144e3ffb326"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.RAILS",
+      "cc_current_domain": false,
+      "classification": "deferred_with_reason",
+      "direct_cc_generation_flag_forms": [],
+      "exact_single_tag_cc_runtime_forms": [],
+      "exact_single_tag_prefixes": [
+        "railGt"
+      ],
+      "generation_flag": "gt6:itemgenerator/rails",
+      "owner": "post-T19",
+      "reason": "Rail forms have no current runtime prefix or selected third-stage consumer.",
+      "recheck_point": "Recheck after T19.",
+      "replacement_condition": "A post-T19 transport scope selects rail generation and acquisition.",
+      "scope_group": "G10_peripheral",
+      "source_field": "RAILS",
+      "source_material_count": 28,
+      "source_material_id_set_sha256": "f5373451f37bdf205f098399869facd5a7970fe2c5957f178c39ea2bff201dcd"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.STICKS",
+      "cc_current_domain": true,
+      "classification": "in_scope",
+      "direct_cc_generation_flag_forms": [
+        "cruciblecraft:bolt",
+        "cruciblecraft:long_rod",
+        "cruciblecraft:rod",
+        "cruciblecraft:screw"
+      ],
+      "exact_single_tag_cc_runtime_forms": [
+        "cruciblecraft:bolt",
+        "cruciblecraft:long_rod",
+        "cruciblecraft:screw"
+      ],
+      "exact_single_tag_prefixes": [
+        "bolt",
+        "screw",
+        "stickLong"
+      ],
+      "generation_flag": "gt6:itemgenerator/sticks",
+      "owner": "T14",
+      "reason": "Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "scope_group": "current_cc_16",
+      "source_field": "STICKS",
+      "source_material_count": 846,
+      "source_material_id_set_sha256": "e4e685233400145b5814f9c8bb3e15667364fcd9245d071138f4781ebfbd8e88"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.WIRES",
+      "cc_current_domain": true,
+      "classification": "in_scope",
+      "direct_cc_generation_flag_forms": [],
+      "exact_single_tag_cc_runtime_forms": [],
+      "exact_single_tag_prefixes": [],
+      "generation_flag": "gt6:itemgenerator/wires",
+      "owner": "T16-19",
+      "reason": "Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "scope_group": "current_cc_16",
+      "source_field": "WIRES",
+      "source_material_count": 14,
+      "source_material_id_set_sha256": "8710b6f8ec478cff79d2ffb333258d39d08a3656a642feb7eb41ba6b7258aaff"
+    }
+  ],
+  "schema": {
+    "canonical_key": "canonical_id",
+    "classification_vocab": [
+      "in_scope",
+      "deferred_with_reason",
+      "out_of_scope",
+      "unclassified"
+    ],
+    "name": "t13_itemgenerator_domain_denominator",
+    "owner_vocab": [
+      "T14",
+      "T15",
+      "T16-19",
+      "post-T19",
+      "out"
+    ],
+    "version": 2
+  },
+  "source": {
+    "generation_bits": {
+      "path": "tools/gt6_generation_bits.json",
+      "sha256": "85b90144e2d6bae6e11fb7f29f0fc538aa3e813602b2716232a87dae512417f6"
+    },
+    "normalized_materials": {
+      "path": "tools/gt6_oredict_materials_normalized.json",
+      "sha256": "4ac8e9d2bc6cc398bb02205ee1b396554f289ab50d5def48c1152a7ca1100982"
+    },
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "runtime_prefix_index": {
+      "path": "src/main/resources/data/cruciblecraft/material_prefixes/index.json",
+      "sha256": "c30bc1e0b4f76957c946e6c38013a73f93146aa5217d0992af91ec7fd6aba216"
+    },
+    "runtime_prefix_tree_sha256": "a2f1d09241968ff724b7cccdd39f4c13794fe9ebd6e56a604755f39c611483d1",
+    "tag_domain_report": {
+      "path": "tools/gt6_tag_domain_report.json",
+      "sha256": "9c3c0e614b66961e27c3fc5aaf228247206965cc271412fee6b607e5e5d89218"
+    },
+    "td_java": {
+      "acquisition": "verified_build_cache_or_pinned_raw_url",
+      "byte_count": 53981,
+      "cache_path": "build/t13-gt6-source/src/main/java/gregapi/data/TD.java",
+      "git_blob_sha1": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+      "path": "src/main/java/gregapi/data/TD.java",
+      "sha256": "c77f9a0691e59b9c720627a49fe0088d31d8ffe3c79c4e59a6c61ced91b9c9ea"
+    }
+  },
+  "source_only_exclusions": [
+    {
+      "canonical_id": "ITEMGENERATOR.CONTAINERS_PLASMA",
+      "classification": "out_of_scope",
+      "owner": "out",
+      "reason": "TD.ItemGenerator declares the identity, but the fixed material dump has no members and therefore it is outside the 25-domain observed denominator.",
+      "source_field": "CONTAINERS_PLASMA",
+      "transformation_rule": "DOMAIN_OBSERVED_FILTER"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.CONTAINERS_SOLID",
+      "classification": "out_of_scope",
+      "owner": "out",
+      "reason": "TD.ItemGenerator declares the identity, but the fixed material dump has no members and therefore it is outside the 25-domain observed denominator.",
+      "source_field": "CONTAINERS_SOLID",
+      "transformation_rule": "DOMAIN_OBSERVED_FILTER"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.DIRTY_DUSTS",
+      "classification": "out_of_scope",
+      "owner": "out",
+      "reason": "TD.ItemGenerator declares the identity, but the fixed material dump has no members and therefore it is outside the 25-domain observed denominator.",
+      "source_field": "DIRTY_DUSTS",
+      "transformation_rule": "DOMAIN_OBSERVED_FILTER"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.PIPES",
+      "classification": "out_of_scope",
+      "owner": "out",
+      "reason": "TD.ItemGenerator declares the identity, but the fixed material dump has no members and therefore it is outside the 25-domain observed denominator.",
+      "source_field": "PIPES",
+      "transformation_rule": "DOMAIN_OBSERVED_FILTER"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.PLASMA",
+      "classification": "out_of_scope",
+      "owner": "out",
+      "reason": "TD.ItemGenerator declares the identity, but the fixed material dump has no members and therefore it is outside the 25-domain observed denominator.",
+      "source_field": "PLASMA",
+      "transformation_rule": "DOMAIN_OBSERVED_FILTER"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.TOOLS",
+      "classification": "out_of_scope",
+      "owner": "out",
+      "reason": "TD.ItemGenerator declares the identity, but the fixed material dump has no members and therefore it is outside the 25-domain observed denominator.",
+      "source_field": "TOOLS",
+      "transformation_rule": "DOMAIN_OBSERVED_FILTER"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.VAPORS",
+      "classification": "out_of_scope",
+      "owner": "out",
+      "reason": "TD.ItemGenerator declares the identity, but the fixed material dump has no members and therefore it is outside the 25-domain observed denominator.",
+      "source_field": "VAPORS",
+      "transformation_rule": "DOMAIN_OBSERVED_FILTER"
+    },
+    {
+      "canonical_id": "ITEMGENERATOR.WEAPONS",
+      "classification": "out_of_scope",
+      "owner": "out",
+      "reason": "TD.ItemGenerator declares the identity, but the fixed material dump has no members and therefore it is outside the 25-domain observed denominator.",
+      "source_field": "WEAPONS",
+      "transformation_rule": "DOMAIN_OBSERVED_FILTER"
+    }
+  ],
+  "summary": {
+    "all_source_material_counts_independently_rebuilt": true,
+    "cc_current_domain_count": 16,
+    "classification_counts": {
+      "deferred_with_reason": 3,
+      "in_scope": 16,
+      "out_of_scope": 6
+    },
+    "observed_domain_count": 25,
+    "owner_counts": {
+      "T14": 10,
+      "T15": 5,
+      "T16-19": 2,
+      "out": 6,
+      "post-T19": 2
+    },
+    "source_only_exclusion_count": 8,
+    "td_itemgenerator_declaration_count": 33,
+    "td_source_alias_count": 1,
+    "unclassified_count": 0
+  },
+  "td_source_aliases": [
+    {
+      "canonical_id": "ITEMGENERATOR.GASES",
+      "source_field": "GASSES",
+      "target_field": "GASES",
+      "transformation_rule": "DOMAIN_SOURCE_ALIAS"
+    }
+  ],
+  "uniform_audit": {
+    "assignment_count": 25,
+    "blockers": [],
+    "collapse_size_distribution": {
+      "1": 25
+    },
+    "output_bucket_count": 25,
+    "status": "PASS",
+    "unique_raw_count": 25
+  }
+}

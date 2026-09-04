@@ -1,0 +1,181 @@
+{
+  "classification_vocabulary": {
+    "deferred_with_reason": "The source identity is valid but requires a named later owner, reason, replacement condition and recheck point.",
+    "in_scope": "The canonical source identity may be consumed by T14-T19 or is already represented by a closed runtime slice. This does not promise complete implementation.",
+    "out_of_scope": "The source identity belongs to an explicitly excluded gameplay or compatibility axis.",
+    "unclassified": "No reviewed disposition exists. Any occurrence blocks T13 readiness."
+  },
+  "generated_by": "python tools/build_t13_denominator_readiness.py",
+  "schema_version": 2,
+  "source": {
+    "global_policy": "tools/t13_denominator_policy.json",
+    "global_policy_sha256": "4620f5c22237c5a81933ed561e8ebad9a2bda6545525dd275aa575e0ac3e911f",
+    "repository": "https://github.com/GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "selected_java_blobs": 1229,
+    "source_symbol_inventory": "tools/t13_source_symbol_inventory.json",
+    "source_symbol_inventory_sha256": "d5aa1faa86ac336d83a0c120d6b4aaa29a07d9f95390a4c7ffc50757eac81f91",
+    "symbol_declarations": 1546,
+    "tree_manifest": "tools/t13_gt6_tree_manifest.json",
+    "tree_manifest_sha256": "cfb7aeb7951a3c4ef761cb4f79ff04099f504cf90c9eeb40acfc87a4926b8f9f",
+    "tree_sha1": "a164302f62a326208fd2076de6fb7cdb0b4602ee"
+  },
+  "status": "T13_DENOMINATOR_MANIFEST_READY",
+  "tables": {
+    "cover_kinds": {
+      "artifact": "tools/t13_denominators/cover_kinds.json",
+      "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+      "builder": "tools/build_t13_cover_multiblock_denominators.py",
+      "builder_sha256": "ab44ef3fe19e96f2bfe6c9ba3801cba598cea3c0108b3f773a6f75317cfedb1e",
+      "canonical_count": 47,
+      "classification_counts": {
+        "deferred_with_reason": 28,
+        "in_scope": 9,
+        "out_of_scope": 10
+      },
+      "policy": "tools/t13_cover_multiblock_policy.json",
+      "policy_sha256": "f41fe98cde84b730de4562d2c43e2eaaf65454fe6d9fc830fad40d385b502a9d",
+      "raw_count": 65,
+      "test": "tools/tests/test_build_t13_cover_multiblock_denominators.py",
+      "test_sha256": "8dff9700f3c0fe55e5acb15654d4efc3c43a644de307cdfe61a84bcc20378a55",
+      "unclassified": 0,
+      "uniform_status": "PASS"
+    },
+    "energy_identities": {
+      "artifact": "tools/t13_denominators/energy_identities.json",
+      "artifact_sha256": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+      "builder": "tools/build_t13_machine_energy_denominators.py",
+      "builder_sha256": "ed3ce45ae42140c094bfae0d5d528236266a58601b1595659c1c17024d83d4ee",
+      "canonical_count": 20,
+      "classification_counts": {
+        "deferred_with_reason": 5,
+        "in_scope": 7,
+        "out_of_scope": 8
+      },
+      "policy": "tools/t13_machine_energy_policy.json",
+      "policy_sha256": "09f8abc89f8197f7971ea19a55155c1655dbf26b1ef910ccf3b57edd6e27bedf",
+      "raw_count": 20,
+      "test": "tools/tests/test_build_t13_machine_energy_denominators.py",
+      "test_sha256": "7f9cb0a33e44d4cb82eb5f6a090bb0b9e61cca5c9d70ee0105077d27a55ff6a6",
+      "unclassified": 0,
+      "uniform_status": "PASS"
+    },
+    "itemgenerator_domains": {
+      "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+      "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+      "builder": "tools/build_t13_prefix_domain_denominators.py",
+      "builder_sha256": "e5204949d7ee0af7d47c41e11ffe3b013ae2142795c12ceca81859a64b5c427a",
+      "canonical_count": 25,
+      "classification_counts": {
+        "deferred_with_reason": 3,
+        "in_scope": 16,
+        "out_of_scope": 6
+      },
+      "policy": "tools/t13_prefix_domain_policy.json",
+      "policy_sha256": "28cca3d473bdfae4e73d7defcc667a33be30ad17ddbc7952137be4757786154c",
+      "raw_count": 25,
+      "test": "tools/tests/test_build_t13_prefix_domain_denominators.py",
+      "test_sha256": "507694fe1ff3a4c2caaaabcb0548cda61fecc3e0870d7ad0caf1f6fd3738b410",
+      "unclassified": 0,
+      "uniform_status": "PASS"
+    },
+    "machine_kinds": {
+      "artifact": "tools/t13_denominators/machine_kinds.json",
+      "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+      "builder": "tools/build_t13_machine_energy_denominators.py",
+      "builder_sha256": "ed3ce45ae42140c094bfae0d5d528236266a58601b1595659c1c17024d83d4ee",
+      "canonical_count": 96,
+      "classification_counts": {
+        "deferred_with_reason": 15,
+        "in_scope": 81
+      },
+      "policy": "tools/t13_machine_energy_policy.json",
+      "policy_sha256": "09f8abc89f8197f7971ea19a55155c1655dbf26b1ef910ccf3b57edd6e27bedf",
+      "raw_count": 2328,
+      "test": "tools/tests/test_build_t13_machine_energy_denominators.py",
+      "test_sha256": "7f9cb0a33e44d4cb82eb5f6a090bb0b9e61cca5c9d70ee0105077d27a55ff6a6",
+      "unclassified": 0,
+      "uniform_status": "PASS"
+    },
+    "multiblock_kinds": {
+      "artifact": "tools/t13_denominators/multiblock_kinds.json",
+      "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+      "builder": "tools/build_t13_cover_multiblock_denominators.py",
+      "builder_sha256": "ab44ef3fe19e96f2bfe6c9ba3801cba598cea3c0108b3f773a6f75317cfedb1e",
+      "canonical_count": 30,
+      "classification_counts": {
+        "deferred_with_reason": 20,
+        "in_scope": 5,
+        "out_of_scope": 5
+      },
+      "policy": "tools/t13_cover_multiblock_policy.json",
+      "policy_sha256": "f41fe98cde84b730de4562d2c43e2eaaf65454fe6d9fc830fad40d385b502a9d",
+      "raw_count": 44,
+      "test": "tools/tests/test_build_t13_cover_multiblock_denominators.py",
+      "test_sha256": "8dff9700f3c0fe55e5acb15654d4efc3c43a644de307cdfe61a84bcc20378a55",
+      "unclassified": 0,
+      "uniform_status": "PASS"
+    },
+    "prefixes": {
+      "artifact": "tools/t13_denominators/prefixes.json",
+      "artifact_sha256": "fc7c5b9f84eda867a057442e0e37697ce198e7c5167783b12176fd6a31312205",
+      "builder": "tools/build_t13_prefix_domain_denominators.py",
+      "builder_sha256": "e5204949d7ee0af7d47c41e11ffe3b013ae2142795c12ceca81859a64b5c427a",
+      "canonical_count": 452,
+      "classification_counts": {
+        "deferred_with_reason": 271,
+        "in_scope": 55,
+        "out_of_scope": 126
+      },
+      "policy": "tools/t13_prefix_domain_policy.json",
+      "policy_sha256": "28cca3d473bdfae4e73d7defcc667a33be30ad17ddbc7952137be4757786154c",
+      "raw_count": 468,
+      "test": "tools/tests/test_build_t13_prefix_domain_denominators.py",
+      "test_sha256": "507694fe1ff3a4c2caaaabcb0548cda61fecc3e0870d7ad0caf1f6fd3738b410",
+      "unclassified": 0,
+      "uniform_status": "PASS"
+    },
+    "recipe_maps": {
+      "artifact": "tools/t13_denominators/recipe_maps.json",
+      "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+      "builder": "tools/build_t13_recipe_map_denominator.py",
+      "builder_sha256": "9a3dca558629a03c7a1b2dd5d89fea73df83522cbb5a5e459c06c47c93c33101",
+      "canonical_count": 95,
+      "classification_counts": {
+        "deferred_with_reason": 64,
+        "in_scope": 29,
+        "out_of_scope": 2,
+        "unclassified": 0
+      },
+      "full_replay_receipt": {
+        "builder_sha256": "9a3dca558629a03c7a1b2dd5d89fea73df83522cbb5a5e459c06c47c93c33101",
+        "dump_index_sha256": "04a1ddf9f0bee4432206d2e89890839c10e4a9ad0b66aa3cd67f7385c31abc7f",
+        "legacy_roadmap_sha256": "72b8d94d08277611ca4cccd9bb698fedafc6af7c07e4ca41932579c544b308f7",
+        "map_count": 95,
+        "map_row_sha256": "e8a635d62d4c11b7995d64ec3c6cfe2a7038b24338bfb00920a614f442f9af99",
+        "map_tree_sha256": "ad3f229f0f43bbf3f72fa1115201f127ac910978c0d92f0313493344234c08df",
+        "policy_sha256": "49c29032007c84c235dfd66bb3f055c6d5a777aa284ac2bd242824481480eafe",
+        "proof_tier": "full_replay",
+        "recipe_count": 720841,
+        "scanner_semantics": "python-byte-state-machine-v1",
+        "schema_version": 1,
+        "source_symbol_inventory_sha256": "d5aa1faa86ac336d83a0c120d6b4aaa29a07d9f95390a4c7ffc50757eac81f91",
+        "tree_manifest_sha256": "cfb7aeb7951a3c4ef761cb4f79ff04099f504cf90c9eeb40acfc87a4926b8f9f"
+      },
+      "policy": "tools/t13_recipe_map_policy.json",
+      "policy_sha256": "49c29032007c84c235dfd66bb3f055c6d5a777aa284ac2bd242824481480eafe",
+      "raw_count": 95,
+      "test": "tools/tests/test_build_t13_recipe_map_denominator.py",
+      "test_sha256": "4af5f789bc96a9a32b987845cd6ba3dda20693d284268b2a87a67bb2c0ff4c7b",
+      "unclassified": 0,
+      "uniform_status": "UNIFORM_PASS"
+    }
+  },
+  "totals": {
+    "normalization_blockers": 0,
+    "recipe_maps": 95,
+    "recipe_rows": 720841,
+    "tables": 7,
+    "unclassified": 0
+  }
+}

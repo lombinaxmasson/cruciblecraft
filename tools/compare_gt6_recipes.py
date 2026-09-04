@@ -56,7 +56,7 @@ CC_COMPONENT_TAGS = (
     / "resources"
     / "data"
 )
-T14_EXTRUDER_LEGACY_REPLAY = ROOT / "tools" / "t14_extruder_legacy_replay.json"
+T14_EXTRUDER_LEGACY_REPLAY = ROOT / "tools" / "extruder_legacy_replay.json"
 ORE_CHAIN_INDEX = ROOT / "tools" / "gt6_ore_chain.json"
 OUT_JSON = ROOT / "tools" / "gt6_recipe_compare_report.json"
 BASELINE_JSON = ROOT / "tools" / "gt6_recipe_compare_baseline.json"
@@ -526,7 +526,7 @@ def _load_cc_materials_cached() -> dict[str, dict[str, Any]]:
             | source_backed_overlay
         ):
             raise ValueError(
-                "Registration gate exceeds factual or source-backed T8/T10/T38/T39 "
+                "Registration gate exceeds factual or source-backed T8/T10/roaster/compact/centrifuge/compact "
                 f"forms for {data['id']}"
             )
         data["_factual_forms"] = sorted(factual_forms)
@@ -1225,7 +1225,7 @@ def expand_cc_recipes(materials: dict[str, dict[str, Any]]) -> list[NormRecipe]:
         legacy = json.loads(
             T14_EXTRUDER_LEGACY_REPLAY.read_text(encoding="utf-8")
         )
-        virtual_owner = ROOT / "tools" / "t14_virtualized_recipe"
+        virtual_owner = ROOT / "tools" / "recipe_load_virtualized_recipe"
         rule_rows.extend(
             (
                 virtual_owner,
@@ -3049,16 +3049,16 @@ def recipe_fingerprint(recipe: NormRecipe) -> str:
     )
 
 
-def _is_withdrawn_t39_recovery(path: Path) -> bool:
+def _is_withdrawn_centrifuge_recovery(path: Path) -> bool:
     return path.relative_to(CC_HAND).as_posix().startswith(
-        "t39_player_path_recovery/"
+        "centrifuge_player_path_recovery/"
     )
 
 
 def hand_authored_recipe_snapshot() -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     for path in sorted(CC_HAND.rglob("*.json")):
-        if _is_withdrawn_t39_recovery(path):
+        if _is_withdrawn_centrifuge_recovery(path):
             continue
         data = json.loads(path.read_text(encoding="utf-8"))
         relative_path = path.relative_to(CC_HAND).as_posix()
@@ -3125,7 +3125,7 @@ def explicit_ingredient_items(value: Any) -> set[str]:
 def hand_recipe_edges() -> list[dict[str, Any]]:
     edges: list[dict[str, Any]] = []
     for path in sorted(CC_HAND.rglob("*.json")):
-        if _is_withdrawn_t39_recovery(path):
+        if _is_withdrawn_centrifuge_recovery(path):
             continue
         data = json.loads(path.read_text(encoding="utf-8"))
         inputs: set[str] = set()

@@ -9,8 +9,8 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tools import t35_common as t35
-from tools import t46_common as common
+from tools import census_common as census
+from tools import bath_mte_common as common
 from tools.recipe_bulk import identity_v2
 
 OUTPUT = common.IDENTITY_LEDGER_V2
@@ -21,7 +21,7 @@ def build():
 
 
 def _write() -> None:
-    t35.write_stable(OUTPUT, build())
+    census.write_stable(OUTPUT, build())
     from tools import currentness
 
     if currentness.target_row(OUTPUT) is not None:

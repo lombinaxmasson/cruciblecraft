@@ -526,7 +526,7 @@ class ComponentRuleDataTest {
         var correction = correctionSource.getAsJsonArray("corrections")
                 .get(0).getAsJsonObject();
         assertEquals(
-                "t3_acceptance_required_not_gt6_original_gate",
+                "acceptance_required_not_gt6_original_gate",
                 correction.get("classification").getAsString());
         assertTrue(correction.get("reason").getAsString()
                 .contains("component-runtime acceptance"));

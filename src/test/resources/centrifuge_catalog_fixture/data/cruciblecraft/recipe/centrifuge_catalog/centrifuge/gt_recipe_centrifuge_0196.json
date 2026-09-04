@@ -1,0 +1,73 @@
+{
+  "family_id": "gt.recipe.centrifuge#0196",
+  "publication_group": "cruciblecraft:centrifuge_catalog_singleton",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 64,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:moon_stone/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:basalt/dust"
+        },
+        {
+          "count": 1,
+          "id": "cruciblecraft:silicon_dioxide/tiny_dust"
+        },
+        {
+          "count": 1,
+          "id": "cruciblecraft:alumina/tiny_dust"
+        },
+        {
+          "count": 1,
+          "id": "cruciblecraft:ilmenite/tiny_dust"
+        },
+        {
+          "count": 1,
+          "id": "cruciblecraft:rare_earth/tiny_dust"
+        },
+        {
+          "count": 1,
+          "id": "cruciblecraft:platinum/tiny_dust"
+        }
+      ],
+      "output_chances": [
+        8000,
+        500,
+        400,
+        300,
+        100,
+        50
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "650efdb54057c89fd3e52a58ee6b94a8658614d867bf099f686ab8665498ed04"
+        ],
+        "selected_source_recipe": "gt.recipe.centrifuge#0196",
+        "source_kind": "SOURCE_BACKED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:centrifuge_catalog/c103e1cfb03e658f"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:centrifuge",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

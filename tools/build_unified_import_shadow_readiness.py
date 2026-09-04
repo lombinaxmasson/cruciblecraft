@@ -10,11 +10,11 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools import builder_cli
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk import shadow_readiness as readiness
 from tools.recipe_bulk.write_guard import assert_ledger_write
 
-OUTPUT = t35.TOOLS / "unified_import_shadow_readiness.json"
+OUTPUT = census.TOOLS / "unified_import_shadow_readiness.json"
 
 
 def build():
@@ -24,7 +24,7 @@ def build():
 def _write() -> None:
     document = build()
     assert_ledger_write(OUTPUT)
-    t35.write_stable(OUTPUT, document)
+    census.write_stable(OUTPUT, document)
     from tools import currentness
 
     if currentness.target_row(OUTPUT) is not None:
@@ -37,7 +37,7 @@ def _check() -> list[str]:
     if document.get("status") != readiness.STATUS_READY:
         failed = ", ".join(document.get("failed_gates") or [])
         errors.append(f"unified import shadow is not READY ({failed})")
-    errors.extend(t35.check_generated_document(OUTPUT, document))
+    errors.extend(census.check_generated_document(OUTPUT, document))
     return errors
 
 
@@ -50,17 +50,17 @@ def main(argv: list[str] | None = None) -> int:
         from tools import currentness
 
         currentness.rebind_sidecar(OUTPUT)
-        print(f"rebound currentness sidecar for {t35.relative(OUTPUT)}")
+        print(f"rebound currentness sidecar for {census.relative(OUTPUT)}")
         return 0
     if args.write:
         _write()
-        print(f"Wrote {t35.relative(OUTPUT)}")
+        print(f"Wrote {census.relative(OUTPUT)}")
         return 0
     errors = _check()
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1
-    print(f"{t35.relative(OUTPUT)} is current")
+    print(f"{census.relative(OUTPUT)} is current")
     return 0
 
 

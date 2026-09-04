@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-"""Shadow-compile T45→T37 and prove byte/semantic/stable-ID parity."""
+"""Shadow-compile historical compact waves and prove byte/semantic/stable-ID parity."""
 from __future__ import annotations
 
 from pathlib import Path
 from typing import Any
 
-from tools import t27_common as t27
-from tools import t35_common as t35
+from tools import json_ledger as ledger
+from tools import census_common as census
 from tools.recipe_bulk.adapters import adapt_wave, consume_identity
 from tools.recipe_bulk.emit import semantic_replay_key
 from tools.recipe_bulk.matrix import authored_relation_count, authored_relations
@@ -21,16 +21,22 @@ from tools.recipe_bulk.waves import SHADOW_ORDER, recipe_wave, shadow_waves
 STATUS = "RECIPE_WAVE_SHADOW_PARITY"
 
 
-def production_documents(root: Path) -> dict[str, dict[str, Any]]:
+def production_documents(
+    root: Path, prefixes: tuple[str, ...] = ()
+) -> dict[str, dict[str, Any]]:
     documents: dict[str, dict[str, Any]] = {}
-    for path in sorted(p for p in root.rglob("gt_recipe_*.json") if p.is_file()):
-        relative = path.relative_to(root).as_posix()
-        documents[relative] = t35.load_json(path)
+    trees = [root / prefix for prefix in prefixes] if prefixes else [root]
+    for tree in trees:
+        if not tree.exists():
+            continue
+        for path in sorted(p for p in tree.rglob("gt_recipe_*.json") if p.is_file()):
+            relative = path.relative_to(root).as_posix()
+            documents[relative] = census.load_json(path)
     return documents
 
 
 def fingerprint(value: Any) -> str:
-    return t27.sha256_record(value)
+    return ledger.sha256_record(value)
 
 
 def consume_collisions(documents: dict[str, dict[str, Any]]) -> dict[str, list[str]]:
@@ -51,7 +57,7 @@ def compare_wave(wave_id: str, persist_ir: bool = False) -> dict[str, Any]:
     ir_document = ir.to_document()
     ir_errors = validate_ir_document(ir_document)
     shadow_docs = {family.relative_path: family.document for family in ir.families}
-    production = production_documents(spec.generated_root)
+    production = production_documents(spec.generated_root, spec.tree_prefixes)
     mismatches: list[str] = []
     if ir_errors:
         mismatches.extend(f"ir:{error}" for error in ir_errors[:12])
@@ -69,8 +75,8 @@ def compare_wave(wave_id: str, persist_ir: bool = False) -> dict[str, Any]:
     stable_mismatches = 0
     order_mismatches = 0
     for name in sorted(shadow_names & production_names):
-        shadow_text = t35.stable_json(shadow_docs[name])
-        produced_text = t35.stable_json(production[name])
+        shadow_text = census.stable_json(shadow_docs[name])
+        produced_text = census.stable_json(production[name])
         if shadow_text != produced_text:
             byte_mismatches += 1
         if semantic_replay_key(shadow_docs[name]) != semantic_replay_key(production[name]):
@@ -103,16 +109,20 @@ def compare_wave(wave_id: str, persist_ir: bool = False) -> dict[str, Any]:
     production_collisions = consume_collisions(production)
     if set(shadow_collisions) != set(production_collisions):
         mismatches.append("consume_collisions")
-    shadow_ids = [
+    shadow_ids = sorted(
+        [
         str(relation.get("stable_id"))
         for document in shadow_docs.values()
         for relation in authored_relations(document)
-    ]
-    production_ids = [
+        ]
+    )
+    production_ids = sorted(
+        [
         str(relation.get("stable_id"))
         for document in production.values()
         for relation in authored_relations(document)
-    ]
+        ]
+    )
     relation_fingerprints = {
         str(relation.get("stable_id")): fingerprint(relation)
         for document in shadow_docs.values()
@@ -122,7 +132,7 @@ def compare_wave(wave_id: str, persist_ir: bool = False) -> dict[str, Any]:
         destination = shadow_ir_path(wave_id)
         assert_not_production_write(destination)
         destination.parent.mkdir(parents=True, exist_ok=True)
-        t35.write_stable(destination, ir_document)
+        census.write_stable(destination, ir_document)
     return {
         "byte_identity": byte_mismatches == 0 and shadow_names == production_names,
         "consume_collision_count": len(shadow_collisions),
@@ -163,7 +173,7 @@ def compare_all(*, persist_ir: bool = False) -> dict[str, Any]:
         "ok": not mismatches,
         "rebuilds_identical": rebuilds_identical,
         "schema_version": 1,
-        "shadow_ir_root": t35.relative(SHADOW_IR_ROOT),
+        "shadow_ir_root": census.relative(SHADOW_IR_ROOT),
         "shadow_order": list(SHADOW_ORDER),
         "status": STATUS,
         "waves": waves,
@@ -174,15 +184,15 @@ def write_shadow_ir(wave_id: str, document: dict[str, Any]) -> Path:
     destination = shadow_ir_path(wave_id)
     assert_not_production_write(destination)
     destination.parent.mkdir(parents=True, exist_ok=True)
-    t35.write_stable(destination, document)
+    census.write_stable(destination, document)
     return destination
 
 
 NEGATIVE_FIXTURE_CHECKS = {
-    "relation_set_truncated": "T38/T39/T40 relation-set replay must compare every ordered relation",
-    "lock_authority_mismatch": "T43/T45 lock stable_id is the production identity authority",
-    "ordering_mismatch": "T38 relation order is source_recipe_index then stable_id",
-    "stable_id_transform": "T37/T41 runtime stable IDs keep only the hex suffix under cruciblecraft:txx/",
+    "relation_set_truncated": "roaster/centrifuge/electrolyzer relation-set replay must compare every ordered relation",
+    "lock_authority_mismatch": "smelter/stone and block/object lock stable_id is the production identity authority",
+    "ordering_mismatch": "roaster/compact relation order is source_recipe_index then stable_id",
+    "stable_id_transform": "assembler compact/wood runtime stable IDs keep only the hex suffix under cruciblecraft:host/cohort/",
 }
 
 
@@ -215,9 +225,11 @@ def evaluate_negative_fixture(name: str, document: dict[str, Any]) -> str:
     if name == "stable_id_transform":
         source_id = str(document.get("source_stable_id") or "")
         runtime_id = str(document.get("runtime_stable_id") or "")
-        if source_id.startswith("t37/") and not runtime_id.startswith("cruciblecraft:t37/"):
+        if source_id.startswith("assembler/compact/") and not runtime_id.startswith(
+            "cruciblecraft:assembler/compact/"
+        ):
             return NEGATIVE_FIXTURE_CHECKS[name]
-        if "/t37/" in source_id and runtime_id == source_id:
+        if "/assembler/compact/" in source_id and runtime_id == source_id:
             return NEGATIVE_FIXTURE_CHECKS[name]
         raise ValueError("stable_id_transform fixture did not fail")
     raise KeyError(f"unknown negative fixture {name}")

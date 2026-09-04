@@ -6,9 +6,9 @@ from collections import Counter
 from typing import Any
 
 from tools import closeout_seal
-from tools import t35_common as t35
-from tools import t42_common as t42
-from tools import t48_identities as identities
+from tools import census_common as census
+from tools import owner_partition_common as owner
+from tools import bath_identities as identities
 from tools.recipe_bulk import ordinary_source as src
 from tools.recipe_bulk.ordinary_source import WorkFamily
 
@@ -16,8 +16,8 @@ SLUG = "smelter/deferred-recycling"
 HOST = "cruciblecraft:smelter"
 R0_SLUG = "recycling/deferred-ordinary-ledger-r0"
 IDENTITY_SLUG = "recycling/smelter-mte-identity"
-R0_DIR = t35.TOOLS / "waves" / "recycling" / "deferred-ordinary-ledger-r0"
-IDENTITY_DIR = t35.TOOLS / "waves" / "recycling" / "smelter-mte-identity"
+R0_DIR = census.TOOLS / "waves" / "recycling" / "deferred-ordinary-ledger-r0"
+IDENTITY_DIR = census.TOOLS / "waves" / "recycling" / "smelter-mte-identity"
 PROVEN_COUNT = 1817
 EDGE_KEYS = ("gt.recipe.smelter#1829", "gt.recipe.smelter#1884")
 COHORT = "smelter_proven_mte_recovery"
@@ -31,13 +31,13 @@ def publication_group_for_material(material: str) -> str:
 def _require_predecessors() -> None:
     errors = closeout_seal.check_wave_seal(R0_SLUG)
     errors.extend(closeout_seal.check_wave_seal(IDENTITY_SLUG))
-    r0 = t35.load_json(R0_DIR / "readiness.json")
+    r0 = census.load_json(R0_DIR / "readiness.json")
     if r0.get("status") != "RECYCLING_DEFERRED_LEDGER_R0_READY":
         errors.append("R0 is not RECYCLING_DEFERRED_LEDGER_R0_READY")
-    identity = t35.load_json(IDENTITY_DIR / "readiness.json")
+    identity = census.load_json(IDENTITY_DIR / "readiness.json")
     if identity.get("status") != "SMELTER_MTE_IDENTITY_READY":
         errors.append("identity child is not SMELTER_MTE_IDENTITY_READY")
-    candidate = t35.load_json(R0_DIR / "identity_candidate.json")
+    candidate = census.load_json(R0_DIR / "identity_candidate.json")
     if not candidate.get("unique_meta_equals_proven_family_count"):
         errors.append("R0 unique meta proof failed")
     if int(candidate.get("proven_family_count") or 0) != PROVEN_COUNT:
@@ -47,7 +47,7 @@ def _require_predecessors() -> None:
 
 
 def proven_families() -> list[dict[str, Any]]:
-    universe = t35.load_json(R0_DIR / "deferred_universe.json")
+    universe = census.load_json(R0_DIR / "deferred_universe.json")
     rows = [
         row
         for row in universe.get("families") or []
@@ -63,7 +63,7 @@ def proven_families() -> list[dict[str, Any]]:
 def replay() -> dict[str, Any]:
     _require_predecessors()
     families = proven_families()
-    recipes = t42.load_map_recipes(src.source_map_for(HOST))
+    recipes = owner.load_map_recipes(src.source_map_for(HOST))
     maps = {
         "stone": src.load_stone_runtime(),
         "mte": src.load_mte_runtime(),
@@ -162,8 +162,8 @@ def replay() -> dict[str, Any]:
         "assigned": len(relations),
         "blockers": [],
         "classifications": classifications,
-        "dump_path": t35.relative(dump_path),
-        "dump_sha256": t35.sha256_file(dump_path),
+        "dump_path": census.relative(dump_path),
+        "dump_sha256": census.sha256_file(dump_path),
         "expected": {
             "family_count": PROVEN_COUNT,
             "family_ids": family_ids,

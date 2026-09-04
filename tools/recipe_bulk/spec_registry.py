@@ -5,17 +5,17 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk.import_spec import load_import_spec
 from tools.recipe_bulk.models import WaveSpec
 
 RECIPE_GENERATED_ROOT = (
-    t35.ROOT / "src/recipe_generated/resources/data/cruciblecraft/recipe"
+    census.ROOT / "src/recipe_generated/resources/data/cruciblecraft/recipe"
 )
 
 SEARCH_ROOTS = (
-    t35.TOOLS / "waves",
-    t35.ROOT / "src" / "test" / "resources" / "generic_recipe_import",
+    census.TOOLS / "waves",
+    census.ROOT / "src" / "test" / "resources" / "generic_recipe_import",
 )
 
 
@@ -35,10 +35,10 @@ def discover_spec_paths() -> list[Path]:
 def load_discovered() -> dict[str, Path]:
     index: dict[str, Path] = {}
     for path in discover_spec_paths():
-        document = t35.load_json(path)
+        document = census.load_json(path)
         slug = str((document or {}).get("import_slug") or "")
         if not slug:
-            raise SpecRegistryError(f"{t35.relative(path)} missing import_slug")
+            raise SpecRegistryError(f"{census.relative(path)} missing import_slug")
         previous = index.get(slug)
         if previous is not None and previous != path:
             raise SpecRegistryError(f"duplicate import_slug {slug}")
@@ -58,11 +58,11 @@ def load_spec_for(slug: str) -> dict[str, Any]:
 
 
 def production_lock_path(spec_path: Path, document: dict[str, Any] | None = None) -> Path:
-    spec = document or t35.load_json(spec_path)
+    spec = document or census.load_json(spec_path)
     source_out = spec.get("output_paths") or {}
     source_rel = str(source_out.get("source") or "")
     if source_rel:
-        return (t35.ROOT / source_rel).resolve().parent / "production_lock.json"
+        return (census.ROOT / source_rel).resolve().parent / "production_lock.json"
     return spec_path.parent / "production_lock.json"
 
 
@@ -78,7 +78,7 @@ def derive_wave_spec(slug: str) -> WaveSpec:
             "lock_candidate is not production authority"
         )
     outputs = document["output_paths"]
-    source_path = t35.ROOT / str(outputs["source"])
+    source_path = census.ROOT / str(outputs["source"])
     wave_root = source_path.parent
     host = str(document["host"])
     return WaveSpec(

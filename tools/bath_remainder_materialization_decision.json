@@ -1,0 +1,206 @@
+{
+  "currentness": {
+    "builder_path": "tools/build_bath_remainder_recipe_load_benchmark.py",
+    "builder_sha256": "83df137fb1d8be7203ed91bf365943f37b6c98c98e80873d8470c8b3779e01ae",
+    "load_budget_policy_v2_sha256": "30a07ad20ca443d9108665157b351471ffeb45d71fdd3d4b7d75076a11cb2c35",
+    "measurement_sha256": "509ed1159c4c3c4c607c43f0ed44e1ba0c1d729f1c439733c14471b73403c991",
+    "policy_path": "tools/bath_remainder_materialization_policy.json",
+    "policy_sha256": "7ff33af771483c6d499f133c66a56737e66d792de1844fe7bbc7841cbe236364",
+    "production_lock_sha256": "884643b2ba569e4eb96c9fcfe63caeebc61be6bb2df3334f85d3cf13490614db"
+  },
+  "decision": {
+    "algorithm": {
+      "authored_entries_verdict": "REPORT_ONLY",
+      "card_aggregate_required": true,
+      "composite_score_forbidden": true,
+      "gate_order": [],
+      "implementation_complexity_order": [
+        "immediate",
+        "on_demand",
+        "hybrid"
+      ],
+      "per_group_winners_required": true,
+      "soft_budget_does_not_eliminate": true
+    },
+    "card_aggregate_winner": "on_demand",
+    "composite_score_used": false,
+    "diagnostic_5x_20x_used_for_1x": false,
+    "group_winners": {
+      "cruciblecraft:bath/remainder/exact": "on_demand",
+      "cruciblecraft:bath/remainder/exact_multi": "on_demand",
+      "exact": "on_demand",
+      "exact_multi": "on_demand"
+    },
+    "production_blockers": [],
+    "ranking_logical_rows": 13708,
+    "ranking_scale": "1x",
+    "scenarios": {
+      "card": {
+        "eliminated": {
+          "hybrid": [
+            "hard_ceiling:lookup_candidate_count:383>128"
+          ],
+          "immediate": [
+            "hard_ceiling:lookup_candidate_count:1341>128",
+            "hard_ceiling:lookup_p95_ns:3947031>2000000"
+          ]
+        },
+        "logical_rows": 13708,
+        "production_winner": "on_demand",
+        "ranking": [
+          {
+            "candidate": "on_demand",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 1,
+            "lookup_p95_ns": 49506,
+            "reload_index_p95_ns": {
+              "client_index": 4189900,
+              "client_reload": 361610400,
+              "server_index": 4333400,
+              "server_reload": 391980700
+            },
+            "retained_memory_bytes": 1343744,
+            "sync_bytes": 1343744
+          }
+        ],
+        "report_only_warnings": {
+          "hybrid": [
+            "report_only:soft_budget:datapack_authored_entries:6101>6000"
+          ],
+          "immediate": [
+            "report_only:soft_budget:datapack_authored_entries:6101>6000"
+          ],
+          "on_demand": [
+            "report_only:soft_budget:datapack_authored_entries:6101>6000"
+          ]
+        },
+        "scenario_id": "card",
+        "soft_budget_warnings": {
+          "hybrid": [
+            "soft_budget:allocation_bytes:180435640>134217728"
+          ],
+          "immediate": [
+            "soft_budget:allocation_bytes:200798296>134217728"
+          ],
+          "on_demand": [
+            "soft_budget:allocation_bytes:176405576>134217728",
+            "soft_budget:lazy_logical_rows:16466>16000"
+          ]
+        },
+        "survivors": [
+          "on_demand"
+        ]
+      },
+      "exact": {
+        "eliminated": {},
+        "logical_rows": 189,
+        "production_winner": "on_demand",
+        "ranking": [
+          {
+            "candidate": "on_demand",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 1,
+            "lookup_p95_ns": 123650,
+            "reload_index_p95_ns": {
+              "client_index": 771300,
+              "client_reload": 7527000,
+              "server_index": 238000,
+              "server_reload": 9045100
+            },
+            "retained_memory_bytes": 18626,
+            "sync_bytes": 18626
+          },
+          {
+            "candidate": "hybrid",
+            "eager_margin": "tied",
+            "eager_publication_rows": 106,
+            "implementation_complexity": 2,
+            "lookup_p95_ns": 92512,
+            "reload_index_p95_ns": {
+              "client_index": 992200,
+              "client_reload": 8079000,
+              "server_index": 835700,
+              "server_reload": 9754400
+            },
+            "retained_memory_bytes": 18626,
+            "sync_bytes": 18626
+          },
+          {
+            "candidate": "immediate",
+            "eager_margin": "tied",
+            "eager_publication_rows": 189,
+            "implementation_complexity": 0,
+            "lookup_p95_ns": 1797525,
+            "reload_index_p95_ns": {
+              "client_index": 3262000,
+              "client_reload": 24627000,
+              "server_index": 5816500,
+              "server_reload": 25712100
+            },
+            "retained_memory_bytes": 18626,
+            "sync_bytes": 18626
+          }
+        ],
+        "report_only_warnings": {},
+        "scenario_id": "exact",
+        "soft_budget_warnings": {
+          "immediate": [
+            "soft_budget:lookup_candidate_count:100>64",
+            "soft_budget:lookup_p95_ns:1797525>1000000"
+          ]
+        },
+        "survivors": [
+          "immediate",
+          "on_demand",
+          "hybrid"
+        ]
+      },
+      "exact_multi": {
+        "eliminated": {
+          "hybrid": [
+            "hard_ceiling:lookup_candidate_count:383>128"
+          ],
+          "immediate": [
+            "hard_ceiling:lookup_candidate_count:1341>128",
+            "hard_ceiling:lookup_p95_ns:3020568>2000000"
+          ]
+        },
+        "logical_rows": 13519,
+        "production_winner": "on_demand",
+        "ranking": [
+          {
+            "candidate": "on_demand",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 1,
+            "lookup_p95_ns": 32200,
+            "reload_index_p95_ns": {
+              "client_index": 3986500,
+              "client_reload": 246385400,
+              "server_index": 3878100,
+              "server_reload": 201404000
+            },
+            "retained_memory_bytes": 1325118,
+            "sync_bytes": 1325118
+          }
+        ],
+        "report_only_warnings": {},
+        "scenario_id": "exact_multi",
+        "soft_budget_warnings": {
+          "on_demand": [
+            "soft_budget:lazy_logical_rows:16277>16000"
+          ]
+        },
+        "survivors": [
+          "on_demand"
+        ]
+      }
+    },
+    "status": "PRODUCTION_WINNER_READY"
+  },
+  "measurement_status": "BATH_REMAINDER_MATERIALIZATION_MEASUREMENT_READY",
+  "schema_version": 1,
+  "status": "BATH_REMAINDER_MATERIALIZATION_DECISION_READY"
+}

@@ -5,7 +5,7 @@ from __future__ import annotations
 import unittest
 
 from tools import forward_v3_budget_decision as v3
-from tools import t35_common as t35
+from tools import census_common as census
 
 
 class RuntimeLoadAllocationSplitTest(unittest.TestCase):
@@ -25,7 +25,7 @@ class RuntimeLoadAllocationSplitTest(unittest.TestCase):
             v3.axis_verdict(policy["budgets"]["retained_memory_bytes"]),
         )
         self.assertEqual(
-            t35.sha256_file(t35.TOOLS / "t14_load_budget_policy.v2.json"),
+            census.sha256_file(census.TOOLS / "recipe_load_load_budget_policy.v2.json"),
             policy["v2_base"]["file_sha256"],
         )
 

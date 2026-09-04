@@ -1,4 +1,4 @@
-"""Windows atomic writer regressions for T40-VR R2."""
+"""Windows atomic writer regressions for runtime verification R2."""
 from __future__ import annotations
 
 import json
@@ -8,7 +8,7 @@ import unittest
 from pathlib import Path
 
 from tools import atomic_io
-from tools import t35_common as t35
+from tools import census_common as census
 
 
 class AtomicIoTest(unittest.TestCase):
@@ -67,20 +67,20 @@ class AtomicIoTest(unittest.TestCase):
     def test_stale_error_classifies_corrupt_and_semantic(self) -> None:
         root = Path(self._tmp())
         missing = root / "missing.json"
-        class_, message = t35.classify_stale(missing, "{}", "")
+        class_, message = census.classify_stale(missing, "{}", "")
         self.assertEqual("MISSING", class_)
         corrupt = root / "corrupt.json"
         corrupt.write_bytes(b"{not json")
-        class_, message = t35.classify_stale(corrupt, "{}", corrupt.read_text(encoding="utf-8"))
+        class_, message = census.classify_stale(corrupt, "{}", corrupt.read_text(encoding="utf-8"))
         self.assertEqual("CORRUPT", class_)
         self.assertIn("line=", message)
         semantic = root / "semantic.json"
         semantic.write_text('{"a":1}\n', encoding="utf-8")
-        class_, message = t35.classify_stale(semantic, '{"a":2}\n', semantic.read_text(encoding="utf-8"))
+        class_, message = census.classify_stale(semantic, '{"a":2}\n', semantic.read_text(encoding="utf-8"))
         self.assertEqual("SEMANTIC_DRIFT", class_)
         hash_only = root / "hash.json"
         hash_only.write_text('{"a":1,"generated_by":"old"}\n', encoding="utf-8")
-        class_, message = t35.classify_stale(
+        class_, message = census.classify_stale(
             hash_only,
             '{"a":1,"generated_by":"new"}\n',
             hash_only.read_text(encoding="utf-8"),
@@ -103,9 +103,9 @@ class AtomicIoTest(unittest.TestCase):
             "input_sha256": {"a": "new"},
             "status": "READY",
         }
-        self.assertEqual([], t35.check_compact(path, rebuilt))
+        self.assertEqual([], census.check_compact(path, rebuilt))
         rebuilt["counts"] = {"n": 2}
-        errors = t35.check_compact(path, rebuilt)
+        errors = census.check_compact(path, rebuilt)
         self.assertTrue(errors)
         self.assertTrue(errors[0].startswith("SEMANTIC_DRIFT"))
 

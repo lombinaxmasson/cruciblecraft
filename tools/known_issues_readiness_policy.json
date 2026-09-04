@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "status_policy": "The status field is derived by build() from the gates below; check() recomputes and compares. Missing status is fail-closed (not ready).",
+  "stages": {
+    "T26a": "Fresh-world five-node playtest known issues recorded from CrucibleCraft-4.5-体验精修规划.md; none block Beta.",
+    "T26b": "Dedicated-server, upgrade and future-version quarantine evidence: existing 121 GameTests including t26UnknownFutureProcessingVersionQuarantinedAndPreserved and the 4.5 wire-cutter nine-grid test.",
+    "T26c": "Public package 0.1.0-beta.1: gradle.properties version, CHANGELOG, CREDITS and player guide present.",
+    "T26d": "O-15 closed on the localization ledger: v1 critical domains zero-gap, 208+1566 material split, no English-copy fakes.",
+    "T26e": "Three-axis close: known-issue ledger complete, freeze dispositions legal, T26-phase publication delta 0/0/0, F003/F005 recheck transferred to T27 RC, GameTest frozen at 121."
+  },
+  "dependencies": {
+    "known_issues": "tools/t26_known_issues.json",
+    "known_issues_policy": "tools/t26_known_issues_policy.json",
+    "localization_ledger": "tools/t26_localization_ledger.json",
+    "publication_baseline": "src/main/resources/data/cruciblecraft/t23_publication_baseline.json",
+    "full_verification_report": "tools/full_verification_report.json",
+    "gradle_properties": "gradle.properties",
+    "changelog": "CHANGELOG.md",
+    "credits": "CREDITS.md",
+    "player_guide": "docs/current/player-guide.md",
+    "gametest_sources": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java"
+  },
+  "packaging": {
+    "version": "0.1.0-beta.1",
+    "version_property": "mod_version=0.1.0-beta.1"
+  },
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T26 freeze closes the public Beta gate with a complete known-issue ledger, O-15 accounting, anvil_bend post_1_0 reserved slots and crucible owned by T27. Publication delta remains 0/0/0. F003/F005 are not remeasured here; their SKIP contracts transfer to T27 RC. Repository-wide verification is bound separately by the full snapshot report."
+  },
+  "refresh_policy": {
+    "status": "BOUND_TO_FULL_VERIFICATION_REPORT",
+    "evidence": "tools/full_verification_report.json"
+  }
+}

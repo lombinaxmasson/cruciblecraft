@@ -1,0 +1,72 @@
+{
+  "closure": {
+    "dust_funnel_1": true,
+    "hopper_host_present": true,
+    "hopper_identities_120": true,
+    "lifecycle_gametests_present": true,
+    "no_bare_hopper_ids": true,
+    "replacement_satisfied": true,
+    "source_rows_60": true,
+    "vanilla_recipes_121": true
+  },
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T30 registers 60 SOURCE_BACKED hopper rows as 120 hopper-family identities plus steel_dust_funnel. It does not start RC numbering or rewrite T27-T29 historical Hopper=post_1_0 snapshots."
+  },
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t30_readiness.py": "646f28f504bc562332a0c3c1ebbb4c1dce59b3a99ce3841367781d91e8e83aa5",
+      "tools/phase5_1_pre_rc_logistics_contract.json": "c3a743a9ddd64b2a17aecb37fde26beb9705ccd1ff61fdca05e2f8a3253cf52f",
+      "tools/t30_art_asset_provenance.json": "7da9c50a2741da78d1c4be51616e1c3b22167e644a6f7862a59343b0009f7309",
+      "tools/t30_hopper_source_evidence.json": "f457c46865451309bf1026664763d5676268961e7a52202cc298d83b83324c62",
+      "tools/t30_load_projection.json": "c9ee28c26b696bfa2ae4021e4fea2e9d5131ef85f9185b06682eef13afb765eb",
+      "tools/t30_publication_delta.json": "ab2a86805bbffc36cb630932993d17d12ff550962261862cd4c055b9395c76e0",
+      "tools/t30_readiness_policy.json": "85711d2e56f0e123385f9f41c8573fe7c3e58a66feff41ee1dd2ec3f511fed43"
+    }
+  },
+  "fidelity": {
+    "art_derived": true,
+    "dust_three_form_bounded": true,
+    "no_block_dust": true,
+    "no_plate_curved_runtime": true,
+    "rc_number_null": true,
+    "recipes_source_derived": true,
+    "slots_source_backed": true,
+    "source_revision_pinned": true
+  },
+  "generated_by": "python tools/build_t30_readiness.py --write",
+  "load": {
+    "datapack_hard_ceiling_is_6600": true,
+    "eager_hard_ceiling_is_21000": true,
+    "gt_delta_zero": true,
+    "measured_zero": true,
+    "pending_axes_not_zeroed": true,
+    "same_sign_when_measured": true,
+    "vanilla_hopper_accounted": true
+  },
+  "owned_inputs": {
+    "tools/build_t30_readiness.py": "646f28f504bc562332a0c3c1ebbb4c1dce59b3a99ce3841367781d91e8e83aa5",
+    "tools/phase5_1_pre_rc_logistics_contract.json": "c3a743a9ddd64b2a17aecb37fde26beb9705ccd1ff61fdca05e2f8a3253cf52f",
+    "tools/t30_art_asset_provenance.json": "7da9c50a2741da78d1c4be51616e1c3b22167e644a6f7862a59343b0009f7309",
+    "tools/t30_hopper_source_evidence.json": "f457c46865451309bf1026664763d5676268961e7a52202cc298d83b83324c62",
+    "tools/t30_load_projection.json": "c9ee28c26b696bfa2ae4021e4fea2e9d5131ef85f9185b06682eef13afb765eb",
+    "tools/t30_publication_delta.json": "ab2a86805bbffc36cb630932993d17d12ff550962261862cd4c055b9395c76e0",
+    "tools/t30_readiness_policy.json": "85711d2e56f0e123385f9f41c8573fe7c3e58a66feff41ee1dd2ec3f511fed43"
+  },
+  "policy": "The status field is derived from evidence by build(). T30_READY cannot be hand-written.",
+  "runtime": {
+    "gametest_passing": true,
+    "gametest_total": 137,
+    "java_unit_tests_passing": true,
+    "rc_number": null,
+    "report_status": "READY",
+    "t29_status": "T29_READY"
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T30_READY",
+  "status_owner": "run_full_verification",
+  "t30_gametests_found": 6,
+  "vanilla_recipe_count": 121
+}

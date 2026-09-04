@@ -38,7 +38,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
- * T24 scale evidence: bounded operation counts for the three declared
+ * Scale evidence: bounded operation counts for the three declared
  * workload scenarios.
  *
  * <p>Evidence classes:
@@ -122,7 +122,7 @@ class ScaleWorkloadBoundTest {
         assertEquals(25, ports);
         assertEquals(50, 2 * ports);
         JsonObject tankRow = readJson(
-                        "tools/t23_load_evidence.json")
+                        "tools/structure_load_evidence.json")
                 .getAsJsonObject("structures")
                 .getAsJsonObject("tank_3x3x3");
         assertEquals(50, tankRow.get("port_scan_ops_max").getAsInt());
@@ -133,13 +133,13 @@ class ScaleWorkloadBoundTest {
     @Test
     void scenarioAllT23StructuresStayWithinDeclaredCaps() {
         // The target/stress scenarios include the distillation tower and
-        // the large boiler. Every T23 selected structure must respect
+        // the large boiler. Every selected structure must respect
         // 2 ops per position and 2 ops per port and stay inside the
         // 4,096-position scan volume.
-        JsonObject structures = readJson("tools/t23_load_evidence.json")
+        JsonObject structures = readJson("tools/structure_load_evidence.json")
                 .getAsJsonObject("structures");
         assertEquals(
-                3, structures.size(), "t23 selected structure set");
+                3, structures.size(), "selected structure set");
         for (String id : structures.keySet()) {
             JsonObject row = structures.getAsJsonObject(id);
             int positions = row.get("positions").getAsInt();
@@ -166,7 +166,7 @@ class ScaleWorkloadBoundTest {
         // The traversal cap is a declared constant; the largest scenario
         // (2,000 pipes) stays far below the 32,768 visited-pipe cap.
         assertEquals(32_768, ItemPipeNetworkTraversal.MAX_VISITED_PIPES);
-        JsonObject gate = readJson("tools/t19_readiness.json")
+        JsonObject gate = readJson("tools/cover_readiness.json")
                 .getAsJsonObject("performance_gate")
                 .getAsJsonObject("route_discovery");
         assertEquals(
@@ -179,7 +179,7 @@ class ScaleWorkloadBoundTest {
         // The per-pipe route cache cap is declared at 256 entries; the
         // scenario never raises it, so every pipe in every scenario stays
         // under the same per-pipe cap.
-        JsonObject memory = readJson("tools/t19_readiness.json")
+        JsonObject memory = readJson("tools/cover_readiness.json")
                 .getAsJsonObject("performance_gate")
                 .getAsJsonObject("memory");
         assertEquals(
@@ -195,7 +195,7 @@ class ScaleWorkloadBoundTest {
         // three-byte VarInt); the encoding bound itself is asserted by
         // CoverConfigurationPayloadTest.
         assertEquals(13, CoverConfigurationPayload.MAX_ENCODED_BYTES);
-        JsonObject sync = readJson("tools/t19_readiness.json")
+        JsonObject sync = readJson("tools/cover_readiness.json")
                 .getAsJsonObject("performance_gate")
                 .getAsJsonObject("synchronization");
         assertEquals(
@@ -209,7 +209,7 @@ class ScaleWorkloadBoundTest {
     @Test
     void scenarioMenuSyncStaysAtThreeContainerDataInts() {
         assertEquals(3, ConfiguredProcessingMachineMenu.DATA_COUNT);
-        JsonObject network = readJson("tools/t23_load_evidence.json")
+        JsonObject network = readJson("tools/structure_load_evidence.json")
                 .getAsJsonObject("network_sync");
         assertEquals(3, network.get("menu_slots").getAsInt());
     }
@@ -219,7 +219,7 @@ class ScaleWorkloadBoundTest {
         // The binding test: every hard-gate number asserted above must be
         // consistent with the generated manifest; anyone who changes a
         // scenario count beyond the declared bounds turns this test red.
-        JsonObject manifest = readJson("tools/t24_workload_manifest.json");
+        JsonObject manifest = readJson("tools/scale_workload_manifest.json");
         assertEquals(
                 "MANIFEST_COMPLETE", manifest.get("status").getAsString());
         String identity = manifest.get("workload_identity").getAsString();
@@ -230,7 +230,7 @@ class ScaleWorkloadBoundTest {
         assertScenario(scenarios.getAsJsonObject("target"), 500, 100, 24, 8, 24, 3, 1);
         assertScenario(scenarios.getAsJsonObject("stress"), 2_000, 400, 96, 32, 96, 12, 4);
 
-        JsonObject pipeGate = readJson("tools/t19_readiness.json")
+        JsonObject pipeGate = readJson("tools/cover_readiness.json")
                 .getAsJsonObject("performance_gate")
                 .getAsJsonObject("tick_schedule");
         assertEquals(5, pipeGate.get("interval_ticks").getAsInt());

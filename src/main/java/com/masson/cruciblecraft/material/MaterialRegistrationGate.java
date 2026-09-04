@@ -24,11 +24,11 @@ public final class MaterialRegistrationGate {
             "/data/cruciblecraft/material_registration_gate.json";
     /** Schema v1 fallback only. Schema v2 reads java_overlay_sections from the gate. */
     private static final List<String> SCHEMA_V1_OVERLAY_SECTIONS = List.of(
-            "t38_source_backed_acquisition_forms",
-            "t38_required_forms",
-            "t39_required_forms",
-            "t40_required_forms",
-            "t48_required_forms");
+            "worldgen_acquisition_forms",
+            "roaster_required_forms",
+            "centrifuge_required_forms",
+            "electrolyzer_required_forms",
+            "bath_required_forms");
 
     private MaterialRegistrationGate() {}
 

@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/art_asset_provenance.schema.json",
+  "title": "Hopper family ART_DERIVED provenance",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "status",
+    "schema_version",
+    "classification",
+    "source_revision",
+    "derivation_rule",
+    "families",
+    "projected_members",
+    "counts"
+  ],
+  "properties": {
+    "status": {
+      "const": "ART_ASSET_PROVENANCE"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "classification": {
+      "const": "ART_DERIVED"
+    },
+    "source_revision": {
+      "const": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    "derivation_rule": {
+      "type": "string",
+      "minLength": 1
+    },
+    "families": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "family",
+          "source_model",
+          "shared_parent",
+          "shared_side_parent",
+          "shared_texture",
+          "overlay_texture",
+          "tintindex"
+        ],
+        "properties": {
+          "family": {
+            "type": "string"
+          },
+          "source_model": {
+            "type": "string"
+          },
+          "shared_parent": {
+            "type": "string"
+          },
+          "shared_side_parent": {
+            "type": ["string", "null"]
+          },
+          "shared_texture": {
+            "type": "string"
+          },
+          "overlay_texture": {
+            "type": ["string", "null"]
+          },
+          "tintindex": {
+            "const": 0
+          }
+        }
+      }
+    },
+    "projected_members": {
+      "type": "array",
+      "minItems": 121,
+      "maxItems": 121,
+      "items": {
+        "type": "string",
+        "pattern": "^cruciblecraft:[a-z0-9_]+$"
+      }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hopper",
+        "queue_hopper",
+        "dust_funnel",
+        "total",
+        "per_material_pngs"
+      ],
+      "properties": {
+        "hopper": { "const": 60 },
+        "queue_hopper": { "const": 60 },
+        "dust_funnel": { "const": 1 },
+        "total": { "const": 121 },
+        "per_material_pngs": { "const": 0 }
+      }
+    }
+  }
+}

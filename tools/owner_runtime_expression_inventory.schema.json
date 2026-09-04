@@ -1,0 +1,22 @@
+{
+  "$id": "https://cruciblecraft.invalid/schema/t42-runtime-expression-inventory.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "minecraft_prefix_is_not_proof": {
+      "const": true
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "const": "T42_RUNTIME_EXPRESSION_INVENTORY"
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "minecraft_prefix_is_not_proof"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,32 @@
+{
+  "$id": "https://cruciblecraft.invalid/schema/t42-census-delta.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "completion_delta": {
+      "const": 0
+    },
+    "generated_recipe_tree": {
+      "const": false
+    },
+    "hard_ceiling_raised": {
+      "const": false
+    },
+    "publication_delta": {
+      "const": 0
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "const": "T42_CENSUS_DELTA_READY"
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "completion_delta",
+    "hard_ceiling_raised"
+  ],
+  "type": "object"
+}

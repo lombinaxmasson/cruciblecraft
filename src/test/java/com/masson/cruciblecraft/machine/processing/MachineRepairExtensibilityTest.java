@@ -28,7 +28,7 @@ class MachineRepairExtensibilityTest {
     private static final String FIXTURE_VARIANT = "cruciblecraft:invar_lathe";
     private static final String FIXTURE_CASING = "cruciblecraft:iron_machine_casing";
     private static final Path OVERLAY_ROOT = Path.of(
-            "src/test/resources/data/cruciblecraft/t36_repair_overlay");
+            "src/test/resources/data/cruciblecraft/repair_overlay");
 
     @BeforeAll
     static void bootstrapMinecraft() {
@@ -114,7 +114,7 @@ class MachineRepairExtensibilityTest {
                 .getAsJsonArray("variants")
                 .size());
         assertFalse(Files.exists(Path.of(
-                "src/main/resources/data/cruciblecraft/t36_repair_overlay")));
+                "src/main/resources/data/cruciblecraft/repair_overlay")));
         assertTrue(Files.isRegularFile(OVERLAY_ROOT.resolve("machine_tiers.json")));
         for (String relative : List.of(
                 "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",

@@ -1,0 +1,622 @@
+{
+  "schema_version": 1,
+  "status": "T16_READINESS_POLICY",
+  "status_policy": {
+    "in_progress": "T16_IN_PROGRESS",
+    "ready": "T16_READY",
+    "complete_stage_status": "COMPLETE",
+    "pending_stage_status": "PENDING"
+  },
+  "refresh_policy": {
+    "status": "BOUND_TO_FULL_VERIFICATION_REPORT",
+    "this_refresh_final_closure_attempted": true,
+    "evidence": "tools/full_verification_report.json"
+  },
+  "dependencies": {
+    "T15": {
+      "path": "tools/t15_readiness.json",
+      "required_status": "T15_READY"
+    },
+    "denominator": {
+      "path": "tools/t16_machine_denominator.json",
+      "required_status": "T16_MACHINE_DENOMINATOR_READY"
+    },
+    "acquisition": {
+      "path": "tools/t16_machine_acquisition.json",
+      "required_status": "T16C_MACHINE_ACQUISITION_READY"
+    }
+  },
+  "stages": {
+    "T16a": {
+      "name": "ru_selected_machine_tiers",
+      "status": "COMPLETE",
+      "acceptance": "Classify all T16 RU/KU owner kinds, preserve the pre-T16 Centrifuge and Sifter rows, and bind Lathe, Rolling Mill, Wiremill and Shredder to exact RU source tiers 1-3."
+    },
+    "T16b": {
+      "name": "ku_press_vertical_slice",
+      "status": "COMPLETE",
+      "acceptance": "Bind Press bronze, steel and titanium to the exact KU source tiers, reuse the Press behavior/map/menu host, and verify execution plus adjacent steam and controlled higher-tier supply."
+    },
+    "T16c": {
+      "name": "resources_acquisition_and_identity",
+      "status": "COMPLETE",
+      "acceptance": "Generate real-texture models, real en_us/zh_cn names, loot/tags and source-projected crafting for all 15 selected variants; prove operand closure plus current-only identity acceptance and fail-closed mismatch handling while preserving recoverable machine state."
+    },
+    "T16d": {
+      "name": "zero_publication_and_full_verification",
+      "status": "COMPLETE",
+      "acceptance": "Bind the pre-T16 RecipeMap stable-id set and logical/eager/lazy totals, prove exact EMI enumeration, record a zero-workload T16 load projection, and require the unified full-verification workflow."
+    }
+  },
+  "source_contracts": {
+    "denominator_builder": {
+      "stage": "T16a",
+      "path": "tools/build_t16_machine_denominator.py",
+      "required_tokens": [
+        "T16_MACHINE_DENOMINATOR_READY",
+        "T13 must expose exactly 20 T16 RU/KU kinds",
+        "DEFERRED_GT6_TIER4",
+        "unclassified"
+      ]
+    },
+    "denominator_policy": {
+      "stage": "T16a",
+      "path": "tools/t16_machine_denominator_policy.json",
+      "required_tokens": [
+        "\"RM.Lathe\"",
+        "\"RM.RollingMill\"",
+        "\"RM.Wiremill\"",
+        "\"RM.Shredder\"",
+        "\"RM.Press\"",
+        "\"tier4\""
+      ]
+    },
+    "denominator_python_test": {
+      "stage": "T16a",
+      "path": "tools/tests/test_build_t16_machine_denominator.py",
+      "required_tokens": [
+        "test_t13_ru_ku_owner_set_is_bidirectionally_classified",
+        "test_every_deferred_kind_and_tier4_has_exit_conditions",
+        "test_policy_mutations_fail_closed",
+        "test_artifact_matches_current_builder"
+      ]
+    },
+    "machine_tier_catalog": {
+      "stage": "T16a",
+      "path": "src/main/resources/data/cruciblecraft/machine_tiers.json",
+      "required_tokens": [
+        "\"schemaVersion\": 3",
+        "\"tierBand\": \"cruciblecraft:ru_tier_2\"",
+        "\"cruciblecraft:steel_lathe\"",
+        "\"cruciblecraft:titanium_rollingmill\"",
+        "\"cruciblecraft:steel_wiremill\"",
+        "\"cruciblecraft:titanium_shredder\"",
+        "\"sourceTier\": 3",
+        "\"parallelDuration\": false",
+        "\"overclock\": \"STANDARD\""
+      ]
+    },
+    "catalog_loader": {
+      "stage": "T16a",
+      "path": "src/main/java/com/masson/cruciblecraft/machine/processing/MachineTierCatalog.java",
+      "required_tokens": [
+        "tierBand",
+        "TierBandCapabilities",
+        "sourceId",
+        "sourceTier",
+        "overclockPolicy",
+        "parallelDuration",
+        "Machine tier source policies differ within kinds"
+      ]
+    },
+    "variant_registry": {
+      "stage": "T16a",
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModMachineVariants.java",
+      "required_tokens": [
+        "LATHE",
+        "ROLLINGMILL",
+        "WIREMILL",
+        "SHREDDER",
+        "sourceKind"
+      ]
+    },
+    "behavior_carriers": {
+      "stage": "T16a",
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+      "required_tokens": [
+        "\"lathe\"",
+        "\"rollingmill\"",
+        "\"wiremill\"",
+        "EnergyType.KINETIC_ROTATION"
+      ]
+    },
+    "block_registry": {
+      "stage": "T16a",
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+      "required_tokens": [
+        "STEEL_LATHE",
+        "TITANIUM_LATHE",
+        "STEEL_ROLLINGMILL",
+        "TITANIUM_ROLLINGMILL",
+        "STEEL_WIREMILL",
+        "TITANIUM_WIREMILL",
+        "STEEL_SHREDDER",
+        "TITANIUM_SHREDDER",
+        "configuredProcessingVariant"
+      ]
+    },
+    "item_registry": {
+      "stage": "T16a",
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+      "required_tokens": [
+        "STEEL_LATHE",
+        "TITANIUM_LATHE",
+        "STEEL_ROLLINGMILL",
+        "TITANIUM_ROLLINGMILL",
+        "STEEL_WIREMILL",
+        "TITANIUM_WIREMILL",
+        "STEEL_SHREDDER",
+        "TITANIUM_SHREDDER"
+      ]
+    },
+    "source_expected": {
+      "stage": "T16a",
+      "path": "src/test/resources/kinetic_machine_tier_expected.json",
+      "required_tokens": [
+        "\"schema_version\": 2",
+        "\"tier_band\"",
+        "\"preserved_opening\"",
+        "\"kinetic_rotation_selected\"",
+        "\"controller_profile\"",
+        "\"source_revision\""
+      ]
+    },
+    "junit_matrix": {
+      "stage": "T16a",
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/KineticMachineTierMatrixTest.java",
+      "required_tokens": [
+        "independentSourceExpectedMatchesCatalogAndRuntimeVariants",
+        "selectedKineticBlocksAndItemsCoverExactlyFifteenVariants",
+        "selectedKindsUseRuWithoutChangingControllerProfile",
+        "variantProjectionDoesNotPublishOrCreateTierSpecificRecipeMaps",
+        "assertTrue(ModMachineVariants.ALL.size() > 33)",
+        "assertEquals(24, allRows.size())"
+      ]
+    },
+    "python_test_policy": {
+      "stage": "T16a",
+      "path": "tools/python_test_policy.json",
+      "required_tokens": [
+        "tools/build_t16_*.py",
+        "tools/t16_*.json",
+        "test_build_t16_machine_denominator",
+        "test_build_t16_readiness"
+      ]
+    },
+    "readiness_python_test": {
+      "stage": "T16a",
+      "path": "tools/tests/test_build_t16_readiness.py",
+      "required_tokens": [
+        "test_t16a_through_t16d_are_complete_and_ready",
+        "test_t16d_closes_zero_load_publication_and_emi",
+        "test_currentness_covers_every_completed_stage",
+        "test_artifact_matches_current_builder"
+      ]
+    },
+    "t16b_denominator_policy": {
+      "stage": "T16b",
+      "path": "tools/t16_machine_denominator_policy.json",
+      "required_tokens": [
+        "\"RM.Press\"",
+        "\"IMPLEMENTED_T16B\"",
+        "\"catalog_kind\": \"cruciblecraft:press\""
+      ]
+    },
+    "t16b_machine_tier_catalog": {
+      "stage": "T16b",
+      "path": "src/main/resources/data/cruciblecraft/machine_tiers.json",
+      "required_tokens": [
+        "\"tierBand\": \"cruciblecraft:ku_tier_3\"",
+        "\"cruciblecraft:press\"",
+        "\"cruciblecraft:steel_press\"",
+        "\"cruciblecraft:titanium_press\"",
+        "\"sourceId\": 20233",
+        "\"parallel\": 16",
+        "\"parallelDuration\": true"
+      ]
+    },
+    "t16b_variant_registry": {
+      "stage": "T16b",
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModMachineVariants.java",
+      "required_tokens": [
+        "MachineKindSpec PRESS",
+        "List.of(LATHE, ROLLINGMILL, WIREMILL, SHREDDER, PRESS)"
+      ]
+    },
+    "t16b_behavior_carrier": {
+      "stage": "T16b",
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+      "required_tokens": [
+        "\"press\"",
+        "EnergyType.KINETIC_PUSH"
+      ]
+    },
+    "t16b_block_registry": {
+      "stage": "T16b",
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+      "required_tokens": [
+        "tieredProcessing(\"press\")",
+        "STEEL_PRESS",
+        "TITANIUM_PRESS"
+      ]
+    },
+    "t16b_item_registry": {
+      "stage": "T16b",
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+      "required_tokens": [
+        "STEEL_PRESS",
+        "TITANIUM_PRESS"
+      ]
+    },
+    "t16b_source_expected": {
+      "stage": "T16b",
+      "path": "src/test/resources/kinetic_machine_tier_expected.json",
+      "required_tokens": [
+        "\"kinetic_push_selected\"",
+        "\"source_id\":20231",
+        "\"source_id\":20233"
+      ]
+    },
+    "t16b_junit_execution_matrix": {
+      "stage": "T16b",
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/KineticMachineTierMatrixTest.java",
+      "required_tokens": [
+        "fiveSelectedKindsCoverEveryTierWindowParallelAndEnergyIdentity",
+        "representativeRuAndKuPlansAndFailureStatesStayDistinct",
+        "\"underpowered\"",
+        "\"output_blocked\"",
+        "\"overcharged\"",
+        "\"recipe_power_exceeded\""
+      ]
+    },
+    "t16b_gametest_verticals": {
+      "stage": "T16b",
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "required_tokens": [
+        "ruMotorAxleGearboxPowersLathe",
+        "steamEnginePowersPressThroughKu",
+        "higherTierControlledInjection"
+      ]
+    },
+    "t16b_denominator_python_test": {
+      "stage": "T16b",
+      "path": "tools/tests/test_build_t16_machine_denominator.py",
+      "required_tokens": [
+        "test_t16b_locks_selected_preimplemented_deferred_and_source_hash",
+        "IMPLEMENTED_T16B"
+      ]
+    },
+    "t16b_readiness_python_test": {
+      "stage": "T16b",
+      "path": "tools/tests/test_build_t16_readiness.py",
+      "required_tokens": [
+        "test_t16a_through_t16d_are_complete_and_ready",
+        "test_t16b_evidence_locks_press_runtime_scope"
+      ]
+    },
+    "t16c_acquisition_builder": {
+      "stage": "T16c",
+      "path": "tools/build_t16_machine_acquisition.py",
+      "required_tokens": [
+        "T16C_MACHINE_ACQUISITION_READY",
+        "independent T16c recipe set differs from selected variants",
+        "unreachable"
+      ]
+    },
+    "t16c_acquisition_policy": {
+      "stage": "T16c",
+      "path": "tools/t16_machine_acquisition_policy.json",
+      "required_tokens": [
+        "\"cruciblecraft:machines/lathe\"",
+        "\"cruciblecraft:machines/titanium_press\"",
+        "\"cruciblecraft:diamond/gem\"",
+        "\"production_mapping_reused\": false"
+      ]
+    },
+    "t16c_acquisition_python_test": {
+      "stage": "T16c",
+      "path": "tools/tests/test_build_t16_machine_acquisition.py",
+      "required_tokens": [
+        "test_independent_expected_set_locks_five_by_three_variants",
+        "test_results_casings_ingredients_and_producer_graph_are_closed",
+        "test_artifact_matches_current_builder"
+      ]
+    },
+    "t16c_variant_registry": {
+      "stage": "T16c",
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModMachineVariants.java",
+      "required_tokens": [
+        "SELECTED_KINETIC_KINDS",
+        "SELECTED_KINETIC_VARIANTS",
+        "LATHE, ROLLINGMILL, WIREMILL, SHREDDER, PRESS"
+      ]
+    },
+    "t16c_block_models": {
+      "stage": "T16c",
+      "path": "src/main/java/com/masson/cruciblecraft/datagen/ModBlockStateProvider.java",
+      "required_tokens": [
+        "ModMachineVariants.ALL",
+        "\"steel_lathe\", \"titanium_lathe\"",
+        "\"steel_press\", \"titanium_press\""
+      ]
+    },
+    "t16c_language": {
+      "stage": "T16c",
+      "path": "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+      "required_tokens": [
+        "ModMachineVariants.SELECTED_KINETIC_VARIANTS",
+        "catalogMachineName",
+        "\"青铜\"",
+        "\"钛制\"",
+        "\"titanium\""
+      ]
+    },
+    "t16c_machine_recipes": {
+      "stage": "T16c",
+      "path": "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
+      "required_tokens": [
+        "kineticMachineCrafting",
+        "MaterialPrefixes.SMALL_GEAR",
+        "MaterialPrefixes.DOUBLE_PLATE",
+        "MaterialPrefixes.GEM"
+      ]
+    },
+    "t16c_loot": {
+      "stage": "T16c",
+      "path": "src/main/java/com/masson/cruciblecraft/datagen/ModBlockLootTables.java",
+      "required_tokens": [
+        "ModMachineVariants.ALL",
+        "ModBlocks.configuredProcessingBlock"
+      ]
+    },
+    "t16c_tags": {
+      "stage": "T16c",
+      "path": "src/main/java/com/masson/cruciblecraft/datagen/ModBlockTagProvider.java",
+      "required_tokens": [
+        "BlockTags.MINEABLE_WITH_PICKAXE",
+        "BlockTags.NEEDS_STONE_TOOL",
+        "configuredProcessingBlockEntries"
+      ]
+    },
+    "t16c_resource_junit": {
+      "stage": "T16c",
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/KineticMachineAcquisitionResourceTest.java",
+      "required_tokens": [
+        "independentFifteenRecipeSetIsBidirectionalWithSelectedVariants",
+        "selectedModelsLanguagesLootAndTagsAreCompleteWithoutFallbacks",
+        "assertEquals(15, expected.size())"
+      ]
+    },
+    "t16c_identity_policy": {
+      "stage": "T16c",
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModMachineIdentities.java",
+      "required_tokens": [
+        "MachineIdentityPolicy.resolve(",
+        "ProcessingMachineState state)",
+        "MachineVariant variant)"
+      ]
+    },
+    "t16c_identity_policy_junit": {
+      "stage": "T16c",
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineIdentityPolicyTest.java",
+      "required_tokens": [
+        "blankAndCurrentIdentitiesAreAcceptedAsCurrent",
+        "kindTierMaterialAndEnergyMismatchesAllQuarantine",
+        "MachineIdentityPolicy.Resolution.ACCEPTED",
+        "MachineIdentityPolicy.Resolution.QUARANTINED"
+      ]
+    },
+    "t16c_identity_persistence_junit": {
+      "stage": "T16c",
+      "path": "src/test/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineIdentityPersistenceTest.java",
+      "required_tokens": [
+        "blankIdentityAdoptsCurrentWithoutQuarantine",
+        "currentIdentityReloadResumesAndPreservesState",
+        "assertEquals(9, restored.progress())"
+      ]
+    },
+    "t16c_gametests": {
+      "stage": "T16c",
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "required_tokens": [
+        "selectedMachineRecipesExecuteFromLiveRecipeManager",
+        "tierProfileIdentityIsQuarantinedAcrossNbtReload",
+        "cases.size() == 15"
+      ]
+    },
+    "t16c_full_builder": {
+      "stage": "T16c",
+      "path": "tools/verification_builder_policy.json",
+      "required_tokens": [
+        "tools/build_t16_machine_acquisition.py",
+        "tools/build_t16_readiness.py"
+      ]
+    },
+    "t16c_full_artifact_currentness": {
+      "stage": "T16c",
+      "path": "tools/verify_full_verification_report.py",
+      "required_tokens": [
+        "\"t16_machine_acquisition.json\"",
+        "\"t16_readiness.json\"",
+        "TOOLS / \"build_t16_machine_acquisition.py\""
+      ]
+    },
+    "t16d_load_projection_input": {
+      "stage": "T16d",
+      "path": "tools/t16_load_projection_input.json",
+      "required_tokens": [
+        "\"delivery_phase\": \"T16\"",
+        "\"kind\": \"zero_workload_fixture\"",
+        "\"authored_entries\": 0",
+        "\"logical_rows\": 0",
+        "\"eager_publication_rows\": 0",
+        "\"lazy_logical_rows\": 0",
+        "\"sync_bytes\": 0"
+      ]
+    },
+    "t16d_load_projection_output": {
+      "stage": "T16d",
+      "path": "tools/t16_load_projection.json",
+      "required_tokens": [
+        "\"delivery_phase\": \"T16\"",
+        "\"status\": \"PASS\"",
+        "\"datapack_authored_entries\": 0",
+        "\"eager_publication_rows\": 0",
+        "\"lazy_logical_rows\": 0",
+        "\"sync_bytes\": 0"
+      ]
+    },
+    "t16d_publication_baseline": {
+      "stage": "T16d",
+      "path": "src/main/resources/data/cruciblecraft/t16_publication_baseline.json",
+      "required_tokens": [
+        "T16D_PUBLICATION_BASELINE",
+        "\"logical_rows\": 18875",
+        "\"eager_rows\": 16650",
+        "\"lazy_rows\": 2225",
+        "\"vanilla_crafting_rows\": 15",
+        "\"gt_recipe_rows\": 0"
+      ]
+    },
+    "t16d_gametest_publication": {
+      "stage": "T16d",
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "required_tokens": [
+        "recipePublicationBaselineRemainsStable",
+        "actualMapIds.containsAll(expectedMapIds)",
+        "expectedEmiIds.equals(actualEmiIds)",
+        "metrics.allPublishedRecipes()",
+        "metrics.eagerPublishedRecipes()",
+        "metrics.lazyLogicalRecipes()"
+      ]
+    },
+    "t16d_readiness_builder": {
+      "stage": "T16d",
+      "path": "tools/build_t16_readiness.py",
+      "required_tokens": [
+        "T16_MACHINE_DENOMINATOR_READY",
+        "T16d publication baseline",
+        "recipe_enumeration_equal",
+        "publication_delta"
+      ]
+    },
+    "t16d_readiness_python_test": {
+      "stage": "T16d",
+      "path": "tools/tests/test_build_t16_readiness.py",
+      "required_tokens": [
+        "test_t16a_through_t16d_are_complete_and_ready",
+        "test_t16d_closes_zero_load_publication_and_emi",
+        "test_currentness_covers_every_completed_stage",
+        "test_artifact_matches_current_builder"
+      ]
+    },
+    "t16d_load_python_test": {
+      "stage": "T16d",
+      "path": "tools/tests/test_recipe_load_projection.py",
+      "required_tokens": [
+        "test_committed_t16_projection_is_current_zero_workload",
+        "t16_load_projection_input.json",
+        "t16_load_projection.json"
+      ]
+    },
+    "t16d_python_affected_closure": {
+      "stage": "T16d",
+      "path": "tools/python_test_policy.json",
+      "required_tokens": [
+        "tools/build_t16_*.py",
+        "tools/t16_*.json",
+        "test_recipe_load_projection",
+        "test_full_verification_report"
+      ]
+    },
+    "t16d_full_builder": {
+      "stage": "T16d",
+      "path": "tools/verification_builder_policy.json",
+      "required_tokens": [
+        "tools/build_t16_machine_denominator.py",
+        "tools/build_t16_machine_acquisition.py",
+        "tools/build_t16_readiness.py"
+      ]
+    },
+    "t16d_full_report": {
+      "stage": "T16d",
+      "path": "tools/verify_full_verification_report.py",
+      "required_tokens": [
+        "\"t16_load_projection_input.json\"",
+        "\"t16_load_projection.json\"",
+        "derived_t16_readiness_acceptance",
+        "\"tools/build_t16_readiness.py\", \"T16 readiness gate\""
+      ]
+    },
+    "t16d_third_phase_status": {
+      "stage": "T16d",
+      "path": "tools/contracts/narrative_archive.json",
+      "required_tokens": [
+        "T16_READY",
+        "selected 5",
+        "deferred 13",
+        "publication delta = 0"
+      ]
+    },
+    "t16d_overall_status": {
+      "stage": "T16d",
+      "path": "tools/contracts/narrative_archive.json",
+      "required_tokens": [
+        "T16_READY",
+        "selected 5",
+        "deferred 13"
+      ]
+    },
+    "t16d_project_readme": {
+      "stage": "T16d",
+      "path": "tools/contracts/narrative_archive.json",
+      "required_tokens": [
+        "T16_READY",
+        "T19 is now `T19_READY`"
+      ]
+    },
+    "t16d_tools_readme": {
+      "stage": "T16d",
+      "path": "tools/contracts/narrative_archive.json",
+      "required_tokens": [
+        "T16 RU/KU readiness",
+        "t16_load_projection.json",
+        "T16_READY"
+      ]
+    },
+    "t16d_history_archive": {
+      "stage": "T16d",
+      "path": "tools/contracts/narrative_archive.json",
+      "required_tokens": [
+        "T13–T16 均已关闭",
+        "T16_READY",
+        "selected 5",
+        "deferred 13",
+        "publication delta = 0"
+      ]
+    }
+  },
+  "t16d_evidence": {
+    "gametest": {
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "tests": [
+        "ruMotorAxleGearboxPowersLathe",
+        "steamEnginePowersPressThroughKu",
+        "higherTierControlledInjection",
+        "selectedMachineRecipesExecuteFromLiveRecipeManager",
+        "tierProfileIdentityIsQuarantinedAcrossNbtReload",
+        "recipePublicationBaselineRemainsStable"
+      ]
+    }
+  }
+}

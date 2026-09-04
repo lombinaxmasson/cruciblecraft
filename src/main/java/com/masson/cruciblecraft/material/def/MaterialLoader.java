@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 public final class MaterialLoader {
     private static final String RESOURCE_ROOT = "/data/cruciblecraft/materials/";
     private static final String HYDROCARBON_MATERIAL_ROOT =
-            "/data/cruciblecraft/t11_materials/";
+            "/data/cruciblecraft/hydrocarbon_materials/";
     private static final Logger LOGGER = LoggerFactory.getLogger(MaterialLoader.class);
 
     private MaterialLoader() {}

@@ -1,0 +1,156 @@
+{
+  "acceptance": {
+    "canonical_completion_metric": "canonical denominator plus explicit classification; live publication/source rows is not a completion ratio",
+    "normalization_blockers": 0,
+    "o_33": "CLOSED",
+    "recipe_maps": 95,
+    "recipe_rows": 720841,
+    "tables": 7,
+    "unclassified": 0
+  },
+  "currentness": {
+    "dependencies": {
+      "tools/t12_closure_readiness.json": "d8762fad8e451c034856d78a900a86217176f88749ef031127aee42d637449df",
+      "tools/t13_denominator_manifest.json": "9bf87bdbd4bda82d4417f899ef44b920d1cb147ed30f1adee7d917c1d23ec400"
+    },
+    "owned_inputs": {
+      "tools/build_t13_denominator_readiness.py": "51945bd93f32fe1078c170fd75ffc52f062f0a664835628043d09cd118cca1e0",
+      "tools/t13_denominator_policy.json": "4620f5c22237c5a81933ed561e8ebad9a2bda6545525dd275aa575e0ac3e911f"
+    },
+    "pending_report": {
+      "evidence": "tools/full_verification_report.json",
+      "pending": [],
+      "status": "BOUND_TO_FULL_VERIFICATION_REPORT",
+      "this_refresh_final_closure_attempted": true
+    },
+    "processing_machine_energy_audit": {
+      "explicit_energy_arguments": 25,
+      "implicit_energy_arguments": 0,
+      "legacy_kinetic": 8,
+      "machine_specs": 25,
+      "new_legacy_kinetic": 0,
+      "path": "tools/processing_machine_energy_audit.json",
+      "status": "PROCESSING_MACHINE_ENERGY_AUDIT_READY"
+    }
+  },
+  "delivery_boundary": "T13_CANONICAL_DENOMINATORS",
+  "denominators": {
+    "cover_kinds": {
+      "canonical": 47,
+      "classifications": {
+        "deferred_with_reason": 28,
+        "in_scope": 9,
+        "out_of_scope": 10
+      },
+      "raw": 65
+    },
+    "energy_identities": {
+      "canonical": 20,
+      "classifications": {
+        "deferred_with_reason": 5,
+        "in_scope": 7,
+        "out_of_scope": 8
+      },
+      "raw": 20
+    },
+    "itemgenerator_domains": {
+      "canonical": 25,
+      "classifications": {
+        "deferred_with_reason": 3,
+        "in_scope": 16,
+        "out_of_scope": 6
+      },
+      "raw": 25
+    },
+    "machine_kinds": {
+      "canonical": 96,
+      "classifications": {
+        "deferred_with_reason": 15,
+        "in_scope": 81
+      },
+      "raw": 2328
+    },
+    "multiblock_kinds": {
+      "canonical": 30,
+      "classifications": {
+        "deferred_with_reason": 20,
+        "in_scope": 5,
+        "out_of_scope": 5
+      },
+      "raw": 44
+    },
+    "prefixes": {
+      "canonical": 452,
+      "classifications": {
+        "deferred_with_reason": 271,
+        "in_scope": 55,
+        "out_of_scope": 126
+      },
+      "raw": 468
+    },
+    "recipe_maps": {
+      "canonical": 95,
+      "classifications": {
+        "deferred_with_reason": 64,
+        "in_scope": 29,
+        "out_of_scope": 2,
+        "unclassified": 0
+      },
+      "raw": 95
+    }
+  },
+  "downstream_contract": {
+    "T14": [
+      "recipe_maps",
+      "prefixes",
+      "itemgenerator_domains"
+    ],
+    "T15": [
+      "machine_kinds",
+      "prefixes"
+    ],
+    "T16": [
+      "machine_kinds",
+      "energy_identities"
+    ],
+    "T17": [
+      "machine_kinds",
+      "energy_identities",
+      "recipe_maps"
+    ],
+    "T18": [
+      "machine_kinds",
+      "energy_identities",
+      "recipe_maps"
+    ],
+    "T19": [
+      "cover_kinds",
+      "prefixes"
+    ],
+    "post_T19": [
+      "multiblock_kinds",
+      "itemgenerator_domains"
+    ]
+  },
+  "manifest": {
+    "path": "tools/t13_denominator_manifest.json",
+    "sha256": "9bf87bdbd4bda82d4417f899ef44b920d1cb147ed30f1adee7d917c1d23ec400"
+  },
+  "schema_version": 2,
+  "source_replay": {
+    "fetch_command": "python tools/build_t13_recipe_map_denominator.py --fetch-source build/t13-gt6-source --write-source-inventory",
+    "full_replay_check": "python tools/build_t13_recipe_map_denominator.py --check --full-replay",
+    "hash_fast_check": "python tools/build_t13_recipe_map_denominator.py --check --hash-fast",
+    "missing_full_source_policy": "explicit SKIP, never PASS",
+    "ordinary_check": "python tools/build_t13_recipe_map_denominator.py --check --reference-only",
+    "verify_command": "python tools/build_t13_recipe_map_denominator.py --check --full-replay --verify-source build/t13-gt6-source"
+  },
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T13_READY",
+  "zero_content_delta": {
+    "datapack_delta": 0,
+    "datapack_recipe_entries": 6150,
+    "publication_delta": 0,
+    "published_recipes": 18875
+  }
+}

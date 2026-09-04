@@ -6,15 +6,15 @@ import copy
 import hashlib
 from typing import Any
 
-from tools import t35_common as t35
+from tools import io_common as files
 from tools.recipe_bulk import identity as identity_v1
 from tools.recipe_bulk import identity_v2
 from tools.recipe_bulk.membership import identity_semantic_root
 from tools.recipe_bulk.slugs import WaveSlugError, parse_wave_token
 
 STATUS = "GLOBAL_BUILD_IDENTITY_LEDGER_V3"
-V2_PATH = t35.TOOLS / "global_build_identity_ledger.v2.json"
-OUTPUT = t35.TOOLS / "global_build_identity_ledger.v3.json"
+V2_PATH = files.TOOLS / "global_build_identity_ledger.v2.json"
+OUTPUT = files.TOOLS / "global_build_identity_ledger.v3.json"
 DELTA_ORDER: tuple[str, ...] = (
     "smelter/ordinary-closure",
     "mixer/ordinary-closure",
@@ -26,7 +26,7 @@ DELTA_ORDER: tuple[str, ...] = (
     "smelter/deferred-recycling",
 )
 DELTA_PATHS: dict[str, Any] = {
-    slug: t35.TOOLS / "waves" / slug / "identity_ledger_delta.json"
+    slug: files.TOOLS / "waves" / slug / "identity_ledger_delta.json"
     for slug in DELTA_ORDER
 }
 
@@ -36,7 +36,7 @@ class IdentityV3ConflictError(ValueError):
 
 
 def _file_hash(path) -> str:
-    return t35.sha256_file(path) if path.is_file() else ""
+    return hashlib.sha256(path.read_bytes()).hexdigest() if path.is_file() else ""
 
 
 def _empty_alias_root() -> str:
@@ -50,7 +50,7 @@ def _composition_root(
 ) -> str:
     payload = (
         f"{v2_file_sha256}\t{alias_root}\t"
-        + t35.stable_json(deltas)
+        + files.stable_json(deltas)
     )
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
@@ -67,17 +67,13 @@ def load_delta(wave_slug: str) -> dict[str, Any]:
             "status": f"{wave_slug.replace('/', '_').upper()}_IDENTITY_LEDGER_DELTA",
             "wave_slug": wave_slug,
         }
-    document = t35.load_json(path)
+    document = files.load_json(path)
     if document.get("wave_id") is not None:
         raise IdentityV3ConflictError(
             f"{path} must not write wave_id; use wave_slug only"
         )
     if str(document.get("wave_slug") or "") != wave_slug:
         raise IdentityV3ConflictError(f"{path} wave_slug drifted")
-    for row in list(document.get("records") or []) + list(document.get("blockers") or []):
-        key = str(row.get("source_key") or "")
-        if key.startswith("T50|") or key.startswith("t50|"):
-            raise IdentityV3ConflictError(f"{path} forbids T50 source_key {key}")
     return document
 
 
@@ -111,7 +107,7 @@ def compose(v2: dict[str, Any] | None = None) -> dict[str, Any]:
     if not V2_PATH.is_file():
         raise IdentityV3ConflictError(f"missing frozen v2 ledger {V2_PATH}")
     v2_hash = _file_hash(V2_PATH)
-    base = v2 if v2 is not None else t35.load_json(V2_PATH)
+    base = v2 if v2 is not None else files.load_json(V2_PATH)
     if base.get("status") != identity_v2.STATUS:
         raise IdentityV3ConflictError("v2 identity ledger status drifted")
     records = {
@@ -134,7 +130,7 @@ def compose(v2: dict[str, Any] | None = None) -> dict[str, Any]:
             {
                 "file_sha256": _file_hash(path) if path is not None else "",
                 "order": str(delta.get("order") or wave_slug),
-                "path": t35.relative(path) if path is not None else "",
+                "path": files.relative(path) if path is not None else "",
                 "wave_slug": wave_slug,
             }
         )
@@ -176,7 +172,7 @@ def compose(v2: dict[str, Any] | None = None) -> dict[str, Any]:
         "status": STATUS,
         "v2_base": {
             "file_sha256": v2_hash,
-            "path": t35.relative(V2_PATH),
+            "path": files.relative(V2_PATH),
             "semantic_root_sha256": v2_logical,
             "status": base.get("status"),
         },
@@ -217,8 +213,8 @@ def lookup_first(
     if wave_id is not None:
         try:
             parse_wave_token(wave_id, schema="semantic-v3")
-        except WaveSlugError:
-            pass
-        if str(wave_id).upper() == "T50" or str(wave_id).startswith("T50|"):
-            raise IdentityV3ConflictError("T50 identity lookup is forbidden")
+        except WaveSlugError as error:
+            raise IdentityV3ConflictError(
+                f"semantic-v3 identity lookup requires a host/cohort slug: {wave_id!r}"
+            ) from error
     return identity_v2.lookup_first(wave_id, operand, index=index)

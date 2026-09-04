@@ -16,7 +16,7 @@ TOOLS = ROOT / "tools"
 BUILDER = Path(__file__).resolve()
 POLICY = TOOLS / "processing_machine_energy_audit_policy.json"
 OUTPUT = TOOLS / "processing_machine_energy_audit.json"
-T12_CLOSURE = TOOLS / "t12_closure_readiness.json"
+T12_CLOSURE = TOOLS / "machine_tier_closure_readiness.json"
 SOURCE = (
     ROOT
     / "src/main/java/com/masson/cruciblecraft/registry/"

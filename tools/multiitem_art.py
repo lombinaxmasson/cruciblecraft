@@ -8,11 +8,11 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-from tools import t35_common as t35
+from tools import census_common as census
 
-ROOT = t35.ROOT
-TOOLS = t35.TOOLS
-SOURCE_REVISION = t35.SOURCE_REVISION
+ROOT = census.ROOT
+TOOLS = census.TOOLS
+SOURCE_REVISION = census.SOURCE_REVISION
 
 GT6_W_ITEMS = (
     ROOT
@@ -71,7 +71,7 @@ def dest_png(registry_path: str) -> Path:
 
 
 def dest_rel(registry_path: str) -> str:
-    return t35.relative(dest_png(registry_path))
+    return census.relative(dest_png(registry_path))
 
 
 def model_path(registry_path: str) -> Path:
@@ -103,7 +103,7 @@ def catalog_rows() -> list[dict[str, Any]]:
         ("bath", BUNDLED_BATH),
         ("semantic", BUNDLED_SEMANTIC),
     ):
-        document = t35.load_json(path)
+        document = census.load_json(path)
         for identity in document.get("identities") or []:
             if not bindable(identity):
                 continue
@@ -126,7 +126,7 @@ def catalog_rows() -> list[dict[str, Any]]:
 
 def _sha_or_none(path: Path) -> str | None:
     if path.is_file():
-        return t35.sha256_file(path)
+        return census.sha256_file(path)
     return None
 
 
@@ -172,7 +172,7 @@ def build_manifest() -> dict[str, Any]:
         "note": (
             "Bath ∪ semantic multiitem icons copied from gregtech6_w by "
             "(source_item, exact meta). Catalog JSON texture fields stay "
-            "iron_ingot so T48 identity hashes do not move. Models and PNGs "
+            "iron_ingot so bath/identity identity hashes do not move. Models and PNGs "
             "are the presentation authority. MTE and leftover prefixes are "
             "out of scope."
         ),
@@ -186,7 +186,7 @@ def build_manifest() -> dict[str, Any]:
 def write_model(registry_path: str, layer0: str) -> None:
     path = model_path(registry_path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    t35.write_stable(
+    census.write_stable(
         path,
         {
             "parent": "minecraft:item/generated",
@@ -199,7 +199,7 @@ def copy_source_backed(rows: list[dict[str, Any]] | None = None) -> list[str]:
     if not GT6_W_ITEMS.is_dir():
         raise ValueError(
             "gregtech6_w item textures missing; "
-            f"expected {t35.relative(GT6_W_ITEMS)}"
+            f"expected {census.relative(GT6_W_ITEMS)}"
         )
     written: list[str] = []
     for row in rows or catalog_rows():
@@ -209,13 +209,13 @@ def copy_source_backed(rows: list[dict[str, Any]] | None = None) -> list[str]:
         source = source_png(source_item, meta)
         if not source.is_file():
             raise ValueError(
-                f"missing SOURCE_BACKED multiitem texture: {t35.relative(source)}"
+                f"missing SOURCE_BACKED multiitem texture: {census.relative(source)}"
             )
         dest = dest_png(registry_path)
         dest.parent.mkdir(parents=True, exist_ok=True)
         dest.write_bytes(source.read_bytes())
         write_model(registry_path, texture_id(registry_path))
-        written.append(t35.relative(dest))
+        written.append(census.relative(dest))
     return written
 
 
@@ -245,16 +245,16 @@ def check_models_and_pngs(document: dict[str, Any]) -> list[str]:
             errors.append(f"{runtime} texture drifted")
         dest = ROOT / str(row.get("cc_path") or dest_rel(registry_path))
         if not dest.is_file():
-            errors.append(f"missing copied multiitem PNG: {t35.relative(dest)}")
+            errors.append(f"missing copied multiitem PNG: {census.relative(dest)}")
             continue
-        digest = t35.sha256_file(dest)
+        digest = census.sha256_file(dest)
         if digest != str(row.get("sha256") or ""):
-            errors.append(f"multiitem PNG hash drifted: {t35.relative(dest)}")
+            errors.append(f"multiitem PNG hash drifted: {census.relative(dest)}")
         model = model_path(registry_path)
         if not model.is_file():
-            errors.append(f"missing multiitem model: {t35.relative(model)}")
+            errors.append(f"missing multiitem model: {census.relative(model)}")
             continue
-        committed = t35.load_json(model)
+        committed = census.load_json(model)
         layer0 = str((committed.get("textures") or {}).get("layer0") or "")
         if layer0 != texture:
             errors.append(f"{runtime} model layer0 is {layer0}, expected {texture}")

@@ -257,8 +257,8 @@ class WorldgenCatalogBuilderTest(unittest.TestCase):
         self.assertEqual(269, counts["catalog_generated_files"])
         self.assertEqual(280, counts["all_worldgen_files"])
         self.assertEqual(129, counts["closure_vein_classifications"])
-        self.assertEqual(3, counts["t38_player_path_source_backed_veins"])
-        self.assertEqual(4, counts["t38_player_path_materials"])
+        self.assertEqual(3, counts["roaster_player_path_source_backed_veins"])
+        self.assertEqual(4, counts["roaster_player_path_materials"])
         self.assertIn(
             "surface_scatter_declarations",
             self.readiness["inputs"],

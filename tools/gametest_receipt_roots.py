@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Shared GameTest behavior vs currentness roots for T38/T39/T40 receipts."""
+"""Shared GameTest behavior vs currentness roots for roaster/compact/centrifuge/compact/electrolyzer/compact receipts."""
 from __future__ import annotations
 
 import hashlib
 from pathlib import Path
 from typing import Any
 
-from tools import t35_common as t35
+from tools import census_common as census
 
 
 def equivalence_roots(equivalence_path: Path) -> dict[str, Any]:
@@ -16,10 +16,10 @@ def equivalence_roots(equivalence_path: Path) -> dict[str, Any]:
             "equivalence_root_sha256": None,
             "relation_fingerprints": {},
         }
-    document = t35.load_json(equivalence_path)
+    document = census.load_json(equivalence_path)
     fingerprints = dict(document.get("relation_fingerprints") or {})
     semantic_tree = hashlib.sha256(
-        t35.stable_json(
+        census.stable_json(
             {
                 "generated_sha256": (document.get("generated") or {}).get("sha256"),
                 "relation_fingerprints": fingerprints,
@@ -27,7 +27,7 @@ def equivalence_roots(equivalence_path: Path) -> dict[str, Any]:
         ).encode("utf-8")
     ).hexdigest()
     equivalence_root = hashlib.sha256(
-        t35.stable_json(
+        census.stable_json(
             {
                 "semantic_tree_sha256": semantic_tree,
                 "stable_ids": sorted(fingerprints),
@@ -47,20 +47,20 @@ BEHAVIOR_BOUND_KEYS = frozenset(
         "material_registration_gate_java",
         "material_registration_gate_json",
         "production_lock",
-        "t38_generated_recipes",
-        "t38_player_path_recovery",
-        "t39_generated_recipes",
-        "t39_locked_support",
-        "t40_generated_recipes",
-        "t40_locked_support",
-        "t41_generated_recipes",
-        "t41_locked_support",
-        "t46_generated_recipes",
-        "t46_locked_support",
-        "t47_generated_recipes",
-        "t47_locked_support",
-        "t48_generated_recipes",
-        "t48_locked_support",
+        "roaster_generated_recipes",
+        "roaster_player_path_recovery",
+        "centrifuge_generated_recipes",
+        "centrifuge_locked_support",
+        "electrolyzer_generated_recipes",
+        "electrolyzer_locked_support",
+        "assembler_wood_generated_recipes",
+        "assembler_wood_locked_support",
+        "bath_mte_generated_recipes",
+        "bath_mte_locked_support",
+        "bath_remainder_generated_recipes",
+        "bath_remainder_locked_support",
+        "bath_identity_generated_recipes",
+        "bath_identity_locked_support",
     }
 )
 
@@ -112,7 +112,7 @@ def behavior_root_sha256(
         "semantic_tree_sha256": equivalence.get("semantic_tree_sha256"),
         "test_ids": list(test_ids),
     }
-    return hashlib.sha256(t35.stable_json(payload).encode("utf-8")).hexdigest()
+    return hashlib.sha256(census.stable_json(payload).encode("utf-8")).hexdigest()
 
 
 def currentness_root_sha256(
@@ -128,7 +128,7 @@ def currentness_root_sha256(
         "log_fingerprint": log_fingerprint,
         "log_path": log_path,
     }
-    return hashlib.sha256(t35.stable_json(payload).encode("utf-8")).hexdigest()
+    return hashlib.sha256(census.stable_json(payload).encode("utf-8")).hexdigest()
 
 
 def attach_receipt_roots(

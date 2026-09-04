@@ -46,7 +46,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * Closeout-integrity integrated mixes. Historical compact groups plus
  * Smelter ordinary-closure, and that mix plus Mixer ordinary-closure.
  *
- * <p>Adds the two T49 gaps: lookup-only ThreadMXBean allocation and
+ * <p>Adds the two tiny-purified gaps: lookup-only ThreadMXBean allocation and
  * controlled-GC class-histogram retained memory. Does not copy opening
  * 687226880 or {@code syncPayloadBytes} as retained.
  */
@@ -57,8 +57,6 @@ class OrdinaryCloseoutIntegratedMeasurementHarness {
     private static final long EPOCH = 11L;
     private static final Path V2_MANIFEST = Path.of(
             "tools/compact_recipe_runtime_manifest.v2.json");
-    private static final Path SEMANTIC_ID_MAP = Path.of(
-            "archive/sealed/forward-v2/semantic_id_map.json");
     private static final List<String> MIX_HOSTS =
             CompactGTRecipeFamilyGeneratedSupport.ordinaryClosureMixHosts();
     private static final Path SMELTER_OUTPUT = Path.of(
@@ -75,7 +73,6 @@ class OrdinaryCloseoutIntegratedMeasurementHarness {
     private static RegistryAccess registries;
     private static List<CompactRecipeFamilySource> sources;
     private static JsonArray groups;
-    private static Map<String, String> publicationRemap;
     private static Map<PublicationGroupKey, CompactRecipeFamilyProvider.MaterializationPolicy>
             productionPolicies;
     private static Map<PublicationGroupKey, CompactRecipeFamilyProvider.MaterializationPolicy>
@@ -109,7 +106,6 @@ class OrdinaryCloseoutIntegratedMeasurementHarness {
         Assumptions.assumeTrue(
                 CompactGTRecipeFamilyGeneratedSupport.hasGeneratedFamiliesRecursive(roots),
                 () -> "ordinary-closure generated families are not available at " + roots);
-        publicationRemap = loadPublicationRemap();
         sources = CompactGTRecipeFamilyGeneratedSupport
                 .loadGeneratedSourcesRecursive(roots, registries);
         groups = composeGroups(deferredRecycling ? "deferred_recycling" : selectedMix);
@@ -459,26 +455,12 @@ class OrdinaryCloseoutIntegratedMeasurementHarness {
         }
     }
 
-    private static Map<String, String> loadPublicationRemap() throws IOException {
-        JsonObject document = JsonParser.parseString(Files.readString(SEMANTIC_ID_MAP))
-                .getAsJsonObject();
-        Map<String, String> remap = new LinkedHashMap<>();
-        JsonObject groupsJson = document.getAsJsonObject("publication_groups");
-        for (Map.Entry<String, JsonElement> entry : groupsJson.entrySet()) {
-            remap.put(entry.getKey(), entry.getValue().getAsString());
-        }
-        return remap;
-    }
-
     private static String remapPublicationGroup(String group) {
-        return publicationRemap.getOrDefault(group, group);
+        return SemanticIdMap.remapPublicationGroup(group);
     }
 
     private static String remapStableId(String stableId) {
-        if (stableId.startsWith("cruciblecraft:t37/")) {
-            return "cruciblecraft:assembler/compact/" + stableId.substring("cruciblecraft:t37/".length());
-        }
-        return stableId;
+        return SemanticIdMap.remapStableId(stableId);
     }
 
     private static Path outputPath(String mix) {

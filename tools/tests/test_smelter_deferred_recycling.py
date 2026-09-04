@@ -4,15 +4,15 @@ from __future__ import annotations
 
 import unittest
 
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk.slugs import KNOWN_SEMANTIC_SLUGS
 from tools.recipe_bulk.waves import recipe_wave
 from tools.wave_closeout import spec_for
 
 SLUG = "smelter/deferred-recycling"
-ROOT = t35.TOOLS / "waves" / "smelter" / "deferred-recycling"
+ROOT = census.TOOLS / "waves" / "smelter" / "deferred-recycling"
 GENERATED = (
-    t35.ROOT
+    census.ROOT
     / "src"
     / "recipe_generated"
     / "resources"
@@ -39,7 +39,7 @@ class SmelterDeferredRecyclingTest(unittest.TestCase):
     def test_lock_is_1817_exact_singletons(self) -> None:
         if not (ROOT / "production_lock.json").is_file():
             self.skipTest("production lock not written yet")
-        lock = t35.load_json(ROOT / "production_lock.json")
+        lock = census.load_json(ROOT / "production_lock.json")
         production = lock["production"]
         self.assertEqual(1817, int(production["family_count"]))
         self.assertEqual(1817, int(production["exact_families"]))
@@ -63,7 +63,7 @@ class SmelterDeferredRecyclingTest(unittest.TestCase):
         files = list(GENERATED.rglob("gt_recipe_*.json"))
         self.assertEqual(1817, len(files))
         for path in files[:12]:
-            document = t35.load_json(path)
+            document = census.load_json(path)
             self.assertEqual(
                 "cruciblecraft:compact_gt_recipe_family", document["type"]
             )
@@ -81,7 +81,7 @@ class SmelterDeferredRecyclingTest(unittest.TestCase):
     def test_census_drops_deferred_recycling_by_1817(self) -> None:
         if not (ROOT / "census_delta.json").is_file():
             self.skipTest("census not written yet")
-        census = t35.load_json(ROOT / "census_delta.json")
+        census = census.load_json(ROOT / "census_delta.json")
         remaining = census.get("remaining_ordinary") or {}
         self.assertEqual(1817, int(census["complete_family_count"]))
         self.assertEqual(1817, int(census["completion_delta"]))
@@ -89,8 +89,8 @@ class SmelterDeferredRecyclingTest(unittest.TestCase):
         self.assertEqual(0, int(census["partial_family_count"]))
         self.assertEqual(26, int(remaining["deferred_recycling_count"]))
         self.assertEqual(28, int(remaining["deferred_total"]))
-        r0 = t35.load_json(
-            t35.TOOLS
+        r0 = census.load_json(
+            census.TOOLS
             / "waves"
             / "recycling"
             / "deferred-ordinary-ledger-r0"

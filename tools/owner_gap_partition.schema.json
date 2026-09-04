@@ -1,0 +1,33 @@
+{
+  "$id": "https://cruciblecraft.invalid/schema/t42-gap-partition.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "completion_delta": {
+      "const": 0
+    },
+    "opening_execution_gap": {
+      "const": 5305
+    },
+    "partial_family_count": {
+      "const": 0
+    },
+    "publication_delta": {
+      "const": 0
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "const": "T42_GAP_PARTITION"
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "opening_execution_gap",
+    "completion_delta",
+    "partial_family_count"
+  ],
+  "type": "object"
+}

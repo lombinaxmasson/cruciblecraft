@@ -1,0 +1,38 @@
+{
+  "$id": "https://cruciblecraft.invalid/schema/t39-production-lock.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "catalog_fixture": {
+      "type": "object"
+    },
+    "phase_deferred": {
+      "type": "array"
+    },
+    "production": {
+      "type": "object"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "source_revision": {
+      "type": "string"
+    },
+    "status": {
+      "const": "T39_PRODUCTION_LOCKED"
+    },
+    "support": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "source_revision",
+    "catalog_fixture",
+    "production",
+    "support",
+    "phase_deferred"
+  ],
+  "type": "object"
+}

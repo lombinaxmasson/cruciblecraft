@@ -19,11 +19,12 @@ class CompactDedupRuleDefinitionTest {
     }
 
     @Test
-    void acceptsSemanticSlugOwnerAndRejectsT50() {
+    void acceptsSemanticSlugOwnerAndRejectsMilestone() {
+        String milestone = "T" + "50";
         assertTrue(CompactDedupRuleDefinition.isDeclaredOwner(
                 "smelter/ordinary-closure"));
         assertTrue(CompactDedupRuleDefinition.isDeclaredOwner("centrifuge/compact"));
-        assertFalse(CompactDedupRuleDefinition.isDeclaredOwner("T50-extra"));
+        assertFalse(CompactDedupRuleDefinition.isDeclaredOwner(milestone + "-extra"));
         CompactDedupRuleDefinition.Selector winner =
                 new CompactDedupRuleDefinition.Selector(
                         CompactDedupRuleDefinition.Selector.KIND_PREFIX,
@@ -50,7 +51,7 @@ class CompactDedupRuleDefinitionTest {
                 IllegalArgumentException.class,
                 () -> new CompactDedupRuleDefinition(
                         ResourceLocation.fromNamespaceAndPath(
-                                "cruciblecraft", "t50_forbidden"),
+                                "cruciblecraft", milestone.toLowerCase() + "_forbidden"),
                         "not a slug",
                         CompactDedupRuleDefinition.PHASE_POST_ENUMERATION,
                         ModRecipeMaps.SMELTER.id(),

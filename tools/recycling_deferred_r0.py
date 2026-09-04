@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Enumerate the deferred ordinary ledger for recycling/deferred-ordinary-ledger-r0.
 
-Rebuilds every deferred family once from sealed remainder + T42 recovery
+Rebuilds every deferred family once from sealed remainder + owner recovery
 evidence + host production locks + pinned GT6 dumps. Does not generate recipes.
 """
 from __future__ import annotations
@@ -10,16 +10,16 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
-from tools import t35_common as t35
-from tools import t42_common as t42
-from tools import t42_owner_common as owner
+from tools import census_common as census
+from tools import owner_partition_common as owner
+from tools import owner_runtime_common as owner
 from tools.recipe_bulk import ordinary_r0 as ordinary
 
 SLUG = "recycling/deferred-ordinary-ledger-r0"
 NEXT_CHILD = "recycling/smelter-mte-identity"
 PROGRAM = "recycling/deferred-ordinary-runtime"
 GENERATED_BY = "python tools/build_deferred_ordinary_ledger_r0.py"
-SOURCE_REVISION = t35.SOURCE_REVISION
+SOURCE_REVISION = census.SOURCE_REVISION
 
 LEDGER_TOTAL = 1845
 RECYCLING_TOTAL = 1843
@@ -96,28 +96,28 @@ N300_EXCEPTIONS = (
 )
 
 REMAINDER_DEFERRED = (
-    t35.TOOLS
+    census.TOOLS
     / "waves"
     / "recipe-portfolio"
     / "ordinary-remainder-closure"
     / "deferred_ledger.json"
 )
 MIXER_CENSUS = (
-    t35.TOOLS / "waves" / "mixer" / "ordinary-closure" / "census_delta.json"
+    census.TOOLS / "waves" / "mixer" / "ordinary-closure" / "census_delta.json"
 )
 SMELTER_LOCK = (
-    t35.TOOLS / "waves" / "smelter" / "ordinary-closure" / "production_lock.json"
+    census.TOOLS / "waves" / "smelter" / "ordinary-closure" / "production_lock.json"
 )
 AUTOCLAVE_LOCK = (
-    t35.TOOLS / "waves" / "autoclave" / "ordinary-closure" / "production_lock.json"
+    census.TOOLS / "waves" / "autoclave" / "ordinary-closure" / "production_lock.json"
 )
 CENTRIFUGE_LOCK = (
-    t35.TOOLS / "waves" / "centrifuge" / "ordinary-closure" / "production_lock.json"
+    census.TOOLS / "waves" / "centrifuge" / "ordinary-closure" / "production_lock.json"
 )
 BATH_CATALOG_CANDIDATES = (
-    t35.TOOLS / "bath_mte_identity_catalog.json",
-    t35.TOOLS / "t46_bath_mte_identity_catalog.json",
-    t35.ROOT
+    census.TOOLS / "bath_mte_identity_catalog.json",
+    census.TOOLS / "bath_mte_mte_identity_catalog.json",
+    census.ROOT
     / "src"
     / "main"
     / "resources"
@@ -130,7 +130,7 @@ _DUMP_CACHE: dict[str, list[dict[str, Any]]] = {}
 
 
 def _lock_reclassified(path: Path) -> dict[str, dict[str, Any]]:
-    document = t35.load_json(path)
+    document = census.load_json(path)
     rows = {}
     for row in document.get("reclassified") or []:
         family_id = str(row["family_id"])
@@ -143,21 +143,21 @@ def _completed_ordinary_family_ids() -> set[str]:
     for path in ordinary.HOST_ORDINARY_LOCKS:
         if not path.is_file():
             continue
-        document = t35.load_json(path)
+        document = census.load_json(path)
         for row in (document.get("production") or {}).get("families") or []:
             ids.add(str(row["family_id"]))
     return ids
 
 
 def _evidence_by_id() -> dict[str, dict[str, Any]]:
-    document = t35.load_json(owner.RECOVERY_EVIDENCE)
+    document = census.load_json(owner.RECOVERY_EVIDENCE)
     return {str(row["family_id"]): row for row in document.get("families") or []}
 
 
 def _dump_recipes(map_name: str) -> list[dict[str, Any]]:
     cached = _DUMP_CACHE.get(map_name)
     if cached is None:
-        cached = t42.load_map_recipes(map_name)
+        cached = owner.load_map_recipes(map_name)
         _DUMP_CACHE[map_name] = cached
     return cached
 
@@ -483,7 +483,7 @@ def load_bath_identities() -> dict[int, dict[str, Any]]:
     for path in BATH_CATALOG_CANDIDATES:
         if not path.is_file():
             continue
-        document = t35.load_json(path)
+        document = census.load_json(path)
         rows = document.get("identities") or []
         if rows:
             return {int(row["meta"]): row for row in rows}
@@ -552,9 +552,9 @@ def identity_candidate(universe: list[dict[str, Any]]) -> dict[str, Any]:
 
 def enumerate_universe() -> dict[str, Any]:
     errors: list[str] = []
-    remainder = t35.load_json(REMAINDER_DEFERRED)
-    mixer = t35.load_json(MIXER_CENSUS)
-    disposition = t35.load_json(owner.DISPOSITION_LOCK)
+    remainder = census.load_json(REMAINDER_DEFERRED)
+    mixer = census.load_json(MIXER_CENSUS)
+    disposition = census.load_json(owner.DISPOSITION_LOCK)
     evidence_by_id = _evidence_by_id()
     smelter = _lock_reclassified(SMELTER_LOCK)
     autoclave = _lock_reclassified(AUTOCLAVE_LOCK)
@@ -598,8 +598,8 @@ def enumerate_universe() -> dict[str, Any]:
     completed = _completed_ordinary_family_ids()
     surfaces = [
         "tools/waves/recipe-portfolio/ordinary-remainder-closure/deferred_ledger.json",
-        "tools/t42_owner_recovery_evidence.json",
-        "tools/t42_owner_disposition_lock.json",
+        "tools/owner_runtime_recovery_evidence.json",
+        "tools/owner_runtime_disposition_lock.json",
         "tools/waves/smelter/ordinary-closure/production_lock.json",
         "tools/waves/autoclave/ordinary-closure/production_lock.json",
         "tools/waves/centrifuge/ordinary-closure/production_lock.json",

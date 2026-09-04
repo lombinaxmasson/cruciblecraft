@@ -10,7 +10,7 @@ from typing import Any
 
 from tools import closeout_seal
 from tools import portfolio_one_x as one_x
-from tools import t35_common as t35
+from tools import census_common as census
 from tools.recipe_bulk.slugs import KNOWN_SEMANTIC_SLUGS
 from tools.wave_closeout import known_slugs
 from tools.wave_closeout import spec_for
@@ -20,7 +20,7 @@ SLUG = "portfolio/logistics-cover-net-r0"
 PREDECESSOR = "portfolio/generic-recipe-generator"
 PREDECESSOR_STATUS = "GENERIC_RECIPE_IMPORT_READY"
 STATUS = "LOGISTICS_COVER_NET_R0_READY"
-SOURCE_REVISION = t35.SOURCE_REVISION
+SOURCE_REVISION = census.SOURCE_REVISION
 GENERATED_BY = "python tools/build_logistics_cover_net_r0.py"
 NOTE = (
     "LOGISTICS_COVER_NET_R0_READY. Seven T13 logistics cover kinds inherited "
@@ -55,28 +55,28 @@ FORBIDDEN_SUCCESSORS = (
     "nuclear",
     "count-ceiling-kind-envelope",
 )
-T44_ENDPOINT = "cruciblecraft:mass_storage_logistics_6200"
+STORAGE_LOCK_ENDPOINT = "cruciblecraft:mass_storage_logistics_6200"
 EXPECTED_DEFINITION_COUNT = 9
 EXPECTED_BEHAVIOR_COUNT = 8
 BUILTIN_BEHAVIOR_RE = re.compile(r'registerBuiltin\("([a-z0-9_]+)"')
-T13_COVER_KINDS = t35.TOOLS / "t13_denominators" / "cover_kinds.json"
-T13_POLICY = t35.TOOLS / "t13_cover_multiblock_policy.json"
-T27_COVER_KINDS = t35.TOOLS / "t27_portfolio" / "cover_kinds.json"
+T13_COVER_KINDS = census.TOOLS / "machine_tree_denominators" / "cover_kinds.json"
+T13_POLICY = census.TOOLS / "machine_tree_cover_multiblock_policy.json"
+T27_COVER_KINDS = census.TOOLS / "ledger_portfolio" / "cover_kinds.json"
 GROWTH_ORDER = (
-    t35.TOOLS / "waves" / "portfolio" / "source-capability-map" / "growth_order.json"
+    census.TOOLS / "waves" / "portfolio" / "source-capability-map" / "growth_order.json"
 )
 COVER_DEFINITIONS = (
-    t35.ROOT / "src/main/resources/data/cruciblecraft/cover_definitions.json"
+    census.ROOT / "src/main/resources/data/cruciblecraft/cover_definitions.json"
 )
 COVER_BEHAVIOR_REGISTRY = (
-    t35.ROOT
+    census.ROOT
     / "src/main/java/com/masson/cruciblecraft/logistics/pipe/cover"
     / "CoverBehaviorRegistry.java"
 )
 LEFTOVER_LATER = (
-    t35.TOOLS / "waves" / "portfolio" / "source-capability-map-r0" / "leftover_later.json"
+    census.TOOLS / "waves" / "portfolio" / "source-capability-map-r0" / "leftover_later.json"
 )
-RECIPE_GENERATED = t35.ROOT / "src" / "recipe_generated"
+RECIPE_GENERATED = census.ROOT / "src" / "recipe_generated"
 NETWORK_QUESTIONS = {
     "dump_policy": (
         "How dump differs from transfer and storage, and what a dump cover "
@@ -113,7 +113,7 @@ def nuclear_started() -> bool:
 
 
 def leftover_later_count() -> int:
-    leftover = t35.load_json(LEFTOVER_LATER)
+    leftover = census.load_json(LEFTOVER_LATER)
     total = int(leftover["counts"]["total"])
     if total != 39:
         raise ValueError(f"leftover_later_count {total} != 39")
@@ -131,7 +131,7 @@ def require_registered(slug: str) -> list[str]:
 
 def require_predecessor() -> list[str]:
     errors = closeout_seal.check_wave_seal(PREDECESSOR)
-    readiness = t35.load_json(wave_dir(PREDECESSOR) / "readiness.json")
+    readiness = census.load_json(wave_dir(PREDECESSOR) / "readiness.json")
     if readiness.get("status") != PREDECESSOR_STATUS:
         errors.append(
             f"{PREDECESSOR} status {readiness.get('status')} != {PREDECESSOR_STATUS}"
@@ -140,7 +140,7 @@ def require_predecessor() -> list[str]:
 
 
 def load_t13_kinds() -> dict[str, dict[str, Any]]:
-    document = t35.load_json(T13_COVER_KINDS)
+    document = census.load_json(T13_COVER_KINDS)
     rows = {
         str(row["canonical_id"]): dict(row)
         for row in document["canonical_kinds"]
@@ -149,7 +149,7 @@ def load_t13_kinds() -> dict[str, dict[str, Any]]:
 
 
 def load_t13_transforms() -> dict[str, dict[str, Any]]:
-    document = t35.load_json(T13_COVER_KINDS)
+    document = census.load_json(T13_COVER_KINDS)
     return {
         str(row["canonical_id"]): dict(row)
         for row in document["declared_transformations"]
@@ -158,7 +158,7 @@ def load_t13_transforms() -> dict[str, dict[str, Any]]:
 
 
 def load_t27_rows() -> dict[str, dict[str, Any]]:
-    document = t35.load_json(T27_COVER_KINDS)
+    document = census.load_json(T27_COVER_KINDS)
     return {
         str(row["canonical_id"]): dict(row)
         for row in document["records"]
@@ -167,10 +167,10 @@ def load_t27_rows() -> dict[str, dict[str, Any]]:
 
 def authority_hashes() -> dict[str, str]:
     return {
-        "growth_order": t35.sha256_file(GROWTH_ORDER),
-        "t13_cover_kinds": t35.sha256_file(T13_COVER_KINDS),
-        "t13_cover_multiblock_policy": t35.sha256_file(T13_POLICY),
-        "t27_cover_kinds": t35.sha256_file(T27_COVER_KINDS),
+        "growth_order": census.sha256_file(GROWTH_ORDER),
+        "machine_tree_cover_kinds": census.sha256_file(T13_COVER_KINDS),
+        "machine_tree_cover_multiblock_policy": census.sha256_file(T13_POLICY),
+        "ledger_cover_kinds": census.sha256_file(T27_COVER_KINDS),
     }
 
 
@@ -204,7 +204,7 @@ def display_cpu_rows() -> list[dict[str, Any]]:
 
 
 def logistics_core_row() -> dict[str, Any]:
-    policy = t35.load_json(T13_POLICY)
+    policy = census.load_json(T13_POLICY)
     kinds = load_t13_kinds()
     if "logistics_core" in kinds:
         raise ValueError("logistics_core must not be a cover kind")
@@ -260,7 +260,7 @@ def t27_overlays() -> list[dict[str, Any]]:
                 "disposition": row["disposition"],
                 "owner": row["owner"],
                 "replacement_condition": row["replacement_condition"],
-                "t13_classification": row["t13_classification"],
+                "machine_tree_classification": row["machine_tree_classification"],
             }
         )
     return out
@@ -288,10 +288,10 @@ def inherited_denominator_document() -> dict[str, Any]:
         "kinds": kinds,
         "logistics_core": logistics_core_row(),
         "schema_version": 1,
-        "source_artifact": t35.relative(T13_COVER_KINDS),
+        "source_artifact": census.relative(T13_COVER_KINDS),
         "source_revision": SOURCE_REVISION,
         "status": "INHERITED_DENOMINATOR_READY",
-        "t27_overlays": t27_overlays(),
+        "ledger_overlays": t27_overlays(),
         "wave_slug": SLUG,
     }
 
@@ -363,7 +363,7 @@ def source_semantics_document() -> dict[str, Any]:
 
 
 def cover_definition_ids() -> list[str]:
-    document = t35.load_json(COVER_DEFINITIONS)
+    document = census.load_json(COVER_DEFINITIONS)
     ids = [str(row["id"]) for row in document["definitions"]]
     if len(ids) != EXPECTED_DEFINITION_COUNT:
         raise ValueError(f"cover definition count {len(ids)} != 9")
@@ -393,7 +393,7 @@ def existing_mechanism_document() -> dict[str, Any]:
         if role == "transfer":
             analog = "T19 adjacent activeTransfer (pump/conveyor/retriever/robot_arm)"
         elif role == "storage":
-            analog = T44_ENDPOINT
+            analog = STORAGE_LOCK_ENDPOINT
         else:
             analog = None
         mapped.append(
@@ -408,7 +408,7 @@ def existing_mechanism_document() -> dict[str, Any]:
     return {
         "behaviors": behaviors,
         "behavior_count": len(behaviors),
-        "cover_definitions_sha256": t35.sha256_file(COVER_DEFINITIONS),
+        "cover_definitions_sha256": census.sha256_file(COVER_DEFINITIONS),
         "definition_count": len(definitions),
         "definitions": definitions,
         "generated_by": GENERATED_BY,
@@ -423,9 +423,9 @@ def existing_mechanism_document() -> dict[str, Any]:
         "source_revision": SOURCE_REVISION,
         "status": "EXISTING_MECHANISM_READY",
         "storage_endpoint": {
-            "id": T44_ENDPOINT,
+            "id": STORAGE_LOCK_ENDPOINT,
             "role": "endpoint_not_cover",
-            "source": "T44 mass_storage_logistics 1/1",
+            "source": "storage/lock mass_storage_logistics 1/1",
         },
         "wave_slug": SLUG,
     }
@@ -460,7 +460,7 @@ def derive_feasibility(
         missing.append("dump")
     if set(contract["questions"]) != set(NETWORK_QUESTIONS):
         missing.append("schema")
-    overlays = inherited["t27_overlays"]
+    overlays = inherited["ledger_overlays"]
     if len(overlays) != 7:
         missing.append("measurement")
     for row in overlays:
@@ -479,7 +479,7 @@ def derive_feasibility(
         "exceeds adjacent T19 transfer.",
         "Cover definitions stay at 9 adjacent T19 rows with no logistics_* id.",
         "CoverBehaviorRegistry stays at 8 adjacent builtins with no network identity.",
-        "T44 mass_storage_logistics_6200 is an ILogisticsStorage endpoint, not a cover.",
+        "storage/lock mass_storage_logistics_6200 is an ILogisticsStorage endpoint, not a cover.",
         "logistics_generic_dump is already distinct from transfer and storage.",
         "T27 replacement_condition already requires separate player-acquisition, "
         "network/save, and server-behavior measurement.",
@@ -627,32 +627,32 @@ def build_r0_documents() -> dict[str, Any]:
 def write_seal() -> dict[str, Any]:
     root = wave_dir(SLUG)
     hashes = {
-        "census": t35.sha256_file(root / "census_delta.json"),
+        "census": census.sha256_file(root / "census_delta.json"),
         "gametest_java": None,
         "gametest_log": None,
         "generated_recipes": None,
         "locked_support": None,
         "production_lock": None,
         "publication_group_manifest": None,
-        "readiness": t35.sha256_file(root / "readiness.json"),
+        "readiness": census.sha256_file(root / "readiness.json"),
         "receipt": None,
         "runtime_dependency_manifest": None,
         "shard_manifest": None,
-        "topology": t35.sha256_file(root / "topology.json"),
+        "topology": census.sha256_file(root / "topology.json"),
     }
     seal = {
         "card_id": SLUG,
         "complete_family_count": 0,
-        "composed_identity_ledger_v2_sha256": t35.sha256_file(
+        "composed_identity_ledger_v2_sha256": census.sha256_file(
             closeout_seal.IDENTITY_LEDGER_V2
         ),
-        "composed_runtime_manifest_v2_sha256": t35.sha256_file(
+        "composed_runtime_manifest_v2_sha256": census.sha256_file(
             closeout_seal.RUNTIME_MANIFEST_V2
         ),
         "gametest_status": "NONE",
         "generated_by": f"{GENERATED_BY} --write",
         "hashes": hashes,
-        "note": t35.load_json(root / "readiness.json").get("note"),
+        "note": census.load_json(root / "readiness.json").get("note"),
         "production_lock_sha256": None,
         "receipt_sha256": None,
         "reclassification_delta": 0,
@@ -663,7 +663,7 @@ def write_seal() -> dict[str, Any]:
         "source_revision": SOURCE_REVISION,
         "status": "SEALED",
     }
-    t35.write_stable(root / "closeout_seal.json", seal)
+    census.write_stable(root / "closeout_seal.json", seal)
     return seal
 
 
@@ -672,7 +672,7 @@ def write_artifacts() -> dict[str, Any]:
     root = wave_dir(SLUG)
     root.mkdir(parents=True, exist_ok=True)
     for name, document in documents.items():
-        t35.write_stable(root / name, document)
+        census.write_stable(root / name, document)
     write_seal()
     spec = spec_for(SLUG)
     return {
@@ -713,11 +713,11 @@ def check_artifacts() -> list[str]:
     except ValueError as error:
         return errors + [str(error)]
     for name, document in live.items():
-        committed = t35.load_json(root / name)
-        drift = t35.first_json_diff(document, committed)
+        committed = census.load_json(root / name)
+        drift = census.first_json_diff(document, committed)
         if drift:
             errors.append(f"{name} drifted: {drift}")
-    readiness = t35.load_json(root / "readiness.json")
+    readiness = census.load_json(root / "readiness.json")
     if readiness.get("status") != STATUS:
         errors.append(f"{SLUG} status drifted")
     if readiness.get("unique_active_wave") is not None:
@@ -731,18 +731,18 @@ def check_artifacts() -> list[str]:
         errors.append(f"{SLUG} must not generate recipes")
     if int(evidence.get("leftover_later_count", 0)) != 39:
         errors.append(f"{SLUG} leftover_later_count must be 39")
-    feasibility = t35.load_json(root / "feasibility.json")
+    feasibility = census.load_json(root / "feasibility.json")
     if feasibility.get("verdict") not in FEASIBILITY_VALUES:
         errors.append("feasibility.verdict is not an allowed enum")
     if feasibility.get("verdict") != "bounded_extension" and feasibility.get(
         "allows_core_child"
     ):
         errors.append("requires_new_runtime/blocked must not allow a core child")
-    inherited = t35.load_json(root / "inherited_denominator.json")
+    inherited = census.load_json(root / "inherited_denominator.json")
     live_kinds = {row["canonical_id"]: row for row in pinned_kind_rows()}
     for row in inherited["kinds"]:
         canonical_id = row["canonical_id"]
-        drift = t35.first_json_diff(live_kinds[canonical_id], row)
+        drift = census.first_json_diff(live_kinds[canonical_id], row)
         if drift:
             errors.append(f"{canonical_id} is not byte-identical to T13: {drift}")
     if recipe_generated_mentions_slug():

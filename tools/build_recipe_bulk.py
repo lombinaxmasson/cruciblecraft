@@ -12,8 +12,8 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tools import t35_common as t35
-from tools import t45_common as common
+from tools import census_common as census
+from tools import block_object_common as common
 from tools.recipe_bulk import analyze as analyze_mod
 from tools.recipe_bulk import compile as compile_mod
 from tools.recipe_bulk import replay as replay_mod
@@ -38,7 +38,7 @@ AUTHORITY_SEMANTIC = "semantic-v3"
 
 def _write_analyze() -> dict[str, Any]:
     document = analyze_mod.analyze()
-    t35.write_stable(common.ANALYZE_REPORT, document)
+    census.write_stable(common.ANALYZE_REPORT, document)
     return document
 
 
@@ -51,27 +51,17 @@ def _normalize_waves(
     authority: str | None,
 ) -> tuple[str, ...]:
     resolved = authority
-    if wave is not None and "/" in wave:
+    if wave is not None and wave != "all":
         parsed = parse_wave_token(wave, schema=SCHEMA_SEMANTIC)
         if resolved not in (None, AUTHORITY_SEMANTIC):
             raise ValueError(f"{wave} cannot compile under {resolved}")
         return (parsed.compile_key(),)
-    if wave is not None and str(wave).upper() == "T50":
-        raise WaveSlugError(
-            "semantic schema rejects milestone token 'T50'; "
-            "use a host/cohort slug and do not issue T50"
-        )
-    if wave in {"T46", "T47", "T48", "T49"}:
-        if resolved == AUTHORITY_HISTORICAL:
-            raise ValueError(f"{wave} cannot compile under historical-v1")
-        if resolved == AUTHORITY_SEMANTIC:
-            raise WaveSlugError(f"semantic schema rejects legacy token {wave!r}")
-        resolved = AUTHORITY_FORWARD
     if resolved is None:
         resolved = AUTHORITY_HISTORICAL
     if wave is None:
-        # Default forward-v2 wave stays T46 so historical/default flows are unchanged.
-        return ("T46",) if resolved == AUTHORITY_FORWARD else ("T45",)
+        if resolved == AUTHORITY_SEMANTIC:
+            return SEMANTIC_COMPILE_ORDER
+        return FORWARD_COMPILE_ORDER if resolved == AUTHORITY_FORWARD else COMPILE_ORDER
     if wave == "all":
         if resolved == AUTHORITY_SEMANTIC:
             return SEMANTIC_COMPILE_ORDER
@@ -92,33 +82,34 @@ def _write_compile(waves: tuple[str, ...]) -> dict[str, Any]:
             spec.generated_root,
             spec.generated_root,
             path_prefix=spec.path_prefix,
+            tree_prefixes=spec.tree_prefixes,
         )
-        if wave_id == "T45":
+        if wave_id == "block/object":
             compile_mod.write_tree(
                 built["planned"],
                 common.CATALOG_FIXTURE_ROOT,
                 spec.generated_root,
             )
-            t35.write_stable(common.COMPILE_REPORT, built["report"])
+            census.write_stable(common.COMPILE_REPORT, built["report"])
             fixture_root = (
-                ROOT / "src/test/resources/t45_compiler_fixture/t43_replay.json"
+                ROOT / "src/test/resources/block_object_compiler_fixture/smelter_stone_replay.json"
             )
-            t35.write_stable(fixture_root, replay_mod.replay_t43())
+            census.write_stable(fixture_root, replay_mod.replay_smelter_stone())
             last_report = built["report"]
-        elif wave_id == "T46":
-            from tools import t46_common as t46
+        elif wave_id == "bath/mte":
+            from tools import bath_mte_common as bath_mte
 
-            t35.write_stable(t46.COMPILE_REPORT, built["report"])
+            census.write_stable(bath_mte.COMPILE_REPORT, built["report"])
             last_report = built["report"]
-        elif wave_id == "T47":
-            from tools import t47_common as t47
+        elif wave_id == "bath/remainder":
+            from tools import bath_remainder_common as bath_remainder
 
-            t35.write_stable(t47.COMPILE_REPORT, built["report"])
+            census.write_stable(bath_remainder.COMPILE_REPORT, built["report"])
             last_report = built["report"]
-        elif wave_id == "T48":
-            from tools import t48_common as t48
+        elif wave_id == "bath/identity":
+            from tools import bath_identity_common as bath_identity
 
-            t35.write_stable(t48.COMPILE_REPORT, built["report"])
+            census.write_stable(bath_identity.COMPILE_REPORT, built["report"])
             last_report = built["report"]
         elif "/" in wave_id:
             last_report = built["report"]
@@ -137,6 +128,18 @@ def _check_wave_tree(wave_id: str) -> list[str]:
     from tools.recipe_bulk.matrix import load_compact_family_documents
 
     generated = load_compact_family_documents(spec.generated_root)
+    prefixes = tuple(spec.tree_prefixes)
+    if prefixes:
+        generated = {
+            path: doc
+            for path, doc in generated.items()
+            if any(
+                Path(path).relative_to(spec.generated_root).as_posix().startswith(
+                    prefix.rstrip("/") + "/"
+                )
+                for prefix in prefixes
+            )
+        }
     if spec.path_prefix:
         marker = "/" + spec.path_prefix.replace("\\", "/").strip("/") + "/"
         generated = {
@@ -152,19 +155,17 @@ def _check_wave_tree(wave_id: str) -> list[str]:
 
 def _check_compile(waves: tuple[str, ...]) -> list[str]:
     errors: list[str] = []
-    if "T45" in waves:
+    if "block/object" in waves:
         errors.extend(_check_analyze())
     for wave_id in waves:
         errors.extend(_check_wave_tree(wave_id))
-    if "T45" in waves:
-        built = compile_mod.compile_wave("T45")
+    if "block/object" in waves:
+        built = compile_mod.compile_wave("block/object")
         errors.extend(common.check_document(common.COMPILE_REPORT, built["report"]))
-        replay = replay_mod.replay_t43()
+        replay = replay_mod.replay_smelter_stone()
         if not replay.get("ok"):
-            errors.append(
-                "T43 semantic replay failed: " + ",".join(replay.get("mismatches") or [])[:200]
-            )
-        fixture = ROOT / "src/test/resources/t45_compiler_fixture/t43_replay.json"
+            errors.append("smelter/stone semantic replay failed: " + ",".join(replay.get("mismatches") or [])[:200])
+        fixture = ROOT / "src/test/resources/block_object_compiler_fixture/smelter_stone_replay.json"
         if fixture.is_file():
             errors.extend(common.check_document(fixture, replay))
     return errors
@@ -192,13 +193,13 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--wave",
         default=None,
-        help="T37–T49, semantic slug such as smelter/ordinary-closure, or all.",
+        help="Semantic host/cohort slug such as smelter/ordinary-closure, or all.",
     )
     parser.add_argument(
         "--authority",
         choices=(AUTHORITY_HISTORICAL, AUTHORITY_FORWARD, AUTHORITY_SEMANTIC),
         default=None,
-        help="historical-v1 compiles T37–T45. forward-v2 compiles T37–T49. semantic-v3 compiles slug waves.",
+        help="Select the historical, forward, or semantic compile authority.",
     )
     parser.add_argument(
         "--spec",

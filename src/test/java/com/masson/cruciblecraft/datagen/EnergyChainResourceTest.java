@@ -20,7 +20,7 @@ class EnergyChainResourceTest {
     @Test
     void manifestListsGt6EnergyImports() throws Exception {
         var manifest = JsonParser.parseString(Files.readString(
-                ROOT.resolve("assets/cruciblecraft/t34_gt6_energy_art_manifest.json")))
+                ROOT.resolve("assets/cruciblecraft/gt6_energy_art_manifest.json")))
                 .getAsJsonObject();
         assertEquals(1, manifest.get("schema_version").getAsInt());
         assertTrue(manifest.get("imports").getAsJsonArray().size() >= 60);
@@ -126,7 +126,7 @@ class EnergyChainResourceTest {
         }
         assertTrue(modelJson(machineId).contains("block/machine/" + machineId));
         assertTrue(Files.readString(ROOT.resolve(
-                "assets/cruciblecraft/t34_gt6_energy_art_manifest.json")).contains(gt6Root));
+                "assets/cruciblecraft/gt6_energy_art_manifest.json")).contains(gt6Root));
     }
 
     private static String modelJson(String id) throws Exception {
