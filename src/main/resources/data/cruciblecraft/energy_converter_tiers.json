@@ -1,0 +1,6165 @@
+{
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "steam_per_eu": 2,
+  "tiers": [
+    {
+      "id": "cruciblecraft:clay_brick_burning_box_brick",
+      "kind": "cruciblecraft:burning_box_brick",
+      "material": "clay_brick",
+      "source_id": 1199,
+      "source_line": 519,
+      "gt6_class": "MultiTileEntityGeneratorBrick",
+      "material_expression": "MT.Brick",
+      "nbt_output": 16,
+      "nbt_input": 0,
+      "efficiency_bps": 2500,
+      "output_expression": "16",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "BBB",
+          "BBB",
+          "BFB"
+        ],
+        "keys": {
+          "B": {
+            "prefix": "ingot",
+            "material": "clay_brick"
+          },
+          "F": {
+            "item": "minecraft:flint_and_steel"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:lead_burning_box_solid",
+      "kind": "cruciblecraft:burning_box_solid",
+      "material": "lead",
+      "source_id": 1100,
+      "source_line": 522,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "MT.Pb",
+      "nbt_output": 16,
+      "nbt_input": 0,
+      "efficiency_bps": 5000,
+      "output_expression": "16",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:bismuth_burning_box_solid",
+      "kind": "cruciblecraft:burning_box_solid",
+      "material": "bismuth",
+      "source_id": 1101,
+      "source_line": 523,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "MT.Bi",
+      "nbt_output": 20,
+      "nbt_input": 0,
+      "efficiency_bps": 4500,
+      "output_expression": "20",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:bronze_burning_box_solid",
+      "kind": "cruciblecraft:burning_box_solid",
+      "material": "bronze",
+      "source_id": 1102,
+      "source_line": 524,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "MT.Bronze",
+      "nbt_output": 24,
+      "nbt_input": 0,
+      "efficiency_bps": 7500,
+      "output_expression": "24",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_copper_burning_box_solid",
+      "kind": "cruciblecraft:burning_box_solid",
+      "material": "arsenic_copper",
+      "source_id": 1111,
+      "source_line": 525,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "MT.ArsenicCopper",
+      "nbt_output": 24,
+      "nbt_input": 0,
+      "efficiency_bps": 8000,
+      "output_expression": "24",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_bronze_burning_box_solid",
+      "kind": "cruciblecraft:burning_box_solid",
+      "material": "arsenic_bronze",
+      "source_id": 1112,
+      "source_line": 526,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "MT.ArsenicBronze",
+      "nbt_output": 28,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "28",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:invar_burning_box_solid",
+      "kind": "cruciblecraft:burning_box_solid",
+      "material": "invar",
+      "source_id": 1103,
+      "source_line": 527,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "MT.Invar",
+      "nbt_output": 16,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "16",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:steel_burning_box_solid",
+      "kind": "cruciblecraft:burning_box_solid",
+      "material": "steel",
+      "source_id": 1104,
+      "source_line": 528,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "ANY.Steel",
+      "nbt_output": 32,
+      "nbt_input": 0,
+      "efficiency_bps": 7000,
+      "output_expression": "32",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:chromium_burning_box_solid",
+      "kind": "cruciblecraft:burning_box_solid",
+      "material": "chromium",
+      "source_id": 1105,
+      "source_line": 529,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "MT.Cr",
+      "nbt_output": 112,
+      "nbt_input": 0,
+      "efficiency_bps": 8500,
+      "output_expression": "112",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:titanium_burning_box_solid",
+      "kind": "cruciblecraft:burning_box_solid",
+      "material": "titanium",
+      "source_id": 1106,
+      "source_line": 530,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "MT.Ti",
+      "nbt_output": 96,
+      "nbt_input": 0,
+      "efficiency_bps": 8500,
+      "output_expression": "96",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:netherite_burning_box_solid",
+      "kind": "cruciblecraft:burning_box_solid",
+      "material": "netherite",
+      "source_id": 1110,
+      "source_line": 531,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "MT.Netherite",
+      "nbt_output": 96,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "96",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungsten_burning_box_solid",
+      "kind": "cruciblecraft:burning_box_solid",
+      "material": "tungsten",
+      "source_id": 1107,
+      "source_line": 532,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "ANY.W",
+      "nbt_output": 128,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "128",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungstensteel_burning_box_solid",
+      "kind": "cruciblecraft:burning_box_solid",
+      "material": "tungstensteel",
+      "source_id": 1108,
+      "source_line": 533,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "MT.TungstenSteel",
+      "nbt_output": 128,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "128",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tantalum_hafnium_carbide_burning_box_solid",
+      "kind": "cruciblecraft:burning_box_solid",
+      "material": "tantalum_hafnium_carbide",
+      "source_id": 1109,
+      "source_line": 534,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "MT.Ta4HfC5",
+      "nbt_output": 256,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "256",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:lead_burning_box_solid_dense",
+      "kind": "cruciblecraft:burning_box_solid_dense",
+      "material": "lead",
+      "source_id": 1150,
+      "source_line": 536,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "MT.Pb",
+      "nbt_output": 64,
+      "nbt_input": 0,
+      "efficiency_bps": 5000,
+      "output_expression": "64",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:bismuth_burning_box_solid_dense",
+      "kind": "cruciblecraft:burning_box_solid_dense",
+      "material": "bismuth",
+      "source_id": 1151,
+      "source_line": 537,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "MT.Bi",
+      "nbt_output": 80,
+      "nbt_input": 0,
+      "efficiency_bps": 4500,
+      "output_expression": "80",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:bronze_burning_box_solid_dense",
+      "kind": "cruciblecraft:burning_box_solid_dense",
+      "material": "bronze",
+      "source_id": 1152,
+      "source_line": 538,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "MT.Bronze",
+      "nbt_output": 96,
+      "nbt_input": 0,
+      "efficiency_bps": 7500,
+      "output_expression": "96",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_copper_burning_box_solid_dense",
+      "kind": "cruciblecraft:burning_box_solid_dense",
+      "material": "arsenic_copper",
+      "source_id": 1161,
+      "source_line": 539,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "MT.ArsenicCopper",
+      "nbt_output": 96,
+      "nbt_input": 0,
+      "efficiency_bps": 8000,
+      "output_expression": "96",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_bronze_burning_box_solid_dense",
+      "kind": "cruciblecraft:burning_box_solid_dense",
+      "material": "arsenic_bronze",
+      "source_id": 1162,
+      "source_line": 540,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "MT.ArsenicBronze",
+      "nbt_output": 112,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "112",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:invar_burning_box_solid_dense",
+      "kind": "cruciblecraft:burning_box_solid_dense",
+      "material": "invar",
+      "source_id": 1153,
+      "source_line": 541,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "MT.Invar",
+      "nbt_output": 64,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "64",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:steel_burning_box_solid_dense",
+      "kind": "cruciblecraft:burning_box_solid_dense",
+      "material": "steel",
+      "source_id": 1154,
+      "source_line": 542,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "ANY.Steel",
+      "nbt_output": 128,
+      "nbt_input": 0,
+      "efficiency_bps": 7000,
+      "output_expression": "128",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:chromium_burning_box_solid_dense",
+      "kind": "cruciblecraft:burning_box_solid_dense",
+      "material": "chromium",
+      "source_id": 1155,
+      "source_line": 543,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "MT.Cr",
+      "nbt_output": 448,
+      "nbt_input": 0,
+      "efficiency_bps": 8500,
+      "output_expression": "448",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:titanium_burning_box_solid_dense",
+      "kind": "cruciblecraft:burning_box_solid_dense",
+      "material": "titanium",
+      "source_id": 1156,
+      "source_line": 544,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "MT.Ti",
+      "nbt_output": 384,
+      "nbt_input": 0,
+      "efficiency_bps": 8500,
+      "output_expression": "384",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:netherite_burning_box_solid_dense",
+      "kind": "cruciblecraft:burning_box_solid_dense",
+      "material": "netherite",
+      "source_id": 1160,
+      "source_line": 545,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "MT.Netherite",
+      "nbt_output": 384,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "384",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungsten_burning_box_solid_dense",
+      "kind": "cruciblecraft:burning_box_solid_dense",
+      "material": "tungsten",
+      "source_id": 1157,
+      "source_line": 546,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "ANY.W",
+      "nbt_output": 512,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "512",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungstensteel_burning_box_solid_dense",
+      "kind": "cruciblecraft:burning_box_solid_dense",
+      "material": "tungstensteel",
+      "source_id": 1158,
+      "source_line": 547,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "MT.TungstenSteel",
+      "nbt_output": 512,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "512",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tantalum_hafnium_carbide_burning_box_solid_dense",
+      "kind": "cruciblecraft:burning_box_solid_dense",
+      "material": "tantalum_hafnium_carbide",
+      "source_id": 1159,
+      "source_line": 548,
+      "gt6_class": "MultiTileEntityGeneratorMetal",
+      "material_expression": "MT.Ta4HfC5",
+      "nbt_output": 1024,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "1024",
+      "fuel_map": "FM.Furnace",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "P P",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:lead_boiler",
+      "kind": "cruciblecraft:boiler",
+      "material": "lead",
+      "source_id": 1200,
+      "source_line": 553,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "MT.Pb",
+      "nbt_output": 32,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "16*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:bismuth_boiler",
+      "kind": "cruciblecraft:boiler",
+      "material": "bismuth",
+      "source_id": 1201,
+      "source_line": 554,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "MT.Bi",
+      "nbt_output": 40,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "20*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:bronze_boiler",
+      "kind": "cruciblecraft:boiler",
+      "material": "bronze",
+      "source_id": 1202,
+      "source_line": 555,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "MT.Bronze",
+      "nbt_output": 48,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "24*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_copper_boiler",
+      "kind": "cruciblecraft:boiler",
+      "material": "arsenic_copper",
+      "source_id": 1210,
+      "source_line": 556,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "MT.ArsenicCopper",
+      "nbt_output": 48,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "24*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_bronze_boiler",
+      "kind": "cruciblecraft:boiler",
+      "material": "arsenic_bronze",
+      "source_id": 1211,
+      "source_line": 557,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "MT.ArsenicBronze",
+      "nbt_output": 56,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "28*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:invar_boiler",
+      "kind": "cruciblecraft:boiler",
+      "material": "invar",
+      "source_id": 1203,
+      "source_line": 558,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "MT.Invar",
+      "nbt_output": 32,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "16*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:steel_boiler",
+      "kind": "cruciblecraft:boiler",
+      "material": "steel",
+      "source_id": 1204,
+      "source_line": 559,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "ANY.Steel",
+      "nbt_output": 64,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "32*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:chromium_boiler",
+      "kind": "cruciblecraft:boiler",
+      "material": "chromium",
+      "source_id": 1205,
+      "source_line": 560,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "MT.Cr",
+      "nbt_output": 192,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "96*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:titanium_boiler",
+      "kind": "cruciblecraft:boiler",
+      "material": "titanium",
+      "source_id": 1206,
+      "source_line": 561,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "MT.Ti",
+      "nbt_output": 224,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "112*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:netherite_boiler",
+      "kind": "cruciblecraft:boiler",
+      "material": "netherite",
+      "source_id": 1209,
+      "source_line": 562,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "MT.Netherite",
+      "nbt_output": 224,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "112*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungsten_boiler",
+      "kind": "cruciblecraft:boiler",
+      "material": "tungsten",
+      "source_id": 1207,
+      "source_line": 563,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "ANY.W",
+      "nbt_output": 256,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "128*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungstensteel_boiler",
+      "kind": "cruciblecraft:boiler",
+      "material": "tungstensteel",
+      "source_id": 1208,
+      "source_line": 564,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "MT.TungstenSteel",
+      "nbt_output": 256,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "128*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:ultimet_boiler",
+      "kind": "cruciblecraft:boiler",
+      "material": "ultimet",
+      "source_id": 1212,
+      "source_line": 565,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "MT.Ultimet",
+      "nbt_output": 512,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "256*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:lead_strong_boiler",
+      "kind": "cruciblecraft:strong_boiler",
+      "material": "lead",
+      "source_id": 1250,
+      "source_line": 567,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "MT.Pb",
+      "nbt_output": 128,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "64*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:bismuth_strong_boiler",
+      "kind": "cruciblecraft:strong_boiler",
+      "material": "bismuth",
+      "source_id": 1251,
+      "source_line": 568,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "MT.Bi",
+      "nbt_output": 160,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "80*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:bronze_strong_boiler",
+      "kind": "cruciblecraft:strong_boiler",
+      "material": "bronze",
+      "source_id": 1252,
+      "source_line": 569,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "MT.Bronze",
+      "nbt_output": 192,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "96*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_copper_strong_boiler",
+      "kind": "cruciblecraft:strong_boiler",
+      "material": "arsenic_copper",
+      "source_id": 1260,
+      "source_line": 570,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "MT.ArsenicCopper",
+      "nbt_output": 192,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "96*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_bronze_strong_boiler",
+      "kind": "cruciblecraft:strong_boiler",
+      "material": "arsenic_bronze",
+      "source_id": 1261,
+      "source_line": 571,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "MT.ArsenicBronze",
+      "nbt_output": 224,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "112*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:invar_strong_boiler",
+      "kind": "cruciblecraft:strong_boiler",
+      "material": "invar",
+      "source_id": 1253,
+      "source_line": 572,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "MT.Invar",
+      "nbt_output": 128,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "64*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:steel_strong_boiler",
+      "kind": "cruciblecraft:strong_boiler",
+      "material": "steel",
+      "source_id": 1254,
+      "source_line": 573,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "ANY.Steel",
+      "nbt_output": 256,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "128*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:chromium_strong_boiler",
+      "kind": "cruciblecraft:strong_boiler",
+      "material": "chromium",
+      "source_id": 1255,
+      "source_line": 574,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "MT.Cr",
+      "nbt_output": 768,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "384*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:titanium_strong_boiler",
+      "kind": "cruciblecraft:strong_boiler",
+      "material": "titanium",
+      "source_id": 1256,
+      "source_line": 575,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "MT.Ti",
+      "nbt_output": 896,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "448*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:netherite_strong_boiler",
+      "kind": "cruciblecraft:strong_boiler",
+      "material": "netherite",
+      "source_id": 1259,
+      "source_line": 576,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "MT.Netherite",
+      "nbt_output": 896,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "448*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungsten_strong_boiler",
+      "kind": "cruciblecraft:strong_boiler",
+      "material": "tungsten",
+      "source_id": 1257,
+      "source_line": 577,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "ANY.W",
+      "nbt_output": 1024,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "512*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungstensteel_strong_boiler",
+      "kind": "cruciblecraft:strong_boiler",
+      "material": "tungstensteel",
+      "source_id": 1258,
+      "source_line": 578,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "MT.TungstenSteel",
+      "nbt_output": 1024,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "512*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:ultimet_strong_boiler",
+      "kind": "cruciblecraft:strong_boiler",
+      "material": "ultimet",
+      "source_id": 1262,
+      "source_line": 579,
+      "gt6_class": "MultiTileEntityBoilerTank",
+      "material_expression": "MT.Ultimet",
+      "nbt_output": 2048,
+      "nbt_input": 0,
+      "efficiency_bps": 0,
+      "output_expression": "1024*STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " P ",
+          "P P",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:lead_steam_engine",
+      "kind": "cruciblecraft:steam_engine",
+      "material": "lead",
+      "source_id": 1300,
+      "source_line": 584,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.Pb",
+      "nbt_output": 8,
+      "nbt_input": 0,
+      "efficiency_bps": 3000,
+      "output_expression": "16/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "small_spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tin_alloy_steam_engine",
+      "kind": "cruciblecraft:steam_engine",
+      "material": "tin_alloy",
+      "source_id": 1301,
+      "source_line": 585,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.TinAlloy",
+      "nbt_output": 10,
+      "nbt_input": 0,
+      "efficiency_bps": 4000,
+      "output_expression": "20/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "small_spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:bronze_steam_engine",
+      "kind": "cruciblecraft:steam_engine",
+      "material": "bronze",
+      "source_id": 1302,
+      "source_line": 586,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.Bronze",
+      "nbt_output": 12,
+      "nbt_input": 0,
+      "efficiency_bps": 5000,
+      "output_expression": "24/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "small_spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_copper_steam_engine",
+      "kind": "cruciblecraft:steam_engine",
+      "material": "arsenic_copper",
+      "source_id": 1312,
+      "source_line": 587,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.ArsenicCopper",
+      "nbt_output": 12,
+      "nbt_input": 0,
+      "efficiency_bps": 5000,
+      "output_expression": "24/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "small_spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_bronze_steam_engine",
+      "kind": "cruciblecraft:steam_engine",
+      "material": "arsenic_bronze",
+      "source_id": 1313,
+      "source_line": 588,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.ArsenicBronze",
+      "nbt_output": 14,
+      "nbt_input": 0,
+      "efficiency_bps": 5000,
+      "output_expression": "28/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "small_spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:brass_steam_engine",
+      "kind": "cruciblecraft:steam_engine",
+      "material": "brass",
+      "source_id": 1309,
+      "source_line": 589,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.Brass",
+      "nbt_output": 12,
+      "nbt_input": 0,
+      "efficiency_bps": 5000,
+      "output_expression": "24/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "small_spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:invar_steam_engine",
+      "kind": "cruciblecraft:steam_engine",
+      "material": "invar",
+      "source_id": 1303,
+      "source_line": 590,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.Invar",
+      "nbt_output": 8,
+      "nbt_input": 0,
+      "efficiency_bps": 6400,
+      "output_expression": "16/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "small_spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:ironwood_steam_engine",
+      "kind": "cruciblecraft:steam_engine",
+      "material": "ironwood",
+      "source_id": 1310,
+      "source_line": 591,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.IronWood",
+      "nbt_output": 8,
+      "nbt_input": 0,
+      "efficiency_bps": 6450,
+      "output_expression": "16/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "small_spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:steel_steam_engine",
+      "kind": "cruciblecraft:steam_engine",
+      "material": "steel",
+      "source_id": 1304,
+      "source_line": 592,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "ANY.Steel",
+      "nbt_output": 16,
+      "nbt_input": 0,
+      "efficiency_bps": 5000,
+      "output_expression": "32/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "small_spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:fiery_steel_steam_engine",
+      "kind": "cruciblecraft:steam_engine",
+      "material": "fiery_steel",
+      "source_id": 1311,
+      "source_line": 593,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.FierySteel",
+      "nbt_output": 32,
+      "nbt_input": 0,
+      "efficiency_bps": 6200,
+      "output_expression": "64/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "small_spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:chromium_steam_engine",
+      "kind": "cruciblecraft:steam_engine",
+      "material": "chromium",
+      "source_id": 1305,
+      "source_line": 594,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.Cr",
+      "nbt_output": 48,
+      "nbt_input": 0,
+      "efficiency_bps": 6300,
+      "output_expression": "96/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "small_spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:titanium_steam_engine",
+      "kind": "cruciblecraft:steam_engine",
+      "material": "titanium",
+      "source_id": 1306,
+      "source_line": 595,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.Ti",
+      "nbt_output": 56,
+      "nbt_input": 0,
+      "efficiency_bps": 5800,
+      "output_expression": "112/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "small_spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungsten_steam_engine",
+      "kind": "cruciblecraft:steam_engine",
+      "material": "tungsten",
+      "source_id": 1307,
+      "source_line": 596,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "ANY.W",
+      "nbt_output": 64,
+      "nbt_input": 0,
+      "efficiency_bps": 5800,
+      "output_expression": "128/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "small_spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungstensteel_steam_engine",
+      "kind": "cruciblecraft:steam_engine",
+      "material": "tungstensteel",
+      "source_id": 1308,
+      "source_line": 597,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.TungstenSteel",
+      "nbt_output": 64,
+      "nbt_input": 0,
+      "efficiency_bps": 6000,
+      "output_expression": "128/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "small_spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:lead_strong_steam_engine",
+      "kind": "cruciblecraft:strong_steam_engine",
+      "material": "lead",
+      "source_id": 1350,
+      "source_line": 599,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.Pb",
+      "nbt_output": 32,
+      "nbt_input": 0,
+      "efficiency_bps": 3000,
+      "output_expression": "64/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tin_alloy_strong_steam_engine",
+      "kind": "cruciblecraft:strong_steam_engine",
+      "material": "tin_alloy",
+      "source_id": 1351,
+      "source_line": 600,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.TinAlloy",
+      "nbt_output": 40,
+      "nbt_input": 0,
+      "efficiency_bps": 4000,
+      "output_expression": "80/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:bronze_strong_steam_engine",
+      "kind": "cruciblecraft:strong_steam_engine",
+      "material": "bronze",
+      "source_id": 1352,
+      "source_line": 601,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.Bronze",
+      "nbt_output": 48,
+      "nbt_input": 0,
+      "efficiency_bps": 5000,
+      "output_expression": "96/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_copper_strong_steam_engine",
+      "kind": "cruciblecraft:strong_steam_engine",
+      "material": "arsenic_copper",
+      "source_id": 1362,
+      "source_line": 602,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.ArsenicCopper",
+      "nbt_output": 48,
+      "nbt_input": 0,
+      "efficiency_bps": 5000,
+      "output_expression": "96/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_bronze_strong_steam_engine",
+      "kind": "cruciblecraft:strong_steam_engine",
+      "material": "arsenic_bronze",
+      "source_id": 1363,
+      "source_line": 603,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.ArsenicBronze",
+      "nbt_output": 56,
+      "nbt_input": 0,
+      "efficiency_bps": 5000,
+      "output_expression": "112/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:brass_strong_steam_engine",
+      "kind": "cruciblecraft:strong_steam_engine",
+      "material": "brass",
+      "source_id": 1359,
+      "source_line": 604,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.Brass",
+      "nbt_output": 48,
+      "nbt_input": 0,
+      "efficiency_bps": 5000,
+      "output_expression": "96/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:invar_strong_steam_engine",
+      "kind": "cruciblecraft:strong_steam_engine",
+      "material": "invar",
+      "source_id": 1353,
+      "source_line": 605,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.Invar",
+      "nbt_output": 32,
+      "nbt_input": 0,
+      "efficiency_bps": 6400,
+      "output_expression": "64/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:ironwood_strong_steam_engine",
+      "kind": "cruciblecraft:strong_steam_engine",
+      "material": "ironwood",
+      "source_id": 1360,
+      "source_line": 606,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.IronWood",
+      "nbt_output": 32,
+      "nbt_input": 0,
+      "efficiency_bps": 6450,
+      "output_expression": "64/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:steel_strong_steam_engine",
+      "kind": "cruciblecraft:strong_steam_engine",
+      "material": "steel",
+      "source_id": 1354,
+      "source_line": 607,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "ANY.Steel",
+      "nbt_output": 64,
+      "nbt_input": 0,
+      "efficiency_bps": 5000,
+      "output_expression": "128/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:fiery_steel_strong_steam_engine",
+      "kind": "cruciblecraft:strong_steam_engine",
+      "material": "fiery_steel",
+      "source_id": 1361,
+      "source_line": 608,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.FierySteel",
+      "nbt_output": 128,
+      "nbt_input": 0,
+      "efficiency_bps": 6200,
+      "output_expression": "256/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:chromium_strong_steam_engine",
+      "kind": "cruciblecraft:strong_steam_engine",
+      "material": "chromium",
+      "source_id": 1355,
+      "source_line": 609,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.Cr",
+      "nbt_output": 192,
+      "nbt_input": 0,
+      "efficiency_bps": 6300,
+      "output_expression": "384/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:titanium_strong_steam_engine",
+      "kind": "cruciblecraft:strong_steam_engine",
+      "material": "titanium",
+      "source_id": 1356,
+      "source_line": 610,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.Ti",
+      "nbt_output": 224,
+      "nbt_input": 0,
+      "efficiency_bps": 5800,
+      "output_expression": "448/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungsten_strong_steam_engine",
+      "kind": "cruciblecraft:strong_steam_engine",
+      "material": "tungsten",
+      "source_id": 1357,
+      "source_line": 611,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "ANY.W",
+      "nbt_output": 256,
+      "nbt_input": 0,
+      "efficiency_bps": 5800,
+      "output_expression": "512/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungstensteel_strong_steam_engine",
+      "kind": "cruciblecraft:strong_steam_engine",
+      "material": "tungstensteel",
+      "source_id": 1358,
+      "source_line": 612,
+      "gt6_class": "MultiTileEntityEngineSteam",
+      "material_expression": "MT.TungstenSteel",
+      "nbt_output": 256,
+      "nbt_input": 0,
+      "efficiency_bps": 6000,
+      "output_expression": "512/STEAM_PER_EU",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "SIS",
+          "P P"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "dense_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "spring",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:bronze_burning_box_liquid",
+      "kind": "cruciblecraft:burning_box_liquid",
+      "material": "bronze",
+      "source_id": 1402,
+      "source_line": 619,
+      "gt6_class": "MultiTileEntityGeneratorLiquid",
+      "material_expression": "MT.Bronze",
+      "nbt_output": 24,
+      "nbt_input": 0,
+      "efficiency_bps": 7500,
+      "output_expression": "24",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "I I",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_copper_burning_box_liquid",
+      "kind": "cruciblecraft:burning_box_liquid",
+      "material": "arsenic_copper",
+      "source_id": 1411,
+      "source_line": 620,
+      "gt6_class": "MultiTileEntityGeneratorLiquid",
+      "material_expression": "MT.ArsenicCopper",
+      "nbt_output": 24,
+      "nbt_input": 0,
+      "efficiency_bps": 8000,
+      "output_expression": "24",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "I I",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_bronze_burning_box_liquid",
+      "kind": "cruciblecraft:burning_box_liquid",
+      "material": "arsenic_bronze",
+      "source_id": 1412,
+      "source_line": 621,
+      "gt6_class": "MultiTileEntityGeneratorLiquid",
+      "material_expression": "MT.ArsenicBronze",
+      "nbt_output": 28,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "28",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "I I",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:invar_burning_box_liquid",
+      "kind": "cruciblecraft:burning_box_liquid",
+      "material": "invar",
+      "source_id": 1403,
+      "source_line": 622,
+      "gt6_class": "MultiTileEntityGeneratorLiquid",
+      "material_expression": "MT.Invar",
+      "nbt_output": 16,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "16",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "I I",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:steel_burning_box_liquid",
+      "kind": "cruciblecraft:burning_box_liquid",
+      "material": "steel",
+      "source_id": 1404,
+      "source_line": 623,
+      "gt6_class": "MultiTileEntityGeneratorLiquid",
+      "material_expression": "ANY.Steel",
+      "nbt_output": 32,
+      "nbt_input": 0,
+      "efficiency_bps": 7000,
+      "output_expression": "32",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "I I",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:chromium_burning_box_liquid",
+      "kind": "cruciblecraft:burning_box_liquid",
+      "material": "chromium",
+      "source_id": 1405,
+      "source_line": 624,
+      "gt6_class": "MultiTileEntityGeneratorLiquid",
+      "material_expression": "MT.Cr",
+      "nbt_output": 112,
+      "nbt_input": 0,
+      "efficiency_bps": 8500,
+      "output_expression": "112",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "I I",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:titanium_burning_box_liquid",
+      "kind": "cruciblecraft:burning_box_liquid",
+      "material": "titanium",
+      "source_id": 1406,
+      "source_line": 625,
+      "gt6_class": "MultiTileEntityGeneratorLiquid",
+      "material_expression": "MT.Ti",
+      "nbt_output": 96,
+      "nbt_input": 0,
+      "efficiency_bps": 8500,
+      "output_expression": "96",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "I I",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:netherite_burning_box_liquid",
+      "kind": "cruciblecraft:burning_box_liquid",
+      "material": "netherite",
+      "source_id": 1410,
+      "source_line": 626,
+      "gt6_class": "MultiTileEntityGeneratorLiquid",
+      "material_expression": "MT.Netherite",
+      "nbt_output": 96,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "96",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "I I",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungsten_burning_box_liquid",
+      "kind": "cruciblecraft:burning_box_liquid",
+      "material": "tungsten",
+      "source_id": 1407,
+      "source_line": 627,
+      "gt6_class": "MultiTileEntityGeneratorLiquid",
+      "material_expression": "ANY.W",
+      "nbt_output": 128,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "128",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "I I",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungstensteel_burning_box_liquid",
+      "kind": "cruciblecraft:burning_box_liquid",
+      "material": "tungstensteel",
+      "source_id": 1408,
+      "source_line": 628,
+      "gt6_class": "MultiTileEntityGeneratorLiquid",
+      "material_expression": "MT.TungstenSteel",
+      "nbt_output": 128,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "128",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "I I",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tantalum_hafnium_carbide_burning_box_liquid",
+      "kind": "cruciblecraft:burning_box_liquid",
+      "material": "tantalum_hafnium_carbide",
+      "source_id": 1409,
+      "source_line": 629,
+      "gt6_class": "MultiTileEntityGeneratorLiquid",
+      "material_expression": "MT.Ta4HfC5",
+      "nbt_output": 256,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "256",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "I I",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:bronze_burning_box_liquid_dense",
+      "kind": "cruciblecraft:burning_box_liquid_dense",
+      "material": "bronze",
+      "source_id": 1452,
+      "source_line": 633,
+      "gt6_class": "MultiTileEntityGeneratorLiquid",
+      "material_expression": "MT.Bronze",
+      "nbt_output": 96,
+      "nbt_input": 0,
+      "efficiency_bps": 7500,
+      "output_expression": "96",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "I I",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "large_fluid_pipe",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_copper_burning_box_liquid_dense",
+      "kind": "cruciblecraft:burning_box_liquid_dense",
+      "material": "arsenic_copper",
+      "source_id": 1461,
+      "source_line": 634,
+      "gt6_class": "MultiTileEntityGeneratorLiquid",
+      "material_expression": "MT.ArsenicCopper",
+      "nbt_output": 96,
+      "nbt_input": 0,
+      "efficiency_bps": 8000,
+      "output_expression": "96",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "I I",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "large_fluid_pipe",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_bronze_burning_box_liquid_dense",
+      "kind": "cruciblecraft:burning_box_liquid_dense",
+      "material": "arsenic_bronze",
+      "source_id": 1462,
+      "source_line": 635,
+      "gt6_class": "MultiTileEntityGeneratorLiquid",
+      "material_expression": "MT.ArsenicBronze",
+      "nbt_output": 112,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "112",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "I I",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "large_fluid_pipe",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:invar_burning_box_liquid_dense",
+      "kind": "cruciblecraft:burning_box_liquid_dense",
+      "material": "invar",
+      "source_id": 1453,
+      "source_line": 636,
+      "gt6_class": "MultiTileEntityGeneratorLiquid",
+      "material_expression": "MT.Invar",
+      "nbt_output": 64,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "64",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "I I",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "large_fluid_pipe",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:steel_burning_box_liquid_dense",
+      "kind": "cruciblecraft:burning_box_liquid_dense",
+      "material": "steel",
+      "source_id": 1454,
+      "source_line": 637,
+      "gt6_class": "MultiTileEntityGeneratorLiquid",
+      "material_expression": "ANY.Steel",
+      "nbt_output": 128,
+      "nbt_input": 0,
+      "efficiency_bps": 7000,
+      "output_expression": "128",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "I I",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "large_fluid_pipe",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:chromium_burning_box_liquid_dense",
+      "kind": "cruciblecraft:burning_box_liquid_dense",
+      "material": "chromium",
+      "source_id": 1455,
+      "source_line": 638,
+      "gt6_class": "MultiTileEntityGeneratorLiquid",
+      "material_expression": "MT.Cr",
+      "nbt_output": 448,
+      "nbt_input": 0,
+      "efficiency_bps": 8500,
+      "output_expression": "448",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "I I",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "large_fluid_pipe",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:titanium_burning_box_liquid_dense",
+      "kind": "cruciblecraft:burning_box_liquid_dense",
+      "material": "titanium",
+      "source_id": 1456,
+      "source_line": 639,
+      "gt6_class": "MultiTileEntityGeneratorLiquid",
+      "material_expression": "MT.Ti",
+      "nbt_output": 384,
+      "nbt_input": 0,
+      "efficiency_bps": 8500,
+      "output_expression": "384",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "I I",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "large_fluid_pipe",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:netherite_burning_box_liquid_dense",
+      "kind": "cruciblecraft:burning_box_liquid_dense",
+      "material": "netherite",
+      "source_id": 1460,
+      "source_line": 640,
+      "gt6_class": "MultiTileEntityGeneratorLiquid",
+      "material_expression": "MT.Netherite",
+      "nbt_output": 384,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "384",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "I I",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "large_fluid_pipe",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungsten_burning_box_liquid_dense",
+      "kind": "cruciblecraft:burning_box_liquid_dense",
+      "material": "tungsten",
+      "source_id": 1457,
+      "source_line": 641,
+      "gt6_class": "MultiTileEntityGeneratorLiquid",
+      "material_expression": "ANY.W",
+      "nbt_output": 512,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "512",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "I I",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "large_fluid_pipe",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungstensteel_burning_box_liquid_dense",
+      "kind": "cruciblecraft:burning_box_liquid_dense",
+      "material": "tungstensteel",
+      "source_id": 1458,
+      "source_line": 642,
+      "gt6_class": "MultiTileEntityGeneratorLiquid",
+      "material_expression": "MT.TungstenSteel",
+      "nbt_output": 512,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "512",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "I I",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "large_fluid_pipe",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tantalum_hafnium_carbide_burning_box_liquid_dense",
+      "kind": "cruciblecraft:burning_box_liquid_dense",
+      "material": "tantalum_hafnium_carbide",
+      "source_id": 1459,
+      "source_line": 643,
+      "gt6_class": "MultiTileEntityGeneratorLiquid",
+      "material_expression": "MT.Ta4HfC5",
+      "nbt_output": 1024,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "1024",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "I I",
+          "BBB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "large_fluid_pipe",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:bronze_burning_box_gas",
+      "kind": "cruciblecraft:burning_box_gas",
+      "material": "bronze",
+      "source_id": 1602,
+      "source_line": 649,
+      "gt6_class": "MultiTileEntityGeneratorGas",
+      "material_expression": "MT.Bronze",
+      "nbt_output": 24,
+      "nbt_input": 0,
+      "efficiency_bps": 7500,
+      "output_expression": "24",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "B B",
+          "BIB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_copper_burning_box_gas",
+      "kind": "cruciblecraft:burning_box_gas",
+      "material": "arsenic_copper",
+      "source_id": 1611,
+      "source_line": 650,
+      "gt6_class": "MultiTileEntityGeneratorGas",
+      "material_expression": "MT.ArsenicCopper",
+      "nbt_output": 24,
+      "nbt_input": 0,
+      "efficiency_bps": 8000,
+      "output_expression": "24",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "B B",
+          "BIB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_bronze_burning_box_gas",
+      "kind": "cruciblecraft:burning_box_gas",
+      "material": "arsenic_bronze",
+      "source_id": 1612,
+      "source_line": 651,
+      "gt6_class": "MultiTileEntityGeneratorGas",
+      "material_expression": "MT.ArsenicBronze",
+      "nbt_output": 28,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "28",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "B B",
+          "BIB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:invar_burning_box_gas",
+      "kind": "cruciblecraft:burning_box_gas",
+      "material": "invar",
+      "source_id": 1603,
+      "source_line": 652,
+      "gt6_class": "MultiTileEntityGeneratorGas",
+      "material_expression": "MT.Invar",
+      "nbt_output": 16,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "16",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "B B",
+          "BIB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:steel_burning_box_gas",
+      "kind": "cruciblecraft:burning_box_gas",
+      "material": "steel",
+      "source_id": 1604,
+      "source_line": 653,
+      "gt6_class": "MultiTileEntityGeneratorGas",
+      "material_expression": "ANY.Steel",
+      "nbt_output": 32,
+      "nbt_input": 0,
+      "efficiency_bps": 7000,
+      "output_expression": "32",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "B B",
+          "BIB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:chromium_burning_box_gas",
+      "kind": "cruciblecraft:burning_box_gas",
+      "material": "chromium",
+      "source_id": 1605,
+      "source_line": 654,
+      "gt6_class": "MultiTileEntityGeneratorGas",
+      "material_expression": "MT.Cr",
+      "nbt_output": 112,
+      "nbt_input": 0,
+      "efficiency_bps": 8500,
+      "output_expression": "112",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "B B",
+          "BIB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:titanium_burning_box_gas",
+      "kind": "cruciblecraft:burning_box_gas",
+      "material": "titanium",
+      "source_id": 1606,
+      "source_line": 655,
+      "gt6_class": "MultiTileEntityGeneratorGas",
+      "material_expression": "MT.Ti",
+      "nbt_output": 96,
+      "nbt_input": 0,
+      "efficiency_bps": 8500,
+      "output_expression": "96",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "B B",
+          "BIB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:netherite_burning_box_gas",
+      "kind": "cruciblecraft:burning_box_gas",
+      "material": "netherite",
+      "source_id": 1610,
+      "source_line": 656,
+      "gt6_class": "MultiTileEntityGeneratorGas",
+      "material_expression": "MT.Netherite",
+      "nbt_output": 96,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "96",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "B B",
+          "BIB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungsten_burning_box_gas",
+      "kind": "cruciblecraft:burning_box_gas",
+      "material": "tungsten",
+      "source_id": 1607,
+      "source_line": 657,
+      "gt6_class": "MultiTileEntityGeneratorGas",
+      "material_expression": "ANY.W",
+      "nbt_output": 128,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "128",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "B B",
+          "BIB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungstensteel_burning_box_gas",
+      "kind": "cruciblecraft:burning_box_gas",
+      "material": "tungstensteel",
+      "source_id": 1608,
+      "source_line": 658,
+      "gt6_class": "MultiTileEntityGeneratorGas",
+      "material_expression": "MT.TungstenSteel",
+      "nbt_output": 128,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "128",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "B B",
+          "BIB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tantalum_hafnium_carbide_burning_box_gas",
+      "kind": "cruciblecraft:burning_box_gas",
+      "material": "tantalum_hafnium_carbide",
+      "source_id": 1609,
+      "source_line": 659,
+      "gt6_class": "MultiTileEntityGeneratorGas",
+      "material_expression": "MT.Ta4HfC5",
+      "nbt_output": 256,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "256",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "B B",
+          "BIB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:bronze_burning_box_gas_dense",
+      "kind": "cruciblecraft:burning_box_gas_dense",
+      "material": "bronze",
+      "source_id": 1652,
+      "source_line": 663,
+      "gt6_class": "MultiTileEntityGeneratorGas",
+      "material_expression": "MT.Bronze",
+      "nbt_output": 96,
+      "nbt_input": 0,
+      "efficiency_bps": 7500,
+      "output_expression": "96",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "B B",
+          "BIB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "large_fluid_pipe",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_copper_burning_box_gas_dense",
+      "kind": "cruciblecraft:burning_box_gas_dense",
+      "material": "arsenic_copper",
+      "source_id": 1661,
+      "source_line": 664,
+      "gt6_class": "MultiTileEntityGeneratorGas",
+      "material_expression": "MT.ArsenicCopper",
+      "nbt_output": 96,
+      "nbt_input": 0,
+      "efficiency_bps": 8000,
+      "output_expression": "96",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "B B",
+          "BIB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "large_fluid_pipe",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_bronze_burning_box_gas_dense",
+      "kind": "cruciblecraft:burning_box_gas_dense",
+      "material": "arsenic_bronze",
+      "source_id": 1662,
+      "source_line": 665,
+      "gt6_class": "MultiTileEntityGeneratorGas",
+      "material_expression": "MT.ArsenicBronze",
+      "nbt_output": 112,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "112",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "B B",
+          "BIB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "large_fluid_pipe",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:invar_burning_box_gas_dense",
+      "kind": "cruciblecraft:burning_box_gas_dense",
+      "material": "invar",
+      "source_id": 1653,
+      "source_line": 666,
+      "gt6_class": "MultiTileEntityGeneratorGas",
+      "material_expression": "MT.Invar",
+      "nbt_output": 64,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "64",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "B B",
+          "BIB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "large_fluid_pipe",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:steel_burning_box_gas_dense",
+      "kind": "cruciblecraft:burning_box_gas_dense",
+      "material": "steel",
+      "source_id": 1654,
+      "source_line": 667,
+      "gt6_class": "MultiTileEntityGeneratorGas",
+      "material_expression": "ANY.Steel",
+      "nbt_output": 128,
+      "nbt_input": 0,
+      "efficiency_bps": 7000,
+      "output_expression": "128",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "B B",
+          "BIB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "large_fluid_pipe",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:chromium_burning_box_gas_dense",
+      "kind": "cruciblecraft:burning_box_gas_dense",
+      "material": "chromium",
+      "source_id": 1655,
+      "source_line": 668,
+      "gt6_class": "MultiTileEntityGeneratorGas",
+      "material_expression": "MT.Cr",
+      "nbt_output": 448,
+      "nbt_input": 0,
+      "efficiency_bps": 8500,
+      "output_expression": "448",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "B B",
+          "BIB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "large_fluid_pipe",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:titanium_burning_box_gas_dense",
+      "kind": "cruciblecraft:burning_box_gas_dense",
+      "material": "titanium",
+      "source_id": 1656,
+      "source_line": 669,
+      "gt6_class": "MultiTileEntityGeneratorGas",
+      "material_expression": "MT.Ti",
+      "nbt_output": 384,
+      "nbt_input": 0,
+      "efficiency_bps": 8500,
+      "output_expression": "384",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "B B",
+          "BIB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "large_fluid_pipe",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:netherite_burning_box_gas_dense",
+      "kind": "cruciblecraft:burning_box_gas_dense",
+      "material": "netherite",
+      "source_id": 1660,
+      "source_line": 670,
+      "gt6_class": "MultiTileEntityGeneratorGas",
+      "material_expression": "MT.Netherite",
+      "nbt_output": 384,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "384",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "B B",
+          "BIB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "large_fluid_pipe",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungsten_burning_box_gas_dense",
+      "kind": "cruciblecraft:burning_box_gas_dense",
+      "material": "tungsten",
+      "source_id": 1657,
+      "source_line": 671,
+      "gt6_class": "MultiTileEntityGeneratorGas",
+      "material_expression": "ANY.W",
+      "nbt_output": 512,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "512",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "B B",
+          "BIB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "large_fluid_pipe",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungstensteel_burning_box_gas_dense",
+      "kind": "cruciblecraft:burning_box_gas_dense",
+      "material": "tungstensteel",
+      "source_id": 1658,
+      "source_line": 672,
+      "gt6_class": "MultiTileEntityGeneratorGas",
+      "material_expression": "MT.TungstenSteel",
+      "nbt_output": 512,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "512",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "B B",
+          "BIB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "large_fluid_pipe",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tantalum_hafnium_carbide_burning_box_gas_dense",
+      "kind": "cruciblecraft:burning_box_gas_dense",
+      "material": "tantalum_hafnium_carbide",
+      "source_id": 1659,
+      "source_line": 673,
+      "gt6_class": "MultiTileEntityGeneratorGas",
+      "material_expression": "MT.Ta4HfC5",
+      "nbt_output": 1024,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "1024",
+      "fuel_map": "FM.Burn",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "B B",
+          "BIB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "large_fluid_pipe",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:lead_burning_box_fluid_bed",
+      "kind": "cruciblecraft:burning_box_fluid_bed",
+      "material": "lead",
+      "source_id": 9000,
+      "source_line": 678,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "MT.Pb",
+      "nbt_output": 64,
+      "nbt_input": 0,
+      "efficiency_bps": 5000,
+      "output_expression": "64",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:bismuth_burning_box_fluid_bed",
+      "kind": "cruciblecraft:burning_box_fluid_bed",
+      "material": "bismuth",
+      "source_id": 9001,
+      "source_line": 679,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "MT.Bi",
+      "nbt_output": 80,
+      "nbt_input": 0,
+      "efficiency_bps": 4500,
+      "output_expression": "80",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:bronze_burning_box_fluid_bed",
+      "kind": "cruciblecraft:burning_box_fluid_bed",
+      "material": "bronze",
+      "source_id": 9002,
+      "source_line": 680,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "MT.Bronze",
+      "nbt_output": 96,
+      "nbt_input": 0,
+      "efficiency_bps": 7500,
+      "output_expression": "96",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_copper_burning_box_fluid_bed",
+      "kind": "cruciblecraft:burning_box_fluid_bed",
+      "material": "arsenic_copper",
+      "source_id": 9011,
+      "source_line": 681,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "MT.ArsenicCopper",
+      "nbt_output": 96,
+      "nbt_input": 0,
+      "efficiency_bps": 8000,
+      "output_expression": "96",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_bronze_burning_box_fluid_bed",
+      "kind": "cruciblecraft:burning_box_fluid_bed",
+      "material": "arsenic_bronze",
+      "source_id": 9012,
+      "source_line": 682,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "MT.ArsenicBronze",
+      "nbt_output": 112,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "112",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:invar_burning_box_fluid_bed",
+      "kind": "cruciblecraft:burning_box_fluid_bed",
+      "material": "invar",
+      "source_id": 9003,
+      "source_line": 683,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "MT.Invar",
+      "nbt_output": 64,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "64",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:steel_burning_box_fluid_bed",
+      "kind": "cruciblecraft:burning_box_fluid_bed",
+      "material": "steel",
+      "source_id": 9004,
+      "source_line": 684,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "ANY.Steel",
+      "nbt_output": 128,
+      "nbt_input": 0,
+      "efficiency_bps": 7000,
+      "output_expression": "128",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:chromium_burning_box_fluid_bed",
+      "kind": "cruciblecraft:burning_box_fluid_bed",
+      "material": "chromium",
+      "source_id": 9005,
+      "source_line": 685,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "MT.Cr",
+      "nbt_output": 448,
+      "nbt_input": 0,
+      "efficiency_bps": 8500,
+      "output_expression": "448",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:titanium_burning_box_fluid_bed",
+      "kind": "cruciblecraft:burning_box_fluid_bed",
+      "material": "titanium",
+      "source_id": 9006,
+      "source_line": 686,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "MT.Ti",
+      "nbt_output": 384,
+      "nbt_input": 0,
+      "efficiency_bps": 8500,
+      "output_expression": "384",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:netherite_burning_box_fluid_bed",
+      "kind": "cruciblecraft:burning_box_fluid_bed",
+      "material": "netherite",
+      "source_id": 9010,
+      "source_line": 687,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "MT.Netherite",
+      "nbt_output": 384,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "384",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungsten_burning_box_fluid_bed",
+      "kind": "cruciblecraft:burning_box_fluid_bed",
+      "material": "tungsten",
+      "source_id": 9007,
+      "source_line": 688,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "ANY.W",
+      "nbt_output": 512,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "512",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungstensteel_burning_box_fluid_bed",
+      "kind": "cruciblecraft:burning_box_fluid_bed",
+      "material": "tungstensteel",
+      "source_id": 9008,
+      "source_line": 689,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "MT.TungstenSteel",
+      "nbt_output": 512,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "512",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tantalum_hafnium_carbide_burning_box_fluid_bed",
+      "kind": "cruciblecraft:burning_box_fluid_bed",
+      "material": "tantalum_hafnium_carbide",
+      "source_id": 9009,
+      "source_line": 690,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "MT.Ta4HfC5",
+      "nbt_output": 1024,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "1024",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:lead_burning_box_fluid_bed_dense",
+      "kind": "cruciblecraft:burning_box_fluid_bed_dense",
+      "material": "lead",
+      "source_id": 9050,
+      "source_line": 692,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "MT.Pb",
+      "nbt_output": 256,
+      "nbt_input": 0,
+      "efficiency_bps": 5000,
+      "output_expression": "256",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:bismuth_burning_box_fluid_bed_dense",
+      "kind": "cruciblecraft:burning_box_fluid_bed_dense",
+      "material": "bismuth",
+      "source_id": 9051,
+      "source_line": 693,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "MT.Bi",
+      "nbt_output": 320,
+      "nbt_input": 0,
+      "efficiency_bps": 4500,
+      "output_expression": "320",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:bronze_burning_box_fluid_bed_dense",
+      "kind": "cruciblecraft:burning_box_fluid_bed_dense",
+      "material": "bronze",
+      "source_id": 9052,
+      "source_line": 694,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "MT.Bronze",
+      "nbt_output": 384,
+      "nbt_input": 0,
+      "efficiency_bps": 7500,
+      "output_expression": "384",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_copper_burning_box_fluid_bed_dense",
+      "kind": "cruciblecraft:burning_box_fluid_bed_dense",
+      "material": "arsenic_copper",
+      "source_id": 9061,
+      "source_line": 695,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "MT.ArsenicCopper",
+      "nbt_output": 384,
+      "nbt_input": 0,
+      "efficiency_bps": 8000,
+      "output_expression": "384",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_bronze_burning_box_fluid_bed_dense",
+      "kind": "cruciblecraft:burning_box_fluid_bed_dense",
+      "material": "arsenic_bronze",
+      "source_id": 9062,
+      "source_line": 696,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "MT.ArsenicBronze",
+      "nbt_output": 448,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "448",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:invar_burning_box_fluid_bed_dense",
+      "kind": "cruciblecraft:burning_box_fluid_bed_dense",
+      "material": "invar",
+      "source_id": 9053,
+      "source_line": 697,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "MT.Invar",
+      "nbt_output": 256,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "256",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:steel_burning_box_fluid_bed_dense",
+      "kind": "cruciblecraft:burning_box_fluid_bed_dense",
+      "material": "steel",
+      "source_id": 9054,
+      "source_line": 698,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "ANY.Steel",
+      "nbt_output": 512,
+      "nbt_input": 0,
+      "efficiency_bps": 7000,
+      "output_expression": "512",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:chromium_burning_box_fluid_bed_dense",
+      "kind": "cruciblecraft:burning_box_fluid_bed_dense",
+      "material": "chromium",
+      "source_id": 9055,
+      "source_line": 699,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "MT.Cr",
+      "nbt_output": 1792,
+      "nbt_input": 0,
+      "efficiency_bps": 8500,
+      "output_expression": "1792",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:titanium_burning_box_fluid_bed_dense",
+      "kind": "cruciblecraft:burning_box_fluid_bed_dense",
+      "material": "titanium",
+      "source_id": 9056,
+      "source_line": 700,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "MT.Ti",
+      "nbt_output": 1536,
+      "nbt_input": 0,
+      "efficiency_bps": 8500,
+      "output_expression": "1536",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:netherite_burning_box_fluid_bed_dense",
+      "kind": "cruciblecraft:burning_box_fluid_bed_dense",
+      "material": "netherite",
+      "source_id": 9060,
+      "source_line": 701,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "MT.Netherite",
+      "nbt_output": 1536,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "1536",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungsten_burning_box_fluid_bed_dense",
+      "kind": "cruciblecraft:burning_box_fluid_bed_dense",
+      "material": "tungsten",
+      "source_id": 9057,
+      "source_line": 702,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "ANY.W",
+      "nbt_output": 2048,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "2048",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungstensteel_burning_box_fluid_bed_dense",
+      "kind": "cruciblecraft:burning_box_fluid_bed_dense",
+      "material": "tungstensteel",
+      "source_id": 9058,
+      "source_line": 703,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "MT.TungstenSteel",
+      "nbt_output": 2048,
+      "nbt_input": 0,
+      "efficiency_bps": 9000,
+      "output_expression": "2048",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tantalum_hafnium_carbide_burning_box_fluid_bed_dense",
+      "kind": "cruciblecraft:burning_box_fluid_bed_dense",
+      "material": "tantalum_hafnium_carbide",
+      "source_id": 9059,
+      "source_line": 704,
+      "gt6_class": "MultiTileEntityGeneratorFluidBed",
+      "material_expression": "MT.Ta4HfC5",
+      "nbt_output": 4096,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "4096",
+      "fuel_map": "FM.FluidBed",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "U U",
+          "BXB"
+        ],
+        "keys": {
+          "B": {
+            "item": "minecraft:bricks"
+          },
+          "U": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "X": {
+            "prefix": "rotor",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:bronze_fuel_engine",
+      "kind": "cruciblecraft:fuel_engine",
+      "material": "bronze",
+      "source_id": 9147,
+      "source_line": 722,
+      "gt6_class": "MultiTileEntityMotorLiquid",
+      "material_expression": "MT.Bronze",
+      "nbt_output": 16,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "16",
+      "fuel_map": "FM.Engine",
+      "recipe": {
+        "pattern": [
+          "PLP",
+          "SMS",
+          "GPC"
+        ],
+        "keys": {
+          "M": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "small_gear",
+            "material": "variant"
+          },
+          "L": {
+            "item": "minecraft:honey_bottle"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_copper_fuel_engine",
+      "kind": "cruciblecraft:fuel_engine",
+      "material": "arsenic_copper",
+      "source_id": 9146,
+      "source_line": 723,
+      "gt6_class": "MultiTileEntityMotorLiquid",
+      "material_expression": "MT.ArsenicCopper",
+      "nbt_output": 16,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "16",
+      "fuel_map": "FM.Engine",
+      "recipe": {
+        "pattern": [
+          "PLP",
+          "SMS",
+          "GPC"
+        ],
+        "keys": {
+          "M": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "small_gear",
+            "material": "variant"
+          },
+          "L": {
+            "item": "minecraft:honey_bottle"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:arsenic_bronze_fuel_engine",
+      "kind": "cruciblecraft:fuel_engine",
+      "material": "arsenic_bronze",
+      "source_id": 9145,
+      "source_line": 724,
+      "gt6_class": "MultiTileEntityMotorLiquid",
+      "material_expression": "MT.ArsenicBronze",
+      "nbt_output": 24,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "24",
+      "fuel_map": "FM.Engine",
+      "recipe": {
+        "pattern": [
+          "PLP",
+          "SMS",
+          "GPC"
+        ],
+        "keys": {
+          "M": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "small_gear",
+            "material": "variant"
+          },
+          "L": {
+            "item": "minecraft:honey_bottle"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:steel_fuel_engine",
+      "kind": "cruciblecraft:fuel_engine",
+      "material": "steel",
+      "source_id": 9148,
+      "source_line": 725,
+      "gt6_class": "MultiTileEntityMotorLiquid",
+      "material_expression": "ANY.Steel",
+      "nbt_output": 32,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "32",
+      "fuel_map": "FM.Engine",
+      "recipe": {
+        "pattern": [
+          "PLP",
+          "SMS",
+          "GPC"
+        ],
+        "keys": {
+          "M": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "small_gear",
+            "material": "variant"
+          },
+          "L": {
+            "item": "minecraft:honey_bottle"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:invar_fuel_engine",
+      "kind": "cruciblecraft:fuel_engine",
+      "material": "invar",
+      "source_id": 9149,
+      "source_line": 726,
+      "gt6_class": "MultiTileEntityMotorLiquid",
+      "material_expression": "MT.Invar",
+      "nbt_output": 64,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "64",
+      "fuel_map": "FM.Engine",
+      "recipe": {
+        "pattern": [
+          "PLP",
+          "SMS",
+          "GPC"
+        ],
+        "keys": {
+          "M": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "small_gear",
+            "material": "variant"
+          },
+          "L": {
+            "item": "minecraft:honey_bottle"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:titanium_fuel_engine",
+      "kind": "cruciblecraft:fuel_engine",
+      "material": "titanium",
+      "source_id": 9197,
+      "source_line": 727,
+      "gt6_class": "MultiTileEntityMotorLiquid",
+      "material_expression": "MT.Ti",
+      "nbt_output": 128,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "128",
+      "fuel_map": "FM.Engine",
+      "recipe": {
+        "pattern": [
+          "PLP",
+          "SMS",
+          "GPC"
+        ],
+        "keys": {
+          "M": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "small_gear",
+            "material": "variant"
+          },
+          "L": {
+            "item": "minecraft:honey_bottle"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:tungstensteel_fuel_engine",
+      "kind": "cruciblecraft:fuel_engine",
+      "material": "tungstensteel",
+      "source_id": 9198,
+      "source_line": 728,
+      "gt6_class": "MultiTileEntityMotorLiquid",
+      "material_expression": "MT.TungstenSteel",
+      "nbt_output": 256,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "256",
+      "fuel_map": "FM.Engine",
+      "recipe": {
+        "pattern": [
+          "PLP",
+          "SMS",
+          "GPC"
+        ],
+        "keys": {
+          "M": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "small_gear",
+            "material": "variant"
+          },
+          "L": {
+            "item": "minecraft:honey_bottle"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:iridium_fuel_engine",
+      "kind": "cruciblecraft:fuel_engine",
+      "material": "iridium",
+      "source_id": 9199,
+      "source_line": 729,
+      "gt6_class": "MultiTileEntityMotorLiquid",
+      "material_expression": "MT.Ir",
+      "nbt_output": 512,
+      "nbt_input": 0,
+      "efficiency_bps": 10000,
+      "output_expression": "512",
+      "fuel_map": "FM.Engine",
+      "recipe": {
+        "pattern": [
+          "PLP",
+          "SMS",
+          "GPC"
+        ],
+        "keys": {
+          "M": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "variant"
+          },
+          "S": {
+            "prefix": "rod",
+            "material": "variant"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "small_gear",
+            "material": "variant"
+          },
+          "L": {
+            "item": "minecraft:honey_bottle"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:steel_galvanized_electric_motor",
+      "kind": "cruciblecraft:electric_motor",
+      "material": "steel_galvanized",
+      "source_id": 10021,
+      "source_line": 849,
+      "gt6_class": "MultiTileEntityMotorElectric",
+      "material_expression": "MT.DATA.Electric_T[1]",
+      "nbt_output": 16,
+      "nbt_input": 32,
+      "efficiency_bps": 0,
+      "output_expression": "16",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "TIT",
+          "CMC",
+          "TG "
+        ],
+        "keys": {
+          "M": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "variant"
+          },
+          "T": {
+            "prefix": "screw",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "long_rod",
+            "material": "iron"
+          },
+          "C": {
+            "prefix": "wire",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:aluminium_electric_motor",
+      "kind": "cruciblecraft:electric_motor",
+      "material": "aluminium",
+      "source_id": 10022,
+      "source_line": 850,
+      "gt6_class": "MultiTileEntityMotorElectric",
+      "material_expression": "MT.DATA.Electric_T[2]",
+      "nbt_output": 64,
+      "nbt_input": 128,
+      "efficiency_bps": 0,
+      "output_expression": "64",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "TIT",
+          "CMC",
+          "TG "
+        ],
+        "keys": {
+          "M": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "variant"
+          },
+          "T": {
+            "prefix": "screw",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "long_rod",
+            "material": "steel"
+          },
+          "C": {
+            "prefix": "double_wire",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:stainless_steel_electric_motor",
+      "kind": "cruciblecraft:electric_motor",
+      "material": "stainless_steel",
+      "source_id": 10023,
+      "source_line": 851,
+      "gt6_class": "MultiTileEntityMotorElectric",
+      "material_expression": "MT.DATA.Electric_T[3]",
+      "nbt_output": 256,
+      "nbt_input": 512,
+      "efficiency_bps": 0,
+      "output_expression": "256",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "TIT",
+          "CMC",
+          "TG "
+        ],
+        "keys": {
+          "M": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "variant"
+          },
+          "T": {
+            "prefix": "screw",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "long_rod",
+            "material": "steel"
+          },
+          "C": {
+            "prefix": "quadruple_wire",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:chromium_electric_motor",
+      "kind": "cruciblecraft:electric_motor",
+      "material": "chromium",
+      "source_id": 10024,
+      "source_line": 852,
+      "gt6_class": "MultiTileEntityMotorElectric",
+      "material_expression": "MT.DATA.Electric_T[4]",
+      "nbt_output": 1024,
+      "nbt_input": 2048,
+      "efficiency_bps": 0,
+      "output_expression": "1024",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "TIT",
+          "CMC",
+          "TG "
+        ],
+        "keys": {
+          "M": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "variant"
+          },
+          "T": {
+            "prefix": "screw",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "long_rod",
+            "material": "iron"
+          },
+          "C": {
+            "prefix": "octuple_wire",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:titanium_electric_motor",
+      "kind": "cruciblecraft:electric_motor",
+      "material": "titanium",
+      "source_id": 10025,
+      "source_line": 853,
+      "gt6_class": "MultiTileEntityMotorElectric",
+      "material_expression": "MT.DATA.Electric_T[5]",
+      "nbt_output": 4096,
+      "nbt_input": 8192,
+      "efficiency_bps": 0,
+      "output_expression": "4096",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "TIT",
+          "CMC",
+          "TG "
+        ],
+        "keys": {
+          "M": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "variant"
+          },
+          "T": {
+            "prefix": "screw",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "long_rod",
+            "material": "iron"
+          },
+          "C": {
+            "prefix": "hexadecuple_wire",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:bronze_dynamo",
+      "kind": "cruciblecraft:dynamo",
+      "material": "steel_galvanized",
+      "source_id": 10111,
+      "source_line": 946,
+      "gt6_class": "MultiTileEntityDynamoElectric",
+      "material_expression": "MT.DATA.Electric_T[1]",
+      "nbt_output": 22,
+      "nbt_input": 32,
+      "efficiency_bps": 0,
+      "output_expression": "22",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "TGT",
+          "CMC",
+          "TI "
+        ],
+        "keys": {
+          "M": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "T": {
+            "prefix": "screw",
+            "material": "variant"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "long_rod",
+            "material": "iron"
+          },
+          "C": {
+            "prefix": "wire",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:aluminium_dynamo",
+      "kind": "cruciblecraft:dynamo",
+      "material": "aluminium",
+      "source_id": 10112,
+      "source_line": 947,
+      "gt6_class": "MultiTileEntityDynamoElectric",
+      "material_expression": "MT.DATA.Electric_T[2]",
+      "nbt_output": 88,
+      "nbt_input": 128,
+      "efficiency_bps": 0,
+      "output_expression": "88",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "TGT",
+          "CMC",
+          "TI "
+        ],
+        "keys": {
+          "M": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "T": {
+            "prefix": "screw",
+            "material": "variant"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "long_rod",
+            "material": "steel"
+          },
+          "C": {
+            "prefix": "double_wire",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:stainless_steel_dynamo",
+      "kind": "cruciblecraft:dynamo",
+      "material": "stainless_steel",
+      "source_id": 10113,
+      "source_line": 948,
+      "gt6_class": "MultiTileEntityDynamoElectric",
+      "material_expression": "MT.DATA.Electric_T[3]",
+      "nbt_output": 352,
+      "nbt_input": 512,
+      "efficiency_bps": 0,
+      "output_expression": "352",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "TGT",
+          "CMC",
+          "TI "
+        ],
+        "keys": {
+          "M": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "T": {
+            "prefix": "screw",
+            "material": "variant"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "long_rod",
+            "material": "steel"
+          },
+          "C": {
+            "prefix": "quadruple_wire",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:chromium_dynamo",
+      "kind": "cruciblecraft:dynamo",
+      "material": "chromium",
+      "source_id": 10114,
+      "source_line": 949,
+      "gt6_class": "MultiTileEntityDynamoElectric",
+      "material_expression": "MT.DATA.Electric_T[4]",
+      "nbt_output": 1408,
+      "nbt_input": 2048,
+      "efficiency_bps": 0,
+      "output_expression": "1408",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "TGT",
+          "CMC",
+          "TI "
+        ],
+        "keys": {
+          "M": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "T": {
+            "prefix": "screw",
+            "material": "variant"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "long_rod",
+            "material": "iron"
+          },
+          "C": {
+            "prefix": "octuple_wire",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:titanium_dynamo",
+      "kind": "cruciblecraft:dynamo",
+      "material": "titanium",
+      "source_id": 10115,
+      "source_line": 950,
+      "gt6_class": "MultiTileEntityDynamoElectric",
+      "material_expression": "MT.DATA.Electric_T[5]",
+      "nbt_output": 5632,
+      "nbt_input": 8192,
+      "efficiency_bps": 0,
+      "output_expression": "5632",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "TGT",
+          "CMC",
+          "TI "
+        ],
+        "keys": {
+          "M": {
+            "prefix": "double_plate",
+            "material": "variant"
+          },
+          "T": {
+            "prefix": "screw",
+            "material": "variant"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "variant"
+          },
+          "I": {
+            "prefix": "long_rod",
+            "material": "iron"
+          },
+          "C": {
+            "prefix": "hexadecuple_wire",
+            "material": "copper"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -8,13 +8,14 @@
 > session 已列入 `tools/legacy_verification_index.json`，不参与 active
 > verification，也不作为本清单的进度门。
 
-目标：**除计划文档外，仓库零里程碑卡号**（路径、文件名、类/方法/字段、注释、
+目标：**除已关闭的历史计划外，仓库零里程碑卡号**（路径、文件名、类/方法/字段、注释、
 字符串、Gradle 任务、哈希/收据依赖）。旧存档与旧收据允许失效或删除，不保留
 运行时兼容别名。
 
-唯一豁免：[`docs/history/card-plans/`](../history/card-plans/)（含 `closed/` 与未来
-`active/`）。工作日志、阶段档案、handoff、`archive/sealed/**`、`tools/` 闭卡账本
-**不在豁免内**。
+唯一豁免：[`docs/history/card-plans/closed/`](../history/card-plans/closed/)
+（已关闭的历史计划）。[`card-plans/active/`](../history/card-plans/active/)
+unique-active 计划、工作日志、阶段档案、handoff、`archive/sealed/**`、`tools/`
+闭卡账本 **不在豁免内**。
 
 领域术语不是卡号，不要改：
 
@@ -122,7 +123,7 @@ ordinary-closure 活动账本、收据、currentness 和测试消费者。数量
 | `src/test/java` 里 T37–T49 measurement **类名** | 类已语义化（`*MeasurementHarness`）；status 字符串、Gradle filter、冻结 JSON 文件名仍带卡号 |
 | Gradle `includeTestsMatching CompactRecipeFamilyT37…T49MeasurementHarness` | 指向**已不存在**的类 |
 | 扫描器「路径 skip 是有意的」 | 扫描器**会**报 `build_t*` 路径；真正风险是 ledger / import 断链 |
-| `docs/history/**` 与 `archive/sealed/**` 永远不必搬 | 与现行目标冲突；只豁免 `card-plans/` |
+| `docs/history/**` 与 `archive/sealed/**` 永远不必搬 | 与现行目标冲突；只豁免 `card-plans/closed/` |
 | 绑定 ID 无迁移卡不要动 / 可留兼容别名 | 现行策略是一次性改名，**不留旧别名** |
 
 ## 4. 扫描器现状（批次 0 已落地）
@@ -130,7 +131,7 @@ ordinary-closure 活动账本、收据、currentness 和测试消费者。数量
 [`tools/check_zero_milestone_names.py`](../../tools/check_zero_milestone_names.py)
 现已：
 
-- 豁免 **仅** `docs/history/card-plans/**`（含 `closed/` 与 `active/`）。
+- 豁免 **仅** `docs/history/card-plans/closed/**`。`card-plans/active/` 不得出现 TXX。
 - `SCAN_ROOTS` 含 `src/t14Benchmark/`、`docs/history`、`docs/decisions`；
   `SCAN_FILES` 含根 README 与 `docs/README.md`。路径命中仍读正文。
 - 匹配 `t18b` / `T13c`。`--quick` 由 `verification` profile 调度。
@@ -195,7 +196,7 @@ ordinary-closure 活动账本、收据、currentness 和测试消费者。数量
 | 项 | 内容 |
 |---|---|
 | 对象 | `check_zero_milestone_names.py`、其单测、`verify.py` 的 `verification` profile |
-| 已做 | 豁免仅 `docs/history/card-plans/**`；`SCAN_ROOTS` 含 history / decisions / benchmark；`--quick` 为 verify builder；单测覆盖新豁免与 `t18b`；ALLOWLIST 空 |
+| 已做 | 豁免仅 `docs/history/card-plans/closed/**`；`active/` 进 `--quick`；`SCAN_ROOTS` 含 history / decisions / benchmark；`--quick` 为 verify builder；单测覆盖新豁免与 `t18b`；ALLOWLIST 空 |
 | 故意未做 | 不把 `--quick` 扩成全量活代码扫描（生产绑定仍有卡号，扩了会打断 CI） |
 
 ### 8.1 删除历史档案与 seal — 已完成
@@ -294,7 +295,7 @@ ordinary-closure 活动账本、收据、currentness 和测试消费者。数量
 ### 8.5 非计划文档
 
 豁免外的 Markdown / README 去掉卡号**文件名**；正文里历史叙述改成 slug 或删。
-`docs/history/card-plans/**` 可继续出现 TXX。
+`docs/history/card-plans/closed/**` 可继续出现 TXX；`card-plans/active/` 不行。
 
 | 对象 | 说明 |
 |---|---|

@@ -31,7 +31,10 @@ public record PipeCover(
                         Optional.empty(),
                         Optional.empty(),
                         Optional.empty(),
-                        Optional.empty()));
+                        Optional.empty(),
+                        Optional.empty(),
+                        0,
+                        0));
     }
 
     public static PipeCover of(String definitionId) {
@@ -62,6 +65,10 @@ public record PipeCover(
                 definitionId);
         definition.resolve(changed);
         return new PipeCover(definitionId, changed);
+    }
+
+    public PipeCover withDisplay(int visual, int redstone) {
+        return withConfig(config.withDisplay(visual, redstone));
     }
 
     public PipeCover configure(

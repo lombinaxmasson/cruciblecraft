@@ -1,7 +1,7 @@
 # 冻结与未实现账本
 
 > 现行人读索引，不是 production authority。
-> 最后核对：2026-09-04（能力交付合同 + 流体网基础传输；语义命名活动账本已改 slug）。
+> 最后核对：2026-09-06（电池 unique active 且 `player_complete`；转换机目录已关；census Batteries 仍 37/37 `requires_new_runtime`）。
 > 读法：机制卡 `*_READY` 只记录当时冻结的分母和可行性，不证明游戏里有这些东西。
 > 状态词三套互不替代：`frozen` / `runtime_ready` / `player_complete`。
 > 路线图进度只计 `player_complete` 声明与当前 revision 的 fresh profile PASS，见
@@ -21,13 +21,14 @@
 ## 0. 状态词、后续顺序、核电体积
 
 三套状态互不替代。`*_READY` 机制卡只证明 `frozen`。本页第 1 节的冻结项
-**不是**已实现；不得因为关了一张表现卡就把它们改成 runtime 或玩家完成。
+**不是**整表已实现；部分进游戏的行要在判定里写清余量，不得因为关了一张
+表现卡或做完切片就把整行标成完成。
 
 | 状态 | 含义 | 现例 |
 | --- | --- | --- |
 | `frozen` | 分母、来源、可行性已冻 | 各 `*_R0_READY` |
-| `runtime_ready` | `src/main` 机制可运行，内容可尚未导入 | 物流封面网物品两行（`runtime/item-network-core`） |
-| `player_complete` | 生存可获得、可运行、可存档，且有 production lock / census（若需要） | 从第 1 节删除或改成「已由 `<slug>` 实现」 |
+| `runtime_ready` | `src/main` 机制可运行，内容可尚未导入 | 当前无 |
+| `player_complete` | 生存可获得、可运行、可存档，且有 production lock / census（若需要） | 流体网基础传输；物品网仓储/导入/导出盖板；通用网仓储/导入/导出盖板；物流核心 + Dump；物流监视器；电池 37 储能块 |
 
 **后续顺序**（可玩垂直切片；同一时刻一条 delivery lane）。物流 1.2 不在这张表里，
 由人手工测，不占 `unique_active_wave`。能力账本主键见
@@ -39,9 +40,14 @@
   -> 紧凑配方传输编解码（已关；compact family 网络 codec）
   -> 紧凑配方作者矩阵（已关；改写法，不是 tag / 拆 Holder）
   -> 工具头前缀折回（已关；tool head 折回材料 × 形态）
-  -> Item Network Core（已关；物品两行 `runtime_ready`）
-  -> Fluid / Generic Network
-  -> Batteries
+  -> Item Network Core（已关；物品两行 `player_complete`）
+  -> Fluid / Generic Network（已关；仓储/导入/导出 `player_complete`；Dump 跟 Core 走）
+  -> 物流封面网余量（已关；列 Dump / Core / 显示 CPU；不实现）
+  -> 物流核心（已关；Dump + 5×5×5 `player_complete`）
+  -> Display CPU（已关；四件状态盖板 `player_complete`）
+  -> 能量系统余量（已关；删火箱/风箱/独立焦炭）
+  -> 能量转换机目录（已关；kind × 材质 169 行 `player_complete`）
+  -> Batteries（unique active；37 储能块；`energy/batteries` `player_complete`）
   -> 核电裂变（堆芯 1x1/2x2 + 棒目录 + 7 条离心；见下）
   -> Trees
   -> Sensors / Panels
@@ -51,15 +57,42 @@
   -> 聚变 / 等离子（与裂变拆开）
 ```
 
-当前无 human-readable unique active **card** plan。机器可读
-`unique_active_wave = null`；`next_unassigned = true`。现行 delivery lane
-是能力 `logistics/fluid-network/basic-transfer`（wave 隔离 slug
-`runtime/fluid-network-basic-transfer`）。物品网络核心仍是
-`runtime_ready`，不是七 kind `player_complete`。
+当前人读 unique active 是
+[电池](../history/card-plans/active/电池详细计划.md)
+（capability `energy/batteries`，`player_complete` / `accepted`；卡仍 unique active）。已关闭
+[能量转换机目录](../history/card-plans/closed/能量转换机目录详细计划.md)
+（capability `energy/converter-catalog`）。已关闭
+[能量系统余量](../history/card-plans/closed/能量系统余量详细计划.md)：
+固体燃料燃烧室已删除（余量卡）；转换机目录把 GT6 Burning Box / 锅炉 / 蒸汽机 /
+燃油引擎 / 发电机 / 电机做成 kind × 材质数据包分档（`converter_catalog_policy`）。邻接 HU 用
+`bronze_burning_box_gas`。`battery_policy` 钉死 37 个储能块，由本 unique active
+实现并已 `player_complete`；census 冻结表仍 37/37 `requires_new_runtime`。`transformer_policy` 钉死电变压器从未 R0，齿轮箱
+不得冒充。本卡不实现变压器。
+已关闭
+[显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
+为四件状态盖板 `player_complete`。
+机器可读 `unique_active_wave = null`；`next_unassigned = true`。现行已声明
+`player_complete` 的物流能力是
+`logistics/fluid-network/basic-transfer`、
+`logistics/item-network-core`、
+`logistics/generic-network/core`、
+`logistics/logistics-core`、
+`logistics/display-cpu` 与
+`energy/batteries`。物品网络核心机制卡仍是
 [物品网络核心](../history/card-plans/closed/物品网络核心详细计划.md)
-（slug `runtime/item-network-core`）为 `ITEM_NETWORK_CORE_READY`：
-物品两行封面网 `runtime_ready`；T19 9/8 为历史冻结集合；
-明确排除 Fluid / Generic / Dump 与 `MultiTileEntityLogisticsCore`。
+（slug `runtime/item-network-core`）`ITEM_NETWORK_CORE_READY`；
+玩家完成晋级见
+[物品网络核心玩家完成晋级](../history/card-plans/closed/物品网络核心玩家完成晋级详细计划.md)。
+物品两行封面网 `player_complete`；流体基础传输 `player_complete`。
+Generic 仓储/导入/导出见
+[通用网络核心](../history/card-plans/closed/通用网络核心详细计划.md)
+（`player_complete`）。相邻封面底表 `cover_definitions.json` 仍 9 条、
+`registerBuiltin` 仍 8；物流封面走 sidecar，不改这份底表。Dump 与
+Logistics Core 已由 [`logistics/logistics-core`](../history/card-plans/closed/物流核心详细计划.md)
+`player_complete`。`dump_policy` 见
+[物流封面网余量](../history/card-plans/closed/物流封面网余量详细计划.md)：
+Dump 盖板是标记（无优先级）；搬运在 Core tick 的最后一档，从 Generic
+物品仓储搬进 Dump 邻接容器，不是虚空，也不是现有管网的第四件盖板。
 已关闭的
 [工具头前缀折回](../history/card-plans/closed/工具头前缀折回详细计划.md)
 （slug `registry/tool-head-prefix`）为 `TOOL_HEAD_PREFIX_READY`：
@@ -69,16 +102,18 @@
 （slug `runtime/compact-recipe-authored-matrix`）为
 `COMPACT_RECIPE_AUTHORED_MATRIX_READY`。已关闭的
 [紧凑配方传输编解码](../history/card-plans/closed/紧凑配方传输编解码详细计划.md)
-为 `COMPACT_RECIPE_WIRE_CODEC_READY`。不预分配 Fluid / Generic
-Network child。
+为 `COMPACT_RECIPE_WIRE_CODEC_READY`。Dump / Logistics Core 已关。已关闭
+[显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
+为四件状态盖板 `player_complete`。当前 unique active 是
+[电池](../history/card-plans/active/电池详细计划.md)。
 
 **核电体积**（纠正「大后期」读法）。`nuclear_started` 仍为 false。本页不实现
 任何核电 runtime。
 
 | 项 | 分母 | 读法 |
 | --- | --- | --- |
-| T13c Reactors | 46 | 八类棒，不是 46 台堆 |
-| 堆芯 | 1×1 + 2×2 | 在 T13 机器树，**不在** T13c 46 里 |
+| Reactors（排除表） | 46 | 八类棒，不是 46 台堆 |
+| 堆芯 | 1×1 + 2×2 | 在机器树，**不在**排除表那 46 里 |
 | leftover 离心 | 7 family | 废棒 / 产物棒回收；host 已有 |
 | 聚变堆 | 1 controller | T23：1017 格 / 886 零件；缺八边形 schema |
 | `gt.recipe.fusionreactor` | 18 | 配方册很小 |
@@ -116,18 +151,19 @@ topology 预分配 implementation child。不想要的类在 realization 卡标
 
 ---
 
-## 1. 已冻结：判定要新 runtime（游戏里没有）
+## 1. 已冻结：判定要新 runtime（整表还没进游戏）
 
 这些行已经 R0 关过。`allows_*_child = false`。以后实现是新卡，不是把 R0 再写一遍 Java。
+**部分实现仍留在本节**：已经进游戏的写在判定里，余量没做完就不要整行删掉。
 
 | 人类名 | slug / `--check` | 冻了什么 | 判定 | 可行性文件 |
 | --- | --- | --- | --- | --- |
-| 物流封面网 | `portfolio/logistics-cover-net-r0` | 7 个 kind：`logistics_item_storage` / `transfer`、`logistics_fluid_storage` / `transfer`、`logistics_generic_storage` / `transfer` / `dump` | `requires_new_runtime`；**物品两行** [`runtime/item-network-core`](../history/card-plans/closed/物品网络核心详细计划.md) 为 `runtime_ready`。**流体传输三定义** [`logistics/fluid-network/basic-transfer`](capability-delivery-workflow.md) 为 `player_complete`（仓储/导入/导出盖板；不是 Fluid storage 作为独立 kind 的全部 GT6 行为，也不是 Generic / Dump / `logistics_core`）。Fluid Generic / Dump 与 `logistics_core` 多方块仍 `frozen` | [`feasibility.json`](../../tools/waves/portfolio/logistics-cover-net-r0/feasibility.json) |
-| T13c Panels | `portfolio/exclusion-reclaim-r0` | 6 sites / 348 expanded | `requires_new_runtime` | [`feasibility.json`](../../tools/waves/portfolio/exclusion-reclaim-r0/feasibility.json) |
-| T13c Sensors | 同上 | 21 / 21 | `requires_new_runtime` | 同上 |
-| T13c Portals | 同上 | 19 / 19 | `requires_new_runtime` | 同上 |
-| T13c Batteries | 同上 | 37 / 37 | `requires_new_runtime` | 同上 |
-| T13c Reactors | 同上 | 46 / 46 | `defer_to_portfolio` → `portfolio/nuclear`；`nuclear_started = false` | 同上 |
+| 物流封面网 | `portfolio/logistics-cover-net-r0` | 7 个 kind：`logistics_item_storage` / `transfer`、`logistics_fluid_storage` / `transfer`、`logistics_generic_storage` / `transfer` / `dump` | **部分实现**。仓储/导入/导出盖板已 `player_complete`：[`logistics/item-network-core`](capability-delivery-workflow.md)、[`logistics/fluid-network/basic-transfer`](capability-delivery-workflow.md)、[`logistics/generic-network/core`](../history/card-plans/closed/通用网络核心详细计划.md)。Dump 与 `logistics_core` 已由 [`logistics/logistics-core`](../history/card-plans/closed/物流核心详细计划.md) `player_complete`。`dump_policy` 见 [物流封面网余量](../history/card-plans/closed/物流封面网余量详细计划.md)：Dump 是 Core 最后一档物品溢出，不是 Generic 管网盖板。不得把 Display CPU 算进这七 kind，也不得把本行从本节删掉。Display CPU 已由 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md) `player_complete`。当前 unique active 是 [电池](../history/card-plans/active/电池详细计划.md)。 | [`feasibility.json`](../../tools/waves/portfolio/logistics-cover-net-r0/feasibility.json) |
+| Panels | `portfolio/exclusion-reclaim-r0` | 6 sites / 348 expanded | `requires_new_runtime` | [`feasibility.json`](../../tools/waves/portfolio/exclusion-reclaim-r0/feasibility.json) |
+| Sensors | 同上 | 21 / 21 | `requires_new_runtime` | 同上 |
+| Portals | 同上 | 19 / 19 | `requires_new_runtime` | 同上 |
+| Batteries | 同上 | 37 / 37 | `requires_new_runtime`。unique active [`energy/batteries`](../history/card-plans/active/电池详细计划.md) 已进游戏并 `player_complete`；本行冻结表不得删。 | 同上 |
+| Reactors | 同上 | 46 / 46 | `defer_to_portfolio` → `portfolio/nuclear`；`nuclear_started = false` | 同上 |
 | 非矿树 | `portfolio/non-ore-worldgen-r0` | `WorldgenTree*` 9 | `requires_new_runtime` | [`feasibility.json`](../../tools/waves/portfolio/non-ore-worldgen-r0/feasibility.json) |
 | 非矿地牢 | 同上 | `WorldgenDungeonGT` 1 | `requires_new_runtime` | 同上 |
 | 非矿行星岩 | 同上 | moon / mars / planet rocks 3 | `requires_new_runtime` | 同上 |
@@ -153,11 +189,11 @@ topology 预分配 implementation child。不想要的类在 realization 卡标
 
 | 项 | 在哪 | 现状 |
 | --- | --- | --- |
-| 核能 Track C | growth-order 第五轨 `portfolio/nuclear`；leftover 7 条 centrifuge；T13c Reactors 已 defer 到这里 | `nuclear_started = false`。未指定 `next_major` 前不自动开 |
+| 核能 Track C | growth-order 第五轨 `portfolio/nuclear`；leftover 7 条 centrifuge；排除表 Reactors 已 defer 到这里 | `nuclear_started = false`。未指定 `next_major` 前不自动开 |
 | 变压器 | capability map `GT6 transformers` | 从未 R0 |
 | 建筑方块 identity | `GT6 building-block item/block identities` | 从未 R0 |
 | 建筑方块 behavior | hardness / multiblock parts / decorative machines | 从未 R0 |
-| Display CPU / 其余未认领域 | seed「misc systems…」 | 物流切片排除了四个 logistics CPU kind；没有 misc R0 |
+| Display CPU / 其余未认领域 | seed「misc systems…」 | 四件 Display CPU 状态盖板已 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md) `player_complete`。misc 其余仍 none。R0 `display_cpu_out_of_scope` 不改 |
 | 封面余量 `controller_*` | capability map | 物流 R0 没吃 |
 | 封面余量 `detector_*` | 同上 | 物流 R0 没吃 |
 | 封面余量 redstone | `controller_redstone` / `controller_auto_redstone` | 物流 R0 没吃 |
@@ -202,13 +238,24 @@ topology 预分配 implementation child。不想要的类在 realization 卡标
 - 不要为了「好看」重写 sealed `growth_order.json` 或已关 R0 artifact。
 - 不要再把冻结卡当成默认下一张工作。默认下一张若用户要的是进游戏的东西，开 runtime / 内容卡，或先问清楚，不要再盖一张 READY 冻结收据。
 - 已关闭：[物品网络核心](../history/card-plans/closed/物品网络核心详细计划.md)
-  （`ITEM_NETWORK_CORE_READY`）。物品两行 `runtime_ready`；T19 9/8
-  为历史冻结集合。Fluid / Generic / Dump 与
-  `MultiTileEntityLogisticsCore` 不在该卡，仍 `frozen`。不得写成七
-  kind `player_complete`。下一张仍是未签发的 Fluid / Generic Network。
-  关卡证明债（unload / reload / load 门偏软、census 8 对 live 10、
-  贴图暂借）写在 [known-issues.md](known-issues.md)，不要从 READY 倒推
-  「已经测过真卸 chunk」。
+  （`ITEM_NETWORK_CORE_READY`）与
+  [物品网络核心玩家完成晋级](../history/card-plans/closed/物品网络核心玩家完成晋级详细计划.md)
+  （`logistics/item-network-core` `player_complete`）。物品两行封面网
+  `player_complete`。相邻封面底表 `cover_definitions.json` 仍 9 条、
+  `registerBuiltin` 仍 8；物流封面走 sidecar。流体基础传输已
+  `player_complete`。Generic 仓储/导入/导出已
+  [通用网络核心](../history/card-plans/closed/通用网络核心详细计划.md)
+  `player_complete`。Dump 与 `MultiTileEntityLogisticsCore` 已由
+  [物流核心](../history/card-plans/closed/物流核心详细计划.md)
+  `player_complete`。已关闭
+  [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
+  为四件状态盖板 `player_complete`。当前 unique active 是
+  [电池](../history/card-plans/active/电池详细计划.md)。不得把 Display CPU 算进这七
+  kind。
+  关卡证明债（unload / reload / load 门偏软、census 8 对 live 10）写在
+  [known-issues.md](known-issues.md)，不要从 READY 倒推
+  「已经测过真卸 chunk」。物流盖板图标已按 [gt6-art-policy.md](gt6-art-policy.md)
+  从 `gregtech6_w` 迁入，不再借记 conveyor / filter。
 - 已关闭：[首小时表现与阶段账本](../history/card-plans/closed/首小时表现与阶段账本详细计划.md)
   （`FIRST_HOUR_PRESENTATION_READY`）。四台首小时 host 脱离 `metal_surface`；
   本页补了三态、后续顺序与核电体积。不把任何第 1 节冻结项标成已实现。

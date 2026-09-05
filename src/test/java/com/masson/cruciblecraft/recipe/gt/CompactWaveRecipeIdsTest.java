@@ -24,6 +24,10 @@ class CompactWaveRecipeIdsTest {
                 id("mixer/ordinary_closure/opaque/gt_recipe_mixer_0001")));
         assertFalse(CompactWaveRecipeIds.isSemanticWaveRecipe(
                 id("bath/tiny_purified/gt_recipe_bath_0072")));
+        assertTrue(CompactWaveRecipeIds.isBathTinyPurifiedRecipe(
+                id("bath/tiny_purified/1a8b858f5b602a9c")));
+        assertTrue(CompactWaveRecipeIds.isBathTinyPurifiedRecipe(
+                id("bath/tiny-purified/1a8b858f5b602a9c")));
         assertFalse(CompactWaveRecipeIds.isSemanticWaveRecipe(
                 id(milestone.toLowerCase() + "/mixer/gt_recipe_mixer_0001")));
     }

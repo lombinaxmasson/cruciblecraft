@@ -1,16 +1,35 @@
 # CrucibleCraft 总体规划
 
 > 唯一总体规划与项目导航
-> 最后更新：2026-09-04
+> 最后更新：2026-09-06
 > 当前状态：能力交付合同已生效，见
 > [capability-delivery-workflow.md](capability-delivery-workflow.md)。
 > 进度只计 `player_complete`。现行能力
-> `logistics/fluid-network/basic-transfer`（wave
-> `runtime/fluid-network-basic-transfer`）。
+> `logistics/fluid-network/basic-transfer`、
+> `logistics/item-network-core`（物品两行仓储/导入/导出盖板）、
+> `logistics/generic-network/core`（通用网仓储/导入/导出盖板）、
+> `logistics/logistics-core`（5×5×5 Core + Dump）与
+> `logistics/display-cpu`（四件物流监视器）与
+> `energy/converter-catalog`（Burning Box / 锅炉 / 蒸汽机 / 电机分档）与
+> `energy/batteries`（37 储能块；卡仍 unique active）。
 > [物品网络核心](../history/card-plans/closed/物品网络核心详细计划.md)
-> 仍是物品两行 `runtime_ready`，不是七 kind 完成。
-> Generic / Dump / `MultiTileEntityLogisticsCore` 仍 `frozen`。
-> 人读无 unique active **card**；机器可读 `unique_active_wave = null`。
+> 为机制 `ITEM_NETWORK_CORE_READY`；玩家完成晋级见
+> [物品网络核心玩家完成晋级](../history/card-plans/closed/物品网络核心玩家完成晋级详细计划.md)。
+> [通用网络核心](../history/card-plans/closed/通用网络核心详细计划.md)
+> 为 Generic 仓储/导入/导出 `player_complete`。
+> [物流核心](../history/card-plans/closed/物流核心详细计划.md)
+> 为 Dump + Core `player_complete`。已关闭
+> [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
+> （capability `logistics/display-cpu`）为四件状态盖板 `player_complete`。
+> 当前 unique active 是
+> [电池](../history/card-plans/active/电池详细计划.md)
+> （capability `energy/batteries`，`player_complete`）。已关闭
+> [能量转换机目录](../history/card-plans/closed/能量转换机目录详细计划.md)
+> （capability `energy/converter-catalog`）为转换机 kind × 材质 169 行
+> `player_complete`。Dump 的来源执行器是 Core，
+> 不是 Generic 管网；`dump_policy` 见已关闭的
+> [物流封面网余量](../history/card-plans/closed/物流封面网余量详细计划.md)。
+> 机器可读 `unique_active_wave = null`。
 > [工具头前缀折回](../history/card-plans/closed/工具头前缀折回详细计划.md)
 > （slug `registry/tool-head-prefix`）为
 > `TOOL_HEAD_PREFIX_READY`。mapped tool head 折回 `材料 × 前缀`；
@@ -121,12 +140,30 @@ GitHub push 承担，不创建 GitHub Release、不上传 jar、不累计 RC soa
 semantic wave，不是下一张里程碑编号。机制卡 `*_READY` 不是内容完成；从
 [冻结与未实现账本](unimplemented-gap.md) 找缺口，不要从阶段档案倒推。
 
-当前无 human-readable unique active plan。机器可读
-`unique_active_wave = null`；`next_unassigned = true`。账本下一张仍是
-未签发的 Fluid / Generic Network。已关闭
+当前 unique active 是
+[电池](../history/card-plans/active/电池详细计划.md)。
+已关闭
+[能量转换机目录](../history/card-plans/closed/能量转换机目录详细计划.md)
+为转换机 kind × 材质 169 行 `player_complete`。
+已关闭
+[能量系统余量](../history/card-plans/closed/能量系统余量详细计划.md)
+（删火箱/风箱/独立焦炭）。已关闭
+[显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
+为四件状态盖板 `player_complete`。
+机器可读 `unique_active_wave = null`；`next_unassigned = true`。账本「Fluid /
+Generic Network」里流体基础传输、物品两行与 Generic 仓储/导入/导出均已
+`player_complete`。Dump 与 Logistics Core 已由
+[物流核心](../history/card-plans/closed/物流核心详细计划.md)
+`player_complete`；
+`dump_policy` 已从来源钉死为 Core 最后一档物品溢出，不是管网第四件盖板。已关闭
+[通用网络核心](../history/card-plans/closed/通用网络核心详细计划.md)
+（capability `logistics/generic-network/core`）。已关闭
+[物品网络核心玩家完成晋级](../history/card-plans/closed/物品网络核心玩家完成晋级详细计划.md)
+（capability `logistics/item-network-core`）为物品两行
+`player_complete`。已关闭
 [物品网络核心](../history/card-plans/closed/物品网络核心详细计划.md)
 （slug `runtime/item-network-core`）为
-`ITEM_NETWORK_CORE_READY`。物品两行 `runtime_ready`；不包含 Fluid /
+`ITEM_NETWORK_CORE_READY`。物品两行 runtime 机制卡不包含 Fluid /
 Generic / Dump，也不包含 `MultiTileEntityLogisticsCore`。已关闭
 [工具头前缀折回](../history/card-plans/closed/工具头前缀折回详细计划.md)
 （slug `registry/tool-head-prefix`）为
@@ -149,8 +186,16 @@ ASM，不建 Replace 全量扫描器。
 并保持 voxel；`smelter` 纠正为 `machine_cube_2_layer` 方块机，不再错绑
 坩埚小锅。工作态 overlay 未接。阶段账本（三态、后续顺序、核电体积）写在
 [冻结与未实现账本](unimplemented-gap.md)。物流 1.2 不在该卡。
-机器可读 `unique_active_wave = null`。人读无 unique active plan。
-不预分配 Fluid / Generic Network child。后续内容顺序从该账本读，
+机器可读 `unique_active_wave = null`。当前 unique active 是
+[电池](../history/card-plans/active/电池详细计划.md)。
+已关闭
+[能量转换机目录](../history/card-plans/closed/能量转换机目录详细计划.md)。
+已关闭
+[能量系统余量](../history/card-plans/closed/能量系统余量详细计划.md)。
+已关闭
+[显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
+为四件状态盖板 `player_complete`。
+后续内容顺序从该账本读，
 不要从只读 growth-order 档案倒推。
 
 已关闭的
@@ -215,7 +260,9 @@ portfolio/generic-recipe-generator-r0
   -> portfolio/generic-recipe-generator
 ```
 
-当前无 human-readable unique active plan。
+当前 human-readable unique active plan 为空。已关闭
+[显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
+为四件状态盖板 `player_complete`。
 [物品网络核心](../history/card-plans/closed/物品网络核心详细计划.md)
 已 `ITEM_NETWORK_CORE_READY`。
 [工具头前缀折回](../history/card-plans/closed/工具头前缀折回详细计划.md)
@@ -389,7 +436,17 @@ implementation child。
 机器等级、配方校准、存储卡、T13c R0、非矿 worldgen R0、原版替换 R0、
 作物食物蜜蜂 R0 或首小时表现卡或原版替换 MVP 的附带范围。体积与后置原因见
 [冻结与未实现账本](unimplemented-gap.md)。机器可读 `unique_active_wave`
-= `null`。人读无 unique active plan。已关闭的
+= `null`。当前 unique active 是
+[电池](../history/card-plans/active/电池详细计划.md)。
+已关闭
+[能量转换机目录](../history/card-plans/closed/能量转换机目录详细计划.md)。
+已关闭
+[能量系统余量](../history/card-plans/closed/能量系统余量详细计划.md)。
+已关闭
+[显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
+为四件状态盖板 `player_complete`。已关闭的
+[物流核心](../history/card-plans/closed/物流核心详细计划.md)
+为 Dump + Core `player_complete`。已关闭的
 [物品网络核心](../history/card-plans/closed/物品网络核心详细计划.md)
 为 `ITEM_NETWORK_CORE_READY`。
 已关闭的工具头前缀

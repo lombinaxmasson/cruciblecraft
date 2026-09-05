@@ -1,10 +1,10 @@
 package com.masson.cruciblecraft.content.item;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
+import com.masson.cruciblecraft.logistics.displaycpu.DisplayCpuKinds;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinition;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinitionCatalog;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
@@ -124,15 +124,7 @@ public final class PipeCoverItem extends Item {
 
     private static PipeCoverConfig withMatch(
             PipeCover cover, String matchId) {
-        PipeCoverConfig current = cover.config();
-        return new PipeCoverConfig(
-                Optional.of(matchId),
-                current.rate(),
-                current.pressureThreshold(),
-                current.exactCount(),
-                current.mode(),
-                current.selector(),
-                current.networkId());
+        return cover.config().withMatchId(matchId);
     }
 
     private boolean cycleExistingSelector(
@@ -151,6 +143,16 @@ public final class PipeCoverItem extends Item {
         }
         CoverDefinition definition =
                 CoverDefinitionCatalog.require(definitionId);
+        if ("retriever_item".equals(definition.behaviorId().getPath())) {
+            if (context.getLevel().isClientSide) {
+                return true;
+            }
+            if (blockEntity instanceof FluidPipeBlockEntity pipe) {
+                return pipe.toggleCoverInvert(context.getClickedFace());
+            }
+            return ((ItemPipeBlockEntity) blockEntity).toggleCoverInvert(
+                    context.getClickedFace());
+        }
         CoverDefinition.ConfigField field;
         int max;
         int currentValue;
@@ -188,6 +190,12 @@ public final class PipeCoverItem extends Item {
         super.appendHoverText(stack, context, tooltip, flag);
         CoverDefinition definition =
                 CoverDefinitionCatalog.require(definitionId);
+        if (DisplayCpuKinds.isDisplay(definition.id())) {
+            tooltip.add(Component.translatable(
+                            "tooltip.cruciblecraft.cover.display_cpu")
+                    .withStyle(ChatFormatting.GRAY));
+            return;
+        }
         CoverDefinition.Values values = definition.values();
         tooltip.add(Component.translatable(
                         "tooltip.cruciblecraft.cover.behavior",
@@ -202,5 +210,16 @@ public final class PipeCoverItem extends Item {
                         values.pressureThreshold(),
                         values.selector())
                 .withStyle(ChatFormatting.GRAY));
+        if (values.interval() > 1) {
+            tooltip.add(Component.translatable(
+                            "tooltip.cruciblecraft.cover.interval",
+                            values.interval())
+                    .withStyle(ChatFormatting.GRAY));
+        }
+        if ("retriever_item".equals(definition.behaviorId().getPath())) {
+            tooltip.add(Component.translatable(
+                            "tooltip.cruciblecraft.cover.retriever")
+                    .withStyle(ChatFormatting.DARK_GRAY));
+        }
     }
 }

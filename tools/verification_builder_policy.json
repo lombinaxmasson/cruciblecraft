@@ -40,6 +40,60 @@
         "--capability",
         "logistics/fluid-network/basic-transfer"
       ]
+    },
+    {
+      "name": "build_player_complete_item",
+      "script": "tools/build_player_complete.py",
+      "ordinary_args": [
+        "--run",
+        "--capability",
+        "logistics/item-network-core"
+      ]
+    },
+    {
+      "name": "build_player_complete_generic",
+      "script": "tools/build_player_complete.py",
+      "ordinary_args": [
+        "--run",
+        "--capability",
+        "logistics/generic-network/core"
+      ]
+    },
+    {
+      "name": "build_player_complete_core",
+      "script": "tools/build_player_complete.py",
+      "ordinary_args": [
+        "--run",
+        "--capability",
+        "logistics/logistics-core"
+      ]
+    },
+    {
+      "name": "build_player_complete_display",
+      "script": "tools/build_player_complete.py",
+      "ordinary_args": [
+        "--run",
+        "--capability",
+        "logistics/display-cpu"
+      ]
+    },
+    {
+      "name": "build_player_complete_converter_catalog",
+      "script": "tools/build_player_complete.py",
+      "ordinary_args": [
+        "--run",
+        "--capability",
+        "energy/converter-catalog"
+      ]
+    },
+    {
+      "name": "build_player_complete_batteries",
+      "script": "tools/build_player_complete.py",
+      "ordinary_args": [
+        "--run",
+        "--capability",
+        "energy/batteries"
+      ]
     }
   ]
 }

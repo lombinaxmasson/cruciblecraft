@@ -1,0 +1,88 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.bath#1012",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [
+            {
+              "amount": 1,
+              "id": "cruciblecraft:dye_watermixed_magenta"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 1,
+              "id": "cruciblecraft:dye_flower_magenta"
+            }
+          ],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "f2a92b9deb8f440e77f3820704675c023c3d4e5935f0cdbd78d853eab23a7189",
+        "0b21486c75e6cd2976501b78aa274e9c55c58fccd85d1ff7056b33de3df4a229"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:gt_mte/mte_32495"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gt_mte/mte_32497"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:bath/mte/894b7afce4d41da2",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:bath/mte/6c26fa4a0646bd61",
+        1,
+        1
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 0,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.bath#1012",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:bath/mte",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:bath",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

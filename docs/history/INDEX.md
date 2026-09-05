@@ -16,14 +16,36 @@
 
 ## 当前 active 卡
 
-当前无 human-readable unique active plan。已关闭的
+当前 unique active 是
+[电池](card-plans/active/电池详细计划.md)
+（capability `energy/batteries`，`player_complete`）。
+已关闭
+[能量转换机目录](card-plans/closed/能量转换机目录详细计划.md)
+为转换机 kind × 材质 169 行 `player_complete`。
+已关闭
+[能量系统余量](card-plans/closed/能量系统余量详细计划.md)。
+已关闭
+[显示 CPU](card-plans/closed/显示CPU详细计划.md)
+为四件状态盖板 `player_complete`。
+已关闭的
+[物流核心](card-plans/closed/物流核心详细计划.md)
+为 Dump + 5×5×5 `player_complete`。已关闭的
+[物流封面网余量](card-plans/closed/物流封面网余量详细计划.md)
+钉死了 `dump_policy` 并把 unique active 交给 Core。已关闭的
+[通用网络核心](card-plans/closed/通用网络核心详细计划.md)
+（capability `logistics/generic-network/core`）为 Generic 仓储/导入/导出
+`player_complete`。已关闭的
+[物品网络核心玩家完成晋级](card-plans/closed/物品网络核心玩家完成晋级详细计划.md)
+（capability `logistics/item-network-core`）为物品两行
+`player_complete`。已关闭的
 [物品网络核心](card-plans/closed/物品网络核心详细计划.md)
 （slug `runtime/item-network-core`）为
 `ITEM_NETWORK_CORE_READY`。机器可读
 `unique_active_wave = null`；`next_unassigned = true`。
-物品两行 `runtime_ready`；排除 Fluid / Generic / Dump 与
-`MultiTileEntityLogisticsCore`。账本下一张仍是未签发的 Fluid /
-Generic Network。
+物品两行封面网 `player_complete`；流体基础传输 `player_complete`；
+Dump 与 Logistics Core 已由
+[物流核心](card-plans/closed/物流核心详细计划.md) `player_complete`。`dump_policy` 已从来源钉死
+为 Core 最后一档物品溢出，不是管网第四件盖板。
 已关闭的
 [工具头前缀折回](card-plans/closed/工具头前缀折回详细计划.md)
 （slug `registry/tool-head-prefix`）为

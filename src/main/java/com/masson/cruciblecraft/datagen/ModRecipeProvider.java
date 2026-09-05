@@ -11,6 +11,7 @@ import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
 import com.masson.cruciblecraft.logistics.pipe.PipeAcquisitionRecipeCatalog;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverComponentTiers;
 import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.logistics.hopper.HopperKind;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
@@ -22,6 +23,8 @@ import com.masson.cruciblecraft.recipe.rule.MaterialChainRules;
 import com.masson.cruciblecraft.recipe.rule.ToolRules;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeEntry;
+import com.masson.cruciblecraft.energy.battery.EnergyBatteryTierCatalog;
+import com.masson.cruciblecraft.energy.converter.EnergyConverterTierCatalog;
 import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.registry.ModItems;
@@ -30,12 +33,14 @@ import com.masson.cruciblecraft.registry.ModRecipeMaps;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
@@ -70,6 +75,64 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .forEach(material -> addDerivedOreRecipes(recipesOnly, material));
     }
 
+    private static void compactElectricCoverRecipes(RecipeOutput output) {
+        for (CoverComponentTiers.Family family
+                : CoverComponentTiers.Family.values()) {
+            CoverComponentTiers.Entry ulv = CoverComponentTiers.entries()
+                    .stream()
+                    .filter(entry -> entry.family() == family
+                            && entry.tier() == 0)
+                    .findFirst()
+                    .orElseThrow();
+            var ulvItem = ModItems.compactElectricCover(ulv.itemPath()).get();
+            if (family == CoverComponentTiers.Family.CONVEYOR) {
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ulvItem)
+                        .pattern("IRI")
+                        .pattern("IHI")
+                        .define('I', Items.IRON_INGOT)
+                        .define('R', Items.POWERED_RAIL)
+                        .define('H', Items.HOPPER)
+                        .unlockedBy("has_hopper", has(Items.HOPPER))
+                        .save(output, id(ulv.itemPath()));
+            } else {
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ulvItem)
+                        .pattern("IRI")
+                        .pattern("IPI")
+                        .define('I', Items.IRON_INGOT)
+                        .define('R', Items.REDSTONE)
+                        .define('P', Items.PISTON)
+                        .unlockedBy("has_piston", has(Items.PISTON))
+                        .save(output, id(ulv.itemPath()));
+            }
+            for (int tier = 1;
+                    tier < CoverComponentTiers.TIER_COUNT;
+                    tier++) {
+                CoverComponentTiers.Entry previous =
+                        CoverComponentTiers.entries().get(
+                                family.ordinal()
+                                        * CoverComponentTiers.TIER_COUNT
+                                        + tier
+                                        - 1);
+                CoverComponentTiers.Entry next =
+                        CoverComponentTiers.entries().get(
+                                family.ordinal()
+                                        * CoverComponentTiers.TIER_COUNT
+                                        + tier);
+                ShapelessRecipeBuilder.shapeless(
+                                RecipeCategory.MISC,
+                                ModItems.compactElectricCover(
+                                        next.itemPath()).get())
+                        .requires(ModItems.compactElectricCover(
+                                previous.itemPath()).get())
+                        .requires(ModItems.PROGRAMMED_CIRCUIT.get())
+                        .unlockedBy(
+                                "has_programmed_circuit",
+                                has(ModItems.PROGRAMMED_CIRCUIT.get()))
+                        .save(output, id(next.itemPath()));
+            }
+        }
+    }
+
     private static void addHopperRecipes(RecipeOutput output) {
         HopperVariantCatalog.variants().forEach(variant -> {
             Item result = ModItems.hopperItemsById().get(variant.id()).get();
@@ -101,6 +164,90 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_hopper", has(Items.HOPPER))
                 .unlockedBy("has_plate", has(ironPlate))
                 .save(output, id("hoppers/steel_dust_funnel"));
+    }
+
+    private static void addDisplayCpuRecipes(RecipeOutput output) {
+        Item circuit = ModItems.PROGRAMMED_CIRCUIT.get();
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.LOGISTICS_DISPLAY_CPU_LOGIC_COVER.get())
+                .pattern("TL ")
+                .pattern(" Q ")
+                .pattern(" C ")
+                .define('T', Items.REDSTONE_TORCH)
+                .define('L', Items.REDSTONE)
+                .define('Q', Items.IRON_TRAPDOOR)
+                .define('C', circuit)
+                .unlockedBy("has_programmed_circuit", has(circuit))
+                .save(output, id("logistics_display_cpu_logic_cover"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.LOGISTICS_DISPLAY_CPU_CONTROL_COVER.get())
+                .pattern(" LT")
+                .pattern(" Q ")
+                .pattern(" C ")
+                .define('T', Items.REDSTONE_TORCH)
+                .define('L', Items.REDSTONE)
+                .define('Q', Items.IRON_TRAPDOOR)
+                .define('C', circuit)
+                .unlockedBy("has_programmed_circuit", has(circuit))
+                .save(output, id("logistics_display_cpu_control_cover"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.LOGISTICS_DISPLAY_CPU_STORAGE_COVER.get())
+                .pattern(" L ")
+                .pattern(" Q ")
+                .pattern("TC ")
+                .define('T', Items.REDSTONE_TORCH)
+                .define('L', Items.REDSTONE)
+                .define('Q', Items.IRON_TRAPDOOR)
+                .define('C', circuit)
+                .unlockedBy("has_programmed_circuit", has(circuit))
+                .save(output, id("logistics_display_cpu_storage_cover"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.LOGISTICS_DISPLAY_CPU_CONVERSION_COVER.get())
+                .pattern(" L ")
+                .pattern(" Q ")
+                .pattern(" CT")
+                .define('T', Items.REDSTONE_TORCH)
+                .define('L', Items.REDSTONE)
+                .define('Q', Items.IRON_TRAPDOOR)
+                .define('C', circuit)
+                .unlockedBy("has_programmed_circuit", has(circuit))
+                .save(output, id("logistics_display_cpu_conversion_cover"));
+        ShapelessRecipeBuilder.shapeless(
+                        RecipeCategory.MISC,
+                        ModItems.LOGISTICS_DISPLAY_CPU_LOGIC_COVER.get())
+                .requires(ModItems.LOGISTICS_DISPLAY_CPU_CONVERSION_COVER.get())
+                .unlockedBy(
+                        "has_display_cpu_conversion",
+                        has(ModItems.LOGISTICS_DISPLAY_CPU_CONVERSION_COVER.get()))
+                .save(output, id("logistics_display_cpu_logic_cycle_cover"));
+        ShapelessRecipeBuilder.shapeless(
+                        RecipeCategory.MISC,
+                        ModItems.LOGISTICS_DISPLAY_CPU_CONTROL_COVER.get())
+                .requires(ModItems.LOGISTICS_DISPLAY_CPU_LOGIC_COVER.get())
+                .unlockedBy(
+                        "has_display_cpu_logic",
+                        has(ModItems.LOGISTICS_DISPLAY_CPU_LOGIC_COVER.get()))
+                .save(output, id("logistics_display_cpu_control_cycle_cover"));
+        ShapelessRecipeBuilder.shapeless(
+                        RecipeCategory.MISC,
+                        ModItems.LOGISTICS_DISPLAY_CPU_STORAGE_COVER.get())
+                .requires(ModItems.LOGISTICS_DISPLAY_CPU_CONTROL_COVER.get())
+                .unlockedBy(
+                        "has_display_cpu_control",
+                        has(ModItems.LOGISTICS_DISPLAY_CPU_CONTROL_COVER.get()))
+                .save(output, id("logistics_display_cpu_storage_cycle_cover"));
+        ShapelessRecipeBuilder.shapeless(
+                        RecipeCategory.MISC,
+                        ModItems.LOGISTICS_DISPLAY_CPU_CONVERSION_COVER.get())
+                .requires(ModItems.LOGISTICS_DISPLAY_CPU_STORAGE_COVER.get())
+                .unlockedBy(
+                        "has_display_cpu_storage",
+                        has(ModItems.LOGISTICS_DISPLAY_CPU_STORAGE_COVER.get()))
+                .save(output, id("logistics_display_cpu_conversion_cycle_cover"));
     }
 
     private static void addStorageRecipes(RecipeOutput output) {
@@ -174,24 +321,14 @@ public final class ModRecipeProvider extends RecipeProvider {
     }
 
     private static void addMachineRecipes(RecipeOutput output) {
-        ShapedRecipeBuilder.shaped(
-                        RecipeCategory.MISC, ModItems.FIREBOX.get())
-                .pattern("BBB")
-                .pattern("BFB")
-                .pattern("BBB")
-                .define('B', ModItems.FIREBRICK.get())
-                .define('F', Items.FURNACE)
-                .unlockedBy(
-                        "has_firebrick", has(ModItems.FIREBRICK.get()))
-                .save(output, id("machines/firebox"));
-        machineCrafting(
-                output, ModItems.ELECTRIC_MOTOR.get(), "electric_motor");
         machineCrafting(
                 output, ModItems.ROTATIONAL_AXLE.get(), "rotational_axle");
         machineCrafting(
                 output,
                 ModItems.ROTATIONAL_GEARBOX.get(),
                 "rotational_gearbox");
+        addConverterRecipes(output);
+        addBatteryRecipes(output);
         for (MachineVariant variant
                 : com.masson.cruciblecraft.registry.ModMachineVariants.ALL) {
             emitAcquisition(output, variant);
@@ -200,12 +337,6 @@ public final class ModRecipeProvider extends RecipeProvider {
                 output,
                 ModItems.FLUID_DEPOSIT_EXTRACTOR.get(),
                 "fluid_deposit_extractor");
-        machineCrafting(
-                output, ModItems.FUEL_ENGINE.get(), "fuel_engine");
-        machineCrafting(
-                output,
-                ModItems.BURNING_GAS_GENERATOR.get(),
-                "burning_gas_generator");
         for (com.masson.cruciblecraft.machine.processing.MachineCasingCatalog.Casing casing
                 : com.masson.cruciblecraft.machine.processing.MachineCasingCatalog.casings()) {
             casingCrafting(
@@ -352,6 +483,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .define('P', Items.PISTON)
                 .unlockedBy("has_piston", has(Items.PISTON))
                 .save(output, id("robot_arm_cover"));
+        compactElectricCoverRecipes(output);
         ShapedRecipeBuilder.shaped(
                         RecipeCategory.MISC,
                         ModItems.PRESSURE_VALVE_COVER.get())
@@ -433,6 +565,103 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .define('H', Items.HOPPER)
                 .unlockedBy("has_hopper", has(Items.HOPPER))
                 .save(output, id("logistics_fluid_export_cover"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.LOGISTICS_GENERIC_STORAGE_COVER.get())
+                .pattern(" I ")
+                .pattern("CHB")
+                .define('I', Items.IRON_INGOT)
+                .define('C', Items.CHEST)
+                .define('H', Items.HOPPER)
+                .define('B', Items.BUCKET)
+                .unlockedBy("has_hopper", has(Items.HOPPER))
+                .save(output, id("logistics_generic_storage_cover"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.LOGISTICS_GENERIC_IMPORT_COVER.get())
+                .pattern(" I ")
+                .pattern("CHB")
+                .define('I', Items.IRON_INGOT)
+                .define('C', Items.COMPARATOR)
+                .define('H', Items.HOPPER)
+                .define('B', Items.BUCKET)
+                .unlockedBy("has_hopper", has(Items.HOPPER))
+                .save(output, id("logistics_generic_import_cover"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.LOGISTICS_GENERIC_EXPORT_COVER.get())
+                .pattern(" I ")
+                .pattern("DHB")
+                .define('I', Items.IRON_INGOT)
+                .define('D', Items.DROPPER)
+                .define('H', Items.HOPPER)
+                .define('B', Items.BUCKET)
+                .unlockedBy("has_hopper", has(Items.HOPPER))
+                .save(output, id("logistics_generic_export_cover"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.LOGISTICS_GENERIC_DUMP_COVER.get())
+                .pattern(" H ")
+                .pattern("HCH")
+                .pattern(" D ")
+                .define('H', Items.HOPPER)
+                .define('C', Items.CHEST)
+                .define('D', Items.DROPPER)
+                .unlockedBy("has_hopper", has(Items.HOPPER))
+                .save(output, id("logistics_generic_dump_cover"));
+        addDisplayCpuRecipes(output);
+        Item galvanizedPlate = materialItem(
+                "steel_galvanized", MaterialPrefixes.PLATE);
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.GALVANIZED_STEEL_WALL.get())
+                .pattern("PP")
+                .pattern("PP")
+                .define('P', galvanizedPlate)
+                .unlockedBy("has_plate", has(galvanizedPlate))
+                .save(output, id("galvanized_steel_wall"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC, ModItems.LOGISTICS_CORE.get())
+                .pattern("CCC")
+                .pattern("PMP")
+                .pattern("CCC")
+                .define('C', ModItems.STEEL_GALVANIZED_MACHINE_CASING.get())
+                .define('P', ModItems.PROGRAMMED_CIRCUIT.get())
+                .define('M', Items.EMERALD)
+                .unlockedBy(
+                        "has_casing",
+                        has(ModItems.STEEL_GALVANIZED_MACHINE_CASING.get()))
+                .save(output, id("logistics_core"));
+        addProcessorUnitRecipe(
+                output,
+                ModItems.VENTILATION_UNIT.get(),
+                "ventilation_unit",
+                Items.IRON_BARS);
+        addProcessorUnitRecipe(
+                output,
+                ModItems.VERSATILE_PROCESSOR_UNIT.get(),
+                "versatile_processor_unit",
+                Items.EMERALD);
+        addProcessorUnitRecipe(
+                output,
+                ModItems.LOGIC_PROCESSOR_UNIT.get(),
+                "logic_processor_unit",
+                Items.LAPIS_LAZULI);
+        addProcessorUnitRecipe(
+                output,
+                ModItems.CONTROL_PROCESSOR_UNIT.get(),
+                "control_processor_unit",
+                Items.REDSTONE);
+        addProcessorUnitRecipe(
+                output,
+                ModItems.STORAGE_PROCESSOR_UNIT.get(),
+                "storage_processor_unit",
+                Items.CHEST);
+        addProcessorUnitRecipe(
+                output,
+                ModItems.CONVERSION_PROCESSOR_UNIT.get(),
+                "conversion_processor_unit",
+                Items.GOLD_INGOT);
         addNonmetalPipeAcquisitionRecipes(output);
         ShapedRecipeBuilder.shaped(
                         RecipeCategory.TOOLS, ModItems.MATERIAL_FILE.get())
@@ -474,7 +703,9 @@ public final class ModRecipeProvider extends RecipeProvider {
                         new GTRecipe(
                                 List.of(Ingredient.of(Items.COAL)),
                                 List.of(1),
-                                List.of(new ItemStack(ModItems.COAL_COKE.get())),
+                                List.of(new ItemStack(materialItem(
+                                        "coal_coke",
+                                        MaterialPrefixes.GEM))),
                                 List.of(),
                                 List.of(new FluidStack(ModFluids.CREOSOTE_SOURCE.get(), 500)),
                                 List.of(GTRecipe.GUARANTEED_CHANCE),
@@ -665,7 +896,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 yield item;
             }
             case COAL_COKE -> {
-                Item item = ModItems.COAL_COKE.get();
+                Item item = materialItem("coal_coke", MaterialPrefixes.GEM);
                 builder.define(symbol, item);
                 yield item;
             }
@@ -880,6 +1111,21 @@ public final class ModRecipeProvider extends RecipeProvider {
                                 .ITEM.getKey(result).getPath()));
     }
 
+    private static void addProcessorUnitRecipe(
+            RecipeOutput output, Item result, String path, Item gem) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
+                .pattern(" C ")
+                .pattern("GPG")
+                .pattern(" C ")
+                .define('C', ModItems.STEEL_GALVANIZED_MACHINE_CASING.get())
+                .define('G', gem)
+                .define('P', ModItems.PROGRAMMED_CIRCUIT.get())
+                .unlockedBy(
+                        "has_casing",
+                        has(ModItems.STEEL_GALVANIZED_MACHINE_CASING.get()))
+                .save(output, id(path));
+    }
+
     private static Item materialItem(
             String material, MaterialPrefix prefix) {
         return MaterialLookup.item(material, prefix)
@@ -888,6 +1134,162 @@ public final class ModRecipeProvider extends RecipeProvider {
                                 + material
                                 + "/"
                                 + prefix.serializedName()));
+    }
+
+    private static final java.util.Set<String> REQUIRED_CONVERTER_RECIPES =
+            java.util.Set.of(
+                    "bronze_burning_box_solid",
+                    "bronze_burning_box_gas",
+                    "bronze_boiler",
+                    "bronze_steam_engine",
+                    "bronze_fuel_engine",
+                    "bronze_dynamo",
+                    "steel_galvanized_electric_motor");
+
+    private static void addConverterRecipes(RecipeOutput output) {
+        for (var entry : EnergyConverterTierCatalog.entries()) {
+            emitConverterRecipe(output, entry);
+        }
+    }
+
+    private static void emitConverterRecipe(
+            RecipeOutput output,
+            EnergyConverterTierCatalog.Entry entry) {
+        String path = entry.id().getPath();
+        boolean required = REQUIRED_CONVERTER_RECIPES.contains(path);
+        Item result = ModItems.converterItemsById().get(entry.id()).get();
+        java.util.LinkedHashMap<Character, Item> keys = new java.util.LinkedHashMap<>();
+        for (var key : entry.recipe().keys().entrySet()) {
+            Item item = resolveConverterIngredient(entry, key.getValue());
+            if (item == null) {
+                if (required) {
+                    throw new IllegalStateException(
+                            "Missing converter recipe ingredient for "
+                                    + path
+                                    + " key "
+                                    + key.getKey());
+                }
+                return;
+            }
+            keys.put(key.getKey().charAt(0), item);
+        }
+        java.util.HashSet<Character> used = new java.util.HashSet<>();
+        for (String row : entry.recipe().pattern()) {
+            for (int index = 0; index < row.length(); index++) {
+                char letter = row.charAt(index);
+                if (letter != ' ') {
+                    used.add(letter);
+                }
+            }
+        }
+        ShapedRecipeBuilder builder = ShapedRecipeBuilder.shaped(
+                RecipeCategory.MISC, result);
+        for (String row : entry.recipe().pattern()) {
+            builder.pattern(row);
+        }
+        Item unlock = null;
+        for (var key : keys.entrySet()) {
+            if (!used.contains(key.getKey())) {
+                continue;
+            }
+            builder.define(key.getKey(), key.getValue());
+            if (unlock == null) {
+                unlock = key.getValue();
+            }
+        }
+        builder.unlockedBy("has_part", has(unlock)).save(output, id(path));
+    }
+
+    private static void addBatteryRecipes(RecipeOutput output) {
+        for (var entry : EnergyBatteryTierCatalog.entries()) {
+            emitBatteryRecipe(output, entry);
+        }
+    }
+
+    private static void emitBatteryRecipe(
+            RecipeOutput output,
+            EnergyBatteryTierCatalog.Entry entry) {
+        String path = entry.id().getPath();
+        Item result = ModItems.batteryItemsById().get(entry.id()).get();
+        java.util.LinkedHashMap<Character, Item> keys = new java.util.LinkedHashMap<>();
+        for (var key : entry.recipe().keys().entrySet()) {
+            Item item = resolveBatteryIngredient(key.getValue());
+            if (item == null) {
+                throw new IllegalStateException(
+                        "Missing battery recipe ingredient for "
+                                + path
+                                + " key "
+                                + key.getKey());
+            }
+            keys.put(key.getKey().charAt(0), item);
+        }
+        java.util.HashSet<Character> used = new java.util.HashSet<>();
+        for (String row : entry.recipe().pattern()) {
+            for (int index = 0; index < row.length(); index++) {
+                char letter = row.charAt(index);
+                if (letter != ' ') {
+                    used.add(letter);
+                }
+            }
+        }
+        ShapedRecipeBuilder builder = ShapedRecipeBuilder.shaped(
+                RecipeCategory.MISC, result);
+        for (String row : entry.recipe().pattern()) {
+            builder.pattern(row);
+        }
+        Item unlock = null;
+        for (var key : keys.entrySet()) {
+            if (!used.contains(key.getKey())) {
+                continue;
+            }
+            builder.define(key.getKey(), key.getValue());
+            if (unlock == null) {
+                unlock = key.getValue();
+            }
+        }
+        builder.unlockedBy("has_part", has(unlock)).save(output, id(path));
+    }
+
+    private static Item resolveBatteryIngredient(
+            EnergyBatteryTierCatalog.Ingredient ingredient) {
+        if (ingredient.item() != null) {
+            ResourceLocation loc = ResourceLocation.parse(ingredient.item());
+            if (!BuiltInRegistries.ITEM.containsKey(loc)) {
+                return null;
+            }
+            Item item = BuiltInRegistries.ITEM.get(loc);
+            return item == Items.AIR ? null : item;
+        }
+        MaterialPrefix prefix;
+        try {
+            prefix = new MaterialPrefix("cruciblecraft:" + ingredient.prefix());
+        } catch (IllegalArgumentException ignored) {
+            return null;
+        }
+        return MaterialLookup.item(ingredient.material(), prefix).orElse(null);
+    }
+
+    private static Item resolveConverterIngredient(
+            EnergyConverterTierCatalog.Entry entry,
+            EnergyConverterTierCatalog.Ingredient ingredient) {
+        if (ingredient.item() != null) {
+            ResourceLocation loc = ResourceLocation.parse(ingredient.item());
+            if (!BuiltInRegistries.ITEM.containsKey(loc)) {
+                return null;
+            }
+            Item item = BuiltInRegistries.ITEM.get(loc);
+            return item == Items.AIR ? null : item;
+        }
+        String material = "variant".equals(ingredient.material())
+                ? entry.material()
+                : ingredient.material();
+        MaterialPrefix prefix;
+        try {
+            prefix = new MaterialPrefix("cruciblecraft:" + ingredient.prefix());
+        } catch (IllegalArgumentException ignored) {
+            return null;
+        }
+        return MaterialLookup.item(material, prefix).orElse(null);
     }
 
     private static void machineCrafting(RecipeOutput output, Item result, String id) {

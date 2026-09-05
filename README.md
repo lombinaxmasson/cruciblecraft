@@ -94,8 +94,8 @@ Source Pack（GT6 来源或明确的项目设计）
 - `runtime_ready`：运行时机制已经可用，但内容或玩家路径可能尚未补齐；
 - `player_complete`：生存获取、运行、界面、翻译、存档和验证路径均已闭合。
 
-路线图只把 `player_complete` 计为玩家层面的实现进度。当前流体网基础传输已经达到
-这一状态；物品网的存储与传输机制处于 `runtime_ready`。完整定义见
+路线图只把 `player_complete` 计为玩家层面的实现进度。当前流体网基础传输、
+物品网仓储/导入/导出盖板、通用网仓储/导入/导出盖板、物流核心 + Dump 和 Display CPU 四件物流监视器已经达到这一状态。完整定义见
 [能力交付流程](docs/current/capability-delivery-workflow.md)。
 
 ### 验证

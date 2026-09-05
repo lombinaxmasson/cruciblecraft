@@ -1,0 +1,106 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.bath#0196",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [
+            {
+              "amount": 3,
+              "id": "cruciblecraft:dye_watermixed_black"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 3,
+              "id": "cruciblecraft:dye_flower_black"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 3,
+              "id": "cruciblecraft:squid_ink"
+            }
+          ],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "67c9ae2aa90667c34af7817b56a64ee2f5ed282df37bb809e9b9a13295326f0c",
+        "5edd76e52f6e881028bf19c55b91fdefeacc279bd7471b9f401447d553de62e5",
+        "65745723ffb7cd5373172a0b7dda95ca7b20db93bc7eb4a1f57beaf6121b1751"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:gt_block/cfoam_slab_0_m0"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gt_block/cfoam_slab_0_m0"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:bath/remainder/057fe83e6bfa8120",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:bath/remainder/e8bc4ab60b098d28",
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        "cruciblecraft:bath/remainder/f2ea35e7dc885949",
+        2,
+        2
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 0,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.bath#0196",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:bath/remainder/exact_multi",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:bath",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -44,7 +44,25 @@ public final class PipeCoverItems {
                     ModItems.LOGISTICS_FLUID_IMPORT_COVER;
             case "logistics_fluid_export" ->
                     ModItems.LOGISTICS_FLUID_EXPORT_COVER;
-            default -> null;
+            case "logistics_generic_storage" ->
+                    ModItems.LOGISTICS_GENERIC_STORAGE_COVER;
+            case "logistics_generic_import" ->
+                    ModItems.LOGISTICS_GENERIC_IMPORT_COVER;
+            case "logistics_generic_export" ->
+                    ModItems.LOGISTICS_GENERIC_EXPORT_COVER;
+            case "logistics_generic_dump" ->
+                    ModItems.LOGISTICS_GENERIC_DUMP_COVER;
+            case "logistics_display_cpu_logic" ->
+                    ModItems.LOGISTICS_DISPLAY_CPU_LOGIC_COVER;
+            case "logistics_display_cpu_control" ->
+                    ModItems.LOGISTICS_DISPLAY_CPU_CONTROL_COVER;
+            case "logistics_display_cpu_storage" ->
+                    ModItems.LOGISTICS_DISPLAY_CPU_STORAGE_COVER;
+            case "logistics_display_cpu_conversion" ->
+                    ModItems.LOGISTICS_DISPLAY_CPU_CONVERSION_COVER;
+            default -> CoverComponentTiers.findByDefinition(definitionId)
+                    .map(entry -> ModItems.compactElectricCover(entry.itemPath()))
+                    .orElse(null);
         };
     }
 }

@@ -110,7 +110,7 @@ class BathTinyPurifiedIntegratedMeasurementHarness {
             if ("cruciblecraft:bath/remainder/exact_multi".equals(publicationGroup)) {
                 hasRemainderExactMulti = true;
             }
-            if ("cruciblecraft:bath/tiny_purified/exact_multi".equals(publicationGroup)) {
+            if ("cruciblecraft:bath/tiny-purified/exact_multi".equals(publicationGroup)) {
                 hasTinyPurifiedExactMulti = true;
             }
         }
@@ -127,7 +127,7 @@ class BathTinyPurifiedIntegratedMeasurementHarness {
                 "composed v2 must keep cruciblecraft:bath/remainder/exact_multi");
         assertTrue(
                 hasTinyPurifiedExactMulti,
-                "composed v2 must include cruciblecraft:bath/tiny_purified/exact_multi");
+                "composed v2 must include cruciblecraft:bath/tiny-purified/exact_multi");
         productionPolicies = new LinkedHashMap<>();
         immediatePolicies = new LinkedHashMap<>();
         onDemandPolicies = new LinkedHashMap<>();

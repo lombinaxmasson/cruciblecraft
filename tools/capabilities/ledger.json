@@ -1,6 +1,74 @@
 {
   "capabilities": [
     {
+      "depends_on": [
+        "energy/converter-catalog"
+      ],
+      "maturity": "player_complete",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/energy/battery/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/EnergyBatteriesGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_runtime_batteries/**",
+        "src/main/resources/data/cruciblecraft/energy_battery_kinds.json",
+        "src/main/resources/data/cruciblecraft/energy_battery_tiers.json",
+        "src/main/resources/assets/cruciblecraft/gt6_batteries_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/battery/**",
+        "src/test/java/com/masson/cruciblecraft/energy/battery/**",
+        "tools/capabilities/energy/batteries/**",
+        "tools/waves/runtime/batteries/**",
+        "tools/tests/test_energy_batteries.py"
+      ],
+      "path": "tools/capabilities/energy/batteries/capability.json",
+      "player_signoff": "tools/capabilities/energy/batteries/player_signoff.json",
+      "profiles": [
+        "capability-runtime",
+        "player-complete"
+      ],
+      "slug": "energy/batteries",
+      "title": "Energy Batteries",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "logistics/display-cpu"
+      ],
+      "maturity": "player_complete",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/energy/converter/**",
+        "src/main/java/com/masson/cruciblecraft/content/block/SolidBurningBoxBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/FluidBedBurningBoxBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/SolidBurningBoxBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/FluidBedBurningBoxBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/EnergyConverterCatalogGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_runtime_converter_catalog/**",
+        "src/main/resources/data/cruciblecraft/energy_converter_kinds.json",
+        "src/main/resources/data/cruciblecraft/energy_converter_tiers.json",
+        "src/main/resources/data/cruciblecraft/recipe/energy/fuels_fluidbed/**",
+        "src/main/resources/assets/cruciblecraft/gt6_converter_catalog_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_box_solid/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_box_brick/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_box_liquid/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_box_fluid_bed/**",
+        "src/test/java/com/masson/cruciblecraft/energy/converter/**",
+        "tools/capabilities/energy/converter-catalog/**",
+        "tools/waves/runtime/converter-catalog/**",
+        "tools/tests/test_energy_converter_catalog.py",
+        "tools/tests/test_energy_remainder.py",
+        "tools/player_complete.py",
+        "tools/build_player_complete.py",
+        "tools/tests/test_player_complete.py"
+      ],
+      "path": "tools/capabilities/energy/converter-catalog/capability.json",
+      "player_signoff": "tools/capabilities/energy/converter-catalog/player_signoff.json",
+      "profiles": [
+        "capability-runtime",
+        "player-complete"
+      ],
+      "slug": "energy/converter-catalog",
+      "title": "Energy Converter Catalog",
+      "workflow": "accepted"
+    },
+    {
       "depends_on": [],
       "maturity": "frozen",
       "owned_paths": [
@@ -17,6 +85,44 @@
       ],
       "slug": "logistics/cover-net-r0",
       "title": "Logistics cover network R0",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "logistics/cover-net-r0",
+        "logistics/logistics-core"
+      ],
+      "maturity": "player_complete",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/logistics/displaycpu/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/DisplayCpuGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/verification/PlayerCompleteSmoke.java",
+        "src/main/java/com/masson/cruciblecraft/client/ClientSmoke.java",
+        "src/main/resources/data/cruciblecraft/logistics_display_cpu_cover_definitions.json",
+        "src/main/resources/data/cruciblecraft_wave_runtime_display_cpu/**",
+        "src/generated/resources/data/cruciblecraft/recipe/logistics_display_cpu_*_cover.json",
+        "src/generated/resources/assets/cruciblecraft/models/item/logistics_display_cpu_*_cover.json",
+        "src/generated/resources/assets/cruciblecraft/lang/*.json",
+        "src/main/resources/assets/cruciblecraft/display_cpu_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/logistics_display_cpu_*.png",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/covers/display_cpu_*/**",
+        "src/test/java/com/masson/cruciblecraft/logistics/displaycpu/**",
+        "src/test/java/com/masson/cruciblecraft/datagen/DisplayCpuResourceTest.java",
+        "tools/capabilities/logistics/display-cpu/**",
+        "tools/waves/runtime/display-cpu/**",
+        "tools/tests/test_display_cpu.py",
+        "tools/player_complete.py",
+        "tools/build_player_complete.py",
+        "tools/tests/test_player_complete.py"
+      ],
+      "path": "tools/capabilities/logistics/display-cpu/capability.json",
+      "player_signoff": "tools/capabilities/logistics/display-cpu/player_signoff.json",
+      "profiles": [
+        "capability-runtime",
+        "player-complete"
+      ],
+      "slug": "logistics/display-cpu",
+      "title": "Logistics Display CPU",
       "workflow": "accepted"
     },
     {
@@ -53,25 +159,144 @@
     },
     {
       "depends_on": [
+        "logistics/cover-net-r0",
+        "logistics/item-network-core",
+        "logistics/fluid-network/basic-transfer"
+      ],
+      "maturity": "player_complete",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/logistics/genericnet/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/GenericNetworkCoreGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/verification/PlayerCompleteSmoke.java",
+        "src/main/java/com/masson/cruciblecraft/client/ClientSmoke.java",
+        "src/main/java/com/masson/cruciblecraft/compat/emi/CrucibleCraftEmiPlugin.java",
+        "src/main/java/com/masson/cruciblecraft/compat/emi/ProcessingEmiRegistrationPlan.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModCreativeTabs.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+        "src/main/resources/data/cruciblecraft/generic_network_cover_definitions.json",
+        "src/main/resources/data/cruciblecraft_wave_runtime_generic_network_core/**",
+        "src/generated/resources/data/cruciblecraft/recipe/logistics_generic_*_cover.json",
+        "src/generated/resources/assets/cruciblecraft/models/item/logistics_generic_*_cover.json",
+        "src/generated/resources/assets/cruciblecraft/lang/*.json",
+        "tools/capabilities/logistics/generic-network/core/**",
+        "tools/waves/runtime/generic-network-core/**",
+        "tools/tests/test_generic_network_core.py",
+        "src/test/java/com/masson/cruciblecraft/logistics/genericnet/**",
+        "tools/player_complete.py",
+        "tools/build_player_complete.py",
+        "tools/tests/test_player_complete.py"
+      ],
+      "path": "tools/capabilities/logistics/generic-network/core/capability.json",
+      "player_signoff": "tools/capabilities/logistics/generic-network/core/player_signoff.json",
+      "profiles": [
+        "capability-runtime",
+        "player-complete"
+      ],
+      "slug": "logistics/generic-network/core",
+      "title": "Generic network core",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "logistics/cover-net-r0"
       ],
-      "maturity": "runtime_ready",
+      "maturity": "player_complete",
       "owned_paths": [
         "src/main/java/com/masson/cruciblecraft/logistics/itemnet/**",
         "src/main/java/com/masson/cruciblecraft/content/blockentity/ItemPipeBlockEntity.java",
         "src/main/java/com/masson/cruciblecraft/gametest/ItemNetworkCoreGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/verification/PlayerCompleteSmoke.java",
+        "src/main/java/com/masson/cruciblecraft/client/ClientSmoke.java",
+        "src/main/java/com/masson/cruciblecraft/compat/emi/CrucibleCraftEmiPlugin.java",
+        "src/main/java/com/masson/cruciblecraft/compat/emi/ProcessingEmiRegistrationPlan.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModCreativeTabs.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
         "src/main/resources/data/cruciblecraft/item_network_cover_definitions.json",
         "src/main/resources/data/cruciblecraft_wave_runtime_item_network_core/**",
+        "src/generated/resources/data/cruciblecraft/recipe/logistics_item_*_cover.json",
+        "src/generated/resources/assets/cruciblecraft/models/item/logistics_item_*_cover.json",
+        "src/generated/resources/assets/cruciblecraft/lang/*.json",
+        "tools/capabilities/logistics/item-network-core/**",
         "tools/waves/runtime/item-network-core/**",
-        "tools/tests/test_item_network_core.py"
+        "tools/tests/test_item_network_core.py",
+        "tools/player_complete.py",
+        "tools/build_player_complete.py",
+        "tools/tests/test_player_complete.py"
       ],
       "path": "tools/capabilities/logistics/item-network-core/capability.json",
-      "player_signoff": null,
+      "player_signoff": "tools/capabilities/logistics/item-network-core/player_signoff.json",
       "profiles": [
-        "capability-runtime"
+        "capability-runtime",
+        "player-complete"
       ],
       "slug": "logistics/item-network-core",
       "title": "Item network core",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "logistics/cover-net-r0",
+        "logistics/item-network-core",
+        "logistics/fluid-network/basic-transfer",
+        "logistics/generic-network/core"
+      ],
+      "maturity": "player_complete",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/logistics/core/**",
+        "src/main/java/com/masson/cruciblecraft/content/block/LogisticsCoreBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/LogisticsCorePartBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/LogisticsCoreWallBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/LogisticsCoreBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/LogisticsCoreWallBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/LogisticsCoreGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/verification/PlayerCompleteSmoke.java",
+        "src/main/java/com/masson/cruciblecraft/client/ClientSmoke.java",
+        "src/main/java/com/masson/cruciblecraft/compat/emi/CrucibleCraftEmiPlugin.java",
+        "src/main/java/com/masson/cruciblecraft/compat/emi/ProcessingEmiRegistrationPlan.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModCreativeTabs.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+        "src/main/resources/data/cruciblecraft/logistics_dump_cover_definitions.json",
+        "src/main/resources/data/cruciblecraft_wave_runtime_logistics_core/**",
+        "src/generated/resources/data/cruciblecraft/recipe/logistics_generic_dump_cover.json",
+        "src/generated/resources/data/cruciblecraft/recipe/logistics_core.json",
+        "src/generated/resources/data/cruciblecraft/recipe/galvanized_steel_wall.json",
+        "src/generated/resources/data/cruciblecraft/recipe/ventilation_unit.json",
+        "src/generated/resources/data/cruciblecraft/recipe/*_processor_unit.json",
+        "src/generated/resources/assets/cruciblecraft/models/item/logistics_generic_dump_cover.json",
+        "src/generated/resources/assets/cruciblecraft/models/block/logistics_core.json",
+        "src/generated/resources/assets/cruciblecraft/models/block/logistics_core_*.json",
+        "src/generated/resources/assets/cruciblecraft/models/block/galvanized_steel_wall.json",
+        "src/generated/resources/assets/cruciblecraft/models/block/ventilation_unit.json",
+        "src/generated/resources/assets/cruciblecraft/models/block/*_processor_unit.json",
+        "src/generated/resources/assets/cruciblecraft/blockstates/logistics_core.json",
+        "src/generated/resources/assets/cruciblecraft/blockstates/galvanized_steel_wall.json",
+        "src/generated/resources/assets/cruciblecraft/blockstates/ventilation_unit.json",
+        "src/generated/resources/assets/cruciblecraft/blockstates/*_processor_unit.json",
+        "src/main/resources/assets/cruciblecraft/logistics_core_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/logistics_core/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/galvanized_steel_wall/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/ventilation_unit/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/*_processor_unit/**",
+        "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/logistics_generic_dump_cover.png",
+        "src/main/java/com/masson/cruciblecraft/client/color/LogisticsCoreBlockColor.java",
+        "src/test/java/com/masson/cruciblecraft/datagen/LogisticsCoreResourceTest.java",
+        "src/generated/resources/assets/cruciblecraft/lang/*.json",
+        "tools/capabilities/logistics/logistics-core/**",
+        "tools/waves/runtime/logistics-core/**",
+        "tools/tests/test_logistics_core.py",
+        "src/test/java/com/masson/cruciblecraft/logistics/core/**",
+        "tools/player_complete.py",
+        "tools/build_player_complete.py",
+        "tools/tests/test_player_complete.py"
+      ],
+      "path": "tools/capabilities/logistics/logistics-core/capability.json",
+      "player_signoff": "tools/capabilities/logistics/logistics-core/player_signoff.json",
+      "profiles": [
+        "capability-runtime",
+        "player-complete"
+      ],
+      "slug": "logistics/logistics-core",
+      "title": "Logistics Core",
       "workflow": "accepted"
     },
     {
@@ -92,23 +317,69 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 4,
+  "capability_count": 9,
   "declared_player_complete": [
-    "logistics/fluid-network/basic-transfer"
+    "energy/batteries",
+    "energy/converter-catalog",
+    "logistics/display-cpu",
+    "logistics/fluid-network/basic-transfer",
+    "logistics/generic-network/core",
+    "logistics/item-network-core",
+    "logistics/logistics-core"
   ],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
+    "energy/batteries": [
+      "energy/batteries"
+    ],
+    "energy/converter-catalog": [
+      "energy/batteries",
+      "energy/converter-catalog"
+    ],
     "logistics/cover-net-r0": [
+      "energy/batteries",
+      "energy/converter-catalog",
       "logistics/cover-net-r0",
+      "logistics/display-cpu",
       "logistics/fluid-network/basic-transfer",
-      "logistics/item-network-core"
+      "logistics/generic-network/core",
+      "logistics/item-network-core",
+      "logistics/logistics-core"
+    ],
+    "logistics/display-cpu": [
+      "energy/batteries",
+      "energy/converter-catalog",
+      "logistics/display-cpu"
     ],
     "logistics/fluid-network/basic-transfer": [
-      "logistics/fluid-network/basic-transfer"
+      "energy/batteries",
+      "energy/converter-catalog",
+      "logistics/display-cpu",
+      "logistics/fluid-network/basic-transfer",
+      "logistics/generic-network/core",
+      "logistics/logistics-core"
+    ],
+    "logistics/generic-network/core": [
+      "energy/batteries",
+      "energy/converter-catalog",
+      "logistics/display-cpu",
+      "logistics/generic-network/core",
+      "logistics/logistics-core"
     ],
     "logistics/item-network-core": [
+      "energy/batteries",
+      "energy/converter-catalog",
+      "logistics/display-cpu",
       "logistics/fluid-network/basic-transfer",
-      "logistics/item-network-core"
+      "logistics/generic-network/core",
+      "logistics/item-network-core",
+      "logistics/logistics-core"
+    ],
+    "logistics/logistics-core": [
+      "energy/batteries",
+      "energy/converter-catalog",
+      "logistics/display-cpu",
+      "logistics/logistics-core"
     ],
     "registry/tool-head-remainder": [
       "registry/tool-head-remainder"
@@ -116,13 +387,24 @@
   },
   "profiles": {
     "capability-runtime": [
+      "energy/batteries",
+      "energy/converter-catalog",
       "logistics/cover-net-r0",
+      "logistics/display-cpu",
       "logistics/fluid-network/basic-transfer",
+      "logistics/generic-network/core",
       "logistics/item-network-core",
+      "logistics/logistics-core",
       "registry/tool-head-remainder"
     ],
     "player-complete": [
-      "logistics/fluid-network/basic-transfer"
+      "energy/batteries",
+      "energy/converter-catalog",
+      "logistics/display-cpu",
+      "logistics/fluid-network/basic-transfer",
+      "logistics/generic-network/core",
+      "logistics/item-network-core",
+      "logistics/logistics-core"
     ]
   },
   "progress_rule": "declaration is not proof; player_complete requires fresh GameTestServer and runClient execution",

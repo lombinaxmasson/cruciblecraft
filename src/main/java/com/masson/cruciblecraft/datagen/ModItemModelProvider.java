@@ -5,6 +5,7 @@ import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.content.item.GtWoodCatalog;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
 import com.masson.cruciblecraft.machine.processing.MachineCasingCatalog;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverComponentTiers;
 import com.masson.cruciblecraft.registry.ModBlocks;
 
 import net.minecraft.data.PackOutput;
@@ -28,11 +29,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent("plate_mold", modLoc("block/ceramic_mold"));
         withExistingParent("rod_mold", modLoc("block/ceramic_mold"));
         withExistingParent("bolt_mold", modLoc("block/ceramic_mold"));
-        generatedCc("coal_coke");
         generatedCc("match");
         generatedCc("programmed_circuit");
-        generatedMachineItem("fuel_engine", "front");
-        generatedMachineItem("burning_gas_generator", "front");
         MachineCasingCatalog.casings().forEach(casing ->
                 generatedCc(casing.id().getPath()));
         generatedCc("creosote_bucket");
@@ -42,18 +40,34 @@ public class ModItemModelProvider extends ItemModelProvider {
         generatedCc("gas_cell");
         generatedCc("pipe_filter_cover");
         generatedCc("pipe_valve_cover");
-        generatedCc("pipe_pump_cover");
-        generatedCc("conveyor_cover");
-        generatedCc("retriever_item_cover");
-        generatedCc("robot_arm_cover");
-        generatedCc("pressure_valve_cover");
+        generatedImportedGt6("pipe_pump_cover");
+        generatedImportedGt6("conveyor_cover");
+        generatedImportedGt6("retriever_item_cover");
+        generatedImportedGt6("robot_arm_cover");
+        generatedImportedGt6("pressure_valve_cover");
         generatedCc("selector_manual_cover");
-        generatedCcAlias("logistics_item_storage_cover", "conveyor_cover");
-        generatedCcAlias("logistics_item_import_cover", "retriever_item_cover");
-        generatedCcAlias("logistics_item_export_cover", "robot_arm_cover");
-        generatedCcAlias("logistics_fluid_storage_cover", "pipe_pump_cover");
-        generatedCcAlias("logistics_fluid_import_cover", "pressure_valve_cover");
-        generatedCcAlias("logistics_fluid_export_cover", "pipe_filter_cover");
+        generatedImportedGt6("logistics_item_storage_cover");
+        generatedImportedGt6("logistics_item_import_cover");
+        generatedImportedGt6("logistics_item_export_cover");
+        generatedImportedGt6("logistics_fluid_storage_cover");
+        generatedImportedGt6("logistics_fluid_import_cover");
+        generatedImportedGt6("logistics_fluid_export_cover");
+        generatedImportedGt6("logistics_generic_storage_cover");
+        generatedImportedGt6("logistics_generic_import_cover");
+        generatedImportedGt6("logistics_generic_export_cover");
+        generatedImportedGt6("logistics_generic_dump_cover");
+        generatedImportedGt6("logistics_display_cpu_logic_cover");
+        generatedImportedGt6("logistics_display_cpu_control_cover");
+        generatedImportedGt6("logistics_display_cpu_storage_cover");
+        generatedImportedGt6("logistics_display_cpu_conversion_cover");
+        CoverComponentTiers.entries().forEach(entry ->
+                generatedImportedGt6(
+                        entry.itemPath(),
+                        switch (entry.family()) {
+                            case CONVEYOR -> "conveyor_cover";
+                            case ROBOT_ARM -> "robot_arm_cover";
+                            case PUMP -> "compact_electric_pump";
+                        }));
         generatedCc("unknown_material");
         ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
                 generatedCc(shape.registryPath()));
@@ -111,24 +125,13 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .texture("layer0", modLoc("item/" + name));
     }
 
-    private void generatedCcAlias(String name, String texture) {
-        withExistingParent(name, mcLoc("item/generated"))
-                .texture("layer0", modLoc("item/" + texture));
-    }
-
     private void generatedImportedGt6(String name) {
-        withExistingParent(name, mcLoc("item/generated"))
-                .texture("layer0", modLoc("item/gt6_import/" + name));
+        generatedImportedGt6(name, name);
     }
 
-    private void generatedMachineItem(String machine, String face) {
-        withExistingParent(machine, mcLoc("item/generated"))
-                .texture(
-                        "layer0",
-                        modLoc("block/machine/" + machine + "/colored/" + face))
-                .texture(
-                        "layer1",
-                        modLoc("block/machine/" + machine + "/overlay/" + face));
+    private void generatedImportedGt6(String name, String texture) {
+        withExistingParent(name, mcLoc("item/generated"))
+                .texture("layer0", modLoc("item/gt6_import/" + texture));
     }
 
     private void tool(String name, String... textureLayers) {

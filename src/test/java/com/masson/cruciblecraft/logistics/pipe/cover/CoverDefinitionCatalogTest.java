@@ -19,8 +19,12 @@ class CoverDefinitionCatalogTest {
     @Test
     void catalogHasExactDefinitionsAndBehaviors() {
         CoverBehaviorRegistry.validateDefinitions();
-        assertEquals(15, CoverDefinitionCatalog.definitions().size());
-        assertEquals(12, CoverBehaviorRegistry.registeredIds().size());
+        assertEquals(23, CoverDefinitionCatalog.definitions().size()
+                - CoverComponentTiers.definitionIds().size());
+        assertEquals(
+                23 + CoverComponentTiers.definitionIds().size(),
+                CoverDefinitionCatalog.definitions().size());
+        assertEquals(16, CoverBehaviorRegistry.registeredIds().size());
     }
 
     @Test
@@ -56,12 +60,16 @@ class CoverDefinitionCatalogTest {
                         "cruciblecraft:pressure_valve",
                         "cruciblecraft:selector_manual"),
                 ids.subList(0, 8));
-        assertEquals(12, ids.size());
+        assertEquals(16, ids.size());
         assertTrue(ids.containsAll(List.of(
                 "cruciblecraft:logistics_item_storage",
                 "cruciblecraft:logistics_item_transfer",
                 "cruciblecraft:logistics_fluid_storage",
-                "cruciblecraft:logistics_fluid_transfer")));
+                "cruciblecraft:logistics_fluid_transfer",
+                "cruciblecraft:logistics_generic_storage",
+                "cruciblecraft:logistics_generic_transfer",
+                "cruciblecraft:logistics_generic_dump",
+                "cruciblecraft:logistics_display_cpu")));
     }
 
     @Test
@@ -76,6 +84,54 @@ class CoverDefinitionCatalogTest {
                 CoverBehaviorRegistry.resolve(fast));
         assertEquals(16, standard.values().rate());
         assertEquals(32, fast.values().rate());
+    }
+
+    @Test
+    void compactElectricSidecarOwnsAllTenVoltageTiers() {
+        assertEquals(30, CoverComponentTiers.definitionIds().size());
+        for (CoverComponentTiers.Entry entry : CoverComponentTiers.entries()) {
+            CoverDefinition definition =
+                    CoverDefinitionCatalog.require(entry.definitionId());
+            assertEquals(entry.family().behaviorId(), definition.behaviorId());
+            assertEquals(entry.family().medium(), definition.medium());
+            assertEquals(entry.rate(), definition.values().rate());
+            assertEquals(entry.interval(), definition.values().interval());
+        }
+        CoverDefinition hvPump = CoverDefinitionCatalog.require(
+                "cruciblecraft:pump_hv");
+        assertEquals(16_000, hvPump.values().rate());
+        assertEquals(20, hvPump.values().interval());
+        CoverDefinition ulvConveyor = CoverDefinitionCatalog.require(
+                "cruciblecraft:conveyor_ulv");
+        assertEquals(512, ulvConveyor.values().interval());
+        assertEquals(64, ulvConveyor.values().rate());
+    }
+
+    @Test
+    void retrieverInvertIsGt6FilterXorNotDisplayCpu() {
+        assertTrue(CoverItemFilters.matches(
+                Optional.empty(), true, "minecraft:iron_ingot"));
+        assertTrue(CoverItemFilters.matches(
+                Optional.of("minecraft:iron_ingot"),
+                false,
+                "minecraft:iron_ingot"));
+        assertFalse(CoverItemFilters.matches(
+                Optional.of("minecraft:iron_ingot"),
+                true,
+                "minecraft:iron_ingot"));
+        assertTrue(CoverItemFilters.matches(
+                Optional.of("minecraft:iron_ingot"),
+                true,
+                "minecraft:gold_ingot"));
+        PipeCover retriever = PipeCover.of("cruciblecraft:retriever_item")
+                .withConfig(PipeCoverConfig.EMPTY
+                        .withMatchId("minecraft:iron_ingot")
+                        .withInvert(1));
+        assertTrue(CoverItemFilters.inverted(retriever.config()));
+        assertFalse(CoverItemFilters.matches(
+                retriever.config().matchId(),
+                CoverItemFilters.inverted(retriever.config()),
+                "minecraft:iron_ingot"));
     }
 
     @Test
@@ -102,7 +158,10 @@ class CoverDefinitionCatalogTest {
                         Optional.empty(),
                         Optional.empty(),
                         Optional.empty(),
-                        Optional.empty()));
+                        Optional.empty(),
+                        Optional.empty(),
+                        0,
+                        0));
     }
 
     @Test

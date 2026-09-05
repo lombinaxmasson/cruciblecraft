@@ -20,11 +20,6 @@ class CokeOvenResourceTest {
                 Path.of("src/generated/resources/assets/cruciblecraft/models/item/coke_oven.json"),
                 Path.of("src/generated/resources/assets/cruciblecraft/models/item/creosote_bucket.json"),
                 Path.of("src/generated/resources/assets/cruciblecraft/lang/en_us.json"),
-                Path.of("src/generated/resources/assets/cruciblecraft/blockstates/bellows.json"),
-                Path.of("src/generated/resources/assets/cruciblecraft/models/block/bellows.json"),
-                Path.of("src/generated/resources/assets/cruciblecraft/models/block/bellows_active.json"),
-                Path.of("src/generated/resources/assets/cruciblecraft/models/item/bellows.json"),
-                Path.of("src/generated/resources/data/cruciblecraft/loot_table/blocks/bellows.json"),
                 Path.of("src/generated/resources/data/cruciblecraft/loot_table/blocks/coke_oven.json"));
 
         for (Path path : paths) {

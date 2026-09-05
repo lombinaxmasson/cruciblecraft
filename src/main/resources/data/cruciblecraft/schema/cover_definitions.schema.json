@@ -33,7 +33,7 @@
         "rate": {
           "type": "integer",
           "minimum": 0,
-          "maximum": 8000
+          "maximum": 65536000
         },
         "pressureThreshold": {
           "type": "integer",
@@ -52,6 +52,11 @@
           "type": "integer",
           "minimum": 0,
           "maximum": 5
+        },
+        "interval": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 512
         }
       }
     },

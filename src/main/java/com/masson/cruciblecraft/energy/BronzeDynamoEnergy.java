@@ -20,19 +20,46 @@ public final class BronzeDynamoEnergy {
     public static final long OUTPUT_MAXIMUM = 44L;
     public static final long BUFFER_CAPACITY = INPUT_MAXIMUM;
 
-    private final MachineEnergyBuffer kinetic =
-            new MachineEnergyBuffer(BUFFER_CAPACITY, INPUT_MAXIMUM);
+    private final long inputMinimum;
+    private final long inputNominal;
+    private final long inputMaximum;
+    private final long outputNominal;
+    private final long outputMaximum;
+    private final MachineEnergyBuffer kinetic;
     private long kineticConsumed;
     private long electricExtracted;
     private long conversionLoss;
     private boolean overloaded;
 
+    public BronzeDynamoEnergy() {
+        this(INPUT_MINIMUM, INPUT_NOMINAL, INPUT_MAXIMUM, OUTPUT_NOMINAL);
+    }
+
+    public BronzeDynamoEnergy(
+            long inputMinimum,
+            long inputNominal,
+            long inputMaximum,
+            long outputNominal) {
+        if (inputMinimum <= 0L
+                || inputMinimum > inputNominal
+                || inputNominal > inputMaximum
+                || outputNominal <= 0L) {
+            throw new IllegalArgumentException("Dynamo window is invalid");
+        }
+        this.inputMinimum = inputMinimum;
+        this.inputNominal = inputNominal;
+        this.inputMaximum = inputMaximum;
+        this.outputNominal = outputNominal;
+        this.outputMaximum = outputNominal * inputMaximum / inputNominal;
+        this.kinetic = new MachineEnergyBuffer(inputMaximum, inputMaximum);
+    }
+
     public long insertKinetic(long size, long amount, boolean simulate) {
         long magnitude = EnergyPackets.magnitude(size);
-        if (amount <= 0L || magnitude < INPUT_MINIMUM) {
+        if (amount <= 0L || magnitude < inputMinimum) {
             return 0L;
         }
-        if (magnitude > INPUT_MAXIMUM) {
+        if (magnitude > inputMaximum) {
             if (!simulate) {
                 overloaded = true;
                 kinetic.restore(0L);
@@ -51,12 +78,12 @@ public final class BronzeDynamoEnergy {
      */
     public long outputSize() {
         long input = kinetic.stored();
-        if (input < INPUT_NOMINAL) {
+        if (input < inputNominal) {
             return 0L;
         }
         return Math.min(
-                OUTPUT_MAXIMUM,
-                input * OUTPUT_NOMINAL / INPUT_NOMINAL);
+                outputMaximum,
+                input * outputNominal / inputNominal);
     }
 
     public long extractElectric(long size, long maxAmount, boolean simulate) {
@@ -85,7 +112,7 @@ public final class BronzeDynamoEnergy {
 
     private void commitConversion(long output) {
         long input = kinetic.stored();
-        if (input < INPUT_NOMINAL
+        if (input < inputNominal
                 || output < 0L
                 || output > outputSize()) {
             throw new IllegalStateException(

@@ -28,6 +28,14 @@ public final class CoverDefinitionCatalog {
             "/data/cruciblecraft/item_network_cover_definitions.json";
     private static final String FLUID_NETWORK_RESOURCE =
             "/data/cruciblecraft/fluid_network_cover_definitions.json";
+    private static final String GENERIC_NETWORK_RESOURCE =
+            "/data/cruciblecraft/generic_network_cover_definitions.json";
+    private static final String DUMP_COVER_RESOURCE =
+            "/data/cruciblecraft/logistics_dump_cover_definitions.json";
+    private static final String DISPLAY_CPU_RESOURCE =
+            "/data/cruciblecraft/logistics_display_cpu_cover_definitions.json";
+    private static final String COMPONENT_TIER_RESOURCE =
+            "/data/cruciblecraft/cover_component_tier_definitions.json";
     private static final Set<String> DOCUMENT_FIELDS =
             Set.of("schemaVersion", "definitions");
     private static final Set<String> DEFINITION_FIELDS = Set.of(
@@ -59,6 +67,17 @@ public final class CoverDefinitionCatalog {
             "cruciblecraft:logistics_fluid_storage",
             "cruciblecraft:logistics_fluid_import",
             "cruciblecraft:logistics_fluid_export");
+    private static final Set<String> REQUIRED_GENERIC_NETWORK_IDS = Set.of(
+            "cruciblecraft:logistics_generic_storage",
+            "cruciblecraft:logistics_generic_import",
+            "cruciblecraft:logistics_generic_export");
+    private static final Set<String> REQUIRED_DUMP_IDS = Set.of(
+            "cruciblecraft:logistics_generic_dump");
+    private static final Set<String> REQUIRED_DISPLAY_CPU_IDS = Set.of(
+            "cruciblecraft:logistics_display_cpu_logic",
+            "cruciblecraft:logistics_display_cpu_control",
+            "cruciblecraft:logistics_display_cpu_storage",
+            "cruciblecraft:logistics_display_cpu_conversion");
     private static final Map<ResourceLocation, CoverDefinition> DEFINITIONS =
             loadBundled();
 
@@ -103,12 +122,27 @@ public final class CoverDefinitionCatalog {
         }
         loadInto(definitions, ITEM_NETWORK_RESOURCE, "item network cover catalog");
         loadInto(definitions, FLUID_NETWORK_RESOURCE, "fluid network cover catalog");
+        loadInto(definitions, GENERIC_NETWORK_RESOURCE, "generic network cover catalog");
+        loadInto(definitions, DUMP_COVER_RESOURCE, "dump cover catalog");
+        loadInto(
+                definitions,
+                DISPLAY_CPU_RESOURCE,
+                "display cpu cover catalog");
+        loadInto(
+                definitions,
+                COMPONENT_TIER_RESOURCE,
+                "compact electric cover catalog");
         Set<String> ids = definitions.keySet().stream()
                 .map(ResourceLocation::toString)
                 .collect(java.util.stream.Collectors.toSet());
+        int expected = 23 + CoverComponentTiers.definitionIds().size();
         if (!ids.containsAll(REQUIRED_ITEM_NETWORK_IDS)
                 || !ids.containsAll(REQUIRED_FLUID_NETWORK_IDS)
-                || definitions.size() != 15) {
+                || !ids.containsAll(REQUIRED_GENERIC_NETWORK_IDS)
+                || !ids.containsAll(REQUIRED_DUMP_IDS)
+                || !ids.containsAll(REQUIRED_DISPLAY_CPU_IDS)
+                || !ids.containsAll(CoverComponentTiers.definitionIds())
+                || definitions.size() != expected) {
             throw new IllegalStateException(
                     "Required cover definitions are missing or the "
                             + "catalog is not exact: " + ids);
@@ -175,7 +209,7 @@ public final class CoverDefinitionCatalog {
                     id + ": values/configurable have invalid types");
         }
         JsonObject values = row.getAsJsonObject("values");
-        exactFields(values, VALUE_FIELDS, id + ".values");
+        valueFields(values, id + ".values");
         CoverDefinition.Values parsedValues = new CoverDefinition.Values(
                 requiredInt(values, "rate"),
                 requiredInt(values, "pressureThreshold"),
@@ -184,7 +218,8 @@ public final class CoverDefinitionCatalog {
                         CoverDefinition.TransferMode.class,
                         requiredString(values, "mode"),
                         id + ".values.mode"),
-                requiredInt(values, "selector"));
+                requiredInt(values, "selector"),
+                optionalInt(values, "interval", 1));
         EnumSet<CoverDefinition.ConfigField> configurable =
                 EnumSet.noneOf(CoverDefinition.ConfigField.class);
         List<String> duplicateCheck = new ArrayList<>();
@@ -236,6 +271,14 @@ public final class CoverDefinitionCatalog {
         return value.getAsString();
     }
 
+    private static int optionalInt(
+            JsonObject object, String field, int fallback) {
+        if (!object.has(field)) {
+            return fallback;
+        }
+        return requiredInt(object, field);
+    }
+
     private static int requiredInt(JsonObject object, String field) {
         JsonElement value = object.get(field);
         if (value == null
@@ -256,6 +299,19 @@ public final class CoverDefinitionCatalog {
         if (!object.keySet().equals(expected)) {
             throw new IllegalStateException(
                     owner + " fields drifted: " + object.keySet());
+        }
+    }
+
+    private static void valueFields(JsonObject object, String owner) {
+        if (!object.keySet().containsAll(VALUE_FIELDS)) {
+            throw new IllegalStateException(
+                    owner + " missing value fields: " + object.keySet());
+        }
+        for (String key : object.keySet()) {
+            if (!VALUE_FIELDS.contains(key) && !"interval".equals(key)) {
+                throw new IllegalStateException(
+                        owner + " fields drifted: " + object.keySet());
+            }
         }
     }
 

@@ -1,0 +1,44 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "texture": "#bottom"
+        },
+        "east": {
+          "texture": "#side"
+        },
+        "north": {
+          "texture": "#side"
+        },
+        "south": {
+          "texture": "#side"
+        },
+        "up": {
+          "texture": "#top"
+        },
+        "west": {
+          "texture": "#side"
+        }
+      },
+      "from": [
+        5,
+        0,
+        5
+      ],
+      "to": [
+        11,
+        8,
+        11
+      ]
+    }
+  ],
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "cruciblecraft:block/machine/battery/eu/advanced/8/bottom",
+    "particle": "cruciblecraft:block/machine/battery/eu/advanced/8/sides",
+    "side": "cruciblecraft:block/machine/battery/eu/advanced/8/sides",
+    "top": "cruciblecraft:block/machine/battery/eu/advanced/8/top"
+  }
+}

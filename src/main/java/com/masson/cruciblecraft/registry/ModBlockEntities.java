@@ -2,7 +2,6 @@ package com.masson.cruciblecraft.registry;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.content.blockentity.AnvilBlockEntity;
-import com.masson.cruciblecraft.content.blockentity.BellowsBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.BoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CokeOvenBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CeramicMoldBlockEntity;
@@ -12,10 +11,10 @@ import com.masson.cruciblecraft.content.blockentity.CrusherBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DynamoBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ElectricMotorBlockEntity;
-import com.masson.cruciblecraft.content.blockentity.FireboxBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidDepositExtractorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FluidBedBurningBoxBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.GasCloudBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.HopperBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.BookshelfBlockEntity;
@@ -30,12 +29,16 @@ import com.masson.cruciblecraft.content.blockentity.LargeCentrifugeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DistillationTowerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeBoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeCrucibleBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.LogisticsCoreBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.LogisticsCoreWallBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.TankBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MultiblockPortBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.RotationalAxleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.RotationalGearboxBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SteamEngineBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.SolidBurningBoxBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SubsurfaceFluidDepositBlockEntity;
+import com.masson.cruciblecraft.energy.battery.BatteryBlockEntity;
 
 import com.masson.cruciblecraft.content.storage.StorageBehaviorProfile;
 
@@ -47,13 +50,6 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public final class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, CrucibleCraft.MODID);
-
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<FireboxBlockEntity>> FIREBOX =
-            BLOCK_ENTITIES.register(
-                    "firebox",
-                    () -> BlockEntityType.Builder.of(
-                            FireboxBlockEntity::new,
-                            ModBlocks.FIREBOX.get()).build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CrucibleBlockEntity>> CRUCIBLE =
             BLOCK_ENTITIES.register(
@@ -130,13 +126,24 @@ public final class ModBlockEntities {
                                     LargeCrucibleBlockEntity::new,
                                     ModBlocks.LARGE_CRUCIBLE.get())
                                     .build(null));
-
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BellowsBlockEntity>>
-            BELLOWS = BLOCK_ENTITIES.register(
-                    "bellows",
-                    () -> BlockEntityType.Builder.of(
-                            BellowsBlockEntity::new,
-                            ModBlocks.BELLOWS.get()).build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<LogisticsCoreBlockEntity>>
+                    LOGISTICS_CORE = BLOCK_ENTITIES.register(
+                            "logistics_core",
+                            () -> BlockEntityType.Builder.of(
+                                    LogisticsCoreBlockEntity::new,
+                                    ModBlocks.LOGISTICS_CORE.get())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<LogisticsCoreWallBlockEntity>>
+                    LOGISTICS_CORE_WALL = BLOCK_ENTITIES.register(
+                            "logistics_core_wall",
+                            () -> BlockEntityType.Builder.of(
+                                    LogisticsCoreWallBlockEntity::new,
+                                    ModBlocks.GALVANIZED_STEEL_WALL.get())
+                                    .build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CeramicMoldBlockEntity>>
             CERAMIC_MOLD = BLOCK_ENTITIES.register(
@@ -150,19 +157,19 @@ public final class ModBlockEntities {
                     "bronze_boiler",
                     () -> BlockEntityType.Builder.of(
                             BoilerBlockEntity::new,
-                            ModBlocks.BRONZE_BOILER.get()).build(null));
+                            ModBlocks.converterBlocks("boiler")).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SteamEngineBlockEntity>>
             STEAM_ENGINE = BLOCK_ENTITIES.register(
                     "bronze_steam_engine",
                     () -> BlockEntityType.Builder.of(
                             SteamEngineBlockEntity::new,
-                            ModBlocks.BRONZE_STEAM_ENGINE.get()).build(null));
+                            ModBlocks.converterBlocks("steam_engine")).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<DynamoBlockEntity>>
             DYNAMO = BLOCK_ENTITIES.register(
                     "bronze_dynamo",
                     () -> BlockEntityType.Builder.of(
                             DynamoBlockEntity::new,
-                            ModBlocks.BRONZE_DYNAMO.get()).build(null));
+                            ModBlocks.converterBlocks("dynamo")).build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,
             BlockEntityType<ElectricMotorBlockEntity>>
@@ -170,7 +177,7 @@ public final class ModBlockEntities {
                             "electric_motor",
                             () -> BlockEntityType.Builder.of(
                                     ElectricMotorBlockEntity::new,
-                                    ModBlocks.ELECTRIC_MOTOR.get())
+                                    ModBlocks.converterBlocks("electric_motor"))
                                     .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,
@@ -330,8 +337,38 @@ public final class ModBlockEntities {
                             "fuel_generator",
                             () -> BlockEntityType.Builder.of(
                                     FuelGeneratorBlockEntity::new,
-                                    ModBlocks.FUEL_ENGINE.get(),
-                                    ModBlocks.BURNING_GAS_GENERATOR.get())
+                                    ModBlocks.converterBlocks(
+                                            "fuel_engine",
+                                            "fluid_burning_box"))
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<SolidBurningBoxBlockEntity>>
+                    SOLID_BURNING_BOX = BLOCK_ENTITIES.register(
+                            "solid_burning_box",
+                            () -> BlockEntityType.Builder.of(
+                                    SolidBurningBoxBlockEntity::new,
+                                    ModBlocks.converterBlocks(
+                                            "solid_burning_box"))
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<FluidBedBurningBoxBlockEntity>>
+                    FLUID_BED_BURNING_BOX = BLOCK_ENTITIES.register(
+                            "fluid_bed_burning_box",
+                            () -> BlockEntityType.Builder.of(
+                                    FluidBedBurningBoxBlockEntity::new,
+                                    ModBlocks.converterBlocks(
+                                            "fluid_bed_burning_box"))
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<BatteryBlockEntity>>
+                    BATTERY = BLOCK_ENTITIES.register(
+                            "battery",
+                            () -> BlockEntityType.Builder.of(
+                                    BatteryBlockEntity::new,
+                                    ModBlocks.batteryBlockArray())
                                     .build(null));
 
     private ModBlockEntities() {}

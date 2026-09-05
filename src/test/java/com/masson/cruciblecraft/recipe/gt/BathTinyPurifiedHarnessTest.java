@@ -128,7 +128,7 @@ class BathTinyPurifiedHarnessTest {
         stableIds.addAll(snapshots.get(multiKey).recipeIds());
         assertEquals(LOCKED_RELATIONS, stableIds.size());
         for (ResourceLocation id : stableIds) {
-            assertTrue(id.getPath().startsWith("bath/tiny_purified/"), id::toString);
+            assertTrue(CompactWaveRecipeIds.isBathTinyPurifiedRecipe(id), id::toString);
         }
 
         int relationCount = 0;

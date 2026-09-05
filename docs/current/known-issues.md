@@ -17,7 +17,7 @@
 这些行保持 open，不得标 PASS。它们挡所列 profile，不挡范围外能力的范围内门。
 
 - compact family 作者正文已改为 `matrix_v1`（`COMPACT_RECIPE_AUTHORED_MATRIX_READY`），线上 `StreamCodec` v2 编矩阵而不是展开表。修的仍是写法，不是 Holder 粒度。compact snapshot `13845 != 14201` 仍是 scope-external 债（mortar / assembler fingerprints），未 `--update-baseline`。它不挡 `semantic-generators` 的 fresh 结构/字节比较。
-- 隔离 census 的 `cover_behaviors` 冻结表已扩到含物品网 + 流体网行为；extra 仍用 identity gate 精确比对。三件**物品**封面贴图暂借 conveyor / retriever / robot_arm。
+- 隔离 census 的 `cover_behaviors` 冻结表仍是 `registerBuiltin` 那 8 个；物品/流体/通用网行为走 identity gate 精确比对 extras。物流九件盖板物品图标已从本地 `gregtech6_w` 迁入 `gt6_import/`（含 Dump）。传送带 / 检索器 / 机械臂等管网盖板仍用各自现有 item 贴图，未在本卡重核。
 - 化学语义 artifact 与现行生成器存在结构漂移：留给后续配方工作
 - 历史 READY 已退出 active verification；日常门不再消费历史收据
 - 历史 full verification report 已从工作树删除，不是当前执行结果
@@ -29,7 +29,8 @@
 
 游戏里还没有、以后另开能力，不要写进 known-issues 当「已关卡的尾巴」。总账：[unimplemented-gap.md](unimplemented-gap.md)。
 
-- Generic / Dump 封面网与 GT6 `MultiTileEntityLogisticsCore` 仍 `frozen`
+- Display CPU 四件物流监视器已由 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md) `player_complete`（`logistics/display-cpu`）。Dump 封面与 Logistics Core 已 [物流核心](../history/card-plans/closed/物流核心详细计划.md) `player_complete`。`dump_policy` 见已关闭的 [物流封面网余量](../history/card-plans/closed/物流封面网余量详细计划.md)。
+- 能量：当前 unique active [电池](../history/card-plans/active/电池详细计划.md)（`energy/batteries`，`player_complete`；卡仍 unique active）。已关闭 [能量转换机目录](../history/card-plans/closed/能量转换机目录详细计划.md)（`energy/converter-catalog`）把 Burning Box / 锅炉 / 蒸汽机 / 燃油引擎 / 发电机 / 电机做成 kind × 材质分档。余量卡已删除 `firebox` / `bellows` / 独立 `coal_coke`。变压器仍 `frozen`。
 - 作物 / 树 / 原版熔炉替换余量仍 `frozen`
 - 原版替换 MVP 只覆盖了纸 3→1；熔炉仍是原版 8 圆石
 - 首小时 mortar / sifter / smelter / bath 已脱离 `metal_surface`。`smelter` 现为 `basicmachines/smelter` 立方机；工作态 `overlay_active` 未接 `LIT`

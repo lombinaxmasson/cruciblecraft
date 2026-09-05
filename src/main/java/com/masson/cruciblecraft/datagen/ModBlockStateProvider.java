@@ -2,12 +2,10 @@ package com.masson.cruciblecraft.datagen;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
-import com.masson.cruciblecraft.content.block.BellowsBlock;
 import com.masson.cruciblecraft.content.block.CableBlock;
 import com.masson.cruciblecraft.content.block.CeramicMoldBlock;
-import com.masson.cruciblecraft.content.block.FireboxBlock;
-import com.masson.cruciblecraft.content.block.FuelGeneratorBlock;
 import com.masson.cruciblecraft.content.block.HopperBlock;
+import com.masson.cruciblecraft.content.block.LogisticsCoreBlock;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
@@ -31,6 +29,13 @@ import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class ModBlockStateProvider extends BlockStateProvider {
+    private static final java.util.Set<String> HANDWRITTEN_CONVERTER_MODELS =
+            java.util.Set.of(
+                    "bronze_boiler",
+                    "bronze_steam_engine",
+                    "bronze_dynamo",
+                    "fuel_engine",
+                    "burning_gas_generator");
     public ModBlockStateProvider(
             PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, CrucibleCraft.MODID, existingFileHelper);
@@ -43,24 +48,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(
                 ModBlocks.FIREBRICK.get(),
                 firebrick);
-        var fireboxUnlit =
-                models().getExistingFile(modLoc("block/firebox_unlit"));
-        var fireboxLit = models().getExistingFile(modLoc("block/firebox_lit"));
-        getVariantBuilder(ModBlocks.FIREBOX.get()).forAllStates(state -> {
-            int rotation = switch (state.getValue(FireboxBlock.FACING)) {
-                case SOUTH -> 180;
-                case WEST -> 270;
-                case EAST -> 90;
-                default -> 0;
-            };
-            return ConfiguredModel.builder()
-                    .modelFile(state.getValue(FireboxBlock.LIT)
-                            ? fireboxLit
-                            : fireboxUnlit)
-                    .rotationY(rotation)
-                    .build();
-        });
-        simpleBlockItem(ModBlocks.FIREBOX.get(), fireboxUnlit);
         simpleBlockWithItem(
                 ModBlocks.CRUCIBLE.get(),
                 models().getExistingFile(modLoc("block/crucible")));
@@ -93,14 +80,37 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 "tank_3x3x3", ModBlocks.TANK_3X3X3.get());
         configuredMachine(
                 "large_crucible", ModBlocks.LARGE_CRUCIBLE.get());
+        configuredLogisticsCore();
+        simpleBlockWithItem(
+                ModBlocks.GALVANIZED_STEEL_WALL.get(),
+                logisticsPartModel("galvanized_steel_wall"));
+        simpleBlockWithItem(
+                ModBlocks.VENTILATION_UNIT.get(),
+                logisticsPartModel("ventilation_unit"));
+        simpleBlockWithItem(
+                ModBlocks.VERSATILE_PROCESSOR_UNIT.get(),
+                logisticsPartModel("versatile_processor_unit"));
+        simpleBlockWithItem(
+                ModBlocks.LOGIC_PROCESSOR_UNIT.get(),
+                logisticsPartModel("logic_processor_unit"));
+        simpleBlockWithItem(
+                ModBlocks.CONTROL_PROCESSOR_UNIT.get(),
+                logisticsPartModel("control_processor_unit"));
+        simpleBlockWithItem(
+                ModBlocks.STORAGE_PROCESSOR_UNIT.get(),
+                logisticsPartModel("storage_processor_unit"));
+        simpleBlockWithItem(
+                ModBlocks.CONVERSION_PROCESSOR_UNIT.get(),
+                logisticsPartModel("conversion_processor_unit"));
         ModMachineVariants.ALL.forEach(variant ->
                 configuredMachine(
                         variant.id().getPath(),
                         ModBlocks.configuredProcessingBlock(variant)));
-        configuredMachine("electric_motor", ModBlocks.ELECTRIC_MOTOR.get());
         configuredMachine(
                 "rotational_gearbox",
                 ModBlocks.ROTATIONAL_GEARBOX.get());
+        registerConverters();
+        registerBatteries();
         simpleBlockWithItem(
                 ModBlocks.ROTATIONAL_AXLE.get(),
                 models().cubeAll(
@@ -111,31 +121,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 models().cubeAll(
                         "fluid_deposit_extractor",
                         modLoc("block/fluid_deposit_extractor")));
-        configuredFuelGenerator("fuel_engine", ModBlocks.FUEL_ENGINE.get());
-        configuredFuelGenerator(
-                "burning_gas_generator",
-                ModBlocks.BURNING_GAS_GENERATOR.get());
         simpleBlock(
                 ModBlocks.GAS_CLOUD.get(),
                 models()
                         .cubeAll("gas_cloud", modLoc("block/gas_cloud"))
                         .renderType("translucent"));
-        var bellows = models().orientable(
-                "bellows",
-                modLoc("block/bellows_side"),
-                modLoc("block/bellows_front"),
-                modLoc("block/bellows_side"));
-        var activeBellows = models().orientable(
-                "bellows_active",
-                modLoc("block/bellows_side"),
-                modLoc("block/bellows_front_active"),
-                modLoc("block/bellows_side"));
-        horizontalBlock(
-                ModBlocks.BELLOWS.get(),
-                state -> state.getValue(BellowsBlock.ACTIVE)
-                        ? activeBellows
-                        : bellows);
-        simpleBlockItem(ModBlocks.BELLOWS.get(), bellows);
         var emptyMold = models().getExistingFile(modLoc("block/ceramic_mold"));
         var filledMold = models().getExistingFile(modLoc("block/ceramic_mold_filled"));
         getVariantBuilder(ModBlocks.CERAMIC_MOLD.get()).forAllStates(state ->
@@ -584,26 +574,218 @@ public class ModBlockStateProvider extends BlockStateProvider {
         element.end();
     }
 
-    private void configuredFuelGenerator(
-            String id, FuelGeneratorBlock block) {
-        ModelFile inactive = models().getExistingFile(modLoc("block/" + id));
-        ModelFile active = models().getExistingFile(
-                modLoc("block/" + id + "_active"));
+    private void registerConverters() {
+        java.util.HashSet<String> modeled = new java.util.HashSet<>();
+        for (var profile : com.masson.cruciblecraft.energy.converter
+                .EnergyConverterCatalog.profiles()) {
+            var kind = com.masson.cruciblecraft.energy.converter
+                    .EnergyConverterKindCatalog.require(
+                            com.masson.cruciblecraft.energy.converter
+                                    .EnergyConverterTierCatalog.require(
+                                            profile.id())
+                                    .kindId());
+            String texture = kind.textureProfile();
+            ensureConverterModels(texture, kind.overlayActive(), modeled);
+            ModelFile inactive = models().getExistingFile(
+                    modLoc("block/" + texture));
+            ModelFile active = kind.overlayActive()
+                    ? models().getExistingFile(
+                            modLoc("block/" + texture + "_active"))
+                    : inactive;
+            var block = ModBlocks.converterBlocksById().get(profile.id()).get();
+            if (HANDWRITTEN_CONVERTER_MODELS.contains(profile.id().getPath())) {
+                continue;
+            }
+            if (kind.overlayActive()) {
+                configuredFacingLit(block, inactive, active);
+            } else {
+                horizontalBlock(block, inactive);
+            }
+            simpleBlockItem(block, inactive);
+        }
+    }
+
+    private void registerBatteries() {
+        for (var profile : com.masson.cruciblecraft.energy.battery
+                .EnergyBatteryCatalog.profiles()) {
+            String modelName = "battery/" + profile.id().getPath();
+            ModelFile model = batteryModel(profile, modelName);
+            var block = ModBlocks.batteryBlocksById().get(profile.id()).get();
+            simpleBlock(block, model);
+            simpleBlockItem(block, model);
+        }
+    }
+
+    private ModelFile batteryModel(
+            com.masson.cruciblecraft.energy.battery.EnergyBatteryProfile profile,
+            String name) {
+        net.minecraft.world.phys.AABB box = profile.shape().bounds();
+        float minX = (float) (box.minX * 16.0);
+        float minY = (float) (box.minY * 16.0);
+        float minZ = (float) (box.minZ * 16.0);
+        float maxX = (float) (box.maxX * 16.0);
+        float maxY = (float) (box.maxY * 16.0);
+        float maxZ = (float) (box.maxZ * 16.0);
+        String base = profile.textureFolder();
+        BlockModelBuilder builder = models()
+                .withExistingParent(name, mcLoc("block/block"))
+                .renderType("cutout")
+                .texture("particle", modLoc(base + "/sides"))
+                .texture("bottom", modLoc(base + "/bottom"))
+                .texture("top", modLoc(base + "/top"))
+                .texture("side", modLoc(base + "/sides"));
+        var element = builder.element()
+                .from(minX, minY, minZ)
+                .to(maxX, maxY, maxZ);
+        element.face(Direction.DOWN).texture("#bottom").end();
+        element.face(Direction.UP).texture("#top").end();
+        element.face(Direction.NORTH).texture("#side").end();
+        element.face(Direction.SOUTH).texture("#side").end();
+        element.face(Direction.WEST).texture("#side").end();
+        element.face(Direction.EAST).texture("#side").end();
+        element.end();
+        return builder;
+    }
+
+    private void ensureConverterModels(
+            String texture, boolean overlayActive, java.util.Set<String> modeled) {
+        if (!modeled.add(texture)) {
+            return;
+        }
+        if (HANDWRITTEN_CONVERTER_MODELS.contains(texture)) {
+            return;
+        }
+        converterCube(texture, false);
+        if (overlayActive) {
+            converterCube(texture, true);
+        }
+    }
+
+    private ModelFile converterCube(String textureId, boolean active) {
+        String name = active ? textureId + "_active" : textureId;
+        String overlay = active ? "overlay_active" : "overlay";
+        String base = "block/machine/" + textureId;
+        return models()
+                .withExistingParent(name, modLoc("block/machine_cube_2_layer"))
+                .texture("particle", modLoc(base + "/colored/front"))
+                .texture("bot_down", modLoc(base + "/colored/bottom"))
+                .texture("bot_up", modLoc(base + "/colored/top"))
+                .texture("bot_north", modLoc(base + "/colored/front"))
+                .texture("bot_south", modLoc(base + "/colored/back"))
+                .texture("bot_west", modLoc(base + "/colored/left"))
+                .texture("bot_east", modLoc(base + "/colored/right"))
+                .texture("top_down", modLoc(base + "/" + overlay + "/bottom"))
+                .texture("top_up", modLoc(base + "/" + overlay + "/top"))
+                .texture("top_north", modLoc(base + "/" + overlay + "/front"))
+                .texture("top_south", modLoc(base + "/" + overlay + "/back"))
+                .texture("top_west", modLoc(base + "/" + overlay + "/left"))
+                .texture("top_east", modLoc(base + "/" + overlay + "/right"));
+    }
+
+    private void configuredFacingLit(
+            net.minecraft.world.level.block.Block block,
+            ModelFile inactive,
+            ModelFile active) {
         getVariantBuilder(block).forAllStates(state -> {
-            int rotation = switch (state.getValue(FuelGeneratorBlock.FACING)) {
+            int rotation = switch (state.getValue(
+                    net.minecraft.world.level.block.state.properties
+                            .BlockStateProperties.HORIZONTAL_FACING)) {
                 case SOUTH -> 180;
                 case WEST -> 270;
                 case EAST -> 90;
                 default -> 0;
             };
+            boolean lit = state.getValue(
+                    net.minecraft.world.level.block.state.properties
+                            .BlockStateProperties.LIT);
             return ConfiguredModel.builder()
-                    .modelFile(state.getValue(FuelGeneratorBlock.LIT)
-                            ? active
-                            : inactive)
+                    .modelFile(lit ? active : inactive)
                     .rotationY(rotation)
                     .build();
         });
-        simpleBlockItem(block, inactive);
+    }
+
+    private void configuredLogisticsCore() {
+        ModelFile horizontal = logisticsCoreFacingModel(
+                "logistics_core", "side");
+        ModelFile up = logisticsCoreFacingModel("logistics_core_up", "top");
+        ModelFile down = logisticsCoreFacingModel(
+                "logistics_core_down", "bottom");
+        getVariantBuilder(ModBlocks.LOGISTICS_CORE.get()).forAllStates(state -> {
+            Direction facing = state.getValue(LogisticsCoreBlock.FACING);
+            return switch (facing) {
+                case UP -> ConfiguredModel.builder().modelFile(up).build();
+                case DOWN -> ConfiguredModel.builder().modelFile(down).build();
+                default -> ConfiguredModel.builder()
+                        .modelFile(horizontal)
+                        .rotationY(switch (facing) {
+                            case SOUTH -> 180;
+                            case WEST -> 270;
+                            case EAST -> 90;
+                            default -> 0;
+                        })
+                        .build();
+            };
+        });
+        simpleBlockItem(ModBlocks.LOGISTICS_CORE.get(), horizontal);
+    }
+
+    private ModelFile logisticsCoreFacingModel(String modelId, String frontFace) {
+        String base = "block/gt6_import/logistics_core";
+        boolean vertical = "top".equals(frontFace) || "bottom".equals(frontFace);
+        String northColored = vertical
+                ? base + "/colored_side"
+                : base + "/colored_front_" + frontFace;
+        String northOverlay = vertical
+                ? base + "/overlay_side"
+                : base + "/overlay_front_" + frontFace;
+        String upColored = "top".equals(frontFace)
+                ? base + "/colored_front_top"
+                : base + "/colored_top";
+        String upOverlay = "top".equals(frontFace)
+                ? base + "/overlay_front_top"
+                : base + "/overlay_top";
+        String downColored = "bottom".equals(frontFace)
+                ? base + "/colored_front_bottom"
+                : base + "/colored_bottom";
+        String downOverlay = "bottom".equals(frontFace)
+                ? base + "/overlay_front_bottom"
+                : base + "/overlay_bottom";
+        return models()
+                .withExistingParent(
+                        modelId, modLoc("block/machine_cube_2_layer"))
+                .texture("particle", modLoc(northColored))
+                .texture("bot_down", modLoc(downColored))
+                .texture("bot_up", modLoc(upColored))
+                .texture("bot_north", modLoc(northColored))
+                .texture("bot_south", modLoc(base + "/colored_side"))
+                .texture("bot_west", modLoc(base + "/colored_side"))
+                .texture("bot_east", modLoc(base + "/colored_side"))
+                .texture("top_down", modLoc(downOverlay))
+                .texture("top_up", modLoc(upOverlay))
+                .texture("top_north", modLoc(northOverlay))
+                .texture("top_south", modLoc(base + "/overlay_side"))
+                .texture("top_west", modLoc(base + "/overlay_side"))
+                .texture("top_east", modLoc(base + "/overlay_side"));
+    }
+
+    private ModelFile logisticsPartModel(String id) {
+        String base = "block/gt6_import/" + id;
+        return models()
+                .withExistingParent(id, modLoc("block/machine_cube_2_layer"))
+                .texture("particle", modLoc(base + "/colored_side"))
+                .texture("bot_down", modLoc(base + "/colored_bottom"))
+                .texture("bot_up", modLoc(base + "/colored_top"))
+                .texture("bot_north", modLoc(base + "/colored_side"))
+                .texture("bot_south", modLoc(base + "/colored_side"))
+                .texture("bot_west", modLoc(base + "/colored_side"))
+                .texture("bot_east", modLoc(base + "/colored_side"))
+                .texture("top_down", modLoc(base + "/overlay_bottom"))
+                .texture("top_up", modLoc(base + "/overlay_top"))
+                .texture("top_north", modLoc(base + "/overlay_side"))
+                .texture("top_south", modLoc(base + "/overlay_side"))
+                .texture("top_west", modLoc(base + "/overlay_side"))
+                .texture("top_east", modLoc(base + "/overlay_side"));
     }
 
     private void configuredMachine(String id, net.minecraft.world.level.block.Block block) {
@@ -704,6 +886,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     "rotational_gearbox",
                     "fuel_engine",
                     "burning_gas_generator",
+                    "burning_box_solid",
+                    "burning_box_brick",
+                    "burning_box_liquid",
+                    "burning_box_fluid_bed",
                     "boiler",
                     "tank_3x3x3",
                     "mortar",

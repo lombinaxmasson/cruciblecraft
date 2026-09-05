@@ -27,6 +27,12 @@ COVER_FILES = (
     / "src/main/resources/data/cruciblecraft/item_network_cover_definitions.json",
     ROOT
     / "src/main/resources/data/cruciblecraft/fluid_network_cover_definitions.json",
+    ROOT
+    / "src/main/resources/data/cruciblecraft/generic_network_cover_definitions.json",
+    ROOT
+    / "src/main/resources/data/cruciblecraft/logistics_dump_cover_definitions.json",
+    ROOT
+    / "src/main/resources/data/cruciblecraft/logistics_display_cpu_cover_definitions.json",
 )
 BATH = ROOT / "src/main/resources/data/cruciblecraft/bath_identity_catalog.json"
 SEMANTIC = (
@@ -49,8 +55,12 @@ NETWORK_REGISTER_RE = re.compile(
 EXPECTED_COVER_BEHAVIORS = [
     "cruciblecraft:conveyor",
     "cruciblecraft:filter",
+    "cruciblecraft:logistics_display_cpu",
     "cruciblecraft:logistics_fluid_storage",
     "cruciblecraft:logistics_fluid_transfer",
+    "cruciblecraft:logistics_generic_dump",
+    "cruciblecraft:logistics_generic_storage",
+    "cruciblecraft:logistics_generic_transfer",
     "cruciblecraft:logistics_item_storage",
     "cruciblecraft:logistics_item_transfer",
     "cruciblecraft:pressure_valve",
@@ -182,6 +192,10 @@ def collect_behaviors() -> list[str]:
         "cruciblecraft:logistics_item_transfer",
         "cruciblecraft:logistics_fluid_storage",
         "cruciblecraft:logistics_fluid_transfer",
+        "cruciblecraft:logistics_generic_storage",
+        "cruciblecraft:logistics_generic_transfer",
+        "cruciblecraft:logistics_generic_dump",
+        "cruciblecraft:logistics_display_cpu",
     ):
         if candidate not in behaviors:
             behaviors.append(candidate)

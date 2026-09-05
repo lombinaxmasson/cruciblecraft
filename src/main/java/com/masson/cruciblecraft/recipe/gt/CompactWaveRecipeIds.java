@@ -24,6 +24,7 @@ public final class CompactWaveRecipeIds {
             "bath/remainder/",
             "bath/identity/",
             "bath/tiny_purified/",
+            "bath/tiny-purified/",
             "smelter/ordinary_closure/",
             "mixer/ordinary_closure/",
             "drying/ordinary_closure/",
@@ -52,7 +53,8 @@ public final class CompactWaveRecipeIds {
     public static final List<String> BATH_REMAINDER_PREFIXES = List.of(
             "bath/remainder/",
             "bath/identity/",
-            "bath/tiny_purified/");
+            "bath/tiny_purified/",
+            "bath/tiny-purified/");
     public static final List<String> BLOCK_OBJECT_PREFIXES = List.of(
             "smelter/block/",
             "drying/block/");
@@ -83,6 +85,11 @@ public final class CompactWaveRecipeIds {
 
     public static boolean isBathRemainderCompactRecipe(ResourceLocation id) {
         return matchesAny(id, BATH_REMAINDER_PREFIXES);
+    }
+
+    public static boolean isBathTinyPurifiedRecipe(ResourceLocation id) {
+        return pathStartsWith(id, "bath/tiny_purified/")
+                || pathStartsWith(id, "bath/tiny-purified/");
     }
 
     public static boolean isCentrifugeCompactRecipe(ResourceLocation id) {

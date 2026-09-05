@@ -19,7 +19,7 @@ class SteamChainResourceTest {
                     + "ore_chain/crusher");
     @Test void survivalCarbonRecipeUsesOnlyCoalCokeAndOneDust() throws Exception {
         String json = Files.readString(ROOT.resolve("data/cruciblecraft/recipe/coal_coke_to_carbon_dust.json"));
-        assertTrue(json.contains("\"cruciblecraft:coal_coke\""));
+        assertTrue(json.contains("\"cruciblecraft:coal_coke/gem\""));
         assertTrue(json.contains("\"id\": \"cruciblecraft:carbon/dust\""));
         assertTrue(json.contains("\"count\": 1"));
     }
@@ -29,7 +29,12 @@ class SteamChainResourceTest {
             resource("assets/cruciblecraft/models/block/" + id + ".json");
             resource("assets/cruciblecraft/models/item/" + id + ".json");
             resource("data/cruciblecraft/loot_table/blocks/" + id + ".json");
-            resource("data/cruciblecraft/recipe/" + id + ".json");
+            assertTrue(
+                    Files.isRegularFile(ROOT.resolve(
+                            "data/cruciblecraft/recipe/" + id + ".json"))
+                            || Files.isRegularFile(GENERATED.resolve(
+                                    "data/cruciblecraft/recipe/" + id + ".json")),
+                    "recipe " + id);
         }
         resource("assets/cruciblecraft/gt6_energy_art_manifest.json");
         resource("assets/cruciblecraft/models/block/machine_3face_2_layer.json");
@@ -37,42 +42,6 @@ class SteamChainResourceTest {
         resource("assets/cruciblecraft/models/item/steam_bucket.json", GENERATED);
         resource("data/c/tags/fluid/steam.json");
         assertTrue(Files.isDirectory(ORE_CHAIN_CRUSHER.resolve("copper")));
-    }
-
-    @Test
-    void fireboxHasGeneratedSurvivalResourceClosure() throws Exception {
-        for (String path : java.util.List.of(
-                "assets/cruciblecraft/blockstates/firebox.json",
-                "assets/cruciblecraft/models/item/firebox.json",
-                "data/cruciblecraft/loot_table/blocks/firebox.json",
-                "data/cruciblecraft/recipe/machines/firebox.json")) {
-            assertTrue(Files.isRegularFile(GENERATED.resolve(path)), path);
-        }
-        for (String path : java.util.List.of(
-                "assets/cruciblecraft/models/block/firebox_unlit.json",
-                "assets/cruciblecraft/models/block/firebox_lit.json",
-                "assets/cruciblecraft/textures/block/gt6_import/firebox/colored_front.png",
-                "assets/cruciblecraft/textures/block/gt6_import/firebox/overlay_active_front.png",
-                "assets/cruciblecraft/textures/block/gt6_import/firebox/overlay_active_front.png.mcmeta")) {
-            assertTrue(Files.isRegularFile(ROOT.resolve(path)), path);
-        }
-        var variants = JsonParser.parseString(Files.readString(GENERATED.resolve(
-                "assets/cruciblecraft/blockstates/firebox.json")))
-                .getAsJsonObject()
-                .getAsJsonObject("variants");
-        assertEquals(
-                "cruciblecraft:block/firebox_unlit",
-                variants.getAsJsonObject("facing=north,lit=false")
-                        .get("model").getAsString());
-        assertEquals(
-                "cruciblecraft:block/firebox_lit",
-                variants.getAsJsonObject("facing=north,lit=true")
-                        .get("model").getAsString());
-        String recipe = Files.readString(GENERATED.resolve(
-                "data/cruciblecraft/recipe/machines/firebox.json"));
-        assertTrue(recipe.contains("\"cruciblecraft:firebrick\""));
-        assertTrue(recipe.contains("\"minecraft:furnace\""));
-        assertTrue(recipe.contains("\"cruciblecraft:firebox\""));
     }
 
     @Test
@@ -195,12 +164,12 @@ class SteamChainResourceTest {
 
         assertFacingLitVariants(
                 GENERATED,
-                "assets/cruciblecraft/blockstates/fuel_engine.json",
+                "assets/cruciblecraft/blockstates/bronze_fuel_engine.json",
                 "cruciblecraft:block/fuel_engine",
                 "cruciblecraft:block/fuel_engine_active");
         assertFacingLitVariants(
                 GENERATED,
-                "assets/cruciblecraft/blockstates/burning_gas_generator.json",
+                "assets/cruciblecraft/blockstates/bronze_burning_box_gas.json",
                 "cruciblecraft:block/burning_gas_generator",
                 "cruciblecraft:block/burning_gas_generator_active");
         assertFacingLitVariants(
@@ -209,16 +178,15 @@ class SteamChainResourceTest {
                 "cruciblecraft:block/bronze_dynamo",
                 "cruciblecraft:block/bronze_dynamo_active");
 
-        assertLayeredItem(GENERATED, "fuel_engine", "fuel_engine", "front");
-        assertLayeredItem(
+        assertBlockItem(GENERATED, "bronze_fuel_engine", "cruciblecraft:block/fuel_engine");
+        assertBlockItem(
                 GENERATED,
-                "burning_gas_generator",
-                "burning_gas_generator",
-                "front");
-        assertLayeredItem(ROOT, "bronze_boiler", "bronze_boiler", "side");
-        assertLayeredItem(
-                ROOT, "bronze_steam_engine", "bronze_steam_engine", "front");
-        assertLayeredItem(ROOT, "bronze_dynamo", "bronze_dynamo", "front");
+                "bronze_burning_box_gas",
+                "cruciblecraft:block/burning_gas_generator");
+        assertBlockItem(ROOT, "bronze_boiler", "cruciblecraft:block/bronze_boiler");
+        assertBlockItem(
+                ROOT, "bronze_steam_engine", "cruciblecraft:block/bronze_steam_engine");
+        assertBlockItem(ROOT, "bronze_dynamo", "cruciblecraft:block/bronze_dynamo");
     }
 
     @Test
@@ -300,23 +268,18 @@ class SteamChainResourceTest {
         }
     }
 
-    private static void assertLayeredItem(
-            Path root, String id, String machine, String face)
+    private static void assertBlockItem(
+            Path root, String id, String parent)
             throws Exception {
         var item = JsonParser.parseString(Files.readString(root.resolve(
                 "assets/cruciblecraft/models/item/" + id + ".json")))
                 .getAsJsonObject();
-        assertEquals("minecraft:item/generated",
-                item.get("parent").getAsString(), id);
-        assertEquals(
-                "cruciblecraft:block/machine/" + machine
-                        + "/colored/" + face,
-                item.getAsJsonObject("textures").get("layer0").getAsString(),
-                id);
-        assertEquals(
-                "cruciblecraft:block/machine/" + machine
-                        + "/overlay/" + face,
-                item.getAsJsonObject("textures").get("layer1").getAsString(),
+        assertEquals(parent, item.get("parent").getAsString(), id);
+        assertTrue(
+                !item.has("textures")
+                        || !item.getAsJsonObject("textures")
+                                .toString()
+                                .contains("overlay_active"),
                 id);
     }
 

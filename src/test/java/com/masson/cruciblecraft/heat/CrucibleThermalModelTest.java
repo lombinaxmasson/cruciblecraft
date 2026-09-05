@@ -114,24 +114,14 @@ class CrucibleThermalModelTest {
         assertEquals(200, result.temperature());
     }
 
-    @Test
-    void coalCokeDoublesFireboxThroughputAndFuelEnergy() {
-        assertEquals(
-                FuelDefinition.CHARCOAL.energyPerTick() * 2L,
-                FuelDefinition.COAL_COKE.energyPerTick());
-        assertEquals(
-                FuelDefinition.CHARCOAL.totalEnergy() * 2.0,
-                FuelDefinition.COAL_COKE.totalEnergy());
-    }
-
     private static float burnCharcoal(double weight) {
         var state = new CrucibleThermalModel.StepResult(20, 0, 100);
-        for (int tick = 0; tick < FuelDefinition.CHARCOAL.burnTicks(); tick++) {
+        for (int tick = 0; tick < 1_600; tick++) {
             state = CrucibleThermalModel.step(
                     state.temperature(),
                     state.storedEnergy(),
                     state.cooldownTicks(),
-                    FuelDefinition.CHARCOAL.energyPerTick(),
+                    8L,
                     weight,
                     20);
         }

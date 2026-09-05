@@ -9,6 +9,7 @@ import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.client.color.Gt6OpeningBlockColor;
 import com.masson.cruciblecraft.client.color.GtBlockDyeColor;
 import com.masson.cruciblecraft.client.color.HopperBlockColor;
+import com.masson.cruciblecraft.client.color.LogisticsCoreBlockColor;
 import com.masson.cruciblecraft.client.color.MachineBlockColor;
 import com.masson.cruciblecraft.client.color.MaterialItemColor;
 import com.masson.cruciblecraft.client.color.MaterialOreColor;
@@ -16,6 +17,7 @@ import com.masson.cruciblecraft.client.color.MaterialStorageColor;
 import com.masson.cruciblecraft.client.color.RockColor;
 import com.masson.cruciblecraft.client.render.AnvilRenderer;
 import com.masson.cruciblecraft.client.render.CrucibleRenderer;
+import com.masson.cruciblecraft.client.render.PipeCoverRenderer;
 import com.masson.cruciblecraft.client.screen.HopperScreen;
 import com.masson.cruciblecraft.client.screen.StorageScreen;
 import com.masson.cruciblecraft.client.screen.ConfiguredProcessingMachineScreen;
@@ -122,6 +124,12 @@ public class ClientSetup {
                 java.util.Arrays.stream(tintedHoppers)
                         .map(net.minecraft.world.level.block.Block::asItem)
                         .toArray(Item[]::new));
+        Block[] tintedLogisticsCore = LogisticsCoreBlockColor.tintedBlocks();
+        event.register(
+                LogisticsCoreBlockColor::itemColor,
+                java.util.Arrays.stream(tintedLogisticsCore)
+                        .map(net.minecraft.world.level.block.Block::asItem)
+                        .toArray(Item[]::new));
         event.register(GtBlockDyeColor.itemColor(), GtBlockDyeColor.tintedItems());
     }
 
@@ -188,6 +196,9 @@ public class ClientSetup {
                 Gt6OpeningBlockColor::blockColor,
                 Gt6OpeningBlockColor.tintedBlocks());
         event.register(HopperBlockColor::blockColor, HopperBlockColor.tintedBlocks());
+        event.register(
+                LogisticsCoreBlockColor::blockColor,
+                LogisticsCoreBlockColor.tintedBlocks());
         event.register(MaterialOreColor::blockColor, MaterialOreColor.oreBlocks());
         event.register(
                 MaterialStorageColor::blockColor,
@@ -202,6 +213,13 @@ public class ClientSetup {
     static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(ModBlockEntities.CRUCIBLE.get(), CrucibleRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.ANVIL.get(), AnvilRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.ITEM_PIPE.get(), PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.FLUID_PIPE.get(), PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.BATTERY.get(),
+                com.masson.cruciblecraft.energy.battery.BatteryRenderer::new);
     }
 
     @SubscribeEvent

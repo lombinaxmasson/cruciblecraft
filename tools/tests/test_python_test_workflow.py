@@ -151,7 +151,16 @@ class PythonTestWorkflowTest(unittest.TestCase):
         )
         self.assertEqual((), unmatched)
         self.assertEqual(
-            ("test_check_markdown_links", "test_verification_profiles"),
+            (
+                "test_check_markdown_links",
+                "test_logistics_cover_net_remainder",
+                "test_energy_remainder",
+                "test_energy_converter_catalog",
+                "test_energy_batteries",
+                "test_logistics_core",
+                "test_display_cpu",
+                "test_verification_profiles",
+            ),
             names,
         )
 

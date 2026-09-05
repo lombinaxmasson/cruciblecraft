@@ -302,6 +302,29 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
         return energy.stored();
     }
 
+    public long energyCapacity() {
+        return energy.capacity();
+    }
+
+    /** GameTest helper: fill the remaining HU/RU buffer without a recipe. */
+    public boolean seedStoredEnergy(long units) {
+        long room = energy.capacity() - energy.stored();
+        if (units <= 0L || room <= 0L) {
+            return energy.stored() > 0L;
+        }
+        energy.generate(Math.min(units, room));
+        setStatus("running");
+        markPersistentMutation();
+        return true;
+    }
+
+    public void drainStoredEnergy() {
+        energy.restore(new FuelGeneratorEnergy.State(
+                0L, energy.generated(), energy.extracted()));
+        setStatus("idle");
+        markPersistentMutation();
+    }
+
     public long energyGenerated() {
         return energy.generated();
     }

@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.energy.battery.BatteryBlockItem;
+import com.masson.cruciblecraft.energy.battery.EnergyBatteryCatalog;
+import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.item.MaterialItem;
@@ -57,6 +60,7 @@ import com.masson.cruciblecraft.material.CellContentGate;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverComponentTiers;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverType;
 import com.masson.cruciblecraft.worldgen.OreHostVariantCatalog.Host;
 
@@ -82,7 +86,6 @@ public final class ModItems {
             MATERIAL_ORE_ITEMS = new LinkedHashMap<>();
 
     public static final DeferredItem<BlockItem> FIREBRICK = ITEMS.registerSimpleBlockItem("firebrick", ModBlocks.FIREBRICK);
-    public static final DeferredItem<BlockItem> FIREBOX = ITEMS.registerSimpleBlockItem("firebox", ModBlocks.FIREBOX);
     public static final DeferredItem<MaterialMachineBlockItem> CRUCIBLE = ITEMS.register(
             "crucible",
             () -> new MaterialMachineBlockItem(
@@ -123,6 +126,34 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> LARGE_CRUCIBLE =
             ITEMS.registerSimpleBlockItem(
                     "large_crucible", ModBlocks.LARGE_CRUCIBLE);
+    public static final DeferredItem<BlockItem> LOGISTICS_CORE =
+            ITEMS.registerSimpleBlockItem(
+                    "logistics_core", ModBlocks.LOGISTICS_CORE);
+    public static final DeferredItem<BlockItem> GALVANIZED_STEEL_WALL =
+            ITEMS.registerSimpleBlockItem(
+                    "galvanized_steel_wall", ModBlocks.GALVANIZED_STEEL_WALL);
+    public static final DeferredItem<BlockItem> VENTILATION_UNIT =
+            ITEMS.registerSimpleBlockItem(
+                    "ventilation_unit", ModBlocks.VENTILATION_UNIT);
+    public static final DeferredItem<BlockItem> VERSATILE_PROCESSOR_UNIT =
+            ITEMS.registerSimpleBlockItem(
+                    "versatile_processor_unit",
+                    ModBlocks.VERSATILE_PROCESSOR_UNIT);
+    public static final DeferredItem<BlockItem> LOGIC_PROCESSOR_UNIT =
+            ITEMS.registerSimpleBlockItem(
+                    "logic_processor_unit", ModBlocks.LOGIC_PROCESSOR_UNIT);
+    public static final DeferredItem<BlockItem> CONTROL_PROCESSOR_UNIT =
+            ITEMS.registerSimpleBlockItem(
+                    "control_processor_unit",
+                    ModBlocks.CONTROL_PROCESSOR_UNIT);
+    public static final DeferredItem<BlockItem> STORAGE_PROCESSOR_UNIT =
+            ITEMS.registerSimpleBlockItem(
+                    "storage_processor_unit",
+                    ModBlocks.STORAGE_PROCESSOR_UNIT);
+    public static final DeferredItem<BlockItem> CONVERSION_PROCESSOR_UNIT =
+            ITEMS.registerSimpleBlockItem(
+                    "conversion_processor_unit",
+                    ModBlocks.CONVERSION_PROCESSOR_UNIT);
 
     public static final DeferredItem<Item> RAW_CERAMIC_CRUCIBLE =
             ITEMS.registerSimpleItem("raw_ceramic_crucible", new Item.Properties());
@@ -140,8 +171,6 @@ public final class ModItems {
     public static final DeferredItem<CeramicMoldBlockItem> PLATE_MOLD = mold("plate_mold", MoldShape.PLATE);
     public static final DeferredItem<CeramicMoldBlockItem> ROD_MOLD = mold("rod_mold", MoldShape.ROD);
     public static final DeferredItem<CeramicMoldBlockItem> BOLT_MOLD = mold("bolt_mold", MoldShape.BOLT);
-    public static final DeferredItem<Item> COAL_COKE =
-            ITEMS.registerSimpleItem("coal_coke", new Item.Properties());
     public static final DeferredItem<Item> MATCH =
             ITEMS.registerSimpleItem("match", new Item.Properties());
     public static final DeferredItem<ProgrammedCircuitItem> PROGRAMMED_CIRCUIT =
@@ -191,8 +220,6 @@ public final class ModItems {
     public static final DeferredItem<Item>
             TUNGSTEN_CARBIDE_DOUBLE_MACHINE_CASING =
                     machineCasing("tungsten_carbide_double_machine_casing");
-    public static final DeferredItem<BlockItem> BELLOWS =
-            ITEMS.registerSimpleBlockItem("bellows", ModBlocks.BELLOWS);
     public static final DeferredItem<BucketItem> CREOSOTE_BUCKET = ITEMS.register(
             "creosote_bucket",
             () -> new BucketItem(
@@ -305,15 +332,77 @@ public final class ModItems {
                     () -> new PipeCoverItem(
                             "cruciblecraft:logistics_fluid_export",
                             new Item.Properties()));
+    public static final DeferredItem<PipeCoverItem> LOGISTICS_GENERIC_STORAGE_COVER =
+            ITEMS.register(
+                    "logistics_generic_storage_cover",
+                    () -> new PipeCoverItem(
+                            "cruciblecraft:logistics_generic_storage",
+                            new Item.Properties()));
+    public static final DeferredItem<PipeCoverItem> LOGISTICS_GENERIC_IMPORT_COVER =
+            ITEMS.register(
+                    "logistics_generic_import_cover",
+                    () -> new PipeCoverItem(
+                            "cruciblecraft:logistics_generic_import",
+                            new Item.Properties()));
+    public static final DeferredItem<PipeCoverItem> LOGISTICS_GENERIC_EXPORT_COVER =
+            ITEMS.register(
+                    "logistics_generic_export_cover",
+                    () -> new PipeCoverItem(
+                            "cruciblecraft:logistics_generic_export",
+                            new Item.Properties()));
+    public static final DeferredItem<PipeCoverItem> LOGISTICS_GENERIC_DUMP_COVER =
+            ITEMS.register(
+                    "logistics_generic_dump_cover",
+                    () -> new PipeCoverItem(
+                            "cruciblecraft:logistics_generic_dump",
+                            new Item.Properties()));
+    public static final DeferredItem<PipeCoverItem> LOGISTICS_DISPLAY_CPU_LOGIC_COVER =
+            ITEMS.register(
+                    "logistics_display_cpu_logic_cover",
+                    () -> new PipeCoverItem(
+                            "cruciblecraft:logistics_display_cpu_logic",
+                            new Item.Properties()));
+    public static final DeferredItem<PipeCoverItem> LOGISTICS_DISPLAY_CPU_CONTROL_COVER =
+            ITEMS.register(
+                    "logistics_display_cpu_control_cover",
+                    () -> new PipeCoverItem(
+                            "cruciblecraft:logistics_display_cpu_control",
+                            new Item.Properties()));
+    public static final DeferredItem<PipeCoverItem> LOGISTICS_DISPLAY_CPU_STORAGE_COVER =
+            ITEMS.register(
+                    "logistics_display_cpu_storage_cover",
+                    () -> new PipeCoverItem(
+                            "cruciblecraft:logistics_display_cpu_storage",
+                            new Item.Properties()));
+    public static final DeferredItem<PipeCoverItem> LOGISTICS_DISPLAY_CPU_CONVERSION_COVER =
+            ITEMS.register(
+                    "logistics_display_cpu_conversion_cover",
+                    () -> new PipeCoverItem(
+                            "cruciblecraft:logistics_display_cpu_conversion",
+                            new Item.Properties()));
+    private static final Map<
+            String, DeferredItem<PipeCoverItem>> COMPACT_ELECTRIC_COVERS =
+                    registerCompactElectricCovers();
+    private static final Map<
+            ResourceLocation, DeferredItem<BlockItem>> CONVERTER_ITEMS =
+                    registerConverterItems();
+    private static final Map<
+            ResourceLocation, DeferredItem<BatteryBlockItem>> BATTERY_ITEMS =
+                    registerBatteryItems();
     public static final DeferredItem<BlockItem> BRONZE_BOILER =
-            ITEMS.registerSimpleBlockItem("bronze_boiler", ModBlocks.BRONZE_BOILER);
+            converterItem("bronze_boiler");
     public static final DeferredItem<BlockItem> BRONZE_STEAM_ENGINE =
-            ITEMS.registerSimpleBlockItem("bronze_steam_engine", ModBlocks.BRONZE_STEAM_ENGINE);
+            converterItem("bronze_steam_engine");
     public static final DeferredItem<BlockItem> BRONZE_DYNAMO =
-            ITEMS.registerSimpleBlockItem("bronze_dynamo", ModBlocks.BRONZE_DYNAMO);
-    public static final DeferredItem<BlockItem> ELECTRIC_MOTOR =
-            ITEMS.registerSimpleBlockItem(
-                    "electric_motor", ModBlocks.ELECTRIC_MOTOR);
+            converterItem("bronze_dynamo");
+    public static final DeferredItem<BlockItem> STEEL_GALVANIZED_ELECTRIC_MOTOR =
+            converterItem("steel_galvanized_electric_motor");
+    public static final DeferredItem<BlockItem> BRONZE_FUEL_ENGINE =
+            converterItem("bronze_fuel_engine");
+    public static final DeferredItem<BlockItem> BRONZE_BURNING_BOX_GAS =
+            converterItem("bronze_burning_box_gas");
+    public static final DeferredItem<BlockItem> BRONZE_BURNING_BOX_SOLID =
+            converterItem("bronze_burning_box_solid");
     public static final DeferredItem<BlockItem> ROTATIONAL_AXLE =
             ITEMS.registerSimpleBlockItem(
                     "rotational_axle", ModBlocks.ROTATIONAL_AXLE);
@@ -451,13 +540,6 @@ public final class ModItems {
             ITEMS.registerSimpleBlockItem(
                     "fluid_deposit_extractor",
                     ModBlocks.FLUID_DEPOSIT_EXTRACTOR);
-    public static final DeferredItem<BlockItem> FUEL_ENGINE =
-            ITEMS.registerSimpleBlockItem(
-                    "fuel_engine", ModBlocks.FUEL_ENGINE);
-    public static final DeferredItem<BlockItem> BURNING_GAS_GENERATOR =
-            ITEMS.registerSimpleBlockItem(
-                    "burning_gas_generator",
-                    ModBlocks.BURNING_GAS_GENERATOR);
     public static final DeferredItem<SmithingHammerItem> SMITHING_HAMMER =
             ITEMS.register(
                     "smithing_hammer",
@@ -623,6 +705,15 @@ public final class ModItems {
         return MATERIAL_ITEMS.values();
     }
 
+    public static DeferredItem<PipeCoverItem> compactElectricCover(
+            String itemPath) {
+        return COMPACT_ELECTRIC_COVERS.get(itemPath);
+    }
+
+    public static Collection<DeferredItem<PipeCoverItem>> compactElectricCovers() {
+        return COMPACT_ELECTRIC_COVERS.values();
+    }
+
     public static DeferredItem<BlockItem> oreItem(String materialId, Host host) {
         DeferredItem<BlockItem> item =
                 MATERIAL_ORE_ITEMS.get(new ModBlocks.OreBlockKey(materialId, host));
@@ -694,6 +785,93 @@ public final class ModItems {
                         ModBlocks.CERAMIC_MOLD.get(),
                         shape,
                         new Item.Properties().stacksTo(1)));
+    }
+
+    private static Map<String, DeferredItem<PipeCoverItem>>
+            registerCompactElectricCovers() {
+        LinkedHashMap<String, DeferredItem<PipeCoverItem>> items =
+                new LinkedHashMap<>();
+        for (CoverComponentTiers.Entry entry
+                : CoverComponentTiers.entries()) {
+            DeferredItem<PipeCoverItem> item = ITEMS.register(
+                    entry.itemPath(),
+                    () -> new PipeCoverItem(
+                            entry.definitionId(),
+                            new Item.Properties()));
+            if (items.put(entry.itemPath(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate compact electric cover "
+                                + entry.itemPath());
+            }
+        }
+        if (items.size() != CoverComponentTiers.entries().size()) {
+            throw new IllegalStateException(
+                    "Compact electric cover registration drifted");
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    private static Map<ResourceLocation, DeferredItem<BlockItem>>
+            registerConverterItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<BlockItem>> items =
+                new LinkedHashMap<>();
+        for (var profile : EnergyConverterCatalog.profiles()) {
+            DeferredItem<BlockItem> item = ITEMS.registerSimpleBlockItem(
+                    profile.id().getPath(),
+                    ModBlocks.converterBlocksById().get(profile.id()));
+            if (items.put(profile.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate converter item " + profile.id());
+            }
+        }
+        if (items.size() != EnergyConverterCatalog.profiles().size()) {
+            throw new IllegalStateException(
+                    "Converter item registration drifted from catalog rows");
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    private static DeferredItem<BlockItem> converterItem(String path) {
+        DeferredItem<BlockItem> item = CONVERTER_ITEMS.get(
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, path));
+        if (item == null) {
+            throw new IllegalStateException(
+                    "Missing catalog converter item " + path);
+        }
+        return item;
+    }
+
+    public static Map<ResourceLocation, DeferredItem<BlockItem>>
+            converterItemsById() {
+        return CONVERTER_ITEMS;
+    }
+
+    private static Map<ResourceLocation, DeferredItem<BatteryBlockItem>>
+            registerBatteryItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<BatteryBlockItem>> items =
+                new LinkedHashMap<>();
+        for (var profile : EnergyBatteryCatalog.profiles()) {
+            DeferredItem<BatteryBlockItem> item = ITEMS.register(
+                    profile.id().getPath(),
+                    () -> new BatteryBlockItem(
+                            ModBlocks.batteryBlocksById().get(profile.id()).get(),
+                            new Item.Properties()));
+            if (items.put(profile.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate battery item " + profile.id());
+            }
+        }
+        if (items.size() != EnergyBatteryCatalog.profiles().size()) {
+            throw new IllegalStateException(
+                    "Battery item registration drifted from catalog rows");
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    public static Map<ResourceLocation, DeferredItem<BatteryBlockItem>>
+            batteryItemsById() {
+        return BATTERY_ITEMS;
     }
 
     private static Map<ResourceLocation, DeferredItem<BlockItem>>

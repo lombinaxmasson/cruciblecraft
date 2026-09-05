@@ -40,7 +40,11 @@ public final class ItemNetworkKinds {
             return false;
         }
         String path = id.getPath();
-        return path.startsWith("logistics_generic_");
+        if (!path.startsWith("logistics_")) {
+            return false;
+        }
+        return !com.masson.cruciblecraft.logistics.core.LogisticsDumpKinds
+                .KNOWN_LOGISTICS_PATHS.contains(path);
     }
 
     public static Optional<TransferDirection> direction(ResourceLocation id) {

@@ -1,0 +1,26 @@
+{
+  "command": ".\\gradlew.bat runGameTestServer -PwaveRecipes=runtime/generic-network-core --offline",
+  "failed": 0,
+  "java_source": "src/main/java/com/masson/cruciblecraft/gametest/GenericNetworkCoreGameTests.java",
+  "log_path": "tools/waves/runtime/generic-network-core/gametest.log",
+  "namespace": "cruciblecraft_wave_runtime_generic_network_core",
+  "note": "Isolated dedicated GameTestServer. Skip is not pass. Generic covers claim their face so local pipe distribute cannot swallow adjacent chests/tanks. --offline uses the existing Gradle dist.",
+  "passed": 10,
+  "required_tests": 10,
+  "schema_version": 1,
+  "skip_is_not_pass": true,
+  "status": "PASS",
+  "test_ids": [
+    "coveridentitysurvivesblockentityreload",
+    "coversaresurvivalcraftable",
+    "differentidentityisinvisible",
+    "disconnectedpipesarenotonenetwork",
+    "importpullsfromstorage",
+    "loadaxiscapsarerecorded",
+    "notargetdoesnotswallowitems",
+    "playersurfaceisregistered",
+    "sameidentityconnectedexportsfluidsintostorage",
+    "sameidentityconnectedexportsintostorage"
+  ],
+  "wave_slug": "runtime/generic-network-core"
+}

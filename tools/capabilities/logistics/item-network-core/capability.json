@@ -2,24 +2,51 @@
   "schema_version": 2,
   "slug": "logistics/item-network-core",
   "title": "Item network core",
-  "maturity": "runtime_ready",
+  "maturity": "player_complete",
   "workflow": "accepted",
   "owned_paths": [
     "src/main/java/com/masson/cruciblecraft/logistics/itemnet/**",
     "src/main/java/com/masson/cruciblecraft/content/blockentity/ItemPipeBlockEntity.java",
     "src/main/java/com/masson/cruciblecraft/gametest/ItemNetworkCoreGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/verification/PlayerCompleteSmoke.java",
+    "src/main/java/com/masson/cruciblecraft/client/ClientSmoke.java",
+    "src/main/java/com/masson/cruciblecraft/compat/emi/CrucibleCraftEmiPlugin.java",
+    "src/main/java/com/masson/cruciblecraft/compat/emi/ProcessingEmiRegistrationPlan.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModCreativeTabs.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
     "src/main/resources/data/cruciblecraft/item_network_cover_definitions.json",
     "src/main/resources/data/cruciblecraft_wave_runtime_item_network_core/**",
+    "src/generated/resources/data/cruciblecraft/recipe/logistics_item_*_cover.json",
+    "src/generated/resources/assets/cruciblecraft/models/item/logistics_item_*_cover.json",
+    "src/generated/resources/assets/cruciblecraft/lang/*.json",
+    "tools/capabilities/logistics/item-network-core/**",
     "tools/waves/runtime/item-network-core/**",
-    "tools/tests/test_item_network_core.py"
+    "tools/tests/test_item_network_core.py",
+    "tools/player_complete.py",
+    "tools/build_player_complete.py",
+    "tools/tests/test_player_complete.py"
   ],
   "depends_on": [
     "logistics/cover-net-r0"
   ],
-  "profiles": ["capability-runtime"],
+  "profiles": ["capability-runtime", "player-complete"],
   "wave_slug": "runtime/item-network-core",
   "legacy_readiness": "tools/waves/runtime/item-network-core/readiness.json",
-  "player_signoff": null,
+  "player_signoff": "tools/capabilities/logistics/item-network-core/player_signoff.json",
+  "required_test_ids": [
+    "chunkUnloadHidesEndpointThenRejoins",
+    "coverIdentitySurvivesBlockEntityReload",
+    "coversAreSurvivalCraftable",
+    "definitionsSurviveDatapackReload",
+    "differentIdentityIsInvisible",
+    "disconnectedPipesAreNotOneNetwork",
+    "importPullsFromStorage",
+    "loadAxisCapsAreRecorded",
+    "noTargetDoesNotSwallowItems",
+    "playerSurfaceIsRegistered",
+    "removingStorageStopsTransfer",
+    "sameIdentityConnectedExportsIntoStorage"
+  ],
   "identity_disposition": [],
-  "note": "Mechanism can run. Not player_complete."
+  "note": "Survival craftable storage/import/export covers. Generic and Dump remain frozen."
 }

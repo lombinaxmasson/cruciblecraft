@@ -1,0 +1,88 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.bath#1131",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [
+            {
+              "amount": 9,
+              "id": "cruciblecraft:dye_flower_lightblue"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 9,
+              "id": "cruciblecraft:dye_watermixed_lightblue"
+            }
+          ],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "a055a74dd09724b97b1cd3b36decfc30e8fb816b12076b49333e234dd2ea8256",
+        "f3db9009c44211b081663b7bb6c7bb091e4e66f2194f6a51bd61f05822af0d2b"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "minecraft:white_wool"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "minecraft:light_blue_wool"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:bath/remainder/765ba8f18187fa24",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:bath/remainder/bc9b9dbc0ed89e86",
+        1,
+        1
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 0,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.bath#1131",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:bath/remainder/exact_multi",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:bath",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

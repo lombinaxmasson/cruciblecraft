@@ -1,0 +1,71 @@
+{
+  "schema_version": 2,
+  "slug": "logistics/display-cpu",
+  "title": "Logistics Display CPU",
+  "maturity": "player_complete",
+  "workflow": "accepted",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/logistics/displaycpu/**",
+    "src/main/java/com/masson/cruciblecraft/gametest/DisplayCpuGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/verification/PlayerCompleteSmoke.java",
+    "src/main/java/com/masson/cruciblecraft/client/ClientSmoke.java",
+    "src/main/resources/data/cruciblecraft/logistics_display_cpu_cover_definitions.json",
+    "src/main/resources/data/cruciblecraft_wave_runtime_display_cpu/**",
+    "src/generated/resources/data/cruciblecraft/recipe/logistics_display_cpu_*_cover.json",
+    "src/generated/resources/assets/cruciblecraft/models/item/logistics_display_cpu_*_cover.json",
+    "src/generated/resources/assets/cruciblecraft/lang/*.json",
+    "src/main/resources/assets/cruciblecraft/display_cpu_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/logistics_display_cpu_*.png",
+    "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/covers/display_cpu_*/**",
+    "src/test/java/com/masson/cruciblecraft/logistics/displaycpu/**",
+    "src/test/java/com/masson/cruciblecraft/datagen/DisplayCpuResourceTest.java",
+    "tools/capabilities/logistics/display-cpu/**",
+    "tools/waves/runtime/display-cpu/**",
+    "tools/tests/test_display_cpu.py",
+    "tools/player_complete.py",
+    "tools/build_player_complete.py",
+    "tools/tests/test_player_complete.py"
+  ],
+  "depends_on": [
+    "logistics/cover-net-r0",
+    "logistics/logistics-core"
+  ],
+  "profiles": ["capability-runtime", "player-complete"],
+  "wave_slug": "runtime/display-cpu",
+  "legacy_readiness": "tools/waves/runtime/display-cpu/readiness.json",
+  "player_signoff": "tools/capabilities/logistics/display-cpu/player_signoff.json",
+  "required_test_ids": [
+    "displayCoverIsSurvivalCraftable",
+    "formedCoreWritesDisplayLoad",
+    "missingCoreStaysZero",
+    "playerSurfaceIsRegistered",
+    "shapelessDisplayCycle"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "cover:logistics_display_cpu_logic",
+      "disposition": "new_distinct",
+      "runtime_ids": ["cruciblecraft:logistics_display_cpu_logic"],
+      "reason": "GT6 CoverLogisticsDisplayCPULogic status cover, not a processor unit block."
+    },
+    {
+      "semantic_key": "cover:logistics_display_cpu_control",
+      "disposition": "new_distinct",
+      "runtime_ids": ["cruciblecraft:logistics_display_cpu_control"],
+      "reason": "GT6 CoverLogisticsDisplayCPUControl status cover."
+    },
+    {
+      "semantic_key": "cover:logistics_display_cpu_storage",
+      "disposition": "new_distinct",
+      "runtime_ids": ["cruciblecraft:logistics_display_cpu_storage"],
+      "reason": "GT6 CoverLogisticsDisplayCPUStorage status cover."
+    },
+    {
+      "semantic_key": "cover:logistics_display_cpu_conversion",
+      "disposition": "new_distinct",
+      "runtime_ids": ["cruciblecraft:logistics_display_cpu_conversion"],
+      "reason": "GT6 CoverLogisticsDisplayCPUConversion status cover."
+    }
+  ],
+  "note": "Four Display CPU status covers on pipes scanned by Logistics Core. Player names 物流监视器(逻辑/控制/存储/转换处理器). Not processor unit blocks, not crystal processors, not Batteries. Source is local gt6_code."
+}

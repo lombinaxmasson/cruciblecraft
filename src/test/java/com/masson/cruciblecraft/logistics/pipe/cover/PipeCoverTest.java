@@ -152,10 +152,22 @@ class PipeCoverTest {
                 restored.get(Direction.WEST).orElseThrow()
                         .config().networkId().orElse(0));
 
+        PipeCover retriever = PipeCover.of("cruciblecraft:retriever_item")
+                .withConfig(PipeCoverConfig.EMPTY.withInvert(1));
+        assertTrue(original.set(Direction.NORTH, retriever));
+        CompoundTag invertTag = new CompoundTag();
+        original.save(invertTag, null);
+        PipeCoverSet invertRestored = new PipeCoverSet();
+        invertRestored.load(invertTag, null);
+        assertEquals(
+                1,
+                invertRestored.get(Direction.NORTH).orElseThrow()
+                        .config().invert().orElse(0));
+
         CompoundTag forbidden = new CompoundTag();
         forbidden.putString("side", "east");
         forbidden.putString(
-                "definition", "cruciblecraft:logistics_generic_dump");
+                "definition", "cruciblecraft:logistics_battery");
         ListTag rows = new ListTag();
         rows.add(forbidden);
         CompoundTag bad = new CompoundTag();

@@ -6,6 +6,8 @@ import com.masson.cruciblecraft.content.block.DynamoBlock;
 import com.masson.cruciblecraft.energy.BronzeDynamoEnergy;
 import com.masson.cruciblecraft.energy.EnergyEmitter;
 import com.masson.cruciblecraft.energy.PerTickEnergyBudget;
+import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
+import com.masson.cruciblecraft.energy.converter.EnergyConverterProfile;
 import com.masson.cruciblecraft.machine.CheckpointDecisions;
 import com.masson.cruciblecraft.machine.component.CheckpointTracker;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
@@ -13,6 +15,7 @@ import com.masson.cruciblecraft.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -23,12 +26,20 @@ import net.minecraft.world.level.block.state.BlockState;
 
 /** Source-10111 bronze dynamo: RU back input, waste-policy EU front output. */
 public final class DynamoBlockEntity extends BlockEntity implements IEnergyHandler {
-    private final BronzeDynamoEnergy energy = new BronzeDynamoEnergy();
+    private final BronzeDynamoEnergy energy;
     private final PerTickEnergyBudget outputBudget = new PerTickEnergyBudget();
     private final CheckpointTracker checkpoint = new CheckpointTracker();
 
     public DynamoBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.DYNAMO.get(), pos, state);
+        EnergyConverterProfile profile = EnergyConverterCatalog.require(
+                BuiltInRegistries.BLOCK.getKey(state.getBlock()));
+        EnergyConverterProfile.Window window = profile.inputWindow();
+        energy = new BronzeDynamoEnergy(
+                window.minimum(),
+                window.nominal(),
+                window.maximum(),
+                profile.outputPacket().size());
     }
 
     public static void serverTick(

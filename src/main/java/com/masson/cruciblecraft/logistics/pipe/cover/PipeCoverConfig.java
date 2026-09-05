@@ -14,7 +14,10 @@ public record PipeCoverConfig(
         Optional<Integer> exactCount,
         Optional<CoverDefinition.TransferMode> mode,
         Optional<Integer> selector,
-        Optional<Integer> networkId) {
+        Optional<Integer> networkId,
+        Optional<Integer> invert,
+        int visual,
+        int redstone) {
     public static final int MAX_MATCH_ID_LENGTH = 128;
     public static final PipeCoverConfig EMPTY = new PipeCoverConfig(
             Optional.empty(),
@@ -23,7 +26,10 @@ public record PipeCoverConfig(
             Optional.empty(),
             Optional.empty(),
             Optional.empty(),
-            Optional.empty());
+            Optional.empty(),
+            Optional.empty(),
+            0,
+            0);
 
     public PipeCoverConfig {
         matchId = matchId == null ? Optional.empty() : matchId;
@@ -35,6 +41,7 @@ public record PipeCoverConfig(
         mode = mode == null ? Optional.empty() : mode;
         selector = selector == null ? Optional.empty() : selector;
         networkId = networkId == null ? Optional.empty() : networkId;
+        invert = invert == null ? Optional.empty() : invert;
         matchId.ifPresent(id -> {
             if (id.length() > MAX_MATCH_ID_LENGTH
                     || ResourceLocation.tryParse(id) == null) {
@@ -55,6 +62,9 @@ public record PipeCoverConfig(
                 "selector", value, 0, CoverDefinition.MAX_SELECTOR));
         networkId.ifPresent(value -> bounded(
                 "network id", value, 0, CoverDefinition.MAX_NETWORK_ID));
+        invert.ifPresent(value -> bounded("invert", value, 0, 1));
+        bounded("visual", visual, 0, 10);
+        bounded("redstone", redstone, 0, 15);
     }
 
     public Set<CoverDefinition.ConfigField> presentFields() {
@@ -75,6 +85,48 @@ public record PipeCoverConfig(
         return Set.copyOf(fields);
     }
 
+    public PipeCoverConfig withMatchId(String id) {
+        return new PipeCoverConfig(
+                Optional.of(id),
+                rate,
+                pressureThreshold,
+                exactCount,
+                mode,
+                selector,
+                networkId,
+                invert,
+                visual,
+                redstone);
+    }
+
+    public PipeCoverConfig withInvert(int value) {
+        return new PipeCoverConfig(
+                matchId,
+                rate,
+                pressureThreshold,
+                exactCount,
+                mode,
+                selector,
+                networkId,
+                Optional.of(value),
+                visual,
+                redstone);
+    }
+
+    public PipeCoverConfig withDisplay(int nextVisual, int nextRedstone) {
+        return new PipeCoverConfig(
+                matchId,
+                rate,
+                pressureThreshold,
+                exactCount,
+                mode,
+                selector,
+                networkId,
+                invert,
+                nextVisual,
+                nextRedstone);
+    }
+
     public PipeCoverConfig with(
             CoverDefinition.ConfigField field, int value) {
         return switch (field) {
@@ -85,7 +137,10 @@ public record PipeCoverConfig(
                     exactCount,
                     mode,
                     selector,
-                    networkId);
+                    networkId,
+                    invert,
+                    visual,
+                    redstone);
             case PRESSURE_THRESHOLD -> new PipeCoverConfig(
                     matchId,
                     rate,
@@ -93,7 +148,10 @@ public record PipeCoverConfig(
                     exactCount,
                     mode,
                     selector,
-                    networkId);
+                    networkId,
+                    invert,
+                    visual,
+                    redstone);
             case EXACT_COUNT -> new PipeCoverConfig(
                     matchId,
                     rate,
@@ -101,7 +159,10 @@ public record PipeCoverConfig(
                     Optional.of(value),
                     mode,
                     selector,
-                    networkId);
+                    networkId,
+                    invert,
+                    visual,
+                    redstone);
             case MODE -> {
                 if (value < 0
                         || value
@@ -117,7 +178,10 @@ public record PipeCoverConfig(
                         Optional.of(
                                 CoverDefinition.TransferMode.values()[value]),
                         selector,
-                        networkId);
+                        networkId,
+                        invert,
+                        visual,
+                        redstone);
             }
             case SELECTOR -> new PipeCoverConfig(
                     matchId,
@@ -126,7 +190,10 @@ public record PipeCoverConfig(
                     exactCount,
                     mode,
                     Optional.of(value),
-                    networkId);
+                    networkId,
+                    invert,
+                    visual,
+                    redstone);
             case NETWORK_ID -> new PipeCoverConfig(
                     matchId,
                     rate,
@@ -134,7 +201,10 @@ public record PipeCoverConfig(
                     exactCount,
                     mode,
                     selector,
-                    Optional.of(value));
+                    Optional.of(value),
+                    invert,
+                    visual,
+                    redstone);
             case MATCH_ID -> throw new IllegalArgumentException(
                     "Match id is not an integer cover field");
         };

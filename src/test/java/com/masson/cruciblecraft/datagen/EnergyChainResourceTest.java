@@ -41,8 +41,8 @@ class EnergyChainResourceTest {
         assertModelParent("fuel_engine", "machine_3face_2_layer");
         assertModelParent("fuel_engine_active", "machine_3face_2_layer");
         assertTextureRoot("fuel_engine", "machines/generators/motor_liquid");
-        assertBlockstateLitVariants(readBlockstate("fuel_engine"));
-        assertItemUsesInactiveLayers("fuel_engine");
+        assertBlockstateLitVariants(readBlockstate("bronze_fuel_engine"));
+        assertItemUsesInactiveBlock("bronze_fuel_engine", "fuel_engine");
     }
 
     @Test
@@ -53,8 +53,8 @@ class EnergyChainResourceTest {
         assertFalse(modelJson("burning_gas_generator").contains("burning_liquid"));
         assertFalse(modelJson("burning_gas_generator").contains("burning_solid"));
         assertFalse(modelJson("burning_gas_generator").contains("hot_fluid"));
-        assertBlockstateLitVariants(readBlockstate("burning_gas_generator"));
-        assertItemUsesInactiveLayers("burning_gas_generator");
+        assertBlockstateLitVariants(readBlockstate("bronze_burning_box_gas"));
+        assertItemUsesInactiveBlock("bronze_burning_box_gas", "burning_gas_generator");
     }
 
     @Test
@@ -93,7 +93,7 @@ class EnergyChainResourceTest {
         assertBlockstateLitVariants(JsonParser.parseString(Files.readString(
                 ROOT.resolve("assets/cruciblecraft/blockstates/bronze_dynamo.json")))
                 .getAsJsonObject());
-        assertEquals("tin_alloy",
+        assertEquals("steel_galvanized",
                 MachineBlockColor.casingMaterialId("bronze_dynamo"));
     }
 
@@ -148,16 +148,22 @@ class EnergyChainResourceTest {
         assertTrue(variants.toString().contains("facing=east"));
     }
 
-    private static void assertItemUsesInactiveLayers(String id) throws Exception {
+    private static void assertItemUsesInactiveBlock(String id, String textureId)
+            throws Exception {
         Path main = ROOT.resolve("assets/cruciblecraft/models/item/" + id + ".json");
         Path generated = GENERATED.resolve("assets/cruciblecraft/models/item/" + id + ".json");
         Path path = Files.isRegularFile(main) ? main : generated;
         assertTrue(Files.isRegularFile(path), id);
         var item = JsonParser.parseString(Files.readString(path)).getAsJsonObject();
-        assertEquals("minecraft:item/generated", item.get("parent").getAsString());
-        String textures = item.getAsJsonObject("textures").toString();
-        assertTrue(textures.contains("block/machine/" + id + "/colored/front"));
-        assertTrue(textures.contains("block/machine/" + id + "/overlay/front"));
-        assertFalse(textures.contains("overlay_active"));
+        assertEquals(
+                "cruciblecraft:block/" + textureId,
+                item.get("parent").getAsString(),
+                id);
+        assertFalse(item.get("parent").getAsString().contains("_active"));
+        if (item.has("textures")) {
+            assertFalse(item.getAsJsonObject("textures")
+                    .toString()
+                    .contains("overlay_active"));
+        }
     }
 }

@@ -1,0 +1,544 @@
+{
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "kinds": [
+    {
+      "id": "cruciblecraft:burning_box_brick",
+      "runtime": "solid_burning_box",
+      "fuel_map": "FM.Furnace",
+      "accepts": [
+        "ITEM_FURNACE_FUEL"
+      ],
+      "emits": [
+        "HU"
+      ],
+      "faces": {
+        "energyInputs": [],
+        "energyOutputs": [
+          "UP"
+        ],
+        "fluidInputs": [],
+        "fluidOutputs": []
+      },
+      "texture_profile": "burning_box_brick",
+      "overlay_active": true,
+      "lang_key_en": "Brick Burning Box",
+      "lang_key_zh": "砖燃烧室",
+      "gt6_class": "MultiTileEntityGeneratorBrick"
+    },
+    {
+      "id": "cruciblecraft:burning_box_solid",
+      "runtime": "solid_burning_box",
+      "fuel_map": "FM.Furnace",
+      "accepts": [
+        "ITEM_FURNACE_FUEL"
+      ],
+      "emits": [
+        "HU"
+      ],
+      "faces": {
+        "energyInputs": [],
+        "energyOutputs": [
+          "UP"
+        ],
+        "fluidInputs": [],
+        "fluidOutputs": []
+      },
+      "texture_profile": "burning_box_solid",
+      "overlay_active": true,
+      "lang_key_en": "Solid Burning Box",
+      "lang_key_zh": "固体燃烧室",
+      "gt6_class": "MultiTileEntityGeneratorMetal"
+    },
+    {
+      "id": "cruciblecraft:burning_box_solid_dense",
+      "runtime": "solid_burning_box",
+      "fuel_map": "FM.Furnace",
+      "accepts": [
+        "ITEM_FURNACE_FUEL"
+      ],
+      "emits": [
+        "HU"
+      ],
+      "faces": {
+        "energyInputs": [],
+        "energyOutputs": [
+          "UP"
+        ],
+        "fluidInputs": [],
+        "fluidOutputs": []
+      },
+      "texture_profile": "burning_box_solid",
+      "overlay_active": true,
+      "lang_key_en": "Dense Solid Burning Box",
+      "lang_key_zh": "致密固体燃烧室",
+      "gt6_class": "MultiTileEntityGeneratorMetal"
+    },
+    {
+      "id": "cruciblecraft:burning_box_liquid",
+      "runtime": "fluid_burning_box",
+      "fuel_map": "FM.Burn",
+      "accepts": [
+        "FLUID_BURN"
+      ],
+      "emits": [
+        "HU"
+      ],
+      "faces": {
+        "energyInputs": [],
+        "energyOutputs": [
+          "UP"
+        ],
+        "fluidInputs": [
+          "NORTH",
+          "SOUTH"
+        ],
+        "fluidOutputs": [
+          "NORTH",
+          "SOUTH"
+        ]
+      },
+      "texture_profile": "burning_box_liquid",
+      "overlay_active": true,
+      "lang_key_en": "Liquid Burning Box",
+      "lang_key_zh": "液体燃烧室",
+      "gt6_class": "MultiTileEntityGeneratorLiquid"
+    },
+    {
+      "id": "cruciblecraft:burning_box_liquid_dense",
+      "runtime": "fluid_burning_box",
+      "fuel_map": "FM.Burn",
+      "accepts": [
+        "FLUID_BURN"
+      ],
+      "emits": [
+        "HU"
+      ],
+      "faces": {
+        "energyInputs": [],
+        "energyOutputs": [
+          "UP"
+        ],
+        "fluidInputs": [
+          "NORTH",
+          "SOUTH"
+        ],
+        "fluidOutputs": [
+          "NORTH",
+          "SOUTH"
+        ]
+      },
+      "texture_profile": "burning_box_liquid",
+      "overlay_active": true,
+      "lang_key_en": "Dense Liquid Burning Box",
+      "lang_key_zh": "致密液体燃烧室",
+      "gt6_class": "MultiTileEntityGeneratorLiquid"
+    },
+    {
+      "id": "cruciblecraft:burning_box_gas",
+      "runtime": "fluid_burning_box",
+      "fuel_map": "FM.Burn",
+      "accepts": [
+        "FLUID_BURN"
+      ],
+      "emits": [
+        "HU"
+      ],
+      "faces": {
+        "energyInputs": [],
+        "energyOutputs": [
+          "UP"
+        ],
+        "fluidInputs": [
+          "NORTH",
+          "SOUTH"
+        ],
+        "fluidOutputs": [
+          "NORTH",
+          "SOUTH"
+        ]
+      },
+      "texture_profile": "burning_gas_generator",
+      "overlay_active": true,
+      "lang_key_en": "Gas Burning Box",
+      "lang_key_zh": "燃气燃烧室",
+      "gt6_class": "MultiTileEntityGeneratorGas"
+    },
+    {
+      "id": "cruciblecraft:burning_box_gas_dense",
+      "runtime": "fluid_burning_box",
+      "fuel_map": "FM.Burn",
+      "accepts": [
+        "FLUID_BURN"
+      ],
+      "emits": [
+        "HU"
+      ],
+      "faces": {
+        "energyInputs": [],
+        "energyOutputs": [
+          "UP"
+        ],
+        "fluidInputs": [
+          "NORTH",
+          "SOUTH"
+        ],
+        "fluidOutputs": [
+          "NORTH",
+          "SOUTH"
+        ]
+      },
+      "texture_profile": "burning_gas_generator",
+      "overlay_active": true,
+      "lang_key_en": "Dense Gas Burning Box",
+      "lang_key_zh": "致密燃气燃烧室",
+      "gt6_class": "MultiTileEntityGeneratorGas"
+    },
+    {
+      "id": "cruciblecraft:burning_box_fluid_bed",
+      "runtime": "fluid_bed_burning_box",
+      "fuel_map": "FM.FluidBed",
+      "accepts": [
+        "ITEM_FLUIDBED",
+        "FLUID_FLUIDBED"
+      ],
+      "emits": [
+        "HU"
+      ],
+      "faces": {
+        "energyInputs": [],
+        "energyOutputs": [
+          "UP"
+        ],
+        "fluidInputs": [
+          "NORTH"
+        ],
+        "fluidOutputs": []
+      },
+      "texture_profile": "burning_box_fluid_bed",
+      "overlay_active": true,
+      "lang_key_en": "Fluidized Bed Burning Box",
+      "lang_key_zh": "流化床燃烧室",
+      "gt6_class": "MultiTileEntityGeneratorFluidBed"
+    },
+    {
+      "id": "cruciblecraft:burning_box_fluid_bed_dense",
+      "runtime": "fluid_bed_burning_box",
+      "fuel_map": "FM.FluidBed",
+      "accepts": [
+        "ITEM_FLUIDBED",
+        "FLUID_FLUIDBED"
+      ],
+      "emits": [
+        "HU"
+      ],
+      "faces": {
+        "energyInputs": [],
+        "energyOutputs": [
+          "UP"
+        ],
+        "fluidInputs": [
+          "NORTH"
+        ],
+        "fluidOutputs": []
+      },
+      "texture_profile": "burning_box_fluid_bed",
+      "overlay_active": true,
+      "lang_key_en": "Dense Fluidized Bed Burning Box",
+      "lang_key_zh": "致密流化床燃烧室",
+      "gt6_class": "MultiTileEntityGeneratorFluidBed"
+    },
+    {
+      "id": "cruciblecraft:boiler",
+      "runtime": "boiler",
+      "fuel_map": "NONE",
+      "accepts": [
+        "HU",
+        "minecraft:water"
+      ],
+      "emits": [
+        "STEAM"
+      ],
+      "faces": {
+        "energyInputs": [
+          "DOWN"
+        ],
+        "energyOutputs": [],
+        "fluidInputs": [
+          "SIDES"
+        ],
+        "fluidOutputs": [
+          "UP"
+        ]
+      },
+      "texture_profile": "bronze_boiler",
+      "overlay_active": false,
+      "lang_key_en": "Boiler",
+      "lang_key_zh": "锅炉",
+      "gt6_class": "MultiTileEntityBoilerTank"
+    },
+    {
+      "id": "cruciblecraft:strong_boiler",
+      "runtime": "boiler",
+      "fuel_map": "NONE",
+      "accepts": [
+        "HU",
+        "minecraft:water"
+      ],
+      "emits": [
+        "STEAM"
+      ],
+      "faces": {
+        "energyInputs": [
+          "DOWN"
+        ],
+        "energyOutputs": [],
+        "fluidInputs": [
+          "SIDES"
+        ],
+        "fluidOutputs": [
+          "UP"
+        ]
+      },
+      "texture_profile": "bronze_boiler",
+      "overlay_active": false,
+      "lang_key_en": "Strong Boiler",
+      "lang_key_zh": "强化锅炉",
+      "gt6_class": "MultiTileEntityBoilerTank"
+    },
+    {
+      "id": "cruciblecraft:steam_engine",
+      "runtime": "steam_engine",
+      "fuel_map": "NONE",
+      "accepts": [
+        "STEAM"
+      ],
+      "emits": [
+        "KU"
+      ],
+      "faces": {
+        "energyInputs": [],
+        "energyOutputs": [
+          "FRONT"
+        ],
+        "fluidInputs": [
+          "BACK"
+        ],
+        "fluidOutputs": [
+          "SIDES"
+        ]
+      },
+      "texture_profile": "bronze_steam_engine",
+      "overlay_active": false,
+      "lang_key_en": "Steam Engine",
+      "lang_key_zh": "蒸汽机",
+      "gt6_class": "MultiTileEntityEngineSteam"
+    },
+    {
+      "id": "cruciblecraft:strong_steam_engine",
+      "runtime": "steam_engine",
+      "fuel_map": "NONE",
+      "accepts": [
+        "STEAM"
+      ],
+      "emits": [
+        "KU"
+      ],
+      "faces": {
+        "energyInputs": [],
+        "energyOutputs": [
+          "FRONT"
+        ],
+        "fluidInputs": [
+          "BACK"
+        ],
+        "fluidOutputs": [
+          "SIDES"
+        ]
+      },
+      "texture_profile": "bronze_steam_engine",
+      "overlay_active": false,
+      "lang_key_en": "Strong Steam Engine",
+      "lang_key_zh": "强化蒸汽机",
+      "gt6_class": "MultiTileEntityEngineSteam"
+    },
+    {
+      "id": "cruciblecraft:fuel_engine",
+      "runtime": "fuel_engine",
+      "fuel_map": "FM.Engine",
+      "accepts": [
+        "FLUID_ENGINE"
+      ],
+      "emits": [
+        "RU"
+      ],
+      "faces": {
+        "energyInputs": [],
+        "energyOutputs": [
+          "FRONT"
+        ],
+        "fluidInputs": [
+          "UP"
+        ],
+        "fluidOutputs": [
+          "UP"
+        ]
+      },
+      "texture_profile": "fuel_engine",
+      "overlay_active": true,
+      "lang_key_en": "Fuel Engine",
+      "lang_key_zh": "燃油引擎",
+      "gt6_class": "MultiTileEntityMotorLiquid"
+    },
+    {
+      "id": "cruciblecraft:dynamo",
+      "runtime": "dynamo",
+      "fuel_map": "NONE",
+      "accepts": [
+        "RU"
+      ],
+      "emits": [
+        "EU"
+      ],
+      "faces": {
+        "energyInputs": [
+          "BACK"
+        ],
+        "energyOutputs": [
+          "FRONT"
+        ],
+        "fluidInputs": [],
+        "fluidOutputs": []
+      },
+      "texture_profile": "bronze_dynamo",
+      "overlay_active": true,
+      "lang_key_en": "Dynamo",
+      "lang_key_zh": "发电机",
+      "gt6_class": "MultiTileEntityDynamoElectric"
+    },
+    {
+      "id": "cruciblecraft:electric_motor",
+      "runtime": "electric_motor",
+      "fuel_map": "NONE",
+      "accepts": [
+        "EU"
+      ],
+      "emits": [
+        "RU"
+      ],
+      "faces": {
+        "energyInputs": [
+          "BACK"
+        ],
+        "energyOutputs": [
+          "FRONT"
+        ],
+        "fluidInputs": [],
+        "fluidOutputs": []
+      },
+      "texture_profile": "electric_motor",
+      "overlay_active": false,
+      "lang_key_en": "Electric Motor",
+      "lang_key_zh": "电机",
+      "gt6_class": "MultiTileEntityMotorElectric"
+    }
+  ],
+  "material_lang": {
+    "clay_brick": {
+      "lang_key_zh": "砖",
+      "lang_key_en": "Brick"
+    },
+    "lead": {
+      "lang_key_zh": "铅",
+      "lang_key_en": "Lead"
+    },
+    "bismuth": {
+      "lang_key_zh": "铋",
+      "lang_key_en": "Bismuth"
+    },
+    "bronze": {
+      "lang_key_zh": "青铜",
+      "lang_key_en": "Bronze"
+    },
+    "arsenic_copper": {
+      "lang_key_zh": "砷铜",
+      "lang_key_en": "Arsenic Copper"
+    },
+    "arsenic_bronze": {
+      "lang_key_zh": "砷青铜",
+      "lang_key_en": "Arsenic Bronze"
+    },
+    "invar": {
+      "lang_key_zh": "殷钢",
+      "lang_key_en": "Invar"
+    },
+    "steel": {
+      "lang_key_zh": "钢制",
+      "lang_key_en": "Steel"
+    },
+    "chromium": {
+      "lang_key_zh": "铬制",
+      "lang_key_en": "Chromium"
+    },
+    "titanium": {
+      "lang_key_zh": "钛制",
+      "lang_key_en": "Titanium"
+    },
+    "netherite": {
+      "lang_key_zh": "下界合金",
+      "lang_key_en": "Netherite"
+    },
+    "tungsten": {
+      "lang_key_zh": "钨制",
+      "lang_key_en": "Tungsten"
+    },
+    "tungstensteel": {
+      "lang_key_zh": "钨钢",
+      "lang_key_en": "Tungstensteel"
+    },
+    "tantalum_hafnium_carbide": {
+      "lang_key_zh": "钽铪碳化物",
+      "lang_key_en": "Tantalum Hafnium Carbide"
+    },
+    "ultimet": {
+      "lang_key_zh": "阿尔蒂姆",
+      "lang_key_en": "Ultimet"
+    },
+    "tin_alloy": {
+      "lang_key_zh": "锡合金",
+      "lang_key_en": "Tin Alloy"
+    },
+    "brass": {
+      "lang_key_zh": "黄铜",
+      "lang_key_en": "Brass"
+    },
+    "ironwood": {
+      "lang_key_zh": "铁木",
+      "lang_key_en": "Ironwood"
+    },
+    "fiery_steel": {
+      "lang_key_zh": "炽钢",
+      "lang_key_en": "Fiery Steel"
+    },
+    "iridium": {
+      "lang_key_zh": "铱制",
+      "lang_key_en": "Iridium"
+    },
+    "aluminium": {
+      "lang_key_zh": "铝制",
+      "lang_key_en": "Aluminium"
+    },
+    "stainless_steel": {
+      "lang_key_zh": "不锈钢",
+      "lang_key_en": "Stainless Steel"
+    },
+    "steel_galvanized": {
+      "lang_key_zh": "镀锌钢",
+      "lang_key_en": "Steel Galvanized"
+    },
+    "copper": {
+      "lang_key_zh": "铜制",
+      "lang_key_en": "Copper"
+    }
+  }
+}

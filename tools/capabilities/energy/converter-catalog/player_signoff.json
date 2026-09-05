@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "capability": "energy/converter-catalog",
+  "signed": true,
+  "signer": "player",
+  "date": "2026-09-05",
+  "craftable_items": [
+    "bronze_burning_box_solid",
+    "bronze_burning_box_gas",
+    "bronze_boiler",
+    "bronze_steam_engine",
+    "bronze_fuel_engine",
+    "bronze_dynamo",
+    "steel_galvanized_electric_motor"
+  ],
+  "checklist": {
+    "chinese_names_are_player_facing": true,
+    "creative_tab_groups_by_kind": true,
+    "emi_shows_vanilla_crafting": true,
+    "adjacent_hu_uses_bronze_burning_box_gas": true,
+    "solid_box_burns_furnace_fuel": true
+  },
+  "notes": "Catalog converters use GT6 loader geometry. T1 dynamo keeps registry id bronze_dynamo with steel_galvanized casing. Adjacent HU tests stay EnergyMode.ADJACENT. Player 2026-09-06: fluidbed dump needs cruciblecraft:molten_calcite; fluid is registered but has no bucket or cell-gate row, so creative search finds nothing."
+}

@@ -1,0 +1,77 @@
+{
+  "schema_version": 2,
+  "slug": "logistics/generic-network/core",
+  "title": "Generic network core",
+  "maturity": "player_complete",
+  "workflow": "accepted",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/logistics/genericnet/**",
+    "src/main/java/com/masson/cruciblecraft/gametest/GenericNetworkCoreGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/verification/PlayerCompleteSmoke.java",
+    "src/main/java/com/masson/cruciblecraft/client/ClientSmoke.java",
+    "src/main/java/com/masson/cruciblecraft/compat/emi/CrucibleCraftEmiPlugin.java",
+    "src/main/java/com/masson/cruciblecraft/compat/emi/ProcessingEmiRegistrationPlan.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModCreativeTabs.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+    "src/main/resources/data/cruciblecraft/generic_network_cover_definitions.json",
+    "src/main/resources/data/cruciblecraft_wave_runtime_generic_network_core/**",
+    "src/generated/resources/data/cruciblecraft/recipe/logistics_generic_*_cover.json",
+    "src/generated/resources/assets/cruciblecraft/models/item/logistics_generic_*_cover.json",
+    "src/generated/resources/assets/cruciblecraft/lang/*.json",
+    "tools/capabilities/logistics/generic-network/core/**",
+    "tools/waves/runtime/generic-network-core/**",
+    "tools/tests/test_generic_network_core.py",
+    "src/test/java/com/masson/cruciblecraft/logistics/genericnet/**",
+    "tools/player_complete.py",
+    "tools/build_player_complete.py",
+    "tools/tests/test_player_complete.py"
+  ],
+  "depends_on": [
+    "logistics/cover-net-r0",
+    "logistics/item-network-core",
+    "logistics/fluid-network/basic-transfer"
+  ],
+  "profiles": ["capability-runtime", "player-complete"],
+  "wave_slug": "runtime/generic-network-core",
+  "legacy_readiness": "tools/waves/runtime/generic-network-core/readiness.json",
+  "player_signoff": "tools/capabilities/logistics/generic-network/core/player_signoff.json",
+  "required_test_ids": [
+    "coverIdentitySurvivesBlockEntityReload",
+    "coversAreSurvivalCraftable",
+    "differentIdentityIsInvisible",
+    "disconnectedPipesAreNotOneNetwork",
+    "importPullsFromStorage",
+    "loadAxisCapsAreRecorded",
+    "noTargetDoesNotSwallowItems",
+    "playerSurfaceIsRegistered",
+    "sameIdentityConnectedExportsFluidsIntoStorage",
+    "sameIdentityConnectedExportsIntoStorage"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "cover:logistics_generic_storage",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:logistics_generic_storage"
+      ],
+      "reason": "Generic storage cover is a dual-medium kind, distinct from item and fluid storage."
+    },
+    {
+      "semantic_key": "cover:logistics_generic_import",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:logistics_generic_import"
+      ],
+      "reason": "Generic import cover is a dual-medium kind, distinct from item and fluid import."
+    },
+    {
+      "semantic_key": "cover:logistics_generic_export",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:logistics_generic_export"
+      ],
+      "reason": "Generic export cover is a dual-medium kind, distinct from item and fluid export."
+    }
+  ],
+  "note": "Survival craftable storage/import/export covers on item or fluid pipes. Dump belongs to logistics/logistics-core, not this sidecar."
+}

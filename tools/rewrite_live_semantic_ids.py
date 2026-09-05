@@ -10,7 +10,6 @@ import argparse
 import json
 import shutil
 import sys
-from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
@@ -21,10 +20,16 @@ if str(ROOT) not in sys.path:
 from tools import semantic_ids
 from tools import census_common as census
 from tools.recipe_bulk.membership import membership_root
+from tools.recipe_bulk.runtime import GROUP_SPECS, grouped_membership
 
 RECIPE_GENERATED = Path("src/recipe_generated")
 SUPPORT_GENERATED = Path("src/recipe_support_generated")
 SKIP_PARTS = {"archive", ".git", ".gradle", "build", "__pycache__"}
+BIND_LIVE_GROUPS = {
+    str(spec["publication_group"])
+    for spec in GROUP_SPECS
+    if spec.get("bind_live_membership")
+}
 
 
 def _posix(path: Path) -> str:
@@ -161,16 +166,8 @@ def rewrite_wave_routing_schema() -> list[str]:
     return updated
 
 
-def recompute_policy_membership() -> list[str]:
-    family_root = (
-        census.ROOT
-        / "src/recipe_generated/resources/data/cruciblecraft/recipe"
-    )
-    if not family_root.is_dir():
-        return []
-    by_group: dict[str, dict[str, list[str]]] = defaultdict(
-        lambda: {"family_ids": [], "stable_ids": []}
-    )
+def load_compact_families_for_membership(family_root: Path) -> list[dict[str, Any]]:
+    families: list[dict[str, Any]] = []
     skip = {"publication_policy", "dedup_rule"}
     for path in sorted(family_root.rglob("*.json")):
         if any(part in skip for part in path.parts):
@@ -183,32 +180,64 @@ def recompute_policy_membership() -> list[str]:
             inferred = semantic_ids.inferred_publication_group(path.as_posix())
             if inferred:
                 document["publication_group"] = inferred
-                _write_json(path, document)
+                census.write_stable(path, document)
                 group = inferred
         family_id = str(document.get("family_id") or "")
         if not group or not family_id:
             continue
-        by_group[group]["family_ids"].append(family_id)
-        for relation in document.get("relations") or []:
-            if isinstance(relation, dict) and relation.get("stable_id"):
-                by_group[group]["stable_ids"].append(str(relation["stable_id"]))
+        families.append(document)
+    return families
+
+
+def recompute_policy_membership(family_root: Path | None = None) -> list[str]:
+    family_root = family_root or (
+        census.ROOT
+        / "src/recipe_generated/resources/data/cruciblecraft/recipe"
+    )
+    if not family_root.is_dir():
+        return []
+    membership = grouped_membership(load_compact_families_for_membership(family_root))
     updated: list[str] = []
     policy_root = family_root / "publication_policy"
     if not policy_root.is_dir():
         return updated
+    empty_root = membership_root([], [])
     for path in sorted(policy_root.glob("*.json")):
         document = json.loads(path.read_text(encoding="utf-8"))
-        group = str(document.get("publication_group") or "")
-        bucket = by_group.get(group)
-        if not bucket:
+        if document.get("type") != "cruciblecraft:compact_publication_policy":
             continue
-        document["membership_root_sha256"] = membership_root(
-            bucket["family_ids"],
-            bucket["stable_ids"],
-        )
-        document["family_count"] = len(bucket["family_ids"])
-        document["relation_count"] = len(bucket["stable_ids"])
-        _write_json(path, document)
+        group = str(document.get("publication_group") or "")
+        row = membership.get(group)
+        live_families = int(row["family_count"]) if row else 0
+        if live_families == 0:
+            # Missing trees must not keep a stale non-zero family_count.
+            if (
+                int(document.get("family_count") or 0) == 0
+                and int(document.get("relation_count") or 0) == 0
+                and str(document.get("membership_root_sha256") or "") == empty_root
+            ):
+                continue
+            document["family_count"] = 0
+            document["relation_count"] = 0
+            document["membership_root_sha256"] = empty_root
+            census.write_stable(path, document)
+            updated.append(census.relative(path))
+            continue
+        if group in BIND_LIVE_GROUPS:
+            continue
+        next_count = live_families
+        next_relations = int(row["relation_count"])
+        next_root = str(row["membership_root_sha256"])
+        if (
+            int(document.get("family_count") or 0) == next_count
+            and int(document.get("relation_count") or 0) == next_relations
+            and str(document.get("membership_root_sha256") or "") == next_root
+        ):
+            continue
+        document["family_count"] = next_count
+        document["relation_count"] = next_relations
+        document["membership_root_sha256"] = next_root
+        census.write_stable(path, document)
         updated.append(census.relative(path))
     return updated
 

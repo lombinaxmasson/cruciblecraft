@@ -17,6 +17,8 @@ import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.AnvilMode;
+import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
+import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.registry.ModMachineVariants;
@@ -35,6 +37,7 @@ import dev.emi.emi.api.stack.EmiStack;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 
 @EmiEntrypoint
 public final class CrucibleCraftEmiPlugin implements EmiPlugin {
@@ -77,6 +80,7 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         registerMoldCasting(registry);
         registerCrusherRecipes(registry);
         registerProcessingMachines(registry);
+        registerFuelMaps(registry);
         registerDisplayStacks(registry);
         for (var cover : List.of(
                 ModItems.LOGISTICS_ITEM_STORAGE_COVER,
@@ -84,7 +88,15 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                 ModItems.LOGISTICS_ITEM_EXPORT_COVER,
                 ModItems.LOGISTICS_FLUID_STORAGE_COVER,
                 ModItems.LOGISTICS_FLUID_IMPORT_COVER,
-                ModItems.LOGISTICS_FLUID_EXPORT_COVER)) {
+                ModItems.LOGISTICS_FLUID_EXPORT_COVER,
+                ModItems.LOGISTICS_GENERIC_STORAGE_COVER,
+                ModItems.LOGISTICS_GENERIC_IMPORT_COVER,
+                ModItems.LOGISTICS_GENERIC_EXPORT_COVER,
+                ModItems.LOGISTICS_GENERIC_DUMP_COVER,
+                ModItems.LOGISTICS_DISPLAY_CPU_LOGIC_COVER,
+                ModItems.LOGISTICS_DISPLAY_CPU_CONTROL_COVER,
+                ModItems.LOGISTICS_DISPLAY_CPU_STORAGE_COVER,
+                ModItems.LOGISTICS_DISPLAY_CPU_CONVERSION_COVER)) {
             registry.addEmiStack(EmiStack.of(cover.get()));
         }
     }
@@ -234,6 +246,52 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                     entry.id(),
                     entry.recipe()));
         }
+    }
+
+    private static void registerFuelMaps(EmiRegistry registry) {
+        registerFuelMap(
+                registry,
+                ModRecipeMaps.FUELS_ENGINE,
+                "fuels_engine",
+                "fuel_engine");
+        registerFuelMap(
+                registry,
+                ModRecipeMaps.FUELS_GAS,
+                "fuels_gas",
+                "fluid_burning_box");
+        registerFuelMap(
+                registry,
+                ModRecipeMaps.FUELS_FLUIDBED,
+                "fuels_fluidbed",
+                "fluid_bed_burning_box");
+    }
+
+    private static void registerFuelMap(
+            EmiRegistry registry,
+            RecipeMap map,
+            String categoryPath,
+            String runtime) {
+        Block[] workstations = ModBlocks.converterBlocks(runtime);
+        if (workstations.length == 0) {
+            return;
+        }
+        EmiRecipeCategory category = new EmiRecipeCategory(
+                id(categoryPath),
+                EmiStack.of(workstations[0]));
+        registry.addCategory(category);
+        for (Block block : workstations) {
+            registry.addWorkstation(category, EmiStack.of(block));
+        }
+        for (var entry : map.entries()) {
+            registry.addRecipe(new FuelMapEmiRecipe(
+                    entry.id(), category, entry.recipe()));
+        }
+        EnergyConverterCatalog.profiles().stream()
+                .filter(profile -> runtime.equals(profile.runtimeBinding()))
+                .forEach(profile -> registry.addEmiStack(
+                        EmiStack.of(ModItems.converterItemsById()
+                                .get(profile.id())
+                                .get())));
     }
 
     private static void registerProcessingMachines(EmiRegistry registry) {

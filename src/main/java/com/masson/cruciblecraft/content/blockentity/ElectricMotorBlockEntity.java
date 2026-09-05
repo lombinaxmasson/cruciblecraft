@@ -4,6 +4,8 @@ import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.block.ElectricMotorBlock;
 import com.masson.cruciblecraft.energy.PerTickEnergyBudget;
+import com.masson.cruciblecraft.energy.converter.EnergyConverterHost;
+import com.masson.cruciblecraft.energy.converter.EnergyConverterProfile;
 import com.masson.cruciblecraft.energy.rotation.RotationalEnergyTransfer;
 import com.masson.cruciblecraft.machine.processing.MachineEnergyBuffer;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
@@ -16,18 +18,19 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-/** Electric motor: 32 EU input work produces one 16 RU packet. */
+/** Electric motor: catalog EU input work produces one RU packet. */
 public final class ElectricMotorBlockEntity extends BlockEntity
         implements IEnergyHandler {
     public static final long INPUT_NOMINAL = 32L;
     public static final long INPUT_MAXIMUM = 64L;
     public static final long OUTPUT_SIZE = 16L;
-    private static final long CAPACITY = 1_024L;
-
-    private final MachineEnergyBuffer electric =
-            new MachineEnergyBuffer(CAPACITY, INPUT_MAXIMUM);
-    private final MachineEnergyBuffer rotational =
-            new MachineEnergyBuffer(CAPACITY, OUTPUT_SIZE);
+    public static final long CAPACITY = 1_024L;
+    private final EnergyConverterProfile profile;
+    private final long inputNominal;
+    private final long inputMaximum;
+    private final long outputSize;
+    private final MachineEnergyBuffer electric;
+    private final MachineEnergyBuffer rotational;
     private final PerTickEnergyBudget outputBudget =
             new PerTickEnergyBudget();
     private boolean overcharged;
@@ -35,6 +38,23 @@ public final class ElectricMotorBlockEntity extends BlockEntity
     public ElectricMotorBlockEntity(
             BlockPos pos, BlockState state) {
         super(ModBlockEntities.ELECTRIC_MOTOR.get(), pos, state);
+        if (!(state.getBlock() instanceof EnergyConverterHost host)) {
+            throw new IllegalArgumentException(
+                    "Electric motor requires a catalog block");
+        }
+        profile = host.converterProfile();
+        inputNominal = profile.inputPacket().size();
+        EnergyConverterProfile.Window window = profile.inputWindow();
+        inputMaximum = window.maximum() == null
+                ? inputNominal * 2L
+                : window.maximum();
+        outputSize = profile.outputPacket().size();
+        electric = new MachineEnergyBuffer(
+                Math.max(inputNominal, profile.inputCapacity()),
+                Math.max(1L, inputMaximum));
+        rotational = new MachineEnergyBuffer(
+                Math.max(outputSize, profile.outputCapacity()),
+                outputSize);
     }
 
     public static void serverTick(
@@ -42,16 +62,16 @@ public final class ElectricMotorBlockEntity extends BlockEntity
             BlockPos pos,
             BlockState state,
             ElectricMotorBlockEntity motor) {
-        if (motor.electric.canConsume(INPUT_NOMINAL)
+        if (motor.electric.canConsume(motor.inputNominal)
                 && motor.rotational.capacity()
                                 - motor.rotational.stored()
-                        >= OUTPUT_SIZE) {
-            if (!motor.electric.consume(INPUT_NOMINAL)) {
+                        >= motor.outputSize) {
+            if (!motor.electric.consume(motor.inputNominal)) {
                 throw new IllegalStateException(
                         "Motor EU changed after simulation");
             }
             if (motor.rotational.insert(
-                            OUTPUT_SIZE, 1L, false)
+                            motor.outputSize, 1L, false)
                     != 1L) {
                 throw new IllegalStateException(
                         "Motor RU output rejected after simulation");
@@ -89,7 +109,7 @@ public final class ElectricMotorBlockEntity extends BlockEntity
             return 0L;
         }
         if (size == Long.MIN_VALUE
-                || Math.abs(size) > INPUT_MAXIMUM) {
+                || Math.abs(size) > inputMaximum) {
             if (!simulate) {
                 overcharged = true;
                 setChanged();
@@ -107,11 +127,11 @@ public final class ElectricMotorBlockEntity extends BlockEntity
     public long outputSize(EnergyType type, Direction side) {
         return type == EnergyType.KINETIC_ROTATION
                         && handles(type, side)
-                        && rotational.stored() >= OUTPUT_SIZE
+                        && rotational.stored() >= outputSize
                         && outputBudget.claim(
                                         gameTime(), 1L, 1L, true)
                                 > 0L
-                ? OUTPUT_SIZE
+                ? outputSize
                 : 0L;
     }
 
@@ -124,9 +144,9 @@ public final class ElectricMotorBlockEntity extends BlockEntity
             boolean simulate) {
         if (type != EnergyType.KINETIC_ROTATION
                 || !handles(type, side)
-                || size != OUTPUT_SIZE
+                || size != outputSize
                 || maximum <= 0L
-                || rotational.stored() < OUTPUT_SIZE
+                || rotational.stored() < outputSize
                 || outputBudget.claim(
                                 gameTime(), 1L, maximum, true)
                         <= 0L) {
@@ -137,7 +157,7 @@ public final class ElectricMotorBlockEntity extends BlockEntity
         }
         if (outputBudget.claim(gameTime(), 1L, 1L, false)
                         != 1L
-                || !rotational.consume(OUTPUT_SIZE)) {
+                || !rotational.consume(outputSize)) {
             throw new IllegalStateException(
                     "Motor RU changed after simulation");
         }
@@ -157,9 +177,10 @@ public final class ElectricMotorBlockEntity extends BlockEntity
     @Override
     public long capacity(EnergyType type) {
         return type == EnergyType.ELECTRIC
-                        || type == EnergyType.KINETIC_ROTATION
-                ? CAPACITY
-                : 0L;
+                ? electric.capacity()
+                : type == EnergyType.KINETIC_ROTATION
+                        ? rotational.capacity()
+                        : 0L;
     }
 
     public boolean overcharged() {

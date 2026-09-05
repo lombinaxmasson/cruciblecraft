@@ -1,0 +1,66 @@
+{
+  "schema_version": 2,
+  "slug": "energy/converter-catalog",
+  "title": "Energy Converter Catalog",
+  "maturity": "player_complete",
+  "workflow": "accepted",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/energy/converter/**",
+    "src/main/java/com/masson/cruciblecraft/content/block/SolidBurningBoxBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/FluidBedBurningBoxBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/SolidBurningBoxBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/FluidBedBurningBoxBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/EnergyConverterCatalogGameTests.java",
+    "src/main/resources/data/cruciblecraft_wave_runtime_converter_catalog/**",
+    "src/main/resources/data/cruciblecraft/energy_converter_kinds.json",
+    "src/main/resources/data/cruciblecraft/energy_converter_tiers.json",
+    "src/main/resources/data/cruciblecraft/recipe/energy/fuels_fluidbed/**",
+    "src/main/resources/assets/cruciblecraft/gt6_converter_catalog_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_box_solid/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_box_brick/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_box_liquid/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_box_fluid_bed/**",
+    "src/test/java/com/masson/cruciblecraft/energy/converter/**",
+    "tools/capabilities/energy/converter-catalog/**",
+    "tools/waves/runtime/converter-catalog/**",
+    "tools/tests/test_energy_converter_catalog.py",
+    "tools/tests/test_energy_remainder.py",
+    "tools/player_complete.py",
+    "tools/build_player_complete.py",
+    "tools/tests/test_player_complete.py"
+  ],
+  "depends_on": [
+    "logistics/display-cpu"
+  ],
+  "profiles": ["capability-runtime", "player-complete"],
+  "wave_slug": "runtime/converter-catalog",
+  "legacy_readiness": "tools/waves/runtime/converter-catalog/readiness.json",
+  "player_signoff": "tools/capabilities/energy/converter-catalog/player_signoff.json",
+  "required_test_ids": [
+    "gasBurningBoxFeedsAdjacentHu",
+    "playerSurfaceIsRegistered",
+    "representativeRecipesAreSurvivalCraftable",
+    "solidBurningBoxBurnsCoal"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:bronze_burning_box_gas",
+      "disposition": "new_distinct",
+      "runtime_ids": ["cruciblecraft:bronze_burning_box_gas"],
+      "reason": "GT6 GeneratorGas 1602 catalog id; replaces live burning_gas_generator placeholder."
+    },
+    {
+      "semantic_key": "machine:bronze_fuel_engine",
+      "disposition": "new_distinct",
+      "runtime_ids": ["cruciblecraft:bronze_fuel_engine"],
+      "reason": "GT6 MotorLiquid 9147 catalog id; replaces un-tiered fuel_engine."
+    },
+    {
+      "semantic_key": "machine:steel_galvanized_electric_motor",
+      "disposition": "new_distinct",
+      "runtime_ids": ["cruciblecraft:steel_galvanized_electric_motor"],
+      "reason": "GT6 MotorElectric 10021 Electric_T[1]; replaces un-tiered electric_motor."
+    }
+  ],
+  "note": "169 Loader_MultiTileEntities converter rows as kind × material. Shared runtimes, not 169 classes. Historical energy_converters.json stays byte-stable. Batteries are owned by energy/batteries. Source is local gt6_code."
+}

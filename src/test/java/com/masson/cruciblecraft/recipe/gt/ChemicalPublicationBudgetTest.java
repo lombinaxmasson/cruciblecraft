@@ -81,6 +81,9 @@ class ChemicalPublicationBudgetTest {
         assertTrue(CompactWaveRecipeIds.isCompactHostRecipe(
                 id("player_path_support/bath_identity/cruciblecraft_frying_oil_hot")));
         assertTrue(CompactWaveRecipeIds.isCompactHostRecipe(id("bath/tiny_purified/1a8b858f5b602a9c")));
+        assertTrue(CompactWaveRecipeIds.isCompactHostRecipe(id("bath/tiny-purified/1a8b858f5b602a9c")));
+        assertTrue(CompactWaveRecipeIds.isBathRemainderCompactRecipe(
+                id("bath/tiny-purified/1a8b858f5b602a9c")));
         assertTrue(CompactWaveRecipeIds.isCompactHostRecipe(
                 id("player_path_support/bath_tiny_purified/unused")));
         assertFalse(CompactWaveRecipeIds.isCompactHostRecipe(id("machine/bootstrap/roaster/coal_dust_bootstrap")));
