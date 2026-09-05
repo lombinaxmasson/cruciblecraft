@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "source": "gt6_referencable_port_code/gregtech6_w",
+  "notes": [
+    "Item icons use the GT6 cover-face textures.",
+    "Block-atlas copies under textures/block/gt6_import/covers/ are for in-world BER.",
+    "Conveyor, robot-arm, and pump faces are 4-frame animations; copy the mcmeta."
+  ],
+  "imports": [
+    {
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/conveyor_cover.png",
+      "gt6_class": "CoverConveyor",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/conveyor/out.png",
+      "note": "Also conveyor_cover.png.mcmeta. in.png is the inbound face; not used as the item icon."
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/robot_arm_cover.png",
+      "gt6_class": "CoverRobotArm",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/robotarm/out.png",
+      "note": "Also robot_arm_cover.png.mcmeta."
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/retriever_item_cover.png",
+      "gt6_class": "CoverRetrieverItem",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/retrieveritem/normal.png",
+      "note": "inverted.png is the inverted-filter face; not used as the item icon."
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/pressure_valve_cover.png",
+      "gt6_class": "CoverPressureValve",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/pressurevalve/front.png",
+      "note": "side.png is the valve holder; not used as the item icon."
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_pump.png",
+      "gt6_class": "CoverPump",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/pump/out.png",
+      "note": "Shared item icon for all ten compact electric pump tiers. Also compact_electric_pump.png.mcmeta."
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/pipe_pump_cover.png",
+      "gt6_class": "CoverPump",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/pump/out.png",
+      "note": "T19 generic pipe output pump item icon. Also pipe_pump_cover.png.mcmeta. Not an alias of compact_electric_pump."
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/block/gt6_import/covers/base.png",
+      "gt6_class": "AbstractCoverDefault",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/base.png"
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/block/gt6_import/covers/conveyor_in.png",
+      "gt6_class": "CoverConveyor",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/conveyor/in.png"
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/block/gt6_import/covers/conveyor_out.png",
+      "gt6_class": "CoverConveyor",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/conveyor/out.png"
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/block/gt6_import/covers/robot_arm_in.png",
+      "gt6_class": "CoverRobotArm",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/robotarm/in.png"
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/block/gt6_import/covers/robot_arm_out.png",
+      "gt6_class": "CoverRobotArm",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/robotarm/out.png"
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/block/gt6_import/covers/retriever_normal.png",
+      "gt6_class": "CoverRetrieverItem",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/retrieveritem/normal.png"
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/block/gt6_import/covers/retriever_inverted.png",
+      "gt6_class": "CoverRetrieverItem",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/retrieveritem/inverted.png"
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/block/gt6_import/covers/pump_in.png",
+      "gt6_class": "CoverPump",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/pump/in.png"
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/block/gt6_import/covers/pump_out.png",
+      "gt6_class": "CoverPump",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/pump/out.png"
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/block/gt6_import/covers/pressure_valve.png",
+      "gt6_class": "CoverPressureValve",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/pressurevalve/front.png"
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/block/gt6_import/covers/filter_normal.png",
+      "gt6_class": "CoverFilterItem",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/filteritem/normal.png"
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/block/gt6_import/covers/filter_inverted.png",
+      "gt6_class": "CoverFilterItem",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/filteritem/inverted.png"
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/block/gt6_import/covers/shutter.png",
+      "gt6_class": "CoverShutter",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/coverswitch/base.png"
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/block/gt6_import/covers/selector.png",
+      "gt6_class": "CoverSelectorManual",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/manualselector/0.png"
+    }
+  ]
+}

@@ -4,12 +4,14 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
+import static com.masson.cruciblecraft.gametest.GameTestHeatSources.energyCapacity;
+
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.compat.emi.ProcessingEmiRegistrationPlan;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
-import com.masson.cruciblecraft.content.blockentity.FireboxBlockEntity;
-import com.masson.cruciblecraft.heat.FuelDefinition;
+import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
+import com.masson.cruciblecraft.gametest.GameTestHeatSources;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
@@ -178,15 +180,15 @@ public final class RoasterCompactGameTests {
 
     private static ConfiguredProcessingMachineBlockEntity placePowered(
             GameTestHelper helper, BlockPos pos) {
-        helper.setBlock(pos.below(), ModBlocks.FIREBOX.get());
+        GameTestHeatSources.placeHuSource(helper, pos.below());
         ConfiguredProcessingMachineBlockEntity roaster = place(
                 helper,
                 pos,
                 ModBlocks.STEEL_ROASTER.get(),
                 ModProcessingMachines.ROASTER);
-        FireboxBlockEntity firebox = helper.getBlockEntity(pos.below());
+        FuelGeneratorBlockEntity firebox = helper.getBlockEntity(pos.below());
         helper.assertTrue(
-                firebox.addFuel(FuelDefinition.COAL_COKE),
+                firebox.seedStoredEnergy(energyCapacity()),
                 "Could not fuel the adjacent HU roaster");
         helper.assertTrue(
                 roaster.spec().energy().type() == EnergyType.HEAT

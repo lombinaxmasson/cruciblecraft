@@ -9,7 +9,6 @@ import com.masson.cruciblecraft.content.block.AnvilBlock;
 import com.masson.cruciblecraft.content.block.CokeOvenBlock;
 import com.masson.cruciblecraft.content.block.CrucibleBlock;
 import com.masson.cruciblecraft.content.block.CeramicMoldBlock;
-import com.masson.cruciblecraft.content.block.FireboxBlock;
 import com.masson.cruciblecraft.content.block.BoilerBlock;
 import com.masson.cruciblecraft.content.block.SteamEngineBlock;
 import com.masson.cruciblecraft.content.block.CrusherBlock;
@@ -21,7 +20,6 @@ import com.masson.cruciblecraft.content.blockentity.AnvilBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CokeOvenBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CeramicMoldBlockEntity;
-import com.masson.cruciblecraft.content.blockentity.FireboxBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.BoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SteamEngineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrusherBlockEntity;
@@ -62,7 +60,6 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
         registration.registerBlockComponent(AnvilComponentProvider.INSTANCE, AnvilBlock.class);
         registration.registerBlockComponent(CokeOvenComponentProvider.INSTANCE, CokeOvenBlock.class);
         registration.registerBlockComponent(CeramicMoldComponentProvider.INSTANCE, CeramicMoldBlock.class);
-        registration.registerBlockComponent(FireboxComponentProvider.INSTANCE, FireboxBlock.class);
         registration.registerBlockComponent(BoilerComponentProvider.INSTANCE, BoilerBlock.class);
         registration.registerBlockComponent(SteamEngineComponentProvider.INSTANCE, SteamEngineBlock.class);
         registration.registerBlockComponent(CrusherComponentProvider.INSTANCE, CrusherBlock.class);
@@ -312,32 +309,6 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
         }
 
         @Override public ResourceLocation getUid() { return UID; }
-    }
-
-    private enum FireboxComponentProvider implements IBlockComponentProvider {
-        INSTANCE;
-
-        private static final ResourceLocation UID =
-                ResourceLocation.fromNamespaceAndPath(CrucibleCraft.MODID, "firebox");
-
-        @Override
-        public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
-            if (!(accessor.getBlockEntity() instanceof FireboxBlockEntity firebox)) {
-                return;
-            }
-            tooltip.add(Component.translatable(
-                    "jade.cruciblecraft.firebox_heat",
-                    firebox.storedHeat(),
-                    firebox.remainingSeconds()));
-            tooltip.add(Component.translatable(
-                    "jade.cruciblecraft.firebox_output",
-                    firebox.outputRate()));
-        }
-
-        @Override
-        public ResourceLocation getUid() {
-            return UID;
-        }
     }
 
     private enum CrucibleComponentProvider implements IBlockComponentProvider {

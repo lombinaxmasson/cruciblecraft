@@ -11,7 +11,6 @@ import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.block.AnvilBlock;
 import com.masson.cruciblecraft.content.block.RockBlock;
 import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
-import com.masson.cruciblecraft.content.block.BellowsBlock;
 import com.masson.cruciblecraft.content.block.BoilerBlock;
 import com.masson.cruciblecraft.content.block.CokeOvenBlock;
 import com.masson.cruciblecraft.content.block.CeramicMoldBlock;
@@ -20,10 +19,10 @@ import com.masson.cruciblecraft.content.block.CrucibleBlock;
 import com.masson.cruciblecraft.content.block.CrusherBlock;
 import com.masson.cruciblecraft.content.block.DynamoBlock;
 import com.masson.cruciblecraft.content.block.ElectricMotorBlock;
-import com.masson.cruciblecraft.content.block.FireboxBlock;
 import com.masson.cruciblecraft.content.block.FluidPipeBlock;
 import com.masson.cruciblecraft.content.block.FluidDepositExtractorBlock;
 import com.masson.cruciblecraft.content.block.FuelGeneratorBlock;
+import com.masson.cruciblecraft.content.block.FluidBedBurningBoxBlock;
 import com.masson.cruciblecraft.content.block.GasCloudBlock;
 import com.masson.cruciblecraft.content.block.ItemPipeBlock;
 import com.masson.cruciblecraft.content.block.MaterialStorageBlock;
@@ -31,6 +30,9 @@ import com.masson.cruciblecraft.content.block.LargeCentrifugeBlock;
 import com.masson.cruciblecraft.content.block.DistillationTowerBlock;
 import com.masson.cruciblecraft.content.block.LargeBoilerBlock;
 import com.masson.cruciblecraft.content.block.LargeCrucibleBlock;
+import com.masson.cruciblecraft.content.block.LogisticsCoreBlock;
+import com.masson.cruciblecraft.content.block.LogisticsCorePartBlock;
+import com.masson.cruciblecraft.content.block.LogisticsCoreWallBlock;
 import com.masson.cruciblecraft.content.block.TankBlock;
 import com.masson.cruciblecraft.content.block.MultiblockPortBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
@@ -55,6 +57,7 @@ import com.masson.cruciblecraft.content.block.GtStoneSlabBlock;
 import com.masson.cruciblecraft.content.block.DustFunnelBlock;
 import com.masson.cruciblecraft.content.block.RotationalAxleBlock;
 import com.masson.cruciblecraft.content.block.RotationalGearboxBlock;
+import com.masson.cruciblecraft.content.block.SolidBurningBoxBlock;
 import com.masson.cruciblecraft.content.block.SteamEngineBlock;
 import com.masson.cruciblecraft.content.block.SubsurfaceFluidDepositBlock;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
@@ -63,11 +66,18 @@ import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
 import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.machine.processing.MachineVariant;
+import com.masson.cruciblecraft.energy.battery.BatteryBlock;
+import com.masson.cruciblecraft.energy.battery.EnergyBatteryCatalog;
+import com.masson.cruciblecraft.energy.battery.EnergyBatteryProfile;
+import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
+import com.masson.cruciblecraft.energy.converter.EnergyConverterFuelSpecs;
+import com.masson.cruciblecraft.energy.converter.EnergyConverterProfile;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariant;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
+import com.masson.cruciblecraft.logistics.core.LogisticsCorePart;
 import com.masson.cruciblecraft.content.storage.StorageBehaviorProfile;
 import com.masson.cruciblecraft.content.storage.StorageVariant;
 import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
@@ -116,14 +126,6 @@ public final class ModBlocks {
                     .mapColor(MapColor.COLOR_RED)
                     .strength(2.0F, 6.0F)
                     .sound(SoundType.STONE));
-
-    public static final DeferredBlock<FireboxBlock> FIREBOX = BLOCKS.register(
-            "firebox",
-            () -> new FireboxBlock(BlockBehaviour.Properties.of()
-                    .mapColor(MapColor.COLOR_RED)
-                    .strength(3.0F, 8.0F)
-                    .lightLevel(state -> state.getValue(FireboxBlock.LIT) ? 13 : 0)
-                    .sound(SoundType.STONE)));
 
     public static final DeferredBlock<CrucibleBlock> CRUCIBLE = BLOCKS.register(
             "crucible",
@@ -184,13 +186,44 @@ public final class ModBlocks {
             LARGE_CRUCIBLE = BLOCKS.register(
                     "large_crucible",
                     () -> new LargeCrucibleBlock(machineProperties()));
-
-    public static final DeferredBlock<BellowsBlock> BELLOWS = BLOCKS.register(
-            "bellows",
-            () -> new BellowsBlock(BlockBehaviour.Properties.of()
-                    .mapColor(MapColor.WOOD)
-                    .strength(1.5F)
-                    .sound(SoundType.WOOD)));
+    public static final DeferredBlock<LogisticsCoreBlock>
+            LOGISTICS_CORE = BLOCKS.register(
+                    "logistics_core",
+                    () -> new LogisticsCoreBlock(machineProperties()));
+    public static final DeferredBlock<LogisticsCoreWallBlock>
+            GALVANIZED_STEEL_WALL = BLOCKS.register(
+                    "galvanized_steel_wall",
+                    () -> new LogisticsCoreWallBlock(machineProperties()));
+    public static final DeferredBlock<LogisticsCorePartBlock>
+            VENTILATION_UNIT = BLOCKS.register(
+                    "ventilation_unit",
+                    () -> new LogisticsCorePartBlock(
+                            LogisticsCorePart.VENT, machineProperties()));
+    public static final DeferredBlock<LogisticsCorePartBlock>
+            VERSATILE_PROCESSOR_UNIT = BLOCKS.register(
+                    "versatile_processor_unit",
+                    () -> new LogisticsCorePartBlock(
+                            LogisticsCorePart.VERSATILE, machineProperties()));
+    public static final DeferredBlock<LogisticsCorePartBlock>
+            LOGIC_PROCESSOR_UNIT = BLOCKS.register(
+                    "logic_processor_unit",
+                    () -> new LogisticsCorePartBlock(
+                            LogisticsCorePart.LOGIC, machineProperties()));
+    public static final DeferredBlock<LogisticsCorePartBlock>
+            CONTROL_PROCESSOR_UNIT = BLOCKS.register(
+                    "control_processor_unit",
+                    () -> new LogisticsCorePartBlock(
+                            LogisticsCorePart.CONTROL, machineProperties()));
+    public static final DeferredBlock<LogisticsCorePartBlock>
+            STORAGE_PROCESSOR_UNIT = BLOCKS.register(
+                    "storage_processor_unit",
+                    () -> new LogisticsCorePartBlock(
+                            LogisticsCorePart.STORAGE, machineProperties()));
+    public static final DeferredBlock<LogisticsCorePartBlock>
+            CONVERSION_PROCESSOR_UNIT = BLOCKS.register(
+                    "conversion_processor_unit",
+                    () -> new LogisticsCorePartBlock(
+                            LogisticsCorePart.CONVERSION, machineProperties()));
 
     public static final DeferredBlock<CeramicMoldBlock> CERAMIC_MOLD = BLOCKS.register(
             "ceramic_mold",
@@ -254,19 +287,25 @@ public final class ModBlocks {
                                     .strength(0.0F)
                                     .pushReaction(PushReaction.DESTROY)));
 
-    public static final DeferredBlock<BoilerBlock> BRONZE_BOILER = BLOCKS.register(
-            "bronze_boiler",
-            () -> new BoilerBlock(machineProperties()));
-    public static final DeferredBlock<SteamEngineBlock> BRONZE_STEAM_ENGINE = BLOCKS.register(
-            "bronze_steam_engine",
-            () -> new SteamEngineBlock(machineProperties().noOcclusion()));
-    public static final DeferredBlock<DynamoBlock> BRONZE_DYNAMO = BLOCKS.register(
-            "bronze_dynamo",
-            () -> new DynamoBlock(machineProperties()));
-    public static final DeferredBlock<ElectricMotorBlock> ELECTRIC_MOTOR =
-            BLOCKS.register(
-                    "electric_motor",
-                    () -> new ElectricMotorBlock(machineProperties()));
+    private static final Map<
+            ResourceLocation,
+            DeferredBlock<? extends Block>> CONVERTER_BLOCKS =
+                    registerConverterBlocks();
+    public static final DeferredBlock<BoilerBlock> BRONZE_BOILER =
+            converter("bronze_boiler");
+    public static final DeferredBlock<SteamEngineBlock> BRONZE_STEAM_ENGINE =
+            converter("bronze_steam_engine");
+    public static final DeferredBlock<DynamoBlock> BRONZE_DYNAMO =
+            converter("bronze_dynamo");
+    public static final DeferredBlock<ElectricMotorBlock>
+            STEEL_GALVANIZED_ELECTRIC_MOTOR =
+                    converter("steel_galvanized_electric_motor");
+    public static final DeferredBlock<FuelGeneratorBlock> BRONZE_FUEL_ENGINE =
+            converter("bronze_fuel_engine");
+    public static final DeferredBlock<FuelGeneratorBlock>
+            BRONZE_BURNING_BOX_GAS = converter("bronze_burning_box_gas");
+    public static final DeferredBlock<SolidBurningBoxBlock>
+            BRONZE_BURNING_BOX_SOLID = converter("bronze_burning_box_solid");
     public static final DeferredBlock<RotationalAxleBlock>
             ROTATIONAL_AXLE = BLOCKS.register(
                     "rotational_axle",
@@ -395,18 +434,6 @@ public final class ModBlocks {
             tieredProcessing("coagulator");
     public static final DeferredBlock<ProcessingMachineBlock> STEEL_ROASTER =
             tieredProcessing("steel_roaster");
-    public static final DeferredBlock<FuelGeneratorBlock> FUEL_ENGINE =
-            BLOCKS.register(
-                    "fuel_engine",
-                    () -> new FuelGeneratorBlock(
-                            ModFuelGenerators.FUEL_ENGINE,
-                            machineProperties()));
-    public static final DeferredBlock<FuelGeneratorBlock>
-            BURNING_GAS_GENERATOR = BLOCKS.register(
-                    "burning_gas_generator",
-                    () -> new FuelGeneratorBlock(
-                            ModFuelGenerators.BURNING_GAS_GENERATOR,
-                            machineProperties()));
 
     public static void registerMaterials(Collection<MaterialDefinition> definitions) {
         if (!MATERIAL_ORE_BLOCKS.isEmpty()
@@ -702,6 +729,138 @@ public final class ModBlocks {
                     "Tiered processing registration drifted from catalog rows");
         }
         return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    private static Map<ResourceLocation, DeferredBlock<? extends Block>>
+            registerConverterBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<? extends Block>>
+                blocks = new LinkedHashMap<>();
+        for (EnergyConverterProfile profile
+                : EnergyConverterCatalog.profiles()) {
+            DeferredBlock<? extends Block> block =
+                    registerConverterBlock(profile);
+            if (blocks.put(profile.id(), block) != null) {
+                throw new IllegalStateException(
+                        "Duplicate converter block " + profile.id());
+            }
+        }
+        if (blocks.size() != EnergyConverterCatalog.profiles().size()) {
+            throw new IllegalStateException(
+                    "Converter registration drifted from catalog rows");
+        }
+        return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    private static DeferredBlock<? extends Block> registerConverterBlock(
+            EnergyConverterProfile profile) {
+        String path = profile.id().getPath();
+        return switch (profile.runtimeBinding()) {
+            case "boiler" -> BLOCKS.register(
+                    path,
+                    () -> new BoilerBlock(profile.id(), machineProperties()));
+            case "steam_engine" -> BLOCKS.register(
+                    path,
+                    () -> new SteamEngineBlock(
+                            profile.id(),
+                            machineProperties().noOcclusion()));
+            case "dynamo" -> BLOCKS.register(
+                    path,
+                    () -> new DynamoBlock(profile.id(), machineProperties()));
+            case "electric_motor" -> BLOCKS.register(
+                    path,
+                    () -> new ElectricMotorBlock(
+                            profile.id(), machineProperties()));
+            case "fuel_engine", "fluid_burning_box" -> BLOCKS.register(
+                    path,
+                    () -> new FuelGeneratorBlock(
+                            EnergyConverterFuelSpecs.fromProfile(profile),
+                            machineProperties()));
+            case "solid_burning_box" -> BLOCKS.register(
+                    path,
+                    () -> new SolidBurningBoxBlock(
+                            profile.id(), machineProperties()));
+            case "fluid_bed_burning_box" -> BLOCKS.register(
+                    path,
+                    () -> new FluidBedBurningBoxBlock(
+                            profile.id(), machineProperties()));
+            default -> throw new IllegalStateException(
+                    "Unknown converter runtime " + profile.runtimeBinding());
+        };
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T extends Block> DeferredBlock<T> converter(String path) {
+        DeferredBlock<? extends Block> block = CONVERTER_BLOCKS.get(
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, path));
+        if (block == null) {
+            throw new IllegalStateException(
+                    "Missing catalog converter block " + path);
+        }
+        return (DeferredBlock<T>) block;
+    }
+
+    public static Map<ResourceLocation, DeferredBlock<? extends Block>>
+            converterBlocksById() {
+        return CONVERTER_BLOCKS;
+    }
+
+    public static Block[] converterBlockArray() {
+        return CONVERTER_BLOCKS.values().stream()
+                .map(DeferredBlock::get)
+                .toArray(Block[]::new);
+    }
+
+    public static Block[] converterBlocks(String... runtimes) {
+        java.util.Set<String> wanted = java.util.Set.of(runtimes);
+        return EnergyConverterCatalog.profiles().stream()
+                .filter(profile -> wanted.contains(profile.runtimeBinding()))
+                .map(profile -> CONVERTER_BLOCKS.get(profile.id()).get())
+                .toArray(Block[]::new);
+    }
+
+    private static final Map<
+            ResourceLocation,
+            DeferredBlock<BatteryBlock>> BATTERY_BLOCKS =
+                    registerBatteryBlocks();
+
+    private static Map<ResourceLocation, DeferredBlock<BatteryBlock>>
+            registerBatteryBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<BatteryBlock>> blocks =
+                new LinkedHashMap<>();
+        for (EnergyBatteryProfile profile : EnergyBatteryCatalog.profiles()) {
+            DeferredBlock<BatteryBlock> block = BLOCKS.register(
+                    profile.id().getPath(),
+                    () -> new BatteryBlock(profile, batteryProperties()));
+            if (blocks.put(profile.id(), block) != null) {
+                throw new IllegalStateException(
+                        "Duplicate battery block " + profile.id());
+            }
+        }
+        if (blocks.size() != EnergyBatteryCatalog.profiles().size()) {
+            throw new IllegalStateException(
+                    "Battery registration drifted from catalog rows");
+        }
+        return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    public static Map<ResourceLocation, DeferredBlock<BatteryBlock>>
+            batteryBlocksById() {
+        return BATTERY_BLOCKS;
+    }
+
+    public static Block[] batteryBlockArray() {
+        return BATTERY_BLOCKS.values().stream()
+                .map(DeferredBlock::get)
+                .toArray(Block[]::new);
+    }
+
+    private static BlockBehaviour.Properties batteryProperties() {
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.METAL)
+                .strength(0.5F, 3.0F)
+                .sound(SoundType.METAL)
+                .noOcclusion();
     }
 
     private static DeferredBlock<ProcessingMachineBlock> tieredProcessing(

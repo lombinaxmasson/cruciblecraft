@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "kinds": [
+    {
+      "id": "cruciblecraft:lead_acid_battery",
+      "runtime": "battery",
+      "energy": "EU",
+      "capacity_multiplier": 2000,
+      "color": 16744448,
+      "texture_profile": "eu/standard",
+      "has_bar": true,
+      "lang_key_en": "Lead-Acid Battery",
+      "lang_key_zh": "铅酸电池",
+      "gt6_class": "MultiTileEntityBatteryEU"
+    },
+    {
+      "id": "cruciblecraft:alkaline_battery",
+      "runtime": "battery",
+      "energy": "EU",
+      "capacity_multiplier": 4000,
+      "color": 255,
+      "texture_profile": "eu/standard",
+      "has_bar": true,
+      "lang_key_en": "Alkaline Battery",
+      "lang_key_zh": "碱性电池",
+      "gt6_class": "MultiTileEntityBatteryEU"
+    },
+    {
+      "id": "cruciblecraft:nickel_cadmium_battery",
+      "runtime": "battery",
+      "energy": "EU",
+      "capacity_multiplier": 4000,
+      "color": 8454016,
+      "texture_profile": "eu/standard",
+      "has_bar": true,
+      "lang_key_en": "Nickel-Cadmium Battery",
+      "lang_key_zh": "镍镉电池",
+      "gt6_class": "MultiTileEntityBatteryEU"
+    },
+    {
+      "id": "cruciblecraft:lithium_cobalt_battery",
+      "runtime": "battery",
+      "energy": "EU",
+      "capacity_multiplier": 64000,
+      "color": 255,
+      "texture_profile": "eu/advanced",
+      "has_bar": true,
+      "lang_key_en": "Lithium-Cobalt Battery",
+      "lang_key_zh": "锂钴电池",
+      "gt6_class": "MultiTileEntityBatteryAdvEU"
+    },
+    {
+      "id": "cruciblecraft:lithium_manganese_battery",
+      "runtime": "battery",
+      "energy": "EU",
+      "capacity_multiplier": 128000,
+      "color": 65280,
+      "texture_profile": "eu/advanced",
+      "has_bar": true,
+      "lang_key_en": "Lithium-Manganese Battery",
+      "lang_key_zh": "锂锰电池",
+      "gt6_class": "MultiTileEntityBatteryAdvEU"
+    },
+    {
+      "id": "cruciblecraft:red_energium_crystal",
+      "runtime": "battery",
+      "energy": "LU",
+      "capacity_multiplier": 400000,
+      "color": 16711680,
+      "texture_profile": "lu",
+      "has_bar": false,
+      "lang_key_en": "Red Energium Crystal",
+      "lang_key_zh": "红色能量水晶",
+      "gt6_class": "MultiTileEntityBatteryLU"
+    },
+    {
+      "id": "cruciblecraft:cyan_energium_crystal",
+      "runtime": "battery",
+      "energy": "LU",
+      "capacity_multiplier": 800000,
+      "color": 65535,
+      "texture_profile": "lu",
+      "has_bar": false,
+      "lang_key_en": "Cyan Energium Crystal",
+      "lang_key_zh": "青色能量水晶",
+      "gt6_class": "MultiTileEntityBatteryLU"
+    }
+  ]
+}

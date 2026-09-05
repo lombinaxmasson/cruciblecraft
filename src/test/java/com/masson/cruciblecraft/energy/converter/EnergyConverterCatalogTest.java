@@ -19,20 +19,14 @@ class EnergyConverterCatalogTest {
                         .collect(Collectors.toMap(
                                 profile -> profile.id().toString(),
                                 profile -> profile));
-        assertEquals(6, profiles.size());
+        assertEquals(169, profiles.size());
+        assertEquals(1202, profiles.get("cruciblecraft:bronze_boiler").source().sourceId());
+        assertEquals(1302, profiles.get("cruciblecraft:bronze_steam_engine").source().sourceId());
+        assertEquals(10111, profiles.get("cruciblecraft:bronze_dynamo").source().sourceId());
+        assertEquals(9147, profiles.get("cruciblecraft:bronze_fuel_engine").source().sourceId());
+        assertEquals(1602, profiles.get("cruciblecraft:bronze_burning_box_gas").source().sourceId());
         assertEquals(
-                Map.of(
-                        "cruciblecraft:bronze_firebox", 1102,
-                        "cruciblecraft:bronze_boiler", 1202,
-                        "cruciblecraft:bronze_steam_engine", 1302,
-                        "cruciblecraft:bronze_dynamo", 10111,
-                        "cruciblecraft:bronze_fuel_engine", 9147,
-                        "cruciblecraft:bronze_gas_generator", 1602),
-                profiles.entrySet().stream().collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        entry -> entry.getValue().source().sourceId())));
-        assertEquals(
-                6,
+                169,
                 profiles.values().stream()
                         .filter(profile ->
                                 profile.status()
@@ -116,24 +110,16 @@ class EnergyConverterCatalogTest {
 
     @Test
     void completeSteamChainProfilesLockConservationAndFaces() {
-        EnergyConverterProfile firebox = EnergyConverterCatalog.require(
-                "cruciblecraft:bronze_firebox");
         EnergyConverterProfile boiler = EnergyConverterCatalog.require(
                 "cruciblecraft:bronze_boiler");
         EnergyConverterProfile engine = EnergyConverterCatalog.require(
                 "cruciblecraft:bronze_steam_engine");
-        assertEquals(24L, firebox.outputPacket().maxAmountPerTick());
-        assertEquals(7_500, firebox.efficiencyBps());
-        assertEquals("FM.Furnace", firebox.fuelMap());
         assertEquals(80, boiler.conservation().primaryInputUnits());
         assertEquals(1, boiler.conservation().secondaryInputUnits());
         assertEquals(160, boiler.conservation().outputUnits());
         assertEquals(200, engine.conservation().primaryInputUnits());
         assertEquals(50, engine.conservation().outputUnits());
         assertEquals(1, engine.conservation().exhaustUnits());
-        assertEquals(
-                java.util.List.of("UP"),
-                firebox.faces().energyOutputs());
         assertEquals(
                 java.util.List.of("DOWN"),
                 boiler.faces().energyInputs());
@@ -191,7 +177,7 @@ class EnergyConverterCatalogTest {
     @Test
     void gasGeneratorLocksBurnFuelHuRateAndEfficiency() {
         EnergyConverterProfile generator = EnergyConverterCatalog.require(
-                "cruciblecraft:bronze_gas_generator");
+                "cruciblecraft:bronze_burning_box_gas");
 
         assertEquals(1602, generator.source().sourceId());
         assertEquals("MultiTileEntityGeneratorGas",
@@ -217,10 +203,19 @@ class EnergyConverterCatalogTest {
     @Test
     void catalogAndSchemaAreBundledRuntimeResources() {
         assertNotNull(EnergyConverterCatalogTest.class.getResource(
+                "/data/cruciblecraft/energy_converter_kinds.json"));
+        assertNotNull(EnergyConverterCatalogTest.class.getResource(
+                "/data/cruciblecraft/energy_converter_tiers.json"));
+        assertNotNull(EnergyConverterCatalogTest.class.getResource(
                 "/data/cruciblecraft/energy_converters.json"));
         Path schema = Path.of(
                 "src/main/resources/data/cruciblecraft/schema/"
                         + "energy_converters.schema.json");
         assertTrue(Files.isRegularFile(schema));
+        String ns = "src/main/resources/data/"
+                + "cruciblecraft_wave_runtime_converter_catalog";
+        assertTrue(Files.isRegularFile(Path.of(ns + "/structure/empty.nbt")));
+        assertTrue(Files.isRegularFile(Path.of(
+                ns + "/gametest/structure/empty.nbt")));
     }
 }

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": "gt6_referencable_port_code/gregtech6_w",
+  "notes": [
+    "Raw SOURCE_BACKED cover icons. Do not alias conveyor/filter/robot_arm.",
+    "Dump is also listed in logistics_core_art_manifest.json."
+  ],
+  "imports": [
+    {
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/logistics_item_storage_cover.png",
+      "gt6_class": "CoverLogisticsItemStorage",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/logistics/item/storage.png"
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/logistics_item_import_cover.png",
+      "gt6_class": "CoverLogisticsItemImport",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/logistics/item/import.png"
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/logistics_item_export_cover.png",
+      "gt6_class": "CoverLogisticsItemExport",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/logistics/item/export.png"
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/logistics_fluid_storage_cover.png",
+      "gt6_class": "CoverLogisticsFluidStorage",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/logistics/fluid/storage.png"
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/logistics_fluid_import_cover.png",
+      "gt6_class": "CoverLogisticsFluidImport",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/logistics/fluid/import.png"
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/logistics_fluid_export_cover.png",
+      "gt6_class": "CoverLogisticsFluidExport",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/logistics/fluid/export.png"
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/logistics_generic_storage_cover.png",
+      "gt6_class": "CoverLogisticsGenericStorage",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/logistics/generic/storage.png"
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/logistics_generic_import_cover.png",
+      "gt6_class": "CoverLogisticsGenericImport",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/logistics/generic/import.png"
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/logistics_generic_export_cover.png",
+      "gt6_class": "CoverLogisticsGenericExport",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/logistics/generic/export.png"
+    },
+    {
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/logistics_generic_dump_cover.png",
+      "gt6_class": "CoverLogisticsGenericDump",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/covers/logistics/generic/dump.png"
+    }
+  ]
+}

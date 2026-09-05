@@ -1,7 +1,6 @@
 package com.masson.cruciblecraft.datagen;
 
 import java.util.Set;
-import java.util.stream.Stream;
 
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtStoneCatalog;
@@ -15,6 +14,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 
 public class ModBlockLootTables extends BlockLootSubProvider {
+    private static final Set<String> HANDWRITTEN_CONVERTER_LOOT = Set.of(
+            "bronze_boiler",
+            "bronze_steam_engine",
+            "bronze_dynamo");
+
     public ModBlockLootTables(HolderLookup.Provider lookupProvider) {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), lookupProvider);
     }
@@ -22,7 +26,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(ModBlocks.FIREBRICK.get());
-        dropSelf(ModBlocks.FIREBOX.get());
         dropSelf(ModBlocks.CRUCIBLE.get());
         dropSelf(ModBlocks.ANVIL.get());
         dropSelf(ModBlocks.COKE_OVEN.get());
@@ -34,15 +37,26 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.LARGE_BOILER.get());
         dropSelf(ModBlocks.TANK_3X3X3.get());
         dropSelf(ModBlocks.LARGE_CRUCIBLE.get());
-        dropSelf(ModBlocks.BELLOWS.get());
+        dropSelf(ModBlocks.LOGISTICS_CORE.get());
+        dropSelf(ModBlocks.GALVANIZED_STEEL_WALL.get());
+        dropSelf(ModBlocks.VENTILATION_UNIT.get());
+        dropSelf(ModBlocks.VERSATILE_PROCESSOR_UNIT.get());
+        dropSelf(ModBlocks.LOGIC_PROCESSOR_UNIT.get());
+        dropSelf(ModBlocks.CONTROL_PROCESSOR_UNIT.get());
+        dropSelf(ModBlocks.STORAGE_PROCESSOR_UNIT.get());
+        dropSelf(ModBlocks.CONVERSION_PROCESSOR_UNIT.get());
         ModMachineVariants.ALL.forEach(variant ->
                 dropSelf(ModBlocks.configuredProcessingBlock(variant)));
-        dropSelf(ModBlocks.ELECTRIC_MOTOR.get());
         dropSelf(ModBlocks.ROTATIONAL_AXLE.get());
         dropSelf(ModBlocks.ROTATIONAL_GEARBOX.get());
         dropSelf(ModBlocks.FLUID_DEPOSIT_EXTRACTOR.get());
-        dropSelf(ModBlocks.FUEL_ENGINE.get());
-        dropSelf(ModBlocks.BURNING_GAS_GENERATOR.get());
+        ModBlocks.converterBlocksById().forEach((id, block) -> {
+            if (!HANDWRITTEN_CONVERTER_LOOT.contains(id.getPath())) {
+                dropSelf(block.get());
+            }
+        });
+        ModBlocks.batteryBlocksById().forEach(
+                (id, block) -> dropSelf(block.get()));
         ModBlocks.electricalConductorBlocks().forEach(
                 block -> dropSelf(block.get()));
         ModBlocks.pipeBlocks().forEach(
@@ -78,9 +92,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return Stream.concat(Stream.concat(Stream.concat(Stream.of(
-                (Block) ModBlocks.FIREBRICK.get(),
-                ModBlocks.FIREBOX.get(),
+        java.util.ArrayList<Block> blocks = new java.util.ArrayList<>();
+        java.util.Collections.addAll(
+                blocks,
+                ModBlocks.FIREBRICK.get(),
                 ModBlocks.CRUCIBLE.get(),
                 ModBlocks.ANVIL.get(),
                 ModBlocks.COKE_OVEN.get(),
@@ -92,36 +107,37 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 ModBlocks.LARGE_BOILER.get(),
                 ModBlocks.TANK_3X3X3.get(),
                 ModBlocks.LARGE_CRUCIBLE.get(),
-                ModBlocks.BELLOWS.get(),
-                ModBlocks.ELECTRIC_MOTOR.get(),
+                ModBlocks.LOGISTICS_CORE.get(),
+                ModBlocks.GALVANIZED_STEEL_WALL.get(),
+                ModBlocks.VENTILATION_UNIT.get(),
+                ModBlocks.VERSATILE_PROCESSOR_UNIT.get(),
+                ModBlocks.LOGIC_PROCESSOR_UNIT.get(),
+                ModBlocks.CONTROL_PROCESSOR_UNIT.get(),
+                ModBlocks.STORAGE_PROCESSOR_UNIT.get(),
+                ModBlocks.CONVERSION_PROCESSOR_UNIT.get(),
                 ModBlocks.ROTATIONAL_AXLE.get(),
                 ModBlocks.ROTATIONAL_GEARBOX.get(),
                 ModBlocks.FLUID_DEPOSIT_EXTRACTOR.get(),
-                ModBlocks.FUEL_ENGINE.get(),
-                ModBlocks.BURNING_GAS_GENERATOR.get()),
-                ModMachineVariants.ALL.stream()
-                        .map(ModBlocks::configuredProcessingBlock)),
-                ModBlocks.electricalConductorBlocks().stream()
-                        .map(holder -> (Block) holder.get())),
-                Stream.concat(
-                        ModBlocks.pipeBlocks().stream()
-                                .map(holder -> (Block) holder.get()),
-                                Stream.concat(
-                                ModBlocks.hopperBlocks().stream()
-                                        .map(holder -> (Block) holder.get()),
-                                Stream.concat(
-                                        ModBlocks.variantStorageBlocks().stream()
-                                                .map(holder -> (Block) holder.get()),
-                                        Stream.concat(
-                                        Stream.of(ModBlocks.STEEL_DUST_FUNNEL.get()),
-                                        Stream.concat(
-                                        ModBlocks.gtStoneBlocks().stream()
-                                                .map(holder -> holder.get()),
-                                        Stream.concat(
-                                        ModBlocks.gtBlockObjectBlocks().stream()
-                                                .map(holder -> holder.get()),
-                                        ModBlocks.bathRemainderBlockObjectBlocks().stream()
-                                                .map(holder -> holder.get()))))))))
-                .toList();
+                ModBlocks.STEEL_DUST_FUNNEL.get());
+        ModBlocks.converterBlocksById().forEach((id, holder) -> {
+            if (!HANDWRITTEN_CONVERTER_LOOT.contains(id.getPath())) {
+                blocks.add(holder.get());
+            }
+        });
+        ModBlocks.batteryBlocksById().forEach(
+                (id, holder) -> blocks.add(holder.get()));
+        ModMachineVariants.ALL.forEach(variant ->
+                blocks.add(ModBlocks.configuredProcessingBlock(variant)));
+        ModBlocks.electricalConductorBlocks().forEach(
+                holder -> blocks.add(holder.get()));
+        ModBlocks.pipeBlocks().forEach(holder -> blocks.add(holder.get()));
+        ModBlocks.hopperBlocks().forEach(holder -> blocks.add(holder.get()));
+        ModBlocks.variantStorageBlocks().forEach(
+                holder -> blocks.add(holder.get()));
+        ModBlocks.gtStoneBlocks().forEach(holder -> blocks.add(holder.get()));
+        ModBlocks.gtBlockObjectBlocks().forEach(holder -> blocks.add(holder.get()));
+        ModBlocks.bathRemainderBlockObjectBlocks().forEach(
+                holder -> blocks.add(holder.get()));
+        return blocks;
     }
 }

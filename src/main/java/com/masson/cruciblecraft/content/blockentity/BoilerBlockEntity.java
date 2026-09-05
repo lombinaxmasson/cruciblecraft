@@ -25,17 +25,18 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 
 public final class BoilerBlockEntity extends BlockEntity implements IEnergyHandler {
-    private static final EnergyConverterProfile PROFILE =
-            EnergyConverterCatalog.require(
-                    "cruciblecraft:bronze_boiler");
-    public static final int WATER_CAPACITY = PROFILE.inputCapacity();
-    public static final int STEAM_CAPACITY = PROFILE.outputCapacity();
+    private final EnergyConverterProfile profile;
+    public static final int WATER_CAPACITY =
+            EnergyConverterCatalog.require("cruciblecraft:bronze_boiler")
+                    .inputCapacity();
+    public static final int STEAM_CAPACITY =
+            EnergyConverterCatalog.require("cruciblecraft:bronze_boiler")
+                    .outputCapacity();
     public static final int STEAM_TRANSFER = Math.toIntExact(
-            PROFILE.outputPacket().maxAmountPerTick());
-    private final FluidTank water = tank(WATER_CAPACITY,
-            stack -> stack.is(net.minecraft.world.level.material.Fluids.WATER));
-    private final FluidTank steam = tank(STEAM_CAPACITY,
-            stack -> stack.is(ModFluids.STEAM_SOURCE.get()));
+            EnergyConverterCatalog.require("cruciblecraft:bronze_boiler")
+                    .outputPacket().maxAmountPerTick());
+    private final FluidTank water;
+    private final FluidTank steam;
     private final IFluidHandler input = new BoilerHandler(true, false);
     private final IFluidHandler output = new BoilerHandler(false, true);
     private final IFluidHandler unsided = new BoilerHandler(true, true);
@@ -45,6 +46,16 @@ public final class BoilerBlockEntity extends BlockEntity implements IEnergyHandl
 
     public BoilerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.BOILER.get(), pos, state);
+        if (!(state.getBlock() instanceof com.masson.cruciblecraft.energy.converter.EnergyConverterHost host)) {
+            throw new IllegalArgumentException("Boiler requires a catalog block");
+        }
+        profile = host.converterProfile();
+        water = tank(
+                profile.inputCapacity(),
+                stack -> stack.is(net.minecraft.world.level.material.Fluids.WATER));
+        steam = tank(
+                profile.outputCapacity(),
+                stack -> stack.is(ModFluids.STEAM_SOURCE.get()));
     }
 
     private FluidTank tank(int capacity, java.util.function.Predicate<FluidStack> validator) {
@@ -159,7 +170,10 @@ public final class BoilerBlockEntity extends BlockEntity implements IEnergyHandl
         IFluidHandler target = level.getCapability(
                 Capabilities.FluidHandler.BLOCK, targetPosition, Direction.DOWN);
         if (target == null) return;
-        ExactFluidTransfer.move(steam, target, STEAM_TRANSFER);
+        ExactFluidTransfer.move(
+                steam,
+                target,
+                Math.toIntExact(profile.outputPacket().maxAmountPerTick()));
     }
 
     public IFluidHandler fluids(Direction side) {
@@ -200,7 +214,7 @@ public final class BoilerBlockEntity extends BlockEntity implements IEnergyHandl
         @Override public int getTanks() { return 2; }
         @Override public FluidStack getFluidInTank(int tank) { return (tank == 0 ? water : steam).getFluid(); }
         @Override public int getTankCapacity(int tank) {
-            return tank == 0 ? WATER_CAPACITY : STEAM_CAPACITY;
+            return tank == 0 ? water.getCapacity() : steam.getCapacity();
         }
         @Override public boolean isFluidValid(int tank, FluidStack stack) {
             return tank == 0 && waterInput && stack.is(net.minecraft.world.level.material.Fluids.WATER);

@@ -28,7 +28,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.fluids.FluidUtil;
 
 /** Typed-energy fuel generator configured by one fixed source-map family. */
-public final class FuelGeneratorBlock extends Block implements EntityBlock {
+public final class FuelGeneratorBlock extends Block implements EntityBlock, com.masson.cruciblecraft.energy.converter.EnergyConverterHost {
     public static final DirectionProperty FACING =
             BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
@@ -44,6 +44,11 @@ public final class FuelGeneratorBlock extends Block implements EntityBlock {
 
     public FuelGeneratorSpec spec() {
         return spec;
+    }
+
+    @Override
+    public net.minecraft.resources.ResourceLocation converterId() {
+        return spec.id();
     }
 
     @Override

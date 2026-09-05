@@ -8,6 +8,7 @@
 - [总体规划](current/roadmap.md)
 - [冻结与未实现账本](current/unimplemented-gap.md)（机制卡 `*_READY` ≠ 游戏里有；从这里找缺口，不要从阶段档案倒推）
 - [能力交付流程](current/capability-delivery-workflow.md)（工作包 ≠ 进度；`player_complete` 才计入完成）
+- [GT6 贴图纪律](current/gt6-art-policy.md)（禁止占位；从本地 `gregtech6_w` 迁入）
 - [开发与验证指南](current/verification.md)
 - [Ordinary recipe wave 与 Card / Group / Shard / Source Pack 规范](current/recipe-wave-workflow.md)
 - [当前已知问题](current/known-issues.md)
@@ -19,7 +20,7 @@
 ## 历史
 
 - [历史档案](history/INDEX.md)（关闭计划在 `card-plans/closed/`）
-- 当前无 unique active **card**。现行能力：`logistics/fluid-network/basic-transfer`。最近关闭的 runtime 卡：[物品网络核心](history/card-plans/closed/物品网络核心详细计划.md)（slug `runtime/item-network-core`；物品两行 `runtime_ready`）
+- 当前 unique active：[电池](history/card-plans/active/电池详细计划.md)（capability `energy/batteries`；census 37 个储能块，`player_complete`，卡仍 unique active）。最近关闭：[能量转换机目录](history/card-plans/closed/能量转换机目录详细计划.md)（capability `energy/converter-catalog`；GT6 转换机 kind × 材质 169 行，`player_complete`）。最近关闭：[能量系统余量](history/card-plans/closed/能量系统余量详细计划.md)（删火箱/风箱/独立焦炭）。最近关闭：[显示 CPU](history/card-plans/closed/显示CPU详细计划.md)（四件状态盖板；capability `logistics/display-cpu`，`player_complete`）。现行 `player_complete` 能力：`logistics/fluid-network/basic-transfer`、`logistics/item-network-core`、`logistics/generic-network/core`、`logistics/logistics-core`、`logistics/display-cpu`、`energy/converter-catalog`、`energy/batteries`。最近关闭的能力卡：[物流核心](history/card-plans/closed/物流核心详细计划.md)（Dump + 5×5×5 `player_complete`）。最近关闭的余量卡：[物流封面网余量](history/card-plans/closed/物流封面网余量详细计划.md)（钉死 `dump_policy`，不写 Java）。最近关闭的 Generic 卡：[通用网络核心](history/card-plans/closed/通用网络核心详细计划.md)（Generic 仓储/导入/导出 `player_complete`）。最近关闭的能力晋级卡：[物品网络核心玩家完成晋级](history/card-plans/closed/物品网络核心玩家完成晋级详细计划.md)（物品两行 `player_complete`）。最近关闭的 runtime 机制卡：[物品网络核心](history/card-plans/closed/物品网络核心详细计划.md)（slug `runtime/item-network-core`；`ITEM_NETWORK_CORE_READY`）
 - 上一张关闭的注册卡：[工具头前缀折回](history/card-plans/closed/工具头前缀折回详细计划.md)（slug `registry/tool-head-prefix`）
 - 上一张关闭的 runtime 卡：[紧凑配方作者矩阵](history/card-plans/closed/紧凑配方作者矩阵详细计划.md)（slug `runtime/compact-recipe-authored-matrix`）
 - 上一张关闭的 runtime 卡：[紧凑配方传输编解码](history/card-plans/closed/紧凑配方传输编解码详细计划.md)（slug `runtime/compact-recipe-wire-codec`）

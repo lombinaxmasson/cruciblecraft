@@ -132,5 +132,14 @@ public final class ModComponents {
                             .persistent(Codec.LONG)
                             .networkSynchronized(ByteBufCodecs.VAR_LONG));
 
+    public static final DeferredHolder<
+            net.minecraft.core.component.DataComponentType<?>,
+            net.minecraft.core.component.DataComponentType<Long>> BATTERY_CHARGE =
+            COMPONENTS.registerComponentType(
+                    "battery_charge",
+                    builder -> builder
+                            .persistent(Codec.LONG)
+                            .networkSynchronized(ByteBufCodecs.VAR_LONG));
+
     private ModComponents() {}
 }

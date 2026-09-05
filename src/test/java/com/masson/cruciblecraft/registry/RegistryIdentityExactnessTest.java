@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverBehaviorRegistry;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverComponentTiers;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinitionCatalog;
 
 import net.minecraft.resources.ResourceLocation;
@@ -17,8 +18,12 @@ class RegistryIdentityExactnessTest {
     private static final List<String> EXPECTED_BEHAVIORS = List.of(
             "cruciblecraft:conveyor",
             "cruciblecraft:filter",
+            "cruciblecraft:logistics_display_cpu",
             "cruciblecraft:logistics_fluid_storage",
             "cruciblecraft:logistics_fluid_transfer",
+            "cruciblecraft:logistics_generic_dump",
+            "cruciblecraft:logistics_generic_storage",
+            "cruciblecraft:logistics_generic_transfer",
             "cruciblecraft:logistics_item_storage",
             "cruciblecraft:logistics_item_transfer",
             "cruciblecraft:pressure_valve",
@@ -31,7 +36,7 @@ class RegistryIdentityExactnessTest {
     @Test
     void coverCatalogAndBehaviorsAreExactNotASubset() {
         CoverBehaviorRegistry.validateDefinitions();
-        assertEquals(15, CoverDefinitionCatalog.definitions().size());
+        assertEquals(19 + 4 + CoverComponentTiers.definitionIds().size(), CoverDefinitionCatalog.definitions().size());
         List<String> ids = CoverBehaviorRegistry.registeredIds().stream()
                 .map(ResourceLocation::toString)
                 .sorted()
@@ -47,6 +52,14 @@ class RegistryIdentityExactnessTest {
                 "cruciblecraft:logistics_item_export",
                 "cruciblecraft:logistics_fluid_storage",
                 "cruciblecraft:logistics_fluid_import",
-                "cruciblecraft:logistics_fluid_export")));
+                "cruciblecraft:logistics_fluid_export",
+                "cruciblecraft:logistics_generic_storage",
+                "cruciblecraft:logistics_generic_import",
+                "cruciblecraft:logistics_generic_export",
+                "cruciblecraft:logistics_generic_dump",
+                "cruciblecraft:logistics_display_cpu_logic",
+                "cruciblecraft:logistics_display_cpu_control",
+                "cruciblecraft:logistics_display_cpu_storage",
+                "cruciblecraft:logistics_display_cpu_conversion")));
     }
 }

@@ -64,6 +64,9 @@ class ZeroMilestoneNameScannerTest(unittest.TestCase):
         lower_milestone = ("T" + "49").lower()
         self.assertTrue(scanner.is_quick_target("src/main/java/com/masson/cruciblecraft/logistics/fluidnet/FluidLogisticsNetwork.java"))
         self.assertTrue(scanner.is_quick_target("tools/capabilities/logistics/cover-net-r0/capability.json"))
+        self.assertTrue(
+            scanner.is_quick_target("docs/history/card-plans/active/显示CPU详细计划.md")
+        )
         self.assertFalse(scanner.is_quick_target("src/main/java/com/masson/cruciblecraft/CrucibleCraft.java"))
         self.assertFalse(scanner.is_quick_target("src/recipe_generated/resources/data/cruciblecraft/recipe/" + lower_milestone + ".json"))
         self.assertFalse(scanner.is_quick_target("tools/build_t" + "35_runtime_registry.py"))
@@ -73,16 +76,16 @@ class ZeroMilestoneNameScannerTest(unittest.TestCase):
         self.assertIn("docs/decisions", scanner.SCAN_ROOTS)
         self.assertIn("README.md", scanner.SCAN_FILES)
 
-    def test_only_card_plans_are_exempt(self) -> None:
+    def test_only_closed_card_plans_are_exempt(self) -> None:
         milestone = "T" + "49"
         self.assertTrue(
             scanner.is_exempt(
                 "docs/history/card-plans/closed/" + milestone + "-ordinary-closeout.md"
             )
         )
-        self.assertTrue(
+        self.assertFalse(
             scanner.is_exempt(
-                "docs/history/card-plans/active/Ordinary尾账收口与封板修复详细计划.md"
+                "docs/history/card-plans/active/显示CPU详细计划.md"
             )
         )
         self.assertFalse(scanner.is_exempt("archive/sealed/" + milestone + "/archive_manifest.json"))

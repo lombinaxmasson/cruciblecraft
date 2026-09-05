@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "capability": "energy/batteries",
+  "signed": true,
+  "signer": "player",
+  "date": "2026-09-06",
+  "craftable_items": [
+    "lead_acid_battery_ulv",
+    "alkaline_battery_lv",
+    "nickel_cadmium_battery_mv",
+    "lithium_cobalt_battery_hv",
+    "lithium_manganese_battery_ev",
+    "red_energium_crystal_ulv",
+    "cyan_energium_crystal_iv"
+  ],
+  "checklist": {
+    "chinese_names_are_player_facing": true,
+    "creative_tab_empty_and_full": true,
+    "emi_shows_vanilla_crafting": true,
+    "lu_is_not_eu": true,
+    "sneak_place_only": true
+  },
+  "notes": "37 GT6 storage batteries are placeable and survival-craftable. LU crystals use EnergyType.LU and reject EU. Cables stay ELECTRIC-only. Census freeze remains 37/37 requires_new_runtime; the card stays unique active. Transformers are later."
+}

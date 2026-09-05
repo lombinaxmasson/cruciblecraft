@@ -21,6 +21,11 @@ public enum EnergyType {
     AIR,
     ELECTRIC,
     /**
+     * GT6 LU / LIGHT identity used by Energium crystals. This is not
+     * ELECTRIC and must not be folded into EU cables or lockers.
+     */
+    LU,
+    /**
      * GT6 TIME / TU identity used by Autoclave, Bath, Coagulator and
      * Generifier. This is not a material-tier matrix.
      */

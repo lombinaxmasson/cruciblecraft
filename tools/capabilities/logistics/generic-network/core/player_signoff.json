@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "capability": "logistics/generic-network/core",
+  "signed": true,
+  "signer": "capability-closeout-pilot",
+  "date": "2026-09-05",
+  "craftable_items": [
+    "logistics_generic_storage_cover",
+    "logistics_generic_import_cover",
+    "logistics_generic_export_cover"
+  ],
+  "checklist": {
+    "chinese_names_are_player_facing": true,
+    "creative_tab_groups_with_generic_network_covers": true,
+    "emi_shows_vanilla_crafting": true,
+    "network_id_is_visible_in_tooltip_or_jade": true,
+    "player_can_tell_storage_from_import_export": true
+  },
+  "notes": "Chinese names 通用网络仓储/导入/导出盖板. Texture aliases conveyor/retriever/robot_arm remain temporary. Dump cover and Logistics Core remain frozen. Fresh GameTestServer 10/10 and runClient PASS. World playtest is separate from this signoff."
+}

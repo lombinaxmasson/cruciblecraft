@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
+import com.masson.cruciblecraft.logistics.displaycpu.DisplayCpuWriteback;
 import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.logistics.pipe.PipeTopology;
 
@@ -195,6 +196,44 @@ public abstract class AbstractPipeBlock extends Block
         return level instanceof Level world
                 && connectsToEndpoint(
                         world, neighborPos, direction.getOpposite());
+    }
+
+    @Override
+    protected boolean isSignalSource(BlockState state) {
+        return true;
+    }
+
+    @Override
+    protected int getSignal(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            Direction direction) {
+        return DisplayCpuWriteback.redstoneOut(
+                level.getBlockEntity(pos), direction);
+    }
+
+    @Override
+    protected int getDirectSignal(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            Direction direction) {
+        return getSignal(state, level, pos, direction);
+    }
+
+    @Override
+    public boolean canConnectRedstone(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            @Nullable Direction direction) {
+        if (direction == null) {
+            return DisplayCpuWriteback.hasAnyDisplay(
+                    level.getBlockEntity(pos));
+        }
+        return DisplayCpuWriteback.hasDisplay(
+                level.getBlockEntity(pos), direction);
     }
 
     @Override

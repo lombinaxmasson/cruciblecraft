@@ -13,11 +13,12 @@ public record CoverDefinition(
         Values values,
         Set<ConfigField> configurable) {
     public static final int MAX_ITEM_RATE = 64;
-    public static final int MAX_FLUID_RATE = 8_000;
+    public static final int MAX_FLUID_RATE = 65_536_000;
     public static final int MAX_PRESSURE_THRESHOLD = 1_000_000;
     public static final int MAX_EXACT_COUNT = 64;
     public static final int MAX_SELECTOR = 5;
     public static final int MAX_NETWORK_ID = 16;
+    public static final int MAX_INTERVAL = 512;
 
     public CoverDefinition {
         Objects.requireNonNull(id, "id");
@@ -35,7 +36,9 @@ public record CoverDefinition(
                 || values.exactCount() < 0
                 || values.exactCount() > MAX_EXACT_COUNT
                 || values.selector() < 0
-                || values.selector() > MAX_SELECTOR) {
+                || values.selector() > MAX_SELECTOR
+                || values.interval() < 1
+                || values.interval() > MAX_INTERVAL) {
             throw new IllegalArgumentException(
                     id + ": cover value exceeds a hard runtime bound");
         }
@@ -59,7 +62,8 @@ public record CoverDefinition(
                         values.pressureThreshold()),
                 overrides.exactCount().orElse(values.exactCount()),
                 overrides.mode().orElse(values.mode()),
-                overrides.selector().orElse(values.selector()));
+                overrides.selector().orElse(values.selector()),
+                values.interval());
         // Re-run all hard limits after applying persisted or network values.
         return new CoverDefinition(
                 id,
@@ -99,9 +103,19 @@ public record CoverDefinition(
             int pressureThreshold,
             int exactCount,
             TransferMode mode,
-            int selector) {
+            int selector,
+            int interval) {
         public Values {
             Objects.requireNonNull(mode, "mode");
+        }
+
+        public Values(
+                int rate,
+                int pressureThreshold,
+                int exactCount,
+                TransferMode mode,
+                int selector) {
+            this(rate, pressureThreshold, exactCount, mode, selector, 1);
         }
     }
 }

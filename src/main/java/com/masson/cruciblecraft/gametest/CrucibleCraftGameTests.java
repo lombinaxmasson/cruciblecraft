@@ -10,6 +10,8 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static com.masson.cruciblecraft.gametest.GameTestHeatSources.energyCapacity;
+
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.masson.cruciblecraft.CrucibleCraft;
@@ -62,12 +64,10 @@ import com.masson.cruciblecraft.content.block.SteamEngineBlock;
 import com.masson.cruciblecraft.content.item.CellItem;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.compat.emi.ProcessingEmiRegistrationPlan;
-import com.masson.cruciblecraft.content.blockentity.FireboxBlockEntity;
 import com.masson.cruciblecraft.content.menu.ConfiguredProcessingMachineMenu;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureCatalog;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PredicateKind;
 import com.masson.cruciblecraft.heat.CrucibleThermalModel;
-import com.masson.cruciblecraft.heat.FuelDefinition;
 import com.masson.cruciblecraft.heat.ItemHeat;
 import com.masson.cruciblecraft.machine.ToolMaterialRules;
 import com.masson.cruciblecraft.material.CellContentGate;
@@ -78,6 +78,7 @@ import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.logistics.pipe.PipeAcquisitionRecipeCatalog;
 import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
+import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverConfig;
 import com.masson.cruciblecraft.logistics.pipe.fluid.FluidPipeFailureState;
 import com.masson.cruciblecraft.logistics.pipe.fluid
         .FluidPipeFailureState.Failure;
@@ -457,8 +458,7 @@ public final class CrucibleCraftGameTests {
         BlockPos dynamoPos = gearboxPos.east();
         BlockPos cablePos = dynamoPos.east();
         BlockPos electrolyzerPos = cablePos.east();
-        helper.setBlock(
-                distilleryPos.below(), ModBlocks.FIREBOX.get());
+        GameTestHeatSources.placeHuSource(helper, distilleryPos.below());
         helper.setBlock(
                 distilleryPos,
                 ModBlocks.DISTILLERY.get().defaultBlockState()
@@ -467,7 +467,7 @@ public final class CrucibleCraftGameTests {
                                 Direction.EAST));
         helper.setBlock(
                 enginePos,
-                ModBlocks.FUEL_ENGINE.get().defaultBlockState()
+                ModBlocks.BRONZE_FUEL_ENGINE.get().defaultBlockState()
                         .setValue(
                                 FuelGeneratorBlock.FACING,
                                 Direction.EAST));
@@ -503,7 +503,7 @@ public final class CrucibleCraftGameTests {
 
         ConfiguredProcessingMachineBlockEntity distillery =
                 helper.getBlockEntity(distilleryPos);
-        FireboxBlockEntity firebox =
+        FuelGeneratorBlockEntity firebox =
                 helper.getBlockEntity(distilleryPos.below());
         FuelGeneratorBlockEntity engine =
                 helper.getBlockEntity(enginePos);
@@ -531,7 +531,7 @@ public final class CrucibleCraftGameTests {
         loadRecipeInputs(distillery, distillation);
         loadRecipeInputs(electrolyzer, electrolysis);
         helper.assertTrue(
-                firebox.addFuel(FuelDefinition.COAL_COKE),
+                firebox.seedStoredEnergy(energyCapacity()),
                 "Could not fuel the HU distillery");
         helper.assertTrue(
                 engine.outputEnergyType()
@@ -623,13 +623,13 @@ public final class CrucibleCraftGameTests {
         BlockPos blockedDynamoPos = new BlockPos(11, 2, 5);
         helper.setBlock(
                 enginePos,
-                ModBlocks.FUEL_ENGINE.get().defaultBlockState()
+                ModBlocks.BRONZE_FUEL_ENGINE.get().defaultBlockState()
                         .setValue(
                                 FuelGeneratorBlock.FACING,
                                 Direction.EAST));
         helper.setBlock(
                 fullEnginePos,
-                ModBlocks.FUEL_ENGINE.get().defaultBlockState()
+                ModBlocks.BRONZE_FUEL_ENGINE.get().defaultBlockState()
                         .setValue(
                                 FuelGeneratorBlock.FACING,
                                 Direction.EAST));
@@ -758,13 +758,13 @@ public final class CrucibleCraftGameTests {
         BlockPos machinePos = cablePos.east();
         helper.setBlock(
                 currentPos,
-                ModBlocks.FUEL_ENGINE.get().defaultBlockState()
+                ModBlocks.BRONZE_FUEL_ENGINE.get().defaultBlockState()
                         .setValue(
                                 FuelGeneratorBlock.FACING,
                                 Direction.EAST));
         helper.setBlock(
                 nearMissPos,
-                ModBlocks.FUEL_ENGINE.get().defaultBlockState()
+                ModBlocks.BRONZE_FUEL_ENGINE.get().defaultBlockState()
                         .setValue(
                                 FuelGeneratorBlock.FACING,
                                 Direction.EAST));
@@ -851,7 +851,7 @@ public final class CrucibleCraftGameTests {
                                 == 1
                         && currentSave.getString(
                                         "fuel_generator_id")
-                                .equals("cruciblecraft:fuel_engine")
+                                .equals("cruciblecraft:bronze_fuel_engine")
                         && currentSave.getString(
                                         "energy_identity")
                                 .equals("KINETIC_ROTATION"),
@@ -1355,7 +1355,7 @@ public final class CrucibleCraftGameTests {
         BlockPos boilerPos = fireboxPos.above();
         BlockPos enginePos = boilerPos.above();
         BlockPos pressPos = enginePos.east();
-        helper.setBlock(fireboxPos, ModBlocks.FIREBOX.get());
+        GameTestHeatSources.placeHuSource(helper, fireboxPos);
         helper.setBlock(boilerPos, ModBlocks.BRONZE_BOILER.get());
         helper.setBlock(
                 enginePos,
@@ -1367,7 +1367,7 @@ public final class CrucibleCraftGameTests {
                         .setValue(
                                 ProcessingMachineBlock.FACING,
                                 Direction.EAST));
-        FireboxBlockEntity firebox =
+        FuelGeneratorBlockEntity firebox =
                 helper.getBlockEntity(fireboxPos);
         BoilerBlockEntity boiler =
                 helper.getBlockEntity(boilerPos);
@@ -1409,7 +1409,7 @@ public final class CrucibleCraftGameTests {
                             "Watered boiler did not diagnose no_heat: "
                                     + boiler.status());
                     helper.assertTrue(
-                            firebox.addFuel(FuelDefinition.COAL_COKE),
+                            firebox.seedStoredEnergy(energyCapacity()),
                             "Could not fuel the source firebox");
                 })
                 .thenIdle(100)
@@ -1426,13 +1426,13 @@ public final class CrucibleCraftGameTests {
                     helper.assertTrue(
                             boiler.waterAmount() < 1_000
                                     && engine.exhaustAmount() > 0
-                                    && firebox.outputRate() == 24L
+                                    && firebox.energyCapacity() > 0L
                                     && SteamEngineBlockEntity.OUTPUT_RATE
                                             == 12L,
                             "Steam chain did not preserve source conversion "
                                     + "rates or exhaust");
 
-                    long savedHeat = firebox.storedHeat();
+                    long savedHeat = firebox.energyStored();
                     int savedWater = boiler.waterAmount();
                     int savedSteam = engine.steamAmount();
                     long savedKu = engine.stored();
@@ -1450,7 +1450,7 @@ public final class CrucibleCraftGameTests {
                     boiler.loadWithComponents(boilerTag, registries);
                     engine.loadWithComponents(engineTag, registries);
                     helper.assertTrue(
-                            firebox.storedHeat() == savedHeat
+                            firebox.energyStored() == savedHeat
                                     && boiler.waterAmount() == savedWater
                                     && engine.steamAmount() == savedSteam
                                     && engine.stored() == savedKu
@@ -1906,12 +1906,12 @@ public final class CrucibleCraftGameTests {
     public static void portableTankMakesFluidOutputRecipeRepeatable(
             GameTestHelper helper) {
         BlockPos pos = new BlockPos(5, 2, 5);
-        helper.setBlock(pos.below(), ModBlocks.FIREBOX.get());
+        GameTestHeatSources.placeHuSource(helper, pos.below());
         ConfiguredProcessingMachineBlockEntity drying = placeConfigured(
                 helper, pos, ModBlocks.DRYING.get(), ModProcessingMachines.DRYING);
-        FireboxBlockEntity firebox = helper.getBlockEntity(pos.below());
+        FuelGeneratorBlockEntity firebox = helper.getBlockEntity(pos.below());
         helper.assertTrue(
-                firebox.addFuel(FuelDefinition.COAL_COKE),
+                firebox.seedStoredEnergy(energyCapacity()),
                 "Could not fuel HU drying route");
         RecipeMap.Entry source = ModRecipeMaps.DRYING.entries().stream()
                 .filter(entry -> entry.id().getPath().equals("chemical/drying/mirabilite"))
@@ -1971,16 +1971,16 @@ public final class CrucibleCraftGameTests {
     public static void distillerySourceRouteIsRepeatable(
             GameTestHelper helper) {
         BlockPos distilleryPos = new BlockPos(5, 2, 5);
-        helper.setBlock(distilleryPos.below(), ModBlocks.FIREBOX.get());
+        GameTestHeatSources.placeHuSource(helper, distilleryPos.below());
         ConfiguredProcessingMachineBlockEntity distillery = placeConfigured(
                 helper,
                 distilleryPos,
                 ModBlocks.DISTILLERY.get(),
                 ModProcessingMachines.DISTILLERY);
-        FireboxBlockEntity firebox =
+        FuelGeneratorBlockEntity firebox =
                 helper.getBlockEntity(distilleryPos.below());
         helper.assertTrue(
-                firebox.addFuel(FuelDefinition.COAL_COKE),
+                firebox.seedStoredEnergy(energyCapacity()),
                 "Could not fuel HU distillery route");
         GTRecipe recipe = requireRecipe(
                 ModRecipeMaps.DISTILLERY,
@@ -2384,15 +2384,15 @@ public final class CrucibleCraftGameTests {
                 centrifugePos,
                 ModBlocks.TITANIUM_CENTRIFUGE.get(),
                 ModProcessingMachines.CENTRIFUGE);
-        helper.setBlock(fireboxPos, ModBlocks.FIREBOX.get());
+        GameTestHeatSources.placeHuSource(helper, fireboxPos);
         ConfiguredProcessingMachineBlockEntity smelter = placeConfigured(
                 helper,
                 smelterPos,
                 ModBlocks.SMELTER.get(),
                 ModProcessingMachines.SMELTER);
-        FireboxBlockEntity firebox = helper.getBlockEntity(fireboxPos);
+        FuelGeneratorBlockEntity firebox = helper.getBlockEntity(fireboxPos);
         helper.assertTrue(
-                firebox.addFuel(FuelDefinition.COAL_COKE),
+                firebox.seedStoredEnergy(energyCapacity()),
                 "Could not fuel reused chemical smelter");
         GTRecipe bathRecipe = requireRecipe(
                 ModRecipeMaps.BATH, "chemical/bath/niobium_pentoxide");
@@ -2945,10 +2945,10 @@ public final class CrucibleCraftGameTests {
                         ModBlocks.FIREBRICK.get()));
         BlockPos fireboxPos = structure.anchor(
                 "heat_source", controllerPos, facing);
-        helper.setBlock(fireboxPos, ModBlocks.FIREBOX.get());
-        FireboxBlockEntity firebox = helper.getBlockEntity(fireboxPos);
+        GameTestHeatSources.placeHuSource(helper, fireboxPos);
+        FuelGeneratorBlockEntity firebox = helper.getBlockEntity(fireboxPos);
         helper.assertTrue(
-                firebox.addFuel(FuelDefinition.CHARCOAL),
+                firebox.seedStoredEnergy(energyCapacity()),
                 "Could not fuel coke oven heat source");
         CokeOvenBlockEntity cokeOven = helper.getBlockEntity(controllerPos);
         RecipeMap.Entry coalRecipe = ModRecipeMaps.COKE_OVEN.entries().stream()
@@ -3448,8 +3448,8 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(controllerPos);
         BlockPos energyPort = structure.anchor(
                 "bottom_energy_input", controllerPos, facing);
-        helper.setBlock(energyPort.below(), ModBlocks.FIREBOX.get());
-        FireboxBlockEntity firebox =
+        GameTestHeatSources.placeHuSource(helper, energyPort.below());
+        FuelGeneratorBlockEntity firebox =
                 helper.getBlockEntity(energyPort.below());
         BlockPos waterPort = structure.anchor(
                 "center", controllerPos, facing);
@@ -3463,7 +3463,7 @@ public final class CrucibleCraftGameTests {
                             boiler.structureValid(),
                             "Large boiler structure was not recognized");
                     helper.assertTrue(
-                            firebox.addFuel(FuelDefinition.COAL_COKE),
+                            firebox.seedStoredEnergy(energyCapacity()),
                             "Could not fuel the boiler heat source");
                 })
                 .thenIdle(10)
@@ -3703,8 +3703,8 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(controllerPos);
         BlockPos energyPort = structure.anchor(
                 "bottom_energy_input", controllerPos, facing);
-        helper.setBlock(energyPort.below(), ModBlocks.FIREBOX.get());
-        FireboxBlockEntity firebox =
+        GameTestHeatSources.placeHuSource(helper, energyPort.below());
+        FuelGeneratorBlockEntity firebox =
                 helper.getBlockEntity(energyPort.below());
         GTRecipe recipe = requireRecipe(
                 ModRecipeMaps.DISTILLERY,
@@ -3726,7 +3726,7 @@ public final class CrucibleCraftGameTests {
                             tower.structureValid(),
                             "Tower structure was not recognized");
                     helper.assertTrue(
-                            firebox.addFuel(FuelDefinition.COAL_COKE),
+                            firebox.seedStoredEnergy(energyCapacity()),
                             "Could not fuel the tower heat source");
                 })
                 .thenIdle(60)
@@ -3780,8 +3780,8 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(controllerPos);
         BlockPos energyPort = structure.anchor(
                 "bottom_energy_input", controllerPos, facing);
-        helper.setBlock(energyPort.below(), ModBlocks.FIREBOX.get());
-        FireboxBlockEntity firebox =
+        GameTestHeatSources.placeHuSource(helper, energyPort.below());
+        FuelGeneratorBlockEntity firebox =
                 helper.getBlockEntity(energyPort.below());
         GTRecipe recipe = requireRecipe(
                 ModRecipeMaps.DISTILLERY,
@@ -3794,7 +3794,7 @@ public final class CrucibleCraftGameTests {
                             tower.structureValid(),
                             "Tower structure was not recognized");
                     helper.assertTrue(
-                            firebox.addFuel(FuelDefinition.COAL_COKE),
+                            firebox.seedStoredEnergy(energyCapacity()),
                             "Could not fuel the tower heat source");
                 })
                 .thenIdle(25)
@@ -3854,8 +3854,8 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(controllerPos);
         BlockPos energyPort = structure.anchor(
                 "bottom_energy_input", controllerPos, facing);
-        helper.setBlock(energyPort.below(), ModBlocks.FIREBOX.get());
-        FireboxBlockEntity firebox =
+        GameTestHeatSources.placeHuSource(helper, energyPort.below());
+        FuelGeneratorBlockEntity firebox =
                 helper.getBlockEntity(energyPort.below());
         GTRecipe recipe = requireRecipe(
                 ModRecipeMaps.DISTILLERY,
@@ -3868,7 +3868,7 @@ public final class CrucibleCraftGameTests {
                             tower.structureValid(),
                             "Tower structure was not recognized");
                     helper.assertTrue(
-                            firebox.addFuel(FuelDefinition.COAL_COKE),
+                            firebox.seedStoredEnergy(energyCapacity()),
                             "Could not fuel the tower heat source");
                 })
                 .thenIdle(25)
@@ -4054,8 +4054,8 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(controllerPos);
         BlockPos energyPort = structure.anchor(
                 "bottom_energy_input", controllerPos, facing);
-        helper.setBlock(energyPort.below(), ModBlocks.FIREBOX.get());
-        FireboxBlockEntity firebox =
+        GameTestHeatSources.placeHuSource(helper, energyPort.below());
+        FuelGeneratorBlockEntity firebox =
                 helper.getBlockEntity(energyPort.below());
         boiler.waterTank().fill(
                 new FluidStack(Fluids.WATER, 1_000),
@@ -4072,7 +4072,7 @@ public final class CrucibleCraftGameTests {
                             boiler.structureValid(),
                             "Boiler structure was not recognized");
                     helper.assertTrue(
-                            firebox.addFuel(FuelDefinition.COAL_COKE),
+                            firebox.seedStoredEnergy(energyCapacity()),
                             "Could not fuel the boiler heat source");
                 })
                 .thenIdle(50)
@@ -4121,8 +4121,8 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(controllerPos);
         BlockPos energyPort = structure.anchor(
                 "bottom_energy_input", controllerPos, facing);
-        helper.setBlock(energyPort.below(), ModBlocks.FIREBOX.get());
-        FireboxBlockEntity firebox =
+        GameTestHeatSources.placeHuSource(helper, energyPort.below());
+        FuelGeneratorBlockEntity firebox =
                 helper.getBlockEntity(energyPort.below());
         boiler.waterTank().fill(
                 new FluidStack(Fluids.WATER, 1_000),
@@ -4134,7 +4134,7 @@ public final class CrucibleCraftGameTests {
                             boiler.structureValid(),
                             "Boiler structure was not recognized");
                     helper.assertTrue(
-                            firebox.addFuel(FuelDefinition.COAL_COKE),
+                            firebox.seedStoredEnergy(energyCapacity()),
                             "Could not fuel the boiler heat source");
                 })
                 .thenIdle(40)
@@ -4192,8 +4192,8 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(controllerPos);
         BlockPos energyPort = structure.anchor(
                 "bottom_energy_input", controllerPos, facing);
-        helper.setBlock(energyPort.below(), ModBlocks.FIREBOX.get());
-        FireboxBlockEntity firebox =
+        GameTestHeatSources.placeHuSource(helper, energyPort.below());
+        FuelGeneratorBlockEntity firebox =
                 helper.getBlockEntity(energyPort.below());
         boiler.waterTank().fill(
                 new FluidStack(Fluids.WATER, 1_000),
@@ -4205,7 +4205,7 @@ public final class CrucibleCraftGameTests {
                             boiler.structureValid(),
                             "Boiler structure was not recognized");
                     helper.assertTrue(
-                            firebox.addFuel(FuelDefinition.COAL_COKE),
+                            firebox.seedStoredEnergy(energyCapacity()),
                             "Could not fuel the boiler heat source");
                 })
                 .thenIdle(40)
@@ -4650,8 +4650,8 @@ public final class CrucibleCraftGameTests {
                 helper, controllerPos, facing);
         BlockPos energyPort = structure.anchor(
                 "bottom_energy_input", controllerPos, facing);
-        helper.setBlock(energyPort.below(), ModBlocks.FIREBOX.get());
-        FireboxBlockEntity firebox =
+        GameTestHeatSources.placeHuSource(helper, energyPort.below());
+        FuelGeneratorBlockEntity firebox =
                 helper.getBlockEntity(energyPort.below());
         helper.startSequence()
                 .thenIdle(25)
@@ -4664,7 +4664,7 @@ public final class CrucibleCraftGameTests {
                                     == InsertResult.SUCCESS,
                             "Could not charge the large crucible");
                     helper.assertTrue(
-                            firebox.addFuel(FuelDefinition.COAL_COKE),
+                            firebox.seedStoredEnergy(energyCapacity()),
                             "Could not fuel the large-crucible heat source");
                 })
                 .thenIdle(40)
@@ -4878,8 +4878,8 @@ public final class CrucibleCraftGameTests {
                 "bottom_energy_input", controllerPos, facing);
         BlockPos itemPort = structure.anchor(
                 "top_item_fluid", controllerPos, facing);
-        helper.setBlock(energyPort.below(), ModBlocks.FIREBOX.get());
-        FireboxBlockEntity firebox =
+        GameTestHeatSources.placeHuSource(helper, energyPort.below());
+        FuelGeneratorBlockEntity firebox =
                 helper.getBlockEntity(energyPort.below());
         helper.startSequence()
                 .thenIdle(25)
@@ -4888,7 +4888,7 @@ public final class CrucibleCraftGameTests {
                             crucible.structureValid(),
                             "Large crucible structure was not recognized");
                     helper.assertTrue(
-                            firebox.addFuel(FuelDefinition.COAL_COKE),
+                            firebox.seedStoredEnergy(energyCapacity()),
                             "Could not fuel the bottom HU layer");
                     MultiblockPortBlockEntity port =
                             helper.getBlockEntity(itemPort);
@@ -4947,8 +4947,8 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(controllerPos);
         BlockPos energyPort = structure.anchor(
                 "bottom_energy_input", controllerPos, facing);
-        helper.setBlock(energyPort.below(), ModBlocks.FIREBOX.get());
-        FireboxBlockEntity firebox =
+        GameTestHeatSources.placeHuSource(helper, energyPort.below());
+        FuelGeneratorBlockEntity firebox =
                 helper.getBlockEntity(energyPort.below());
         GTRecipe recipe = requireRecipe(
                 ModRecipeMaps.DISTILLERY,
@@ -4962,7 +4962,7 @@ public final class CrucibleCraftGameTests {
                             tower.structureValid(),
                             "Distillation tower structure was not recognized");
                     helper.assertTrue(
-                            firebox.addFuel(FuelDefinition.COAL_COKE),
+                            firebox.seedStoredEnergy(energyCapacity()),
                             "Could not fuel the tower heat source");
                 })
                 .thenIdle(10)
@@ -5168,7 +5168,7 @@ public final class CrucibleCraftGameTests {
         BlockPos centrifugePos = gearboxPos.east();
         helper.setBlock(
                 motorPos,
-                ModBlocks.ELECTRIC_MOTOR.get().defaultBlockState()
+                ModBlocks.STEEL_GALVANIZED_ELECTRIC_MOTOR.get().defaultBlockState()
                         .setValue(
                                 ElectricMotorBlock.FACING,
                                 Direction.EAST));
@@ -5352,7 +5352,7 @@ public final class CrucibleCraftGameTests {
         BlockPos lathePos = gearboxPos.east();
         helper.setBlock(
                 motorPos,
-                ModBlocks.ELECTRIC_MOTOR.get().defaultBlockState()
+                ModBlocks.STEEL_GALVANIZED_ELECTRIC_MOTOR.get().defaultBlockState()
                         .setValue(
                                 ElectricMotorBlock.FACING,
                                 Direction.EAST));
@@ -5588,11 +5588,11 @@ public final class CrucibleCraftGameTests {
                 new ArrayList<>();
         for (int index = 0; index < machinePositions.size(); index++) {
             BlockPos machinePos = machinePositions.get(index);
-            helper.setBlock(machinePos.below(), ModBlocks.FIREBOX.get());
-            FireboxBlockEntity firebox =
+            GameTestHeatSources.placeHuSource(helper, machinePos.below());
+            FuelGeneratorBlockEntity firebox =
                     helper.getBlockEntity(machinePos.below());
             helper.assertTrue(
-                    firebox.addFuel(FuelDefinition.COAL_COKE),
+                    firebox.seedStoredEnergy(energyCapacity()),
                     "Could not fuel HU machine " + index);
             ConfiguredProcessingMachineBlockEntity machine =
                     placeConfigured(
@@ -5666,19 +5666,10 @@ public final class CrucibleCraftGameTests {
                 requireRecipe(
                         ModRecipeMaps.SMELTER,
                         "chemical/smelter/ilmenite"));
-        FuelDefinition controlledTierThreeHeat =
-                new FuelDefinition("controlled_512_hu", 512L, 200);
         List<ConfiguredProcessingMachineBlockEntity> machines =
                 new ArrayList<>();
         for (int index = 0; index < machinePositions.size(); index++) {
             BlockPos machinePos = machinePositions.get(index);
-            helper.setBlock(machinePos.below(), ModBlocks.FIREBOX.get());
-            FireboxBlockEntity source =
-                    helper.getBlockEntity(machinePos.below());
-            helper.assertTrue(
-                    source.addControlledFuel(
-                            controlledTierThreeHeat, 512L),
-                    "Could not prime controlled tier-3 HU handler " + index);
             ConfiguredProcessingMachineBlockEntity machine =
                     placeConfigured(
                             helper,
@@ -5686,6 +5677,15 @@ public final class CrucibleCraftGameTests {
                             blocks.get(index),
                             specs.get(index));
             loadRecipeInputs(machine, recipes.get(index));
+            helper.assertTrue(
+                    machine.insert(
+                                    EnergyType.HEAT,
+                                    512L,
+                                    2L,
+                                    Direction.DOWN,
+                                    false)
+                            == 2L,
+                    "Could not inject controlled tier-3 HU " + index);
             machines.add(machine);
         }
 
@@ -5805,12 +5805,12 @@ public final class CrucibleCraftGameTests {
     public static void smelterAboveFireboxUsesRealHeat(GameTestHelper helper) {
         BlockPos fireboxPos = new BlockPos(4, 1, 4);
         BlockPos smelterPos = fireboxPos.above();
-        helper.setBlock(fireboxPos, ModBlocks.FIREBOX.get());
+        GameTestHeatSources.placeHuSource(helper, fireboxPos);
         ConfiguredProcessingMachineBlockEntity smelter =
                 placeConfigured(helper, smelterPos, ModBlocks.SMELTER.get(), ModProcessingMachines.SMELTER);
-        FireboxBlockEntity firebox = helper.getBlockEntity(fireboxPos);
+        FuelGeneratorBlockEntity firebox = helper.getBlockEntity(fireboxPos);
         helper.assertTrue(
-                firebox.addFuel(FuelDefinition.COAL_COKE),
+                firebox.seedStoredEnergy(energyCapacity()),
                 "Could not fuel real smelter firebox");
         smelter.inventory().setStackInSlot(0, material("copper", MaterialPrefixes.DUST, 1));
         IEnergyHandler heat = helper.getLevel().getCapability(
@@ -5902,16 +5902,16 @@ public final class CrucibleCraftGameTests {
             GameTestHelper helper) {
         BlockPos fireboxPos = new BlockPos(4, 1, 4);
         BlockPos smelterPos = fireboxPos.above();
-        helper.setBlock(fireboxPos, ModBlocks.FIREBOX.get());
+        GameTestHeatSources.placeHuSource(helper, fireboxPos);
         ConfiguredProcessingMachineBlockEntity smelter =
                 placeConfigured(
                         helper,
                         smelterPos,
                         ModBlocks.SMELTER.get(),
                         ModProcessingMachines.SMELTER);
-        FireboxBlockEntity firebox = helper.getBlockEntity(fireboxPos);
+        FuelGeneratorBlockEntity firebox = helper.getBlockEntity(fireboxPos);
         helper.assertTrue(
-                firebox.addFuel(FuelDefinition.COAL_COKE),
+                firebox.seedStoredEnergy(energyCapacity()),
                 "Could not fuel hot-ingot smelter");
         smelter.inventory().setStackInSlot(
                 0,
@@ -6083,9 +6083,7 @@ public final class CrucibleCraftGameTests {
                         .setValue(FluidPipeBlock.WEST, true)
                         .setValue(FluidPipeBlock.EAST, true),
                 Block.UPDATE_CLIENTS);
-        helper.setBlock(
-                distilleryPos.below(),
-                ModBlocks.FIREBOX.get());
+        GameTestHeatSources.placeHuSource(helper, distilleryPos.below());
         helper.setBlock(
                 distilleryPos,
                 ModBlocks.DISTILLERY.get().defaultBlockState()
@@ -6098,10 +6096,10 @@ public final class CrucibleCraftGameTests {
                 "Could not install the wellhead pump");
         ConfiguredProcessingMachineBlockEntity distillery =
                 helper.getBlockEntity(distilleryPos);
-        FireboxBlockEntity firebox =
+        FuelGeneratorBlockEntity firebox =
                 helper.getBlockEntity(distilleryPos.below());
         helper.assertTrue(
-                firebox.addFuel(FuelDefinition.COAL_COKE),
+                firebox.seedStoredEnergy(energyCapacity()),
                 "Could not fuel the HU distillery");
         GTRecipe recipe = requireRecipe(
                 ModRecipeMaps.DISTILLERY,
@@ -6185,7 +6183,7 @@ public final class CrucibleCraftGameTests {
                                 Direction.EAST));
         helper.setBlock(
                 generatorPos,
-                ModBlocks.BURNING_GAS_GENERATOR.get()
+                ModBlocks.BRONZE_BURNING_BOX_GAS.get()
                         .defaultBlockState()
                         .setValue(
                                 FuelGeneratorBlock.FACING,
@@ -6309,7 +6307,7 @@ public final class CrucibleCraftGameTests {
                 nearMissPos)) {
             helper.setBlock(
                     position,
-                    ModBlocks.BURNING_GAS_GENERATOR.get()
+                    ModBlocks.BRONZE_BURNING_BOX_GAS.get()
                             .defaultBlockState()
                             .setValue(
                                     FuelGeneratorBlock.FACING,
@@ -6897,9 +6895,9 @@ public final class CrucibleCraftGameTests {
                     helper, new BlockPos(3 + i * 4, 2, 8), blocks.get(i), specs.get(i)));
         }
         BlockPos chainFireboxPos = new BlockPos(19, 1, 8);
-        helper.setBlock(chainFireboxPos, ModBlocks.FIREBOX.get());
-        FireboxBlockEntity chainFirebox = helper.getBlockEntity(chainFireboxPos);
-        helper.assertTrue(chainFirebox.addFuel(FuelDefinition.COAL_COKE),
+        GameTestHeatSources.placeHuSource(helper, chainFireboxPos);
+        FuelGeneratorBlockEntity chainFirebox = helper.getBlockEntity(chainFireboxPos);
+        helper.assertTrue(chainFirebox.seedStoredEnergy(energyCapacity()),
                 "Could not fuel chain smelter firebox");
         CrusherBlockEntity crusher;
         BlockPos crusherPos = new BlockPos(3, 2, 13);
@@ -9484,23 +9482,60 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
-    public static void retrieverPullsOnlyDestinationDemand(
+    public static void retrieverRequestsFromPipeNetwork(
             GameTestHelper helper) {
         ActiveCoverRoute route = activeCoverRoute(
                 helper,
                 "cruciblecraft:retriever_item",
-                new ItemStack(Items.IRON_INGOT, 10),
-                new ItemStack(Items.IRON_INGOT, 60));
-        fillRemainingChestSlots(route.destination());
+                new ItemStack(Items.IRON_INGOT, 60),
+                new ItemStack(Items.IRON_INGOT, 10));
+        fillRemainingChestSlots(route.source());
         helper.startSequence()
-                .thenIdle(20)
+                .thenIdle(40)
                 .thenExecute(() -> {
                     helper.assertTrue(
-                            route.destination().getItem(0).getCount() == 64,
-                            "Retriever ignored the destination demand");
+                            route.source().getItem(0).getCount() == 64,
+                            "Retriever did not request into the front inventory");
                     helper.assertTrue(
-                            route.source().getItem(0).getCount() == 6,
-                            "Blocked retriever demand lost source items");
+                            route.destination().getItem(0).getCount() == 6,
+                            "Retriever drained the wrong chest or voided items");
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void retrieverInvertedFilterSkipsMatch(
+            GameTestHelper helper) {
+        ActiveCoverRoute route = activeCoverRoute(
+                helper,
+                "cruciblecraft:retriever_item",
+                ItemStack.EMPTY,
+                new ItemStack(Items.IRON_INGOT, 8));
+        route.destination().setItem(1, new ItemStack(Items.GOLD_INGOT, 8));
+        helper.assertTrue(
+                route.pipe().setCover(
+                        Direction.WEST,
+                        PipeCover.of("cruciblecraft:retriever_item")
+                                .withConfig(PipeCoverConfig.EMPTY
+                                        .withMatchId("minecraft:iron_ingot")
+                                        .withInvert(1))),
+                "Could not install inverted retriever");
+        helper.startSequence()
+                .thenIdle(40)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            route.source().getItem(0).is(
+                                    Items.GOLD_INGOT)
+                                    && route.source().getItem(0).getCount()
+                                            == 8,
+                            "Inverted retriever did not request the unmatched item");
+                    helper.assertTrue(
+                            route.destination().getItem(0).is(
+                                    Items.IRON_INGOT)
+                                    && route.destination().getItem(0)
+                                            .getCount()
+                                            == 8,
+                            "Inverted retriever pulled the filtered item");
                 })
                 .thenSucceed();
     }
@@ -9696,7 +9731,8 @@ public final class CrucibleCraftGameTests {
                     "plastic", MaterialPrefixes.PLATE).orElseThrow();
             case RUBBER_PLATE -> MaterialLookup.item(
                     "rubber", MaterialPrefixes.PLATE).orElseThrow();
-            case COAL_COKE -> ModItems.COAL_COKE.get();
+            case COAL_COKE -> MaterialLookup.item(
+                    "coal_coke", MaterialPrefixes.GEM).orElseThrow();
         };
     }
 
@@ -9875,19 +9911,19 @@ public final class CrucibleCraftGameTests {
         BlockPos distilleryPos = new BlockPos(2, 2, 4);
         BlockPos enginePos = new BlockPos(4, 2, 4);
 
-        helper.setBlock(distilleryPos.below(), ModBlocks.FIREBOX.get());
+        GameTestHeatSources.placeHuSource(helper, distilleryPos.below());
         helper.setBlock(
                 distilleryPos,
                 ModBlocks.DISTILLERY.get().defaultBlockState()
                         .setValue(ProcessingMachineBlock.FACING, Direction.EAST));
         helper.setBlock(
                 enginePos,
-                ModBlocks.FUEL_ENGINE.get().defaultBlockState()
+                ModBlocks.BRONZE_FUEL_ENGINE.get().defaultBlockState()
                         .setValue(FuelGeneratorBlock.FACING, Direction.EAST));
 
         ConfiguredProcessingMachineBlockEntity distillery =
                 helper.getBlockEntity(distilleryPos);
-        FireboxBlockEntity firebox =
+        FuelGeneratorBlockEntity firebox =
                 helper.getBlockEntity(distilleryPos.below());
         FuelGeneratorBlockEntity engine =
                 helper.getBlockEntity(enginePos);
@@ -9900,7 +9936,7 @@ public final class CrucibleCraftGameTests {
                 "hydrocarbon/fuels_engine/fuel_oil");
 
         helper.assertTrue(
-                firebox.addFuel(FuelDefinition.COAL_COKE),
+                firebox.seedStoredEnergy(energyCapacity()),
                 "Could not fuel distillery firebox");
 
         helper.startSequence()
@@ -9955,7 +9991,7 @@ public final class CrucibleCraftGameTests {
         // Conservation: distillery fluid state must survive NBT save/load
         // without duplicating or losing fluid.
         BlockPos distilleryPos = new BlockPos(2, 2, 3);
-        helper.setBlock(distilleryPos.below(), ModBlocks.FIREBOX.get());
+        GameTestHeatSources.placeHuSource(helper, distilleryPos.below());
         helper.setBlock(
                 distilleryPos,
                 ModBlocks.DISTILLERY.get().defaultBlockState()
@@ -9963,14 +9999,14 @@ public final class CrucibleCraftGameTests {
 
         ConfiguredProcessingMachineBlockEntity distillery =
                 helper.getBlockEntity(distilleryPos);
-        FireboxBlockEntity firebox =
+        FuelGeneratorBlockEntity firebox =
                 helper.getBlockEntity(distilleryPos.below());
         GTRecipe distillation = requireRecipe(
                 ModRecipeMaps.DISTILLERY,
                 "petroleum/distillery/oil_to_fuel_and_lubricant");
 
         helper.assertTrue(
-                firebox.addFuel(FuelDefinition.COAL_COKE),
+                firebox.seedStoredEnergy(energyCapacity()),
                 "Could not fuel distillery");
 
         helper.startSequence()
@@ -10042,7 +10078,7 @@ public final class CrucibleCraftGameTests {
         // distillery must preserve its fluid contents.  Re-fueling must
         // allow processing to resume.  (C3: conservation / power-loss)
         BlockPos distilleryPos = new BlockPos(2, 2, 3);
-        helper.setBlock(distilleryPos.below(), ModBlocks.FIREBOX.get());
+        GameTestHeatSources.placeHuSource(helper, distilleryPos.below());
         helper.setBlock(
                 distilleryPos,
                 ModBlocks.DISTILLERY.get().defaultBlockState()
@@ -10050,7 +10086,7 @@ public final class CrucibleCraftGameTests {
 
         ConfiguredProcessingMachineBlockEntity distillery =
                 helper.getBlockEntity(distilleryPos);
-        FireboxBlockEntity firebox =
+        FuelGeneratorBlockEntity firebox =
                 helper.getBlockEntity(distilleryPos.below());
         GTRecipe distillation = requireRecipe(
                 ModRecipeMaps.DISTILLERY,
@@ -10059,7 +10095,7 @@ public final class CrucibleCraftGameTests {
         // Fuel first, then load input — the distillery needs heat to
         // bind the recipe and begin processing.
         helper.assertTrue(
-                firebox.addFuel(FuelDefinition.COAL_COKE),
+                firebox.seedStoredEnergy(energyCapacity()),
                 "Could not fuel distillery firebox");
 
         helper.startSequence()
@@ -10777,7 +10813,7 @@ public final class CrucibleCraftGameTests {
             GameTestHelper helper) {
         buildSmallWorkloadScenario(helper, true);
         fuelSmallWorkloadScenario(helper);
-        FireboxBlockEntity firebox = helper.getBlockEntity(SMALL_WORKLOAD_FIREBOX);
+        FuelGeneratorBlockEntity firebox = helper.getBlockEntity(SMALL_WORKLOAD_FIREBOX);
         BoilerBlockEntity boiler = helper.getBlockEntity(SMALL_WORKLOAD_BOILER);
         SteamEngineBlockEntity engine =
                 helper.getBlockEntity(SMALL_WORKLOAD_STEAM_ENGINE);
@@ -10795,19 +10831,19 @@ public final class CrucibleCraftGameTests {
                 .thenIdle(200)
                 .thenExecute(() -> {
                     helper.assertTrue(
-                            firebox.outputRate() == 24L
+                            firebox.energyCapacity() > 0L
                                     && SteamEngineBlockEntity.OUTPUT_RATE
                                             == 12L,
                             "Small-workload warmup did not reach the declared fixed "
-                                    + "converter rates: firebox="
-                                    + firebox.outputRate());
+                                    + "converter rates: hu_source="
+                                    + firebox.energyCapacity());
                     helper.assertTrue(
                             boiler.steamAmount() > 0
                                     || engine.stored() > 0L
                                     || engine.exhaustAmount() > 0,
                             "Small-workload warmup produced no steam or KU");
                     helper.assertTrue(
-                            firebox.addFuel(FuelDefinition.COAL_COKE),
+                            firebox.seedStoredEnergy(energyCapacity()),
                             "Could not refuel the small-workload firebox for the "
                                     + "sampling window");
                 })
@@ -10978,7 +11014,7 @@ public final class CrucibleCraftGameTests {
 
     private static void buildSmallWorkloadScenario(
             GameTestHelper helper, boolean includePress) {
-        helper.setBlock(SMALL_WORKLOAD_FIREBOX, ModBlocks.FIREBOX.get());
+        GameTestHeatSources.placeHuSource(helper, SMALL_WORKLOAD_FIREBOX);
         helper.setBlock(SMALL_WORKLOAD_BOILER, ModBlocks.BRONZE_BOILER.get());
         helper.setBlock(
                 SMALL_WORKLOAD_STEAM_ENGINE,
@@ -10996,7 +11032,7 @@ public final class CrucibleCraftGameTests {
         }
         helper.setBlock(
                 SMALL_WORKLOAD_FUEL_ENGINE,
-                ModBlocks.FUEL_ENGINE.get().defaultBlockState()
+                ModBlocks.BRONZE_FUEL_ENGINE.get().defaultBlockState()
                         .setValue(
                                 FuelGeneratorBlock.FACING,
                                 Direction.EAST));
@@ -11090,13 +11126,13 @@ public final class CrucibleCraftGameTests {
                         .is(ModBlocks.PRESS.get())) {
             return false;
         }
-        if (!helper.getBlockState(SMALL_WORKLOAD_FIREBOX).is(ModBlocks.FIREBOX.get())
+        if (!helper.getBlockState(SMALL_WORKLOAD_FIREBOX).is(ModBlocks.BRONZE_BURNING_BOX_GAS.get())
                 || !helper.getBlockState(SMALL_WORKLOAD_BOILER)
                         .is(ModBlocks.BRONZE_BOILER.get())
                 || !helper.getBlockState(SMALL_WORKLOAD_STEAM_ENGINE)
                         .is(ModBlocks.BRONZE_STEAM_ENGINE.get())
                 || !helper.getBlockState(SMALL_WORKLOAD_FUEL_ENGINE)
-                        .is(ModBlocks.FUEL_ENGINE.get())
+                        .is(ModBlocks.BRONZE_FUEL_ENGINE.get())
                 || !helper.getBlockState(SMALL_WORKLOAD_AXLE)
                         .is(ModBlocks.ROTATIONAL_AXLE.get())
                 || !helper.getBlockState(SMALL_WORKLOAD_GEARBOX)
@@ -11154,7 +11190,7 @@ public final class CrucibleCraftGameTests {
     }
 
     private static void fuelSmallWorkloadScenario(GameTestHelper helper) {
-        FireboxBlockEntity firebox = helper.getBlockEntity(SMALL_WORKLOAD_FIREBOX);
+        FuelGeneratorBlockEntity firebox = helper.getBlockEntity(SMALL_WORKLOAD_FIREBOX);
         BoilerBlockEntity boiler = helper.getBlockEntity(SMALL_WORKLOAD_BOILER);
         FuelGeneratorBlockEntity fuelEngine =
                 helper.getBlockEntity(SMALL_WORKLOAD_FUEL_ENGINE);
@@ -11186,7 +11222,7 @@ public final class CrucibleCraftGameTests {
         loadRecipeInputs(centrifuge, centrifugeRecipe);
 
         helper.assertTrue(
-                firebox.addFuel(FuelDefinition.COAL_COKE),
+                firebox.seedStoredEnergy(energyCapacity()),
                 "Could not fuel the small-workload firebox");
         IFluidHandler water = boiler.fluids(Direction.NORTH);
         helper.assertTrue(

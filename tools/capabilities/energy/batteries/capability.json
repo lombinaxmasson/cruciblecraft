@@ -1,0 +1,146 @@
+{
+  "schema_version": 2,
+  "slug": "energy/batteries",
+  "title": "Energy Batteries",
+  "maturity": "player_complete",
+  "workflow": "accepted",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/energy/battery/**",
+    "src/main/java/com/masson/cruciblecraft/gametest/EnergyBatteriesGameTests.java",
+    "src/main/resources/data/cruciblecraft_wave_runtime_batteries/**",
+    "src/main/resources/data/cruciblecraft/energy_battery_kinds.json",
+    "src/main/resources/data/cruciblecraft/energy_battery_tiers.json",
+    "src/main/resources/assets/cruciblecraft/gt6_batteries_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/battery/**",
+    "src/test/java/com/masson/cruciblecraft/energy/battery/**",
+    "tools/capabilities/energy/batteries/**",
+    "tools/waves/runtime/batteries/**",
+    "tools/tests/test_energy_batteries.py"
+  ],
+  "depends_on": [
+    "energy/converter-catalog"
+  ],
+  "profiles": [
+    "capability-runtime",
+    "player-complete"
+  ],
+  "wave_slug": "runtime/batteries",
+  "legacy_readiness": "tools/waves/runtime/batteries/readiness.json",
+  "player_signoff": "tools/capabilities/energy/batteries/player_signoff.json",
+  "required_test_ids": [
+    "chargeStoresEu",
+    "dischargeExtractsEu",
+    "luRejectsEu",
+    "playerSurfaceIsRegistered",
+    "reloadPreservesCharge",
+    "representativeRecipesAreSurvivalCraftable"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "battery:lead_acid",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:lead_acid_battery_ulv",
+        "cruciblecraft:lead_acid_battery_lv",
+        "cruciblecraft:lead_acid_battery_mv",
+        "cruciblecraft:lead_acid_battery_hv",
+        "cruciblecraft:lead_acid_battery_ev"
+      ],
+      "reason": "GT6 MultiTileEntityBatteryEU* 14000-14004. Not a converter and not a battery box."
+    },
+    {
+      "semantic_key": "battery:alkaline",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:alkaline_battery_ulv",
+        "cruciblecraft:alkaline_battery_lv",
+        "cruciblecraft:alkaline_battery_mv",
+        "cruciblecraft:alkaline_battery_hv",
+        "cruciblecraft:alkaline_battery_ev"
+      ],
+      "reason": "GT6 MultiTileEntityBatteryEU* 14010-14014."
+    },
+    {
+      "semantic_key": "battery:nickel_cadmium",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:nickel_cadmium_battery_ulv",
+        "cruciblecraft:nickel_cadmium_battery_lv",
+        "cruciblecraft:nickel_cadmium_battery_mv",
+        "cruciblecraft:nickel_cadmium_battery_hv",
+        "cruciblecraft:nickel_cadmium_battery_ev"
+      ],
+      "reason": "GT6 MultiTileEntityBatteryEU* 14020-14024."
+    },
+    {
+      "semantic_key": "battery:lithium_cobalt",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:lithium_cobalt_battery_ulv",
+        "cruciblecraft:lithium_cobalt_battery_lv",
+        "cruciblecraft:lithium_cobalt_battery_mv",
+        "cruciblecraft:lithium_cobalt_battery_hv",
+        "cruciblecraft:lithium_cobalt_battery_ev"
+      ],
+      "reason": "GT6 MultiTileEntityBatteryAdvEU* 14030-14034."
+    },
+    {
+      "semantic_key": "battery:lithium_manganese",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:lithium_manganese_battery_ulv",
+        "cruciblecraft:lithium_manganese_battery_lv",
+        "cruciblecraft:lithium_manganese_battery_mv",
+        "cruciblecraft:lithium_manganese_battery_hv",
+        "cruciblecraft:lithium_manganese_battery_ev"
+      ],
+      "reason": "GT6 MultiTileEntityBatteryAdvEU* 14040-14044."
+    },
+    {
+      "semantic_key": "battery:red_energium_crystal",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:red_energium_crystal_ulv",
+        "cruciblecraft:red_energium_crystal_lv",
+        "cruciblecraft:red_energium_crystal_mv",
+        "cruciblecraft:red_energium_crystal_hv",
+        "cruciblecraft:red_energium_crystal_ev",
+        "cruciblecraft:red_energium_crystal_iv"
+      ],
+      "reason": "GT6 MultiTileEntityBatteryLU* 14500-14505. LU, not ELECTRIC."
+    },
+    {
+      "semantic_key": "battery:cyan_energium_crystal",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:cyan_energium_crystal_ulv",
+        "cruciblecraft:cyan_energium_crystal_lv",
+        "cruciblecraft:cyan_energium_crystal_mv",
+        "cruciblecraft:cyan_energium_crystal_hv",
+        "cruciblecraft:cyan_energium_crystal_ev",
+        "cruciblecraft:cyan_energium_crystal_iv"
+      ],
+      "reason": "GT6 MultiTileEntityBatteryLU* 14510-14515. LU, not ELECTRIC."
+    },
+    {
+      "semantic_key": "energy_type:lu",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:red_energium_crystal_ulv",
+        "cruciblecraft:red_energium_crystal_lv",
+        "cruciblecraft:red_energium_crystal_mv",
+        "cruciblecraft:red_energium_crystal_hv",
+        "cruciblecraft:red_energium_crystal_ev",
+        "cruciblecraft:red_energium_crystal_iv",
+        "cruciblecraft:cyan_energium_crystal_ulv",
+        "cruciblecraft:cyan_energium_crystal_lv",
+        "cruciblecraft:cyan_energium_crystal_mv",
+        "cruciblecraft:cyan_energium_crystal_hv",
+        "cruciblecraft:cyan_energium_crystal_ev",
+        "cruciblecraft:cyan_energium_crystal_iv"
+      ],
+      "reason": "GT6 TD.Energy.LU for energium crystals. CC EnergyType.LU is independent of ELECTRIC; cables and lockers stay EU-only."
+    }
+  ],
+  "note": "37 census Batteries: loader 14000-14044 and 14500-14515. Not fusion 14600/14601, not battery boxes, not transformers. unique_active_wave stays null. Source is local gt6_code."
+}

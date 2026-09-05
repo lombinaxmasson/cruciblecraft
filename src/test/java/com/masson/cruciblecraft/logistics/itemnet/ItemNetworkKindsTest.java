@@ -29,11 +29,18 @@ class ItemNetworkKindsTest {
                 .isPresent());
         assertTrue(CoverDefinitionCatalog.find(
                 ResourceLocation.parse("cruciblecraft:logistics_generic_dump"))
-                .isEmpty());
+                .isPresent());
         assertFalse(ItemNetworkKinds.isForbiddenFrozenKind(
                 ResourceLocation.parse("cruciblecraft:logistics_fluid_storage")));
-        assertTrue(ItemNetworkKinds.isForbiddenFrozenKind(
+        assertFalse(ItemNetworkKinds.isForbiddenFrozenKind(
+                ResourceLocation.parse("cruciblecraft:logistics_generic_storage")));
+        assertFalse(ItemNetworkKinds.isForbiddenFrozenKind(
                 ResourceLocation.parse("cruciblecraft:logistics_generic_dump")));
+        assertFalse(ItemNetworkKinds.isForbiddenFrozenKind(
+                ResourceLocation.parse(
+                        "cruciblecraft:logistics_display_cpu_logic")));
+        assertTrue(ItemNetworkKinds.isForbiddenFrozenKind(
+                ResourceLocation.parse("cruciblecraft:logistics_battery")));
         assertFalse(ItemNetworkKinds.isForbiddenFrozenKind(
                 ItemNetworkKinds.STORAGE));
         assertEquals(

@@ -175,6 +175,23 @@ public final class FluidPipeBlockEntity extends BlockEntity {
         if (level != null && !level.isClientSide) {
             PipeTopology.invalidate(level, worldPosition);
             syncToClient();
+            notifyCoverRedstone(side);
+        }
+        return true;
+    }
+
+    public boolean replaceCoverQuiet(Direction side, PipeCover cover) {
+        if (cover != null
+                && !cover.supports(CoverDefinition.Medium.FLUID)) {
+            return false;
+        }
+        if (!covers.set(side, cover)) {
+            return false;
+        }
+        setChanged();
+        if (level != null && !level.isClientSide) {
+            syncToClient();
+            notifyCoverRedstone(side);
         }
         return true;
     }
@@ -209,6 +226,7 @@ public final class FluidPipeBlockEntity extends BlockEntity {
         if (level != null && !level.isClientSide) {
             PipeTopology.invalidate(level, worldPosition);
             syncToClient();
+            notifyCoverRedstone(side);
         }
         return true;
     }
@@ -218,6 +236,31 @@ public final class FluidPipeBlockEntity extends BlockEntity {
             CoverDefinition.ConfigField field,
             int value) {
         if (!covers.configure(side, field, value)) {
+            return false;
+        }
+        setChanged();
+        if (level != null && !level.isClientSide) {
+            PipeTopology.invalidate(level, worldPosition);
+            syncToClient();
+            notifyCoverRedstone(side);
+        }
+        return true;
+    }
+
+    private void notifyCoverRedstone(Direction side) {
+        if (level == null || level.isClientSide) {
+            return;
+        }
+        net.minecraft.world.level.block.Block block =
+                getBlockState().getBlock();
+        level.updateNeighborsAt(worldPosition, block);
+        if (side != null) {
+            level.updateNeighborsAt(worldPosition.relative(side), block);
+        }
+    }
+
+    public boolean toggleCoverInvert(Direction side) {
+        if (!covers.toggleInvert(side)) {
             return false;
         }
         setChanged();

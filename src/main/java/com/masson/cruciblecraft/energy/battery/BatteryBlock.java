@@ -1,0 +1,119 @@
+package com.masson.cruciblecraft.energy.battery;
+
+import java.util.List;
+
+import org.jetbrains.annotations.Nullable;
+
+import com.masson.cruciblecraft.registry.ModBlockEntities;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+
+/** Placeable GT6 battery / energium crystal. */
+public final class BatteryBlock extends Block implements EntityBlock {
+    private final EnergyBatteryProfile profile;
+
+    public BatteryBlock(EnergyBatteryProfile profile, Properties properties) {
+        super(properties);
+        this.profile = profile;
+    }
+
+    public EnergyBatteryProfile profile() {
+        return profile;
+    }
+
+    @Override
+    protected VoxelShape getShape(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            CollisionContext context) {
+        return profile.shape();
+    }
+
+    @Override
+    protected RenderShape getRenderShape(BlockState state) {
+        return RenderShape.MODEL;
+    }
+
+    @Override
+    public int getLightEmission(
+            BlockState state, BlockGetter level, BlockPos pos) {
+        if (level.getBlockEntity(pos) instanceof BatteryBlockEntity battery) {
+            return battery.lightLevel();
+        }
+        return 0;
+    }
+
+    @Override
+    public void setPlacedBy(
+            Level level,
+            BlockPos pos,
+            BlockState state,
+            @Nullable LivingEntity placer,
+            ItemStack stack) {
+        if (level.getBlockEntity(pos) instanceof BatteryBlockEntity battery) {
+            battery.readFromItem(stack);
+        }
+    }
+
+    @Override
+    public ItemStack getCloneItemStack(
+            LevelReader level, BlockPos pos, BlockState state) {
+        ItemStack stack = new ItemStack(this);
+        if (level.getBlockEntity(pos) instanceof BatteryBlockEntity battery) {
+            battery.writeToItem(stack);
+        }
+        return stack;
+    }
+
+    @Override
+    protected List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
+        List<ItemStack> drops = new java.util.ArrayList<>(super.getDrops(state, params));
+        if (params.getOptionalParameter(LootContextParams.BLOCK_ENTITY)
+                instanceof BatteryBlockEntity battery) {
+            ItemStack blockItem = drops.isEmpty()
+                    ? new ItemStack(this)
+                    : drops.getFirst();
+            if (drops.isEmpty()) {
+                drops.add(blockItem);
+            }
+            battery.writeToItem(blockItem);
+        }
+        return drops;
+    }
+
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new BatteryBlockEntity(pos, state);
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(
+            Level level, BlockState state, BlockEntityType<T> type) {
+        return !level.isClientSide && type == ModBlockEntities.BATTERY.get()
+                ? (current, pos, currentState, blockEntity) ->
+                        BatteryBlockEntity.serverTick(
+                                current,
+                                pos,
+                                currentState,
+                                (BatteryBlockEntity) blockEntity)
+                : null;
+    }
+}

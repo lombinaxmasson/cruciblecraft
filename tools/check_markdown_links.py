@@ -20,6 +20,9 @@ CURRENT_ROOTS = (
     ROOT / "docs",
     ROOT / "tools" / "README.md",
 )
+# Closed plans are archives. INDEX.md deleted work logs / stage archives;
+# their leftover relative links must not fail current-doc checks.
+CLOSED_CARD_PLANS = ROOT / "docs" / "history" / "card-plans" / "closed"
 
 
 def load_path_map() -> dict[str, str]:
@@ -41,7 +44,19 @@ def iter_markdown_files() -> list[Path]:
             continue
         if root.is_dir():
             files.extend(sorted(root.rglob("*.md")))
-    return [path for path in files if path.is_file()]
+    return [
+        path
+        for path in files
+        if path.is_file() and not _is_closed_card_plan(path)
+    ]
+
+
+def _is_closed_card_plan(path: Path) -> bool:
+    try:
+        path.relative_to(CLOSED_CARD_PLANS)
+    except ValueError:
+        return False
+    return True
 
 
 def is_external(target: str) -> bool:

@@ -41,12 +41,6 @@ public final class ModCapabilities {
                 Capabilities.FluidHandler.ITEM,
                 (stack, context) -> ModItems.GAS_CELL.get().handler(stack),
                 ModItems.GAS_CELL.get());
-        event.registerBlockEntity(ENERGY, ModBlockEntities.FIREBOX.get(), (blockEntity, side) -> blockEntity);
-        event.registerBlockEntity(ENERGY, ModBlockEntities.BELLOWS.get(), (blockEntity, side) -> blockEntity);
-        event.registerBlockEntity(
-                Capabilities.FluidHandler.BLOCK,
-                ModBlockEntities.BELLOWS.get(),
-                (blockEntity, side) -> blockEntity.fluids(side));
         event.registerBlockEntity(ENERGY, ModBlockEntities.CRUCIBLE.get(), (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(ENERGY, ModBlockEntities.BOILER.get(), (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(ENERGY, ModBlockEntities.STEAM_ENGINE.get(), (blockEntity, side) -> blockEntity);
@@ -66,6 +60,14 @@ public final class ModCapabilities {
         event.registerBlockEntity(
                 ENERGY,
                 ModBlockEntities.FUEL_GENERATOR.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.LOGISTICS_CORE.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.LOGISTICS_CORE_WALL.get(),
                 (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(ENERGY, ModBlockEntities.CRUSHER.get(), (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(
@@ -176,6 +178,30 @@ public final class ModCapabilities {
         event.registerBlockEntity(
                 Capabilities.FluidHandler.BLOCK,
                 ModBlockEntities.FUEL_GENERATOR.get(),
+                (blockEntity, side) -> blockEntity.fluids(side));
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.SOLID_BURNING_BOX.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.SOLID_BURNING_BOX.get(),
+                (blockEntity, side) -> blockEntity.items(side));
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.FLUID_BED_BURNING_BOX.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.BATTERY.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.FLUID_BED_BURNING_BOX.get(),
+                (blockEntity, side) -> blockEntity.items(side));
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.FLUID_BED_BURNING_BOX.get(),
                 (blockEntity, side) -> blockEntity.fluids(side));
     }
 }

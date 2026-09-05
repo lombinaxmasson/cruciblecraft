@@ -28,12 +28,11 @@ public final class Gt6OpeningBlockColor {
     public static Block[] tintedBlocks() {
         return new Block[] {
             ModBlocks.FIREBRICK.get(),
-            ModBlocks.CERAMIC_MOLD.get(),
-            ModBlocks.FIREBOX.get()
+            ModBlocks.CERAMIC_MOLD.get()
         };
     }
 
     private static int colorFor(Block block) {
-        return block == ModBlocks.FIREBOX.get() ? GT6_BRICK : GT6_CERAMIC;
+        return block == ModBlocks.FIREBRICK.get() ? GT6_BRICK : GT6_CERAMIC;
     }
 }

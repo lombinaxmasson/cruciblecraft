@@ -1,0 +1,1569 @@
+{
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "tiers": [
+    {
+      "id": "cruciblecraft:lead_acid_battery_ulv",
+      "kind": "cruciblecraft:lead_acid_battery",
+      "voltage": "ulv",
+      "voltage_index": 0,
+      "input_size": 8,
+      "capacity": 16000,
+      "energy": "EU",
+      "source_id": 14000,
+      "source_line": 1009,
+      "gt6_class": "MultiTileEntityBatteryEU8",
+      "voxel": [
+        5,
+        0,
+        5,
+        11,
+        8,
+        11
+      ],
+      "display_scale_max": 4,
+      "recipe": {
+        "pattern": [
+          "W ",
+          "B ",
+          "P "
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "plate",
+            "material": "lead"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "lead"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:lead_acid_battery_lv",
+      "kind": "cruciblecraft:lead_acid_battery",
+      "voltage": "lv",
+      "voltage_index": 1,
+      "input_size": 32,
+      "capacity": 64000,
+      "energy": "EU",
+      "source_id": 14001,
+      "source_line": 1010,
+      "gt6_class": "MultiTileEntityBatteryEU32",
+      "voxel": [
+        5,
+        0,
+        5,
+        11,
+        11,
+        11
+      ],
+      "display_scale_max": 7,
+      "recipe": {
+        "pattern": [
+          " W ",
+          "PBP",
+          " B "
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "plate",
+            "material": "lead"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "tin"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:lead_acid_battery_mv",
+      "kind": "cruciblecraft:lead_acid_battery",
+      "voltage": "mv",
+      "voltage_index": 2,
+      "input_size": 128,
+      "capacity": 256000,
+      "energy": "EU",
+      "source_id": 14002,
+      "source_line": 1011,
+      "gt6_class": "MultiTileEntityBatteryEU128",
+      "voxel": [
+        4,
+        0,
+        4,
+        12,
+        11,
+        12
+      ],
+      "display_scale_max": 7,
+      "recipe": {
+        "pattern": [
+          "W W",
+          "BCB",
+          "PBP"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "plate",
+            "material": "lead"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "copper"
+          },
+          "C": {
+            "item": "cruciblecraft:programmed_circuit"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:lead_acid_battery_hv",
+      "kind": "cruciblecraft:lead_acid_battery",
+      "voltage": "hv",
+      "voltage_index": 3,
+      "input_size": 512,
+      "capacity": 1024000,
+      "energy": "EU",
+      "source_id": 14003,
+      "source_line": 1012,
+      "gt6_class": "MultiTileEntityBatteryEU512",
+      "voxel": [
+        3,
+        0,
+        3,
+        13,
+        11,
+        13
+      ],
+      "display_scale_max": 7,
+      "recipe": {
+        "pattern": [
+          "W W",
+          "BCB",
+          "BPB"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "plate",
+            "material": "lead"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "gold"
+          },
+          "C": {
+            "item": "cruciblecraft:programmed_circuit"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:lead_acid_battery_ev",
+      "kind": "cruciblecraft:lead_acid_battery",
+      "voltage": "ev",
+      "voltage_index": 4,
+      "input_size": 2048,
+      "capacity": 4096000,
+      "energy": "EU",
+      "source_id": 14004,
+      "source_line": 1013,
+      "gt6_class": "MultiTileEntityBatteryEU2048",
+      "voxel": [
+        2,
+        0,
+        2,
+        14,
+        13,
+        14
+      ],
+      "display_scale_max": 9,
+      "recipe": {
+        "pattern": [
+          "WPW",
+          "BCB",
+          "BBB"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "plate",
+            "material": "lead"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "aluminium"
+          },
+          "C": {
+            "item": "cruciblecraft:programmed_circuit"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:alkaline_battery_ulv",
+      "kind": "cruciblecraft:alkaline_battery",
+      "voltage": "ulv",
+      "voltage_index": 0,
+      "input_size": 8,
+      "capacity": 32000,
+      "energy": "EU",
+      "source_id": 14010,
+      "source_line": 1033,
+      "gt6_class": "MultiTileEntityBatteryEU8",
+      "voxel": [
+        5,
+        0,
+        5,
+        11,
+        8,
+        11
+      ],
+      "display_scale_max": 4,
+      "recipe": {
+        "pattern": [
+          "W ",
+          "B ",
+          "P "
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "dust",
+            "material": "zinc"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "lead"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:alkaline_battery_lv",
+      "kind": "cruciblecraft:alkaline_battery",
+      "voltage": "lv",
+      "voltage_index": 1,
+      "input_size": 32,
+      "capacity": 128000,
+      "energy": "EU",
+      "source_id": 14011,
+      "source_line": 1034,
+      "gt6_class": "MultiTileEntityBatteryEU32",
+      "voxel": [
+        5,
+        0,
+        5,
+        11,
+        11,
+        11
+      ],
+      "display_scale_max": 7,
+      "recipe": {
+        "pattern": [
+          " W ",
+          "PBP",
+          " B "
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "dust",
+            "material": "zinc"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "tin"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:alkaline_battery_mv",
+      "kind": "cruciblecraft:alkaline_battery",
+      "voltage": "mv",
+      "voltage_index": 2,
+      "input_size": 128,
+      "capacity": 512000,
+      "energy": "EU",
+      "source_id": 14012,
+      "source_line": 1035,
+      "gt6_class": "MultiTileEntityBatteryEU128",
+      "voxel": [
+        4,
+        0,
+        4,
+        12,
+        11,
+        12
+      ],
+      "display_scale_max": 7,
+      "recipe": {
+        "pattern": [
+          "W W",
+          "BCB",
+          "PBP"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "dust",
+            "material": "zinc"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "copper"
+          },
+          "C": {
+            "item": "cruciblecraft:programmed_circuit"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:alkaline_battery_hv",
+      "kind": "cruciblecraft:alkaline_battery",
+      "voltage": "hv",
+      "voltage_index": 3,
+      "input_size": 512,
+      "capacity": 2048000,
+      "energy": "EU",
+      "source_id": 14013,
+      "source_line": 1036,
+      "gt6_class": "MultiTileEntityBatteryEU512",
+      "voxel": [
+        3,
+        0,
+        3,
+        13,
+        11,
+        13
+      ],
+      "display_scale_max": 7,
+      "recipe": {
+        "pattern": [
+          "W W",
+          "BCB",
+          "BPB"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "dust",
+            "material": "zinc"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "gold"
+          },
+          "C": {
+            "item": "cruciblecraft:programmed_circuit"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:alkaline_battery_ev",
+      "kind": "cruciblecraft:alkaline_battery",
+      "voltage": "ev",
+      "voltage_index": 4,
+      "input_size": 2048,
+      "capacity": 8192000,
+      "energy": "EU",
+      "source_id": 14014,
+      "source_line": 1037,
+      "gt6_class": "MultiTileEntityBatteryEU2048",
+      "voxel": [
+        2,
+        0,
+        2,
+        14,
+        13,
+        14
+      ],
+      "display_scale_max": 9,
+      "recipe": {
+        "pattern": [
+          "WPW",
+          "BCB",
+          "BBB"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "dust",
+            "material": "zinc"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "aluminium"
+          },
+          "C": {
+            "item": "cruciblecraft:programmed_circuit"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:nickel_cadmium_battery_ulv",
+      "kind": "cruciblecraft:nickel_cadmium_battery",
+      "voltage": "ulv",
+      "voltage_index": 0,
+      "input_size": 8,
+      "capacity": 32000,
+      "energy": "EU",
+      "source_id": 14020,
+      "source_line": 1044,
+      "gt6_class": "MultiTileEntityBatteryEU8",
+      "voxel": [
+        5,
+        0,
+        5,
+        11,
+        8,
+        11
+      ],
+      "display_scale_max": 4,
+      "recipe": {
+        "pattern": [
+          "W ",
+          "B ",
+          "P "
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "plate",
+            "material": "nickel"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "lead"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:nickel_cadmium_battery_lv",
+      "kind": "cruciblecraft:nickel_cadmium_battery",
+      "voltage": "lv",
+      "voltage_index": 1,
+      "input_size": 32,
+      "capacity": 128000,
+      "energy": "EU",
+      "source_id": 14021,
+      "source_line": 1045,
+      "gt6_class": "MultiTileEntityBatteryEU32",
+      "voxel": [
+        5,
+        0,
+        5,
+        11,
+        11,
+        11
+      ],
+      "display_scale_max": 7,
+      "recipe": {
+        "pattern": [
+          " W ",
+          "PBP",
+          " B "
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "plate",
+            "material": "nickel"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "tin"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:nickel_cadmium_battery_mv",
+      "kind": "cruciblecraft:nickel_cadmium_battery",
+      "voltage": "mv",
+      "voltage_index": 2,
+      "input_size": 128,
+      "capacity": 512000,
+      "energy": "EU",
+      "source_id": 14022,
+      "source_line": 1046,
+      "gt6_class": "MultiTileEntityBatteryEU128",
+      "voxel": [
+        4,
+        0,
+        4,
+        12,
+        11,
+        12
+      ],
+      "display_scale_max": 7,
+      "recipe": {
+        "pattern": [
+          "W W",
+          "BCB",
+          "PBP"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "plate",
+            "material": "nickel"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "copper"
+          },
+          "C": {
+            "item": "cruciblecraft:programmed_circuit"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:nickel_cadmium_battery_hv",
+      "kind": "cruciblecraft:nickel_cadmium_battery",
+      "voltage": "hv",
+      "voltage_index": 3,
+      "input_size": 512,
+      "capacity": 2048000,
+      "energy": "EU",
+      "source_id": 14023,
+      "source_line": 1047,
+      "gt6_class": "MultiTileEntityBatteryEU512",
+      "voxel": [
+        3,
+        0,
+        3,
+        13,
+        11,
+        13
+      ],
+      "display_scale_max": 7,
+      "recipe": {
+        "pattern": [
+          "W W",
+          "BCB",
+          "BPB"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "plate",
+            "material": "nickel"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "gold"
+          },
+          "C": {
+            "item": "cruciblecraft:programmed_circuit"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:nickel_cadmium_battery_ev",
+      "kind": "cruciblecraft:nickel_cadmium_battery",
+      "voltage": "ev",
+      "voltage_index": 4,
+      "input_size": 2048,
+      "capacity": 8192000,
+      "energy": "EU",
+      "source_id": 14024,
+      "source_line": 1048,
+      "gt6_class": "MultiTileEntityBatteryEU2048",
+      "voxel": [
+        2,
+        0,
+        2,
+        14,
+        13,
+        14
+      ],
+      "display_scale_max": 9,
+      "recipe": {
+        "pattern": [
+          "WPW",
+          "BCB",
+          "BBB"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "plate",
+            "material": "nickel"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "aluminium"
+          },
+          "C": {
+            "item": "cruciblecraft:programmed_circuit"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:lithium_cobalt_battery_ulv",
+      "kind": "cruciblecraft:lithium_cobalt_battery",
+      "voltage": "ulv",
+      "voltage_index": 0,
+      "input_size": 8,
+      "capacity": 512000,
+      "energy": "EU",
+      "source_id": 14030,
+      "source_line": 1054,
+      "gt6_class": "MultiTileEntityBatteryAdvEU8",
+      "voxel": [
+        5,
+        0,
+        5,
+        11,
+        8,
+        11
+      ],
+      "display_scale_max": 4,
+      "recipe": {
+        "pattern": [
+          "W ",
+          "BC",
+          "P "
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "rod",
+            "material": "cobalt"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "lead"
+          },
+          "C": {
+            "item": "cruciblecraft:programmed_circuit"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:lithium_cobalt_battery_lv",
+      "kind": "cruciblecraft:lithium_cobalt_battery",
+      "voltage": "lv",
+      "voltage_index": 1,
+      "input_size": 32,
+      "capacity": 2048000,
+      "energy": "EU",
+      "source_id": 14031,
+      "source_line": 1055,
+      "gt6_class": "MultiTileEntityBatteryAdvEU32",
+      "voxel": [
+        5,
+        0,
+        5,
+        11,
+        11,
+        11
+      ],
+      "display_scale_max": 7,
+      "recipe": {
+        "pattern": [
+          "CW ",
+          "PBP",
+          " B "
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "rod",
+            "material": "cobalt"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "tin"
+          },
+          "C": {
+            "item": "cruciblecraft:programmed_circuit"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:lithium_cobalt_battery_mv",
+      "kind": "cruciblecraft:lithium_cobalt_battery",
+      "voltage": "mv",
+      "voltage_index": 2,
+      "input_size": 128,
+      "capacity": 8192000,
+      "energy": "EU",
+      "source_id": 14032,
+      "source_line": 1056,
+      "gt6_class": "MultiTileEntityBatteryAdvEU128",
+      "voxel": [
+        4,
+        0,
+        4,
+        12,
+        11,
+        12
+      ],
+      "display_scale_max": 7,
+      "recipe": {
+        "pattern": [
+          "W W",
+          "BCB",
+          "PBP"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "rod",
+            "material": "cobalt"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "copper"
+          },
+          "C": {
+            "item": "cruciblecraft:programmed_circuit"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:lithium_cobalt_battery_hv",
+      "kind": "cruciblecraft:lithium_cobalt_battery",
+      "voltage": "hv",
+      "voltage_index": 3,
+      "input_size": 512,
+      "capacity": 32768000,
+      "energy": "EU",
+      "source_id": 14033,
+      "source_line": 1057,
+      "gt6_class": "MultiTileEntityBatteryAdvEU512",
+      "voxel": [
+        3,
+        0,
+        3,
+        13,
+        11,
+        13
+      ],
+      "display_scale_max": 7,
+      "recipe": {
+        "pattern": [
+          "W W",
+          "BCB",
+          "BPB"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "rod",
+            "material": "cobalt"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "gold"
+          },
+          "C": {
+            "item": "cruciblecraft:programmed_circuit"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:lithium_cobalt_battery_ev",
+      "kind": "cruciblecraft:lithium_cobalt_battery",
+      "voltage": "ev",
+      "voltage_index": 4,
+      "input_size": 2048,
+      "capacity": 131072000,
+      "energy": "EU",
+      "source_id": 14034,
+      "source_line": 1058,
+      "gt6_class": "MultiTileEntityBatteryAdvEU2048",
+      "voxel": [
+        2,
+        0,
+        2,
+        14,
+        13,
+        14
+      ],
+      "display_scale_max": 9,
+      "recipe": {
+        "pattern": [
+          "WPW",
+          "BCB",
+          "BBB"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "rod",
+            "material": "cobalt"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "aluminium"
+          },
+          "C": {
+            "item": "cruciblecraft:programmed_circuit"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:lithium_manganese_battery_ulv",
+      "kind": "cruciblecraft:lithium_manganese_battery",
+      "voltage": "ulv",
+      "voltage_index": 0,
+      "input_size": 8,
+      "capacity": 1024000,
+      "energy": "EU",
+      "source_id": 14040,
+      "source_line": 1064,
+      "gt6_class": "MultiTileEntityBatteryAdvEU8",
+      "voxel": [
+        5,
+        0,
+        5,
+        11,
+        8,
+        11
+      ],
+      "display_scale_max": 4,
+      "recipe": {
+        "pattern": [
+          "W ",
+          "BC",
+          "P "
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "dust",
+            "material": "pyrolusite"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "lead"
+          },
+          "C": {
+            "item": "cruciblecraft:programmed_circuit"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:lithium_manganese_battery_lv",
+      "kind": "cruciblecraft:lithium_manganese_battery",
+      "voltage": "lv",
+      "voltage_index": 1,
+      "input_size": 32,
+      "capacity": 4096000,
+      "energy": "EU",
+      "source_id": 14041,
+      "source_line": 1065,
+      "gt6_class": "MultiTileEntityBatteryAdvEU32",
+      "voxel": [
+        5,
+        0,
+        5,
+        11,
+        11,
+        11
+      ],
+      "display_scale_max": 7,
+      "recipe": {
+        "pattern": [
+          "CW ",
+          "PBP",
+          " B "
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "dust",
+            "material": "pyrolusite"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "tin"
+          },
+          "C": {
+            "item": "cruciblecraft:programmed_circuit"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:lithium_manganese_battery_mv",
+      "kind": "cruciblecraft:lithium_manganese_battery",
+      "voltage": "mv",
+      "voltage_index": 2,
+      "input_size": 128,
+      "capacity": 16384000,
+      "energy": "EU",
+      "source_id": 14042,
+      "source_line": 1066,
+      "gt6_class": "MultiTileEntityBatteryAdvEU128",
+      "voxel": [
+        4,
+        0,
+        4,
+        12,
+        11,
+        12
+      ],
+      "display_scale_max": 7,
+      "recipe": {
+        "pattern": [
+          "W W",
+          "BCB",
+          "PBP"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "dust",
+            "material": "pyrolusite"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "copper"
+          },
+          "C": {
+            "item": "cruciblecraft:programmed_circuit"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:lithium_manganese_battery_hv",
+      "kind": "cruciblecraft:lithium_manganese_battery",
+      "voltage": "hv",
+      "voltage_index": 3,
+      "input_size": 512,
+      "capacity": 65536000,
+      "energy": "EU",
+      "source_id": 14043,
+      "source_line": 1067,
+      "gt6_class": "MultiTileEntityBatteryAdvEU512",
+      "voxel": [
+        3,
+        0,
+        3,
+        13,
+        11,
+        13
+      ],
+      "display_scale_max": 7,
+      "recipe": {
+        "pattern": [
+          "W W",
+          "BCB",
+          "BPB"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "dust",
+            "material": "pyrolusite"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "gold"
+          },
+          "C": {
+            "item": "cruciblecraft:programmed_circuit"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:lithium_manganese_battery_ev",
+      "kind": "cruciblecraft:lithium_manganese_battery",
+      "voltage": "ev",
+      "voltage_index": 4,
+      "input_size": 2048,
+      "capacity": 262144000,
+      "energy": "EU",
+      "source_id": 14044,
+      "source_line": 1068,
+      "gt6_class": "MultiTileEntityBatteryAdvEU2048",
+      "voxel": [
+        2,
+        0,
+        2,
+        14,
+        13,
+        14
+      ],
+      "display_scale_max": 9,
+      "recipe": {
+        "pattern": [
+          "WPW",
+          "BCB",
+          "BBB"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "plate",
+            "material": "battery_alloy"
+          },
+          "B": {
+            "prefix": "dust",
+            "material": "pyrolusite"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "aluminium"
+          },
+          "C": {
+            "item": "cruciblecraft:programmed_circuit"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:red_energium_crystal_ulv",
+      "kind": "cruciblecraft:red_energium_crystal",
+      "voltage": "ulv",
+      "voltage_index": 0,
+      "input_size": 8,
+      "capacity": 3200000,
+      "energy": "LU",
+      "source_id": 14500,
+      "source_line": 1079,
+      "gt6_class": "MultiTileEntityBatteryLU8",
+      "voxel": [
+        6,
+        0,
+        6,
+        10,
+        4,
+        10
+      ],
+      "display_scale_max": 127,
+      "recipe": {
+        "pattern": [
+          " D ",
+          "DWD",
+          " D "
+        ],
+        "keys": {
+          "D": {
+            "prefix": "dust",
+            "material": "energium_red"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "lead"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:red_energium_crystal_lv",
+      "kind": "cruciblecraft:red_energium_crystal",
+      "voltage": "lv",
+      "voltage_index": 1,
+      "input_size": 32,
+      "capacity": 12800000,
+      "energy": "LU",
+      "source_id": 14501,
+      "source_line": 1080,
+      "gt6_class": "MultiTileEntityBatteryLU32",
+      "voxel": [
+        5,
+        0,
+        5,
+        11,
+        6,
+        11
+      ],
+      "display_scale_max": 127,
+      "recipe": {
+        "pattern": [
+          " D ",
+          "DWD",
+          " D "
+        ],
+        "keys": {
+          "D": {
+            "prefix": "dust",
+            "material": "energium_red"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "tin"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:red_energium_crystal_mv",
+      "kind": "cruciblecraft:red_energium_crystal",
+      "voltage": "mv",
+      "voltage_index": 2,
+      "input_size": 128,
+      "capacity": 51200000,
+      "energy": "LU",
+      "source_id": 14502,
+      "source_line": 1081,
+      "gt6_class": "MultiTileEntityBatteryLU128",
+      "voxel": [
+        4,
+        0,
+        4,
+        12,
+        8,
+        12
+      ],
+      "display_scale_max": 127,
+      "recipe": {
+        "pattern": [
+          " D ",
+          "DWD",
+          " D "
+        ],
+        "keys": {
+          "D": {
+            "prefix": "dust",
+            "material": "energium_red"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:red_energium_crystal_hv",
+      "kind": "cruciblecraft:red_energium_crystal",
+      "voltage": "hv",
+      "voltage_index": 3,
+      "input_size": 512,
+      "capacity": 204800000,
+      "energy": "LU",
+      "source_id": 14503,
+      "source_line": 1082,
+      "gt6_class": "MultiTileEntityBatteryLU512",
+      "voxel": [
+        3,
+        0,
+        3,
+        13,
+        10,
+        13
+      ],
+      "display_scale_max": 127,
+      "recipe": {
+        "pattern": [
+          " D ",
+          "DWD",
+          " D "
+        ],
+        "keys": {
+          "D": {
+            "prefix": "dust",
+            "material": "energium_red"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "gold"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:red_energium_crystal_ev",
+      "kind": "cruciblecraft:red_energium_crystal",
+      "voltage": "ev",
+      "voltage_index": 4,
+      "input_size": 2048,
+      "capacity": 819200000,
+      "energy": "LU",
+      "source_id": 14504,
+      "source_line": 1083,
+      "gt6_class": "MultiTileEntityBatteryLU2048",
+      "voxel": [
+        2,
+        0,
+        2,
+        14,
+        12,
+        14
+      ],
+      "display_scale_max": 127,
+      "recipe": {
+        "pattern": [
+          " D ",
+          "DWD",
+          " D "
+        ],
+        "keys": {
+          "D": {
+            "prefix": "dust",
+            "material": "energium_red"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "aluminium"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:red_energium_crystal_iv",
+      "kind": "cruciblecraft:red_energium_crystal",
+      "voltage": "iv",
+      "voltage_index": 5,
+      "input_size": 8192,
+      "capacity": 3276800000,
+      "energy": "LU",
+      "source_id": 14505,
+      "source_line": 1084,
+      "gt6_class": "MultiTileEntityBatteryLU8192",
+      "voxel": [
+        1,
+        0,
+        1,
+        15,
+        14,
+        15
+      ],
+      "display_scale_max": 127,
+      "recipe": {
+        "pattern": [
+          " D ",
+          "DWD",
+          " D "
+        ],
+        "keys": {
+          "D": {
+            "prefix": "dust",
+            "material": "energium_red"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "aluminium"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:cyan_energium_crystal_ulv",
+      "kind": "cruciblecraft:cyan_energium_crystal",
+      "voltage": "ulv",
+      "voltage_index": 0,
+      "input_size": 8,
+      "capacity": 6400000,
+      "energy": "LU",
+      "source_id": 14510,
+      "source_line": 1087,
+      "gt6_class": "MultiTileEntityBatteryLU8",
+      "voxel": [
+        6,
+        0,
+        6,
+        10,
+        4,
+        10
+      ],
+      "display_scale_max": 127,
+      "recipe": {
+        "pattern": [
+          " D ",
+          "DWD",
+          " D "
+        ],
+        "keys": {
+          "D": {
+            "prefix": "dust",
+            "material": "energium_cyan"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "lead"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:cyan_energium_crystal_lv",
+      "kind": "cruciblecraft:cyan_energium_crystal",
+      "voltage": "lv",
+      "voltage_index": 1,
+      "input_size": 32,
+      "capacity": 25600000,
+      "energy": "LU",
+      "source_id": 14511,
+      "source_line": 1088,
+      "gt6_class": "MultiTileEntityBatteryLU32",
+      "voxel": [
+        5,
+        0,
+        5,
+        11,
+        6,
+        11
+      ],
+      "display_scale_max": 127,
+      "recipe": {
+        "pattern": [
+          " D ",
+          "DWD",
+          " D "
+        ],
+        "keys": {
+          "D": {
+            "prefix": "dust",
+            "material": "energium_cyan"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "tin"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:cyan_energium_crystal_mv",
+      "kind": "cruciblecraft:cyan_energium_crystal",
+      "voltage": "mv",
+      "voltage_index": 2,
+      "input_size": 128,
+      "capacity": 102400000,
+      "energy": "LU",
+      "source_id": 14512,
+      "source_line": 1089,
+      "gt6_class": "MultiTileEntityBatteryLU128",
+      "voxel": [
+        4,
+        0,
+        4,
+        12,
+        8,
+        12
+      ],
+      "display_scale_max": 127,
+      "recipe": {
+        "pattern": [
+          " D ",
+          "DWD",
+          " D "
+        ],
+        "keys": {
+          "D": {
+            "prefix": "dust",
+            "material": "energium_cyan"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "copper"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:cyan_energium_crystal_hv",
+      "kind": "cruciblecraft:cyan_energium_crystal",
+      "voltage": "hv",
+      "voltage_index": 3,
+      "input_size": 512,
+      "capacity": 409600000,
+      "energy": "LU",
+      "source_id": 14513,
+      "source_line": 1090,
+      "gt6_class": "MultiTileEntityBatteryLU512",
+      "voxel": [
+        3,
+        0,
+        3,
+        13,
+        10,
+        13
+      ],
+      "display_scale_max": 127,
+      "recipe": {
+        "pattern": [
+          " D ",
+          "DWD",
+          " D "
+        ],
+        "keys": {
+          "D": {
+            "prefix": "dust",
+            "material": "energium_cyan"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "gold"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:cyan_energium_crystal_ev",
+      "kind": "cruciblecraft:cyan_energium_crystal",
+      "voltage": "ev",
+      "voltage_index": 4,
+      "input_size": 2048,
+      "capacity": 1638400000,
+      "energy": "LU",
+      "source_id": 14514,
+      "source_line": 1091,
+      "gt6_class": "MultiTileEntityBatteryLU2048",
+      "voxel": [
+        2,
+        0,
+        2,
+        14,
+        12,
+        14
+      ],
+      "display_scale_max": 127,
+      "recipe": {
+        "pattern": [
+          " D ",
+          "DWD",
+          " D "
+        ],
+        "keys": {
+          "D": {
+            "prefix": "dust",
+            "material": "energium_cyan"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "aluminium"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:cyan_energium_crystal_iv",
+      "kind": "cruciblecraft:cyan_energium_crystal",
+      "voltage": "iv",
+      "voltage_index": 5,
+      "input_size": 8192,
+      "capacity": 6553600000,
+      "energy": "LU",
+      "source_id": 14515,
+      "source_line": 1092,
+      "gt6_class": "MultiTileEntityBatteryLU8192",
+      "voxel": [
+        1,
+        0,
+        1,
+        15,
+        14,
+        15
+      ],
+      "display_scale_max": 127,
+      "recipe": {
+        "pattern": [
+          " D ",
+          "DWD",
+          " D "
+        ],
+        "keys": {
+          "D": {
+            "prefix": "dust",
+            "material": "energium_cyan"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "aluminium"
+          }
+        }
+      }
+    }
+  ]
+}

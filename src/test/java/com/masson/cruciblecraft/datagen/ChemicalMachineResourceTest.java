@@ -39,10 +39,10 @@ class ChemicalMachineResourceTest {
                 "assets/cruciblecraft/models/block/bronze_dynamo.json",
                 "assets/cruciblecraft/models/block/bronze_dynamo_active.json",
                 "assets/cruciblecraft/models/item/bronze_dynamo.json",
-                "data/cruciblecraft/loot_table/blocks/bronze_dynamo.json",
-                "data/cruciblecraft/recipe/bronze_dynamo.json")) {
+                "data/cruciblecraft/loot_table/blocks/bronze_dynamo.json")) {
             assertResource(MAIN, path);
         }
+        assertResource(GENERATED, "data/cruciblecraft/recipe/bronze_dynamo.json");
         var blockstate = com.google.gson.JsonParser.parseString(Files.readString(
                 MAIN.resolve("assets/cruciblecraft/blockstates/bronze_dynamo.json")))
                 .getAsJsonObject()

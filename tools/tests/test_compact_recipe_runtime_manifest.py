@@ -137,6 +137,55 @@ class CompactRecipeRuntimeManifestTest(unittest.TestCase):
         self.assertEqual(9, len(documents))
         self.assertEqual(4, len(runtime_mod.dedup_rules()))
 
+    def test_datapack_policy_family_count_matches_family_documents(self) -> None:
+        recipe_root = (
+            ROOT / "src/recipe_generated/resources/data/cruciblecraft/recipe"
+        )
+        skip = {"publication_policy", "dedup_rule"}
+        families: list[dict] = []
+        for path in recipe_root.rglob("*.json"):
+            if any(part in skip for part in path.parts):
+                continue
+            document = json.loads(path.read_text(encoding="utf-8"))
+            if not isinstance(document, dict):
+                continue
+            if document.get("type") != "cruciblecraft:compact_gt_recipe_family":
+                continue
+            families.append(document)
+        authored_counts: dict[str, int] = {}
+        compact: list[dict] = []
+        wood: list[dict] = []
+        for family in families:
+            group = runtime_mod.resolved_publication_group(family)
+            authored_counts[group] = authored_counts.get(group, 0) + 1
+            if group == "cruciblecraft:assembler/compact":
+                compact.append(family)
+            if group.startswith("cruciblecraft:assembler/wood/"):
+                wood.append(family)
+        wood_live_counts: dict[str, int] = {}
+        for family in runtime_mod.apply_assembler_wood_source_dedup(compact, wood):
+            group = runtime_mod.resolved_publication_group(family)
+            wood_live_counts[group] = wood_live_counts.get(group, 0) + 1
+        live_counts = dict(authored_counts)
+        for spec in runtime_mod.GROUP_SPECS:
+            if spec["bind_live_membership"]:
+                group = spec["publication_group"]
+                live_counts[group] = wood_live_counts.get(group, 0)
+        mismatches = []
+        policy_root = recipe_root / "publication_policy"
+        for path in sorted(policy_root.glob("*.json")):
+            document = json.loads(path.read_text(encoding="utf-8"))
+            if document.get("type") != "cruciblecraft:compact_publication_policy":
+                continue
+            group = str(document.get("publication_group") or "")
+            live = live_counts.get(group, 0)
+            declared = int(document.get("family_count") or 0)
+            if live != declared:
+                mismatches.append(
+                    f"{path.name}: live {live} != {declared} ({group})"
+                )
+        self.assertEqual([], mismatches)
+
 
 if __name__ == "__main__":
     unittest.main()

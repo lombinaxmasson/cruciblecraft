@@ -67,6 +67,11 @@ KNOWN_SEMANTIC_SLUGS = (
     "portfolio/crops-food-bees-r0",
     "runtime/item-network-core",
     "runtime/fluid-network-basic-transfer",
+    "runtime/generic-network-core",
+    "runtime/logistics-core",
+    "runtime/display-cpu",
+    "runtime/converter-catalog",
+    "runtime/batteries",
 )
 
 

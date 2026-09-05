@@ -23,14 +23,23 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import org.jetbrains.annotations.Nullable;
 
-public final class BoilerBlock extends Block implements EntityBlock {
+public final class BoilerBlock extends Block implements EntityBlock, com.masson.cruciblecraft.energy.converter.EnergyConverterHost {
     public static final DirectionProperty FACING =
             BlockStateProperties.HORIZONTAL_FACING;
+    private final net.minecraft.resources.ResourceLocation converterId;
 
-    public BoilerBlock(Properties properties) {
+    public BoilerBlock(
+            net.minecraft.resources.ResourceLocation converterId,
+            Properties properties) {
         super(properties);
+        this.converterId = converterId;
         registerDefaultState(
                 stateDefinition.any().setValue(FACING, Direction.NORTH));
+    }
+
+    @Override
+    public net.minecraft.resources.ResourceLocation converterId() {
+        return converterId;
     }
 
     @Override

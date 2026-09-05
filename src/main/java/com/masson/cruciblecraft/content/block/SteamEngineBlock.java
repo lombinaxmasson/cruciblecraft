@@ -23,10 +23,19 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import org.jetbrains.annotations.Nullable;
 
-public final class SteamEngineBlock extends Block implements EntityBlock {
+public final class SteamEngineBlock extends Block implements EntityBlock, com.masson.cruciblecraft.energy.converter.EnergyConverterHost {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public SteamEngineBlock(Properties properties) {
-        super(properties); registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH));
+    private final net.minecraft.resources.ResourceLocation converterId;
+    public SteamEngineBlock(
+            net.minecraft.resources.ResourceLocation converterId,
+            Properties properties) {
+        super(properties);
+        this.converterId = converterId;
+        registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH));
+    }
+    @Override
+    public net.minecraft.resources.ResourceLocation converterId() {
+        return converterId;
     }
     @Override public BlockState getStateForPlacement(BlockPlaceContext context) {
         return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());

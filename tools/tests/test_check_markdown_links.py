@@ -12,6 +12,26 @@ class MarkdownLinkCheckTest(unittest.TestCase):
     def test_current_docs_have_no_dangling_workspace_links(self) -> None:
         self.assertEqual([], checker.check())
 
+    def test_closed_card_plans_are_not_current_docs(self) -> None:
+        closed = next(
+            path
+            for path in (
+                checker.ROOT / "docs" / "history" / "card-plans" / "closed"
+            ).iterdir()
+            if path.suffix == ".md"
+        )
+        self.assertTrue(checker._is_closed_card_plan(closed))
+        self.assertFalse(
+            checker._is_closed_card_plan(
+                checker.ROOT
+                / "docs"
+                / "history"
+                / "card-plans"
+                / "active"
+                / "电池详细计划.md"
+            )
+        )
+
     def test_missing_relative_link_is_reported(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

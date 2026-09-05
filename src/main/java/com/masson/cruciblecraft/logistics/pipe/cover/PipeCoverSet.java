@@ -247,6 +247,10 @@ public final class PipeCoverSet {
                     value -> row.putInt("selector", value));
             cover.config().networkId().ifPresent(
                     value -> row.putInt("network_id", value));
+            cover.config().invert().ifPresent(
+                    value -> row.putInt("invert", value));
+            row.putInt("visual", cover.config().visual());
+            row.putInt("redstone", cover.config().redstone());
             rows.add(row);
         }
         target.put("covers", rows);
@@ -333,8 +337,35 @@ public final class PipeCoverSet {
         Optional<Integer> networkId = row.contains("network_id", Tag.TAG_INT)
                 ? Optional.of(row.getInt("network_id"))
                 : Optional.empty();
+        Optional<Integer> invert = row.contains("invert", Tag.TAG_INT)
+                ? Optional.of(row.getInt("invert"))
+                : Optional.empty();
+        int visual = row.contains("visual", Tag.TAG_INT)
+                ? row.getInt("visual")
+                : 0;
+        int redstone = row.contains("redstone", Tag.TAG_INT)
+                ? row.getInt("redstone")
+                : 0;
         return new PipeCoverConfig(
-                match, rate, pressure, exact, mode, selector, networkId);
+                match,
+                rate,
+                pressure,
+                exact,
+                mode,
+                selector,
+                networkId,
+                invert,
+                visual,
+                redstone);
+    }
+
+    public boolean toggleInvert(Direction side) {
+        PipeCover current = covers.get(side);
+        if (current == null || current.definition().isEmpty()) {
+            return false;
+        }
+        int next = current.config().invert().orElse(0) == 0 ? 1 : 0;
+        return set(side, current.withConfig(current.config().withInvert(next)));
     }
 
     private static PipeCover invalid() {

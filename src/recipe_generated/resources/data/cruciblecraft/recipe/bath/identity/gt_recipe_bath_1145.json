@@ -1,0 +1,90 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.bath#1145",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [
+            {
+              "amount": 188,
+              "id": "cruciblecraft:holy_water"
+            }
+          ],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "3b40cbf29034fa68f6f95414e74658ed678f94527f9c9f4b00ad3d33e7fc715e",
+        "d3a063debefd7a3ab38c1670c2df0f0453b88336464b5e31462b4a601f3e4230"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:amber/lens"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tanzanite/lens"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:golden_amber/lens"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:zanite/lens"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:bath/identity/cd27d3e7fdfb445f",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:bath/identity/981875a53e32d280",
+        1,
+        1
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 108,
+      "eut": 0,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.bath#1145",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:bath/identity/exact_multi",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:bath",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

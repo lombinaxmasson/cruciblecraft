@@ -13,6 +13,7 @@ import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.gt.CompactPublicationGroups;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeShardRouter;
+import com.masson.cruciblecraft.recipe.gt.CompactWaveRecipeIds;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeQuery;
 import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
@@ -270,7 +271,7 @@ public final class BathTinyPurifiedGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
     public static void consumePreserveCatalyst(GameTestHelper helper) {
         for (RecipeMap.Entry entry : ModRecipeMaps.BATH.entries()) {
-            if (!entry.id().getPath().startsWith("bath/tiny_purified/")) {
+            if (!CompactWaveRecipeIds.isBathTinyPurifiedRecipe(entry.id())) {
                 continue;
             }
             GTRecipe recipe = entry.recipe();
@@ -372,7 +373,7 @@ public final class BathTinyPurifiedGameTests {
     private static GTRecipe firstTinyPurifiedRecipe(
             java.util.function.Predicate<GTRecipe> filter) {
         return ModRecipeMaps.BATH.entries().stream()
-                .filter(entry -> entry.id().getPath().startsWith("bath/tiny_purified/"))
+                .filter(entry -> CompactWaveRecipeIds.isBathTinyPurifiedRecipe(entry.id()))
                 .map(RecipeMap.Entry::recipe)
                 .filter(filter)
                 .findFirst()
@@ -381,7 +382,12 @@ public final class BathTinyPurifiedGameTests {
     }
 
     private static Set<ResourceLocation> tinyPurifiedStableIds() {
-        return prefixIds("bath/tiny_purified/");
+        Set<ResourceLocation> ids = new TreeSet<>();
+        ModRecipeMaps.BATH.entries().stream()
+                .map(RecipeMap.Entry::id)
+                .filter(CompactWaveRecipeIds::isBathTinyPurifiedRecipe)
+                .forEach(ids::add);
+        return ids;
     }
 
     private static Set<ResourceLocation> prefixIds(String prefix) {

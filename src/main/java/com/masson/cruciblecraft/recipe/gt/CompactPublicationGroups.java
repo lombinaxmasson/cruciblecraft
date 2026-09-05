@@ -64,7 +64,7 @@ public final class CompactPublicationGroups {
                     "cruciblecraft", "bath/identity/tool_head");
     public static final ResourceLocation BATH_TINY_PURIFIED_EXACT_MULTI =
             ResourceLocation.fromNamespaceAndPath(
-                    "cruciblecraft", "bath/tiny_purified/exact_multi");
+                    "cruciblecraft", "bath/tiny-purified/exact_multi");
 
     public static final ResourceLocation SMELTER_ORDINARY_SINGLETON =
             ResourceLocation.fromNamespaceAndPath(

@@ -44,7 +44,6 @@ public final class ModCreativeTabs {
                     .icon(() -> ModItems.FIREBRICK.get().getDefaultInstance())
                     .displayItems((parameters, output) -> {
                         output.accept(ModItems.FIREBRICK.get());
-                        output.accept(ModItems.FIREBOX.get());
                         DeviceMaterialCatalog.require(
                                         MachineMaterialRules.Device.CRUCIBLE)
                                 .creativeVisible()
@@ -78,10 +77,8 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.PLATE_MOLD.get());
                         output.accept(ModItems.ROD_MOLD.get());
                         output.accept(ModItems.BOLT_MOLD.get());
-                        output.accept(ModItems.COAL_COKE.get());
                         output.accept(ModItems.MATCH.get());
                         output.accept(ModItems.PROGRAMMED_CIRCUIT.get());
-                        output.accept(ModItems.BELLOWS.get());
                         output.accept(ModItems.CREOSOTE_BUCKET.get());
                         output.accept(ModItems.STEAM_BUCKET.get());
                         output.accept(ModItems.PORTABLE_FLUID_TANK.get());
@@ -95,22 +92,42 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.ROBOT_ARM_COVER.get());
                         output.accept(ModItems.PRESSURE_VALVE_COVER.get());
                         output.accept(ModItems.SELECTOR_MANUAL_COVER.get());
+                        ModItems.compactElectricCovers().forEach(
+                                cover -> output.accept(cover.get()));
                         output.accept(ModItems.LOGISTICS_ITEM_STORAGE_COVER.get());
                         output.accept(ModItems.LOGISTICS_ITEM_IMPORT_COVER.get());
                         output.accept(ModItems.LOGISTICS_ITEM_EXPORT_COVER.get());
                         output.accept(ModItems.LOGISTICS_FLUID_STORAGE_COVER.get());
                         output.accept(ModItems.LOGISTICS_FLUID_IMPORT_COVER.get());
                         output.accept(ModItems.LOGISTICS_FLUID_EXPORT_COVER.get());
+                        output.accept(ModItems.LOGISTICS_GENERIC_STORAGE_COVER.get());
+                        output.accept(ModItems.LOGISTICS_GENERIC_IMPORT_COVER.get());
+                        output.accept(ModItems.LOGISTICS_GENERIC_EXPORT_COVER.get());
+                        output.accept(ModItems.LOGISTICS_GENERIC_DUMP_COVER.get());
+                        output.accept(ModItems.LOGISTICS_DISPLAY_CPU_LOGIC_COVER.get());
+                        output.accept(ModItems.LOGISTICS_DISPLAY_CPU_CONTROL_COVER.get());
+                        output.accept(ModItems.LOGISTICS_DISPLAY_CPU_STORAGE_COVER.get());
+                        output.accept(ModItems.LOGISTICS_DISPLAY_CPU_CONVERSION_COVER.get());
+                        output.accept(ModItems.LOGISTICS_CORE.get());
+                        output.accept(ModItems.GALVANIZED_STEEL_WALL.get());
+                        output.accept(ModItems.VENTILATION_UNIT.get());
+                        output.accept(ModItems.VERSATILE_PROCESSOR_UNIT.get());
+                        output.accept(ModItems.LOGIC_PROCESSOR_UNIT.get());
+                        output.accept(ModItems.CONTROL_PROCESSOR_UNIT.get());
+                        output.accept(ModItems.STORAGE_PROCESSOR_UNIT.get());
+                        output.accept(ModItems.CONVERSION_PROCESSOR_UNIT.get());
                         MachineCasingCatalog.casings().stream()
                                 .filter(MachineCasingCatalog.Casing::creativeVisible)
                                 .forEach(casing -> output.accept(
                                         ModItems.machineCasingsById()
                                                 .get(casing.id())
                                                 .get()));
-                        output.accept(ModItems.BRONZE_BOILER.get());
-                        output.accept(ModItems.BRONZE_STEAM_ENGINE.get());
-                        output.accept(ModItems.BRONZE_DYNAMO.get());
-                        output.accept(ModItems.ELECTRIC_MOTOR.get());
+                        ModItems.converterItemsById().values().forEach(
+                                item -> output.accept(item.get()));
+                        ModItems.batteryItemsById().values().forEach(item -> {
+                            output.accept(item.get());
+                            output.accept(item.get().fullStack());
+                        });
                         output.accept(ModItems.ROTATIONAL_AXLE.get());
                         output.accept(ModItems.ROTATIONAL_GEARBOX.get());
                         output.accept(ModItems.BRONZE_CRUSHER.get());
@@ -144,8 +161,6 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.COMPRESSOR.get());
                         output.accept(ModItems.GENERIFIER.get());
                         output.accept(ModItems.FLUID_DEPOSIT_EXTRACTOR.get());
-                        output.accept(ModItems.FUEL_ENGINE.get());
-                        output.accept(ModItems.BURNING_GAS_GENERATOR.get());
                         ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
                                 output.accept(ModItems.extruderShape(shape.id()).get()));
                         GtWoodCatalog.DEFINITIONS.forEach(wood -> {

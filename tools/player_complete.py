@@ -146,11 +146,19 @@ def check_static_player_surface(slug: str, item_ids: list[str]) -> list[str]:
     )
     for item in item_ids:
         recipe = GENERATED / "data/cruciblecraft/recipe" / f"{item}.json"
+        root_recipe = (
+            ROOT / "src/main/resources/data/cruciblecraft/recipe" / f"{item}.json"
+        )
         model = GENERATED / "assets/cruciblecraft/models/item" / f"{item}.json"
+        root_model = (
+            ROOT
+            / "src/main/resources/assets/cruciblecraft/models/item"
+            / f"{item}.json"
+        )
         lang_key = f"item.cruciblecraft.{item}"
-        if not recipe.is_file():
+        if not recipe.is_file() and not root_recipe.is_file():
             errors.append(f"{slug}: missing recipe {recipe.as_posix()}")
-        if not model.is_file():
+        if not model.is_file() and not root_model.is_file():
             errors.append(f"{slug}: missing model {model.as_posix()}")
         if lang_key not in english:
             errors.append(f"{slug}: missing en_us {lang_key}")
@@ -529,6 +537,7 @@ def run_fresh_capability(slug: str, *, offline: bool = False) -> list[str]:
             "clientSmoke": "player-complete",
             "smokeReceipt": paths["gametest_smoke"].as_posix(),
             "smokeNonce": nonce,
+            "playerCapability": slug,
         },
         offline,
     )
@@ -538,6 +547,7 @@ def run_fresh_capability(slug: str, *, offline: bool = False) -> list[str]:
             "clientSmoke": "player-complete",
             "smokeReceipt": paths["client"].as_posix(),
             "smokeNonce": nonce,
+            "playerCapability": slug,
         },
         offline,
     )

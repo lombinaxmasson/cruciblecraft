@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Fail if active roots still use milestone-style TXX names.
 
-Exempt only docs/history/card-plans/** (closed and active). Temporary allowlist
+Exempt only docs/history/card-plans/closed/**. Unique-active plans in
+docs/history/card-plans/active/** must not use milestone TXX names. Temporary allowlist
 entries must carry owner, reason, and expiry. Program closeout requires an
 empty allowlist. --quick is the verify gate: live logistics/capability Java
 and capability tools, never generated recipe trees.
@@ -107,7 +108,7 @@ def relative(path: Path) -> str:
 
 
 def is_exempt(rel: str) -> bool:
-    return rel.startswith("docs/history/card-plans/")
+    return rel.startswith("docs/history/card-plans/closed/")
 
 
 def is_allowlisted(rel: str, line: str, match: str) -> bool:
@@ -313,6 +314,7 @@ QUICK_PREFIXES = (
     "src/main/java/com/masson/cruciblecraft/logistics/",
     "src/main/java/com/masson/cruciblecraft/verification/",
     "tools/capabilities/",
+    "docs/history/card-plans/active/",
 )
 
 QUICK_FILES = {

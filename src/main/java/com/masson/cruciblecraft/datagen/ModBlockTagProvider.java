@@ -33,11 +33,6 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
         var pickaxe = tag(BlockTags.MINEABLE_WITH_PICKAXE);
         var stone = tag(BlockTags.NEEDS_STONE_TOOL);
         pickaxe.add(
-                ModBlocks.FIREBOX.getKey(),
-                ModBlocks.BRONZE_BOILER.getKey(),
-                ModBlocks.BRONZE_STEAM_ENGINE.getKey(),
-                ModBlocks.BRONZE_DYNAMO.getKey(),
-                ModBlocks.ELECTRIC_MOTOR.getKey(),
                 ModBlocks.ROTATIONAL_AXLE.getKey(),
                 ModBlocks.ROTATIONAL_GEARBOX.getKey(),
                 ModBlocks.BRONZE_CRUSHER.getKey(),
@@ -49,9 +44,21 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
                 ModBlocks.LARGE_BOILER.getKey(),
                 ModBlocks.TANK_3X3X3.getKey(),
                 ModBlocks.LARGE_CRUCIBLE.getKey(),
-                ModBlocks.FLUID_DEPOSIT_EXTRACTOR.getKey(),
-                ModBlocks.FUEL_ENGINE.getKey(),
-                ModBlocks.BURNING_GAS_GENERATOR.getKey());
+                ModBlocks.LOGISTICS_CORE.getKey(),
+                ModBlocks.GALVANIZED_STEEL_WALL.getKey(),
+                ModBlocks.VENTILATION_UNIT.getKey(),
+                ModBlocks.VERSATILE_PROCESSOR_UNIT.getKey(),
+                ModBlocks.LOGIC_PROCESSOR_UNIT.getKey(),
+                ModBlocks.CONTROL_PROCESSOR_UNIT.getKey(),
+                ModBlocks.STORAGE_PROCESSOR_UNIT.getKey(),
+                ModBlocks.CONVERSION_PROCESSOR_UNIT.getKey(),
+                ModBlocks.FLUID_DEPOSIT_EXTRACTOR.getKey());
+        ModBlocks.converterBlocksById().values().stream()
+                .sorted(Comparator.comparing(block -> block.getId().toString()))
+                .forEach(block -> pickaxe.add(block.getKey()));
+        ModBlocks.batteryBlocksById().values().stream()
+                .sorted(Comparator.comparing(block -> block.getId().toString()))
+                .forEach(block -> pickaxe.add(block.getKey()));
         ModBlocks.configuredProcessingBlockEntries().stream()
                 .sorted(Comparator.comparing(
                         block -> block.getId().toString()))

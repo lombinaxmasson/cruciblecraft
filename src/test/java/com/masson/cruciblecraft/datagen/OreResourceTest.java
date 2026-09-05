@@ -413,10 +413,11 @@ class OreResourceTest {
         // The hopper catalog adds 121 acquisition recipes (60 hopper, 60 queue,
         // 1 steel dust funnel). The machine catalog adds catalog-driven recipes
         // plus five source-backed casings beyond the early six. Storage adds 18
-        // source-visible storage acquisition recipes.
-        assertEquals(1_068, generatedRecipeSet.size() - preStorageRecipeSet.size());
+        // source-visible storage acquisition recipes. Display CPU adds 8 cover
+        // recipes (4 shaped + 4 shapeless cycle).
+        assertEquals(1_118, generatedRecipeSet.size() - preStorageRecipeSet.size());
         assertEquals(
-                1_068 + preStorageRecipeSet.size(),
+                1_118 + preStorageRecipeSet.size(),
                 generatedRecipeSet.size());
         assertEquals(48, countRegularFiles(COMPONENT_RULE_RESOURCES.resolve(
                 "data/cruciblecraft/recipe")));

@@ -21,14 +21,23 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import org.jetbrains.annotations.Nullable;
 
 /** Fixed bronze kinetic-to-electric converter. */
-public final class DynamoBlock extends Block implements EntityBlock {
+public final class DynamoBlock extends Block implements EntityBlock, com.masson.cruciblecraft.energy.converter.EnergyConverterHost {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
+    private final net.minecraft.resources.ResourceLocation converterId;
 
-    public DynamoBlock(Properties properties) {
+    public DynamoBlock(
+            net.minecraft.resources.ResourceLocation converterId,
+            Properties properties) {
         super(properties);
+        this.converterId = converterId;
         registerDefaultState(
                 stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, false));
+    }
+
+    @Override
+    public net.minecraft.resources.ResourceLocation converterId() {
+        return converterId;
     }
 
     @Override public BlockState getStateForPlacement(BlockPlaceContext context) {

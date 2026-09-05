@@ -2,6 +2,8 @@ package com.masson.cruciblecraft.client.color;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
+import com.masson.cruciblecraft.energy.converter.EnergyConverterKindCatalog;
+import com.masson.cruciblecraft.energy.converter.EnergyConverterTierCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
 
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -34,14 +36,8 @@ public final class MachineBlockColor {
     public static Block[] tintedBlocks() {
         java.util.ArrayList<Block> blocks = new java.util.ArrayList<>();
         java.util.Collections.addAll(blocks, ModBlocks.configuredProcessingBlocks());
-        blocks.add(ModBlocks.ELECTRIC_MOTOR.get());
+        java.util.Collections.addAll(blocks, ModBlocks.converterBlockArray());
         blocks.add(ModBlocks.ROTATIONAL_GEARBOX.get());
-        blocks.add(ModBlocks.FUEL_ENGINE.get());
-        blocks.add(ModBlocks.BURNING_GAS_GENERATOR.get());
-        blocks.add(ModBlocks.BRONZE_BOILER.get());
-        blocks.add(ModBlocks.BRONZE_CRUSHER.get());
-        blocks.add(ModBlocks.BRONZE_DYNAMO.get());
-        blocks.add(ModBlocks.BRONZE_STEAM_ENGINE.get());
         blocks.add(ModBlocks.COKE_OVEN.get());
         blocks.add(ModBlocks.LARGE_BOILER.get());
         blocks.add(ModBlocks.TANK_3X3X3.get());
@@ -72,8 +68,9 @@ public final class MachineBlockColor {
 
     /** GT6 loader casing material identity for the machine texture family. */
     public static String casingMaterialId(String path) {
-        if ("bronze_dynamo".equals(path)) {
-            return "tin_alloy";
+        var converter = EnergyConverterTierCatalog.findByPath(path);
+        if (converter != null) {
+            return converter.material();
         }
         if (path.startsWith("titanium_")) {
             return "titanium";
@@ -94,6 +91,11 @@ public final class MachineBlockColor {
     }
 
     static String machineTextureId(String id) {
+        var converter = EnergyConverterTierCatalog.findByPath(id);
+        if (converter != null) {
+            return EnergyConverterKindCatalog.require(converter.kindId())
+                    .textureProfile();
+        }
         String profile = com.masson.cruciblecraft.machine.processing
                 .MachineTierCatalog.textureProfile(id);
         if (!profile.equals(id)) {
@@ -149,6 +151,10 @@ public final class MachineBlockColor {
                     "rotational_gearbox",
                     "fuel_engine",
                     "burning_gas_generator",
+                    "burning_box_solid",
+                    "burning_box_brick",
+                    "burning_box_liquid",
+                    "burning_box_fluid_bed",
                     "boiler",
                     "tank_3x3x3",
                     "mortar",

@@ -100,6 +100,11 @@
 
 known-issues 不得再充当「未关门但下一张卡照开」的垃圾桶。
 
+## 7. 贴图
+
+新内容禁止占位图。有 GT6 原图就从本地 `gregtech6_w` 迁，合同见
+[gt6-art-policy.md](gt6-art-policy.md)。
+
 ## 6. 日常命令
 
 ```powershell
@@ -108,6 +113,10 @@ python tools/build_registry_identity.py --check
 python tools/verify.py integration --profile capability-runtime
 python tools/verify.py promotion
 python tools/build_player_complete.py --run --capability logistics/fluid-network/basic-transfer
+python tools/build_player_complete.py --run --capability logistics/item-network-core
+python tools/build_player_complete.py --run --capability logistics/generic-network/core
+python tools/build_player_complete.py --run --capability logistics/logistics-core
+python tools/build_player_complete.py --run --capability logistics/display-cpu
 python tools/verify.py integration --profile player-complete
 ```
 

@@ -209,6 +209,62 @@ class VerificationProfileTest(unittest.TestCase):
             ],
             verify_entry.builder_command(row),
         )
+        item_row = next(
+            row
+            for row in self.builder_policy["builders"]
+            if row["name"] == "build_player_complete_item"
+        )
+        self.assertEqual("tools/build_player_complete.py", item_row["script"])
+        self.assertEqual(
+            [
+                "--run",
+                "--capability",
+                "logistics/item-network-core",
+            ],
+            item_row["ordinary_args"],
+        )
+        generic_row = next(
+            row
+            for row in self.builder_policy["builders"]
+            if row["name"] == "build_player_complete_generic"
+        )
+        self.assertEqual("tools/build_player_complete.py", generic_row["script"])
+        self.assertEqual(
+            [
+                "--run",
+                "--capability",
+                "logistics/generic-network/core",
+            ],
+            generic_row["ordinary_args"],
+        )
+        core_row = next(
+            row
+            for row in self.builder_policy["builders"]
+            if row["name"] == "build_player_complete_core"
+        )
+        self.assertEqual("tools/build_player_complete.py", core_row["script"])
+        self.assertEqual(
+            [
+                "--run",
+                "--capability",
+                "logistics/logistics-core",
+            ],
+            core_row["ordinary_args"],
+        )
+        display_row = next(
+            row
+            for row in self.builder_policy["builders"]
+            if row["name"] == "build_player_complete_display"
+        )
+        self.assertEqual("tools/build_player_complete.py", display_row["script"])
+        self.assertEqual(
+            [
+                "--run",
+                "--capability",
+                "logistics/display-cpu",
+            ],
+            display_row["ordinary_args"],
+        )
 
     def test_semantic_profile_requires_datagen_and_junit(self) -> None:
         semantic = self.profiles["profiles"]["semantic-generators"]

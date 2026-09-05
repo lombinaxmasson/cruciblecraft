@@ -72,7 +72,7 @@ public final class CoverBehaviorRegistry {
         });
         registerBuiltin("pump_adapter", activeTransfer(true, true));
         registerBuiltin("conveyor", activeTransfer(true, false));
-        registerBuiltin("retriever_item", activeTransfer(true, false));
+        registerBuiltin("retriever_item", new RetrieverCoverBehavior());
         registerBuiltin("robot_arm", activeTransfer(true, false));
         registerBuiltin("pressure_valve", new CoverBehavior() {
             @Override
@@ -142,6 +142,9 @@ public final class CoverBehaviorRegistry {
     public static synchronized void validateDefinitions() {
         com.masson.cruciblecraft.logistics.itemnet.ItemNetworkCovers.bootstrap();
         com.masson.cruciblecraft.logistics.fluidnet.FluidNetworkCovers.bootstrap();
+        com.masson.cruciblecraft.logistics.genericnet.GenericNetworkCovers.bootstrap();
+        com.masson.cruciblecraft.logistics.core.LogisticsDumpCovers.bootstrap();
+        com.masson.cruciblecraft.logistics.displaycpu.DisplayCpuCovers.bootstrap();
         for (CoverDefinition definition
                 : CoverDefinitionCatalog.definitions()) {
             if (!BEHAVIORS.containsKey(definition.behaviorId())) {
@@ -217,6 +220,10 @@ public final class CoverBehaviorRegistry {
                     TransferContext context) {
                 CoverDefinition.Values values = definition.resolve(
                         cover.config());
+                if (!CoverTransferTiming.due(
+                        context.world(), values.interval())) {
+                    return;
+                }
                 int amount = values.exactCount() > 0
                         ? values.exactCount()
                         : values.rate();

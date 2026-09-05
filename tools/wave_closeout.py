@@ -521,6 +521,131 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             next_unassigned=True,
             owns_families=0,
         ),
+        "runtime/generic-network-core": WaveCloseoutSpec(
+            wave_slug="runtime/generic-network-core",
+            census=WAVES_ROOT / "runtime" / "generic-network-core" / "census_delta.json",
+            topology=WAVES_ROOT / "runtime" / "generic-network-core" / "topology.json",
+            readiness=WAVES_ROOT / "runtime" / "generic-network-core" / "readiness.json",
+            receipt=WAVES_ROOT / "runtime" / "generic-network-core" / "gametest_receipt.json",
+            production_lock=None,
+            generated_root=None,
+            support_root=None,
+            gametest_java=(
+                io.ROOT
+                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "GenericNetworkCoreGameTests.java"
+            ),
+            gametest_log=(
+                WAVES_ROOT / "runtime" / "generic-network-core" / "gametest.log"
+            ),
+            publication_group_manifest=None,
+            shard_manifest=None,
+            runtime_dependency_manifest=None,
+            complete_key="wave_complete",
+            unique_active_wave=None,
+            next_unassigned=True,
+            owns_families=0,
+        ),
+        "runtime/logistics-core": WaveCloseoutSpec(
+            wave_slug="runtime/logistics-core",
+            census=WAVES_ROOT / "runtime" / "logistics-core" / "census_delta.json",
+            topology=WAVES_ROOT / "runtime" / "logistics-core" / "topology.json",
+            readiness=WAVES_ROOT / "runtime" / "logistics-core" / "readiness.json",
+            receipt=WAVES_ROOT / "runtime" / "logistics-core" / "gametest_receipt.json",
+            production_lock=None,
+            generated_root=None,
+            support_root=None,
+            gametest_java=(
+                io.ROOT
+                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "LogisticsCoreGameTests.java"
+            ),
+            gametest_log=(
+                WAVES_ROOT / "runtime" / "logistics-core" / "gametest.log"
+            ),
+            publication_group_manifest=None,
+            shard_manifest=None,
+            runtime_dependency_manifest=None,
+            complete_key="wave_complete",
+            unique_active_wave=None,
+            next_unassigned=True,
+            owns_families=0,
+        ),
+        "runtime/display-cpu": WaveCloseoutSpec(
+            wave_slug="runtime/display-cpu",
+            census=WAVES_ROOT / "runtime" / "display-cpu" / "census_delta.json",
+            topology=WAVES_ROOT / "runtime" / "display-cpu" / "topology.json",
+            readiness=WAVES_ROOT / "runtime" / "display-cpu" / "readiness.json",
+            receipt=WAVES_ROOT / "runtime" / "display-cpu" / "gametest_receipt.json",
+            production_lock=None,
+            generated_root=None,
+            support_root=None,
+            gametest_java=(
+                io.ROOT
+                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "DisplayCpuGameTests.java"
+            ),
+            gametest_log=(
+                WAVES_ROOT / "runtime" / "display-cpu" / "gametest.log"
+            ),
+            publication_group_manifest=None,
+            shard_manifest=None,
+            runtime_dependency_manifest=None,
+            complete_key="wave_complete",
+            unique_active_wave=None,
+            next_unassigned=True,
+            owns_families=0,
+        ),
+        "runtime/converter-catalog": WaveCloseoutSpec(
+            wave_slug="runtime/converter-catalog",
+            census=WAVES_ROOT / "runtime" / "converter-catalog" / "census_delta.json",
+            topology=WAVES_ROOT / "runtime" / "converter-catalog" / "topology.json",
+            readiness=WAVES_ROOT / "runtime" / "converter-catalog" / "readiness.json",
+            receipt=WAVES_ROOT / "runtime" / "converter-catalog" / "gametest_receipt.json",
+            production_lock=None,
+            generated_root=None,
+            support_root=None,
+            gametest_java=(
+                io.ROOT
+                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "EnergyConverterCatalogGameTests.java"
+            ),
+            gametest_log=(
+                WAVES_ROOT / "runtime" / "converter-catalog" / "gametest.log"
+            ),
+            publication_group_manifest=None,
+            shard_manifest=None,
+            runtime_dependency_manifest=None,
+            complete_key="wave_complete",
+            unique_active_wave=None,
+            next_unassigned=True,
+            owns_families=0,
+        ),
+        "runtime/batteries": WaveCloseoutSpec(
+            wave_slug="runtime/batteries",
+            census=WAVES_ROOT / "runtime" / "batteries" / "census_delta.json",
+            topology=WAVES_ROOT / "runtime" / "batteries" / "topology.json",
+            readiness=WAVES_ROOT / "runtime" / "batteries" / "readiness.json",
+            receipt=WAVES_ROOT / "runtime" / "batteries" / "gametest_receipt.json",
+            production_lock=None,
+            generated_root=None,
+            support_root=None,
+            gametest_java=(
+                io.ROOT
+                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "EnergyBatteriesGameTests.java"
+            ),
+            gametest_log=(
+                WAVES_ROOT / "runtime" / "batteries" / "gametest.log"
+            ),
+            publication_group_manifest=None,
+            shard_manifest=None,
+            runtime_dependency_manifest=None,
+            complete_key="wave_complete",
+            unique_active_wave=None,
+            next_unassigned=True,
+            owns_families=0,
+        ),
         "drying/ordinary-closure": _ordinary("drying"),
         "electrolyzer/ordinary-closure": _ordinary("electrolyzer"),
         "centrifuge/ordinary-closure": _ordinary("centrifuge"),

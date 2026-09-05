@@ -195,6 +195,7 @@ public final class ItemPipeBlockEntity extends BlockEntity {
         if (level != null && !level.isClientSide) {
             PipeTopology.invalidate(level, worldPosition);
             syncToClient();
+            notifyCoverRedstone(side);
         }
         return true;
     }
@@ -212,6 +213,23 @@ public final class ItemPipeBlockEntity extends BlockEntity {
         if (level != null && !level.isClientSide) {
             PipeTopology.invalidate(level, worldPosition);
             syncToClient();
+            notifyCoverRedstone(side);
+        }
+        return true;
+    }
+
+    public boolean replaceCoverQuiet(Direction side, PipeCover cover) {
+        if (cover != null
+                && !cover.supports(CoverDefinition.Medium.ITEM)) {
+            return false;
+        }
+        if (!covers.set(side, cover)) {
+            return false;
+        }
+        setChanged();
+        if (level != null && !level.isClientSide) {
+            syncToClient();
+            notifyCoverRedstone(side);
         }
         return true;
     }
@@ -230,6 +248,32 @@ public final class ItemPipeBlockEntity extends BlockEntity {
             syncToClient();
         }
         return true;
+    }
+
+    public boolean toggleCoverInvert(Direction side) {
+        if (!covers.toggleInvert(side)) {
+            return false;
+        }
+        invalidateRoutes();
+        setChanged();
+        if (level != null && !level.isClientSide) {
+            PipeTopology.invalidate(level, worldPosition);
+            syncToClient();
+            notifyCoverRedstone(side);
+        }
+        return true;
+    }
+
+    private void notifyCoverRedstone(Direction side) {
+        if (level == null || level.isClientSide) {
+            return;
+        }
+        net.minecraft.world.level.block.Block block =
+                getBlockState().getBlock();
+        level.updateNeighborsAt(worldPosition, block);
+        if (side != null) {
+            level.updateNeighborsAt(worldPosition.relative(side), block);
+        }
     }
 
     public void recordTransferred(int consumed, int delivered) {
@@ -263,7 +307,12 @@ public final class ItemPipeBlockEntity extends BlockEntity {
             }
             boolean logistics = ItemNetworkKinds.isLogistics(
                     cover.orElseThrow().definitionId());
-            if (!logistics && availableItems() <= 0) {
+            boolean retriever = cover.orElseThrow().definition()
+                    .map(CoverDefinition::behaviorId)
+                    .map(net.minecraft.resources.ResourceLocation::getPath)
+                    .filter("retriever_item"::equals)
+                    .isPresent();
+            if (!logistics && !retriever && availableItems() <= 0) {
                 continue;
             }
             covers.tick(side, new ItemCoverContext(level, side));

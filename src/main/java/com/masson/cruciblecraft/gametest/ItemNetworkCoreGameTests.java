@@ -16,6 +16,7 @@ import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinitionCatalog;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModItems;
+import com.masson.cruciblecraft.verification.PlayerCompleteSmoke;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -275,6 +276,36 @@ public final class ItemNetworkCoreGameTests {
         helper.assertTrue(
                 craftsTo(helper, ModItems.LOGISTICS_ITEM_EXPORT_COVER.get()),
                 "Export cover recipe missing");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void playerSurfaceIsRegistered(
+            GameTestHelper helper) {
+        helper.assertTrue(
+                CoverDefinitionCatalog.find(ItemNetworkKinds.STORAGE)
+                        .isPresent(),
+                "Item storage definition missing");
+        helper.assertTrue(
+                CoverDefinitionCatalog.find(ItemNetworkKinds.IMPORT)
+                        .isPresent()
+                        && CoverDefinitionCatalog.find(ItemNetworkKinds.EXPORT)
+                                .isPresent(),
+                "Item transfer definitions missing");
+        helper.assertTrue(
+                ModItems.LOGISTICS_ITEM_STORAGE_COVER.get() != null
+                        && ModItems.LOGISTICS_ITEM_IMPORT_COVER.get() != null
+                        && ModItems.LOGISTICS_ITEM_EXPORT_COVER.get() != null,
+                "Item network cover items missing");
+        PlayerCompleteSmoke.writeIfConfigured(
+                "gameTestServer",
+                "logistics/item-network-core");
+        helper.assertTrue(
+                PlayerCompleteSmoke.snapshot(
+                                "gameTestServer",
+                                "logistics/item-network-core")
+                        .get("status").getAsString().equals("PASS"),
+                "Player-complete registry snapshot failed");
         helper.succeed();
     }
 

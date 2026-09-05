@@ -317,13 +317,13 @@ public final class ScaleHarness {
         int fireboxBoiler = scenario.energyConverters() / 2;
         int fuelDynamo = scenario.energyConverters() - fireboxBoiler;
         for (int index = 0; index < fireboxBoiler; index++) {
-            helper.setBlock(new BlockPos(index * 2, 3, 28), ModBlocks.FIREBOX.get());
+            helper.setBlock(new BlockPos(index * 2, 3, 28), ModBlocks.BRONZE_BURNING_BOX_GAS.get());
             helper.setBlock(new BlockPos(index * 2 + 1, 3, 28), ModBlocks.BRONZE_BOILER.get());
         }
         for (int index = 0; index < fuelDynamo; index++) {
             helper.setBlock(
                     new BlockPos(index * 2, 3, 30),
-                    ModBlocks.FUEL_ENGINE.get().defaultBlockState()
+                    ModBlocks.BRONZE_FUEL_ENGINE.get().defaultBlockState()
                             .setValue(FuelGeneratorBlock.FACING, Direction.EAST));
             helper.setBlock(
                     new BlockPos(index * 2 + 1, 3, 30),
@@ -370,7 +370,7 @@ public final class ScaleHarness {
         for (int index = 0; index < scenario.petroleumChains(); index++) {
             int x = index * 8;
             helper.setBlock(new BlockPos(x, 3, 60), ModBlocks.FLUID_DEPOSIT_EXTRACTOR.get());
-            helper.setBlock(new BlockPos(x, 4, 60), ModBlocks.FIREBOX.get());
+            helper.setBlock(new BlockPos(x, 4, 60), ModBlocks.BRONZE_BURNING_BOX_GAS.get());
             helper.setBlock(
                     new BlockPos(x, 5, 60),
                     ModBlocks.DISTILLERY.get().defaultBlockState()

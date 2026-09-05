@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 
 class FluidNetworkKindsTest {
     @Test
-    void twoKindsThreeDefinitionsAndGenericDumpStaysForbidden() {
+    void twoKindsThreeDefinitionsAndUnknownLogisticsStayForbidden() {
         CoverBehaviorRegistry.validateDefinitions();
         assertTrue(CoverDefinitionCatalog.find(FluidNetworkKinds.STORAGE)
                 .isPresent());
@@ -28,11 +28,16 @@ class FluidNetworkKindsTest {
                 .isPresent());
         assertTrue(CoverDefinitionCatalog.find(
                 ResourceLocation.parse("cruciblecraft:logistics_generic_dump"))
-                .isEmpty());
+                .isPresent());
         assertFalse(ItemNetworkKinds.isForbiddenFrozenKind(
                 FluidNetworkKinds.STORAGE));
-        assertTrue(ItemNetworkKinds.isForbiddenFrozenKind(
+        assertFalse(ItemNetworkKinds.isForbiddenFrozenKind(
                 ResourceLocation.parse("cruciblecraft:logistics_generic_dump")));
+        assertFalse(ItemNetworkKinds.isForbiddenFrozenKind(
+                ResourceLocation.parse(
+                        "cruciblecraft:logistics_display_cpu_logic")));
+        assertTrue(ItemNetworkKinds.isForbiddenFrozenKind(
+                ResourceLocation.parse("cruciblecraft:logistics_battery")));
         assertEquals(
                 Optional.of(FluidNetworkKinds.TransferDirection.IMPORT),
                 FluidNetworkKinds.direction(FluidNetworkKinds.IMPORT));
