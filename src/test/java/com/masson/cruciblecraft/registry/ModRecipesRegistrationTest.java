@@ -30,7 +30,8 @@ class ModRecipesRegistrationTest {
                 id("material_rule"),
                 id("compact_gt_recipe_family"),
                 id("compact_publication_policy"),
-                id("compact_dedup_rule"));
+                id("compact_dedup_rule"),
+                id("shaped_catalyst"));
 
         assertEquals(expected, ModRecipes.RECIPE_TYPES.getEntries().stream()
                 .map(holder -> holder.getId())
