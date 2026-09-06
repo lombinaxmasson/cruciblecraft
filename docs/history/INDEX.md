@@ -16,13 +16,22 @@
 
 ## 当前 active 卡
 
-当前 unique active 是
-[变压器](card-plans/active/变压器详细计划.md)
+当前 active 计划卡为
+[生成资源、注册与 Jade 第一切片](card-plans/active/生成资源注册与Jade第一切片详细计划.md)
+（合并候选队列第 3、4 项；尚未完成实现）。机器可读
+`unique_active_wave` 仍为 `null`。已关闭
+[配方加载与 EMI 稳定性](card-plans/closed/配方加载与EMI稳定性详细计划.md)
+（slug `runtime/recipe-load-emi-stability`；零 family 的 loader / EMI / reload
+repair；`unique_active_wave` 全程 `null`）。机器可读
+`unique_active_wave` 仍为 `null`。已关闭
+[能源后续卡收口](card-plans/closed/能源后续卡收口详细计划.md)
+（电转换 / LU / 裂变 / 聚变 / 电池芯；`runtime_ready`）。
+已关闭
+[变压器](card-plans/closed/变压器详细计划.md)
 （capability `energy/transformers`，`player_complete` / `accepted`）。
 已关闭
 [电池](card-plans/closed/电池详细计划.md)
-（capability `energy/batteries`，`player_complete`；配方 `B` 槽是
-DESIGN_POLICY 芯替身，见该卡「配方保真债」）。
+（capability `energy/batteries`，`player_complete`；三族芯已回收，余债见该卡「配方保真债」）。
 已关闭
 [能量转换机目录](card-plans/closed/能量转换机目录详细计划.md)
 为转换机 kind × 材质 169 行 `player_complete`。

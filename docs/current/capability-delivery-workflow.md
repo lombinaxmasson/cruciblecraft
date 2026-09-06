@@ -68,8 +68,11 @@
   配料：该配方不算过，本能力不得晋级 `player_complete`；要么把缺件纳入
   本卡做出真物，要么保持 `runtime_ready` 并写明配方未完成。
   「创造栏能拿到」或「用已有材料 DESIGN_POLICY 生存获得」不能当完成。
-  已关闭卡上已经进游戏的替身配方（电池芯、物流核心、显示 CPU）保持原样，
-  不得借本条回头改那些 JSON。
+  已关闭卡上已经进游戏的替身配方（物流核心、显示 CPU）保持原样，
+  不得借本条回头改那些 JSON。电池 `B` 槽：铅酸 / 碱性 / 镍镉已由
+  [能源后续卡收口](../history/card-plans/closed/能源后续卡收口详细计划.md)
+  回收为 filled cell；锂钴 / 锂锰与 energium 仍 blocked，不得再用板、尘、
+  杆或单个电路伪造。
 - EMI 注册与可见性（本仓库配方 UI 是 EMI，不是 JEI）
 - 创造栏归属与 `en_us` / `zh_cn` 翻译
 - 同一次 `player-complete` 调用实际运行 GameTestServer 与 `runClient`；
