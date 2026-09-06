@@ -196,6 +196,10 @@ public final class ModCapabilities {
                 ModBlockEntities.BATTERY.get(),
                 (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.TRANSFORMER.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
                 ModBlockEntities.FLUID_BED_BURNING_BOX.get(),
                 (blockEntity, side) -> blockEntity.items(side));

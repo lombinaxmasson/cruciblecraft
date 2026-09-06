@@ -321,7 +321,7 @@ python tools/build_t4_tool_readiness.py --check
 ```
 
 The generated `t4_tool_readiness.json` classifies all 546 candidates separately
-for each of the 11 tools. `closure.unclassified` must remain zero. Eligibility,
+for each of the 13 tools. `closure.unclassified` must remain zero. Eligibility,
 material multisets, handle counts, catalysts, and route precedence come from
 the pinned GT6 pattern for that tool; there is no shared metal/gem/rod template.
 The exact `stone` identity is a source-backed Pickaxe exception, while

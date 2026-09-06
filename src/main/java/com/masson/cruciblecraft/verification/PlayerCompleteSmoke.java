@@ -39,6 +39,8 @@ public final class PlayerCompleteSmoke {
             "energy/converter-catalog";
     private static final String BATTERIES_CAPABILITY =
             "energy/batteries";
+    private static final String TRANSFORMERS_CAPABILITY =
+            "energy/transformers";
     private record Surface(
             String capability,
             List<String> registryIds,
@@ -137,6 +139,21 @@ public final class PlayerCompleteSmoke {
                             "cruciblecraft:lithium_manganese_battery_ev",
                             "cruciblecraft:red_energium_crystal_ulv",
                             "cruciblecraft:cyan_energium_crystal_iv"),
+                    List.of());
+        }
+        if (TRANSFORMERS_CAPABILITY.equals(capability)) {
+            return new Surface(
+                    TRANSFORMERS_CAPABILITY,
+                    List.of(
+                            "cruciblecraft:electric_transformer_ulv_lv",
+                            "cruciblecraft:electric_transformer_lv_mv",
+                            "cruciblecraft:electric_transformer_mv_hv",
+                            "cruciblecraft:electric_transformer_hv_ev",
+                            "cruciblecraft:electric_transformer_ev_iv",
+                            "cruciblecraft:electric_transformer_iv_luv",
+                            "cruciblecraft:electric_transformer_luv_zpm",
+                            "cruciblecraft:electric_transformer_zpm_uv",
+                            "cruciblecraft:electric_transformer_uv_puv1"),
                     List.of());
         }
         return new Surface(capability, List.of(), List.of());

@@ -82,6 +82,7 @@ public final class ToolDisplayPlan {
             case SAW -> ModItems.MATERIAL_SAW.get();
             case SCREWDRIVER -> ModItems.MATERIAL_SCREWDRIVER.get();
             case WRENCH -> ModItems.MATERIAL_WRENCH.get();
+            case MONKEY_WRENCH -> ModItems.MATERIAL_MONKEY_WRENCH.get();
             case WIRE_CUTTER -> ModItems.MATERIAL_WIRE_CUTTER.get();
         };
     }

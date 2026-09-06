@@ -3,10 +3,12 @@ package com.masson.cruciblecraft.registry;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.block.AnvilBlock;
 import com.masson.cruciblecraft.content.block.RockBlock;
@@ -25,6 +27,7 @@ import com.masson.cruciblecraft.content.block.FuelGeneratorBlock;
 import com.masson.cruciblecraft.content.block.FluidBedBurningBoxBlock;
 import com.masson.cruciblecraft.content.block.GasCloudBlock;
 import com.masson.cruciblecraft.content.block.ItemPipeBlock;
+import com.masson.cruciblecraft.content.block.MaterialCasingBlock;
 import com.masson.cruciblecraft.content.block.MaterialStorageBlock;
 import com.masson.cruciblecraft.content.block.LargeCentrifugeBlock;
 import com.masson.cruciblecraft.content.block.DistillationTowerBlock;
@@ -69,6 +72,9 @@ import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.energy.battery.BatteryBlock;
 import com.masson.cruciblecraft.energy.battery.EnergyBatteryCatalog;
 import com.masson.cruciblecraft.energy.battery.EnergyBatteryProfile;
+import com.masson.cruciblecraft.energy.transformer.EnergyTransformerCatalog;
+import com.masson.cruciblecraft.energy.transformer.EnergyTransformerProfile;
+import com.masson.cruciblecraft.energy.transformer.TransformerBlock;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterFuelSpecs;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterProfile;
@@ -102,6 +108,8 @@ public final class ModBlocks {
             MATERIAL_ORE_BLOCKS = new LinkedHashMap<>();
     private static final Map<String, DeferredBlock<MaterialStorageBlock>>
             MATERIAL_STORAGE_BLOCKS = new LinkedHashMap<>();
+    private static final Map<CasingBlockKey, DeferredBlock<MaterialCasingBlock>>
+            MATERIAL_CASING_BLOCKS = new LinkedHashMap<>();
     private static final Map<String, DeferredBlock<RockBlock>>
             ROCK_BLOCKS = new LinkedHashMap<>();
     private static final Map<
@@ -438,6 +446,7 @@ public final class ModBlocks {
     public static void registerMaterials(Collection<MaterialDefinition> definitions) {
         if (!MATERIAL_ORE_BLOCKS.isEmpty()
                 || !MATERIAL_STORAGE_BLOCKS.isEmpty()
+                || !MATERIAL_CASING_BLOCKS.isEmpty()
                 || !ROCK_BLOCKS.isEmpty()
                 || !ELECTRICAL_CONDUCTOR_BLOCKS.isEmpty()
                 || !PIPE_BLOCKS.isEmpty()) {
@@ -513,6 +522,30 @@ public final class ModBlocks {
             if (previous != null) {
                 throw new IllegalStateException(
                         "Duplicate storage block for " + material.id());
+            }
+        }
+        for (MaterialDefinition material : definitions) {
+            for (MaterialPrefix form : List.of(
+                    MaterialPrefixes.MACHINE_CASING,
+                    MaterialPrefixes.MACHINE_CASING_DOUBLE)) {
+                if (!MaterialCatalog.registeredForms(material).contains(form)
+                        || material.formItems().containsKey(form)) {
+                    continue;
+                }
+                CasingBlockKey key = new CasingBlockKey(material.id(), form);
+                DeferredBlock<MaterialCasingBlock> previous =
+                        MATERIAL_CASING_BLOCKS.put(
+                                key,
+                                BLOCKS.register(
+                                        material.registryName(form),
+                                        () -> new MaterialCasingBlock(
+                                                material.id(),
+                                                form,
+                                                casingProperties(form))));
+                if (previous != null) {
+                    throw new IllegalStateException(
+                            "Duplicate casing block for " + key);
+                }
             }
         }
         com.masson.cruciblecraft.api.material.MaterialPrefix rockForm =
@@ -591,6 +624,27 @@ public final class ModBlocks {
 
     public static Collection<DeferredBlock<MaterialStorageBlock>> storageBlocks() {
         return Collections.unmodifiableCollection(MATERIAL_STORAGE_BLOCKS.values());
+    }
+
+    public static DeferredBlock<MaterialCasingBlock> casingBlock(
+            String materialId, MaterialPrefix form) {
+        DeferredBlock<MaterialCasingBlock> block =
+                MATERIAL_CASING_BLOCKS.get(new CasingBlockKey(materialId, form));
+        if (block == null) {
+            throw new IllegalArgumentException(
+                    "No casing block for " + materialId + "/"
+                            + form.serializedName());
+        }
+        return block;
+    }
+
+    public static boolean hasCasingBlock(String materialId, MaterialPrefix form) {
+        return MATERIAL_CASING_BLOCKS.containsKey(
+                new CasingBlockKey(materialId, form));
+    }
+
+    public static Collection<DeferredBlock<MaterialCasingBlock>> casingBlocks() {
+        return Collections.unmodifiableCollection(MATERIAL_CASING_BLOCKS.values());
     }
 
     public static DeferredBlock<CableBlock> electricalConductorBlock(
@@ -861,6 +915,50 @@ public final class ModBlocks {
                 .strength(0.5F, 3.0F)
                 .sound(SoundType.METAL)
                 .noOcclusion();
+    }
+
+    private static final Map<
+            ResourceLocation,
+            DeferredBlock<TransformerBlock>> TRANSFORMER_BLOCKS =
+                    registerTransformerBlocks();
+
+    private static Map<ResourceLocation, DeferredBlock<TransformerBlock>>
+            registerTransformerBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<TransformerBlock>> blocks =
+                new LinkedHashMap<>();
+        for (EnergyTransformerProfile profile
+                : EnergyTransformerCatalog.profiles()) {
+            DeferredBlock<TransformerBlock> block = BLOCKS.register(
+                    profile.id().getPath(),
+                    () -> new TransformerBlock(profile, transformerProperties()));
+            if (blocks.put(profile.id(), block) != null) {
+                throw new IllegalStateException(
+                        "Duplicate transformer block " + profile.id());
+            }
+        }
+        if (blocks.size() != EnergyTransformerCatalog.profiles().size()) {
+            throw new IllegalStateException(
+                    "Transformer registration drifted from catalog rows");
+        }
+        return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    public static Map<ResourceLocation, DeferredBlock<TransformerBlock>>
+            transformerBlocksById() {
+        return TRANSFORMER_BLOCKS;
+    }
+
+    public static Block[] transformerBlockArray() {
+        return TRANSFORMER_BLOCKS.values().stream()
+                .map(DeferredBlock::get)
+                .toArray(Block[]::new);
+    }
+
+    private static BlockBehaviour.Properties transformerProperties() {
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.METAL)
+                .strength(3.0F, 6.0F)
+                .sound(SoundType.METAL);
     }
 
     private static DeferredBlock<ProcessingMachineBlock> tieredProcessing(
@@ -1316,6 +1414,15 @@ public final class ModBlocks {
                 .sound(SoundType.METAL);
     }
 
+    private static BlockBehaviour.Properties casingProperties(MaterialPrefix form) {
+        boolean doubled = form.equals(MaterialPrefixes.MACHINE_CASING_DOUBLE);
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.METAL)
+                .strength(doubled ? 2.0F : 1.0F, doubled ? 6.0F : 3.0F)
+                .requiresCorrectToolForDrops()
+                .sound(SoundType.METAL);
+    }
+
     private static BlockBehaviour.Properties rockProperties() {
         // GT6 rocks break by hand — the early-game cobblestone source.
         return BlockBehaviour.Properties.of()
@@ -1329,6 +1436,14 @@ public final class ModBlocks {
         public OreBlockKey {
             if (materialId == null || !materialId.matches("[a-z0-9_]+") || host == null) {
                 throw new IllegalArgumentException("Invalid material ore block key");
+            }
+        }
+    }
+
+    public record CasingBlockKey(String materialId, MaterialPrefix form) {
+        public CasingBlockKey {
+            if (materialId == null || !materialId.matches("[a-z0-9_]+") || form == null) {
+                throw new IllegalArgumentException("Invalid material casing block key");
             }
         }
     }

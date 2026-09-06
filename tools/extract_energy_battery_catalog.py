@@ -70,6 +70,11 @@ for start, kind in (
     for offset in range(count):
         KIND_BY_SOURCE[start + offset] = kind
 
+# DESIGN_POLICY: GT6 B-slot is IL.Battery_*_Cell_Filled (items 20000-20009),
+# which CC does not register. "cell" here is the chemistry stand-in, not the
+# real cell. Capability keys: battery_part:filled_cell (blocked),
+# recipe:energium_crystal_shaped (blocked). Pattern and P=battery_alloy plate
+# stay SOURCE_BACKED.
 KIND_META: dict[str, dict[str, Any]] = {
     "lead_acid_battery": {
         "energy": "EU",

@@ -70,6 +70,71 @@ class MaterialVisualResourceTest {
     }
 
     @Test
+    void placeableMachineCasingsUseSharedTintedCubes(
+            @TempDir Path configDirectory) {
+        var materials = MaterialLoader.load(configDirectory).values();
+        var registered = MaterialRegistrationGate.load(materials);
+        var serverFiles = GeneratedMaterialPack.planServerFiles(materials, registered);
+        var clientFiles = GeneratedMaterialPack.planClientFiles(materials, registered);
+
+        long casings = materials.stream()
+                .filter(material -> registered.get(material.id())
+                        .contains(MaterialPrefixes.MACHINE_CASING))
+                .filter(material -> !material.formItems().containsKey(
+                        MaterialPrefixes.MACHINE_CASING))
+                .count();
+        assertEquals(210, casings);
+
+        assertTrue(clientFiles.containsKey(
+                "assets/cruciblecraft/blockstates/aluminium/machine_casing.json"));
+        JsonObject aluminiumState = json(clientFiles.get(
+                "assets/cruciblecraft/blockstates/aluminium/machine_casing.json"));
+        assertEquals(
+                "cruciblecraft:block/machine_casing",
+                aluminiumState.getAsJsonObject("variants")
+                        .getAsJsonObject("")
+                        .get("model")
+                        .getAsString());
+        JsonObject aluminiumItem = json(clientFiles.get(
+                "assets/cruciblecraft/models/item/aluminium/machine_casing.json"));
+        assertEquals(
+                "cruciblecraft:block/machine_casing",
+                aluminiumItem.get("parent").getAsString());
+        assertTrue(serverFiles.containsKey(
+                "data/cruciblecraft/loot_table/blocks/aluminium/machine_casing.json"));
+        assertTrue(serverFiles.containsKey(
+                "data/c/tags/block/machine_casings/aluminium.json"));
+        assertTrue(serverFiles.containsKey(
+                "data/c/tags/item/machine_casings/aluminium.json"));
+        assertEquals(
+                "Aluminium Machine Casing",
+                json(clientFiles.get("assets/cruciblecraft/lang/en_us.json"))
+                        .get("block.cruciblecraft.aluminium/machine_casing")
+                        .getAsString());
+        assertEquals(
+                "铝机器外壳",
+                json(clientFiles.get("assets/cruciblecraft/lang/zh_cn.json"))
+                        .get("block.cruciblecraft.aluminium/machine_casing")
+                        .getAsString());
+
+        JsonObject steelDouble = json(clientFiles.get(
+                "assets/cruciblecraft/blockstates/steel/machine_casing_double.json"));
+        assertEquals(
+                "cruciblecraft:block/machine_casing_double",
+                steelDouble.getAsJsonObject("variants")
+                        .getAsJsonObject("")
+                        .get("model")
+                        .getAsString());
+        assertTrue(serverFiles.containsKey(
+                "data/cruciblecraft/loot_table/blocks/steel/machine_casing_double.json"));
+        assertEquals(
+                "Steel Double Machine Casing",
+                json(clientFiles.get("assets/cruciblecraft/lang/en_us.json"))
+                        .get("block.cruciblecraft.steel/machine_casing_double")
+                        .getAsString());
+    }
+
+    @Test
     void realGt6ItemOverlaysAreWiredAsUntintedLayer1(
             @TempDir Path configDirectory) {
         var materials = MaterialLoader.load(configDirectory).values();

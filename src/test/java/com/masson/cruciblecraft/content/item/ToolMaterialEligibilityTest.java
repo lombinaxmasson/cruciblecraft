@@ -35,16 +35,22 @@ class ToolMaterialEligibilityTest {
                     "iron", CORE_STATS, List.of()));
         }
         for (ToolKind kind : ToolKind.values()) {
-            if (kind != ToolKind.WRENCH && kind != ToolKind.WIRE_CUTTER) {
+            if (kind != ToolKind.WRENCH
+                    && kind != ToolKind.MONKEY_WRENCH
+                    && kind != ToolKind.WIRE_CUTTER) {
                 assertFalse(kind.isEligible(
                         "iron",
                         CORE_STATS,
                         tags(ToolMaterialRules.COATED_TAG)));
             }
         }
-        // GT6 Loader_Tools.java:310/324: wrench and wire cutter listeners
-        // both omit COATED.NOT, so coated material stays eligible.
+        // GT6 Loader_Tools.java:310/311/324: wrench, monkey wrench and wire
+        // cutter listeners all omit COATED.NOT.
         assertTrue(ToolKind.WRENCH.isEligible(
+                "iron",
+                CORE_STATS,
+                tags(ToolMaterialRules.COATED_TAG)));
+        assertTrue(ToolKind.MONKEY_WRENCH.isEligible(
                 "iron",
                 CORE_STATS,
                 tags(ToolMaterialRules.COATED_TAG)));
@@ -121,6 +127,12 @@ class ToolMaterialEligibilityTest {
                 "iron",
                 stats(1, 2),
                 tags(ToolMaterialRules.BOUNCY_TAG)));
+        assertTrue(ToolKind.MONKEY_WRENCH.isEligible(
+                "iron", stats(1, 2), tags()));
+        assertFalse(ToolKind.MONKEY_WRENCH.isEligible(
+                "iron",
+                stats(1, 2),
+                tags(ToolMaterialRules.STRETCHY_TAG)));
 
         // GT6 Loader_Tools.java:324 has no qualmin and excludes BOUNCY.
         assertTrue(ToolKind.WIRE_CUTTER.isEligible(

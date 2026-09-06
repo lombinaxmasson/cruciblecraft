@@ -209,9 +209,11 @@ public final class GeneratedMaterialPack {
                         electricalSpecification(material, form);
                 String pipeModelKey = pipeModelKey(material, form);
                 boolean placeableStorage = isPlaceableStorage(material, form);
+                boolean placeableCasing = isPlaceableCasing(material, form);
                 if (electricalSpecification != null
                         || pipeModelKey != null
                         || placeableStorage
+                        || placeableCasing
                         || isRockForm(form)) {
                     addTag(
                             files,
@@ -225,7 +227,7 @@ public final class GeneratedMaterialPack {
                             .add("#" + tagNamespace + ":" + formTag + "/"
                                     + material.tagName());
                     mineableOres.add(itemId);
-                    if (placeableStorage) {
+                    if (placeableStorage || placeableCasing) {
                         (material.tier() >= 2 ? ironToolOres : stoneToolOres)
                                 .add(itemId);
                     }
@@ -301,6 +303,14 @@ public final class GeneratedMaterialPack {
                             "block." + CrucibleCraft.MODID + "."
                                     + material.registryName(form),
                             title(material.id()) + " Block");
+                    continue;
+                }
+                if (isPlaceableCasing(material, form)) {
+                    addCasingClientFiles(files, material, form);
+                    oreTranslations.addProperty(
+                            "block." + CrucibleCraft.MODID + "."
+                                    + material.registryName(form),
+                            title(material.id()) + " " + casingEnglish(form));
                     continue;
                 }
                 if (isRockForm(form)) {
@@ -394,7 +404,8 @@ public final class GeneratedMaterialPack {
                                     "block." + CrucibleCraft.MODID + "."
                                             + material.registryName(form),
                                     mat + name));
-                    if (isPlaceableStorage(material, form)) {
+                    if (isPlaceableStorage(material, form)
+                            || isPlaceableCasing(material, form)) {
                         MaterialZhNames.prefix(form.serializedName())
                                 .ifPresent(name -> zhTranslations.addProperty(
                                         "block." + CrucibleCraft.MODID + "."
@@ -709,8 +720,24 @@ public final class GeneratedMaterialPack {
 
     private static void addStorageClientFiles(
             Map<String, String> files, MaterialDefinition material) {
-        String path = material.registryName(MaterialPrefixes.BLOCK);
-        String modelId = CrucibleCraft.MODID + ":block/material_storage";
+        addSharedCubeClientFiles(
+                files,
+                material.registryName(MaterialPrefixes.BLOCK),
+                CrucibleCraft.MODID + ":block/material_storage");
+    }
+
+    private static void addCasingClientFiles(
+            Map<String, String> files,
+            MaterialDefinition material,
+            MaterialPrefix form) {
+        addSharedCubeClientFiles(
+                files,
+                material.registryName(form),
+                CrucibleCraft.MODID + ":block/" + form.serializedName());
+    }
+
+    private static void addSharedCubeClientFiles(
+            Map<String, String> files, String path, String modelId) {
         JsonObject blockState = new JsonObject();
         JsonObject variants = new JsonObject();
         JsonObject defaultVariant = new JsonObject();
@@ -853,6 +880,19 @@ public final class GeneratedMaterialPack {
             MaterialDefinition material, MaterialPrefix form) {
         return form.equals(MaterialPrefixes.BLOCK)
                 && !material.formItems().containsKey(form);
+    }
+
+    private static boolean isPlaceableCasing(
+            MaterialDefinition material, MaterialPrefix form) {
+        return (form.equals(MaterialPrefixes.MACHINE_CASING)
+                || form.equals(MaterialPrefixes.MACHINE_CASING_DOUBLE))
+                && !material.formItems().containsKey(form);
+    }
+
+    private static String casingEnglish(MaterialPrefix form) {
+        return form.equals(MaterialPrefixes.MACHINE_CASING_DOUBLE)
+                ? "Double Machine Casing"
+                : "Machine Casing";
     }
 
     private static String overlayLayer(String modelTexture) {

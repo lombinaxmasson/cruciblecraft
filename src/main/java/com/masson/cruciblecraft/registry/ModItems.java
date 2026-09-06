@@ -8,9 +8,12 @@ import java.util.Map;
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.energy.battery.BatteryBlockItem;
 import com.masson.cruciblecraft.energy.battery.EnergyBatteryCatalog;
+import com.masson.cruciblecraft.energy.transformer.EnergyTransformerCatalog;
+import com.masson.cruciblecraft.energy.transformer.TransformerBlockItem;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
+import com.masson.cruciblecraft.content.item.MaterialCasingBlockItem;
 import com.masson.cruciblecraft.content.item.MaterialItem;
 import com.masson.cruciblecraft.content.item.MaterialStorageBlockItem;
 import com.masson.cruciblecraft.content.item.CableBlockItem;
@@ -36,6 +39,7 @@ import com.masson.cruciblecraft.content.item.MaterialChiselItem;
 import com.masson.cruciblecraft.content.item.MaterialFileItem;
 import com.masson.cruciblecraft.content.item.MaterialHoeItem;
 import com.masson.cruciblecraft.content.item.MaterialMachineBlockItem;
+import com.masson.cruciblecraft.content.item.MaterialMonkeyWrenchItem;
 import com.masson.cruciblecraft.content.item.MaterialPickaxeItem;
 import com.masson.cruciblecraft.content.item.MaterialSawItem;
 import com.masson.cruciblecraft.content.item.MaterialScrewdriverItem;
@@ -52,7 +56,6 @@ import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
 import com.masson.cruciblecraft.content.item.UnknownMaterialItem;
 import com.masson.cruciblecraft.machine.MachineMaterialRules.Device;
 import com.masson.cruciblecraft.content.mold.MoldShape;
-import com.masson.cruciblecraft.machine.processing.MachineCasingCatalog;
 import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariant;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
@@ -177,8 +180,6 @@ public final class ModItems {
             ITEMS.register(
                     "programmed_circuit",
                     () -> new ProgrammedCircuitItem(new Item.Properties()));
-    private static final Map<ResourceLocation, DeferredItem<Item>> MACHINE_CASINGS =
-            registerMachineCasings();
     private static final Map<ResourceLocation, DeferredItem<Item>> BATH_MTE_ITEMS =
             registerBathMteItems();
     private static final Map<ResourceLocation, DeferredItem<Item>> SMELTER_MTE_ITEMS =
@@ -187,39 +188,19 @@ public final class ModItems {
             registerBathIdentityItems();
     private static final Map<ResourceLocation, DeferredItem<Item>> SEMANTIC_IDENTITY_ITEMS =
             registerSemanticIdentityItems();
-    public static final DeferredItem<Item>
-            BRONZE_DOUBLE_MACHINE_CASING =
-                    machineCasing("bronze_double_machine_casing");
-    public static final DeferredItem<Item>
-            STEEL_DOUBLE_MACHINE_CASING =
-                    machineCasing("steel_double_machine_casing");
-    public static final DeferredItem<Item>
-            TITANIUM_DOUBLE_MACHINE_CASING =
-                    machineCasing("titanium_double_machine_casing");
-    public static final DeferredItem<Item>
-            STEEL_GALVANIZED_MACHINE_CASING =
-                    machineCasing("steel_galvanized_machine_casing");
-    public static final DeferredItem<Item>
-            ALUMINIUM_MACHINE_CASING =
-                    machineCasing("aluminium_machine_casing");
-    public static final DeferredItem<Item>
-            STAINLESS_STEEL_MACHINE_CASING =
-                    machineCasing("stainless_steel_machine_casing");
-    public static final DeferredItem<Item>
-            CHROMIUM_MACHINE_CASING =
-                    machineCasing("chromium_machine_casing");
-    public static final DeferredItem<Item>
-            TITANIUM_MACHINE_CASING =
-                    machineCasing("titanium_machine_casing");
-    public static final DeferredItem<Item>
-            TUNGSTENSTEEL_DOUBLE_MACHINE_CASING =
-                    machineCasing("tungstensteel_double_machine_casing");
-    public static final DeferredItem<Item>
-            INVAR_DOUBLE_MACHINE_CASING =
-                    machineCasing("invar_double_machine_casing");
-    public static final DeferredItem<Item>
-            TUNGSTEN_CARBIDE_DOUBLE_MACHINE_CASING =
-                    machineCasing("tungsten_carbide_double_machine_casing");
+    public static DeferredItem<? extends Item> BRONZE_DOUBLE_MACHINE_CASING;
+    public static DeferredItem<? extends Item> STEEL_DOUBLE_MACHINE_CASING;
+    public static DeferredItem<? extends Item> TITANIUM_DOUBLE_MACHINE_CASING;
+    public static DeferredItem<? extends Item> STEEL_GALVANIZED_MACHINE_CASING;
+    public static DeferredItem<? extends Item> ALUMINIUM_MACHINE_CASING;
+    public static DeferredItem<? extends Item> STAINLESS_STEEL_MACHINE_CASING;
+    public static DeferredItem<? extends Item> CHROMIUM_MACHINE_CASING;
+    public static DeferredItem<? extends Item> TITANIUM_MACHINE_CASING;
+    public static DeferredItem<? extends Item>
+            TUNGSTENSTEEL_DOUBLE_MACHINE_CASING;
+    public static DeferredItem<? extends Item> INVAR_DOUBLE_MACHINE_CASING;
+    public static DeferredItem<? extends Item>
+            TUNGSTEN_CARBIDE_DOUBLE_MACHINE_CASING;
     public static final DeferredItem<BucketItem> CREOSOTE_BUCKET = ITEMS.register(
             "creosote_bucket",
             () -> new BucketItem(
@@ -389,6 +370,9 @@ public final class ModItems {
     private static final Map<
             ResourceLocation, DeferredItem<BatteryBlockItem>> BATTERY_ITEMS =
                     registerBatteryItems();
+    private static final Map<
+            ResourceLocation, DeferredItem<TransformerBlockItem>> TRANSFORMER_ITEMS =
+                    registerTransformerItems();
     public static final DeferredItem<BlockItem> BRONZE_BOILER =
             converterItem("bronze_boiler");
     public static final DeferredItem<BlockItem> BRONZE_STEAM_ENGINE =
@@ -584,6 +568,10 @@ public final class ModItems {
             ITEMS.register(
                     "material_wrench",
                     () -> new MaterialWrenchItem(new Item.Properties()));
+    public static final DeferredItem<MaterialMonkeyWrenchItem> MATERIAL_MONKEY_WRENCH =
+            ITEMS.register(
+                    "material_monkey_wrench",
+                    () -> new MaterialMonkeyWrenchItem(new Item.Properties()));
     public static final DeferredItem<MaterialWireCutterItem> MATERIAL_WIRE_CUTTER =
             ITEMS.register(
                     "material_wire_cutter",
@@ -652,6 +640,13 @@ public final class ModItems {
                             () -> new MaterialStorageBlockItem(
                                     ModBlocks.storageBlock(material.id()).get(),
                                     new Item.Properties()));
+                } else if (ModBlocks.hasCasingBlock(material.id(), form)) {
+                    item = ITEMS.register(
+                            registryName,
+                            () -> new MaterialCasingBlockItem(
+                                    ModBlocks.casingBlock(material.id(), form)
+                                            .get(),
+                                    new Item.Properties()));
                 } else if (ModBlocks.hasRockBlock(material.id())
                         && form.equals(com.masson.cruciblecraft.material.prefix
                                 .MaterialPrefixCatalog.require("rock"))) {
@@ -671,6 +666,7 @@ public final class ModItems {
                 MATERIAL_ITEMS.put(key(material.id(), form), item);
             }
         }
+        bindNamedCasingAliases();
     }
 
     private static DeferredItem<PipeBlockItem> pipeItem(
@@ -874,6 +870,35 @@ public final class ModItems {
         return BATTERY_ITEMS;
     }
 
+    private static Map<ResourceLocation, DeferredItem<TransformerBlockItem>>
+            registerTransformerItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<TransformerBlockItem>> items =
+                new LinkedHashMap<>();
+        for (var profile : EnergyTransformerCatalog.profiles()) {
+            DeferredItem<TransformerBlockItem> item = ITEMS.register(
+                    profile.id().getPath(),
+                    () -> new TransformerBlockItem(
+                            ModBlocks.transformerBlocksById()
+                                    .get(profile.id())
+                                    .get(),
+                            new Item.Properties()));
+            if (items.put(profile.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate transformer item " + profile.id());
+            }
+        }
+        if (items.size() != EnergyTransformerCatalog.profiles().size()) {
+            throw new IllegalStateException(
+                    "Transformer item registration drifted from catalog rows");
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    public static Map<ResourceLocation, DeferredItem<TransformerBlockItem>>
+            transformerItemsById() {
+        return TRANSFORMER_ITEMS;
+    }
+
     private static Map<ResourceLocation, DeferredItem<BlockItem>>
             registerTieredProcessingItems() {
         LinkedHashMap<ResourceLocation, DeferredItem<BlockItem>> items =
@@ -1067,10 +1092,6 @@ public final class ModItems {
         return TIERED_PROCESSING_ITEMS;
     }
 
-    public static Map<ResourceLocation, DeferredItem<Item>> machineCasingsById() {
-        return MACHINE_CASINGS;
-    }
-
     public static Map<ResourceLocation, DeferredItem<Item>> bathMteItemsById() {
         return BATH_MTE_ITEMS;
     }
@@ -1099,18 +1120,29 @@ public final class ModItems {
         return java.util.Collections.unmodifiableMap(items);
     }
 
-    private static Map<ResourceLocation, DeferredItem<Item>> registerMachineCasings() {
-        LinkedHashMap<ResourceLocation, DeferredItem<Item>> items =
-                new LinkedHashMap<>();
-        for (MachineCasingCatalog.Casing casing : MachineCasingCatalog.casings()) {
-            DeferredItem<Item> item = ITEMS.registerSimpleItem(
-                    casing.id().getPath(), new Item.Properties());
-            if (items.put(casing.id(), item) != null) {
-                throw new IllegalStateException(
-                        "Duplicate machine casing " + casing.id());
-            }
-        }
-        return java.util.Collections.unmodifiableMap(items);
+    private static void bindNamedCasingAliases() {
+        BRONZE_DOUBLE_MACHINE_CASING = materialItem(
+                "bronze", MaterialPrefixes.MACHINE_CASING_DOUBLE);
+        STEEL_DOUBLE_MACHINE_CASING = materialItem(
+                "steel", MaterialPrefixes.MACHINE_CASING_DOUBLE);
+        TITANIUM_DOUBLE_MACHINE_CASING = materialItem(
+                "titanium", MaterialPrefixes.MACHINE_CASING_DOUBLE);
+        STEEL_GALVANIZED_MACHINE_CASING = materialItem(
+                "steel_galvanized", MaterialPrefixes.MACHINE_CASING);
+        ALUMINIUM_MACHINE_CASING = materialItem(
+                "aluminium", MaterialPrefixes.MACHINE_CASING);
+        STAINLESS_STEEL_MACHINE_CASING = materialItem(
+                "stainless_steel", MaterialPrefixes.MACHINE_CASING);
+        CHROMIUM_MACHINE_CASING = materialItem(
+                "chromium", MaterialPrefixes.MACHINE_CASING);
+        TITANIUM_MACHINE_CASING = materialItem(
+                "titanium", MaterialPrefixes.MACHINE_CASING);
+        TUNGSTENSTEEL_DOUBLE_MACHINE_CASING = materialItem(
+                "tungstensteel", MaterialPrefixes.MACHINE_CASING_DOUBLE);
+        INVAR_DOUBLE_MACHINE_CASING = materialItem(
+                "invar", MaterialPrefixes.MACHINE_CASING_DOUBLE);
+        TUNGSTEN_CARBIDE_DOUBLE_MACHINE_CASING = materialItem(
+                "tungsten_carbide", MaterialPrefixes.MACHINE_CASING_DOUBLE);
     }
 
     private static Map<ResourceLocation, DeferredItem<Item>> registerBathMteItems() {
@@ -1193,16 +1225,6 @@ public final class ModItems {
                             + SemanticObjectCatalog.VARIANT_COUNT);
         }
         return java.util.Collections.unmodifiableMap(items);
-    }
-
-    private static DeferredItem<Item> machineCasing(String path) {
-        DeferredItem<Item> item = MACHINE_CASINGS.get(
-                ResourceLocation.fromNamespaceAndPath(
-                        CrucibleCraft.MODID, path));
-        if (item == null) {
-            throw new IllegalStateException("Missing machine casing " + path);
-        }
-        return item;
     }
 
     private static DeferredItem<BlockItem> registerOreItem(

@@ -34,6 +34,13 @@ public final class ToolPatternCatalog {
             pattern("saw", "Saw Blade", "锯片", "PP ", "CC "),
             pattern("screwdriver", "Screwdriver Head", "螺丝刀头", " C ", " P ", " P "),
             pattern("wrench", "Wrench", "扳手", "PCP", " P ", " P "),
+            pattern(
+                    "monkey_wrench",
+                    "Monkey Wrench",
+                    "活动扳手",
+                    "PP ",
+                    "PC ",
+                    " P "),
             // GT6 Loader_Tools.java:324 wirecutter shape {"PfP","hPd","STS"}
             // flattened to the P/C/S alphabet (plates, tool heads, sticks).
             pattern("wire_cutter", "Wire Cutter Head", "剪线钳头", "PCP", "CPC", "SCS"));

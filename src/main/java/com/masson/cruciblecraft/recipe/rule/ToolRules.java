@@ -335,6 +335,36 @@ public final class ToolRules {
                             prefix(MaterialPrefixes.GEM, 4),
                             file())));
 
+    // GT6 Loader_Tools.java:311 MonkeyWrench:
+    // metal {"PPd","hPT"," P "} and gem {"CCd","fCT"," C "}.
+    // P/C are material plates/gem plates, T is a screw, and h/f/d are
+    // the hammer/file/screwdriver catalysts.
+    public static final List<Definition> MONKEY_WRENCHES = List.of(
+            definition(
+                    "monkey_wrench",
+                    "metal",
+                    ModItems.MATERIAL_MONKEY_WRENCH.getId(),
+                    WRENCH_ELIGIBLE,
+                    firstRoute(and(PLATE, SCREW)),
+                    List.of(
+                            prefix(MaterialPrefixes.PLATE, 4),
+                            prefix(MaterialPrefixes.SCREW, 1),
+                            hammer(),
+                            screwdriver())),
+            definition(
+                    "monkey_wrench",
+                    "gem",
+                    ModItems.MATERIAL_MONKEY_WRENCH.getId(),
+                    WRENCH_ELIGIBLE,
+                    laterRoute(
+                            and(GEM, SCREW),
+                            and(PLATE, SCREW)),
+                    List.of(
+                            prefix(MaterialPrefixes.GEM, 3),
+                            prefix(MaterialPrefixes.SCREW, 1),
+                            file(),
+                            screwdriver())));
+
     // GT6 Loader_Tools.java:324 wirecutter shapes {"PfP","hPd","STS"} and
     // {"CfC","hCd","STS"}: P=plate, C=plateGem (-> gem), T=screw, S=stick
     // (-> rod), f/h/d are the file, hammer and screwdriver catalysts.
@@ -378,6 +408,7 @@ public final class ToolRules {
                     SAWS,
                     SCREWDRIVERS,
                     WRENCHES,
+                    MONKEY_WRENCHES,
                     WIRE_CUTTERS)
             .flatMap(List::stream)
             .toList();
@@ -465,6 +496,13 @@ public final class ToolRules {
         return fixed(
                 ModItems.SMITHING_HAMMER.getId(),
                 null,
+                Optional.of(ItemInputAction.wear(1)));
+    }
+
+    private static MaterialRule.ItemResource screwdriver() {
+        return fixed(
+                ModItems.MATERIAL_SCREWDRIVER.getId(),
+                "iron",
                 Optional.of(ItemInputAction.wear(1)));
     }
 

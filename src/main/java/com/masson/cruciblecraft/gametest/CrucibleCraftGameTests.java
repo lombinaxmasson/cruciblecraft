@@ -7551,14 +7551,14 @@ public final class CrucibleCraftGameTests {
                 "GameTest recipe publication metrics: {}", metrics);
         helper.assertTrue(
                 metrics.componentRecipes() == 8398
-                        && metrics.toolRecipes() == 3657
+                        && metrics.toolRecipes() == 3913
                         && metrics.chemicalPublishedRecipes() == 158
                         && metrics.mortarAuthoredMaterialRules() == 220
                         && metrics.pipeMaterialRules() == 257
                         && metrics.ingotFormMaterialRules() == 967
                         && metrics.liveComponentMapRecipes() == 12056
-                        && metrics.allPublishedRecipes() == 18_766
-                        && metrics.eagerPublishedRecipes() == 16_541
+                        && metrics.allPublishedRecipes() == 19_022
+                        && metrics.eagerPublishedRecipes() == 16_797
                         && metrics.eagerPublishedRecipes()
                                 <= ModProcessingMachines
                                         .ALL_EAGER_PUBLICATION_SOFT_BUDGET
@@ -7649,6 +7649,7 @@ public final class CrucibleCraftGameTests {
                 Map.entry("saw", 307),
                 Map.entry("screwdriver", 309),
                 Map.entry("wrench", 308),
+                Map.entry("monkey_wrench", 256),
                 Map.entry("wire_cutter", 205));
         Map<String, Item> toolItems = Map.ofEntries(
                 Map.entry("pickaxe", ModItems.MATERIAL_PICKAXE.get()),
@@ -7662,6 +7663,9 @@ public final class CrucibleCraftGameTests {
                 Map.entry("saw", ModItems.MATERIAL_SAW.get()),
                 Map.entry("screwdriver", ModItems.MATERIAL_SCREWDRIVER.get()),
                 Map.entry("wrench", ModItems.MATERIAL_WRENCH.get()),
+                Map.entry(
+                        "monkey_wrench",
+                        ModItems.MATERIAL_MONKEY_WRENCH.get()),
                 Map.entry(
                         "wire_cutter",
                         ModItems.MATERIAL_WIRE_CUTTER.get()));
@@ -7682,6 +7686,9 @@ public final class CrucibleCraftGameTests {
                         ToolMaterialRules.ToolKind.SCREWDRIVER),
                 Map.entry("wrench", ToolMaterialRules.ToolKind.WRENCH),
                 Map.entry(
+                        "monkey_wrench",
+                        ToolMaterialRules.ToolKind.MONKEY_WRENCH),
+                Map.entry(
                         "wire_cutter",
                         ToolMaterialRules.ToolKind.WIRE_CUTTER));
         Map<String, Integer> eligibleWithoutRoute = Map.ofEntries(
@@ -7696,6 +7703,7 @@ public final class CrucibleCraftGameTests {
                 Map.entry("saw", 2),
                 Map.entry("screwdriver", 0),
                 Map.entry("wrench", 2),
+                Map.entry("monkey_wrench", 54),
                 Map.entry("wire_cutter", 107));
         for (var toolEntry : toolCounts.entrySet()) {
             String tool = toolEntry.getKey();

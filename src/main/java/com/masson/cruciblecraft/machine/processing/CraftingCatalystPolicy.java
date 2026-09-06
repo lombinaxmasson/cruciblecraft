@@ -36,7 +36,8 @@ public final class CraftingCatalystPolicy {
             "smithing_hammer",
             "flint_knife",
             "material_screwdriver",
-            "material_wrench");
+            "material_wrench",
+            "material_monkey_wrench");
     private static final String TOOL_PATTERN_PREFIX = "tool_pattern_";
 
     private CraftingCatalystPolicy() {}

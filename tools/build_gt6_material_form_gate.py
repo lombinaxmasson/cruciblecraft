@@ -767,6 +767,7 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
             | tool_head_required_forms.get(material_id, set())
             | semantic_required_forms.get(material_id, set())
             | rock_forms.get(material_id, set())
+            | (factual & {"machine_casing", "machine_casing_double"})
         )
         compatibility = ((
             pre_gate_forms.get(material_id, set()) - selected_forms

@@ -94,6 +94,15 @@
         "--capability",
         "energy/batteries"
       ]
+    },
+    {
+      "name": "build_player_complete_transformers",
+      "script": "tools/build_player_complete.py",
+      "ordinary_args": [
+        "--run",
+        "--capability",
+        "energy/transformers"
+      ]
     }
   ]
 }

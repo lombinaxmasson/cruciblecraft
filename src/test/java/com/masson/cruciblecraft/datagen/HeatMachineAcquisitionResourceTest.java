@@ -99,41 +99,41 @@ class HeatMachineAcquisitionResourceTest {
                 distillery(
                         "distillery", "steel",
                         "constantan/double_wire",
-                        "steel_double_machine_casing",
+                        "steel/machine_casing_double",
                         ModItems.DISTILLERY.getId().toString()),
                 distillery(
                         "invar_distillery", "invar",
                         "kanthal/quadruple_wire",
-                        "steel_double_machine_casing",
+                        "steel/machine_casing_double",
                         ModItems.INVAR_DISTILLERY.getId().toString()),
                 distillery(
                         "titanium_distillery", "titanium",
                         "nichrome/octuple_wire",
-                        "titanium_double_machine_casing",
+                        "titanium/machine_casing_double",
                         ModItems.TITANIUM_DISTILLERY.getId().toString()),
                 heatBody(
                         "drying", "steel",
-                        "steel_double_machine_casing",
+                        "steel/machine_casing_double",
                         ModItems.DRYING.getId().toString()),
                 heatBody(
                         "invar_drying", "invar",
-                        "steel_double_machine_casing",
+                        "steel/machine_casing_double",
                         ModItems.INVAR_DRYING.getId().toString()),
                 heatBody(
                         "titanium_drying", "titanium",
-                        "titanium_double_machine_casing",
+                        "titanium/machine_casing_double",
                         ModItems.TITANIUM_DRYING.getId().toString()),
                 heatBody(
                         "smelter", "steel",
-                        "steel_double_machine_casing",
+                        "steel/machine_casing_double",
                         ModItems.SMELTER.getId().toString()),
                 heatBody(
                         "invar_smelter", "invar",
-                        "steel_double_machine_casing",
+                        "steel/machine_casing_double",
                         ModItems.INVAR_SMELTER.getId().toString()),
                 heatBody(
                         "titanium_smelter", "titanium",
-                        "titanium_double_machine_casing",
+                        "titanium/machine_casing_double",
                         ModItems.TITANIUM_SMELTER.getId().toString()));
     }
 

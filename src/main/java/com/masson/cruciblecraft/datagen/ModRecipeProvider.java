@@ -25,6 +25,7 @@ import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeEntry;
 import com.masson.cruciblecraft.energy.battery.EnergyBatteryTierCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterTierCatalog;
+import com.masson.cruciblecraft.energy.transformer.EnergyTransformerTierCatalog;
 import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.registry.ModItems;
@@ -329,6 +330,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 "rotational_gearbox");
         addConverterRecipes(output);
         addBatteryRecipes(output);
+        addTransformerRecipes(output);
         for (MachineVariant variant
                 : com.masson.cruciblecraft.registry.ModMachineVariants.ALL) {
             emitAcquisition(output, variant);
@@ -337,15 +339,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 output,
                 ModItems.FLUID_DEPOSIT_EXTRACTOR.get(),
                 "fluid_deposit_extractor");
-        for (com.masson.cruciblecraft.machine.processing.MachineCasingCatalog.Casing casing
-                : com.masson.cruciblecraft.machine.processing.MachineCasingCatalog.casings()) {
-            casingCrafting(
-                    output,
-                    ModItems.machineCasingsById().get(casing.id()).get(),
-                    com.masson.cruciblecraft.machine.processing.MachineCasingCatalog.materialPath(
-                            casing.materialId().toString()),
-                    casing.doubled());
-        }
+        addCasingFormRecipes(output);
         ShapedRecipeBuilder.shaped(
                         RecipeCategory.MISC,
                         ModItems.MULTIBLOCK_CASING.get(),
@@ -750,7 +744,7 @@ public final class ModRecipeProvider extends RecipeProvider {
         String material = resolved.materialPath();
         Item casing = resolved.casingItem() == null
                 ? null
-                : ModItems.machineCasingsById().get(resolved.casingItem()).get();
+                : resolveRegisteredItem(resolved.casingItem());
         switch (resolved.template()) {
             case "machine_generic" -> machineCrafting(output, result, path);
             case "centrifuge" -> centrifugeCrafting(
@@ -1090,25 +1084,56 @@ public final class ModRecipeProvider extends RecipeProvider {
         builder.save(output, id("machines/" + id));
     }
 
-    private static void casingCrafting(
+    private static void addCasingFormRecipes(RecipeOutput output) {
+        MaterialCatalog.startupValues().stream()
+                .map(MaterialDefinition::id)
+                .sorted()
+                .forEach(material -> {
+                    emitCasingFormRecipe(
+                            output,
+                            material,
+                            MaterialPrefixes.MACHINE_CASING,
+                            MaterialPrefixes.PLATE);
+                    emitCasingFormRecipe(
+                            output,
+                            material,
+                            MaterialPrefixes.MACHINE_CASING_DOUBLE,
+                            MaterialPrefixes.DOUBLE_PLATE);
+                });
+    }
+
+    private static void emitCasingFormRecipe(
             RecipeOutput output,
-            Item result,
             String material,
-            boolean doubled) {
-        Item plate = materialItem(
-                material,
-                doubled
-                        ? MaterialPrefixes.DOUBLE_PLATE
-                        : MaterialPrefixes.PLATE);
+            MaterialPrefix casingForm,
+            MaterialPrefix plateForm) {
+        if (!ModItems.hasMaterialItem(material, casingForm)) {
+            return;
+        }
+        Item plate = MaterialLookup.item(material, plateForm).orElse(null);
+        Item rod = MaterialLookup.item(material, MaterialPrefixes.LONG_ROD)
+                .orElse(null);
+        if (plate == null || rod == null) {
+            return;
+        }
+        Item result = ModItems.materialItem(material, casingForm).get();
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
-                .pattern("PPP")
-                .pattern("P P")
-                .pattern("PPP")
-                .define('P', plate)
+                .pattern("YXX")
+                .pattern("X X")
+                .pattern("XXY")
+                .define('X', plate)
+                .define('Y', rod)
                 .unlockedBy("has_plate", has(plate))
-                .save(output, id("components/"
-                        + net.minecraft.core.registries.BuiltInRegistries
-                                .ITEM.getKey(result).getPath()));
+                .save(output, id("components/" + material + "/"
+                        + casingForm.serializedName()));
+    }
+
+    private static Item resolveRegisteredItem(ResourceLocation id) {
+        Item item = BuiltInRegistries.ITEM.get(id);
+        if (item == Items.AIR) {
+            throw new IllegalStateException("Missing registered item " + id);
+        }
+        return item;
     }
 
     private static void addProcessorUnitRecipe(
@@ -1248,6 +1273,75 @@ public final class ModRecipeProvider extends RecipeProvider {
             }
         }
         builder.unlockedBy("has_part", has(unlock)).save(output, id(path));
+    }
+
+    private static void addTransformerRecipes(RecipeOutput output) {
+        for (var entry : EnergyTransformerTierCatalog.entries()) {
+            emitTransformerRecipe(output, entry);
+        }
+    }
+
+    private static void emitTransformerRecipe(
+            RecipeOutput output,
+            EnergyTransformerTierCatalog.Entry entry) {
+        String path = entry.id().getPath();
+        Item result = ModItems.transformerItemsById().get(entry.id()).get();
+        java.util.LinkedHashMap<Character, Item> keys =
+                new java.util.LinkedHashMap<>();
+        for (var key : entry.recipe().keys().entrySet()) {
+            Item item = resolveTransformerIngredient(key.getValue());
+            if (item == null) {
+                return;
+            }
+            keys.put(key.getKey().charAt(0), item);
+        }
+        java.util.HashSet<Character> used = new java.util.HashSet<>();
+        for (String row : entry.recipe().pattern()) {
+            for (int index = 0; index < row.length(); index++) {
+                char letter = row.charAt(index);
+                if (letter != ' ') {
+                    used.add(letter);
+                }
+            }
+        }
+        ShapedRecipeBuilder builder = ShapedRecipeBuilder.shaped(
+                RecipeCategory.MISC, result);
+        for (String row : entry.recipe().pattern()) {
+            builder.pattern(row);
+        }
+        Item unlock = null;
+        for (var key : keys.entrySet()) {
+            if (!used.contains(key.getKey())) {
+                continue;
+            }
+            builder.define(key.getKey(), key.getValue());
+            if (unlock == null) {
+                unlock = key.getValue();
+            }
+        }
+        if (unlock == null) {
+            return;
+        }
+        builder.unlockedBy("has_part", has(unlock)).save(output, id(path));
+    }
+
+    private static Item resolveTransformerIngredient(
+            EnergyTransformerTierCatalog.Ingredient ingredient) {
+        if (ingredient.item() != null) {
+            ResourceLocation loc = ResourceLocation.parse(ingredient.item());
+            if (!BuiltInRegistries.ITEM.containsKey(loc)) {
+                return null;
+            }
+            Item item = BuiltInRegistries.ITEM.get(loc);
+            return item == Items.AIR ? null : item;
+        }
+        MaterialPrefix prefix;
+        try {
+            prefix = new MaterialPrefix("cruciblecraft:" + ingredient.prefix());
+        } catch (IllegalArgumentException ignored) {
+            return null;
+        }
+        return MaterialLookup.item(ingredient.material(), prefix).orElse(null);
     }
 
     private static Item resolveBatteryIngredient(

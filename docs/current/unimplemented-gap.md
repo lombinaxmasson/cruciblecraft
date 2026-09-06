@@ -1,7 +1,7 @@
 # 冻结与未实现账本
 
 > 现行人读索引，不是 production authority。
-> 最后核对：2026-09-06（电池 unique active 且 `player_complete`；转换机目录已关；census Batteries 仍 37/37 `requires_new_runtime`）。
+> 最后核对：2026-09-06（变压器 unique active 且 `player_complete`；机壳已改成 GT6 `casingMachine` 材料形态；电池 `player_complete` 已关；转换机目录已关；census Batteries 仍 37/37 `requires_new_runtime`）。
 > 读法：机制卡 `*_READY` 只记录当时冻结的分母和可行性，不证明游戏里有这些东西。
 > 状态词三套互不替代：`frozen` / `runtime_ready` / `player_complete`。
 > 路线图进度只计 `player_complete` 声明与当前 revision 的 fresh profile PASS，见
@@ -28,7 +28,7 @@
 | --- | --- | --- |
 | `frozen` | 分母、来源、可行性已冻 | 各 `*_R0_READY` |
 | `runtime_ready` | `src/main` 机制可运行，内容可尚未导入 | 当前无 |
-| `player_complete` | 生存可获得、可运行、可存档，且有 production lock / census（若需要） | 流体网基础传输；物品网仓储/导入/导出盖板；通用网仓储/导入/导出盖板；物流核心 + Dump；物流监视器；电池 37 储能块 |
+| `player_complete` | 生存可获得、可运行、可存档，且有 production lock / census（若需要） | 流体网基础传输；物品网仓储/导入/导出盖板；通用网仓储/导入/导出盖板；物流核心 + Dump；物流监视器；电池 37 储能块（芯是 DESIGN_POLICY，见第 2 节）；变压器 9 台电（unique active） |
 
 **后续顺序**（可玩垂直切片；同一时刻一条 delivery lane）。物流 1.2 不在这张表里，
 由人手工测，不占 `unique_active_wave`。能力账本主键见
@@ -47,7 +47,8 @@
   -> Display CPU（已关；四件状态盖板 `player_complete`）
   -> 能量系统余量（已关；删火箱/风箱/独立焦炭）
   -> 能量转换机目录（已关；kind × 材质 169 行 `player_complete`）
-  -> Batteries（unique active；37 储能块；`energy/batteries` `player_complete`）
+  -> Batteries（已关；37 储能块；`energy/batteries` `player_complete`）
+  -> 变压器（unique active；9 电变压器 `10040–10048`；`energy/transformers` `player_complete`）
   -> 核电裂变（堆芯 1x1/2x2 + 棒目录 + 7 条离心；见下）
   -> Trees
   -> Sensors / Panels
@@ -58,16 +59,19 @@
 ```
 
 当前人读 unique active 是
-[电池](../history/card-plans/active/电池详细计划.md)
-（capability `energy/batteries`，`player_complete` / `accepted`；卡仍 unique active）。已关闭
+[变压器](../history/card-plans/active/变压器详细计划.md)
+（capability `energy/transformers`，`player_complete` / `accepted`）。已关闭
+[电池](../history/card-plans/closed/电池详细计划.md)
+（capability `energy/batteries`，`player_complete` / `accepted`）。已关闭
 [能量转换机目录](../history/card-plans/closed/能量转换机目录详细计划.md)
 （capability `energy/converter-catalog`）。已关闭
 [能量系统余量](../history/card-plans/closed/能量系统余量详细计划.md)：
 固体燃料燃烧室已删除（余量卡）；转换机目录把 GT6 Burning Box / 锅炉 / 蒸汽机 /
 燃油引擎 / 发电机 / 电机做成 kind × 材质数据包分档（`converter_catalog_policy`）。邻接 HU 用
-`bronze_burning_box_gas`。`battery_policy` 钉死 37 个储能块，由本 unique active
-实现并已 `player_complete`；census 冻结表仍 37/37 `requires_new_runtime`。`transformer_policy` 钉死电变压器从未 R0，齿轮箱
-不得冒充。本卡不实现变压器。
+`bronze_burning_box_gas`。`battery_policy` 钉死 37 个储能块，已由电池卡
+`player_complete`；census 冻结表仍 37/37 `requires_new_runtime`。`transformer_policy`
+钉死电变压器从未 R0，齿轮箱不得冒充；现行 unique active 做 `10040–10048`，
+不做长距 `10064–10068`。
 已关闭
 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
 为四件状态盖板 `player_complete`。
@@ -78,7 +82,8 @@
 `logistics/generic-network/core`、
 `logistics/logistics-core`、
 `logistics/display-cpu` 与
-`energy/batteries`。物品网络核心机制卡仍是
+`energy/batteries` 与
+`energy/transformers`。物品网络核心机制卡仍是
 [物品网络核心](../history/card-plans/closed/物品网络核心详细计划.md)
 （slug `runtime/item-network-core`）`ITEM_NETWORK_CORE_READY`；
 玩家完成晋级见
@@ -105,7 +110,7 @@ Dump 盖板是标记（无优先级）；搬运在 Core tick 的最后一档，�
 为 `COMPACT_RECIPE_WIRE_CODEC_READY`。Dump / Logistics Core 已关。已关闭
 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
 为四件状态盖板 `player_complete`。当前 unique active 是
-[电池](../history/card-plans/active/电池详细计划.md)。
+[变压器](../history/card-plans/active/变压器详细计划.md)。
 
 **核电体积**（纠正「大后期」读法）。`nuclear_started` 仍为 false。本页不实现
 任何核电 runtime。
@@ -158,11 +163,11 @@ topology 预分配 implementation child。不想要的类在 realization 卡标
 
 | 人类名 | slug / `--check` | 冻了什么 | 判定 | 可行性文件 |
 | --- | --- | --- | --- | --- |
-| 物流封面网 | `portfolio/logistics-cover-net-r0` | 7 个 kind：`logistics_item_storage` / `transfer`、`logistics_fluid_storage` / `transfer`、`logistics_generic_storage` / `transfer` / `dump` | **部分实现**。仓储/导入/导出盖板已 `player_complete`：[`logistics/item-network-core`](capability-delivery-workflow.md)、[`logistics/fluid-network/basic-transfer`](capability-delivery-workflow.md)、[`logistics/generic-network/core`](../history/card-plans/closed/通用网络核心详细计划.md)。Dump 与 `logistics_core` 已由 [`logistics/logistics-core`](../history/card-plans/closed/物流核心详细计划.md) `player_complete`。`dump_policy` 见 [物流封面网余量](../history/card-plans/closed/物流封面网余量详细计划.md)：Dump 是 Core 最后一档物品溢出，不是 Generic 管网盖板。不得把 Display CPU 算进这七 kind，也不得把本行从本节删掉。Display CPU 已由 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md) `player_complete`。当前 unique active 是 [电池](../history/card-plans/active/电池详细计划.md)。 | [`feasibility.json`](../../tools/waves/portfolio/logistics-cover-net-r0/feasibility.json) |
+| 物流封面网 | `portfolio/logistics-cover-net-r0` | 7 个 kind：`logistics_item_storage` / `transfer`、`logistics_fluid_storage` / `transfer`、`logistics_generic_storage` / `transfer` / `dump` | **部分实现**。仓储/导入/导出盖板已 `player_complete`：[`logistics/item-network-core`](capability-delivery-workflow.md)、[`logistics/fluid-network/basic-transfer`](capability-delivery-workflow.md)、[`logistics/generic-network/core`](../history/card-plans/closed/通用网络核心详细计划.md)。Dump 与 `logistics_core` 已由 [`logistics/logistics-core`](../history/card-plans/closed/物流核心详细计划.md) `player_complete`。`dump_policy` 见 [物流封面网余量](../history/card-plans/closed/物流封面网余量详细计划.md)：Dump 是 Core 最后一档物品溢出，不是 Generic 管网盖板。不得把 Display CPU 算进这七 kind，也不得把本行从本节删掉。Display CPU 已由 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md) `player_complete`。当前 unique active 是 [变压器](../history/card-plans/active/变压器详细计划.md)。 | [`feasibility.json`](../../tools/waves/portfolio/logistics-cover-net-r0/feasibility.json) |
 | Panels | `portfolio/exclusion-reclaim-r0` | 6 sites / 348 expanded | `requires_new_runtime` | [`feasibility.json`](../../tools/waves/portfolio/exclusion-reclaim-r0/feasibility.json) |
 | Sensors | 同上 | 21 / 21 | `requires_new_runtime` | 同上 |
 | Portals | 同上 | 19 / 19 | `requires_new_runtime` | 同上 |
-| Batteries | 同上 | 37 / 37 | `requires_new_runtime`。unique active [`energy/batteries`](../history/card-plans/active/电池详细计划.md) 已进游戏并 `player_complete`；本行冻结表不得删。 | 同上 |
+| Batteries | 同上 | 37 / 37 | `requires_new_runtime`。已关闭 [`energy/batteries`](../history/card-plans/closed/电池详细计划.md) 已进游戏并 `player_complete`；本行冻结表不得删。储能块可合成，但 `IL.Battery_*_Cell_*` 未注册，`B` 槽是 DESIGN_POLICY 化学替身。 | 同上 |
 | Reactors | 同上 | 46 / 46 | `defer_to_portfolio` → `portfolio/nuclear`；`nuclear_started = false` | 同上 |
 | 非矿树 | `portfolio/non-ore-worldgen-r0` | `WorldgenTree*` 9 | `requires_new_runtime` | [`feasibility.json`](../../tools/waves/portfolio/non-ore-worldgen-r0/feasibility.json) |
 | 非矿地牢 | 同上 | `WorldgenDungeonGT` 1 | `requires_new_runtime` | 同上 |
@@ -190,7 +195,8 @@ topology 预分配 implementation child。不想要的类在 realization 卡标
 | 项 | 在哪 | 现状 |
 | --- | --- | --- |
 | 核能 Track C | growth-order 第五轨 `portfolio/nuclear`；leftover 7 条 centrifuge；排除表 Reactors 已 defer 到这里 | `nuclear_started = false`。未指定 `next_major` 前不自动开 |
-| 变压器 | capability map `GT6 transformers` | 从未 R0 |
+| 变压器 | capability map `GT6 transformers` | 电 `10040–10048` 是现行 unique active [`energy/transformers`](../history/card-plans/active/变压器详细计划.md)（`player_complete`）。长距 `10064–10068` 与齿轮箱不在本卡 |
+| 电池芯 / 灌液格 | GT6 `IL.Battery_*_Cell_Empty/Filled`，`MultiItemTechnological` `20000–20009` | 未注册。[`energy/batteries`](../history/card-plans/closed/电池详细计划.md) `player_complete` 的 `B` 槽是 DESIGN_POLICY（铅酸 `lead/plate` 等）。能力键 `battery_part:filled_cell`。LU 晶体无 GT6 合成表，CC 发明尘+电缆（`recipe:energium_crystal_shaped`）。不并进现行变压器卡 |
 | 建筑方块 identity | `GT6 building-block item/block identities` | 从未 R0 |
 | 建筑方块 behavior | hardness / multiblock parts / decorative machines | 从未 R0 |
 | Display CPU / 其余未认领域 | seed「misc systems…」 | 四件 Display CPU 状态盖板已 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md) `player_complete`。misc 其余仍 none。R0 `display_cpu_out_of_scope` 不改 |
@@ -250,7 +256,7 @@ topology 预分配 implementation child。不想要的类在 realization 卡标
   `player_complete`。已关闭
   [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
   为四件状态盖板 `player_complete`。当前 unique active 是
-  [电池](../history/card-plans/active/电池详细计划.md)。不得把 Display CPU 算进这七
+  [变压器](../history/card-plans/active/变压器详细计划.md)。不得把 Display CPU 算进这七
   kind。
   关卡证明债（unload / reload / load 门偏软、census 8 对 live 10）写在
   [known-issues.md](known-issues.md)，不要从 READY 倒推

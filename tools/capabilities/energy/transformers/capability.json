@@ -1,0 +1,70 @@
+{
+  "schema_version": 2,
+  "slug": "energy/transformers",
+  "title": "Energy Transformers",
+  "maturity": "player_complete",
+  "workflow": "accepted",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/energy/transformer/**",
+    "src/main/java/com/masson/cruciblecraft/gametest/EnergyTransformersGameTests.java",
+    "src/main/resources/data/cruciblecraft_wave_runtime_transformers/**",
+    "src/main/resources/data/cruciblecraft/energy_transformer_kinds.json",
+    "src/main/resources/data/cruciblecraft/energy_transformer_tiers.json",
+    "src/main/resources/assets/cruciblecraft/gt6_transformers_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/transformer/**",
+    "src/test/java/com/masson/cruciblecraft/energy/transformer/**",
+    "tools/capabilities/energy/transformers/**",
+    "tools/waves/runtime/transformers/**",
+    "tools/tests/test_energy_transformers.py"
+  ],
+  "depends_on": [
+    "energy/batteries"
+  ],
+  "profiles": [
+    "capability-runtime",
+    "player-complete"
+  ],
+  "wave_slug": "runtime/transformers",
+  "legacy_readiness": "tools/waves/runtime/transformers/readiness.json",
+  "player_signoff": "tools/capabilities/energy/transformers/player_signoff.json",
+  "required_test_ids": [
+    "playerSurfaceIsRegistered",
+    "rejectsNonEu",
+    "reloadPreservesFacingAndReverse",
+    "representativeRecipesAreSurvivalCraftable",
+    "reverseStepUpConvertsLvToHv",
+    "stepDownConvertsHvToLv",
+    "onlyMonkeyWrenchReversesTransformer"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "transformer:electric",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:electric_transformer_ulv_lv",
+        "cruciblecraft:electric_transformer_lv_mv",
+        "cruciblecraft:electric_transformer_mv_hv",
+        "cruciblecraft:electric_transformer_hv_ev",
+        "cruciblecraft:electric_transformer_ev_iv",
+        "cruciblecraft:electric_transformer_iv_luv",
+        "cruciblecraft:electric_transformer_luv_zpm",
+        "cruciblecraft:electric_transformer_zpm_uv",
+        "cruciblecraft:electric_transformer_uv_puv1"
+      ],
+      "reason": "GT6 MultiTileEntityTransformerElectric 10040-10048. Voltage step between VN pairs. Not a gearbox and not a long-distance wire endpoint."
+    },
+    {
+      "semantic_key": "transformer:long_distance",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "GT6 MultiTileEntityLongDistanceTransformer 10064-10068 needs BlockLongDistWire. Same-voltage pair scan, not this voltage-ladder card."
+    },
+    {
+      "semantic_key": "transformer:rotation_gearbox",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "CC rotational_gearbox is not GT6 MultiTileEntityTransformerRotation. Must not impersonate an electric transformer."
+    }
+  ],
+  "note": "Nine electric transformers 10040-10048. unique_active_wave stays null. Source is local gt6_code. Recipes match GT6 keys after prefix/material name translation; no stand-in ingredients. missing parts block player_complete."
+}

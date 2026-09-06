@@ -11,7 +11,8 @@
 > `logistics/logistics-core`（5×5×5 Core + Dump）与
 > `logistics/display-cpu`（四件物流监视器）与
 > `energy/converter-catalog`（Burning Box / 锅炉 / 蒸汽机 / 电机分档）与
-> `energy/batteries`（37 储能块；卡仍 unique active）。
+> `energy/batteries`（37 储能块；`player_complete`）与
+> `energy/transformers`（9 电变压器；卡为 unique active，`player_complete`）。
 > [物品网络核心](../history/card-plans/closed/物品网络核心详细计划.md)
 > 为机制 `ITEM_NETWORK_CORE_READY`；玩家完成晋级见
 > [物品网络核心玩家完成晋级](../history/card-plans/closed/物品网络核心玩家完成晋级详细计划.md)。
@@ -22,7 +23,9 @@
 > [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
 > （capability `logistics/display-cpu`）为四件状态盖板 `player_complete`。
 > 当前 unique active 是
-> [电池](../history/card-plans/active/电池详细计划.md)
+> [变压器](../history/card-plans/active/变压器详细计划.md)
+> （capability `energy/transformers`，`player_complete` / `accepted`）。已关闭
+> [电池](../history/card-plans/closed/电池详细计划.md)
 > （capability `energy/batteries`，`player_complete`）。已关闭
 > [能量转换机目录](../history/card-plans/closed/能量转换机目录详细计划.md)
 > （capability `energy/converter-catalog`）为转换机 kind × 材质 169 行
@@ -141,7 +144,7 @@ semantic wave，不是下一张里程碑编号。机制卡 `*_READY` 不是内�
 [冻结与未实现账本](unimplemented-gap.md) 找缺口，不要从阶段档案倒推。
 
 当前 unique active 是
-[电池](../history/card-plans/active/电池详细计划.md)。
+[变压器](../history/card-plans/active/变压器详细计划.md)。
 已关闭
 [能量转换机目录](../history/card-plans/closed/能量转换机目录详细计划.md)
 为转换机 kind × 材质 169 行 `player_complete`。
@@ -187,7 +190,7 @@ ASM，不建 Replace 全量扫描器。
 坩埚小锅。工作态 overlay 未接。阶段账本（三态、后续顺序、核电体积）写在
 [冻结与未实现账本](unimplemented-gap.md)。物流 1.2 不在该卡。
 机器可读 `unique_active_wave = null`。当前 unique active 是
-[电池](../history/card-plans/active/电池详细计划.md)。
+[变压器](../history/card-plans/active/变压器详细计划.md)。
 已关闭
 [能量转换机目录](../history/card-plans/closed/能量转换机目录详细计划.md)。
 已关闭
@@ -371,7 +374,9 @@ Recipe gap 清零后，deferred ordinary ledger 也已关闭或独立 scope。st
   `ART_MISSING`。mortar / sifter / smelter / bath 已脱离 `metal_surface`
   （`FIRST_HOUR_PRESENTATION_READY`）；T34 的 19 个目标仍为只读历史集合；
   smelter 工作态 overlay 未接；
-- 创造栏可见性与生存获得性分别验收。
+- 创造栏可见性与生存获得性分别验收。生存获得是 GT6 源逐格合成 / 制造，
+  禁止用别的物品顶缺失格来假装 `player_complete`（见
+  [能力交付流程](capability-delivery-workflow.md)）。
 
 现有 [表现层与可玩性分母](../decisions/CrucibleCraft-表现层与可玩性分母.md) 是此方向的设计提案；
 其中的 P0/P1 命名不等于当前内容卡号。
@@ -437,7 +442,7 @@ implementation child。
 作物食物蜜蜂 R0 或首小时表现卡或原版替换 MVP 的附带范围。体积与后置原因见
 [冻结与未实现账本](unimplemented-gap.md)。机器可读 `unique_active_wave`
 = `null`。当前 unique active 是
-[电池](../history/card-plans/active/电池详细计划.md)。
+[变压器](../history/card-plans/active/变压器详细计划.md)。
 已关闭
 [能量转换机目录](../history/card-plans/closed/能量转换机目录详细计划.md)。
 已关闭

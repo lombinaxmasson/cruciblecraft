@@ -60,6 +60,8 @@ public enum MaterialCreativeTab {
                     "cruciblecraft:tiny_dust",
                     "cruciblecraft:dust_div72" -> DUSTS;
             case "cruciblecraft:block",
+                    "cruciblecraft:machine_casing",
+                    "cruciblecraft:machine_casing_double",
                     "cruciblecraft:ingot",
                     "cruciblecraft:double_ingot",
                     "cruciblecraft:triple_ingot",

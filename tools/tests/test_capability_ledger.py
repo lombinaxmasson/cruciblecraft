@@ -19,6 +19,7 @@ CORE = "logistics/logistics-core"
 DISPLAY = "logistics/display-cpu"
 CONVERTER = "energy/converter-catalog"
 BATTERIES = "energy/batteries"
+TRANSFORMERS = "energy/transformers"
 
 
 class CapabilityLedgerTest(unittest.TestCase):
@@ -40,6 +41,7 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertIn(DISPLAY, slugs)
         self.assertIn(CONVERTER, slugs)
         self.assertIn(BATTERIES, slugs)
+        self.assertIn(TRANSFORMERS, slugs)
         self.assertIn("registry/tool-head-remainder", slugs)
         converter = next(row for row in documents if row["slug"] == CONVERTER)
         self.assertEqual("player_complete", converter["maturity"])
@@ -47,6 +49,11 @@ class CapabilityLedgerTest(unittest.TestCase):
         batteries = next(row for row in documents if row["slug"] == BATTERIES)
         self.assertEqual("player_complete", batteries["maturity"])
         self.assertEqual("accepted", batteries["workflow"])
+        transformers = next(
+            row for row in documents if row["slug"] == TRANSFORMERS
+        )
+        self.assertEqual("player_complete", transformers["maturity"])
+        self.assertEqual("accepted", transformers["workflow"])
         fluid = next(row for row in documents if row["slug"] == FLUID)
         self.assertEqual("player_complete", fluid["maturity"])
         self.assertEqual("accepted", fluid["workflow"])
@@ -88,7 +95,17 @@ class CapabilityLedgerTest(unittest.TestCase):
             self.assertNotIn("legacy_readiness", row)
             self.assertNotIn("wave_slug", row)
         self.assertEqual(
-            [BATTERIES, CONVERTER, DISPLAY, FLUID, GENERIC, ITEM, CORE], compiled["declared_player_complete"]
+            [
+                BATTERIES,
+                CONVERTER,
+                TRANSFORMERS,
+                DISPLAY,
+                FLUID,
+                GENERIC,
+                ITEM,
+                CORE,
+            ],
+            compiled["declared_player_complete"],
         )
         self.assertEqual(
             "declaration is not proof; player_complete requires fresh "
@@ -99,12 +116,22 @@ class CapabilityLedgerTest(unittest.TestCase):
     def test_ledger_contains_profiles_and_impact_without_proof_fields(self) -> None:
         compiled = ledger.compile_ledger()
         self.assertEqual(
-            [BATTERIES, CONVERTER, DISPLAY, FLUID, GENERIC, ITEM, CORE],
+            [
+                BATTERIES,
+                CONVERTER,
+                TRANSFORMERS,
+                DISPLAY,
+                FLUID,
+                GENERIC,
+                ITEM,
+                CORE,
+            ],
             compiled["profiles"]["player-complete"],
         )
         self.assertEqual(
             {
                 BATTERIES,
+                TRANSFORMERS,
                 "logistics/cover-net-r0",
                 ITEM,
                 FLUID,
@@ -139,6 +166,7 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertIn(DISPLAY, hit)
         self.assertIn(CONVERTER, hit)
         self.assertIn(BATTERIES, hit)
+        self.assertIn(TRANSFORMERS, hit)
         self.assertNotIn("registry/tool-head-remainder", hit)
 
     def test_fluid_pipe_does_not_stale_tool_head_remainder(self) -> None:
@@ -148,7 +176,10 @@ class CapabilityLedgerTest(unittest.TestCase):
                 "FluidPipeBlockEntity.java"
             ]
         )
-        self.assertEqual([BATTERIES, CONVERTER, DISPLAY, FLUID, GENERIC, CORE], hit)
+        self.assertEqual(
+            [BATTERIES, CONVERTER, TRANSFORMERS, DISPLAY, FLUID, GENERIC, CORE],
+            hit,
+        )
 
     def test_player_complete_promotions_detect_maturity_change(self) -> None:
         previous = json.dumps({"maturity": "runtime_ready"})
@@ -168,6 +199,7 @@ class CapabilityLedgerTest(unittest.TestCase):
                             or relative.endswith("display-cpu/capability.json")
                             or relative.endswith("converter-catalog/capability.json")
                             or relative.endswith("batteries/capability.json")
+                            or relative.endswith("transformers/capability.json")
                             else "frozen"
                         )
                     }
@@ -194,6 +226,7 @@ class CapabilityLedgerTest(unittest.TestCase):
                         or relative.endswith("display-cpu/capability.json")
                         or relative.endswith("converter-catalog/capability.json")
                         or relative.endswith("batteries/capability.json")
+                        or relative.endswith("transformers/capability.json")
                         else "frozen"
                     )
                 }

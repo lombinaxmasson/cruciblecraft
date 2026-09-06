@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Energy batteries unique-active card: 37 storage blocks, now in-game."""
+"""Energy batteries closed card: 37 storage blocks, player_complete."""
 from __future__ import annotations
 
 import unittest
@@ -14,7 +14,7 @@ CAPABILITY = "energy/batteries"
 ROOT = io.ROOT
 ACTIVE = ROOT / "docs" / "history" / "card-plans" / "active"
 CLOSED = ROOT / "docs" / "history" / "card-plans" / "closed"
-PLAN = ACTIVE / "电池详细计划.md"
+PLAN = CLOSED / "电池详细计划.md"
 WAVE = io.TOOLS / "waves" / "runtime" / "batteries"
 CENSUS = ROOT / "tools" / "census_excluded_object_reclaim.json"
 FEASIBILITY = (
@@ -120,9 +120,10 @@ class EnergyBatteriesCardTest(unittest.TestCase):
         census = io.load_json(WAVE / "census_delta.json")
         self.assertEqual(37, census["work_set"]["source_rows"])
 
-    def test_unique_active_is_batteries(self) -> None:
+    def test_closed_plan_stays_archived(self) -> None:
         names = sorted(path.name for path in ACTIVE.iterdir() if path.is_file())
-        self.assertEqual(["电池详细计划.md"], names)
+        self.assertEqual(["变压器详细计划.md"], names)
+        self.assertTrue(PLAN.is_file())
         self.assertTrue((CLOSED / "能量转换机目录详细计划.md").is_file())
         self.assertTrue((CLOSED / "能量系统余量详细计划.md").is_file())
         self.assertTrue((CLOSED / "显示CPU详细计划.md").is_file())
@@ -145,6 +146,11 @@ class EnergyBatteriesCardTest(unittest.TestCase):
         self.assertIn("unique_active_wave", text)
         self.assertIn("禁止写进", text)
         self.assertIn("machine_kinds.json", text)
+        self.assertIn("配方保真债", text)
+        self.assertIn("Battery_Lead_Acid_Cell_Filled", text)
+        self.assertIn("battery_part:filled_cell", text)
+        self.assertIn("DESIGN_POLICY", text)
+        self.assertIn("lead/plate", text)
         self.assertNotIn("raw.githubusercontent.com", text)
 
     def test_kinds_and_tiers_are_implemented(self) -> None:
@@ -200,7 +206,7 @@ class EnergyBatteriesCardTest(unittest.TestCase):
         self.assertIn("ELECTRIC_CHARGE", components)
         self.assertIn('"battery_charge"', components)
 
-    def test_capability_is_player_complete_and_still_unique_active(self) -> None:
+    def test_capability_is_player_complete(self) -> None:
         capability = ledger.load_capability(
             ledger.CAP_ROOT / "energy" / "batteries" / "capability.json"
         )
@@ -216,7 +222,18 @@ class EnergyBatteriesCardTest(unittest.TestCase):
         keys = {row["semantic_key"] for row in capability["identity_disposition"]}
         self.assertIn("battery:lead_acid", keys)
         self.assertIn("energy_type:lu", keys)
-        self.assertEqual(8, len(keys))
+        self.assertIn("battery_part:filled_cell", keys)
+        self.assertIn("recipe:energium_crystal_shaped", keys)
+        blocked = {
+            row["semantic_key"]
+            for row in capability["identity_disposition"]
+            if row["disposition"] == "blocked"
+        }
+        self.assertEqual(
+            {"battery_part:filled_cell", "recipe:energium_crystal_shaped"},
+            blocked,
+        )
+        self.assertEqual(10, len(keys))
         ns = (
             ROOT
             / "src"
@@ -249,6 +266,27 @@ class EnergyBatteriesCardTest(unittest.TestCase):
             if item["category"] == "Batteries"
         )
         self.assertEqual("requires_new_runtime", row["verdict"])
+
+
+    def test_recipe_fidelity_debt_is_grepable(self) -> None:
+        plan = PLAN.read_text(encoding="utf-8")
+        self.assertIn("battery_part:filled_cell", plan)
+        self.assertIn("Battery_Lead_Acid_Cell_Filled", plan)
+        known = (
+            ROOT / "docs" / "current" / "known-issues.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("battery_part:filled_cell", known)
+        self.assertIn("IL.Battery_*_Cell_Filled", known)
+        gap = (
+            ROOT / "docs" / "current" / "unimplemented-gap.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("battery_part:filled_cell", gap)
+        self.assertIn("20000–20009", gap)
+        extract = (
+            ROOT / "tools" / "extract_energy_battery_catalog.py"
+        ).read_text(encoding="utf-8")
+        self.assertIn("battery_part:filled_cell", extract)
+        self.assertIn("IL.Battery_*_Cell_Filled", extract)
 
 
 if __name__ == "__main__":

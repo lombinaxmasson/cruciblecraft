@@ -11,6 +11,7 @@ import com.masson.cruciblecraft.client.color.GtBlockDyeColor;
 import com.masson.cruciblecraft.client.color.HopperBlockColor;
 import com.masson.cruciblecraft.client.color.LogisticsCoreBlockColor;
 import com.masson.cruciblecraft.client.color.MachineBlockColor;
+import com.masson.cruciblecraft.client.color.MaterialCasingColor;
 import com.masson.cruciblecraft.client.color.MaterialItemColor;
 import com.masson.cruciblecraft.client.color.MaterialOreColor;
 import com.masson.cruciblecraft.client.color.MaterialStorageColor;
@@ -90,6 +91,7 @@ public class ClientSetup {
                 ModItems.MATERIAL_SAW.get(),
                 ModItems.MATERIAL_SCREWDRIVER.get(),
                 ModItems.MATERIAL_WRENCH.get(),
+                ModItems.MATERIAL_MONKEY_WRENCH.get(),
                 ModItems.MATERIAL_WIRE_CUTTER.get()));
         com.masson.cruciblecraft.material.MaterialCatalog.values().forEach(material ->
                 material.formItems().keySet().forEach(form ->
@@ -203,6 +205,9 @@ public class ClientSetup {
         event.register(
                 MaterialStorageColor::blockColor,
                 MaterialStorageColor.storageBlocks());
+        event.register(
+                MaterialCasingColor::blockColor,
+                MaterialCasingColor.casingBlocks());
         event.register(
                 RockColor::blockColor,
                 RockColor.rockBlocks());

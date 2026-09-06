@@ -8,35 +8,25 @@ import java.util.Map;
 import java.util.Objects;
 
 import com.google.gson.annotations.SerializedName;
+import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 
 import net.minecraft.resources.ResourceLocation;
 
-/** Casing items plus electrolyzer-cable and distillery-wire extras. */
+/**
+ * Electrolyzer-cable and distillery-wire extras. Casing items are material
+ * forms {@code {material}/machine_casing} and {@code .../machine_casing_double}.
+ */
 public final class MachineCasingCatalog {
     private static final String RESOURCE =
             "/data/cruciblecraft/machine_casings.json";
     private static final MachineCasingCatalog BUNDLED = loadBundled();
 
-    private final List<Casing> casings;
-    private final Map<ResourceLocation, Casing> byId;
-    private final Map<CasingKey, Casing> byMaterialFamily;
+    private final Map<String, String> electrolyzerCables;
     private final Map<String, DistilleryWire> distilleryWires;
 
     public static MachineCasingCatalog bundled() {
         return BUNDLED;
-    }
-
-    public static List<Casing> casings() {
-        return BUNDLED.casings;
-    }
-
-    public static Casing require(ResourceLocation id) {
-        return BUNDLED.requireCasing(id);
-    }
-
-    public static Casing require(String material, String energyFamily) {
-        return BUNDLED.requireCasing(material, energyFamily);
     }
 
     public static MachineCasingCatalog load(InputStream stream) {
@@ -60,62 +50,40 @@ public final class MachineCasingCatalog {
         return "kinetic_double";
     }
 
+    public static ResourceLocation casingItemId(
+            String material, String energyFamily) {
+        String path = materialPath(material);
+        String form = switch (energyFamily) {
+            case "eu_single" -> "machine_casing";
+            case "kinetic_double" -> "machine_casing_double";
+            default -> throw new IllegalStateException(
+                    "Unknown casing energy family " + energyFamily);
+        };
+        return ResourceLocation.fromNamespaceAndPath(
+                CrucibleCraft.MODID, path + "/" + form);
+    }
+
+    public static String materialPathFromCasingItem(ResourceLocation casingItem) {
+        Objects.requireNonNull(casingItem, "casingItem");
+        String path = casingItem.getPath();
+        int slash = path.indexOf('/');
+        return slash < 0 ? path : path.substring(0, slash);
+    }
+
     private MachineCasingCatalog(
-            List<Casing> casings,
+            Map<String, String> electrolyzerCables,
             Map<String, DistilleryWire> distilleryWires) {
-        this.casings = List.copyOf(casings);
-        LinkedHashMap<ResourceLocation, Casing> ids = new LinkedHashMap<>();
-        LinkedHashMap<CasingKey, Casing> keys = new LinkedHashMap<>();
-        for (Casing casing : this.casings) {
-            if (ids.putIfAbsent(casing.id(), casing) != null) {
-                throw new IllegalStateException(
-                        "Duplicate machine casing " + casing.id());
-            }
-            CasingKey key = new CasingKey(
-                    materialPath(casing.materialId().toString()),
-                    casing.energyFamily());
-            if (keys.putIfAbsent(key, casing) != null) {
-                throw new IllegalStateException(
-                        "Duplicate machine casing key " + key);
-            }
-        }
-        this.byId = Map.copyOf(ids);
-        this.byMaterialFamily = Map.copyOf(keys);
+        this.electrolyzerCables = Map.copyOf(electrolyzerCables);
         this.distilleryWires = Map.copyOf(distilleryWires);
     }
 
-    public List<Casing> entries() {
-        return casings;
-    }
-
-    public Casing requireCasing(ResourceLocation id) {
-        Casing casing = byId.get(id);
-        if (casing == null) {
-            throw new IllegalStateException("Unknown machine casing " + id);
-        }
-        return casing;
-    }
-
-    public Casing requireCasing(String material, String energyFamily) {
-        Casing casing = byMaterialFamily.get(
-                new CasingKey(materialPath(material), energyFamily));
-        if (casing == null) {
-            if ("eu_single".equals(energyFamily)) {
-                throw new IllegalStateException("No EU casing for " + material);
-            }
-            throw new IllegalStateException(
-                    "No kinetic/heat casing for " + material);
-        }
-        return casing;
-    }
-
     public String electrolyzerCableMaterial(String casingMaterial) {
-        Casing casing = requireCasing(casingMaterial, "eu_single");
-        if (!CatalogJson.nonBlank(casing.electrolyzerCableMaterial())) {
+        String cable = electrolyzerCables.get(materialPath(casingMaterial));
+        if (!CatalogJson.nonBlank(cable)) {
             throw new IllegalStateException(
                     "No electrolyzer cable for " + casingMaterial);
         }
-        return casing.electrolyzerCableMaterial();
+        return cable;
     }
 
     public DistilleryWire distilleryWire(String machineMaterial) {
@@ -127,9 +95,8 @@ public final class MachineCasingCatalog {
         return wire;
     }
 
-    public boolean hasCasing(String material, String energyFamily) {
-        return byMaterialFamily.containsKey(
-                new CasingKey(materialPath(material), energyFamily));
+    public boolean hasElectrolyzerCable(String material) {
+        return electrolyzerCables.containsKey(materialPath(material));
     }
 
     private static MachineCasingCatalog loadBundled() {
@@ -138,15 +105,25 @@ public final class MachineCasingCatalog {
     }
 
     private static MachineCasingCatalog fromDocument(Document document) {
-        if (document.schemaVersion != 1
-                || document.casings == null
-                || document.casings.isEmpty()) {
+        if (document.schemaVersion != 1) {
             throw new IllegalStateException("Invalid machine casing catalog");
         }
         CatalogJson.requireRevision(document.sourceRevision, RESOURCE);
-        List<Casing> casings = document.casings.stream()
-                .map(CasingRow::toCasing)
-                .toList();
+        LinkedHashMap<String, String> cables = new LinkedHashMap<>();
+        if (document.electrolyzerCables != null) {
+            for (CableRow row : document.electrolyzerCables) {
+                if (!CatalogJson.nonBlank(row.material)
+                        || !CatalogJson.nonBlank(row.cableMaterial)) {
+                    throw new IllegalStateException(
+                            "Incomplete electrolyzer cable extras");
+                }
+                String path = materialPath(row.material);
+                if (cables.putIfAbsent(path, row.cableMaterial) != null) {
+                    throw new IllegalStateException(
+                            "Duplicate electrolyzer cable for " + path);
+                }
+            }
+        }
         LinkedHashMap<String, DistilleryWire> wires = new LinkedHashMap<>();
         if (document.machineMaterialExtras != null) {
             for (WireRow row : document.machineMaterialExtras) {
@@ -158,31 +135,13 @@ public final class MachineCasingCatalog {
                 }
             }
         }
-        return new MachineCasingCatalog(casings, wires);
+        return new MachineCasingCatalog(cables, wires);
     }
 
     public static String materialPath(String material) {
         Objects.requireNonNull(material, "material");
         int colon = material.indexOf(':');
         return colon >= 0 ? material.substring(colon + 1) : material;
-    }
-
-    public record Casing(
-            ResourceLocation id,
-            ResourceLocation materialId,
-            String energyFamily,
-            boolean doubled,
-            boolean creativeVisible,
-            String langZh,
-            String langEn,
-            String electrolyzerCableMaterial) {
-        public Casing {
-            Objects.requireNonNull(id, "id");
-            Objects.requireNonNull(materialId, "materialId");
-            Objects.requireNonNull(energyFamily, "energyFamily");
-            Objects.requireNonNull(langZh, "langZh");
-            Objects.requireNonNull(langEn, "langEn");
-        }
     }
 
     public record DistilleryWire(
@@ -196,53 +155,21 @@ public final class MachineCasingCatalog {
         }
     }
 
-    private record CasingKey(String materialPath, String energyFamily) {}
-
     private static final class Document {
         @SerializedName("schema_version")
         private int schemaVersion;
         @SerializedName("source_revision")
         private String sourceRevision;
-        private List<CasingRow> casings;
+        @SerializedName("electrolyzer_cables")
+        private List<CableRow> electrolyzerCables;
         @SerializedName("machine_material_extras")
         private List<WireRow> machineMaterialExtras;
     }
 
-    private static final class CasingRow {
-        private String id;
+    private static final class CableRow {
         private String material;
-        @SerializedName("energy_family")
-        private String energyFamily;
-        private boolean doubled;
-        @SerializedName("creative_visible")
-        private boolean creativeVisible;
-        @SerializedName("lang_key_zh")
-        private String langKeyZh;
-        @SerializedName("lang_key_en")
-        private String langKeyEn;
-        @SerializedName("electrolyzer_cable_material")
-        private String electrolyzerCableMaterial;
-
-        private Casing toCasing() {
-            ResourceLocation itemId = ResourceLocation.tryParse(id);
-            ResourceLocation materialId = ResourceLocation.tryParse(material);
-            if (itemId == null || materialId == null
-                    || !CatalogJson.nonBlank(energyFamily)
-                    || !CatalogJson.nonBlank(langKeyZh)
-                    || !CatalogJson.nonBlank(langKeyEn)) {
-                throw new IllegalStateException(
-                        "Incomplete machine casing row " + id);
-            }
-            return new Casing(
-                    itemId,
-                    materialId,
-                    energyFamily,
-                    doubled,
-                    creativeVisible,
-                    langKeyZh,
-                    langKeyEn,
-                    electrolyzerCableMaterial);
-        }
+        @SerializedName("cable_material")
+        private String cableMaterial;
     }
 
     private static final class WireRow {

@@ -1,0 +1,375 @@
+{
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "tiers": [
+    {
+      "id": "cruciblecraft:electric_transformer_ulv_lv",
+      "kind": "cruciblecraft:electric_transformer",
+      "low_voltage": "ulv",
+      "high_voltage": "lv",
+      "voltage_index": 0,
+      "input_size": 32,
+      "output_size": 8,
+      "multiplier": 4,
+      "capacity": 64,
+      "material": "tin_alloy",
+      "energy": "EU",
+      "source_id": 10040,
+      "source_line": 881,
+      "gt6_class": "MultiTileEntityTransformerElectric",
+      "recipe": {
+        "pattern": [
+          "WIW",
+          "XM ",
+          "WIW"
+        ],
+        "keys": {
+          "W": {
+            "prefix": "wire",
+            "material": "copper"
+          },
+          "I": {
+            "prefix": "double_plate",
+            "material": "iron"
+          },
+          "X": {
+            "prefix": "quadruple_wire",
+            "material": "copper"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "tin_alloy"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:electric_transformer_lv_mv",
+      "kind": "cruciblecraft:electric_transformer",
+      "low_voltage": "lv",
+      "high_voltage": "mv",
+      "voltage_index": 1,
+      "input_size": 128,
+      "output_size": 32,
+      "multiplier": 4,
+      "capacity": 256,
+      "material": "steel_galvanized",
+      "energy": "EU",
+      "source_id": 10041,
+      "source_line": 882,
+      "gt6_class": "MultiTileEntityTransformerElectric",
+      "recipe": {
+        "pattern": [
+          "WIW",
+          "XM ",
+          "WIW"
+        ],
+        "keys": {
+          "W": {
+            "prefix": "wire",
+            "material": "copper"
+          },
+          "I": {
+            "prefix": "double_plate",
+            "material": "iron"
+          },
+          "X": {
+            "prefix": "quadruple_wire",
+            "material": "copper"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "steel_galvanized"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:electric_transformer_mv_hv",
+      "kind": "cruciblecraft:electric_transformer",
+      "low_voltage": "mv",
+      "high_voltage": "hv",
+      "voltage_index": 2,
+      "input_size": 512,
+      "output_size": 128,
+      "multiplier": 4,
+      "capacity": 1024,
+      "material": "aluminium",
+      "energy": "EU",
+      "source_id": 10042,
+      "source_line": 883,
+      "gt6_class": "MultiTileEntityTransformerElectric",
+      "recipe": {
+        "pattern": [
+          "WIW",
+          "XM ",
+          "WIW"
+        ],
+        "keys": {
+          "W": {
+            "prefix": "wire",
+            "material": "copper"
+          },
+          "I": {
+            "prefix": "double_plate",
+            "material": "iron"
+          },
+          "X": {
+            "prefix": "quadruple_wire",
+            "material": "copper"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "aluminium"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:electric_transformer_hv_ev",
+      "kind": "cruciblecraft:electric_transformer",
+      "low_voltage": "hv",
+      "high_voltage": "ev",
+      "voltage_index": 3,
+      "input_size": 2048,
+      "output_size": 512,
+      "multiplier": 4,
+      "capacity": 4096,
+      "material": "stainless_steel",
+      "energy": "EU",
+      "source_id": 10043,
+      "source_line": 884,
+      "gt6_class": "MultiTileEntityTransformerElectric",
+      "recipe": {
+        "pattern": [
+          "WIW",
+          "XM ",
+          "WIW"
+        ],
+        "keys": {
+          "W": {
+            "prefix": "wire",
+            "material": "annealed_copper"
+          },
+          "I": {
+            "prefix": "double_plate",
+            "material": "iron"
+          },
+          "X": {
+            "prefix": "quadruple_wire",
+            "material": "annealed_copper"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "stainless_steel"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:electric_transformer_ev_iv",
+      "kind": "cruciblecraft:electric_transformer",
+      "low_voltage": "ev",
+      "high_voltage": "iv",
+      "voltage_index": 4,
+      "input_size": 8192,
+      "output_size": 2048,
+      "multiplier": 4,
+      "capacity": 16384,
+      "material": "chromium",
+      "energy": "EU",
+      "source_id": 10044,
+      "source_line": 885,
+      "gt6_class": "MultiTileEntityTransformerElectric",
+      "recipe": {
+        "pattern": [
+          "WIW",
+          "XM ",
+          "WIW"
+        ],
+        "keys": {
+          "W": {
+            "prefix": "wire",
+            "material": "annealed_copper"
+          },
+          "I": {
+            "prefix": "double_plate",
+            "material": "iron"
+          },
+          "X": {
+            "prefix": "quadruple_wire",
+            "material": "annealed_copper"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "chromium"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:electric_transformer_iv_luv",
+      "kind": "cruciblecraft:electric_transformer",
+      "low_voltage": "iv",
+      "high_voltage": "luv",
+      "voltage_index": 5,
+      "input_size": 32768,
+      "output_size": 8192,
+      "multiplier": 4,
+      "capacity": 65536,
+      "material": "titanium",
+      "energy": "EU",
+      "source_id": 10045,
+      "source_line": 886,
+      "gt6_class": "MultiTileEntityTransformerElectric",
+      "recipe": {
+        "pattern": [
+          "WIW",
+          "XM ",
+          "WIW"
+        ],
+        "keys": {
+          "W": {
+            "prefix": "wire",
+            "material": "annealed_copper"
+          },
+          "I": {
+            "prefix": "double_plate",
+            "material": "iron"
+          },
+          "X": {
+            "prefix": "quadruple_wire",
+            "material": "annealed_copper"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "titanium"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:electric_transformer_luv_zpm",
+      "kind": "cruciblecraft:electric_transformer",
+      "low_voltage": "luv",
+      "high_voltage": "zpm",
+      "voltage_index": 6,
+      "input_size": 131072,
+      "output_size": 32768,
+      "multiplier": 4,
+      "capacity": 262144,
+      "material": "iridium",
+      "energy": "EU",
+      "source_id": 10046,
+      "source_line": 887,
+      "gt6_class": "MultiTileEntityTransformerElectric",
+      "recipe": {
+        "pattern": [
+          "WIW",
+          "XM ",
+          "WIW"
+        ],
+        "keys": {
+          "W": {
+            "prefix": "wire",
+            "material": "annealed_copper"
+          },
+          "I": {
+            "prefix": "double_plate",
+            "material": "iron"
+          },
+          "X": {
+            "prefix": "quadruple_wire",
+            "material": "annealed_copper"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "iridium"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:electric_transformer_zpm_uv",
+      "kind": "cruciblecraft:electric_transformer",
+      "low_voltage": "zpm",
+      "high_voltage": "uv",
+      "voltage_index": 7,
+      "input_size": 524288,
+      "output_size": 131072,
+      "multiplier": 4,
+      "capacity": 1048576,
+      "material": "osmium_elemental",
+      "energy": "EU",
+      "source_id": 10047,
+      "source_line": 888,
+      "gt6_class": "MultiTileEntityTransformerElectric",
+      "recipe": {
+        "pattern": [
+          "WIW",
+          "XM ",
+          "WIW"
+        ],
+        "keys": {
+          "W": {
+            "prefix": "wire",
+            "material": "annealed_copper"
+          },
+          "I": {
+            "prefix": "double_plate",
+            "material": "iron"
+          },
+          "X": {
+            "prefix": "quadruple_wire",
+            "material": "annealed_copper"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "osmium_elemental"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:electric_transformer_uv_puv1",
+      "kind": "cruciblecraft:electric_transformer",
+      "low_voltage": "uv",
+      "high_voltage": "puv1",
+      "voltage_index": 8,
+      "input_size": 2097152,
+      "output_size": 524288,
+      "multiplier": 4,
+      "capacity": 4194304,
+      "material": "trinitanium",
+      "energy": "EU",
+      "source_id": 10048,
+      "source_line": 889,
+      "gt6_class": "MultiTileEntityTransformerElectric",
+      "recipe": {
+        "pattern": [
+          "WIW",
+          "XM ",
+          "WIW"
+        ],
+        "keys": {
+          "W": {
+            "prefix": "wire",
+            "material": "annealed_copper"
+          },
+          "I": {
+            "prefix": "double_plate",
+            "material": "iron"
+          },
+          "X": {
+            "prefix": "quadruple_wire",
+            "material": "annealed_copper"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "trinitanium"
+          }
+        }
+      }
+    }
+  ]
+}

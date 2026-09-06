@@ -21,6 +21,7 @@ CORE_SLUG = "logistics/logistics-core"
 DISPLAY_SLUG = "logistics/display-cpu"
 CONVERTER_SLUG = "energy/converter-catalog"
 BATTERIES_SLUG = "energy/batteries"
+TRANSFORMERS_SLUG = "energy/transformers"
 FLUID_TEST_IDS = [
     "coverIdentitySurvivesBlockEntityReload",
     "coversAreSurvivalCraftable",
@@ -85,6 +86,15 @@ BATTERIES_TEST_IDS = [
     "playerSurfaceIsRegistered",
     "reloadPreservesCharge",
     "representativeRecipesAreSurvivalCraftable",
+]
+TRANSFORMERS_TEST_IDS = [
+    "playerSurfaceIsRegistered",
+    "rejectsNonEu",
+    "reloadPreservesFacingAndReverse",
+    "representativeRecipesAreSurvivalCraftable",
+    "reverseStepUpConvertsLvToHv",
+    "stepDownConvertsHvToLv",
+    "onlyMonkeyWrenchReversesTransformer",
 ]
 
 
@@ -235,6 +245,31 @@ class PlayerCompleteTest(unittest.TestCase):
             [],
             player_complete.check_static_player_surface(
                 BATTERIES_SLUG,
+                list(signoff["craftable_items"]),
+            ),
+        )
+
+    def test_transformers_capability_declares_all_game_tests(self) -> None:
+        capability = capability_ledger.load_capability(
+            capability_ledger.CAP_ROOT / TRANSFORMERS_SLUG / "capability.json"
+        )
+        self.assertEqual("player_complete", capability["maturity"])
+        self.assertEqual("accepted", capability["workflow"])
+        self.assertEqual(TRANSFORMERS_TEST_IDS, capability["required_test_ids"])
+        self.assertEqual(
+            [],
+            player_complete.check_declared_test_ids(capability),
+        )
+
+    def test_transformers_capability_static_player_surface(self) -> None:
+        capability = capability_ledger.load_capability(
+            capability_ledger.CAP_ROOT / TRANSFORMERS_SLUG / "capability.json"
+        )
+        signoff = player_complete.load_signoff(capability)
+        self.assertEqual(
+            [],
+            player_complete.check_static_player_surface(
+                TRANSFORMERS_SLUG,
                 list(signoff["craftable_items"]),
             ),
         )

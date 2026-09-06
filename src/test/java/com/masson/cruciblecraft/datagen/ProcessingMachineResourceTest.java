@@ -123,6 +123,7 @@ class ProcessingMachineResourceTest {
                 "item.cruciblecraft.material_saw",
                 "item.cruciblecraft.material_screwdriver",
                 "item.cruciblecraft.material_wrench",
+                "item.cruciblecraft.material_monkey_wrench",
                 "item.cruciblecraft.portable_fluid_tank",
                 "block.cruciblecraft.anvil",
                 "block.cruciblecraft.crucible",
@@ -142,8 +143,8 @@ class ProcessingMachineResourceTest {
         long missingMaterialNames = missing.stream()
                 .filter(key -> key.startsWith("material.cruciblecraft."))
                 .count();
-        assertEquals(7_622, english.size(), "current generated en_us key count");
-        assertEquals(2_887L, translated, "declared Chinese translation coverage");
+        assertEquals(8_046, english.size(), "current generated en_us key count");
+        assertEquals(3_311L, translated, "declared Chinese translation coverage");
         assertEquals(2_401, missing.size(), "visible zh_cn localization debt");
         assertEquals(1_566L, missingMaterialNames,
                 "missing generated material-name translations");
@@ -197,7 +198,7 @@ class ProcessingMachineResourceTest {
                 }
             }
         }
-        assertEquals(23, rules, "all tool route rules must be generated");
+        assertEquals(25, rules, "all tool route rules must be generated");
         assertEquals(Set.of("stone", "wood"), materialIdentityLiterals,
                 "material.is literals must stay explicitly budgeted");
         assertTrue(foundWear, "Tool rules must retain WEAR catalysts");
