@@ -25,7 +25,9 @@ continuing to expand toward the full GT6 target:
 - A material, prefix, and ore-processing system with large source-generated
   recipe sets
 - Multi-stage energy chains spanning fire, heat, steam, kinetic, rotational,
-  and electrical power
+  and electrical power; electric heaters/engines, LU fiber, fission cores,
+  and a fusion controller are in runtime (survival recipes incomplete, not
+  `player_complete`)
 - Processing-machine families from early industry onward, plus multiblocks
   such as distillation towers, large boilers, and tanks
 - World generation for large ore veins, underground oil and gas, and surface

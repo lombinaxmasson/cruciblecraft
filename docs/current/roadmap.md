@@ -10,9 +10,13 @@
 > `logistics/generic-network/core`（通用网仓储/导入/导出盖板）、
 > `logistics/logistics-core`（5×5×5 Core + Dump）与
 > `logistics/display-cpu`（四件物流监视器）与
-> `energy/converter-catalog`（Burning Box / 锅炉 / 蒸汽机 / 电机分档）与
+> `energy/converter-catalog`（Burning Box / 锅炉 / 蒸汽机 / 电机分档；活目录
+> 另有 10 台电加热器/电引擎，未并进该卡 `player_complete` 分母）与
 > `energy/batteries`（37 储能块；`player_complete`）与
-> `energy/transformers`（9 电变压器；卡为 unique active，`player_complete`）。
+> `energy/transformers`（9 电变压器；已关闭，`player_complete`）。
+> 电能转换 / LU / 裂变 / 聚变 / 电池芯见
+> [能源后续卡收口](../history/card-plans/closed/能源后续卡收口详细计划.md)
+> （`runtime_ready`，未签新 capability）。
 > [物品网络核心](../history/card-plans/closed/物品网络核心详细计划.md)
 > 为机制 `ITEM_NETWORK_CORE_READY`；玩家完成晋级见
 > [物品网络核心玩家完成晋级](../history/card-plans/closed/物品网络核心玩家完成晋级详细计划.md)。
@@ -22,14 +26,22 @@
 > 为 Dump + Core `player_complete`。已关闭
 > [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
 > （capability `logistics/display-cpu`）为四件状态盖板 `player_complete`。
-> 当前 unique active 是
-> [变压器](../history/card-plans/active/变压器详细计划.md)
-> （capability `energy/transformers`，`player_complete` / `accepted`）。已关闭
+> 当前 active 计划卡为
+> [生成资源、注册与 Jade 第一切片](../history/card-plans/active/生成资源注册与Jade第一切片详细计划.md)；
+> 尚未完成实现，机器可读 `unique_active_wave` 仍为 `null`。已关闭
+> [配方加载与 EMI 稳定性](../history/card-plans/closed/配方加载与EMI稳定性详细计划.md)
+> （slug `runtime/recipe-load-emi-stability`；loader / EMI / reload repair，
+> `owns_families = 0`）。机器可读 `unique_active_wave` 仍为 `null`。已关闭
+> [变压器](../history/card-plans/closed/变压器详细计划.md)
+> （capability `energy/transformers`，`player_complete` / `accepted`）。
+> 已关闭
+> [能源后续卡收口](../history/card-plans/closed/能源后续卡收口详细计划.md)
+> （电转换 / LU / 裂变 / 聚变 / 电池芯；`runtime_ready`）。已关闭
 > [电池](../history/card-plans/closed/电池详细计划.md)
 > （capability `energy/batteries`，`player_complete`）。已关闭
 > [能量转换机目录](../history/card-plans/closed/能量转换机目录详细计划.md)
 > （capability `energy/converter-catalog`）为转换机 kind × 材质 169 行
-> `player_complete`。Dump 的来源执行器是 Core，
+> `player_complete`（活 JSON 179 行，多出的 10 台属电转换卡）。Dump 的来源执行器是 Core，
 > 不是 Generic 管网；`dump_policy` 见已关闭的
 > [物流封面网余量](../history/card-plans/closed/物流封面网余量详细计划.md)。
 > 机器可读 `unique_active_wave = null`。
@@ -143,8 +155,15 @@ GitHub push 承担，不创建 GitHub Release、不上传 jar、不累计 RC soa
 semantic wave，不是下一张里程碑编号。机制卡 `*_READY` 不是内容完成；从
 [冻结与未实现账本](unimplemented-gap.md) 找缺口，不要从阶段档案倒推。
 
-当前 unique active 是
-[变压器](../history/card-plans/active/变压器详细计划.md)。
+当前 active 计划卡为
+[生成资源、注册与 Jade 第一切片](../history/card-plans/active/生成资源注册与Jade第一切片详细计划.md)；
+尚未完成实现，机器可读 `unique_active_wave` 仍为 `null`。已关闭
+[配方加载与 EMI 稳定性](../history/card-plans/closed/配方加载与EMI稳定性详细计划.md)
+（slug `runtime/recipe-load-emi-stability`；loader / EMI / reload repair）。
+机器可读 `unique_active_wave` 仍为 `null`。已关闭
+[变压器](../history/card-plans/closed/变压器详细计划.md)。
+已关闭
+[能源后续卡收口](../history/card-plans/closed/能源后续卡收口详细计划.md)。
 已关闭
 [能量转换机目录](../history/card-plans/closed/能量转换机目录详细计划.md)
 为转换机 kind × 材质 169 行 `player_complete`。
@@ -189,8 +208,15 @@ ASM，不建 Replace 全量扫描器。
 并保持 voxel；`smelter` 纠正为 `machine_cube_2_layer` 方块机，不再错绑
 坩埚小锅。工作态 overlay 未接。阶段账本（三态、后续顺序、核电体积）写在
 [冻结与未实现账本](unimplemented-gap.md)。物流 1.2 不在该卡。
-机器可读 `unique_active_wave = null`。当前 unique active 是
-[变压器](../history/card-plans/active/变压器详细计划.md)。
+机器可读 `unique_active_wave = null`。当前 active 计划卡为
+[生成资源、注册与 Jade 第一切片](../history/card-plans/active/生成资源注册与Jade第一切片详细计划.md)；
+尚未完成实现。已关闭
+[配方加载与 EMI 稳定性](../history/card-plans/closed/配方加载与EMI稳定性详细计划.md)
+（slug `runtime/recipe-load-emi-stability`）。
+已关闭
+[变压器](../history/card-plans/closed/变压器详细计划.md)。
+已关闭
+[能源后续卡收口](../history/card-plans/closed/能源后续卡收口详细计划.md)。
 已关闭
 [能量转换机目录](../history/card-plans/closed/能量转换机目录详细计划.md)。
 已关闭
@@ -198,8 +224,13 @@ ASM，不建 Replace 全量扫描器。
 已关闭
 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
 为四件状态盖板 `player_complete`。
-后续内容顺序从该账本读，
-不要从只读 growth-order 档案倒推。
+后续内容顺序从该账本的「候选队列与当前计划卡」读：配方/EMI 与 reload/bake
+正确性已关；当前 active 卡合并处理生成资源/注册/贴图门禁与既有机器 Jade，随后按裂变基础生存、
+热流体、安全后处理、逐台热力机器、GT6_w 有界内容批次、聚变/等离子推进。
+这只是可调整的依赖顺序，不为剩余候选项预分配 child，也不改变
+剩余候选项的 ownership；人读 active 计划卡为该卡，机器可读
+`unique_active_wave = null` / `next_unassigned = true`。不要从只读
+growth-order 档案倒推。
 
 已关闭的
 [作物食物蜜蜂 R0](../history/card-plans/closed/作物食物蜜蜂R0详细计划.md)
@@ -437,12 +468,20 @@ Recipe gap 清零后，deferred ordinary ledger 也已关闭或独立 scope。st
 implementation child。
 已有 kind 的显式档位已经走 `machine_tiers.json`。
 
-核能 Track C 保持 `started = false`。裂变、聚变和等离子不作为当前 importer、
-机器等级、配方校准、存储卡、T13c R0、非矿 worldgen R0、原版替换 R0、
-作物食物蜜蜂 R0 或首小时表现卡或原版替换 MVP 的附带范围。体积与后置原因见
+核能 Track C 保持 `started = false`。裂变堆芯 / 邻棒 / 聚变双能宿主已由
+[能源后续卡收口](../history/card-plans/closed/能源后续卡收口详细计划.md)
+做成 `runtime_ready`；堆芯与聚变控制器配方、棒 Canner、等离子流体仍
+blocked。它们不是当前 importer、机器等级、配方校准、存储卡、T13c R0、
+非矿 worldgen R0、原版替换 R0、作物食物蜜蜂 R0 或首小时表现卡或原版替换
+MVP 的附带范围。体积见
 [冻结与未实现账本](unimplemented-gap.md)。机器可读 `unique_active_wave`
-= `null`。当前 unique active 是
-[变压器](../history/card-plans/active/变压器详细计划.md)。
+= `null`。当前 active 计划卡为
+[生成资源、注册与 Jade 第一切片](../history/card-plans/active/生成资源注册与Jade第一切片详细计划.md)；
+尚未完成实现。已关闭
+[配方加载与 EMI 稳定性](../history/card-plans/closed/配方加载与EMI稳定性详细计划.md)
+（slug `runtime/recipe-load-emi-stability`）。
+已关闭
+[变压器](../history/card-plans/closed/变压器详细计划.md)。
 已关闭
 [能量转换机目录](../history/card-plans/closed/能量转换机目录详细计划.md)。
 已关闭
