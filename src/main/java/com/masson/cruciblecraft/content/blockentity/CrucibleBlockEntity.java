@@ -353,6 +353,32 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
         return process.casingMaxTemperature();
     }
 
+    /** Remainder HU in the GT6-style thermal accumulator. */
+    public long bufferedHeatHu() {
+        return process.thermal().storedEnergy();
+    }
+
+    public boolean hasCacheSlot() {
+        return false;
+    }
+
+    public boolean processActive() {
+        return process.steelmakingActive() || !process.thermal().isQuiescent();
+    }
+
+    public String renderState() {
+        if (processActive() && isMolten()) {
+            return "active";
+        }
+        if (totalUnits() <= 0) {
+            return "empty";
+        }
+        if (isMolten()) {
+            return "molten";
+        }
+        return "solid";
+    }
+
     public boolean steelmakingActive() {
         return process.steelmakingActive();
     }

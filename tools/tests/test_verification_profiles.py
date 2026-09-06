@@ -268,13 +268,17 @@ class VerificationProfileTest(unittest.TestCase):
 
     def test_semantic_profile_requires_datagen_and_junit(self) -> None:
         semantic = self.profiles["profiles"]["semantic-generators"]
+        recipes = self.profiles["profiles"]["recipe-generators"]
         runtime = self.profiles["profiles"]["runtime-java"]
         self.assertIs(True, semantic["datagen"])
         self.assertNotIn("test", semantic["gradle_tasks"])
+        self.assertIs(False, recipes["datagen"])
+        self.assertNotIn("test", recipes["gradle_tasks"])
         self.assertIs(False, runtime["datagen"])
         self.assertIn("test", runtime["gradle_tasks"])
         self.assertIn("runtime-java", self.profiles["release_profiles"])
         self.assertIn("player-complete", self.profiles["release_profiles"])
+        self.assertIn("recipe-generators", self.profiles["release_profiles"])
 
     def test_runtime_java_does_not_select_datagen(self) -> None:
         classified = verify_entry.classify_paths(
@@ -304,6 +308,17 @@ class VerificationProfileTest(unittest.TestCase):
             ["src/generated/resources/data/cruciblecraft/recipe/machines/hopper.json"],
         )
         self.assertEqual(["semantic-generators"], classified["selected_profiles"])
+        self.assertEqual([], classified["unmatched_paths"])
+
+    def test_recipe_generated_selects_recipe_generators_only(self) -> None:
+        classified = verify_entry.classify_paths(
+            self.profiles,
+            [
+                "src/recipe_generated/resources/data/cruciblecraft/recipe/"
+                "smelter/ordinary_closure/acquisition/gt_recipe_smelter_0099.json"
+            ],
+        )
+        self.assertEqual(["recipe-generators"], classified["selected_profiles"])
         self.assertEqual([], classified["unmatched_paths"])
 
     def test_if_changed_skips_when_diff_does_not_own_the_profile(self) -> None:
@@ -423,6 +438,10 @@ class VerificationProfileTest(unittest.TestCase):
         )
         self.assertIn(
             "python3 tools/verify.py integration --profile runtime-java --if-changed",
+            text,
+        )
+        self.assertIn(
+            "python3 tools/verify.py integration --profile recipe-generators --if-changed",
             text,
         )
         self.assertIn(

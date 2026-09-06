@@ -130,6 +130,55 @@ public final class RecipeMap {
         GTRecipeRuntimeEpoch.replaceSingle(this, orderedRecipes);
     }
 
+    /**
+     * True when this recipe would land in the unindexed fallback bucket.
+     * Used to validate family rows without building a second full index.
+     */
+    static boolean wouldBeUnindexed(GTRecipe recipe) {
+        Objects.requireNonNull(recipe, "recipe");
+        boolean indexed = false;
+        boolean requiresFallbackScan = false;
+        boolean hasFallbackItems = false;
+        boolean hasFallbackComponents = false;
+        for (int inputIndex = 0; inputIndex < recipe.itemInputs().size(); inputIndex++) {
+            Ingredient ingredient = recipe.itemInputs().get(inputIndex);
+            boolean primary = recipe.itemInputActions().get(inputIndex).kind()
+                    == ItemInputAction.Kind.CONSUME;
+            if (ingredient.isSimple()) {
+                for (ItemStack stack : ingredient.getItems()) {
+                    if (!stack.isEmpty()) {
+                        if (primary) {
+                            indexed = true;
+                        } else {
+                            hasFallbackItems = true;
+                        }
+                    }
+                }
+                continue;
+            }
+            ComponentIngredientIndex.Extraction extraction =
+                    ComponentIngredientIndex.extract(ingredient);
+            if (extraction.supported()) {
+                if (primary) {
+                    indexed = true;
+                } else {
+                    hasFallbackComponents = true;
+                }
+            } else {
+                requiresFallbackScan = true;
+            }
+        }
+        for (FluidStack stack : recipe.fluidInputsView()) {
+            if (!stack.isEmpty()) {
+                indexed = true;
+            }
+        }
+        if (!indexed) {
+            indexed = hasFallbackItems || hasFallbackComponents;
+        }
+        return !indexed || requiresFallbackScan;
+    }
+
     /** Builds all indexes without changing the live map. */
     public synchronized Prepared prepareRecipes(List<Entry> orderedRecipes) {
         return prepareRecipes(orderedRecipes, List.of(), 0L);

@@ -11,18 +11,17 @@ import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 @EventBusSubscriber(modid = CrucibleCraft.MODID)
 public final class GTRecipeMapEvents {
-    private static volatile RecipeManager lastTagsLoadedManager;
-
     private GTRecipeMapEvents() {}
 
     @SubscribeEvent
     public static void serverStarted(ServerStartedEvent event) {
         RecipeManager manager = event.getServer().getRecipeManager();
-        if (GTRecipeReloadDecision.onServerStarted(manager, lastTagsLoadedManager)) {
-            // Compact families are aggregated with Extruder inside the loader.
-            GTRecipeMapLoader.reload(manager);
-        }
-        lastTagsLoadedManager = null;
+        // Compact families are aggregated with Extruder inside the loader.
+        // Same manager/generation as TagsUpdated is suppressed by the coordinator.
+        GTRecipeMapLoader.reload(
+                manager,
+                ExtruderRecipeFamilyProvider.RuntimeSide.SERVER,
+                GTRecipeReloadCoordinator.Cause.SERVER_STARTED);
     }
 
     @SubscribeEvent
@@ -32,8 +31,10 @@ public final class GTRecipeMapEvents {
                 event.getUpdateCause() == TagsUpdatedEvent.UpdateCause.SERVER_DATA_LOAD,
                 server != null)) {
             RecipeManager manager = server.getRecipeManager();
-            GTRecipeMapLoader.reload(manager);
-            lastTagsLoadedManager = manager;
+            GTRecipeMapLoader.reload(
+                    manager,
+                    ExtruderRecipeFamilyProvider.RuntimeSide.SERVER,
+                    GTRecipeReloadCoordinator.Cause.TAGS_UPDATED);
         }
     }
 }

@@ -66,6 +66,12 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.LARGE_BOILER.get());
                         output.accept(ModItems.TANK_3X3X3.get());
                         output.accept(ModItems.LARGE_CRUCIBLE.get());
+                        output.accept(ModItems.LASER_ENGRAVER.get());
+                        output.accept(ModItems.LU_FIBER_CABLE.get());
+                        output.accept(ModItems.FUSION_REACTOR.get());
+                        output.accept(ModItems.REACTOR_CORE_1X1.get());
+                        output.accept(ModItems.REACTOR_CORE_2X2.get());
+                        ModItems.reactorRods().forEach(rod -> output.accept(rod.get()));
                         output.accept(ModItems.RAW_CERAMIC_CRUCIBLE.get());
                         output.accept(ModItems.RAW_CERAMIC_MOLD.get());
                         output.accept(ModItems.RAW_INGOT_MOLD.get());
@@ -83,6 +89,8 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.PORTABLE_FLUID_TANK.get());
                         output.accept(ModItems.FLUID_CELL.get());
                         output.accept(ModItems.GAS_CELL.get());
+                        ModItems.batteryCellItemsByPath().values().forEach(
+                                item -> output.accept(item.get()));
                         output.accept(ModItems.PIPE_FILTER_COVER.get());
                         output.accept(ModItems.PIPE_VALVE_COVER.get());
                         output.accept(ModItems.PIPE_PUMP_COVER.get());
@@ -109,6 +117,9 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.LOGISTICS_DISPLAY_CPU_CONVERSION_COVER.get());
                         output.accept(ModItems.LOGISTICS_CORE.get());
                         output.accept(ModItems.GALVANIZED_STEEL_WALL.get());
+                        output.accept(ModItems.TUNGSTENSTEEL_WALL.get());
+                        output.accept(ModItems.STAINLESS_STEEL_WALL.get());
+                        output.accept(ModItems.LARGE_IRIDIUM_COIL.get());
                         output.accept(ModItems.VENTILATION_UNIT.get());
                         output.accept(ModItems.VERSATILE_PROCESSOR_UNIT.get());
                         output.accept(ModItems.LOGIC_PROCESSOR_UNIT.get());
@@ -268,10 +279,10 @@ public final class ModCreativeTabs {
                                     "itemGroup.cruciblecraft.fluid_cells"))
                             .icon(() -> ModItems.FLUID_CELL.get()
                                     .getDefaultInstance())
-                            .displayItems((parameters, output) ->
-                                    com.masson.cruciblecraft.material
-                                            .CellContentGate.sortedEntries()
-                                            .forEach(entry -> {
+                            .displayItems((parameters, output) -> {
+                                com.masson.cruciblecraft.material
+                                        .CellContentGate.sortedEntries()
+                                        .forEach(entry -> {
                                                 net.minecraft.world.level.material
                                                         .Fluid fluid =
                                                         net.minecraft.core.registries
@@ -306,7 +317,10 @@ public final class ModCreativeTabs {
                                                                         fluid,
                                                                         1_000)));
                                                 output.accept(cell);
-                                            }))
+                                        });
+                                ModItems.batteryCellItemsByPath().values()
+                                        .forEach(item -> output.accept(item.get()));
+                            })
                             .build());
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> PIPES =
             materialTab(
@@ -325,9 +339,13 @@ public final class ModCreativeTabs {
                 () -> CreativeModeTab.builder()
                         .title(Component.translatable(tab.translationKey()))
                         .icon(icon)
-                        .displayItems((parameters, output) ->
-                                materialEntryPlan().get(tab).forEach(itemId ->
-                                        output.accept(requirePlannedItem(itemId))))
+                        .displayItems((parameters, output) -> {
+                            materialEntryPlan().get(tab).forEach(itemId ->
+                                    output.accept(requirePlannedItem(itemId)));
+                            if (tab == MaterialCreativeTab.CABLES) {
+                                output.accept(ModItems.LU_FIBER_CABLE.get());
+                            }
+                        })
                         .build());
     }
 

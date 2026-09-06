@@ -40,5 +40,13 @@ class GTRecipeReloadDecisionTest {
                                 "reload",
                                 net.minecraft.world.item.crafting.RecipeManager.class)
                         .getModifiers()));
+        assertTrue(Modifier.isSynchronized(
+                GTRecipeMapLoader.class
+                        .getDeclaredMethod(
+                                "reload",
+                                net.minecraft.world.item.crafting.RecipeManager.class,
+                                ExtruderRecipeFamilyProvider.RuntimeSide.class,
+                                GTRecipeReloadCoordinator.Cause.class)
+                        .getModifiers()));
     }
 }

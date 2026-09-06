@@ -52,7 +52,19 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
                 ModBlocks.CONTROL_PROCESSOR_UNIT.getKey(),
                 ModBlocks.STORAGE_PROCESSOR_UNIT.getKey(),
                 ModBlocks.CONVERSION_PROCESSOR_UNIT.getKey(),
-                ModBlocks.FLUID_DEPOSIT_EXTRACTOR.getKey());
+                ModBlocks.FLUID_DEPOSIT_EXTRACTOR.getKey(),
+                ModBlocks.FIREBRICK.getKey(),
+                ModBlocks.CRUCIBLE.getKey(),
+                ModBlocks.ANVIL.getKey(),
+                ModBlocks.COKE_OVEN.getKey(),
+                ModBlocks.LU_FIBER_CABLE.getKey(),
+                ModBlocks.LASER_ENGRAVER.getKey(),
+                ModBlocks.FUSION_REACTOR.getKey(),
+                ModBlocks.REACTOR_CORE_1X1.getKey(),
+                ModBlocks.REACTOR_CORE_2X2.getKey(),
+                ModBlocks.TUNGSTENSTEEL_WALL.getKey(),
+                ModBlocks.STAINLESS_STEEL_WALL.getKey(),
+                ModBlocks.LARGE_IRIDIUM_COIL.getKey());
         ModBlocks.converterBlocksById().values().stream()
                 .sorted(Comparator.comparing(block -> block.getId().toString()))
                 .forEach(block -> pickaxe.add(block.getKey()));
@@ -123,9 +135,11 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
         gtBlockObjects.add(holder.getKey());
         if (variant.log() || variant.bale()) {
             axe.add(holder.getKey());
-        } else if (!variant.rail()) {
+        } else {
             pickaxe.add(holder.getKey());
-            stone.add(holder.getKey());
+            if (!variant.rail()) {
+                stone.add(holder.getKey());
+            }
         }
         if (variant.rail()) {
             rails.add(holder.getKey());

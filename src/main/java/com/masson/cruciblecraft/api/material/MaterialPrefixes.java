@@ -21,6 +21,7 @@ public final class MaterialPrefixes {
     public static final MaterialPrefix INGOT_HOT = builtin("ingot_hot");
     public static final MaterialPrefix DUST = builtin("dust");
     public static final MaterialPrefix PLATE = builtin("plate");
+    public static final MaterialPrefix CURVED_PLATE = builtin("curved_plate");
     public static final MaterialPrefix ROD = builtin("rod");
     public static final MaterialPrefix LONG_ROD = builtin("long_rod");
     public static final MaterialPrefix SMALL_DUST = builtin("small_dust");

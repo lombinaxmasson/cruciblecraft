@@ -1,0 +1,40 @@
+{
+  "type": "cruciblecraft:gt_recipe",
+  "duration": 730,
+  "eut": -8192,
+  "fluid_inputs": [
+    {
+      "amount": 2000,
+      "id": "cruciblecraft:deuterium"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 500,
+      "id": "cruciblecraft:helium3"
+    },
+    {
+      "amount": 500,
+      "id": "cruciblecraft:tritium"
+    }
+  ],
+  "item_input_actions": [
+    {
+      "kind": "preserve"
+    }
+  ],
+  "item_input_counts": [
+    0
+  ],
+  "item_inputs": [
+    {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:circuit_config": 1
+      },
+      "items": "cruciblecraft:programmed_circuit"
+    }
+  ],
+  "map": "cruciblecraft:fusion",
+  "special_value": 95682560
+}

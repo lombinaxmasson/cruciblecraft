@@ -24,6 +24,7 @@ import com.masson.cruciblecraft.client.screen.StorageScreen;
 import com.masson.cruciblecraft.client.screen.ConfiguredProcessingMachineScreen;
 import com.masson.cruciblecraft.client.screen.CokeOvenScreen;
 import com.masson.cruciblecraft.client.screen.CrusherScreen;
+import com.masson.cruciblecraft.content.item.ReactorRodItem;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.content.blockentity.AnvilBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
@@ -108,6 +109,19 @@ public class ClientSetup {
                         : 0xFFFFFFFF,
                 ModItems.CRUCIBLE.get(),
                 ModItems.ANVIL.get());
+        event.register(
+                (stack, tintIndex) -> {
+                    if (tintIndex != 0
+                            || !(stack.getItem() instanceof ReactorRodItem rod)) {
+                        return 0xFFFFFFFF;
+                    }
+                    return MaterialLookup.byId(rod.entry().material())
+                            .map(material -> 0xFF000000 | material.colorRgb())
+                            .orElse(0xFFFFFFFF);
+                },
+                ModItems.reactorRods().stream()
+                        .map(net.neoforged.neoforge.registries.DeferredItem::get)
+                        .toArray(Item[]::new));
         Block[] tintedMachines = MachineBlockColor.tintedBlocks();
         event.register(
                 MachineBlockColor::itemColor,
@@ -143,6 +157,9 @@ public class ClientSetup {
                             || !(state.getBlock()
                                     instanceof com.masson.cruciblecraft
                                             .content.block.CableBlock cable)) {
+                        return 0xFFFFFFFF;
+                    }
+                    if (cable.isLuFiber()) {
                         return 0xFFFFFFFF;
                     }
                     return com.masson.cruciblecraft.material.MaterialCatalog

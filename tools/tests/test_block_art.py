@@ -63,6 +63,7 @@ class BlockArtTest(unittest.TestCase):
         self.assertEqual(census.SOURCE_REVISION, document["source_revision"])
         self.assertEqual(art.EXPECTED_BIND_COUNT, document["identity_count"])
         self.assertEqual([], art.check_payload(document))
+        self.assertEqual([], art.check_models_and_pngs(document))
 
 
 if __name__ == "__main__":

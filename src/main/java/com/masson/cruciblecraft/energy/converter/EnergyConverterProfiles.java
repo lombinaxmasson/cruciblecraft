@@ -24,6 +24,8 @@ final class EnergyConverterProfiles {
             case "fuel_engine" -> fuelEngine(kind, tier);
             case "dynamo" -> dynamo(kind, tier);
             case "electric_motor" -> motor(kind, tier);
+            case "electric_heater" -> electricHeater(kind, tier);
+            case "electric_engine" -> electricEngine(kind, tier);
             case "solid_burning_box" -> solidBox(kind, tier);
             case "fluid_burning_box" -> fluidBox(kind, tier);
             case "fluid_bed_burning_box" -> fluidBed(kind, tier);
@@ -242,6 +244,84 @@ final class EnergyConverterProfiles {
                 null,
                 1_024,
                 1_024);
+    }
+
+    private static EnergyConverterProfile electricHeater(
+            EnergyConverterKindCatalog.Kind kind,
+            EnergyConverterTierCatalog.Entry tier) {
+        int input = Math.max(1, tier.nbtInput());
+        int output = Math.max(1, tier.nbtOutput());
+        long minimum = Math.max(1L, input / 2L);
+        long maximum = Math.multiplyExact(input, 2L);
+        return new EnergyConverterProfile(
+                tier.id(),
+                "electric_hu_chain",
+                EnergyConverterProfile.Status.COMPLETE,
+                kind.runtime(),
+                source(kind, tier, "NONE", "NONE"),
+                kind.accepts(),
+                kind.emits(),
+                packet("ENERGY", "EU", input, 1L),
+                packet("ENERGY", "HU", 1L, output),
+                window(minimum, (long) input, maximum),
+                null,
+                "NONE",
+                conservation(
+                        "EU", input, "NONE", 0,
+                        "HU", output, "NONE", 0),
+                exhaust("NONE", "NONE", 0),
+                kind.faces(),
+                policy(
+                        "NBT_WASTE_ENERGY_CONSUMES_EU_WHEN_HU_BLOCKED",
+                        "INPUT_ABOVE_MAX_EU_OVERLOADS",
+                        "SOURCE_" + tier.sourceId()
+                                + "_ELECTRIC_HEATER_EU_TO_HU_"
+                                + input + "_TO_" + output
+                                + "; SOURCE_BACKED_DYNAMIC_BATCH; "
+                                + "NO_STAND_IN_COMPONENTS"),
+                null,
+                Math.toIntExact(maximum),
+                0);
+    }
+
+    private static EnergyConverterProfile electricEngine(
+            EnergyConverterKindCatalog.Kind kind,
+            EnergyConverterTierCatalog.Entry tier) {
+        int input = Math.max(1, tier.nbtInput());
+        int output = Math.max(1, tier.nbtOutput());
+        long minimum = Math.max(1L, input / 2L);
+        long maximum = Math.multiplyExact(input, 2L);
+        return new EnergyConverterProfile(
+                tier.id(),
+                "electric_ku_chain",
+                EnergyConverterProfile.Status.COMPLETE,
+                kind.runtime(),
+                source(kind, tier, "NONE", "NONE"),
+                kind.accepts(),
+                kind.emits(),
+                packet("ENERGY", "EU", input, 1L),
+                packet("ENERGY", "KU", output, 1L),
+                window(minimum, (long) input, maximum),
+                null,
+                "NONE",
+                conservation(
+                        "EU", input, "NONE", 0,
+                        "KU", output, "NONE", 0),
+                exhaust("NONE", "NONE", 0),
+                kind.faces(),
+                policy(
+                        "NBT_WASTE_ENERGY_CONSUMES_EU_WHEN_KU_BLOCKED",
+                        "INPUT_ABOVE_MAX_EU_OVERLOADS",
+                        "SOURCE_" + tier.sourceId()
+                                + "_ELECTRIC_ENGINE_EU_TO_KU_"
+                                + input + "_TO_" + output
+                                + "; STATE_DEPENDENT_OUTPUT_"
+                                + (output / 2) + "_TO_" + (output * 2)
+                                + "; PISTON_PHASE_SIGNED_OUTPUT; "
+                                + "SCREWDRIVER_STATE_CONTROL"),
+                null,
+                Math.toIntExact(maximum),
+                0);
     }
 
     private static EnergyConverterProfile solidBox(

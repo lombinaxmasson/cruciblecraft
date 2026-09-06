@@ -79,7 +79,8 @@
       "id": "generated_runtime_content",
       "path_patterns": [
         "src/generated/**",
-        "src/recipe_generated/**"
+        "src/recipe_generated/**",
+        "src/test/resources/**"
       ]
     }
   ],
@@ -118,6 +119,28 @@
       "path_patterns": [
         "tools/*release_manifest*.json",
         "tools/build_*release_manifest*.py"
+      ],
+      "token_regex": "(?i)(?:sha256|hash|digest|checksum)"
+    },
+    {
+      "id": "capability_catalog_pin_tests",
+      "path_patterns": [
+        "tools/tests/test_display_cpu.py",
+        "tools/tests/test_logistics_core.py"
+      ],
+      "token_regex": "(?i)(?:sha256|hash|digest|checksum)"
+    },
+    {
+      "id": "source_backed_art_png_integrity",
+      "path_patterns": [
+        "tools/block_art.py",
+        "tools/build_block_art.py",
+        "tools/block_art_manifest.json",
+        "tools/multiitem_art.py",
+        "tools/build_multiitem_art.py",
+        "tools/multiitem_art_manifest.json",
+        "tools/tests/test_block_art.py",
+        "tools/tests/test_multiitem_art.py"
       ],
       "token_regex": "(?i)(?:sha256|hash|digest|checksum)"
     },

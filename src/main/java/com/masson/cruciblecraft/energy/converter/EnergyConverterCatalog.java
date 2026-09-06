@@ -15,13 +15,25 @@ public final class EnergyConverterCatalog {
             "cruciblecraft:bronze_steam_engine",
             "cruciblecraft:bronze_dynamo",
             "cruciblecraft:bronze_fuel_engine",
-            "cruciblecraft:bronze_burning_box_gas");
+            "cruciblecraft:bronze_burning_box_gas",
+            "cruciblecraft:steel_galvanized_electric_heater",
+            "cruciblecraft:steel_galvanized_electric_engine");
     private static final Set<String> COMPLETE_PROFILES = Set.of(
             "cruciblecraft:bronze_boiler",
             "cruciblecraft:bronze_steam_engine",
             "cruciblecraft:bronze_dynamo",
             "cruciblecraft:bronze_fuel_engine",
-            "cruciblecraft:bronze_burning_box_gas");
+            "cruciblecraft:bronze_burning_box_gas",
+            "cruciblecraft:steel_galvanized_electric_heater",
+            "cruciblecraft:aluminium_electric_heater",
+            "cruciblecraft:stainless_steel_electric_heater",
+            "cruciblecraft:chromium_electric_heater",
+            "cruciblecraft:titanium_electric_heater",
+            "cruciblecraft:steel_galvanized_electric_engine",
+            "cruciblecraft:aluminium_electric_engine",
+            "cruciblecraft:stainless_steel_electric_engine",
+            "cruciblecraft:chromium_electric_engine",
+            "cruciblecraft:titanium_electric_engine");
     private static final Map<ResourceLocation, EnergyConverterProfile>
             PROFILES = loadBundled();
 
@@ -95,6 +107,7 @@ public final class EnergyConverterCatalog {
         validateSteamConverters(result);
         validateKineticConverters(result);
         validateGasGenerator(result);
+        validateElectricConverters(result);
         return Map.copyOf(result);
     }
 
@@ -199,6 +212,43 @@ public final class EnergyConverterCatalog {
                         "MISSING_PARTIAL_OR_WRONG_IDENTITY_QUARANTINED")) {
             throw new IllegalStateException(
                     "Gas-generator converter row drifted");
+        }
+    }
+
+    private static void validateElectricConverters(
+            Map<ResourceLocation, EnergyConverterProfile> profiles) {
+        EnergyConverterProfile heater = profiles.get(ResourceLocation.parse(
+                "cruciblecraft:steel_galvanized_electric_heater"));
+        EnergyConverterProfile engine = profiles.get(ResourceLocation.parse(
+                "cruciblecraft:steel_galvanized_electric_engine"));
+        if (heater == null
+                || engine == null
+                || heater.source().sourceId() != 10001
+                || engine.source().sourceId() != 10011
+                || !"MultiTileEntityHeaterElectric".equals(
+                        heater.source().machineKind())
+                || !"MultiTileEntityEngineElectric".equals(
+                        engine.source().machineKind())
+                || !"electric_hu_chain".equals(heater.stage())
+                || !"electric_ku_chain".equals(engine.stage())
+                || heater.inputWindow().minimum() != 16L
+                || heater.inputWindow().nominal() != 32L
+                || heater.inputWindow().maximum() != 64L
+                || engine.inputWindow().minimum() != 16L
+                || engine.inputWindow().nominal() != 32L
+                || engine.inputWindow().maximum() != 64L
+                || !"EU".equals(heater.inputPacket().identity())
+                || !"HU".equals(heater.outputPacket().identity())
+                || heater.outputPacket().maxAmountPerTick() != 16L
+                || !"EU".equals(engine.inputPacket().identity())
+                || !"KU".equals(engine.outputPacket().identity())
+                || engine.outputPacket().size() != 16L
+                || !heater.faces().energyInputs().equals(
+                        List.of("ALL_BUT_FRONT"))
+                || !engine.faces().energyOutputs().equals(
+                        List.of("FRONT"))) {
+            throw new IllegalStateException(
+                    "Electric heater/engine converter rows drifted");
         }
     }
 

@@ -107,6 +107,15 @@ class NoWorkflowHashesTest(unittest.TestCase):
                 "cruciblecraft/recipe/publication/policy.json",
                 '"content_sha256": "abc"',
             ),
+            (
+                "tools/block_art.py",
+                'row["sha256"] = census.sha256_file(dest)',
+            ),
+            (
+                "src/test/resources/assembler_wood_catalog_fixture/"
+                "data/cruciblecraft/recipe/assembler/demo.json",
+                '"evidence_hashes": ["abc"]',
+            ),
         ]
         for relative, text in cases:
             with self.subTest(relative=relative):

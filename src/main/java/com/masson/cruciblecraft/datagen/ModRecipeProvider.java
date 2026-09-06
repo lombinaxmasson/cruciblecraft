@@ -23,6 +23,9 @@ import com.masson.cruciblecraft.recipe.rule.MaterialChainRules;
 import com.masson.cruciblecraft.recipe.rule.ToolRules;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeEntry;
+import com.masson.cruciblecraft.recipe.crafting.BatteryCellCraftingRecipe;
+import com.masson.cruciblecraft.fusion.FusionRecipeCatalog;
+import com.masson.cruciblecraft.registry.ModComponents;
 import com.masson.cruciblecraft.energy.battery.EnergyBatteryTierCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterTierCatalog;
 import com.masson.cruciblecraft.energy.transformer.EnergyTransformerTierCatalog;
@@ -34,6 +37,7 @@ import com.masson.cruciblecraft.registry.ModRecipeMaps;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentPredicate;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -50,6 +54,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.neoforged.neoforge.common.conditions.ICondition;
+import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 /** Recipes derived mechanically from the bootstrapped material catalog. */
@@ -329,6 +334,10 @@ public final class ModRecipeProvider extends RecipeProvider {
                 ModItems.ROTATIONAL_GEARBOX.get(),
                 "rotational_gearbox");
         addConverterRecipes(output);
+        addLuFiberRecipe(output);
+        addFusionPartRecipes(output);
+        addFusionRecipes(output);
+        addBatteryCellRecipes(output);
         addBatteryRecipes(output);
         addTransformerRecipes(output);
         for (MachineVariant variant
@@ -1169,7 +1178,17 @@ public final class ModRecipeProvider extends RecipeProvider {
                     "bronze_steam_engine",
                     "bronze_fuel_engine",
                     "bronze_dynamo",
-                    "steel_galvanized_electric_motor");
+                    "steel_galvanized_electric_motor",
+                    "steel_galvanized_electric_heater",
+                    "aluminium_electric_heater",
+                    "stainless_steel_electric_heater",
+                    "chromium_electric_heater",
+                    "titanium_electric_heater",
+                    "steel_galvanized_electric_engine",
+                    "aluminium_electric_engine",
+                    "stainless_steel_electric_engine",
+                    "chromium_electric_engine",
+                    "titanium_electric_engine");
 
     private static void addConverterRecipes(RecipeOutput output) {
         for (var entry : EnergyConverterTierCatalog.entries()) {
@@ -1225,10 +1244,243 @@ public final class ModRecipeProvider extends RecipeProvider {
         builder.unlockedBy("has_part", has(unlock)).save(output, id(path));
     }
 
+    private static void addLuFiberRecipe(RecipeOutput output) {
+        var silverPlate = MaterialLookup.item(
+                "silver", MaterialPrefixes.PLATE);
+        if (silverPlate.isEmpty()) {
+            return;
+        }
+        output.accept(
+                id("machines/lu_fiber_cable"),
+                new BatteryCellCraftingRecipe(
+                        List.of("PGR", "DxD", "RGP"),
+                        Map.of(
+                                "P", Ingredient.of(silverPlate.orElseThrow()),
+                                "G", Ingredient.of(Items.GLASS),
+                                "D", Ingredient.of(Items.DIAMOND),
+                                "R", Ingredient.of(Items.REDSTONE)),
+                        Map.of(
+                                "x",
+                                Ingredient.of(
+                                        ModItems.MATERIAL_WIRE_CUTTER.get())),
+                        new ItemStack(ModItems.LU_FIBER_CABLE.get())),
+                null);
+    }
+
+    private static void addFusionPartRecipes(RecipeOutput output) {
+        addFusionWallRecipe(
+                output,
+                "stainless_steel",
+                ModItems.STAINLESS_STEEL_WALL.get(),
+                "stainless_steel_wall");
+        addFusionWallRecipe(
+                output,
+                "tungstensteel",
+                ModItems.TUNGSTENSTEEL_WALL.get(),
+                "tungstensteel_wall");
+        var iridiumWire = MaterialLookup.item(
+                "iridium", MaterialPrefixes.QUADRUPLE_WIRE);
+        if (iridiumWire.isEmpty()) {
+            return;
+        }
+        output.accept(
+                id("machines/large_iridium_coil"),
+                new BatteryCellCraftingRecipe(
+                        List.of("WWW", "WxW", "WWW"),
+                        Map.of("W", Ingredient.of(iridiumWire.orElseThrow())),
+                        Map.of(
+                                "x",
+                                Ingredient.of(
+                                        ModItems.MATERIAL_WIRE_CUTTER.get())),
+                        new ItemStack(ModItems.LARGE_IRIDIUM_COIL.get())),
+                null);
+    }
+
+    private static void addFusionWallRecipe(
+            RecipeOutput output,
+            String material,
+            Item result,
+            String path) {
+        var plate = MaterialLookup.item(material, MaterialPrefixes.PLATE);
+        if (plate.isEmpty()) {
+            return;
+        }
+        output.accept(
+                id(path),
+                new BatteryCellCraftingRecipe(
+                        List.of("wPP", "hPP", "   "),
+                        Map.of("P", Ingredient.of(plate.orElseThrow())),
+                        Map.of(
+                                "w",
+                                Ingredient.of(ModItems.MATERIAL_WRENCH.get()),
+                                "h",
+                                Ingredient.of(ModItems.SMITHING_HAMMER.get())),
+                        new ItemStack(result)),
+                null);
+    }
+
+    private static void addFusionRecipes(RecipeOutput output) {
+        for (FusionRecipeCatalog.Entry entry : FusionRecipeCatalog.entries()) {
+            output.accept(
+                    id("fusion/" + entry.id()),
+                    new GTRecipeEntry(
+                            ModRecipeMaps.FUSION.id(),
+                            new GTRecipe(
+                                    List.of(fusionCircuit(entry.circuit())),
+                                    List.of(0),
+                                    fusionItems(entry),
+                                    fusionFluids(entry.fluidInputs(), entry.id()),
+                                    fusionFluids(entry.fluidOutputs(), entry.id()),
+                                    List.of(),
+                                    entry.duration(),
+                                    entry.eut(),
+                                    entry.luStart())),
+                    null);
+        }
+    }
+
+    private static Ingredient fusionCircuit(int config) {
+        return DataComponentIngredient.of(
+                false,
+                DataComponentPredicate.builder()
+                        .expect(ModComponents.CIRCUIT_CONFIG.get(), config)
+                        .build(),
+                ModItems.PROGRAMMED_CIRCUIT.get());
+    }
+
+    private static List<ItemStack> fusionItems(FusionRecipeCatalog.Entry entry) {
+        return entry.itemOutputs().stream()
+                .map(item -> new ItemStack(
+                        MaterialLookup.item(
+                                        item.material(),
+                                        switch (item.prefix()) {
+                                            case "dust" -> MaterialPrefixes.DUST;
+                                            default -> throw new IllegalStateException(
+                                                    "Unsupported fusion item prefix "
+                                                            + item.prefix());
+                                        })
+                                .orElseThrow(() -> new IllegalStateException(
+                                        "Missing fusion item "
+                                                + item.material()
+                                                + "/"
+                                                + item.prefix()
+                                                + " for "
+                                                + entry.id())),
+                        item.count()))
+                .toList();
+    }
+
+    private static List<FluidStack> fusionFluids(
+            List<FusionRecipeCatalog.FluidIo> fluids, String recipeId) {
+        return fluids.stream()
+                .map(fluid -> new FluidStack(
+                        resolveFusionFluid(fluid, recipeId),
+                        fluid.milliBuckets()))
+                .toList();
+    }
+
+    private static net.minecraft.world.level.material.Fluid resolveFusionFluid(
+            FusionRecipeCatalog.FluidIo fluid, String recipeId) {
+        var resolved = fluid.molten()
+                ? ModFluids.molten(fluid.material()).map(entry -> entry.source().get())
+                : ModFluids.chemical(fluid.material()).map(entry -> entry.source().get());
+        return resolved.orElseThrow(() -> new IllegalStateException(
+                "Missing fusion fluid " + fluid.material()
+                        + (fluid.molten() ? " (molten)" : " (gas)")
+                        + " for " + recipeId));
+    }
+
     private static void addBatteryRecipes(RecipeOutput output) {
         for (var entry : EnergyBatteryTierCatalog.entries()) {
+            if (!isBatteryRecipeReady(entry.id().getPath())) {
+                continue;
+            }
             emitBatteryRecipe(output, entry);
         }
+    }
+
+    private static boolean isBatteryRecipeReady(String path) {
+        return path.startsWith("lead_acid_battery_")
+                || path.startsWith("alkaline_battery_")
+                || path.startsWith("nickel_cadmium_battery_");
+    }
+
+    private static void addBatteryCellRecipes(RecipeOutput output) {
+        batteryCellRecipe(
+                output,
+                "lead_acid",
+                List.of(" Fh", "FPF", "xF "),
+                Map.of(
+                        "P", materialIngredient(
+                                "battery_alloy", MaterialPrefixes.CURVED_PLATE),
+                        "F", materialIngredient("lead", MaterialPrefixes.FOIL)),
+                Map.of(
+                        "h", Ingredient.of(ModItems.SMITHING_HAMMER.get()),
+                        "x", Ingredient.of(ModItems.MATERIAL_WIRE_CUTTER.get())));
+        batteryCellRecipe(
+                output,
+                "alkaline",
+                List.of("KSM", "OPF", "CWZ"),
+                Map.of(
+                        "K", materialIngredient(
+                                "potassium_hydroxide", MaterialPrefixes.DUST),
+                        "S", materialIngredient(
+                                "stainless_steel", MaterialPrefixes.CURVED_PLATE),
+                        "M", materialIngredient(
+                                "pyrolusite", MaterialPrefixes.DUST),
+                        "O", materialIngredient(
+                                "plastic", MaterialPrefixes.RING),
+                        "P", materialIngredient(
+                                "battery_alloy", MaterialPrefixes.CURVED_PLATE),
+                        "F", materialIngredient("aluminium", MaterialPrefixes.FOIL),
+                        "C", materialIngredient("carbon", MaterialPrefixes.DUST),
+                        "W", materialIngredient("iron", MaterialPrefixes.WIRE),
+                        "Z", materialIngredient("zinc", MaterialPrefixes.DUST)),
+                Map.of());
+        batteryCellRecipe(
+                output,
+                "nickel_cadmium",
+                List.of("KSM", "OPF", "CWZ"),
+                Map.of(
+                        "K", materialIngredient(
+                                "potassium_hydroxide", MaterialPrefixes.DUST),
+                        "S", materialIngredient(
+                                "stainless_steel", MaterialPrefixes.CURVED_PLATE),
+                        "M", materialIngredient(
+                                "cadmium", MaterialPrefixes.CURVED_PLATE),
+                        "O", materialIngredient(
+                                "plastic", MaterialPrefixes.RING),
+                        "P", materialIngredient(
+                                "battery_alloy", MaterialPrefixes.CURVED_PLATE),
+                        "F", materialIngredient("aluminium", MaterialPrefixes.FOIL),
+                        "C", materialIngredient("graphite", MaterialPrefixes.ROD),
+                        "W", materialIngredient("iron", MaterialPrefixes.WIRE),
+                        "Z", materialIngredient(
+                                "nickel", MaterialPrefixes.CURVED_PLATE)),
+                Map.of());
+    }
+
+    private static void batteryCellRecipe(
+            RecipeOutput output,
+            String family,
+            List<String> pattern,
+            Map<String, Ingredient> ingredients,
+            Map<String, Ingredient> catalysts) {
+        output.accept(
+                id("battery_cells/" + family + "_empty"),
+                new BatteryCellCraftingRecipe(
+                        pattern,
+                        ingredients,
+                        catalysts,
+                        new ItemStack(ModItems.batteryCell(
+                                family + "_cell_empty").get())),
+                null);
+    }
+
+    private static Ingredient materialIngredient(
+            String material,
+            MaterialPrefix prefix) {
+        return Ingredient.of(materialItem(material, prefix));
     }
 
     private static void emitBatteryRecipe(

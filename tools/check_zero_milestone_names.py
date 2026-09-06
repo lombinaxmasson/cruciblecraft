@@ -92,7 +92,7 @@ MILESTONE_PATTERNS: tuple[re.Pattern[str], ...] = (
 
 FALSE_POSITIVE_SPAN = re.compile(
     r"cobalt60|TankBlock|ToolMaterial|TierProfile|"
-    r"gt6[A-Za-z0-9_]*|Circuit T\d+",
+    r"gt6[A-Za-z0-9_]*|Circuit T\d+|T\d+ dynamo",
     re.IGNORECASE,
 )
 

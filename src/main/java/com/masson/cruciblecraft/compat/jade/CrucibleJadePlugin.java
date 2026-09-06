@@ -1,10 +1,8 @@
 package com.masson.cruciblecraft.compat.jade;
 
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 import com.masson.cruciblecraft.CrucibleCraft;
-import com.masson.cruciblecraft.config.ModConfig;
 import com.masson.cruciblecraft.content.block.AnvilBlock;
 import com.masson.cruciblecraft.content.block.CokeOvenBlock;
 import com.masson.cruciblecraft.content.block.CrucibleBlock;
@@ -13,6 +11,9 @@ import com.masson.cruciblecraft.content.block.BoilerBlock;
 import com.masson.cruciblecraft.content.block.SteamEngineBlock;
 import com.masson.cruciblecraft.content.block.CrusherBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
+import com.masson.cruciblecraft.compat.jade.observation.CrucibleObservation;
+import com.masson.cruciblecraft.compat.jade.observation.ObservationField;
+import com.masson.cruciblecraft.compat.jade.observation.TransformerObservation;
 import com.masson.cruciblecraft.content.block.CableBlock;
 import com.masson.cruciblecraft.content.block.FluidPipeBlock;
 import com.masson.cruciblecraft.content.block.ItemPipeBlock;
@@ -27,8 +28,11 @@ import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineB
 import com.masson.cruciblecraft.content.blockentity.CableBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
+import com.masson.cruciblecraft.energy.transformer.TransformerBlock;
+import com.masson.cruciblecraft.energy.transformer.TransformerBlockEntity;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineDisplayData;
 
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -52,11 +56,19 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
         registration.registerBlockDataProvider(
                 ItemPipeComponentProvider.INSTANCE,
                 ItemPipeBlockEntity.class);
+        registration.registerBlockDataProvider(
+                CrucibleComponentProvider.INSTANCE,
+                CrucibleBlockEntity.class);
+        registration.registerBlockDataProvider(
+                TransformerComponentProvider.INSTANCE,
+                TransformerBlockEntity.class);
     }
 
     @Override
     public void registerClient(IWailaClientRegistration registration) {
         registration.registerBlockComponent(CrucibleComponentProvider.INSTANCE, CrucibleBlock.class);
+        registration.registerBlockComponent(
+                TransformerComponentProvider.INSTANCE, TransformerBlock.class);
         registration.registerBlockComponent(AnvilComponentProvider.INSTANCE, AnvilBlock.class);
         registration.registerBlockComponent(CokeOvenComponentProvider.INSTANCE, CokeOvenBlock.class);
         registration.registerBlockComponent(CeramicMoldComponentProvider.INSTANCE, CeramicMoldBlock.class);
@@ -210,12 +222,15 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                             instanceof CableBlockEntity cable)) {
                 return;
             }
-            var conductor = block.conductor();
-            var electrical = conductor.electrical();
+            var electrical = block.transportProperties();
+            String material = block.isLuFiber() ? "lu_fiber" : block.conductor().materialId();
+            String specification = block.isLuFiber()
+                    ? "lu_fiber"
+                    : block.conductor().sourceSpecification();
             tooltip.add(Component.translatable(
                     "jade.cruciblecraft.cable",
-                    conductor.materialId(),
-                    conductor.sourceSpecification(),
+                    material,
+                    specification,
                     electrical.maxVoltage(),
                     electrical.maxAmperage(),
                     electrical.lossPerMeter(),
@@ -311,7 +326,8 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
         @Override public ResourceLocation getUid() { return UID; }
     }
 
-    private enum CrucibleComponentProvider implements IBlockComponentProvider {
+    private enum CrucibleComponentProvider
+            implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
         INSTANCE;
 
         private static final ResourceLocation UID =
@@ -328,40 +344,187 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                         Component.translatable("device.cruciblecraft.crucible"),
                         crucible.quarantinedCasingMaterialId()));
             }
-
-            boolean fahrenheit = "F".equalsIgnoreCase(ModConfig.TEMPERATURE_UNIT.get());
-            float celsius = crucible.temperatureCelsius();
-            float displayed = fahrenheit ? celsius * 9.0f / 5.0f + 32.0f : celsius;
             tooltip.add(Component.translatable(
                     "jade.cruciblecraft.casing",
                     Component.translatable("material.cruciblecraft." + crucible.casingMaterialId()),
                     crucible.casingTier(),
                     crucible.processingTier()));
+            CrucibleObservation observation =
+                    CrucibleObservation.fromServerData(accessor.getServerData());
             tooltip.add(Component.translatable(
-                    "jade.cruciblecraft.max_temperature",
-                    Math.round(fahrenheit
-                            ? crucible.casingMaxTemperature() * 9.0f / 5.0f + 32.0f
-                            : crucible.casingMaxTemperature()),
-                    fahrenheit ? "°F" : "°C"));
+                    "jade.cruciblecraft.temperature_k",
+                    kelvinText(observation.temperatureKelvin())));
             tooltip.add(Component.translatable(
-                    "jade.cruciblecraft.temperature",
-                    String.format(Locale.ROOT, "%.1f", displayed),
-                    fahrenheit ? "°F" : "°C"));
-            if (!crucible.composition().isEmpty()) {
-                String contents = crucible.composition().entrySet().stream()
-                        .map(entry -> entry.getKey() + ": " + entry.getValue() + " u")
-                        .collect(Collectors.joining(", "));
+                    "jade.cruciblecraft.buffered_heat",
+                    longText(observation.bufferedHeatHu())));
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.meltdown_at",
+                    kelvinText(observation.meltdownKelvin())));
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.fill_level",
+                    percentText(observation.fillPercent())));
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.render_state",
+                    renderText(observation)));
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.cache_slot",
+                    Component.translatable(
+                            "jade.cruciblecraft." + observation.cacheDisplay())));
+            if (observation.contents().available()
+                    && observation.contents().value() != null
+                    && !observation.contents().value().isBlank()) {
                 tooltip.add(Component.translatable(
                         "jade.cruciblecraft.contents",
-                        contents,
-                        crucible.totalUnits(),
-                        CrucibleBlockEntity.maxUnits()));
+                        observation.contents().value(),
+                        intText(observation.totalUnits()),
+                        intText(observation.maxUnits())));
+            }
+        }
+
+        @Override
+        public void appendServerData(CompoundTag data, BlockAccessor accessor) {
+            if (accessor.getBlockEntity() instanceof CrucibleBlockEntity crucible) {
+                CrucibleObservation.writeServerData(data, crucible);
             }
         }
 
         @Override
         public ResourceLocation getUid() {
             return UID;
+        }
+
+        private static Component kelvinText(ObservationField<Double> field) {
+            if (!field.available() || field.value() == null) {
+                return Component.translatable("jade.cruciblecraft.unavailable");
+            }
+            return Component.literal(String.format(
+                    Locale.ROOT,
+                    "%.2f",
+                    field.value()));
+        }
+
+        private static Component longText(ObservationField<Long> field) {
+            if (!field.available() || field.value() == null) {
+                return Component.translatable("jade.cruciblecraft.unavailable");
+            }
+            return Component.literal(Long.toString(field.value()));
+        }
+
+        private static Component intText(ObservationField<Integer> field) {
+            if (!field.available() || field.value() == null) {
+                return Component.translatable("jade.cruciblecraft.unavailable");
+            }
+            return Component.literal(Integer.toString(field.value()));
+        }
+
+        private static Component percentText(ObservationField<Integer> field) {
+            if (!field.available() || field.value() == null) {
+                return Component.translatable("jade.cruciblecraft.unavailable");
+            }
+            return Component.literal(field.value() + "%");
+        }
+
+        private static Component renderText(CrucibleObservation observation) {
+            String key = observation.renderKey();
+            if ("unavailable".equals(key)) {
+                return Component.translatable("jade.cruciblecraft.unavailable");
+            }
+            return Component.translatable("jade.cruciblecraft.render_state." + key);
+        }
+    }
+
+    private enum TransformerComponentProvider
+            implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
+        INSTANCE;
+
+        private static final ResourceLocation UID =
+                ResourceLocation.fromNamespaceAndPath(CrucibleCraft.MODID, "transformer");
+
+        @Override
+        public void appendTooltip(
+                ITooltip tooltip,
+                BlockAccessor accessor,
+                IPluginConfig config) {
+            if (!(accessor.getBlock() instanceof TransformerBlock block)) {
+                return;
+            }
+            TransformerObservation observation =
+                    TransformerObservation.fromBlockAndServerData(
+                            block.profile(),
+                            accessor.getServerData());
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.transformer.profile",
+                    observation.lowVoltage().toUpperCase(Locale.ROOT),
+                    observation.highVoltage().toUpperCase(Locale.ROOT)));
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.transformer.mode",
+                    observation.modeKnown()
+                            ? Component.translatable(
+                                    "jade.cruciblecraft.transformer.mode."
+                                            + observation.modeKey())
+                            : Component.translatable(
+                                    "jade.cruciblecraft.unavailable")));
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.transformer.buffer",
+                    fieldLong(observation.storedEu()),
+                    fieldLong(observation.capacityEu())));
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.transformer.activity",
+                    activityText(observation.active())));
+            for (Direction direction : Direction.values()) {
+                String name = direction.getSerializedName();
+                TransformerObservation.Side side =
+                        observation.sides().get(name);
+                tooltip.add(Component.translatable(
+                        "jade.cruciblecraft.transformer.side",
+                        Component.translatable("jade.cruciblecraft.side." + name),
+                        sideText(side)));
+            }
+        }
+
+        @Override
+        public void appendServerData(CompoundTag data, BlockAccessor accessor) {
+            if (accessor.getBlockEntity()
+                    instanceof TransformerBlockEntity transformer) {
+                TransformerObservation.writeServerData(data, transformer);
+            }
+        }
+
+        @Override
+        public ResourceLocation getUid() {
+            return UID;
+        }
+
+        private static Component fieldLong(ObservationField<Long> field) {
+            if (!field.available() || field.value() == null) {
+                return Component.translatable("jade.cruciblecraft.unavailable");
+            }
+            return Component.literal(Long.toString(field.value()));
+        }
+
+        private static Component activityText(ObservationField<Boolean> field) {
+            if (!field.available() || field.value() == null) {
+                return Component.translatable("jade.cruciblecraft.unavailable");
+            }
+            return Component.translatable(
+                    field.value()
+                            ? "jade.cruciblecraft.transformer.activity.active"
+                            : "jade.cruciblecraft.transformer.activity.idle");
+        }
+
+        private static Component sideText(TransformerObservation.Side side) {
+            if (side == null || !side.available()) {
+                return Component.translatable("jade.cruciblecraft.unavailable");
+            }
+            if (side.input()) {
+                return Component.translatable(
+                        "jade.cruciblecraft.transformer.input",
+                        side.voltage());
+            }
+            return Component.translatable(
+                    "jade.cruciblecraft.transformer.output",
+                    side.voltage(),
+                    side.packetMultiplier());
         }
     }
 

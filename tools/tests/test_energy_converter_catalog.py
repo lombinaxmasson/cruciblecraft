@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Energy converter catalog closed card: 169 loader rows, no placeholders."""
+"""Energy converter catalog closed card: 179 loader rows, no placeholders."""
 from __future__ import annotations
 
 import json
@@ -108,7 +108,8 @@ class EnergyConverterCatalogCardTest(unittest.TestCase):
 
     def test_closed_plan_stays_archived(self) -> None:
         names = sorted(path.name for path in ACTIVE.iterdir() if path.is_file())
-        self.assertEqual(["变压器详细计划.md"], names)
+        self.assertNotIn("能量转换机目录详细计划.md", names)
+        self.assertNotIn("变压器详细计划.md", names)
         self.assertTrue(PLAN.is_file())
         self.assertTrue((CLOSED / "能量系统余量详细计划.md").is_file())
         self.assertTrue((CLOSED / "显示CPU详细计划.md").is_file())
@@ -130,13 +131,15 @@ class EnergyConverterCatalogCardTest(unittest.TestCase):
     def test_kinds_and_tiers_are_not_processing_catalog(self) -> None:
         kinds = io.load_json(KINDS)
         tiers = io.load_json(TIERS)
-        self.assertEqual(16, len(kinds["kinds"]))
-        self.assertEqual(169, len(tiers["tiers"]))
+        self.assertEqual(18, len(kinds["kinds"]))
+        self.assertEqual(179, len(tiers["tiers"]))
         ids = {row["id"] for row in tiers["tiers"]}
         self.assertIn("cruciblecraft:bronze_burning_box_gas", ids)
         self.assertIn("cruciblecraft:bronze_boiler", ids)
         self.assertIn("cruciblecraft:bronze_fuel_engine", ids)
         self.assertIn("cruciblecraft:steel_galvanized_electric_motor", ids)
+        self.assertIn("cruciblecraft:steel_galvanized_electric_heater", ids)
+        self.assertIn("cruciblecraft:steel_galvanized_electric_engine", ids)
         self.assertNotIn("cruciblecraft:burning_gas_generator", ids)
         machine_tiers = json.dumps(io.load_json(MACHINE_TIERS), ensure_ascii=False)
         machine_kinds = json.dumps(io.load_json(MACHINE_KINDS), ensure_ascii=False)

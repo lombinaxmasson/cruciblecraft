@@ -24,6 +24,7 @@ class ZeroMilestoneNameScannerTest(unittest.TestCase):
             "GT6MaterialMetadata.CODEC.parse(ops, metadataValue)",
             "Gt6BasicMachineGui.ui(1, 1, 1, 1)",
             '"chinese_name": "Circuit T1 (Basic)"',
+            "T1 dynamo keeps registry id bronze_dynamo",
         ]
         for line in lines:
             self.assertEqual([], scanner.line_findings(line), line)

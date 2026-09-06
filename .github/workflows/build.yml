@@ -45,6 +45,9 @@ jobs:
       - name: Verify runtime Java
         run: python3 tools/verify.py integration --profile runtime-java --if-changed
 
+      - name: Verify recipe generators
+        run: python3 tools/verify.py integration --profile recipe-generators --if-changed
+
       - name: Verify semantic generators
         run: python3 tools/verify.py integration --profile semantic-generators --if-changed
 

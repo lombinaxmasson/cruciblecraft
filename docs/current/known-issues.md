@@ -26,12 +26,12 @@
 - 物流 live `logistics` profile 不再重导历史 pipe/cover 信封。那些 builder 在 legacy index。cover definitions 语义集合仍由物品网 Python 测试覆盖。
 - 历史 catalog/count/policy fixture 已按当前权威目录与 semantic ID map 对齐；日常硬门仍是 semantic-generators 的 builder `--check` 与 active Python suite。全量 `gradle test` 由 `runtime-java` 在 Java/测试/资源改动和 `release` 时跑，不是每次提交都跑。
 - 配方加载卡已关：fluidbed 无效 JSON 不再进 RecipeManager；allocation 轴为 `PENDING_MEASUREMENT`。生产 reload 10 s 硬顶未降低。旧 20.7 s 日志不得当 PASS。
-- 当前 `runtime-java` fresh 执行（857 tests）仍有 4 条 census failure，约 24 分钟后
-  `player-complete` 尚未启动：Ore generated recipes `1732 → 1745`（+13）、
-  `en_us` keys `8046 → 8144`（+98）、PLATES `3195 → 3196`（+1）以及
-  recipe types `5 → 6`（新增 `battery_cell_crafting`）。前 3 条由当前
-  [生成资源、注册与 Jade 第一切片](../history/card-plans/active/生成资源注册与Jade第一切片详细计划.md)
-  做 ownership 归属；电池 recipe type 保持 scope-external，不得由该卡吞并。
+- 当前 `runtime-java` fresh 执行（862 tests）唯一失败是
+  `ModRecipesRegistrationTest`（expected 5 types，actual 6
+  `battery_cell_crafting`）。owned census 已由
+  [生成资源、注册与 Jade 第一切片](../history/card-plans/closed/生成资源注册与Jade第一切片详细计划.md)
+  对齐为 generated recipes 1745、`en_us` 8176、PLATES 3196。电池 recipe type
+  保持 scope-external，不得由已关 Jade 卡吞并。
 
 ## Deferred capability
 

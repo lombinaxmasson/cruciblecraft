@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.compat.emi;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.Map;
@@ -79,6 +80,12 @@ class ProcessingEmiRegistrationPlanTest {
                         .mapToInt(spec -> spec.requireRecipeMap().entries().size())
                         .sum(),
                 actual.size());
+        assertEquals(plan.machines().size(), plan.census().configuredMachines());
+        assertEquals(actual.size(), plan.census().liveEntries());
+        assertEquals(actual.size(), plan.census().registeredEntries());
+        assertTrue(plan.census().exactMatch());
+        assertEquals(List.of(), plan.census().missingLiveIds());
+        assertEquals(List.of(), plan.census().extraRegisteredIds());
     }
 
     @Test

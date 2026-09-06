@@ -47,6 +47,44 @@ public final class TransformerBlockEntity extends BlockEntity
         return store.reversed();
     }
 
+    public boolean isInput(Direction side) {
+        Direction facing = facing();
+        return store.reversed() ? side != facing : side == facing;
+    }
+
+    public boolean isOutput(Direction side) {
+        Direction facing = facing();
+        return store.reversed() ? side == facing : side != facing;
+    }
+
+    public long storedEu() {
+        return store.stored();
+    }
+
+    public long capacityEu() {
+        return store.capacity();
+    }
+
+    public boolean activityActive() {
+        return activity.active();
+    }
+
+    public long sideVoltage(Direction side) {
+        if (side == null) {
+            return 0L;
+        }
+        return isInput(side)
+                ? profile.acceptRec(store.reversed())
+                : profile.emitRec(store.reversed());
+    }
+
+    public long sidePacketMultiplier(Direction side) {
+        if (side == null || !isOutput(side)) {
+            return 1L;
+        }
+        return profile.packetMultiplier(store.reversed());
+    }
+
     public void toggleReversed() {
         store.clear();
         store.setReversed(!store.reversed());
@@ -230,16 +268,6 @@ public final class TransformerBlockEntity extends BlockEntity
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
-    }
-
-    private boolean isInput(Direction side) {
-        Direction facing = facing();
-        return store.reversed() ? side != facing : side == facing;
-    }
-
-    private boolean isOutput(Direction side) {
-        Direction facing = facing();
-        return store.reversed() ? side == facing : side != facing;
     }
 
     private List<Direction> outputSides() {

@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.datagen;
 
 import java.util.Locale;
+import java.util.Map;
 import java.util.Optional;
 
 import com.masson.cruciblecraft.CrucibleCraft;
@@ -70,6 +71,16 @@ public class ModLanguageProvider extends LanguageProvider {
             addItem(ModItems.FLINT_KNIFE, "燧石刀");
             addItem(ModItems.PROGRAMMED_CIRCUIT, "编程电路");
             add("tooltip.cruciblecraft.circuit_config", "配置：%s");
+            add("tooltip.cruciblecraft.reactor_rod.empty", "空反应棒");
+            add("tooltip.cruciblecraft.reactor_rod.absorber", "中子吸收");
+            add("tooltip.cruciblecraft.reactor_rod.reflector", "中子反射");
+            add("tooltip.cruciblecraft.reactor_rod.moderator", "中子慢化");
+            add("tooltip.cruciblecraft.reactor_rod.nuclear", "裂变燃料");
+            add("tooltip.cruciblecraft.reactor_rod.depleted", "乏燃料");
+            add("tooltip.cruciblecraft.reactor_rod.breeder", "增殖棒");
+            add("tooltip.cruciblecraft.reactor_rod.product", "富集产物");
+            add("tooltip.cruciblecraft.reactor_rod.durability", "耐久：%s");
+            add("tooltip.cruciblecraft.reactor_rod.neutrons", "中子 邻 %s / 自 %s / 上限 %s / 除数 %s");
             add("screen.cruciblecraft.processing.status.unsupported_version",
                     "存档版本不受支持（版本 %s）");
             add("screen.cruciblecraft.processing.status.material_quarantined",
@@ -109,6 +120,7 @@ public class ModLanguageProvider extends LanguageProvider {
                     "罐 %s：%s，%s/%s mB");
             add("jade.cruciblecraft.cable",
                     "%s / %s：%s V，%s A，损耗 %s EU/方块，负载 %s A，烧毁 %s/16");
+            addJadeObservation();
             addJadePluginConfig();
             addEmptyToolHeadNames();
             add("tooltip.cruciblecraft.electrical.specification",
@@ -117,6 +129,8 @@ public class ModLanguageProvider extends LanguageProvider {
                     "额定：%s V，%s A，损耗 %s EU/方块");
             add("tooltip.cruciblecraft.electrical.insulated", "绝缘电缆");
             add("tooltip.cruciblecraft.electrical.bare", "裸线");
+            add("tooltip.cruciblecraft.lu_fiber_cable",
+                    "GT6 LU 光纤：无损传输");
             add("tooltip.cruciblecraft.pipe.specification",
                     "管道规格：%s");
             add("tooltip.cruciblecraft.pipe.fluid_rating",
@@ -135,6 +149,7 @@ public class ModLanguageProvider extends LanguageProvider {
             addItem(ModItems.PORTABLE_FLUID_TANK, "便携流体罐");
             addItem(ModItems.FLUID_CELL, "通用流体单元");
             addItem(ModItems.GAS_CELL, "通用气体单元");
+            addBatteryCellNames(true);
             add("tooltip.cruciblecraft.fluid_cell.empty",
                     "空流体单元（容量 %s mB）");
             add("tooltip.cruciblecraft.fluid_cell.contents",
@@ -183,6 +198,18 @@ public class ModLanguageProvider extends LanguageProvider {
                     "%s：%s/%s mB");
             addBlock(ModBlocks.CRUCIBLE, "坩埚");
             addBlock(ModBlocks.ANVIL, "锻造砧");
+            addBlock(ModBlocks.CERAMIC_MOLD, "陶瓷模具");
+            addBlock(ModBlocks.GAS_CLOUD, "气云");
+            addBlock(ModBlocks.SUBSURFACE_FLUID_DEPOSIT, "地下流体矿床");
+            addBlock(ModBlocks.LU_FIBER_CABLE, "LU 光纤线缆");
+            addBlock(ModBlocks.LASER_ENGRAVER, "激光雕刻机");
+            addBlock(ModBlocks.FUSION_REACTOR, "聚变反应堆");
+            addBlock(ModBlocks.REACTOR_CORE_1X1, "反应堆芯 1×1");
+            addBlock(ModBlocks.REACTOR_CORE_2X2, "反应堆芯 2×2");
+            addBlock(ModBlocks.TUNGSTENSTEEL_WALL, "钨钢墙");
+            addBlock(ModBlocks.STAINLESS_STEEL_WALL, "不锈钢墙");
+            addBlock(ModBlocks.LARGE_IRIDIUM_COIL, "大型铱线圈");
+            addReactorRodNames();
             addBlock(ModBlocks.MULTIBLOCK_CASING, "通用多方块外壳");
             addBlock(ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT, "多方块物品流体端口");
             addBlock(ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT, "多方块能源输入端口");
@@ -207,6 +234,7 @@ public class ModLanguageProvider extends LanguageProvider {
             add("emi.category.cruciblecraft.fuels_engine", "燃油发电");
             add("emi.category.cruciblecraft.fuels_gas", "燃气燃烧室");
             add("emi.category.cruciblecraft.fuels_fluidbed", "流化床燃烧室");
+            add("emi.category.cruciblecraft.fusion", "聚变反应堆");
             add("emi.cruciblecraft.processing.preserved", "保留，不消耗");
             add("emi.cruciblecraft.anvil.hits", "%s · %s 次击打");
             add("emi.cruciblecraft.anvil.hits_with_chance", "%s · %s 次击打 · %s%%");
@@ -448,6 +476,18 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.FIREBRICK, "Firebrick");
         addBlock(ModBlocks.CRUCIBLE, "Crucible");
         addBlock(ModBlocks.ANVIL, "Smithing Anvil");
+        addBlock(ModBlocks.CERAMIC_MOLD, "Ceramic Mold");
+        addBlock(ModBlocks.GAS_CLOUD, "Gas Cloud");
+        addBlock(ModBlocks.SUBSURFACE_FLUID_DEPOSIT, "Subsurface Fluid Deposit");
+        addBlock(ModBlocks.LU_FIBER_CABLE, "LU Fiber Cable");
+        addBlock(ModBlocks.LASER_ENGRAVER, "Laser Engraver");
+        addBlock(ModBlocks.FUSION_REACTOR, "Fusion Reactor");
+        addBlock(ModBlocks.REACTOR_CORE_1X1, "Reactor Core 1x1");
+        addBlock(ModBlocks.REACTOR_CORE_2X2, "Reactor Core 2x2");
+        addBlock(ModBlocks.TUNGSTENSTEEL_WALL, "Tungstensteel Wall");
+        addBlock(ModBlocks.STAINLESS_STEEL_WALL, "Stainless Steel Wall");
+        addBlock(ModBlocks.LARGE_IRIDIUM_COIL, "Large Iridium Coil");
+        addReactorRodNames();
         addBlock(ModBlocks.COKE_OVEN, "Coke Oven Controller");
         addBlock(ModBlocks.MULTIBLOCK_CASING, "Multiblock Casing");
         addBlock(
@@ -474,6 +514,17 @@ public class ModLanguageProvider extends LanguageProvider {
         addItem(ModItems.MATCH, "Match");
         addItem(ModItems.PROGRAMMED_CIRCUIT, "Programmed Circuit");
         add("tooltip.cruciblecraft.circuit_config", "Configuration: %s");
+        add("tooltip.cruciblecraft.reactor_rod.empty", "Empty reactor rod");
+        add("tooltip.cruciblecraft.reactor_rod.absorber", "Neutron absorber");
+        add("tooltip.cruciblecraft.reactor_rod.reflector", "Neutron reflector");
+        add("tooltip.cruciblecraft.reactor_rod.moderator", "Neutron moderator");
+        add("tooltip.cruciblecraft.reactor_rod.nuclear", "Fission fuel");
+        add("tooltip.cruciblecraft.reactor_rod.depleted", "Depleted fuel");
+        add("tooltip.cruciblecraft.reactor_rod.breeder", "Breeder rod");
+        add("tooltip.cruciblecraft.reactor_rod.product", "Enrichment product");
+        add("tooltip.cruciblecraft.reactor_rod.durability", "Durability: %s");
+        add("tooltip.cruciblecraft.reactor_rod.neutrons",
+                "Neutrons other %s / self %s / max %s / div %s");
         GtWoodCatalog.DEFINITIONS.forEach(wood ->
                 addItem(ModItems.gtWood(wood.id()), wood.englishName()));
         GtStoneCatalog.variants().forEach(stone ->
@@ -496,6 +547,7 @@ public class ModLanguageProvider extends LanguageProvider {
         addItem(ModItems.PORTABLE_FLUID_TANK, "Portable Fluid Tank");
         addItem(ModItems.FLUID_CELL, "Universal Fluid Cell");
         addItem(ModItems.GAS_CELL, "Universal Gas Cell");
+        addBatteryCellNames(false);
         add("tooltip.cruciblecraft.fluid_cell.empty",
                 "Empty fluid cell (capacity: %s mB)");
         add("tooltip.cruciblecraft.fluid_cell.contents",
@@ -543,6 +595,7 @@ public class ModLanguageProvider extends LanguageProvider {
                 "Tank %s: %s, %s/%s mB");
         add("jade.cruciblecraft.cable",
                 "%s / %s: %s V, %s A, loss %s EU/block, load %s A, burn %s/16");
+        addJadeObservation();
         addJadePluginConfig();
         addEmptyToolHeadNames();
         add("tooltip.cruciblecraft.electrical.specification",
@@ -552,6 +605,8 @@ public class ModLanguageProvider extends LanguageProvider {
         add("tooltip.cruciblecraft.electrical.insulated",
                 "Insulated cable");
         add("tooltip.cruciblecraft.electrical.bare", "Bare wire");
+        add("tooltip.cruciblecraft.lu_fiber_cable",
+                "GT6 LU fiber: lossless transport");
         add("tooltip.cruciblecraft.pipe.specification",
                 "Pipe specification: %s");
         add("tooltip.cruciblecraft.pipe.fluid_rating",
@@ -699,6 +754,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("emi.category.cruciblecraft.fuels_engine", "Fuel Engine");
         add("emi.category.cruciblecraft.fuels_gas", "Gas Burning Box");
         add("emi.category.cruciblecraft.fuels_fluidbed", "Fluid-Bed Burning Box");
+        add("emi.category.cruciblecraft.fusion", "Fusion Reactor");
         add("emi.cruciblecraft.processing.preserved", "Preserved, not consumed");
         add("emi.cruciblecraft.anvil.hits", "%s · %s hits");
         add("emi.cruciblecraft.anvil.hits_with_chance", "%s · %s hits · %s%%");
@@ -873,6 +929,61 @@ public class ModLanguageProvider extends LanguageProvider {
                 chinese ? "物品管道" : "Item Pipe");
         add("config.jade.plugin_cruciblecraft.processing_machine",
                 chinese ? "加工机" : "Processing Machine");
+        add("config.jade.plugin_cruciblecraft.transformer",
+                chinese ? "变压器" : "Transformer");
+    }
+
+    private void addJadeObservation() {
+        add("jade.cruciblecraft.unavailable",
+                chinese ? "不可用" : "unavailable");
+        add("jade.cruciblecraft.temperature_k",
+                chinese ? "温度：%s K" : "Temperature: %s K");
+        add("jade.cruciblecraft.buffered_heat",
+                chinese ? "缓冲热量：%s HU" : "Buffered heat: %s HU");
+        add("jade.cruciblecraft.meltdown_at",
+                chinese ? "熔毁点：%s K" : "Meltdown at: %s K");
+        add("jade.cruciblecraft.fill_level",
+                chinese ? "填充：%s" : "Fill level: %s");
+        add("jade.cruciblecraft.render_state",
+                chinese ? "状态：%s" : "Render state: %s");
+        add("jade.cruciblecraft.render_state.empty",
+                chinese ? "空" : "empty");
+        add("jade.cruciblecraft.render_state.solid",
+                chinese ? "固态" : "solid");
+        add("jade.cruciblecraft.render_state.molten",
+                chinese ? "熔融" : "molten");
+        add("jade.cruciblecraft.render_state.active",
+                chinese ? "工作中" : "active");
+        add("jade.cruciblecraft.cache_slot",
+                chinese ? "缓存槽：%s" : "Cache slot: %s");
+        add("jade.cruciblecraft.transformer.profile",
+                chinese ? "档位：%s → %s" : "Profile: %s → %s");
+        add("jade.cruciblecraft.transformer.mode",
+                chinese ? "模式：%s" : "Mode: %s");
+        add("jade.cruciblecraft.transformer.mode.step_down",
+                chinese ? "降压（正面高压输入）" : "step-down (front HV in)");
+        add("jade.cruciblecraft.transformer.mode.step_up",
+                chinese ? "升压（正面高压输出）" : "step-up (front HV out)");
+        add("jade.cruciblecraft.transformer.buffer",
+                chinese ? "缓冲：%s / %s EU" : "Buffer: %s / %s EU");
+        add("jade.cruciblecraft.transformer.activity",
+                chinese ? "活动：%s" : "Activity: %s");
+        add("jade.cruciblecraft.transformer.activity.active",
+                chinese ? "工作" : "active");
+        add("jade.cruciblecraft.transformer.activity.idle",
+                chinese ? "空闲" : "idle");
+        add("jade.cruciblecraft.transformer.side",
+                chinese ? "%s：%s" : "%s: %s");
+        add("jade.cruciblecraft.transformer.input",
+                chinese ? "输入 %s EU" : "input %s EU");
+        add("jade.cruciblecraft.transformer.output",
+                chinese ? "输出 %s EU ×%s" : "output %s EU ×%s");
+        add("jade.cruciblecraft.side.down", chinese ? "下" : "down");
+        add("jade.cruciblecraft.side.up", chinese ? "上" : "up");
+        add("jade.cruciblecraft.side.north", chinese ? "北" : "north");
+        add("jade.cruciblecraft.side.south", chinese ? "南" : "south");
+        add("jade.cruciblecraft.side.west", chinese ? "西" : "west");
+        add("jade.cruciblecraft.side.east", chinese ? "东" : "east");
     }
 
     private void addEmptyToolHeadNames() {
@@ -891,6 +1002,62 @@ public class ModLanguageProvider extends LanguageProvider {
             case "machine_casing" -> "Machine Casing";
             case "machine_casing_double" -> "Double Machine Casing";
             default -> title(serializedName);
+        };
+    }
+
+    private void addReactorRodNames() {
+        for (com.masson.cruciblecraft.nuclear.ReactorRodCatalog.Entry entry :
+                com.masson.cruciblecraft.nuclear.ReactorRodCatalog.entries()) {
+            addItem(ModItems.reactorRod(entry.id().getPath()), rodName(entry));
+        }
+    }
+
+    private String rodName(
+            com.masson.cruciblecraft.nuclear.ReactorRodCatalog.Entry entry) {
+        if (!chinese) {
+            return title(entry.id().getPath());
+        }
+        String material = MaterialZhNames.material(entry.material())
+                .orElseGet(() -> rodMaterialZh(entry.material()));
+        return switch (entry.kind()) {
+            case EMPTY -> "空反应棒";
+            case ABSORBER -> "中子吸收棒";
+            case REFLECTOR -> "中子反射棒";
+            case MODERATOR -> "中子慢化棒";
+            case NUCLEAR -> material + "燃料棒";
+            case DEPLETED -> material + "乏燃料棒";
+            case BREEDER -> material + "增殖棒";
+            case PRODUCT -> material + "富集棒";
+        };
+    }
+
+    private static String rodMaterialZh(String material) {
+        return switch (material) {
+            case "zirconium" -> "锆";
+            case "cd_in_ag_alloy" -> "镉铟银合金";
+            case "beryllium" -> "铍";
+            case "graphite" -> "石墨";
+            case "thorium" -> "钍";
+            case "cyanite" -> "青晶石";
+            case "uranium" -> "铀-238";
+            case "uranium235" -> "铀-235";
+            case "uranium233" -> "铀-233";
+            case "yellorium" -> "黄铀";
+            case "plutonium" -> "钚-244";
+            case "plutonium241" -> "钚-241";
+            case "plutonium243" -> "钚-243";
+            case "plutonium239" -> "钚-239";
+            case "blutonium" -> "蓝钚";
+            case "americium" -> "镅-245";
+            case "americium241" -> "镅-241";
+            case "ludicrite" -> "狂金";
+            case "cobalt60" -> "钴-60";
+            case "naquadah_enriched" -> "富集硅岩";
+            case "naquadria" -> "超能硅岩";
+            case "naquadah" -> "硅岩";
+            case "lithium" -> "锂";
+            case "tritium" -> "氚";
+            default -> material;
         };
     }
 
@@ -1055,6 +1222,44 @@ public class ModLanguageProvider extends LanguageProvider {
             case "puv1" -> "PUV1";
             default -> voltage.toUpperCase(Locale.ROOT);
         };
+    }
+
+    private void addBatteryCellNames(boolean chinese) {
+        Map<String, String> names = chinese
+                ? Map.of(
+                        "lead_acid_cell_empty", "铅酸电池空芯",
+                        "lead_acid_cell_filled", "铅酸电池灌液芯",
+                        "alkaline_cell_empty", "碱性电池空芯",
+                        "alkaline_cell_filled", "碱性电池灌液芯",
+                        "nickel_cadmium_cell_empty", "镍镉电池空芯",
+                        "nickel_cadmium_cell_filled", "镍镉电池灌液芯",
+                        "lithium_cobalt_cell_empty", "锂钴电池空芯",
+                        "lithium_cobalt_cell_filled", "锂钴电池灌液芯",
+                        "lithium_manganese_cell_empty", "锂锰电池空芯",
+                        "lithium_manganese_cell_filled", "锂锰电池灌液芯")
+                : Map.of(
+                        "lead_acid_cell_empty", "Lead-Acid Cell (Empty)",
+                        "lead_acid_cell_filled", "Lead-Acid Cell (Filled)",
+                        "alkaline_cell_empty", "Alkaline Button Cell (Empty)",
+                        "alkaline_cell_filled", "Alkaline Button Cell (Filled)",
+                        "nickel_cadmium_cell_empty", "Nickel-Cadmium Cell (Empty)",
+                        "nickel_cadmium_cell_filled", "Nickel-Cadmium Cell (Filled)",
+                        "lithium_cobalt_cell_empty", "Lithium-Cobalt Cell (Empty)",
+                        "lithium_cobalt_cell_filled", "Lithium-Cobalt Cell (Filled)",
+                        "lithium_manganese_cell_empty", "Lithium-Manganese Cell (Empty)",
+                        "lithium_manganese_cell_filled", "Lithium-Manganese Cell (Filled)");
+        names.forEach((path, name) ->
+                addItem(ModItems.batteryCell(path), name));
+        add(
+                "tooltip.cruciblecraft.battery_cell.empty",
+                chinese
+                        ? "空芯：右键对应流体源灌入 %s mB（%s）"
+                        : "Empty cell: right-click its fluid source to fill %s mB (%s)");
+        add(
+                "tooltip.cruciblecraft.battery_cell.filled",
+                chinese
+                        ? "已灌入固定流体：%s mB（%s）"
+                        : "Filled with fixed chemistry: %s mB (%s)");
     }
 
     private String batteryDisplayName(

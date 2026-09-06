@@ -16,16 +16,25 @@ import net.minecraft.world.level.Level;
 
 /** Revalidated terminal deliveries and per-segment load mutations. */
 public record CableTransferPlan(
+        EnergyType energyType,
         long acceptedAmperes,
         List<TerminalDelivery> terminals,
         List<CableLoad> cableLoads) {
     public CableTransferPlan {
+        Objects.requireNonNull(energyType, "energyType");
         if (acceptedAmperes < 0L) {
             throw new IllegalArgumentException(
                     "Accepted cable amperage must be non-negative");
         }
         terminals = List.copyOf(terminals);
         cableLoads = List.copyOf(cableLoads);
+    }
+
+    public CableTransferPlan(
+            long acceptedAmperes,
+            List<TerminalDelivery> terminals,
+            List<CableLoad> cableLoads) {
+        this(EnergyType.ELECTRIC, acceptedAmperes, terminals, cableLoads);
     }
 
     public long execute(Level level) {
@@ -36,7 +45,7 @@ public record CableTransferPlan(
         long[] actualByTerminal = new long[terminals.size()];
         long delivered = 0L;
         for (int index = 0; index < terminals.size(); index++) {
-            long actual = terminals.get(index).execute(level);
+            long actual = terminals.get(index).execute(level, energyType);
             actualByTerminal[index] = actual;
             delivered = Math.addExact(delivered, actual);
         }
@@ -88,7 +97,7 @@ public record CableTransferPlan(
             }
         }
 
-        private long execute(Level level) {
+        private long execute(Level level, EnergyType energyType) {
             if (!level.hasChunkAt(position)) {
                 EnergyTransferDiagnostics.warnOnce(
                         "terminal execution",
@@ -119,20 +128,23 @@ public record CableTransferPlan(
                 return 0L;
             }
             long simulated = insertBounded(
-                    "terminal simulation", amperes, true);
+                    "terminal simulation", amperes, true, energyType);
             if (simulated <= 0L) {
                 return 0L;
             }
             return insertBounded(
-                    "terminal execution", simulated, false);
+                    "terminal execution", simulated, false, energyType);
         }
 
         private long insertBounded(
-                String operation, long requested, boolean simulate) {
+                String operation,
+                long requested,
+                boolean simulate,
+                EnergyType energyType) {
             long actual;
             try {
                 actual = handler.insert(
-                        EnergyType.ELECTRIC,
+                        energyType,
                         packetSize,
                         requested,
                         side,

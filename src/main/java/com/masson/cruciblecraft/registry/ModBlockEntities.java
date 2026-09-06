@@ -11,6 +11,8 @@ import com.masson.cruciblecraft.content.blockentity.CrusherBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DynamoBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ElectricMotorBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.ElectricHeaterBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.ElectricEngineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidDepositExtractorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
@@ -29,6 +31,9 @@ import com.masson.cruciblecraft.content.blockentity.LargeCentrifugeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DistillationTowerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeBoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeCrucibleBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.LaserEngraverBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FusionReactorBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.ReactorCoreBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LogisticsCoreBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LogisticsCoreWallBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.TankBlockEntity;
@@ -182,6 +187,24 @@ public final class ModBlockEntities {
                                     .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,
+            BlockEntityType<ElectricHeaterBlockEntity>>
+                    ELECTRIC_HEATER = BLOCK_ENTITIES.register(
+                            "electric_heater",
+                            () -> BlockEntityType.Builder.of(
+                                    ElectricHeaterBlockEntity::new,
+                                    ModBlocks.converterBlocks("electric_heater"))
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<ElectricEngineBlockEntity>>
+                    ELECTRIC_ENGINE = BLOCK_ENTITIES.register(
+                            "electric_engine",
+                            () -> BlockEntityType.Builder.of(
+                                    ElectricEngineBlockEntity::new,
+                                    ModBlocks.converterBlocks("electric_engine"))
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
             BlockEntityType<RotationalAxleBlockEntity>>
                     ROTATIONAL_AXLE = BLOCK_ENTITIES.register(
                             "rotational_axle",
@@ -216,6 +239,31 @@ public final class ModBlockEntities {
                     () -> BlockEntityType.Builder.of(
                             CableBlockEntity::new,
                             ModBlocks.electricalConductorBlockArray()).build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<LaserEngraverBlockEntity>>
+            LASER_ENGRAVER = BLOCK_ENTITIES.register(
+                    "laser_engraver",
+                    () -> BlockEntityType.Builder.of(
+                            LaserEngraverBlockEntity::new,
+                            ModBlocks.LASER_ENGRAVER.get()).build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<FusionReactorBlockEntity>>
+            FUSION_REACTOR = BLOCK_ENTITIES.register(
+                    "fusion_reactor",
+                    () -> BlockEntityType.Builder.of(
+                            FusionReactorBlockEntity::new,
+                            ModBlocks.FUSION_REACTOR.get()).build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<ReactorCoreBlockEntity>>
+            REACTOR_CORE = BLOCK_ENTITIES.register(
+                    "reactor_core",
+                    () -> BlockEntityType.Builder.of(
+                            ReactorCoreBlockEntity::new,
+                            ModBlocks.REACTOR_CORE_1X1.get(),
+                            ModBlocks.REACTOR_CORE_2X2.get()).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<FluidPipeBlockEntity>>
             FLUID_PIPE = BLOCK_ENTITIES.register(
                     "fluid_pipe",

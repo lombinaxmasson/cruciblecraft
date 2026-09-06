@@ -41,6 +41,7 @@ def check() -> list[str]:
     except ValueError as exc:
         return [str(exc)]
     errors = art.check_payload(document)
+    errors.extend(art.check_models_and_pngs(document))
     if art.BUNDLED_INDEX.is_file():
         bundled = census.load_json(art.BUNDLED_INDEX)
         if bundled != art.bundled_index(document):

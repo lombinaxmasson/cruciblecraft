@@ -176,6 +176,10 @@ neoForge {
                 def waveNs = 'cruciblecraft_wave_' + waveSlug.replace('/', '_').replace('-', '_')
                 systemProperty 'neoforge.enabledGameTestNamespaces', waveNs
                 gameDirectory = project.file('run-wave-' + waveSlug.replace('/', '-'))
+            } else if (providers.gradleProperty('gameTestNamespaces').isPresent()) {
+                systemProperty 'neoforge.enabledGameTestNamespaces',
+                        providers.gradleProperty('gameTestNamespaces').get()
+                gameDirectory = project.file('run-game-test-filtered')
             } else {
                 systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
             }
@@ -205,7 +209,9 @@ neoForge {
                     .getOrElse(file('src/generated/resources/'))
             programArguments.addAll '--mod', project.mod_id, '--all', '--output',
                     datagenOutput.getAbsolutePath(), '--existing',
-                    file('src/main/resources/').getAbsolutePath()
+                    file('src/main/resources/').getAbsolutePath(),
+                    '--existing',
+                    file('src/generated/resources/').getAbsolutePath()
         }
 
         // applies to all the run configs above
@@ -267,9 +273,31 @@ def normalizeResourceJsonNewlines = tasks.register(
 
 tasks.named('runData').configure {
     doFirst {
-        // Datagen is authoritative for this directory; remove stale files and
-        // empty directory shells before producing the next complete snapshot.
-        delete file('src/generated/resources')
+        // Isolated runs may wipe their own output directory. The committed
+        // generated tree also holds Python block-art models and must not be
+        // deleted unconditionally.
+        def isolated = providers.gradleProperty('datagenOutput')
+        if (isolated.isPresent()) {
+            def output = file(isolated.get())
+            def committed = file('src/generated/resources')
+            if (output.canonicalFile != committed.canonicalFile) {
+                delete output
+            }
+        }
+    }
+    doLast {
+        // HashCache drops previously Java-emitted gt_block/gt_stone models
+        // when this run only references Python files via getExistingFile.
+        def isolated = providers.gradleProperty('datagenOutput')
+        def committed = file('src/generated/resources')
+        def isolatedRun = isolated.isPresent() &&
+                file(isolated.get()).canonicalFile != committed.canonicalFile
+        if (!isolatedRun) {
+            exec {
+                commandLine 'python', 'tools/build_block_art.py', '--write'
+                workingDir rootDir
+            }
+        }
     }
     finalizedBy normalizeResourceJsonNewlines
 }

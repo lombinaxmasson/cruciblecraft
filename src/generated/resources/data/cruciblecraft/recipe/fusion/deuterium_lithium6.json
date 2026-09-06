@@ -1,0 +1,52 @@
+{
+  "type": "cruciblecraft:gt_recipe",
+  "duration": 3336,
+  "eut": -8192,
+  "fluid_inputs": [
+    {
+      "amount": 1000,
+      "id": "cruciblecraft:deuterium"
+    },
+    {
+      "amount": 144,
+      "id": "cruciblecraft:molten_lithium6"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 375,
+      "id": "cruciblecraft:helium"
+    },
+    {
+      "amount": 125,
+      "id": "cruciblecraft:helium3"
+    },
+    {
+      "amount": 18,
+      "id": "cruciblecraft:molten_lithium"
+    },
+    {
+      "amount": 18,
+      "id": "cruciblecraft:molten_beryllium7"
+    }
+  ],
+  "item_input_actions": [
+    {
+      "kind": "preserve"
+    }
+  ],
+  "item_input_counts": [
+    0
+  ],
+  "item_inputs": [
+    {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:circuit_config": 2
+      },
+      "items": "cruciblecraft:programmed_circuit"
+    }
+  ],
+  "map": "cruciblecraft:fusion",
+  "special_value": 437256192
+}

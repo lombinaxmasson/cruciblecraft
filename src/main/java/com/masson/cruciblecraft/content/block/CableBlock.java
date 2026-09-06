@@ -9,6 +9,7 @@ import org.jetbrains.annotations.Nullable;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.content.blockentity.CableBlockEntity;
 import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
+import com.masson.cruciblecraft.material.def.GT6MaterialMetadata.ElectricalProperties;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModCapabilities;
 
@@ -36,7 +37,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-/** One immutable material/form conductor with six derived connection bits. */
+/** One immutable conductor with six derived EU/LU connection bits. */
 public final class CableBlock extends Block implements EntityBlock {
     public static final BooleanProperty DOWN = BooleanProperty.create("down");
     public static final BooleanProperty UP = BooleanProperty.create("up");
@@ -61,25 +62,42 @@ public final class CableBlock extends Block implements EntityBlock {
     }
 
     private final ElectricalConductorCatalog.Entry conductor;
+    private final ElectricalProperties transportProperties;
+    private final boolean luFiber;
     private final VoxelShape[] shapes;
 
     public CableBlock(
             ElectricalConductorCatalog.Entry conductor,
             Properties properties) {
+        this(
+                conductor,
+                properties,
+                conductor.electrical(),
+                false,
+                widthFor(conductor.sourceSpecification()));
+    }
+
+    /** Creates the source-backed, lossless LU fiber wire. */
+    public static CableBlock luFiber(Properties properties) {
+        return new CableBlock(
+                null,
+                properties,
+                new ElectricalProperties(
+                        Long.MAX_VALUE, Long.MAX_VALUE, 0L, true, false),
+                true,
+                2);
+    }
+
+    private CableBlock(
+            ElectricalConductorCatalog.Entry conductor,
+            Properties properties,
+            ElectricalProperties transportProperties,
+            boolean luFiber,
+            int width) {
         super(properties);
         this.conductor = conductor;
-        int width = conductor.bareWire()
-                ? 2
-                : switch (conductor.sourceSpecification()) {
-                    case "cableGt01" -> 4;
-                    case "cableGt02" -> 6;
-                    case "cableGt04" -> 8;
-                    case "cableGt08" -> 10;
-                    case "cableGt12" -> 12;
-                    default -> throw new IllegalArgumentException(
-                            "Unsupported conductor specification "
-                                    + conductor.sourceSpecification());
-                };
+        this.transportProperties = transportProperties;
+        this.luFiber = luFiber;
         this.shapes = shapesForWidth(width);
         BlockState state = stateDefinition.any();
         for (BooleanProperty property : PROPERTY_BY_DIRECTION.values()) {
@@ -89,7 +107,29 @@ public final class CableBlock extends Block implements EntityBlock {
     }
 
     public ElectricalConductorCatalog.Entry conductor() {
+        if (conductor == null) {
+            throw new IllegalStateException(
+                    "LU fiber has no material conductor identity");
+        }
         return conductor;
+    }
+
+    public ElectricalProperties transportProperties() {
+        return transportProperties;
+    }
+
+    public boolean supports(EnergyType type) {
+        return luFiber
+                ? type == EnergyType.LU
+                : type == EnergyType.ELECTRIC;
+    }
+
+    public boolean isLuFiber() {
+        return luFiber;
+    }
+
+    public boolean bareWire() {
+        return !luFiber && conductor.bareWire();
     }
 
     public static boolean isConnected(BlockState state, Direction direction) {
@@ -120,7 +160,12 @@ public final class CableBlock extends Block implements EntityBlock {
         if (!level.hasChunkAt(neighborPos)) {
             return false;
         }
-        if (level.getBlockState(neighborPos).getBlock() instanceof CableBlock) {
+        if (level.getBlockState(neighborPos).getBlock()
+                instanceof CableBlock neighbor
+                && ((supports(EnergyType.ELECTRIC)
+                                && neighbor.supports(EnergyType.ELECTRIC))
+                        || (supports(EnergyType.LU)
+                                && neighbor.supports(EnergyType.LU)))) {
             return true;
         }
         if (!(level instanceof Level world)) {
@@ -131,7 +176,14 @@ public final class CableBlock extends Block implements EntityBlock {
                 neighborPos,
                 direction.getOpposite());
         return handler != null
-                && handler.handles(EnergyType.ELECTRIC, direction.getOpposite());
+                && ((supports(EnergyType.ELECTRIC)
+                                && handler.handles(
+                                        EnergyType.ELECTRIC,
+                                        direction.getOpposite()))
+                        || (supports(EnergyType.LU)
+                                && handler.handles(
+                                        EnergyType.LU,
+                                        direction.getOpposite())));
     }
 
     @Override
@@ -269,5 +321,18 @@ public final class CableBlock extends Block implements EntityBlock {
                                 currentState,
                                 (CableBlockEntity) blockEntity)
                 : null;
+    }
+
+    private static int widthFor(String specification) {
+        return switch (specification) {
+            case "wireGt01" -> 2;
+            case "cableGt01" -> 4;
+            case "cableGt02" -> 6;
+            case "cableGt04" -> 8;
+            case "cableGt08" -> 10;
+            case "cableGt12" -> 12;
+            default -> throw new IllegalArgumentException(
+                    "Unsupported conductor specification " + specification);
+        };
     }
 }

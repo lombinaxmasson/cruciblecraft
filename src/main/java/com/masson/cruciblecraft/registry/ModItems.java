@@ -30,6 +30,7 @@ import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.BathIdentityCatalog;
 import com.masson.cruciblecraft.content.item.SemanticObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtStoneCatalog;
+import com.masson.cruciblecraft.content.item.BatteryCellItem;
 import com.masson.cruciblecraft.content.item.FlintKnifeItem;
 import com.masson.cruciblecraft.content.item.HopperBlockItem;
 import com.masson.cruciblecraft.content.storage.StorageVariant;
@@ -47,9 +48,12 @@ import com.masson.cruciblecraft.content.item.MaterialShovelItem;
 import com.masson.cruciblecraft.content.item.MaterialSwordItem;
 import com.masson.cruciblecraft.content.item.MaterialWireCutterItem;
 import com.masson.cruciblecraft.content.item.MaterialWrenchItem;
+import com.masson.cruciblecraft.content.item.LuFiberCableItem;
 import com.masson.cruciblecraft.content.item.PortableFluidTankItem;
 import com.masson.cruciblecraft.content.item.ProgrammedCircuitItem;
+import com.masson.cruciblecraft.content.item.ReactorRodItem;
 import com.masson.cruciblecraft.content.item.PipeBlockItem;
+import com.masson.cruciblecraft.nuclear.ReactorRodCatalog;
 import com.masson.cruciblecraft.content.item.PipeCoverItem;
 import com.masson.cruciblecraft.content.item.SmithingHammerItem;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
@@ -89,6 +93,37 @@ public final class ModItems {
             MATERIAL_ORE_ITEMS = new LinkedHashMap<>();
 
     public static final DeferredItem<BlockItem> FIREBRICK = ITEMS.registerSimpleBlockItem("firebrick", ModBlocks.FIREBRICK);
+    public static final DeferredItem<LuFiberCableItem> LU_FIBER_CABLE =
+            ITEMS.register(
+                    "lu_fiber_cable",
+                    () -> new LuFiberCableItem(
+                            ModBlocks.LU_FIBER_CABLE.get(),
+                            new Item.Properties()));
+    public static final DeferredItem<BlockItem> LASER_ENGRAVER =
+            ITEMS.registerSimpleBlockItem(
+                    "laser_engraver",
+                    ModBlocks.LASER_ENGRAVER);
+    public static final DeferredItem<BlockItem> FUSION_REACTOR =
+            ITEMS.registerSimpleBlockItem(
+                    "fusion_reactor",
+                    ModBlocks.FUSION_REACTOR);
+    public static final DeferredItem<BlockItem> REACTOR_CORE_1X1 =
+            ITEMS.registerSimpleBlockItem(
+                    "reactor_core_1x1",
+                    ModBlocks.REACTOR_CORE_1X1);
+    public static final DeferredItem<BlockItem> REACTOR_CORE_2X2 =
+            ITEMS.registerSimpleBlockItem(
+                    "reactor_core_2x2",
+                    ModBlocks.REACTOR_CORE_2X2);
+    public static final DeferredItem<BlockItem> TUNGSTENSTEEL_WALL =
+            ITEMS.registerSimpleBlockItem(
+                    "tungstensteel_wall", ModBlocks.TUNGSTENSTEEL_WALL);
+    public static final DeferredItem<BlockItem> STAINLESS_STEEL_WALL =
+            ITEMS.registerSimpleBlockItem(
+                    "stainless_steel_wall", ModBlocks.STAINLESS_STEEL_WALL);
+    public static final DeferredItem<BlockItem> LARGE_IRIDIUM_COIL =
+            ITEMS.registerSimpleBlockItem(
+                    "large_iridium_coil", ModBlocks.LARGE_IRIDIUM_COIL);
     public static final DeferredItem<MaterialMachineBlockItem> CRUCIBLE = ITEMS.register(
             "crucible",
             () -> new MaterialMachineBlockItem(
@@ -180,6 +215,16 @@ public final class ModItems {
             ITEMS.register(
                     "programmed_circuit",
                     () -> new ProgrammedCircuitItem(new Item.Properties()));
+    private static final Map<String, DeferredItem<ReactorRodItem>> REACTOR_RODS =
+            registerReactorRods();
+    private static final List<BatteryCellSpec> BATTERY_CELL_SPECS = List.of(
+            new BatteryCellSpec("lead_acid", "sulfuric_acid", 288),
+            new BatteryCellSpec("alkaline", "water_distilled", 1_000),
+            new BatteryCellSpec("nickel_cadmium", "water_distilled", 1_000),
+            new BatteryCellSpec("lithium_cobalt", "hydrochloric_acid", 288),
+            new BatteryCellSpec("lithium_manganese", "hydrogen_fluoride", 288));
+    private static final Map<String, DeferredItem<BatteryCellItem>>
+            BATTERY_CELL_ITEMS = registerBatteryCellItems();
     private static final Map<ResourceLocation, DeferredItem<Item>> BATH_MTE_ITEMS =
             registerBathMteItems();
     private static final Map<ResourceLocation, DeferredItem<Item>> SMELTER_MTE_ITEMS =
@@ -869,6 +914,84 @@ public final class ModItems {
             batteryItemsById() {
         return BATTERY_ITEMS;
     }
+
+    private static Map<String, DeferredItem<ReactorRodItem>>
+            registerReactorRods() {
+        LinkedHashMap<String, DeferredItem<ReactorRodItem>> items =
+                new LinkedHashMap<>();
+        for (ReactorRodCatalog.Entry entry : ReactorRodCatalog.entries()) {
+            String path = entry.id().getPath();
+            DeferredItem<ReactorRodItem> item = ITEMS.register(
+                    path,
+                    () -> new ReactorRodItem(entry, new Item.Properties()));
+            if (items.put(path, item) != null) {
+                throw new IllegalStateException("Duplicate reactor rod " + path);
+            }
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    private static Map<String, DeferredItem<BatteryCellItem>>
+            registerBatteryCellItems() {
+        LinkedHashMap<String, DeferredItem<BatteryCellItem>> items =
+                new LinkedHashMap<>();
+        for (BatteryCellSpec spec : BATTERY_CELL_SPECS) {
+            String emptyPath = spec.family() + "_cell_empty";
+            String filledPath = spec.family() + "_cell_filled";
+            DeferredItem<BatteryCellItem> empty = ITEMS.register(
+                    emptyPath,
+                    () -> new BatteryCellItem(
+                            new Item.Properties(),
+                            false,
+                            spec.fluidMaterial(),
+                            spec.fluidAmount(),
+                            () -> items.get(filledPath).get()));
+            DeferredItem<BatteryCellItem> filled = ITEMS.register(
+                    filledPath,
+                    () -> new BatteryCellItem(
+                            new Item.Properties(),
+                            true,
+                            spec.fluidMaterial(),
+                            spec.fluidAmount(),
+                            () -> items.get(emptyPath).get()));
+            if (items.put(emptyPath, empty) != null
+                    || items.put(filledPath, filled) != null) {
+                throw new IllegalStateException(
+                        "Duplicate battery cell item " + spec.family());
+            }
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    public static Map<String, DeferredItem<BatteryCellItem>>
+            batteryCellItemsByPath() {
+        return BATTERY_CELL_ITEMS;
+    }
+
+    public static DeferredItem<ReactorRodItem> reactorRod(String path) {
+        DeferredItem<ReactorRodItem> item = REACTOR_RODS.get(path);
+        if (item == null) {
+            throw new IllegalArgumentException("Unknown reactor rod " + path);
+        }
+        return item;
+    }
+
+    public static Collection<DeferredItem<ReactorRodItem>> reactorRods() {
+        return REACTOR_RODS.values();
+    }
+
+    public static DeferredItem<BatteryCellItem> batteryCell(String path) {
+        DeferredItem<BatteryCellItem> item = BATTERY_CELL_ITEMS.get(path);
+        if (item == null) {
+            throw new IllegalArgumentException("Unknown battery cell " + path);
+        }
+        return item;
+    }
+
+    private record BatteryCellSpec(
+            String family,
+            String fluidMaterial,
+            int fluidAmount) {}
 
     private static Map<ResourceLocation, DeferredItem<TransformerBlockItem>>
             registerTransformerItems() {

@@ -15,6 +15,7 @@ python tools/verify.py dev
 python tools/verify.py integration --profile verification
 python tools/verify.py integration --profile runtime-java
 python tools/verify.py integration --profile semantic-generators
+python tools/verify.py integration --profile recipe-generators
 python tools/verify.py integration --profile capability-runtime
 python tools/verify.py integration --profile player-complete
 python tools/verify.py promotion
@@ -24,14 +25,19 @@ python tools/verify.py release
 - `dev` 根据显式 `--path` 或 Git dirty paths 选择 active profile。
 - `runtime-java` 跑全量 `gradle test`，不跑 datagen。普通 runtime Java / 测试 /
   `src/main/resources` 只命中这个 profile。
-- `semantic-generators` 跑 recipe builders、相关 Python tests 和两次 `runData`。
-  命中面是 datagen provider、生成树和配方工具；不跑 JUnit。
-- 改 datagen provider 会同时命中两个 profile：JUnit 加上双 datagen。
+- `semantic-generators` 跑 generated-art / resource-gate builders、相关 Python
+  tests 和两次 `runData`。命中面是 datagen provider、`src/generated` 和贴图
+  工具；不跑 JUnit，也不重编已封板的 semantic recipe wave。
+- `recipe-generators` 跑 material-form 与 semantic recipe `--check`。命中面是
+  `tools/recipe_bulk`、`src/recipe_generated` 和 compact policy 树。
+- 改 datagen provider 会同时命中 `runtime-java` 与 `semantic-generators`：
+  JUnit 加上双 datagen。
 - `integration --profile` 默认 fresh 执行该 profile 的 builders、Python tests、
-  Gradle tasks 和 datagen；不复用旧 PASS。CI 对 `runtime-java` 与
-  `semantic-generators` 加 `--if-changed`：有 diff base 且本 profile 未命中则
-  SKIP；没有 diff base（无 `GITHUB_BASE_REF`，且 `GITHUB_EVENT_BEFORE` 为空或全零）
-  时仍执行，避免覆盖收缩。`release` 始终跑全部 release profiles。
+  Gradle tasks 和 datagen；不复用旧 PASS。CI 对 `runtime-java`、
+  `recipe-generators` 与 `semantic-generators` 加 `--if-changed`：有 diff base
+  且本 profile 未命中则 SKIP；没有 diff base（无 `GITHUB_BASE_REF`，且
+  `GITHUB_EVENT_BEFORE` 为空或全零）时仍执行，避免覆盖收缩。`release` 始终跑全部
+  release profiles。
 - 新增方块或物品但只改 registry、不改 `datagen/` 时，这次 PR 不会跑 `runData`。
   `*ResourceTest` 与 `release` 仍覆盖生成树。
 - `promotion` 只在 capability 从非 `player_complete` 晋级时运行 GameTestServer 与

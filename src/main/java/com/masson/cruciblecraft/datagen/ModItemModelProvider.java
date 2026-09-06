@@ -35,6 +35,32 @@ public class ModItemModelProvider extends ItemModelProvider {
         generatedCc("portable_fluid_tank");
         generatedCc("fluid_cell");
         generatedCc("gas_cell");
+        generatedImportedGt6(
+                "lead_acid_cell_empty", "battery_cell/lead_acid_empty");
+        generatedImportedGt6(
+                "lead_acid_cell_filled", "battery_cell/lead_acid_filled");
+        generatedImportedGt6(
+                "alkaline_cell_empty", "battery_cell/alkaline_empty");
+        generatedImportedGt6(
+                "alkaline_cell_filled", "battery_cell/alkaline_filled");
+        generatedImportedGt6(
+                "nickel_cadmium_cell_empty",
+                "battery_cell/nickel_cadmium_empty");
+        generatedImportedGt6(
+                "nickel_cadmium_cell_filled",
+                "battery_cell/nickel_cadmium_filled");
+        generatedImportedGt6(
+                "lithium_cobalt_cell_empty",
+                "battery_cell/lithium_cobalt_empty");
+        generatedImportedGt6(
+                "lithium_cobalt_cell_filled",
+                "battery_cell/lithium_cobalt_filled");
+        generatedImportedGt6(
+                "lithium_manganese_cell_empty",
+                "battery_cell/lithium_manganese_empty");
+        generatedImportedGt6(
+                "lithium_manganese_cell_filled",
+                "battery_cell/lithium_manganese_filled");
         generatedCc("pipe_filter_cover");
         generatedCc("pipe_valve_cover");
         generatedImportedGt6("pipe_pump_cover");
@@ -106,6 +132,16 @@ public class ModItemModelProvider extends ItemModelProvider {
                                             java.util.Locale.ROOT)
                                     + "_item"));
         });
+        withExistingParent(
+                "lu_fiber_cable",
+                modLoc("conductor/lu_fiber_cable_item"));
+        for (var rod : com.masson.cruciblecraft.nuclear.ReactorRodCatalog.entries()) {
+            withExistingParent(rod.id().getPath(), mcLoc("item/generated"))
+                    .texture("layer0", modLoc("item/gt6_import/reactor_rod"))
+                    .texture(
+                            "layer1",
+                            modLoc("item/gt6_import/reactor_rod_overlay"));
+        }
         ModBlocks.pipeBlocks().forEach(holder -> {
             var pipe = holder.get().pipe();
             String modelKey = pipe.kind().name().toLowerCase(

@@ -6160,6 +6160,356 @@
           }
         }
       }
+    },
+    {
+      "id": "cruciblecraft:steel_galvanized_electric_heater",
+      "kind": "cruciblecraft:electric_heater",
+      "material": "steel_galvanized",
+      "source_id": 10001,
+      "source_line": 817,
+      "gt6_class": "MultiTileEntityHeaterElectric",
+      "material_expression": "MT.DATA.Electric_T[1]",
+      "nbt_output": 16,
+      "nbt_input": 32,
+      "efficiency_bps": 0,
+      "output_expression": "16",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "TCT",
+          "CMC",
+          "TC "
+        ],
+        "keys": {
+          "T": {
+            "prefix": "screw",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "wire",
+            "material": "copper"
+          },
+          "M": {
+            "prefix": "machine_casing_double",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:steel_galvanized_electric_engine",
+      "kind": "cruciblecraft:electric_engine",
+      "material": "steel_galvanized",
+      "source_id": 10011,
+      "source_line": 833,
+      "gt6_class": "MultiTileEntityEngineElectric",
+      "material_expression": "MT.DATA.Electric_T[1]",
+      "nbt_output": 16,
+      "nbt_input": 32,
+      "efficiency_bps": 0,
+      "output_expression": "16",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "CIC",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "triple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "wire",
+            "material": "copper"
+          },
+          "I": {
+            "prefix": "long_rod",
+            "material": "iron_magnetic"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:aluminium_electric_heater",
+      "kind": "cruciblecraft:electric_heater",
+      "material": "aluminium",
+      "source_id": 10002,
+      "source_line": 818,
+      "gt6_class": "MultiTileEntityHeaterElectric",
+      "material_expression": "MT.DATA.Electric_T[2]",
+      "nbt_output": 64,
+      "nbt_input": 128,
+      "efficiency_bps": 0,
+      "output_expression": "64",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "TCT",
+          "CMC",
+          "TC "
+        ],
+        "keys": {
+          "T": {
+            "prefix": "screw",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_wire",
+            "material": "constantan"
+          },
+          "M": {
+            "prefix": "machine_casing_double",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:aluminium_electric_engine",
+      "kind": "cruciblecraft:electric_engine",
+      "material": "aluminium",
+      "source_id": 10012,
+      "source_line": 834,
+      "gt6_class": "MultiTileEntityEngineElectric",
+      "material_expression": "MT.DATA.Electric_T[2]",
+      "nbt_output": 64,
+      "nbt_input": 128,
+      "efficiency_bps": 0,
+      "output_expression": "64",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "CIC",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "triple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "double_wire",
+            "material": "copper"
+          },
+          "I": {
+            "prefix": "long_rod",
+            "material": "steel_magnetic"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:stainless_steel_electric_heater",
+      "kind": "cruciblecraft:electric_heater",
+      "material": "stainless_steel",
+      "source_id": 10003,
+      "source_line": 819,
+      "gt6_class": "MultiTileEntityHeaterElectric",
+      "material_expression": "MT.DATA.Electric_T[3]",
+      "nbt_output": 256,
+      "nbt_input": 512,
+      "efficiency_bps": 0,
+      "output_expression": "256",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "TCT",
+          "CMC",
+          "TC "
+        ],
+        "keys": {
+          "T": {
+            "prefix": "screw",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "quadruple_wire",
+            "material": "kanthal"
+          },
+          "M": {
+            "prefix": "machine_casing_double",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:stainless_steel_electric_engine",
+      "kind": "cruciblecraft:electric_engine",
+      "material": "stainless_steel",
+      "source_id": 10013,
+      "source_line": 835,
+      "gt6_class": "MultiTileEntityEngineElectric",
+      "material_expression": "MT.DATA.Electric_T[3]",
+      "nbt_output": 256,
+      "nbt_input": 512,
+      "efficiency_bps": 0,
+      "output_expression": "256",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "CIC",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "triple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "quadruple_wire",
+            "material": "copper"
+          },
+          "I": {
+            "prefix": "long_rod",
+            "material": "steel_magnetic"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:chromium_electric_heater",
+      "kind": "cruciblecraft:electric_heater",
+      "material": "chromium",
+      "source_id": 10004,
+      "source_line": 820,
+      "gt6_class": "MultiTileEntityHeaterElectric",
+      "material_expression": "MT.DATA.Electric_T[4]",
+      "nbt_output": 1024,
+      "nbt_input": 2048,
+      "efficiency_bps": 0,
+      "output_expression": "1024",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "TCT",
+          "CMC",
+          "TC "
+        ],
+        "keys": {
+          "T": {
+            "prefix": "screw",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "octuple_wire",
+            "material": "nichrome"
+          },
+          "M": {
+            "prefix": "machine_casing_double",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:chromium_electric_engine",
+      "kind": "cruciblecraft:electric_engine",
+      "material": "chromium",
+      "source_id": 10014,
+      "source_line": 836,
+      "gt6_class": "MultiTileEntityEngineElectric",
+      "material_expression": "MT.DATA.Electric_T[4]",
+      "nbt_output": 1024,
+      "nbt_input": 2048,
+      "efficiency_bps": 0,
+      "output_expression": "1024",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "CIC",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "triple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "octuple_wire",
+            "material": "copper"
+          },
+          "I": {
+            "prefix": "long_rod",
+            "material": "neodymium_magnetic"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:titanium_electric_heater",
+      "kind": "cruciblecraft:electric_heater",
+      "material": "titanium",
+      "source_id": 10005,
+      "source_line": 821,
+      "gt6_class": "MultiTileEntityHeaterElectric",
+      "material_expression": "MT.DATA.Electric_T[5]",
+      "nbt_output": 4096,
+      "nbt_input": 8192,
+      "efficiency_bps": 0,
+      "output_expression": "4096",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "TCT",
+          "CMC",
+          "TC "
+        ],
+        "keys": {
+          "T": {
+            "prefix": "screw",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "hexadecuple_wire",
+            "material": "carborundum"
+          },
+          "M": {
+            "prefix": "machine_casing_double",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:titanium_electric_engine",
+      "kind": "cruciblecraft:electric_engine",
+      "material": "titanium",
+      "source_id": 10015,
+      "source_line": 837,
+      "gt6_class": "MultiTileEntityEngineElectric",
+      "material_expression": "MT.DATA.Electric_T[5]",
+      "nbt_output": 4096,
+      "nbt_input": 8192,
+      "efficiency_bps": 0,
+      "output_expression": "4096",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "P P",
+          "CIC",
+          "P P"
+        ],
+        "keys": {
+          "P": {
+            "prefix": "triple_plate",
+            "material": "variant"
+          },
+          "C": {
+            "prefix": "hexadecuple_wire",
+            "material": "copper"
+          },
+          "I": {
+            "prefix": "long_rod",
+            "material": "neodymium_magnetic"
+          }
+        }
+      }
     }
   ]
 }

@@ -66,6 +66,14 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         ModBlocks.hopperBlocks().forEach(block -> dropSelf(block.get()));
         ModBlocks.variantStorageBlocks().forEach(block -> dropSelf(block.get()));
         dropSelf(ModBlocks.STEEL_DUST_FUNNEL.get());
+        dropSelf(ModBlocks.LU_FIBER_CABLE.get());
+        dropSelf(ModBlocks.LASER_ENGRAVER.get());
+        dropSelf(ModBlocks.FUSION_REACTOR.get());
+        dropSelf(ModBlocks.REACTOR_CORE_1X1.get());
+        dropSelf(ModBlocks.REACTOR_CORE_2X2.get());
+        dropSelf(ModBlocks.TUNGSTENSTEEL_WALL.get());
+        dropSelf(ModBlocks.STAINLESS_STEEL_WALL.get());
+        dropSelf(ModBlocks.LARGE_IRIDIUM_COIL.get());
         for (GtStoneCatalog.Variant variant : GtStoneCatalog.variants()) {
             Block block = ModBlocks.gtStoneBlocksById().get(variant.id()).get();
             if (variant.slab()) {
@@ -120,7 +128,15 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 ModBlocks.ROTATIONAL_AXLE.get(),
                 ModBlocks.ROTATIONAL_GEARBOX.get(),
                 ModBlocks.FLUID_DEPOSIT_EXTRACTOR.get(),
-                ModBlocks.STEEL_DUST_FUNNEL.get());
+                ModBlocks.STEEL_DUST_FUNNEL.get(),
+                ModBlocks.LU_FIBER_CABLE.get(),
+                ModBlocks.LASER_ENGRAVER.get(),
+                ModBlocks.FUSION_REACTOR.get(),
+                ModBlocks.REACTOR_CORE_1X1.get(),
+                ModBlocks.REACTOR_CORE_2X2.get(),
+                ModBlocks.TUNGSTENSTEEL_WALL.get(),
+                ModBlocks.STAINLESS_STEEL_WALL.get(),
+                ModBlocks.LARGE_IRIDIUM_COIL.get());
         ModBlocks.converterBlocksById().forEach((id, holder) -> {
             if (!HANDWRITTEN_CONVERTER_LOOT.contains(id.getPath())) {
                 blocks.add(holder.get());

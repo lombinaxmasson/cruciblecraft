@@ -1,9 +1,9 @@
 # 冻结与未实现账本
 
 > 现行人读索引，不是 production authority。
-> 最后核对：2026-09-06（已关闭「配方加载与 EMI 稳定性」；当前 active 计划卡为
-> 「生成资源、注册与 Jade 第一切片」；机器可读 `unique_active_wave = null`；
-> 变压器 / 能源后续已关；电转换等为 `runtime_ready`；
+> 最后核对：2026-09-06（已关闭「生成资源、注册与 Jade 第一切片」；无 unique active
+> 内容卡；机器可读 `unique_active_wave = null`；下一条内容候选仍是裂变基础生存闭环，
+> 须另签发；变压器 / 能源后续已关；电转换等为 `runtime_ready`；
 > `nuclear_started = false`；电池 `player_complete` 已关；
 > 转换机目录 169 行 `player_complete`，活 JSON 179；census Batteries 仍 37/37
 > `requires_new_runtime`）。
@@ -71,10 +71,11 @@
 关闭为
 [配方加载与 EMI 稳定性](../history/card-plans/closed/配方加载与EMI稳定性详细计划.md)；
 它只修了配方加载 / EMI / reload / bake runtime，不创建内容 family。
-候选队列第 3、4 项现已合并为当前 active 计划卡
-[生成资源、注册与 Jade 第一切片](../history/card-plans/active/生成资源注册与Jade第一切片详细计划.md)；
+候选队列第 3、4 项现已关闭为
+[生成资源、注册与 Jade 第一切片](../history/card-plans/closed/生成资源注册与Jade第一切片详细计划.md)；
 机器可读 `unique_active_wave` 仍为 `null`。下面保留剩余候选
 的原序号；每项启动时仍须重新定范围、owned paths 和验收门，不合成大卡。
+不自动签发第 5 项。
 
 1. **已关闭：配方数据正确性与 EMI 重复注册**：RecipeManager 解析错误归零（fluidbed
    无效行改为 source-backed `blocked`，不再伪造 chance / stand-in），校验
@@ -85,12 +86,12 @@
    index 和 EMI projection。只在证明关系语义等价后聚合；否则保留全量
    exact 索引，或另立懒查询 viewer 工作。生产 reload 10 s 硬顶未降低；allocation
    标 `PENDING_MEASUREMENT`。
-3. **当前 active 卡：生成资源、注册身份与贴图门禁**：修 generated tree currentness、block/item model、
+3. **已关闭：生成资源、注册身份与贴图门禁**：修 generated tree currentness、block/item model、
    全 catalog registry collision 检查和 live art manifest。这里只修基础设施，不顺手
    清理全部历史 `gt_object` / `gt_mte`。
-4. **当前 active 卡同卡范围：既有机器 Jade 第一切片**：先统一已有数据合同，补坩埚的 K、HU、熔毁点、填充度、
+4. **已关闭：既有机器 Jade 第一切片**：先统一已有数据合同，补坩埚的 K、HU、熔毁点、填充度、
    渲染/内容/缓存槽，以及变压器升降压模式和各面高低压。它不等待核能，也不扩成全机器
-   GUI 卡。
+   GUI 卡。follow-up family 仍记在 Jade matrix。
 5. **裂变基础生存闭环**：正式开 realization lane 时才把 `nuclear_started` 改为 true；
    冻结本地 GT6 来源，做真实 Canner host/语义、1×1/2×2 堆芯和 46 棒的精确配方，
    闭合蒸馏水→蒸汽的基础玩家路径。缺失零件只允许纳入本切片做成真实对象，或继续
@@ -109,8 +110,7 @@
 10. **聚变 / 等离子**：等裂变与热力合同稳定后再开；控制器生存配方、等离子独立流体
     和燃料/输出链都必须有来源，不因已有 18 条 fusion runtime 就提前宣称完成。
 
-若前项测量证明没有阻塞，后项可以重新排序；第 1–2 项已关，第 3–4 项由当前
-active 卡处理，第 5 项仍是下一条核裂变内容候选，聚变仍位于裂变和热力合同之后。
+若前项测量证明没有阻塞，后项可以重新排序；第 1–4 项已关，第 5 项仍是下一条核裂变内容候选，聚变仍位于裂变和热力合同之后。不自动签发第 5 项。
 
 `fuels_fluidbed` 现只发 6 条可加载配方。其余 49 条记在
 `tools/energy_converter_fluidbed_blocked.json`（11 条 GT6 item 未映射，38 条
@@ -118,8 +118,8 @@ fail-closed，含未注册 `dust_div72` / 灰形态，以及 GT6 `needsOutputs: 
 的无输出燃料）。这不是新 recipe family，不得用 stand-in 顶替；要真实形态或
 另立 outputless 燃料模型。
 
-当前人读 active 计划卡为
-[生成资源、注册与 Jade 第一切片](../history/card-plans/active/生成资源注册与Jade第一切片详细计划.md)。
+当前没有 unique active 内容卡。已关闭
+[生成资源、注册与 Jade 第一切片](../history/card-plans/closed/生成资源注册与Jade第一切片详细计划.md)。
 机器可读 `unique_active_wave` 仍为 `null`。已关闭
 [配方加载与 EMI 稳定性](../history/card-plans/closed/配方加载与EMI稳定性详细计划.md)
 （slug `runtime/recipe-load-emi-stability`；`owns_families = 0`）。
@@ -177,8 +177,8 @@ Dump 盖板是标记（无优先级）；搬运在 Core tick 的最后一档，�
 [紧凑配方传输编解码](../history/card-plans/closed/紧凑配方传输编解码详细计划.md)
 为 `COMPACT_RECIPE_WIRE_CODEC_READY`。Dump / Logistics Core 已关。已关闭
 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
-为四件状态盖板 `player_complete`。当前 active 计划卡为
-[生成资源、注册与 Jade 第一切片](../history/card-plans/active/生成资源注册与Jade第一切片详细计划.md)。
+为四件状态盖板 `player_complete`。当前没有 unique active 内容卡。已关闭
+[生成资源、注册与 Jade 第一切片](../history/card-plans/closed/生成资源注册与Jade第一切片详细计划.md)。
 机器可读 `unique_active_wave` 仍为 `null`。已关闭
 [变压器](../history/card-plans/closed/变压器详细计划.md)。已关闭
 [能源后续卡收口](../history/card-plans/closed/能源后续卡收口详细计划.md)。
@@ -327,8 +327,8 @@ topology 预分配 implementation child。不想要的类在 realization 卡标
   [物流核心](../history/card-plans/closed/物流核心详细计划.md)
   `player_complete`。已关闭
   [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
-  为四件状态盖板 `player_complete`。当前 active 计划卡为
-  [生成资源、注册与 Jade 第一切片](../history/card-plans/active/生成资源注册与Jade第一切片详细计划.md)。
+  为四件状态盖板 `player_complete`。当前没有 unique active 内容卡。已关闭
+  [生成资源、注册与 Jade 第一切片](../history/card-plans/closed/生成资源注册与Jade第一切片详细计划.md)。
   机器可读 `unique_active_wave` 仍为 `null`。已关闭
   [变压器](../history/card-plans/closed/变压器详细计划.md)。不得把 Display CPU 算进这七
   kind。

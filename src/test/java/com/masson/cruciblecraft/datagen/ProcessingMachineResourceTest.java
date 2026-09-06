@@ -111,6 +111,7 @@ class ProcessingMachineResourceTest {
                 "tooltip.cruciblecraft.invalid_tool_material",
                 "tooltip.cruciblecraft.invalid_machine_material",
                 "config.jade.plugin_cruciblecraft.cable",
+                "config.jade.plugin_cruciblecraft.transformer",
                 "jade.cruciblecraft.material_quarantined",
                 "item.cruciblecraft.material_pickaxe",
                 "item.cruciblecraft.material_shovel",
@@ -133,7 +134,8 @@ class ProcessingMachineResourceTest {
                 "block.cruciblecraft.electrolyzer",
                 "fluid_type.cruciblecraft.oxygen",
                 "emi.category.cruciblecraft.electrolyzer",
-                "jade.cruciblecraft.processing_tank")));
+                "jade.cruciblecraft.processing_tank",
+                "jade.cruciblecraft.temperature_k")));
         long translated = chinese.keySet().stream()
                 .filter(key -> !english.get(key).getAsString()
                         .equals(chinese.get(key).getAsString()))
@@ -143,8 +145,11 @@ class ProcessingMachineResourceTest {
         long missingMaterialNames = missing.stream()
                 .filter(key -> key.startsWith("material.cruciblecraft."))
                 .count();
-        assertEquals(8_046, english.size(), "current generated en_us key count");
-        assertEquals(3_311L, translated, "declared Chinese translation coverage");
+        // 8144 live catalog keys plus 32 Jade/block names from this card:
+        // ceramic_mold, gas_cloud, subsurface_fluid_deposit, transformer
+        // config, and the typed observation contract keys.
+        assertEquals(8_176, english.size(), "current generated en_us key count");
+        assertEquals(3_441L, translated, "declared Chinese translation coverage");
         assertEquals(2_401, missing.size(), "visible zh_cn localization debt");
         assertEquals(1_566L, missingMaterialNames,
                 "missing generated material-name translations");

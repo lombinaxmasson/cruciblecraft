@@ -60,7 +60,10 @@ class GTRecipeMapBudgetTest {
                         "compactFamilyStableFingerprint",
                         "runtimeSide",
                         "reloadMillis",
-                        "indexMillis"),
+                        "indexMillis",
+                        "control",
+                        "phaseTimings",
+                        "allocation"),
                 Arrays.stream(
                                 GTRecipeMapLoader.PublicationMetrics.class
                                         .getRecordComponents())
@@ -263,7 +266,10 @@ class GTRecipeMapBudgetTest {
                 338, 15_655, 15_445, 210, 128, 0, 1_024L, "",
                 ExtruderRecipeFamilyProvider.RuntimeSide.SERVER,
                 ModProcessingMachines.VERIFICATION_RECIPE_RELOAD_BUDGET_MS,
-                ModProcessingMachines.RECIPE_INDEX_BUILD_BUDGET_MS);
+                ModProcessingMachines.RECIPE_INDEX_BUILD_BUDGET_MS,
+                GTRecipeMapLoader.PublicationControlMetrics.empty(),
+                GTRecipeMapLoader.PublicationPhaseTimings.zero(),
+                GTRecipeMapLoader.PublicationAllocationReport.pendingMeasurement());
         var lookup = new GTRecipeMapLoader.CompactLoadLookupMetrics(
                 61,
                 1_952,
@@ -280,7 +286,10 @@ class GTRecipeMapBudgetTest {
                 338, 15_655, 15_445, 210, 128, 0, 1_024L, "",
                 ExtruderRecipeFamilyProvider.RuntimeSide.SERVER,
                 ModProcessingMachines.VERIFICATION_RECIPE_RELOAD_BUDGET_MS + 1,
-                ModProcessingMachines.RECIPE_INDEX_BUILD_BUDGET_MS);
+                ModProcessingMachines.RECIPE_INDEX_BUILD_BUDGET_MS,
+                GTRecipeMapLoader.PublicationControlMetrics.empty(),
+                GTRecipeMapLoader.PublicationPhaseTimings.zero(),
+                GTRecipeMapLoader.PublicationAllocationReport.pendingMeasurement());
         assertThrows(IllegalStateException.class, () ->
                 GTRecipeMapLoader.verifyReleasePerformance(
                         overReload, lookup, null, null));
@@ -295,7 +304,10 @@ class GTRecipeMapBudgetTest {
                 0, 0, 0, 0, 0, 0, 0L, "",
                 ExtruderRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT,
                 ModProcessingMachines.CLIENT_RECIPE_RELOAD_BUDGET_MS,
-                ModProcessingMachines.CLIENT_RECIPE_INDEX_BUILD_BUDGET_MS);
+                ModProcessingMachines.CLIENT_RECIPE_INDEX_BUILD_BUDGET_MS,
+                GTRecipeMapLoader.PublicationControlMetrics.empty(),
+                GTRecipeMapLoader.PublicationPhaseTimings.zero(),
+                GTRecipeMapLoader.PublicationAllocationReport.pendingMeasurement());
         var lookup = new GTRecipeMapLoader.CompactLoadLookupMetrics(
                 61,
                 1_952,
@@ -313,7 +325,10 @@ class GTRecipeMapBudgetTest {
                 0, 0, 0, 0, 0, 0, 0L, "",
                 ExtruderRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT,
                 ModProcessingMachines.CLIENT_RECIPE_RELOAD_BUDGET_MS + 1,
-                ModProcessingMachines.CLIENT_RECIPE_INDEX_BUILD_BUDGET_MS);
+                ModProcessingMachines.CLIENT_RECIPE_INDEX_BUILD_BUDGET_MS,
+                GTRecipeMapLoader.PublicationControlMetrics.empty(),
+                GTRecipeMapLoader.PublicationPhaseTimings.zero(),
+                GTRecipeMapLoader.PublicationAllocationReport.pendingMeasurement());
         assertFalse(GTRecipeMapLoader.evaluateCompactLoadOnlineBudgetGate(
                 overClientReload, lookup).sideReload());
     }
