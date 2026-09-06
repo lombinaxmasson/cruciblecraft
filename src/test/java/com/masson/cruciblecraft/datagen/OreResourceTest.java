@@ -26,6 +26,7 @@ import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.material.MaterialRegistrationGate;
 import com.masson.cruciblecraft.material.def.MaterialLoader;
 import com.masson.cruciblecraft.material.gen.GeneratedMaterialPack;
+import com.masson.cruciblecraft.recipe.crafting.WorkbenchToolRecipePlan;
 
 class OreResourceTest {
     private static final String COMPAT_SHORTCUT_GROUP = "cruciblecraft:compat_shortcut";
@@ -416,14 +417,19 @@ class OreResourceTest {
         // plus five source-backed casings beyond the early six. Storage adds 18
         // source-visible storage acquisition recipes. Display CPU adds 8 cover
         // recipes (4 shaped + 4 shapeless cycle).
-        // Current generated baseline includes hopper/storage/display-cpu
-        // catalogs plus 13 live datagen files from ModRecipeProvider:
-        // 9 electric_transformer_*.json, 3 battery_cells/*_empty.json, and
-        // machines/lu_fiber_cable.json. Workbench hammers (iron/bronze/steel
-        // plus stone bootstrap) add 4 generated files.
-        assertEquals(1_749, generatedRecipeSet.size() - preStorageRecipeSet.size());
+        // Catalog-driven workbench tools replace the previous 32 hardcoded
+        // hammer/workshop/harvest files. The 1_744 baseline is that tree
+        // minus those 32; the plan adds every eligible workshop and stone-rock
+        // recipe, including the three vanilla flint harvest crafts.
+        int workbenchTools = WorkbenchToolRecipePlan.plan(
+                materials, registeredForms).size();
+        int expectedGenerated = WorkbenchToolRecipePlan.NON_WORKBENCH_GENERATED_RECIPES
+                + workbenchTools;
         assertEquals(
-                1_749 + preStorageRecipeSet.size(),
+                expectedGenerated,
+                generatedRecipeSet.size() - preStorageRecipeSet.size());
+        assertEquals(
+                expectedGenerated + preStorageRecipeSet.size(),
                 generatedRecipeSet.size());
         assertEquals(48, countRegularFiles(COMPONENT_RULE_RESOURCES.resolve(
                 "data/cruciblecraft/recipe")));

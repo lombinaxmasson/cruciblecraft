@@ -25,6 +25,7 @@ import com.masson.cruciblecraft.recipe.rule.ToolRules;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeEntry;
 import com.masson.cruciblecraft.recipe.crafting.ShapedCatalystRecipe;
+import com.masson.cruciblecraft.recipe.crafting.WorkbenchToolRecipePlan;
 import com.masson.cruciblecraft.fusion.FusionRecipeCatalog;
 import com.masson.cruciblecraft.registry.ModComponents;
 import com.masson.cruciblecraft.energy.battery.EnergyBatteryTierCatalog;
@@ -667,24 +668,13 @@ public final class ModRecipeProvider extends RecipeProvider {
                 "conversion_processor_unit",
                 Items.GOLD_INGOT);
         addNonmetalPipeAcquisitionRecipes(output);
-        // GT6 Loader_Tools.java:304 FILE {" P ", " Pk"} — two plates + knife.
-        acceptShapedCatalyst(
-                output,
-                "tools/iron_file",
-                List.of(" P ", " Pk", "   "),
-                Map.of(
-                        "P",
-                        Ingredient.of(materialItem(
-                                "iron", MaterialPrefixes.PLATE))),
-                Map.of("k", Ingredient.of(ModItems.FLINT_KNIFE.get())),
-                new ItemStack(ModItems.MATERIAL_FILE.get()));
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.FLINT_KNIFE.get())
                 .pattern("SF")
                 .define('S', Items.STICK)
                 .define('F', Items.FLINT)
                 .unlockedBy("has_flint", has(Items.FLINT))
                 .save(output, id("tools/flint_knife"));
-        addWorkbenchHammerRecipes(output);
+        addWorkbenchToolRecipes(output);
         ToolPatternCatalog.DEFINITIONS.forEach(pattern -> {
             ShapedRecipeBuilder builder = ShapedRecipeBuilder.shaped(
                             RecipeCategory.TOOLS,
@@ -1143,49 +1133,42 @@ public final class ModRecipeProvider extends RecipeProvider {
                 new ItemStack(result));
     }
 
-    private static void addWorkbenchHammerRecipes(RecipeOutput output) {
-        // GT6 Loader_Tools.java:327 HARDHAMMER {"II ", "IIh", "II "}.
-        emitMetalHammerRecipe(
-                output, "smithing_hammer", "iron", Items.IRON_INGOT);
-        emitMetalHammerRecipe(
-                output,
-                "bronze_smithing_hammer",
-                "bronze",
-                materialItem("bronze", MaterialPrefixes.INGOT));
-        emitMetalHammerRecipe(
-                output,
-                "steel_smithing_hammer",
-                "steel",
-                materialItem("steel", MaterialPrefixes.INGOT));
-        Item stoneRock = MaterialLookup.item(
-                "stone", new MaterialPrefix("cruciblecraft:rock")).orElse(null);
-        if (stoneRock == null) {
-            return;
-        }
-        // GT6 Loader_Tools.java:285 rock hammer {"XX ", "XXS", "XX "} — no tool.
-        acceptShapedCatalyst(
-                output,
-                "stone_smithing_hammer",
-                List.of("XX ", "XXS", "XX "),
-                Map.of(
-                        "X", Ingredient.of(stoneRock),
-                        "S", Ingredient.of(Items.STICK)),
-                Map.of(),
-                toolStack(ModItems.SMITHING_HAMMER.get(), "stone"));
+    private static void addWorkbenchToolRecipes(RecipeOutput output) {
+        LinkedHashMap<String, List<MaterialPrefix>> registeredForms =
+                new LinkedHashMap<>();
+        MaterialCatalog.startupValues().forEach(material ->
+                registeredForms.put(
+                        material.id(),
+                        MaterialCatalog.registeredForms(material)));
+        WorkbenchToolRecipePlan.plan(
+                MaterialCatalog.startupValues(), registeredForms)
+                .forEach(recipe -> emitPlannedWorkbenchTool(output, recipe));
     }
 
-    private static void emitMetalHammerRecipe(
-            RecipeOutput output,
-            String path,
-            String material,
-            Item ingot) {
+    private static void emitPlannedWorkbenchTool(
+            RecipeOutput output, WorkbenchToolRecipePlan.Recipe planned) {
+        LinkedHashMap<String, Ingredient> ingredients = new LinkedHashMap<>();
+        planned.ingredients().forEach((symbol, itemId) ->
+                ingredients.put(
+                        symbol,
+                        Ingredient.of(resolveRegisteredItem(
+                                ResourceLocation.parse(itemId)))));
+        LinkedHashMap<String, Ingredient> catalysts = new LinkedHashMap<>();
+        planned.catalysts().forEach((symbol, itemId) ->
+                catalysts.put(
+                        symbol,
+                        Ingredient.of(resolveRegisteredItem(
+                                ResourceLocation.parse(itemId)))));
         acceptShapedCatalyst(
                 output,
-                path,
-                List.of("II ", "IIh", "II "),
-                Map.of("I", Ingredient.of(ingot)),
-                Map.of("h", Ingredient.of(ModItems.SMITHING_HAMMER.get())),
-                toolStack(ModItems.SMITHING_HAMMER.get(), material));
+                planned.path(),
+                planned.pattern(),
+                ingredients,
+                catalysts,
+                toolStack(
+                        resolveRegisteredItem(
+                                ResourceLocation.parse(planned.resultId())),
+                        planned.material()));
     }
 
     private static ItemStack toolStack(Item tool, String material) {
