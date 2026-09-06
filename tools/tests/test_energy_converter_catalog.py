@@ -108,7 +108,7 @@ class EnergyConverterCatalogCardTest(unittest.TestCase):
 
     def test_closed_plan_stays_archived(self) -> None:
         names = sorted(path.name for path in ACTIVE.iterdir() if path.is_file())
-        self.assertEqual(["电池详细计划.md"], names)
+        self.assertEqual(["变压器详细计划.md"], names)
         self.assertTrue(PLAN.is_file())
         self.assertTrue((CLOSED / "能量系统余量详细计划.md").is_file())
         self.assertTrue((CLOSED / "显示CPU详细计划.md").is_file())

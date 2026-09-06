@@ -60,7 +60,16 @@
 
 必须同时具备：
 
-- 生存获得路径（真实 RecipeManager，不是 GameTest 注入冒充）
+- 生存获得路径（真实 RecipeManager，不是 GameTest 注入冒充）。
+  **配方必须按 GT6 源逐格合成 / 制造才算过。** 允许把 `OP.wireGt01` /
+  `MT.Os` 这类前缀与材料名翻译成 CC 里**已经存在的同一对象**
+  （`wire`、`osmium_elemental`）。禁止用别的材料、别的形态、原版零件或
+  单一 `programmed_circuit` 顶缺失格，来假装「能合成」。缺任何一格真实
+  配料：该配方不算过，本能力不得晋级 `player_complete`；要么把缺件纳入
+  本卡做出真物，要么保持 `runtime_ready` 并写明配方未完成。
+  「创造栏能拿到」或「用已有材料 DESIGN_POLICY 生存获得」不能当完成。
+  已关闭卡上已经进游戏的替身配方（电池芯、物流核心、显示 CPU）保持原样，
+  不得借本条回头改那些 JSON。
 - EMI 注册与可见性（本仓库配方 UI 是 EMI，不是 JEI）
 - 创造栏归属与 `en_us` / `zh_cn` 翻译
 - 同一次 `player-complete` 调用实际运行 GameTestServer 与 `runClient`；

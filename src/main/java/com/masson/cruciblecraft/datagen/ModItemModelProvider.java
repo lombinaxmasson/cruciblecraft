@@ -4,7 +4,6 @@ import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.content.item.GtWoodCatalog;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
-import com.masson.cruciblecraft.machine.processing.MachineCasingCatalog;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverComponentTiers;
 import com.masson.cruciblecraft.registry.ModBlocks;
 
@@ -31,8 +30,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent("bolt_mold", modLoc("block/ceramic_mold"));
         generatedCc("match");
         generatedCc("programmed_circuit");
-        MachineCasingCatalog.casings().forEach(casing ->
-                generatedCc(casing.id().getPath()));
         generatedCc("creosote_bucket");
         generatedCc("steam_bucket");
         generatedCc("portable_fluid_tank");
@@ -93,6 +90,10 @@ public class ModItemModelProvider extends ItemModelProvider {
                 "handle_screwdriver",
                 "handle_screwdriver_overlay");
         tool("material_wrench", "wrench", "wrench_overlay");
+        tool(
+                "material_monkey_wrench",
+                "monkey_wrench",
+                "monkey_wrench_overlay");
         tool("material_wire_cutter", "wire_cutter", "wire_cutter_overlay");
         ModBlocks.electricalConductorBlocks().forEach(holder -> {
             var conductor = holder.get().conductor();

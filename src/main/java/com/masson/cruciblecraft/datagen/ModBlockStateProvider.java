@@ -111,6 +111,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 ModBlocks.ROTATIONAL_GEARBOX.get());
         registerConverters();
         registerBatteries();
+        registerTransformers();
         simpleBlockWithItem(
                 ModBlocks.ROTATIONAL_AXLE.get(),
                 models().cubeAll(
@@ -614,6 +615,60 @@ public class ModBlockStateProvider extends BlockStateProvider {
             simpleBlock(block, model);
             simpleBlockItem(block, model);
         }
+    }
+
+    private void registerTransformers() {
+        ModelFile[] models = {
+            transformerCube("overlay"),
+            transformerCube("overlay_active"),
+            transformerCube("overlay_blinking")
+        };
+        for (var profile : com.masson.cruciblecraft.energy.transformer
+                .EnergyTransformerCatalog.profiles()) {
+            var block = ModBlocks.transformerBlocksById()
+                    .get(profile.id())
+                    .get();
+            getVariantBuilder(block).forAllStates(state -> {
+                Direction facing = state.getValue(
+                        com.masson.cruciblecraft.energy.transformer
+                                .TransformerBlock.FACING);
+                int activity = state.getValue(
+                        com.masson.cruciblecraft.energy.transformer
+                                .TransformerBlock.ACTIVITY);
+                var builder = ConfiguredModel.builder()
+                        .modelFile(models[activity]);
+                return switch (facing) {
+                    case DOWN -> builder.rotationX(90).build();
+                    case UP -> builder.rotationX(270).build();
+                    case SOUTH -> builder.rotationY(180).build();
+                    case WEST -> builder.rotationY(270).build();
+                    case EAST -> builder.rotationY(90).build();
+                    case NORTH -> builder.build();
+                };
+            });
+            simpleBlockItem(block, models[0]);
+        }
+    }
+
+    private ModelFile transformerCube(String overlay) {
+        String name = "transformer/electric_" + overlay;
+        String base = "block/machine/transformer/electric";
+        return models()
+                .withExistingParent(
+                        name, modLoc("block/machine_cube_2_layer"))
+                .texture("particle", modLoc(base + "/colored/front"))
+                .texture("bot_down", modLoc(base + "/colored/side"))
+                .texture("bot_up", modLoc(base + "/colored/side"))
+                .texture("bot_north", modLoc(base + "/colored/front"))
+                .texture("bot_south", modLoc(base + "/colored/back"))
+                .texture("bot_west", modLoc(base + "/colored/side"))
+                .texture("bot_east", modLoc(base + "/colored/side"))
+                .texture("top_down", modLoc(base + "/" + overlay + "/side"))
+                .texture("top_up", modLoc(base + "/" + overlay + "/side"))
+                .texture("top_north", modLoc(base + "/" + overlay + "/front"))
+                .texture("top_south", modLoc(base + "/" + overlay + "/back"))
+                .texture("top_west", modLoc(base + "/" + overlay + "/side"))
+                .texture("top_east", modLoc(base + "/" + overlay + "/side"));
     }
 
     private ModelFile batteryModel(

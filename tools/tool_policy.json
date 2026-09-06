@@ -41,6 +41,7 @@
       "saw",
       "screwdriver",
       "wrench",
+      "monkey_wrench",
       "wire_cutter"
     ],
     "excluded": [
@@ -108,7 +109,7 @@
       }
     },
     "antimatter_exclusion": {
-      "reason": "All twelve Loader_Tools listeners include TD.Atomic.ANTIMATTER.NOT.",
+      "reason": "All thirteen Loader_Tools listeners include TD.Atomic.ANTIMATTER.NOT.",
       "observed_tag_population": 2,
       "source": {
         "repository": "GregTech6/gregtech6",
@@ -118,7 +119,7 @@
       }
     },
     "coated_exclusion_with_wrench_exception": {
-      "reason": "Core, hammer, File, Chisel, Saw, and Screwdriver listeners include TD.Coated.NOT; the Wrench listener at line 310 and the Wire Cutter listener at line 324 do not. Gilded/coated material is therefore valid for Wrench and Wire Cutter only when their other gates pass.",
+      "reason": "Core, hammer, File, Chisel, Saw, and Screwdriver listeners include TD.Coated.NOT; the Wrench listener at line 310, Monkey Wrench listener at line 311, and Wire Cutter listener at line 324 do not. Gilded/coated material is therefore valid for Wrench, Monkey Wrench, and Wire Cutter only when their other gates pass.",
       "observed_tag_population": 5,
       "source": {
         "repository": "GregTech6/gregtech6",
@@ -688,6 +689,51 @@
         "full_tool": "Loader_Tools.java:310"
       }
     },
+      "monkey_wrench": {
+        "prefix": {
+          "all": [
+            {
+              "field": "tool.types",
+              "minimum": 2
+            },
+            {
+              "tag": "PROPERTIES.BOUNCY",
+              "present": false
+            },
+            {
+              "tag": "PROPERTIES.STRETCHY",
+              "present": false
+            }
+          ]
+        },
+        "listener": {
+          "all": [
+            {
+              "tag": "ATOMIC.ANTIMATTER",
+              "present": false
+            },
+            {
+              "identity_use": "exact_wood_exclusion"
+            },
+            {
+              "field": "tool.types",
+              "minimum": 2
+            },
+            {
+              "field": "tool.quality",
+              "minimum": 1
+            }
+          ]
+        },
+        "full_tool": {
+          "all": []
+        },
+        "source_lines": {
+          "prefix": "OP.java:237",
+          "listener": "Loader_Tools.java:311",
+          "full_tool": "Loader_Tools.java:311"
+        }
+      },
     "wire_cutter": {
       "prefix": {
         "all": [
@@ -1301,6 +1347,57 @@
         ],
         "full_source": "Loader_Tools.java:310"
       },
+      "monkey_wrench": {
+        "full_patterns": [
+          {
+            "id": "metal",
+            "rows": [
+              "PPd",
+              "hPT",
+              " P "
+            ],
+            "material_inputs": [
+              {
+                "form": "plate",
+                "count": 4
+              },
+              {
+                "form": "screw",
+                "count": 1
+              }
+            ],
+            "handle_count": 0,
+            "catalysts": [
+              "smithing_hammer",
+              "screwdriver"
+            ]
+          },
+          {
+            "id": "gem",
+            "rows": [
+              "CCd",
+              "fCT",
+              " C "
+            ],
+            "material_inputs": [
+              {
+                "form": "gem_plate",
+                "count": 3
+              },
+              {
+                "form": "screw",
+                "count": 1
+              }
+            ],
+            "handle_count": 0,
+            "catalysts": [
+              "file",
+              "screwdriver"
+            ]
+          }
+        ],
+        "full_source": "Loader_Tools.java:311"
+      },
       "wire_cutter": {
         "full_patterns": [
           {
@@ -1454,6 +1551,10 @@
         "metal",
         "gem"
       ],
+      "monkey_wrench": [
+        "metal",
+        "gem"
+      ],
       "wire_cutter": [
         "metal",
         "gem"
@@ -1554,7 +1655,7 @@
     "kind": "measured_strategy_not_source_fact",
     "projected_counts": {
       "t3_component": 8141,
-      "t4_tool": 3657,
+      "t4_tool": 3913,
       "live_t3_map": 11593
     },
     "count_limits": {

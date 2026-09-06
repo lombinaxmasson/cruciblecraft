@@ -69,6 +69,34 @@
       "workflow": "accepted"
     },
     {
+      "depends_on": [
+        "energy/batteries"
+      ],
+      "maturity": "player_complete",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/energy/transformer/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/EnergyTransformersGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_runtime_transformers/**",
+        "src/main/resources/data/cruciblecraft/energy_transformer_kinds.json",
+        "src/main/resources/data/cruciblecraft/energy_transformer_tiers.json",
+        "src/main/resources/assets/cruciblecraft/gt6_transformers_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/transformer/**",
+        "src/test/java/com/masson/cruciblecraft/energy/transformer/**",
+        "tools/capabilities/energy/transformers/**",
+        "tools/waves/runtime/transformers/**",
+        "tools/tests/test_energy_transformers.py"
+      ],
+      "path": "tools/capabilities/energy/transformers/capability.json",
+      "player_signoff": "tools/capabilities/energy/transformers/player_signoff.json",
+      "profiles": [
+        "capability-runtime",
+        "player-complete"
+      ],
+      "slug": "energy/transformers",
+      "title": "Energy Transformers",
+      "workflow": "accepted"
+    },
+    {
       "depends_on": [],
       "maturity": "frozen",
       "owned_paths": [
@@ -317,10 +345,11 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 9,
+  "capability_count": 10,
   "declared_player_complete": [
     "energy/batteries",
     "energy/converter-catalog",
+    "energy/transformers",
     "logistics/display-cpu",
     "logistics/fluid-network/basic-transfer",
     "logistics/generic-network/core",
@@ -330,15 +359,21 @@
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
     "energy/batteries": [
-      "energy/batteries"
+      "energy/batteries",
+      "energy/transformers"
     ],
     "energy/converter-catalog": [
       "energy/batteries",
-      "energy/converter-catalog"
+      "energy/converter-catalog",
+      "energy/transformers"
+    ],
+    "energy/transformers": [
+      "energy/transformers"
     ],
     "logistics/cover-net-r0": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/transformers",
       "logistics/cover-net-r0",
       "logistics/display-cpu",
       "logistics/fluid-network/basic-transfer",
@@ -349,11 +384,13 @@
     "logistics/display-cpu": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/transformers",
       "logistics/display-cpu"
     ],
     "logistics/fluid-network/basic-transfer": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/transformers",
       "logistics/display-cpu",
       "logistics/fluid-network/basic-transfer",
       "logistics/generic-network/core",
@@ -362,6 +399,7 @@
     "logistics/generic-network/core": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/transformers",
       "logistics/display-cpu",
       "logistics/generic-network/core",
       "logistics/logistics-core"
@@ -369,6 +407,7 @@
     "logistics/item-network-core": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/transformers",
       "logistics/display-cpu",
       "logistics/fluid-network/basic-transfer",
       "logistics/generic-network/core",
@@ -378,6 +417,7 @@
     "logistics/logistics-core": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/transformers",
       "logistics/display-cpu",
       "logistics/logistics-core"
     ],
@@ -389,6 +429,7 @@
     "capability-runtime": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/transformers",
       "logistics/cover-net-r0",
       "logistics/display-cpu",
       "logistics/fluid-network/basic-transfer",
@@ -400,6 +441,7 @@
     "player-complete": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/transformers",
       "logistics/display-cpu",
       "logistics/fluid-network/basic-transfer",
       "logistics/generic-network/core",

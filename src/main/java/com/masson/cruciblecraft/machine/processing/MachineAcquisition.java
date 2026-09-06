@@ -73,16 +73,14 @@ public final class MachineAcquisition {
                         "No kinetic/heat casing for "
                                 + MachineCasingCatalog.materialPath(materialId));
             }
-            casingItem = casings.requireCasing(
-                    materialId, family).id();
+            casingItem = MachineCasingCatalog.casingItemId(materialId, family);
         }
         String materialPath = MachineCasingCatalog.materialPath(materialId);
         String cable = null;
         MachineCasingCatalog.DistilleryWire wire = null;
         if ("electrolyzer".equals(template)) {
-            String casingMaterial = MachineCasingCatalog.materialPath(
-                    casings.requireCasing(casingItem).materialId().toString());
-            cable = casings.electrolyzerCableMaterial(casingMaterial);
+            cable = casings.electrolyzerCableMaterial(
+                    MachineCasingCatalog.materialPathFromCasingItem(casingItem));
         }
         if ("heat".equals(template) && "distillery".equals(kindId.getPath())) {
             wire = casings.distilleryWire(materialPath);

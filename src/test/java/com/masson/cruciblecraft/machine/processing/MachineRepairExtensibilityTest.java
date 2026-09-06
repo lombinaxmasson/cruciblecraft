@@ -59,24 +59,25 @@ class MachineRepairExtensibilityTest {
                 overlay.acquisition());
         assertEquals("kinetic", resolved.template());
         assertEquals(
-                ResourceLocation.parse("cruciblecraft:invar_double_machine_casing"),
+                ResourceLocation.parse("cruciblecraft:invar/machine_casing_double"),
                 resolved.casingItem());
         assertFalse(MachineTierCatalog.entries().stream().anyMatch(entry ->
                 FIXTURE_VARIANT.equals(entry.variantId().toString())));
     }
 
     @Test
-    void overlayProjectsL2IronCasingWithoutJavaWhitelist() {
+    void overlayProjectsL2IronElectrolyzerCableWithoutProductionRow() {
         CatalogTestSupport.Loaded overlay = CatalogTestSupport.loadOverlay();
-        assertFalse(MachineCasingCatalog.bundled().hasCasing("iron", "eu_single"));
+        assertFalse(MachineCasingCatalog.bundled().hasElectrolyzerCable("iron"));
         IllegalStateException missing = assertThrows(
                 IllegalStateException.class,
-                () -> MachineCasingCatalog.require("iron", "eu_single"));
-        assertTrue(missing.getMessage().contains("No EU casing for"));
-        assertTrue(overlay.casings().hasCasing("iron", "eu_single"));
+                () -> MachineCasingCatalog.bundled()
+                        .electrolyzerCableMaterial("iron"));
+        assertTrue(missing.getMessage().contains("No electrolyzer cable for"));
+        assertTrue(overlay.casings().hasElectrolyzerCable("iron"));
         assertEquals(
-                ResourceLocation.parse(FIXTURE_CASING),
-                overlay.casings().requireCasing("iron", "eu_single").id());
+                "copper",
+                overlay.casings().electrolyzerCableMaterial("iron"));
     }
 
     @Test

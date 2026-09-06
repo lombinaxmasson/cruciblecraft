@@ -190,7 +190,7 @@ class MaterialPrefixCatalogTest {
                         MaterialPrefixes.ROD,
                         MaterialPrefixes.SMALL_DUST),
                 List.copyOf(MaterialPrefixCatalog.values()).subList(0, 15));
-        assertEquals(124, MaterialPrefixCatalog.values().size());
+        assertEquals(126, MaterialPrefixCatalog.values().size());
         assertEquals(16, MaterialPrefixes.TINY_CRUSHED_ORE.units());
         assertEquals(144, MaterialPrefixes.WASHED_CRUSHED_ORE.units());
         assertEquals(144, MaterialPrefixes.CENTRIFUGED_CRUSHED_ORE.units());
@@ -214,6 +214,14 @@ class MaterialPrefixCatalogTest {
         assertEquals(MaterialPrefixes.SMALL_DUST, MaterialPrefixCatalog.require("dustsmall"));
         assertEquals(MaterialPrefixes.TINY_DUST, MaterialPrefixCatalog.require("dusttiny"));
         assertEquals(MaterialPrefixes.DUST_DIV72, MaterialPrefixCatalog.require("dustDiv72"));
+        assertEquals(
+                MaterialPrefixes.MACHINE_CASING,
+                MaterialPrefixCatalog.require("casingMachine"));
+        assertEquals(
+                MaterialPrefixes.MACHINE_CASING_DOUBLE,
+                MaterialPrefixCatalog.require("casingMachineDouble"));
+        assertEquals(1152, MaterialPrefixes.MACHINE_CASING.units());
+        assertEquals(2016, MaterialPrefixes.MACHINE_CASING_DOUBLE.units());
         assertEquals(MaterialPrefixes.DOUBLE_INGOT, MaterialPrefixCatalog.require("ingotdouble"));
         assertEquals(MaterialPrefixes.TRIPLE_INGOT, MaterialPrefixCatalog.require("ingottriple"));
         assertEquals(MaterialPrefixes.INGOT_HOT, MaterialPrefixCatalog.require("ingothot"));

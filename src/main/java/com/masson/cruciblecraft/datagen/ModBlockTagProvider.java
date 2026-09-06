@@ -59,6 +59,9 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
         ModBlocks.batteryBlocksById().values().stream()
                 .sorted(Comparator.comparing(block -> block.getId().toString()))
                 .forEach(block -> pickaxe.add(block.getKey()));
+        ModBlocks.transformerBlocksById().values().stream()
+                .sorted(Comparator.comparing(block -> block.getId().toString()))
+                .forEach(block -> pickaxe.add(block.getKey()));
         ModBlocks.configuredProcessingBlockEntries().stream()
                 .sorted(Comparator.comparing(
                         block -> block.getId().toString()))

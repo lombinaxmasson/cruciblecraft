@@ -131,7 +131,7 @@ public final class CatalogTestSupport {
     private static JsonObject mergeCasings(
             JsonObject production, JsonObject overlay) {
         JsonObject merged = production.deepCopy();
-        appendArray(merged, overlay, "casings");
+        appendArray(merged, overlay, "electrolyzer_cables");
         appendArray(merged, overlay, "machine_material_extras");
         return merged;
     }

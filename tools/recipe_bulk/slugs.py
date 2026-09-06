@@ -72,6 +72,7 @@ KNOWN_SEMANTIC_SLUGS = (
     "runtime/display-cpu",
     "runtime/converter-catalog",
     "runtime/batteries",
+    "runtime/transformers",
 )
 
 

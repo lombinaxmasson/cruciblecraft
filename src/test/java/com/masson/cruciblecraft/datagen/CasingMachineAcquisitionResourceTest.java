@@ -38,35 +38,35 @@ class CasingMachineAcquisitionResourceTest {
             throws Exception {
         List<RecipeSpec> expected = List.of(
                 casing(
-                        "components/aluminium_machine_casing",
-                        "cruciblecraft:aluminium_machine_casing",
+                        "components/aluminium/machine_casing",
+                        "cruciblecraft:aluminium/machine_casing",
                         "cruciblecraft:aluminium/plate",
-                        ModItems.ALUMINIUM_MACHINE_CASING.getId().toString()),
+                        "cruciblecraft:aluminium/long_rod"),
                 casing(
-                        "components/bronze_double_machine_casing",
-                        "cruciblecraft:bronze_double_machine_casing",
+                        "components/bronze/machine_casing_double",
+                        "cruciblecraft:bronze/machine_casing_double",
                         "cruciblecraft:bronze/double_plate",
-                        ModItems.BRONZE_DOUBLE_MACHINE_CASING.getId().toString()),
+                        "cruciblecraft:bronze/long_rod"),
                 casing(
-                        "components/stainless_steel_machine_casing",
-                        "cruciblecraft:stainless_steel_machine_casing",
+                        "components/stainless_steel/machine_casing",
+                        "cruciblecraft:stainless_steel/machine_casing",
                         "cruciblecraft:stainless_steel/plate",
-                        ModItems.STAINLESS_STEEL_MACHINE_CASING.getId().toString()),
+                        "cruciblecraft:stainless_steel/long_rod"),
                 casing(
-                        "components/steel_double_machine_casing",
-                        "cruciblecraft:steel_double_machine_casing",
+                        "components/steel/machine_casing_double",
+                        "cruciblecraft:steel/machine_casing_double",
                         "cruciblecraft:steel/double_plate",
-                        ModItems.STEEL_DOUBLE_MACHINE_CASING.getId().toString()),
+                        "cruciblecraft:steel/long_rod"),
                 casing(
-                        "components/steel_galvanized_machine_casing",
-                        "cruciblecraft:steel_galvanized_machine_casing",
+                        "components/steel_galvanized/machine_casing",
+                        "cruciblecraft:steel_galvanized/machine_casing",
                         "cruciblecraft:steel_galvanized/plate",
-                        ModItems.STEEL_GALVANIZED_MACHINE_CASING.getId().toString()),
+                        "cruciblecraft:steel_galvanized/long_rod"),
                 casing(
-                        "components/titanium_double_machine_casing",
-                        "cruciblecraft:titanium_double_machine_casing",
+                        "components/titanium/machine_casing_double",
+                        "cruciblecraft:titanium/machine_casing_double",
                         "cruciblecraft:titanium/double_plate",
-                        ModItems.TITANIUM_DOUBLE_MACHINE_CASING.getId().toString()));
+                        "cruciblecraft:titanium/long_rod"));
 
         assertEquals(6, expected.size());
         expected.forEach(spec -> assertRecipe(spec));
@@ -79,46 +79,46 @@ class CasingMachineAcquisitionResourceTest {
                 centrifuge(
                         "centrifuge",
                         "bronze",
-                        "bronze_double_machine_casing",
+                        "bronze/machine_casing_double",
                         ModItems.CENTRIFUGE.getId().toString()),
                 centrifuge(
                         "steel_centrifuge",
                         "steel",
-                        "steel_double_machine_casing",
+                        "steel/machine_casing_double",
                         ModItems.STEEL_CENTRIFUGE.getId().toString()),
                 centrifuge(
                         "titanium_centrifuge",
                         "titanium",
-                        "titanium_double_machine_casing",
+                        "titanium/machine_casing_double",
                         ModItems.TITANIUM_CENTRIFUGE.getId().toString()),
                 sifter(
                         "sifter",
                         "bronze",
-                        "bronze_double_machine_casing",
+                        "bronze/machine_casing_double",
                         ModItems.SIFTER.getId().toString()),
                 sifter(
                         "steel_sifter",
                         "steel",
-                        "steel_double_machine_casing",
+                        "steel/machine_casing_double",
                         ModItems.STEEL_SIFTER.getId().toString()),
                 sifter(
                         "titanium_sifter",
                         "titanium",
-                        "titanium_double_machine_casing",
+                        "titanium/machine_casing_double",
                         ModItems.TITANIUM_SIFTER.getId().toString()),
                 electrolyzer(
                         "electrolyzer",
-                        "steel_galvanized_machine_casing",
+                        "steel_galvanized/machine_casing",
                         "tin",
                         ModItems.ELECTROLYZER.getId().toString()),
                 electrolyzer(
                         "aluminium_electrolyzer",
-                        "aluminium_machine_casing",
+                        "aluminium/machine_casing",
                         "copper",
                         ModItems.ALUMINIUM_ELECTROLYZER.getId().toString()),
                 electrolyzer(
                         "stainless_steel_electrolyzer",
-                        "stainless_steel_machine_casing",
+                        "stainless_steel/machine_casing",
                         "gold",
                         ModItems.STAINLESS_STEEL_ELECTROLYZER.getId().toString()));
 
@@ -141,13 +141,13 @@ class CasingMachineAcquisitionResourceTest {
             String path,
             String result,
             String plate,
-            String registration) {
+            String longRod) {
         return new RecipeSpec(
                 path,
                 result,
-                registration,
-                List.of("PPP", "P P", "PPP"),
-                Map.of("P", plate));
+                result,
+                List.of("YXX", "X X", "XXY"),
+                Map.of("X", plate, "Y", longRod));
     }
 
     private static RecipeSpec centrifuge(

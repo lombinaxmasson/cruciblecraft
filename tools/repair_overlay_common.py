@@ -449,7 +449,7 @@ def overlay_proofs() -> dict[str, bool]:
         l1 = FIXTURE_VARIANT in text and "cruciblecraft:lathe" in text
     if casings.is_file():
         text = casings.read_text(encoding="utf-8")
-        l2 = FIXTURE_CASING in text and "cruciblecraft:iron" in text
+        l2 = '"cruciblecraft:iron"' in text and "cable_material" in text
     if devices.is_file():
         text = devices.read_text(encoding="utf-8")
         device = '"material_id": "iron"' in text and "creative_visible" in text
@@ -754,22 +754,14 @@ def production_catalogs() -> dict[str, Any]:
         if group:
             row["display_group"] = group
         kinds.append(row)
-    casings = []
-    for item_id, material, family, doubled, cable in CASING_ROWS:
-        row = {
-            "id": f"cruciblecraft:{item_id}",
+    casings = [
+        {
             "material": f"cruciblecraft:{material}",
-            "energy_family": family,
-            "doubled": doubled,
-            "creative_visible": True,
-            "lang_key_zh": MATERIAL_LANG[material]["zh"]
-            + ("双层机器外壳" if doubled else "机器外壳"),
-            "lang_key_en": MATERIAL_LANG[material]["en"]
-            + (" Double Machine Casing" if doubled else " Machine Casing"),
+            "cable_material": cable,
         }
-        if cable:
-            row["electrolyzer_cable_material"] = cable
-        casings.append(row)
+        for _item_id, material, _family, _doubled, cable in CASING_ROWS
+        if cable
+    ]
     overrides = [
         {
             "id": f"cruciblecraft:{path}",
@@ -780,7 +772,7 @@ def production_catalogs() -> dict[str, Any]:
     overrides.extend(
         {
             "id": f"cruciblecraft:{path}",
-            "casing_item": "cruciblecraft:steel_double_machine_casing",
+            "casing_item": "cruciblecraft:steel/machine_casing_double",
         }
         for path in STEEL_CASING_OVERRIDES
     )
@@ -799,7 +791,7 @@ def production_catalogs() -> dict[str, Any]:
             "$schema": "schema/machine_casings.schema.json",
             "schema_version": 1,
             "source_revision": SOURCE_REVISION,
-            "casings": casings,
+            "electrolyzer_cables": casings,
             "machine_material_extras": [
                 {
                     "material": f"cruciblecraft:{material}",

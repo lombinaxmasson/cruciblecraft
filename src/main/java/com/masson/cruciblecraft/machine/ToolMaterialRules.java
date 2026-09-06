@@ -21,9 +21,10 @@ import net.minecraft.world.item.Tiers;
  * the source/reason for every shared predicate.
  *
  * <p>Two intentional asymmetries are source observations, not local guesses:
- * the Wrench listener at {@code Loader_Tools.java:310} omits {@code COATED},
- * while other relevant listeners include it; Screwdriver's prefix/listener
- * pair at {@code OP.java:248}/{@code Loader_Tools.java:306} omits the
+ * the Wrench and Monkey Wrench listeners at {@code Loader_Tools.java:310-311}
+ * omit {@code COATED}, while other relevant listeners include it;
+ * Screwdriver's prefix/listener pair at
+ * {@code OP.java:248}/{@code Loader_Tools.java:306} omits the
  * {@code BOUNCY}/{@code STRETCHY} exclusions used by File, Chisel, Saw, and
  * Wrench.
  */
@@ -138,6 +139,13 @@ public final class ToolMaterialRules {
                 Integer.MAX_VALUE,
                 BOUNCY_TAG,
                 STRETCHY_TAG),
+        MONKEY_WRENCH(
+                "monkey_wrench",
+                2L,
+                1,
+                Integer.MAX_VALUE,
+                BOUNCY_TAG,
+                STRETCHY_TAG),
         // GT6 Loader_Tools.java:324 listener And(ANTIMATTER.NOT, Wood.NOT,
         // BOUNCY.NOT, STRETCHY.NOT, typemin(2)) — no qualmin, COATED allowed.
         WIRE_CUTTER(
@@ -190,7 +198,9 @@ public final class ToolMaterialRules {
                     || GENERIC_WOOD_ID.equals(materialId)
                     || !materialTags.contains(TOOL_DOMAIN_TAG)
                     || materialTags.contains(ANTIMATTER_TAG)
-                    || ((this != WRENCH && this != WIRE_CUTTER)
+                    || ((this != WRENCH
+                            && this != MONKEY_WRENCH
+                            && this != WIRE_CUTTER)
                             && materialTags.contains(COATED_TAG))
                     || stats.types() < minTypes
                     || stats.quality() < minQuality

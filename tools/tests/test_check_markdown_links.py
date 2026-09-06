@@ -28,7 +28,7 @@ class MarkdownLinkCheckTest(unittest.TestCase):
                 / "history"
                 / "card-plans"
                 / "active"
-                / "电池详细计划.md"
+                / "变压器详细计划.md"
             )
         )
 

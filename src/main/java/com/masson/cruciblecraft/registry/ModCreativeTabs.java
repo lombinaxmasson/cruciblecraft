@@ -19,7 +19,6 @@ import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.machine.MachineDurabilityComponent;
 import com.masson.cruciblecraft.machine.MachineMaterialRules;
 import com.masson.cruciblecraft.machine.processing.DeviceMaterialCatalog;
-import com.masson.cruciblecraft.machine.processing.MachineCasingCatalog;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -116,18 +115,14 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.CONTROL_PROCESSOR_UNIT.get());
                         output.accept(ModItems.STORAGE_PROCESSOR_UNIT.get());
                         output.accept(ModItems.CONVERSION_PROCESSOR_UNIT.get());
-                        MachineCasingCatalog.casings().stream()
-                                .filter(MachineCasingCatalog.Casing::creativeVisible)
-                                .forEach(casing -> output.accept(
-                                        ModItems.machineCasingsById()
-                                                .get(casing.id())
-                                                .get()));
                         ModItems.converterItemsById().values().forEach(
                                 item -> output.accept(item.get()));
                         ModItems.batteryItemsById().values().forEach(item -> {
                             output.accept(item.get());
                             output.accept(item.get().fullStack());
                         });
+                        ModItems.transformerItemsById().values().forEach(
+                                item -> output.accept(item.get()));
                         output.accept(ModItems.ROTATIONAL_AXLE.get());
                         output.accept(ModItems.ROTATIONAL_GEARBOX.get());
                         output.accept(ModItems.BRONZE_CRUSHER.get());

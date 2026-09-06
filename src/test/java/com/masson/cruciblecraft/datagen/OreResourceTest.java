@@ -409,15 +409,16 @@ class OreResourceTest {
         // Keep the pre-storage actual set distinct and derive the new total from
         // that set plus the exact 5-cover + 25-pipe generated acquisition set.
         assertEquals(30, preStorageRecipeSet.size());
-        // 877 + wire cutter additions: tool pattern recipe + two route rules.
+        // Current generated baseline: 877 + wire cutter additions, tool
+        // patterns/routes, and the catalog-driven machine/storage resources.
         // The hopper catalog adds 121 acquisition recipes (60 hopper, 60 queue,
         // 1 steel dust funnel). The machine catalog adds catalog-driven recipes
         // plus five source-backed casings beyond the early six. Storage adds 18
         // source-visible storage acquisition recipes. Display CPU adds 8 cover
         // recipes (4 shaped + 4 shapeless cycle).
-        assertEquals(1_118, generatedRecipeSet.size() - preStorageRecipeSet.size());
+        assertEquals(1_732, generatedRecipeSet.size() - preStorageRecipeSet.size());
         assertEquals(
-                1_118 + preStorageRecipeSet.size(),
+                1_732 + preStorageRecipeSet.size(),
                 generatedRecipeSet.size());
         assertEquals(48, countRegularFiles(COMPONENT_RULE_RESOURCES.resolve(
                 "data/cruciblecraft/recipe")));

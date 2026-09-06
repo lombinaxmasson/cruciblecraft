@@ -646,6 +646,31 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             next_unassigned=True,
             owns_families=0,
         ),
+        "runtime/transformers": WaveCloseoutSpec(
+            wave_slug="runtime/transformers",
+            census=WAVES_ROOT / "runtime" / "transformers" / "census_delta.json",
+            topology=WAVES_ROOT / "runtime" / "transformers" / "topology.json",
+            readiness=WAVES_ROOT / "runtime" / "transformers" / "readiness.json",
+            receipt=WAVES_ROOT / "runtime" / "transformers" / "gametest_receipt.json",
+            production_lock=None,
+            generated_root=None,
+            support_root=None,
+            gametest_java=(
+                io.ROOT
+                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "EnergyTransformersGameTests.java"
+            ),
+            gametest_log=(
+                WAVES_ROOT / "runtime" / "transformers" / "gametest.log"
+            ),
+            publication_group_manifest=None,
+            shard_manifest=None,
+            runtime_dependency_manifest=None,
+            complete_key="wave_complete",
+            unique_active_wave=None,
+            next_unassigned=True,
+            owns_families=0,
+        ),
         "drying/ordinary-closure": _ordinary("drying"),
         "electrolyzer/ordinary-closure": _ordinary("electrolyzer"),
         "centrifuge/ordinary-closure": _ordinary("centrifuge"),

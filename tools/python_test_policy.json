@@ -15,6 +15,7 @@
     "test_energy_remainder",
     "test_energy_converter_catalog",
     "test_energy_batteries",
+    "test_energy_transformers",
     "test_logistics_core",
     "test_display_cpu",
     "test_verification_profiles",
@@ -72,6 +73,7 @@
         "tools/tests/test_energy_remainder.py",
         "tools/tests/test_energy_converter_catalog.py",
         "tools/tests/test_energy_batteries.py",
+        "tools/tests/test_energy_transformers.py",
         "tools/tests/test_logistics_core.py",
         "tools/tests/test_display_cpu.py"
       ],
@@ -81,6 +83,7 @@
         "test_energy_remainder",
         "test_energy_converter_catalog",
         "test_energy_batteries",
+        "test_energy_transformers",
         "test_logistics_core",
         "test_display_cpu",
         "test_verification_profiles"
@@ -184,10 +187,21 @@
         "src/main/java/com/masson/cruciblecraft/gametest/EnergyBatteriesGameTests.java",
         "src/main/resources/data/cruciblecraft/energy_battery_kinds.json",
         "src/main/resources/data/cruciblecraft/energy_battery_tiers.json",
+        "src/main/resources/data/cruciblecraft_wave_runtime_batteries/**",
         "src/main/resources/assets/cruciblecraft/gt6_batteries_art_manifest.json",
         "tools/capabilities/energy/batteries/**",
         "tools/waves/runtime/batteries/**",
-        "tools/tests/test_energy_batteries.py"
+        "tools/tests/test_energy_batteries.py",
+        "src/main/java/com/masson/cruciblecraft/energy/transformer/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/EnergyTransformersGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_runtime_transformers/**",
+        "src/main/resources/data/cruciblecraft/energy_transformer_kinds.json",
+        "src/main/resources/data/cruciblecraft/energy_transformer_tiers.json",
+        "src/main/resources/assets/cruciblecraft/gt6_transformers_art_manifest.json",
+        "src/test/java/com/masson/cruciblecraft/energy/transformer/**",
+        "tools/capabilities/energy/transformers/**",
+        "tools/waves/runtime/transformers/**",
+        "tools/tests/test_energy_transformers.py"
       ],
       "test_modules": [
         "test_capability_ledger",
@@ -196,6 +210,7 @@
         "test_display_cpu",
         "test_energy_converter_catalog",
         "test_energy_batteries",
+        "test_energy_transformers",
         "test_registry_identity"
       ]
     },
@@ -210,6 +225,8 @@
         "tools/capabilities/logistics/logistics-core/**",
         "tools/capabilities/logistics/display-cpu/**",
         "tools/capabilities/energy/converter-catalog/**",
+        "tools/capabilities/energy/batteries/**",
+        "tools/capabilities/energy/transformers/**",
         "src/main/java/com/masson/cruciblecraft/verification/PlayerCompleteSmoke.java",
         "src/main/java/com/masson/cruciblecraft/client/ClientSmoke.java",
         "src/main/java/com/masson/cruciblecraft/compat/emi/CrucibleCraftEmiPlugin.java",

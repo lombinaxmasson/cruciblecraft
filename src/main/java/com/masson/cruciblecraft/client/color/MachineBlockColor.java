@@ -4,6 +4,7 @@ import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterKindCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterTierCatalog;
+import com.masson.cruciblecraft.energy.transformer.EnergyTransformerTierCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
 
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -43,9 +44,13 @@ public final class MachineBlockColor {
         blocks.add(ModBlocks.TANK_3X3X3.get());
         blocks.add(ModBlocks.LARGE_CRUCIBLE.get());
         blocks.add(ModBlocks.MORTAR.get());
-        return blocks.stream()
-                .filter(MachineBlockColor::usesDualLayerTextures)
-                .toArray(Block[]::new);
+        java.util.ArrayList<Block> tinted = new java.util.ArrayList<>(
+                blocks.stream()
+                        .filter(MachineBlockColor::usesDualLayerTextures)
+                        .toList());
+        java.util.Collections.addAll(
+                tinted, ModBlocks.transformerBlockArray());
+        return tinted.toArray(Block[]::new);
     }
 
     private static boolean usesDualLayerTextures(Block block) {
@@ -68,6 +73,10 @@ public final class MachineBlockColor {
 
     /** GT6 loader casing material identity for the machine texture family. */
     public static String casingMaterialId(String path) {
+        var transformer = EnergyTransformerTierCatalog.findByPath(path);
+        if (transformer != null) {
+            return transformer.material();
+        }
         var converter = EnergyConverterTierCatalog.findByPath(path);
         if (converter != null) {
             return converter.material();

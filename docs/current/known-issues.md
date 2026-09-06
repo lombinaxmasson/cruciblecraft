@@ -10,6 +10,7 @@
 这些是显式身份决策，不是漏做的冲突。
 
 - mapped tool head 已折回 `材料 × 前缀`（`TOOL_HEAD_PREFIX_READY`；bath identity `71`，semantic `244`；remap `7990/0`）。钥匙 / 电路线 / Low Heat Extruder Shape 仍是 unique identity：meta 对不上 `material_id_to_cc`。Low Heat 是温度档，不能并进 34 件 `ExtruderShapeCatalog`；disposition = `new_distinct`，权威在 `tools/capabilities/registry/tool-head-remainder/capability.json`。不开放「任意油」tag。
+- 电池配方 `B` 槽不是 GT6 灌液芯。`energy/batteries` 已 `player_complete`，几何和 `battery_alloy/plate` 是 SOURCE_BACKED；`IL.Battery_*_Cell_Filled`（`20000–20009`）未注册。权威：`battery_part:filled_cell` / `recipe:energium_crystal_shaped` 均为 `blocked`，见 [电池详细计划](../history/card-plans/closed/电池详细计划.md)「配方保真债」。铅酸用 `lead/plate` 顶芯，不是「缺合成网格」。
 - 配方生成器 / 运行时曾把签发卡号当成类型，并在 Bath 上混用青铜化学信封与 GT6 remainder compact。待重构，见 [recipe-wave-workflow §4.3.1](recipe-wave-workflow.md)。现在不要为了改名去动已封板路径。
 
 ## Verification debt
@@ -30,7 +31,7 @@
 游戏里还没有、以后另开能力，不要写进 known-issues 当「已关卡的尾巴」。总账：[unimplemented-gap.md](unimplemented-gap.md)。
 
 - Display CPU 四件物流监视器已由 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md) `player_complete`（`logistics/display-cpu`）。Dump 封面与 Logistics Core 已 [物流核心](../history/card-plans/closed/物流核心详细计划.md) `player_complete`。`dump_policy` 见已关闭的 [物流封面网余量](../history/card-plans/closed/物流封面网余量详细计划.md)。
-- 能量：当前 unique active [电池](../history/card-plans/active/电池详细计划.md)（`energy/batteries`，`player_complete`；卡仍 unique active）。已关闭 [能量转换机目录](../history/card-plans/closed/能量转换机目录详细计划.md)（`energy/converter-catalog`）把 Burning Box / 锅炉 / 蒸汽机 / 燃油引擎 / 发电机 / 电机做成 kind × 材质分档。余量卡已删除 `firebox` / `bellows` / 独立 `coal_coke`。变压器仍 `frozen`。
+- 能量：当前 unique active [变压器](../history/card-plans/active/变压器详细计划.md)（`energy/transformers`，`player_complete` / `accepted`；9 台电变压器已进游戏，生存配方按 GT6 逐格）。已关闭 [电池](../history/card-plans/closed/电池详细计划.md)（`energy/batteries`，`player_complete`）。已关闭 [能量转换机目录](../history/card-plans/closed/能量转换机目录详细计划.md)（`energy/converter-catalog`）把 Burning Box / 锅炉 / 蒸汽机 / 燃油引擎 / 发电机 / 电机做成 kind × 材质分档。余量卡已删除 `firebox` / `bellows` / 独立 `coal_coke`。长距变压器与齿轮箱不在本卡。
 - 作物 / 树 / 原版熔炉替换余量仍 `frozen`
 - 原版替换 MVP 只覆盖了纸 3→1；熔炉仍是原版 8 圆石
 - 首小时 mortar / sifter / smelter / bath 已脱离 `metal_surface`。`smelter` 现为 `basicmachines/smelter` 立方机；工作态 `overlay_active` 未接 `LIT`

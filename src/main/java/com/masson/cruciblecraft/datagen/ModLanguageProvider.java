@@ -21,7 +21,7 @@ import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.energy.battery.EnergyBatteryCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterKindCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterTierCatalog;
-import com.masson.cruciblecraft.machine.processing.MachineCasingCatalog;
+import com.masson.cruciblecraft.energy.transformer.EnergyTransformerCatalog;
 import com.masson.cruciblecraft.machine.processing.MachineKindCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModFluids;
@@ -232,6 +232,7 @@ public class ModLanguageProvider extends LanguageProvider {
             add("item.cruciblecraft.material_saw", "%s锯");
             add("item.cruciblecraft.material_screwdriver", "%s螺丝刀");
             add("item.cruciblecraft.material_wrench", "%s扳手");
+            add("item.cruciblecraft.material_monkey_wrench", "%s活动扳手");
             add("item.cruciblecraft.material_wire_cutter", "%s剪线钳");
             add("jade.cruciblecraft.pipe_covers", "盖板参数：%s");
             add("tooltip.cruciblecraft.cover.behavior", "行为：%s");
@@ -627,6 +628,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("item.cruciblecraft.material_saw", "%s Saw");
         add("item.cruciblecraft.material_screwdriver", "%s Screwdriver");
         add("item.cruciblecraft.material_wrench", "%s Wrench");
+        add("item.cruciblecraft.material_monkey_wrench", "%s Monkey Wrench");
         add("item.cruciblecraft.material_wire_cutter", "%s Wire Cutter");
         addItem(ModItems.UNKNOWN_MATERIAL, "Unknown Material");
         ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
@@ -675,7 +677,7 @@ public class ModLanguageProvider extends LanguageProvider {
         for (var form : MaterialPrefixCatalog.values()) {
             add(
                     "item.cruciblecraft.material_form." + form.serializedName(),
-                    "%s " + title(form.serializedName()));
+                    "%s " + formEnglish(form.serializedName()));
         }
         MaterialCatalog.startupValues().forEach(material ->
                 add(material.translationKey(), title(material.id())));
@@ -884,6 +886,14 @@ public class ModLanguageProvider extends LanguageProvider {
                 chinese ? "空 扳手头" : "Empty Wrench Head");
     }
 
+    private static String formEnglish(String serializedName) {
+        return switch (serializedName) {
+            case "machine_casing" -> "Machine Casing";
+            case "machine_casing_double" -> "Double Machine Casing";
+            default -> title(serializedName);
+        };
+    }
+
     private static String title(String value) {
         String spaced = value.replace('_', ' ');
         return spaced.substring(0, 1).toUpperCase(Locale.ROOT) + spaced.substring(1);
@@ -895,13 +905,9 @@ public class ModLanguageProvider extends LanguageProvider {
                         "block." + CrucibleCraft.MODID + "."
                                 + variant.id().getPath(),
                         catalogMachineName(variant)));
-        MachineCasingCatalog.casings().forEach(casing ->
-                add(
-                        "item." + CrucibleCraft.MODID + "."
-                                + casing.id().getPath(),
-                        chinese ? casing.langZh() : casing.langEn()));
         addConverterCatalogNames();
         addBatteryCatalogNames();
+        addTransformerCatalogNames();
         BathMteIdentityCatalog.newItems().forEach(identity ->
                 add(
                         "item." + CrucibleCraft.MODID + "."
@@ -997,6 +1003,58 @@ public class ModLanguageProvider extends LanguageProvider {
             add("block." + CrucibleCraft.MODID + "." + path, name);
             add("item." + CrucibleCraft.MODID + "." + path, name);
         });
+    }
+
+    private void addTransformerCatalogNames() {
+        add(
+                "message.cruciblecraft.transformer.normal",
+                chinese ? "正向" : "Normal");
+        add(
+                "message.cruciblecraft.transformer.reversed",
+                chinese ? "反向" : "Reversed");
+        add(
+                "tooltip.cruciblecraft.transformer.front_in",
+                chinese ? "正面为高压输入" : "Front is HV in");
+        add(
+                "tooltip.cruciblecraft.transformer.wrench",
+                chinese ? "活动扳手切换升压/降压"
+                        : "Monkey wrench reverses step-up/step-down");
+        EnergyTransformerCatalog.profiles().forEach(profile -> {
+            String path = profile.id().getPath();
+            String name = transformerDisplayName(profile);
+            add("block." + CrucibleCraft.MODID + "." + path, name);
+            add("item." + CrucibleCraft.MODID + "." + path, name);
+        });
+    }
+
+    private String transformerDisplayName(
+            com.masson.cruciblecraft.energy.transformer.EnergyTransformerProfile profile) {
+        String low = chinese
+                ? transformerVoltageZh(profile.lowVoltage())
+                : profile.lowVoltage().toUpperCase(Locale.ROOT);
+        String high = chinese
+                ? transformerVoltageZh(profile.highVoltage())
+                : profile.highVoltage().toUpperCase(Locale.ROOT);
+        if (chinese) {
+            return profile.langZh() + "（" + low + "-" + high + "）";
+        }
+        return profile.langEn() + " (" + low + "-" + high + ")";
+    }
+
+    private static String transformerVoltageZh(String voltage) {
+        return switch (voltage) {
+            case "ulv" -> "超低压";
+            case "lv" -> "低压";
+            case "mv" -> "中压";
+            case "hv" -> "高压";
+            case "ev" -> "超高压";
+            case "iv" -> "极高压";
+            case "luv" -> "LuV";
+            case "zpm" -> "ZPM";
+            case "uv" -> "终极";
+            case "puv1" -> "PUV1";
+            default -> voltage.toUpperCase(Locale.ROOT);
+        };
     }
 
     private String batteryDisplayName(

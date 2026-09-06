@@ -39,6 +39,7 @@ import com.masson.cruciblecraft.content.blockentity.SteamEngineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SolidBurningBoxBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SubsurfaceFluidDepositBlockEntity;
 import com.masson.cruciblecraft.energy.battery.BatteryBlockEntity;
+import com.masson.cruciblecraft.energy.transformer.TransformerBlockEntity;
 
 import com.masson.cruciblecraft.content.storage.StorageBehaviorProfile;
 
@@ -369,6 +370,15 @@ public final class ModBlockEntities {
                             () -> BlockEntityType.Builder.of(
                                     BatteryBlockEntity::new,
                                     ModBlocks.batteryBlockArray())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<TransformerBlockEntity>>
+                    TRANSFORMER = BLOCK_ENTITIES.register(
+                            "transformer",
+                            () -> BlockEntityType.Builder.of(
+                                    TransformerBlockEntity::new,
+                                    ModBlocks.transformerBlockArray())
                                     .build(null));
 
     private ModBlockEntities() {}

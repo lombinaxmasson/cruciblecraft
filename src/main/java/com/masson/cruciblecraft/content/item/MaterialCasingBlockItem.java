@@ -1,0 +1,37 @@
+package com.masson.cruciblecraft.content.item;
+
+import com.masson.cruciblecraft.api.material.MaterialPrefix;
+import com.masson.cruciblecraft.content.block.MaterialCasingBlock;
+
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+
+/** Casing PrefixBlock item that keeps the generated material-form identity. */
+public final class MaterialCasingBlockItem extends BlockItem
+        implements MaterialFormItem {
+    private final String materialId;
+    private final MaterialPrefix form;
+
+    public MaterialCasingBlockItem(
+            MaterialCasingBlock block, Properties properties) {
+        super(block, properties);
+        this.materialId = block.materialId();
+        this.form = block.form();
+    }
+
+    @Override
+    public String materialId() {
+        return materialId;
+    }
+
+    @Override
+    public MaterialPrefix form() {
+        return form;
+    }
+
+    @Override
+    public Component getName(ItemStack stack) {
+        return materialFormName();
+    }
+}

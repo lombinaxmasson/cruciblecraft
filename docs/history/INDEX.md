@@ -17,8 +17,12 @@
 ## 当前 active 卡
 
 当前 unique active 是
-[电池](card-plans/active/电池详细计划.md)
-（capability `energy/batteries`，`player_complete`）。
+[变压器](card-plans/active/变压器详细计划.md)
+（capability `energy/transformers`，`player_complete` / `accepted`）。
+已关闭
+[电池](card-plans/closed/电池详细计划.md)
+（capability `energy/batteries`，`player_complete`；配方 `B` 槽是
+DESIGN_POLICY 芯替身，见该卡「配方保真债」）。
 已关闭
 [能量转换机目录](card-plans/closed/能量转换机目录详细计划.md)
 为转换机 kind × 材质 169 行 `player_complete`。
