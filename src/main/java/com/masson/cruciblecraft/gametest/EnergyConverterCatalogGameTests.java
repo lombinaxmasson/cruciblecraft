@@ -44,7 +44,17 @@ public final class EnergyConverterCatalogGameTests {
             "bronze_steam_engine",
             "bronze_fuel_engine",
             "bronze_dynamo",
-            "steel_galvanized_electric_motor");
+            "steel_galvanized_electric_motor",
+            "steel_galvanized_electric_heater",
+            "aluminium_electric_heater",
+            "stainless_steel_electric_heater",
+            "chromium_electric_heater",
+            "titanium_electric_heater",
+            "steel_galvanized_electric_engine",
+            "aluminium_electric_engine",
+            "stainless_steel_electric_engine",
+            "chromium_electric_engine",
+            "titanium_electric_engine");
 
     private EnergyConverterCatalogGameTests() {}
 
@@ -79,8 +89,8 @@ public final class EnergyConverterCatalogGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void playerSurfaceIsRegistered(GameTestHelper helper) {
         helper.assertTrue(
-                EnergyConverterCatalog.profiles().size() == 169,
-                "Converter catalog drifted from 169 loader rows");
+                EnergyConverterCatalog.profiles().size() == 179,
+                "Converter catalog drifted from 179 loader rows");
         helper.assertTrue(
                 ModItems.BRONZE_BURNING_BOX_GAS.get() != null,
                 "Bronze gas burning box item missing");

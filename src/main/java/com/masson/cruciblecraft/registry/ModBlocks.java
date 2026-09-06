@@ -21,6 +21,8 @@ import com.masson.cruciblecraft.content.block.CrucibleBlock;
 import com.masson.cruciblecraft.content.block.CrusherBlock;
 import com.masson.cruciblecraft.content.block.DynamoBlock;
 import com.masson.cruciblecraft.content.block.ElectricMotorBlock;
+import com.masson.cruciblecraft.content.block.ElectricHeaterBlock;
+import com.masson.cruciblecraft.content.block.ElectricEngineBlock;
 import com.masson.cruciblecraft.content.block.FluidPipeBlock;
 import com.masson.cruciblecraft.content.block.FluidDepositExtractorBlock;
 import com.masson.cruciblecraft.content.block.FuelGeneratorBlock;
@@ -33,6 +35,9 @@ import com.masson.cruciblecraft.content.block.LargeCentrifugeBlock;
 import com.masson.cruciblecraft.content.block.DistillationTowerBlock;
 import com.masson.cruciblecraft.content.block.LargeBoilerBlock;
 import com.masson.cruciblecraft.content.block.LargeCrucibleBlock;
+import com.masson.cruciblecraft.content.block.LaserEngraverBlock;
+import com.masson.cruciblecraft.content.block.FusionReactorBlock;
+import com.masson.cruciblecraft.content.block.ReactorCoreBlock;
 import com.masson.cruciblecraft.content.block.LogisticsCoreBlock;
 import com.masson.cruciblecraft.content.block.LogisticsCorePartBlock;
 import com.masson.cruciblecraft.content.block.LogisticsCoreWallBlock;
@@ -134,6 +139,35 @@ public final class ModBlocks {
                     .mapColor(MapColor.COLOR_RED)
                     .strength(2.0F, 6.0F)
                     .sound(SoundType.STONE));
+    public static final DeferredBlock<CableBlock> LU_FIBER_CABLE = BLOCKS.register(
+            "lu_fiber_cable",
+            () -> CableBlock.luFiber(conductorProperties()));
+    public static final DeferredBlock<LaserEngraverBlock> LASER_ENGRAVER =
+            BLOCKS.register(
+                    "laser_engraver",
+                    () -> new LaserEngraverBlock(machineProperties()));
+    public static final DeferredBlock<FusionReactorBlock> FUSION_REACTOR =
+            BLOCKS.register(
+                    "fusion_reactor",
+                    () -> new FusionReactorBlock(
+                            machineProperties().strength(12.5F, 12.5F)));
+    public static final DeferredBlock<ReactorCoreBlock> REACTOR_CORE_1X1 =
+            BLOCKS.register(
+                    "reactor_core_1x1",
+                    () -> new ReactorCoreBlock(1, machineProperties()));
+    public static final DeferredBlock<ReactorCoreBlock> REACTOR_CORE_2X2 =
+            BLOCKS.register(
+                    "reactor_core_2x2",
+                    () -> new ReactorCoreBlock(4, machineProperties()));
+    public static final DeferredBlock<Block> TUNGSTENSTEEL_WALL =
+            BLOCKS.registerSimpleBlock(
+                    "tungstensteel_wall", machineProperties());
+    public static final DeferredBlock<Block> STAINLESS_STEEL_WALL =
+            BLOCKS.registerSimpleBlock(
+                    "stainless_steel_wall", machineProperties());
+    public static final DeferredBlock<Block> LARGE_IRIDIUM_COIL =
+            BLOCKS.registerSimpleBlock(
+                    "large_iridium_coil", machineProperties());
 
     public static final DeferredBlock<CrucibleBlock> CRUCIBLE = BLOCKS.register(
             "crucible",
@@ -675,7 +709,9 @@ public final class ModBlocks {
     }
 
     public static CableBlock[] electricalConductorBlockArray() {
-        return ELECTRICAL_CONDUCTOR_BLOCKS.values().stream()
+        return java.util.stream.Stream.concat(
+                        ELECTRICAL_CONDUCTOR_BLOCKS.values().stream(),
+                        java.util.stream.Stream.of(LU_FIBER_CABLE))
                 .map(DeferredBlock::get)
                 .toArray(CableBlock[]::new);
     }
@@ -824,6 +860,14 @@ public final class ModBlocks {
                     path,
                     () -> new ElectricMotorBlock(
                             profile.id(), machineProperties()));
+            case "electric_heater" -> BLOCKS.register(
+                    path,
+                    () -> new ElectricHeaterBlock(
+                            profile.id(), machineProperties()));
+            case "electric_engine" -> BLOCKS.register(
+                    path,
+                    () -> new ElectricEngineBlock(
+                            profile.id(), machineProperties().noOcclusion()));
             case "fuel_engine", "fluid_burning_box" -> BLOCKS.register(
                     path,
                     () -> new FuelGeneratorBlock(

@@ -39,6 +39,26 @@ class TreeCompareTest(unittest.TestCase):
                 tree_compare.compare_trees(left, right),
             )
 
+    def test_ignored_prefixes_are_excluded(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            left = root / "left"
+            right = root / "right"
+            (left / "keep").mkdir(parents=True)
+            (right / "keep").mkdir(parents=True)
+            (left / "models" / "gt_block").mkdir(parents=True)
+            (left / "keep" / "same.json").write_bytes(b"{}\n")
+            (right / "keep" / "same.json").write_bytes(b"{}\n")
+            (left / "models" / "gt_block" / "stub.json").write_bytes(b"left\n")
+            self.assertEqual(
+                [],
+                tree_compare.compare_trees(
+                    left,
+                    right,
+                    ignored_prefixes=("models/gt_block/",),
+                ),
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

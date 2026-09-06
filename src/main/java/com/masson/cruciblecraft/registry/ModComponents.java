@@ -141,5 +141,19 @@ public final class ModComponents {
                             .persistent(Codec.LONG)
                             .networkSynchronized(ByteBufCodecs.VAR_LONG));
 
+    public static final DeferredHolder<
+            net.minecraft.core.component.DataComponentType<?>,
+            net.minecraft.core.component.DataComponentType<
+                    com.masson.cruciblecraft.nuclear.ReactorRodState>>
+            REACTOR_ROD_STATE = COMPONENTS.registerComponentType(
+                    "reactor_rod_state",
+                    builder -> builder
+                            .persistent(
+                                    com.masson.cruciblecraft.nuclear
+                                            .ReactorRodState.CODEC)
+                            .networkSynchronized(
+                                    com.masson.cruciblecraft.nuclear
+                                            .ReactorRodState.STREAM_CODEC));
+
     private ModComponents() {}
 }

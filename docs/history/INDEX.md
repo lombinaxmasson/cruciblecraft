@@ -16,10 +16,11 @@
 
 ## 当前 active 卡
 
-当前 active 计划卡为
-[生成资源、注册与 Jade 第一切片](card-plans/active/生成资源注册与Jade第一切片详细计划.md)
-（合并候选队列第 3、4 项；尚未完成实现）。机器可读
-`unique_active_wave` 仍为 `null`。已关闭
+当前没有 unique active 内容卡。机器可读 `unique_active_wave` 仍为 `null`。
+已关闭
+[生成资源、注册与 Jade 第一切片](card-plans/closed/生成资源注册与Jade第一切片详细计划.md)
+（slug `presentation/live-art-jade`；registry / generated-art / Jade 第一切片；
+`owns_families = 0`）。已关闭
 [配方加载与 EMI 稳定性](card-plans/closed/配方加载与EMI稳定性详细计划.md)
 （slug `runtime/recipe-load-emi-stability`；零 family 的 loader / EMI / reload
 repair；`unique_active_wave` 全程 `null`）。机器可读

@@ -19,14 +19,14 @@ class EnergyConverterCatalogTest {
                         .collect(Collectors.toMap(
                                 profile -> profile.id().toString(),
                                 profile -> profile));
-        assertEquals(169, profiles.size());
+        assertEquals(179, profiles.size());
         assertEquals(1202, profiles.get("cruciblecraft:bronze_boiler").source().sourceId());
         assertEquals(1302, profiles.get("cruciblecraft:bronze_steam_engine").source().sourceId());
         assertEquals(10111, profiles.get("cruciblecraft:bronze_dynamo").source().sourceId());
         assertEquals(9147, profiles.get("cruciblecraft:bronze_fuel_engine").source().sourceId());
         assertEquals(1602, profiles.get("cruciblecraft:bronze_burning_box_gas").source().sourceId());
         assertEquals(
-                169,
+                179,
                 profiles.values().stream()
                         .filter(profile ->
                                 profile.status()
@@ -47,6 +47,41 @@ class EnergyConverterCatalogTest {
                 .allMatch(profile ->
                         profile.status()
                                 == EnergyConverterProfile.Status.COMPLETE));
+        assertTrue(profiles.values().stream()
+                .filter(profile -> profile.stage().equals("electric_hu_chain"))
+                .allMatch(profile ->
+                        profile.status()
+                                == EnergyConverterProfile.Status.COMPLETE));
+        assertTrue(profiles.values().stream()
+                .filter(profile -> profile.stage().equals("electric_ku_chain"))
+                .allMatch(profile ->
+                        profile.status()
+                                == EnergyConverterProfile.Status.COMPLETE));
+    }
+
+    @Test
+    void electricHeaterAndEngineLockSourceRowsAndDirections() {
+        EnergyConverterProfile heater = EnergyConverterCatalog.require(
+                "cruciblecraft:steel_galvanized_electric_heater");
+        EnergyConverterProfile engine = EnergyConverterCatalog.require(
+                "cruciblecraft:steel_galvanized_electric_engine");
+        assertEquals(10001, heater.source().sourceId());
+        assertEquals(10011, engine.source().sourceId());
+        assertEquals("MultiTileEntityHeaterElectric",
+                heater.source().machineKind());
+        assertEquals("MultiTileEntityEngineElectric",
+                engine.source().machineKind());
+        assertEquals("HU", heater.outputPacket().identity());
+        assertEquals("KU", engine.outputPacket().identity());
+        assertEquals(16L, heater.inputWindow().minimum());
+        assertEquals(32L, heater.inputWindow().nominal());
+        assertEquals(64L, heater.inputWindow().maximum());
+        assertEquals(java.util.List.of("ALL_BUT_FRONT"),
+                heater.faces().energyInputs());
+        assertEquals(java.util.List.of("BACK"),
+                engine.faces().energyInputs());
+        assertTrue(engine.policy().sourceResolution().contains(
+                "PISTON_PHASE_SIGNED_OUTPUT"));
     }
 
     @Test

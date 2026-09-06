@@ -1,0 +1,62 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "cruciblecraft:conductor/lu_fiber_core"
+      }
+    },
+    {
+      "apply": {
+        "model": "cruciblecraft:conductor/lu_fiber_arm",
+        "x": 90
+      },
+      "when": {
+        "down": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "cruciblecraft:conductor/lu_fiber_arm",
+        "x": 270
+      },
+      "when": {
+        "up": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "cruciblecraft:conductor/lu_fiber_arm"
+      },
+      "when": {
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "cruciblecraft:conductor/lu_fiber_arm",
+        "y": 180
+      },
+      "when": {
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "cruciblecraft:conductor/lu_fiber_arm",
+        "y": 270
+      },
+      "when": {
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "cruciblecraft:conductor/lu_fiber_arm",
+        "y": 90
+      },
+      "when": {
+        "east": "true"
+      }
+    }
+  ]
+}

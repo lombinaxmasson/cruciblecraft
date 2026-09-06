@@ -19,7 +19,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-/** Loaded-only, injection-local GT6-style depth-first cable traversal. */
+/** Loaded-only, injection-local GT6-style EU/LU cable traversal. */
 public final class CableNetworkTraversal {
     private static final Direction[] DIRECTIONS = Direction.values();
 
@@ -48,14 +48,35 @@ public final class CableNetworkTraversal {
             Direction ingress,
             long packetSize,
             long offeredAmperes) {
+        return plan(
+                level,
+                start,
+                ingress,
+                EnergyType.ELECTRIC,
+                packetSize,
+                offeredAmperes);
+    }
+
+    public static CableTransferPlan plan(
+            Level level,
+            BlockPos start,
+            Direction ingress,
+            EnergyType type,
+            long packetSize,
+            long offeredAmperes) {
         if (level == null
                 || level.isClientSide
                 || start == null
                 || ingress == null
+                || type == null
                 || packetSize == 0L
                 || offeredAmperes <= 0L
                 || !level.hasChunkAt(start)) {
-            return new CableTransferPlan(0L, List.of(), List.of());
+            return new CableTransferPlan(
+                    type == null ? EnergyType.ELECTRIC : type,
+                    0L,
+                    List.of(),
+                    List.of());
         }
         Set<BlockPos> visited = new HashSet<>();
         visited.add(start.immutable());
@@ -117,7 +138,8 @@ public final class CableNetworkTraversal {
             }
             long remaining = frame.offeredAmperes - frame.usedAmperes;
             BlockState targetState = level.getBlockState(target);
-            if (targetState.getBlock() instanceof CableBlock) {
+            if (targetState.getBlock() instanceof CableBlock cable
+                    && cable.supports(type)) {
                 visited.add(target.immutable());
                 stack.push(new Frame(
                         target.immutable(),
@@ -135,8 +157,7 @@ public final class CableNetworkTraversal {
                 terminal = level.getCapability(
                         ModCapabilities.ENERGY, target, terminalSide);
                 if (terminal == null
-                        || !terminal.handles(
-                                EnergyType.ELECTRIC, terminalSide)) {
+                        || !terminal.handles(type, terminalSide)) {
                     continue;
                 }
             } catch (RuntimeException failure) {
@@ -151,7 +172,7 @@ public final class CableNetworkTraversal {
             long accepted;
             try {
                 accepted = terminal.insert(
-                        EnergyType.ELECTRIC,
+                        type,
                         frame.postLossSize,
                         remaining,
                         terminalSide,
@@ -182,7 +203,7 @@ public final class CableNetworkTraversal {
                 frame.usedAmperes += accepted;
             }
         }
-        return new CableTransferPlan(rootResult, terminals, loads);
+        return new CableTransferPlan(type, rootResult, terminals, loads);
     }
 
     private static long complete(
@@ -270,7 +291,7 @@ public final class CableNetworkTraversal {
                             instanceof CableBlockEntity entity)) {
                 return false;
             }
-            long loss = cable.conductor().electrical().lossPerMeter();
+            long loss = cable.transportProperties().lossPerMeter();
             block = cable;
             blockEntity = entity;
             loadSnapshot = entity.loadSnapshot(level.getGameTime());

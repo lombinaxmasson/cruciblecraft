@@ -318,9 +318,12 @@ def run_datagen(
         if code:
             return code, {"status": "FAIL", "failed_run": label}
     deterministic_errors = tree_compare.compare_trees(first, second)
+    from tools.generated_resource_gate import PYTHON_OWNED_GENERATED_PREFIXES
+
     committed_errors = tree_compare.compare_trees(
         ROOT / "src" / "generated" / "resources",
         first,
+        ignored_prefixes=PYTHON_OWNED_GENERATED_PREFIXES,
     )
     result = {
         "status": (

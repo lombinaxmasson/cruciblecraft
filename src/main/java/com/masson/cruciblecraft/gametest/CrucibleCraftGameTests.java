@@ -10132,16 +10132,14 @@ public final class CrucibleCraftGameTests {
     public static void registeredMapsHaveLogicalRecipes(
             GameTestHelper helper) {
         // Runtime guard: every registered RecipeMap must match
-        // the playability audit's zero/non-zero claim.  The audit found
-        // exactly two registered maps with zero logical recipes:
-        // anvil_bend_big and anvil_bend_small (v1 blockers).
-        // Runtime guard plus cooling retirement: registered
-        // maps with zero logical recipes are the two anvil-bend blockers
-        // and the retained-empty leftover cooling map.
+        // the playability audit's zero/non-zero claim.  Empty maps
+        // are the two anvil-bend blockers, the retained cooling leftover,
+        // and the empty GT6 plasma fuel map.
         List<String> zeroMaps = List.of(
                 "anvil_bend_big",
                 "anvil_bend_small",
-                "cooling");
+                "cooling",
+                "fuels_plasma");
         List<String> violations = new ArrayList<>();
         for (com.masson.cruciblecraft.recipe.gt.RecipeMap map
                 : ModRecipeMaps.ALL) {

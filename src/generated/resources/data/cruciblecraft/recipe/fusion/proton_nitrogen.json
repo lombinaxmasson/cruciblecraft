@@ -1,0 +1,48 @@
+{
+  "type": "cruciblecraft:gt_recipe",
+  "duration": 1404,
+  "eut": -8192,
+  "fluid_inputs": [
+    {
+      "amount": 2000,
+      "id": "cruciblecraft:hydrogen"
+    },
+    {
+      "amount": 1000,
+      "id": "cruciblecraft:nitrogen"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 500,
+      "id": "cruciblecraft:helium"
+    },
+    {
+      "amount": 72,
+      "id": "cruciblecraft:molten_carbon"
+    },
+    {
+      "amount": 500,
+      "id": "cruciblecraft:oxygen"
+    }
+  ],
+  "item_input_actions": [
+    {
+      "kind": "preserve"
+    }
+  ],
+  "item_input_counts": [
+    0
+  ],
+  "item_inputs": [
+    {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:circuit_config": 2
+      },
+      "items": "cruciblecraft:programmed_circuit"
+    }
+  ],
+  "map": "cruciblecraft:fusion",
+  "special_value": 184025088
+}

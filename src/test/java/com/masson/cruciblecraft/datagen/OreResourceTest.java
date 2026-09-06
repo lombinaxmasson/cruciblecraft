@@ -416,9 +416,13 @@ class OreResourceTest {
         // plus five source-backed casings beyond the early six. Storage adds 18
         // source-visible storage acquisition recipes. Display CPU adds 8 cover
         // recipes (4 shaped + 4 shapeless cycle).
-        assertEquals(1_732, generatedRecipeSet.size() - preStorageRecipeSet.size());
+        // Current generated baseline includes hopper/storage/display-cpu
+        // catalogs plus 13 live datagen files from ModRecipeProvider:
+        // 9 electric_transformer_*.json, 3 battery_cells/*_empty.json, and
+        // machines/lu_fiber_cable.json.
+        assertEquals(1_745, generatedRecipeSet.size() - preStorageRecipeSet.size());
         assertEquals(
-                1_732 + preStorageRecipeSet.size(),
+                1_745 + preStorageRecipeSet.size(),
                 generatedRecipeSet.size());
         assertEquals(48, countRegularFiles(COMPONENT_RULE_RESOURCES.resolve(
                 "data/cruciblecraft/recipe")));

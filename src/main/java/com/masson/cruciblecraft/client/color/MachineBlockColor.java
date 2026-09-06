@@ -44,6 +44,10 @@ public final class MachineBlockColor {
         blocks.add(ModBlocks.TANK_3X3X3.get());
         blocks.add(ModBlocks.LARGE_CRUCIBLE.get());
         blocks.add(ModBlocks.MORTAR.get());
+        blocks.add(ModBlocks.LASER_ENGRAVER.get());
+        blocks.add(ModBlocks.FUSION_REACTOR.get());
+        blocks.add(ModBlocks.REACTOR_CORE_1X1.get());
+        blocks.add(ModBlocks.REACTOR_CORE_2X2.get());
         java.util.ArrayList<Block> tinted = new java.util.ArrayList<>(
                 blocks.stream()
                         .filter(MachineBlockColor::usesDualLayerTextures)
@@ -96,7 +100,12 @@ public final class MachineBlockColor {
         if (path.startsWith("steel_")) {
             return "steel";
         }
-        return "bronze";
+        return switch (path) {
+            case "fusion_reactor" -> "steel_galvanized";
+            case "reactor_core_1x1", "reactor_core_2x2" -> "lead";
+            case "laser_engraver" -> "iron";
+            default -> "bronze";
+        };
     }
 
     static String machineTextureId(String id) {
@@ -157,6 +166,8 @@ public final class MachineBlockColor {
                     "compressor",
                     "generifier",
                     "electric_motor",
+                    "electric_heater",
+                    "electric_engine",
                     "rotational_gearbox",
                     "fuel_engine",
                     "burning_gas_generator",
@@ -171,7 +182,11 @@ public final class MachineBlockColor {
                     "bronze_boiler",
                     "bronze_crusher",
                     "bronze_dynamo",
-                    "bronze_steam_engine" -> true;
+                    "bronze_steam_engine",
+                    "laser_engraver",
+                    "fusion_reactor",
+                    "reactor_core_1x1",
+                    "reactor_core_2x2" -> true;
             default -> false;
         };
     }

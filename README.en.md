@@ -133,6 +133,7 @@ python tools/verify.py dev
 python tools/verify.py integration --profile verification
 python tools/verify.py integration --profile runtime-java
 python tools/verify.py integration --profile semantic-generators
+python tools/verify.py integration --profile recipe-generators
 python tools/verify.py integration --profile capability-runtime
 python tools/verify.py integration --profile player-complete
 python tools/verify.py promotion

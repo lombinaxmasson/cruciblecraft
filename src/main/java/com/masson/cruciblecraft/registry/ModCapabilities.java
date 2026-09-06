@@ -51,6 +51,14 @@ public final class ModCapabilities {
                 (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(
                 ENERGY,
+                ModBlockEntities.ELECTRIC_HEATER.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.ELECTRIC_ENGINE.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                ENERGY,
                 ModBlockEntities.ROTATIONAL_AXLE.get(),
                 (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(
@@ -84,6 +92,22 @@ public final class ModCapabilities {
                 ENERGY,
                 ModBlockEntities.CABLE.get(),
                 (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.LASER_ENGRAVER.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.FUSION_REACTOR.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.REACTOR_CORE.get(),
+                (blockEntity, side) -> blockEntity.items());
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.REACTOR_CORE.get(),
+                (blockEntity, side) -> blockEntity.fluids());
         event.registerBlockEntity(
                 Capabilities.FluidHandler.BLOCK,
                 ModBlockEntities.FLUID_PIPE.get(),

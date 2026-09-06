@@ -85,6 +85,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 ModBlocks.GALVANIZED_STEEL_WALL.get(),
                 logisticsPartModel("galvanized_steel_wall"));
         simpleBlockWithItem(
+                ModBlocks.TUNGSTENSTEEL_WALL.get(),
+                logisticsPartModel("tungstensteel_wall"));
+        simpleBlockWithItem(
+                ModBlocks.STAINLESS_STEEL_WALL.get(),
+                logisticsPartModel("stainless_steel_wall"));
+        simpleBlockWithItem(
+                ModBlocks.LARGE_IRIDIUM_COIL.get(),
+                logisticsPartModel("large_iridium_coil"));
+        simpleBlockWithItem(
                 ModBlocks.VENTILATION_UNIT.get(),
                 logisticsPartModel("ventilation_unit"));
         simpleBlockWithItem(
@@ -135,6 +144,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
                         .build());
         simpleBlockItem(ModBlocks.CERAMIC_MOLD.get(), emptyMold);
         registerConductors();
+        registerLuFiberCable();
+        configuredMachine("laser_engraver", ModBlocks.LASER_ENGRAVER.get());
+        configuredMachine("fusion_reactor", ModBlocks.FUSION_REACTOR.get());
+        configuredFacingLitMachine(
+                "reactor_core_1x1", ModBlocks.REACTOR_CORE_1X1.get());
+        configuredFacingLitMachine(
+                "reactor_core_2x2", ModBlocks.REACTOR_CORE_2X2.get());
         registerPipes();
         registerHoppers();
         registerStorage();
@@ -145,18 +161,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
     private void registerGtStones() {
         for (GtStoneCatalog.Variant variant : GtStoneCatalog.variants()) {
             var block = ModBlocks.gtStoneBlocksById().get(variant.id()).get();
-            ResourceLocation texture = variant.textureLocation();
+            String path = variant.registryPath();
             if (variant.slab()) {
-                String path = variant.registryPath();
-                var doubleslab = cubeAll(path + "_double", texture, false);
-                var bottom = slabBottom(path + "_bottom", texture, false);
-                var top = slabTop(path + "_top", texture, false);
+                var doubleslab = models().getExistingFile(modLoc(path + "_double"));
+                var bottom = models().getExistingFile(modLoc(path + "_bottom"));
+                var top = models().getExistingFile(modLoc(path + "_top"));
                 slabBlock((SlabBlock) block, bottom, top, doubleslab);
                 itemModels().getBuilder(path).parent(bottom);
             } else {
-                ModelFile cube = cubeAll(variant.registryPath(), texture, false);
+                ModelFile cube = models().getExistingFile(modLoc(path));
                 simpleBlock(block, cube);
-                itemModels().getBuilder(variant.registryPath()).parent(cube);
+                itemModels().getBuilder(path).parent(cube);
             }
         }
     }
@@ -179,19 +194,18 @@ public class ModBlockStateProvider extends BlockStateProvider {
             GtBlockObjectCatalog.Variant variant,
             net.minecraft.world.level.block.Block block) {
         ResourceLocation texture = variant.textureLocation();
-        ResourceLocation side = variant.sideTextureLocation();
         String path = variant.registryPath();
-        boolean tinted = variant.dyeTint();
         if (variant.slab()) {
-            var doubleslab = cubeAll(path + "_double", texture, tinted);
-            var bottom = slabBottom(path + "_bottom", texture, tinted);
-            var top = slabTop(path + "_top", texture, tinted);
+            var doubleslab = models().getExistingFile(modLoc(path + "_double"));
+            var bottom = models().getExistingFile(modLoc(path + "_bottom"));
+            var top = models().getExistingFile(modLoc(path + "_top"));
             slabBlock((SlabBlock) block, bottom, top, doubleslab);
             itemModels().getBuilder(path).parent(bottom);
         } else if (variant.log() || variant.bale()) {
-            axisBlock((RotatedPillarBlock) block, side, texture);
-            itemModels().getBuilder(path).parent(
-                    models().getExistingFile(modLoc(path)));
+            var vertical = models().getExistingFile(modLoc(path));
+            var horizontal = models().getExistingFile(modLoc(path + "_horizontal"));
+            axisBlock((RotatedPillarBlock) block, vertical, horizontal);
+            itemModels().getBuilder(path).parent(vertical);
         } else if (variant.bars()) {
             paneBlockWithRenderType(
                     (IronBarsBlock) block, texture, texture, "cutout");
@@ -206,41 +220,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     models().getExistingFile(mcLoc("item/generated")))
                     .texture("layer0", texture);
         } else {
-            ModelFile cube = cubeAll(path, texture, tinted);
+            ModelFile cube = models().getExistingFile(modLoc(path));
             simpleBlock(block, cube);
             itemModels().getBuilder(path).parent(cube);
         }
-    }
-
-    private ModelFile cubeAll(
-            String path, ResourceLocation texture, boolean tinted) {
-        if (tinted) {
-            return models().withExistingParent(path, modLoc("block/tinted_cube_all"))
-                    .texture("all", texture);
-        }
-        return models().cubeAll(path, texture);
-    }
-
-    private ModelFile slabBottom(
-            String path, ResourceLocation texture, boolean tinted) {
-        if (tinted) {
-            return models().withExistingParent(path, modLoc("block/tinted_slab"))
-                    .texture("bottom", texture)
-                    .texture("top", texture)
-                    .texture("side", texture);
-        }
-        return models().slab(path, texture, texture, texture);
-    }
-
-    private ModelFile slabTop(
-            String path, ResourceLocation texture, boolean tinted) {
-        if (tinted) {
-            return models().withExistingParent(path, modLoc("block/tinted_slab_top"))
-                    .texture("bottom", texture)
-                    .texture("top", texture)
-                    .texture("side", texture);
-        }
-        return models().slabTop(path, texture, texture, texture);
     }
 
     private void registerHoppers() {
@@ -317,6 +300,41 @@ public class ModBlockStateProvider extends BlockStateProvider {
                         conductorOverlay(specification));
             }
         });
+    }
+
+    private void registerLuFiberCable() {
+        ResourceLocation fiber =
+                modLoc("block/gt6_import/lu_fiber_wire");
+        ResourceLocation overlay =
+                modLoc("block/gt6_import/lu_fiber_wire_overlay");
+        ModelFile core = pipeCube(
+                "conductor/lu_fiber_core",
+                2.0F,
+                false,
+                fiber,
+                fiber,
+                null);
+        ModelFile arm = pipeCube(
+                "conductor/lu_fiber_arm",
+                2.0F,
+                true,
+                fiber,
+                fiber,
+                overlay);
+        var multipart = getMultipartBuilder(ModBlocks.LU_FIBER_CABLE.get());
+        multipart.part().modelFile(core).addModel().end();
+        conductorArm(multipart, arm, CableBlock.DOWN, 90, 0);
+        conductorArm(multipart, arm, CableBlock.UP, 270, 0);
+        conductorArm(multipart, arm, CableBlock.NORTH, 0, 0);
+        conductorArm(multipart, arm, CableBlock.SOUTH, 0, 180);
+        conductorArm(multipart, arm, CableBlock.WEST, 0, 270);
+        conductorArm(multipart, arm, CableBlock.EAST, 0, 90);
+        itemThroughModel(
+                "conductor/lu_fiber_cable_item",
+                2.0F,
+                fiber,
+                fiber,
+                overlay);
     }
 
     private ModelFile conductorCore(String specification) {
@@ -597,7 +615,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
             if (HANDWRITTEN_CONVERTER_MODELS.contains(profile.id().getPath())) {
                 continue;
             }
-            if (kind.overlayActive()) {
+            boolean allDirections = kind.runtime().equals("electric_heater")
+                    || kind.runtime().equals("electric_engine");
+            if (allDirections) {
+                configuredFacingLitAllDirections(block, inactive, active);
+            } else if (kind.overlayActive()) {
                 configuredFacingLit(block, inactive, active);
             } else {
                 horizontalBlock(block, inactive);
@@ -760,6 +782,30 @@ public class ModBlockStateProvider extends BlockStateProvider {
         });
     }
 
+    private void configuredFacingLitAllDirections(
+            net.minecraft.world.level.block.Block block,
+            ModelFile inactive,
+            ModelFile active) {
+        getVariantBuilder(block).forAllStates(state -> {
+            Direction facing = state.getValue(
+                    net.minecraft.world.level.block.state.properties
+                            .BlockStateProperties.FACING);
+            boolean lit = state.getValue(
+                    net.minecraft.world.level.block.state.properties
+                            .BlockStateProperties.LIT);
+            var builder = ConfiguredModel.builder()
+                    .modelFile(lit ? active : inactive);
+            return switch (facing) {
+                case DOWN -> builder.rotationX(90).build();
+                case UP -> builder.rotationX(270).build();
+                case SOUTH -> builder.rotationY(180).build();
+                case WEST -> builder.rotationY(270).build();
+                case EAST -> builder.rotationY(90).build();
+                case NORTH -> builder.build();
+            };
+        });
+    }
+
     private void configuredLogisticsCore() {
         ModelFile horizontal = logisticsCoreFacingModel(
                 "logistics_core", "side");
@@ -877,6 +923,29 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, model);
     }
 
+    private void configuredFacingLitMachine(
+            String id, net.minecraft.world.level.block.Block block) {
+        String textureId = machineTextureId(id);
+        String base = "block/machine/" + textureId;
+        ModelFile model = models()
+                .withExistingParent(id, modLoc("block/machine_cube_2_layer"))
+                .texture("particle", modLoc(base + "/colored/front"))
+                .texture("bot_down", modLoc(base + "/colored/bottom"))
+                .texture("bot_up", modLoc(base + "/colored/top"))
+                .texture("bot_north", modLoc(base + "/colored/front"))
+                .texture("bot_south", modLoc(base + "/colored/back"))
+                .texture("bot_west", modLoc(base + "/colored/left"))
+                .texture("bot_east", modLoc(base + "/colored/right"))
+                .texture("top_down", modLoc(base + "/overlay/bottom"))
+                .texture("top_up", modLoc(base + "/overlay/top"))
+                .texture("top_north", modLoc(base + "/overlay/front"))
+                .texture("top_south", modLoc(base + "/overlay/back"))
+                .texture("top_west", modLoc(base + "/overlay/left"))
+                .texture("top_east", modLoc(base + "/overlay/right"));
+        configuredFacingLit(block, model, model);
+        simpleBlockItem(block, model);
+    }
+
     /** Shared GT6 texture folders for tiered / aliased machine ids. */
     private static String machineTextureId(String id) {
         String catalogProfile = MachineTierCatalog.textureProfile(id);
@@ -938,6 +1007,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     "compressor",
                     "generifier",
                     "electric_motor",
+                    "electric_heater",
+                    "electric_engine",
                     "rotational_gearbox",
                     "fuel_engine",
                     "burning_gas_generator",
@@ -949,7 +1020,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     "tank_3x3x3",
                     "mortar",
                     "coke_oven",
-                    "bronze_crusher" -> true;
+                    "bronze_crusher",
+                    "laser_engraver",
+                    "fusion_reactor",
+                    "reactor_core_1x1",
+                    "reactor_core_2x2" -> true;
             default -> false;
         };
     }

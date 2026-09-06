@@ -1,0 +1,320 @@
+{
+  "schema_version": 1,
+  "generated_by": "tools/jade_observation.py",
+  "jade_scope_decision": "foundation_plus_followup",
+  "decision_reason": "Logistics Core, tanks, fusion, reactor cores, batteries, converters/dynamos, hoppers and storage need extra runtime, multiblock state or are out of this card. Claiming every live processing-machine variant as a new provider would be unreviewable; they already share ProcessingMachineComponentProvider. This card delivers the unified contract, the matrix, and source-backed Crucible + Transformer Jade.",
+  "families": [
+    {
+      "family": "fluid_pipe",
+      "live_identities": ["cruciblecraft:fluid_pipe"],
+      "static_profile_source": "PipeAcquisition catalog / FluidPipeBlock.pipe()",
+      "dynamic_state_source": "FluidPipeBlockEntity storedFluid/capacity/transferredThisWindow",
+      "sync_path": "jade_server_data",
+      "display_sections": ["fluid", "transfer", "covers"],
+      "translation_keys": [
+        "jade.cruciblecraft.fluid_pipe",
+        "config.jade.plugin_cruciblecraft.fluid_pipe"
+      ],
+      "status": "ready_existing",
+      "owner": "presentation/live-art-jade",
+      "reason": "Existing provider kept; not the first-slice sample."
+    },
+    {
+      "family": "item_pipe",
+      "live_identities": ["cruciblecraft:item_pipe"],
+      "static_profile_source": "PipeAcquisition catalog / ItemPipeBlock.pipe()",
+      "dynamic_state_source": "ItemPipeBlockEntity deliveredThisWindow/clogEvents",
+      "sync_path": "jade_server_data",
+      "display_sections": ["delivery", "covers"],
+      "translation_keys": [
+        "jade.cruciblecraft.item_pipe",
+        "config.jade.plugin_cruciblecraft.item_pipe"
+      ],
+      "status": "ready_existing",
+      "owner": "presentation/live-art-jade",
+      "reason": "Existing provider kept."
+    },
+    {
+      "family": "cable",
+      "live_identities": ["cruciblecraft:cable", "cruciblecraft:lu_fiber_cable"],
+      "static_profile_source": "CableBlock.transportProperties()",
+      "dynamic_state_source": "CableBlockEntity transferredAmperes/burnCounter",
+      "sync_path": "client_block_entity",
+      "display_sections": ["voltage", "amperage", "loss"],
+      "translation_keys": [
+        "jade.cruciblecraft.cable",
+        "config.jade.plugin_cruciblecraft.cable"
+      ],
+      "status": "ready_existing",
+      "owner": "presentation/live-art-jade",
+      "reason": "Existing provider kept."
+    },
+    {
+      "family": "bronze_boiler",
+      "live_identities": ["cruciblecraft:bronze_boiler"],
+      "static_profile_source": "BoilerBlockEntity capacities",
+      "dynamic_state_source": "BoilerBlockEntity water/steam/accumulatedHu",
+      "sync_path": "client_block_entity",
+      "display_sections": ["water", "steam", "heat"],
+      "translation_keys": [
+        "jade.cruciblecraft.boiler",
+        "config.jade.plugin_cruciblecraft.bronze_boiler"
+      ],
+      "status": "ready_existing",
+      "owner": "presentation/live-art-jade",
+      "reason": "Existing provider kept."
+    },
+    {
+      "family": "bronze_steam_engine",
+      "live_identities": ["cruciblecraft:bronze_steam_engine"],
+      "static_profile_source": "SteamEngineBlockEntity capacities",
+      "dynamic_state_source": "SteamEngineBlockEntity steam/stored/stroke",
+      "sync_path": "client_block_entity",
+      "display_sections": ["steam", "ku", "stroke"],
+      "translation_keys": [
+        "jade.cruciblecraft.steam_engine",
+        "config.jade.plugin_cruciblecraft.bronze_steam_engine"
+      ],
+      "status": "ready_existing",
+      "owner": "presentation/live-art-jade",
+      "reason": "Existing provider kept."
+    },
+    {
+      "family": "bronze_crusher",
+      "live_identities": ["cruciblecraft:bronze_crusher"],
+      "static_profile_source": "CrusherBlockEntity",
+      "dynamic_state_source": "CrusherBlockEntity progress/powerDemand",
+      "sync_path": "client_block_entity",
+      "display_sections": ["power", "progress"],
+      "translation_keys": [
+        "jade.cruciblecraft.crusher",
+        "config.jade.plugin_cruciblecraft.bronze_crusher"
+      ],
+      "status": "ready_existing",
+      "owner": "presentation/live-art-jade",
+      "reason": "Existing provider kept."
+    },
+    {
+      "family": "processing_machine",
+      "live_identities": ["cruciblecraft:processing_machine"],
+      "static_profile_source": "MachineTierCatalog / ProcessingMachineBlock",
+      "dynamic_state_source": "ConfiguredProcessingMachineBlockEntity progress/tanks",
+      "sync_path": "client_block_entity",
+      "display_sections": ["power", "progress", "tanks"],
+      "translation_keys": [
+        "jade.cruciblecraft.processing_machine",
+        "jade.cruciblecraft.processing_tank",
+        "config.jade.plugin_cruciblecraft.processing_machine"
+      ],
+      "status": "ready_existing",
+      "owner": "presentation/live-art-jade",
+      "reason": "Live processing variants already share ProcessingMachineComponentProvider. Not re-implemented as 70 separate providers."
+    },
+    {
+      "family": "anvil",
+      "live_identities": ["cruciblecraft:anvil"],
+      "static_profile_source": "AnvilBlockEntity material/durability",
+      "dynamic_state_source": "AnvilBlockEntity workpieces/strikes",
+      "sync_path": "client_block_entity",
+      "display_sections": ["material", "durability", "slots"],
+      "translation_keys": [
+        "jade.cruciblecraft.anvil_durability",
+        "config.jade.plugin_cruciblecraft.anvil"
+      ],
+      "status": "ready_existing",
+      "owner": "presentation/live-art-jade",
+      "reason": "Existing provider kept."
+    },
+    {
+      "family": "coke_oven",
+      "live_identities": ["cruciblecraft:coke_oven"],
+      "static_profile_source": "CokeOvenBlockEntity tank capacity",
+      "dynamic_state_source": "CokeOvenBlockEntity structure/progress/creosote",
+      "sync_path": "client_block_entity",
+      "display_sections": ["structure", "progress", "creosote"],
+      "translation_keys": [
+        "jade.cruciblecraft.coke_oven.structure",
+        "config.jade.plugin_cruciblecraft.coke_oven"
+      ],
+      "status": "ready_existing",
+      "owner": "presentation/live-art-jade",
+      "reason": "Existing provider kept."
+    },
+    {
+      "family": "ceramic_mold",
+      "live_identities": ["cruciblecraft:ceramic_mold"],
+      "static_profile_source": "CeramicMoldBlockEntity shape",
+      "dynamic_state_source": "CeramicMoldBlockEntity filled/solidified/temperature",
+      "sync_path": "client_block_entity",
+      "display_sections": ["shape", "contents", "state"],
+      "translation_keys": [
+        "jade.cruciblecraft.mold_shape",
+        "config.jade.plugin_cruciblecraft.ceramic_mold"
+      ],
+      "status": "ready_existing",
+      "owner": "presentation/live-art-jade",
+      "reason": "Existing provider kept."
+    },
+    {
+      "family": "crucible",
+      "live_identities": ["cruciblecraft:crucible"],
+      "static_profile_source": "CrucibleBlockEntity casingMaxTemperature/maxUnits; GT6 MultiTileEntityCrucible tooltips use K",
+      "dynamic_state_source": "CrucibleProcessCore thermal/composition; buffered HU is storedEnergy, not clientTag",
+      "sync_path": "jade_server_data",
+      "display_sections": [
+        "temperature_k",
+        "buffered_hu",
+        "meltdown_k",
+        "fill_percent",
+        "render_state",
+        "contents",
+        "cache_slot"
+      ],
+      "translation_keys": [
+        "jade.cruciblecraft.temperature_k",
+        "jade.cruciblecraft.buffered_heat",
+        "jade.cruciblecraft.meltdown_at",
+        "jade.cruciblecraft.fill_level",
+        "jade.cruciblecraft.render_state",
+        "jade.cruciblecraft.cache_slot",
+        "jade.cruciblecraft.unavailable",
+        "config.jade.plugin_cruciblecraft.crucible"
+      ],
+      "status": "ready",
+      "owner": "presentation/live-art-jade",
+      "reason": "First-slice source-backed sample. Cache slot is unavailable because CC has no crucible inventory cache."
+    },
+    {
+      "family": "transformer",
+      "live_identities": ["cruciblecraft:electric_transformer"],
+      "static_profile_source": "EnergyTransformerProfile acceptRec/emitRec/packetMultiplier",
+      "dynamic_state_source": "TransformerBlockEntity reversed/isInput/isOutput/store/activity",
+      "sync_path": "jade_server_data",
+      "display_sections": [
+        "profile",
+        "mode",
+        "buffer",
+        "activity",
+        "per_side_voltage"
+      ],
+      "translation_keys": [
+        "jade.cruciblecraft.transformer.profile",
+        "jade.cruciblecraft.transformer.mode",
+        "jade.cruciblecraft.transformer.buffer",
+        "jade.cruciblecraft.transformer.activity",
+        "jade.cruciblecraft.transformer.side",
+        "config.jade.plugin_cruciblecraft.transformer"
+      ],
+      "status": "ready",
+      "owner": "presentation/live-art-jade",
+      "reason": "First-slice source-backed sample. Front is HV in unless reversed()."
+    },
+    {
+      "family": "logistics_core",
+      "live_identities": ["cruciblecraft:logistics_core"],
+      "static_profile_source": "LogisticsCoreBlock 5x5x5 geometry",
+      "dynamic_state_source": "LogisticsCoreBlockEntity network/dump state",
+      "sync_path": "needs_runtime_accessor",
+      "display_sections": ["structure", "dump", "covers"],
+      "translation_keys": [],
+      "status": "follow_up",
+      "owner": "jade/logistics-core",
+      "reason": "Multiblock core state is a dedicated observability card; not this slice."
+    },
+    {
+      "family": "tank_3x3x3",
+      "live_identities": ["cruciblecraft:tank_3x3x3"],
+      "static_profile_source": "Tank multiblock profile",
+      "dynamic_state_source": "Tank fluid handler / structure",
+      "sync_path": "needs_runtime_accessor",
+      "display_sections": ["fluid", "capacity", "structure"],
+      "translation_keys": [],
+      "status": "follow_up",
+      "owner": "jade/tanks",
+      "reason": "Tank fluids and structure need a dedicated sync contract."
+    },
+    {
+      "family": "battery",
+      "live_identities": ["cruciblecraft:energy_battery"],
+      "static_profile_source": "EnergyBatteryCatalog",
+      "dynamic_state_source": "Battery stored EU / packet window",
+      "sync_path": "needs_runtime_accessor",
+      "display_sections": ["charge", "packet"],
+      "translation_keys": [],
+      "status": "follow_up",
+      "owner": "energy/batteries",
+      "reason": "Battery recipe type and remaining cell content are out of this card."
+    },
+    {
+      "family": "converter_dynamo",
+      "live_identities": ["cruciblecraft:energy_converter"],
+      "static_profile_source": "EnergyConverterTierCatalog",
+      "dynamic_state_source": "Converter/dynamo activity and buffers",
+      "sync_path": "needs_runtime_accessor",
+      "display_sections": ["conversion", "buffer"],
+      "translation_keys": [],
+      "status": "follow_up",
+      "owner": "jade/energy-converters",
+      "reason": "Dynamo-level energy display is a later Jade family."
+    },
+    {
+      "family": "fusion_reactor",
+      "live_identities": ["cruciblecraft:fusion_reactor"],
+      "static_profile_source": "Fusion controller catalog",
+      "dynamic_state_source": "Fusion runtime / plasma",
+      "sync_path": "blocked",
+      "display_sections": ["structure", "plasma"],
+      "translation_keys": [],
+      "status": "follow_up",
+      "owner": "nuclear/fusion",
+      "reason": "Nuclear/fusion runtime is out of scope; nuclear_started stays false."
+    },
+    {
+      "family": "reactor_core",
+      "live_identities": [
+        "cruciblecraft:reactor_core_1x1",
+        "cruciblecraft:reactor_core_2x2"
+      ],
+      "static_profile_source": "ReactorRodCatalog",
+      "dynamic_state_source": "Reactor heat/neutrons/safety",
+      "sync_path": "blocked",
+      "display_sections": ["heat", "neutrons", "safety"],
+      "translation_keys": [],
+      "status": "follow_up",
+      "owner": "nuclear/fission-observation",
+      "reason": "Candidate queue item 5+ owns fission observation; this card must not start nuclear."
+    },
+    {
+      "family": "large_multiblock",
+      "live_identities": [
+        "cruciblecraft:large_centrifuge",
+        "cruciblecraft:distillation_tower",
+        "cruciblecraft:large_boiler",
+        "cruciblecraft:large_crucible"
+      ],
+      "static_profile_source": "Multiblock controllers",
+      "dynamic_state_source": "Structure/formed state",
+      "sync_path": "needs_runtime_accessor",
+      "display_sections": ["structure", "progress"],
+      "translation_keys": [],
+      "status": "follow_up",
+      "owner": "jade/multiblocks",
+      "reason": "Formed-structure telemetry is not the Crucible/Transformer sample."
+    },
+    {
+      "family": "hopper_storage",
+      "live_identities": [
+        "cruciblecraft:hopper",
+        "cruciblecraft:storage"
+      ],
+      "static_profile_source": "HopperVariantCatalog / StorageVariantCatalog",
+      "dynamic_state_source": "Inventory contents",
+      "sync_path": "needs_runtime_accessor",
+      "display_sections": ["inventory"],
+      "translation_keys": [],
+      "status": "follow_up",
+      "owner": "jade/logistics-inventory",
+      "reason": "Inventory Jade is not required for the first slice."
+    }
+  ]
+}

@@ -38,9 +38,23 @@ def same_bytes(left: Path, right: Path) -> bool:
                 return True
 
 
-def compare_trees(left: Path, right: Path) -> list[str]:
-    left_files = file_map(left)
-    right_files = file_map(right)
+def compare_trees(
+    left: Path,
+    right: Path,
+    *,
+    ignored_prefixes: Iterable[str] = (),
+) -> list[str]:
+    prefixes = tuple(ignored_prefixes)
+
+    def included(relative: str) -> bool:
+        return not any(relative.startswith(prefix) for prefix in prefixes)
+
+    left_files = {
+        key: path for key, path in file_map(left).items() if included(key)
+    }
+    right_files = {
+        key: path for key, path in file_map(right).items() if included(key)
+    }
     errors: list[str] = []
     for relative in sorted(set(left_files) - set(right_files)):
         errors.append(f"missing from second tree: {relative}")

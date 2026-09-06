@@ -14,7 +14,7 @@ CAPABILITY_SLUG = "energy/transformers"
 ROOT = io.ROOT
 ACTIVE = ROOT / "docs" / "history" / "card-plans" / "active"
 CLOSED = ROOT / "docs" / "history" / "card-plans" / "closed"
-PLAN = ACTIVE / "变压器详细计划.md"
+PLAN = CLOSED / "变压器详细计划.md"
 CAPABILITY = (
     ROOT / "tools" / "capabilities" / "energy" / "transformers" / "capability.json"
 )
@@ -119,9 +119,10 @@ class EnergyTransformersCardTest(unittest.TestCase):
         census = io.load_json(WAVE / "census_delta.json")
         self.assertEqual(9, census["work_set"]["source_rows"])
 
-    def test_unique_active_is_transformers(self) -> None:
+    def test_transformer_plan_is_archived(self) -> None:
         names = sorted(path.name for path in ACTIVE.iterdir() if path.is_file())
-        self.assertEqual(["变压器详细计划.md"], names)
+        self.assertNotIn("变压器详细计划.md", names)
+        self.assertTrue(PLAN.is_file())
         self.assertTrue((CLOSED / "电池详细计划.md").is_file())
         self.assertTrue((CLOSED / "能量转换机目录详细计划.md").is_file())
         self.assertTrue((CLOSED / "能量系统余量详细计划.md").is_file())

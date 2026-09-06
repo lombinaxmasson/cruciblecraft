@@ -2,13 +2,27 @@ package com.masson.cruciblecraft.registry;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import net.minecraft.SharedConstants;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.Bootstrap;
+import net.neoforged.fml.loading.LoadingModList;
+
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 class ModRecipesRegistrationTest {
+    @BeforeAll
+    static void bootstrap() {
+        LoadingModList.of(List.of(), List.of(), List.of(), List.of(), Map.of());
+        SharedConstants.tryDetectVersion();
+        Bootstrap.bootStrap();
+    }
+
     @Test
     void registersOnlyActiveRecipeTypesAndSerializers() {
         Set<ResourceLocation> expected = Set.of(

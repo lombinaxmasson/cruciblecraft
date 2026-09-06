@@ -6,11 +6,13 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.OptionalInt;
 import java.util.Set;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
+import com.masson.cruciblecraft.compat.emi.ProcessingEmiProjectionCache;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.MaterialRegistrationGate;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
@@ -52,13 +54,47 @@ public final class GTRecipeMapLoader {
     public static synchronized void reload(RecipeManager manager) {
         reload(
                 manager,
-                ExtruderRecipeFamilyProvider.RuntimeSide.SERVER);
+                ExtruderRecipeFamilyProvider.RuntimeSide.SERVER,
+                GTRecipeReloadCoordinator.Cause.TAGS_UPDATED);
     }
 
     public static synchronized void reload(
             RecipeManager manager,
             ExtruderRecipeFamilyProvider.RuntimeSide runtimeSide) {
+        reload(
+                manager,
+                runtimeSide,
+                GTRecipeReloadCoordinator.Cause.TAGS_UPDATED);
+    }
+
+    public static synchronized void reload(
+            RecipeManager manager,
+            ExtruderRecipeFamilyProvider.RuntimeSide runtimeSide,
+            GTRecipeReloadCoordinator.Cause cause) {
+        Objects.requireNonNull(manager, "manager");
+        Objects.requireNonNull(runtimeSide, "runtimeSide");
+        Objects.requireNonNull(cause, "cause");
+        GTRecipeReloadCoordinator.RequestIdentity identity =
+                GTRecipeReloadCoordinator.identify(manager, runtimeSide, cause);
+        GTRecipeReloadCoordinator.Decision decision =
+                GTRecipeReloadCoordinator.decide(identity);
+        if (!decision.publish()) {
+            lastPublicationMetrics = lastPublicationMetrics.withControl(
+                    new PublicationControlMetrics(
+                            GTRecipeReloadCoordinator.requestCount(),
+                            GTRecipeReloadCoordinator.publicationCount(),
+                            decision.suppressedCount(),
+                            identity.dataGeneration(),
+                            cause.name()));
+            RecipeLoadLog.flushEpoch(
+                    GTRecipeRuntimeEpoch.epoch(),
+                    decision.suppressedCount(),
+                    cause.name(),
+                    identity.dataGeneration());
+            return;
+        }
         long started = System.nanoTime();
+        long phaseMark = started;
         Map<ResourceLocation, RecipeMap> knownMaps = new HashMap<>();
         Map<RecipeMap, List<ResolvedRecipe>> resolved = new HashMap<>();
         for (RecipeMap map : ModRecipeMaps.ALL) {
@@ -78,6 +114,8 @@ public final class GTRecipeMapLoader {
             validateTarget(holder.id(), map, entry.recipe());
             resolved.get(map).add(new ResolvedRecipe(holder.id(), entry.recipe(), false));
         }
+        long parseMillis = elapsedMs(phaseMark);
+        phaseMark = System.nanoTime();
 
         List<CompactRecipeFamilySource> compactSources = new ArrayList<>();
         for (RecipeHolder<CompactGTRecipeFamilyEntry> holder
@@ -91,6 +129,8 @@ public final class GTRecipeMapLoader {
             compactSources.add(new CompactRecipeFamilySource(holder.id(), definition));
         }
         compactSources.sort(Comparator.comparing(source -> source.id().toString()));
+        long sourceCollectionMillis = elapsedMs(phaseMark);
+        phaseMark = System.nanoTime();
         List<CompactDedupRuleDefinition> compactDedupRules =
                 manager.getAllRecipesFor(
                                 ModRecipes.COMPACT_DEDUP_RULE_TYPE.get())
@@ -102,6 +142,8 @@ public final class GTRecipeMapLoader {
         CompactRecipeDeduplicator.validate(compactDedupRules);
         compactSources = CompactRecipeDeduplicator.applyPreSnapshot(
                 compactSources, compactDedupRules);
+        long dedupMillis = elapsedMs(phaseMark);
+        phaseMark = System.nanoTime();
         Map<PublicationGroupKey, List<CompactRecipeFamilySource>>
                 compactSourcesByGroup = new HashMap<>();
         for (CompactRecipeFamilySource source : compactSources) {
@@ -193,6 +235,8 @@ public final class GTRecipeMapLoader {
                                 formIndexes);
                     }
                 });
+        sourceCollectionMillis += elapsedMs(phaseMark);
+        phaseMark = System.nanoTime();
         long preparedEpoch = GTRecipeRuntimeEpoch.nextEpoch();
         ExtruderRecipeFamilyProvider.Snapshot extruderFamily =
                 ExtruderRecipeFamilyProvider.prepare(
@@ -223,6 +267,8 @@ public final class GTRecipeMapLoader {
                     .forEach(mapFamilies::add);
             families.put(map, List.copyOf(mapFamilies));
         }
+        long familyPrepareMillis = elapsedMs(phaseMark);
+        phaseMark = System.nanoTime();
         for (RecipeMap map : ModRecipeMaps.ALL) {
             List<RecipeMap.Entry> ordered = resolved.get(map).stream()
                     .sorted((left, right) -> RecipeExpansionRules.comparePriority(
@@ -335,6 +381,8 @@ public final class GTRecipeMapLoader {
                     lastCapacityReport);
         }
 
+        long completeValidationMillis = elapsedMs(phaseMark);
+        long temporaryIndexMillis = 0L;
         long indexStarted = System.nanoTime();
         LinkedHashMap<RecipeMap, RecipeMap.Prepared> preparedByMap =
                 new LinkedHashMap<>();
@@ -350,7 +398,22 @@ public final class GTRecipeMapLoader {
         validateNoUnindexed(preparedByMap);
         long indexNanos = System.nanoTime() - indexStarted;
         long reloadNanos = System.nanoTime() - started;
-        PublicationMetrics candidateMetrics = new PublicationMetrics(
+        PublicationControlMetrics control = new PublicationControlMetrics(
+                GTRecipeReloadCoordinator.requestCount(),
+                GTRecipeReloadCoordinator.publicationCount() + 1,
+                0,
+                identity.dataGeneration(),
+                cause.name());
+        PublicationPhaseTimings phaseTimings = new PublicationPhaseTimings(
+                parseMillis,
+                sourceCollectionMillis,
+                dedupMillis,
+                familyPrepareMillis,
+                completeValidationMillis,
+                temporaryIndexMillis,
+                indexNanos / 1_000_000L,
+                0L);
+        PublicationMetrics publishedMetrics = new PublicationMetrics(
                 componentRecipes,
                 toolRecipes,
                 componentHostRecipes,
@@ -378,11 +441,23 @@ public final class GTRecipeMapLoader {
                 compactFamilyStableFingerprint,
                 runtimeSide,
                 reloadNanos / 1_000_000L,
-                indexNanos / 1_000_000L);
+                indexNanos / 1_000_000L,
+                control,
+                phaseTimings,
+                PublicationAllocationReport.pendingMeasurement());
         long epoch = GTRecipeRuntimeEpoch.publish(
                 materialPreview,
                 List.copyOf(preparedByMap.values()),
-                () -> lastPublicationMetrics = candidateMetrics);
+                () -> lastPublicationMetrics = publishedMetrics);
+        ProcessingEmiProjectionCache.invalidate();
+        long emiStarted = System.nanoTime();
+        ProcessingEmiProjectionCache.planFor(
+                ModProcessingMachines.CONFIGURED_MACHINES);
+        long emiProjectionMillis = elapsedMs(emiStarted);
+        PublicationMetrics candidateMetrics = publishedMetrics.withPhaseTimings(
+                phaseTimings.withEmiProjectionMillis(emiProjectionMillis));
+        lastPublicationMetrics = candidateMetrics;
+        GTRecipeReloadCoordinator.markPublished(identity);
         long sideReloadBudget = runtimeSide
                 == ExtruderRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT
                 ? ModProcessingMachines.CLIENT_RECIPE_RELOAD_BUDGET_MS
@@ -400,50 +475,24 @@ public final class GTRecipeMapLoader {
                     "Recipe publication exceeded an online compact-load budget: {}",
                     candidateMetrics);
         }
+        int unindexedMaps = 0;
         for (var entry : preparedByMap.entrySet()) {
-            RecipeMap map = entry.getKey();
-            RecipeMap.Prepared snapshot = entry.getValue();
-            CrucibleCraft.LOGGER.info(
-                    "RecipeMap {} - {} recipes, {} unindexed",
-                    map.id(),
-                    snapshot.logicalRecipeCount(),
-                    snapshot.unindexedRecipeCount());
+            int unindexed = entry.getValue().unindexedRecipeCount();
+            if (unindexed != 0) {
+                unindexedMaps++;
+                CrucibleCraft.LOGGER.warn(
+                        "RecipeMap {} - {} recipes, {} unindexed",
+                        entry.getKey().id(),
+                        entry.getValue().logicalRecipeCount(),
+                        unindexed);
+            }
         }
-        CrucibleCraft.LOGGER.info(
-                "Published recipe epoch {} with {} component, {} tool, {} "
-                        + "chemical, {} mortar-authored, {} pipe, and {} ingot-form "
-                        + "material-rule recipes; compact-load Extruder {} logical = "
-                        + "{} eager + {} lazy (cache ceiling {}, {} authored) "
-                        + "({} live component-map, {} logical total, {} eager total) "
-                        + "across {} maps in {} ms; "
-                        + "indexes {} ms "
-                        + "(count budgets {}/{}/{}/{}/{}/{}/{}/{})",
+        RecipeLoadLog.flushEpoch(epoch, 0, cause.name(), identity.dataGeneration());
+        RecipeLoadLog.publicationSummary(
                 epoch,
-                componentRecipes,
-                toolRecipes,
-                chemicalPublishedRecipes,
-                mortarAuthoredMaterialRules,
-                pipeMaterialRules,
-                ingotFormMaterialRules,
-                extruderFamily.logicalRecipeCount(),
-                extruderFamily.eagerRecipeCount(),
-                extruderFamily.lazyRecipeCount(),
-                extruderFamily.cacheCeiling(),
-                extruderFamilySources.size(),
-                componentHostRecipes,
-                allPublishedRecipes,
-                eagerPublishedRecipes,
-                ModRecipeMaps.ALL.size(),
-                candidateMetrics.reloadMillis(),
-                candidateMetrics.indexMillis(),
-                ModProcessingMachines.COMPONENT_EXPANSION_BUDGET,
-                ModProcessingMachines.TOOL_EXPANSION_BUDGET,
-                ModProcessingMachines.LIVE_COMPONENT_MAP_RECIPE_BUDGET,
-                ModProcessingMachines.CHEMICAL_RECIPE_BUDGET,
-                ModProcessingMachines.MORTAR_MATERIAL_RULE_BUDGET,
-                ModProcessingMachines.PIPE_MATERIAL_RULE_BUDGET,
-                ModProcessingMachines.INGOT_FORM_MATERIAL_RULE_BUDGET,
-                ModProcessingMachines.ALL_PUBLISHED_RECIPE_BUDGET);
+                candidateMetrics,
+                preparedByMap.size(),
+                unindexedMaps);
     }
 
     /** Runs production Extruder lookup p95/candidate gates for verification. */
@@ -551,7 +600,16 @@ public final class GTRecipeMapLoader {
             String compactFamilyStableFingerprint,
             ExtruderRecipeFamilyProvider.RuntimeSide runtimeSide,
             long reloadMillis,
-            long indexMillis) {
+            long indexMillis,
+            PublicationControlMetrics control,
+            PublicationPhaseTimings phaseTimings,
+            PublicationAllocationReport allocation) {
+        public PublicationMetrics {
+            Objects.requireNonNull(control, "control");
+            Objects.requireNonNull(phaseTimings, "phaseTimings");
+            Objects.requireNonNull(allocation, "allocation");
+        }
+
         private static PublicationMetrics empty() {
             return new PublicationMetrics(
                     0, 0, 0, 0, 0, 0, 0, 0,
@@ -559,7 +617,137 @@ public final class GTRecipeMapLoader {
                     "",
                     0, 0, 0, 0, 0, 0, 0L, "",
                     ExtruderRecipeFamilyProvider.RuntimeSide.SERVER,
-                    0L, 0L);
+                    0L, 0L,
+                    PublicationControlMetrics.empty(),
+                    PublicationPhaseTimings.zero(),
+                    PublicationAllocationReport.pendingMeasurement());
+        }
+
+        public PublicationMetrics withControl(PublicationControlMetrics control) {
+            return new PublicationMetrics(
+                    componentRecipes,
+                    toolRecipes,
+                    liveComponentMapRecipes,
+                    chemicalPublishedRecipes,
+                    mortarAuthoredMaterialRules,
+                    pipeMaterialRules,
+                    ingotFormMaterialRules,
+                    allPublishedRecipes,
+                    eagerPublishedRecipes,
+                    lazyLogicalRecipes,
+                    compactLoadExtruderLogicalRecipes,
+                    compactLoadExtruderEagerRecipes,
+                    compactLoadExtruderLazyRecipes,
+                    compactLoadExtruderCacheCeiling,
+                    compactLoadExtruderSyncBytes,
+                    compactLoadExtruderAuthoredEntries,
+                    compactLoadExtruderStableFingerprint,
+                    compactFamilyAuthoredEntries,
+                    compactFamilyLogicalRecipes,
+                    compactFamilyEagerRecipes,
+                    compactFamilyLazyRecipes,
+                    compactFamilyCacheCeiling,
+                    compactFamilyUnindexedRelations,
+                    compactFamilySyncBytes,
+                    compactFamilyStableFingerprint,
+                    runtimeSide,
+                    reloadMillis,
+                    indexMillis,
+                    control,
+                    phaseTimings,
+                    allocation);
+        }
+
+        public PublicationMetrics withPhaseTimings(
+                PublicationPhaseTimings phaseTimings) {
+            return new PublicationMetrics(
+                    componentRecipes,
+                    toolRecipes,
+                    liveComponentMapRecipes,
+                    chemicalPublishedRecipes,
+                    mortarAuthoredMaterialRules,
+                    pipeMaterialRules,
+                    ingotFormMaterialRules,
+                    allPublishedRecipes,
+                    eagerPublishedRecipes,
+                    lazyLogicalRecipes,
+                    compactLoadExtruderLogicalRecipes,
+                    compactLoadExtruderEagerRecipes,
+                    compactLoadExtruderLazyRecipes,
+                    compactLoadExtruderCacheCeiling,
+                    compactLoadExtruderSyncBytes,
+                    compactLoadExtruderAuthoredEntries,
+                    compactLoadExtruderStableFingerprint,
+                    compactFamilyAuthoredEntries,
+                    compactFamilyLogicalRecipes,
+                    compactFamilyEagerRecipes,
+                    compactFamilyLazyRecipes,
+                    compactFamilyCacheCeiling,
+                    compactFamilyUnindexedRelations,
+                    compactFamilySyncBytes,
+                    compactFamilyStableFingerprint,
+                    runtimeSide,
+                    reloadMillis,
+                    indexMillis,
+                    control,
+                    phaseTimings,
+                    allocation);
+        }
+    }
+
+    public record PublicationControlMetrics(
+            int reloadRequestCount,
+            int actualPublicationCount,
+            int suppressedReloadCount,
+            int dataGeneration,
+            String requestCause) {
+        public PublicationControlMetrics {
+            Objects.requireNonNull(requestCause, "requestCause");
+        }
+
+        static PublicationControlMetrics empty() {
+            return new PublicationControlMetrics(0, 0, 0, 0, "none");
+        }
+    }
+
+    public record PublicationPhaseTimings(
+            long parseMillis,
+            long sourceCollectionMillis,
+            long dedupMillis,
+            long familyPrepareMillis,
+            long completeValidationMillis,
+            long temporaryIndexMillis,
+            long finalIndexMillis,
+            long emiProjectionMillis) {
+        static PublicationPhaseTimings zero() {
+            return new PublicationPhaseTimings(0, 0, 0, 0, 0, 0, 0, 0);
+        }
+
+        public PublicationPhaseTimings withEmiProjectionMillis(long emiProjectionMillis) {
+            return new PublicationPhaseTimings(
+                    parseMillis,
+                    sourceCollectionMillis,
+                    dedupMillis,
+                    familyPrepareMillis,
+                    completeValidationMillis,
+                    temporaryIndexMillis,
+                    finalIndexMillis,
+                    emiProjectionMillis);
+        }
+    }
+
+    public record PublicationAllocationReport(
+            String reloadTransientAllocation,
+            String retainedMemory) {
+        public PublicationAllocationReport {
+            Objects.requireNonNull(reloadTransientAllocation, "reloadTransientAllocation");
+            Objects.requireNonNull(retainedMemory, "retainedMemory");
+        }
+
+        static PublicationAllocationReport pendingMeasurement() {
+            return new PublicationAllocationReport(
+                    "PENDING_MEASUREMENT",
+                    "PENDING_MEASUREMENT");
         }
     }
 
@@ -1295,11 +1483,20 @@ public final class GTRecipeMapLoader {
         validateUniqueRecipeIds(map, complete);
         validateChemicalRecipeProvenance(map, complete);
         validateNoShadows(map, complete);
-        if (!families.isEmpty()) {
-            RecipeMap.Prepared transientIndex = map.prepareRecipes(complete);
-            validateNoUnindexed(Map.of(map, transientIndex));
+        for (RecipeMap.Entry entry : complete) {
+            if (RecipeMap.wouldBeUnindexed(entry.recipe())) {
+                throw new IllegalArgumentException(
+                        "RecipeMap " + map.id() + " contains unindexed recipe "
+                                + entry.id()
+                                + "; add an explicit index before publishing "
+                                + "non-simple ingredients");
+            }
         }
-        }
+    }
+
+    private static long elapsedMs(long startedNanos) {
+        return (System.nanoTime() - startedNanos) / 1_000_000L;
+    }
 
     static String recipeOutputIdentity(GTRecipe recipe) {
         return outputSignature(recipe) + "|" + recipe.duration() + "|" + recipe.eut();

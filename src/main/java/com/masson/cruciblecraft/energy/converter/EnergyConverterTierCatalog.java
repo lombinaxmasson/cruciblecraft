@@ -9,11 +9,11 @@ import com.google.gson.annotations.SerializedName;
 
 import net.minecraft.resources.ResourceLocation;
 
-/** Source-backed converter variants: 169 Loader_MultiTileEntities rows. */
+/** Source-backed converter variants: 179 Loader_MultiTileEntities rows. */
 public final class EnergyConverterTierCatalog {
     private static final String RESOURCE =
             "/data/cruciblecraft/energy_converter_tiers.json";
-    public static final int EXPECTED_SIZE = 169;
+    public static final int EXPECTED_SIZE = 179;
     private static final EnergyConverterTierCatalog BUNDLED = loadBundled();
 
     private final List<Entry> entries;

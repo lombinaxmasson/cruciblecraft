@@ -56,6 +56,9 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
     public static final EmiRecipeCategory CRUSHER = new EmiRecipeCategory(
             id("crusher"),
             EmiStack.of(ModBlocks.BRONZE_CRUSHER.get()));
+    public static final EmiRecipeCategory FUSION = new EmiRecipeCategory(
+            id("fusion"),
+            EmiStack.of(ModBlocks.FUSION_REACTOR.get()));
 
     @Override
     public void register(EmiRegistry registry) {
@@ -64,12 +67,14 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         registry.addCategory(COKE_OVEN);
         registry.addCategory(MOLD_CASTING);
         registry.addCategory(CRUSHER);
+        registry.addCategory(FUSION);
         registry.addWorkstation(CRUCIBLE, EmiStack.of(ModBlocks.CRUCIBLE.get()));
         for (String material : List.of("stone", "iron", "bronze", "steel")) {
             registry.addWorkstation(ANVIL, EmiStack.of(anvilVariant(material)));
         }
         registry.addWorkstation(COKE_OVEN, EmiStack.of(ModBlocks.COKE_OVEN.get()));
         registry.addWorkstation(CRUSHER, EmiStack.of(ModBlocks.BRONZE_CRUSHER.get()));
+        registry.addWorkstation(FUSION, EmiStack.of(ModBlocks.FUSION_REACTOR.get()));
         for (MoldShape shape : MoldShape.values()) {
             registry.addWorkstation(MOLD_CASTING, EmiStack.of(ModItems.moldItem(shape).get()));
         }
@@ -79,6 +84,7 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         registerCokeOvenRecipes(registry);
         registerMoldCasting(registry);
         registerCrusherRecipes(registry);
+        registerFusionRecipes(registry);
         registerProcessingMachines(registry);
         registerFuelMaps(registry);
         registerDisplayStacks(registry);
@@ -248,6 +254,12 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         }
     }
 
+    private static void registerFusionRecipes(EmiRegistry registry) {
+        for (var entry : ModRecipeMaps.FUSION.entries()) {
+            registry.addRecipe(new FusionEmiRecipe(entry.id(), entry.recipe()));
+        }
+    }
+
     private static void registerFuelMaps(EmiRegistry registry) {
         registerFuelMap(
                 registry,
@@ -295,7 +307,7 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
     }
 
     private static void registerProcessingMachines(EmiRegistry registry) {
-        ProcessingEmiRegistrationPlan plan = ProcessingEmiRegistrationPlan.create(
+        ProcessingEmiRegistrationPlan plan = ProcessingEmiProjectionCache.planFor(
                 ModProcessingMachines.CONFIGURED_MACHINES);
         Map<ProcessingMachineSpec, EmiRecipeCategory> categories =
                 new IdentityHashMap<>();

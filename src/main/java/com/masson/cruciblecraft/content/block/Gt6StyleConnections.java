@@ -4,6 +4,7 @@ import java.util.Map;
 
 import com.masson.cruciblecraft.content.item.MaterialWireCutterItem;
 import com.masson.cruciblecraft.content.item.MaterialWrenchItem;
+import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.logistics.pipe.PipeTopology;
 
 import net.minecraft.core.BlockPos;
@@ -58,9 +59,12 @@ public final class Gt6StyleConnections {
     }
 
     public static boolean sameNetwork(BlockState self, BlockState neighbor) {
-        if (self.getBlock() instanceof CableBlock
-                && neighbor.getBlock() instanceof CableBlock) {
-            return true;
+        if (self.getBlock() instanceof CableBlock selfCable
+                && neighbor.getBlock() instanceof CableBlock neighborCable) {
+            return (selfCable.supports(EnergyType.ELECTRIC)
+                            && neighborCable.supports(EnergyType.ELECTRIC))
+                    || (selfCable.supports(EnergyType.LU)
+                            && neighborCable.supports(EnergyType.LU));
         }
         return self.getBlock() instanceof AbstractPipeBlock selfPipe
                 && neighbor.getBlock() instanceof AbstractPipeBlock neighborPipe

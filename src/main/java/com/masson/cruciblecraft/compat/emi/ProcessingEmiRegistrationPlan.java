@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.compat.emi;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -17,11 +18,19 @@ import net.minecraft.resources.ResourceLocation;
  */
 public record ProcessingEmiRegistrationPlan(
         List<MachineRegistration> machines,
-        List<RecipeRegistration> recipes) {
+        List<RecipeRegistration> recipes,
+        RegistrationCensus census) {
 
     public ProcessingEmiRegistrationPlan {
         machines = List.copyOf(machines);
         recipes = List.copyOf(recipes);
+        Objects.requireNonNull(census, "census");
+    }
+
+    public ProcessingEmiRegistrationPlan(
+            List<MachineRegistration> machines,
+            List<RecipeRegistration> recipes) {
+        this(machines, recipes, censusOf(machines, recipes));
     }
 
     public static ProcessingEmiRegistrationPlan create(
@@ -31,6 +40,7 @@ public record ProcessingEmiRegistrationPlan(
         List<RecipeRegistration> recipes = new ArrayList<>();
         Set<ResourceLocation> categoryIds = new HashSet<>();
         Set<ResourceLocation> mapIds = new HashSet<>();
+        Set<String> categoryRecipeIds = new HashSet<>();
         for (ProcessingMachineSpec spec : specs) {
             Objects.requireNonNull(spec, "spec");
             RecipeMap map = spec.requireRecipeMap();
@@ -46,11 +56,73 @@ public record ProcessingEmiRegistrationPlan(
                     new MachineRegistration(spec, spec.id(), map);
             machines.add(machine);
             for (RecipeMap.Entry entry : map.entries()) {
+                String key = spec.id() + "|" + entry.id();
+                if (!categoryRecipeIds.add(key)) {
+                    throw new IllegalArgumentException(
+                            "Duplicate processing EMI recipe "
+                                    + spec.id() + " " + entry.id());
+                }
                 recipes.add(new RecipeRegistration(
                         machine, entry.id(), entry.recipe()));
             }
         }
-        return new ProcessingEmiRegistrationPlan(machines, recipes);
+        RegistrationCensus census = censusOf(machines, recipes);
+        if (!census.exactMatch()) {
+            throw new IllegalArgumentException(
+                    "Processing EMI census mismatch configured="
+                            + census.configuredMachines()
+                            + " live=" + census.liveEntries()
+                            + " registered=" + census.registeredEntries()
+                            + " missing=" + census.missingLiveIds()
+                            + " extra=" + census.extraRegisteredIds());
+        }
+        return new ProcessingEmiRegistrationPlan(machines, recipes, census);
+    }
+
+    public static RegistrationCensus censusOf(
+            List<MachineRegistration> machines,
+            List<RecipeRegistration> recipes) {
+        LinkedHashSet<String> liveKeys = new LinkedHashSet<>();
+        for (MachineRegistration machine : machines) {
+            for (RecipeMap.Entry entry : machine.recipeMap().entries()) {
+                liveKeys.add(machine.categoryId() + "|" + entry.id());
+            }
+        }
+        LinkedHashSet<String> registeredKeys = new LinkedHashSet<>();
+        for (RecipeRegistration recipe : recipes) {
+            registeredKeys.add(
+                    recipe.machine().categoryId() + "|" + recipe.id());
+        }
+        List<String> missing = liveKeys.stream()
+                .filter(id -> !registeredKeys.contains(id))
+                .toList();
+        List<String> extra = registeredKeys.stream()
+                .filter(id -> !liveKeys.contains(id))
+                .toList();
+        return new RegistrationCensus(
+                machines.size(),
+                liveKeys.size(),
+                registeredKeys.size(),
+                missing,
+                extra);
+    }
+
+    public record RegistrationCensus(
+            int configuredMachines,
+            int liveEntries,
+            int registeredEntries,
+            List<String> missingLiveIds,
+            List<String> extraRegisteredIds) {
+        public RegistrationCensus {
+            missingLiveIds = List.copyOf(missingLiveIds);
+            extraRegisteredIds = List.copyOf(extraRegisteredIds);
+        }
+
+        public boolean exactMatch() {
+            return missingLiveIds.isEmpty()
+                    && extraRegisteredIds.isEmpty()
+                    && liveEntries == registeredEntries;
+        }
     }
 
     public record MachineRegistration(

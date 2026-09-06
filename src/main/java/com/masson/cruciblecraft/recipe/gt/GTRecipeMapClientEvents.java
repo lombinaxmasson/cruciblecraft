@@ -30,7 +30,8 @@ public final class GTRecipeMapClientEvents {
             // path and reuse the server epoch.
             GTRecipeMapLoader.reload(
                     manager,
-                    ExtruderRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT);
+                    ExtruderRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT,
+                    GTRecipeReloadCoordinator.Cause.CLIENT_RECIPES_UPDATED);
         }
     }
 }

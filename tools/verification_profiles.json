@@ -15,6 +15,7 @@
     "verification",
     "runtime-java",
     "semantic-generators",
+    "recipe-generators",
     "capability-runtime",
     "player-complete"
   ],
@@ -22,6 +23,7 @@
     "verification",
     "runtime-java",
     "semantic-generators",
+    "recipe-generators",
     "capability-runtime",
     "player-complete"
   ],
@@ -122,6 +124,43 @@
       "datagen": true,
       "gradle_tasks": [],
       "python_modules": [
+        "test_block_art",
+        "test_multiitem_art",
+        "test_generated_resource_gate"
+      ],
+      "builders": [
+        "build_block_art",
+        "build_multiitem_art",
+        "build_generated_resource_gate"
+      ],
+      "owned_paths": [
+        "build.gradle",
+        "gradle.properties",
+        "settings.gradle",
+        "gradle/**",
+        "tools/block_art.py",
+        "tools/build_block_art.py",
+        "tools/block_art_manifest.json",
+        "tools/multiitem_art.py",
+        "tools/build_multiitem_art.py",
+        "tools/multiitem_art_manifest.json",
+        "tools/generated_resource_gate.py",
+        "tools/build_generated_resource_gate.py",
+        "tools/generated_resource_gate_manifest.json",
+        "tools/tests/test_block_art.py",
+        "tools/tests/test_multiitem_art.py",
+        "tools/tests/test_generated_resource_gate.py",
+        "src/main/java/com/masson/cruciblecraft/datagen/**",
+        "src/test/java/com/masson/cruciblecraft/datagen/**",
+        "src/generated/**"
+      ]
+    },
+    "recipe-generators": {
+      "owner": "semantic-content",
+      "tier": "integration",
+      "datagen": false,
+      "gradle_tasks": [],
+      "python_modules": [
         "test_material_form_authority",
         "test_build_semantic_recipes"
       ],
@@ -130,10 +169,6 @@
         "build_semantic_recipes"
       ],
       "owned_paths": [
-        "build.gradle",
-        "gradle.properties",
-        "settings.gradle",
-        "gradle/**",
         "tools/material_form_authority.py",
         "tools/material_form_authority.json",
         "tools/material_form_authority.schema.json",
@@ -143,9 +178,6 @@
         "tools/recipe_bulk/**",
         "tools/source_pack_manifest.schema.json",
         "tools/recipe_import_spec.schema.json",
-        "src/main/java/com/masson/cruciblecraft/datagen/**",
-        "src/test/java/com/masson/cruciblecraft/datagen/**",
-        "src/generated/**",
         "src/recipe_generated/**",
         "src/compact_recipe_policy_generated/**"
       ]
@@ -160,11 +192,13 @@
         "test_logistics_cover_net_remainder",
         "test_logistics_core",
         "test_display_cpu",
-        "test_registry_identity"
+        "test_registry_identity",
+        "test_jade_observation"
       ],
       "builders": [
         "build_capability_ledger",
-        "build_registry_identity"
+        "build_registry_identity",
+        "build_jade_observation"
       ],
       "owned_paths": [
         "tools/capabilities/**",
@@ -175,6 +209,10 @@
         "tools/registry_identity_manifest.json",
         "tools/tests/test_capability_ledger.py",
         "tools/tests/test_registry_identity.py",
+        "tools/jade_observation.py",
+        "tools/build_jade_observation.py",
+        "tools/jade_observation_matrix.json",
+        "tools/tests/test_jade_observation.py",
         "src/main/java/com/masson/cruciblecraft/logistics/fluidnet/**",
         "src/main/java/com/masson/cruciblecraft/content/blockentity/FluidPipeBlockEntity.java",
         "src/main/java/com/masson/cruciblecraft/gametest/FluidNetworkCoreGameTests.java",

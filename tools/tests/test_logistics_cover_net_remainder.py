@@ -39,10 +39,12 @@ DUMP_QUESTION = (
 
 
 class LogisticsCoverNetRemainderCardTest(unittest.TestCase):
-    def test_unique_active_folder_is_transformers(self) -> None:
+    def test_unique_active_folder_is_not_cover_net(self) -> None:
         names = sorted(path.name for path in ACTIVE.iterdir() if path.is_file())
-        self.assertEqual(["变压器详细计划.md"], names)
+        self.assertNotIn("物流封面网余量详细计划.md", names)
+        self.assertNotIn("变压器详细计划.md", names)
         self.assertTrue((CLOSED / "显示CPU详细计划.md").is_file())
+        self.assertTrue((CLOSED / "变压器详细计划.md").is_file())
         self.assertTrue((CLOSED / "能量系统余量详细计划.md").is_file())
         self.assertTrue((CLOSED / "能量转换机目录详细计划.md").is_file())
 

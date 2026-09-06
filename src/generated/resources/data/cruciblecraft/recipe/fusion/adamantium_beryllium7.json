@@ -1,0 +1,61 @@
+{
+  "type": "cruciblecraft:gt_recipe",
+  "duration": 1956,
+  "eut": -8192,
+  "fluid_inputs": [
+    {
+      "amount": 144,
+      "id": "cruciblecraft:molten_adamantium"
+    },
+    {
+      "amount": 144,
+      "id": "cruciblecraft:molten_beryllium7"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 144,
+      "id": "cruciblecraft:molten_tungsten"
+    },
+    {
+      "amount": 16000,
+      "id": "cruciblecraft:helium"
+    },
+    {
+      "amount": 24000,
+      "id": "cruciblecraft:helium3"
+    },
+    {
+      "amount": 24000,
+      "id": "cruciblecraft:tritium"
+    }
+  ],
+  "item_input_actions": [
+    {
+      "kind": "preserve"
+    }
+  ],
+  "item_input_counts": [
+    0
+  ],
+  "item_inputs": [
+    {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:circuit_config": 2
+      },
+      "items": "cruciblecraft:programmed_circuit"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": 1,
+      "id": "cruciblecraft:vibranium/dust"
+    }
+  ],
+  "map": "cruciblecraft:fusion",
+  "output_chances": [
+    10000
+  ],
+  "special_value": 12446072832
+}

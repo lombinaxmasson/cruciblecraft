@@ -85,9 +85,10 @@ public final class CableBlockEntity extends BlockEntity
 
     @Override
     public boolean handles(EnergyType type, Direction side) {
-        return type == EnergyType.ELECTRIC
+        return (type == EnergyType.ELECTRIC || type == EnergyType.LU)
                 && side != null
-                && getBlockState().getBlock() instanceof CableBlock
+                       && getBlockState().getBlock() instanceof CableBlock cable
+                       && cable.supports(type)
                 && CableBlock.isConnected(getBlockState(), side);
     }
 
@@ -107,7 +108,7 @@ public final class CableBlockEntity extends BlockEntity
         }
         try {
             long tick = level.getGameTime();
-            PlanKey key = new PlanKey(side, size, amount);
+            PlanKey key = new PlanKey(type, side, size, amount);
             if (cachedPlanTick != tick) {
                 clearPlanCache();
                 cachedPlanTick = tick;
@@ -117,7 +118,7 @@ public final class CableBlockEntity extends BlockEntity
                 plan = cachedPlan;
             } else {
                 plan = CableNetworkTraversal.plan(
-                        level, worldPosition, side, size, amount);
+                        level, worldPosition, side, type, size, amount);
                 cachedPlanKey = key;
                 cachedPlan = plan;
             }
@@ -149,11 +150,15 @@ public final class CableBlockEntity extends BlockEntity
 
     public boolean loadWouldOverload(
             long tick, long postLossSize, long amperes) {
+        CableBlock cable = conductor();
+        if (cable.isLuFiber()) {
+            return false;
+        }
         return load.wouldOverload(
                 tick,
                 postLossSize,
                 amperes,
-                conductor().conductor().electrical());
+                cable.transportProperties());
     }
 
     public void applyLoad(
@@ -161,11 +166,13 @@ public final class CableBlockEntity extends BlockEntity
             long postLossSize,
             long amperes,
             boolean overloaded) {
-        boolean effectiveOverloaded = load.wouldOverload(
-                tick,
-                postLossSize,
-                amperes,
-                conductor().conductor().electrical());
+        CableBlock cable = conductor();
+        boolean effectiveOverloaded = !cable.isLuFiber()
+                && load.wouldOverload(
+                        tick,
+                        postLossSize,
+                        amperes,
+                        cable.transportProperties());
         CableLoadState.Change change = load.record(
                 tick,
                 postLossSize,
@@ -198,8 +205,8 @@ public final class CableBlockEntity extends BlockEntity
 
     public void applyContactDamage(Entity entity) {
         CableBlock cable = conductor();
-        if (!cable.conductor().bareWire()
-                || !cable.conductor().electrical().contactDamage()
+               if (!cable.bareWire()
+                       || !cable.transportProperties().contactDamage()
                 || level == null
                 || level.isClientSide) {
             return;
@@ -310,6 +317,7 @@ public final class CableBlockEntity extends BlockEntity
     }
 
     private record PlanKey(
+            EnergyType type,
             Direction ingress,
             long packetSize,
             long amperes) {}

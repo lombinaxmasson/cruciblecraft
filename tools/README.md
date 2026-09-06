@@ -35,9 +35,11 @@ python tools/verify.py release
   fail closed; they do not escalate to the 110-builder closure.
 - Pure Markdown or `docs/history/` edits only run link/index checks.
 - `runtime-java` owns ordinary Java/test/resource paths and runs `gradle test`.
-  `semantic-generators` owns datagen providers, generated trees, and recipe
-  tools, and runs builders plus double `runData`. Overlap (a provider path)
-  selects both.
+  `semantic-generators` owns datagen providers, generated trees, and art /
+  resource-gate tools, and runs builders plus double `runData`.
+  `recipe-generators` owns semantic recipe compile and `src/recipe_generated`.
+  Overlap on a datagen provider path selects runtime-java plus
+  semantic-generators.
 - `integration --profile` runs that profile's builders, Python modules, and
   declared Gradle tasks. `--if-changed` skips when a diff base exists and the
   profile owns none of the changed paths; without a diff base it still runs.

@@ -9,6 +9,8 @@ import com.masson.cruciblecraft.recipe.gt.CompactPublicationPolicyEntry;
 import com.masson.cruciblecraft.recipe.gt.CompactPublicationPolicySerializer;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeEntry;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeEntrySerializer;
+import com.masson.cruciblecraft.recipe.crafting.BatteryCellCraftingRecipe;
+import com.masson.cruciblecraft.recipe.crafting.BatteryCellCraftingRecipeSerializer;
 import com.masson.cruciblecraft.recipe.rule.MaterialRuleRecipe;
 import com.masson.cruciblecraft.recipe.rule.MaterialRuleSerializer;
 
@@ -93,6 +95,22 @@ public final class ModRecipes {
                     RECIPE_SERIALIZERS.register(
                             "compact_dedup_rule",
                             CompactDedupRuleSerializer::new);
+
+    public static final DeferredHolder<
+            RecipeType<?>, RecipeType<BatteryCellCraftingRecipe>>
+            BATTERY_CELL_CRAFTING_TYPE =
+                    RECIPE_TYPES.register(
+                            "battery_cell_crafting",
+                            () -> RecipeType.<BatteryCellCraftingRecipe>simple(
+                                    ResourceLocation.fromNamespaceAndPath(
+                                            CrucibleCraft.MODID,
+                                            "battery_cell_crafting")));
+    public static final DeferredHolder<
+            RecipeSerializer<?>, RecipeSerializer<BatteryCellCraftingRecipe>>
+            BATTERY_CELL_CRAFTING_SERIALIZER =
+                    RECIPE_SERIALIZERS.register(
+                            "battery_cell_crafting",
+                            BatteryCellCraftingRecipeSerializer::new);
 
     private ModRecipes() {}
 }

@@ -27,7 +27,11 @@
     "test_build_semantic_recipes",
     "test_capability_ledger",
     "test_registry_identity",
-    "test_player_complete"
+    "test_player_complete",
+    "test_block_art",
+    "test_multiitem_art",
+    "test_generated_resource_gate",
+    "test_jade_observation"
   ],
   "affected_rules": [
     {
@@ -91,10 +95,6 @@
     },
     {
       "paths": [
-        "build.gradle",
-        "gradle.properties",
-        "settings.gradle",
-        "gradle/**",
         "tools/material_form_authority.py",
         "tools/material_form_authority.json",
         "tools/material_form_authority.schema.json",
@@ -104,15 +104,40 @@
         "tools/recipe_bulk/**",
         "tools/source_pack_manifest.schema.json",
         "tools/recipe_import_spec.schema.json",
-        "src/main/java/com/masson/cruciblecraft/datagen/**",
-        "src/test/java/com/masson/cruciblecraft/datagen/**",
-        "src/generated/**",
         "src/recipe_generated/**",
         "src/compact_recipe_policy_generated/**"
       ],
       "test_modules": [
         "test_material_form_authority",
         "test_build_semantic_recipes"
+      ]
+    },
+    {
+      "paths": [
+        "build.gradle",
+        "gradle.properties",
+        "settings.gradle",
+        "gradle/**",
+        "tools/block_art.py",
+        "tools/build_block_art.py",
+        "tools/block_art_manifest.json",
+        "tools/multiitem_art.py",
+        "tools/build_multiitem_art.py",
+        "tools/multiitem_art_manifest.json",
+        "tools/generated_resource_gate.py",
+        "tools/build_generated_resource_gate.py",
+        "tools/generated_resource_gate_manifest.json",
+        "tools/tests/test_block_art.py",
+        "tools/tests/test_multiitem_art.py",
+        "tools/tests/test_generated_resource_gate.py",
+        "src/main/java/com/masson/cruciblecraft/datagen/**",
+        "src/test/java/com/masson/cruciblecraft/datagen/**",
+        "src/generated/**"
+      ],
+      "test_modules": [
+        "test_block_art",
+        "test_multiitem_art",
+        "test_generated_resource_gate"
       ]
     },
     {
@@ -201,7 +226,11 @@
         "src/test/java/com/masson/cruciblecraft/energy/transformer/**",
         "tools/capabilities/energy/transformers/**",
         "tools/waves/runtime/transformers/**",
-        "tools/tests/test_energy_transformers.py"
+        "tools/tests/test_energy_transformers.py",
+        "tools/jade_observation.py",
+        "tools/build_jade_observation.py",
+        "tools/jade_observation_matrix.json",
+        "tools/tests/test_jade_observation.py"
       ],
       "test_modules": [
         "test_capability_ledger",
@@ -211,7 +240,8 @@
         "test_energy_converter_catalog",
         "test_energy_batteries",
         "test_energy_transformers",
-        "test_registry_identity"
+        "test_registry_identity",
+        "test_jade_observation"
       ]
     },
     {

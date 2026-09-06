@@ -441,6 +441,58 @@
       "lang_key_en": "Electric Motor",
       "lang_key_zh": "电机",
       "gt6_class": "MultiTileEntityMotorElectric"
+    },
+    {
+      "id": "cruciblecraft:electric_heater",
+      "runtime": "electric_heater",
+      "fuel_map": "NONE",
+      "accepts": [
+        "EU"
+      ],
+      "emits": [
+        "HU"
+      ],
+      "faces": {
+        "energyInputs": [
+          "ALL_BUT_FRONT"
+        ],
+        "energyOutputs": [
+          "FRONT"
+        ],
+        "fluidInputs": [],
+        "fluidOutputs": []
+      },
+      "texture_profile": "electric_heater",
+      "overlay_active": true,
+      "lang_key_en": "Electric Heater",
+      "lang_key_zh": "电加热器",
+      "gt6_class": "MultiTileEntityHeaterElectric"
+    },
+    {
+      "id": "cruciblecraft:electric_engine",
+      "runtime": "electric_engine",
+      "fuel_map": "NONE",
+      "accepts": [
+        "EU"
+      ],
+      "emits": [
+        "KU"
+      ],
+      "faces": {
+        "energyInputs": [
+          "BACK"
+        ],
+        "energyOutputs": [
+          "FRONT"
+        ],
+        "fluidInputs": [],
+        "fluidOutputs": []
+      },
+      "texture_profile": "electric_engine",
+      "overlay_active": false,
+      "lang_key_en": "Electric Engine",
+      "lang_key_zh": "电引擎",
+      "gt6_class": "MultiTileEntityEngineElectric"
     }
   ],
   "material_lang": {

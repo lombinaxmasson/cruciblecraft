@@ -30,6 +30,24 @@ class RegistryIdentityTest(unittest.TestCase):
         self.assertEqual("new_distinct", low_heat["disposition"])
         self.assertEqual("registry/tool-head-remainder", low_heat["capability"])
 
+    def test_schema_two_covers_live_catalogs(self) -> None:
+        manifest = identity.compile_manifest()
+        self.assertEqual(2, manifest["schema_version"])
+        self.assertEqual("PASS", manifest["status"], manifest["errors"])
+        self.assertEqual(4357, manifest["live_entry_count"])
+        sources = {row["source"] for row in manifest["live_entries"]}
+        self.assertTrue(
+            any("gt_block_object_catalog.json" in source for source in sources)
+        )
+        self.assertTrue(any("gt_stone_catalog.json" in source for source in sources))
+        self.assertTrue(
+            any("semantic_object_catalog.json" in source for source in sources)
+        )
+        self.assertTrue(
+            any("energy_transformer_tiers.json" in source for source in sources)
+        )
+        self.assertTrue(any("ModBlocks.java" in source for source in sources))
+
     def test_same_path_different_ids_fail_closed(self) -> None:
         records: list[dict[str, str]] = []
         identity.add_record(

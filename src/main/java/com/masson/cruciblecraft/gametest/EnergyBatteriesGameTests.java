@@ -5,6 +5,9 @@ import java.util.List;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
+import com.masson.cruciblecraft.content.block.CableBlock;
+import com.masson.cruciblecraft.content.item.BatteryCellItem;
+import com.masson.cruciblecraft.energy.EnergyEmitter;
 import com.masson.cruciblecraft.energy.battery.BatteryBlockEntity;
 import com.masson.cruciblecraft.energy.battery.EnergyBatteryCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
@@ -37,11 +40,7 @@ public final class EnergyBatteriesGameTests {
     private static final List<String> SIGNOFF_ITEMS = List.of(
             "lead_acid_battery_ulv",
             "alkaline_battery_lv",
-            "nickel_cadmium_battery_mv",
-            "lithium_cobalt_battery_hv",
-            "lithium_manganese_battery_ev",
-            "red_energium_crystal_ulv",
-            "cyan_energium_crystal_iv");
+            "nickel_cadmium_battery_mv");
 
     private EnergyBatteriesGameTests() {}
 
@@ -56,6 +55,16 @@ public final class EnergyBatteriesGameTests {
                         .get()
                         != null,
                 "Lead-acid ULV battery item missing");
+               helper.assertTrue(
+                       ModItems.batteryCellItemsByPath().size() == 10,
+                       "GT6 battery cell identity set is incomplete");
+               helper.assertTrue(
+                       ModItems.batteryCell("lead_acid_cell_filled").get()
+                                       instanceof BatteryCellItem cell
+                               && cell.filled()
+                               && cell.fluidMaterial().equals("sulfuric_acid")
+                               && cell.fluidAmount() == 288,
+                       "Lead-acid filled cell chemistry is incorrect");
         PlayerCompleteSmoke.writeIfConfigured("gameTestServer", CAPABILITY);
         helper.assertTrue(
                 PlayerCompleteSmoke.snapshot("gameTestServer", CAPABILITY)
@@ -65,6 +74,30 @@ public final class EnergyBatteriesGameTests {
                 "Player-complete registry snapshot failed");
         helper.succeed();
     }
+
+        @GameTest(template = TEMPLATE, timeoutTicks = 40)
+        public static void sourceBackedEmptyCellRecipesAreRegistered(
+                GameTestHelper helper) {
+            for (String family : List.of(
+                    "lead_acid", "alkaline", "nickel_cadmium")) {
+                helper.assertTrue(
+                        helper.getLevel().getRecipeManager()
+                                .byKey(id("battery_cells/" + family + "_empty"))
+                                .isPresent(),
+                        "Missing exact empty-cell recipe " + family);
+            }
+            helper.assertTrue(
+                    helper.getLevel().getRecipeManager()
+                            .byKey(id("battery_cells/lithium_cobalt_empty"))
+                            .isEmpty(),
+                    "Lithium-cobalt cell recipe was emitted without tiered circuit");
+            helper.assertTrue(
+                    helper.getLevel().getRecipeManager()
+                            .byKey(id("battery_cells/lithium_manganese_empty"))
+                            .isEmpty(),
+                    "Lithium-manganese cell recipe was emitted without tiered circuit");
+            helper.succeed();
+        }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void chargeStoresEu(GameTestHelper helper) {
@@ -136,6 +169,52 @@ public final class EnergyBatteriesGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void luDoesNotTravelAcrossEuCable(
+            GameTestHelper helper) {
+        BlockPos sourcePos = new BlockPos(1, 1, 2);
+        BlockPos cablePos = sourcePos.east();
+        BlockPos targetPos = cablePos.east();
+        BatteryBlockEntity source = placeAt(
+                helper, sourcePos, "red_energium_crystal_ulv");
+        BatteryBlockEntity target = placeAt(
+                helper, targetPos, "cyan_energium_crystal_ulv");
+        CableBlock cable = ModBlocks.electricalConductorBlock(
+                "copper", MaterialPrefixes.CABLE).get();
+        helper.setBlock(
+                cablePos,
+                cable.defaultBlockState()
+                        .setValue(
+                                CableBlock.PROPERTY_BY_DIRECTION.get(
+                                        Direction.WEST),
+                                true)
+                        .setValue(
+                                CableBlock.PROPERTY_BY_DIRECTION.get(
+                                        Direction.EAST),
+                                true));
+        helper.assertTrue(
+                source.insert(
+                                EnergyType.LU,
+                                8L,
+                                1L,
+                                Direction.EAST,
+                                false)
+                        == 1L,
+                "LU source rejected its nominal packet");
+        long delivered = EnergyEmitter.emit(
+                helper.getLevel(),
+                sourcePos,
+                source,
+                EnergyType.LU,
+                Direction.EAST);
+        helper.assertTrue(
+                delivered == 0L
+                        && source.stored(EnergyType.LU) == 8L
+                        && target.stored(EnergyType.LU) == 0L,
+                "LU packet crossed an EU cable instead of dedicated fiber");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void representativeRecipesAreSurvivalCraftable(
             GameTestHelper helper) {
         for (String path : SIGNOFF_ITEMS) {
@@ -145,8 +224,7 @@ public final class EnergyBatteriesGameTests {
         }
         var cable = MaterialLookup.item("lead", MaterialPrefixes.CABLE)
                 .orElseThrow();
-        var cell = MaterialLookup.item("lead", MaterialPrefixes.PLATE)
-                .orElseThrow();
+        var cell = ModItems.batteryCell("lead_acid_cell_filled").get();
         var plate = MaterialLookup.item(
                         "battery_alloy", MaterialPrefixes.PLATE)
                 .orElseThrow();
@@ -169,11 +247,18 @@ public final class EnergyBatteriesGameTests {
     }
 
     private static BatteryBlockEntity place(GameTestHelper helper, String path) {
+        return placeAt(helper, POS, path);
+    }
+
+    private static BatteryBlockEntity placeAt(
+            GameTestHelper helper,
+            BlockPos pos,
+            String path) {
         helper.setBlock(
-                POS,
+                pos,
                 ModBlocks.batteryBlocksById().get(id(path)).get()
                         .defaultBlockState());
-        BatteryBlockEntity battery = helper.getBlockEntity(POS);
+        BatteryBlockEntity battery = helper.getBlockEntity(pos);
         helper.assertTrue(battery != null, "Missing battery block entity");
         return battery;
     }
