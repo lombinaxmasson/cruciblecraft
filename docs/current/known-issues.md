@@ -10,7 +10,7 @@
 这些是显式身份决策，不是漏做的冲突。
 
 - mapped tool head 已折回 `材料 × 前缀`（`TOOL_HEAD_PREFIX_READY`；bath identity `71`，semantic `244`；remap `7990/0`）。钥匙 / 电路线 / Low Heat Extruder Shape 仍是 unique identity：meta 对不上 `material_id_to_cc`。Low Heat 是温度档，不能并进 34 件 `ExtruderShapeCatalog`；disposition = `new_distinct`，权威在 `tools/capabilities/registry/tool-head-remainder/capability.json`。不开放「任意油」tag。
-- 电池芯 `battery_part:filled_cell` 已注册 GT6 `IL.Battery_*_Cell_Empty` / `IL.Battery_*_Cell_Filled`（`20000–20009`）。铅酸 / 碱性 / 镍镉空芯配方和电池 `B` 槽是 SOURCE_BACKED；锂钴 / 锂锰空芯配方仍缺 `OD_CIRCUITS[4]`/`[6]`。灌液走精确流体量，没有 Canner 灌液表。`recipe:energium_crystal_shaped` 仍 `blocked`（GT6 LU 晶体无 shaped 表）。历史 stand-in 见 [电池详细计划](../history/card-plans/closed/电池详细计划.md)「配方保真债」。GT6 工作台小写工具格不是原版 `crafting_shaped`；走 `shaped_catalyst`（固定 3×3，`catalysts` 不消耗）。电池空芯、不锈钢/钨钢墙、铱线圈、LU 光纤共用此类型。
+- 电池芯 `battery_part:filled_cell` 已注册 GT6 `IL.Battery_*_Cell_Empty` / `IL.Battery_*_Cell_Filled`（`20000–20009`）。铅酸 / 碱性 / 镍镉空芯配方和电池 `B` 槽是 SOURCE_BACKED；锂钴 / 锂锰空芯配方仍缺 `OD_CIRCUITS[4]`/`[6]`。灌液走精确流体量，没有 Canner 灌液表。`recipe:energium_crystal_shaped` 仍 `blocked`（GT6 LU 晶体无 shaped 表）。历史 stand-in 见 [电池详细计划](../history/card-plans/closed/电池详细计划.md)「配方保真债」。GT6 工作台小写工具格不是原版 `crafting_shaped`；走 `shaped_catalyst`（固定 3×3）。工具催化剂按 GT6 `getToolDamagePerContainerCraft() / 100` 扣耐久；电路等非工具催化剂原样返还。电池空芯、不锈钢/钨钢墙、铱线圈、LU 光纤共用此类型。
 - 配方生成器 / 运行时曾把签发卡号当成类型，并在 Bath 上混用青铜化学信封与 GT6 remainder compact。待重构，见 [recipe-wave-workflow §4.3.1](recipe-wave-workflow.md)。现在不要为了改名去动已封板路径。
 
 ## Verification debt

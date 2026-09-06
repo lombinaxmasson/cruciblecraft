@@ -22,11 +22,12 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
 /**
- * A fixed 3x3 crafting recipe with GT6-style non-consuming tool slots.
+ * A fixed 3x3 crafting recipe with GT6-style tool catalyst slots.
  *
  * <p>GT6's {@code CR.DEF_NCC} recipes put tools in lower-case pattern slots.
  * Vanilla shaped recipes cannot preserve those tools, so this recipe keeps
- * the lower-case slots in the grid and returns their stacks unchanged.
+ * the lower-case slots in the grid and applies
+ * {@link CraftingToolWear} instead of consuming the stack.
  */
 public final class ShapedCatalystRecipe implements CraftingRecipe {
     public static final MapCodec<ShapedCatalystRecipe> CODEC =
@@ -127,7 +128,8 @@ public final class ShapedCatalystRecipe implements CraftingRecipe {
                 if (catalysts.containsKey(symbol)) {
                     remaining.set(
                             row * 3 + column,
-                            input.getItem(row * 3 + column).copy());
+                            CraftingToolWear.apply(
+                                    input.getItem(row * 3 + column)));
                 }
             }
         }

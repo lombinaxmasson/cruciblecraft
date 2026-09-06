@@ -712,7 +712,10 @@ class ProcessingAdaptersTest {
                 "flint_knife",
                 "material_screwdriver",
                 "material_wrench",
-                "material_monkey_wrench")) {
+                "material_monkey_wrench",
+                "material_saw",
+                "material_chisel",
+                "material_wire_cutter")) {
             assertTrue(CraftingCatalystPolicy.isWearCatalyst(
                     ResourceLocation.fromNamespaceAndPath("cruciblecraft", path)));
         }
