@@ -28,29 +28,29 @@ import net.minecraft.world.level.Level;
  * Vanilla shaped recipes cannot preserve those tools, so this recipe keeps
  * the lower-case slots in the grid and returns their stacks unchanged.
  */
-public final class BatteryCellCraftingRecipe implements CraftingRecipe {
-    public static final MapCodec<BatteryCellCraftingRecipe> CODEC =
+public final class ShapedCatalystRecipe implements CraftingRecipe {
+    public static final MapCodec<ShapedCatalystRecipe> CODEC =
             RecordCodecBuilder.mapCodec(instance -> instance.group(
                     Codec.STRING.listOf()
                             .fieldOf("pattern")
-                            .forGetter(BatteryCellCraftingRecipe::pattern),
+                            .forGetter(ShapedCatalystRecipe::pattern),
                     Codec.unboundedMap(Codec.STRING, Ingredient.CODEC_NONEMPTY)
                             .optionalFieldOf("ingredients", Map.of())
-                            .forGetter(BatteryCellCraftingRecipe::ingredients),
+                            .forGetter(ShapedCatalystRecipe::ingredients),
                     Codec.unboundedMap(Codec.STRING, Ingredient.CODEC_NONEMPTY)
                             .optionalFieldOf("catalysts", Map.of())
-                            .forGetter(BatteryCellCraftingRecipe::catalysts),
+                            .forGetter(ShapedCatalystRecipe::catalysts),
                     ItemStack.STRICT_CODEC
                             .fieldOf("result")
-                            .forGetter(BatteryCellCraftingRecipe::result))
-                    .apply(instance, BatteryCellCraftingRecipe::new));
+                            .forGetter(ShapedCatalystRecipe::result))
+                    .apply(instance, ShapedCatalystRecipe::new));
 
     private final List<String> pattern;
     private final Map<String, Ingredient> ingredients;
     private final Map<String, Ingredient> catalysts;
     private final ItemStack result;
 
-    public BatteryCellCraftingRecipe(
+    public ShapedCatalystRecipe(
             List<String> pattern,
             Map<String, Ingredient> ingredients,
             Map<String, Ingredient> catalysts,
@@ -58,7 +58,7 @@ public final class BatteryCellCraftingRecipe implements CraftingRecipe {
         if (pattern.size() != 3
                 || pattern.stream().anyMatch(row -> row.length() != 3)) {
             throw new IllegalArgumentException(
-                    "Battery cell recipes must have a 3x3 pattern");
+                    "Shaped catalyst recipes must have a 3x3 pattern");
         }
         this.pattern = List.copyOf(pattern);
         this.ingredients = Map.copyOf(new LinkedHashMap<>(ingredients));
@@ -146,7 +146,7 @@ public final class BatteryCellCraftingRecipe implements CraftingRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return ModRecipes.BATTERY_CELL_CRAFTING_SERIALIZER.get();
+        return ModRecipes.SHAPED_CATALYST_SERIALIZER.get();
     }
 
     @Override
@@ -167,7 +167,7 @@ public final class BatteryCellCraftingRecipe implements CraftingRecipe {
         Ingredient ingredient = ingredients.get(symbol);
         if (catalyst != null && ingredient != null) {
             throw new IllegalStateException(
-                    "Battery cell symbol is both material and catalyst: " + symbol);
+                    "Shaped catalyst symbol is both material and catalyst: " + symbol);
         }
         return catalyst != null ? catalyst : ingredient;
     }
@@ -186,7 +186,7 @@ public final class BatteryCellCraftingRecipe implements CraftingRecipe {
                 String symbol = String.valueOf(row.charAt(index));
                 if (!" ".equals(symbol) && ingredientFor(symbol) == null) {
                     throw new IllegalArgumentException(
-                            "Battery cell pattern symbol has no ingredient: " + symbol);
+                            "Shaped catalyst pattern symbol has no ingredient: " + symbol);
                 }
             }
         }
@@ -195,7 +195,7 @@ public final class BatteryCellCraftingRecipe implements CraftingRecipe {
     private static void validateSymbol(String symbol) {
         if (symbol == null || symbol.length() != 1 || " ".equals(symbol)) {
             throw new IllegalArgumentException(
-                    "Battery cell symbols must be one non-space character");
+                    "Shaped catalyst symbols must be one non-space character");
         }
     }
 }

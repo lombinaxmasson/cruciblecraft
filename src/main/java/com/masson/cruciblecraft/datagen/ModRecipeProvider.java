@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.datagen;
 
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -23,7 +24,7 @@ import com.masson.cruciblecraft.recipe.rule.MaterialChainRules;
 import com.masson.cruciblecraft.recipe.rule.ToolRules;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeEntry;
-import com.masson.cruciblecraft.recipe.crafting.BatteryCellCraftingRecipe;
+import com.masson.cruciblecraft.recipe.crafting.ShapedCatalystRecipe;
 import com.masson.cruciblecraft.fusion.FusionRecipeCatalog;
 import com.masson.cruciblecraft.registry.ModComponents;
 import com.masson.cruciblecraft.energy.battery.EnergyBatteryTierCatalog;
@@ -666,21 +667,24 @@ public final class ModRecipeProvider extends RecipeProvider {
                 "conversion_processor_unit",
                 Items.GOLD_INGOT);
         addNonmetalPipeAcquisitionRecipes(output);
-        ShapedRecipeBuilder.shaped(
-                        RecipeCategory.TOOLS, ModItems.MATERIAL_FILE.get())
-                .pattern(" II")
-                .pattern(" SI")
-                .pattern("S  ")
-                .define('I', Items.IRON_INGOT)
-                .define('S', Items.STICK)
-                .unlockedBy("has_iron", has(Items.IRON_INGOT))
-                .save(output, id("tools/iron_file"));
+        // GT6 Loader_Tools.java:304 FILE {" P ", " Pk"} — two plates + knife.
+        acceptShapedCatalyst(
+                output,
+                "tools/iron_file",
+                List.of(" P ", " Pk", "   "),
+                Map.of(
+                        "P",
+                        Ingredient.of(materialItem(
+                                "iron", MaterialPrefixes.PLATE))),
+                Map.of("k", Ingredient.of(ModItems.FLINT_KNIFE.get())),
+                new ItemStack(ModItems.MATERIAL_FILE.get()));
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.FLINT_KNIFE.get())
                 .pattern("SF")
                 .define('S', Items.STICK)
                 .define('F', Items.FLINT)
                 .unlockedBy("has_flint", has(Items.FLINT))
                 .save(output, id("tools/flint_knife"));
+        addWorkbenchHammerRecipes(output);
         ToolPatternCatalog.DEFINITIONS.forEach(pattern -> {
             ShapedRecipeBuilder builder = ShapedRecipeBuilder.shaped(
                             RecipeCategory.TOOLS,
@@ -1126,15 +1130,82 @@ public final class ModRecipeProvider extends RecipeProvider {
             return;
         }
         Item result = ModItems.materialItem(material, casingForm).get();
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
-                .pattern("YXX")
-                .pattern("X X")
-                .pattern("XXY")
-                .define('X', plate)
-                .define('Y', rod)
-                .unlockedBy("has_plate", has(plate))
-                .save(output, id("components/" + material + "/"
-                        + casingForm.serializedName()));
+        Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+        ingredients.put("X", Ingredient.of(plate));
+        ingredients.put("Y", Ingredient.of(rod));
+        // GT6 Loader_OreProcessing.java:152-153 {"YXX", "XwX", "XXY"}.
+        acceptShapedCatalyst(
+                output,
+                "components/" + material + "/" + casingForm.serializedName(),
+                List.of("YXX", "XwX", "XXY"),
+                ingredients,
+                Map.of("w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                new ItemStack(result));
+    }
+
+    private static void addWorkbenchHammerRecipes(RecipeOutput output) {
+        // GT6 Loader_Tools.java:327 HARDHAMMER {"II ", "IIh", "II "}.
+        emitMetalHammerRecipe(
+                output, "smithing_hammer", "iron", Items.IRON_INGOT);
+        emitMetalHammerRecipe(
+                output,
+                "bronze_smithing_hammer",
+                "bronze",
+                materialItem("bronze", MaterialPrefixes.INGOT));
+        emitMetalHammerRecipe(
+                output,
+                "steel_smithing_hammer",
+                "steel",
+                materialItem("steel", MaterialPrefixes.INGOT));
+        Item stoneRock = MaterialLookup.item(
+                "stone", new MaterialPrefix("cruciblecraft:rock")).orElse(null);
+        if (stoneRock == null) {
+            return;
+        }
+        // GT6 Loader_Tools.java:285 rock hammer {"XX ", "XXS", "XX "} — no tool.
+        acceptShapedCatalyst(
+                output,
+                "stone_smithing_hammer",
+                List.of("XX ", "XXS", "XX "),
+                Map.of(
+                        "X", Ingredient.of(stoneRock),
+                        "S", Ingredient.of(Items.STICK)),
+                Map.of(),
+                toolStack(ModItems.SMITHING_HAMMER.get(), "stone"));
+    }
+
+    private static void emitMetalHammerRecipe(
+            RecipeOutput output,
+            String path,
+            String material,
+            Item ingot) {
+        acceptShapedCatalyst(
+                output,
+                path,
+                List.of("II ", "IIh", "II "),
+                Map.of("I", Ingredient.of(ingot)),
+                Map.of("h", Ingredient.of(ModItems.SMITHING_HAMMER.get())),
+                toolStack(ModItems.SMITHING_HAMMER.get(), material));
+    }
+
+    private static ItemStack toolStack(Item tool, String material) {
+        ItemStack stack = new ItemStack(tool);
+        stack.set(ModComponents.TOOL_MATERIAL.get(), material);
+        return stack;
+    }
+
+    private static void acceptShapedCatalyst(
+            RecipeOutput output,
+            String path,
+            List<String> pattern,
+            Map<String, Ingredient> ingredients,
+            Map<String, Ingredient> catalysts,
+            ItemStack result) {
+        output.accept(
+                id(path),
+                new ShapedCatalystRecipe(
+                        pattern, ingredients, catalysts, result),
+                null);
     }
 
     private static Item resolveRegisteredItem(ResourceLocation id) {
@@ -1252,7 +1323,7 @@ public final class ModRecipeProvider extends RecipeProvider {
         }
         output.accept(
                 id("machines/lu_fiber_cable"),
-                new BatteryCellCraftingRecipe(
+                new ShapedCatalystRecipe(
                         List.of("PGR", "DxD", "RGP"),
                         Map.of(
                                 "P", Ingredient.of(silverPlate.orElseThrow()),
@@ -1285,7 +1356,7 @@ public final class ModRecipeProvider extends RecipeProvider {
         }
         output.accept(
                 id("machines/large_iridium_coil"),
-                new BatteryCellCraftingRecipe(
+                new ShapedCatalystRecipe(
                         List.of("WWW", "WxW", "WWW"),
                         Map.of("W", Ingredient.of(iridiumWire.orElseThrow())),
                         Map.of(
@@ -1307,7 +1378,7 @@ public final class ModRecipeProvider extends RecipeProvider {
         }
         output.accept(
                 id(path),
-                new BatteryCellCraftingRecipe(
+                new ShapedCatalystRecipe(
                         List.of("wPP", "hPP", "   "),
                         Map.of("P", Ingredient.of(plate.orElseThrow())),
                         Map.of(
@@ -1468,7 +1539,7 @@ public final class ModRecipeProvider extends RecipeProvider {
             Map<String, Ingredient> catalysts) {
         output.accept(
                 id("battery_cells/" + family + "_empty"),
-                new BatteryCellCraftingRecipe(
+                new ShapedCatalystRecipe(
                         pattern,
                         ingredients,
                         catalysts,

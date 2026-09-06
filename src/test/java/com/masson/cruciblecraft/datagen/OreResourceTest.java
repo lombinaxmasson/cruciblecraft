@@ -419,10 +419,11 @@ class OreResourceTest {
         // Current generated baseline includes hopper/storage/display-cpu
         // catalogs plus 13 live datagen files from ModRecipeProvider:
         // 9 electric_transformer_*.json, 3 battery_cells/*_empty.json, and
-        // machines/lu_fiber_cable.json.
-        assertEquals(1_745, generatedRecipeSet.size() - preStorageRecipeSet.size());
+        // machines/lu_fiber_cable.json. Workbench hammers (iron/bronze/steel
+        // plus stone bootstrap) add 4 generated files.
+        assertEquals(1_749, generatedRecipeSet.size() - preStorageRecipeSet.size());
         assertEquals(
-                1_745 + preStorageRecipeSet.size(),
+                1_749 + preStorageRecipeSet.size(),
                 generatedRecipeSet.size());
         assertEquals(48, countRegularFiles(COMPONENT_RULE_RESOURCES.resolve(
                 "data/cruciblecraft/recipe")));

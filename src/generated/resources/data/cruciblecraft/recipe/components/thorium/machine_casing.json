@@ -1,7 +1,11 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "w": {
+      "item": "cruciblecraft:material_wrench"
+    }
+  },
+  "ingredients": {
     "X": {
       "item": "cruciblecraft:thorium/plate"
     },
@@ -11,7 +15,7 @@
   },
   "pattern": [
     "YXX",
-    "X X",
+    "XwX",
     "XXY"
   ],
   "result": {

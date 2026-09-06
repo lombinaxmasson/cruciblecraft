@@ -146,8 +146,10 @@ class CasingMachineAcquisitionResourceTest {
                 path,
                 result,
                 result,
-                List.of("YXX", "X X", "XXY"),
-                Map.of("X", plate, "Y", longRod));
+                List.of("YXX", "XwX", "XXY"),
+                Map.of("X", plate, "Y", longRod),
+                Map.of("w", "cruciblecraft:material_wrench"),
+                "cruciblecraft:shaped_catalyst");
     }
 
     private static RecipeSpec centrifuge(
@@ -203,18 +205,32 @@ class CasingMachineAcquisitionResourceTest {
         try {
             var recipe = JsonParser.parseString(Files.readString(
                     RECIPES.resolve(expected.path() + ".json"))).getAsJsonObject();
-            assertEquals("minecraft:crafting_shaped",
+            assertEquals(expected.type(),
                     recipe.get("type").getAsString(), expected.path());
-            assertEquals("misc", recipe.get("category").getAsString(), expected.path());
             assertEquals(expected.pattern(), recipe.getAsJsonArray("pattern")
                     .asList().stream().map(value -> value.getAsString()).toList());
             Map<String, String> key = new LinkedHashMap<>();
-            recipe.getAsJsonObject("key").entrySet().forEach(entry ->
+            var keyObject = expected.catalysts().isEmpty()
+                    ? recipe.getAsJsonObject("key")
+                    : recipe.getAsJsonObject("ingredients");
+            keyObject.entrySet().forEach(entry ->
                     key.put(
                             entry.getKey(),
                             entry.getValue().getAsJsonObject()
                                     .get("item").getAsString()));
             assertEquals(expected.key(), key, expected.path());
+            if (!expected.catalysts().isEmpty()) {
+                Map<String, String> catalysts = new LinkedHashMap<>();
+                recipe.getAsJsonObject("catalysts").entrySet().forEach(entry ->
+                        catalysts.put(
+                                entry.getKey(),
+                                entry.getValue().getAsJsonObject()
+                                        .get("item").getAsString()));
+                assertEquals(expected.catalysts(), catalysts, expected.path());
+            } else {
+                assertEquals("misc", recipe.get("category").getAsString(),
+                        expected.path());
+            }
             var result = recipe.getAsJsonObject("result");
             assertEquals(Set.of("count", "id"), result.keySet(), expected.path());
             assertEquals(1, result.get("count").getAsInt(), expected.path());
@@ -231,5 +247,23 @@ class CasingMachineAcquisitionResourceTest {
             String result,
             String registration,
             List<String> pattern,
-            Map<String, String> key) {}
+            Map<String, String> key,
+            Map<String, String> catalysts,
+            String type) {
+        RecipeSpec(
+                String path,
+                String result,
+                String registration,
+                List<String> pattern,
+                Map<String, String> key) {
+            this(
+                    path,
+                    result,
+                    registration,
+                    pattern,
+                    key,
+                    Map.of(),
+                    "minecraft:crafting_shaped");
+        }
+    }
 }

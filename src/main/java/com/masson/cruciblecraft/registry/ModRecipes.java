@@ -9,8 +9,8 @@ import com.masson.cruciblecraft.recipe.gt.CompactPublicationPolicyEntry;
 import com.masson.cruciblecraft.recipe.gt.CompactPublicationPolicySerializer;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeEntry;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeEntrySerializer;
-import com.masson.cruciblecraft.recipe.crafting.BatteryCellCraftingRecipe;
-import com.masson.cruciblecraft.recipe.crafting.BatteryCellCraftingRecipeSerializer;
+import com.masson.cruciblecraft.recipe.crafting.ShapedCatalystRecipe;
+import com.masson.cruciblecraft.recipe.crafting.ShapedCatalystRecipeSerializer;
 import com.masson.cruciblecraft.recipe.rule.MaterialRuleRecipe;
 import com.masson.cruciblecraft.recipe.rule.MaterialRuleSerializer;
 
@@ -97,20 +97,20 @@ public final class ModRecipes {
                             CompactDedupRuleSerializer::new);
 
     public static final DeferredHolder<
-            RecipeType<?>, RecipeType<BatteryCellCraftingRecipe>>
-            BATTERY_CELL_CRAFTING_TYPE =
+            RecipeType<?>, RecipeType<ShapedCatalystRecipe>>
+            SHAPED_CATALYST_TYPE =
                     RECIPE_TYPES.register(
-                            "battery_cell_crafting",
-                            () -> RecipeType.<BatteryCellCraftingRecipe>simple(
+                            "shaped_catalyst",
+                            () -> RecipeType.<ShapedCatalystRecipe>simple(
                                     ResourceLocation.fromNamespaceAndPath(
                                             CrucibleCraft.MODID,
-                                            "battery_cell_crafting")));
+                                            "shaped_catalyst")));
     public static final DeferredHolder<
-            RecipeSerializer<?>, RecipeSerializer<BatteryCellCraftingRecipe>>
-            BATTERY_CELL_CRAFTING_SERIALIZER =
+            RecipeSerializer<?>, RecipeSerializer<ShapedCatalystRecipe>>
+            SHAPED_CATALYST_SERIALIZER =
                     RECIPE_SERIALIZERS.register(
-                            "battery_cell_crafting",
-                            BatteryCellCraftingRecipeSerializer::new);
+                            "shaped_catalyst",
+                            ShapedCatalystRecipeSerializer::new);
 
     private ModRecipes() {}
 }

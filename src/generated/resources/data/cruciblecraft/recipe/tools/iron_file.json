@@ -1,18 +1,19 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "equipment",
-  "key": {
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "S": {
-      "item": "minecraft:stick"
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "k": {
+      "item": "cruciblecraft:flint_knife"
+    }
+  },
+  "ingredients": {
+    "P": {
+      "item": "cruciblecraft:iron/plate"
     }
   },
   "pattern": [
-    " II",
-    " SI",
-    "S  "
+    " P ",
+    " Pk",
+    "   "
   ],
   "result": {
     "count": 1,

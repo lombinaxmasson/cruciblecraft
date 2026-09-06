@@ -210,6 +210,21 @@ class ProcessingMachineResourceTest {
         assertTrue(foundPreserve, "Tool rules must retain pattern selectors");
         var fileRecipe = JsonParser.parseString(Files.readString(GENERATED.resolve(
                 "data/cruciblecraft/recipe/tools/iron_file.json"))).getAsJsonObject();
+        assertEquals(
+                "cruciblecraft:shaped_catalyst",
+                fileRecipe.get("type").getAsString());
+        assertEquals(
+                List.of(" P ", " Pk", "   "),
+                fileRecipe.getAsJsonArray("pattern").asList().stream()
+                        .map(value -> value.getAsString()).toList());
+        assertEquals(
+                "cruciblecraft:iron/plate",
+                fileRecipe.getAsJsonObject("ingredients")
+                        .getAsJsonObject("P").get("item").getAsString());
+        assertEquals(
+                "cruciblecraft:flint_knife",
+                fileRecipe.getAsJsonObject("catalysts")
+                        .getAsJsonObject("k").get("item").getAsString());
         assertTrue(!fileRecipe.getAsJsonObject("result").has("components"),
                 "the iron File recipe must rely on runtime derivation");
     }
@@ -222,8 +237,22 @@ class ProcessingMachineResourceTest {
                 "steel_smithing_hammer.json", "steel");
 
         for (var entry : recipes.entrySet()) {
-            var recipe = JsonParser.parseString(Files.readString(MAIN.resolve(
+            var recipe = JsonParser.parseString(Files.readString(GENERATED.resolve(
                     "data/cruciblecraft/recipe/" + entry.getKey()))).getAsJsonObject();
+            assertEquals(
+                    "cruciblecraft:shaped_catalyst",
+                    recipe.get("type").getAsString(),
+                    entry.getKey());
+            assertEquals(
+                    List.of("II ", "IIh", "II "),
+                    recipe.getAsJsonArray("pattern").asList().stream()
+                            .map(value -> value.getAsString()).toList(),
+                    entry.getKey());
+            assertEquals(
+                    "cruciblecraft:smithing_hammer",
+                    recipe.getAsJsonObject("catalysts")
+                            .getAsJsonObject("h").get("item").getAsString(),
+                    entry.getKey());
             var components = recipe.getAsJsonObject("result")
                     .getAsJsonObject("components");
             assertEquals(
@@ -234,6 +263,23 @@ class ProcessingMachineResourceTest {
                     entry.getValue(),
                     components.get("cruciblecraft:tool_material").getAsString());
         }
+        var stone = JsonParser.parseString(Files.readString(GENERATED.resolve(
+                "data/cruciblecraft/recipe/stone_smithing_hammer.json")))
+                .getAsJsonObject();
+        assertEquals("cruciblecraft:shaped_catalyst", stone.get("type").getAsString());
+        assertEquals(
+                List.of("XX ", "XXS", "XX "),
+                stone.getAsJsonArray("pattern").asList().stream()
+                        .map(value -> value.getAsString()).toList());
+        assertTrue(
+                !stone.has("catalysts")
+                        || stone.getAsJsonObject("catalysts").isEmpty());
+        assertEquals(
+                "stone",
+                stone.getAsJsonObject("result")
+                        .getAsJsonObject("components")
+                        .get("cruciblecraft:tool_material")
+                        .getAsString());
     }
 
     private static List<String> values(Path rootPath, String path) throws Exception {
