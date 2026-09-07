@@ -419,12 +419,14 @@ class OreResourceTest {
         // recipes (4 shaped + 4 shapeless cycle).
         // Catalog-driven workbench tools replace the previous 32 hardcoded
         // hammer/workshop/harvest files. The 1_744 baseline is that tree
-        // minus those 32; the plan adds every eligible workshop and stone-rock
-        // recipe, including the three vanilla flint harvest crafts.
+        // minus those 32; the plan adds every eligible workshop, harvest-head,
+        // and stone-rock recipe, including the three vanilla flint harvest
+        // crafts. Head-plus-stick assemblies are a fixed extra set.
         int workbenchTools = WorkbenchToolRecipePlan.plan(
                 materials, registeredForms).size();
         int expectedGenerated = WorkbenchToolRecipePlan.NON_WORKBENCH_GENERATED_RECIPES
-                + workbenchTools;
+                + workbenchTools
+                + WorkbenchToolRecipePlan.assemblies().size();
         assertEquals(
                 expectedGenerated,
                 generatedRecipeSet.size() - preStorageRecipeSet.size());

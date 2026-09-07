@@ -36,18 +36,37 @@ import com.masson.cruciblecraft.content.item.HopperBlockItem;
 import com.masson.cruciblecraft.content.storage.StorageVariant;
 import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.content.item.MaterialAxeItem;
+import com.masson.cruciblecraft.content.item.MaterialBranchCutterItem;
+import com.masson.cruciblecraft.content.item.MaterialButcheryKnifeItem;
 import com.masson.cruciblecraft.content.item.MaterialChiselItem;
+import com.masson.cruciblecraft.content.item.MaterialClubItem;
+import com.masson.cruciblecraft.content.item.MaterialConstructionPickItem;
+import com.masson.cruciblecraft.content.item.MaterialCrowbarItem;
+import com.masson.cruciblecraft.content.item.MaterialDoubleAxeItem;
 import com.masson.cruciblecraft.content.item.MaterialFileItem;
+import com.masson.cruciblecraft.content.item.MaterialFlintAndTinderItem;
+import com.masson.cruciblecraft.content.item.MaterialGemPickItem;
 import com.masson.cruciblecraft.content.item.MaterialHoeItem;
+import com.masson.cruciblecraft.content.item.MaterialKnifeItem;
 import com.masson.cruciblecraft.content.item.MaterialMachineBlockItem;
 import com.masson.cruciblecraft.content.item.MaterialMonkeyWrenchItem;
 import com.masson.cruciblecraft.content.item.MaterialPickaxeItem;
+import com.masson.cruciblecraft.content.item.MaterialPlowItem;
+import com.masson.cruciblecraft.content.item.MaterialPlungerItem;
 import com.masson.cruciblecraft.content.item.MaterialSawItem;
+import com.masson.cruciblecraft.content.item.MaterialScoopItem;
+import com.masson.cruciblecraft.content.item.MaterialScissorsItem;
 import com.masson.cruciblecraft.content.item.MaterialScrewdriverItem;
+import com.masson.cruciblecraft.content.item.MaterialSenseItem;
 import com.masson.cruciblecraft.content.item.MaterialShovelItem;
+import com.masson.cruciblecraft.content.item.MaterialSoftHammerItem;
+import com.masson.cruciblecraft.content.item.MaterialSpadeItem;
 import com.masson.cruciblecraft.content.item.MaterialSwordItem;
+import com.masson.cruciblecraft.content.item.MaterialUniversalSpadeItem;
 import com.masson.cruciblecraft.content.item.MaterialWireCutterItem;
+import com.masson.cruciblecraft.content.item.MaterialWorkshopToolItem;
 import com.masson.cruciblecraft.content.item.MaterialWrenchItem;
+import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
 import com.masson.cruciblecraft.content.item.LuFiberCableItem;
 import com.masson.cruciblecraft.content.item.PortableFluidTankItem;
 import com.masson.cruciblecraft.content.item.ProgrammedCircuitItem;
@@ -621,6 +640,131 @@ public final class ModItems {
             ITEMS.register(
                     "material_wire_cutter",
                     () -> new MaterialWireCutterItem(new Item.Properties()));
+    public static final DeferredItem<MaterialKnifeItem> MATERIAL_KNIFE =
+            ITEMS.register(
+                    "material_knife",
+                    () -> new MaterialKnifeItem(new Item.Properties()));
+    public static final DeferredItem<MaterialClubItem> MATERIAL_CLUB =
+            ITEMS.register(
+                    "material_club",
+                    () -> new MaterialClubItem(new Item.Properties()));
+    public static final DeferredItem<MaterialSpadeItem> MATERIAL_SPADE =
+            ITEMS.register(
+                    "material_spade",
+                    () -> new MaterialSpadeItem(new Item.Properties()));
+    public static final DeferredItem<MaterialDoubleAxeItem> MATERIAL_DOUBLE_AXE =
+            ITEMS.register(
+                    "material_double_axe",
+                    () -> new MaterialDoubleAxeItem(new Item.Properties()));
+    public static final DeferredItem<MaterialSenseItem> MATERIAL_SENSE =
+            ITEMS.register(
+                    "material_sense",
+                    () -> new MaterialSenseItem(new Item.Properties()));
+    public static final DeferredItem<MaterialPlowItem> MATERIAL_PLOW =
+            ITEMS.register(
+                    "material_plow",
+                    () -> new MaterialPlowItem(new Item.Properties()));
+    public static final DeferredItem<MaterialConstructionPickItem>
+            MATERIAL_CONSTRUCTION_PICK =
+            ITEMS.register(
+                    "material_construction_pick",
+                    () -> new MaterialConstructionPickItem(new Item.Properties()));
+    public static final DeferredItem<MaterialGemPickItem> MATERIAL_GEM_PICK =
+            ITEMS.register(
+                    "material_gem_pick",
+                    () -> new MaterialGemPickItem(new Item.Properties()));
+    public static final DeferredItem<MaterialWorkshopToolItem> MATERIAL_BUILDER_WAND =
+            ITEMS.register(
+                    "material_builder_wand",
+                    () -> new MaterialWorkshopToolItem(
+                            new Item.Properties(),
+                            ToolKind.BUILDER_WAND,
+                            "item.cruciblecraft.material_builder_wand"));
+    public static final DeferredItem<MaterialUniversalSpadeItem>
+            MATERIAL_UNIVERSAL_SPADE =
+            ITEMS.register(
+                    "material_universal_spade",
+                    () -> new MaterialUniversalSpadeItem(new Item.Properties()));
+    public static final DeferredItem<MaterialCrowbarItem> MATERIAL_CROWBAR =
+            ITEMS.register(
+                    "material_crowbar",
+                    () -> new MaterialCrowbarItem(new Item.Properties()));
+    public static final DeferredItem<MaterialPlungerItem> MATERIAL_PLUNGER =
+            ITEMS.register(
+                    "material_plunger",
+                    () -> new MaterialPlungerItem(new Item.Properties()));
+    public static final DeferredItem<MaterialScoopItem> MATERIAL_SCOOP =
+            ITEMS.register(
+                    "material_scoop",
+                    () -> new MaterialScoopItem(new Item.Properties()));
+    public static final DeferredItem<MaterialButcheryKnifeItem>
+            MATERIAL_BUTCHERY_KNIFE =
+            ITEMS.register(
+                    "material_butchery_knife",
+                    () -> new MaterialButcheryKnifeItem(new Item.Properties()));
+    public static final DeferredItem<MaterialBranchCutterItem>
+            MATERIAL_BRANCH_CUTTER =
+            ITEMS.register(
+                    "material_branch_cutter",
+                    () -> new MaterialBranchCutterItem(new Item.Properties()));
+    public static final DeferredItem<MaterialScissorsItem> MATERIAL_SCISSORS =
+            ITEMS.register(
+                    "material_scissors",
+                    () -> new MaterialScissorsItem(new Item.Properties()));
+    public static final DeferredItem<MaterialWorkshopToolItem> MATERIAL_PINCERS =
+            ITEMS.register(
+                    "material_pincers",
+                    () -> new MaterialWorkshopToolItem(
+                            new Item.Properties(),
+                            ToolKind.PINCERS,
+                            "item.cruciblecraft.material_pincers"));
+    public static final DeferredItem<MaterialSoftHammerItem> MATERIAL_SOFT_HAMMER =
+            ITEMS.register(
+                    "material_soft_hammer",
+                    () -> new MaterialSoftHammerItem(new Item.Properties()));
+    public static final DeferredItem<MaterialWorkshopToolItem>
+            MATERIAL_BENDING_CYLINDER =
+            ITEMS.register(
+                    "material_bending_cylinder",
+                    () -> new MaterialWorkshopToolItem(
+                            new Item.Properties(),
+                            ToolKind.BENDING_CYLINDER,
+                            "item.cruciblecraft.material_bending_cylinder"));
+    public static final DeferredItem<MaterialWorkshopToolItem>
+            MATERIAL_BENDING_CYLINDER_SMALL =
+            ITEMS.register(
+                    "material_bending_cylinder_small",
+                    () -> new MaterialWorkshopToolItem(
+                            new Item.Properties(),
+                            ToolKind.BENDING_CYLINDER_SMALL,
+                            "item.cruciblecraft.material_bending_cylinder_small"));
+    public static final DeferredItem<MaterialWorkshopToolItem> MATERIAL_HAND_DRILL =
+            ITEMS.register(
+                    "material_hand_drill",
+                    () -> new MaterialWorkshopToolItem(
+                            new Item.Properties(),
+                            ToolKind.HAND_DRILL,
+                            "item.cruciblecraft.material_hand_drill"));
+    public static final DeferredItem<MaterialWorkshopToolItem> MATERIAL_ROLLING_PIN =
+            ITEMS.register(
+                    "material_rolling_pin",
+                    () -> new MaterialWorkshopToolItem(
+                            new Item.Properties(),
+                            ToolKind.ROLLING_PIN,
+                            "item.cruciblecraft.material_rolling_pin"));
+    public static final DeferredItem<MaterialFlintAndTinderItem>
+            MATERIAL_FLINT_AND_TINDER =
+            ITEMS.register(
+                    "material_flint_and_tinder",
+                    () -> new MaterialFlintAndTinderItem(new Item.Properties()));
+    public static final DeferredItem<MaterialWorkshopToolItem>
+            MATERIAL_POCKET_MULTITOOL =
+            ITEMS.register(
+                    "material_pocket_multitool",
+                    () -> new MaterialWorkshopToolItem(
+                            new Item.Properties(),
+                            ToolKind.POCKET_MULTITOOL,
+                            "item.cruciblecraft.material_pocket_multitool"));
     public static final DeferredItem<FlintKnifeItem> FLINT_KNIFE =
             ITEMS.register(
                     "flint_knife",

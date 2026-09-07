@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
+import com.masson.cruciblecraft.content.item.MachineToolInteractions;
 import com.masson.cruciblecraft.logistics.displaycpu.DisplayCpuWriteback;
 import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.logistics.pipe.PipeTopology;
@@ -20,6 +21,7 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -115,6 +117,19 @@ public abstract class AbstractPipeBlock extends Block
             Player player,
             InteractionHand hand,
             BlockHitResult hit) {
+        UseOnContext context = new UseOnContext(level, player, hand, stack, hit);
+        if (MachineToolInteractions.isPlunger(stack)) {
+            InteractionResult result = MachineToolInteractions.plunger(context);
+            return result.consumesAction()
+                    ? ItemInteractionResult.sidedSuccess(level.isClientSide)
+                    : ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
+        if (MachineToolInteractions.isCrowbar(stack)) {
+            InteractionResult result = MachineToolInteractions.crowbar(context);
+            return result.consumesAction()
+                    ? ItemInteractionResult.sidedSuccess(level.isClientSide)
+                    : ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
         return Gt6StyleConnections.wrench(
                 stack, state, level, pos, player, hand, hit);
     }

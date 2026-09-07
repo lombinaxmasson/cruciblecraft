@@ -84,6 +84,31 @@ public final class ToolDisplayPlan {
             case WRENCH -> ModItems.MATERIAL_WRENCH.get();
             case MONKEY_WRENCH -> ModItems.MATERIAL_MONKEY_WRENCH.get();
             case WIRE_CUTTER -> ModItems.MATERIAL_WIRE_CUTTER.get();
+            case KNIFE -> ModItems.MATERIAL_KNIFE.get();
+            case CLUB -> ModItems.MATERIAL_CLUB.get();
+            case SPADE -> ModItems.MATERIAL_SPADE.get();
+            case DOUBLE_AXE -> ModItems.MATERIAL_DOUBLE_AXE.get();
+            case SENSE -> ModItems.MATERIAL_SENSE.get();
+            case PLOW -> ModItems.MATERIAL_PLOW.get();
+            case CONSTRUCTION_PICK -> ModItems.MATERIAL_CONSTRUCTION_PICK.get();
+            case GEM_PICK -> ModItems.MATERIAL_GEM_PICK.get();
+            case BUILDER_WAND -> ModItems.MATERIAL_BUILDER_WAND.get();
+            case UNIVERSAL_SPADE -> ModItems.MATERIAL_UNIVERSAL_SPADE.get();
+            case CROWBAR -> ModItems.MATERIAL_CROWBAR.get();
+            case PLUNGER -> ModItems.MATERIAL_PLUNGER.get();
+            case SCOOP -> ModItems.MATERIAL_SCOOP.get();
+            case BUTCHERY_KNIFE -> ModItems.MATERIAL_BUTCHERY_KNIFE.get();
+            case BRANCH_CUTTER -> ModItems.MATERIAL_BRANCH_CUTTER.get();
+            case SCISSORS -> ModItems.MATERIAL_SCISSORS.get();
+            case PINCERS -> ModItems.MATERIAL_PINCERS.get();
+            case SOFT_HAMMER -> ModItems.MATERIAL_SOFT_HAMMER.get();
+            case BENDING_CYLINDER -> ModItems.MATERIAL_BENDING_CYLINDER.get();
+            case BENDING_CYLINDER_SMALL ->
+                    ModItems.MATERIAL_BENDING_CYLINDER_SMALL.get();
+            case HAND_DRILL -> ModItems.MATERIAL_HAND_DRILL.get();
+            case ROLLING_PIN -> ModItems.MATERIAL_ROLLING_PIN.get();
+            case FLINT_AND_TINDER -> ModItems.MATERIAL_FLINT_AND_TINDER.get();
+            case POCKET_MULTITOOL -> ModItems.MATERIAL_POCKET_MULTITOOL.get();
         };
     }
 

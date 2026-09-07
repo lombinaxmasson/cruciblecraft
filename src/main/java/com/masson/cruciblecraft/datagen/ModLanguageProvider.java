@@ -262,6 +262,34 @@ public class ModLanguageProvider extends LanguageProvider {
             add("item.cruciblecraft.material_wrench", "%s扳手");
             add("item.cruciblecraft.material_monkey_wrench", "%s活动扳手");
             add("item.cruciblecraft.material_wire_cutter", "%s剪线钳");
+            add("item.cruciblecraft.material_knife", "%s刀");
+            add("item.cruciblecraft.material_club", "%s棒");
+            add("item.cruciblecraft.material_spade", "%s锹");
+            add("item.cruciblecraft.material_double_axe", "%s双刃斧");
+            add("item.cruciblecraft.material_sense", "%s镰刀");
+            add("item.cruciblecraft.material_plow", "%s犁");
+            add("item.cruciblecraft.material_construction_pick", "%s建筑镐");
+            add("item.cruciblecraft.material_gem_pick", "%s宝石镐");
+            add("item.cruciblecraft.material_builder_wand", "%s建筑杖");
+            add("item.cruciblecraft.material_universal_spade", "%s万能锹");
+            add("item.cruciblecraft.material_crowbar", "%s撬棍");
+            add("item.cruciblecraft.material_plunger", "%s皮搋子");
+            add("item.cruciblecraft.material_scoop", "%s捕虫网");
+            add("item.cruciblecraft.material_butchery_knife", "%s屠宰刀");
+            add("item.cruciblecraft.material_branch_cutter", "%s修枝剪");
+            add("item.cruciblecraft.material_scissors", "%s剪刀");
+            add("item.cruciblecraft.material_pincers", "%s钳子");
+            add("item.cruciblecraft.material_soft_hammer", "%s软锤");
+            add("item.cruciblecraft.material_bending_cylinder", "%s折弯筒");
+            add("item.cruciblecraft.material_bending_cylinder_small", "%s小型折弯筒");
+            add("item.cruciblecraft.material_hand_drill", "%s手钻");
+            add("item.cruciblecraft.material_rolling_pin", "%s擀面杖");
+            add("item.cruciblecraft.material_flint_and_tinder", "%s火绒");
+            add("item.cruciblecraft.material_pocket_multitool", "%s口袋多功能工具");
+            add("tooltip.cruciblecraft.plunger.fluid", "从储罐抽出 1000 mB 流体");
+            add("tooltip.cruciblecraft.plunger.item", "清理管道中卡住的物品");
+            add("tooltip.cruciblecraft.crowbar", "撬下盖板，并整桶搬走仓储桶");
+            add("tooltip.cruciblecraft.soft_hammer", "轻敲以切换红石灯与动力铁轨");
             add("jade.cruciblecraft.pipe_covers", "盖板参数：%s");
             add("tooltip.cruciblecraft.cover.behavior", "行为：%s");
             add("tooltip.cruciblecraft.cover.parameters",
@@ -685,6 +713,38 @@ public class ModLanguageProvider extends LanguageProvider {
         add("item.cruciblecraft.material_wrench", "%s Wrench");
         add("item.cruciblecraft.material_monkey_wrench", "%s Monkey Wrench");
         add("item.cruciblecraft.material_wire_cutter", "%s Wire Cutter");
+        add("item.cruciblecraft.material_knife", "%s Knife");
+        add("item.cruciblecraft.material_club", "%s Club");
+        add("item.cruciblecraft.material_spade", "%s Spade");
+        add("item.cruciblecraft.material_double_axe", "%s Double Axe");
+        add("item.cruciblecraft.material_sense", "%s Scythe");
+        add("item.cruciblecraft.material_plow", "%s Plow");
+        add("item.cruciblecraft.material_construction_pick", "%s Construction Pick");
+        add("item.cruciblecraft.material_gem_pick", "%s Gem Pick");
+        add("item.cruciblecraft.material_builder_wand", "%s Builder Wand");
+        add("item.cruciblecraft.material_universal_spade", "%s Universal Spade");
+        add("item.cruciblecraft.material_crowbar", "%s Crowbar");
+        add("item.cruciblecraft.material_plunger", "%s Plunger");
+        add("item.cruciblecraft.material_scoop", "%s Scoop");
+        add("item.cruciblecraft.material_butchery_knife", "%s Butchery Knife");
+        add("item.cruciblecraft.material_branch_cutter", "%s Branch Cutter");
+        add("item.cruciblecraft.material_scissors", "%s Scissors");
+        add("item.cruciblecraft.material_pincers", "%s Pincers");
+        add("item.cruciblecraft.material_soft_hammer", "%s Soft Hammer");
+        add("item.cruciblecraft.material_bending_cylinder", "%s Bending Cylinder");
+        add("item.cruciblecraft.material_bending_cylinder_small",
+                "%s Small Bending Cylinder");
+        add("item.cruciblecraft.material_hand_drill", "%s Hand Drill");
+        add("item.cruciblecraft.material_rolling_pin", "%s Rolling Pin");
+        add("item.cruciblecraft.material_flint_and_tinder", "%s Flint and Tinder");
+        add("item.cruciblecraft.material_pocket_multitool", "%s Pocket Multitool");
+        add("tooltip.cruciblecraft.plunger.fluid",
+                "Clears 1000 mB of fluid from tanks");
+        add("tooltip.cruciblecraft.plunger.item", "Clears items from pipes");
+        add("tooltip.cruciblecraft.crowbar",
+                "Pries off covers and picks up storage barrels");
+        add("tooltip.cruciblecraft.soft_hammer",
+                "Toggles redstone lamps and powered rails");
         addItem(ModItems.UNKNOWN_MATERIAL, "Unknown Material");
         ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
                 addItem(ModItems.extruderShape(shape.id()), shape.englishName()));

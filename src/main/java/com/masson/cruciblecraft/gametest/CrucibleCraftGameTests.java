@@ -41,6 +41,7 @@ import com.masson.cruciblecraft.content.blockentity.FluidDepositExtractorBlockEn
 import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.GasCloudBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.MassStorageBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MultiblockPortBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SubsurfaceFluidDepositBlockEntity;
 import com.masson.cruciblecraft.content.block.CableBlock;
@@ -78,6 +79,8 @@ import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.logistics.pipe.PipeAcquisitionRecipeCatalog;
 import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
+import com.masson.cruciblecraft.content.storage.StorageBehaviorProfile;
+import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverConfig;
 import com.masson.cruciblecraft.logistics.pipe.fluid.FluidPipeFailureState;
 import com.masson.cruciblecraft.logistics.pipe.fluid
@@ -11575,6 +11578,110 @@ public final class CrucibleCraftGameTests {
         helper.assertTrue(
                 droppedItemCount(helper, pos, null) >= 1,
                 "Dust funnel break dropped nothing");
+        player.discard();
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void plungerClearsFilledFluidPipe(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(4, 2, 4);
+        FluidPipeBlock pipeBlock = (FluidPipeBlock) ModBlocks.pipeBlock(
+                "copper",
+                MaterialPrefixes.TINY_FLUID_PIPE,
+                PipeCatalog.Kind.FLUID).get();
+        helper.setBlock(pos, pipeBlock);
+        FluidPipeBlockEntity pipe = helper.getBlockEntity(pos);
+        int filled = pipe.fillInternal(
+                new FluidStack(Fluids.WATER, pipe.capacity()),
+                IFluidHandler.FluidAction.EXECUTE);
+        helper.assertTrue(filled > 0, "Could not fill the fluid pipe for the plunger");
+        Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+        ItemStack plunger = ModItems.MATERIAL_PLUNGER.get().variant("iron");
+        player.setItemInHand(InteractionHand.MAIN_HAND, plunger);
+        BlockPos absolute = helper.absolutePos(pos);
+        helper.getBlockState(pos).useItemOn(
+                plunger,
+                helper.getLevel(),
+                player,
+                InteractionHand.MAIN_HAND,
+                faceHit(absolute, Direction.NORTH, 0.5, 0.5, 0.0));
+        helper.assertTrue(
+                pipe.storedFluid().isEmpty(),
+                "Plunger did not trash the pipe fluid");
+        player.discard();
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void crowbarRemovesPipeCover(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(4, 2, 5);
+        FluidPipeBlock pipeBlock = (FluidPipeBlock) ModBlocks.pipeBlock(
+                "copper",
+                MaterialPrefixes.TINY_FLUID_PIPE,
+                PipeCatalog.Kind.FLUID).get();
+        helper.setBlock(pos, pipeBlock);
+        FluidPipeBlockEntity pipe = helper.getBlockEntity(pos);
+        helper.assertTrue(
+                pipe.setCover(Direction.NORTH, PipeCover.valve()),
+                "Could not install a valve cover");
+        Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+        ItemStack crowbar = ModItems.MATERIAL_CROWBAR.get().variant("iron");
+        player.setItemInHand(InteractionHand.MAIN_HAND, crowbar);
+        BlockPos absolute = helper.absolutePos(pos);
+        helper.getBlockState(pos).useItemOn(
+                crowbar,
+                helper.getLevel(),
+                player,
+                InteractionHand.MAIN_HAND,
+                faceHit(absolute, Direction.NORTH, 0.5, 0.5, 0.0));
+        helper.assertTrue(
+                !pipe.coverSnapshot().containsKey(Direction.NORTH),
+                "Crowbar did not pry the pipe cover");
+        player.discard();
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void crowbarPicksUpMassStorageBarrel(GameTestHelper helper) {
+        var barrel = StorageVariantCatalog.of(
+                StorageBehaviorProfile.MASS_STORAGE).stream()
+                .filter(variant -> "mass_storage_barrel".equals(variant.family()))
+                .findFirst()
+                .orElseThrow();
+        BlockPos pos = new BlockPos(3, 2, 3);
+        helper.setBlock(
+                pos,
+                ModBlocks.storageBlocksById().get(barrel.id()).get());
+        MassStorageBlockEntity storage = helper.getBlockEntity(pos);
+        storage.inventory().insertAll(new ItemStack(Items.IRON_INGOT, 32), false);
+        helper.assertTrue(
+                storage.inventory().stored() == 32,
+                "Barrel did not accept ingots");
+        Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+        ItemStack crowbar = ModItems.MATERIAL_CROWBAR.get().variant("iron");
+        player.setItemInHand(InteractionHand.MAIN_HAND, crowbar);
+        BlockPos absolute = helper.absolutePos(pos);
+        helper.getBlockState(pos).useItemOn(
+                crowbar,
+                helper.getLevel(),
+                player,
+                InteractionHand.MAIN_HAND,
+                faceHit(absolute, Direction.NORTH, 0.5, 0.5, 0.0));
+        helper.assertTrue(
+                helper.getLevel().getBlockState(absolute).isAir(),
+                "Crowbar did not pick up the mass-storage barrel");
+        boolean packed = false;
+        for (int slot = 0; slot < player.getInventory().getContainerSize(); slot++) {
+            ItemStack stack = player.getInventory().getItem(slot);
+            if (!stack.isEmpty()
+                    && stack.has(DataComponents.BLOCK_ENTITY_DATA)) {
+                packed = true;
+                break;
+            }
+        }
+        helper.assertTrue(
+                packed,
+                "Picked-up barrel did not keep its stored contents");
         player.discard();
         helper.succeed();
     }

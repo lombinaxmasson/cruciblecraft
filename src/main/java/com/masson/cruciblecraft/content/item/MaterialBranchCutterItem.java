@@ -1,0 +1,48 @@
+package com.masson.cruciblecraft.content.item;
+
+import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
+
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.common.ItemAbilities;
+
+public final class MaterialBranchCutterItem extends MaterialDiggerItem {
+    public MaterialBranchCutterItem(Properties properties) {
+        super(
+                properties,
+                ToolKind.BRANCH_CUTTER,
+                "item.cruciblecraft.material_branch_cutter",
+                BlockTags.MINEABLE_WITH_AXE,
+                2.0F,
+                -2.4F,
+                ItemAbilities.DEFAULT_SHEARS_ACTIONS);
+    }
+
+    @Override
+    public float getDestroySpeed(ItemStack stack, BlockState state) {
+        if (material(stack).isEmpty()) {
+            return 1.0F;
+        }
+        if (state.is(BlockTags.LEAVES)) {
+            return 15.0F;
+        }
+        return super.getDestroySpeed(stack, state);
+    }
+
+    @Override
+    public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
+        return material(stack).isPresent()
+                && (state.is(BlockTags.LEAVES)
+                        || super.isCorrectToolForDrops(stack, state));
+    }
+
+    @Override
+    public InteractionResult useOn(UseOnContext context) {
+        return canApplyDurabilityDamage(context.getItemInHand())
+                ? VanillaToolUseOn.axe(context)
+                : InteractionResult.PASS;
+    }
+}

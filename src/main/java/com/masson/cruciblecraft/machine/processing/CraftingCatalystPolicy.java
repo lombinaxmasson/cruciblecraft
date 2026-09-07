@@ -40,7 +40,11 @@ public final class CraftingCatalystPolicy {
             "material_monkey_wrench",
             "material_saw",
             "material_chisel",
-            "material_wire_cutter");
+            "material_wire_cutter",
+            "material_soft_hammer",
+            "material_bending_cylinder",
+            "material_bending_cylinder_small",
+            "material_rolling_pin");
     private static final String TOOL_PATTERN_PREFIX = "tool_pattern_";
 
     private CraftingCatalystPolicy() {}

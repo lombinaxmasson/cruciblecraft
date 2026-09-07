@@ -127,6 +127,19 @@ public final class FluidPipeBlockEntity extends BlockEntity {
         return tank.getFluid().copy();
     }
 
+    public int fillInternal(
+            FluidStack stack, IFluidHandler.FluidAction action) {
+        return tank.fill(stack, action);
+    }
+
+    public boolean trashContents() {
+        if (tank.isEmpty()) {
+            return false;
+        }
+        tank.drain(tank.getCapacity(), IFluidHandler.FluidAction.EXECUTE);
+        return true;
+    }
+
     public int capacity() {
         return tank.getCapacity();
     }

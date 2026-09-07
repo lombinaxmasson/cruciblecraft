@@ -24,7 +24,9 @@ import com.masson.cruciblecraft.recipe.rule.MaterialChainRules;
 import com.masson.cruciblecraft.recipe.rule.ToolRules;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeEntry;
+import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.recipe.crafting.ShapedCatalystRecipe;
+import com.masson.cruciblecraft.recipe.crafting.ToolHeadAssemblyRecipe;
 import com.masson.cruciblecraft.recipe.crafting.WorkbenchToolRecipePlan;
 import com.masson.cruciblecraft.fusion.FusionRecipeCatalog;
 import com.masson.cruciblecraft.registry.ModComponents;
@@ -1143,6 +1145,8 @@ public final class ModRecipeProvider extends RecipeProvider {
         WorkbenchToolRecipePlan.plan(
                 MaterialCatalog.startupValues(), registeredForms)
                 .forEach(recipe -> emitPlannedWorkbenchTool(output, recipe));
+        WorkbenchToolRecipePlan.assemblies()
+                .forEach(assembly -> emitToolHeadAssembly(output, assembly));
     }
 
     private static void emitPlannedWorkbenchTool(
@@ -1159,16 +1163,29 @@ public final class ModRecipeProvider extends RecipeProvider {
                         symbol,
                         Ingredient.of(resolveRegisteredItem(
                                 ResourceLocation.parse(itemId)))));
+        Item resultItem = resolveRegisteredItem(
+                ResourceLocation.parse(planned.resultId()));
+        ItemStack result = planned.persistToolMaterial()
+                ? toolStack(resultItem, planned.material())
+                : new ItemStack(resultItem);
         acceptShapedCatalyst(
                 output,
                 planned.path(),
                 planned.pattern(),
                 ingredients,
                 catalysts,
-                toolStack(
+                result);
+    }
+
+    private static void emitToolHeadAssembly(
+            RecipeOutput output, WorkbenchToolRecipePlan.Assembly assembly) {
+        output.accept(
+                id(assembly.path()),
+                new ToolHeadAssemblyRecipe(
+                        MaterialPrefixCatalog.require(assembly.headPrefix()),
                         resolveRegisteredItem(
-                                ResourceLocation.parse(planned.resultId())),
-                        planned.material()));
+                                ResourceLocation.parse(assembly.resultId()))),
+                null);
     }
 
     private static ItemStack toolStack(Item tool, String material) {
