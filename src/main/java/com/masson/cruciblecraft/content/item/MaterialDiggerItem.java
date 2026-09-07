@@ -41,7 +41,7 @@ public abstract class MaterialDiggerItem extends MaterialToolItem {
     }
 
     @Override
-    public final float getDestroySpeed(ItemStack stack, BlockState state) {
+    public float getDestroySpeed(ItemStack stack, BlockState state) {
         return material(stack)
                 .filter(ignored -> state.is(mineableBlocks))
                 .map(materialId -> ToolMaterialRules.miningSpeed(
@@ -50,7 +50,7 @@ public abstract class MaterialDiggerItem extends MaterialToolItem {
     }
 
     @Override
-    public final boolean isCorrectToolForDrops(
+    public boolean isCorrectToolForDrops(
             ItemStack stack,
             BlockState state) {
         return material(stack)

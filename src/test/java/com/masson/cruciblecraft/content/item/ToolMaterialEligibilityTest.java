@@ -13,51 +13,28 @@ import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
 import com.masson.cruciblecraft.material.def.GT6MaterialMetadata.ToolStats;
 
 class ToolMaterialEligibilityTest {
-    private static final ToolStats CORE_STATS =
-            new ToolStats(100, 4.0, 1, 2);
-
     @Test
     void allToolsApplySharedIdentityAndAntimatterExclusions() {
         for (ToolKind kind : ToolKind.values()) {
-            assertTrue(kind.isEligible(
-                    "iron", CORE_STATS, tags()));
-            assertTrue(kind.isEligible(
-                    "iron",
-                    CORE_STATS,
-                    tags("PROPERTIES.NO_ADVANCED_TOOLS")));
-            assertFalse(kind.isEligible(
-                    "wood", CORE_STATS, tags()));
-            assertFalse(kind.isEligible(
-                    "iron",
-                    CORE_STATS,
-                    tags(ToolMaterialRules.ANTIMATTER_TAG)));
-            assertFalse(kind.isEligible(
-                    "iron", CORE_STATS, List.of()));
-        }
-        for (ToolKind kind : ToolKind.values()) {
-            if (kind != ToolKind.WRENCH
-                    && kind != ToolKind.MONKEY_WRENCH
-                    && kind != ToolKind.WIRE_CUTTER) {
-                assertFalse(kind.isEligible(
-                        "iron",
-                        CORE_STATS,
-                        tags(ToolMaterialRules.COATED_TAG)));
+            ToolStats stats = sufficient(kind);
+            List<String> base = baseTags(kind);
+            assertTrue(kind.isEligible("iron", stats, base), kind.name());
+            List<String> noAdvanced = new ArrayList<>(base);
+            noAdvanced.add("PROPERTIES.NO_ADVANCED_TOOLS");
+            assertTrue(kind.isEligible("iron", stats, noAdvanced), kind.name());
+            assertFalse(kind.isEligible("wood", stats, base), kind.name());
+            List<String> antimatter = new ArrayList<>(base);
+            antimatter.add(ToolMaterialRules.ANTIMATTER_TAG);
+            assertFalse(kind.isEligible("iron", stats, antimatter), kind.name());
+            assertFalse(kind.isEligible("iron", stats, List.of()), kind.name());
+            List<String> coated = new ArrayList<>(base);
+            coated.add(ToolMaterialRules.COATED_TAG);
+            if (kind.allowsCoated()) {
+                assertTrue(kind.isEligible("iron", stats, coated), kind.name());
+            } else {
+                assertFalse(kind.isEligible("iron", stats, coated), kind.name());
             }
         }
-        // GT6 Loader_Tools.java:310/311/324: wrench, monkey wrench and wire
-        // cutter listeners all omit COATED.NOT.
-        assertTrue(ToolKind.WRENCH.isEligible(
-                "iron",
-                CORE_STATS,
-                tags(ToolMaterialRules.COATED_TAG)));
-        assertTrue(ToolKind.MONKEY_WRENCH.isEligible(
-                "iron",
-                CORE_STATS,
-                tags(ToolMaterialRules.COATED_TAG)));
-        assertTrue(ToolKind.WIRE_CUTTER.isEligible(
-                "iron",
-                CORE_STATS,
-                tags(ToolMaterialRules.COATED_TAG)));
     }
 
     @Test
@@ -88,6 +65,30 @@ class ToolMaterialEligibilityTest {
             assertFalse(ToolKind.SMITHING_HAMMER.isEligible(
                     "iron", stats(1, 1), tags(excluded)));
         }
+    }
+
+    @Test
+    void softHammerRequiresWoodBouncyOrStretchyAndRejectsIron() {
+        assertFalse(ToolKind.SOFT_HAMMER.isEligible(
+                "iron", stats(1, 1), tags()));
+        assertTrue(ToolKind.SOFT_HAMMER.isEligible(
+                "rubber",
+                stats(1, 1),
+                tags(ToolMaterialRules.BOUNCY_TAG)));
+        assertFalse(ToolKind.SOFT_HAMMER.isEligible(
+                "rubber",
+                stats(1, 1),
+                tags(
+                        ToolMaterialRules.BOUNCY_TAG,
+                        ToolMaterialRules.COATED_TAG)));
+    }
+
+    @Test
+    void crowbarAndPlungerAllowCoatedWithoutTypeMinimum() {
+        assertTrue(ToolKind.CROWBAR.isEligible(
+                "iron", stats(0, 1), tags(ToolMaterialRules.COATED_TAG)));
+        assertTrue(ToolKind.PLUNGER.isEligible(
+                "iron", stats(0, 1), tags(ToolMaterialRules.COATED_TAG)));
     }
 
     @Test
@@ -134,7 +135,6 @@ class ToolMaterialEligibilityTest {
                 stats(1, 2),
                 tags(ToolMaterialRules.STRETCHY_TAG)));
 
-        // GT6 Loader_Tools.java:324 has no qualmin and excludes BOUNCY.
         assertTrue(ToolKind.WIRE_CUTTER.isEligible(
                 "iron", stats(0, 2), tags()));
         assertFalse(ToolKind.WIRE_CUTTER.isEligible(
@@ -143,6 +143,27 @@ class ToolMaterialEligibilityTest {
                 "iron",
                 stats(1, 2),
                 tags(ToolMaterialRules.BOUNCY_TAG)));
+
+        assertFalse(ToolKind.HAND_DRILL.isEligible(
+                "iron", stats(1, 2), tags()));
+        assertTrue(ToolKind.HAND_DRILL.isEligible(
+                "iron", stats(2, 2), tags()));
+        assertFalse(ToolKind.POCKET_MULTITOOL.isEligible(
+                "iron", stats(1, 2), tags()));
+        assertTrue(ToolKind.POCKET_MULTITOOL.isEligible(
+                "iron", stats(1, 3), tags()));
+    }
+
+    private static ToolStats sufficient(ToolKind kind) {
+        return stats(
+                Math.max(1, kind.minQuality()),
+                Math.max(2L, kind.minTypes()));
+    }
+
+    private static List<String> baseTags(ToolKind kind) {
+        return kind == ToolKind.SOFT_HAMMER
+                ? tags(ToolMaterialRules.BOUNCY_TAG)
+                : tags();
     }
 
     private static ToolStats stats(int quality, long types) {

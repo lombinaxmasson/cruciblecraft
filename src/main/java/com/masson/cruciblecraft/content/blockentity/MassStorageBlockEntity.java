@@ -79,6 +79,11 @@ public final class MassStorageBlockEntity extends BlockEntity
         setChanged();
     }
 
+    public void clearContents() {
+        inventory.load(ItemStack.EMPTY, 0);
+        setChanged();
+    }
+
     public void dropContents(Level level, BlockPos pos) {
         while (inventory.stored() > 0) {
             ItemStack extracted = inventory.extractItem(0, 64, false);

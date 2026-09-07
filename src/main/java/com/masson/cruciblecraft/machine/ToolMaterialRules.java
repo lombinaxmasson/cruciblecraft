@@ -154,6 +154,82 @@ public final class ToolMaterialRules {
                 0,
                 Integer.MAX_VALUE,
                 BOUNCY_TAG,
+                STRETCHY_TAG),
+        // GT6 Loader_Tools.java:322 Knife: And(ANTIMATTER.NOT, Wood.NOT).
+        // Finished tool in the grid ({"fP","hH"}); COATED is not excluded.
+        KNIFE("knife", 1L, 0, Integer.MAX_VALUE),
+        // GT6 Loader_Tools.java:329 Club: And(ANTIMATTER.NOT, Wood.NOT).
+        CLUB("club", 1L, 0, Integer.MAX_VALUE),
+        SPADE("spade", 1L, 0, Integer.MAX_VALUE),
+        DOUBLE_AXE(
+                "double_axe",
+                2L,
+                0,
+                Integer.MAX_VALUE),
+        SENSE("sense", 2L, 0, Integer.MAX_VALUE),
+        PLOW("plow", 2L, 0, Integer.MAX_VALUE),
+        CONSTRUCTION_PICK(
+                "construction_pick",
+                2L,
+                0,
+                Integer.MAX_VALUE),
+        GEM_PICK("gem_pick", 1L, 0, Integer.MAX_VALUE),
+        BUILDER_WAND("builder_wand", 2L, 0, Integer.MAX_VALUE),
+        UNIVERSAL_SPADE("universal_spade", 2L, 0, Integer.MAX_VALUE),
+        CROWBAR("crowbar", 1L, 0, Integer.MAX_VALUE),
+        PLUNGER("plunger", 1L, 0, Integer.MAX_VALUE),
+        SCOOP("scoop", 1L, 0, Integer.MAX_VALUE),
+        BUTCHERY_KNIFE(
+                "butchery_knife",
+                2L,
+                0,
+                Integer.MAX_VALUE,
+                BOUNCY_TAG,
+                STRETCHY_TAG),
+        BRANCH_CUTTER(
+                "branch_cutter",
+                2L,
+                0,
+                Integer.MAX_VALUE,
+                BOUNCY_TAG,
+                STRETCHY_TAG),
+        SCISSORS(
+                "scissors",
+                2L,
+                0,
+                Integer.MAX_VALUE,
+                BOUNCY_TAG,
+                STRETCHY_TAG),
+        PINCERS("pincers", 2L, 0, Integer.MAX_VALUE),
+        // GT6 Loader_Tools.java:328: Or(WOOD, BOUNCY, STRETCHY) and COATED.NOT.
+        SOFT_HAMMER("soft_hammer", 1L, 0, Integer.MAX_VALUE),
+        BENDING_CYLINDER(
+                "bending_cylinder",
+                2L,
+                0,
+                Integer.MAX_VALUE),
+        BENDING_CYLINDER_SMALL(
+                "bending_cylinder_small",
+                2L,
+                0,
+                Integer.MAX_VALUE),
+        HAND_DRILL(
+                "hand_drill",
+                2L,
+                2,
+                Integer.MAX_VALUE,
+                WOOD_TAG,
+                BOUNCY_TAG,
+                STRETCHY_TAG),
+        ROLLING_PIN("rolling_pin", 1L, 0, Integer.MAX_VALUE),
+        FLINT_AND_TINDER("flint_and_tinder", 1L, 0, Integer.MAX_VALUE),
+        POCKET_MULTITOOL(
+                "pocket_multitool",
+                3L,
+                1,
+                Integer.MAX_VALUE,
+                WOOD_TAG,
+                BOUNCY_TAG,
                 STRETCHY_TAG);
 
         private final String serializedName;
@@ -183,6 +259,10 @@ public final class ToolMaterialRules {
             return minTypes;
         }
 
+        public int minQuality() {
+            return minQuality;
+        }
+
         /**
          * Tests the imported GT6 listener and prefix intersection for this
          * concrete tool. This intentionally does not use NO_ADVANCED_TOOLS:
@@ -198,16 +278,47 @@ public final class ToolMaterialRules {
                     || GENERIC_WOOD_ID.equals(materialId)
                     || !materialTags.contains(TOOL_DOMAIN_TAG)
                     || materialTags.contains(ANTIMATTER_TAG)
-                    || ((this != WRENCH
-                            && this != MONKEY_WRENCH
-                            && this != WIRE_CUTTER)
-                            && materialTags.contains(COATED_TAG))
+                    || (!allowsCoated() && materialTags.contains(COATED_TAG))
                     || stats.types() < minTypes
                     || stats.quality() < minQuality
                     || stats.quality() > maxQuality) {
                 return false;
             }
+            if (this == SOFT_HAMMER
+                    && !materialTags.contains(WOOD_TAG)
+                    && !materialTags.contains(BOUNCY_TAG)
+                    && !materialTags.contains(STRETCHY_TAG)) {
+                return false;
+            }
             return excludedTags.stream().noneMatch(materialTags::contains);
+        }
+
+        /**
+         * GT6 listeners that omit {@code COATED.NOT}. Harvest heads keep the
+         * coated exclusion used by pickaxe/shovel/axe.
+         */
+        public boolean allowsCoated() {
+            return this == WRENCH
+                    || this == MONKEY_WRENCH
+                    || this == WIRE_CUTTER
+                    || this == KNIFE
+                    || this == CLUB
+                    || this == CROWBAR
+                    || this == PLUNGER
+                    || this == SCOOP
+                    || this == UNIVERSAL_SPADE
+                    || this == BUILDER_WAND
+                    || this == GEM_PICK
+                    || this == PINCERS
+                    || this == BENDING_CYLINDER
+                    || this == BENDING_CYLINDER_SMALL
+                    || this == HAND_DRILL
+                    || this == BUTCHERY_KNIFE
+                    || this == BRANCH_CUTTER
+                    || this == SCISSORS
+                    || this == ROLLING_PIN
+                    || this == FLINT_AND_TINDER
+                    || this == POCKET_MULTITOOL;
         }
     }
 }

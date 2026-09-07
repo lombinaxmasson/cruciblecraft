@@ -1,14 +1,224 @@
 {
-  "source": "gt6_referencable_port_code/gregtech6_w",
-  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
-  "imports": [
+  "copies": [
     {
-      "gt6_source": "assets/gregtech/textures/items/iconsets/monkeywrench.png",
-      "destination": "assets/cruciblecraft/textures/item/tool/monkey_wrench.png"
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/crowbar.png",
+      "gt6_source": "iconsets/crowbar.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/crowbar.png"
     },
     {
-      "gt6_source": "assets/gregtech/textures/items/iconsets/monkeywrench_overlay.png",
-      "destination": "assets/cruciblecraft/textures/item/tool/monkey_wrench_overlay.png"
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/crowbar_overlay.png",
+      "gt6_source": "iconsets/crowbar_overlay.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/crowbar_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/plunger.png",
+      "gt6_source": "iconsets/plunger.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/plunger.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/plunger_overlay.png",
+      "gt6_source": "iconsets/plunger_overlay.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/plunger_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/scoop.png",
+      "gt6_source": "iconsets/scoop.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/scoop.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/scoop_overlay.png",
+      "gt6_source": "iconsets/scoop_overlay.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/scoop_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/butcheryknife.png",
+      "gt6_source": "iconsets/butcheryknife.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/butchery_knife.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/butcheryknife_overlay.png",
+      "gt6_source": "iconsets/butcheryknife_overlay.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/butchery_knife_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/grafter.png",
+      "gt6_source": "iconsets/grafter.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/branch_cutter.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/grafter_overlay.png",
+      "gt6_source": "iconsets/grafter_overlay.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/branch_cutter_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/scissors.png",
+      "gt6_source": "iconsets/scissors.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/scissors.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/scissors_overlay.png",
+      "gt6_source": "iconsets/scissors_overlay.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/scissors_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/pincers.png",
+      "gt6_source": "iconsets/pincers.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/pincers.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/pincers_overlay.png",
+      "gt6_source": "iconsets/pincers_overlay.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/pincers_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/bending_cylinder.png",
+      "gt6_source": "iconsets/bending_cylinder.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/bending_cylinder.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/bending_cylinder_overlay.png",
+      "gt6_source": "iconsets/bending_cylinder_overlay.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/bending_cylinder_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/bending_cylinder_small.png",
+      "gt6_source": "iconsets/bending_cylinder_small.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/bending_cylinder_small.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/bending_cylinder_small_overlay.png",
+      "gt6_source": "iconsets/bending_cylinder_small_overlay.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/bending_cylinder_small_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/hand_drill.png",
+      "gt6_source": "iconsets/hand_drill.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/hand_drill.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/hand_drill_overlay.png",
+      "gt6_source": "iconsets/hand_drill_overlay.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/hand_drill_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/rolling_pin.png",
+      "gt6_source": "iconsets/rolling_pin.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/rolling_pin.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/rolling_pin_overlay.png",
+      "gt6_source": "iconsets/rolling_pin_overlay.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/rolling_pin_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/flint_tinder.png",
+      "gt6_source": "iconsets/flint_tinder.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/flint_and_tinder.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/flint_tinder_overlay.png",
+      "gt6_source": "iconsets/flint_tinder_overlay.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/flint_and_tinder_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/pocket_multitool_closed.png",
+      "gt6_source": "iconsets/pocket_multitool_closed.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/pocket_multitool.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/iconsets/pocket_multitool_closed_overlay.png",
+      "gt6_source": "iconsets/pocket_multitool_closed_overlay.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/pocket_multitool_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/materialicons/metallic/toolheadspade.png",
+      "gt6_source": "materialicons/metallic/toolheadspade.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/spade.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/materialicons/metallic/toolheadspade_overlay.png",
+      "gt6_source": "materialicons/metallic/toolheadspade_overlay.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/spade_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/materialicons/metallic/toolheadaxedouble.png",
+      "gt6_source": "materialicons/metallic/toolheadaxedouble.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/double_axe.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/materialicons/metallic/toolheadaxedouble_overlay.png",
+      "gt6_source": "materialicons/metallic/toolheadaxedouble_overlay.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/double_axe_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/materialicons/metallic/toolheadsense.png",
+      "gt6_source": "materialicons/metallic/toolheadsense.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/sense.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/materialicons/metallic/toolheadsense_overlay.png",
+      "gt6_source": "materialicons/metallic/toolheadsense_overlay.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/sense_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/materialicons/metallic/toolheadplow.png",
+      "gt6_source": "materialicons/metallic/toolheadplow.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/plow.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/materialicons/metallic/toolheadplow_overlay.png",
+      "gt6_source": "materialicons/metallic/toolheadplow_overlay.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/plow_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/materialicons/metallic/toolheadconstructionpickaxe.png",
+      "gt6_source": "materialicons/metallic/toolheadconstructionpickaxe.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/construction_pick.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/materialicons/metallic/toolheadconstructionpickaxe_overlay.png",
+      "gt6_source": "materialicons/metallic/toolheadconstructionpickaxe_overlay.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/construction_pick_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/materialicons/metallic/toolheadpickaxegem.png",
+      "gt6_source": "materialicons/metallic/toolheadpickaxegem.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/gem_pick.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/materialicons/metallic/toolheadpickaxegem_overlay.png",
+      "gt6_source": "materialicons/metallic/toolheadpickaxegem_overlay.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/gem_pick_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/materialicons/metallic/toolheadbuilderwand.png",
+      "gt6_source": "materialicons/metallic/toolheadbuilderwand.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/builder_wand.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/materialicons/metallic/toolheadbuilderwand_overlay.png",
+      "gt6_source": "materialicons/metallic/toolheadbuilderwand_overlay.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/builder_wand_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/materialicons/metallic/toolheaduniversalspade.png",
+      "gt6_source": "materialicons/metallic/toolheaduniversalspade.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/universal_spade.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/materialicons/metallic/toolheaduniversalspade_overlay.png",
+      "gt6_source": "materialicons/metallic/toolheaduniversalspade_overlay.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/universal_spade_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/materialicons/metallic/toolheadhammer.png",
+      "gt6_source": "materialicons/metallic/toolheadhammer.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/soft_hammer.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w/src/main/resources/assets/gregtech/textures/items/materialicons/metallic/toolheadhammer_overlay.png",
+      "gt6_source": "materialicons/metallic/toolheadhammer_overlay.png",
+      "destination": "src/main/resources/assets/cruciblecraft/textures/item/tool/soft_hammer_overlay.png"
     }
   ]
 }

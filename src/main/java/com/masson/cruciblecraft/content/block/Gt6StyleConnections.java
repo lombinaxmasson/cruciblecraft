@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.content.block;
 
 import java.util.Map;
 
+import com.masson.cruciblecraft.content.item.MachineToolInteractions;
 import com.masson.cruciblecraft.content.item.MaterialWireCutterItem;
 import com.masson.cruciblecraft.content.item.MaterialWrenchItem;
 import com.masson.cruciblecraft.api.energy.EnergyType;
@@ -274,7 +275,7 @@ public final class Gt6StyleConnections {
             return held.getItem() instanceof MaterialWireCutterItem;
         }
         return state.getBlock() instanceof AbstractPipeBlock
-                && held.getItem() instanceof MaterialWrenchItem;
+                && MachineToolInteractions.expandsPipeGrid(held);
     }
 
     public static boolean holdingMatchingTool(

@@ -121,6 +121,38 @@ public class ModItemModelProvider extends ItemModelProvider {
                 "monkey_wrench",
                 "monkey_wrench_overlay");
         tool("material_wire_cutter", "wire_cutter", "wire_cutter_overlay");
+        tool("material_knife", "knife", "knife_overlay");
+        tool("material_club", "club", "club_overlay");
+        tool("material_spade", "spade", "spade_overlay");
+        tool("material_double_axe", "double_axe", "double_axe_overlay");
+        tool("material_sense", "sense", "sense_overlay");
+        tool("material_plow", "plow", "plow_overlay");
+        tool("material_construction_pick", "construction_pick",
+                "construction_pick_overlay");
+        tool("material_gem_pick", "gem_pick", "gem_pick_overlay");
+        tool("material_builder_wand", "builder_wand", "builder_wand_overlay");
+        tool("material_universal_spade", "universal_spade",
+                "universal_spade_overlay");
+        tool("material_crowbar", "crowbar", "crowbar_overlay");
+        tool("material_plunger", "plunger", "plunger_overlay");
+        tool("material_scoop", "scoop", "scoop_overlay");
+        tool("material_butchery_knife", "butchery_knife",
+                "butchery_knife_overlay");
+        tool("material_branch_cutter", "branch_cutter",
+                "branch_cutter_overlay");
+        tool("material_scissors", "scissors", "scissors_overlay");
+        tool("material_pincers", "pincers", "pincers_overlay");
+        tool("material_soft_hammer", "soft_hammer", "soft_hammer_overlay");
+        tool("material_bending_cylinder", "bending_cylinder",
+                "bending_cylinder_overlay");
+        tool("material_bending_cylinder_small", "bending_cylinder_small",
+                "bending_cylinder_small_overlay");
+        tool("material_hand_drill", "hand_drill", "hand_drill_overlay");
+        tool("material_rolling_pin", "rolling_pin", "rolling_pin_overlay");
+        tool("material_flint_and_tinder", "flint_and_tinder",
+                "flint_and_tinder_overlay");
+        tool("material_pocket_multitool", "pocket_multitool",
+                "pocket_multitool_overlay");
         ModBlocks.electricalConductorBlocks().forEach(holder -> {
             var conductor = holder.get().conductor();
             String specification = conductor.sourceSpecification();

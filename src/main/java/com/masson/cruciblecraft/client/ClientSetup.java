@@ -93,7 +93,31 @@ public class ClientSetup {
                 ModItems.MATERIAL_SCREWDRIVER.get(),
                 ModItems.MATERIAL_WRENCH.get(),
                 ModItems.MATERIAL_MONKEY_WRENCH.get(),
-                ModItems.MATERIAL_WIRE_CUTTER.get()));
+                ModItems.MATERIAL_WIRE_CUTTER.get(),
+                ModItems.MATERIAL_KNIFE.get(),
+                ModItems.MATERIAL_CLUB.get(),
+                ModItems.MATERIAL_SPADE.get(),
+                ModItems.MATERIAL_DOUBLE_AXE.get(),
+                ModItems.MATERIAL_SENSE.get(),
+                ModItems.MATERIAL_PLOW.get(),
+                ModItems.MATERIAL_CONSTRUCTION_PICK.get(),
+                ModItems.MATERIAL_GEM_PICK.get(),
+                ModItems.MATERIAL_BUILDER_WAND.get(),
+                ModItems.MATERIAL_UNIVERSAL_SPADE.get(),
+                ModItems.MATERIAL_CROWBAR.get(),
+                ModItems.MATERIAL_PLUNGER.get(),
+                ModItems.MATERIAL_SCOOP.get(),
+                ModItems.MATERIAL_BUTCHERY_KNIFE.get(),
+                ModItems.MATERIAL_BRANCH_CUTTER.get(),
+                ModItems.MATERIAL_SCISSORS.get(),
+                ModItems.MATERIAL_PINCERS.get(),
+                ModItems.MATERIAL_SOFT_HAMMER.get(),
+                ModItems.MATERIAL_BENDING_CYLINDER.get(),
+                ModItems.MATERIAL_BENDING_CYLINDER_SMALL.get(),
+                ModItems.MATERIAL_HAND_DRILL.get(),
+                ModItems.MATERIAL_ROLLING_PIN.get(),
+                ModItems.MATERIAL_FLINT_AND_TINDER.get(),
+                ModItems.MATERIAL_POCKET_MULTITOOL.get()));
         com.masson.cruciblecraft.material.MaterialCatalog.values().forEach(material ->
                 material.formItems().keySet().forEach(form ->
                         MaterialLookup.item(material.id(), form).ifPresent(materialItems::add)));

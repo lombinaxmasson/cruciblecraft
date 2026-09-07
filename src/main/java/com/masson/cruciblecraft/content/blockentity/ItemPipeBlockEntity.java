@@ -143,6 +143,30 @@ public final class ItemPipeBlockEntity extends BlockEntity {
         return covers.snapshot();
     }
 
+    public ItemStack recoveryBuffer() {
+        return recoveryBuffer.copy();
+    }
+
+    public void setRecoveryForTest(ItemStack stack, Direction side) {
+        recoveryBuffer = stack.copy();
+        recoveryIngress = side;
+        setChanged();
+    }
+
+    public boolean ejectRecovery() {
+        if (recoveryBuffer.isEmpty()) {
+            return false;
+        }
+        ItemStack ejected = recoveryBuffer.copy();
+        recoveryBuffer = ItemStack.EMPTY;
+        recoveryIngress = null;
+        setChanged();
+        if (level != null && !level.isClientSide) {
+            Block.popResource(level, worldPosition, ejected);
+        }
+        return true;
+    }
+
     public int routeCacheEntries() {
         return routeCache.size();
     }

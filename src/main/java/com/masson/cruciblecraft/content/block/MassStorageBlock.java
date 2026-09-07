@@ -3,11 +3,13 @@ package com.masson.cruciblecraft.content.block;
 import org.jetbrains.annotations.Nullable;
 
 import com.masson.cruciblecraft.content.blockentity.MassStorageBlockEntity;
+import com.masson.cruciblecraft.content.item.MachineToolInteractions;
 import com.masson.cruciblecraft.content.storage.StorageVariant;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -48,6 +50,19 @@ public final class MassStorageBlock extends StorageHostBlock {
             Player player,
             InteractionHand hand,
             BlockHitResult hit) {
+        if (MachineToolInteractions.isCrowbar(stack)) {
+            InteractionResult result =
+                    MachineToolInteractions.pickUpMassStorage(
+                            new net.minecraft.world.item.context.UseOnContext(
+                                    level,
+                                    player,
+                                    hand,
+                                    stack,
+                                    hit));
+            return result.consumesAction()
+                    ? ItemInteractionResult.sidedSuccess(level.isClientSide)
+                    : ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
         if (level.getBlockEntity(pos) instanceof MassStorageBlockEntity storage) {
             if (!level.isClientSide) {
                 storage.playerInsertOrExtract(player, stack);

@@ -11,6 +11,8 @@ import com.masson.cruciblecraft.recipe.gt.GTRecipeEntry;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeEntrySerializer;
 import com.masson.cruciblecraft.recipe.crafting.ShapedCatalystRecipe;
 import com.masson.cruciblecraft.recipe.crafting.ShapedCatalystRecipeSerializer;
+import com.masson.cruciblecraft.recipe.crafting.ToolHeadAssemblyRecipe;
+import com.masson.cruciblecraft.recipe.crafting.ToolHeadAssemblyRecipeSerializer;
 import com.masson.cruciblecraft.recipe.rule.MaterialRuleRecipe;
 import com.masson.cruciblecraft.recipe.rule.MaterialRuleSerializer;
 
@@ -111,6 +113,22 @@ public final class ModRecipes {
                     RECIPE_SERIALIZERS.register(
                             "shaped_catalyst",
                             ShapedCatalystRecipeSerializer::new);
+
+    public static final DeferredHolder<
+            RecipeType<?>, RecipeType<ToolHeadAssemblyRecipe>>
+            TOOL_HEAD_ASSEMBLY_TYPE =
+                    RECIPE_TYPES.register(
+                            "tool_head_assembly",
+                            () -> RecipeType.<ToolHeadAssemblyRecipe>simple(
+                                    ResourceLocation.fromNamespaceAndPath(
+                                            CrucibleCraft.MODID,
+                                            "tool_head_assembly")));
+    public static final DeferredHolder<
+            RecipeSerializer<?>, RecipeSerializer<ToolHeadAssemblyRecipe>>
+            TOOL_HEAD_ASSEMBLY_SERIALIZER =
+                    RECIPE_SERIALIZERS.register(
+                            "tool_head_assembly",
+                            ToolHeadAssemblyRecipeSerializer::new);
 
     private ModRecipes() {}
 }
