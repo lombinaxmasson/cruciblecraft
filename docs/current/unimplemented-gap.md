@@ -250,8 +250,8 @@ Dump 盖板是标记（无优先级）；搬运在 Core tick 的最后一档，�
 | `gt.recipe.fuels.plasma` | 0 | `fuels_plasma` 空图；不发明等离子流体 |
 | massfab / replicator | 920 / 895 | Track C 邻居，**不是**聚变配方 |
 
-裂变生存配方已 `player_complete`。热流体与热量合同已 `player_complete`；
-观测安全已签发 unique active；热力机器 / 聚变仍未开。
+裂变生存配方已 `player_complete`。热流体与热量合同已 `player_complete`。
+观测安全与能源 Jade 已 `player_complete`。热力机器 / 聚变仍未开。
 聚变不发明等离子燃料；化学态仍只有 LIQUID/GAS。
 
 `smelter` 曾错绑 GT6 `MultiTileEntitySmeltery` 小锅（与 T34 坩埚同一套几何）。
