@@ -237,13 +237,13 @@
       "family": "battery",
       "live_identities": ["cruciblecraft:energy_battery"],
       "static_profile_source": "EnergyBatteryCatalog",
-      "dynamic_state_source": "Battery stored EU / packet window",
+      "dynamic_state_source": "Battery stored EU/LU / packet window",
       "sync_path": "needs_runtime_accessor",
       "display_sections": ["charge", "packet"],
       "translation_keys": [],
       "status": "follow_up",
-      "owner": "energy/batteries",
-      "reason": "Battery recipe type and remaining cell content are out of this card."
+      "owner": "energy/nuclear-fission-observation-safety",
+      "reason": "Unique-active energy Jade second slice. 37 identities share one provider."
     },
     {
       "family": "converter_dynamo",
@@ -254,8 +254,8 @@
       "display_sections": ["conversion", "buffer"],
       "translation_keys": [],
       "status": "follow_up",
-      "owner": "jade/energy-converters",
-      "reason": "Dynamo-level energy display is a later Jade family."
+      "owner": "energy/nuclear-fission-observation-safety",
+      "reason": "Unique-active energy Jade second slice. 179 live rows share one observation adapter. Existing boiler/steam-engine tooltips stay."
     },
     {
       "family": "fusion_reactor",
@@ -278,11 +278,11 @@
       "static_profile_source": "ReactorRodCatalog",
       "dynamic_state_source": "Reactor heat/neutrons/safety",
       "sync_path": "blocked",
-      "display_sections": ["heat", "neutrons", "safety"],
+      "display_sections": ["heat", "neutrons", "coolant", "output", "running", "safety"],
       "translation_keys": [],
       "status": "follow_up",
-      "owner": "nuclear/fission-observation",
-      "reason": "Candidate queue item 5+ owns fission observation; this card must not start nuclear."
+      "owner": "energy/nuclear-fission-observation-safety",
+      "reason": "Unique-active fission wrap. Heat is HU. No invented Kelvin."
     },
     {
       "family": "large_multiblock",

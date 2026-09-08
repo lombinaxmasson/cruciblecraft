@@ -6,8 +6,10 @@
 > PASS。`runClient` 只在晋级（`runtime_ready → player_complete`）时强制。
 > 合同见 [capability-delivery-workflow.md](capability-delivery-workflow.md)。
 >
-> **当前状态**：人读 unique active 为空；机器可读
-> `unique_active_wave = null`。最近关闭
+> **当前状态**：人读 unique active 为
+> [裂变观测安全与能源 Jade](../history/card-plans/active/裂变观测安全与能源Jade详细计划.md)
+> （slug `energy/nuclear-fission-observation-safety`；已签发，实施未开始；
+> `unique_active_wave = null`）。最近关闭
 > [配方 blocked 链账本与首条收口](../history/card-plans/closed/配方blocked链账本与首条收口详细计划.md)
 > （slug `recipe/blocked-chain-ledger`；可复算账本；fluidbed 49 第一条链
 > `explicitly_blocked`）。已关闭
@@ -81,14 +83,17 @@ GitHub push 承担，不创建 GitHub Release、不上传 jar、不累计 RC soa
 同一时刻只允许一张内容工作处于 active 状态。编号卡时代已经结束；现行顺序是
 semantic wave，不是下一张里程碑编号。
 
-**当前人读 unique active** 为空；机器可读 `unique_active_wave = null`。
-最近关闭
+**当前人读 unique active** 为
+[裂变观测安全与能源 Jade](../history/card-plans/active/裂变观测安全与能源Jade详细计划.md)
+（`energy/nuclear-fission-observation-safety`；实施未开始，
+`unique_active_wave = null`）。最近关闭
 [配方 blocked 链账本与首条收口](../history/card-plans/closed/配方blocked链账本与首条收口详细计划.md)
 （`recipe/blocked-chain-ledger`；fluidbed 49 `explicitly_blocked`）。已关闭
 [裂变热流体与热量合同](../history/card-plans/closed/裂变热流体与热量合同详细计划.md)
 （`energy/nuclear-fission-hot-fluids`，`player_complete`）。第 1–6 项已关。
-裂变观测与安全、热力机器、聚变仍未签发。Bath identity / form / object
-是账本次序里的下一条链，尚未签发。不要从只读 growth-order 档案倒推。
+第 7 项已签发为本卡（堆芯安全 + 电池/转换机 Jade）。热力机器与聚变仍未签发。
+Bath identity / form / object 是账本次序里的下一条链，尚未签发。不要从只读
+growth-order 档案倒推。
 
 电能转换 / LU / 聚变控制器配方仍是 `runtime_ready` 或 blocked，见已关闭的
 [能源后续卡收口](../history/card-plans/closed/能源后续卡收口详细计划.md)
