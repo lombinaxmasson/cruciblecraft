@@ -244,6 +244,9 @@ class CapabilityLedgerTest(unittest.TestCase):
                             or relative.endswith(
                                 "nuclear-fission-hot-fluids/capability.json"
                             )
+                            or relative.endswith(
+                                "nuclear-fission-observation-safety/capability.json"
+                            )
                             else "frozen"
                         )
                     }
@@ -276,6 +279,9 @@ class CapabilityLedgerTest(unittest.TestCase):
                         )
                         or relative.endswith(
                             "nuclear-fission-hot-fluids/capability.json"
+                        )
+                        or relative.endswith(
+                            "nuclear-fission-observation-safety/capability.json"
                         )
                         else "frozen"
                     )
