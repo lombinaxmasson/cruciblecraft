@@ -116,6 +116,10 @@ public final class ReactorCoreBlockEntity extends BlockEntity
         return lastHeat;
     }
 
+    public long heat() {
+        return heat;
+    }
+
     public int neutrons(int slot) {
         return oldNeutrons[slot];
     }
@@ -289,7 +293,9 @@ public final class ReactorCoreBlockEntity extends BlockEntity
         }
         ReactorCoolant kind = coolant();
         if (kind == null) {
-            if (lastHeat > 0L && !inventoryEmpty()) {
+            if (coolant.getFluid().isEmpty()
+                    && lastHeat > 0L
+                    && !inventoryEmpty()) {
                 destroyRods();
             }
             return;
@@ -298,19 +304,26 @@ public final class ReactorCoreBlockEntity extends BlockEntity
         if (units <= 0L) {
             return;
         }
-        FluidStack hot = kind.hotOutput((int) Math.min(Integer.MAX_VALUE, units));
-        if (coolant.getFluidAmount() < units
-                || hot.isEmpty()
-                || output.fill(hot, IFluidHandler.FluidAction.SIMULATE)
-                        != hot.getAmount()) {
+        int consume = (int) Math.min(Integer.MAX_VALUE, units);
+        FluidStack hot = kind.hotOutput(consume);
+        if (hot.isEmpty()) {
+            return;
+        }
+        if (output.fill(hot, IFluidHandler.FluidAction.SIMULATE) != hot.getAmount()) {
+            return;
+        }
+        if (coolant.getFluidAmount() < consume
+                || coolant.drain(consume, IFluidHandler.FluidAction.SIMULATE)
+                        .getAmount()
+                        != consume) {
             if (!inventoryEmpty()) {
                 destroyRods();
             }
             return;
         }
-        coolant.drain((int) units, IFluidHandler.FluidAction.EXECUTE);
+        coolant.drain(consume, IFluidHandler.FluidAction.EXECUTE);
         output.fill(hot, IFluidHandler.FluidAction.EXECUTE);
-        heat -= units * kind.euPerUnit();
+        heat -= (long) consume * kind.euPerUnit();
     }
 
     private void destroyRods() {
@@ -404,6 +417,7 @@ public final class ReactorCoreBlockEntity extends BlockEntity
         tag.put("coolant", coolant.writeToNBT(registries, new CompoundTag()));
         tag.put("output", output.writeToNBT(registries, new CompoundTag()));
         tag.putLong("heat", heat);
+        tag.putLong("lastHeat", lastHeat);
         tag.putBoolean("stopped", stopped);
         tag.putBoolean("running", running);
         tag.putByte("mode", mode);
@@ -421,6 +435,7 @@ public final class ReactorCoreBlockEntity extends BlockEntity
         coolant.readFromNBT(registries, tag.getCompound("coolant"));
         output.readFromNBT(registries, tag.getCompound("output"));
         heat = tag.getLong("heat");
+        lastHeat = tag.getLong("lastHeat");
         stopped = tag.getBoolean("stopped");
         running = tag.getBoolean("running");
         mode = tag.getByte("mode");

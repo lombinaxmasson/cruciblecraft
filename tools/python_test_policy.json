@@ -10,13 +10,14 @@
     "NOTICE"
   ],
   "active_test_modules": [
-    "test_check_markdown_links",
     "test_logistics_cover_net_remainder",
     "test_energy_remainder",
     "test_energy_converter_catalog",
     "test_energy_batteries",
     "test_energy_transformers",
     "test_energy_nuclear_fission_survival",
+    "test_energy_nuclear_fission_hot_fluids",
+    "test_blocked_recipe_ledger",
     "test_logistics_core",
     "test_display_cpu",
     "test_verification_profiles",
@@ -66,34 +67,74 @@
     },
     {
       "paths": [
-        "*.md",
-        "docs/**",
-        ".plans/**",
-        "plans/**",
-        "LICENSE",
-        "NOTICE",
-        "tools/check_markdown_links.py",
-        "tools/tests/test_check_markdown_links.py",
-        "tools/tests/test_logistics_cover_net_remainder.py",
-        "tools/tests/test_energy_remainder.py",
-        "tools/tests/test_energy_converter_catalog.py",
-        "tools/tests/test_energy_batteries.py",
-        "tools/tests/test_energy_transformers.py",
-        "tools/tests/test_energy_nuclear_fission_survival.py",
-        "tools/tests/test_logistics_core.py",
+        "tools/tests/test_logistics_cover_net_remainder.py"
+      ],
+      "test_modules": [
+        "test_logistics_cover_net_remainder"
+      ]
+    },
+    {
+      "paths": [
+        "tools/tests/test_energy_remainder.py"
+      ],
+      "test_modules": [
+        "test_energy_remainder"
+      ]
+    },
+    {
+      "paths": [
+        "tools/tests/test_energy_converter_catalog.py"
+      ],
+      "test_modules": [
+        "test_energy_converter_catalog"
+      ]
+    },
+    {
+      "paths": [
+        "tools/tests/test_energy_batteries.py"
+      ],
+      "test_modules": [
+        "test_energy_batteries"
+      ]
+    },
+    {
+      "paths": [
+        "tools/tests/test_energy_transformers.py"
+      ],
+      "test_modules": [
+        "test_energy_transformers"
+      ]
+    },
+    {
+      "paths": [
+        "tools/tests/test_energy_nuclear_fission_survival.py"
+      ],
+      "test_modules": [
+        "test_energy_nuclear_fission_survival"
+      ]
+    },
+    {
+      "paths": [
+        "tools/tests/test_energy_nuclear_fission_hot_fluids.py"
+      ],
+      "test_modules": [
+        "test_energy_nuclear_fission_hot_fluids"
+      ]
+    },
+    {
+      "paths": [
+        "tools/tests/test_logistics_core.py"
+      ],
+      "test_modules": [
+        "test_logistics_core"
+      ]
+    },
+    {
+      "paths": [
         "tools/tests/test_display_cpu.py"
       ],
       "test_modules": [
-        "test_check_markdown_links",
-        "test_logistics_cover_net_remainder",
-        "test_energy_remainder",
-        "test_energy_converter_catalog",
-        "test_energy_batteries",
-        "test_energy_transformers",
-        "test_energy_nuclear_fission_survival",
-        "test_logistics_core",
-        "test_display_cpu",
-        "test_verification_profiles"
+        "test_display_cpu"
       ]
     },
     {
@@ -113,6 +154,18 @@
       "test_modules": [
         "test_material_form_authority",
         "test_build_semantic_recipes"
+      ]
+    },
+    {
+      "paths": [
+        "tools/blocked_recipe_ledger.py",
+        "tools/blocked_recipe_ledger.json",
+        "tools/energy_converter_fluidbed_blocked.json",
+        "tools/tests/test_blocked_recipe_ledger.py",
+        "src/main/resources/data/cruciblecraft/recipe/energy/fuels_fluidbed/**"
+      ],
+      "test_modules": [
+        "test_blocked_recipe_ledger"
       ]
     },
     {
@@ -233,6 +286,9 @@
         "tools/waves/runtime/fission-survival/**",
         "tools/capabilities/energy/nuclear-fission-survival/**",
         "tools/tests/test_energy_nuclear_fission_survival.py",
+        "tools/waves/runtime/fission-hot-fluids/**",
+        "tools/capabilities/energy/nuclear-fission-hot-fluids/**",
+        "tools/tests/test_energy_nuclear_fission_hot_fluids.py",
         "tools/jade_observation.py",
         "tools/build_jade_observation.py",
         "tools/jade_observation_matrix.json",
@@ -247,6 +303,7 @@
         "test_energy_batteries",
         "test_energy_transformers",
         "test_energy_nuclear_fission_survival",
+        "test_energy_nuclear_fission_hot_fluids",
         "test_registry_identity",
         "test_jade_observation"
       ]
@@ -265,6 +322,7 @@
         "tools/capabilities/energy/batteries/**",
         "tools/capabilities/energy/transformers/**",
         "tools/capabilities/energy/nuclear-fission-survival/**",
+        "tools/capabilities/energy/nuclear-fission-hot-fluids/**",
         "src/main/java/com/masson/cruciblecraft/verification/PlayerCompleteSmoke.java",
         "src/main/resources/cruciblecraft/player_complete_surfaces.json",
         "src/main/java/com/masson/cruciblecraft/client/ClientSmoke.java",

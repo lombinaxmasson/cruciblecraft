@@ -29,6 +29,9 @@ SURFACE_CATALOG = (
     ROOT / "src" / "main" / "resources" / "cruciblecraft"
     / "player_complete_surfaces.json"
 )
+MATERIALS = (
+    ROOT / "src" / "main" / "resources" / "data" / "cruciblecraft" / "materials"
+)
 GAME_TEST_PASS = re.compile(r"All\s+(\d+)\s+required tests passed")
 GAME_TEST_METHOD_RE = re.compile(
     r"public static void (\w+)\s*\(\s*GameTestHelper"
@@ -140,6 +143,25 @@ def check_signoff(
     return errors
 
 
+def form_item_ids() -> set[str]:
+    """Item paths obtained by material form_items aliases, not a shaped grid."""
+    ids: set[str] = set()
+    if not MATERIALS.is_dir():
+        return ids
+    for path in MATERIALS.glob("*.json"):
+        document = io.load_json(path)
+        if not isinstance(document, dict):
+            continue
+        form_items = document.get("form_items")
+        if not isinstance(form_items, dict):
+            continue
+        for value in form_items.values():
+            if not isinstance(value, str) or not value:
+                continue
+            ids.add(value.split(":", 1)[-1])
+    return ids
+
+
 def check_static_player_surface(slug: str, item_ids: list[str]) -> list[str]:
     errors: list[str] = []
     english = io.load_json(
@@ -148,6 +170,7 @@ def check_static_player_surface(slug: str, item_ids: list[str]) -> list[str]:
     chinese = io.load_json(
         GENERATED / "assets/cruciblecraft/lang/zh_cn.json"
     )
+    form_items = form_item_ids()
     for item in item_ids:
         recipe = GENERATED / "data/cruciblecraft/recipe" / f"{item}.json"
         root_recipe = (
@@ -160,7 +183,11 @@ def check_static_player_surface(slug: str, item_ids: list[str]) -> list[str]:
             / f"{item}.json"
         )
         lang_key = f"item.cruciblecraft.{item}"
-        if not recipe.is_file() and not root_recipe.is_file():
+        if (
+            item not in form_items
+            and not recipe.is_file()
+            and not root_recipe.is_file()
+        ):
             errors.append(f"{slug}: missing recipe {recipe.as_posix()}")
         if not model.is_file() and not root_model.is_file():
             errors.append(f"{slug}: missing model {model.as_posix()}")

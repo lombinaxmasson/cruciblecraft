@@ -144,27 +144,13 @@ class PythonTestWorkflowTest(unittest.TestCase):
         self.assertEqual((), unmatched)
         self.assertEqual((), names)
 
-    def test_markdown_path_selects_documentation_modules(self) -> None:
+    def test_markdown_path_selects_no_modules(self) -> None:
         names, unmatched = workflow.affected_module_names(
             self.policy,
             ["docs/current/verification.md"],
         )
         self.assertEqual((), unmatched)
-        self.assertEqual(
-            (
-                "test_check_markdown_links",
-                "test_logistics_cover_net_remainder",
-                "test_energy_remainder",
-                "test_energy_converter_catalog",
-                "test_energy_batteries",
-                "test_energy_transformers",
-                "test_energy_nuclear_fission_survival",
-                "test_logistics_core",
-                "test_display_cpu",
-                "test_verification_profiles",
-            ),
-            names,
-        )
+        self.assertEqual((), names)
 
     def test_path_file_and_explicit_paths_are_merged(self) -> None:
         with tempfile.NamedTemporaryFile(

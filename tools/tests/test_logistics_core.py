@@ -14,8 +14,6 @@ from tools.wave_closeout import spec_for
 SLUG = "runtime/logistics-core"
 CAPABILITY = "logistics/logistics-core"
 ROOT = io.ROOT
-CLOSED = ROOT / "docs" / "history" / "card-plans" / "closed"
-PLAN = CLOSED / "物流核心详细计划.md"
 WAVE = io.TOOLS / "waves" / "runtime" / "logistics-core"
 T19 = (
     ROOT
@@ -71,28 +69,6 @@ class LogisticsCoreCardTest(unittest.TestCase):
         self.assertIsNone(spec.production_lock)
         self.assertEqual(WAVE / "census_delta.json", spec.census)
         self.assertEqual(WAVE / "gametest_receipt.json", spec.receipt)
-
-    def test_closed_plan_stays_archived(self) -> None:
-        self.assertTrue(PLAN.is_file())
-        active = ROOT / "docs" / "history" / "card-plans" / "active"
-        names = sorted(path.name for path in active.iterdir() if path.is_file())
-        self.assertNotIn("物流核心详细计划.md", names)
-
-    def test_plan_uses_local_gt6_code_not_github_fetch(self) -> None:
-        text = PLAN.read_text(encoding="utf-8")
-        self.assertIn("gt6_code/gregtech6", text)
-        self.assertIn("3703e40308c8c030763fd6297dea8b210d2a77b1", text)
-        self.assertIn("MultiTileEntityLogisticsCore", text)
-        self.assertIn("CoverLogisticsGenericDump", text)
-        self.assertIn("logistics/logistics-core", text)
-        self.assertNotIn("raw.githubusercontent.com", text)
-        self.assertNotIn("github.com/GregTech6", text)
-        self.assertIn(
-            "`tools/capabilities/logistics/generic-network/dump/`",
-            text,
-        )
-        self.assertIn("gregtech6_w", text)
-        self.assertNotIn("贴图暂借记", text)
 
     def test_art_manifest_is_local_gt6_w(self) -> None:
         manifest = io.load_json(

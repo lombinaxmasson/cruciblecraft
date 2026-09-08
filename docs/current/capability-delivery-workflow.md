@@ -134,6 +134,8 @@ python tools/build_player_complete.py --run --capability logistics/logistics-cor
 python tools/build_player_complete.py --run --capability logistics/display-cpu
 python tools/build_player_complete.py --run --capability energy/nuclear-fission-survival
 python tools/build_player_complete.py --run --client --capability energy/nuclear-fission-survival
+python tools/build_player_complete.py --run --capability energy/nuclear-fission-hot-fluids
+python tools/build_player_complete.py --run --client --capability energy/nuclear-fission-hot-fluids
 python tools/verify.py integration --profile player-complete
 ```
 

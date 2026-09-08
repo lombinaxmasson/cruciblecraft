@@ -369,6 +369,26 @@ public class ClientSetup {
                 }
             }, entry.type().get());
         });
+        ModFluids.hotFluids().forEach(entry -> {
+            ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(
+                    CrucibleCraft.MODID, "fluid/gt6_import/" + entry.id());
+            event.registerFluidType(new IClientFluidTypeExtensions() {
+                @Override
+                public ResourceLocation getStillTexture() {
+                    return texture;
+                }
+
+                @Override
+                public ResourceLocation getFlowingTexture() {
+                    return texture;
+                }
+
+                @Override
+                public int getTintColor() {
+                    return 0xFFFFFFFF;
+                }
+            }, entry.type().get());
+        });
         ModFluids.bathOverlayFluids().forEach(entry -> {
             int tintColor = 0xFF000000 | entry.colorRgb();
             event.registerFluidType(new IClientFluidTypeExtensions() {

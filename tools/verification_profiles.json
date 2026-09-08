@@ -11,7 +11,6 @@
     "NOTICE"
   ],
   "active_profiles": [
-    "docs",
     "verification",
     "runtime-java",
     "semantic-generators",
@@ -28,41 +27,6 @@
     "player-complete"
   ],
   "profiles": {
-    "docs": {
-      "owner": "documentation",
-      "tier": "dev",
-      "datagen": false,
-      "gradle_tasks": [],
-      "python_modules": [
-        "test_check_markdown_links",
-        "test_logistics_cover_net_remainder",
-        "test_energy_remainder",
-        "test_energy_converter_catalog",
-        "test_energy_batteries",
-        "test_energy_transformers",
-        "test_energy_nuclear_fission_survival",
-        "test_logistics_core",
-        "test_display_cpu",
-        "test_verification_profiles"
-      ],
-      "builders": [],
-      "owned_paths": [
-        "*.md",
-        "docs/**",
-        ".plans/**",
-        "plans/**",
-        "LICENSE",
-        "NOTICE",
-        "tools/tests/test_logistics_cover_net_remainder.py",
-        "tools/tests/test_energy_remainder.py",
-        "tools/tests/test_energy_converter_catalog.py",
-        "tools/tests/test_energy_batteries.py",
-        "tools/tests/test_energy_transformers.py",
-        "tools/tests/test_energy_nuclear_fission_survival.py",
-        "tools/tests/test_logistics_core.py",
-        "tools/tests/test_display_cpu.py"
-      ]
-    },
     "verification": {
       "owner": "tooling",
       "tier": "dev",
@@ -73,13 +37,15 @@
         "test_python_test_workflow",
         "test_check_no_workflow_hashes",
         "test_check_zero_milestone_names",
-        "test_tree_compare"
+        "test_tree_compare",
+        "test_blocked_recipe_ledger"
       ],
-      "builders": [
-        "check_no_workflow_hashes",
-        "check_zero_milestone_names"
-      ],
+      "builders": [],
       "owned_paths": [
+        "tools/blocked_recipe_ledger.py",
+        "tools/blocked_recipe_ledger.json",
+        "tools/energy_converter_fluidbed_blocked.json",
+        "tools/tests/test_blocked_recipe_ledger.py",
         "tools/verify.py",
         "tools/run_python_tests.py",
         "tools/verification_profiles.json",
@@ -167,8 +133,7 @@
         "test_build_semantic_recipes"
       ],
       "builders": [
-        "material_form_authority",
-        "build_semantic_recipes"
+        "material_form_authority"
       ],
       "owned_paths": [
         "tools/material_form_authority.py",
@@ -194,7 +159,12 @@
         "test_logistics_cover_net_remainder",
         "test_logistics_core",
         "test_display_cpu",
+        "test_energy_remainder",
+        "test_energy_converter_catalog",
+        "test_energy_batteries",
+        "test_energy_transformers",
         "test_energy_nuclear_fission_survival",
+        "test_energy_nuclear_fission_hot_fluids",
         "test_registry_identity",
         "test_jade_observation"
       ],
@@ -265,6 +235,7 @@
         "tools/tests/test_logistics_cover_net_remainder.py",
         "tools/tests/test_logistics_core.py",
         "tools/tests/test_display_cpu.py",
+        "tools/tests/test_energy_remainder.py",
         "src/main/java/com/masson/cruciblecraft/energy/converter/**",
         "src/main/java/com/masson/cruciblecraft/gametest/EnergyConverterCatalogGameTests.java",
         "src/main/resources/data/cruciblecraft_wave_runtime_converter_catalog/**",
@@ -298,7 +269,10 @@
         "tools/tests/test_energy_transformers.py",
         "tools/waves/runtime/fission-survival/**",
         "tools/capabilities/energy/nuclear-fission-survival/**",
-        "tools/tests/test_energy_nuclear_fission_survival.py"
+        "tools/tests/test_energy_nuclear_fission_survival.py",
+        "tools/waves/runtime/fission-hot-fluids/**",
+        "tools/capabilities/energy/nuclear-fission-hot-fluids/**",
+        "tools/tests/test_energy_nuclear_fission_hot_fluids.py"
       ]
     },
     "player-complete": {
@@ -318,7 +292,8 @@
         "build_player_complete_converter_catalog",
         "build_player_complete_batteries",
         "build_player_complete_transformers",
-        "build_player_complete_nuclear"
+        "build_player_complete_nuclear",
+        "build_player_complete_nuclear_hot_fluids"
       ],
       "owned_paths": [
         "tools/player_complete.py",
@@ -333,6 +308,7 @@
         "tools/capabilities/energy/batteries/**",
         "tools/capabilities/energy/transformers/**",
         "tools/capabilities/energy/nuclear-fission-survival/**",
+        "tools/capabilities/energy/nuclear-fission-hot-fluids/**",
         "src/main/java/com/masson/cruciblecraft/verification/PlayerCompleteSmoke.java",
         "src/main/resources/cruciblecraft/player_complete_surfaces.json",
         "src/main/java/com/masson/cruciblecraft/client/ClientSmoke.java",

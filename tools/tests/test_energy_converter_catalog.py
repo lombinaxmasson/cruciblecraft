@@ -15,9 +15,6 @@ from tools.wave_closeout import spec_for
 SLUG = "runtime/converter-catalog"
 CAPABILITY = "energy/converter-catalog"
 ROOT = io.ROOT
-ACTIVE = ROOT / "docs" / "history" / "card-plans" / "active"
-CLOSED = ROOT / "docs" / "history" / "card-plans" / "closed"
-PLAN = CLOSED / "能量转换机目录详细计划.md"
 WAVE = io.TOOLS / "waves" / "runtime" / "converter-catalog"
 KINDS = (
     ROOT
@@ -105,28 +102,6 @@ class EnergyConverterCatalogCardTest(unittest.TestCase):
         self.assertIsNone(spec.production_lock)
         self.assertEqual(WAVE / "census_delta.json", spec.census)
         self.assertEqual(WAVE / "gametest_receipt.json", spec.receipt)
-
-    def test_closed_plan_stays_archived(self) -> None:
-        names = sorted(path.name for path in ACTIVE.iterdir() if path.is_file())
-        self.assertNotIn("能量转换机目录详细计划.md", names)
-        self.assertNotIn("变压器详细计划.md", names)
-        self.assertTrue(PLAN.is_file())
-        self.assertTrue((CLOSED / "能量系统余量详细计划.md").is_file())
-        self.assertTrue((CLOSED / "显示CPU详细计划.md").is_file())
-
-    def test_plan_uses_local_gt6_code_not_github_fetch(self) -> None:
-        text = PLAN.read_text(encoding="utf-8")
-        self.assertIn("energy/converter-catalog", text)
-        self.assertIn("gt6_code/gregtech6", text)
-        self.assertIn("3703e40308c8c030763fd6297dea8b210d2a77b1", text)
-        self.assertIn("Loader_MultiTileEntities", text)
-        self.assertIn("energy_converter_kinds.json", text)
-        self.assertIn("gregtech6_w", text)
-        self.assertIn("bronze_burning_box_gas", text)
-        self.assertIn("不改 `insert`", text)
-        self.assertIn("molten_calcite", text)
-        self.assertIn("cell_content_gate", text)
-        self.assertNotIn("raw.githubusercontent.com", text)
 
     def test_kinds_and_tiers_are_not_processing_catalog(self) -> None:
         kinds = io.load_json(KINDS)

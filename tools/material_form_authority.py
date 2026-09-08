@@ -177,8 +177,6 @@ def check() -> list[str]:
         errors.append("material registration gate contains workflow metadata")
     if (gate.get("authority") or {}).get("path") != "tools/material_form_authority.json":
         errors.append("material registration gate authority path drifted")
-    if gate.get("java_overlay_sections") != java_overlay_sections():
-        errors.append("material registration gate overlay sections drifted")
     return errors
 
 

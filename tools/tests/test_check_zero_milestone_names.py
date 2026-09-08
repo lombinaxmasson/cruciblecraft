@@ -64,7 +64,7 @@ class ZeroMilestoneNameScannerTest(unittest.TestCase):
     def test_quick_mode_scans_live_java_not_generated_trees(self) -> None:
         lower_milestone = ("T" + "49").lower()
         self.assertTrue(scanner.is_quick_target("src/main/java/com/masson/cruciblecraft/logistics/fluidnet/FluidLogisticsNetwork.java"))
-        self.assertTrue(scanner.is_quick_target("tools/capabilities/logistics/cover-net-r0/capability.json"))
+        self.assertFalse(scanner.is_quick_target("tools/capabilities/logistics/cover-net-r0/capability.json"))
         self.assertTrue(
             scanner.is_quick_target("docs/history/card-plans/active/显示CPU详细计划.md")
         )

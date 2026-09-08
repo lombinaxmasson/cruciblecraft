@@ -92,13 +92,17 @@ class VerificationProfileTest(unittest.TestCase):
             set(subparsers.choices),
         )
 
-    def test_markdown_change_selects_docs_profile_only(self) -> None:
+    def test_markdown_change_selects_no_profile(self) -> None:
         classified = verify_entry.classify_paths(
             self.profiles,
             ["docs/current/roadmap.md", "README.md"],
         )
-        self.assertEqual(["docs"], classified["selected_profiles"])
+        self.assertEqual([], classified["selected_profiles"])
         self.assertEqual([], classified["unmatched_paths"])
+        self.assertEqual(
+            ["README.md", "docs/current/roadmap.md"],
+            classified["documentation_paths"],
+        )
 
     def test_unknown_path_is_reported(self) -> None:
         classified = verify_entry.classify_paths(
@@ -110,6 +114,30 @@ class VerificationProfileTest(unittest.TestCase):
             ["unexpected/new_domain.json"],
             classified["unmatched_paths"],
         )
+
+    def test_local_run_tree_is_not_unmatched(self) -> None:
+        classified = verify_entry.classify_paths(
+            self.profiles,
+            [
+                "run-game-test-filtered/config/cruciblecraft/"
+                ".generated-material-pack/server/data/c/tags/block/cables.json",
+                "run/saves/world/level.dat",
+            ],
+        )
+        self.assertEqual([], classified["selected_profiles"])
+        self.assertEqual([], classified["unmatched_paths"])
+
+    def test_local_run_tree_does_not_block_owned_paths(self) -> None:
+        classified = verify_entry.classify_paths(
+            self.profiles,
+            [
+                "tools/verify.py",
+                "run-game-test-filtered/config/cruciblecraft/"
+                ".generated-material-pack/server/.cruciblecraft-manifest.json",
+            ],
+        )
+        self.assertEqual(["verification"], classified["selected_profiles"])
+        self.assertEqual([], classified["unmatched_paths"])
 
     def test_capability_paths_select_capability_profiles(self) -> None:
         classified = verify_entry.classify_paths(
@@ -469,36 +497,57 @@ class VerificationProfileTest(unittest.TestCase):
         self.assertIn("--no-daemon", command)
         self.assertIn("--rerun", command)
 
-    def test_workflow_hash_dev_scan_is_incremental_unless_policy_changes(self) -> None:
-        row = {"name": "check_no_workflow_hashes"}
-        extra = verify_entry.workflow_hash_builder_extra_args(
-            row,
-            command="dev",
-            changed=["src/main/java/Demo.java", "tools/verify.py"],
-        )
-        self.assertEqual(
-            [
-                "--path",
-                "src/main/java/Demo.java",
-                "--path",
-                "tools/verify.py",
+    def test_unmatched_paths_do_not_fail_dev(self) -> None:
+        receipt = {"profiles": [], "commands": [], "results": []}
+        calls: list[str] = []
+
+        def record(
+            name: str,
+            _profiles: dict[str, object],
+            _builders: dict[str, object],
+            _receipt: dict[str, object],
+            **_kwargs: object,
+        ) -> int:
+            calls.append(name)
+            return 0
+
+        with mock.patch.object(
+            verify_entry,
+            "_configuration",
+            return_value=(self.profiles, self.builder_policy),
+        ), mock.patch.object(
+            verify_entry,
+            "changed_paths",
+            return_value=[
+                "docs/current/roadmap.md",
+                ".gitignore",
+                "tools/emit_fission_hot_fluids.py",
             ],
-            extra,
-        )
-        full = verify_entry.workflow_hash_builder_extra_args(
-            row,
-            command="dev",
-            changed=["tools/workflow_hash_policy.json"],
-        )
-        self.assertEqual([], full)
+        ), mock.patch.object(verify_entry, "run_profile", side_effect=record):
+            code = verify_entry.cmd_dev(argparse.Namespace(path=[]), receipt)
+        self.assertEqual(0, code)
+        self.assertEqual([], calls)
+
+    def test_verification_profile_has_no_global_text_scanners(self) -> None:
+        verification = self.profiles["profiles"]["verification"]
+        self.assertEqual([], verification["builders"])
+        policy_names = {row["name"] for row in self.builder_policy["builders"]}
+        self.assertNotIn("check_no_workflow_hashes", policy_names)
+        self.assertNotIn("check_zero_milestone_names", policy_names)
+        self.assertNotIn("build_semantic_recipes", policy_names)
         self.assertEqual(
-            [],
-            verify_entry.workflow_hash_builder_extra_args(
-                row,
-                command="release",
-                changed=["src/main/java/Demo.java"],
-            ),
+            ["material_form_authority"],
+            self.profiles["profiles"]["recipe-generators"]["builders"],
         )
+
+    def test_docs_change_selects_no_verification_python_modules(self) -> None:
+        verification = self.profiles["profiles"]["verification"]
+        modules = verify_entry.python_modules_for_changed_paths(
+            verification,
+            ["docs/current/roadmap.md"],
+        )
+        self.assertEqual([], modules)
+        self.assertNotIn("docs", self.profiles["profiles"])
 
     def test_promotion_runs_player_complete_only_for_promoted_slugs(self) -> None:
         receipt = {"profiles": [], "commands": [], "results": []}

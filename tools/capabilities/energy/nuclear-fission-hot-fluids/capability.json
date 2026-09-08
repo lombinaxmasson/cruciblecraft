@@ -1,0 +1,91 @@
+{
+  "schema_version": 2,
+  "slug": "energy/nuclear-fission-hot-fluids",
+  "title": "Nuclear Fission Hot Fluids",
+  "maturity": "player_complete",
+  "workflow": "accepted",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/ReactorCoreBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/nuclear/**",
+    "src/main/java/com/masson/cruciblecraft/material/HotFluidRegistrationGate.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/NuclearFissionHotFluidsGameTests.java",
+    "src/main/resources/data/cruciblecraft_wave_runtime_fission_hot_fluids/**",
+    "src/main/resources/data/cruciblecraft/hot_fluid_gate.json",
+    "src/main/resources/assets/cruciblecraft/gt6_fission_hot_fluids_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/fluid/gt6_import/hot_*",
+    "src/test/java/com/masson/cruciblecraft/nuclear/**",
+    "tools/capabilities/energy/nuclear-fission-hot-fluids/**",
+    "tools/waves/runtime/fission-hot-fluids/**",
+    "tools/tests/test_energy_nuclear_fission_hot_fluids.py"
+  ],
+  "depends_on": [
+    "energy/nuclear-fission-survival"
+  ],
+  "profiles": [
+    "capability-runtime",
+    "player-complete"
+  ],
+  "wave_slug": "runtime/fission-hot-fluids",
+  "legacy_readiness": "tools/waves/runtime/fission-hot-fluids/readiness.json",
+  "player_signoff": "tools/capabilities/energy/nuclear-fission-hot-fluids/player_signoff.json",
+  "required_test_ids": [
+    "carbonDioxideProducesHotCarbonDioxide",
+    "distilledWaterProducesSteam",
+    "emptyCoolantDestroysRods",
+    "heavyWaterProducesHotHeavyWater",
+    "heliumProducesHotHelium",
+    "hotFluidsDoNotAliasMaterialFluids",
+    "insufficientCoolantDestroysRods",
+    "moltenLiclProducesHotLicl",
+    "moltenSodiumProducesHotSodium",
+    "moltenTinProducesHotTin",
+    "oneByOneAndTwoByTwoShareConversionContract",
+    "playerSurfaceIsRegistered",
+    "reloadPreservesHeatContract",
+    "semiheavyWaterProducesHotSemiheavyWater",
+    "tinDividerIsThreeAndSodiumDividerIsSix",
+    "tritiatedWaterProducesHotTritiatedWater"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "reactor:hot_fluids",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:hot_molten_tin",
+        "cruciblecraft:hot_molten_sodium",
+        "cruciblecraft:hot_semiheavy_water",
+        "cruciblecraft:hot_heavy_water",
+        "cruciblecraft:hot_tritiated_water",
+        "cruciblecraft:hot_molten_licl",
+        "cruciblecraft:hot_carbon_dioxide",
+        "cruciblecraft:hot_helium"
+      ],
+      "reason": "Eight independent GT6 hot-fluid identities. Distilled water still emits steam, not a hot_* id. Hot fluids must not resolve through materialFluid of the cold source."
+    },
+    {
+      "semantic_key": "reactor:temperature_kelvin",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "Heat is HU. GT6 thermometer reports oEnergy as HU. temperature_k / meltdown_at_k stay on the observation/safety card. Do not invent Kelvin as HU times a constant."
+    },
+    {
+      "semantic_key": "reactor:observation_safety",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "Reactor Jade, radiation, burn, explosion sound and thermometer stay on the observation/safety card."
+    },
+    {
+      "semantic_key": "reactor:coolant_ic2",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "IC2 industrial coolant is not a CC-owned fluid. Not substituted."
+    },
+    {
+      "semantic_key": "reactor:thorium_salt",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "Thorium_Salt to LiCl is not a hot-fluid output and has no CC-owned input identity. Not substituted."
+    }
+  ],
+  "note": "11 GT6 source branches / 9 CC-owned conversions / 8 hot identities / 2 cores. unique_active_wave stays null. Source is local gt6_code. No stand-in fluids. Coolant_IC2 and Thorium_Salt stay blocked. Observation/safety, heat exchangers, turbines and coolers stay later."
+}
