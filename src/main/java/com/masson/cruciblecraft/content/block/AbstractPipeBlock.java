@@ -6,15 +6,20 @@ import java.util.Map;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.masson.cruciblecraft.api.tool.ToolAction;
+import com.masson.cruciblecraft.api.tool.ToolInteractable;
+import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
-import com.masson.cruciblecraft.content.item.MachineToolInteractions;
+import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.logistics.displaycpu.DisplayCpuWriteback;
 import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.logistics.pipe.PipeTopology;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
@@ -38,7 +43,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 /** Compact six-direction connection state shared by item and fluid pipes. */
 public abstract class AbstractPipeBlock extends Block
-        implements EntityBlock {
+        implements EntityBlock, ToolInteractable {
     public static final BooleanProperty DOWN =
             BooleanProperty.create("down");
     public static final BooleanProperty UP = BooleanProperty.create("up");
@@ -117,21 +122,89 @@ public abstract class AbstractPipeBlock extends Block
             Player player,
             InteractionHand hand,
             BlockHitResult hit) {
-        UseOnContext context = new UseOnContext(level, player, hand, stack, hit);
-        if (MachineToolInteractions.isPlunger(stack)) {
-            InteractionResult result = MachineToolInteractions.plunger(context);
-            return result.consumesAction()
-                    ? ItemInteractionResult.sidedSuccess(level.isClientSide)
-                    : ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        return ToolClick.useItemOn(stack, level, player, hand, hit);
+    }
+
+    @Override
+    public ToolResult useTool(ToolAction action, UseOnContext context) {
+        return switch (action) {
+            case PLUNGER -> plunger(context);
+            case CROWBAR -> pryCover(context);
+            case WRENCH -> Gt6StyleConnections.toggleConnection(
+                    context.getLevel(),
+                    context.getClickedPos(),
+                    ToolClick.hit(context));
+            default -> ToolResult.PASS;
+        };
+    }
+
+    private static ToolResult plunger(UseOnContext context) {
+        Level level = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        BlockEntity be = level.getBlockEntity(pos);
+        if (be instanceof FluidPipeBlockEntity pipe) {
+            if (level.isClientSide) {
+                return ToolResult.SUCCESS;
+            }
+            if (!pipe.trashContents()) {
+                return ToolResult.REJECT;
+            }
+            ToolClick.hurt(context);
+            level.playSound(
+                    null,
+                    pos,
+                    SoundEvents.BUCKET_EMPTY,
+                    SoundSource.BLOCKS,
+                    0.6F,
+                    0.6F);
+            return ToolResult.SUCCESS;
         }
-        if (MachineToolInteractions.isCrowbar(stack)) {
-            InteractionResult result = MachineToolInteractions.crowbar(context);
-            return result.consumesAction()
-                    ? ItemInteractionResult.sidedSuccess(level.isClientSide)
-                    : ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        if (be instanceof ItemPipeBlockEntity pipe) {
+            if (level.isClientSide) {
+                return ToolResult.SUCCESS;
+            }
+            if (!pipe.ejectRecovery()) {
+                return ToolResult.REJECT;
+            }
+            ToolClick.hurt(context);
+            level.playSound(
+                    null,
+                    pos,
+                    SoundEvents.ITEM_PICKUP,
+                    SoundSource.BLOCKS,
+                    0.6F,
+                    0.6F);
+            return ToolResult.SUCCESS;
         }
-        return Gt6StyleConnections.wrench(
-                stack, state, level, pos, player, hand, hit);
+        return ToolResult.PASS;
+    }
+
+    private static ToolResult pryCover(UseOnContext context) {
+        Level level = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        BlockEntity be = level.getBlockEntity(pos);
+        Direction side = Gt6StyleConnections.sideFromHit(ToolClick.hit(context));
+        if (be instanceof ItemPipeBlockEntity pipe) {
+            if (level.isClientSide) {
+                return ToolResult.SUCCESS;
+            }
+            if (!pipe.removeCover(side, context.getPlayer())) {
+                return ToolResult.PASS;
+            }
+            ToolClick.hurt(context);
+            return ToolResult.SUCCESS;
+        }
+        if (be instanceof FluidPipeBlockEntity pipe) {
+            if (level.isClientSide) {
+                return ToolResult.SUCCESS;
+            }
+            if (!pipe.removeCover(side, context.getPlayer())) {
+                return ToolResult.PASS;
+            }
+            ToolClick.hurt(context);
+            return ToolResult.SUCCESS;
+        }
+        return ToolResult.PASS;
     }
 
     @Override

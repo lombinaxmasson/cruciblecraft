@@ -24,6 +24,7 @@ import com.masson.cruciblecraft.content.item.CeramicMoldBlockItem;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.content.item.GtWoodCatalog;
 import com.masson.cruciblecraft.content.item.BathMteIdentityCatalog;
+import com.masson.cruciblecraft.content.item.TechnologicalPartCatalog;
 import com.masson.cruciblecraft.content.item.SmelterMteIdentityCatalog;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
@@ -236,6 +237,8 @@ public final class ModItems {
                     () -> new ProgrammedCircuitItem(new Item.Properties()));
     private static final Map<String, DeferredItem<ReactorRodItem>> REACTOR_RODS =
             registerReactorRods();
+    private static final Map<ResourceLocation, DeferredItem<Item>> TECHNOLOGICAL_PARTS =
+            registerTechnologicalParts();
     private static final List<BatteryCellSpec> BATTERY_CELL_SPECS = List.of(
             new BatteryCellSpec("lead_acid", "sulfuric_acid", 288),
             new BatteryCellSpec("alkaline", "water_distilled", 1_000),
@@ -519,6 +522,8 @@ public final class ModItems {
             tieredProcessingItem("mortar");
     public static final DeferredItem<BlockItem> EXTRUDER =
             tieredProcessingItem("extruder");
+    public static final DeferredItem<BlockItem> INVAR_EXTRUDER =
+            tieredProcessingItem("invar_extruder");
     public static final DeferredItem<BlockItem> CUTTER =
             tieredProcessingItem("cutter");
     public static final DeferredItem<BlockItem> LATHE =
@@ -582,6 +587,8 @@ public final class ModItems {
             tieredProcessingItem("generifier");
     public static final DeferredItem<BlockItem> COAGULATOR =
             tieredProcessingItem("coagulator");
+    public static final DeferredItem<BlockItem> CANNER =
+            tieredProcessingItem("canner");
     public static final DeferredItem<BlockItem> STEEL_ROASTER =
             tieredProcessingItem("steel_roaster");
     public static final DeferredItem<BlockItem> FLUID_DEPOSIT_EXTRACTOR =
@@ -1054,6 +1061,25 @@ public final class ModItems {
         return java.util.Collections.unmodifiableMap(items);
     }
 
+    private static Map<ResourceLocation, DeferredItem<Item>>
+            registerTechnologicalParts() {
+        LinkedHashMap<ResourceLocation, DeferredItem<Item>> items =
+                new LinkedHashMap<>();
+        for (TechnologicalPartCatalog.Part part : TechnologicalPartCatalog.parts()) {
+            DeferredItem<Item> item = ITEMS.register(
+                    part.registryPath(),
+                    () -> new CatalogNamedItem(
+                            new Item.Properties(),
+                            part.englishName(),
+                            part.chineseName()));
+            if (items.put(part.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate technological part " + part.id());
+            }
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
     public static Map<ResourceLocation, DeferredItem<BatteryBlockItem>>
             batteryItemsById() {
         return BATTERY_ITEMS;
@@ -1122,6 +1148,19 @@ public final class ModItems {
 
     public static Collection<DeferredItem<ReactorRodItem>> reactorRods() {
         return REACTOR_RODS.values();
+    }
+
+    public static Collection<DeferredItem<Item>> technologicalParts() {
+        return TECHNOLOGICAL_PARTS.values();
+    }
+
+    public static DeferredItem<Item> technologicalPart(String path) {
+        DeferredItem<Item> item = TECHNOLOGICAL_PARTS.get(
+                ResourceLocation.fromNamespaceAndPath(CrucibleCraft.MODID, path));
+        if (item == null) {
+            throw new IllegalArgumentException("Unknown technological part " + path);
+        }
+        return item;
     }
 
     public static DeferredItem<BatteryCellItem> batteryCell(String path) {

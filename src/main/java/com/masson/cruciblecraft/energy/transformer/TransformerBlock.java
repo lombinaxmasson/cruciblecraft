@@ -2,7 +2,10 @@ package com.masson.cruciblecraft.energy.transformer;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.masson.cruciblecraft.content.item.MaterialMonkeyWrenchItem;
+import com.masson.cruciblecraft.api.tool.ToolAction;
+import com.masson.cruciblecraft.api.tool.ToolInteractable;
+import com.masson.cruciblecraft.api.tool.ToolResult;
+import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 
 import net.minecraft.core.BlockPos;
@@ -13,6 +16,7 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -33,7 +37,8 @@ import net.minecraft.world.phys.BlockHitResult;
  * GT6 electric transformer: 6-way facing, monkey wrench reverses, no wrench
  * rotation. Overlay state 0/1/2 is {@code TE_Behavior_Active_Trinary}.
  */
-public final class TransformerBlock extends Block implements EntityBlock {
+public final class TransformerBlock extends Block
+        implements EntityBlock, ToolInteractable {
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static final IntegerProperty ACTIVITY =
             IntegerProperty.create("activity", 0, 2);
@@ -90,29 +95,31 @@ public final class TransformerBlock extends Block implements EntityBlock {
             Player player,
             InteractionHand hand,
             BlockHitResult hit) {
-        if (!(stack.getItem() instanceof MaterialMonkeyWrenchItem)) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        return ToolClick.useItemOn(stack, level, player, hand, hit);
+    }
+
+    @Override
+    public ToolResult useTool(ToolAction action, UseOnContext context) {
+        if (action != ToolAction.MONKEY_WRENCH) {
+            return ToolResult.PASS;
         }
+        Level level = context.getLevel();
+        Player player = context.getPlayer();
         if (!level.isClientSide
-                && level.getBlockEntity(pos)
+                && level.getBlockEntity(context.getClickedPos())
                         instanceof TransformerBlockEntity transformer) {
             transformer.toggleReversed();
-            player.displayClientMessage(
-                    Component.translatable(
-                            transformer.reversed()
-                                    ? "message.cruciblecraft.transformer.reversed"
-                                    : "message.cruciblecraft.transformer.normal"),
-                    true);
-            if (!player.getAbilities().instabuild) {
-                stack.hurtAndBreak(
-                        1,
-                        player,
-                        hand == InteractionHand.MAIN_HAND
-                                ? net.minecraft.world.entity.EquipmentSlot.MAINHAND
-                                : net.minecraft.world.entity.EquipmentSlot.OFFHAND);
+            if (player != null) {
+                player.displayClientMessage(
+                        Component.translatable(
+                                transformer.reversed()
+                                        ? "message.cruciblecraft.transformer.reversed"
+                                        : "message.cruciblecraft.transformer.normal"),
+                        true);
             }
+            ToolClick.hurt(context);
         }
-        return ItemInteractionResult.SUCCESS;
+        return ToolResult.SUCCESS;
     }
 
     @Override

@@ -41,7 +41,8 @@ python tools/verify.py release
 - 新增方块或物品但只改 registry、不改 `datagen/` 时，这次 PR 不会跑 `runData`。
   `*ResourceTest` 与 `release` 仍覆盖生成树。
 - `promotion` 只在 capability 从非 `player_complete` 晋级时运行 GameTestServer 与
-  `runClient`。普通 PR 和低风险改动不会自动启动客户端。
+  `runClient`（`--client`）。已接受卡的日常 `player-complete` profile 只跑
+  GameTest。普通 PR 和低风险改动不会自动启动客户端。
 - `release` 对当前 checkout fresh 执行 release profiles。它不读取历史报告来代替运行。
 - 每次结果写到被 Git 忽略的 `build/verification/latest.json`。报告只包含 revision、
   dirty paths、命令、测试计数、环境和 PASS/FAIL，不包含文件摘要。
@@ -57,9 +58,10 @@ policy / 可达性输入变化以及 `release` 仍全量扫描。CI 不再单独
 
 ## 即时证据
 
-`player-complete` 必须在同一次调用中运行 isolated GameTestServer 和真实 `runClient`。
-两端只向 `build/verification/receipts/` 写临时结构化 receipt；消费者验证 capability、
-runtime、状态和测试计数后即可删除。提交旧 receipt、复制旧日志或刷新时间戳均不能通过。
+`player-complete` 日常只跑 isolated GameTestServer。晋级
+（`runtime_ready → player_complete`）或显式 `--client` 才再跑真实 `runClient`。
+收据只写到 `build/verification/receipts/`；消费者验证 capability、runtime、状态
+和测试计数后即可删除。提交旧 receipt、复制旧日志或刷新时间戳均不能通过。
 
 ```powershell
 python tools/build_player_complete.py --run `

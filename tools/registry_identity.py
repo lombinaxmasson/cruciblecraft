@@ -60,6 +60,9 @@ BATH_REMAINDER = (
     / "src/main/resources/data/cruciblecraft/bath_remainder_identity_catalog.json"
 )
 MACHINE_TIERS = ROOT / "src/main/resources/data/cruciblecraft/machine_tiers.json"
+TECHNOLOGICAL_PARTS = (
+    ROOT / "src/main/resources/data/cruciblecraft/technological_parts.json"
+)
 TRANSFORMER_TIERS = (
     ROOT / "src/main/resources/data/cruciblecraft/energy_transformer_tiers.json"
 )
@@ -260,6 +263,26 @@ def collect_java_named_items(
         )
 
 
+def collect_technological_parts(records: list[dict[str, str]]) -> None:
+    if not TECHNOLOGICAL_PARTS.is_file():
+        return
+    document = io.load_json(TECHNOLOGICAL_PARTS)
+    rel = io.relative(TECHNOLOGICAL_PARTS)
+    for row in document.get("parts") or []:
+        runtime = str(row.get("id") or "")
+        path_part = str(row.get("registry_path") or runtime.split(":", 1)[-1])
+        if not runtime or not path_part:
+            continue
+        add_record(
+            records,
+            runtime_id=runtime if ":" in runtime else f"cruciblecraft:{path_part}",
+            registry_path=path_part,
+            source=rel,
+            semantic_key=f"technological_part:{path_part}",
+            display=str(row.get("english_name") or path_part),
+        )
+
+
 def collect_runtime_id_rows(
     path: Path,
     prefix: str,
@@ -370,6 +393,7 @@ def compile_manifest() -> dict[str, Any]:
     collect_identity_catalog(BATH_REMAINDER, "building_block", records)
     collect_gt_stone(records)
     collect_runtime_id_rows(MACHINE_TIERS, "machine", records, rows_key="variants")
+    collect_technological_parts(records)
     collect_runtime_id_rows(TRANSFORMER_TIERS, "transformer", records)
     collect_runtime_id_rows(BATTERY_TIERS, "battery", records)
     collect_runtime_id_rows(CONVERTER_TIERS, "converter", records)

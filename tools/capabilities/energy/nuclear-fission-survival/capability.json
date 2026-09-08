@@ -1,0 +1,99 @@
+{
+  "schema_version": 2,
+  "slug": "energy/nuclear-fission-survival",
+  "title": "Nuclear Fission Survival",
+  "maturity": "player_complete",
+  "workflow": "accepted",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/nuclear/**",
+    "src/main/java/com/masson/cruciblecraft/gametest/NuclearFissionGameTests.java",
+    "src/main/resources/data/cruciblecraft_wave_runtime_fission_survival/**",
+    "src/main/resources/data/cruciblecraft/nuclear_reactor_rods.json",
+    "src/main/resources/data/cruciblecraft/recipe/nuclear/**",
+    "src/main/resources/data/cruciblecraft/recipe/reactor_core_1x1.json",
+    "src/main/resources/data/cruciblecraft/recipe/reactor_core_2x2.json",
+    "src/main/resources/assets/cruciblecraft/gt6_fission_survival_art_manifest.json",
+    "src/test/java/com/masson/cruciblecraft/nuclear/**",
+    "tools/capabilities/energy/nuclear-fission-survival/**",
+    "tools/waves/runtime/fission-survival/**",
+    "tools/tests/test_energy_nuclear_fission_survival.py"
+  ],
+  "depends_on": [
+    "energy/transformers"
+  ],
+  "profiles": [
+    "capability-runtime",
+    "player-complete"
+  ],
+  "wave_slug": "runtime/fission-survival",
+  "legacy_readiness": "tools/waves/runtime/fission-survival/readiness.json",
+  "player_signoff": "tools/capabilities/energy/nuclear-fission-survival/player_signoff.json",
+  "required_test_ids": [
+    "breederProductTransformUsesExactTarget",
+    "cannerFillsUranium238FuelRod",
+    "cannerUnloadsTritiumAndKeepsProgressAcrossReload",
+    "centrifugeRecoversDepletedUranium238",
+    "distilledWaterProducesSteam",
+    "extruderMakesEmptyZirconiumRod",
+    "fortyEightNuclearSourceRecipesArePresent",
+    "fortySixRodsAreRegistered",
+    "insertingFuelRodStopsReactor",
+    "lowDurabilityFuelBecomesDepleted",
+    "lvCannerCraftsFromExactParts",
+    "playerSurfaceIsRegistered",
+    "reflectorNeighborReturnsNeutrons",
+    "twoByTwoCoreCraftsFromExactParts",
+    "unstoppedCoreEmitsNeutronsAtTick19",
+    "uranium238PlayerPathMakesSteamForExistingEngine"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "reactor:core",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:reactor_core_1x1",
+        "cruciblecraft:reactor_core_2x2"
+      ],
+      "reason": "GT6 1x1 / 2x2 fission cores. Distilled water to steam is the player path; hot-fluid coolants stay later."
+    },
+    {
+      "semantic_key": "reactor:rods",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:empty_reactor_rod",
+        "cruciblecraft:uranium238_fuel_rod",
+        "cruciblecraft:uranium238_depleted_rod",
+        "cruciblecraft:uranium238_breeder_rod",
+        "cruciblecraft:tritium_enriched_rod"
+      ],
+      "reason": "46 GT6 rod identities in nuclear_reactor_rods.json: 1 empty, 1 absorber, 1 reflector, 1 moderator, 17 nuclear, 17 depleted, 4 breeder, 4 product."
+    },
+    {
+      "semantic_key": "machine:canner_lv",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:canner"
+      ],
+      "reason": "GT6 MultiTileEntityCanner 20161 LV only. T2-T5 Canners are not this card."
+    },
+    {
+      "semantic_key": "reactor:hot_fluids",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "Hot tin / sodium / heavy water / helium identities and heat contracts are the next card. Distilled water to steam is the only coolant path on this card."
+    },
+    {
+      "semantic_key": "reactor:observation_safety",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "Reactor Jade, thermometer, Geiger, radiation and burn stay on the observation/safety card. 17 depleted + 4 product recoveries are on this card, not that one."
+    },
+    {
+      "semantic_key": "reactor:fusion",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "Fusion controller survival recipes, plasma fluids and fuel chains wait until fission heat contracts stabilize. 18 fusion runtime rows stay runtime_ready only."
+    }
+  ],
+  "note": "46 rods / 8 kinds / 2 cores / 48 source relations. unique_active_wave stays null. Source is local gt6_code. Recipes match GT6 after prefix/material name translation; no stand-in ingredients. Hot fluids, observation/safety, heat exchangers, turbines, coolers and fusion stay later."
+}

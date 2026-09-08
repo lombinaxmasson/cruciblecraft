@@ -67,11 +67,21 @@ public final class MaterialPrefixes {
             builtin("huge_item_pipe");
     public static final MaterialPrefix NUGGET = builtin("nugget");
     public static final MaterialPrefix GEM = builtin("gem");
+    public static final MaterialPrefix GEM_CHIPPED = builtin("gem_chipped");
+    public static final MaterialPrefix GEM_FLAWED = builtin("gem_flawed");
+    public static final MaterialPrefix GEM_FLAWLESS = builtin("gem_flawless");
+    public static final MaterialPrefix GEM_EXQUISITE = builtin("gem_exquisite");
+    public static final MaterialPrefix GEM_LEGENDARY = builtin("gem_legendary");
+    public static final MaterialPrefix BOULE = builtin("boule");
+    public static final MaterialPrefix PLATE_GEM = builtin("plate_gem");
+    public static final MaterialPrefix TINY_PLATE_GEM = builtin("tiny_plate_gem");
     public static final MaterialPrefix TINY_DUST = builtin("tiny_dust");
     public static final MaterialPrefix DUST_DIV72 = builtin("dust_div72");
     public static final MaterialPrefix MACHINE_CASING = builtin("machine_casing");
     public static final MaterialPrefix MACHINE_CASING_DOUBLE =
             builtin("machine_casing_double");
+    public static final MaterialPrefix MACHINE_CASING_DENSE =
+            builtin("machine_casing_dense");
 
     private MaterialPrefixes() {}
 

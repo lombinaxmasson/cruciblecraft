@@ -38,11 +38,12 @@ class MachineRuntimeEqualityTest {
         JsonObject document = loadCatalog();
         Set<String> catalog = ids(document, false);
         Set<String> generic = ids(document, true);
-        assertEquals(85, catalog.size());
-        assertEquals(84, generic.size());
+        assertEquals(86, catalog.size());
+        assertEquals(85, generic.size());
         assertTrue(catalog.contains("cruciblecraft:bronze_crusher"));
         assertTrue(catalog.contains("cruciblecraft:steel_roaster"));
         assertTrue(catalog.contains("cruciblecraft:coagulator"));
+        assertTrue(catalog.contains("cruciblecraft:canner"));
         assertEquals(33, catalog.stream().filter(MachineRuntimeEqualityTest::isOpeningId).count());
         Set<String> variants = ModMachineVariants.ALL.stream()
                 .map(variant -> variant.id().toString())

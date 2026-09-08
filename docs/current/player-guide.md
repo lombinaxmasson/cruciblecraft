@@ -93,8 +93,8 @@ GT 配方与 bounded dust 保真度不变。
 - 支持：1.21.1 + NeoForge ≥ 21.1.243 + Java 21；单机与 dedicated server；
 - 可选依赖：缺 EMI / Jade / KubeJS 可启动；存在时客户端加载 EMI / Jade；
 - 不支持：G10、GT6U 内容、GT6 全量 720,841 行配方移植（v1 只承诺工业主链）；
-- 裂变 / 聚变：工作树已有堆芯、棒、聚变控制器与 18 条 fusion 配方；
-  生存合成与 Track C（`nuclear_started`）仍未开，不当成可玩终局；
+- 裂变：46 棒 / 2 堆芯 / LV Canner 已 `player_complete`（U-238 蒸馏水蒸汽可喂现有蒸汽机）。
+  热流体、辐射/Jade、热交换、涡轮、冷却器与聚变生存配方仍未开，不当成可玩终局；
 - 本包是 RC，不是正式 GA，也不是 `1.0.0`；soak 只接 release blocker；
 - 反馈：https://github.com/icodestuljh/cruciblecraft/issues（附上
   版本号 + 复现步骤 + 存档/日志）。

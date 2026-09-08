@@ -34,7 +34,7 @@ class RegistryIdentityTest(unittest.TestCase):
         manifest = identity.compile_manifest()
         self.assertEqual(2, manifest["schema_version"])
         self.assertEqual("PASS", manifest["status"], manifest["errors"])
-        self.assertEqual(4357, manifest["live_entry_count"])
+        self.assertEqual(4396, manifest["live_entry_count"])
         sources = {row["source"] for row in manifest["live_entries"]}
         self.assertTrue(
             any("gt_block_object_catalog.json" in source for source in sources)

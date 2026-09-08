@@ -205,8 +205,8 @@ public final class LuPrerequisiteGameTests {
         helper.assertTrue(
                 helper.getLevel().getRecipeManager()
                         .byKey(id("machines/laser_engraver"))
-                        .isEmpty(),
-                "Laser engraver recipe was emitted without OD_CIRCUITS");
+                        .isPresent(),
+                "Missing source-backed laser engraver recipe");
         var silver = MaterialLookup.item("silver", MaterialPrefixes.PLATE)
                 .orElseThrow();
         List<ItemStack> slots = List.of(

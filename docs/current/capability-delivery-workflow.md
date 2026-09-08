@@ -68,15 +68,17 @@
   配料：该配方不算过，本能力不得晋级 `player_complete`；要么把缺件纳入
   本卡做出真物，要么保持 `runtime_ready` 并写明配方未完成。
   「创造栏能拿到」或「用已有材料 DESIGN_POLICY 生存获得」不能当完成。
-  已关闭卡上已经进游戏的替身配方（物流核心、显示 CPU）保持原样，
-  不得借本条回头改那些 JSON。电池 `B` 槽：铅酸 / 碱性 / 镍镉已由
-  [能源后续卡收口](../history/card-plans/closed/能源后续卡收口详细计划.md)
-  回收为 filled cell；锂钴 / 锂锰与 energium 仍 blocked，不得再用板、尘、
-  杆或单个电路伪造。
+  闭卡替身配方不是稳定面：真 GT6 零件一旦存在，下次碰到该格就换成真物，
+  不必另开回收卡；不得再发明新替身去保住闭卡 `player_complete`。
+  电池 `B`/`C` 槽：铅酸 / 碱性 / 镍镉 / 锂钴 / 锂锰已是 filled cell +
+  `OD_CIRCUITS[档]`。energium 仍无 GT6 shaped 表，保持 blocked，不得用板、
+  尘、杆或单个电路伪造。
 - EMI 注册与可见性（本仓库配方 UI 是 EMI，不是 JEI）
 - 创造栏归属与 `en_us` / `zh_cn` 翻译
-- 同一次 `player-complete` 调用实际运行 GameTestServer 与 `runClient`；
-  临时 receipt 位于 `build/verification/receipts/`，只供该次调用消费，不提交
+- 同一次 `player-complete` 调用实际运行隔离 GameTestServer。
+  `runClient` 只在晋级（`runtime_ready → player_complete`）或显式
+  `--client` 时强制。临时 receipt 位于 `build/verification/receipts/`，
+  只供该次调用消费，不提交
 - `required_test_ids` 固定本能力必须出现的 GameTest 方法名；receipt 的测试 ID
   集合必须与声明精确相等，删除或改名任一要求测试都会失败
 - 本能力声明不触及客户端时可由
@@ -129,11 +131,14 @@ python tools/build_player_complete.py --run --capability logistics/item-network-
 python tools/build_player_complete.py --run --capability logistics/generic-network/core
 python tools/build_player_complete.py --run --capability logistics/logistics-core
 python tools/build_player_complete.py --run --capability logistics/display-cpu
+python tools/build_player_complete.py --run --capability energy/nuclear-fission-survival
+python tools/build_player_complete.py --run --client --capability energy/nuclear-fission-survival
 python tools/verify.py integration --profile player-complete
 ```
 
-`--run` 创建临时 receipt、依次运行 isolated GameTestServer 与真实 runClient、校验
-结构化结果，然后写本地 latest report。单独的 `--check` 只做静态声明检查；它不能把
-提交库中的旧 receipt 当成玩家完成证明。
+`--run` 创建临时 receipt、运行 isolated GameTestServer、校验结构化结果，然后写
+本地 latest report。`--run --client` 再加真实 `runClient`，只给晋级用。
+单独的 `--check` 只做静态声明检查；它不能把提交库中的旧 receipt 当成玩家完成证明。
+日常 `--check` 只要 `--gametest-receipt`；`--client-receipt` 可选。
 
 `python tools/build_<slug>.py --check` 与机制卡 `*_READY` **不是** player_complete。

@@ -59,8 +59,8 @@ public final class MachineRuntimeGameTests {
                 .map(variant -> variant.id().toString())
                 .collect(Collectors.toCollection(TreeSet::new));
         helper.assertTrue(
-                catalog.containsAll(generic) && catalog.size() == 85,
-                "Machine catalog is not the frozen 85-row target");
+                catalog.containsAll(generic) && catalog.size() == 86,
+                "Machine catalog is not the frozen 86-row target");
         helper.assertTrue(
                 variants.equals(generic),
                 "generic catalog rows drifted from ModMachineVariants.ALL");

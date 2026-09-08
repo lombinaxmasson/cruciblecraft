@@ -13,6 +13,7 @@ import com.masson.cruciblecraft.content.item.GtWoodCatalog;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
+import com.masson.cruciblecraft.content.item.TechnologicalPartCatalog;
 import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverComponentTiers;
@@ -210,6 +211,7 @@ public class ModLanguageProvider extends LanguageProvider {
             addBlock(ModBlocks.STAINLESS_STEEL_WALL, "不锈钢墙");
             addBlock(ModBlocks.LARGE_IRIDIUM_COIL, "大型铱线圈");
             addReactorRodNames();
+            addTechnologicalPartNames();
             addBlock(ModBlocks.MULTIBLOCK_CASING, "通用多方块外壳");
             addBlock(ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT, "多方块物品流体端口");
             addBlock(ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT, "多方块能源输入端口");
@@ -231,6 +233,7 @@ public class ModLanguageProvider extends LanguageProvider {
                         "emi.category.cruciblecraft." + kind.id().getPath(),
                         kind.langZh());
             });
+            add("emi.category.cruciblecraft.laser_engraver", "激光雕刻机");
             add("emi.category.cruciblecraft.fuels_engine", "燃油发电");
             add("emi.category.cruciblecraft.fuels_gas", "燃气燃烧室");
             add("emi.category.cruciblecraft.fuels_fluidbed", "流化床燃烧室");
@@ -516,6 +519,7 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.STAINLESS_STEEL_WALL, "Stainless Steel Wall");
         addBlock(ModBlocks.LARGE_IRIDIUM_COIL, "Large Iridium Coil");
         addReactorRodNames();
+        addTechnologicalPartNames();
         addBlock(ModBlocks.COKE_OVEN, "Coke Oven Controller");
         addBlock(ModBlocks.MULTIBLOCK_CASING, "Multiblock Casing");
         addBlock(
@@ -1061,6 +1065,7 @@ public class ModLanguageProvider extends LanguageProvider {
         return switch (serializedName) {
             case "machine_casing" -> "Machine Casing";
             case "machine_casing_double" -> "Double Machine Casing";
+            case "machine_casing_dense" -> "Dense Machine Casing";
             default -> title(serializedName);
         };
     }
@@ -1070,6 +1075,13 @@ public class ModLanguageProvider extends LanguageProvider {
                 com.masson.cruciblecraft.nuclear.ReactorRodCatalog.entries()) {
             addItem(ModItems.reactorRod(entry.id().getPath()), rodName(entry));
         }
+    }
+
+    private void addTechnologicalPartNames() {
+        TechnologicalPartCatalog.parts().forEach(part ->
+                addItem(
+                        ModItems.technologicalPart(part.registryPath()),
+                        chinese ? part.chineseName() : part.englishName()));
     }
 
     private String rodName(

@@ -1153,6 +1153,11 @@ public final class GTRecipeMapLoader {
                 && id.getPath().startsWith("machine/bootstrap/");
     }
 
+    static boolean isNuclearRecipe(ResourceLocation id) {
+        return CrucibleCraft.MODID.equals(id.getNamespace())
+                && id.getPath().startsWith("nuclear/");
+    }
+
     public static boolean isBathRemainderCompactRecipe(ResourceLocation id) {
         return CompactWaveRecipeIds.isBathRemainderCompactRecipe(id);
     }
@@ -1377,6 +1382,8 @@ public final class GTRecipeMapLoader {
                     entry.id());
             boolean recovery = CompactWaveRecipeIds.isRoasterRecoveryRecipe(
                     entry.id());
+            boolean nuclearCanner = isNuclearRecipe(entry.id())
+                    && map == ModRecipeMaps.CANNER;
             if (chemicalRecipe && !chemicalMap) {
                 throw new IllegalArgumentException(
                         "Chemical recipe " + entry.id()
@@ -1384,11 +1391,12 @@ public final class GTRecipeMapLoader {
             }
             if (dedicatedChemicalMap && !chemicalRecipe && !hydrocarbonProcess
                     && !petroleum && !machineBootstrap && !hostCompact
-                    && !recovery) {
+                    && !recovery && !nuclearCanner) {
                 throw new IllegalArgumentException(
                         "Dedicated chemical map " + map.id()
                                 + " requires a chemical, hydrocarbon, petroleum, "
-                                + "bootstrap, or compact host recipe id: "
+                                + "bootstrap, compact host, or nuclear canner "
+                                + "recipe id: "
                                 + entry.id());
             }
             if (hydrocarbonProcess

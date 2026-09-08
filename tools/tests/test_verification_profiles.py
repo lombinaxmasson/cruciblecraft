@@ -183,7 +183,7 @@ class VerificationProfileTest(unittest.TestCase):
             any(forbidden_fragment in key.lower() for key in nested_keys(saved))
         )
 
-    def test_player_complete_builder_runs_both_runtimes_fresh(self) -> None:
+    def test_player_complete_builder_runs_game_test_fresh(self) -> None:
         row = next(
             row
             for row in self.builder_policy["builders"]
@@ -525,6 +525,7 @@ class VerificationProfileTest(unittest.TestCase):
         self.assertEqual(1, len(calls))
         self.assertIn("tools/build_player_complete.py", calls[0])
         self.assertIn("--run", calls[0])
+        self.assertIn("--client", calls[0])
 
     def test_promotion_skips_when_maturity_did_not_change(self) -> None:
         receipt = {"profiles": [], "commands": [], "results": []}

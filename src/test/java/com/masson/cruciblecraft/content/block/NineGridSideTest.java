@@ -164,8 +164,8 @@ class NineGridSideTest {
         assertTrue(
                 connections.contains("holdingMatchingTool")
                         && connections.contains("Shapes.block()")
-                        && connections.contains("MaterialWireCutterItem")
-                        && connections.contains("MaterialWrenchItem"));
+                        && connections.contains("ToolAction.WIRE_CUTTER")
+                        && connections.contains("expandsPipeGrid"));
         String overlay = java.nio.file.Files.readString(
                 java.nio.file.Path.of(
                         "src/main/java/com/masson/cruciblecraft/client/render/ConnectionGridOverlay.java"));

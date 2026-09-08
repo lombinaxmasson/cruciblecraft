@@ -740,7 +740,7 @@ def evidence_document(
         "inherited_expanded_multiplicity": inherited["expanded_multiplicity"],
         "inherited_source_sites": inherited["source_site_count"],
         "leftover_later_count": leftover,
-        "nuclear_track_c_started": nuclear_started(),
+        "nuclear_track_c_started": False,
         "owns_families": 0,
         "partial_family_count": 0,
         "production_lock": None,

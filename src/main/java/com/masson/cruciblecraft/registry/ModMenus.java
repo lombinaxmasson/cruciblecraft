@@ -125,6 +125,10 @@ public final class ModMenus {
             ROASTER = processing("roaster", ModProcessingMachines.ROASTER);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
             COAGULATOR = processing("coagulator", ModProcessingMachines.COAGULATOR);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            CANNER = processing("canner", ModProcessingMachines.CANNER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            LASER_ENGRAVER = processing("laser_engraver", ModProcessingMachines.LASER_ENGRAVER);
 
     static {
         validateProcessingMenuMapping(

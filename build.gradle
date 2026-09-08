@@ -271,6 +271,19 @@ def normalizeResourceJsonNewlines = tasks.register(
     }
 }
 
+def restorePythonBlockArt = tasks.register('restorePythonBlockArt', Exec) {
+    group = 'verification'
+    description = 'Restores Python-owned gt_block/gt_stone models after runData HashCache.'
+    commandLine 'python', 'tools/build_block_art.py', '--write'
+    workingDir rootDir
+    onlyIf {
+        def isolated = providers.gradleProperty('datagenOutput')
+        !isolated.isPresent() ||
+                file(isolated.get()).canonicalFile ==
+                file('src/generated/resources').canonicalFile
+    }
+}
+
 tasks.named('runData').configure {
     doFirst {
         // Isolated runs may wipe their own output directory. The committed
@@ -285,21 +298,7 @@ tasks.named('runData').configure {
             }
         }
     }
-    doLast {
-        // HashCache drops previously Java-emitted gt_block/gt_stone models
-        // when this run only references Python files via getExistingFile.
-        def isolated = providers.gradleProperty('datagenOutput')
-        def committed = file('src/generated/resources')
-        def isolatedRun = isolated.isPresent() &&
-                file(isolated.get()).canonicalFile != committed.canonicalFile
-        if (!isolatedRun) {
-            exec {
-                commandLine 'python', 'tools/build_block_art.py', '--write'
-                workingDir rootDir
-            }
-        }
-    }
-    finalizedBy normalizeResourceJsonNewlines
+    finalizedBy restorePythonBlockArt, normalizeResourceJsonNewlines
 }
 
 // Sets up a dependency configuration called 'localRuntime'.

@@ -55,6 +55,15 @@ ASSETS = ROOT / "src" / "main" / "resources" / "assets" / "cruciblecraft"
 VOLTAGES = (8, 32, 128, 512, 2048, 8192)
 VOLTAGE_NAMES = ("ulv", "lv", "mv", "hv", "ev", "iv")
 CABLE_MATERIALS = ("lead", "tin", "copper", "gold", "aluminium", "aluminium")
+CIRCUIT_BY_OD = {
+    1: "circuit_basic",
+    2: "circuit_good",
+    3: "circuit_advanced",
+    4: "circuit_elite",
+    5: "circuit_master",
+    6: "circuit_ultimate",
+}
+CIRCUIT_RE = re.compile(r"'C',\s*OD_CIRCUITS\[(\d+)\]")
 
 KIND_BY_SOURCE: dict[int, str] = {}
 for start, kind in (
@@ -70,11 +79,9 @@ for start, kind in (
     for offset in range(count):
         KIND_BY_SOURCE[start + offset] = kind
 
-# DESIGN_POLICY: GT6 B-slot is IL.Battery_*_Cell_Filled (items 20000-20009),
-# which CC does not register. "cell" here is the chemistry stand-in, not the
-# real cell. Capability keys: battery_part:filled_cell (blocked),
-# recipe:energium_crystal_shaped (blocked). Pattern and P=battery_alloy plate
-# stay SOURCE_BACKED.
+# B-slot is IL.Battery_*_Cell_Filled (items 20000-20009). Fill remains
+# FluidContainerData, so battery_part:filled_cell still tracks that gap.
+# recipe:energium_crystal_shaped stays blocked. C is OD_CIRCUITS[tier].
 KIND_META: dict[str, dict[str, Any]] = {
     "lead_acid_battery": {
         "energy": "EU",
@@ -85,7 +92,7 @@ KIND_META: dict[str, dict[str, Any]] = {
         "lang_en": "Lead-Acid Battery",
         "lang_zh": "铅酸电池",
         "gt6_class": "MultiTileEntityBatteryEU",
-        "cell": {"prefix": "plate", "material": "lead"},
+        "cell": {"item": "cruciblecraft:lead_acid_cell_filled"},
     },
     "alkaline_battery": {
         "energy": "EU",
@@ -96,7 +103,7 @@ KIND_META: dict[str, dict[str, Any]] = {
         "lang_en": "Alkaline Battery",
         "lang_zh": "碱性电池",
         "gt6_class": "MultiTileEntityBatteryEU",
-        "cell": {"prefix": "dust", "material": "zinc"},
+        "cell": {"item": "cruciblecraft:alkaline_cell_filled"},
     },
     "nickel_cadmium_battery": {
         "energy": "EU",
@@ -107,7 +114,7 @@ KIND_META: dict[str, dict[str, Any]] = {
         "lang_en": "Nickel-Cadmium Battery",
         "lang_zh": "镍镉电池",
         "gt6_class": "MultiTileEntityBatteryEU",
-        "cell": {"prefix": "plate", "material": "nickel"},
+        "cell": {"item": "cruciblecraft:nickel_cadmium_cell_filled"},
     },
     "lithium_cobalt_battery": {
         "energy": "EU",
@@ -118,7 +125,7 @@ KIND_META: dict[str, dict[str, Any]] = {
         "lang_en": "Lithium-Cobalt Battery",
         "lang_zh": "锂钴电池",
         "gt6_class": "MultiTileEntityBatteryAdvEU",
-        "cell": {"prefix": "rod", "material": "cobalt"},
+        "cell": {"item": "cruciblecraft:lithium_cobalt_cell_filled"},
     },
     "lithium_manganese_battery": {
         "energy": "EU",
@@ -129,7 +136,7 @@ KIND_META: dict[str, dict[str, Any]] = {
         "lang_en": "Lithium-Manganese Battery",
         "lang_zh": "锂锰电池",
         "gt6_class": "MultiTileEntityBatteryAdvEU",
-        "cell": {"prefix": "dust", "material": "pyrolusite"},
+        "cell": {"item": "cruciblecraft:lithium_manganese_cell_filled"},
     },
     "red_energium_crystal": {
         "energy": "LU",
@@ -226,7 +233,14 @@ def parse_eu_recipe(rest: str, kind: str, tier: int) -> dict[str, Any]:
     if "W" in letters:
         keys["W"] = {"prefix": "cable", "material": CABLE_MATERIALS[tier]}
     if "C" in letters:
-        keys["C"] = {"item": "cruciblecraft:programmed_circuit"}
+        circuit = CIRCUIT_RE.search(tail)
+        if circuit is None:
+            raise SystemExit(f"{kind} has C but no OD_CIRCUITS[tier]")
+        od = int(circuit.group(1))
+        path = CIRCUIT_BY_OD.get(od)
+        if path is None:
+            raise SystemExit(f"{kind} uses unknown OD_CIRCUITS[{od}]")
+        keys["C"] = {"item": f"cruciblecraft:{path}"}
     missing = letters - set(keys)
     if missing:
         raise SystemExit(f"{kind} recipe has unmapped keys {missing}")

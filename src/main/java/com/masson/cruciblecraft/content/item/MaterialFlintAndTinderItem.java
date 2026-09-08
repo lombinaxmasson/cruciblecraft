@@ -29,6 +29,10 @@ public final class MaterialFlintAndTinderItem extends MaterialToolItem {
 
     @Override
     public InteractionResult useOn(UseOnContext context) {
+        InteractionResult tool = super.useOn(context);
+        if (tool.consumesAction()) {
+            return tool;
+        }
         if (!canApplyDurabilityDamage(context.getItemInHand())) {
             return InteractionResult.PASS;
         }

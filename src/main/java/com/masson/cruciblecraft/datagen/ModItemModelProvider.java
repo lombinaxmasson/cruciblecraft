@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.datagen;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
+import com.masson.cruciblecraft.content.item.TechnologicalPartCatalog;
 import com.masson.cruciblecraft.content.item.GtWoodCatalog;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverComponentTiers;
@@ -174,6 +175,8 @@ public class ModItemModelProvider extends ItemModelProvider {
                             "layer1",
                             modLoc("item/gt6_import/reactor_rod_overlay"));
         }
+        TechnologicalPartCatalog.parts().forEach(part ->
+                generatedImportedGt6(part.registryPath(), part.texture()));
         ModBlocks.pipeBlocks().forEach(holder -> {
             var pipe = holder.get().pipe();
             String modelKey = pipe.kind().name().toLowerCase(

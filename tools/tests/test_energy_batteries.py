@@ -128,6 +128,7 @@ class EnergyBatteriesCardTest(unittest.TestCase):
         self.assertTrue((CLOSED / "能量转换机目录详细计划.md").is_file())
         self.assertTrue((CLOSED / "能量系统余量详细计划.md").is_file())
         self.assertTrue((CLOSED / "显示CPU详细计划.md").is_file())
+        self.assertTrue((CLOSED / "裂变生存闭环与全量棒堆芯详细计划.md").is_file())
 
     def test_plan_uses_local_gt6_code_not_github_fetch(self) -> None:
         text = PLAN.read_text(encoding="utf-8")

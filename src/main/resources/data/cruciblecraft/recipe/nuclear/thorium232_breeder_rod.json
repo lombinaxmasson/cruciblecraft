@@ -1,0 +1,32 @@
+{
+  "type": "cruciblecraft:gt_recipe",
+  "map": "cruciblecraft:canner",
+  "duration": 16,
+  "eut": 16,
+  "can_be_buffered": true,
+  "item_inputs": [
+    {
+      "item": "cruciblecraft:thorium/bolt"
+    },
+    {
+      "item": "cruciblecraft:empty_reactor_rod"
+    }
+  ],
+  "item_input_counts": [
+    4,
+    1
+  ],
+  "item_outputs": [
+    {
+      "id": "cruciblecraft:thorium232_breeder_rod",
+      "count": 1
+    }
+  ],
+  "output_chances": [
+    10000
+  ],
+  "provenance": {
+    "selected_source_recipe": "nuclear/thorium232_breeder_rod",
+    "source_kind": "gt6_source"
+  }
+}

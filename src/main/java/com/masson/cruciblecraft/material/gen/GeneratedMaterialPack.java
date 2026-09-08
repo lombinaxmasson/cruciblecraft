@@ -885,11 +885,15 @@ public final class GeneratedMaterialPack {
     private static boolean isPlaceableCasing(
             MaterialDefinition material, MaterialPrefix form) {
         return (form.equals(MaterialPrefixes.MACHINE_CASING)
-                || form.equals(MaterialPrefixes.MACHINE_CASING_DOUBLE))
+                || form.equals(MaterialPrefixes.MACHINE_CASING_DOUBLE)
+                || form.equals(MaterialPrefixes.MACHINE_CASING_DENSE))
                 && !material.formItems().containsKey(form);
     }
 
     private static String casingEnglish(MaterialPrefix form) {
+        if (form.equals(MaterialPrefixes.MACHINE_CASING_DENSE)) {
+            return "Dense Machine Casing";
+        }
         return form.equals(MaterialPrefixes.MACHINE_CASING_DOUBLE)
                 ? "Double Machine Casing"
                 : "Machine Casing";

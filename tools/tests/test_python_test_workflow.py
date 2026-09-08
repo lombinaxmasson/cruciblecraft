@@ -158,6 +158,7 @@ class PythonTestWorkflowTest(unittest.TestCase):
                 "test_energy_converter_catalog",
                 "test_energy_batteries",
                 "test_energy_transformers",
+                "test_energy_nuclear_fission_survival",
                 "test_logistics_core",
                 "test_display_cpu",
                 "test_verification_profiles",

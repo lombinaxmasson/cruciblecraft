@@ -625,10 +625,10 @@ class ProcessingAdaptersTest {
         for (ProcessingMachineSpec spec : List.of(
                 ModProcessingMachines.EXTRUDER,
                 ModProcessingMachines.WIREMILL,
-                ModProcessingMachines.WELDER,
-                ModProcessingMachines.PRESS)) {
+                ModProcessingMachines.WELDER)) {
             assertEquals(2, spec.items().inputs().size());
         }
+        assertEquals(3, ModProcessingMachines.PRESS.items().inputs().size());
         assertEquals(6, ModProcessingMachines.ASSEMBLER.items().inputs().size());
         assertEquals(1, ModProcessingMachines.ASSEMBLER.fluids().inputs().size());
         assertEquals(1, ModProcessingMachines.WELDER.fluids().inputs().size());

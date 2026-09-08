@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -92,9 +93,31 @@ class WorkbenchToolRecipePlanTest {
         assertTrue(paths.contains("tools/granite/smithing_hammer"));
         assertTrue(paths.contains("tools/andesite/pickaxe"));
         assertTrue(paths.contains("tools/flint_pickaxe"));
+        assertTrue(paths.contains("prefix/boule2plate_gem/redstone_alloy"));
+        assertTrue(paths.contains("prefix/plate_gem2tiny/redstone_alloy"));
+        assertTrue(paths.contains("prefix/boule2plate_gem/silicon"));
+        assertTrue(paths.contains("prefix/plate_gem2tiny/silicon"));
+        assertTrue(paths.contains("prefix/flawless2plate_gem/diamond"));
+        assertTrue(paths.contains("prefix/gem2tiny_plate_gem/diamond"));
+        assertTrue(paths.contains("prefix/plate_gem2tiny/diamond"));
         assertTrue(paths.contains("tools/flint/pickaxe"));
         assertFalse(paths.contains("tools/wood/pickaxe"));
         assertEquals(17, assemblies.size());
+        for (var recipe : plan) {
+            Set<String> keys = new HashSet<>();
+            keys.addAll(recipe.ingredients().keySet());
+            keys.addAll(recipe.catalysts().keySet());
+            for (String row : recipe.pattern()) {
+                for (int index = 0; index < row.length(); index++) {
+                    String symbol = String.valueOf(row.charAt(index));
+                    if (!" ".equals(symbol)) {
+                        assertTrue(
+                                keys.contains(symbol),
+                                recipe.path() + " missing symbol " + symbol);
+                    }
+                }
+            }
+        }
 
         if ("true".equalsIgnoreCase(System.getenv("WRITE_WORKBENCH_TOOLS"))) {
             for (var recipe : plan) {

@@ -97,6 +97,14 @@ public final class ModCapabilities {
                 ModBlockEntities.LASER_ENGRAVER.get(),
                 (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.LASER_ENGRAVER.get(),
+                (blockEntity, side) -> blockEntity.items(side));
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.LASER_ENGRAVER.get(),
+                (blockEntity, side) -> blockEntity.fluids(side));
+        event.registerBlockEntity(
                 ENERGY,
                 ModBlockEntities.FUSION_REACTOR.get(),
                 (blockEntity, side) -> blockEntity);

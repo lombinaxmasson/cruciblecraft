@@ -1,12 +1,15 @@
 # 冻结与未实现账本
 
 > 现行人读索引，不是 production authority。
-> 最后核对：2026-09-06（已关闭「生成资源、注册与 Jade 第一切片」；无 unique active
-> 内容卡；机器可读 `unique_active_wave = null`；下一条内容候选仍是裂变基础生存闭环，
-> 须另签发；变压器 / 能源后续已关；电转换等为 `runtime_ready`；
-> `nuclear_started = false`；电池 `player_complete` 已关；
+> 最后核对：2026-09-08（已关闭
+> [裂变生存闭环与全量棒堆芯](../history/card-plans/closed/裂变生存闭环与全量棒堆芯详细计划.md)
+> ，`player_complete`；当前无 unique-active 内容卡，机器可读
+> `unique_active_wave = null`；
+> 变压器 / 能源后续已关；电转换等为 `runtime_ready`；
+> 本波 `nuclear_started = true`，tracks.C `started = true`，growth-order 仍 false；电池 `player_complete` 已关；
 > 转换机目录 169 行 `player_complete`，活 JSON 179；census Batteries 仍 37/37
-> `requires_new_runtime`）。
+> `requires_new_runtime`。手持工具余量见第 5 节：非电工作台多数已注册，
+> 世界行为 / 电动 / 枪 / 放大镜仍缺）。
 > 读法：机制卡 `*_READY` 只记录当时冻结的分母和可行性，不证明游戏里有这些东西。
 > 状态词三套互不替代：`frozen` / `runtime_ready` / `player_complete`。
 > 路线图进度只计 `player_complete` 声明与当前 revision 的 fresh profile PASS，见
@@ -56,7 +59,7 @@
   -> 变压器（已关；9 电变压器 `10040–10048`；`energy/transformers` `player_complete`）
   -> 电能转换（已关；10 台 EU→HU / EU→KU；`runtime_ready`）
   -> LU 骨架（已关；光纤可合成；雕刻机配方 blocked）
-  -> 核电裂变（已关；堆芯 + 46 棒 runtime；`nuclear_started = false`；配方 blocked）
+  -> 核电裂变（已关；46 棒 / 2 堆芯 / 48 关系 `player_complete`；热流体仍后继）
   -> 聚变 / 等离子（已关；18 条 fusion；等离子空图；控制器配方 blocked）
   -> 电池芯回收（已关；十件芯；3 族空芯 + `B` 槽；LiCo/LiMn/energium 仍 blocked）
   -> Trees
@@ -66,16 +69,17 @@
   -> 维度策略 / Bees / Portals / Center
 ```
 
-**候选队列与当前计划卡（2026-09-06 判断）**。上面的长链保留已关闭
+**候选队列与当前计划卡（2026-09-07 判断）**。上面的长链保留已关闭
 交付历史和大领域关系；真正选择下一项时按下面的短队列。候选队列第 1、2 项已经
 关闭为
 [配方加载与 EMI 稳定性](../history/card-plans/closed/配方加载与EMI稳定性详细计划.md)；
 它只修了配方加载 / EMI / reload / bake runtime，不创建内容 family。
 候选队列第 3、4 项现已关闭为
 [生成资源、注册与 Jade 第一切片](../history/card-plans/closed/生成资源注册与Jade第一切片详细计划.md)；
-机器可读 `unique_active_wave` 仍为 `null`。下面保留剩余候选
-的原序号；每项启动时仍须重新定范围、owned paths 和验收门，不合成大卡。
-不自动签发第 5 项。
+第 5 项现已关闭为
+[裂变生存闭环与全量棒堆芯](../history/card-plans/closed/裂变生存闭环与全量棒堆芯详细计划.md)
+`player_complete`，机器可读 `unique_active_wave = null`；
+其余候选保持未分配。
 
 1. **已关闭：配方数据正确性与 EMI 重复注册**：RecipeManager 解析错误归零（fluidbed
    无效行改为 source-backed `blocked`，不再伪造 chance / stand-in），校验
@@ -92,15 +96,15 @@
 4. **已关闭：既有机器 Jade 第一切片**：先统一已有数据合同，补坩埚的 K、HU、熔毁点、填充度、
    渲染/内容/缓存槽，以及变压器升降压模式和各面高低压。它不等待核能，也不扩成全机器
    GUI 卡。follow-up family 仍记在 Jade matrix。
-5. **裂变基础生存闭环**：正式开 realization lane 时才把 `nuclear_started` 改为 true；
-   冻结本地 GT6 来源，做真实 Canner host/语义、1×1/2×2 堆芯和 46 棒的精确配方，
-   闭合蒸馏水→蒸汽的基础玩家路径。缺失零件只允许纳入本切片做成真实对象，或继续
-   `blocked`，不得用其它材料、形态或单个电路顶替。
+5. **已关闭：裂变生存闭环与全量棒堆芯**：固定 46 棒 / 8 kind /
+   2 堆芯 / 48 条核内容关系已 `player_complete`。真实 LV Canner、1×1/2×2 堆芯、空棒、
+   24 条装棒及 21 条 depleted/product 后处理已落地；U-238→蒸汽是最低玩家纵向门。
 6. **裂变热流体与热量合同**：注册热锡、热钠、热重水、热氦等独立身份，钉死冷却剂
-   转换、温度/HU、熔毁阈值和存档语义；不再用同流体 1:1 倒罐冒充热态。
-7. **裂变观测、安全与后处理**：补 Reactor Jade/温度计/Geiger 读数、辐射和烫伤及
-   防护语义，再接乏棒/产物棒 7 条离心。是否做专用 GUI 在数据合同稳定后单独决定；
-   GT6 工具/管道交互足够时不强制为了“完整”造 GUI。
+   转换、温度/HU、熔毁阈值和存档语义；不再用同流体 1:1 倒罐冒充热态。不自动签发。
+7. **裂变观测与安全**：补 Reactor Jade/温度计/Geiger 读数、辐射和烫伤及
+   防护语义。乏棒/产物棒 17 + 4 条后处理已并入第 5 项，不在本项重复认领。
+   是否做专用 GUI 在数据合同稳定后单独决定；GT6 工具/管道交互足够时不强制
+   为了“完整”造 GUI。
 8. **热力机器逐台闭环**：优先热交换器，再按来源依赖分别做蒸汽涡轮和冷却器；每台
    独立验收输入流体、HU/KU/RU 能量语义、结构、转子/零件、配方和玩家用途，不绑定成
    一张核电大卡。
@@ -110,7 +114,8 @@
 10. **聚变 / 等离子**：等裂变与热力合同稳定后再开；控制器生存配方、等离子独立流体
     和燃料/输出链都必须有来源，不因已有 18 条 fusion runtime 就提前宣称完成。
 
-若前项测量证明没有阻塞，后项可以重新排序；第 1–4 项已关，第 5 项仍是下一条核裂变内容候选，聚变仍位于裂变和热力合同之后。不自动签发第 5 项。
+若前项测量证明没有阻塞，后项可以重新排序；第 1–5 项已关，
+聚变仍位于热力合同之后。不自动签发第 6 项。
 
 `fuels_fluidbed` 现只发 6 条可加载配方。其余 49 条记在
 `tools/energy_converter_fluidbed_blocked.json`（11 条 GT6 item 未映射，38 条
@@ -118,7 +123,10 @@ fail-closed，含未注册 `dust_div72` / 灰形态，以及 GT6 `needsOutputs: 
 的无输出燃料）。这不是新 recipe family，不得用 stand-in 顶替；要真实形态或
 另立 outputless 燃料模型。
 
-当前没有 unique active 内容卡。已关闭
+当前没有 human-readable unique-active 内容卡。已关闭
+[裂变生存闭环与全量棒堆芯](../history/card-plans/closed/裂变生存闭环与全量棒堆芯详细计划.md)
+（`player_complete`）；机器可读 `unique_active_wave = null`，
+本波 `nuclear_started = true`。已关闭
 [生成资源、注册与 Jade 第一切片](../history/card-plans/closed/生成资源注册与Jade第一切片详细计划.md)。
 机器可读 `unique_active_wave` 仍为 `null`。已关闭
 [配方加载与 EMI 稳定性](../history/card-plans/closed/配方加载与EMI稳定性详细计划.md)
@@ -143,7 +151,7 @@ fail-closed，含未注册 `dust_div72` / 灰形态，以及 GT6 `needsOutputs: 
 已关闭
 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
 为四件状态盖板 `player_complete`。
-机器可读 `unique_active_wave = null`；`next_unassigned = true`。现行已声明
+机器可读 `unique_active_wave = null`；裂变生存卡已 `player_complete`。现行已声明
 `player_complete` 的物流能力是
 `logistics/fluid-network/basic-transfer`、
 `logistics/item-network-core`、
@@ -177,28 +185,30 @@ Dump 盖板是标记（无优先级）；搬运在 Core tick 的最后一档，�
 [紧凑配方传输编解码](../history/card-plans/closed/紧凑配方传输编解码详细计划.md)
 为 `COMPACT_RECIPE_WIRE_CODEC_READY`。Dump / Logistics Core 已关。已关闭
 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
-为四件状态盖板 `player_complete`。当前没有 unique active 内容卡。已关闭
+为四件状态盖板 `player_complete`。当前没有 unique-active 内容卡。已关闭
+[裂变生存闭环与全量棒堆芯](../history/card-plans/closed/裂变生存闭环与全量棒堆芯详细计划.md)
+（`player_complete`），机器可读 `unique_active_wave = null`。已关闭
 [生成资源、注册与 Jade 第一切片](../history/card-plans/closed/生成资源注册与Jade第一切片详细计划.md)。
 机器可读 `unique_active_wave` 仍为 `null`。已关闭
 [变压器](../history/card-plans/closed/变压器详细计划.md)。已关闭
 [能源后续卡收口](../history/card-plans/closed/能源后续卡收口详细计划.md)。
 
-**核电体积**（纠正「大后期」读法）。`nuclear_started` 仍为 false，Track C
-不因此自动开工。裂变堆芯 / 邻棒 / 聚变双能宿主已在能源卡落地；堆芯与聚变
-控制器配方、棒 Canner、等离子流体仍 blocked。
+**核电体积**（纠正「大后期」读法）。`nuclear_started` 仍为 false；裂变
+realization 卡已经人工签发，但实施尚未开始。裂变堆芯 / 邻棒 / 聚变双能宿主
+已在能源卡落地；堆芯与聚变控制器配方、棒 Canner、等离子流体仍 blocked。
 
 | 项 | 分母 | 读法 |
 | --- | --- | --- |
-| Reactors（排除表） | 46 | 八类棒已注册；棒配方仍 blocked |
-| 堆芯 | 1×1 + 2×2 | 已注册；配方仍缺 `OD_CIRCUITS[5]` / 活塞档 |
-| leftover 离心 | 7 family | 废棒 / 产物棒回收；host 已有 |
+| Reactors（排除表） | 46 | 八类棒已注册；当前卡固定其全量行为与生命周期 |
+| 堆芯 | 1×1 + 2×2 | 当前卡固定两者；配方仍缺 `OD_CIRCUITS[5]` / 活塞档 |
+| 棒后处理 | 17 depleted + 4 product | 当前卡按 GT6 20 条 centrifuge + 1 条 tritium Canner relation 实现；历史 7 family 只是压缩口径 |
 | 聚变堆 | 1 controller | 控制器 + 钨钢墙 / 不锈钢墙 / 铱线圈已注册；19×19 八边形零件计数对齐 tooltip；不在 7×7 GameTest 里搭整机；控制器配方仍 blocked |
 | `gt.recipe.fusionreactor` | 18 | 已发布到 `cruciblecraft:fusion`；`ST.tag(1)/(2)` → `programmed_circuit` + `CIRCUIT_CONFIG` PRESERVE |
 | 无中子聚变电池 | 2 | T35 `14600` / `14601` |
 | `gt.recipe.fuels.plasma` | 0 | `fuels_plasma` 空图；不发明等离子流体 |
 | massfab / replicator | 920 / 895 | Track C 邻居，**不是**聚变配方 |
 
-裂变配方仍 gated：`nuclear_started = false`，不发堆芯/棒合成。
+裂变生存配方已 `player_complete`。热流体 / 观测安全 / 热力机器 / 聚变仍未开。
 聚变不发明等离子燃料；化学态仍只有 LIQUID/GAS。
 
 `smelter` 曾错绑 GT6 `MultiTileEntitySmeltery` 小锅（与 T34 坩埚同一套几何）。
@@ -235,12 +245,12 @@ topology 预分配 implementation child。不想要的类在 realization 卡标
 
 | 人类名 | slug / `--check` | 冻了什么 | 判定 | 可行性文件 |
 | --- | --- | --- | --- | --- |
-| 物流封面网 | `portfolio/logistics-cover-net-r0` | 7 个 kind：`logistics_item_storage` / `transfer`、`logistics_fluid_storage` / `transfer`、`logistics_generic_storage` / `transfer` / `dump` | **部分实现**。仓储/导入/导出盖板已 `player_complete`：[`logistics/item-network-core`](capability-delivery-workflow.md)、[`logistics/fluid-network/basic-transfer`](capability-delivery-workflow.md)、[`logistics/generic-network/core`](../history/card-plans/closed/通用网络核心详细计划.md)。Dump 与 `logistics_core` 已由 [`logistics/logistics-core`](../history/card-plans/closed/物流核心详细计划.md) `player_complete`。`dump_policy` 见 [物流封面网余量](../history/card-plans/closed/物流封面网余量详细计划.md)：Dump 是 Core 最后一档物品溢出，不是 Generic 管网盖板。不得把 Display CPU 算进这七 kind，也不得把本行从本节删掉。Display CPU 已由 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md) `player_complete`。当前 unique active 为空。 | [`feasibility.json`](../../tools/waves/portfolio/logistics-cover-net-r0/feasibility.json) |
+| 物流封面网 | `portfolio/logistics-cover-net-r0` | 7 个 kind：`logistics_item_storage` / `transfer`、`logistics_fluid_storage` / `transfer`、`logistics_generic_storage` / `transfer` / `dump` | **部分实现**。仓储/导入/导出盖板已 `player_complete`：[`logistics/item-network-core`](capability-delivery-workflow.md)、[`logistics/fluid-network/basic-transfer`](capability-delivery-workflow.md)、[`logistics/generic-network/core`](../history/card-plans/closed/通用网络核心详细计划.md)。Dump 与 `logistics_core` 已由 [`logistics/logistics-core`](../history/card-plans/closed/物流核心详细计划.md) `player_complete`。`dump_policy` 见 [物流封面网余量](../history/card-plans/closed/物流封面网余量详细计划.md)：Dump 是 Core 最后一档物品溢出，不是 Generic 管网盖板。不得把 Display CPU 算进这七 kind，也不得把本行从本节删掉。Display CPU 已由 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md) `player_complete`。当前没有 unique-active 内容卡。 | [`feasibility.json`](../../tools/waves/portfolio/logistics-cover-net-r0/feasibility.json) |
 | Panels | `portfolio/exclusion-reclaim-r0` | 6 sites / 348 expanded | `requires_new_runtime` | [`feasibility.json`](../../tools/waves/portfolio/exclusion-reclaim-r0/feasibility.json) |
 | Sensors | 同上 | 21 / 21 | `requires_new_runtime` | 同上 |
 | Portals | 同上 | 19 / 19 | `requires_new_runtime` | 同上 |
 | Batteries | 同上 | 37 / 37 | `requires_new_runtime`。已关闭 [`energy/batteries`](../history/card-plans/closed/电池详细计划.md) 已进游戏并 `player_complete`；本行冻结表不得删。十件芯已注册；铅酸 / 碱性 / 镍镉空芯与 `B` 槽已回收。锂钴 / 锂锰空芯与 energium shaped 仍 blocked。 | 同上 |
-| Reactors | 同上 | 46 / 46 | `defer_to_portfolio` → `portfolio/nuclear`；`nuclear_started = false`。**部分实现**：堆芯与 46 棒已注册（`runtime_ready`），配方仍 blocked。见 [能源后续卡收口](../history/card-plans/closed/能源后续卡收口详细计划.md)。 | 同上 |
+| Reactors | 同上 | 46 / 46 | `defer_to_portfolio` → `portfolio/nuclear`。**已关闭 realization**：[裂变生存闭环与全量棒堆芯](../history/card-plans/closed/裂变生存闭环与全量棒堆芯详细计划.md) 48/48 `player_complete`。growth-order `nuclear_started` 仍 false。 | 同上 |
 | 非矿树 | `portfolio/non-ore-worldgen-r0` | `WorldgenTree*` 9 | `requires_new_runtime` | [`feasibility.json`](../../tools/waves/portfolio/non-ore-worldgen-r0/feasibility.json) |
 | 非矿地牢 | 同上 | `WorldgenDungeonGT` 1 | `requires_new_runtime` | 同上 |
 | 非矿行星岩 | 同上 | moon / mars / planet rocks 3 | `requires_new_runtime` | 同上 |
@@ -266,9 +276,9 @@ topology 预分配 implementation child。不想要的类在 realization 卡标
 
 | 项 | 在哪 | 现状 |
 | --- | --- | --- |
-| 核能 Track C | growth-order 第五轨 `portfolio/nuclear`；leftover 7 条 centrifuge；排除表 Reactors 已 defer 到这里 | `nuclear_started = false`。堆芯/棒 runtime 已落地，配方仍 blocked。未指定 `next_major` 前不自动开 Track C |
+| 核能 Track C | growth-order 第五轨 `portfolio/nuclear`；历史 leftover 7 family；排除表 Reactors 已 defer 到这里 | 已关闭 [裂变生存闭环与全量棒堆芯](../history/card-plans/closed/裂变生存闭环与全量棒堆芯详细计划.md) `player_complete`；phase5 tracks.C `started = true`；growth-order `nuclear_started` 仍 false |
 | 变压器 | capability map `GT6 transformers` | 电 `10040–10048` 已 [`energy/transformers`](../history/card-plans/closed/变压器详细计划.md) `player_complete`。长距 `10064–10068` 与齿轮箱不在该卡 |
-| 电池芯 / 灌液格 | GT6 `IL.Battery_*_Cell_Empty/Filled`，`MultiItemTechnological` `20000–20009` | 十件芯已注册；铅酸 / 碱性 / 镍镉空芯与 `B` 槽已回收。锂钴 / 锂锰缺 `OD_CIRCUITS[4]`/`[6]`，Canner 灌液表仍缺。能力键 `battery_part:filled_cell`。LU 晶体无 GT6 合成表（`recipe:energium_crystal_shaped`）。不并进变压器卡 |
+| 电池芯 / 灌液格 | GT6 `IL.Battery_*_Cell_Empty/Filled`，`MultiItemTechnological` `20000–20009` | 十件芯已注册；五族空芯与 EU 电池 `B`/`C` 槽已回收。Canner 灌液表仍缺。能力键 `battery_part:filled_cell`。LU 晶体无 GT6 合成表（`recipe:energium_crystal_shaped`）。不并进变压器卡 |
 | 建筑方块 identity | `GT6 building-block item/block identities` | 从未 R0 |
 | 建筑方块 behavior | hardness / multiblock parts / decorative machines | 从未 R0 |
 | Display CPU / 其余未认领域 | seed「misc systems…」 | 四件 Display CPU 状态盖板已 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md) `player_complete`。misc 其余仍 none。R0 `display_cpu_out_of_scope` 不改 |
@@ -288,7 +298,7 @@ topology 预分配 implementation child。不想要的类在 realization 卡标
 | 桶 | 条数 | 读法 |
 | --- | --- | --- |
 | `later:assembler_combinatorial` + `later:electrolyzer_combinatorial` | 4 | 导入器能力已有，`content_owner = post_generator/combinatorial-family-intake`，`started = false`。要进游戏仍要内容卡 + production lock |
-| `post_1x:nuclear` | 7 | 跟核能轨走，不跟 1.x census 走 |
+| `post_1x:nuclear` | 7 family | 已由当前裂变卡认领并展开为 GT6 Java 的 17 depleted + 4 product 后处理关系；不跟 1.x census 走 |
 | 28 条 post-1.x recycling / autoclave / smelter edge / pahoehoe 等 | 28 | 1.x 已独立 scope。不是漏做的 ordinary 尾账 |
 
 ---
@@ -308,7 +318,79 @@ topology 预分配 implementation child。不想要的类在 realization 卡标
 
 ---
 
-## 5. 本页怎么更新
+## 5. 工作台与手持工具余量
+
+对照 `gt6_code/gregtech6/.../Loader_Tools.java` 与
+`gregtech/items/tools/**`。不是 unique active，也不是 37 行 `none` 里的一张卡。
+点击契约已抽成 `api.tool.ToolAction` / `ToolInteractable` / `ToolClick`；
+后面补行为走这套，不要再 `instanceof MaterialXxxItem`。
+创造栏 TOOLS 仍只放 assembler harvest 一次性，新 kind 不进创造栏是有意的。
+
+**已经进游戏、不要当缺口重开：** 物品与工作台（缺形态的除外）——镐/铲/斧/锄/剑、
+锉/凿/锯/螺丝起子/扳手/活扳手/剪线钳、锤/软锤、刀/棒、锹/双斧/镰/犁、建筑镐成品、
+建筑杖成品、撬棍/皮搋子、捕虫网、屠宰刀、修枝剪、剪刀、钳子（若有弯板）、
+弯筒/小弯筒/擀面杖、手钻、燧石火绒、口袋多功能。原版等价挖掘：镐挖、铲挖、
+斧剥皮、锄耕地、剑。点击切片：管道皮搋子清管、撬棍撬盖板/收仓储桶、
+软锤转灯与动力铁轨、漏斗螺丝/扳手、电缆剪线钳、变压器活扳手、粉尘漏斗扳手、
+电动引擎螺丝起子。镰/犁 3×3、宝石镐/捕虫网近似精准、剪刀剪羊毛叶、修枝剪快砍叶、
+燧石火绒点火。锯/锉/凿/锤/弯筒/擀面杖是合成催化剂。GT6 的整树、锤碎矿、扳手拆机
+等额外挖掘见 5.1，不要当成「斧/锤/扳手已做完」。GT6 注释掉的镰刀（Sickle）不是缺口。
+
+### 5.1 物品在，GT6 世界行为缺
+
+点击 / 交互：
+
+| 工具 | GT6 来源 | 现状 | 缺什么 |
+| --- | --- | --- | --- |
+| 建筑杖 | `Behavior_Builderwand` | `MaterialWorkshopToolItem` | 按品质在点击面铺同种方块 |
+| 钳子 | `TOOL_pincers`；仓储 `onToolClick2` | `PINCERS` 已登记，仓储桶未回答 | 仓储部分抽出；GT6 还打模具/漏斗/堆芯/书架/龙蛋 |
+| 口袋多功能 | `Behavior_Switch_Metadata` | 单一 workshop 物品 | 在刀/锯/锉/螺丝/剪线钳/剪刀/凿之间切换并继承对应动作 |
+| 手钻 | `Behavior_Tool(TOOL_drill)` | workshop 物品 | 不是挖掘工具；回答 `TOOL_drill` 点击 |
+| 万能锹 | `GT_Tool_UniversalSpade` | 铲 `useOn` + 撬棍 | 工作台配方（见 5.2）；还挖斧/锯类方块、铺路/水田/火把、堵漏 |
+| 刀 | `TOOL_knife` | 无世界 `useOn` | 方块/实体上的刀动作 |
+| 凿 | `Behavior_Tool(TOOL_chisel)` | 只当催化剂 | 回答 `TOOL_chisel` 点击 |
+| 软锤 × 仓储 | `TOOL_softhammer` 倒出槽位 | 只转灯/铁轨/朝向 | 点仓储桶把内容弹出 |
+| `ToolCompat` 原版表 | `gregapi/block/ToolCompat.java` | 只有灯、动力铁轨、铁轨撬棍、capability 皮搋子 | 熔炉/箱子/发射器/活塞等扳手旋转未搬 |
+
+挖掘 / 掉落：
+
+| 工具 | GT6 来源 | 现状 | 缺什么 |
+| --- | --- | --- | --- |
+| 建筑镐 | `GT_Tool_PickaxeConstruction` | 原版镐挖掘 | 非矿 ×2 速、矿石 /4、末影箱精准 |
+| 斧 / 双斧 | `GT_Tool_Axe` 非潜行伐整棵 | 原版斧速 + 剥皮 | 整树砍倒（与 Trees 卡独立，原版原木也缺） |
+| 硬锤 | `GT_Tool_HardHammer.convertBlockDrops` | 只当催化剂 | 挖方块走 Hammer 配方，矿变粉碎 |
+| 棒 | `GT_Tool_Club.convertBlockDrops` | 无挖掘 | 石头/砖/下界岩等砸成 `rockGt` |
+| 锯 | `GT_Tool_Saw` | 只当催化剂 | 伐木/叶/冰、放置树苗/工作台 |
+| 锉 | `GT_Tool_File` | 只当催化剂 | 铁栅栏等更快 |
+| 撬棍挖 | `GT_Tool_Crowbar.isMinableBlock` | 只有右键盖板/桶 | 其它工具挖不了的方块兜底收获 |
+| 扳手拆机 | `GT_Tool_Wrench.isMinableBlock` | 只有右键连管 | 左键拆机器/活塞/漏斗/发射器一类 |
+| 剪线钳挖 | `GT_Tool_WireCutter` | 只有右键连线 | 电缆/导线更快收获 |
+| 修枝剪 | `GT_Tool_BranchCutter` grafter | 快砍叶 + 斧剥皮 | 剪叶出树苗（树卡未开时仍对照 GT6） |
+
+### 5.2 配方 blocked 或未发（缺形态，禁止 stand-in）
+
+| 工具 | 阻塞 | 读法 |
+| --- | --- | --- |
+| 宝石镐工作台 | `assemblies()` 无 `gem_pick`；无 `tool_head_pickaxe_gem` 头配方（GT6 用 `gemFlawed`） | 物品和近似精准在；生存合成没有 |
+| 万能锹工作台 | GT6 `aUseNormalHandle=F`，头来自机器，成品格 `AT`/`Sd` | 物品可创造拿到；工作台不发 |
+| 放大镜 | `AdvancedCraftingTool(MAGNIFYING_GLASS, lens)` | 物品未注册；`lens` 形态未当工具材料发 |
+| 手枪 / 卡宾 / 步枪 | 格要 `plateCurved` + 燧石；还要弹药/弹道 | 整族跳过 |
+| 电动工具 | LV–HV 电钻/链锯/扳手/螺丝/电锯/修剪机/搅拌器/镐钻、HV 镐 | 要电机、电池盒、弯板；整族跳过 |
+| 非电链锯 / 采矿钻头成品 | `toolHeadChainsaw` / `toolHeadDrill` + 钢环/弯板 | 未注册对应手持物品 |
+
+缺零件就保持 `blocked`，不要用电路、木棍以外的手柄或别的材料顶。
+
+### 5.3 协议还没接到的动作
+
+`ProvidedToolActions` 目前只有扳手/活扳手/剪线钳/螺丝/撬棍/皮搋子/软锤/钳子/万能锹→撬棍。
+还没有 `KNIFE`、`CHISEL`、`DRILL`、`MAGNIFYING_GLASS`、`BUILDER_WAND`。
+钳子已有枚举，仓储桶 `useTool` 只处理撬棍。
+
+补的时候对照 `gt6_code/gregtech6` 对账，`gregtech6_w` 只当 NeoForge 译稿。
+
+---
+
+## 6. 本页怎么更新
 
 - 新关一张冻结 R0：把类别从第 2 节搬到第 1 节，链到新的 `feasibility.json`。关闭说明第一句必须写清「游戏里仍然没有 X」，不得只写 `_READY`。
 - 真做进游戏：从第 1 节删掉或改成「已由 `<slug>` 实现」，并指向那张内容卡的 production lock / census。
@@ -327,7 +409,9 @@ topology 预分配 implementation child。不想要的类在 realization 卡标
   [物流核心](../history/card-plans/closed/物流核心详细计划.md)
   `player_complete`。已关闭
   [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
-  为四件状态盖板 `player_complete`。当前没有 unique active 内容卡。已关闭
+  为四件状态盖板 `player_complete`。当前没有 unique-active 内容卡。已关闭
+  [裂变生存闭环与全量棒堆芯](../history/card-plans/closed/裂变生存闭环与全量棒堆芯详细计划.md)
+  （`player_complete`），机器可读 `unique_active_wave = null`。已关闭
   [生成资源、注册与 Jade 第一切片](../history/card-plans/closed/生成资源注册与Jade第一切片详细计划.md)。
   机器可读 `unique_active_wave` 仍为 `null`。已关闭
   [变压器](../history/card-plans/closed/变压器详细计划.md)。不得把 Display CPU 算进这七

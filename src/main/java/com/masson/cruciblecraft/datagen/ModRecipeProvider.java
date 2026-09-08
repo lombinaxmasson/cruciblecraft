@@ -779,6 +779,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                     path);
             case "compressor" -> compressorCrafting(
                     output, result, casing, material, path);
+            case "canner" -> cannerCrafting(output, result, casing, path);
             default -> throw new IllegalStateException(
                     "Machine variant " + path + " has no source-backed acquisition");
         }
@@ -817,6 +818,34 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .define('C', casing)
                 .unlockedBy("has_casing", has(casing))
                 .save(output, id("machines/" + id));
+    }
+
+    private static void cannerCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String id) {
+        Item pump = ModItems.compactElectricCover("compact_electric_pump_lv").get();
+        Item circuit = ModItems.technologicalPart("circuit_basic").get();
+        Item cable = materialItem("tin", MaterialPrefixes.CABLE);
+        Item pipe = materialItem(
+                "stainless_steel", MaterialPrefixes.TINY_FLUID_PIPE);
+        Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+        ingredients.put("P", Ingredient.of(pipe));
+        ingredients.put("X", Ingredient.of(pump));
+        ingredients.put("M", Ingredient.of(casing));
+        ingredients.put("C", Ingredient.of(circuit));
+        ingredients.put("W", Ingredient.of(cable));
+        // GT6 Loader_MultiTileEntities.java:1379 {"wPh","XMX","CPW"}.
+        acceptShapedCatalyst(
+                output,
+                "machines/" + id,
+                List.of("wPh", "XMX", "CPW"),
+                ingredients,
+                Map.of(
+                        "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()),
+                        "h", Ingredient.of(ModItems.SMITHING_HAMMER.get())),
+                new ItemStack(result));
     }
 
     private static void centrifugeCrafting(
@@ -1104,6 +1133,11 @@ public final class ModRecipeProvider extends RecipeProvider {
                             material,
                             MaterialPrefixes.MACHINE_CASING_DOUBLE,
                             MaterialPrefixes.DOUBLE_PLATE);
+                    emitCasingFormRecipe(
+                            output,
+                            material,
+                            MaterialPrefixes.MACHINE_CASING_DENSE,
+                            MaterialPrefixes.DENSE_PLATE);
                 });
     }
 
@@ -1167,7 +1201,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 ResourceLocation.parse(planned.resultId()));
         ItemStack result = planned.persistToolMaterial()
                 ? toolStack(resultItem, planned.material())
-                : new ItemStack(resultItem);
+                : new ItemStack(resultItem, planned.count());
         acceptShapedCatalyst(
                 output,
                 planned.path(),
@@ -1473,7 +1507,9 @@ public final class ModRecipeProvider extends RecipeProvider {
     private static boolean isBatteryRecipeReady(String path) {
         return path.startsWith("lead_acid_battery_")
                 || path.startsWith("alkaline_battery_")
-                || path.startsWith("nickel_cadmium_battery_");
+                || path.startsWith("nickel_cadmium_battery_")
+                || path.startsWith("lithium_cobalt_battery_")
+                || path.startsWith("lithium_manganese_battery_");
     }
 
     private static void addBatteryCellRecipes(RecipeOutput output) {
@@ -1529,6 +1565,40 @@ public final class ModRecipeProvider extends RecipeProvider {
                         "Z", materialIngredient(
                                 "nickel", MaterialPrefixes.CURVED_PLATE)),
                 Map.of());
+        // MultiItemTechnological.java:479 / :484. Fill stays FluidContainerData.
+        batteryCellRecipe(
+                output,
+                "lithium_cobalt",
+                List.of("CLF", "XSG", "FLP"),
+                Map.of(
+                        "C", circuitIngredient("circuit_elite"),
+                        "L", materialIngredient(
+                                "lithium_perchlorate", MaterialPrefixes.DUST),
+                        "F", materialIngredient("plastic", MaterialPrefixes.FOIL),
+                        "X", materialIngredient("cobalt", MaterialPrefixes.ROD),
+                        "S", materialIngredient(
+                                "chromium", MaterialPrefixes.CURVED_PLATE),
+                        "G", materialIngredient("graphite", MaterialPrefixes.ROD),
+                        "P", materialIngredient(
+                                "battery_alloy", MaterialPrefixes.CURVED_PLATE)),
+                Map.of());
+        batteryCellRecipe(
+                output,
+                "lithium_manganese",
+                List.of("CLF", "XSG", "FLP"),
+                Map.of(
+                        "C", circuitIngredient("circuit_ultimate"),
+                        "L", materialIngredient(
+                                "lithium_perchlorate", MaterialPrefixes.DUST),
+                        "F", materialIngredient("plastic", MaterialPrefixes.FOIL),
+                        "X", materialIngredient(
+                                "manganese", MaterialPrefixes.ROD),
+                        "S", materialIngredient(
+                                "chromium", MaterialPrefixes.CURVED_PLATE),
+                        "G", materialIngredient("graphite", MaterialPrefixes.ROD),
+                        "P", materialIngredient(
+                                "battery_alloy", MaterialPrefixes.CURVED_PLATE)),
+                Map.of());
     }
 
     private static void batteryCellRecipe(
@@ -1552,6 +1622,10 @@ public final class ModRecipeProvider extends RecipeProvider {
             String material,
             MaterialPrefix prefix) {
         return Ingredient.of(materialItem(material, prefix));
+    }
+
+    private static Ingredient circuitIngredient(String path) {
+        return Ingredient.of(ModItems.technologicalPart(path).get());
     }
 
     private static void emitBatteryRecipe(

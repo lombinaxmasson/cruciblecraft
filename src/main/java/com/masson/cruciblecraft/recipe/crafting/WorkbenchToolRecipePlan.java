@@ -27,7 +27,7 @@ import com.masson.cruciblecraft.material.def.MaterialDefinition;
  */
 public final class WorkbenchToolRecipePlan {
     public static final String STONE_TAG = "PROPERTIES.STONE";
-    public static final int NON_WORKBENCH_GENERATED_RECIPES = 1_744;
+    public static final int NON_WORKBENCH_GENERATED_RECIPES = 1_758;
     private static final MaterialPrefix ROCK =
             new MaterialPrefix("cruciblecraft:rock");
     private static final MaterialPrefix PLATE_GEM =
@@ -106,7 +106,8 @@ public final class WorkbenchToolRecipePlan {
             Map<String, String> catalysts,
             String resultId,
             String material,
-            boolean persistToolMaterial) {
+            boolean persistToolMaterial,
+            int count) {
         public JsonObject toJson() {
             JsonObject root = new JsonObject();
             root.addProperty("type", "cruciblecraft:shaped_catalyst");
@@ -123,7 +124,7 @@ public final class WorkbenchToolRecipePlan {
                 components.addProperty("cruciblecraft:tool_material", material);
                 result.add("components", components);
             }
-            result.addProperty("count", 1);
+            result.addProperty("count", count);
             result.addProperty("id", resultId);
             root.add("result", result);
             return root;
@@ -219,6 +220,7 @@ public final class WorkbenchToolRecipePlan {
         addHarvestHeads(recipes, material, forms);
         addFinishedExtras(recipes, material, forms);
         addSimpleRockTools(recipes, material, forms);
+        addCrystalPlates(recipes, material, forms);
         return recipes;
     }
 
@@ -780,7 +782,7 @@ public final class WorkbenchToolRecipePlan {
                     path(id, "butchery_knife"),
                     List.of("fCC", " CC", "  H"),
                     map("C", item(material, PLATE_GEM), "H", STICK),
-                    Map.of(),
+                    map("f", FILE_ITEM),
                     "cruciblecraft:material_butchery_knife",
                     id));
         }
@@ -1014,6 +1016,102 @@ public final class WorkbenchToolRecipePlan {
         }
     }
 
+    private static void addCrystalPlates(
+            List<Recipe> recipes,
+            MaterialDefinition material,
+            Set<MaterialPrefix> forms) {
+        String id = material.id();
+        if (forms.contains(MaterialPrefixes.PLATE_GEM)
+                && forms.contains(MaterialPrefixes.BOULE)) {
+            recipes.add(sawCut(
+                    prefixPath(id, "boule2plate_gem"),
+                    item(material, MaterialPrefixes.BOULE),
+                    item(material, MaterialPrefixes.PLATE_GEM),
+                    3,
+                    id));
+        }
+        if (forms.contains(MaterialPrefixes.PLATE_GEM)
+                && forms.contains(MaterialPrefixes.GEM_FLAWLESS)) {
+            recipes.add(sawCut(
+                    prefixPath(id, "flawless2plate_gem"),
+                    item(material, MaterialPrefixes.GEM_FLAWLESS),
+                    item(material, MaterialPrefixes.PLATE_GEM),
+                    1,
+                    id));
+        }
+        if (forms.contains(MaterialPrefixes.PLATE_GEM)
+                && forms.contains(MaterialPrefixes.GEM_EXQUISITE)) {
+            recipes.add(sawCut(
+                    prefixPath(id, "exquisite2plate_gem"),
+                    item(material, MaterialPrefixes.GEM_EXQUISITE),
+                    item(material, MaterialPrefixes.PLATE_GEM),
+                    3,
+                    id));
+        }
+        if (forms.contains(MaterialPrefixes.PLATE_GEM)
+                && forms.contains(MaterialPrefixes.GEM_LEGENDARY)) {
+            recipes.add(sawCut(
+                    prefixPath(id, "legendary2plate_gem"),
+                    item(material, MaterialPrefixes.GEM_LEGENDARY),
+                    item(material, MaterialPrefixes.PLATE_GEM),
+                    7,
+                    id));
+        }
+        if (forms.contains(MaterialPrefixes.TINY_PLATE_GEM)
+                && forms.contains(MaterialPrefixes.PLATE_GEM)) {
+            recipes.add(sawCut(
+                    prefixPath(id, "plate_gem2tiny"),
+                    item(material, MaterialPrefixes.PLATE_GEM),
+                    item(material, MaterialPrefixes.TINY_PLATE_GEM),
+                    8,
+                    id));
+        }
+        if (forms.contains(MaterialPrefixes.TINY_PLATE_GEM)
+                && forms.contains(MaterialPrefixes.GEM_CHIPPED)) {
+            recipes.add(sawCut(
+                    prefixPath(id, "chipped2tiny_plate_gem"),
+                    item(material, MaterialPrefixes.GEM_CHIPPED),
+                    item(material, MaterialPrefixes.TINY_PLATE_GEM),
+                    2,
+                    id));
+        }
+        if (forms.contains(MaterialPrefixes.TINY_PLATE_GEM)
+                && forms.contains(MaterialPrefixes.GEM_FLAWED)) {
+            recipes.add(sawCut(
+                    prefixPath(id, "flawed2tiny_plate_gem"),
+                    item(material, MaterialPrefixes.GEM_FLAWED),
+                    item(material, MaterialPrefixes.TINY_PLATE_GEM),
+                    4,
+                    id));
+        }
+        if (forms.contains(MaterialPrefixes.TINY_PLATE_GEM)
+                && forms.contains(MaterialPrefixes.GEM)) {
+            recipes.add(sawCut(
+                    prefixPath(id, "gem2tiny_plate_gem"),
+                    item(material, MaterialPrefixes.GEM),
+                    item(material, MaterialPrefixes.TINY_PLATE_GEM),
+                    8,
+                    id));
+        }
+    }
+
+    private static Recipe sawCut(
+            String path,
+            String inputId,
+            String resultId,
+            int count,
+            String material) {
+        return recipe(
+                path,
+                pad3x3("s ", " X"),
+                map("X", inputId),
+                map("s", SAW_ITEM),
+                resultId,
+                material,
+                false,
+                count);
+    }
+
     private static List<Recipe> vanillaFlintHarvest() {
         Map<String, String> flintAndStick = map("X", FLINT, "S", STICK);
         return List.of(
@@ -1063,6 +1161,10 @@ public final class WorkbenchToolRecipePlan {
         return "tools/" + material + "/" + tool;
     }
 
+    private static String prefixPath(String material, String kind) {
+        return "prefix/" + kind + "/" + material;
+    }
+
     private static Assembly assembly(
             String tool, String headPrefix, String resultId) {
         return new Assembly("tools/assemble/" + tool, headPrefix, resultId);
@@ -1098,6 +1200,26 @@ public final class WorkbenchToolRecipePlan {
             String resultId,
             String material,
             boolean persistToolMaterial) {
+        return recipe(
+                path,
+                pattern,
+                ingredients,
+                catalysts,
+                resultId,
+                material,
+                persistToolMaterial,
+                1);
+    }
+
+    private static Recipe recipe(
+            String path,
+            List<String> pattern,
+            Map<String, String> ingredients,
+            Map<String, String> catalysts,
+            String resultId,
+            String material,
+            boolean persistToolMaterial,
+            int count) {
         return new Recipe(
                 path,
                 List.copyOf(pattern),
@@ -1105,7 +1227,8 @@ public final class WorkbenchToolRecipePlan {
                 Map.copyOf(new LinkedHashMap<>(catalysts)),
                 resultId,
                 material,
-                persistToolMaterial);
+                persistToolMaterial,
+                count);
     }
 
     private static JsonObject itemKeys(Map<String, String> keys) {

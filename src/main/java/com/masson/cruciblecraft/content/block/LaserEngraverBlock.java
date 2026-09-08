@@ -3,43 +3,20 @@ package com.masson.cruciblecraft.content.block;
 import org.jetbrains.annotations.Nullable;
 
 import com.masson.cruciblecraft.content.blockentity.LaserEngraverBlockEntity;
+import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
+import com.masson.cruciblecraft.registry.ModProcessingMachines;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.item.context.BlockPlaceContext;
 
-/** Minimal GT6 laser engraver host for closing the first LU consumer path. */
-public final class LaserEngraverBlock extends Block implements EntityBlock {
-    public static final DirectionProperty FACING =
-            BlockStateProperties.HORIZONTAL_FACING;
-
+/** Source-backed LU laser engraver. Same block identity, processing host. */
+public final class LaserEngraverBlock extends ProcessingMachineBlock {
     public LaserEngraverBlock(Properties properties) {
-        super(properties);
-        registerDefaultState(
-                stateDefinition.any().setValue(FACING, Direction.NORTH));
-    }
-
-    @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return defaultBlockState().setValue(
-                FACING,
-                context.getHorizontalDirection().getOpposite());
-    }
-
-    @Override
-    protected void createBlockStateDefinition(
-            StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+        super(MachineVariant.legacy(ModProcessingMachines.LASER_ENGRAVER), properties);
     }
 
     @Override

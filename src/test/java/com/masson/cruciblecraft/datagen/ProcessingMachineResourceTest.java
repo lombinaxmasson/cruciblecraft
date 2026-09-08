@@ -154,8 +154,8 @@ class ProcessingMachineResourceTest {
         // 8144 live catalog keys plus 32 Jade/block names from this card:
         // ceramic_mold, gas_cloud, subsurface_fluid_deposit, transformer
         // config, and the typed observation contract keys.
-        assertEquals(8_204, english.size(), "current generated en_us key count");
-        assertEquals(3_469L, translated, "declared Chinese translation coverage");
+        assertEquals(8_222, english.size(), "current generated en_us key count");
+        assertEquals(3_487L, translated, "declared Chinese translation coverage");
         assertEquals(2_401, missing.size(), "visible zh_cn localization debt");
         assertEquals(1_566L, missingMaterialNames,
                 "missing generated material-name translations");

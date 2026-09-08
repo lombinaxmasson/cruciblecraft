@@ -411,6 +411,8 @@ public final class ModBlocks {
             tieredProcessing("mortar");
     public static final DeferredBlock<ProcessingMachineBlock> EXTRUDER =
             tieredProcessing("extruder");
+    public static final DeferredBlock<ProcessingMachineBlock> INVAR_EXTRUDER =
+            tieredProcessing("invar_extruder");
     public static final DeferredBlock<ProcessingMachineBlock> CUTTER =
             tieredProcessing("cutter");
     public static final DeferredBlock<ProcessingMachineBlock> LATHE =
@@ -474,6 +476,8 @@ public final class ModBlocks {
             tieredProcessing("generifier");
     public static final DeferredBlock<ProcessingMachineBlock> COAGULATOR =
             tieredProcessing("coagulator");
+    public static final DeferredBlock<ProcessingMachineBlock> CANNER =
+            tieredProcessing("canner");
     public static final DeferredBlock<ProcessingMachineBlock> STEEL_ROASTER =
             tieredProcessing("steel_roaster");
 
@@ -561,7 +565,8 @@ public final class ModBlocks {
         for (MaterialDefinition material : definitions) {
             for (MaterialPrefix form : List.of(
                     MaterialPrefixes.MACHINE_CASING,
-                    MaterialPrefixes.MACHINE_CASING_DOUBLE)) {
+                    MaterialPrefixes.MACHINE_CASING_DOUBLE,
+                    MaterialPrefixes.MACHINE_CASING_DENSE)) {
                 if (!MaterialCatalog.registeredForms(material).contains(form)
                         || material.formItems().containsKey(form)) {
                     continue;
@@ -1366,12 +1371,16 @@ public final class ModBlocks {
         Objects.requireNonNull(spec, "spec");
         boolean complete = ModProcessingMachines.CONFIGURED_MACHINES.stream()
                 .allMatch(machine ->
-                        CONFIGURED_PROCESSING_BLOCKS.containsKey(machine.id())
+                        machine == ModProcessingMachines.LASER_ENGRAVER
+                                || CONFIGURED_PROCESSING_BLOCKS.containsKey(machine.id())
                                 || !ModMachineVariants.forKind(machine.id())
                                         .isEmpty());
         if (!complete) {
             throw new IllegalStateException(
                     "Configured processing block mapping is incomplete");
+        }
+        if (spec == ModProcessingMachines.LASER_ENGRAVER) {
+            return LASER_ENGRAVER.get();
         }
         boolean configured = ModProcessingMachines.CONFIGURED_MACHINES.stream()
                 .anyMatch(candidate -> candidate == spec);
@@ -1459,10 +1468,21 @@ public final class ModBlocks {
     }
 
     private static BlockBehaviour.Properties casingProperties(MaterialPrefix form) {
-        boolean doubled = form.equals(MaterialPrefixes.MACHINE_CASING_DOUBLE);
+        float hardness;
+        float resistance;
+        if (form.equals(MaterialPrefixes.MACHINE_CASING_DENSE)) {
+            hardness = 9.0F;
+            resistance = 18.0F;
+        } else if (form.equals(MaterialPrefixes.MACHINE_CASING_DOUBLE)) {
+            hardness = 2.0F;
+            resistance = 6.0F;
+        } else {
+            hardness = 1.0F;
+            resistance = 3.0F;
+        }
         return BlockBehaviour.Properties.of()
                 .mapColor(MapColor.METAL)
-                .strength(doubled ? 2.0F : 1.0F, doubled ? 6.0F : 3.0F)
+                .strength(hardness, resistance)
                 .requiresCorrectToolForDrops()
                 .sound(SoundType.METAL);
     }

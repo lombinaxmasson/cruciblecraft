@@ -16,6 +16,7 @@
     "test_energy_converter_catalog",
     "test_energy_batteries",
     "test_energy_transformers",
+    "test_energy_nuclear_fission_survival",
     "test_logistics_core",
     "test_display_cpu",
     "test_verification_profiles",
@@ -78,6 +79,7 @@
         "tools/tests/test_energy_converter_catalog.py",
         "tools/tests/test_energy_batteries.py",
         "tools/tests/test_energy_transformers.py",
+        "tools/tests/test_energy_nuclear_fission_survival.py",
         "tools/tests/test_logistics_core.py",
         "tools/tests/test_display_cpu.py"
       ],
@@ -88,6 +90,7 @@
         "test_energy_converter_catalog",
         "test_energy_batteries",
         "test_energy_transformers",
+        "test_energy_nuclear_fission_survival",
         "test_logistics_core",
         "test_display_cpu",
         "test_verification_profiles"
@@ -227,6 +230,9 @@
         "tools/capabilities/energy/transformers/**",
         "tools/waves/runtime/transformers/**",
         "tools/tests/test_energy_transformers.py",
+        "tools/waves/runtime/fission-survival/**",
+        "tools/capabilities/energy/nuclear-fission-survival/**",
+        "tools/tests/test_energy_nuclear_fission_survival.py",
         "tools/jade_observation.py",
         "tools/build_jade_observation.py",
         "tools/jade_observation_matrix.json",
@@ -240,6 +246,7 @@
         "test_energy_converter_catalog",
         "test_energy_batteries",
         "test_energy_transformers",
+        "test_energy_nuclear_fission_survival",
         "test_registry_identity",
         "test_jade_observation"
       ]
@@ -257,7 +264,9 @@
         "tools/capabilities/energy/converter-catalog/**",
         "tools/capabilities/energy/batteries/**",
         "tools/capabilities/energy/transformers/**",
+        "tools/capabilities/energy/nuclear-fission-survival/**",
         "src/main/java/com/masson/cruciblecraft/verification/PlayerCompleteSmoke.java",
+        "src/main/resources/cruciblecraft/player_complete_surfaces.json",
         "src/main/java/com/masson/cruciblecraft/client/ClientSmoke.java",
         "src/main/java/com/masson/cruciblecraft/compat/emi/CrucibleCraftEmiPlugin.java",
         "src/main/java/com/masson/cruciblecraft/compat/emi/ProcessingEmiRegistrationPlan.java"

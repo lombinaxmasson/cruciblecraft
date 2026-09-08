@@ -65,6 +65,7 @@
       "cruciblecraft:titanium_crusher": "Loader_MultiTileEntities.java:1302",
       "cruciblecraft:tungstensteel_crusher": "Loader_MultiTileEntities.java:1303",
       "cruciblecraft:tungstensteel_centrifuge": "Loader_MultiTileEntities.java:1333",
+      "cruciblecraft:canner": "Loader_MultiTileEntities.java:1379",
       "cruciblecraft:coagulator": "Loader_MultiTileEntities.java:1651",
       "cruciblecraft:compressor": "Loader_MultiTileEntities.java:1343",
       "cruciblecraft:steel_compressor": "Loader_MultiTileEntities.java:1344",
@@ -296,6 +297,29 @@
       "resourceProfile": {
         "sharedModel": "processing_machine",
         "textureProfile": "bronze_crusher",
+        "skipGenericRegistration": false
+      }
+    },
+    {
+      "id": "cruciblecraft:canner",
+      "kind": "cruciblecraft:canner",
+      "tierBand": "cruciblecraft:electric_tier_1",
+      "material": "cruciblecraft:steel_galvanized",
+      "energy": "ELECTRIC",
+      "sourceId": 20161,
+      "sourceTier": 1,
+      "overclock": "STANDARD",
+      "parallelDuration": true,
+      "inputMinimum": 16,
+      "inputNominal": 32,
+      "inputMaximum": 64,
+      "energyCapacity": 64,
+      "parallel": 1,
+      "efficiency": 10000,
+      "variantSemantics": "eu_voltage",
+      "resourceProfile": {
+        "sharedModel": "processing_machine",
+        "textureProfile": "canner",
         "skipGenericRegistration": false
       }
     },

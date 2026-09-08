@@ -4,8 +4,11 @@ import java.util.List;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.masson.cruciblecraft.api.tool.ToolAction;
+import com.masson.cruciblecraft.api.tool.ToolInteractable;
+import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.blockentity.DustFunnelBlockEntity;
-import com.masson.cruciblecraft.content.item.MaterialWrenchItem;
+import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 
 import net.minecraft.core.BlockPos;
@@ -16,6 +19,7 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -34,7 +38,8 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 /** Steel-only dust funnel. Not a HopperKind. */
-public final class DustFunnelBlock extends Block implements EntityBlock {
+public final class DustFunnelBlock extends Block
+        implements EntityBlock, ToolInteractable {
     private static final VoxelShape SHAPE = Shapes.or(
             Block.box(0.0, 8.0, 0.0, 16.0, 16.0, 16.0),
             Block.box(4.0, 0.0, 4.0, 12.0, 8.0, 12.0),
@@ -73,25 +78,38 @@ public final class DustFunnelBlock extends Block implements EntityBlock {
         if (!(level.getBlockEntity(pos) instanceof DustFunnelBlockEntity funnel)) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
-        if (stack.getItem() instanceof MaterialWrenchItem) {
-            if (!level.isClientSide) {
-                funnel.cycleMode(player.isShiftKeyDown());
-                player.displayClientMessage(funnel.statusMessage(), true);
-                if (!player.getAbilities().instabuild) {
-                    stack.hurtAndBreak(
-                            1,
-                            player,
-                            hand == InteractionHand.MAIN_HAND
-                                    ? net.minecraft.world.entity.EquipmentSlot.MAINHAND
-                                    : net.minecraft.world.entity.EquipmentSlot.OFFHAND);
-                }
-            }
-            return ItemInteractionResult.SUCCESS;
+        ItemInteractionResult tool = ToolClick.useItemOn(
+                stack, level, player, hand, hit);
+        if (tool.consumesAction()) {
+            return tool;
         }
         if (hit.getDirection() == Direction.UP && funnel.insertFromHand(stack)) {
             return ItemInteractionResult.SUCCESS;
         }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+    }
+
+    @Override
+    public ToolResult useTool(ToolAction action, UseOnContext context) {
+        if (action != ToolAction.WRENCH) {
+            return ToolResult.PASS;
+        }
+        Level level = context.getLevel();
+        if (!(level.getBlockEntity(context.getClickedPos())
+                instanceof DustFunnelBlockEntity funnel)) {
+            return ToolResult.PASS;
+        }
+        if (!level.isClientSide) {
+            funnel.cycleMode(
+                    context.getPlayer() != null
+                            && context.getPlayer().isShiftKeyDown());
+            if (context.getPlayer() != null) {
+                context.getPlayer().displayClientMessage(
+                        funnel.statusMessage(), true);
+            }
+            ToolClick.hurt(context);
+        }
+        return ToolResult.SUCCESS;
     }
 
     @Override

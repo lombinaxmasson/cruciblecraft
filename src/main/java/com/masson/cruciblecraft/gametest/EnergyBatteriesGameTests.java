@@ -79,23 +79,17 @@ public final class EnergyBatteriesGameTests {
         public static void sourceBackedEmptyCellRecipesAreRegistered(
                 GameTestHelper helper) {
             for (String family : List.of(
-                    "lead_acid", "alkaline", "nickel_cadmium")) {
+                    "lead_acid",
+                    "alkaline",
+                    "nickel_cadmium",
+                    "lithium_cobalt",
+                    "lithium_manganese")) {
                 helper.assertTrue(
                         helper.getLevel().getRecipeManager()
                                 .byKey(id("battery_cells/" + family + "_empty"))
                                 .isPresent(),
                         "Missing exact empty-cell recipe " + family);
             }
-            helper.assertTrue(
-                    helper.getLevel().getRecipeManager()
-                            .byKey(id("battery_cells/lithium_cobalt_empty"))
-                            .isEmpty(),
-                    "Lithium-cobalt cell recipe was emitted without tiered circuit");
-            helper.assertTrue(
-                    helper.getLevel().getRecipeManager()
-                            .byKey(id("battery_cells/lithium_manganese_empty"))
-                            .isEmpty(),
-                    "Lithium-manganese cell recipe was emitted without tiered circuit");
             helper.succeed();
         }
 

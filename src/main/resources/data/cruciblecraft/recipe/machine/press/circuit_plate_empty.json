@@ -1,0 +1,32 @@
+{
+  "type": "cruciblecraft:gt_recipe",
+  "map": "cruciblecraft:press",
+  "duration": 64,
+  "eut": 16,
+  "can_be_buffered": true,
+  "item_inputs": [
+    {
+      "item": "cruciblecraft:plastic/plate"
+    },
+    {
+      "item": "cruciblecraft:silicon_dioxide/dust"
+    }
+  ],
+  "item_input_counts": [
+    1,
+    1
+  ],
+  "item_outputs": [
+    {
+      "id": "cruciblecraft:circuit_plate_empty",
+      "count": 1
+    }
+  ],
+  "output_chances": [
+    10000
+  ],
+  "provenance": {
+    "selected_source_recipe": "MultiItemTechnological.java:30000",
+    "source_kind": "gt6_source"
+  }
+}

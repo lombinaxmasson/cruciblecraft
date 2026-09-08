@@ -119,6 +119,16 @@ class ChemicalPublicationBudgetTest {
         assertDoesNotThrow(() -> GTRecipeMapLoader.validateChemicalRecipeProvenance(
                 ModRecipeMaps.BATH,
                 List.of(entry("bath/tiny_purified/1a8b858f5b602a9c"))));
+        assertDoesNotThrow(() -> GTRecipeMapLoader.validateChemicalRecipeProvenance(
+                ModRecipeMaps.CANNER,
+                List.of(entry("nuclear/uranium238_fuel_rod"))));
+        assertDoesNotThrow(() -> GTRecipeMapLoader.validateChemicalRecipeProvenance(
+                ModRecipeMaps.CANNER,
+                List.of(entry("nuclear/tritium_enriched_rod_unload"))));
+        assertThrows(IllegalArgumentException.class, () ->
+                GTRecipeMapLoader.validateChemicalRecipeProvenance(
+                        ModRecipeMaps.CANNER,
+                        List.of(entry("machines/canner"))));
         GTRecipe twoFluidOut = new GTRecipe(
                 List.of(Ingredient.of(Items.IRON_INGOT)),
                 List.of(1),

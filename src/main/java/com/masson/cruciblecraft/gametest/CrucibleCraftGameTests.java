@@ -302,51 +302,42 @@ public final class CrucibleCraftGameTests {
                 "tin", MaterialPrefixes.CABLE).get();
         BlockPos pos = new BlockPos(4, 2, 5);
         helper.setBlock(pos, tinCable.defaultBlockState());
-        ItemStack cutter = new ItemStack(ModItems.MATERIAL_WIRE_CUTTER.get());
-        ItemStack wrench = new ItemStack(ModItems.MATERIAL_WRENCH.get());
-        BlockState state = helper.getBlockState(pos);
+        ItemStack cutter = ModItems.MATERIAL_WIRE_CUTTER.get().variant("iron");
+        ItemStack wrench = ModItems.MATERIAL_WRENCH.get().variant("iron");
         BlockPos absolute = helper.absolutePos(pos);
+        Player player = helper.makeMockPlayer(GameType.SURVIVAL);
 
         // GT6 getFacingTool split: the wrench no longer operates cables.
-        ItemInteractionResult rejected = Gt6StyleConnections.wrench(
+        ItemInteractionResult rejected = helper.getBlockState(pos).useItemOn(
                 wrench,
-                state,
                 helper.getLevel(),
-                absolute,
-                null,
+                player,
                 InteractionHand.MAIN_HAND,
                 faceHit(absolute, Direction.EAST, 1.0, 0.5, 0.5));
         helper.assertTrue(
-                rejected
-                                == ItemInteractionResult
-                                        .PASS_TO_DEFAULT_BLOCK_INTERACTION
+                !rejected.consumesAction()
                         && !CableBlock.isConnected(
                                 helper.getBlockState(pos), Direction.EAST),
                 "Wrench must not toggle cable connections");
 
         // Center cell of the grid targets the clicked face itself.
-        ItemInteractionResult center = Gt6StyleConnections.cutter(
+        ItemInteractionResult center = helper.getBlockState(pos).useItemOn(
                 cutter,
-                state,
                 helper.getLevel(),
-                absolute,
-                null,
+                player,
                 InteractionHand.MAIN_HAND,
                 faceHit(absolute, Direction.EAST, 1.0, 0.5, 0.5));
         helper.assertTrue(
-                center == ItemInteractionResult.SUCCESS
+                center.consumesAction()
                         && CableBlock.isConnected(
                                 helper.getBlockState(pos), Direction.EAST),
                 "Wire cutter center cell did not toggle the clicked face");
 
         // Corner cell of the grid targets the opposite face.
-        state = helper.getBlockState(pos);
-        Gt6StyleConnections.cutter(
+        helper.getBlockState(pos).useItemOn(
                 cutter,
-                state,
                 helper.getLevel(),
-                absolute,
-                null,
+                player,
                 InteractionHand.MAIN_HAND,
                 faceHit(absolute, Direction.EAST, 1.0, 0.1, 0.1));
         helper.assertTrue(
@@ -355,19 +346,17 @@ public final class CrucibleCraftGameTests {
                 "Wire cutter corner cell did not toggle the opposite face");
 
         // Edge cell on the EAST face maps to SOUTH (z > 0.75 band).
-        state = helper.getBlockState(pos);
-        Gt6StyleConnections.cutter(
+        helper.getBlockState(pos).useItemOn(
                 cutter,
-                state,
                 helper.getLevel(),
-                absolute,
-                null,
+                player,
                 InteractionHand.MAIN_HAND,
                 faceHit(absolute, Direction.EAST, 1.0, 0.5, 0.9));
         helper.assertTrue(
                 CableBlock.isConnected(
                         helper.getBlockState(pos), Direction.SOUTH),
                 "Wire cutter edge cell did not toggle the adjacent face");
+        player.discard();
         helper.succeed();
     }
 
@@ -2218,14 +2207,14 @@ public final class CrucibleCraftGameTests {
                         && CellContentGate.entries().size() == 110,
                 "Hydrocarbon fluid or cell allowlist registry is incomplete");
         helper.assertTrue(
-                MaterialPrefixCatalog.values().size() == 58
+                MaterialPrefixCatalog.values().size() == 127
                         && MaterialCatalog.startupValues().size()
-                                + MaterialPrefixCatalog.values().size() == 1_832
+                                + MaterialPrefixCatalog.values().size() == 1_901
                         && MaterialCatalog.startupValues().stream()
                                 .mapToInt(material ->
                                         MaterialCatalog.registeredForms(
                                                 material).size())
-                                .sum() == 16_736,
+                                .sum() == 16_757,
                 "Cell contents changed prefix, handshake, or form counts");
         List<ResourceLocation> cellItems = BuiltInRegistries.ITEM.keySet()
                 .stream()
@@ -7428,7 +7417,7 @@ public final class CrucibleCraftGameTests {
     public static void everyLiveComponentRecipeTracesToGeneratedComponentJson(
             GameTestHelper helper) {
         Map<RecipeMap, Integer> expected = Map.of(
-                ModRecipeMaps.EXTRUDER, 3039,
+                ModRecipeMaps.EXTRUDER, 3040,
                 ModRecipeMaps.CUTTER, 651,
                 ModRecipeMaps.LATHE, 929,
                 ModRecipeMaps.ROLLINGMILL, 336,
@@ -7437,7 +7426,7 @@ public final class CrucibleCraftGameTests {
                 ModRecipeMaps.BENDER, 638,
                 ModRecipeMaps.ASSEMBLER, 4226,
                 ModRecipeMaps.WELDER, 321,
-                ModRecipeMaps.PRESS, 1191);
+                ModRecipeMaps.PRESS, 1198);
         int total = 0;
         for (ProcessingMachineSpec spec : ModProcessingMachines.COMPONENT_MACHINES) {
             RecipeMap map = spec.requireRecipeMap();
@@ -7480,8 +7469,8 @@ public final class CrucibleCraftGameTests {
             }
         }
         helper.assertTrue(
-                total == 12056,
-                "Live component-map recipe total is not 12056: " + total);
+                total == 12064,
+                "Live component-map recipe total is not 12064: " + total);
         int chemicalTotal = 0;
         for (RecipeMap map : ModProcessingMachines.CHEMICAL_HOST_MACHINES.stream()
                 .map(ProcessingMachineSpec::requireRecipeMap)
@@ -7531,7 +7520,7 @@ public final class CrucibleCraftGameTests {
                 .mapToInt(spec -> spec.requireRecipeMap().entries().size())
                 .sum();
         helper.assertTrue(
-                emiPlan.machines().size() == 24
+                emiPlan.machines().size() == 28
                         && emiPlan.recipes().size() == expectedEmiRecipes,
                 "Generic processing EMI does not cover every configured machine recipe: "
                         + emiPlan.machines().size()
@@ -7553,15 +7542,15 @@ public final class CrucibleCraftGameTests {
         CrucibleCraft.LOGGER.info(
                 "GameTest recipe publication metrics: {}", metrics);
         helper.assertTrue(
-                metrics.componentRecipes() == 8398
+                metrics.componentRecipes() == 8406
                         && metrics.toolRecipes() == 3913
                         && metrics.chemicalPublishedRecipes() == 158
                         && metrics.mortarAuthoredMaterialRules() == 220
                         && metrics.pipeMaterialRules() == 257
                         && metrics.ingotFormMaterialRules() == 967
-                        && metrics.liveComponentMapRecipes() == 12056
-                        && metrics.allPublishedRecipes() == 19_022
-                        && metrics.eagerPublishedRecipes() == 16_797
+                        && metrics.liveComponentMapRecipes() == 12064
+                        && metrics.allPublishedRecipes() == 19_080
+                        && metrics.eagerPublishedRecipes() == 16_855
                         && metrics.eagerPublishedRecipes()
                                 <= ModProcessingMachines
                                         .ALL_EAGER_PUBLICATION_SOFT_BUDGET
@@ -7948,7 +7937,8 @@ public final class CrucibleCraftGameTests {
                 "fluid_publication_baseline",
                 "recipe_expansion_publication_baseline",
                 "later_wave_publication_baseline",
-                "closing_publication_baseline")) {
+                "closing_publication_baseline",
+                "fission_survival_publication_baseline")) {
             var stream = CrucibleCraftGameTests.class.getClassLoader()
                     .getResourceAsStream(
                             "data/cruciblecraft/" + baselineName + ".json");
