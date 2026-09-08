@@ -160,6 +160,57 @@ class FissionObservationSafetyCardTest(unittest.TestCase):
             self.assertNotEqual("minecraft:item/iron_ingot", by_path[path]["texture"])
             self.assertTrue(by_path[path]["texture"].startswith("cruciblecraft:item/gt6_import/"))
         self.assertIn("gt_multiitem/multiitem_randomtools_m10000", by_path)
+        self.assertEqual(
+            "cruciblecraft:item/gt6_import/thermometer_quicksilver",
+            by_path["gt_multiitem/multiitem_randomtools_m10000"]["texture"],
+        )
+        self.assertEqual(
+            "cruciblecraft:item/gt6_import/geiger_empty",
+            by_path["gt_multiitem/multiitem_randomtools_m10001"]["texture"],
+        )
+        self.assertEqual(
+            "cruciblecraft:item/gt6_import/geiger_filled",
+            by_path["gt_multiitem/multiitem_randomtools_m10002"]["texture"],
+        )
+
+    def test_art_is_copied_from_gregtech6_w(self) -> None:
+        manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+        self.assertTrue(manifest["source_present"])
+        self.assertEqual("gt6_referencable_port_code/gregtech6_w", manifest["source"])
+        assets = ROOT / "src" / "main" / "resources"
+        for row in manifest["imports"]:
+            dest = assets / row["destination"]
+            self.assertTrue(dest.is_file(), row["destination"])
+            self.assertGreater(dest.stat().st_size, 120, row["destination"])
+            self.assertNotIn("palette icon", row.get("note", ""))
+            self.assertNotIn("gregtech6_w absent", row.get("note", ""))
+        thermometer = (
+            assets
+            / "assets"
+            / "cruciblecraft"
+            / "textures"
+            / "item"
+            / "gt6_import"
+            / "thermometer_quicksilver.png"
+        )
+        self.assertEqual(512, thermometer.stat().st_size)
+        oracle = (
+            ROOT
+            / "gt6_referencable_port_code"
+            / "gregtech6_w"
+            / "src"
+            / "main"
+            / "resources"
+        )
+        if not oracle.is_dir():
+            return
+        copies = 0
+        for row in manifest["imports"]:
+            src = oracle / row["gt6_source"]
+            dest = assets / row["destination"]
+            if src.is_file() and dest.read_bytes() == src.read_bytes():
+                copies += 1
+        self.assertGreaterEqual(copies, 11)
 
     def test_jade_families_are_ready(self) -> None:
         matrix = json.loads(JADE.read_text(encoding="utf-8"))
