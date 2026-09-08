@@ -157,13 +157,7 @@
         "cruciblecraft:lithium_manganese_cell_filled"
       ],
       "reason": "GT6 IL.Battery_*_Cell_Empty/Filled 20000-20009. Five empty-cell recipes and EU B/C slots are SOURCE_BACKED. Fill is FluidContainerData (not Canner). LiClO4 dust is electrolyzer ordinary-closure 0051."
-    },
-    {
-      "semantic_key": "recipe:energium_crystal_shaped",
-      "disposition": "blocked",
-      "runtime_ids": [],
-      "reason": "GT6 LU crystals 14500-14515 have no shaped grid. Obtain is form_items (gemChipped..gemLegendary → crystal BlockItems), the NeoForge stand-in for Loader setTarget. CC must not invent dust+cable craft."
     }
   ],
-  "note": "37 census Batteries: loader 14000-14044 and 14500-14515. Not fusion 14600/14601, not battery boxes, not transformers. unique_active_wave stays null. Source is local gt6_code. EU cells, FluidContainerData fill, and B/C slots are SOURCE_BACKED. LU gem prefixes alias crystals via form_items; shaped craft stays blocked (recipe:energium_crystal_shaped)."
+  "note": "37 census Batteries: loader 14000-14044 and 14500-14515. Not fusion 14600/14601, not battery boxes, not transformers. unique_active_wave stays null. Source is local gt6_code. EU cells, FluidContainerData fill, and B/C slots are SOURCE_BACKED. LU obtain is form_items on the crystal identities (GT6 setTarget), not a shaped grid."
 }
