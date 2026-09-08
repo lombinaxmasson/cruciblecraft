@@ -231,10 +231,7 @@ class EnergyBatteriesCardTest(unittest.TestCase):
             for row in capability["identity_disposition"]
             if row["disposition"] == "blocked"
         }
-        self.assertEqual(
-            {"battery_part:filled_cell", "recipe:energium_crystal_shaped"},
-            blocked,
-        )
+        self.assertEqual({"recipe:energium_crystal_shaped"}, blocked)
         self.assertEqual(10, len(keys))
         ns = (
             ROOT
@@ -269,6 +266,46 @@ class EnergyBatteriesCardTest(unittest.TestCase):
         )
         self.assertEqual("requires_new_runtime", row["verdict"])
 
+
+    def test_energium_gem_prefixes_alias_crystals(self) -> None:
+        materials = (
+            ROOT / "src" / "main" / "resources" / "data" / "cruciblecraft" / "materials"
+        )
+        red = io.load_json(materials / "energium_red.json")
+        cyan = io.load_json(materials / "energium_cyan.json")
+        self.assertEqual(
+            {
+                "gem": "cruciblecraft:red_energium_crystal_mv",
+                "gem_chipped": "cruciblecraft:red_energium_crystal_ulv",
+                "gem_exquisite": "cruciblecraft:red_energium_crystal_ev",
+                "gem_flawed": "cruciblecraft:red_energium_crystal_lv",
+                "gem_flawless": "cruciblecraft:red_energium_crystal_hv",
+                "gem_legendary": "cruciblecraft:red_energium_crystal_iv",
+            },
+            red["form_items"],
+        )
+        self.assertEqual(
+            {
+                "gem": "cruciblecraft:cyan_energium_crystal_mv",
+                "gem_chipped": "cruciblecraft:cyan_energium_crystal_ulv",
+                "gem_exquisite": "cruciblecraft:cyan_energium_crystal_ev",
+                "gem_flawed": "cruciblecraft:cyan_energium_crystal_lv",
+                "gem_flawless": "cruciblecraft:cyan_energium_crystal_hv",
+                "gem_legendary": "cruciblecraft:cyan_energium_crystal_iv",
+            },
+            cyan["form_items"],
+        )
+        for material in (red, cyan):
+            self.assertEqual(
+                {
+                    "gem_chipped",
+                    "gem_exquisite",
+                    "gem_flawed",
+                    "gem_flawless",
+                    "gem_legendary",
+                },
+                set(material["include_prefixes"]),
+            )
 
     def test_recipe_fidelity_debt_is_grepable(self) -> None:
         plan = PLAN.read_text(encoding="utf-8")

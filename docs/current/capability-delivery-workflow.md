@@ -70,8 +70,9 @@
   「创造栏能拿到」或「用已有材料 DESIGN_POLICY 生存获得」不能当完成。
   闭卡替身配方不是稳定面：真 GT6 零件一旦存在，下次碰到该格就换成真物，
   不必另开回收卡；不得再发明新替身去保住闭卡 `player_complete`。
-  电池 `B`/`C` 槽：铅酸 / 碱性 / 镍镉 / 锂钴 / 锂锰已是 filled cell +
-  `OD_CIRCUITS[档]`。energium 仍无 GT6 shaped 表，保持 blocked，不得用板、
+  电池 `B`/`C` 槽与空芯灌液：铅酸 / 碱性 / 镍镉 / 锂钴 / 锂锰已是 filled
+  cell + `OD_CIRCUITS[档]` + FluidContainerData。energium 宝石前缀已
+  `form_items` 并到 LU 晶体；仍无 GT6 shaped 表，保持 blocked，不得用板、
   尘、杆或单个电路伪造。
 - EMI 注册与可见性（本仓库配方 UI 是 EMI，不是 JEI）
 - 创造栏归属与 `en_us` / `zh_cn` 翻译
