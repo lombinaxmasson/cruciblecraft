@@ -52,9 +52,14 @@ class CensusRuntimeInventoryClassifierTest {
                 .getAsJsonObject();
         JsonObject bidirectional = inventory.getAsJsonObject(
                 "registry_fixture_bidirectional");
+        int fixtureItems = fixture.categories().get("items").size();
         assertEquals(
-                fixture.categories().get("items").size(),
-                bidirectional.get("fixture_item_count").getAsInt());
+                fixture.countsByCategory().get("items").intValue(),
+                fixtureItems);
+        assertFalse(
+                bidirectional.has("fixture_item_count")
+                        || bidirectional.has("live_item_count"),
+                "item counts belong on the census fixture, not a copied inventory field");
         assertTrue(inventory.get("minecraft_prefix_is_not_proof").getAsBoolean());
         Set<String> extra = jsonStringSet(bidirectional, "extra_in_live_not_in_fixture_sample");
         Set<String> missing = jsonStringSet(bidirectional, "missing_from_live_sample");
