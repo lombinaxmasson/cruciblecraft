@@ -225,14 +225,14 @@ class EnergyBatteriesCardTest(unittest.TestCase):
         self.assertIn("battery:lead_acid", keys)
         self.assertIn("energy_type:lu", keys)
         self.assertIn("battery_part:filled_cell", keys)
-        self.assertIn("recipe:energium_crystal_shaped", keys)
+        self.assertNotIn("recipe:energium_crystal_shaped", keys)
         blocked = {
             row["semantic_key"]
             for row in capability["identity_disposition"]
             if row["disposition"] == "blocked"
         }
-        self.assertEqual({"recipe:energium_crystal_shaped"}, blocked)
-        self.assertEqual(10, len(keys))
+        self.assertEqual(set(), blocked)
+        self.assertEqual(9, len(keys))
         ns = (
             ROOT
             / "src"

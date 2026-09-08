@@ -81,8 +81,8 @@ for start, kind in (
 
 # B-slot is IL.Battery_*_Cell_Filled (items 20000-20009). Fill is
 # FluidContainerData, so battery_part:filled_cell is implemented, not a gap.
-# recipe:energium_crystal_shaped stays blocked (no GT6 grid). Gem prefixes
-# alias crystals via form_items. C is OD_CIRCUITS[tier].
+# LU crystals have no GT6 shaped grid; gem prefixes alias via form_items.
+# C is OD_CIRCUITS[tier].
 KIND_META: dict[str, dict[str, Any]] = {
     "lead_acid_battery": {
         "energy": "EU",

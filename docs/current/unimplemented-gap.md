@@ -36,7 +36,7 @@
 | --- | --- | --- |
 | `frozen` | 分母、来源、可行性已冻 | 各 `*_R0_READY` |
 | `runtime_ready` | `src/main` 机制可运行，内容可尚未导入 | 电转换 10 台；LU 光纤 + 雕刻机；裂变堆芯/棒；聚变控制器 + 18 条 fusion |
-| `player_complete` | 生存可获得、可运行、可存档，且有 production lock / census（若需要） | 流体网基础传输；物品网仓储/导入/导出盖板；通用网仓储/导入/导出盖板；物流核心 + Dump；物流监视器；电池 37 储能块（五族空芯 + FluidContainerData 灌液 + `B`/`C`；energium 宝石前缀已 `form_items`，shaped 仍 blocked）；变压器 9 台电（已关） |
+| `player_complete` | 生存可获得、可运行、可存档，且有 production lock / census（若需要） | 流体网基础传输；物品网仓储/导入/导出盖板；通用网仓储/导入/导出盖板；物流核心 + Dump；物流监视器；电池 37 储能块（五族空芯 + FluidContainerData 灌液 + `B`/`C`；energium 宝石前缀已 `form_items`）；变压器 9 台电（已关） |
 
 **后续顺序**（可玩垂直切片；同一时刻一条 delivery lane）。物流 1.2 不在这张表里，
 由人手工测，不占 `unique_active_wave`。能力账本主键见
@@ -61,7 +61,7 @@
   -> LU 骨架（已关；光纤可合成；雕刻机配方 blocked）
   -> 核电裂变（已关；46 棒 / 2 堆芯 / 48 关系 `player_complete`；热流体仍后继）
   -> 聚变 / 等离子（已关；18 条 fusion；等离子空图；控制器配方 blocked）
-  -> 电池芯回收（已关；十件芯；五族空芯 + FluidContainerData 灌液 + `B`/`C`；`battery_part:filled_cell` 已回收；energium 宝石前缀已 `form_items` 并到晶体；shaped 仍 blocked）
+  -> 电池芯回收（已关；十件芯；五族空芯 + FluidContainerData 灌液 + `B`/`C`；`battery_part:filled_cell` 已回收；energium 宝石前缀已 `form_items` 并到晶体）
   -> Trees
   -> Sensors / Panels
   -> Crops / Squeezer
@@ -249,7 +249,7 @@ topology 预分配 implementation child。不想要的类在 realization 卡标
 | Panels | `portfolio/exclusion-reclaim-r0` | 6 sites / 348 expanded | `requires_new_runtime` | [`feasibility.json`](../../tools/waves/portfolio/exclusion-reclaim-r0/feasibility.json) |
 | Sensors | 同上 | 21 / 21 | `requires_new_runtime` | 同上 |
 | Portals | 同上 | 19 / 19 | `requires_new_runtime` | 同上 |
-| Batteries | 同上 | 37 / 37 | `requires_new_runtime`。已关闭 [`energy/batteries`](../history/card-plans/closed/电池详细计划.md) 已进游戏并 `player_complete`；本行冻结表不得删。十件芯、五族空芯、FluidContainerData 灌液与 EU `B`/`C` 已回收。余量只剩 LU 晶体无 GT6 shaped 表。 | 同上 |
+| Batteries | 同上 | 37 / 37 | `requires_new_runtime`。已关闭 [`energy/batteries`](../history/card-plans/closed/电池详细计划.md) 已进游戏并 `player_complete`；本行冻结表不得删。十件芯、五族空芯、FluidContainerData 灌液、EU `B`/`C` 与 LU `form_items` 均已回收。 | 同上 |
 | Reactors | 同上 | 46 / 46 | `defer_to_portfolio` → `portfolio/nuclear`。**已关闭 realization**：[裂变生存闭环与全量棒堆芯](../history/card-plans/closed/裂变生存闭环与全量棒堆芯详细计划.md) 48/48 `player_complete`。growth-order `nuclear_started` 仍 false。 | 同上 |
 | 非矿树 | `portfolio/non-ore-worldgen-r0` | `WorldgenTree*` 9 | `requires_new_runtime` | [`feasibility.json`](../../tools/waves/portfolio/non-ore-worldgen-r0/feasibility.json) |
 | 非矿地牢 | 同上 | `WorldgenDungeonGT` 1 | `requires_new_runtime` | 同上 |
@@ -278,7 +278,7 @@ topology 预分配 implementation child。不想要的类在 realization 卡标
 | --- | --- | --- |
 | 核能 Track C | growth-order 第五轨 `portfolio/nuclear`；历史 leftover 7 family；排除表 Reactors 已 defer 到这里 | 已关闭 [裂变生存闭环与全量棒堆芯](../history/card-plans/closed/裂变生存闭环与全量棒堆芯详细计划.md) `player_complete`；phase5 tracks.C `started = true`；growth-order `nuclear_started` 仍 false |
 | 变压器 | capability map `GT6 transformers` | 电 `10040–10048` 已 [`energy/transformers`](../history/card-plans/closed/变压器详细计划.md) `player_complete`。长距 `10064–10068` 与齿轮箱不在该卡 |
-| 电池芯 / 灌液格 | GT6 `IL.Battery_*_Cell_Empty/Filled`，`MultiItemTechnological` `20000–20009` | 十件芯、五族空芯、FluidContainerData 灌液与 EU `B`/`C` 已回收；`battery_part:filled_cell` = `new_distinct`。LU 宝石前缀已 `form_items` 并到晶体 BlockItem。余量只剩无 GT6 shaped 表（`recipe:energium_crystal_shaped`）。不并进变压器卡 |
+| 电池芯 / 灌液格 | GT6 `IL.Battery_*_Cell_Empty/Filled`，`MultiItemTechnological` `20000–20009` | 十件芯、五族空芯、FluidContainerData 灌液与 EU `B`/`C` 已回收；`battery_part:filled_cell` = `new_distinct`。LU 宝石前缀已 `form_items` 并到晶体 BlockItem（GT6 `setTarget`）。不并进变压器卡 |
 | 建筑方块 identity | `GT6 building-block item/block identities` | 从未 R0 |
 | 建筑方块 behavior | hardness / multiblock parts / decorative machines | 从未 R0 |
 | Display CPU / 其余未认领域 | seed「misc systems…」 | 四件 Display CPU 状态盖板已 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md) `player_complete`。misc 其余仍 none。R0 `display_cpu_out_of_scope` 不改 |

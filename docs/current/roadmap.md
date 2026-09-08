@@ -80,8 +80,7 @@ semantic wave，不是下一张里程碑编号。
 第 1–5 项已关；第 6 项（裂变热流体）不自动签发。不要从只读 growth-order
 档案倒推，也不为其余候选项预分配 child。
 
-电能转换 / LU / 聚变控制器配方 / energium shaped（宝石前缀已 `form_items`
-并到晶体）仍是 `runtime_ready` 或 blocked，见已关闭的
+电能转换 / LU / 聚变控制器配方仍是 `runtime_ready` 或 blocked，见已关闭的
 [能源后续卡收口](../history/card-plans/closed/能源后续卡收口详细计划.md)
 与缺口账本第 2 节。Dump 的来源执行器是 Core，不是 Generic 管网；
 `dump_policy` 见已关闭的
