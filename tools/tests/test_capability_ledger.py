@@ -20,6 +20,7 @@ DISPLAY = "logistics/display-cpu"
 CONVERTER = "energy/converter-catalog"
 BATTERIES = "energy/batteries"
 TRANSFORMERS = "energy/transformers"
+NUCLEAR = "energy/nuclear-fission-survival"
 
 
 class CapabilityLedgerTest(unittest.TestCase):
@@ -42,6 +43,7 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertIn(CONVERTER, slugs)
         self.assertIn(BATTERIES, slugs)
         self.assertIn(TRANSFORMERS, slugs)
+        self.assertIn(NUCLEAR, slugs)
         self.assertIn("registry/tool-head-remainder", slugs)
         converter = next(row for row in documents if row["slug"] == CONVERTER)
         self.assertEqual("player_complete", converter["maturity"])
@@ -54,6 +56,9 @@ class CapabilityLedgerTest(unittest.TestCase):
         )
         self.assertEqual("player_complete", transformers["maturity"])
         self.assertEqual("accepted", transformers["workflow"])
+        nuclear = next(row for row in documents if row["slug"] == NUCLEAR)
+        self.assertEqual("player_complete", nuclear["maturity"])
+        self.assertEqual("accepted", nuclear["workflow"])
         fluid = next(row for row in documents if row["slug"] == FLUID)
         self.assertEqual("player_complete", fluid["maturity"])
         self.assertEqual("accepted", fluid["workflow"])
@@ -98,6 +103,7 @@ class CapabilityLedgerTest(unittest.TestCase):
             [
                 BATTERIES,
                 CONVERTER,
+                NUCLEAR,
                 TRANSFORMERS,
                 DISPLAY,
                 FLUID,
@@ -109,7 +115,7 @@ class CapabilityLedgerTest(unittest.TestCase):
         )
         self.assertEqual(
             "declaration is not proof; player_complete requires fresh "
-            "GameTestServer and runClient execution",
+            "GameTestServer execution; runClient is required on promotion",
             compiled["progress_rule"],
         )
 
@@ -119,6 +125,7 @@ class CapabilityLedgerTest(unittest.TestCase):
             [
                 BATTERIES,
                 CONVERTER,
+                NUCLEAR,
                 TRANSFORMERS,
                 DISPLAY,
                 FLUID,
@@ -132,6 +139,7 @@ class CapabilityLedgerTest(unittest.TestCase):
             {
                 BATTERIES,
                 TRANSFORMERS,
+                NUCLEAR,
                 "logistics/cover-net-r0",
                 ITEM,
                 FLUID,
@@ -167,6 +175,7 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertIn(CONVERTER, hit)
         self.assertIn(BATTERIES, hit)
         self.assertIn(TRANSFORMERS, hit)
+        self.assertIn(NUCLEAR, hit)
         self.assertNotIn("registry/tool-head-remainder", hit)
 
     def test_fluid_pipe_does_not_stale_tool_head_remainder(self) -> None:
@@ -177,7 +186,16 @@ class CapabilityLedgerTest(unittest.TestCase):
             ]
         )
         self.assertEqual(
-            [BATTERIES, CONVERTER, TRANSFORMERS, DISPLAY, FLUID, GENERIC, CORE],
+            [
+                BATTERIES,
+                CONVERTER,
+                NUCLEAR,
+                TRANSFORMERS,
+                DISPLAY,
+                FLUID,
+                GENERIC,
+                CORE,
+            ],
             hit,
         )
 
@@ -200,6 +218,9 @@ class CapabilityLedgerTest(unittest.TestCase):
                             or relative.endswith("converter-catalog/capability.json")
                             or relative.endswith("batteries/capability.json")
                             or relative.endswith("transformers/capability.json")
+                            or relative.endswith(
+                                "nuclear-fission-survival/capability.json"
+                            )
                             else "frozen"
                         )
                     }
@@ -227,6 +248,9 @@ class CapabilityLedgerTest(unittest.TestCase):
                         or relative.endswith("converter-catalog/capability.json")
                         or relative.endswith("batteries/capability.json")
                         or relative.endswith("transformers/capability.json")
+                        or relative.endswith(
+                            "nuclear-fission-survival/capability.json"
+                        )
                         else "frozen"
                     )
                 }

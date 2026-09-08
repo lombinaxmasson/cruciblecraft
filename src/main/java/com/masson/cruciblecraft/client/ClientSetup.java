@@ -67,13 +67,6 @@ public class ClientSetup {
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
         CrucibleCraft.LOGGER.info("CrucibleCraft client setup");
-        if ("player-complete".equals(
-                System.getProperty("cruciblecraft.clientSmoke"))) {
-            event.enqueueWork(() -> {
-                com.masson.cruciblecraft.verification.PlayerCompleteSmoke
-                        .writeIfConfigured("client");
-            });
-        }
     }
 
     @SubscribeEvent

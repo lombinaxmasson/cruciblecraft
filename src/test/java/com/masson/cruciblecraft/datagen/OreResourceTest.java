@@ -418,7 +418,7 @@ class OreResourceTest {
         // source-visible storage acquisition recipes. Display CPU adds 8 cover
         // recipes (4 shaped + 4 shapeless cycle).
         // Catalog-driven workbench tools replace the previous 32 hardcoded
-        // hammer/workshop/harvest files. The 1_744 baseline is that tree
+        // hammer/workshop/harvest files. The 1_746 baseline is that tree
         // minus those 32; the plan adds every eligible workshop, harvest-head,
         // and stone-rock recipe, including the three vanilla flint harvest
         // crafts. Head-plus-stick assemblies are a fixed extra set.

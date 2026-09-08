@@ -22,6 +22,7 @@ DISPLAY_SLUG = "logistics/display-cpu"
 CONVERTER_SLUG = "energy/converter-catalog"
 BATTERIES_SLUG = "energy/batteries"
 TRANSFORMERS_SLUG = "energy/transformers"
+NUCLEAR_SLUG = "energy/nuclear-fission-survival"
 FLUID_TEST_IDS = [
     "coverIdentitySurvivesBlockEntityReload",
     "coversAreSurvivalCraftable",
@@ -95,6 +96,24 @@ TRANSFORMERS_TEST_IDS = [
     "reverseStepUpConvertsLvToHv",
     "stepDownConvertsHvToLv",
     "onlyMonkeyWrenchReversesTransformer",
+]
+NUCLEAR_TEST_IDS = [
+    "breederProductTransformUsesExactTarget",
+    "cannerFillsUranium238FuelRod",
+    "cannerUnloadsTritiumAndKeepsProgressAcrossReload",
+    "centrifugeRecoversDepletedUranium238",
+    "distilledWaterProducesSteam",
+    "extruderMakesEmptyZirconiumRod",
+    "fortyEightNuclearSourceRecipesArePresent",
+    "fortySixRodsAreRegistered",
+    "insertingFuelRodStopsReactor",
+    "lowDurabilityFuelBecomesDepleted",
+    "lvCannerCraftsFromExactParts",
+    "playerSurfaceIsRegistered",
+    "reflectorNeighborReturnsNeutrons",
+    "twoByTwoCoreCraftsFromExactParts",
+    "unstoppedCoreEmitsNeutronsAtTick19",
+    "uranium238PlayerPathMakesSteamForExistingEngine",
 ]
 
 
@@ -274,6 +293,31 @@ class PlayerCompleteTest(unittest.TestCase):
             ),
         )
 
+    def test_nuclear_capability_declares_all_game_tests(self) -> None:
+        capability = capability_ledger.load_capability(
+            capability_ledger.CAP_ROOT / NUCLEAR_SLUG / "capability.json"
+        )
+        self.assertEqual("player_complete", capability["maturity"])
+        self.assertEqual("accepted", capability["workflow"])
+        self.assertEqual(NUCLEAR_TEST_IDS, capability["required_test_ids"])
+        self.assertEqual(
+            [],
+            player_complete.check_declared_test_ids(capability),
+        )
+
+    def test_nuclear_capability_static_player_surface(self) -> None:
+        capability = capability_ledger.load_capability(
+            capability_ledger.CAP_ROOT / NUCLEAR_SLUG / "capability.json"
+        )
+        signoff = player_complete.load_signoff(capability)
+        self.assertEqual(
+            [],
+            player_complete.check_static_player_surface(
+                NUCLEAR_SLUG,
+                list(signoff["craftable_items"]),
+            ),
+        )
+
     def test_item_capability_static_player_surface(self) -> None:
         capability = capability_ledger.load_capability(
             capability_ledger.CAP_ROOT / ITEM_SLUG / "capability.json"
@@ -389,7 +433,6 @@ class PlayerCompleteTest(unittest.TestCase):
             )
         self.assertEqual(1, result)
         self.assertIn("--gametest-receipt PATH", stderr.getvalue())
-        self.assertIn("--client-receipt PATH", stderr.getvalue())
 
     def test_capability_tree_has_no_machine_receipt(self) -> None:
         receipt = capability_ledger.CAP_ROOT / SLUG / "client_smoke_receipt.json"
@@ -458,7 +501,34 @@ class PlayerCompleteTest(unittest.TestCase):
             )
         self.assertTrue(any("is not runClient" in row for row in errors))
 
-    def test_run_mode_uses_one_nonce_for_both_runtime_processes(self) -> None:
+    def test_surface_catalog_matches_signoff(self) -> None:
+        catalog = player_complete.load_surface_catalog()
+        surfaces = catalog["surfaces"]
+        for slug in (
+            SLUG,
+            ITEM_SLUG,
+            GENERIC_SLUG,
+            CORE_SLUG,
+            DISPLAY_SLUG,
+            CONVERTER_SLUG,
+            BATTERIES_SLUG,
+            TRANSFORMERS_SLUG,
+            NUCLEAR_SLUG,
+        ):
+            capability = capability_ledger.load_capability(
+                capability_ledger.CAP_ROOT / slug / "capability.json"
+            )
+            signoff = player_complete.load_signoff(capability)
+            self.assertEqual(
+                [],
+                player_complete.check_surface_catalog(
+                    slug,
+                    list(signoff["craftable_items"]),
+                ),
+            )
+            self.assertIn(slug, surfaces)
+
+    def test_run_mode_uses_game_test_only_by_default(self) -> None:
         calls: list[list[str]] = []
 
         def property_value(command: list[str], name: str) -> str:
@@ -501,21 +571,73 @@ class PlayerCompleteTest(unittest.TestCase):
             report = next(Path(directory).rglob("latest.json"))
             saved = json.loads(report.read_text(encoding="utf-8"))
         self.assertEqual([], errors, errors)
-        self.assertEqual(2, len(calls))
+        self.assertEqual(1, len(calls))
         self.assertEqual("PASS", saved["status"])
+        self.assertTrue(saved["client"]["skipped"])
+        self.assertIn("runGameTestServer", calls[0])
         self.assertTrue(all("--rerun" in command for command in calls))
         self.assertTrue(all("--rerun-tasks" not in command for command in calls))
         self.assertTrue(all("--no-daemon" not in command for command in calls))
+        self.assertEqual(
+            {SLUG},
+            {property_value(command, "playerCapability") for command in calls},
+        )
+
+    def test_run_mode_client_uses_one_nonce_for_both_runtime_processes(self) -> None:
+        calls: list[list[str]] = []
+
+        def property_value(command: list[str], name: str) -> str:
+            prefix = f"-P{name}="
+            return next(value.removeprefix(prefix) for value in command if value.startswith(prefix))
+
+        def fake_run(command: list[str], _log: Path) -> tuple[int, str]:
+            calls.append(command)
+            receipt = Path(property_value(command, "smokeReceipt"))
+            nonce = property_value(command, "smokeNonce")
+            if "runGameTestServer" in command:
+                document = self.client_receipt()
+                document["runtime"] = "gameTestServer"
+                document["run_nonce"] = nonce
+                self.write_receipt(
+                    str(receipt.parent),
+                    receipt.name,
+                    document,
+                )
+                return 0, "All 9 required tests passed :)\n"
+            document = self.client_receipt()
+            document["run_nonce"] = nonce
+            self.write_receipt(
+                str(receipt.parent),
+                receipt.name,
+                document,
+            )
+            return 0, ""
+
+        with tempfile.TemporaryDirectory() as directory, mock.patch.object(
+            player_complete,
+            "LOCAL_RECEIPTS",
+            Path(directory),
+        ), mock.patch.object(
+            player_complete,
+            "run_logged",
+            side_effect=fake_run,
+        ):
+            errors = player_complete.run_fresh_capability(SLUG, client=True)
+            report = next(Path(directory).rglob("latest.json"))
+            saved = json.loads(report.read_text(encoding="utf-8"))
+        self.assertEqual([], errors, errors)
+        self.assertEqual(2, len(calls))
+        self.assertEqual("PASS", saved["status"])
+        self.assertNotIn("skipped", saved["client"])
         nonces = {
             property_value(command, "smokeNonce")
             for command in calls
         }
         self.assertEqual(1, len(nonces))
-        capabilities = {
-            property_value(command, "playerCapability")
-            for command in calls
-        }
-        self.assertEqual({SLUG}, capabilities)
+        self.assertEqual(
+            {SLUG},
+            {property_value(command, "playerCapability") for command in calls},
+        )
 
 
 if __name__ == "__main__":

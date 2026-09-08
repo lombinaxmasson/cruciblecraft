@@ -7,7 +7,11 @@ import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 import com.masson.cruciblecraft.api.energy.EnergyType;
+import com.masson.cruciblecraft.api.tool.ToolAction;
+import com.masson.cruciblecraft.api.tool.ToolInteractable;
+import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.blockentity.CableBlockEntity;
+import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
 import com.masson.cruciblecraft.material.def.GT6MaterialMetadata.ElectricalProperties;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
@@ -21,6 +25,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -38,7 +43,8 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 /** One immutable conductor with six derived EU/LU connection bits. */
-public final class CableBlock extends Block implements EntityBlock {
+public final class CableBlock extends Block
+        implements EntityBlock, ToolInteractable {
     public static final BooleanProperty DOWN = BooleanProperty.create("down");
     public static final BooleanProperty UP = BooleanProperty.create("up");
     public static final BooleanProperty NORTH = BooleanProperty.create("north");
@@ -195,8 +201,18 @@ public final class CableBlock extends Block implements EntityBlock {
             Player player,
             InteractionHand hand,
             BlockHitResult hit) {
-        return Gt6StyleConnections.cutter(
-                stack, state, level, pos, player, hand, hit);
+        return ToolClick.useItemOn(stack, level, player, hand, hit);
+    }
+
+    @Override
+    public ToolResult useTool(ToolAction action, UseOnContext context) {
+        if (action != ToolAction.WIRE_CUTTER) {
+            return ToolResult.PASS;
+        }
+        return Gt6StyleConnections.toggleConnection(
+                context.getLevel(),
+                context.getClickedPos(),
+                ToolClick.hit(context));
     }
 
     @Override

@@ -38,6 +38,10 @@ public final class MaterialAxeItem extends MaterialDiggerItem {
 
     @Override
     public InteractionResult useOn(UseOnContext context) {
+        InteractionResult tool = super.useOn(context);
+        if (tool.consumesAction()) {
+            return tool;
+        }
         return canApplyDurabilityDamage(context.getItemInHand())
                 ? VanillaToolUseOn.axe(context)
                 : InteractionResult.PASS;

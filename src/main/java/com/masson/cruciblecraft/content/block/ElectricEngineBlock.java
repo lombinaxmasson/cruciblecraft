@@ -2,8 +2,11 @@ package com.masson.cruciblecraft.content.block;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.masson.cruciblecraft.api.tool.ToolAction;
+import com.masson.cruciblecraft.api.tool.ToolInteractable;
+import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.blockentity.ElectricEngineBlockEntity;
-import com.masson.cruciblecraft.content.item.MaterialScrewdriverItem;
+import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterHost;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 
@@ -14,6 +17,7 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -31,7 +35,7 @@ import net.minecraft.world.phys.BlockHitResult;
 
 /** GT6 six-way EU to KU engine with state and piston-phase output semantics. */
 public final class ElectricEngineBlock extends Block
-        implements EntityBlock, EnergyConverterHost {
+        implements EntityBlock, EnergyConverterHost, ToolInteractable {
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
@@ -85,23 +89,22 @@ public final class ElectricEngineBlock extends Block
             Player player,
             InteractionHand hand,
             BlockHitResult hit) {
-        if (!(stack.getItem() instanceof MaterialScrewdriverItem)) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        return ToolClick.useItemOn(stack, level, player, hand, hit);
+    }
+
+    @Override
+    public ToolResult useTool(ToolAction action, UseOnContext context) {
+        if (action != ToolAction.SCREWDRIVER) {
+            return ToolResult.PASS;
         }
+        Level level = context.getLevel();
         if (!level.isClientSide
-                && level.getBlockEntity(pos)
+                && level.getBlockEntity(context.getClickedPos())
                         instanceof ElectricEngineBlockEntity engine) {
             engine.cycleState();
-            if (!player.getAbilities().instabuild) {
-                stack.hurtAndBreak(
-                        1,
-                        player,
-                        hand == InteractionHand.MAIN_HAND
-                                ? net.minecraft.world.entity.EquipmentSlot.MAINHAND
-                                : net.minecraft.world.entity.EquipmentSlot.OFFHAND);
-            }
+            ToolClick.hurt(context);
         }
-        return ItemInteractionResult.SUCCESS;
+        return ToolResult.SUCCESS;
     }
 
     @Override

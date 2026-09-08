@@ -16,8 +16,11 @@
 
 ## 当前 active 卡
 
-当前没有 unique active 内容卡。机器可读 `unique_active_wave` 仍为 `null`。
-已关闭
+当前没有 human-readable unique-active 内容卡。已关闭
+[裂变生存闭环与全量棒堆芯](card-plans/closed/裂变生存闭环与全量棒堆芯详细计划.md)
+（slug `energy/nuclear-fission-survival`；46 棒 / 8 kind / 2 堆芯 /
+48 条核内容关系；`player_complete` / `accepted`）。机器可读
+`unique_active_wave = null`；本波 `nuclear_started = true`。已关闭
 [生成资源、注册与 Jade 第一切片](card-plans/closed/生成资源注册与Jade第一切片详细计划.md)
 （slug `presentation/live-art-jade`；registry / generated-art / Jade 第一切片；
 `owns_families = 0`）。已关闭
@@ -55,7 +58,7 @@ repair；`unique_active_wave` 全程 `null`）。机器可读
 [物品网络核心](card-plans/closed/物品网络核心详细计划.md)
 （slug `runtime/item-network-core`）为
 `ITEM_NETWORK_CORE_READY`。机器可读
-`unique_active_wave = null`；`next_unassigned = true`。
+`unique_active_wave = null`；裂变生存卡已 `player_complete`。
 物品两行封面网 `player_complete`；流体基础传输 `player_complete`；
 Dump 与 Logistics Core 已由
 [物流核心](card-plans/closed/物流核心详细计划.md) `player_complete`。`dump_policy` 已从来源钉死

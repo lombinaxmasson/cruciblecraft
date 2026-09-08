@@ -32,7 +32,7 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 
 /** Shared facing/menu/ticker block for immutable configured processing specs. */
-public final class ProcessingMachineBlock extends Block implements EntityBlock {
+public class ProcessingMachineBlock extends Block implements EntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     private final MachineVariant variant;
 

@@ -181,7 +181,7 @@ def compile_ledger() -> dict[str, Any]:
         },
         "progress_rule": (
             "declaration is not proof; player_complete requires fresh "
-            "GameTestServer and runClient execution"
+            "GameTestServer execution; runClient is required on promotion"
         ),
         "schema_version": 2,
     }

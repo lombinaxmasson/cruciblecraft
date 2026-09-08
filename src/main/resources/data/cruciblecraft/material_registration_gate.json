@@ -6974,6 +6974,7 @@
     "compatibility_forms": 852,
     "electrical_wire_forms": 29,
     "electrolyzer_required_forms": 3,
+    "fission_survival_required_forms": 68,
     "known_ingot_forms": 967,
     "materials": 1773,
     "metadata_only_materials": 663,
@@ -6983,7 +6984,7 @@
     "ore_source_materials": 137,
     "pipe_forms": 282,
     "recipe_gated_forms": 13338,
-    "registered_forms": 31900,
+    "registered_forms": 31918,
     "roaster_required_forms": 12,
     "tool_head_required_forms": 7990,
     "worldgen_acquisition_forms": 44
@@ -7434,6 +7435,128 @@
       "small_dust"
     ]
   },
+  "fission_survival_required_forms": {
+    "americium": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "americium241": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "beryllium": [
+      "rod"
+    ],
+    "blutonium": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "cd_in_ag_alloy": [
+      "rod"
+    ],
+    "cobalt60": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "cyanite": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "graphite": [
+      "rod"
+    ],
+    "lead": [
+      "dense_plate",
+      "long_rod",
+      "machine_casing_dense"
+    ],
+    "lithium": [
+      "bolt"
+    ],
+    "ludicrite": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "naquadah": [
+      "bolt",
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "naquadah_enriched": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "naquadria": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "plutonium": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "plutonium239": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "plutonium241": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "plutonium243": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "ruby": [
+      "lens"
+    ],
+    "silicon": [
+      "tiny_plate_gem"
+    ],
+    "thorium": [
+      "bolt",
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "uranium": [
+      "bolt",
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "uranium233": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "uranium235": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "yellorium": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "zirconium": [
+      "ingot",
+      "scrap"
+    ]
+  },
   "java_overlay_sections": [
     "worldgen_acquisition_forms",
     "roaster_required_forms",
@@ -7447,7 +7570,8 @@
     "electrolyzer_ordinary_closure_required_forms",
     "centrifuge_ordinary_closure_required_forms",
     "autoclave_ordinary_closure_required_forms",
-    "compressor_ordinary_closure_required_forms"
+    "compressor_ordinary_closure_required_forms",
+    "fission_survival_required_forms"
   ],
   "known_ingot_forms": {
     "abyssalnite": [
@@ -10043,6 +10167,7 @@
       "double_ingot",
       "double_plate",
       "dust",
+      "dust_div72",
       "fine_wire",
       "foil",
       "gear",
@@ -10081,6 +10206,7 @@
       "double_ingot",
       "double_plate",
       "dust",
+      "dust_div72",
       "fine_wire",
       "foil",
       "gear",
@@ -14168,6 +14294,7 @@
       "double_ingot",
       "double_plate",
       "dust",
+      "dust_div72",
       "ingot",
       "ingot_hot",
       "long_rod",
@@ -16356,6 +16483,7 @@
       "double_ingot",
       "double_plate",
       "dust",
+      "dust_div72",
       "fine_wire",
       "foil",
       "gear",
@@ -17390,6 +17518,7 @@
       "double_ingot",
       "double_plate",
       "dust",
+      "dust_div72",
       "ingot",
       "ingot_hot",
       "long_rod",
@@ -26454,6 +26583,7 @@
       "ingot_hot",
       "long_rod",
       "machine_casing",
+      "machine_casing_dense",
       "machine_casing_double",
       "minecart_wheels",
       "nugget",
@@ -27120,6 +27250,7 @@
       "double_ingot",
       "double_plate",
       "dust",
+      "dust_div72",
       "ingot",
       "ingot_hot",
       "long_rod",
@@ -33342,6 +33473,7 @@
       "double_ingot",
       "double_plate",
       "dust",
+      "dust_div72",
       "fine_wire",
       "foil",
       "gear",
@@ -33404,6 +33536,7 @@
       "double_ingot",
       "double_plate",
       "dust",
+      "dust_div72",
       "fine_wire",
       "foil",
       "gear",
@@ -33466,6 +33599,7 @@
       "double_ingot",
       "double_plate",
       "dust",
+      "dust_div72",
       "fine_wire",
       "foil",
       "gear",
@@ -33504,6 +33638,7 @@
       "double_ingot",
       "double_plate",
       "dust",
+      "dust_div72",
       "fine_wire",
       "foil",
       "gear",
@@ -39024,6 +39159,7 @@
       "double_ingot",
       "double_plate",
       "dust",
+      "dust_div72",
       "fine_wire",
       "foil",
       "gear",
@@ -40720,6 +40856,7 @@
       "double_ingot",
       "double_plate",
       "dust",
+      "dust_div72",
       "fine_wire",
       "foil",
       "gear",
@@ -40758,6 +40895,7 @@
       "double_ingot",
       "double_plate",
       "dust",
+      "dust_div72",
       "fine_wire",
       "foil",
       "gear",
@@ -40796,6 +40934,7 @@
       "double_ingot",
       "double_plate",
       "dust",
+      "dust_div72",
       "fine_wire",
       "foil",
       "gear",
@@ -43184,6 +43323,7 @@
       "double_ingot",
       "double_plate",
       "dust",
+      "dust_div72",
       "ingot",
       "ingot_hot",
       "long_rod",
@@ -43825,6 +43965,7 @@
       "rock",
       "rod",
       "rotor",
+      "scrap",
       "screw",
       "small_dust",
       "small_gear",
@@ -56527,6 +56668,11 @@
     "factual_ore_sources": {
       "field": "resolved factual prefix `ore`",
       "path": "src/main/resources/data/cruciblecraft/materials/*.json"
+    },
+    "fission_survival_required_forms": {
+      "classification": "semantic_ordinary_runtime_required",
+      "field": "required_forms",
+      "path": "tools/waves/runtime/fission-survival/required_forms.json"
     },
     "known_ingot_forms": {
       "classification": "known_ingot_source_domain_runtime_required",

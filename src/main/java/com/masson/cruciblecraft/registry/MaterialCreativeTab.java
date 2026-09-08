@@ -62,6 +62,7 @@ public enum MaterialCreativeTab {
             case "cruciblecraft:block",
                     "cruciblecraft:machine_casing",
                     "cruciblecraft:machine_casing_double",
+                    "cruciblecraft:machine_casing_dense",
                     "cruciblecraft:ingot",
                     "cruciblecraft:double_ingot",
                     "cruciblecraft:triple_ingot",

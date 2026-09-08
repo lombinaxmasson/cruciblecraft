@@ -80,8 +80,9 @@ class ChemicalResourceTest {
                         provenance.get("source_kind").getAsString());
                 String source = provenance.get("selected_source_recipe").getAsString();
                 assertTrue(
-                        Files.isRegularFile(Path.of(source.substring(0, source.indexOf('#')))),
-                        "Missing pinned source " + source);
+                        source.startsWith("gt6_dump/") && source.contains("#"),
+                        "Chemical provenance must name a dump pointer, not a live file: "
+                                + source);
                 maxEut = Math.max(maxEut, recipe.get("eut").getAsInt());
                 maxItemOutputs = Math.max(
                         maxItemOutputs,

@@ -2,16 +2,14 @@ package com.masson.cruciblecraft.content.block;
 
 import java.util.Map;
 
-import com.masson.cruciblecraft.content.item.MachineToolInteractions;
-import com.masson.cruciblecraft.content.item.MaterialWireCutterItem;
-import com.masson.cruciblecraft.content.item.MaterialWrenchItem;
 import com.masson.cruciblecraft.api.energy.EnergyType;
+import com.masson.cruciblecraft.api.tool.ToolAction;
+import com.masson.cruciblecraft.api.tool.ToolActionSource;
+import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.logistics.pipe.PipeTopology;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -147,36 +145,15 @@ public final class Gt6StyleConnections {
         return placed;
     }
 
-    public static ItemInteractionResult wrench(
-            ItemStack stack,
-            BlockState state,
-            Level level,
-            BlockPos pos,
-            Player player,
-            InteractionHand hand,
-            BlockHitResult hit) {
-        // GT6 getFacingTool split: wrench operates pipes only.
-        if (!(stack.getItem() instanceof MaterialWrenchItem)
-                || !(state.getBlock() instanceof AbstractPipeBlock)) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+    public static ToolResult toggleConnection(
+            Level level, BlockPos pos, BlockHitResult hit) {
+        if (level.isClientSide) {
+            return ToolResult.SUCCESS;
         }
-        return toggle(state, level, pos, hit);
-    }
-
-    public static ItemInteractionResult cutter(
-            ItemStack stack,
-            BlockState state,
-            Level level,
-            BlockPos pos,
-            Player player,
-            InteractionHand hand,
-            BlockHitResult hit) {
-        // GT6 getFacingTool split: wire cutter operates cables only.
-        if (!(stack.getItem() instanceof MaterialWireCutterItem)
-                || !(state.getBlock() instanceof CableBlock)) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-        }
-        return toggle(state, level, pos, hit);
+        BlockState state = level.getBlockState(pos);
+        Direction side = sideFromHit(hit);
+        setConnection(level, pos, side, !isOpen(state, side));
+        return ToolResult.SUCCESS;
     }
 
     /**
@@ -272,10 +249,11 @@ public final class Gt6StyleConnections {
     public static boolean holdingMatchingTool(
             BlockState state, ItemStack held) {
         if (state.getBlock() instanceof CableBlock) {
-            return held.getItem() instanceof MaterialWireCutterItem;
+            return ToolActionSource.provides(held, ToolAction.WIRE_CUTTER);
         }
         return state.getBlock() instanceof AbstractPipeBlock
-                && MachineToolInteractions.expandsPipeGrid(held);
+                && ToolActionSource.providesAny(
+                        held, ToolAction::expandsPipeGrid);
     }
 
     public static boolean holdingMatchingTool(
@@ -295,15 +273,5 @@ public final class Gt6StyleConnections {
         return holdingMatchingTool(state, context)
                 ? Shapes.block()
                 : connectedShape;
-    }
-
-    private static ItemInteractionResult toggle(
-            BlockState state, Level level, BlockPos pos, BlockHitResult hit) {
-        if (level.isClientSide) {
-            return ItemInteractionResult.SUCCESS;
-        }
-        Direction side = sideFromHit(hit);
-        setConnection(level, pos, side, !isOpen(state, side));
-        return ItemInteractionResult.SUCCESS;
     }
 }

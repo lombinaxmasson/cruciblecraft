@@ -22,13 +22,12 @@ public final class MaterialUniversalSpadeItem extends MaterialDiggerItem {
 
     @Override
     public InteractionResult useOn(UseOnContext context) {
-        if (!canApplyDurabilityDamage(context.getItemInHand())) {
-            return InteractionResult.PASS;
+        InteractionResult tool = super.useOn(context);
+        if (tool.consumesAction()) {
+            return tool;
         }
-        InteractionResult crowbar = MachineToolInteractions.crowbar(context);
-        if (crowbar.consumesAction()) {
-            return crowbar;
-        }
-        return VanillaToolUseOn.shovel(context);
+        return canApplyDurabilityDamage(context.getItemInHand())
+                ? VanillaToolUseOn.shovel(context)
+                : InteractionResult.PASS;
     }
 }

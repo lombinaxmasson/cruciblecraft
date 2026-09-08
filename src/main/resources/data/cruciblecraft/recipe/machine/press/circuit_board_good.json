@@ -1,0 +1,32 @@
+{
+  "type": "cruciblecraft:gt_recipe",
+  "map": "cruciblecraft:press",
+  "duration": 64,
+  "eut": 16,
+  "can_be_buffered": true,
+  "item_inputs": [
+    {
+      "item": "cruciblecraft:circuit_plate_copper"
+    },
+    {
+      "item": "cruciblecraft:circuit_part_good"
+    }
+  ],
+  "item_input_counts": [
+    1,
+    4
+  ],
+  "item_outputs": [
+    {
+      "id": "cruciblecraft:circuit_board_good",
+      "count": 1
+    }
+  ],
+  "output_chances": [
+    10000
+  ],
+  "provenance": {
+    "selected_source_recipe": "MultiItemTechnological.java:675",
+    "source_kind": "gt6_source"
+  }
+}

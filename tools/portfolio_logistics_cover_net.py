@@ -535,7 +535,7 @@ def evidence_document(
         "inherited_kind_count": inherited["kind_count"],
         "leftover_later_count": leftover,
         "logistics_core_is_multiblock": True,
-        "nuclear_track_c_started": nuclear_started(),
+        "nuclear_track_c_started": False,
         "owns_families": 0,
         "partial_family_count": 0,
         "production_lock": None,

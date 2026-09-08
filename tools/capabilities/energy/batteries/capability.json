@@ -145,7 +145,7 @@
       "semantic_key": "battery_part:filled_cell",
       "disposition": "blocked",
       "runtime_ids": [],
-      "reason": "GT6 IL.Battery_*_Cell_Empty/Filled (MultiItemTechnological 20000-20009) is not registered. EU battery B-slot is DESIGN_POLICY chemistry stand-in: lead/plate, zinc/dust, nickel/plate, cobalt/rod, pyrolusite/dust. Pattern and battery_alloy plate stay SOURCE_BACKED. OD_CIRCUITS[tier] collapsed to programmed_circuit."
+      "reason": "Empty/filled cells 20000-20009 are registered. EU empty-cell recipes and B/C slots are SOURCE_BACKED (filled cells + OD_CIRCUITS[tier]). Fill stays FluidContainerData, not a Canner table. LiClO4 dust has no source-backed synthesis recipe."
     },
     {
       "semantic_key": "recipe:energium_crystal_shaped",
@@ -154,5 +154,5 @@
       "reason": "GT6 LU crystals 14500-14515 have no shaped recipe; they are OreDict gemChipped..gemLegendary targets. CC invented dust+cable survival craft. Not SOURCE_BACKED."
     }
   ],
-  "note": "37 census Batteries: loader 14000-14044 and 14500-14515. Not fusion 14600/14601, not battery boxes, not transformers. unique_active_wave stays null. Source is local gt6_code. Recipe B-slot and LU shaped craft are blocked DESIGN_POLICY; see battery_part:filled_cell and recipe:energium_crystal_shaped."
+  "note": "37 census Batteries: loader 14000-14044 and 14500-14515. Not fusion 14600/14601, not battery boxes, not transformers. unique_active_wave stays null. Source is local gt6_code. EU empty cells and B/C slots are SOURCE_BACKED. Fill (no Canner table) and LU shaped craft stay blocked; see battery_part:filled_cell and recipe:energium_crystal_shaped."
 }

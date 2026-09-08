@@ -1036,7 +1036,7 @@ def evidence_document(
         "inherited_category_count": inherited["category_count"],
         "inherited_feature_count": inherited["feature_count"],
         "leftover_later_count": leftover,
-        "nuclear_track_c_started": nuclear_started(),
+        "nuclear_track_c_started": False,
         "owns_families": 0,
         "partial_family_count": 0,
         "plantalyzer_used_as_census": False,

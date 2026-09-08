@@ -40,6 +40,7 @@
         "test_energy_converter_catalog",
         "test_energy_batteries",
         "test_energy_transformers",
+        "test_energy_nuclear_fission_survival",
         "test_logistics_core",
         "test_display_cpu",
         "test_verification_profiles"
@@ -57,6 +58,7 @@
         "tools/tests/test_energy_converter_catalog.py",
         "tools/tests/test_energy_batteries.py",
         "tools/tests/test_energy_transformers.py",
+        "tools/tests/test_energy_nuclear_fission_survival.py",
         "tools/tests/test_logistics_core.py",
         "tools/tests/test_display_cpu.py"
       ]
@@ -192,6 +194,7 @@
         "test_logistics_cover_net_remainder",
         "test_logistics_core",
         "test_display_cpu",
+        "test_energy_nuclear_fission_survival",
         "test_registry_identity",
         "test_jade_observation"
       ],
@@ -292,7 +295,10 @@
         "src/test/java/com/masson/cruciblecraft/energy/transformer/**",
         "tools/capabilities/energy/transformers/**",
         "tools/waves/runtime/transformers/**",
-        "tools/tests/test_energy_transformers.py"
+        "tools/tests/test_energy_transformers.py",
+        "tools/waves/runtime/fission-survival/**",
+        "tools/capabilities/energy/nuclear-fission-survival/**",
+        "tools/tests/test_energy_nuclear_fission_survival.py"
       ]
     },
     "player-complete": {
@@ -311,7 +317,8 @@
         "build_player_complete_display",
         "build_player_complete_converter_catalog",
         "build_player_complete_batteries",
-        "build_player_complete_transformers"
+        "build_player_complete_transformers",
+        "build_player_complete_nuclear"
       ],
       "owned_paths": [
         "tools/player_complete.py",
@@ -325,7 +332,9 @@
         "tools/capabilities/energy/converter-catalog/**",
         "tools/capabilities/energy/batteries/**",
         "tools/capabilities/energy/transformers/**",
+        "tools/capabilities/energy/nuclear-fission-survival/**",
         "src/main/java/com/masson/cruciblecraft/verification/PlayerCompleteSmoke.java",
+        "src/main/resources/cruciblecraft/player_complete_surfaces.json",
         "src/main/java/com/masson/cruciblecraft/client/ClientSmoke.java",
         "src/main/java/com/masson/cruciblecraft/compat/emi/CrucibleCraftEmiPlugin.java",
         "src/main/java/com/masson/cruciblecraft/compat/emi/ProcessingEmiRegistrationPlan.java"

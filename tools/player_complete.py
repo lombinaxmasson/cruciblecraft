@@ -25,6 +25,10 @@ EMI_PLUGIN_CLASS = (
     "com.masson.cruciblecraft.compat.emi.CrucibleCraftEmiPlugin"
 )
 LOCAL_RECEIPTS = ROOT / "build" / "verification" / "receipts"
+SURFACE_CATALOG = (
+    ROOT / "src" / "main" / "resources" / "cruciblecraft"
+    / "player_complete_surfaces.json"
+)
 GAME_TEST_PASS = re.compile(r"All\s+(\d+)\s+required tests passed")
 GAME_TEST_METHOD_RE = re.compile(
     r"public static void (\w+)\s*\(\s*GameTestHelper"
@@ -388,11 +392,37 @@ def check_gametest(
     return check_gametest_receipt(capability, receipt_path)
 
 
+def load_surface_catalog() -> dict[str, Any]:
+    return io.load_json(SURFACE_CATALOG)
+
+
+def check_surface_catalog(slug: str, item_ids: list[str]) -> list[str]:
+    catalog = load_surface_catalog()
+    surfaces = catalog.get("surfaces")
+    if not isinstance(surfaces, dict):
+        return [f"{slug}: player_complete_surfaces.json is invalid"]
+    row = surfaces.get(slug)
+    if not isinstance(row, dict):
+        return [f"{slug}: missing player_complete_surfaces entry"]
+    raw = row.get("registry_ids")
+    if not isinstance(raw, list) or not all(
+        isinstance(value, str) and value for value in raw
+    ):
+        return [f"{slug}: player_complete_surfaces registry_ids is invalid"]
+    expected = [f"cruciblecraft:{item}" for item in item_ids]
+    if list(raw) != expected:
+        return [
+            f"{slug}: player_complete_surfaces {raw} != signoff {expected}"
+        ]
+    return []
+
+
 def check_capability(
     slug: str,
     gametest_receipt: str | Path | None = None,
     client_receipt: str | Path | None = None,
     expected_nonce: str | None = None,
+    require_client: bool = False,
 ) -> list[str]:
     path = capability_ledger.CAP_ROOT / slug / "capability.json"
     if not path.is_file():
@@ -407,6 +437,7 @@ def check_capability(
     errors.extend(check_signoff(capability, signoff))
     item_ids = list(signoff.get("craftable_items") or [])
     errors.extend(check_static_player_surface(slug, item_ids))
+    errors.extend(check_surface_catalog(slug, item_ids))
     errors.extend(
         check_gametest_receipt(
             capability,
@@ -414,14 +445,15 @@ def check_capability(
             expected_nonce=expected_nonce,
         )
     )
-    errors.extend(
-        check_client_receipt(
-            capability,
-            client_receipt,
-            item_ids,
-            expected_nonce=expected_nonce,
+    if require_client or client_receipt is not None:
+        errors.extend(
+            check_client_receipt(
+                capability,
+                client_receipt,
+                item_ids,
+                expected_nonce=expected_nonce,
+            )
         )
-    )
     identity = registry_identity.compile_manifest()
     if identity["errors"]:
         errors.extend(identity["errors"])
@@ -499,7 +531,12 @@ def runtime_smoke_errors(
     return errors
 
 
-def run_fresh_capability(slug: str, *, offline: bool = False) -> list[str]:
+def run_fresh_capability(
+    slug: str,
+    *,
+    offline: bool = False,
+    client: bool = False,
+) -> list[str]:
     capability_path = capability_ledger.CAP_ROOT / slug / "capability.json"
     if not capability_path.is_file():
         return [f"missing capability {slug}"]
@@ -591,35 +628,45 @@ def run_fresh_capability(slug: str, *, offline: bool = False) -> list[str]:
         encoding="utf-8",
         newline="\n",
     )
-    client_code = 1
+    client_code: int | None = None
+    commands = [game_command]
+    if client:
+        commands.append(client_command)
+        if not errors:
+            client_code, _client_output = run_logged(
+                client_command,
+                paths["client_log"],
+            )
+            if client_code != 0:
+                errors.append(f"{slug}: runClient exited {client_code}")
+        else:
+            client_code = 1
     if not errors:
-        client_code, _client_output = run_logged(
-            client_command,
-            paths["client_log"],
-        )
-        if client_code != 0:
-            errors.append(f"{slug}: runClient exited {client_code}")
-    if client_code == 0:
         errors.extend(
             check_capability(
                 slug,
                 gametest_receipt=paths["gametest"],
-                client_receipt=paths["client"],
+                client_receipt=paths["client"] if client else None,
                 expected_nonce=nonce,
+                require_client=client,
             )
         )
     report = {
         "schema_version": 1,
         "capability": slug,
         "status": "PASS" if not errors else "FAIL",
-        "commands": [game_command, client_command],
+        "commands": commands,
         "gametest": {
             "exit_code": game_code,
             "passed": passed,
             "required_tests": len(declared_ids) if declared_ids else passed,
             "test_ids": observed_ids or list(declared_ids),
         },
-        "client": {"exit_code": client_code},
+        "client": (
+            {"exit_code": client_code}
+            if client
+            else {"skipped": True}
+        ),
         "errors": errors,
     }
     paths["report"].write_text(
@@ -642,6 +689,11 @@ def main(argv: list[str] | None = None) -> int:
         help="pass --offline to Gradle for an already provisioned checkout",
     )
     parser.add_argument(
+        "--client",
+        action="store_true",
+        help="also run runClient; required for runtime_ready → player_complete",
+    )
+    parser.add_argument(
         "--gametest-receipt",
         metavar="PATH",
         help="fresh GameTest JSON under build/run output or outside checkout",
@@ -659,12 +711,21 @@ def main(argv: list[str] | None = None) -> int:
             errors = run_fresh_capability(
                 args.capability,
                 offline=args.offline,
+                client=args.client,
             )
         else:
+            if args.gametest_receipt is None:
+                print(
+                    f"{args.capability}: fresh GameTest receipt required; "
+                    "pass --gametest-receipt PATH",
+                    file=sys.stderr,
+                )
+                return 1
             errors = check_capability(
                 args.capability,
                 gametest_receipt=args.gametest_receipt,
                 client_receipt=args.client_receipt,
+                require_client=args.client,
             )
     except ValueError as error:
         print(str(error), file=sys.stderr)

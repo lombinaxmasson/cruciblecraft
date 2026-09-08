@@ -2,9 +2,11 @@ package com.masson.cruciblecraft.content.block;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.masson.cruciblecraft.api.tool.ToolAction;
+import com.masson.cruciblecraft.api.tool.ToolInteractable;
+import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.blockentity.HopperBlockEntity;
-import com.masson.cruciblecraft.content.item.MaterialScrewdriverItem;
-import com.masson.cruciblecraft.content.item.MaterialWrenchItem;
+import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.logistics.hopper.HopperKind;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariant;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
@@ -19,6 +21,7 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -40,7 +43,8 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 /** One Hopper-family block. Kind/material live on the variant, not subclasses. */
-public final class HopperBlock extends Block implements EntityBlock {
+public final class HopperBlock extends Block
+        implements EntityBlock, ToolInteractable {
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     private static final VoxelShape TOP = Block.box(0.0, 10.0, 0.0, 16.0, 16.0, 16.0);
     private static final VoxelShape FUNNEL = Block.box(4.0, 4.0, 4.0, 12.0, 10.0, 12.0);
@@ -138,29 +142,43 @@ public final class HopperBlock extends Block implements EntityBlock {
             Player player,
             InteractionHand hand,
             BlockHitResult hit) {
-        if (!(level.getBlockEntity(pos) instanceof HopperBlockEntity hopper)) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        return ToolClick.useItemOn(stack, level, player, hand, hit);
+    }
+
+    @Override
+    public ToolResult useTool(ToolAction action, UseOnContext context) {
+        Level level = context.getLevel();
+        if (!(level.getBlockEntity(context.getClickedPos())
+                instanceof HopperBlockEntity hopper)) {
+            return ToolResult.PASS;
         }
-        if (stack.getItem() instanceof MaterialScrewdriverItem) {
+        if (action == ToolAction.SCREWDRIVER) {
             if (!level.isClientSide) {
-                hopper.cycleMode(player.isShiftKeyDown());
-                player.displayClientMessage(hopper.statusMessage(), true);
-                hurtTool(stack, player, hand);
+                hopper.cycleMode(context.getPlayer() != null
+                        && context.getPlayer().isShiftKeyDown());
+                if (context.getPlayer() != null) {
+                    context.getPlayer().displayClientMessage(
+                            hopper.statusMessage(), true);
+                }
+                ToolClick.hurt(context);
             }
-            return ItemInteractionResult.SUCCESS;
+            return ToolResult.SUCCESS;
         }
-        if (stack.getItem() instanceof MaterialWrenchItem) {
+        if (action == ToolAction.WRENCH) {
             if (variant.kind() == HopperKind.QUEUE_HOPPER) {
-                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+                return ToolResult.PASS;
             }
             if (!level.isClientSide) {
                 hopper.toggleExactMode();
-                player.displayClientMessage(hopper.statusMessage(), true);
-                hurtTool(stack, player, hand);
+                if (context.getPlayer() != null) {
+                    context.getPlayer().displayClientMessage(
+                            hopper.statusMessage(), true);
+                }
+                ToolClick.hurt(context);
             }
-            return ItemInteractionResult.SUCCESS;
+            return ToolResult.SUCCESS;
         }
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        return ToolResult.PASS;
     }
 
     @Override
@@ -194,18 +212,6 @@ public final class HopperBlock extends Block implements EntityBlock {
                                 currentState,
                                 (HopperBlockEntity) blockEntity)
                 : null;
-    }
-
-    private static void hurtTool(
-            ItemStack stack, Player player, InteractionHand hand) {
-        if (!player.getAbilities().instabuild) {
-            stack.hurtAndBreak(
-                    1,
-                    player,
-                    hand == InteractionHand.MAIN_HAND
-                            ? net.minecraft.world.entity.EquipmentSlot.MAINHAND
-                            : net.minecraft.world.entity.EquipmentSlot.OFFHAND);
-        }
     }
 
     public static Component queueHasNoExactMode() {

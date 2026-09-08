@@ -110,7 +110,7 @@ class MachineRepairExtensibilityTest {
         assertFalse(tiers.contains("invar_lathe"));
         assertFalse(casings.contains("iron_machine_casing"));
         assertFalse(crucibleSection(devices).contains("\"material_id\": \"iron\""));
-        assertEquals(85, JsonParser.parseString(tiers)
+        assertEquals(86, JsonParser.parseString(tiers)
                 .getAsJsonObject()
                 .getAsJsonArray("variants")
                 .size());

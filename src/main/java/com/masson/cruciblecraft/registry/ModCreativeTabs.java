@@ -72,6 +72,7 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.REACTOR_CORE_1X1.get());
                         output.accept(ModItems.REACTOR_CORE_2X2.get());
                         ModItems.reactorRods().forEach(rod -> output.accept(rod.get()));
+                        ModItems.technologicalParts().forEach(part -> output.accept(part.get()));
                         output.accept(ModItems.RAW_CERAMIC_CRUCIBLE.get());
                         output.accept(ModItems.RAW_CERAMIC_MOLD.get());
                         output.accept(ModItems.RAW_INGOT_MOLD.get());

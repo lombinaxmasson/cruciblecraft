@@ -1,21 +1,22 @@
 package com.masson.cruciblecraft.verification;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.compat.emi.ProcessingEmiRegistrationPlan;
-import com.masson.cruciblecraft.logistics.core.LogisticsDumpKinds;
-import com.masson.cruciblecraft.logistics.displaycpu.DisplayCpuKinds;
-import com.masson.cruciblecraft.logistics.fluidnet.FluidNetworkKinds;
-import com.masson.cruciblecraft.logistics.genericnet.GenericNetworkKinds;
-import com.masson.cruciblecraft.logistics.itemnet.ItemNetworkKinds;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinitionCatalog;
 import com.masson.cruciblecraft.registry.ModCreativeTabs;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
@@ -33,14 +34,9 @@ public final class PlayerCompleteSmoke {
             "logistics/generic-network/core";
     private static final String CORE_CAPABILITY =
             "logistics/logistics-core";
-    private static final String DISPLAY_CAPABILITY =
-            "logistics/display-cpu";
-    private static final String CONVERTER_CAPABILITY =
-            "energy/converter-catalog";
-    private static final String BATTERIES_CAPABILITY =
-            "energy/batteries";
-    private static final String TRANSFORMERS_CAPABILITY =
-            "energy/transformers";
+    private static final String SURFACE_RESOURCE =
+            "/cruciblecraft/player_complete_surfaces.json";
+
     private record Surface(
             String capability,
             List<String> registryIds,
@@ -49,6 +45,7 @@ public final class PlayerCompleteSmoke {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final String EMI_PLUGIN =
             "com.masson.cruciblecraft.compat.emi.CrucibleCraftEmiPlugin";
+    private static final Map<String, Surface> SURFACES = loadSurfaces();
 
     private PlayerCompleteSmoke() {}
 
@@ -58,105 +55,51 @@ public final class PlayerCompleteSmoke {
                 FLUID_CAPABILITY);
     }
 
+    private static Map<String, Surface> loadSurfaces() {
+        Map<String, Surface> loaded = new LinkedHashMap<>();
+        try (InputStream stream = PlayerCompleteSmoke.class.getResourceAsStream(
+                SURFACE_RESOURCE)) {
+            if (stream == null) {
+                throw new IllegalStateException("Missing " + SURFACE_RESOURCE);
+            }
+            JsonObject root = GSON.fromJson(
+                    new InputStreamReader(stream, StandardCharsets.UTF_8),
+                    JsonObject.class);
+            JsonObject surfaces = root.getAsJsonObject("surfaces");
+            for (Map.Entry<String, JsonElement> entry : surfaces.entrySet()) {
+                JsonObject row = entry.getValue().getAsJsonObject();
+                List<String> registryIds = strings(row.getAsJsonArray("registry_ids"));
+                List<ResourceLocation> definitionIds = new ArrayList<>();
+                for (String id : strings(row.getAsJsonArray("definition_ids"))) {
+                    definitionIds.add(ResourceLocation.parse(id));
+                }
+                loaded.put(
+                        entry.getKey(),
+                        new Surface(entry.getKey(), registryIds, definitionIds));
+            }
+        } catch (Exception exception) {
+            throw new IllegalStateException(
+                    "Could not load player-complete surfaces",
+                    exception);
+        }
+        return Map.copyOf(loaded);
+    }
+
+    private static List<String> strings(JsonArray array) {
+        List<String> values = new ArrayList<>();
+        if (array == null) {
+            return List.of();
+        }
+        for (JsonElement element : array) {
+            values.add(element.getAsString());
+        }
+        return List.copyOf(values);
+    }
+
     private static Surface surface(String capability) {
-        if (ITEM_CAPABILITY.equals(capability)) {
-            return new Surface(
-                    ITEM_CAPABILITY,
-                    List.of(
-                            "cruciblecraft:logistics_item_storage_cover",
-                            "cruciblecraft:logistics_item_import_cover",
-                            "cruciblecraft:logistics_item_export_cover"),
-                    List.of(
-                            ItemNetworkKinds.STORAGE,
-                            ItemNetworkKinds.IMPORT,
-                            ItemNetworkKinds.EXPORT));
-        }
-        if (FLUID_CAPABILITY.equals(capability)) {
-            return new Surface(
-                    FLUID_CAPABILITY,
-                    List.of(
-                            "cruciblecraft:logistics_fluid_storage_cover",
-                            "cruciblecraft:logistics_fluid_import_cover",
-                            "cruciblecraft:logistics_fluid_export_cover"),
-                    List.of(
-                            FluidNetworkKinds.STORAGE,
-                            FluidNetworkKinds.IMPORT,
-                            FluidNetworkKinds.EXPORT));
-        }
-        if (GENERIC_CAPABILITY.equals(capability)) {
-            return new Surface(
-                    GENERIC_CAPABILITY,
-                    List.of(
-                            "cruciblecraft:logistics_generic_storage_cover",
-                            "cruciblecraft:logistics_generic_import_cover",
-                            "cruciblecraft:logistics_generic_export_cover"),
-                    List.of(
-                            GenericNetworkKinds.STORAGE,
-                            GenericNetworkKinds.IMPORT,
-                            GenericNetworkKinds.EXPORT));
-        }
-        if (CORE_CAPABILITY.equals(capability)) {
-            return new Surface(
-                    CORE_CAPABILITY,
-                    List.of("cruciblecraft:logistics_generic_dump_cover"),
-                    List.of(LogisticsDumpKinds.DUMP));
-        }
-        if (DISPLAY_CAPABILITY.equals(capability)) {
-            return new Surface(
-                    DISPLAY_CAPABILITY,
-                    List.of(
-                            "cruciblecraft:logistics_display_cpu_logic_cover",
-                            "cruciblecraft:logistics_display_cpu_control_cover",
-                            "cruciblecraft:logistics_display_cpu_storage_cover",
-                            "cruciblecraft:logistics_display_cpu_conversion_cover"),
-                    List.of(
-                            DisplayCpuKinds.LOGIC,
-                            DisplayCpuKinds.CONTROL,
-                            DisplayCpuKinds.STORAGE,
-                            DisplayCpuKinds.CONVERSION));
-        }
-        if (CONVERTER_CAPABILITY.equals(capability)) {
-            return new Surface(
-                    CONVERTER_CAPABILITY,
-                    List.of(
-                            "cruciblecraft:bronze_burning_box_solid",
-                            "cruciblecraft:bronze_burning_box_gas",
-                            "cruciblecraft:bronze_boiler",
-                            "cruciblecraft:bronze_steam_engine",
-                            "cruciblecraft:bronze_fuel_engine",
-                            "cruciblecraft:bronze_dynamo",
-                            "cruciblecraft:steel_galvanized_electric_motor"),
-                    List.of());
-        }
-        if (BATTERIES_CAPABILITY.equals(capability)) {
-            return new Surface(
-                    BATTERIES_CAPABILITY,
-                    List.of(
-                            "cruciblecraft:lead_acid_battery_ulv",
-                            "cruciblecraft:alkaline_battery_lv",
-                            "cruciblecraft:nickel_cadmium_battery_mv",
-                            "cruciblecraft:lithium_cobalt_battery_hv",
-                            "cruciblecraft:lithium_manganese_battery_ev",
-                            "cruciblecraft:red_energium_crystal_ulv",
-                            "cruciblecraft:cyan_energium_crystal_iv"),
-                    List.of());
-        }
-        if (TRANSFORMERS_CAPABILITY.equals(capability)) {
-            return new Surface(
-                    TRANSFORMERS_CAPABILITY,
-                    List.of(
-                            "cruciblecraft:electric_transformer_ulv_lv",
-                            "cruciblecraft:electric_transformer_lv_mv",
-                            "cruciblecraft:electric_transformer_mv_hv",
-                            "cruciblecraft:electric_transformer_hv_ev",
-                            "cruciblecraft:electric_transformer_ev_iv",
-                            "cruciblecraft:electric_transformer_iv_luv",
-                            "cruciblecraft:electric_transformer_luv_zpm",
-                            "cruciblecraft:electric_transformer_zpm_uv",
-                            "cruciblecraft:electric_transformer_uv_puv1"),
-                    List.of());
-        }
-        return new Surface(capability, List.of(), List.of());
+        return SURFACES.getOrDefault(
+                capability,
+                new Surface(capability, List.of(), List.of()));
     }
 
     public static JsonObject snapshot(String runtime) {

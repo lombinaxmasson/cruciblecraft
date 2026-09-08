@@ -1,0 +1,32 @@
+{
+  "type": "cruciblecraft:gt_recipe",
+  "map": "cruciblecraft:canner",
+  "duration": 16,
+  "eut": 16,
+  "can_be_buffered": true,
+  "item_inputs": [
+    {
+      "item": "cruciblecraft:ludicrite/rod"
+    },
+    {
+      "item": "cruciblecraft:empty_reactor_rod"
+    }
+  ],
+  "item_input_counts": [
+    1,
+    1
+  ],
+  "item_outputs": [
+    {
+      "id": "cruciblecraft:ludicrite_fuel_rod",
+      "count": 1
+    }
+  ],
+  "output_chances": [
+    10000
+  ],
+  "provenance": {
+    "selected_source_recipe": "nuclear/ludicrite_fuel_rod",
+    "source_kind": "gt6_source"
+  }
+}

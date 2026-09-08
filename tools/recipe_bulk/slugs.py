@@ -73,6 +73,7 @@ KNOWN_SEMANTIC_SLUGS = (
     "runtime/converter-catalog",
     "runtime/batteries",
     "runtime/transformers",
+    "runtime/fission-survival",
 )
 
 

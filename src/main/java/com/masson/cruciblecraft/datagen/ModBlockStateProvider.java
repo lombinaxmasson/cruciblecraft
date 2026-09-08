@@ -985,6 +985,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
             case "large_centrifuge",
                     "sluice",
                     "bath",
+                    "canner",
                     "centrifuge",
                     "shredder",
                     "sifter",

@@ -193,7 +193,7 @@ public final class ModProcessingMachines {
             componentSpec(
                     "press",
                     () -> ModRecipeMaps.PRESS,
-                    2,
+                    3,
                     false,
                     false,
                     EnergyType.KINETIC_PUSH,
@@ -285,17 +285,23 @@ public final class ModProcessingMachines {
                     16_000, 16_000,
                     0, 1, 1, 0,
                     EnergyType.TIME);
+    public static final ProcessingMachineSpec CANNER =
+            chemicalSpec("canner", () -> ModRecipeMaps.CANNER,
+                    2, 1, 0, 1, 128_000, 128_000,
+                    2, 1, 0, 1,
+                    EnergyType.ELECTRIC);
+    public static final ProcessingMachineSpec LASER_ENGRAVER = laserSpec();
     public static final List<ProcessingMachineSpec> HYDROCARBON_PROCESSING_MACHINES =
             List.of(GENERIFIER);
     /** Chemical recipes can publish into reused maps as well as dedicated maps. */
     public static final List<ProcessingMachineSpec> CHEMICAL_HOST_MACHINES = List.of(
             BATH, CENTRIFUGE, SMELTER, ASSEMBLER,
             ELECTROLYZER, MIXER, DISTILLERY, AUTOCLAVE, DRYING, COMPRESSOR,
-            ROASTER, COAGULATOR);
+            ROASTER, COAGULATOR, CANNER);
     /** Dedicated chemical maps which intentionally have no pre-chemical recipe population. */
     public static final List<ProcessingMachineSpec> CHEMICAL_DEDICATED_MACHINES = List.of(
             ELECTROLYZER, MIXER, DISTILLERY, AUTOCLAVE, DRYING, COMPRESSOR,
-            ROASTER, COAGULATOR);
+            ROASTER, COAGULATOR, CANNER);
     /** Original component envelope: 5,352 non-extruder + 4,648 extruder. */
     public static final int COMPONENT_EXPANSION_BUDGET = 10_000;
     /** Tool rules are budgeted separately from the closed component content set. */
@@ -412,12 +418,14 @@ public final class ModProcessingMachines {
     public static final long RECIPE_LOOKUP_P95_CANDIDATE_BUDGET = 64L;
     public static final long RECIPE_LOOKUP_MAX_CANDIDATE_HARD_CEILING = 128L;
     public static final List<ProcessingMachineSpec> CONFIGURED_MACHINES =
-            java.util.stream.Stream.of(
-                            PRIMARY_MACHINES,
-                            COMPONENT_MACHINES,
-                            CHEMICAL_HOST_MACHINES,
-                            HYDROCARBON_PROCESSING_MACHINES)
-                    .flatMap(List::stream)
+            java.util.stream.Stream.concat(
+                            java.util.stream.Stream.of(
+                                            PRIMARY_MACHINES,
+                                            COMPONENT_MACHINES,
+                                            CHEMICAL_HOST_MACHINES,
+                                            HYDROCARBON_PROCESSING_MACHINES)
+                                    .flatMap(List::stream),
+                            java.util.stream.Stream.of(LASER_ENGRAVER))
                     .distinct()
                     .toList();
     private static final Map<ResourceLocation, ProcessingMachineSpec> BY_ID =
@@ -1045,6 +1053,55 @@ public final class ModProcessingMachines {
             return true;
         }
         return false;
+    }
+
+    private static ProcessingMachineSpec laserSpec() {
+        return new ProcessingMachineSpec(
+                id("laser_engraver"),
+                id("laser_engraver"),
+                () -> ModRecipeMaps.LASER_ENGRAVER,
+                new ProcessingMachineSpec.SlotLayout(
+                        3, List.of(0, 1), List.of(2)),
+                new ProcessingMachineSpec.TankLayout(List.of(), List.of()),
+                new ProcessingMachineSpec.EnergySpec(
+                        EnergyType.LU,
+                        ProcessingMachineSpec.EnergyMode.BUFFERED,
+                        2_048L,
+                        64L),
+                new ProcessingMachineSpec.SidedIoPolicy(
+                        (front, side) -> side == null
+                                ? ProcessingMachineSpec.CapabilityAccess.NONE
+                                : side == front
+                                        ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
+                                        : ProcessingMachineSpec.CapabilityAccess.INPUT,
+                        (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE,
+                        (front, side) -> side == net.minecraft.core.Direction.UP
+                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                                : ProcessingMachineSpec.CapabilityAccess.NONE),
+                ModProcessingMachines::validateLaserRecipe,
+                ProcessingMachineSpec.BufferPolicy.PAUSE,
+                Gt6BasicMachineGui.ui(2, 1, 0, 0, 2, 1, 0, 0, PROCESSING_STATUSES));
+    }
+
+    private static Optional<String> validateLaserRecipe(GTRecipe recipe) {
+        if (recipe.itemInputs().size() != 2
+                || recipe.itemOutputs().size() != 1
+                || !recipe.fluidInputs().isEmpty()
+                || !recipe.fluidOutputs().isEmpty()
+                || recipe.eut() != 16L
+                || recipe.duration() != 64) {
+            return Optional.of("laser_recipe_shape");
+        }
+        if (recipe.itemInputCounts().size() != 2
+                || recipe.itemInputCounts().get(0) <= 0
+                || recipe.itemInputCounts().get(1) != 0
+                || recipe.itemInputActions().get(0).kind()
+                        != ItemInputAction.Kind.CONSUME
+                || recipe.itemInputActions().get(1).kind()
+                        != ItemInputAction.Kind.PRESERVE) {
+            return Optional.of("laser_recipe_lens");
+        }
+        return Optional.empty();
     }
 
     private static ResourceLocation id(String path) {

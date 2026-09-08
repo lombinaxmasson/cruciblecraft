@@ -62,7 +62,8 @@ class ChemicalProcessingMachineSpecTest {
                         "drying",
                         "compressor",
                         "roaster",
-                        "coagulator"),
+                        "coagulator",
+                        "canner"),
                 ModProcessingMachines.CHEMICAL_HOST_MACHINES.stream()
                         .map(spec -> spec.id().getPath())
                         .toList());
@@ -75,7 +76,8 @@ class ChemicalProcessingMachineSpecTest {
                         "drying",
                         "compressor",
                         "roaster",
-                        "coagulator"),
+                        "coagulator",
+                        "canner"),
                 ModProcessingMachines.CHEMICAL_DEDICATED_MACHINES.stream()
                         .map(spec -> spec.id().getPath())
                         .toList());
@@ -88,7 +90,8 @@ class ChemicalProcessingMachineSpecTest {
                         "drying",
                         "compressor",
                         "roaster",
-                        "coagulator"),
+                        "coagulator",
+                        "canner"),
                 ModProcessingMachines.CHEMICAL_DEDICATED_MACHINES.stream()
                         .map(spec -> spec.requireRecipeMap().id().getPath())
                         .toList());
@@ -124,6 +127,7 @@ class ChemicalProcessingMachineSpecTest {
         assertLayout(ModProcessingMachines.DRYING, 1, 1, 1, 1, 32_000, 32_000);
         assertLayout(ModProcessingMachines.COMPRESSOR, 1, 1, 0, 0, 0, 0);
         assertLayout(ModProcessingMachines.ROASTER, 1, 3, 1, 1, 72_000, 72_000);
+        assertLayout(ModProcessingMachines.CANNER, 2, 1, 0, 1, 128_000, 128_000);
         var roasterHeat = ProcessingMachineEnergyPlacement.connection(
                 ModProcessingMachines.ROASTER, Direction.EAST);
         assertEquals(Direction.DOWN, roasterHeat.providerOffset());

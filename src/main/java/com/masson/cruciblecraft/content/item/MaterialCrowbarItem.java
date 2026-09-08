@@ -6,10 +6,8 @@ import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.context.UseOnContext;
 
 /**
  * GT6 crowbar: pry covers, pick up mass-storage barrels with contents,
@@ -21,13 +19,6 @@ public final class MaterialCrowbarItem extends MaterialToolItem {
                 properties,
                 ToolKind.CROWBAR,
                 "item.cruciblecraft.material_crowbar");
-    }
-
-    @Override
-    public InteractionResult useOn(UseOnContext context) {
-        return canApplyDurabilityDamage(context.getItemInHand())
-                ? MachineToolInteractions.crowbar(context)
-                : InteractionResult.PASS;
     }
 
     @Override

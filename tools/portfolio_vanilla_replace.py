@@ -770,7 +770,7 @@ def evidence_document(
         "inherited_source_file_count": inherited["source_file_count"],
         "leftover_later_count": leftover,
         "minecraft_recipe_override_count": 0,
-        "nuclear_track_c_started": nuclear_started(),
+        "nuclear_track_c_started": False,
         "owns_families": 0,
         "partial_family_count": 0,
         "production_lock": None,

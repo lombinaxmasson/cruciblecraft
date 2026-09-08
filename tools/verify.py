@@ -629,6 +629,7 @@ def cmd_promotion(args: argparse.Namespace, receipt: dict[str, Any]) -> int:
                 sys.executable,
                 "tools/build_player_complete.py",
                 "--run",
+                "--client",
                 "--capability",
                 slug,
             ],

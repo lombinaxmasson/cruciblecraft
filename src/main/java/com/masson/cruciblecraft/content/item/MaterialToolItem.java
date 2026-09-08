@@ -3,6 +3,10 @@ package com.masson.cruciblecraft.content.item;
 import java.util.List;
 import java.util.Optional;
 
+import com.masson.cruciblecraft.api.tool.ToolAction;
+import com.masson.cruciblecraft.api.tool.ToolActionSource;
+import com.masson.cruciblecraft.content.item.tool.ProvidedToolActions;
+import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.machine.ToolMaterialRules;
 import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
 import com.masson.cruciblecraft.material.MaterialCatalog;
@@ -11,13 +15,15 @@ import com.masson.cruciblecraft.registry.ModComponents;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.context.UseOnContext;
 
 /** One registered item whose stack components select a tool material. */
 public abstract class MaterialToolItem extends Item
-        implements MaterialComponentPolicy {
+        implements MaterialComponentPolicy, ToolActionSource {
     private static final int DAMAGEABILITY_SENTINEL_MAX_DAMAGE = 1;
 
     private final ToolKind kind;
@@ -54,6 +60,19 @@ public abstract class MaterialToolItem extends Item
 
     public final ToolKind kind() {
         return kind;
+    }
+
+    @Override
+    public boolean provides(ToolAction action) {
+        return ProvidedToolActions.of(kind).contains(action);
+    }
+
+    @Override
+    public InteractionResult useOn(UseOnContext context) {
+        if (!canApplyDurabilityDamage(context.getItemInHand())) {
+            return InteractionResult.PASS;
+        }
+        return ToolClick.useOn(context);
     }
 
     @Override

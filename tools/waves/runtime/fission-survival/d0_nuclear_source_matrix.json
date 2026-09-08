@@ -1,0 +1,444 @@
+{
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "wave_slug": "runtime/fission-survival",
+  "nuclear_source_relations": 48,
+  "missing": 0,
+  "extra": 0,
+  "duplicate": 0,
+  "status": "D0_MATRIX_READY",
+  "relations": [
+    {
+      "index": 1,
+      "source_id": 9201,
+      "relation": "empty_rod_extruder",
+      "recipe_id": "nuclear/empty_reactor_rod",
+      "machine": "extruder",
+      "target": "empty_reactor_rod",
+      "status": "ready"
+    },
+    {
+      "index": 2,
+      "source_id": 9202,
+      "relation": "utility_canner",
+      "recipe_id": "nuclear/neutron_absorber_rod",
+      "machine": "canner",
+      "target": "neutron_absorber_rod",
+      "status": "ready"
+    },
+    {
+      "index": 3,
+      "source_id": 9203,
+      "relation": "utility_canner",
+      "recipe_id": "nuclear/neutron_reflector_rod",
+      "machine": "canner",
+      "target": "neutron_reflector_rod",
+      "status": "ready"
+    },
+    {
+      "index": 4,
+      "source_id": 9204,
+      "relation": "utility_canner",
+      "recipe_id": "nuclear/neutron_moderator_rod",
+      "machine": "canner",
+      "target": "neutron_moderator_rod",
+      "status": "ready"
+    },
+    {
+      "index": 5,
+      "source_id": 9210,
+      "relation": "fuel_canner",
+      "recipe_id": "nuclear/thorium232_fuel_rod",
+      "machine": "canner",
+      "target": "thorium232_fuel_rod",
+      "status": "ready"
+    },
+    {
+      "index": 6,
+      "source_id": 9219,
+      "relation": "fuel_canner",
+      "recipe_id": "nuclear/cyanite_fuel_rod",
+      "machine": "canner",
+      "target": "cyanite_fuel_rod",
+      "status": "ready"
+    },
+    {
+      "index": 7,
+      "source_id": 9220,
+      "relation": "fuel_canner",
+      "recipe_id": "nuclear/uranium238_fuel_rod",
+      "machine": "canner",
+      "target": "uranium238_fuel_rod",
+      "status": "ready"
+    },
+    {
+      "index": 8,
+      "source_id": 9221,
+      "relation": "fuel_canner",
+      "recipe_id": "nuclear/uranium235_fuel_rod",
+      "machine": "canner",
+      "target": "uranium235_fuel_rod",
+      "status": "ready"
+    },
+    {
+      "index": 9,
+      "source_id": 9222,
+      "relation": "fuel_canner",
+      "recipe_id": "nuclear/uranium233_fuel_rod",
+      "machine": "canner",
+      "target": "uranium233_fuel_rod",
+      "status": "ready"
+    },
+    {
+      "index": 10,
+      "source_id": 9229,
+      "relation": "fuel_canner",
+      "recipe_id": "nuclear/yellorium_fuel_rod",
+      "machine": "canner",
+      "target": "yellorium_fuel_rod",
+      "status": "ready"
+    },
+    {
+      "index": 11,
+      "source_id": 9230,
+      "relation": "fuel_canner",
+      "recipe_id": "nuclear/plutonium244_fuel_rod",
+      "machine": "canner",
+      "target": "plutonium244_fuel_rod",
+      "status": "ready"
+    },
+    {
+      "index": 12,
+      "source_id": 9231,
+      "relation": "fuel_canner",
+      "recipe_id": "nuclear/plutonium241_fuel_rod",
+      "machine": "canner",
+      "target": "plutonium241_fuel_rod",
+      "status": "ready"
+    },
+    {
+      "index": 13,
+      "source_id": 9232,
+      "relation": "fuel_canner",
+      "recipe_id": "nuclear/plutonium243_fuel_rod",
+      "machine": "canner",
+      "target": "plutonium243_fuel_rod",
+      "status": "ready"
+    },
+    {
+      "index": 14,
+      "source_id": 9233,
+      "relation": "fuel_canner",
+      "recipe_id": "nuclear/plutonium239_fuel_rod",
+      "machine": "canner",
+      "target": "plutonium239_fuel_rod",
+      "status": "ready"
+    },
+    {
+      "index": 15,
+      "source_id": 9239,
+      "relation": "fuel_canner",
+      "recipe_id": "nuclear/blutonium_fuel_rod",
+      "machine": "canner",
+      "target": "blutonium_fuel_rod",
+      "status": "ready"
+    },
+    {
+      "index": 16,
+      "source_id": 9240,
+      "relation": "fuel_canner",
+      "recipe_id": "nuclear/americium245_fuel_rod",
+      "machine": "canner",
+      "target": "americium245_fuel_rod",
+      "status": "ready"
+    },
+    {
+      "index": 17,
+      "source_id": 9241,
+      "relation": "fuel_canner",
+      "recipe_id": "nuclear/americium241_fuel_rod",
+      "machine": "canner",
+      "target": "americium241_fuel_rod",
+      "status": "ready"
+    },
+    {
+      "index": 18,
+      "source_id": 9249,
+      "relation": "fuel_canner",
+      "recipe_id": "nuclear/ludicrite_fuel_rod",
+      "machine": "canner",
+      "target": "ludicrite_fuel_rod",
+      "status": "ready"
+    },
+    {
+      "index": 19,
+      "source_id": 9250,
+      "relation": "fuel_canner",
+      "recipe_id": "nuclear/cobalt60_fuel_rod",
+      "machine": "canner",
+      "target": "cobalt60_fuel_rod",
+      "status": "ready"
+    },
+    {
+      "index": 20,
+      "source_id": 9260,
+      "relation": "fuel_canner",
+      "recipe_id": "nuclear/enriched_naquadah_fuel_rod",
+      "machine": "canner",
+      "target": "enriched_naquadah_fuel_rod",
+      "status": "ready"
+    },
+    {
+      "index": 21,
+      "source_id": 9261,
+      "relation": "fuel_canner",
+      "recipe_id": "nuclear/naquadria_fuel_rod",
+      "machine": "canner",
+      "target": "naquadria_fuel_rod",
+      "status": "ready"
+    },
+    {
+      "index": 22,
+      "source_id": 9410,
+      "relation": "breeder_canner",
+      "recipe_id": "nuclear/thorium232_breeder_rod",
+      "machine": "canner",
+      "target": "thorium232_breeder_rod",
+      "status": "ready"
+    },
+    {
+      "index": 23,
+      "source_id": 9420,
+      "relation": "breeder_canner",
+      "recipe_id": "nuclear/uranium238_breeder_rod",
+      "machine": "canner",
+      "target": "uranium238_breeder_rod",
+      "status": "ready"
+    },
+    {
+      "index": 24,
+      "source_id": 9430,
+      "relation": "breeder_canner",
+      "recipe_id": "nuclear/lithium_breeder_rod",
+      "machine": "canner",
+      "target": "lithium_breeder_rod",
+      "status": "ready"
+    },
+    {
+      "index": 25,
+      "source_id": 9440,
+      "relation": "breeder_canner",
+      "recipe_id": "nuclear/naquadah_breeder_rod",
+      "machine": "canner",
+      "target": "naquadah_breeder_rod",
+      "status": "ready"
+    },
+    {
+      "index": 26,
+      "source_id": 9310,
+      "relation": "depleted_centrifuge",
+      "recipe_id": "nuclear/thorium232_depleted_rod_recovery",
+      "machine": "centrifuge",
+      "target": "thorium232_depleted_rod",
+      "status": "ready"
+    },
+    {
+      "index": 27,
+      "source_id": 9319,
+      "relation": "depleted_centrifuge",
+      "recipe_id": "nuclear/cyanite_depleted_rod_recovery",
+      "machine": "centrifuge",
+      "target": "cyanite_depleted_rod",
+      "status": "ready"
+    },
+    {
+      "index": 28,
+      "source_id": 9320,
+      "relation": "depleted_centrifuge",
+      "recipe_id": "nuclear/uranium238_depleted_rod_recovery",
+      "machine": "centrifuge",
+      "target": "uranium238_depleted_rod",
+      "status": "ready"
+    },
+    {
+      "index": 29,
+      "source_id": 9321,
+      "relation": "depleted_centrifuge",
+      "recipe_id": "nuclear/uranium235_depleted_rod_recovery",
+      "machine": "centrifuge",
+      "target": "uranium235_depleted_rod",
+      "status": "ready"
+    },
+    {
+      "index": 30,
+      "source_id": 9322,
+      "relation": "depleted_centrifuge",
+      "recipe_id": "nuclear/uranium233_depleted_rod_recovery",
+      "machine": "centrifuge",
+      "target": "uranium233_depleted_rod",
+      "status": "ready"
+    },
+    {
+      "index": 31,
+      "source_id": 9329,
+      "relation": "depleted_centrifuge",
+      "recipe_id": "nuclear/yellorium_depleted_rod_recovery",
+      "machine": "centrifuge",
+      "target": "yellorium_depleted_rod",
+      "status": "ready"
+    },
+    {
+      "index": 32,
+      "source_id": 9330,
+      "relation": "depleted_centrifuge",
+      "recipe_id": "nuclear/plutonium244_depleted_rod_recovery",
+      "machine": "centrifuge",
+      "target": "plutonium244_depleted_rod",
+      "status": "ready"
+    },
+    {
+      "index": 33,
+      "source_id": 9331,
+      "relation": "depleted_centrifuge",
+      "recipe_id": "nuclear/plutonium241_depleted_rod_recovery",
+      "machine": "centrifuge",
+      "target": "plutonium241_depleted_rod",
+      "status": "ready"
+    },
+    {
+      "index": 34,
+      "source_id": 9332,
+      "relation": "depleted_centrifuge",
+      "recipe_id": "nuclear/plutonium243_depleted_rod_recovery",
+      "machine": "centrifuge",
+      "target": "plutonium243_depleted_rod",
+      "status": "ready"
+    },
+    {
+      "index": 35,
+      "source_id": 9333,
+      "relation": "depleted_centrifuge",
+      "recipe_id": "nuclear/plutonium239_depleted_rod_recovery",
+      "machine": "centrifuge",
+      "target": "plutonium239_depleted_rod",
+      "status": "ready"
+    },
+    {
+      "index": 36,
+      "source_id": 9339,
+      "relation": "depleted_centrifuge",
+      "recipe_id": "nuclear/blutonium_depleted_rod_recovery",
+      "machine": "centrifuge",
+      "target": "blutonium_depleted_rod",
+      "status": "ready"
+    },
+    {
+      "index": 37,
+      "source_id": 9340,
+      "relation": "depleted_centrifuge",
+      "recipe_id": "nuclear/americium245_depleted_rod_recovery",
+      "machine": "centrifuge",
+      "target": "americium245_depleted_rod",
+      "status": "ready"
+    },
+    {
+      "index": 38,
+      "source_id": 9341,
+      "relation": "depleted_centrifuge",
+      "recipe_id": "nuclear/americium241_depleted_rod_recovery",
+      "machine": "centrifuge",
+      "target": "americium241_depleted_rod",
+      "status": "ready"
+    },
+    {
+      "index": 39,
+      "source_id": 9349,
+      "relation": "depleted_centrifuge",
+      "recipe_id": "nuclear/ludicrite_depleted_rod_recovery",
+      "machine": "centrifuge",
+      "target": "ludicrite_depleted_rod",
+      "status": "ready"
+    },
+    {
+      "index": 40,
+      "source_id": 9350,
+      "relation": "depleted_centrifuge",
+      "recipe_id": "nuclear/cobalt60_depleted_rod_recovery",
+      "machine": "centrifuge",
+      "target": "cobalt60_depleted_rod",
+      "status": "ready"
+    },
+    {
+      "index": 41,
+      "source_id": 9360,
+      "relation": "depleted_centrifuge",
+      "recipe_id": "nuclear/enriched_naquadah_depleted_rod_recovery",
+      "machine": "centrifuge",
+      "target": "enriched_naquadah_depleted_rod",
+      "status": "ready"
+    },
+    {
+      "index": 42,
+      "source_id": 9361,
+      "relation": "depleted_centrifuge",
+      "recipe_id": "nuclear/naquadria_depleted_rod_recovery",
+      "machine": "centrifuge",
+      "target": "naquadria_depleted_rod",
+      "status": "ready"
+    },
+    {
+      "index": 43,
+      "source_id": 9411,
+      "relation": "product_centrifuge",
+      "recipe_id": "nuclear/uranium233_enriched_rod_recovery",
+      "machine": "centrifuge",
+      "target": "uranium233_enriched_rod",
+      "status": "ready"
+    },
+    {
+      "index": 44,
+      "source_id": 9421,
+      "relation": "product_centrifuge",
+      "recipe_id": "nuclear/plutonium239_enriched_rod_recovery",
+      "machine": "centrifuge",
+      "target": "plutonium239_enriched_rod",
+      "status": "ready"
+    },
+    {
+      "index": 45,
+      "source_id": 9431,
+      "relation": "tritium_canner_unload",
+      "recipe_id": "nuclear/tritium_enriched_rod_unload",
+      "machine": "canner",
+      "target": "tritium_enriched_rod",
+      "status": "ready"
+    },
+    {
+      "index": 46,
+      "source_id": 9441,
+      "relation": "product_centrifuge",
+      "recipe_id": "nuclear/enriched_naquadah_enriched_rod_recovery",
+      "machine": "centrifuge",
+      "target": "enriched_naquadah_enriched_rod",
+      "status": "ready"
+    },
+    {
+      "index": 47,
+      "source_id": 9300,
+      "relation": "core_shaped",
+      "recipe_id": "reactor_core_1x1",
+      "machine": "shaped_catalyst",
+      "target": "reactor_core_1x1",
+      "status": "ready"
+    },
+    {
+      "index": 48,
+      "source_id": 9200,
+      "relation": "core_shaped",
+      "recipe_id": "reactor_core_2x2",
+      "machine": "shaped_catalyst",
+      "target": "reactor_core_2x2",
+      "status": "ready"
+    }
+  ]
+}

@@ -1,113 +1,32 @@
 # CrucibleCraft 总体规划
 
 > 唯一总体规划与项目导航
-> 最后更新：2026-09-06
-> 当前状态：能力交付合同已生效，见
-> [capability-delivery-workflow.md](capability-delivery-workflow.md)。
-> 进度只计 `player_complete`。现行能力
+> 最后更新：2026-09-08
+> 进度只计 `player_complete` 声明，加上当前 revision 的 fresh GameTest
+> PASS。`runClient` 只在晋级（`runtime_ready → player_complete`）时强制。
+> 合同见 [capability-delivery-workflow.md](capability-delivery-workflow.md)。
+>
+> **当前状态**：无 unique-active 内容卡；机器可读
+> `unique_active_wave = null`。下一项从
+> [冻结与未实现账本](unimplemented-gap.md) 候选队列读，不自动签发第 6 项
+> （裂变热流体）。phase5 tracks.C `started = true`；sealed growth-order
+> `nuclear_started` 仍为 `false`，直到 `portfolio/nuclear` 认领。
+>
+> **现行 `player_complete`（9）**：
 > `logistics/fluid-network/basic-transfer`、
-> `logistics/item-network-core`（物品两行仓储/导入/导出盖板）、
-> `logistics/generic-network/core`（通用网仓储/导入/导出盖板）、
-> `logistics/logistics-core`（5×5×5 Core + Dump）与
-> `logistics/display-cpu`（四件物流监视器）与
-> `energy/converter-catalog`（Burning Box / 锅炉 / 蒸汽机 / 电机分档；活目录
-> 另有 10 台电加热器/电引擎，未并进该卡 `player_complete` 分母）与
-> `energy/batteries`（37 储能块；`player_complete`）与
-> `energy/transformers`（9 电变压器；已关闭，`player_complete`）。
-> 电能转换 / LU / 裂变 / 聚变 / 电池芯见
-> [能源后续卡收口](../history/card-plans/closed/能源后续卡收口详细计划.md)
-> （`runtime_ready`，未签新 capability）。
-> [物品网络核心](../history/card-plans/closed/物品网络核心详细计划.md)
-> 为机制 `ITEM_NETWORK_CORE_READY`；玩家完成晋级见
-> [物品网络核心玩家完成晋级](../history/card-plans/closed/物品网络核心玩家完成晋级详细计划.md)。
-> [通用网络核心](../history/card-plans/closed/通用网络核心详细计划.md)
-> 为 Generic 仓储/导入/导出 `player_complete`。
-> [物流核心](../history/card-plans/closed/物流核心详细计划.md)
-> 为 Dump + Core `player_complete`。已关闭
-> [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
-> （capability `logistics/display-cpu`）为四件状态盖板 `player_complete`。
-> 当前没有 unique active 内容卡。已关闭
-> [生成资源、注册与 Jade 第一切片](../history/card-plans/closed/生成资源注册与Jade第一切片详细计划.md)
-> （slug `presentation/live-art-jade`）。机器可读 `unique_active_wave` 仍为 `null`。已关闭
-> [配方加载与 EMI 稳定性](../history/card-plans/closed/配方加载与EMI稳定性详细计划.md)
-> （slug `runtime/recipe-load-emi-stability`；loader / EMI / reload repair，
-> `owns_families = 0`）。机器可读 `unique_active_wave` 仍为 `null`。已关闭
-> [变压器](../history/card-plans/closed/变压器详细计划.md)
-> （capability `energy/transformers`，`player_complete` / `accepted`）。
-> 已关闭
-> [能源后续卡收口](../history/card-plans/closed/能源后续卡收口详细计划.md)
-> （电转换 / LU / 裂变 / 聚变 / 电池芯；`runtime_ready`）。已关闭
-> [电池](../history/card-plans/closed/电池详细计划.md)
-> （capability `energy/batteries`，`player_complete`）。已关闭
-> [能量转换机目录](../history/card-plans/closed/能量转换机目录详细计划.md)
-> （capability `energy/converter-catalog`）为转换机 kind × 材质 169 行
-> `player_complete`（活 JSON 179 行，多出的 10 台属电转换卡）。Dump 的来源执行器是 Core，
-> 不是 Generic 管网；`dump_policy` 见已关闭的
-> [物流封面网余量](../history/card-plans/closed/物流封面网余量详细计划.md)。
-> 机器可读 `unique_active_wave = null`。
-> [工具头前缀折回](../history/card-plans/closed/工具头前缀折回详细计划.md)
-> （slug `registry/tool-head-prefix`）为
-> `TOOL_HEAD_PREFIX_READY`。mapped tool head 折回 `材料 × 前缀`；
-> bath identity `71`，semantic `244`；`bath/identity` 分母 `145 / 34091` 未改。
-> [紧凑配方作者矩阵](../history/card-plans/closed/紧凑配方作者矩阵详细计划.md)
-> （slug `runtime/compact-recipe-authored-matrix`）为
-> `COMPACT_RECIPE_AUTHORED_MATRIX_READY`。改 compact family 作者写法
-> （矩阵 + 允许元组），展开后仍是 exact；不改 tag 匹配、不拆
-> Holder。
-> [紧凑配方传输编解码](../history/card-plans/closed/紧凑配方传输编解码详细计划.md)
-> （slug `runtime/compact-recipe-wire-codec`）为
-> `COMPACT_RECIPE_WIRE_CODEC_READY`。修的是线上写法，不是 Holder
-> 粒度；dedicated 进世界不再撞 `NbtAccounter`；整包仍靠 splitter；
-> `bath/identity` 语义分母未改。
-> [原版替换 MVP](../history/card-plans/closed/原版替换MVP详细计划.md)
-> （slug `content/vanilla-replace-mvp`）为 `VANILLA_REPLACE_MVP_READY`。
-> 纸 3 甘蔗 → 1 纸；熔炉 / 骨头 deferred（无铁前 firestarter）。
-> 历史 R0 档案未改写。不预分配下一张实现 child。
-> [首小时表现与阶段账本](../history/card-plans/closed/首小时表现与阶段账本详细计划.md)
-> （slug `presentation/first-hour-and-stage-ledger`）为
-> `FIRST_HOUR_PRESENTATION_READY`。四台首小时 host 已脱离 `metal_surface`；
-> `smelter` 改走 `basicmachines/smelter` 立方机，不再与坩埚共用小锅。
-> 阶段账本三态 / 后续顺序 / 核电体积写在
-> [冻结与未实现账本](unimplemented-gap.md)。不预分配下一张实现 child。
-> 1.x joint exit、源能力对照图、通用 Source Pack 导入器、
-> 物流封面网络 R0、T13c 排除表收回 R0、非矿世界生成 R0、原版替换 R0
-> 与作物食物蜜蜂 R0 均已关闭。
-> [作物食物蜜蜂 R0](../history/card-plans/closed/作物食物蜜蜂R0详细计划.md)
-> （slug `portfolio/crops-food-bees-r0`）为 `CROPS_FOOD_BEES_R0_READY`。
-> 三类 crops / food / bees 与 12/190 dump 特征已冻结；三类可行性均为
-> `requires_new_runtime`；不实现作物、食物图或蜂箱，不预分配
-> implementation child。
-> [原版替换 R0](../history/card-plans/closed/原版替换R0详细计划.md)
-> （slug `portfolio/vanilla-replace-r0`）为 `VANILLA_REPLACE_R0_READY`。
-> 两类 vanilla replace loader 与三份 T13 源文件 blob 已冻结；两类可行性
-> 均为 `requires_new_runtime`；不替换原版配方，不预分配 implementation
-> child。
-> [非矿世界生成 R0](../history/card-plans/closed/非矿世界生成R0详细计划.md)
-> （slug `portfolio/non-ore-worldgen-r0`）为 `NON_ORE_WORLDGEN_R0_READY`。
-> 四类非矿 worldgen dump 特征（18/190）与现有 T20 catalog 适配面已冻结；
-> 四类可行性均为 `requires_new_runtime`；不实现世界生成，不预分配
-> implementation child。
-> [T13c 排除表收回 R0](../history/card-plans/closed/T13c排除表收回R0详细计划.md)
-> （slug `portfolio/exclusion-reclaim-r0`）为 `T13C_EXCLUSION_RECLAIM_R0_READY`。
-> 五类 T13c exclusion（129/471）与现有机制适配面已冻结；不实现 MTE，
-> 不预分配 implementation child。
-> [物流封面网络 R0](../history/card-plans/closed/物流封面网络R0详细计划.md)
-> （slug `portfolio/logistics-cover-net-r0`）为 `LOGISTICS_COVER_NET_R0_READY`。
-> 可行性 `requires_new_runtime`；不预分配 core。
-> [源能力对照图](../history/card-plans/closed/源能力对照图详细计划.md)
-> （slug `portfolio/source-capability-map`）为 `SOURCE_CAPABILITY_MAP_READY`。
-> [通用 Source Pack 导入器](../history/card-plans/closed/通用Source-Pack导入器详细计划.md)
-> （slug `portfolio/generic-recipe-generator`）为 `GENERIC_RECIPE_IMPORT_READY`。
-> 现有 host 接新 Source Pack 不再需要 per-wave builder 或手写 `WaveSpec`；
-> production 仍要单独审查的内容卡。没有 production lock，也不发布配方。
-> current execution gap = 0；deferred ledger = 0。不自动
-> 启动核能。`portfolio/count-ceiling-kind-envelope` 仍是 telemetry /
-> report-only，未预分配为后继。机制卡 `*_READY` 不是内容完成；缺口总账
-> [冻结与未实现账本](unimplemented-gap.md)。语义命名收口 A–D 已落地；剩余文档与全量扫描见
-> [semantic-naming.md](semantic-naming.md) 与
-> [semantic-naming-closeout-checklist.md](semantic-naming-closeout-checklist.md)
-> （长期清单，不占用 active child）。不签发新的里程碑编号。不进行
-> 玩家发行、RC soak 或 GA。
+> `logistics/item-network-core`、
+> `logistics/generic-network/core`、
+> `logistics/logistics-core`、
+> `logistics/display-cpu`、
+> `energy/converter-catalog`（kind × 材质 169 行；活目录 179，多出的
+> 10 台电加热器/电引擎未进该卡分母）、
+> `energy/batteries`（37 储能块）、
+> `energy/transformers`（9 台电 `10040–10048`）、
+> `energy/nuclear-fission-survival`（46 棒 / 8 kind / 2 堆芯 / 48 关系）。
+>
+> 关闭档案与机制卡 `*_READY` 见 [docs/history](../history/INDEX.md)。
+> `*_READY` 不是游戏里已有这些内容。缺口总账是
+> [unimplemented-gap.md](unimplemented-gap.md)，不要从阶段档案倒推。
 
 ## 1. 项目目标
 
@@ -117,6 +36,9 @@ CrucibleCraft 是 Minecraft 1.21.1 NeoForge 上的 GT6 风格工业模组。技�
 本项目不宣称是 GT6、GT6U 或任何其他模组的完整移植。来源事实、派生规则和设计决策
 必须分别记录为 `SOURCE_BACKED`、`SOURCE_DERIVED` 或 `DESIGN_POLICY`。
 
+「不全量移植 GT6」是历史产品声明，不是增长禁令。它不能再用来阻止生成器、
+catalog 或对照工具。1.x 已关闭的分母也不因此作废。
+
 ## 2. 阶段状态与证据
 
 - 已关闭阶段的档案、工作日志与编号卡计划在 [docs/history](../history/INDEX.md)。
@@ -125,11 +47,10 @@ CrucibleCraft 是 Minecraft 1.21.1 NeoForge 上的 GT6 风格工业模组。技�
   通过与否作为日常完成判据。
 - 当前进度只接受当前 revision 上 fresh 执行的 capability profile PASS；
   `capability.json` 不保存可自行刷新的 `evidence=current`。
-- 分层验证、机器契约与文档历史区的现行用法见 [验证指南](verification.md)；
-  已知验证债务见
+- 分层验证见 [验证指南](verification.md)；已知验证债务见
   [`tools/known_issues/verification-debt.json`](../../tools/known_issues/verification-debt.json)。
 - 现行 bounded recipe wave 规则见 [ordinary recipe wave 流程与规范](recipe-wave-workflow.md)。
-- 对照图之后的冻结 / 未实现缺口见 [冻结与未实现账本](unimplemented-gap.md)。机制卡 `*_READY` 不是游戏里已有这些内容。
+- 对照图之后的冻结 / 未实现缺口见 [冻结与未实现账本](unimplemented-gap.md)。
 
 阶段关闭的三个独立轴仍是：
 
@@ -152,180 +73,25 @@ GitHub push 承担，不创建 GitHub Release、不上传 jar、不累计 RC soa
 ## 4. 当前内容顺序
 
 同一时刻只允许一张内容工作处于 active 状态。编号卡时代已经结束；现行顺序是
-semantic wave，不是下一张里程碑编号。机制卡 `*_READY` 不是内容完成；从
-[冻结与未实现账本](unimplemented-gap.md) 找缺口，不要从阶段档案倒推。
+semantic wave，不是下一张里程碑编号。
 
-当前没有 unique active 内容卡。已关闭
-[生成资源、注册与 Jade 第一切片](../history/card-plans/closed/生成资源注册与Jade第一切片详细计划.md)
-（slug `presentation/live-art-jade`）。机器可读 `unique_active_wave` 仍为 `null`。已关闭
-[配方加载与 EMI 稳定性](../history/card-plans/closed/配方加载与EMI稳定性详细计划.md)
-（slug `runtime/recipe-load-emi-stability`；loader / EMI / reload repair）。
-机器可读 `unique_active_wave` 仍为 `null`。已关闭
-[变压器](../history/card-plans/closed/变压器详细计划.md)。
-已关闭
-[能源后续卡收口](../history/card-plans/closed/能源后续卡收口详细计划.md)。
-已关闭
-[能量转换机目录](../history/card-plans/closed/能量转换机目录详细计划.md)
-为转换机 kind × 材质 169 行 `player_complete`。
-已关闭
-[能量系统余量](../history/card-plans/closed/能量系统余量详细计划.md)
-（删火箱/风箱/独立焦炭）。已关闭
-[显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
-为四件状态盖板 `player_complete`。
-机器可读 `unique_active_wave = null`；`next_unassigned = true`。账本「Fluid /
-Generic Network」里流体基础传输、物品两行与 Generic 仓储/导入/导出均已
-`player_complete`。Dump 与 Logistics Core 已由
-[物流核心](../history/card-plans/closed/物流核心详细计划.md)
-`player_complete`；
-`dump_policy` 已从来源钉死为 Core 最后一档物品溢出，不是管网第四件盖板。已关闭
-[通用网络核心](../history/card-plans/closed/通用网络核心详细计划.md)
-（capability `logistics/generic-network/core`）。已关闭
-[物品网络核心玩家完成晋级](../history/card-plans/closed/物品网络核心玩家完成晋级详细计划.md)
-（capability `logistics/item-network-core`）为物品两行
-`player_complete`。已关闭
-[物品网络核心](../history/card-plans/closed/物品网络核心详细计划.md)
-（slug `runtime/item-network-core`）为
-`ITEM_NETWORK_CORE_READY`。物品两行 runtime 机制卡不包含 Fluid /
-Generic / Dump，也不包含 `MultiTileEntityLogisticsCore`。已关闭
-[工具头前缀折回](../history/card-plans/closed/工具头前缀折回详细计划.md)
-（slug `registry/tool-head-prefix`）为
-`TOOL_HEAD_PREFIX_READY`。`owns_families = 0`。已关闭
-[紧凑配方作者矩阵](../history/card-plans/closed/紧凑配方作者矩阵详细计划.md)
-（slug `runtime/compact-recipe-authored-matrix`）为
-`COMPACT_RECIPE_AUTHORED_MATRIX_READY`。`owns_families = 0`。已关闭
-[紧凑配方传输编解码](../history/card-plans/closed/紧凑配方传输编解码详细计划.md)
-（slug `runtime/compact-recipe-wire-codec`）为
-`COMPACT_RECIPE_WIRE_CODEC_READY`。`owns_families = 0`。已关闭
-[原版替换 MVP](../history/card-plans/closed/原版替换MVP详细计划.md)
-（slug `content/vanilla-replace-mvp`）为 `VANILLA_REPLACE_MVP_READY`。
-兑现原版替换 R0 的第一小时纸配方（3 甘蔗 → 1 纸）；熔炉未删。不搬
-ASM，不建 Replace 全量扫描器。
+**现在没有 unique-active 内容卡。** 选择下一项时只读
+[unimplemented-gap.md](unimplemented-gap.md) 的「候选队列与当前计划卡」。
+第 1–5 项已关；第 6 项（裂变热流体）不自动签发。不要从只读 growth-order
+档案倒推，也不为其余候选项预分配 child。
 
-已关闭
-[首小时表现与阶段账本](../history/card-plans/closed/首小时表现与阶段账本详细计划.md)
-（slug `presentation/first-hour-and-stage-ledger`）为
-`FIRST_HOUR_PRESENTATION_READY`。mortar / sifter / bath 迁入 GT6 工具贴图
-并保持 voxel；`smelter` 纠正为 `machine_cube_2_layer` 方块机，不再错绑
-坩埚小锅。工作态 overlay 未接。阶段账本（三态、后续顺序、核电体积）写在
-[冻结与未实现账本](unimplemented-gap.md)。物流 1.2 不在该卡。
-机器可读 `unique_active_wave = null`。当前没有 unique active 内容卡。已关闭
-[生成资源、注册与 Jade 第一切片](../history/card-plans/closed/生成资源注册与Jade第一切片详细计划.md)。
-已关闭
-[配方加载与 EMI 稳定性](../history/card-plans/closed/配方加载与EMI稳定性详细计划.md)
-（slug `runtime/recipe-load-emi-stability`）。
-已关闭
-[变压器](../history/card-plans/closed/变压器详细计划.md)。
-已关闭
-[能源后续卡收口](../history/card-plans/closed/能源后续卡收口详细计划.md)。
-已关闭
-[能量转换机目录](../history/card-plans/closed/能量转换机目录详细计划.md)。
-已关闭
-[能量系统余量](../history/card-plans/closed/能量系统余量详细计划.md)。
-已关闭
-[显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
-为四件状态盖板 `player_complete`。
-后续内容顺序从该账本的「候选队列与当前计划卡」读：配方/EMI、reload/bake、
-生成资源/注册/贴图门禁与既有机器 Jade 第一切片均已关；随后按裂变基础生存、
-热流体、安全后处理、逐台热力机器、GT6_w 有界内容批次、聚变/等离子推进。
-这只是可调整的依赖顺序，不为剩余候选项预分配 child，也不改变
-剩余候选项的 ownership；当前没有 unique active 内容卡，机器可读
-`unique_active_wave = null` / `next_unassigned = true`。不要从只读
-growth-order 档案倒推。
+电能转换 / LU / 聚变控制器配方 / 电池芯余债（锂钴、锂锰、energium）仍是
+`runtime_ready` 或 blocked，见已关闭的
+[能源后续卡收口](../history/card-plans/closed/能源后续卡收口详细计划.md)
+与缺口账本第 2 节。Dump 的来源执行器是 Core，不是 Generic 管网；
+`dump_policy` 见已关闭的
+[物流封面网余量](../history/card-plans/closed/物流封面网余量详细计划.md)。
 
-已关闭的
-[作物食物蜜蜂 R0](../history/card-plans/closed/作物食物蜜蜂R0详细计划.md)
-（slug `portfolio/crops-food-bees-r0`）为 `CROPS_FOOD_BEES_R0_READY`。
-它是 `portfolio/large-content-branches` 的第三个切片：冻结 capability map
-点名的三类 crops / food / bees 与现有机制适配面，三类可行性均为
-`requires_new_runtime`。不实现作物、食物图或蜂箱，不签 production
-lock，不发布配方，也不预分配实现 child。
-
-已关闭的
-[原版替换 R0](../history/card-plans/closed/原版替换R0详细计划.md)
-（slug `portfolio/vanilla-replace-r0`）为 `VANILLA_REPLACE_R0_READY`。
-它是 `portfolio/large-content-branches` 的第二个切片：冻结 capability map
-点名的两类 vanilla replace loader 与现有 datapack / 导入器适配面，
-两类可行性均为 `requires_new_runtime`。不替换原版配方，不签 production
-lock，不发布配方，也不预分配实现 child。
-
-已关闭的
-[非矿世界生成 R0](../history/card-plans/closed/非矿世界生成R0详细计划.md)
-（slug `portfolio/non-ore-worldgen-r0`）为 `NON_ORE_WORLDGEN_R0_READY`。
-它是 `portfolio/large-content-branches` 的第一个切片：冻结 capability map
-点名的四类非矿 worldgen dump 特征（18 / 190）与现有 T20 catalog 适配面，
-四类可行性均为 `requires_new_runtime`。不实现世界生成，不签 production
-lock，不发布配方，也不预分配实现 child。
-
-已关闭的
-[T13c 排除表收回 R0](../history/card-plans/closed/T13c排除表收回R0详细计划.md)
-（slug `portfolio/exclusion-reclaim-r0`）为 `T13C_EXCLUSION_RECLAIM_R0_READY`。
-它是 `portfolio/existing-mechanism-bounded-domains` 的第二个切片：冻结五类
-T13c exclusion（129 source sites / 471 expanded）的 lineage 与现有机制
-适配面，不实现 MTE，不签 production lock，不发布配方，也不预分配实现
-child。
-
-已关闭的
-[物流封面网络 R0](../history/card-plans/closed/物流封面网络R0详细计划.md)
-（slug `portfolio/logistics-cover-net-r0`）为 `LOGISTICS_COVER_NET_R0_READY`。
-可行性 `requires_new_runtime`，不实现网络运行时，也不预分配 core。
-
-已关闭的
-[通用 Source Pack 导入器](../history/card-plans/closed/通用Source-Pack导入器详细计划.md)
-（slug `portfolio/generic-recipe-generator`）为 `GENERIC_RECIPE_IMPORT_READY`。
-它收掉了“新 Source Pack → canonical source / compile spec”之间的 per-host
-builder / handwritten `WaveSpec` 胶水；`owns_families = 0`，不重造已经完成的
-`recipe_bulk` 编译器，不签 production lock，不打开 `ParameterizedSpec`，不把
-四条 combinatorial family 编进 production。后续内容卡仍必须自带计划、
-production lock、player path、load、census 与 closeout。
-
-已关闭的
-[源能力对照图](../history/card-plans/closed/源能力对照图详细计划.md)
-把 GT6 源域对照到现行 CC 机制（或 `none`），并写出增长顺序。已关闭的
-[1.x 联合退出门](../history/card-plans/closed/1.x联合退出门详细计划.md)
-把六条退出条件收到 GREEN，并留下 22 行 capability-map seed。对照检查在
-`source-capability-inventory`（113 行：22 seed + 91 new），不在 1.x seed
-里。growth-order 指定的 `next_major = portfolio/generic-recipe-generator`
-已被上述导入器消费；仍没有 production lock。历史 growth-order JSON 不重写。
-
-```text
-portfolio/generic-recipe-generator-r0
-  -> portfolio/generic-recipe-import-core
-  -> portfolio/generic-recipe-import-proof
-  -> portfolio/generic-recipe-generator
-```
-
-当前 human-readable unique active plan 为空。已关闭
-[显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
-为四件状态盖板 `player_complete`。
-[物品网络核心](../history/card-plans/closed/物品网络核心详细计划.md)
-已 `ITEM_NETWORK_CORE_READY`。
-[工具头前缀折回](../history/card-plans/closed/工具头前缀折回详细计划.md)
-已 `TOOL_HEAD_PREFIX_READY`。
-[紧凑配方作者矩阵](../history/card-plans/closed/紧凑配方作者矩阵详细计划.md)
-已 `COMPACT_RECIPE_AUTHORED_MATRIX_READY`。
-[紧凑配方传输编解码](../history/card-plans/closed/紧凑配方传输编解码详细计划.md)
-已 `COMPACT_RECIPE_WIRE_CODEC_READY`。
-[首小时表现与阶段账本](../history/card-plans/closed/首小时表现与阶段账本详细计划.md)
-已 `FIRST_HOUR_PRESENTATION_READY`。机器可读 `unique_active_wave = null`；
-`next_unassigned = true`。
-`portfolio/count-ceiling-kind-envelope` 重新评估后仍是
-telemetry / report-only，不写入 topology 后继。不自动启动核能 census。
-已关闭的 `portfolio/logistics-cover-net-r0` 为
-`LOGISTICS_COVER_NET_R0_READY`，可行性 `requires_new_runtime`，不预分配
-core。已关闭的 `portfolio/exclusion-reclaim-r0` 为
-`T13C_EXCLUSION_RECLAIM_R0_READY`，不预分配 implementation child。已关闭
-`portfolio/non-ore-worldgen-r0` 为 `NON_ORE_WORLDGEN_R0_READY`，四类
-可行性均为 `requires_new_runtime`，不预分配 implementation child。已关闭
-`portfolio/vanilla-replace-r0` 为 `VANILLA_REPLACE_R0_READY`，两类
-可行性均为 `requires_new_runtime`，不预分配 implementation child。已关闭
-`portfolio/crops-food-bees-r0` 为 `CROPS_FOOD_BEES_R0_READY`，三类
-可行性均为 `requires_new_runtime`，不预分配 implementation child。1.x
-已认领的关闭工作仍然有效；对照图不把它写成 GT6 全量完成。
-
-剩余语义命名工作见 [semantic-naming.md](semantic-naming.md)，不占用 active child。
-历史 compact 波、storage bundle、census 与验证修复的关闭证据只在
-[docs/history](../history/INDEX.md)。那些档案可以继续使用当时的卡号文件名；现行
-文档不得要求下一张工作使用里程碑编号。
+已认领的 1.x / R0 / 导入器 / 对照图工作仍然有效；对照图不把它写成 GT6
+全量完成。`portfolio/count-ceiling-kind-envelope` 仍是 telemetry /
+report-only。语义命名剩余工作见 [semantic-naming.md](semantic-naming.md)
+与 [semantic-naming-closeout-checklist.md](semantic-naming-closeout-checklist.md)，
+不占用 active child。
 
 已关闭且仍约束现行账本的事实：
 
@@ -425,7 +191,7 @@ Recipe gap 清零后，deferred ordinary ledger 也已关闭或独立 scope。st
 [docs/history](../history/INDEX.md)，由 legacy index 标记为只读。Active verification
 不 import 或重建它们，也不要求为当前代码刷新历史 READY。
 
-## 7. 1.x 阶段退出门与下一阶段
+## 7. 1.x 阶段退出门
 
 只有以下条件同时成立，当前 1.x portfolio 才允许结束：
 
@@ -441,71 +207,23 @@ Recipe gap 清零后，deferred ordinary ledger 也已关闭或独立 scope。st
 - closure / fidelity / load 三轴无 pending blocker，玩家路径、census 与 compact-load
   ledger 全部 current，且各 load 轴不越 hard ceiling。
 
-退出门已经通过。
-[源能力对照图](../history/card-plans/closed/源能力对照图详细计划.md)
-已 `SOURCE_CAPABILITY_MAP_READY`：GT6 源域对照到现行 CC 机制（或 `none`），
-区分内容缺失和能力缺失。growth-order 指定
-`next_major = portfolio/generic-recipe-generator`；该建议已被
+退出门已经通过。growth-order 指定的
+`next_major = portfolio/generic-recipe-generator` 已被
 [通用 Source Pack 导入器](../history/card-plans/closed/通用Source-Pack导入器详细计划.md)
-消费并关闭为 `GENERIC_RECIPE_IMPORT_READY`，没有 production lock。核能、
-新 kind 信封数据化仍只是图上的行，不是自动开工。作物/食物/蜜蜂已关闭
-[作物食物蜜蜂 R0](../history/card-plans/closed/作物食物蜜蜂R0详细计划.md)
-为 `CROPS_FOOD_BEES_R0_READY`：三类可行性均为 `requires_new_runtime`，
-不实现作物、食物图或蜂箱，不预分配 implementation child。物流封面网已关闭
-[物流封面网络 R0](../history/card-plans/closed/物流封面网络R0详细计划.md)
-为 `LOGISTICS_COVER_NET_R0_READY`：可行性 `requires_new_runtime`，
-仍不实现运行时，也不预分配 core。T13c 排除表收回已关闭
-[T13c 排除表收回 R0](../history/card-plans/closed/T13c排除表收回R0详细计划.md)
-为 `T13C_EXCLUSION_RECLAIM_R0_READY`：五类 129/471 分母冻结，不实现 MTE，
-不预分配 implementation child。已关闭
-[非矿世界生成 R0](../history/card-plans/closed/非矿世界生成R0详细计划.md)
-为 `NON_ORE_WORLDGEN_R0_READY`：四类 18/190 分母冻结，可行性均为
-`requires_new_runtime`，不实现世界生成，不预分配 implementation child。
-已关闭
-[原版替换 R0](../history/card-plans/closed/原版替换R0详细计划.md)
-为 `VANILLA_REPLACE_R0_READY`：两类 loader + 三份 T13 blob 分母冻结，
-可行性均为 `requires_new_runtime`，不替换原版配方，不预分配
-implementation child。
+消费，没有 production lock。核能、新 kind 信封数据化仍只是图上的行，不是自动开工。
 已有 kind 的显式档位已经走 `machine_tiers.json`。
 
-核能 Track C 保持 `started = false`。裂变堆芯 / 邻棒 / 聚变双能宿主已由
-[能源后续卡收口](../history/card-plans/closed/能源后续卡收口详细计划.md)
-做成 `runtime_ready`；堆芯与聚变控制器配方、棒 Canner、等离子流体仍
-blocked。它们不是当前 importer、机器等级、配方校准、存储卡、T13c R0、
-非矿 worldgen R0、原版替换 R0、作物食物蜜蜂 R0 或首小时表现卡或原版替换
-MVP 的附带范围。体积见
-[冻结与未实现账本](unimplemented-gap.md)。机器可读 `unique_active_wave`
-= `null`。当前没有 unique active 内容卡。已关闭
-[生成资源、注册与 Jade 第一切片](../history/card-plans/closed/生成资源注册与Jade第一切片详细计划.md)。
-已关闭
-[配方加载与 EMI 稳定性](../history/card-plans/closed/配方加载与EMI稳定性详细计划.md)
-（slug `runtime/recipe-load-emi-stability`）。
-已关闭
-[变压器](../history/card-plans/closed/变压器详细计划.md)。
-已关闭
-[能量转换机目录](../history/card-plans/closed/能量转换机目录详细计划.md)。
-已关闭
-[能量系统余量](../history/card-plans/closed/能量系统余量详细计划.md)。
-已关闭
-[显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
-为四件状态盖板 `player_complete`。已关闭的
-[物流核心](../history/card-plans/closed/物流核心详细计划.md)
-为 Dump + Core `player_complete`。已关闭的
-[物品网络核心](../history/card-plans/closed/物品网络核心详细计划.md)
-为 `ITEM_NETWORK_CORE_READY`。
-已关闭的工具头前缀
-折回为 `TOOL_HEAD_PREFIX_READY`。已关闭的紧凑配方作者
-矩阵为 `COMPACT_RECIPE_AUTHORED_MATRIX_READY`。已关闭的紧凑配方传输
-编解码为 `COMPACT_RECIPE_WIRE_CODEC_READY`。
-
-「不全量移植 GT6」是历史产品声明，不是增长禁令。它不能再用来阻止生成器、
-catalog 或对照工具。1.x 已关闭的分母也不因此作废。
+裂变堆芯 / 棒 / Canner 生存配方已由 `energy/nuclear-fission-survival` 关闭。
+聚变控制器配方与等离子流体仍 blocked。体积与后继候选见
+[冻结与未实现账本](unimplemented-gap.md)。
 
 ## 8. 日常开发与留档纪律
 
 - 日常改动运行 `python tools/verify.py dev`；
 - 修改 datagen 时必须连续双跑并比较生成树；
 - 内容卡闭合运行 `python tools/verify.py integration --profile <name>`；
+- 已接受能力的日常 `player-complete` 只跑隔离 GameTest；
+  `python tools/verify.py promotion` 才加 `runClient`；
 - 只有未来玩家发行卡才运行 `python tools/verify.py release` 或历史 `--record`；
 - `4.5Fix/`、本地参考 dump、`build/`、`run*/` 与 `src/src/` 重复树不是 canonical
   主树，不得纳入主分支提交；

@@ -45,7 +45,9 @@ class ProcessingMachineEnergyAuditTest {
             Map.entry("compressor", EnergyType.KINETIC_PUSH),
             Map.entry("generifier", EnergyType.TIME),
             Map.entry("roaster", EnergyType.HEAT),
-            Map.entry("coagulator", EnergyType.TIME));
+            Map.entry("coagulator", EnergyType.TIME),
+            Map.entry("canner", EnergyType.ELECTRIC),
+            Map.entry("laser_engraver", EnergyType.LU));
 
     @BeforeAll
     static void bootstrapMinecraft() {

@@ -6,10 +6,8 @@ import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.context.UseOnContext;
 
 /** GT6 soft hammer: toggle lamps/powered rails and rotate facings. */
 public final class MaterialSoftHammerItem extends MaterialToolItem {
@@ -18,13 +16,6 @@ public final class MaterialSoftHammerItem extends MaterialToolItem {
                 properties,
                 ToolKind.SOFT_HAMMER,
                 "item.cruciblecraft.material_soft_hammer");
-    }
-
-    @Override
-    public InteractionResult useOn(UseOnContext context) {
-        return canApplyDurabilityDamage(context.getItemInHand())
-                ? MachineToolInteractions.softHammer(context)
-                : InteractionResult.PASS;
     }
 
     @Override

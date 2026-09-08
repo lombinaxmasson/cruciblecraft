@@ -238,9 +238,20 @@ def generated_by(slug: str) -> str:
 
 
 def nuclear_started() -> bool:
-    contract = census.load_json(census.TOOLS / "phase5_portfolio_contract.json")
-    tracks = (contract.get("tracks") or {}).get("C") or {}
-    return bool(tracks.get("started"))
+    """Sealed portfolio lock: growth-order, not phase5 tracks.C.
+
+    ``energy/nuclear-fission-survival`` may set tracks.C started=true.
+    Sealed R0 waves keep writing ``nuclear_started=false`` until
+    ``portfolio/nuclear`` owns growth-order.
+    """
+    order = census.load_json(
+        census.TOOLS
+        / "waves"
+        / "portfolio"
+        / "source-capability-growth-order"
+        / "growth_order.json"
+    )
+    return bool(order.get("nuclear_started"))
 
 
 def _seed_row(
