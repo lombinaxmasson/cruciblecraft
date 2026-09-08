@@ -24,6 +24,7 @@ BATTERIES_SLUG = "energy/batteries"
 TRANSFORMERS_SLUG = "energy/transformers"
 NUCLEAR_SLUG = "energy/nuclear-fission-survival"
 HOT_FLUIDS_SLUG = "energy/nuclear-fission-hot-fluids"
+OBSERVATION_SLUG = "energy/nuclear-fission-observation-safety"
 FLUID_TEST_IDS = [
     "coverIdentitySurvivesBlockEntityReload",
     "coversAreSurvivalCraftable",
@@ -207,6 +208,22 @@ class PlayerCompleteTest(unittest.TestCase):
             [],
             player_complete.check_static_player_surface(
                 HOT_FLUIDS_SLUG,
+                list(signoff["craftable_items"]),
+            ),
+        )
+
+    def test_nuclear_observation_safety_capability_declares_all_game_tests(self) -> None:
+        self.assert_declared_game_tests(OBSERVATION_SLUG)
+
+    def test_nuclear_observation_safety_capability_static_player_surface(self) -> None:
+        capability = capability_ledger.load_capability(
+            capability_ledger.CAP_ROOT / OBSERVATION_SLUG / "capability.json"
+        )
+        signoff = player_complete.load_signoff(capability)
+        self.assertEqual(
+            [],
+            player_complete.check_static_player_surface(
+                OBSERVATION_SLUG,
                 list(signoff["craftable_items"]),
             ),
         )

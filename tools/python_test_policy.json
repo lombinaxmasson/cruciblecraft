@@ -17,6 +17,7 @@
     "test_energy_transformers",
     "test_energy_nuclear_fission_survival",
     "test_energy_nuclear_fission_hot_fluids",
+    "test_energy_nuclear_fission_observation_safety",
     "test_blocked_recipe_ledger",
     "test_logistics_core",
     "test_display_cpu",
@@ -119,6 +120,14 @@
       ],
       "test_modules": [
         "test_energy_nuclear_fission_hot_fluids"
+      ]
+    },
+    {
+      "paths": [
+        "tools/tests/test_energy_nuclear_fission_observation_safety.py"
+      ],
+      "test_modules": [
+        "test_energy_nuclear_fission_observation_safety"
       ]
     },
     {
@@ -289,6 +298,9 @@
         "tools/waves/runtime/fission-hot-fluids/**",
         "tools/capabilities/energy/nuclear-fission-hot-fluids/**",
         "tools/tests/test_energy_nuclear_fission_hot_fluids.py",
+        "tools/waves/runtime/fission-observation-safety/**",
+        "tools/capabilities/energy/nuclear-fission-observation-safety/**",
+        "tools/tests/test_energy_nuclear_fission_observation_safety.py",
         "tools/jade_observation.py",
         "tools/build_jade_observation.py",
         "tools/jade_observation_matrix.json",
@@ -304,6 +316,7 @@
         "test_energy_transformers",
         "test_energy_nuclear_fission_survival",
         "test_energy_nuclear_fission_hot_fluids",
+        "test_energy_nuclear_fission_observation_safety",
         "test_registry_identity",
         "test_jade_observation"
       ]
@@ -323,6 +336,7 @@
         "tools/capabilities/energy/transformers/**",
         "tools/capabilities/energy/nuclear-fission-survival/**",
         "tools/capabilities/energy/nuclear-fission-hot-fluids/**",
+        "tools/capabilities/energy/nuclear-fission-observation-safety/**",
         "src/main/java/com/masson/cruciblecraft/verification/PlayerCompleteSmoke.java",
         "src/main/resources/cruciblecraft/player_complete_surfaces.json",
         "src/main/java/com/masson/cruciblecraft/client/ClientSmoke.java",

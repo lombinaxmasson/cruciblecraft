@@ -11,9 +11,30 @@ import com.masson.cruciblecraft.content.block.BoilerBlock;
 import com.masson.cruciblecraft.content.block.SteamEngineBlock;
 import com.masson.cruciblecraft.content.block.CrusherBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
+import com.masson.cruciblecraft.compat.jade.observation.BatteryObservation;
+import com.masson.cruciblecraft.compat.jade.observation.ConverterObservation;
 import com.masson.cruciblecraft.compat.jade.observation.CrucibleObservation;
 import com.masson.cruciblecraft.compat.jade.observation.ObservationField;
+import com.masson.cruciblecraft.compat.jade.observation.ReactorCoreObservation;
 import com.masson.cruciblecraft.compat.jade.observation.TransformerObservation;
+import com.masson.cruciblecraft.content.block.DynamoBlock;
+import com.masson.cruciblecraft.content.block.ElectricEngineBlock;
+import com.masson.cruciblecraft.content.block.ElectricHeaterBlock;
+import com.masson.cruciblecraft.content.block.ElectricMotorBlock;
+import com.masson.cruciblecraft.content.block.FluidBedBurningBoxBlock;
+import com.masson.cruciblecraft.content.block.FuelGeneratorBlock;
+import com.masson.cruciblecraft.content.block.ReactorCoreBlock;
+import com.masson.cruciblecraft.content.block.SolidBurningBoxBlock;
+import com.masson.cruciblecraft.content.blockentity.DynamoBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.ElectricEngineBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.ElectricHeaterBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.ElectricMotorBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FluidBedBurningBoxBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.ReactorCoreBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.SolidBurningBoxBlockEntity;
+import com.masson.cruciblecraft.energy.battery.BatteryBlock;
+import com.masson.cruciblecraft.energy.battery.BatteryBlockEntity;
 import com.masson.cruciblecraft.content.block.CableBlock;
 import com.masson.cruciblecraft.content.block.FluidPipeBlock;
 import com.masson.cruciblecraft.content.block.ItemPipeBlock;
@@ -62,6 +83,39 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
         registration.registerBlockDataProvider(
                 TransformerComponentProvider.INSTANCE,
                 TransformerBlockEntity.class);
+        registration.registerBlockDataProvider(
+                ReactorCoreComponentProvider.INSTANCE,
+                ReactorCoreBlockEntity.class);
+        registration.registerBlockDataProvider(
+                BatteryComponentProvider.INSTANCE,
+                BatteryBlockEntity.class);
+        registration.registerBlockDataProvider(
+                ConverterComponentProvider.INSTANCE,
+                BoilerBlockEntity.class);
+        registration.registerBlockDataProvider(
+                ConverterComponentProvider.INSTANCE,
+                SteamEngineBlockEntity.class);
+        registration.registerBlockDataProvider(
+                ConverterComponentProvider.INSTANCE,
+                DynamoBlockEntity.class);
+        registration.registerBlockDataProvider(
+                ConverterComponentProvider.INSTANCE,
+                ElectricHeaterBlockEntity.class);
+        registration.registerBlockDataProvider(
+                ConverterComponentProvider.INSTANCE,
+                ElectricEngineBlockEntity.class);
+        registration.registerBlockDataProvider(
+                ConverterComponentProvider.INSTANCE,
+                FuelGeneratorBlockEntity.class);
+        registration.registerBlockDataProvider(
+                ConverterComponentProvider.INSTANCE,
+                SolidBurningBoxBlockEntity.class);
+        registration.registerBlockDataProvider(
+                ConverterComponentProvider.INSTANCE,
+                FluidBedBurningBoxBlockEntity.class);
+        registration.registerBlockDataProvider(
+                ConverterComponentProvider.INSTANCE,
+                ElectricMotorBlockEntity.class);
     }
 
     @Override
@@ -86,6 +140,28 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
         registration.registerBlockComponent(
                 ItemPipeComponentProvider.INSTANCE,
                 ItemPipeBlock.class);
+        registration.registerBlockComponent(
+                ReactorCoreComponentProvider.INSTANCE, ReactorCoreBlock.class);
+        registration.registerBlockComponent(
+                BatteryComponentProvider.INSTANCE, BatteryBlock.class);
+        registration.registerBlockComponent(
+                ConverterComponentProvider.INSTANCE, BoilerBlock.class);
+        registration.registerBlockComponent(
+                ConverterComponentProvider.INSTANCE, SteamEngineBlock.class);
+        registration.registerBlockComponent(
+                ConverterComponentProvider.INSTANCE, DynamoBlock.class);
+        registration.registerBlockComponent(
+                ConverterComponentProvider.INSTANCE, ElectricHeaterBlock.class);
+        registration.registerBlockComponent(
+                ConverterComponentProvider.INSTANCE, ElectricEngineBlock.class);
+        registration.registerBlockComponent(
+                ConverterComponentProvider.INSTANCE, FuelGeneratorBlock.class);
+        registration.registerBlockComponent(
+                ConverterComponentProvider.INSTANCE, SolidBurningBoxBlock.class);
+        registration.registerBlockComponent(
+                ConverterComponentProvider.INSTANCE, FluidBedBurningBoxBlock.class);
+        registration.registerBlockComponent(
+                ConverterComponentProvider.INSTANCE, ElectricMotorBlock.class);
     }
 
     private enum FluidPipeComponentProvider
@@ -526,6 +602,180 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                     side.voltage(),
                     side.packetMultiplier());
         }
+    }
+
+    private enum ReactorCoreComponentProvider
+            implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
+        INSTANCE;
+        private static final ResourceLocation UID =
+                ResourceLocation.fromNamespaceAndPath(CrucibleCraft.MODID, "reactor_core");
+
+        @Override
+        public void appendTooltip(
+                ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
+            ReactorCoreObservation observation =
+                    ReactorCoreObservation.fromServerData(accessor.getServerData());
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.reactor.heat",
+                    fieldLong(observation.heatHu())));
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.reactor.last_heat",
+                    fieldLong(observation.lastHeatHu())));
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.reactor.neutrons",
+                    fieldInt(observation.neutrons())));
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.reactor.coolant",
+                    fieldString(observation.coolantId()),
+                    fieldInt(observation.coolantAmount())));
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.reactor.output",
+                    fieldString(observation.outputId()),
+                    fieldInt(observation.outputAmount())));
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.reactor.running",
+                    fieldBool(observation.running())));
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.reactor.safety",
+                    safetyText(observation.safety())));
+        }
+
+        @Override
+        public void appendServerData(CompoundTag data, BlockAccessor accessor) {
+            if (accessor.getBlockEntity() instanceof ReactorCoreBlockEntity core) {
+                ReactorCoreObservation.writeServerData(data, core);
+            }
+        }
+
+        @Override
+        public ResourceLocation getUid() {
+            return UID;
+        }
+    }
+
+    private enum BatteryComponentProvider
+            implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
+        INSTANCE;
+        private static final ResourceLocation UID =
+                ResourceLocation.fromNamespaceAndPath(CrucibleCraft.MODID, "battery");
+
+        @Override
+        public void appendTooltip(
+                ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
+            BatteryObservation observation =
+                    BatteryObservation.fromServerData(accessor.getServerData());
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.battery.charge",
+                    fieldString(observation.energyType()),
+                    fieldLong(observation.stored()),
+                    fieldLong(observation.capacity())));
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.battery.packet",
+                    fieldLong(observation.sizeMin()),
+                    fieldLong(observation.sizeMax()),
+                    fieldLong(observation.inputSize())));
+        }
+
+        @Override
+        public void appendServerData(CompoundTag data, BlockAccessor accessor) {
+            if (accessor.getBlockEntity() instanceof BatteryBlockEntity battery) {
+                BatteryObservation.writeServerData(data, battery);
+            }
+        }
+
+        @Override
+        public ResourceLocation getUid() {
+            return UID;
+        }
+    }
+
+    private enum ConverterComponentProvider
+            implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
+        INSTANCE;
+        private static final ResourceLocation UID =
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, "converter_dynamo");
+
+        @Override
+        public void appendTooltip(
+                ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
+            ConverterObservation observation =
+                    ConverterObservation.fromServerData(accessor.getServerData());
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.converter.accepts",
+                    fieldString(observation.accepts())));
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.converter.emits",
+                    fieldString(observation.emits())));
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.converter.packet",
+                    fieldLong(observation.inputPacket()),
+                    fieldLong(observation.outputPacket())));
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.converter.window",
+                    fieldLong(observation.windowMin()),
+                    fieldLong(observation.windowNominal()),
+                    fieldLong(observation.windowMax())));
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.converter.activity",
+                    fieldString(observation.activity())));
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.converter.buffer",
+                    fieldLong(observation.bufferStored()),
+                    fieldLong(observation.bufferCapacity())));
+        }
+
+        @Override
+        public void appendServerData(CompoundTag data, BlockAccessor accessor) {
+            ConverterObservation.writeServerData(data, accessor.getBlockEntity());
+        }
+
+        @Override
+        public ResourceLocation getUid() {
+            return UID;
+        }
+    }
+
+    private static Component fieldLong(ObservationField<Long> field) {
+        if (!field.available() || field.value() == null) {
+            return Component.translatable("jade.cruciblecraft.unavailable");
+        }
+        return Component.literal(Long.toString(field.value()));
+    }
+
+    private static Component fieldInt(ObservationField<Integer> field) {
+        if (!field.available() || field.value() == null) {
+            return Component.translatable("jade.cruciblecraft.unavailable");
+        }
+        return Component.literal(Integer.toString(field.value()));
+    }
+
+    private static Component fieldString(ObservationField<String> field) {
+        if (!field.available() || field.value() == null) {
+            return Component.translatable("jade.cruciblecraft.unavailable");
+        }
+        if (field.value().isBlank()) {
+            return Component.translatable("jade.cruciblecraft.unavailable");
+        }
+        return Component.literal(field.value());
+    }
+
+    private static Component fieldBool(ObservationField<Boolean> field) {
+        if (!field.available() || field.value() == null) {
+            return Component.translatable("jade.cruciblecraft.unavailable");
+        }
+        return Component.translatable(
+                field.value()
+                        ? "jade.cruciblecraft.reactor.running.on"
+                        : "jade.cruciblecraft.reactor.running.off");
+    }
+
+    private static Component safetyText(ObservationField<String> field) {
+        if (!field.available() || field.value() == null || field.value().isBlank()) {
+            return Component.translatable("jade.cruciblecraft.unavailable");
+        }
+        return Component.translatable(
+                "jade.cruciblecraft.reactor.safety." + field.value());
     }
 
     private enum AnvilComponentProvider implements IBlockComponentProvider {

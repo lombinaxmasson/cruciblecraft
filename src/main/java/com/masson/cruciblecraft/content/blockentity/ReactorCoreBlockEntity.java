@@ -4,7 +4,9 @@ import com.masson.cruciblecraft.content.block.ReactorCoreBlock;
 import com.masson.cruciblecraft.content.item.ReactorRodItem;
 import com.masson.cruciblecraft.nuclear.ReactorCoolant;
 import com.masson.cruciblecraft.nuclear.ReactorCoreHost;
+import com.masson.cruciblecraft.nuclear.ReactorHazards;
 import com.masson.cruciblecraft.nuclear.ReactorRodPhysics;
+import com.masson.cruciblecraft.nuclear.ReactorSafety;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 
 import net.minecraft.core.BlockPos;
@@ -46,6 +48,8 @@ public final class ReactorCoreBlockEntity extends BlockEntity
     private boolean stopped = true;
     private boolean running;
     private byte mode;
+    private ReactorSafety safety = ReactorSafety.OK;
+    private int failBurstCount;
 
     public ReactorCoreBlockEntity(BlockPos pos, BlockState state) {
         this(pos, state, slotsOf(state));
@@ -71,6 +75,9 @@ public final class ReactorCoreBlockEntity extends BlockEntity
                 ItemStack remaining = super.insertItem(slot, stack, simulate);
                 if (!simulate && remaining.getCount() < stack.getCount()) {
                     stopped = true;
+                    if (safety == ReactorSafety.RODS_DESTROYED_NO_COOLANT) {
+                        safety = ReactorSafety.OK;
+                    }
                 }
                 return remaining;
             }
@@ -88,6 +95,12 @@ public final class ReactorCoreBlockEntity extends BlockEntity
             BlockState state,
             ReactorCoreBlockEntity core) {
         core.onTick(level.getGameTime());
+        ReactorHazards.tickContactAndArea(
+                level,
+                pos,
+                core.running && !core.stopped,
+                core.neutronSum(),
+                level.getGameTime());
         boolean lit = core.running && !core.stopped;
         if (state.getValue(ReactorCoreBlock.LIT) != lit) {
             level.setBlock(
@@ -122,6 +135,22 @@ public final class ReactorCoreBlockEntity extends BlockEntity
 
     public int neutrons(int slot) {
         return oldNeutrons[slot];
+    }
+
+    public int neutronSum() {
+        int total = 0;
+        for (int slot = 0; slot < slots; slot++) {
+            total += oldNeutrons[slot];
+        }
+        return total;
+    }
+
+    public ReactorSafety safety() {
+        return safety;
+    }
+
+    public int failBurstCount() {
+        return failBurstCount;
     }
 
     public ItemStack rod(int slot) {
@@ -163,6 +192,9 @@ public final class ReactorCoreBlockEntity extends BlockEntity
         }
         inventory.setStackInSlot(slot, stack.split(1));
         stopped = true;
+        if (safety == ReactorSafety.RODS_DESTROYED_NO_COOLANT) {
+            safety = ReactorSafety.OK;
+        }
         setChanged();
         return true;
     }
@@ -310,6 +342,7 @@ public final class ReactorCoreBlockEntity extends BlockEntity
             return;
         }
         if (output.fill(hot, IFluidHandler.FluidAction.SIMULATE) != hot.getAmount()) {
+            safety = ReactorSafety.OUTPUT_FULL_STALLED;
             return;
         }
         if (coolant.getFluidAmount() < consume
@@ -324,13 +357,22 @@ public final class ReactorCoreBlockEntity extends BlockEntity
         coolant.drain(consume, IFluidHandler.FluidAction.EXECUTE);
         output.fill(hot, IFluidHandler.FluidAction.EXECUTE);
         heat -= (long) consume * kind.euPerUnit();
+        if (safety == ReactorSafety.OUTPUT_FULL_STALLED) {
+            safety = ReactorSafety.OK;
+        }
     }
 
     private void destroyRods() {
+        int neutrons = neutronSum();
         for (int slot = 0; slot < slots; slot++) {
             inventory.setStackInSlot(slot, ItemStack.EMPTY);
         }
         running = false;
+        safety = ReactorSafety.RODS_DESTROYED_NO_COOLANT;
+        failBurstCount++;
+        if (level != null && !level.isClientSide) {
+            ReactorHazards.applyFailBurst(level, worldPosition, neutrons);
+        }
     }
 
     private boolean inventoryEmpty() {
@@ -421,6 +463,8 @@ public final class ReactorCoreBlockEntity extends BlockEntity
         tag.putBoolean("stopped", stopped);
         tag.putBoolean("running", running);
         tag.putByte("mode", mode);
+        tag.putString("safety", safety.key());
+        tag.putInt("failBurstCount", failBurstCount);
         for (int slot = 0; slot < 4; slot++) {
             tag.putInt("n." + slot, neutrons[slot]);
             tag.putInt("o." + slot, oldNeutrons[slot]);
@@ -439,6 +483,8 @@ public final class ReactorCoreBlockEntity extends BlockEntity
         stopped = tag.getBoolean("stopped");
         running = tag.getBoolean("running");
         mode = tag.getByte("mode");
+        safety = ReactorSafety.fromKey(tag.getString("safety"));
+        failBurstCount = tag.getInt("failBurstCount");
         for (int slot = 0; slot < 4; slot++) {
             neutrons[slot] = tag.getInt("n." + slot);
             oldNeutrons[slot] = tag.getInt("o." + slot);

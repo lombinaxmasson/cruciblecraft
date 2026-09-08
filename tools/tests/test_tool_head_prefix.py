@@ -72,7 +72,7 @@ class ToolHeadPrefixTest(unittest.TestCase):
         self.assertEqual("BATH_IDENTITY_CATALOG", bath["status"])
         self.assertEqual(71, bath["identity_count"])
         self.assertEqual("SEMANTIC_OBJECT_CATALOG", semantic["status"])
-        self.assertEqual(244, semantic["identity_count"])
+        self.assertEqual(247, semantic["identity_count"])
         for catalog in (bath, semantic):
             for row in catalog.get("identities") or []:
                 self.assertNotEqual("tool_head", row.get("kind"))

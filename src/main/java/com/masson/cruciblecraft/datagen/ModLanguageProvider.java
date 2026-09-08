@@ -1007,6 +1007,12 @@ public class ModLanguageProvider extends LanguageProvider {
                 chinese ? "加工机" : "Processing Machine");
         add("config.jade.plugin_cruciblecraft.transformer",
                 chinese ? "变压器" : "Transformer");
+        add("config.jade.plugin_cruciblecraft.reactor_core",
+                chinese ? "裂变堆芯" : "Reactor Core");
+        add("config.jade.plugin_cruciblecraft.battery",
+                chinese ? "电池" : "Battery");
+        add("config.jade.plugin_cruciblecraft.converter_dynamo",
+                chinese ? "转换机" : "Converter");
     }
 
     private void addJadeObservation() {
@@ -1060,6 +1066,46 @@ public class ModLanguageProvider extends LanguageProvider {
         add("jade.cruciblecraft.side.south", chinese ? "南" : "south");
         add("jade.cruciblecraft.side.west", chinese ? "西" : "west");
         add("jade.cruciblecraft.side.east", chinese ? "东" : "east");
+        add("jade.cruciblecraft.reactor.heat",
+                chinese ? "热量：%s HU" : "Heat: %s HU");
+        add("jade.cruciblecraft.reactor.last_heat",
+                chinese ? "上次热量：%s HU" : "Last heat: %s HU");
+        add("jade.cruciblecraft.reactor.neutrons",
+                chinese ? "中子：%s n" : "Neutrons: %s n");
+        add("jade.cruciblecraft.reactor.coolant",
+                chinese ? "冷却剂：%s %s mB" : "Coolant: %s %s mB");
+        add("jade.cruciblecraft.reactor.output",
+                chinese ? "输出：%s %s mB" : "Output: %s %s mB");
+        add("jade.cruciblecraft.reactor.running",
+                chinese ? "运行：%s" : "Running: %s");
+        add("jade.cruciblecraft.reactor.running.on",
+                chinese ? "是" : "yes");
+        add("jade.cruciblecraft.reactor.running.off",
+                chinese ? "否" : "no");
+        add("jade.cruciblecraft.reactor.safety",
+                chinese ? "安全：%s" : "Safety: %s");
+        add("jade.cruciblecraft.reactor.safety.ok",
+                chinese ? "正常" : "ok");
+        add("jade.cruciblecraft.reactor.safety.rods_destroyed_no_coolant",
+                chinese ? "缺冷却剂已毁棒" : "rods destroyed (no coolant)");
+        add("jade.cruciblecraft.reactor.safety.output_full_stalled",
+                chinese ? "输出满、转换停滞" : "output full, conversion stalled");
+        add("jade.cruciblecraft.battery.charge",
+                chinese ? "%s：%s / %s" : "%s: %s / %s");
+        add("jade.cruciblecraft.battery.packet",
+                chinese ? "包：%s–%s，输入 %s" : "Packet: %s–%s, input %s");
+        add("jade.cruciblecraft.converter.accepts",
+                chinese ? "输入：%s" : "Accepts: %s");
+        add("jade.cruciblecraft.converter.emits",
+                chinese ? "输出：%s" : "Emits: %s");
+        add("jade.cruciblecraft.converter.packet",
+                chinese ? "包：入 %s / 出 %s" : "Packet: in %s / out %s");
+        add("jade.cruciblecraft.converter.window",
+                chinese ? "窗口：%s / %s / %s" : "Window: %s / %s / %s");
+        add("jade.cruciblecraft.converter.activity",
+                chinese ? "活动：%s" : "Activity: %s");
+        add("jade.cruciblecraft.converter.buffer",
+                chinese ? "缓冲：%s / %s" : "Buffer: %s / %s");
     }
 
     private void addEmptyToolHeadNames() {
