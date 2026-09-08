@@ -17,6 +17,13 @@
     "src/main/java/com/masson/cruciblecraft/gametest/NuclearFissionObservationSafetyGameTests.java",
     "src/main/resources/data/cruciblecraft_wave_runtime_fission_observation_safety/**",
     "src/main/resources/assets/cruciblecraft/gt6_fission_observation_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/gt6_geiger_obtain_art_manifest.json",
+    "src/main/resources/data/cruciblecraft/material_prefixes/capcellcon.json",
+    "src/main/resources/data/cruciblecraft/recipe/gt_multiitem/extruder_shape_ccc.json",
+    "src/main/resources/data/cruciblecraft/recipe/gt_multiitem/multiitem_randomtools_m10001.json",
+    "src/main/resources/data/cruciblecraft/recipe/nuclear/aluminium_capcellcon.json",
+    "src/main/resources/data/cruciblecraft/recipe/nuclear/geiger_canner_*.json",
+    "tools/emit_geiger_obtain.py",
     "src/main/resources/assets/cruciblecraft/textures/**/gt6_import/hazmat_*",
     "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/thermometer_quicksilver.png",
     "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/geiger_*.png",
@@ -86,7 +93,7 @@
         "cruciblecraft:gt_multiitem/multiitem_randomtools_m10001",
         "cruciblecraft:gt_multiitem/multiitem_randomtools_m10002"
       ],
-      "reason": "Thermometer HU and Geiger neutrons. Empty Geiger obtain stays blocked."
+      "reason": "Thermometer HU and Geiger neutrons. Empty Geiger is aluminium capcellcon + Canner fill."
     },
     {
       "semantic_key": "energy:battery_jade",
@@ -118,9 +125,14 @@
     },
     {
       "semantic_key": "reactor:geiger_empty_capcellcon",
-      "disposition": "blocked",
-      "runtime_ids": [],
-      "reason": "capcellcon(Al) is not a live prefix. Not substituted."
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:aluminium/capcellcon",
+        "cruciblecraft:extruder_shape_ccc",
+        "cruciblecraft:gt_multiitem/multiitem_randomtools_m10001",
+        "cruciblecraft:gt_multiitem/multiitem_randomtools_m10002"
+      ],
+      "reason": "Aluminium OP.capcellcon only. CCC shape + extruder + empty Geiger + He/Ne/Ar Canner."
     },
     {
       "semantic_key": "reactor:backpack_radioactivity",
@@ -129,5 +141,5 @@
       "reason": "No CC material radioactivity level table."
     }
   ],
-  "note": "Fission wrap plus energy Jade second slice. Geiger obtain blocked. unique_active_wave stays null. No heat exchangers, turbines, coolers, or Kelvin."
+  "note": "Fission wrap plus energy Jade second slice. Geiger obtain is source-exact aluminium capcellcon. unique_active_wave stays null. No heat exchangers, turbines, coolers, or Kelvin."
 }

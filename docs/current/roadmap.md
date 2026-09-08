@@ -1,17 +1,21 @@
 # CrucibleCraft 总体规划
 
 > 唯一总体规划与项目导航
-> 最后更新：2026-09-08
+> 最后更新：2026-09-09
 > 进度只计 `player_complete` 声明，加上当前 revision 的 fresh GameTest
 > PASS。`runClient` 只在晋级（`runtime_ready → player_complete`）时强制。
 > 合同见 [capability-delivery-workflow.md](capability-delivery-workflow.md)。
 >
-> **当前状态**：人读 unique active 空窗；下一候选是热力机器（热交换器 /
-> 蒸汽涡轮 / 冷却器），尚未签发。最近关闭
+> **当前状态**：人读 unique active 是
+> [热交换器第一切片](../history/card-plans/active/热交换器第一切片详细计划.md)
+> （计划 slug `energy/heat-exchangers`；8 个单体热交换器；涡轮 / 冷却器 /
+> 17197 仍后续）。机器可读 `unique_active_wave = null`，直到实施开始。
+> 闭卡后已补空盖革 source-exact 获得（铝 `capcellcon` + CCC + Canner He/Ne/Ar）。
+> 最近关闭
 > [裂变观测安全与能源 Jade](../history/card-plans/closed/裂变观测安全与能源Jade详细计划.md)
 > （`energy/nuclear-fission-observation-safety`，`player_complete` /
 > `accepted`；堆芯 HU Jade、8 件防护服、温度计/盖革、辐射/烫伤/失败语义，
-> 以及 37 电池 + 179 转换机 Jade）。`unique_active_wave = null`。最近关闭
+> 以及 37 电池 + 179 转换机 Jade）。最近关闭
 > [配方 blocked 链账本与首条收口](../history/card-plans/closed/配方blocked链账本与首条收口详细计划.md)
 > （slug `recipe/blocked-chain-ledger`；可复算账本；fluidbed 49 第一条链
 > `explicitly_blocked`）。已关闭
@@ -87,15 +91,17 @@ GitHub push 承担，不创建 GitHub Release、不上传 jar、不累计 RC soa
 同一时刻只允许一张内容工作处于 active 状态。编号卡时代已经结束；现行顺序是
 semantic wave，不是下一张里程碑编号。
 
-**当前人读 unique active** 空窗；下一候选是第 8 项热力机器，尚未签发。
-`unique_active_wave = null`。最近关闭
+**当前人读 unique active** 是
+[热交换器第一切片](../history/card-plans/active/热交换器第一切片详细计划.md)
+（第 8 项第一张；8 个单体身份）。机器可读 `unique_active_wave = null`，
+直到实施开始。最近关闭
 [裂变观测安全与能源 Jade](../history/card-plans/closed/裂变观测安全与能源Jade详细计划.md)
 （`energy/nuclear-fission-observation-safety`，`player_complete`）。已关闭
 [配方 blocked 链账本与首条收口](../history/card-plans/closed/配方blocked链账本与首条收口详细计划.md)
 （`recipe/blocked-chain-ledger`；fluidbed 49 `explicitly_blocked`）。已关闭
 [裂变热流体与热量合同](../history/card-plans/closed/裂变热流体与热量合同详细计划.md)
 （`energy/nuclear-fission-hot-fluids`，`player_complete`）。第 1–7 项已关。
-热力机器与聚变仍未签发。
+热交换器第一切片已签发；蒸汽涡轮、冷却器与聚变仍未签发。
 Bath identity / form / object 是账本次序里的下一条链，尚未签发。不要从只读
 growth-order 档案倒推。
 

@@ -16,8 +16,10 @@
 
 ## 当前 active 卡
 
-人读 unique active 空窗；下一候选是热力机器，尚未签发。
-机器可读 `unique_active_wave = null`。
+人读 unique active 是
+[热交换器第一切片](card-plans/active/热交换器第一切片详细计划.md)
+（计划 slug `energy/heat-exchangers`；8 个单体热交换器；涡轮 / 冷却器 / 17197 仍后续）。
+机器可读 `unique_active_wave = null`，直到实施开始。
 最近关闭
 [裂变观测安全与能源 Jade](card-plans/closed/裂变观测安全与能源Jade详细计划.md)
 （slug `energy/nuclear-fission-observation-safety`；`player_complete` /

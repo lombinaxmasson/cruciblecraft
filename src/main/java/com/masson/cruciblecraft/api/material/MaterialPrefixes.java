@@ -82,6 +82,7 @@ public final class MaterialPrefixes {
             builtin("machine_casing_double");
     public static final MaterialPrefix MACHINE_CASING_DENSE =
             builtin("machine_casing_dense");
+    public static final MaterialPrefix CAPCELLCON = builtin("capcellcon");
 
     private MaterialPrefixes() {}
 
