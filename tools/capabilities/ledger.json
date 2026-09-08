@@ -99,6 +99,43 @@
     },
     {
       "depends_on": [
+        "energy/nuclear-fission-hot-fluids"
+      ],
+      "maturity": "player_complete",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/compat/jade/**",
+        "src/main/java/com/masson/cruciblecraft/content/block/ReactorCoreBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/ReactorCoreBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/nuclear/**",
+        "src/main/java/com/masson/cruciblecraft/content/item/HazmatArmorItem.java",
+        "src/main/java/com/masson/cruciblecraft/content/item/ThermometerItem.java",
+        "src/main/java/com/masson/cruciblecraft/content/item/GeigerCounterItem.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/NuclearFissionObservationSafetyGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_runtime_fission_observation_safety/**",
+        "src/main/resources/assets/cruciblecraft/gt6_fission_observation_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/**/gt6_import/hazmat_*",
+        "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/thermometer_quicksilver.png",
+        "src/test/java/com/masson/cruciblecraft/nuclear/**",
+        "src/test/java/com/masson/cruciblecraft/compat/jade/**",
+        "tools/jade_observation_matrix.json",
+        "tools/capabilities/energy/nuclear-fission-observation-safety/**",
+        "tools/waves/runtime/fission-observation-safety/**",
+        "tools/tests/test_energy_nuclear_fission_observation_safety.py"
+      ],
+      "path": "tools/capabilities/energy/nuclear-fission-observation-safety/capability.json",
+      "player_signoff": "tools/capabilities/energy/nuclear-fission-observation-safety/player_signoff.json",
+      "profiles": [
+        "capability-runtime",
+        "player-complete"
+      ],
+      "slug": "energy/nuclear-fission-observation-safety",
+      "title": "Nuclear Fission Observation Safety",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "energy/transformers"
       ],
       "maturity": "player_complete",
@@ -403,11 +440,12 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 12,
+  "capability_count": 13,
   "declared_player_complete": [
     "energy/batteries",
     "energy/converter-catalog",
     "energy/nuclear-fission-hot-fluids",
+    "energy/nuclear-fission-observation-safety",
     "energy/nuclear-fission-survival",
     "energy/transformers",
     "logistics/display-cpu",
@@ -421,6 +459,7 @@
     "energy/batteries": [
       "energy/batteries",
       "energy/nuclear-fission-hot-fluids",
+      "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/transformers"
     ],
@@ -428,18 +467,25 @@
       "energy/batteries",
       "energy/converter-catalog",
       "energy/nuclear-fission-hot-fluids",
+      "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/transformers"
     ],
     "energy/nuclear-fission-hot-fluids": [
-      "energy/nuclear-fission-hot-fluids"
+      "energy/nuclear-fission-hot-fluids",
+      "energy/nuclear-fission-observation-safety"
+    ],
+    "energy/nuclear-fission-observation-safety": [
+      "energy/nuclear-fission-observation-safety"
     ],
     "energy/nuclear-fission-survival": [
       "energy/nuclear-fission-hot-fluids",
+      "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival"
     ],
     "energy/transformers": [
       "energy/nuclear-fission-hot-fluids",
+      "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/transformers"
     ],
@@ -447,6 +493,7 @@
       "energy/batteries",
       "energy/converter-catalog",
       "energy/nuclear-fission-hot-fluids",
+      "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/transformers",
       "logistics/cover-net-r0",
@@ -460,6 +507,7 @@
       "energy/batteries",
       "energy/converter-catalog",
       "energy/nuclear-fission-hot-fluids",
+      "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/transformers",
       "logistics/display-cpu"
@@ -468,6 +516,7 @@
       "energy/batteries",
       "energy/converter-catalog",
       "energy/nuclear-fission-hot-fluids",
+      "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/transformers",
       "logistics/display-cpu",
@@ -479,6 +528,7 @@
       "energy/batteries",
       "energy/converter-catalog",
       "energy/nuclear-fission-hot-fluids",
+      "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/transformers",
       "logistics/display-cpu",
@@ -489,6 +539,7 @@
       "energy/batteries",
       "energy/converter-catalog",
       "energy/nuclear-fission-hot-fluids",
+      "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/transformers",
       "logistics/display-cpu",
@@ -501,6 +552,7 @@
       "energy/batteries",
       "energy/converter-catalog",
       "energy/nuclear-fission-hot-fluids",
+      "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/transformers",
       "logistics/display-cpu",
@@ -515,6 +567,7 @@
       "energy/batteries",
       "energy/converter-catalog",
       "energy/nuclear-fission-hot-fluids",
+      "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/transformers",
       "logistics/cover-net-r0",
@@ -529,6 +582,7 @@
       "energy/batteries",
       "energy/converter-catalog",
       "energy/nuclear-fission-hot-fluids",
+      "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/transformers",
       "logistics/display-cpu",

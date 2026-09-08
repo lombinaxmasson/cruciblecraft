@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "capability": "energy/nuclear-fission-observation-safety",
+  "signed": true,
+  "signer": "player",
+  "date": "2026-09-08",
+  "craftable_items": [
+    "gt_object/gt_armor_hazmat_radiation_head_m0",
+    "gt_object/gt_armor_hazmat_radiation_chest_m0",
+    "gt_object/gt_armor_hazmat_radiation_legs_m0",
+    "gt_object/gt_armor_hazmat_radiation_boots_m0",
+    "gt_object/gt_armor_hazmat_heat_head_m0",
+    "gt_object/gt_armor_hazmat_heat_chest_m0",
+    "gt_object/gt_armor_hazmat_heat_legs_m0",
+    "gt_object/gt_armor_hazmat_heat_boots_m0",
+    "gt_multiitem/multiitem_randomtools_m10000"
+  ],
+  "checklist": {
+    "two_cores_jade_hu_no_kelvin": true,
+    "thirty_seven_batteries_one_provider": true,
+    "one_hundred_seventy_nine_converters_one_adapter": true,
+    "eight_hazmat_wearable": true,
+    "contact_area_fail_radiation_and_heat": true,
+    "fail_is_rods_sound_pulse": true,
+    "world_explode_blocked": true,
+    "thermometer_and_geiger_wired": true,
+    "geiger_obtain_explicitly_blocked": true,
+    "no_stand_in_capcellcon": true,
+    "no_iron_ingot_hazmat_textures": true
+  },
+  "notes": "Geiger empty/canner rows stay explicitly_blocked. Heat is HU. Output-full backpressure stays DESIGN_POLICY. Insect/biochem/frost/universal suits stay later."
+}

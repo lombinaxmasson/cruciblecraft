@@ -238,24 +238,36 @@
       "live_identities": ["cruciblecraft:energy_battery"],
       "static_profile_source": "EnergyBatteryCatalog",
       "dynamic_state_source": "Battery stored EU/LU / packet window",
-      "sync_path": "needs_runtime_accessor",
+      "sync_path": "jade_server_data",
       "display_sections": ["charge", "packet"],
-      "translation_keys": [],
-      "status": "follow_up",
+      "translation_keys": [
+        "jade.cruciblecraft.battery.charge",
+        "jade.cruciblecraft.battery.packet",
+        "config.jade.plugin_cruciblecraft.battery"
+      ],
+      "status": "ready",
       "owner": "energy/nuclear-fission-observation-safety",
-      "reason": "Unique-active energy Jade second slice. 37 identities share one provider."
+      "reason": "37 identities share one provider. stored() not displayedEnergy."
     },
     {
       "family": "converter_dynamo",
       "live_identities": ["cruciblecraft:energy_converter"],
       "static_profile_source": "EnergyConverterTierCatalog",
       "dynamic_state_source": "Converter/dynamo activity and buffers",
-      "sync_path": "needs_runtime_accessor",
+      "sync_path": "jade_server_data",
       "display_sections": ["conversion", "buffer"],
-      "translation_keys": [],
-      "status": "follow_up",
+      "translation_keys": [
+        "jade.cruciblecraft.converter.accepts",
+        "jade.cruciblecraft.converter.emits",
+        "jade.cruciblecraft.converter.packet",
+        "jade.cruciblecraft.converter.window",
+        "jade.cruciblecraft.converter.activity",
+        "jade.cruciblecraft.converter.buffer",
+        "config.jade.plugin_cruciblecraft.converter_dynamo"
+      ],
+      "status": "ready",
       "owner": "energy/nuclear-fission-observation-safety",
-      "reason": "Unique-active energy Jade second slice. 179 live rows share one observation adapter. Existing boiler/steam-engine tooltips stay."
+      "reason": "179 live rows share one observation adapter. Existing boiler/steam-engine tooltips stay."
     },
     {
       "family": "fusion_reactor",
@@ -277,12 +289,21 @@
       ],
       "static_profile_source": "ReactorRodCatalog",
       "dynamic_state_source": "Reactor heat/neutrons/safety",
-      "sync_path": "blocked",
+      "sync_path": "jade_server_data",
       "display_sections": ["heat", "neutrons", "coolant", "output", "running", "safety"],
-      "translation_keys": [],
-      "status": "follow_up",
+      "translation_keys": [
+        "jade.cruciblecraft.reactor.heat",
+        "jade.cruciblecraft.reactor.last_heat",
+        "jade.cruciblecraft.reactor.neutrons",
+        "jade.cruciblecraft.reactor.coolant",
+        "jade.cruciblecraft.reactor.output",
+        "jade.cruciblecraft.reactor.running",
+        "jade.cruciblecraft.reactor.safety",
+        "config.jade.plugin_cruciblecraft.reactor_core"
+      ],
+      "status": "ready",
       "owner": "energy/nuclear-fission-observation-safety",
-      "reason": "Unique-active fission wrap. Heat is HU. No invented Kelvin."
+      "reason": "Two cores share one HU provider. No invented Kelvin."
     },
     {
       "family": "large_multiblock",

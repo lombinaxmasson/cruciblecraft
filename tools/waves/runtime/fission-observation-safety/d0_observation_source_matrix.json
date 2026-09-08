@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "wave_slug": "runtime/fission-observation-safety",
+  "status": "D0_MATRIX_READY",
+  "source_contract_rows": 13,
+  "exact_rows": 9,
+  "explicitly_blocked_rows": 4,
+  "missing": 0,
+  "extra": 0,
+  "duplicate": 0,
+  "stand_in_parts": 0,
+  "kelvin_fields": 0,
+  "world_explode_uncommented": 0,
+  "branches": [
+    {
+      "branch": "radiation_helmet",
+      "disposition": "ready",
+      "parts": [
+        "lead/plate",
+        "minecraft:glass_pane",
+        "material_screwdriver",
+        "material_file"
+      ]
+    },
+    {
+      "branch": "radiation_chest",
+      "disposition": "ready",
+      "parts": [
+        "lead/plate",
+        "material_screwdriver",
+        "material_file"
+      ]
+    },
+    {
+      "branch": "radiation_legs",
+      "disposition": "ready",
+      "parts": [
+        "lead/plate",
+        "material_screwdriver",
+        "material_file"
+      ]
+    },
+    {
+      "branch": "radiation_boots",
+      "disposition": "ready",
+      "parts": [
+        "lead/plate",
+        "material_screwdriver",
+        "material_file"
+      ]
+    },
+    {
+      "branch": "heat_helmet",
+      "disposition": "ready",
+      "parts": [
+        "aluminium/foil",
+        "minecraft:black_stained_glass_pane",
+        "material_screwdriver",
+        "material_file"
+      ]
+    },
+    {
+      "branch": "heat_chest",
+      "disposition": "ready",
+      "parts": [
+        "aluminium/foil",
+        "material_screwdriver",
+        "material_file"
+      ]
+    },
+    {
+      "branch": "heat_legs",
+      "disposition": "ready",
+      "parts": [
+        "aluminium/foil",
+        "material_screwdriver",
+        "material_file"
+      ]
+    },
+    {
+      "branch": "heat_boots",
+      "disposition": "ready",
+      "parts": [
+        "aluminium/foil",
+        "material_screwdriver",
+        "material_file"
+      ]
+    },
+    {
+      "branch": "thermometer",
+      "disposition": "ready",
+      "parts": [
+        "copper/plate",
+        "minecraft:glass_pane",
+        "minecraft:red_dye",
+        "mercury/ingot"
+      ],
+      "quicksilver_mapping": "mercury/ingot via GT6 QuickSilver alias"
+    },
+    {
+      "branch": "geiger_empty",
+      "disposition": "explicitly_blocked",
+      "reason": "OP.capcellcon(Al) MTE 32610 is not a live prefix. Not substituted."
+    },
+    {
+      "branch": "geiger_canner_helium",
+      "disposition": "explicitly_blocked",
+      "reason": "Empty Geiger obtain is blocked; Canner fill stays blocked."
+    },
+    {
+      "branch": "geiger_canner_neon",
+      "disposition": "explicitly_blocked",
+      "reason": "Empty Geiger obtain is blocked; Canner fill stays blocked."
+    },
+    {
+      "branch": "geiger_canner_argon",
+      "disposition": "explicitly_blocked",
+      "reason": "Empty Geiger obtain is blocked; Canner fill stays blocked."
+    }
+  ],
+  "blocked_ledger": [
+    {
+      "semantic_key": "reactor:geiger_empty_capcellcon",
+      "disposition": "explicitly_blocked",
+      "reason": "Aluminium capsule container MTE is out of this card."
+    },
+    {
+      "semantic_key": "reactor:temperature_kelvin",
+      "disposition": "blocked",
+      "reason": "Thermometer reports lastHeat as HU. No Kelvin conversion."
+    },
+    {
+      "semantic_key": "reactor:world_explode",
+      "disposition": "blocked",
+      "reason": "GT6 explode() TODO stays commented. Sound + pulse only."
+    },
+    {
+      "semantic_key": "reactor:backpack_radioactivity_enchantment",
+      "disposition": "blocked",
+      "reason": "CC materials have no getRadioactivityLevel table."
+    }
+  ],
+  "temperature_contract": {
+    "heat_unit": "HU",
+    "gt6_thermometer": "oEnergy HU",
+    "temperature_k": "blocked",
+    "meltdown_at_k": "blocked"
+  },
+  "fail_semantics": {
+    "rods_destroyed": true,
+    "explode_sound": true,
+    "radiation_pulse": true,
+    "world_explode": "blocked",
+    "output_full_backpressure": "retain_heat_and_input"
+  }
+}

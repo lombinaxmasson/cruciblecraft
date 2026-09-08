@@ -16,11 +16,12 @@
 
 ## 当前 active 卡
 
-人读 unique active 为
-[裂变观测安全与能源 Jade](card-plans/active/裂变观测安全与能源Jade详细计划.md)
-（slug `energy/nuclear-fission-observation-safety`；已签发，实施未开始）。
+人读 unique active 空窗；下一候选是热力机器，尚未签发。
 机器可读 `unique_active_wave = null`。
 最近关闭
+[裂变观测安全与能源 Jade](card-plans/closed/裂变观测安全与能源Jade详细计划.md)
+（slug `energy/nuclear-fission-observation-safety`；`player_complete` /
+`accepted`）。已关闭
 [配方 blocked 链账本与首条收口](card-plans/closed/配方blocked链账本与首条收口详细计划.md)
 （slug `recipe/blocked-chain-ledger`；可复算账本；fluidbed 49 第一条链
 `explicitly_blocked`）。已关闭

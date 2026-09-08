@@ -61,6 +61,8 @@ public class CrucibleCraft {
         ModBlocks.BLOCKS.register(modEventBus);
         ModFeatures.FEATURES.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
+        com.masson.cruciblecraft.registry.ModArmorMaterials.ARMOR_MATERIALS.register(
+                modEventBus);
         ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
         ModComponents.COMPONENTS.register(modEventBus);
         ModRecipes.RECIPE_TYPES.register(modEventBus);

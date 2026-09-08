@@ -163,6 +163,29 @@
       "texture": "minecraft:item/iron_ingot"
     },
     {
+      "acquisition_authority": "runtime/fission-observation-safety",
+      "behavior": "thermometer",
+      "chinese_name": "水银温度计",
+      "display_requirements": {
+        "distinguishable": true,
+        "holdable": true,
+        "model": "item/generated"
+      },
+      "english_name": "Quicksilver Thermometer",
+      "input_count": 1,
+      "kind": "multiitem",
+      "mapping_class": "exact_item",
+      "meta": 10000,
+      "occurrence_count": 1,
+      "output_count": 0,
+      "registry_kind": "item",
+      "registry_path": "gt_multiitem/multiitem_randomtools_m10000",
+      "runtime_id": "cruciblecraft:gt_multiitem/multiitem_randomtools_m10000",
+      "source_evidence": "docs/history/card-plans/closed/裂变观测安全与能源Jade详细计划.md",
+      "source_item": "gregtech:gt.multiitem.randomtools",
+      "texture": "cruciblecraft:item/gt6_import/thermometer_quicksilver"
+    },
+    {
       "acquisition_authority": "smelter/ordinary-closure",
       "behavior": "multiitem",
       "chinese_name": "Geiger Counter (Empty)",
@@ -2509,9 +2532,32 @@
       "texture": "minecraft:item/iron_ingot"
     },
     {
+      "acquisition_authority": "runtime/fission-observation-safety",
+      "behavior": "armor",
+      "chinese_name": "隔热防护服头罩",
+      "display_requirements": {
+        "distinguishable": true,
+        "holdable": true,
+        "model": "item/generated"
+      },
+      "english_name": "Heat Protection Suit Helmet",
+      "input_count": 1,
+      "kind": "armor",
+      "mapping_class": "exact_item",
+      "meta": 0,
+      "occurrence_count": 1,
+      "output_count": 0,
+      "registry_kind": "item",
+      "registry_path": "gt_object/gt_armor_hazmat_heat_head_m0",
+      "runtime_id": "cruciblecraft:gt_object/gt_armor_hazmat_heat_head_m0",
+      "source_evidence": "docs/history/card-plans/closed/裂变观测安全与能源Jade详细计划.md",
+      "source_item": "gregtech:gt.armor.hazmat.heat.head",
+      "texture": "cruciblecraft:item/gt6_import/hazmat_heat_head"
+    },
+    {
       "acquisition_authority": "smelter/ordinary-closure",
       "behavior": "armor",
-      "chinese_name": "Heat Protection Suit Boots",
+      "chinese_name": "隔热防护服靴子",
       "display_requirements": {
         "distinguishable": true,
         "holdable": true,
@@ -2529,12 +2575,12 @@
       "runtime_id": "cruciblecraft:gt_object/gt_armor_hazmat_heat_boots_m0",
       "source_evidence": "tools/waves/smelter/ordinary-closure/source.json",
       "source_item": "gregtech:gt.armor.hazmat.heat.boots",
-      "texture": "minecraft:item/iron_ingot"
+      "texture": "cruciblecraft:item/gt6_import/hazmat_heat_boots"
     },
     {
       "acquisition_authority": "smelter/ordinary-closure",
       "behavior": "armor",
-      "chinese_name": "Heat Protection Suit Shirt",
+      "chinese_name": "隔热防护服上衣",
       "display_requirements": {
         "distinguishable": true,
         "holdable": true,
@@ -2552,12 +2598,12 @@
       "runtime_id": "cruciblecraft:gt_object/gt_armor_hazmat_heat_chest_m0",
       "source_evidence": "tools/waves/smelter/ordinary-closure/source.json",
       "source_item": "gregtech:gt.armor.hazmat.heat.chest",
-      "texture": "minecraft:item/iron_ingot"
+      "texture": "cruciblecraft:item/gt6_import/hazmat_heat_chest"
     },
     {
       "acquisition_authority": "smelter/ordinary-closure",
       "behavior": "armor",
-      "chinese_name": "Heat Protection Suit Pants",
+      "chinese_name": "隔热防护服裤子",
       "display_requirements": {
         "distinguishable": true,
         "holdable": true,
@@ -2575,7 +2621,7 @@
       "runtime_id": "cruciblecraft:gt_object/gt_armor_hazmat_heat_legs_m0",
       "source_evidence": "tools/waves/smelter/ordinary-closure/source.json",
       "source_item": "gregtech:gt.armor.hazmat.heat.legs",
-      "texture": "minecraft:item/iron_ingot"
+      "texture": "cruciblecraft:item/gt6_import/hazmat_heat_legs"
     },
     {
       "acquisition_authority": "smelter/ordinary-closure",
@@ -2647,9 +2693,32 @@
       "texture": "minecraft:item/iron_ingot"
     },
     {
+      "acquisition_authority": "runtime/fission-observation-safety",
+      "behavior": "armor",
+      "chinese_name": "辐射防护服头罩",
+      "display_requirements": {
+        "distinguishable": true,
+        "holdable": true,
+        "model": "item/generated"
+      },
+      "english_name": "Radiation Hazard Suit Helmet",
+      "input_count": 1,
+      "kind": "armor",
+      "mapping_class": "exact_item",
+      "meta": 0,
+      "occurrence_count": 1,
+      "output_count": 0,
+      "registry_kind": "item",
+      "registry_path": "gt_object/gt_armor_hazmat_radiation_head_m0",
+      "runtime_id": "cruciblecraft:gt_object/gt_armor_hazmat_radiation_head_m0",
+      "source_evidence": "docs/history/card-plans/closed/裂变观测安全与能源Jade详细计划.md",
+      "source_item": "gregtech:gt.armor.hazmat.radiation.head",
+      "texture": "cruciblecraft:item/gt6_import/hazmat_radiation_head"
+    },
+    {
       "acquisition_authority": "smelter/ordinary-closure",
       "behavior": "armor",
-      "chinese_name": "Radiation Hazard Suit Boots",
+      "chinese_name": "辐射防护服靴子",
       "display_requirements": {
         "distinguishable": true,
         "holdable": true,
@@ -2667,12 +2736,12 @@
       "runtime_id": "cruciblecraft:gt_object/gt_armor_hazmat_radiation_boots_m0",
       "source_evidence": "tools/waves/smelter/ordinary-closure/source.json",
       "source_item": "gregtech:gt.armor.hazmat.radiation.boots",
-      "texture": "minecraft:item/iron_ingot"
+      "texture": "cruciblecraft:item/gt6_import/hazmat_radiation_boots"
     },
     {
       "acquisition_authority": "smelter/ordinary-closure",
       "behavior": "armor",
-      "chinese_name": "Radiation Hazard Suit Shirt",
+      "chinese_name": "辐射防护服上衣",
       "display_requirements": {
         "distinguishable": true,
         "holdable": true,
@@ -2690,12 +2759,12 @@
       "runtime_id": "cruciblecraft:gt_object/gt_armor_hazmat_radiation_chest_m0",
       "source_evidence": "tools/waves/smelter/ordinary-closure/source.json",
       "source_item": "gregtech:gt.armor.hazmat.radiation.chest",
-      "texture": "minecraft:item/iron_ingot"
+      "texture": "cruciblecraft:item/gt6_import/hazmat_radiation_chest"
     },
     {
       "acquisition_authority": "smelter/ordinary-closure",
       "behavior": "armor",
-      "chinese_name": "Radiation Hazard Suit Pants",
+      "chinese_name": "辐射防护服裤子",
       "display_requirements": {
         "distinguishable": true,
         "holdable": true,
@@ -2713,7 +2782,7 @@
       "runtime_id": "cruciblecraft:gt_object/gt_armor_hazmat_radiation_legs_m0",
       "source_evidence": "tools/waves/smelter/ordinary-closure/source.json",
       "source_item": "gregtech:gt.armor.hazmat.radiation.legs",
-      "texture": "minecraft:item/iron_ingot"
+      "texture": "cruciblecraft:item/gt6_import/hazmat_radiation_legs"
     },
     {
       "acquisition_authority": "smelter/ordinary-closure",
@@ -5614,9 +5683,9 @@
       "texture": "minecraft:item/iron_ingot"
     }
   ],
-  "identity_count": 244,
+  "identity_count": 247,
   "schema_version": 1,
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "status": "SEMANTIC_OBJECT_CATALOG",
-  "variant_count": 244
+  "variant_count": 247
 }

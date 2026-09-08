@@ -108,6 +108,52 @@ class JadeObservationTest {
     }
 
     @Test
+    void reactorJadeIsHuAndMissingDataIsUnavailable() {
+        ReactorCoreObservation missing =
+                ReactorCoreObservation.fromServerData(new CompoundTag());
+        assertFalse(missing.heatHu().available());
+        assertFalse(missing.neutrons().available());
+        assertFalse(missing.safety().available());
+        assertFalse(missing.hasKelvinField());
+
+        ReactorCoreObservation snapshot = ReactorCoreObservation.fromSnapshot(
+                40L,
+                8L,
+                12,
+                "cruciblecraft:distilled_water",
+                1000,
+                "cruciblecraft:steam",
+                160,
+                true,
+                false,
+                com.masson.cruciblecraft.nuclear.ReactorSafety.OK);
+        assertEquals(40L, snapshot.heatHu().value());
+        assertEquals(8L, snapshot.lastHeatHu().value());
+        assertEquals("ok", snapshot.safety().value());
+    }
+
+    @Test
+    void batteryJadeUsesStoredNotDisplayedEnergy() {
+        BatteryObservation missing =
+                BatteryObservation.fromServerData(new CompoundTag());
+        assertFalse(missing.stored().available());
+        BatteryObservation snapshot = BatteryObservation.fromSnapshot(
+                "EU", 64L, 256L, 8L, 32L, 16L);
+        assertEquals("EU", snapshot.energyType().value());
+        assertEquals(64L, snapshot.stored().value());
+        assertEquals(16L, snapshot.inputSize().value());
+    }
+
+    @Test
+    void converterJadeLeavesMissingBuffersUnavailable() {
+        ConverterObservation missing =
+                ConverterObservation.fromServerData(new CompoundTag());
+        assertFalse(missing.bufferStored().available());
+        assertFalse(missing.activity().available());
+        assertFalse(missing.accepts().available());
+    }
+
+    @Test
     void fillPercentClampsAndRounds() {
         assertEquals(0, JadeDisplayUnits.fillPercent(0.0f));
         assertEquals(100, JadeDisplayUnits.fillPercent(1.0f));
