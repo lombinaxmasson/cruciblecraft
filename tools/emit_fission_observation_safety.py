@@ -17,6 +17,23 @@ CAP = ROOT / "tools" / "capabilities" / "energy" / "nuclear-fission-observation-
 CATALOG = SRC / "data" / "cruciblecraft" / "semantic_object_catalog.json"
 REVISION = "3703e40308c8c030763fd6297dea8b210d2a77b1"
 NS = "cruciblecraft_wave_runtime_fission_observation_safety"
+GT6_ART = (
+    ROOT
+    / "gt6_referencable_port_code"
+    / "gregtech6_w"
+    / "src"
+    / "main"
+    / "resources"
+    / "assets"
+    / "gregtech"
+    / "textures"
+)
+SLOT = {"head": 0, "chest": 1, "legs": 2, "boots": 3}
+HANDHELD = (
+    ("thermometer_quicksilver", 10000, "gt_multiitem/multiitem_randomtools_m10000"),
+    ("geiger_empty", 10001, "gt_multiitem/multiitem_randomtools_m10001"),
+    ("geiger_filled", 10002, "gt_multiitem/multiitem_randomtools_m10002"),
+)
 
 HAZMAT = [
     {
@@ -94,6 +111,95 @@ def dump(path: Path, document: object) -> None:
     )
 
 
+def _paeth(a: int, b: int, c: int) -> int:
+    p = a + b - c
+    pa, pb, pc = abs(p - a), abs(p - b), abs(p - c)
+    if pa <= pb and pa <= pc:
+        return a
+    if pb <= pc:
+        return b
+    return c
+
+
+def read_png_rgba(path: Path) -> list[list[tuple[int, int, int, int]]]:
+    data = path.read_bytes()
+    if data[:8] != b"\x89PNG\r\n\x1a\n":
+        raise SystemExit(f"not a PNG: {path}")
+    pos = 8
+    width = height = bit_depth = color_type = 0
+    palette: list[tuple[int, int, int]] = []
+    trans: bytes | None = None
+    idat = bytearray()
+    while pos < len(data):
+        length = struct.unpack(">I", data[pos : pos + 4])[0]
+        tag = data[pos + 4 : pos + 8]
+        chunk = data[pos + 8 : pos + 8 + length]
+        pos += 12 + length
+        if tag == b"IHDR":
+            width, height, bit_depth, color_type, comp, filt, interlace = struct.unpack(
+                ">IIBBBBB", chunk
+            )
+            if comp or filt or interlace or bit_depth != 8:
+                raise SystemExit(f"unsupported PNG {path}")
+        elif tag == b"PLTE":
+            palette = [
+                (chunk[i], chunk[i + 1], chunk[i + 2]) for i in range(0, len(chunk), 3)
+            ]
+        elif tag == b"tRNS":
+            trans = chunk
+        elif tag == b"IDAT":
+            idat.extend(chunk)
+        elif tag == b"IEND":
+            break
+    bpp = {0: 1, 2: 3, 3: 1, 4: 2, 6: 4}.get(color_type)
+    if bpp is None:
+        raise SystemExit(f"color type {color_type} in {path}")
+    raw = zlib.decompress(bytes(idat))
+    stride = width * bpp
+    prev = bytearray(stride)
+    offset = 0
+    rows: list[list[tuple[int, int, int, int]]] = []
+    for _ in range(height):
+        filter_type = raw[offset]
+        scan = bytearray(raw[offset + 1 : offset + 1 + stride])
+        offset += 1 + stride
+        if filter_type == 1:
+            for i in range(stride):
+                scan[i] = (scan[i] + (scan[i - bpp] if i >= bpp else 0)) & 255
+        elif filter_type == 2:
+            for i in range(stride):
+                scan[i] = (scan[i] + prev[i]) & 255
+        elif filter_type == 3:
+            for i in range(stride):
+                left = scan[i - bpp] if i >= bpp else 0
+                scan[i] = (scan[i] + ((left + prev[i]) // 2)) & 255
+        elif filter_type == 4:
+            for i in range(stride):
+                left = scan[i - bpp] if i >= bpp else 0
+                up_left = prev[i - bpp] if i >= bpp else 0
+                scan[i] = (scan[i] + _paeth(left, prev[i], up_left)) & 255
+        elif filter_type:
+            raise SystemExit(f"filter {filter_type} in {path}")
+        prev = bytearray(scan)
+        row: list[tuple[int, int, int, int]] = []
+        for x in range(width):
+            i = x * bpp
+            if color_type == 6:
+                row.append((scan[i], scan[i + 1], scan[i + 2], scan[i + 3]))
+            elif color_type == 2:
+                row.append((scan[i], scan[i + 1], scan[i + 2], 255))
+            elif color_type == 3:
+                red, green, blue = palette[scan[i]]
+                alpha = trans[scan[i]] if trans is not None and scan[i] < len(trans) else 255
+                row.append((red, green, blue, alpha))
+            elif color_type == 0:
+                row.append((scan[i], scan[i], scan[i], 255))
+            else:
+                row.append((scan[i], scan[i], scan[i], scan[i + 1]))
+        rows.append(row)
+    return rows
+
+
 def write_png(path: Path, pixels: list[list[tuple[int, int, int, int]]]) -> None:
     height = len(pixels)
     width = len(pixels[0])
@@ -118,51 +224,39 @@ def write_png(path: Path, pixels: list[list[tuple[int, int, int, int]]]) -> None
     )
 
 
-def item_icon(kind: str, piece: str) -> list[list[tuple[int, int, int, int]]]:
-    if kind == "radiation":
-        body, accent, stripe = (236, 196, 36, 255), (28, 28, 28, 255), (168, 40, 168, 255)
-    elif kind == "heat":
-        body, accent, stripe = (196, 200, 208, 255), (232, 112, 32, 255), (80, 84, 92, 255)
-    else:
-        body, accent, stripe = (180, 120, 48, 255), (200, 32, 32, 255), (220, 220, 220, 255)
-    pixels = [[(0, 0, 0, 0) for _ in range(16)] for _ in range(16)]
-    shapes = {
-        "head": [(3, 2, 12, 13)],
-        "chest": [(4, 1, 11, 14)],
-        "legs": [(5, 1, 10, 14)],
-        "boots": [(3, 8, 12, 14)],
-        "thermometer": [(7, 1, 8, 12)],
+def require_gt6_art() -> None:
+    if not GT6_ART.is_dir():
+        raise SystemExit(f"missing gregtech6_w textures at {GT6_ART}")
+
+
+def record_copy(imports: list[dict], gt6_source: str, destination: str, note: str | None = None) -> None:
+    row = {
+        "source": "gt6_referencable_port_code/gregtech6_w",
+        "gt6_source": gt6_source,
+        "destination": destination,
     }
-    for x0, y0, x1, y1 in shapes.get(piece, [(3, 3, 12, 12)]):
-        for y in range(y0, y1 + 1):
-            for x in range(x0, x1 + 1):
-                pixels[y][x] = body
-    for y in range(16):
-        for x in range(16):
-            if pixels[y][x][3] == 0:
-                continue
-            if (x + y) % 4 == 0:
-                pixels[y][x] = stripe
-            if piece == "head" and 6 <= x <= 9 and 5 <= y <= 8:
-                pixels[y][x] = accent
-            if piece == "thermometer" and y >= 10:
-                pixels[y][x] = accent
-    return pixels
+    if note:
+        row["note"] = note
+    imports.append(row)
 
 
-def armor_layer(kind: str, layer: int) -> list[list[tuple[int, int, int, int]]]:
-    if kind == "radiation":
-        fill = (236, 196, 36, 255)
-    else:
-        fill = (196, 200, 208, 255)
-    pixels = [[(0, 0, 0, 0) for _ in range(64)] for _ in range(32)]
-    for y in range(32):
-        for x in range(64):
-            if layer == 1 and (8 <= x <= 23 or 40 <= x <= 55) and 8 <= y <= 23:
-                pixels[y][x] = fill
-            if layer == 2 and 20 <= x <= 43 and 16 <= y <= 31:
-                pixels[y][x] = fill
-    return pixels
+def copy_png(src: Path, dest: Path) -> None:
+    if not src.is_file():
+        raise SystemExit(f"missing gregtech6_w texture: {src}")
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(src, dest)
+
+
+def overlay(
+    base: list[list[tuple[int, int, int, int]]],
+    top: list[list[tuple[int, int, int, int]]],
+) -> list[list[tuple[int, int, int, int]]]:
+    out = [list(row) for row in base]
+    for y, row in enumerate(top):
+        for x, pixel in enumerate(row):
+            if pixel[3]:
+                out[y][x] = pixel
+    return out
 
 
 def catalog_row(english: str, chinese: str, source: str, path: str, texture: str, meta: int, kind: str, behavior: str) -> dict:
@@ -216,6 +310,15 @@ def patch_catalog() -> None:
     else:
         by_path[thermometer["registry_path"]].update(thermometer)
 
+    geiger_textures = {
+        "gt_multiitem/multiitem_randomtools_m10001": "cruciblecraft:item/gt6_import/geiger_empty",
+        "gt_multiitem/multiitem_randomtools_m10002": "cruciblecraft:item/gt6_import/geiger_filled",
+    }
+    for path, texture in geiger_textures.items():
+        if path not in by_path:
+            raise SystemExit(f"missing catalog row {path}")
+        by_path[path]["texture"] = texture
+
     for piece in HAZMAT:
         path = f"gt_object/gt_armor_hazmat_{piece['suit']}_{piece['piece']}_m0"
         row = catalog_row(
@@ -254,86 +357,82 @@ def patch_catalog() -> None:
 
 
 def write_models_and_art() -> None:
-    imports = []
+    require_gt6_art()
+    imports: list[dict] = []
+    item_root = SRC / "assets" / "cruciblecraft" / "textures" / "item" / "gt6_import"
+    model_root = SRC / "assets" / "cruciblecraft" / "models" / "item"
+    armor_root = SRC / "assets" / "cruciblecraft" / "textures" / "models" / "armor"
+    worn: dict[str, dict[int, list[list[tuple[int, int, int, int]]]]] = {
+        "radiation": {},
+        "heat": {},
+    }
     for piece in HAZMAT:
+        slot = SLOT[piece["piece"]]
         name = f"hazmat_{piece['suit']}_{piece['piece']}"
-        dest = f"assets/cruciblecraft/textures/item/gt6_import/{name}.png"
-        write_png(
-            SRC / "assets" / "cruciblecraft" / "textures" / "item" / "gt6_import" / f"{name}.png",
-            item_icon(piece["suit"], piece["piece"]),
-        )
-        imports.append(
-            {
-                "gt6_source": (
-                    f"assets/gregtech/textures/items/gt.armor.hazmat."
-                    f"{piece['suit']}.{piece['piece']}.png"
-                ),
-                "destination": dest,
-                "note": "Local gregtech6_w absent; GT6 palette icon, not iron_ingot.",
-            }
-        )
-        model = SRC / "assets" / "cruciblecraft" / "models" / "item" / "gt_object" / (
-            f"gt_armor_hazmat_{piece['suit']}_{piece['piece']}_m0.json"
+        src = GT6_ART / "items" / "armor" / f"hazard_{piece['suit']}" / f"{slot}.png"
+        dest = item_root / f"{name}.png"
+        copy_png(src, dest)
+        record_copy(
+            imports,
+            f"assets/gregtech/textures/items/armor/hazard_{piece['suit']}/{slot}.png",
+            f"assets/cruciblecraft/textures/item/gt6_import/{name}.png",
         )
         dump(
-            model,
+            model_root
+            / "gt_object"
+            / f"gt_armor_hazmat_{piece['suit']}_{piece['piece']}_m0.json",
             {
                 "parent": "minecraft:item/generated",
                 "textures": {"layer0": piece["texture"]},
             },
         )
-    write_png(
-        SRC / "assets" / "cruciblecraft" / "textures" / "item" / "gt6_import" / "thermometer_quicksilver.png",
-        item_icon("thermometer", "thermometer"),
-    )
-    dump(
-        SRC
-        / "assets"
-        / "cruciblecraft"
-        / "models"
-        / "item"
-        / "gt_multiitem"
-        / "multiitem_randomtools_m10000.json",
-        {
-            "parent": "minecraft:item/generated",
-            "textures": {
-                "layer0": "cruciblecraft:item/gt6_import/thermometer_quicksilver"
+        worn_src = GT6_ART / "armor" / f"hazard_{piece['suit']}" / f"{slot}.png"
+        worn[piece["suit"]][slot] = read_png_rgba(worn_src)
+    for name, meta, model_path in HANDHELD:
+        src = GT6_ART / "items" / "gt.multiitem.randomtools" / f"{meta}.png"
+        dest = item_root / f"{name}.png"
+        copy_png(src, dest)
+        record_copy(
+            imports,
+            f"assets/gregtech/textures/items/gt.multiitem.randomtools/{meta}.png",
+            f"assets/cruciblecraft/textures/item/gt6_import/{name}.png",
+        )
+        dump(
+            model_root / Path(model_path + ".json"),
+            {
+                "parent": "minecraft:item/generated",
+                "textures": {"layer0": f"cruciblecraft:item/gt6_import/{name}"},
             },
-        },
-    )
-    imports.append(
-        {
-            "gt6_source": "assets/gregtech/textures/items/gt.multiitem.randomtools/thermometer.png",
-            "destination": "assets/cruciblecraft/textures/item/gt6_import/thermometer_quicksilver.png",
-            "note": "Local gregtech6_w absent; GT6 palette icon, not iron_ingot.",
-        }
-    )
-    for kind in ("radiation", "heat"):
-        for layer in (1, 2):
-            name = f"hazmat_{kind}_layer_{layer}.png"
-            write_png(
-                SRC
-                / "assets"
-                / "cruciblecraft"
-                / "textures"
-                / "models"
-                / "armor"
-                / name,
-                armor_layer(kind, layer),
-            )
-            imports.append(
-                {
-                    "gt6_source": f"assets/gregtech/textures/models/armor/hazmat_{kind}_layer_{layer}.png",
-                    "destination": f"assets/cruciblecraft/textures/models/armor/{name}",
-                    "note": "Local gregtech6_w absent; layer mask for wearable armor.",
-                }
-            )
+        )
+    for kind, slots in worn.items():
+        if slots.keys() != {0, 1, 2, 3}:
+            raise SystemExit(f"missing worn slots for {kind}: {sorted(slots)}")
+        write_png(
+            armor_root / f"hazmat_{kind}_layer_1.png",
+            overlay(overlay(slots[0], slots[1]), slots[3]),
+        )
+        copy_png(
+            GT6_ART / "armor" / f"hazard_{kind}" / "2.png",
+            armor_root / f"hazmat_{kind}_layer_2.png",
+        )
+        record_copy(
+            imports,
+            f"assets/gregtech/textures/armor/hazard_{kind}/{{0,1,3}}.png",
+            f"assets/cruciblecraft/textures/models/armor/hazmat_{kind}_layer_1.png",
+            "Vanilla 1.21 layer_1 composed from GT6 64x32 slot sheets 0+1+3.",
+        )
+        record_copy(
+            imports,
+            f"assets/gregtech/textures/armor/hazard_{kind}/2.png",
+            f"assets/cruciblecraft/textures/models/armor/hazmat_{kind}_layer_2.png",
+            "Vanilla 1.21 layer_2 copied from GT6 64x32 slot sheet 2.",
+        )
     dump(
         SRC / "assets" / "cruciblecraft" / "gt6_fission_observation_art_manifest.json",
         {
             "source": "gt6_referencable_port_code/gregtech6_w",
             "source_revision": REVISION,
-            "source_present": False,
+            "source_present": True,
             "imports": imports,
         },
     )
@@ -679,6 +778,8 @@ def write_capability() -> None:
                 "src/main/resources/assets/cruciblecraft/gt6_fission_observation_art_manifest.json",
                 "src/main/resources/assets/cruciblecraft/textures/**/gt6_import/hazmat_*",
                 "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/thermometer_quicksilver.png",
+                "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/geiger_*.png",
+                "src/main/resources/assets/cruciblecraft/textures/models/armor/hazmat_*",
                 "src/test/java/com/masson/cruciblecraft/nuclear/**",
                 "src/test/java/com/masson/cruciblecraft/compat/jade/**",
                 "tools/jade_observation_matrix.json",
