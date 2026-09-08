@@ -1,0 +1,131 @@
+{
+  "schema_version": 2,
+  "slug": "energy/nuclear-fission-observation-safety",
+  "title": "Nuclear Fission Observation Safety",
+  "maturity": "player_complete",
+  "workflow": "accepted",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/compat/jade/**",
+    "src/main/java/com/masson/cruciblecraft/content/block/ReactorCoreBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/ReactorCoreBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/nuclear/**",
+    "src/main/java/com/masson/cruciblecraft/content/item/HazmatArmorItem.java",
+    "src/main/java/com/masson/cruciblecraft/content/item/ThermometerItem.java",
+    "src/main/java/com/masson/cruciblecraft/content/item/GeigerCounterItem.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+    "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/NuclearFissionObservationSafetyGameTests.java",
+    "src/main/resources/data/cruciblecraft_wave_runtime_fission_observation_safety/**",
+    "src/main/resources/assets/cruciblecraft/gt6_fission_observation_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/**/gt6_import/hazmat_*",
+    "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/thermometer_quicksilver.png",
+    "src/test/java/com/masson/cruciblecraft/nuclear/**",
+    "src/test/java/com/masson/cruciblecraft/compat/jade/**",
+    "tools/jade_observation_matrix.json",
+    "tools/capabilities/energy/nuclear-fission-observation-safety/**",
+    "tools/waves/runtime/fission-observation-safety/**",
+    "tools/tests/test_energy_nuclear_fission_observation_safety.py"
+  ],
+  "depends_on": [
+    "energy/nuclear-fission-hot-fluids"
+  ],
+  "profiles": [
+    "capability-runtime",
+    "player-complete"
+  ],
+  "wave_slug": "runtime/fission-observation-safety",
+  "legacy_readiness": "tools/waves/runtime/fission-observation-safety/readiness.json",
+  "player_signoff": "tools/capabilities/energy/nuclear-fission-observation-safety/player_signoff.json",
+  "required_test_ids": [
+    "areaRadiationUsesNeutronOver256",
+    "contactAppliesHeatAndRadiation",
+    "eightHazmatPiecesAreWearable",
+    "emptyCoolantDestroysRodsWithFailSemantics",
+    "emptyGeigerDoesNotRead",
+    "failBurstDoublesRangeAndPlaysSound",
+    "filledGeigerReadsNeutrons",
+    "fullHeatSuitBlocksHeat",
+    "fullRadiationSuitBlocksRadiation",
+    "jadeReactorHasNoKelvin",
+    "outputFullDoesNotDestroyRods",
+    "playerSurfaceIsRegistered",
+    "thermometerReadsLastHeatHu"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "reactor:observation_safety",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:reactor_core_1x1",
+        "cruciblecraft:reactor_core_2x2"
+      ],
+      "reason": "Two cores share one HU Jade provider plus radiation, heat, fail sound/pulse."
+    },
+    {
+      "semantic_key": "reactor:hazmat",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:gt_object/gt_armor_hazmat_radiation_head_m0",
+        "cruciblecraft:gt_object/gt_armor_hazmat_radiation_chest_m0",
+        "cruciblecraft:gt_object/gt_armor_hazmat_radiation_legs_m0",
+        "cruciblecraft:gt_object/gt_armor_hazmat_radiation_boots_m0",
+        "cruciblecraft:gt_object/gt_armor_hazmat_heat_head_m0",
+        "cruciblecraft:gt_object/gt_armor_hazmat_heat_chest_m0",
+        "cruciblecraft:gt_object/gt_armor_hazmat_heat_legs_m0",
+        "cruciblecraft:gt_object/gt_armor_hazmat_heat_boots_m0"
+      ],
+      "reason": "Eight wearable radiation/heat pieces. Insect/biochem/frost/universal stay later."
+    },
+    {
+      "semantic_key": "reactor:handheld_tools",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:gt_multiitem/multiitem_randomtools_m10000",
+        "cruciblecraft:gt_multiitem/multiitem_randomtools_m10001",
+        "cruciblecraft:gt_multiitem/multiitem_randomtools_m10002"
+      ],
+      "reason": "Thermometer HU and Geiger neutrons. Empty Geiger obtain stays blocked."
+    },
+    {
+      "semantic_key": "energy:battery_jade",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:energy_battery"
+      ],
+      "reason": "37 battery identities share one Jade provider. stored() not displayedEnergy."
+    },
+    {
+      "semantic_key": "energy:converter_jade",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:energy_converter"
+      ],
+      "reason": "179 live converter rows share one observation adapter."
+    },
+    {
+      "semantic_key": "reactor:temperature_kelvin",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "Heat is HU. Do not invent Kelvin as HU times a constant."
+    },
+    {
+      "semantic_key": "reactor:world_explode",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "GT6 explode() TODO stays commented."
+    },
+    {
+      "semantic_key": "reactor:geiger_empty_capcellcon",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "capcellcon(Al) is not a live prefix. Not substituted."
+    },
+    {
+      "semantic_key": "reactor:backpack_radioactivity",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "No CC material radioactivity level table."
+    }
+  ],
+  "note": "Fission wrap plus energy Jade second slice. Geiger obtain blocked. unique_active_wave stays null. No heat exchangers, turbines, coolers, or Kelvin."
+}

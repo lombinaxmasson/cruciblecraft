@@ -27,8 +27,10 @@ class JadeObservationTest(unittest.TestCase):
             for row in matrix["families"]
             if row["status"] == "follow_up"
         ]
+        self.assertEqual("ready", by_name["reactor_core"]["status"])
+        self.assertEqual("ready", by_name["battery"]["status"])
+        self.assertEqual("ready", by_name["converter_dynamo"]["status"])
         self.assertIn("fusion_reactor", follow)
-        self.assertIn("reactor_core", follow)
         self.assertIn("logistics_core", follow)
 
 

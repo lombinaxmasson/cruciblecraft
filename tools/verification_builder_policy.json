@@ -126,6 +126,15 @@
         "--capability",
         "energy/nuclear-fission-hot-fluids"
       ]
+    },
+    {
+      "name": "build_player_complete_nuclear_observation_safety",
+      "script": "tools/build_player_complete.py",
+      "ordinary_args": [
+        "--run",
+        "--capability",
+        "energy/nuclear-fission-observation-safety"
+      ]
     }
   ]
 }

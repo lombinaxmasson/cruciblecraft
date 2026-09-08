@@ -1,12 +1,12 @@
 # 裂变观测安全与能源 Jade 详细计划
 
 > 计划 slug：`energy/nuclear-fission-observation-safety`
-> 状态：active / design（2026-09-08）。本文件位于
-> `card-plans/active/`。
+> 状态：closed / player_complete（2026-09-08）。本文件位于
+> `card-plans/closed/`。
 > 正式名称：裂变观测安全与能源 Jade
 > 性质：把裂变堆芯收成可观测、可防护、可失败的安全合同，并顺手做能源
 > Jade 第二切片（电池 + 转换机）。本卡不是热力机器卡，也不发明堆芯
-> Kelvin。机器可读 `unique_active_wave = null`，直到实施开始。
+> Kelvin。机器可读 `unique_active_wave = null`。
 > 不创建 `*_READY`。当前工作树不创建 Git commit。
 >
 > Java/tick 源：`gt6_code/gregtech6`，revision
@@ -345,14 +345,14 @@ python tools/verify.py dev
 
 只有以下条件同时成立才关闭：
 
-- [ ] 2 堆芯 Jade HU/中子/罐/开关/安全 exact，无 Kelvin；
-- [ ] 37 电池 Jade 一种合同；
-- [ ] 179 活转换机一种 observation 合同；已有锅炉/蒸汽机字段未丢；
-- [ ] 接触 / 区域 / 失败辐射与烫伤 5 有测试；
-- [ ] 8 件辐射+隔热可穿戴、满套免疫、来源贴图；
-- [ ] 失败 = 毁棒 + 声 + 脉冲；世界爆炸仍 blocked；
-- [ ] 温度计 / 盖革行为接线；获得行要么 exact 要么 `explicitly_blocked`；
-- [ ] 无 stand-in、无铁锭护甲贴图、无热力机器偷渡；
-- [ ] capability、player signoff、wave receipt、Jade matrix、docs currentness；
-- [ ] 本文件移到 `card-plans/closed/`；
-- [ ] `unique_active_wave = null`。
+- [x] 2 堆芯 Jade HU/中子/罐/开关/安全 exact，无 Kelvin；
+- [x] 37 电池 Jade 一种合同；
+- [x] 179 活转换机一种 observation 合同；已有锅炉/蒸汽机字段未丢；
+- [x] 接触 / 区域 / 失败辐射与烫伤 5 有测试；
+- [x] 8 件辐射+隔热可穿戴、满套免疫、来源贴图；
+- [x] 失败 = 毁棒 + 声 + 脉冲；世界爆炸仍 blocked；
+- [x] 温度计 / 盖革行为接线；获得行要么 exact 要么 `explicitly_blocked`；
+- [x] 无 stand-in、无铁锭护甲贴图、无热力机器偷渡；
+- [x] capability、player signoff、wave receipt、Jade matrix、docs currentness；
+- [x] 本文件移到 `card-plans/closed/`；
+- [x] `unique_active_wave = null`。

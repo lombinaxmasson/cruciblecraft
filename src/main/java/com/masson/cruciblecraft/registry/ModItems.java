@@ -33,6 +33,9 @@ import com.masson.cruciblecraft.content.item.SemanticObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.content.item.BatteryCellItem;
 import com.masson.cruciblecraft.content.item.FlintKnifeItem;
+import com.masson.cruciblecraft.content.item.GeigerCounterItem;
+import com.masson.cruciblecraft.content.item.HazmatArmorItem;
+import com.masson.cruciblecraft.content.item.ThermometerItem;
 import com.masson.cruciblecraft.content.item.HopperBlockItem;
 import com.masson.cruciblecraft.content.storage.StorageVariant;
 import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
@@ -1516,10 +1519,7 @@ public final class ModItems {
         for (SemanticObjectCatalog.Identity identity : SemanticObjectCatalog.identities()) {
             DeferredItem<Item> item = ITEMS.register(
                     identity.registryPath(),
-                    () -> new CatalogNamedItem(
-                            new Item.Properties(),
-                            identity.englishName(),
-                            identity.chineseName()));
+                    () -> createSemanticIdentityItem(identity));
             if (items.put(identity.id(), item) != null) {
                 throw new IllegalStateException(
                         "Duplicate semantic identity item " + identity.id());
@@ -1531,6 +1531,34 @@ public final class ModItems {
                             + SemanticObjectCatalog.VARIANT_COUNT);
         }
         return java.util.Collections.unmodifiableMap(items);
+    }
+
+    private static Item createSemanticIdentityItem(
+            SemanticObjectCatalog.Identity identity) {
+        Item.Properties properties = new Item.Properties();
+        if (HazmatArmorItem.isHazmatPath(identity.registryPath())) {
+            return HazmatArmorItem.fromIdentity(identity, properties);
+        }
+        if (ThermometerItem.REGISTRY_PATH.equals(identity.registryPath())) {
+            return new ThermometerItem(
+                    properties, identity.englishName(), identity.chineseName());
+        }
+        if (GeigerCounterItem.EMPTY_PATH.equals(identity.registryPath())) {
+            return new GeigerCounterItem(
+                    properties,
+                    false,
+                    identity.englishName(),
+                    identity.chineseName());
+        }
+        if (GeigerCounterItem.FILLED_PATH.equals(identity.registryPath())) {
+            return new GeigerCounterItem(
+                    properties,
+                    true,
+                    identity.englishName(),
+                    identity.chineseName());
+        }
+        return new CatalogNamedItem(
+                properties, identity.englishName(), identity.chineseName());
     }
 
     private static DeferredItem<BlockItem> registerOreItem(

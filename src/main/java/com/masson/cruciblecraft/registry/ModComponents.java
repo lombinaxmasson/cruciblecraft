@@ -141,7 +141,7 @@ public final class ModComponents {
                             .persistent(Codec.LONG)
                             .networkSynchronized(ByteBufCodecs.VAR_LONG));
 
-    public static final DeferredHolder<
+            public static final DeferredHolder<
             net.minecraft.core.component.DataComponentType<?>,
             net.minecraft.core.component.DataComponentType<
                     com.masson.cruciblecraft.nuclear.ReactorRodState>>
@@ -154,6 +154,15 @@ public final class ModComponents {
                             .networkSynchronized(
                                     com.masson.cruciblecraft.nuclear
                                             .ReactorRodState.STREAM_CODEC));
+
+    public static final DeferredHolder<
+            net.minecraft.core.component.DataComponentType<?>,
+            net.minecraft.core.component.DataComponentType<Boolean>> GEIGER_ENABLED =
+            COMPONENTS.registerComponentType(
+                    "geiger_enabled",
+                    builder -> builder
+                            .persistent(Codec.BOOL)
+                            .networkSynchronized(ByteBufCodecs.BOOL));
 
     private ModComponents() {}
 }

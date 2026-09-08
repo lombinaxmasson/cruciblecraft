@@ -75,6 +75,7 @@ KNOWN_SEMANTIC_SLUGS = (
     "runtime/transformers",
     "runtime/fission-survival",
     "runtime/fission-hot-fluids",
+    "runtime/fission-observation-safety",
 )
 
 
