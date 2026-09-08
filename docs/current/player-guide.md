@@ -95,8 +95,9 @@ GT 配方与 bounded dust 保真度不变。
 - 不支持：G10、GT6U 内容、GT6 全量 720,841 行配方移植（v1 只承诺工业主链）；
 - 裂变：46 棒 / 2 堆芯 / LV Canner 已 `player_complete`（U-238 蒸馏水蒸汽可喂现有蒸汽机）。
   8 个独立热流体与热量合同已 `player_complete`（蒸馏水仍出蒸汽；`Coolant_IC2` /
-  `Thorium_Salt` 仍 blocked）。辐射/Jade、热交换、涡轮、冷却器与聚变生存配方仍未开，
-  不当成可玩终局；
+  `Thorium_Salt` 仍 blocked）。观测/辐射/防护与电池·转换机 Jade 正在
+  [裂变观测安全与能源 Jade](../history/card-plans/active/裂变观测安全与能源Jade详细计划.md)。
+  热交换、涡轮、冷却器与聚变生存配方仍未开，不当成可玩终局；
 - 本包是 RC，不是正式 GA，也不是 `1.0.0`；soak 只接 release blocker；
 - 反馈：https://github.com/icodestuljh/cruciblecraft/issues（附上
   版本号 + 复现步骤 + 存档/日志）。

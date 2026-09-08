@@ -16,7 +16,10 @@
 
 ## 当前 active 卡
 
-当前没有人读 unique active 内容卡；机器可读 `unique_active_wave = null`。
+人读 unique active 为
+[裂变观测安全与能源 Jade](card-plans/active/裂变观测安全与能源Jade详细计划.md)
+（slug `energy/nuclear-fission-observation-safety`；已签发，实施未开始）。
+机器可读 `unique_active_wave = null`。
 最近关闭
 [配方 blocked 链账本与首条收口](card-plans/closed/配方blocked链账本与首条收口详细计划.md)
 （slug `recipe/blocked-chain-ledger`；可复算账本；fluidbed 49 第一条链
