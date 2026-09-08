@@ -16,7 +16,14 @@
 
 ## 当前 active 卡
 
-当前没有 human-readable unique-active 内容卡。已关闭
+当前没有人读 unique active 内容卡；机器可读 `unique_active_wave = null`。
+最近关闭
+[配方 blocked 链账本与首条收口](card-plans/closed/配方blocked链账本与首条收口详细计划.md)
+（slug `recipe/blocked-chain-ledger`；可复算账本；fluidbed 49 第一条链
+`explicitly_blocked`）。已关闭
+[裂变热流体与热量合同](card-plans/closed/裂变热流体与热量合同详细计划.md)
+（slug `energy/nuclear-fission-hot-fluids`；11/9/8 热流体与热量合同；
+`player_complete` / `accepted`）。已关闭
 [裂变生存闭环与全量棒堆芯](card-plans/closed/裂变生存闭环与全量棒堆芯详细计划.md)
 （slug `energy/nuclear-fission-survival`；46 棒 / 8 kind / 2 堆芯 /
 48 条核内容关系；`player_complete` / `accepted`）。机器可读
@@ -24,6 +31,9 @@
 [生成资源、注册与 Jade 第一切片](card-plans/closed/生成资源注册与Jade第一切片详细计划.md)
 （slug `presentation/live-art-jade`；registry / generated-art / Jade 第一切片；
 `owns_families = 0`）。已关闭
+[验证精简与动态测试契约](card-plans/closed/验证精简与动态测试契约详细计划.md)
+（slug `tooling/verification-slimming`；先行测试契约已落地，card-fast /
+晋级分层尚未实施；不占内容 lane）。已关闭
 [配方加载与 EMI 稳定性](card-plans/closed/配方加载与EMI稳定性详细计划.md)
 （slug `runtime/recipe-load-emi-stability`；零 family 的 loader / EMI / reload
 repair；`unique_active_wave` 全程 `null`）。机器可读

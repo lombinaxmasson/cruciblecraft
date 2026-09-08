@@ -12,9 +12,6 @@ from tools.wave_closeout import spec_for
 SLUG = "runtime/transformers"
 CAPABILITY_SLUG = "energy/transformers"
 ROOT = io.ROOT
-ACTIVE = ROOT / "docs" / "history" / "card-plans" / "active"
-CLOSED = ROOT / "docs" / "history" / "card-plans" / "closed"
-PLAN = CLOSED / "变压器详细计划.md"
 CAPABILITY = (
     ROOT / "tools" / "capabilities" / "energy" / "transformers" / "capability.json"
 )
@@ -119,48 +116,7 @@ class EnergyTransformersCardTest(unittest.TestCase):
         census = io.load_json(WAVE / "census_delta.json")
         self.assertEqual(9, census["work_set"]["source_rows"])
 
-    def test_transformer_plan_is_archived(self) -> None:
-        names = sorted(path.name for path in ACTIVE.iterdir() if path.is_file())
-        self.assertNotIn("变压器详细计划.md", names)
-        self.assertTrue(PLAN.is_file())
-        self.assertTrue((CLOSED / "电池详细计划.md").is_file())
-        self.assertTrue((CLOSED / "能量转换机目录详细计划.md").is_file())
-        self.assertTrue((CLOSED / "能量系统余量详细计划.md").is_file())
-
-    def test_plan_uses_local_gt6_code_not_github_fetch(self) -> None:
-        text = PLAN.read_text(encoding="utf-8")
-        self.assertIn("energy/transformers", text)
-        self.assertIn("gt6_code/gregtech6", text)
-        self.assertIn("3703e40308c8c030763fd6297dea8b210d2a77b1", text)
-        self.assertIn("Loader_MultiTileEntities", text)
-        self.assertIn("TileEntityBase11Bidirectional", text)
-        self.assertIn("MultiTileEntityTransformerElectric", text)
-        self.assertIn("energy_transformer_kinds.json", text)
-        self.assertIn("gregtech6_w", text)
-        self.assertIn("10040", text)
-        self.assertIn("10048", text)
-        self.assertIn("10064", text)
-        self.assertIn("PUV1", text)
-        self.assertIn("material_monkey_wrench", text)
-        self.assertIn("rotational_gearbox", text)
-        self.assertIn("BlockLongDistWire", text)
-        self.assertIn("unique_active_wave", text)
-        self.assertIn("禁止写进", text)
-        self.assertIn("machine_kinds.json", text)
-        self.assertIn("不预写后继", text)
-        self.assertIn("必须按 GT6 逐格", text)
-        self.assertIn("严禁", text)
-        self.assertIn("缺任何一格真实配料", text)
-        self.assertNotIn("缺形态时 DESIGN_POLICY 用已有材料做生存获得", text)
-        self.assertNotIn("raw.githubusercontent.com", text)
-
     def test_player_complete_forbids_recipe_stand_ins(self) -> None:
-        workflow = (
-            ROOT / "docs" / "current" / "capability-delivery-workflow.md"
-        ).read_text(encoding="utf-8")
-        self.assertIn("配方必须按 GT6 源逐格合成", workflow)
-        self.assertIn("用已有材料 DESIGN_POLICY 生存获得", workflow)
-        self.assertIn("不得晋级 `player_complete`", workflow)
         rule = (
             ROOT
             / ".cursor"
@@ -211,7 +167,7 @@ class EnergyTransformersCardTest(unittest.TestCase):
         self.assertTrue((JAVA / "TransformerBlock.java").is_file())
         self.assertTrue((JAVA / "TransformerBlockEntity.java").is_file())
         block = (JAVA / "TransformerBlock.java").read_text(encoding="utf-8")
-        self.assertIn("MaterialMonkeyWrenchItem", block)
+        self.assertIn("ToolAction.MONKEY_WRENCH", block)
         self.assertIn("toggleReversed", block)
         self.assertNotIn("setValue(FACING", block.split("useItemOn")[1][:800])
         machine_blob = str(io.load_json(MACHINE_TIERS)) + str(

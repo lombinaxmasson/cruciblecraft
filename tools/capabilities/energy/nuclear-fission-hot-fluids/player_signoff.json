@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "capability": "energy/nuclear-fission-hot-fluids",
+  "signed": true,
+  "signer": "player",
+  "date": "2026-09-08",
+  "craftable_items": [
+    "reactor_core_1x1",
+    "reactor_core_2x2"
+  ],
+  "checklist": {
+    "nine_cc_owned_conversions_exact": true,
+    "eight_hot_identities_registered": true,
+    "backpressure_retains_heat_and_input": true,
+    "last_heat_persists": true,
+    "no_stand_in_fluids": true,
+    "no_hot_fluid_alias": true,
+    "jade_heat_exchanger_turbine_cooler_not_this_card": true
+  },
+  "notes": "8 independent hot fluids plus the existing distilled-water steam path. Coolant_IC2 and Thorium_Salt stay blocked. Heat is HU; Kelvin/meltdown/radiation stay on the observation/safety card. Heat exchangers, turbines and coolers are not this card."
+}

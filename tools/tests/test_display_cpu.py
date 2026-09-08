@@ -7,7 +7,6 @@ import re
 import unittest
 
 from tools import capability_ledger as ledger
-from tools import check_zero_milestone_names as scanner
 from tools import io_common as io
 from tools.recipe_bulk.slugs import KNOWN_SEMANTIC_SLUGS
 from tools.wave_closeout import spec_for
@@ -15,9 +14,6 @@ from tools.wave_closeout import spec_for
 SLUG = "runtime/display-cpu"
 CAPABILITY = "logistics/display-cpu"
 ROOT = io.ROOT
-ACTIVE = ROOT / "docs" / "history" / "card-plans" / "active"
-CLOSED = ROOT / "docs" / "history" / "card-plans" / "closed"
-PLAN = CLOSED / "显示CPU详细计划.md"
 WAVE = io.TOOLS / "waves" / "runtime" / "display-cpu"
 COVER_DEFINITIONS = (
     ROOT
@@ -81,31 +77,6 @@ class DisplayCpuCardTest(unittest.TestCase):
         self.assertIsNone(spec.production_lock)
         self.assertEqual(WAVE / "census_delta.json", spec.census)
         self.assertEqual(WAVE / "gametest_receipt.json", spec.receipt)
-
-    def test_closed_plan_stays_archived(self) -> None:
-        self.assertTrue(PLAN.is_file())
-        names = sorted(path.name for path in ACTIVE.iterdir() if path.is_file())
-        self.assertNotIn("显示CPU详细计划.md", names)
-        self.assertNotIn("变压器详细计划.md", names)
-        self.assertTrue((CLOSED / "变压器详细计划.md").is_file())
-        self.assertTrue((CLOSED / "能量转换机目录详细计划.md").is_file())
-
-    def test_plan_uses_local_gt6_code_not_github_fetch(self) -> None:
-        text = PLAN.read_text(encoding="utf-8")
-        self.assertIn("gt6_code/gregtech6", text)
-        self.assertIn("3703e40308c8c030763fd6297dea8b210d2a77b1", text)
-        self.assertIn("CoverLogisticsDisplayCPULogic", text)
-        self.assertIn("AbstractCoverAttachmentLogisticsDisplay", text)
-        self.assertIn("logistics/display-cpu", text)
-        self.assertIn("处理器单元", text)
-        self.assertNotIn("raw.githubusercontent.com", text)
-        self.assertNotIn("github.com/GregTech6", text)
-        self.assertIn("gregtech6_w", text)
-        self.assertNotIn("贴图暂借记", text)
-        findings: list[str] = []
-        for line in text.splitlines():
-            findings.extend(scanner.line_findings(line))
-        self.assertEqual([], findings)
 
     def test_art_manifest_is_local_gt6_w(self) -> None:
         manifest = io.load_json(

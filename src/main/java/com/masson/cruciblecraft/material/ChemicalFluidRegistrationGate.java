@@ -48,6 +48,10 @@ public final class ChemicalFluidRegistrationGate {
                     reservedFluidIds.add("molten_" + material.id());
                     reservedFluidIds.add("flowing_molten_" + material.id());
                 });
+        for (HotFluidRegistrationGate.Entry hot : HotFluidRegistrationGate.load()) {
+            reservedFluidIds.add(hot.id());
+            reservedFluidIds.add("flowing_" + hot.id());
+        }
 
         LinkedHashMap<String, Entry> byId = new LinkedHashMap<>();
         for (String resource : RESOURCES) {

@@ -6,13 +6,18 @@
 > PASS。`runClient` 只在晋级（`runtime_ready → player_complete`）时强制。
 > 合同见 [capability-delivery-workflow.md](capability-delivery-workflow.md)。
 >
-> **当前状态**：无 unique-active 内容卡；机器可读
-> `unique_active_wave = null`。下一项从
-> [冻结与未实现账本](unimplemented-gap.md) 候选队列读，不自动签发第 6 项
-> （裂变热流体）。phase5 tracks.C `started = true`；sealed growth-order
+> **当前状态**：人读 unique active 为空；机器可读
+> `unique_active_wave = null`。最近关闭
+> [配方 blocked 链账本与首条收口](../history/card-plans/closed/配方blocked链账本与首条收口详细计划.md)
+> （slug `recipe/blocked-chain-ledger`；可复算账本；fluidbed 49 第一条链
+> `explicitly_blocked`）。已关闭
+> [裂变热流体与热量合同](../history/card-plans/closed/裂变热流体与热量合同详细计划.md)
+> （`energy/nuclear-fission-hot-fluids`，`player_complete` / `accepted`；
+> 11/9/8 热流体与热量合同）。机器可读 `unique_active_wave = null`。
+> phase5 tracks.C `started = true`；sealed growth-order
 > `nuclear_started` 仍为 `false`，直到 `portfolio/nuclear` 认领。
 >
-> **现行 `player_complete`（9）**：
+> **现行 `player_complete`（10）**：
 > `logistics/fluid-network/basic-transfer`、
 > `logistics/item-network-core`、
 > `logistics/generic-network/core`、
@@ -22,7 +27,8 @@
 > 10 台电加热器/电引擎未进该卡分母）、
 > `energy/batteries`（37 储能块）、
 > `energy/transformers`（9 台电 `10040–10048`）、
-> `energy/nuclear-fission-survival`（46 棒 / 8 kind / 2 堆芯 / 48 关系）。
+> `energy/nuclear-fission-survival`（46 棒 / 8 kind / 2 堆芯 / 48 关系）、
+> `energy/nuclear-fission-hot-fluids`（11 source / 9 conversion / 8 hot identity）。
 >
 > 关闭档案与机制卡 `*_READY` 见 [docs/history](../history/INDEX.md)。
 > `*_READY` 不是游戏里已有这些内容。缺口总账是
@@ -75,10 +81,14 @@ GitHub push 承担，不创建 GitHub Release、不上传 jar、不累计 RC soa
 同一时刻只允许一张内容工作处于 active 状态。编号卡时代已经结束；现行顺序是
 semantic wave，不是下一张里程碑编号。
 
-**现在没有 unique-active 内容卡。** 选择下一项时只读
-[unimplemented-gap.md](unimplemented-gap.md) 的「候选队列与当前计划卡」。
-第 1–5 项已关；第 6 项（裂变热流体）不自动签发。不要从只读 growth-order
-档案倒推，也不为其余候选项预分配 child。
+**当前人读 unique active** 为空；机器可读 `unique_active_wave = null`。
+最近关闭
+[配方 blocked 链账本与首条收口](../history/card-plans/closed/配方blocked链账本与首条收口详细计划.md)
+（`recipe/blocked-chain-ledger`；fluidbed 49 `explicitly_blocked`）。已关闭
+[裂变热流体与热量合同](../history/card-plans/closed/裂变热流体与热量合同详细计划.md)
+（`energy/nuclear-fission-hot-fluids`，`player_complete`）。第 1–6 项已关。
+裂变观测与安全、热力机器、聚变仍未签发。Bath identity / form / object
+是账本次序里的下一条链，尚未签发。不要从只读 growth-order 档案倒推。
 
 电能转换 / LU / 聚变控制器配方仍是 `runtime_ready` 或 blocked，见已关闭的
 [能源后续卡收口](../history/card-plans/closed/能源后续卡收口详细计划.md)
@@ -213,6 +223,7 @@ Recipe gap 清零后，deferred ordinary ledger 也已关闭或独立 scope。st
 已有 kind 的显式档位已经走 `machine_tiers.json`。
 
 裂变堆芯 / 棒 / Canner 生存配方已由 `energy/nuclear-fission-survival` 关闭。
+热流体与热量合同已由 `energy/nuclear-fission-hot-fluids` 关闭。
 聚变控制器配方与等离子流体仍 blocked。体积与后继候选见
 [冻结与未实现账本](unimplemented-gap.md)。
 

@@ -13,6 +13,7 @@ import com.masson.cruciblecraft.content.item.BathMteFluidCatalog;
 import com.masson.cruciblecraft.content.item.BathRemainderFluidCatalog;
 import com.masson.cruciblecraft.content.item.SemanticFluidCatalog;
 import com.masson.cruciblecraft.material.ChemicalFluidRegistrationGate;
+import com.masson.cruciblecraft.material.HotFluidRegistrationGate;
 import com.masson.cruciblecraft.material.GT6ImportUnits;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
@@ -39,6 +40,8 @@ public final class ModFluids {
     private static volatile Map<Fluid, String> materialByFluid;
     private static volatile Map<Fluid, ChemicalFluidRegistrationGate.State>
             chemicalStateByFluid;
+    private static volatile HotRegistration hotRegistration = HotRegistration.empty();
+    private static volatile Map<Fluid, String> hotIdByFluid;
 
     public static final Supplier<FluidType> CREOSOTE_TYPE = FLUID_TYPES.register(
             "creosote",
@@ -84,10 +87,12 @@ public final class ModFluids {
     public static synchronized void registerMaterials(
             Collection<MaterialDefinition> definitions) {
         if (!moltenRegistration.byMaterial().isEmpty()
-                || !chemicalRegistration.byMaterial().isEmpty()) {
+                || !chemicalRegistration.byMaterial().isEmpty()
+                || !hotRegistration.byId().isEmpty()) {
             throw new IllegalStateException("Material fluids already registered");
         }
         registerChemicalMaterials(definitions);
+        registerHotFluids();
         LinkedHashMap<String, MoltenFluidEntry> registered = new LinkedHashMap<>();
         for (MaterialDefinition material : definitions) {
             if (!material.moltenFluid()) {
@@ -197,6 +202,60 @@ public final class ModFluids {
         }
         chemicalStateByFluid = java.util.Collections.unmodifiableMap(states);
         materialByFluid = java.util.Collections.unmodifiableMap(reverse);
+        IdentityHashMap<Fluid, String> hotReverse = new IdentityHashMap<>();
+        for (HotFluidEntry entry : hotRegistration.entries()) {
+            if (!entry.source().isBound() || !entry.flowing().isBound()) {
+                throw new IllegalStateException(
+                        "Hot fluid lookup finalized before registries were bound");
+            }
+            hotReverse.put(entry.source().get(), entry.id());
+            hotReverse.put(entry.flowing().get(), entry.id());
+        }
+        hotIdByFluid = java.util.Collections.unmodifiableMap(hotReverse);
+    }
+
+    private static void registerHotFluids() {
+        LinkedHashMap<String, HotFluidEntry> registered = new LinkedHashMap<>();
+        for (HotFluidRegistrationGate.Entry entry : HotFluidRegistrationGate.load()) {
+            Supplier<FluidType> type = FLUID_TYPES.register(
+                    entry.id(),
+                    () -> new FluidType(FluidType.Properties.create()
+                            .temperature(entry.temperatureKelvin())
+                            .density(entry.density())
+                            .viscosity(entry.viscosity())));
+            AtomicReference<DeferredHolder<Fluid, FlowingFluid>> source =
+                    new AtomicReference<>();
+            AtomicReference<DeferredHolder<Fluid, FlowingFluid>> flowing =
+                    new AtomicReference<>();
+            Supplier<BaseFlowingFluid.Properties> properties =
+                    () -> new BaseFlowingFluid.Properties(
+                            type,
+                            () -> source.get().get(),
+                            () -> flowing.get().get());
+            source.set(FLUIDS.register(
+                    entry.id(),
+                    () -> new BaseFlowingFluid.Source(properties.get())));
+            flowing.set(FLUIDS.register(
+                    "flowing_" + entry.id(),
+                    () -> new BaseFlowingFluid.Flowing(properties.get())));
+            HotFluidEntry previous = registered.putIfAbsent(
+                    entry.id(),
+                    new HotFluidEntry(
+                            entry.id(),
+                            entry.sourceMaterialId(),
+                            entry.state(),
+                            entry.color(),
+                            entry.english(),
+                            entry.chinese(),
+                            type,
+                            source.get(),
+                            flowing.get()));
+            if (previous != null) {
+                throw new IllegalStateException(
+                        "Duplicate hot fluid registration: " + entry.id());
+            }
+        }
+        hotRegistration = new HotRegistration(registered, registered.values());
     }
 
     public static Optional<MoltenFluidEntry> molten(String materialId) {
@@ -246,6 +305,31 @@ public final class ModFluids {
 
     public static Collection<ChemicalFluidEntry> chemicalFluids() {
         return chemicalRegistration.entries();
+    }
+
+    public static Collection<HotFluidEntry> hotFluids() {
+        return hotRegistration.entries();
+    }
+
+    public static Optional<HotFluidEntry> hot(String id) {
+        return Optional.ofNullable(hotRegistration.byId().get(id));
+    }
+
+    public static Optional<Fluid> hotSource(String id) {
+        return hot(id).map(entry -> entry.source().get());
+    }
+
+    public static Optional<String> hotId(Fluid fluid) {
+        Map<Fluid, String> lookup = hotIdByFluid;
+        if (lookup == null) {
+            throw new IllegalStateException(
+                    "Hot fluid lookup used before common setup finalized it");
+        }
+        return Optional.ofNullable(lookup.get(fluid));
+    }
+
+    public static boolean isHotFluid(Fluid fluid) {
+        return hotId(fluid).isPresent();
     }
 
     public static Collection<BathOverlayFluidEntry> bathOverlayFluids() {
@@ -390,6 +474,30 @@ public final class ModFluids {
             DeferredHolder<Fluid, FlowingFluid> flowing) {
         public MaterialDefinition material() {
             return MaterialCatalog.require(materialId);
+        }
+    }
+
+    public record HotFluidEntry(
+            String id,
+            String sourceMaterialId,
+            HotFluidRegistrationGate.State state,
+            String color,
+            String english,
+            String chinese,
+            Supplier<FluidType> type,
+            DeferredHolder<Fluid, FlowingFluid> source,
+            DeferredHolder<Fluid, FlowingFluid> flowing) {}
+
+    private record HotRegistration(
+            Map<String, HotFluidEntry> byId,
+            Collection<HotFluidEntry> entries) {
+        private HotRegistration {
+            byId = Map.copyOf(byId);
+            entries = java.util.List.copyOf(entries);
+        }
+
+        private static HotRegistration empty() {
+            return new HotRegistration(Map.of(), java.util.List.of());
         }
     }
 

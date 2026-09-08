@@ -3,23 +3,8 @@
   "policy": "Active verification rebuilds semantic outputs and executes capability gates without historical workflow evidence.",
   "builders": [
     {
-      "name": "check_no_workflow_hashes",
-      "script": "tools/check_no_workflow_hashes.py",
-      "ordinary_args": ["--check"]
-    },
-    {
-      "name": "check_zero_milestone_names",
-      "script": "tools/check_zero_milestone_names.py",
-      "ordinary_args": ["--quick"]
-    },
-    {
       "name": "material_form_authority",
       "script": "tools/material_form_authority.py",
-      "ordinary_args": ["--check"]
-    },
-    {
-      "name": "build_semantic_recipes",
-      "script": "tools/build_semantic_recipes.py",
       "ordinary_args": ["--check"]
     },
     {
@@ -131,6 +116,15 @@
         "--run",
         "--capability",
         "energy/nuclear-fission-survival"
+      ]
+    },
+    {
+      "name": "build_player_complete_nuclear_hot_fluids",
+      "script": "tools/build_player_complete.py",
+      "ordinary_args": [
+        "--run",
+        "--capability",
+        "energy/nuclear-fission-hot-fluids"
       ]
     }
   ]

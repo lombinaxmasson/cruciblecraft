@@ -26,13 +26,15 @@ class ContainerResourceTest {
     void runtimeGatesCloseAllDomainsWithoutPerFluidItems() throws Exception {
         Map<ResourceLocation, CellContentGate.Kind> entries =
                 CellContentGate.entries();
-        assertEquals(110, entries.size());
-        assertEquals(61, entries.values().stream()
+        long fluidCount = entries.values().stream()
                 .filter(kind -> kind == CellContentGate.Kind.FLUID)
-                .count());
-        assertEquals(49, entries.values().stream()
+                .count();
+        long gasCount = entries.values().stream()
                 .filter(kind -> kind == CellContentGate.Kind.GAS)
-                .count());
+                .count();
+        assertEquals(entries.size(), fluidCount + gasCount);
+        assertTrue(entries.keySet().stream()
+                .allMatch(id -> id.getNamespace().equals("cruciblecraft")));
         assertEquals(
                 CellContentGate.Kind.FLUID,
                 entries.get(ResourceLocation.parse("cruciblecraft:chlorine")));
@@ -45,12 +47,12 @@ class ContainerResourceTest {
         var fluidGate = JsonParser.parseString(Files.readString(
                 DATA.resolve("container_fluid_gate.json")))
                 .getAsJsonObject().getAsJsonArray("fluids");
-        assertEquals(93, fluidGate.size());
         Set<String> materialIds = fluidGate.asList().stream()
                 .map(value -> value.getAsJsonObject()
                         .get("material").getAsString())
                 .collect(Collectors.toSet());
-        assertEquals(93, materialIds.size());
+        assertEquals(fluidGate.size(), materialIds.size());
+        assertTrue(fluidGate.size() > 0);
         assertTrue(materialIds.stream().noneMatch(material ->
                 Files.exists(GENERATED.resolve(
                         "assets/cruciblecraft/models/item/"

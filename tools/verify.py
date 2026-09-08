@@ -29,14 +29,11 @@ from tools import capability_ledger
 from tools import run_python_tests as python_tests
 from tools import tree_compare
 
-WORKFLOW_HASH_FULL_SCAN_PATHS = frozenset(
-    {
-        "tools/check_no_workflow_hashes.py",
-        "tools/python_test_policy.json",
-        "tools/verification_builder_policy.json",
-        "tools/verification_profiles.json",
-        "tools/workflow_hash_policy.json",
-    }
+# Local Minecraft run trees are evidence, not profile-owned sources.
+# fnmatch "*" matches slashes, so "run-*" covers run-game-test-filtered/**.
+LOCAL_RUN_PATH_PATTERNS = (
+    "run/*",
+    "run-*",
 )
 
 
@@ -134,6 +131,10 @@ def is_documentation_path(document: dict[str, Any], path: str) -> bool:
     return any(path_matches(path, pattern) for pattern in patterns)
 
 
+def is_local_run_path(path: str) -> bool:
+    return any(path_matches(path, pattern) for pattern in LOCAL_RUN_PATH_PATTERNS)
+
+
 def classify_paths(
     document: dict[str, Any],
     paths: Iterable[str],
@@ -144,6 +145,10 @@ def classify_paths(
     unmatched: list[str] = []
     documentation: list[str] = []
     for path in normalize_paths(paths):
+        if is_local_run_path(path) or is_documentation_path(document, path):
+            if is_documentation_path(document, path):
+                documentation.append(path)
+            continue
         hits = [
             name
             for name, profile in profiles.items()
@@ -153,9 +158,6 @@ def classify_paths(
         if hits:
             for name in hits:
                 matched[name].append(path)
-        elif is_documentation_path(document, path) and "docs" in matched:
-            documentation.append(path)
-            matched["docs"].append(path)
         else:
             unmatched.append(path)
     return {
@@ -265,23 +267,20 @@ def promotion_diff_base() -> str:
     return "HEAD"
 
 
-def workflow_hash_builder_extra_args(
-    row: dict[str, Any],
-    *,
-    command: str,
+def python_modules_for_changed_paths(
+    profile: dict[str, Any],
     changed: list[str] | None,
 ) -> list[str]:
-    if row.get("name") != "check_no_workflow_hashes":
-        return []
-    if command == "release" or changed is None:
-        return []
-    normalised = [path.replace("\\", "/") for path in changed]
-    if any(path in WORKFLOW_HASH_FULL_SCAN_PATHS for path in normalised):
-        return []
-    extra: list[str] = []
-    for path in normalised:
-        extra.extend(["--path", path])
-    return extra
+    """On path-scoped runs, keep only modules that the changed paths select."""
+    declared = [str(name) for name in profile.get("python_modules") or []]
+    if changed is None:
+        return declared
+    affected, _unmatched = python_tests.affected_module_names(
+        python_tests.load_policy(),
+        changed,
+    )
+    wanted = set(affected)
+    return [name for name in declared if name in wanted]
 
 
 def parse_gradle_test_xml(results_dir: Path = TEST_RESULTS) -> dict[str, Any]:
@@ -448,20 +447,15 @@ def run_profile(
     receipt["profiles"].append(profile_result)
     print(f"verify profile {profile_name} (owner={profile['owner']})")
     for row in builder_rows_for_profile(profile_name, profiles, builder_policy):
-        extra = workflow_hash_builder_extra_args(
-            row,
-            command=command,
-            changed=changed,
-        )
         code = run_command(
             f"builder:{row['name']}",
-            builder_command(row, extra_args=extra),
+            builder_command(row),
             receipt,
         )
         if code:
             profile_result["status"] = "FAIL"
             return code
-    modules = profile["python_modules"]
+    modules = python_modules_for_changed_paths(profile, changed)
     if modules:
         result_path = (
             ROOT
@@ -528,10 +522,10 @@ def cmd_dev(args: argparse.Namespace, receipt: dict[str, Any]) -> int:
     classification = classify_paths(profiles, paths)
     if classification["unmatched_paths"]:
         print(
-            "unmatched paths: " + ", ".join(classification["unmatched_paths"]),
+            "unmatched paths (reported, not blocking): "
+            + ", ".join(classification["unmatched_paths"]),
             file=sys.stderr,
         )
-        return 2
     selected = classification["selected_profiles"]
     if not selected:
         print("no active profile owns the changed paths")

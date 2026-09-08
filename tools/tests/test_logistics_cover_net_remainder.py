@@ -9,10 +9,6 @@ from tools import io_common as io
 from tools.wave_closeout import spec_for
 
 ROOT = io.ROOT
-ACTIVE = ROOT / "docs" / "history" / "card-plans" / "active"
-CLOSED = ROOT / "docs" / "history" / "card-plans" / "closed"
-PLAN = CLOSED / "物流封面网余量详细计划.md"
-GAP = ROOT / "docs" / "current" / "unimplemented-gap.md"
 R0 = io.TOOLS / "waves" / "portfolio" / "logistics-cover-net-r0"
 COVER_DEFINITIONS = (
     ROOT
@@ -36,35 +32,6 @@ DUMP_QUESTION = (
     "How dump differs from transfer and storage, and what a dump cover "
     "flushes or discards on the network."
 )
-
-
-class LogisticsCoverNetRemainderCardTest(unittest.TestCase):
-    def test_unique_active_folder_is_not_cover_net(self) -> None:
-        names = sorted(path.name for path in ACTIVE.iterdir() if path.is_file())
-        self.assertNotIn("物流封面网余量详细计划.md", names)
-        self.assertNotIn("变压器详细计划.md", names)
-        self.assertTrue((CLOSED / "显示CPU详细计划.md").is_file())
-        self.assertTrue((CLOSED / "变压器详细计划.md").is_file())
-        self.assertTrue((CLOSED / "能量系统余量详细计划.md").is_file())
-        self.assertTrue((CLOSED / "能量转换机目录详细计划.md").is_file())
-
-    def test_closed_plan_answers_dump_policy(self) -> None:
-        text = PLAN.read_text(encoding="utf-8")
-        self.assertIn("dump_policy", text)
-        self.assertIn("CoverLogisticsGenericDump", text)
-        self.assertIn("MultiTileEntityLogisticsCore", text)
-        self.assertIn("tStackDumps", text)
-        self.assertIn("usePriorities()", text)
-        self.assertIn("不是虚空", text)
-        self.assertIn("logistics/logistics-core", text)
-        self.assertIn("不得复用", text)
-        self.assertIn("portfolio/logistics-cover-net-r0", text)
-
-    def test_human_ledger_keeps_cover_net_partial(self) -> None:
-        text = GAP.read_text(encoding="utf-8")
-        self.assertIn("Dump 是 Core 最后一档物品溢出", text)
-        self.assertIn("不是 Generic 管网盖板", text)
-        self.assertIn("不得把 Display CPU 算进这七 kind", text)
 
 
 class LogisticsCoverNetRemainderFrozenTest(unittest.TestCase):

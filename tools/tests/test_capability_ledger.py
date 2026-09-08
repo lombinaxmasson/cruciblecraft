@@ -21,6 +21,7 @@ CONVERTER = "energy/converter-catalog"
 BATTERIES = "energy/batteries"
 TRANSFORMERS = "energy/transformers"
 NUCLEAR = "energy/nuclear-fission-survival"
+HOT_FLUIDS = "energy/nuclear-fission-hot-fluids"
 
 
 class CapabilityLedgerTest(unittest.TestCase):
@@ -44,6 +45,7 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertIn(BATTERIES, slugs)
         self.assertIn(TRANSFORMERS, slugs)
         self.assertIn(NUCLEAR, slugs)
+        self.assertIn(HOT_FLUIDS, slugs)
         self.assertIn("registry/tool-head-remainder", slugs)
         converter = next(row for row in documents if row["slug"] == CONVERTER)
         self.assertEqual("player_complete", converter["maturity"])
@@ -59,6 +61,9 @@ class CapabilityLedgerTest(unittest.TestCase):
         nuclear = next(row for row in documents if row["slug"] == NUCLEAR)
         self.assertEqual("player_complete", nuclear["maturity"])
         self.assertEqual("accepted", nuclear["workflow"])
+        hot_fluids = next(row for row in documents if row["slug"] == HOT_FLUIDS)
+        self.assertEqual("player_complete", hot_fluids["maturity"])
+        self.assertEqual("accepted", hot_fluids["workflow"])
         fluid = next(row for row in documents if row["slug"] == FLUID)
         self.assertEqual("player_complete", fluid["maturity"])
         self.assertEqual("accepted", fluid["workflow"])
@@ -103,6 +108,7 @@ class CapabilityLedgerTest(unittest.TestCase):
             [
                 BATTERIES,
                 CONVERTER,
+                HOT_FLUIDS,
                 NUCLEAR,
                 TRANSFORMERS,
                 DISPLAY,
@@ -125,6 +131,7 @@ class CapabilityLedgerTest(unittest.TestCase):
             [
                 BATTERIES,
                 CONVERTER,
+                HOT_FLUIDS,
                 NUCLEAR,
                 TRANSFORMERS,
                 DISPLAY,
@@ -140,6 +147,7 @@ class CapabilityLedgerTest(unittest.TestCase):
                 BATTERIES,
                 TRANSFORMERS,
                 NUCLEAR,
+                HOT_FLUIDS,
                 "logistics/cover-net-r0",
                 ITEM,
                 FLUID,
@@ -176,6 +184,7 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertIn(BATTERIES, hit)
         self.assertIn(TRANSFORMERS, hit)
         self.assertIn(NUCLEAR, hit)
+        self.assertIn(HOT_FLUIDS, hit)
         self.assertNotIn("registry/tool-head-remainder", hit)
 
     def test_fluid_pipe_does_not_stale_tool_head_remainder(self) -> None:
@@ -189,6 +198,7 @@ class CapabilityLedgerTest(unittest.TestCase):
             [
                 BATTERIES,
                 CONVERTER,
+                HOT_FLUIDS,
                 NUCLEAR,
                 TRANSFORMERS,
                 DISPLAY,
@@ -221,6 +231,9 @@ class CapabilityLedgerTest(unittest.TestCase):
                             or relative.endswith(
                                 "nuclear-fission-survival/capability.json"
                             )
+                            or relative.endswith(
+                                "nuclear-fission-hot-fluids/capability.json"
+                            )
                             else "frozen"
                         )
                     }
@@ -250,6 +263,9 @@ class CapabilityLedgerTest(unittest.TestCase):
                         or relative.endswith("transformers/capability.json")
                         or relative.endswith(
                             "nuclear-fission-survival/capability.json"
+                        )
+                        or relative.endswith(
+                            "nuclear-fission-hot-fluids/capability.json"
                         )
                         else "frozen"
                     )

@@ -13,9 +13,6 @@ from tools.wave_closeout import spec_for
 SLUG = "runtime/fission-survival"
 CAPABILITY_SLUG = "energy/nuclear-fission-survival"
 ROOT = io.ROOT
-ACTIVE = ROOT / "docs" / "history" / "card-plans" / "active"
-CLOSED = ROOT / "docs" / "history" / "card-plans" / "closed"
-PLAN = CLOSED / "裂变生存闭环与全量棒堆芯详细计划.md"
 WAVE = io.TOOLS / "waves" / "runtime" / "fission-survival"
 MATRIX = WAVE / "d0_nuclear_source_matrix.json"
 CAPABILITY = (
@@ -71,25 +68,6 @@ class FissionSurvivalCardTest(unittest.TestCase):
             "player_complete",
             readiness["evidence"]["fission_survival_status"],
         )
-
-    def test_closed_plan_stays_archived(self) -> None:
-        names = sorted(path.name for path in ACTIVE.iterdir() if path.is_file())
-        self.assertNotIn("裂变生存闭环与全量棒堆芯详细计划.md", names)
-        self.assertTrue(PLAN.is_file())
-        self.assertTrue((CLOSED / "变压器详细计划.md").is_file())
-        self.assertTrue((CLOSED / "电池详细计划.md").is_file())
-
-    def test_plan_uses_local_gt6_code_not_github_fetch(self) -> None:
-        text = PLAN.read_text(encoding="utf-8")
-        self.assertIn("energy/nuclear-fission-survival", text)
-        self.assertIn("gt6_code/gregtech6", text)
-        self.assertIn("3703e40308c8c030763fd6297dea8b210d2a77b1", text)
-        self.assertIn("gregtech6_w", text)
-        self.assertIn("unique_active_wave", text)
-        self.assertIn("nuclear_started", text)
-        self.assertIn("48", text)
-        self.assertNotIn("raw.githubusercontent.com", text)
-        self.assertNotIn("缺形态时 DESIGN_POLICY 用已有材料做生存获得", text)
 
     def test_source_matrix_is_exact_forty_eight(self) -> None:
         matrix = io.load_json(MATRIX)

@@ -4,8 +4,9 @@
 Exempt only docs/history/card-plans/closed/**. Unique-active plans in
 docs/history/card-plans/active/** must not use milestone TXX names. Temporary allowlist
 entries must carry owner, reason, and expiry. Program closeout requires an
-empty allowlist. --quick is the verify gate: live logistics/capability Java
-and capability tools, never generated recipe trees.
+empty allowlist. `--quick` is a manual audit of live logistics/verification
+Java and unique-active plans. It is not a `verify.py` gate and does not scan
+capability JSON.
 
 Full --summary streams files with os.walk and scans line-by-line. It does not
 build a complete Path list or slurp giant JSON into one string.
@@ -313,7 +314,6 @@ def iter_scan_files(*, quick: bool = False) -> Iterator[Path]:
 QUICK_PREFIXES = (
     "src/main/java/com/masson/cruciblecraft/logistics/",
     "src/main/java/com/masson/cruciblecraft/verification/",
-    "tools/capabilities/",
     "docs/history/card-plans/active/",
 )
 
@@ -394,7 +394,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--quick",
         action="store_true",
-        help="Scan live runtime Java and capability tools only.",
+        help="Manual audit of live logistics/verification Java and unique-active plans.",
     )
     args = parser.parse_args(argv)
     errors = allowlist_errors()

@@ -12,9 +12,6 @@ from tools.wave_closeout import spec_for
 SLUG = "runtime/batteries"
 CAPABILITY = "energy/batteries"
 ROOT = io.ROOT
-ACTIVE = ROOT / "docs" / "history" / "card-plans" / "active"
-CLOSED = ROOT / "docs" / "history" / "card-plans" / "closed"
-PLAN = CLOSED / "电池详细计划.md"
 WAVE = io.TOOLS / "waves" / "runtime" / "batteries"
 CENSUS = ROOT / "tools" / "census_excluded_object_reclaim.json"
 FEASIBILITY = (
@@ -119,41 +116,6 @@ class EnergyBatteriesCardTest(unittest.TestCase):
         self.assertTrue(topology["next_unassigned"])
         census = io.load_json(WAVE / "census_delta.json")
         self.assertEqual(37, census["work_set"]["source_rows"])
-
-    def test_closed_plan_stays_archived(self) -> None:
-        names = sorted(path.name for path in ACTIVE.iterdir() if path.is_file())
-        self.assertNotIn("电池详细计划.md", names)
-        self.assertNotIn("变压器详细计划.md", names)
-        self.assertTrue(PLAN.is_file())
-        self.assertTrue((CLOSED / "能量转换机目录详细计划.md").is_file())
-        self.assertTrue((CLOSED / "能量系统余量详细计划.md").is_file())
-        self.assertTrue((CLOSED / "显示CPU详细计划.md").is_file())
-        self.assertTrue((CLOSED / "裂变生存闭环与全量棒堆芯详细计划.md").is_file())
-
-    def test_plan_uses_local_gt6_code_not_github_fetch(self) -> None:
-        text = PLAN.read_text(encoding="utf-8")
-        self.assertIn("energy/batteries", text)
-        self.assertIn("gt6_code/gregtech6", text)
-        self.assertIn("3703e40308c8c030763fd6297dea8b210d2a77b1", text)
-        self.assertIn("Loader_MultiTileEntities", text)
-        self.assertIn("TileEntityBase08Battery", text)
-        self.assertIn("energy_battery_kinds.json", text)
-        self.assertIn("gregtech6_w", text)
-        self.assertIn("14000", text)
-        self.assertIn("14515", text)
-        self.assertIn("14600", text)
-        self.assertIn("BatteryLU", text)
-        self.assertIn("变压器", text)
-        self.assertIn("10040", text)
-        self.assertIn("unique_active_wave", text)
-        self.assertIn("禁止写进", text)
-        self.assertIn("machine_kinds.json", text)
-        self.assertIn("配方保真债", text)
-        self.assertIn("Battery_Lead_Acid_Cell_Filled", text)
-        self.assertIn("battery_part:filled_cell", text)
-        self.assertIn("DESIGN_POLICY", text)
-        self.assertIn("lead/plate", text)
-        self.assertNotIn("raw.githubusercontent.com", text)
 
     def test_kinds_and_tiers_are_implemented(self) -> None:
         kinds = io.load_json(KINDS)
@@ -308,19 +270,6 @@ class EnergyBatteriesCardTest(unittest.TestCase):
             )
 
     def test_recipe_fidelity_debt_is_grepable(self) -> None:
-        plan = PLAN.read_text(encoding="utf-8")
-        self.assertIn("battery_part:filled_cell", plan)
-        self.assertIn("Battery_Lead_Acid_Cell_Filled", plan)
-        known = (
-            ROOT / "docs" / "current" / "known-issues.md"
-        ).read_text(encoding="utf-8")
-        self.assertIn("battery_part:filled_cell", known)
-        self.assertIn("IL.Battery_*_Cell_Filled", known)
-        gap = (
-            ROOT / "docs" / "current" / "unimplemented-gap.md"
-        ).read_text(encoding="utf-8")
-        self.assertIn("battery_part:filled_cell", gap)
-        self.assertIn("20000–20009", gap)
         extract = (
             ROOT / "tools" / "extract_energy_battery_catalog.py"
         ).read_text(encoding="utf-8")

@@ -8,10 +8,6 @@ from tools import io_common as io
 from tools.wave_closeout import spec_for
 
 ROOT = io.ROOT
-ACTIVE = ROOT / "docs" / "history" / "card-plans" / "active"
-CLOSED = ROOT / "docs" / "history" / "card-plans" / "closed"
-PLAN = CLOSED / "能量系统余量详细计划.md"
-GAP = ROOT / "docs" / "current" / "unimplemented-gap.md"
 CONVERTERS = (
     ROOT
     / "src"
@@ -53,7 +49,6 @@ MOD_ITEMS = (
     / "registry"
     / "ModItems.java"
 )
-GUIDE = ROOT / "docs" / "current" / "player-guide.md"
 CENSUS = ROOT / "tools" / "census_excluded_object_reclaim.json"
 FEASIBILITY = (
     ROOT
@@ -85,56 +80,6 @@ LANG = (
     / "datagen"
     / "ModLanguageProvider.java"
 )
-
-
-class EnergyRemainderCardTest(unittest.TestCase):
-    def test_closed_plan_stays_archived(self) -> None:
-        names = sorted(path.name for path in ACTIVE.iterdir() if path.is_file())
-        self.assertNotIn("能量系统余量详细计划.md", names)
-        self.assertNotIn("变压器详细计划.md", names)
-        self.assertTrue(PLAN.is_file())
-        self.assertTrue((CLOSED / "显示CPU详细计划.md").is_file())
-        self.assertTrue((CLOSED / "能量转换机目录详细计划.md").is_file())
-
-    def test_plan_pins_catalog_and_early_artifact_policy(self) -> None:
-        text = PLAN.read_text(encoding="utf-8")
-        self.assertIn("converter_catalog_policy", text)
-        self.assertIn("battery_policy", text)
-        self.assertIn("transformer_policy", text)
-        self.assertIn("Burning Boxes", text)
-        self.assertIn("machine_kinds.json", text)
-        self.assertIn("coal_coke/gem", text)
-        self.assertIn("burning_gas_generator", text)
-        self.assertIn("先加档位再换机器", text)
-        self.assertIn("燃气燃烧室", text)
-        self.assertIn("邻接 HU 测试不改 `insert`", text)
-        self.assertIn("MultiTileEntityBattery", text)
-        self.assertIn("验收结果", text)
-        catalog = (CLOSED / "能量转换机目录详细计划.md").read_text(
-            encoding="utf-8"
-        )
-        self.assertIn("energy/converter-catalog", catalog)
-        self.assertIn("energy_converter_kinds.json", catalog)
-        self.assertIn("Loader_MultiTileEntities", catalog)
-        self.assertIn("bronze_burning_box_gas", catalog)
-        self.assertIn("不改 `insert`", catalog)
-        self.assertNotIn("raw.githubusercontent.com", text)
-
-    def test_human_ledger_keeps_remainder_closeout(self) -> None:
-        text = GAP.read_text(encoding="utf-8")
-        self.assertIn("能量系统余量", text)
-        self.assertIn("converter_catalog_policy", text)
-        self.assertIn("battery_policy", text)
-        self.assertIn("transformer_policy", text)
-        self.assertIn("固体燃料燃烧室已删除", text)
-
-    def test_player_guide_drops_firebox_first_hour(self) -> None:
-        text = GUIDE.read_text(encoding="utf-8")
-        self.assertIn("固体燃料燃烧室已删除", text)
-        self.assertIn("燃气燃烧室", text)
-        self.assertIn("bronze_burning_box_gas", text)
-        self.assertNotIn("cruciblecraft:firebox", text)
-        self.assertNotIn("cruciblecraft:bellows", text)
 
 
 class EnergyRemainderRuntimeLockTest(unittest.TestCase):

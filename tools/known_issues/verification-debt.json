@@ -46,6 +46,90 @@
       "detect": "python tools/verify.py archive-inspect",
       "blocks_profiles": ["archive"],
       "repair_rule": "Rebuild provenance on a player-release card. T40-VR must keep this row open; --debt-aware cannot treat archive FAIL as PASS."
+    },
+    {
+      "id": "VD-2026-09-001",
+      "summary": "python_test_policy capability affected_rule selects every logistics/energy/Jade card test when any tools/capabilities/** path changes",
+      "owner": "future verification card",
+      "trigger": "Split the kitchen-sink affected_rule or implement per-capability module selection",
+      "evidence": "tools/python_test_policy.json capability rule lists test_logistics_* plus test_energy_* plus test_jade_observation together",
+      "status": "open",
+      "scope": "tooling",
+      "detect": "inspect tools/python_test_policy.json affected_rules for tools/capabilities/**",
+      "blocks_profiles": [],
+      "repair_rule": "One rule per capability or path-filtered modules. Do not fix inside a content card."
+    },
+    {
+      "id": "VD-2026-09-002",
+      "summary": "player-complete profile still launches accepted-capability GameTests when shared player_complete.py or shared owned paths change",
+      "owner": "future verification card",
+      "trigger": "Implement card-fast / promotion-only GameTest selection from tooling/verification-slimming remainder",
+      "evidence": "tools/verification_profiles.json player-complete builders list every accepted capability; closed slimming plan left card-fast unimplemented",
+      "status": "open",
+      "scope": "tooling",
+      "detect": "inspect tools/verification_profiles.json profiles.player-complete.builders",
+      "blocks_profiles": [],
+      "repair_rule": "Promotion runs only promoted slugs. Accepted cards stay off daily player-complete unless their owned paths changed."
+    },
+    {
+      "id": "VD-2026-09-003",
+      "summary": "Java tests still lock global projection counts such as hopper 60/120, storage 625, EMI 28 machines",
+      "owner": "future verification card",
+      "trigger": "A content card adds a hopper variant, storage variant, or processing machine and those tests fail",
+      "evidence": "HopperVariantCatalogTest, StorageAcquisitionResourceTest, ProcessingEmiLayoutTest assertEquals on catalog size",
+      "status": "open",
+      "scope": "tooling",
+      "detect": "rg assertEquals\\\\(\\\\s*\\\\d+ src/test/java",
+      "blocks_profiles": ["runtime-java"],
+      "repair_rule": "Keep source-denominator exact counts. Replace warehouse projection integers with uniqueness / subset / derived-from-catalog checks."
+    },
+    {
+      "id": "VD-2026-09-004",
+      "summary": "display-cpu Python tests pin cover-definition and inherited-denominator sha256",
+      "owner": "future verification card",
+      "trigger": "Any byte change under the pinned JSON even when display-cpu rows are untouched",
+      "evidence": "tools/tests/test_display_cpu.py PINNED_COVER_DEFINITIONS_HASH and PINNED_INHERITED_HASH",
+      "status": "open",
+      "scope": "tooling",
+      "detect": "rg PINNED_.*HASH tools/tests/test_display_cpu.py",
+      "blocks_profiles": [],
+      "repair_rule": "Pin owned sidecar rows or structural invariants, not whole-file hashes of shared catalogs."
+    },
+    {
+      "id": "VD-2026-09-005",
+      "summary": "build_semantic_recipes --check is red on smelter ordinary-closure gt_recipe_smelter_0099.json; unhooked from recipe-generators",
+      "owner": "future verification card",
+      "trigger": "Someone re-adds build_semantic_recipes to recipe-generators builders, or a recipe card needs an honest --check",
+      "evidence": "2026-09-08 verify recipe-generators: smelter/ordinary-closure changed 1 files: smelter/ordinary_closure/acquisition/gt_recipe_smelter_0099.json",
+      "status": "open",
+      "scope": "tooling",
+      "detect": "python tools/build_semantic_recipes.py --check",
+      "blocks_profiles": [],
+      "repair_rule": "Repair or retire the drifted generated file on a recipe card. Do not re-hook the red --check to make verify look stricter."
+    },
+    {
+      "id": "VD-2026-09-006",
+      "summary": "material_registration_gate.java_overlay_sections includes fission_survival_required_forms that material_form_authority does not declare",
+      "owner": "future verification card",
+      "trigger": "A material-form or fission card must decide whether the survival overlay is an authority source",
+      "evidence": "gate has fission_survival_required_forms; authority java_overlay_sections does not. Daily material_form_authority --check no longer compares overlay.",
+      "status": "open",
+      "scope": "tooling",
+      "detect": "compare tools/material_form_authority.json java_overlay_sections to src/main/resources/data/cruciblecraft/material_registration_gate.json",
+      "blocks_profiles": [],
+      "repair_rule": "Either add the fission section to authority sources or drop it from the gate. Do not restore overlay equality until they match."
+    },
+    {
+      "id": "VD-2026-09-007",
+      "summary": "Gradle isolation and card-fast remain unfinished: shared build/test-results, promotion vs daily player-complete split",
+      "owner": "future verification card",
+      "trigger": "Implement the leftover from tooling/verification-slimming: isolated Gradle results and promotion-only GameTest selection",
+      "evidence": "docs/current/verification.md Gradle isolation note; closed slimming plan left card-fast and shared test-results unimplemented",
+      "status": "open",
+      "scope": "tooling",
+      "detect": "inspect tools/verify.py CRUCIBLECRAFT_GRADLE_ISOLATED and tools/verification_profiles.json player-complete builders",
+      "blocks_profiles": [],
+      "repair_rule": "Isolate Gradle result dirs per profile. Daily player-complete stays GameTest-only; promotion stays the only client launch. Do not finish this inside a content card."
     }
   ]
 }

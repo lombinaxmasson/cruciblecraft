@@ -206,7 +206,9 @@ public class ModLanguageProvider extends LanguageProvider {
             addBlock(ModBlocks.LASER_ENGRAVER, "激光雕刻机");
             addBlock(ModBlocks.FUSION_REACTOR, "聚变反应堆");
             addBlock(ModBlocks.REACTOR_CORE_1X1, "反应堆芯 1×1");
+            add("item.cruciblecraft.reactor_core_1x1", "反应堆芯 1×1");
             addBlock(ModBlocks.REACTOR_CORE_2X2, "反应堆芯 2×2");
+            add("item.cruciblecraft.reactor_core_2x2", "反应堆芯 2×2");
             addBlock(ModBlocks.TUNGSTENSTEEL_WALL, "钨钢墙");
             addBlock(ModBlocks.STAINLESS_STEEL_WALL, "不锈钢墙");
             addBlock(ModBlocks.LARGE_IRIDIUM_COIL, "大型铱线圈");
@@ -486,6 +488,10 @@ public class ModLanguageProvider extends LanguageProvider {
                                 "fluid_type.cruciblecraft." + id,
                                 (molten ? "熔融" : "") + name));
             });
+            ModFluids.hotFluids().forEach(entry -> {
+                add("fluid_type.cruciblecraft." + entry.id(), entry.chinese());
+                add("fluid.cruciblecraft." + entry.id(), entry.chinese());
+            });
             return;
         }
         add("itemGroup.cruciblecraft", "Crucible Craft");
@@ -514,7 +520,9 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.LASER_ENGRAVER, "Laser Engraver");
         addBlock(ModBlocks.FUSION_REACTOR, "Fusion Reactor");
         addBlock(ModBlocks.REACTOR_CORE_1X1, "Reactor Core 1x1");
+        add("item.cruciblecraft.reactor_core_1x1", "Reactor Core 1x1");
         addBlock(ModBlocks.REACTOR_CORE_2X2, "Reactor Core 2x2");
+        add("item.cruciblecraft.reactor_core_2x2", "Reactor Core 2x2");
         addBlock(ModBlocks.TUNGSTENSTEEL_WALL, "Tungstensteel Wall");
         addBlock(ModBlocks.STAINLESS_STEEL_WALL, "Stainless Steel Wall");
         addBlock(ModBlocks.LARGE_IRIDIUM_COIL, "Large Iridium Coil");
@@ -808,6 +816,10 @@ public class ModLanguageProvider extends LanguageProvider {
                 add(
                         "fluid_type.cruciblecraft." + entry.id(),
                         title(entry.id())));
+        ModFluids.hotFluids().forEach(entry -> {
+            add("fluid_type.cruciblecraft." + entry.id(), entry.english());
+            add("fluid.cruciblecraft." + entry.id(), entry.english());
+        });
         if (!MaterialCatalog.contains("stone")) {
             add("material.cruciblecraft.stone", "Stone");
         }

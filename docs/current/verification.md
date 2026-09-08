@@ -28,8 +28,9 @@ python tools/verify.py release
 - `semantic-generators` 跑 generated-art / resource-gate builders、相关 Python
   tests 和两次 `runData`。命中面是 datagen provider、`src/generated` 和贴图
   工具；不跑 JUnit，也不重编已封板的 semantic recipe wave。
-- `recipe-generators` 跑 material-form 与 semantic recipe `--check`。命中面是
-  `tools/recipe_bulk`、`src/recipe_generated` 和 compact policy 树。
+- `recipe-generators` 跑 material-form `--check` 和相关 Python 合同。
+  `build_semantic_recipes.py --check` 是手工重建，不再当日常门；它会把
+  预存在的 generated JSON 漂移当成无关改动的失败。
 - 改 datagen provider 会同时命中 `runtime-java` 与 `semantic-generators`：
   JUnit 加上双 datagen。
 - `integration --profile` 默认 fresh 执行该 profile 的 builders、Python tests、
@@ -47,14 +48,16 @@ python tools/verify.py release
 - 每次结果写到被 Git 忽略的 `build/verification/latest.json`。报告只包含 revision、
   dirty paths、命令、测试计数、环境和 PASS/FAIL，不包含文件摘要。
 
-无法映射的代码路径必须报错。纯文档改动只运行文档链接与 profile 合同检查。
+无法映射的代码路径只报告、不失败。`docs/**`、`*.md`、LICENSE / NOTICE 与
+验证隔开：改文档不选任何 profile，fork 也可以不带文档树。
 
 Gradle 验证任务使用 `--rerun`，只强制命令行上的目标任务执行；未变化的
 `compileJava` / `processResources` 可以 UP-TO-DATE。本地和同一 CI job 复用
 Gradle daemon。`release` 通过 `CRUCIBLECRAFT_GRADLE_ISOLATED=1` 隔离 daemon。
 
-workflow-hash 扫描器在 `dev` 和带 diff base 的 CI `integration` 中只扫变更文件；
-policy / 可达性输入变化以及 `release` 仍全量扫描。CI 不再单独重复执行一次扫描。
+`dev` 对未匹配 profile 的路径只报告、不失败。改 `.gitignore` 或未登记的
+helper 脚本不再把整次验证打成 exit 2。path-scoped 运行只执行受影响的
+Python 模块。没有 `docs` profile，也不跑 markdown 链接检查。
 
 ## 即时证据
 
@@ -87,10 +90,11 @@ python tools/build_player_complete.py --run `
 - `tools/recipe_bulk/source_pack.py` 的外部输入完整性
 - 发布产物 checksum
 
-边界由 `python tools/check_no_workflow_hashes.py --check` 锁定。active profile 可达文件中
-不得新增 `inputs_sha256`、`builder_sha256`、`semantic_root_sha256`、
-`currentness_root_sha256`、`output_hashes` 或等价的开发证明链。
-`verification` profile 同时跑 `python tools/check_zero_milestone_names.py --quick`。
+不要把 `inputs_sha256`、`builder_sha256`、currentness sidecar 或 closeout seal
+重新接回日常开发证明。这些是流程禁令，不是靠全仓库正则扫描来锁的。
+`check_no_workflow_hashes.py` 和 `check_zero_milestone_names.py` 仍可手工跑，
+但不再是 `verify.py` 的 verification profile 门。能力 JSON 里的电压档
+（T2 / T5）和 production lock 的 `selection_sha256` 不是工作流哈希。
 
 ## 历史档案
 
@@ -104,3 +108,28 @@ python tools/build_player_complete.py --run `
 配方域仍适用
 [ordinary recipe wave 的语义合同](recipe-wave-workflow.md)，但 Card/Seal 不再是
 active verification 单位。
+
+## 还没拆的危险门
+
+这些现在不挡日常 `dev`，但还是脆弱耦合。回头另开验证卡再改，不要在内容卡里顺手修。
+
+1. **VD-2026-09-001 capability affected_rule 一锅炖。** `tools/python_test_policy.json` 里那条
+   `tools/capabilities/**` 规则会一次选出物流 / 能量 / Jade 全部卡测试。改一张
+   capability 就会重跑一串已接受卡。
+2. **VD-2026-09-002 `player-complete` 共享脚本。** 改 `tools/player_complete.py` 或共享 owned
+   path 仍可能启动多张已接受卡的 GameTest。card-fast / 晋级只跑被 promotion
+   的卡，还没做。
+3. **VD-2026-09-003 Java 投影整数锁。** hopper 60/120、storage 625、EMI 28 台等
+   `assertEquals(N, catalog.size())` 仍在。来源分母（核能 11/9/8、电池 37）要留；
+   全仓库投影计数不要。
+4. **VD-2026-09-004 display-cpu 字节钉。** `test_display_cpu.py` 仍钉 cover / inherited JSON
+   的 sha256。改无关盖板行会红。
+5. **VD-2026-09-005 `build_semantic_recipes.py --check` 预存在红。** smelter
+   `gt_recipe_smelter_0099.json` 与重建不一致。已从 `recipe-generators`
+   卸下；手工 `--check` 仍会失败。不要为了变绿去重挂回 verify。
+6. **VD-2026-09-006 gate overlay 与 authority 不一致。**
+   `material_registration_gate.json` 多了 `fission_survival_required_forms`，
+   `material_form_authority.json` 没有。日常 `--check` 已不再比 overlay；
+   数据漂移还在。
+7. **VD-2026-09-007 Gradle 隔离与 card-fast。** 精简卡已关，card-fast / 晋级分层 / 共享
+   `build/test-results` 并发保护未实施。

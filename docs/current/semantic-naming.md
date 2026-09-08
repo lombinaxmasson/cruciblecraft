@@ -29,10 +29,10 @@ unique-active 计划、工作日志、阶段档案、handoff、`archive/sealed/*
 `-Pt50Recipes`、`isT50CompactRecipe`。测试里已有的 T50 **拒绝**字符串可保留到
 对应测试改语义名时一并删掉。
 
-零卡号扫描器：`python tools/check_zero_milestone_names.py`。批次 0 已把它的
-`--quick` 挂进 `verify.py` 的 `verification` profile。日常门只跑 `--quick`
-（物流 / capability Java 与 `tools/capabilities/`），不扫 generated 巨树。
-全量 `--summary` 仍不可当日常门。剩余盲区见 §4。
+零卡号扫描器：`python tools/check_zero_milestone_names.py`。这是手工审计，
+不再挂在 `verify.py` 的 `verification` profile。`--quick` 只扫物流 /
+verification Java 和 unique-active 计划，不扫 `tools/capabilities/`
+（电压档 T2 / T5 不是卡号）。全量 `--summary` 仍不可当日常门。剩余盲区见 §4。
 
 ## 1. 已经搬走的（不要再搬一遍）
 
@@ -195,8 +195,8 @@ ordinary-closure 活动账本、收据、currentness 和测试消费者。数量
 
 | 项 | 内容 |
 |---|---|
-| 对象 | `check_zero_milestone_names.py`、其单测、`verify.py` 的 `verification` profile |
-| 已做 | 豁免仅 `docs/history/card-plans/closed/**`；`active/` 进 `--quick`；`SCAN_ROOTS` 含 history / decisions / benchmark；`--quick` 为 verify builder；单测覆盖新豁免与 `t18b`；ALLOWLIST 空 |
+| 对象 | `check_zero_milestone_names.py`、其单测 |
+| 已做 | 豁免仅 `docs/history/card-plans/closed/**`；`active/` 进 `--quick`；`SCAN_ROOTS` 含 history / decisions / benchmark；已从 `verify.py` 日常门卸下；`--quick` 不再扫 capability JSON；单测覆盖新豁免与 `t18b`；ALLOWLIST 空 |
 | 故意未做 | 不把 `--quick` 扩成全量活代码扫描（生产绑定仍有卡号，扩了会打断 CI） |
 
 ### 8.1 删除历史档案与 seal — 已完成

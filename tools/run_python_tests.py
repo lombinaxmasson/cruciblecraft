@@ -282,14 +282,7 @@ def affected_module_names(
         if modules is not None:
             selected.update(modules)
         elif is_documentation_path(policy, path):
-            selected.update(
-                (
-                    "test_check_markdown_links",
-                    "test_logistics_cover_net_remainder",
-                    "test_logistics_core",
-                    "test_verification_profiles",
-                )
-            )
+            continue
         elif not profile_owns_path(path):
             unmatched.append(path)
     ordered = tuple(

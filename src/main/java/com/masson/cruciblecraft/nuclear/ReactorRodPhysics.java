@@ -181,6 +181,9 @@ public final class ReactorRodPhysics {
         if (coolant == ReactorCoolant.HEAVY_WATER) {
             return (int) divUp(entry.neutronMax(), 8L);
         }
+        if (coolant == ReactorCoolant.TRITIATED_WATER) {
+            return (int) divUp(entry.neutronMax(), 16L);
+        }
         return entry.neutronMax();
     }
 

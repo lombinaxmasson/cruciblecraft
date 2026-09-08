@@ -70,6 +70,35 @@
     },
     {
       "depends_on": [
+        "energy/nuclear-fission-survival"
+      ],
+      "maturity": "player_complete",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/ReactorCoreBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/nuclear/**",
+        "src/main/java/com/masson/cruciblecraft/material/HotFluidRegistrationGate.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/NuclearFissionHotFluidsGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_runtime_fission_hot_fluids/**",
+        "src/main/resources/data/cruciblecraft/hot_fluid_gate.json",
+        "src/main/resources/assets/cruciblecraft/gt6_fission_hot_fluids_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/fluid/gt6_import/hot_*",
+        "src/test/java/com/masson/cruciblecraft/nuclear/**",
+        "tools/capabilities/energy/nuclear-fission-hot-fluids/**",
+        "tools/waves/runtime/fission-hot-fluids/**",
+        "tools/tests/test_energy_nuclear_fission_hot_fluids.py"
+      ],
+      "path": "tools/capabilities/energy/nuclear-fission-hot-fluids/capability.json",
+      "player_signoff": "tools/capabilities/energy/nuclear-fission-hot-fluids/player_signoff.json",
+      "profiles": [
+        "capability-runtime",
+        "player-complete"
+      ],
+      "slug": "energy/nuclear-fission-hot-fluids",
+      "title": "Nuclear Fission Hot Fluids",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "energy/transformers"
       ],
       "maturity": "player_complete",
@@ -374,10 +403,11 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 11,
+  "capability_count": 12,
   "declared_player_complete": [
     "energy/batteries",
     "energy/converter-catalog",
+    "energy/nuclear-fission-hot-fluids",
     "energy/nuclear-fission-survival",
     "energy/transformers",
     "logistics/display-cpu",
@@ -390,25 +420,33 @@
   "impact": {
     "energy/batteries": [
       "energy/batteries",
+      "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-survival",
       "energy/transformers"
     ],
     "energy/converter-catalog": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-survival",
       "energy/transformers"
     ],
+    "energy/nuclear-fission-hot-fluids": [
+      "energy/nuclear-fission-hot-fluids"
+    ],
     "energy/nuclear-fission-survival": [
+      "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-survival"
     ],
     "energy/transformers": [
+      "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-survival",
       "energy/transformers"
     ],
     "logistics/cover-net-r0": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-survival",
       "energy/transformers",
       "logistics/cover-net-r0",
@@ -421,6 +459,7 @@
     "logistics/display-cpu": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-survival",
       "energy/transformers",
       "logistics/display-cpu"
@@ -428,6 +467,7 @@
     "logistics/fluid-network/basic-transfer": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-survival",
       "energy/transformers",
       "logistics/display-cpu",
@@ -438,6 +478,7 @@
     "logistics/generic-network/core": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-survival",
       "energy/transformers",
       "logistics/display-cpu",
@@ -447,6 +488,7 @@
     "logistics/item-network-core": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-survival",
       "energy/transformers",
       "logistics/display-cpu",
@@ -458,6 +500,7 @@
     "logistics/logistics-core": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-survival",
       "energy/transformers",
       "logistics/display-cpu",
@@ -471,6 +514,7 @@
     "capability-runtime": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-survival",
       "energy/transformers",
       "logistics/cover-net-r0",
@@ -484,6 +528,7 @@
     "player-complete": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-survival",
       "energy/transformers",
       "logistics/display-cpu",

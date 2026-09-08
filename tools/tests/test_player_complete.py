@@ -23,6 +23,7 @@ CONVERTER_SLUG = "energy/converter-catalog"
 BATTERIES_SLUG = "energy/batteries"
 TRANSFORMERS_SLUG = "energy/transformers"
 NUCLEAR_SLUG = "energy/nuclear-fission-survival"
+HOT_FLUIDS_SLUG = "energy/nuclear-fission-hot-fluids"
 FLUID_TEST_IDS = [
     "coverIdentitySurvivesBlockEntityReload",
     "coversAreSurvivalCraftable",
@@ -34,95 +35,23 @@ FLUID_TEST_IDS = [
     "playerSurfaceIsRegistered",
     "sameIdentityConnectedExportsIntoStorage",
 ]
-GENERIC_TEST_IDS = [
-    "coverIdentitySurvivesBlockEntityReload",
-    "coversAreSurvivalCraftable",
-    "differentIdentityIsInvisible",
-    "disconnectedPipesAreNotOneNetwork",
-    "importPullsFromStorage",
-    "loadAxisCapsAreRecorded",
-    "noTargetDoesNotSwallowItems",
-    "playerSurfaceIsRegistered",
-    "sameIdentityConnectedExportsFluidsIntoStorage",
-    "sameIdentityConnectedExportsIntoStorage",
-]
-ITEM_TEST_IDS = [
-    "chunkUnloadHidesEndpointThenRejoins",
-    "coverIdentitySurvivesBlockEntityReload",
-    "coversAreSurvivalCraftable",
-    "definitionsSurviveDatapackReload",
-    "differentIdentityIsInvisible",
-    "disconnectedPipesAreNotOneNetwork",
-    "importPullsFromStorage",
-    "loadAxisCapsAreRecorded",
-    "noTargetDoesNotSwallowItems",
-    "playerSurfaceIsRegistered",
-    "removingStorageStopsTransfer",
-    "sameIdentityConnectedExportsIntoStorage",
-]
-CORE_TEST_IDS = [
-    "dumpCoverIsSurvivalCraftable",
-    "formedCoreDumpsLeftoverItems",
-    "missingCpuTypeDoesNotForm",
-    "missingDumpChestDoesNotVoid",
-    "playerSurfaceIsRegistered",
-]
-DISPLAY_TEST_IDS = [
-    "displayCoverIsSurvivalCraftable",
-    "formedCoreWritesDisplayLoad",
-    "missingCoreStaysZero",
-    "playerSurfaceIsRegistered",
-    "shapelessDisplayCycle",
-]
-CONVERTER_TEST_IDS = [
-    "gasBurningBoxFeedsAdjacentHu",
-    "playerSurfaceIsRegistered",
-    "representativeRecipesAreSurvivalCraftable",
-    "solidBurningBoxBurnsCoal",
-]
-BATTERIES_TEST_IDS = [
-    "chargeStoresEu",
-    "dischargeExtractsEu",
-    "luRejectsEu",
-    "playerSurfaceIsRegistered",
-    "reloadPreservesCharge",
-    "representativeRecipesAreSurvivalCraftable",
-]
-TRANSFORMERS_TEST_IDS = [
-    "playerSurfaceIsRegistered",
-    "rejectsNonEu",
-    "reloadPreservesFacingAndReverse",
-    "representativeRecipesAreSurvivalCraftable",
-    "reverseStepUpConvertsLvToHv",
-    "stepDownConvertsHvToLv",
-    "onlyMonkeyWrenchReversesTransformer",
-]
-NUCLEAR_TEST_IDS = [
-    "breederProductTransformUsesExactTarget",
-    "cannerFillsUranium238FuelRod",
-    "cannerUnloadsTritiumAndKeepsProgressAcrossReload",
-    "centrifugeRecoversDepletedUranium238",
-    "distilledWaterProducesSteam",
-    "extruderMakesEmptyZirconiumRod",
-    "fortyEightNuclearSourceRecipesArePresent",
-    "fortySixRodsAreRegistered",
-    "insertingFuelRodStopsReactor",
-    "lowDurabilityFuelBecomesDepleted",
-    "lvCannerCraftsFromExactParts",
-    "playerSurfaceIsRegistered",
-    "reflectorNeighborReturnsNeutrons",
-    "twoByTwoCoreCraftsFromExactParts",
-    "unstoppedCoreEmitsNeutronsAtTick19",
-    "uranium238PlayerPathMakesSteamForExistingEngine",
-]
-
-
 class PlayerCompleteTest(unittest.TestCase):
     def setUp(self) -> None:
         path = capability_ledger.CAP_ROOT / SLUG / "capability.json"
         self.capability = capability_ledger.load_capability(path)
         signoff = player_complete.load_signoff(self.capability)
         self.item_ids = list(signoff["craftable_items"])
+
+    def assert_declared_game_tests(self, slug: str) -> None:
+        capability = capability_ledger.load_capability(
+            capability_ledger.CAP_ROOT / slug / "capability.json"
+        )
+        self.assertEqual("player_complete", capability["maturity"])
+        self.assertEqual("accepted", capability["workflow"])
+        self.assertEqual(
+            [],
+            player_complete.check_declared_test_ids(capability),
+        )
 
     def test_zh_cover_english_is_rejected(self) -> None:
         errors = player_complete.check_static_player_surface(
@@ -131,29 +60,31 @@ class PlayerCompleteTest(unittest.TestCase):
         )
         self.assertEqual([], errors)
 
-    def test_item_capability_declares_all_game_tests(self) -> None:
-        capability = capability_ledger.load_capability(
-            capability_ledger.CAP_ROOT / ITEM_SLUG / "capability.json"
+    def test_form_items_obtain_does_not_require_shaped_recipe(self) -> None:
+        self.assertIn(
+            "red_energium_crystal_ulv",
+            player_complete.form_item_ids(),
         )
-        self.assertEqual("player_complete", capability["maturity"])
-        self.assertEqual("accepted", capability["workflow"])
-        self.assertEqual(ITEM_TEST_IDS, capability["required_test_ids"])
-        self.assertEqual(
-            [],
-            player_complete.check_declared_test_ids(capability),
+        errors = player_complete.check_static_player_surface(
+            BATTERIES_SLUG,
+            ["red_energium_crystal_ulv", "cyan_energium_crystal_iv"],
+        )
+        self.assertEqual([], errors)
+        self.assertTrue(
+            any(
+                "missing recipe" in row
+                for row in player_complete.check_static_player_surface(
+                    "demo/slug",
+                    ["not_a_registered_item"],
+                )
+            )
         )
 
+    def test_item_capability_declares_all_game_tests(self) -> None:
+        self.assert_declared_game_tests(ITEM_SLUG)
+
     def test_generic_capability_declares_all_game_tests(self) -> None:
-        capability = capability_ledger.load_capability(
-            capability_ledger.CAP_ROOT / GENERIC_SLUG / "capability.json"
-        )
-        self.assertEqual("player_complete", capability["maturity"])
-        self.assertEqual("accepted", capability["workflow"])
-        self.assertEqual(GENERIC_TEST_IDS, capability["required_test_ids"])
-        self.assertEqual(
-            [],
-            player_complete.check_declared_test_ids(capability),
-        )
+        self.assert_declared_game_tests(GENERIC_SLUG)
 
     def test_generic_capability_static_player_surface(self) -> None:
         capability = capability_ledger.load_capability(
@@ -169,16 +100,7 @@ class PlayerCompleteTest(unittest.TestCase):
         )
 
     def test_core_capability_declares_all_game_tests(self) -> None:
-        capability = capability_ledger.load_capability(
-            capability_ledger.CAP_ROOT / CORE_SLUG / "capability.json"
-        )
-        self.assertEqual("player_complete", capability["maturity"])
-        self.assertEqual("accepted", capability["workflow"])
-        self.assertEqual(CORE_TEST_IDS, capability["required_test_ids"])
-        self.assertEqual(
-            [],
-            player_complete.check_declared_test_ids(capability),
-        )
+        self.assert_declared_game_tests(CORE_SLUG)
 
     def test_core_capability_static_player_surface(self) -> None:
         capability = capability_ledger.load_capability(
@@ -194,16 +116,7 @@ class PlayerCompleteTest(unittest.TestCase):
         )
 
     def test_display_capability_declares_all_game_tests(self) -> None:
-        capability = capability_ledger.load_capability(
-            capability_ledger.CAP_ROOT / DISPLAY_SLUG / "capability.json"
-        )
-        self.assertEqual("player_complete", capability["maturity"])
-        self.assertEqual("accepted", capability["workflow"])
-        self.assertEqual(DISPLAY_TEST_IDS, capability["required_test_ids"])
-        self.assertEqual(
-            [],
-            player_complete.check_declared_test_ids(capability),
-        )
+        self.assert_declared_game_tests(DISPLAY_SLUG)
 
     def test_display_capability_static_player_surface(self) -> None:
         capability = capability_ledger.load_capability(
@@ -219,16 +132,7 @@ class PlayerCompleteTest(unittest.TestCase):
         )
 
     def test_converter_capability_declares_all_game_tests(self) -> None:
-        capability = capability_ledger.load_capability(
-            capability_ledger.CAP_ROOT / CONVERTER_SLUG / "capability.json"
-        )
-        self.assertEqual("player_complete", capability["maturity"])
-        self.assertEqual("accepted", capability["workflow"])
-        self.assertEqual(CONVERTER_TEST_IDS, capability["required_test_ids"])
-        self.assertEqual(
-            [],
-            player_complete.check_declared_test_ids(capability),
-        )
+        self.assert_declared_game_tests(CONVERTER_SLUG)
 
     def test_converter_capability_static_player_surface(self) -> None:
         capability = capability_ledger.load_capability(
@@ -244,16 +148,7 @@ class PlayerCompleteTest(unittest.TestCase):
         )
 
     def test_batteries_capability_declares_all_game_tests(self) -> None:
-        capability = capability_ledger.load_capability(
-            capability_ledger.CAP_ROOT / BATTERIES_SLUG / "capability.json"
-        )
-        self.assertEqual("player_complete", capability["maturity"])
-        self.assertEqual("accepted", capability["workflow"])
-        self.assertEqual(BATTERIES_TEST_IDS, capability["required_test_ids"])
-        self.assertEqual(
-            [],
-            player_complete.check_declared_test_ids(capability),
-        )
+        self.assert_declared_game_tests(BATTERIES_SLUG)
 
     def test_batteries_capability_static_player_surface(self) -> None:
         capability = capability_ledger.load_capability(
@@ -269,16 +164,7 @@ class PlayerCompleteTest(unittest.TestCase):
         )
 
     def test_transformers_capability_declares_all_game_tests(self) -> None:
-        capability = capability_ledger.load_capability(
-            capability_ledger.CAP_ROOT / TRANSFORMERS_SLUG / "capability.json"
-        )
-        self.assertEqual("player_complete", capability["maturity"])
-        self.assertEqual("accepted", capability["workflow"])
-        self.assertEqual(TRANSFORMERS_TEST_IDS, capability["required_test_ids"])
-        self.assertEqual(
-            [],
-            player_complete.check_declared_test_ids(capability),
-        )
+        self.assert_declared_game_tests(TRANSFORMERS_SLUG)
 
     def test_transformers_capability_static_player_surface(self) -> None:
         capability = capability_ledger.load_capability(
@@ -294,16 +180,7 @@ class PlayerCompleteTest(unittest.TestCase):
         )
 
     def test_nuclear_capability_declares_all_game_tests(self) -> None:
-        capability = capability_ledger.load_capability(
-            capability_ledger.CAP_ROOT / NUCLEAR_SLUG / "capability.json"
-        )
-        self.assertEqual("player_complete", capability["maturity"])
-        self.assertEqual("accepted", capability["workflow"])
-        self.assertEqual(NUCLEAR_TEST_IDS, capability["required_test_ids"])
-        self.assertEqual(
-            [],
-            player_complete.check_declared_test_ids(capability),
-        )
+        self.assert_declared_game_tests(NUCLEAR_SLUG)
 
     def test_nuclear_capability_static_player_surface(self) -> None:
         capability = capability_ledger.load_capability(
@@ -314,6 +191,22 @@ class PlayerCompleteTest(unittest.TestCase):
             [],
             player_complete.check_static_player_surface(
                 NUCLEAR_SLUG,
+                list(signoff["craftable_items"]),
+            ),
+        )
+
+    def test_nuclear_hot_fluids_capability_declares_all_game_tests(self) -> None:
+        self.assert_declared_game_tests(HOT_FLUIDS_SLUG)
+
+    def test_nuclear_hot_fluids_capability_static_player_surface(self) -> None:
+        capability = capability_ledger.load_capability(
+            capability_ledger.CAP_ROOT / HOT_FLUIDS_SLUG / "capability.json"
+        )
+        signoff = player_complete.load_signoff(capability)
+        self.assertEqual(
+            [],
+            player_complete.check_static_player_surface(
+                HOT_FLUIDS_SLUG,
                 list(signoff["craftable_items"]),
             ),
         )
@@ -514,6 +407,7 @@ class PlayerCompleteTest(unittest.TestCase):
             BATTERIES_SLUG,
             TRANSFORMERS_SLUG,
             NUCLEAR_SLUG,
+            HOT_FLUIDS_SLUG,
         ):
             capability = capability_ledger.load_capability(
                 capability_ledger.CAP_ROOT / slug / "capability.json"

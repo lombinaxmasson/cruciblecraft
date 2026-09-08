@@ -4,12 +4,7 @@ from __future__ import annotations
 
 import unittest
 
-from tools import io_common as io
 from tools import jade_observation as jade
-
-ACTIVE = io.ROOT / "docs" / "history" / "card-plans" / "active"
-CLOSED = io.ROOT / "docs" / "history" / "card-plans" / "closed"
-PLAN = CLOSED / "生成资源注册与Jade第一切片详细计划.md"
 
 
 class JadeObservationTest(unittest.TestCase):
@@ -35,16 +30,6 @@ class JadeObservationTest(unittest.TestCase):
         self.assertIn("fusion_reactor", follow)
         self.assertIn("reactor_core", follow)
         self.assertIn("logistics_core", follow)
-
-    def test_closed_plan_stays_archived(self) -> None:
-        names = sorted(path.name for path in ACTIVE.iterdir() if path.is_file())
-        self.assertNotIn("生成资源注册与Jade第一切片详细计划.md", names)
-        self.assertTrue(PLAN.is_file())
-        text = PLAN.read_text(encoding="utf-8")
-        self.assertIn("presentation/live-art-jade", text)
-        self.assertIn("foundation_plus_followup", text)
-        self.assertIn("battery_cell_crafting", text)
-        self.assertIn("unique_active_wave", text)
 
 
 if __name__ == "__main__":
