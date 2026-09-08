@@ -443,7 +443,7 @@ public final class GeneratedMaterialPack {
         if (MaterialPrefixCatalog.isBootstrapped()) {
             for (MaterialPrefix form : MaterialPrefixCatalog.values()) {
                 String key = "item.cruciblecraft.material_form." + form.serializedName();
-                english.addProperty(key, "%s " + title(form.serializedName()));
+                english.addProperty(key, "%s " + formEnglish(form.serializedName()));
                 MaterialZhNames.prefix(form.serializedName()).ifPresent(name ->
                         chinese.addProperty(key, "%s " + name));
             }
@@ -688,6 +688,16 @@ public final class GeneratedMaterialPack {
     private static String title(String id) {
         String spaced = id.replace('_', ' ');
         return Character.toUpperCase(spaced.charAt(0)) + spaced.substring(1);
+    }
+
+    private static String formEnglish(String serializedName) {
+        return switch (serializedName) {
+            case "machine_casing" -> "Machine Casing";
+            case "machine_casing_double" -> "Double Machine Casing";
+            case "machine_casing_dense" -> "Dense Machine Casing";
+            case "capcellcon" -> "Capsule Cell Container";
+            default -> title(serializedName);
+        };
     }
 
     private static boolean isRockForm(MaterialPrefix form) {

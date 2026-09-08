@@ -27,11 +27,11 @@ class ExtruderShapeCatalogTest {
     }
 
     @Test
-    void catalogHasThirtyFourStableCompleteUniqueShapes() {
-        assertEquals(34, ExtruderShapeCatalog.DEFINITIONS.size());
-        assertEquals(34, new HashSet<>(ExtruderShapeCatalog.DEFINITIONS.stream()
+    void catalogHasThirtyFiveStableCompleteUniqueShapes() {
+        assertEquals(35, ExtruderShapeCatalog.DEFINITIONS.size());
+        assertEquals(35, new HashSet<>(ExtruderShapeCatalog.DEFINITIONS.stream()
                 .map(ExtruderShapeCatalog.Definition::id).toList()).size());
-        assertEquals(34, new HashSet<>(ExtruderShapeCatalog.DEFINITIONS.stream()
+        assertEquals(35, new HashSet<>(ExtruderShapeCatalog.DEFINITIONS.stream()
                 .map(ExtruderShapeCatalog.Definition::registryPath).toList()).size());
         assertTrue(ExtruderShapeCatalog.DEFINITIONS.stream().allMatch(shape ->
                 shape.registryPath().equals("extruder_shape_" + shape.id())

@@ -83,8 +83,8 @@ class FissionObservationSafetyCardTest(unittest.TestCase):
     def test_source_matrix_is_exact_or_blocked(self) -> None:
         matrix = io.load_json(MATRIX)
         self.assertEqual(13, matrix["source_contract_rows"])
-        self.assertEqual(9, matrix["exact_rows"])
-        self.assertEqual(4, matrix["explicitly_blocked_rows"])
+        self.assertEqual(13, matrix["exact_rows"])
+        self.assertEqual(0, matrix["explicitly_blocked_rows"])
         self.assertEqual(0, matrix["stand_in_parts"])
         self.assertEqual(0, matrix["kelvin_fields"])
         self.assertEqual(0, matrix["world_explode_uncommented"])
@@ -94,17 +94,8 @@ class FissionObservationSafetyCardTest(unittest.TestCase):
             for row in matrix["branches"]
             if row["disposition"] == "explicitly_blocked"
         ]
-        self.assertEqual(9, len(ready))
-        self.assertEqual(4, len(blocked))
-        self.assertEqual(
-            {
-                "geiger_empty",
-                "geiger_canner_helium",
-                "geiger_canner_neon",
-                "geiger_canner_argon",
-            },
-            {row["branch"] for row in blocked},
-        )
+        self.assertEqual(13, len(ready))
+        self.assertEqual(0, len(blocked))
         self.assertEqual("HU", matrix["temperature_contract"]["heat_unit"])
         self.assertEqual("blocked", matrix["fail_semantics"]["world_explode"])
 
@@ -127,10 +118,14 @@ class FissionObservationSafetyCardTest(unittest.TestCase):
             {
                 "reactor:temperature_kelvin",
                 "reactor:world_explode",
-                "reactor:geiger_empty_capcellcon",
                 "reactor:backpack_radioactivity",
             },
             blocked,
+        )
+        self.assertEqual("new_distinct", keys["reactor:geiger_empty_capcellcon"]["disposition"])
+        self.assertIn(
+            "cruciblecraft:aluminium/capcellcon",
+            keys["reactor:geiger_empty_capcellcon"]["runtime_ids"],
         )
         hot = ledger.load_capability(HOT_CAPABILITY)
         hot_obs = next(
@@ -221,3 +216,101 @@ class FissionObservationSafetyCardTest(unittest.TestCase):
             self.assertEqual("jade_server_data", row["sync_path"])
             self.assertEqual(CAPABILITY_SLUG, row["owner"])
             self.assertTrue(row["translation_keys"])
+
+    def test_geiger_obtain_recipes_are_source_exact(self) -> None:
+        recipe = (
+            ROOT
+            / "src"
+            / "main"
+            / "resources"
+            / "data"
+            / "cruciblecraft"
+            / "recipe"
+        )
+        empty = json.loads(
+            (recipe / "gt_multiitem" / "multiitem_randomtools_m10001.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual(["TXT", "PCP", "TdT"], empty["pattern"])
+        self.assertEqual(
+            "cruciblecraft:aluminium/capcellcon",
+            empty["ingredients"]["X"]["item"],
+        )
+        self.assertEqual(
+            "cruciblecraft:circuit_basic",
+            empty["ingredients"]["C"]["item"],
+        )
+        self.assertEqual(
+            "cruciblecraft:material_screwdriver",
+            empty["catalysts"]["d"]["item"],
+        )
+        capcellcon = json.loads(
+            (recipe / "nuclear" / "aluminium_capcellcon.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual("cruciblecraft:extruder", capcellcon["map"])
+        self.assertEqual(64, capcellcon["duration"])
+        self.assertEqual(16, capcellcon["eut"])
+        self.assertEqual([1, 0], capcellcon["item_input_counts"])
+        self.assertEqual(9, capcellcon["item_outputs"][0]["count"])
+        for gas in ("helium", "neon", "argon"):
+            fill = json.loads(
+                (recipe / "nuclear" / f"geiger_canner_{gas}.json").read_text(
+                    encoding="utf-8"
+                )
+            )
+            self.assertEqual("cruciblecraft:canner", fill["map"])
+            self.assertEqual(64, fill["duration"])
+            self.assertEqual(16, fill["eut"])
+            self.assertEqual(
+                f"cruciblecraft:{gas}",
+                fill["fluid_inputs"][0]["id"],
+            )
+            self.assertEqual(1000, fill["fluid_inputs"][0]["amount"])
+        prefix = json.loads(
+            (
+                ROOT
+                / "src"
+                / "main"
+                / "resources"
+                / "data"
+                / "cruciblecraft"
+                / "material_prefixes"
+                / "capcellcon.json"
+            ).read_text(encoding="utf-8")
+        )
+        self.assertEqual(16, prefix["units"])
+        self.assertEqual([], prefix["capabilities"])
+        manifest = json.loads(
+            (
+                ROOT
+                / "src"
+                / "main"
+                / "resources"
+                / "assets"
+                / "cruciblecraft"
+                / "gt6_geiger_obtain_art_manifest.json"
+            ).read_text(encoding="utf-8")
+        )
+        self.assertTrue(manifest["source_present"])
+        assets = ROOT / "src" / "main" / "resources"
+        for row in manifest["imports"]:
+            dest = assets / row["destination"]
+            self.assertTrue(dest.is_file(), row["destination"])
+            self.assertGreater(dest.stat().st_size, 80, row["destination"])
+        readiness = io.load_json(WAVE / "readiness.json")
+        self.assertEqual(15, readiness["generated_recipe_count"])
+        signoff = io.load_json(
+            ROOT
+            / "tools"
+            / "capabilities"
+            / "energy"
+            / "nuclear-fission-observation-safety"
+            / "player_signoff.json"
+        )
+        self.assertFalse(signoff["checklist"]["geiger_obtain_explicitly_blocked"])
+        self.assertTrue(signoff["checklist"]["no_stand_in_capcellcon"])
+        self.assertIn(
+            "gt_multiitem/multiitem_randomtools_m10001",
+            signoff["craftable_items"],
+        )

@@ -21,6 +21,7 @@ public final class ExtruderShapeCatalog {
             shape("bolt", "Bolt", "螺栓"),
             shape("ring", "Ring", "环"),
             shape("cell", "Cell", "容器"),
+            shape("ccc", "Capsule-Cell-Container", "胶囊单元容器"),
             shape("ingot", "Ingot", "锭"),
             shape("wire", "Wire", "导线"),
             shape("small_item_casing", "Small Item Casing", "小型物品外壳"),

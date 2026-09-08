@@ -3,7 +3,7 @@
   "capability": "energy/nuclear-fission-observation-safety",
   "signed": true,
   "signer": "player",
-  "date": "2026-09-08",
+  "date": "2026-09-09",
   "craftable_items": [
     "gt_object/gt_armor_hazmat_radiation_head_m0",
     "gt_object/gt_armor_hazmat_radiation_chest_m0",
@@ -13,7 +13,9 @@
     "gt_object/gt_armor_hazmat_heat_chest_m0",
     "gt_object/gt_armor_hazmat_heat_legs_m0",
     "gt_object/gt_armor_hazmat_heat_boots_m0",
-    "gt_multiitem/multiitem_randomtools_m10000"
+    "gt_multiitem/multiitem_randomtools_m10000",
+    "gt_multiitem/multiitem_randomtools_m10001",
+    "gt_multiitem/multiitem_randomtools_m10002"
   ],
   "checklist": {
     "two_cores_jade_hu_no_kelvin": true,
@@ -24,9 +26,9 @@
     "fail_is_rods_sound_pulse": true,
     "world_explode_blocked": true,
     "thermometer_and_geiger_wired": true,
-    "geiger_obtain_explicitly_blocked": true,
+    "geiger_obtain_explicitly_blocked": false,
     "no_stand_in_capcellcon": true,
     "no_iron_ingot_hazmat_textures": true
   },
-  "notes": "Geiger empty/canner rows stay explicitly_blocked. Heat is HU. Output-full backpressure stays DESIGN_POLICY. Insect/biochem/frost/universal suits stay later."
+  "notes": "Empty Geiger is aluminium capcellcon + CCC + Canner He/Ne/Ar. Heat is HU. Output-full backpressure stays DESIGN_POLICY. Insect/biochem/frost/universal suits stay later."
 }

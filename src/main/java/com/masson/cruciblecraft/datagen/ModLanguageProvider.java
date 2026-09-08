@@ -1124,6 +1124,7 @@ public class ModLanguageProvider extends LanguageProvider {
             case "machine_casing" -> "Machine Casing";
             case "machine_casing_double" -> "Double Machine Casing";
             case "machine_casing_dense" -> "Dense Machine Casing";
+            case "capcellcon" -> "Capsule Cell Container";
             default -> title(serializedName);
         };
     }

@@ -527,6 +527,87 @@ def write_recipes() -> None:
         },
         "cruciblecraft:gt_multiitem/multiitem_randomtools_m10000",
     )
+    dump(
+        recipe_root / "gt_multiitem" / "extruder_shape_ccc.json",
+        {
+            "type": "cruciblecraft:shaped_catalyst",
+            "pattern": ["   ", " P ", "  x"],
+            "ingredients": {"P": {"item": "cruciblecraft:extruder_shape_ring"}},
+            "result": {"id": "cruciblecraft:extruder_shape_ccc", "count": 1},
+            "catalysts": {"x": {"item": "cruciblecraft:material_screwdriver"}},
+        },
+    )
+    dump(
+        recipe_root / "gt_multiitem" / "multiitem_randomtools_m10001.json",
+        {
+            "type": "cruciblecraft:shaped_catalyst",
+            "pattern": ["TXT", "PCP", "TdT"],
+            "ingredients": {
+                "X": {"item": "cruciblecraft:aluminium/capcellcon"},
+                "P": {"item": "cruciblecraft:aluminium/plate"},
+                "T": {"item": "cruciblecraft:aluminium/screw"},
+                "C": {"item": "cruciblecraft:circuit_basic"},
+            },
+            "result": {
+                "id": "cruciblecraft:gt_multiitem/multiitem_randomtools_m10001",
+                "count": 1,
+            },
+            "catalysts": {"d": {"item": "cruciblecraft:material_screwdriver"}},
+        },
+    )
+    dump(
+        recipe_root / "nuclear" / "aluminium_capcellcon.json",
+        {
+            "type": "cruciblecraft:gt_recipe",
+            "map": "cruciblecraft:extruder",
+            "duration": 64,
+            "eut": 16,
+            "can_be_buffered": True,
+            "item_inputs": [
+                {"item": "cruciblecraft:aluminium/ingot"},
+                {"item": "cruciblecraft:extruder_shape_ccc"},
+            ],
+            "item_input_counts": [1, 0],
+            "item_outputs": [
+                {"id": "cruciblecraft:aluminium/capcellcon", "count": 9}
+            ],
+            "output_chances": [10000],
+            "provenance": {
+                "selected_source_recipe": "Loader_Recipes_Handlers.java:766 aluminium/ingot -> 9 capcellcon",
+                "source_kind": "gt6_source",
+            },
+        },
+    )
+    empty_geiger = {
+        "item": "cruciblecraft:gt_multiitem/multiitem_randomtools_m10001"
+    }
+    for gas in ("helium", "neon", "argon"):
+        dump(
+            recipe_root / "nuclear" / f"geiger_canner_{gas}.json",
+            {
+                "type": "cruciblecraft:gt_recipe",
+                "map": "cruciblecraft:canner",
+                "duration": 64,
+                "eut": 16,
+                "can_be_buffered": True,
+                "item_inputs": [empty_geiger],
+                "item_input_counts": [1],
+                "item_outputs": [
+                    {
+                        "id": "cruciblecraft:gt_multiitem/multiitem_randomtools_m10002",
+                        "count": 1,
+                    }
+                ],
+                "output_chances": [10000],
+                "provenance": {
+                    "selected_source_recipe": f"MultiItemRandomTools.java:541-543 {gas} 1000 mB",
+                    "source_kind": "gt6_source",
+                },
+                "fluid_inputs": [
+                    {"id": f"cruciblecraft:{gas}", "amount": 1000}
+                ],
+            },
+        )
 
 
 def write_wave() -> None:
@@ -558,7 +639,7 @@ def write_wave() -> None:
                 "radiation_apply_paths": 3,
             },
             "generated_by": "runtime/fission-observation-safety implementation",
-            "generated_recipe_count": 9,
+            "generated_recipe_count": 15,
             "next_unassigned": True,
             "nuclear_started": True,
             "owns_families": 0,
@@ -577,7 +658,7 @@ def write_wave() -> None:
             "complete_family_count": 0,
             "generated_by": "runtime/fission-observation-safety implementation",
             "next_unassigned": True,
-            "remaining_recipe_gap": 4,
+            "remaining_recipe_gap": 0,
             "schema_version": 1,
             "source_revision": REVISION,
             "status": "WAVE_READY",
@@ -593,7 +674,7 @@ def write_wave() -> None:
             "generated_by": "runtime/fission-observation-safety implementation",
             "leftover_later_count": 0,
             "partial_family_count": 0,
-            "remaining_recipe_gap": 4,
+            "remaining_recipe_gap": 0,
             "schema_version": 1,
             "source_revision": REVISION,
             "status": "CENSUS_DELTA_IN_PROGRESS",
@@ -638,8 +719,8 @@ def write_wave() -> None:
             "wave_slug": "runtime/fission-observation-safety",
             "status": "D0_MATRIX_READY",
             "source_contract_rows": 13,
-            "exact_rows": 9,
-            "explicitly_blocked_rows": 4,
+            "exact_rows": 13,
+            "explicitly_blocked_rows": 0,
             "missing": 0,
             "extra": 0,
             "duplicate": 0,
@@ -695,31 +776,41 @@ def write_wave() -> None:
                 },
                 {
                     "branch": "geiger_empty",
-                    "disposition": "explicitly_blocked",
-                    "reason": "OP.capcellcon(Al) MTE 32610 is not a live prefix. Not substituted.",
+                    "disposition": "ready",
+                    "parts": [
+                        "aluminium/capcellcon",
+                        "aluminium/plate",
+                        "aluminium/screw",
+                        "circuit_basic",
+                        "material_screwdriver",
+                    ],
                 },
                 {
                     "branch": "geiger_canner_helium",
-                    "disposition": "explicitly_blocked",
-                    "reason": "Empty Geiger obtain is blocked; Canner fill stays blocked.",
+                    "disposition": "ready",
+                    "parts": [
+                        "gt_multiitem/multiitem_randomtools_m10001",
+                        "cruciblecraft:helium",
+                    ],
                 },
                 {
                     "branch": "geiger_canner_neon",
-                    "disposition": "explicitly_blocked",
-                    "reason": "Empty Geiger obtain is blocked; Canner fill stays blocked.",
+                    "disposition": "ready",
+                    "parts": [
+                        "gt_multiitem/multiitem_randomtools_m10001",
+                        "cruciblecraft:neon",
+                    ],
                 },
                 {
                     "branch": "geiger_canner_argon",
-                    "disposition": "explicitly_blocked",
-                    "reason": "Empty Geiger obtain is blocked; Canner fill stays blocked.",
+                    "disposition": "ready",
+                    "parts": [
+                        "gt_multiitem/multiitem_randomtools_m10001",
+                        "cruciblecraft:argon",
+                    ],
                 },
             ],
             "blocked_ledger": [
-                {
-                    "semantic_key": "reactor:geiger_empty_capcellcon",
-                    "disposition": "explicitly_blocked",
-                    "reason": "Aluminium capsule container MTE is out of this card.",
-                },
                 {
                     "semantic_key": "reactor:temperature_kelvin",
                     "disposition": "blocked",
@@ -776,6 +867,13 @@ def write_capability() -> None:
                 "src/main/java/com/masson/cruciblecraft/gametest/NuclearFissionObservationSafetyGameTests.java",
                 "src/main/resources/data/cruciblecraft_wave_runtime_fission_observation_safety/**",
                 "src/main/resources/assets/cruciblecraft/gt6_fission_observation_art_manifest.json",
+                "src/main/resources/assets/cruciblecraft/gt6_geiger_obtain_art_manifest.json",
+                "src/main/resources/data/cruciblecraft/material_prefixes/capcellcon.json",
+                "src/main/resources/data/cruciblecraft/recipe/gt_multiitem/extruder_shape_ccc.json",
+                "src/main/resources/data/cruciblecraft/recipe/gt_multiitem/multiitem_randomtools_m10001.json",
+                "src/main/resources/data/cruciblecraft/recipe/nuclear/aluminium_capcellcon.json",
+                "src/main/resources/data/cruciblecraft/recipe/nuclear/geiger_canner_*.json",
+                "tools/emit_geiger_obtain.py",
                 "src/main/resources/assets/cruciblecraft/textures/**/gt6_import/hazmat_*",
                 "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/thermometer_quicksilver.png",
                 "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/geiger_*.png",
@@ -840,7 +938,7 @@ def write_capability() -> None:
                         "cruciblecraft:gt_multiitem/multiitem_randomtools_m10001",
                         "cruciblecraft:gt_multiitem/multiitem_randomtools_m10002",
                     ],
-                    "reason": "Thermometer HU and Geiger neutrons. Empty Geiger obtain stays blocked.",
+                    "reason": "Thermometer HU and Geiger neutrons. Empty Geiger is aluminium capcellcon + Canner fill.",
                 },
                 {
                     "semantic_key": "energy:battery_jade",
@@ -868,9 +966,14 @@ def write_capability() -> None:
                 },
                 {
                     "semantic_key": "reactor:geiger_empty_capcellcon",
-                    "disposition": "blocked",
-                    "runtime_ids": [],
-                    "reason": "capcellcon(Al) is not a live prefix. Not substituted.",
+                    "disposition": "new_distinct",
+                    "runtime_ids": [
+                        "cruciblecraft:aluminium/capcellcon",
+                        "cruciblecraft:extruder_shape_ccc",
+                        "cruciblecraft:gt_multiitem/multiitem_randomtools_m10001",
+                        "cruciblecraft:gt_multiitem/multiitem_randomtools_m10002",
+                    ],
+                    "reason": "Aluminium OP.capcellcon only. CCC shape + extruder + empty Geiger + He/Ne/Ar Canner.",
                 },
                 {
                     "semantic_key": "reactor:backpack_radioactivity",
@@ -879,7 +982,7 @@ def write_capability() -> None:
                     "reason": "No CC material radioactivity level table.",
                 },
             ],
-            "note": "Fission wrap plus energy Jade second slice. Geiger obtain blocked. unique_active_wave stays null. No heat exchangers, turbines, coolers, or Kelvin.",
+            "note": "Fission wrap plus energy Jade second slice. Geiger obtain is source-exact aluminium capcellcon. unique_active_wave stays null. No heat exchangers, turbines, coolers, or Kelvin.",
         },
     )
     dump(
@@ -889,7 +992,7 @@ def write_capability() -> None:
             "capability": "energy/nuclear-fission-observation-safety",
             "signed": True,
             "signer": "player",
-            "date": "2026-09-08",
+            "date": "2026-09-09",
             "craftable_items": [
                 "gt_object/gt_armor_hazmat_radiation_head_m0",
                 "gt_object/gt_armor_hazmat_radiation_chest_m0",
@@ -900,6 +1003,8 @@ def write_capability() -> None:
                 "gt_object/gt_armor_hazmat_heat_legs_m0",
                 "gt_object/gt_armor_hazmat_heat_boots_m0",
                 "gt_multiitem/multiitem_randomtools_m10000",
+                "gt_multiitem/multiitem_randomtools_m10001",
+                "gt_multiitem/multiitem_randomtools_m10002",
             ],
             "checklist": {
                 "two_cores_jade_hu_no_kelvin": True,
@@ -910,11 +1015,11 @@ def write_capability() -> None:
                 "fail_is_rods_sound_pulse": True,
                 "world_explode_blocked": True,
                 "thermometer_and_geiger_wired": True,
-                "geiger_obtain_explicitly_blocked": True,
+                "geiger_obtain_explicitly_blocked": False,
                 "no_stand_in_capcellcon": True,
                 "no_iron_ingot_hazmat_textures": True,
             },
-            "notes": "Geiger empty/canner rows stay explicitly_blocked. Heat is HU. Output-full backpressure stays DESIGN_POLICY. Insect/biochem/frost/universal suits stay later.",
+            "notes": "Empty Geiger is aluminium capcellcon + CCC + Canner He/Ne/Ar. Heat is HU. Output-full backpressure stays DESIGN_POLICY. Insect/biochem/frost/universal suits stay later.",
         },
     )
 

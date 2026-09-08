@@ -4,8 +4,8 @@
   "wave_slug": "runtime/fission-observation-safety",
   "status": "D0_MATRIX_READY",
   "source_contract_rows": 13,
-  "exact_rows": 9,
-  "explicitly_blocked_rows": 4,
+  "exact_rows": 13,
+  "explicitly_blocked_rows": 0,
   "missing": 0,
   "extra": 0,
   "duplicate": 0,
@@ -100,31 +100,41 @@
     },
     {
       "branch": "geiger_empty",
-      "disposition": "explicitly_blocked",
-      "reason": "OP.capcellcon(Al) MTE 32610 is not a live prefix. Not substituted."
+      "disposition": "ready",
+      "parts": [
+        "aluminium/capcellcon",
+        "aluminium/plate",
+        "aluminium/screw",
+        "circuit_basic",
+        "material_screwdriver"
+      ]
     },
     {
       "branch": "geiger_canner_helium",
-      "disposition": "explicitly_blocked",
-      "reason": "Empty Geiger obtain is blocked; Canner fill stays blocked."
+      "disposition": "ready",
+      "parts": [
+        "gt_multiitem/multiitem_randomtools_m10001",
+        "cruciblecraft:helium"
+      ]
     },
     {
       "branch": "geiger_canner_neon",
-      "disposition": "explicitly_blocked",
-      "reason": "Empty Geiger obtain is blocked; Canner fill stays blocked."
+      "disposition": "ready",
+      "parts": [
+        "gt_multiitem/multiitem_randomtools_m10001",
+        "cruciblecraft:neon"
+      ]
     },
     {
       "branch": "geiger_canner_argon",
-      "disposition": "explicitly_blocked",
-      "reason": "Empty Geiger obtain is blocked; Canner fill stays blocked."
+      "disposition": "ready",
+      "parts": [
+        "gt_multiitem/multiitem_randomtools_m10001",
+        "cruciblecraft:argon"
+      ]
     }
   ],
   "blocked_ledger": [
-    {
-      "semantic_key": "reactor:geiger_empty_capcellcon",
-      "disposition": "explicitly_blocked",
-      "reason": "Aluminium capsule container MTE is out of this card."
-    },
     {
       "semantic_key": "reactor:temperature_kelvin",
       "disposition": "blocked",

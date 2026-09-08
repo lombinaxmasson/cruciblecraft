@@ -91,7 +91,8 @@ public enum MaterialCreativeTab {
                     "cruciblecraft:long_rod",
                     "cruciblecraft:bolt",
                     "cruciblecraft:screw",
-                    "cruciblecraft:ring" -> PARTS;
+                    "cruciblecraft:ring",
+                    "cruciblecraft:capcellcon" -> PARTS;
             case "cruciblecraft:spring",
                     "cruciblecraft:small_spring",
                     "cruciblecraft:gear",
