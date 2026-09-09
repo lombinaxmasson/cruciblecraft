@@ -26,13 +26,30 @@ Prep 仍排队，不占落地锁。
 [能力交付流程 §8](../current/capability-delivery-workflow.md)。
 已签发：
 [辊压成型机](card-plans/prep/辊压成型机详细计划.md)
-（`machines/roll-former`，dump 28；建议热交换器关闭后第一张 live）、
+（`machines/roll-former`，dump 28；建议第一张 live）、
 [集群轧机](card-plans/prep/集群轧机详细计划.md)
 （`machines/cluster-mill`，dump 307；四层外壳已跟普通外壳同材料域）、
 [切片机](card-plans/prep/切片机详细计划.md)
-（`machines/slicer`，dump 33；`IL.CONVEYERS` 模块与多数活塞 blocked）。
-未签发为 prep：聚变、QU Energizer、massfab、Boxinator、磁极化/磁选（MU）。
+（`machines/slicer`，dump 33；`IL.CONVEYERS` 模块与多数活塞 blocked）、
+[织机](card-plans/prep/织机详细计划.md)
+（`machines/loom`，dump 1334；动能四台 D0 全绿；电驱同图五台缺多数电机）、
+[压力清洗机](card-plans/prep/压力清洗机详细计划.md)
+（`machines/pressure-washer`，dump 312；D0 全绿；贴图键 `debarker`）、
+[注射机](card-plans/prep/注射机详细计划.md)
+（`machines/injector`，dump 638；仅 20264 活塞 EV 可 exact）、
+[印刷机](card-plans/prep/印刷机详细计划.md)
+（`machines/printer`，dump 22；五台缺传送带模块；不要当第一张 live）、
+[层压机](card-plans/prep/层压机详细计划.md)
+（`machines/laminator`，dump 498；HU；D0 全绿）、
+[熔融机](card-plans/prep/熔融机详细计划.md)
+（`machines/melter`，dump 6756；单机 22010；不是熔炼炉）、
+[纳米加工机](card-plans/prep/纳米加工机详细计划.md)
+（`machines/nanofab`，dump 64；激光气体/处理器/发射器/传感器 blocked）。
+未签发为 prep：聚变、QU Energizer、massfab、replicator、Boxinator/Unboxinator（load）、
+磁极化/磁选（MU）、冷冻机与低温混合机（CU；计划正文禁止照抄 GT6 显示名里的档位字样）。
 `gt.recipe.hammer` 的主机是手锤/风镐，不是 Basic Machine，不要开成加工机 prep。
+CNC / 砂轮 / 凿子没有 Basic Machine 主机。压榨/发酵/蜜蜂要生物 runtime。
+激光雕刻机 host 已在 CC，不是新机 prep。
 
 ## 最近关闭
 

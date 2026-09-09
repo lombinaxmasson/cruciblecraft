@@ -325,7 +325,14 @@ topology 预分配 implementation child。不想要的类在 realization 卡标
 live 导入仍要等晋升落地。已签发 prep（不改 unique-active）：
 [辊压成型机](../history/card-plans/prep/辊压成型机详细计划.md)、
 [集群轧机](../history/card-plans/prep/集群轧机详细计划.md)（未注册 spec + 247/307 isolated compile；60 行 foil overflow；四层外壳已跟普通外壳同材料域）、
-[切片机](../history/card-plans/prep/切片机详细计划.md)。
+[切片机](../history/card-plans/prep/切片机详细计划.md)、
+[织机](../history/card-plans/prep/织机详细计划.md)（动能 D0 全绿；电驱同图）、
+[压力清洗机](../history/card-plans/prep/压力清洗机详细计划.md)、
+[注射机](../history/card-plans/prep/注射机详细计划.md)、
+[印刷机](../history/card-plans/prep/印刷机详细计划.md)、
+[层压机](../history/card-plans/prep/层压机详细计划.md)、
+[熔融机](../history/card-plans/prep/熔融机详细计划.md)、
+[纳米加工机](../history/card-plans/prep/纳米加工机详细计划.md)。
 规则见 [能力交付流程 §8](capability-delivery-workflow.md) 与
 [`card-plans/prep/`](../history/card-plans/prep/)。批量交付管线（`machine_delivery.json` + SourcePack +
 人工 `production_lock` + `python tools/verify.py integration --profile recipes`）
