@@ -1,0 +1,161 @@
+{
+  "capability_slug": "machines/injector",
+  "grid": [
+    "XPw",
+    "CMW"
+  ],
+  "hosts": [
+    {
+      "cable": {
+        "cc": "cruciblecraft:tin/cable",
+        "gt6": "OP.cableGt01(MT.Sn)",
+        "status": "ok"
+      },
+      "casing": {
+        "cc": "cruciblecraft:steel_galvanized/machine_casing",
+        "gt6": "OP.casingMachine(MT.SteelGalvanized)",
+        "status": "ok"
+      },
+      "circuit": {
+        "cc": "cruciblecraft:circuit_basic",
+        "gt6": "OD_CIRCUITS[1]",
+        "status": "ok"
+      },
+      "host": 20261,
+      "pipe": {
+        "cc": "cruciblecraft:stainless_steel/tiny_fluid_pipe",
+        "gt6": "OP.pipeTiny(MT.StainlessSteel)",
+        "status": "ok"
+      },
+      "piston": {
+        "cc": "",
+        "gt6": "IL.PISTONS[1]",
+        "reason": "compact piston module missing for this tier",
+        "status": "blocked"
+      },
+      "status": "explicitly_blocked"
+    },
+    {
+      "cable": {
+        "cc": "cruciblecraft:copper/cable",
+        "gt6": "OP.cableGt01(ANY.Cu)",
+        "status": "ok"
+      },
+      "casing": {
+        "cc": "cruciblecraft:aluminium/machine_casing",
+        "gt6": "OP.casingMachine(MT.Al)",
+        "status": "ok"
+      },
+      "circuit": {
+        "cc": "cruciblecraft:circuit_good",
+        "gt6": "OD_CIRCUITS[2]",
+        "status": "ok"
+      },
+      "host": 20262,
+      "pipe": {
+        "cc": "cruciblecraft:stainless_steel/small_fluid_pipe",
+        "gt6": "OP.pipeSmall(MT.StainlessSteel)",
+        "status": "ok"
+      },
+      "piston": {
+        "cc": "",
+        "gt6": "IL.PISTONS[2]",
+        "reason": "compact piston module missing for this tier",
+        "status": "blocked"
+      },
+      "status": "explicitly_blocked"
+    },
+    {
+      "cable": {
+        "cc": "cruciblecraft:gold/cable",
+        "gt6": "OP.cableGt01(MT.Au)",
+        "status": "ok"
+      },
+      "casing": {
+        "cc": "cruciblecraft:stainless_steel/machine_casing",
+        "gt6": "OP.casingMachine(MT.StainlessSteel)",
+        "status": "ok"
+      },
+      "circuit": {
+        "cc": "cruciblecraft:circuit_advanced",
+        "gt6": "OD_CIRCUITS[3]",
+        "status": "ok"
+      },
+      "host": 20263,
+      "pipe": {
+        "cc": "cruciblecraft:stainless_steel/fluid_pipe",
+        "gt6": "OP.pipeMedium(MT.StainlessSteel)",
+        "status": "ok"
+      },
+      "piston": {
+        "cc": "",
+        "gt6": "IL.PISTONS[3]",
+        "reason": "compact piston module missing for this tier",
+        "status": "blocked"
+      },
+      "status": "explicitly_blocked"
+    },
+    {
+      "cable": {
+        "cc": "cruciblecraft:aluminium/cable",
+        "gt6": "OP.cableGt01(MT.Al)",
+        "status": "ok"
+      },
+      "casing": {
+        "cc": "cruciblecraft:chromium/machine_casing",
+        "gt6": "OP.casingMachine(MT.Cr)",
+        "status": "ok"
+      },
+      "circuit": {
+        "cc": "cruciblecraft:circuit_elite",
+        "gt6": "OD_CIRCUITS[4]",
+        "status": "ok"
+      },
+      "host": 20264,
+      "pipe": {
+        "cc": "cruciblecraft:stainless_steel/large_fluid_pipe",
+        "gt6": "OP.pipeLarge(MT.StainlessSteel)",
+        "status": "ok"
+      },
+      "piston": {
+        "cc": "cruciblecraft:compact_electric_piston_ev",
+        "gt6": "IL.PISTONS[4]",
+        "status": "ok"
+      },
+      "status": "source_exact"
+    },
+    {
+      "cable": {
+        "cc": "cruciblecraft:platinum/cable",
+        "gt6": "OP.cableGt01(MT.Pt)",
+        "status": "ok"
+      },
+      "casing": {
+        "cc": "cruciblecraft:titanium/machine_casing",
+        "gt6": "OP.casingMachine(MT.Ti)",
+        "status": "ok"
+      },
+      "circuit": {
+        "cc": "cruciblecraft:circuit_master",
+        "gt6": "OD_CIRCUITS[5]",
+        "status": "ok"
+      },
+      "host": 20265,
+      "pipe": {
+        "cc": "cruciblecraft:stainless_steel/huge_fluid_pipe",
+        "gt6": "OP.pipeHuge(MT.StainlessSteel)",
+        "status": "ok"
+      },
+      "piston": {
+        "cc": "",
+        "gt6": "IL.PISTONS[5]",
+        "reason": "compact piston module missing for this tier",
+        "status": "blocked"
+      },
+      "status": "explicitly_blocked"
+    }
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "prep_runtime_ready"
+}

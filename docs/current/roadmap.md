@@ -7,16 +7,16 @@
 > 合同见 [capability-delivery-workflow.md](capability-delivery-workflow.md)。
 >
 > **当前状态**：无 unique-active。机器可读 `unique_active_wave = null`。
-> Prep 已签发（不占落地锁）：[辊压成型机](../history/card-plans/prep/辊压成型机详细计划.md)、
-> [集群轧机](../history/card-plans/prep/集群轧机详细计划.md)、
-> [切片机](../history/card-plans/prep/切片机详细计划.md)、
-> [织机](../history/card-plans/prep/织机详细计划.md)、
-> [压力清洗机](../history/card-plans/prep/压力清洗机详细计划.md)、
-> [注射机](../history/card-plans/prep/注射机详细计划.md)、
-> [印刷机](../history/card-plans/prep/印刷机详细计划.md)、
-> [层压机](../history/card-plans/prep/层压机详细计划.md)、
-> [熔融机](../history/card-plans/prep/熔融机详细计划.md)、
-> [纳米加工机](../history/card-plans/prep/纳米加工机详细计划.md)。最近关闭
+> Prep 已签发（不占落地锁）：[辊压成型机](../history/card-plans/prep/辊压成型机详细计划.md)（仍待开工）、
+> [集群轧机](../history/card-plans/prep/集群轧机详细计划.md)（prep 已做完）、
+> [切片机](../history/card-plans/prep/切片机详细计划.md)（prep 已做完）、
+> [织机](../history/card-plans/prep/织机详细计划.md)（prep 已做完）、
+> [压力清洗机](../history/card-plans/prep/压力清洗机详细计划.md)（prep 已做完）、
+> [注射机](../history/card-plans/prep/注射机详细计划.md)（prep 已做完）、
+> [印刷机](../history/card-plans/prep/印刷机详细计划.md)（prep 已做完）、
+> [层压机](../history/card-plans/prep/层压机详细计划.md)（prep 已做完）、
+> [熔融机](../history/card-plans/prep/熔融机详细计划.md)（prep 已做完）、
+> [纳米加工机](../history/card-plans/prep/纳米加工机详细计划.md)（prep 已做完）。最近关闭
 > [热交换器第一切片](../history/card-plans/closed/热交换器第一切片详细计划.md)
 > （计划 slug `energy/heat-exchangers`；8 个单体热交换器；涡轮 / 冷却器 /
 > 17197 仍后续；`player_complete` / `accepted`）。
@@ -114,16 +114,16 @@ semantic wave，不是下一张里程碑编号。
 （`energy/nuclear-fission-hot-fluids`，`player_complete`）。第 1–8 项第一张已关。蒸汽涡轮、冷却器与聚变仍未签发。
 Prep 已签发（不占 unique-active，规则见
 [能力交付流程 §8](capability-delivery-workflow.md)）：
-[辊压成型机](../history/card-plans/prep/辊压成型机详细计划.md)、
-[集群轧机](../history/card-plans/prep/集群轧机详细计划.md)、
-[切片机](../history/card-plans/prep/切片机详细计划.md)、
-[织机](../history/card-plans/prep/织机详细计划.md)、
-[压力清洗机](../history/card-plans/prep/压力清洗机详细计划.md)、
-[注射机](../history/card-plans/prep/注射机详细计划.md)、
-[印刷机](../history/card-plans/prep/印刷机详细计划.md)、
-[层压机](../history/card-plans/prep/层压机详细计划.md)、
-[熔融机](../history/card-plans/prep/熔融机详细计划.md)、
-[纳米加工机](../history/card-plans/prep/纳米加工机详细计划.md)。
+[辊压成型机](../history/card-plans/prep/辊压成型机详细计划.md)（仍待开工）、
+[集群轧机](../history/card-plans/prep/集群轧机详细计划.md)（prep 已做完）、
+[切片机](../history/card-plans/prep/切片机详细计划.md)（prep 已做完）、
+[织机](../history/card-plans/prep/织机详细计划.md)（prep 已做完）、
+[压力清洗机](../history/card-plans/prep/压力清洗机详细计划.md)（prep 已做完）、
+[注射机](../history/card-plans/prep/注射机详细计划.md)（prep 已做完）、
+[印刷机](../history/card-plans/prep/印刷机详细计划.md)（prep 已做完）、
+[层压机](../history/card-plans/prep/层压机详细计划.md)（prep 已做完）、
+[熔融机](../history/card-plans/prep/熔融机详细计划.md)（prep 已做完）、
+[纳米加工机](../history/card-plans/prep/纳米加工机详细计划.md)（prep 已做完）。
 Bath identity / form / object 是账本次序里的下一条链，尚未签发。不要从只读
 growth-order 档案倒推。
 

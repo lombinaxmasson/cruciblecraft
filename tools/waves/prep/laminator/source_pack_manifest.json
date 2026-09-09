@@ -1,0 +1,27 @@
+{
+  "files": [
+    {
+      "path": "tools/waves/prep/laminator/source_pack/dump_slice.json",
+      "role": "dump_slice",
+      "sha256": "ecfe00e80f4eaa780810673dc7790b0a3ee3c95b09c0138199a5f0d8ef8e712d"
+    },
+    {
+      "path": "tools/waves/prep/laminator/source_pack/work_set.json",
+      "role": "work_set",
+      "sha256": "9dd7eaa836fd899952822fd4f82938a11d7404278934e65ac84ee66a50aa357a"
+    }
+  ],
+  "full_replay": {
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "provenance_policy": {
+    "append_only": true,
+    "forbid_gt6u": true
+  },
+  "schema_version": 1,
+  "source_dialect": "gt6",
+  "source_pack_id": "prep/machines-laminator",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_system": "gt6"
+}
