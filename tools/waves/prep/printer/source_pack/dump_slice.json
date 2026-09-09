@@ -1,0 +1,1382 @@
+{
+  "recipes": [
+    {
+      "canBeBuffered": false,
+      "chances": [
+        10000
+      ],
+      "duration": 512,
+      "enabled": true,
+      "euPerTick": 16,
+      "fake": true,
+      "fluidInputs": [
+        {
+          "amount": 72,
+          "displayName": "Chemical Black Dye",
+          "fluid": "dye.chemical.black"
+        }
+      ],
+      "fluidOutputs": [],
+      "hidden": false,
+      "inputs": [
+        {
+          "count": 3,
+          "displayName": "Paper",
+          "item": "minecraft:paper",
+          "meta": "*",
+          "metaRaw": 32767
+        },
+        {
+          "count": 0,
+          "displayName": "Containing scanned Book",
+          "item": "gregtech:gt.multiitem.technological",
+          "meta": 32001,
+          "nbt": "{display:{Name:\"Containing scanned Book\"}}"
+        }
+      ],
+      "maxChances": [
+        10000
+      ],
+      "needsEmptyOutput": false,
+      "noNbtChecks": false,
+      "outputs": [
+        {
+          "count": 1,
+          "displayName": "Printed Pages",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7002
+        }
+      ],
+      "source_recipe_index": 0,
+      "source_row_sha256": "fe9a7e301e47c1f9c65fe37db2fff40349a156b9eb90fdace8d56d8a0ec2c975",
+      "specialValue": 0,
+      "template_key": "gt.recipe.printer#0000"
+    },
+    {
+      "canBeBuffered": false,
+      "chances": [
+        10000
+      ],
+      "duration": 64,
+      "enabled": true,
+      "euPerTick": 16,
+      "fake": true,
+      "fluidInputs": [
+        {
+          "amount": 16,
+          "displayName": "Chemical Yellow Dye",
+          "fluid": "dye.chemical.yellow"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Magenta Dye",
+          "fluid": "dye.chemical.magenta"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Cyan Dye",
+          "fluid": "dye.chemical.cyan"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Black Dye",
+          "fluid": "dye.chemical.black"
+        }
+      ],
+      "fluidOutputs": [],
+      "hidden": false,
+      "inputs": [
+        {
+          "count": 1,
+          "displayName": "Red Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7031
+        },
+        {
+          "count": 0,
+          "displayName": "Containing scanned Block",
+          "item": "gregtech:gt.multiitem.technological",
+          "meta": 32001,
+          "nbt": "{display:{Name:\"Containing scanned Block\"}}"
+        }
+      ],
+      "maxChances": [
+        10000
+      ],
+      "needsEmptyOutput": false,
+      "noNbtChecks": false,
+      "outputs": [
+        {
+          "count": 1,
+          "displayName": "Red Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7031
+        }
+      ],
+      "source_recipe_index": 1,
+      "source_row_sha256": "612e783ac654d25e7af61565ee6a72be7e73c3d2b053d4d58ee640c1c42bcb9e",
+      "specialValue": 0,
+      "template_key": "gt.recipe.printer#0000"
+    },
+    {
+      "canBeBuffered": false,
+      "chances": [
+        10000
+      ],
+      "duration": 64,
+      "enabled": true,
+      "euPerTick": 16,
+      "fake": true,
+      "fluidInputs": [
+        {
+          "amount": 16,
+          "displayName": "Chemical Yellow Dye",
+          "fluid": "dye.chemical.yellow"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Magenta Dye",
+          "fluid": "dye.chemical.magenta"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Cyan Dye",
+          "fluid": "dye.chemical.cyan"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Black Dye",
+          "fluid": "dye.chemical.black"
+        }
+      ],
+      "fluidOutputs": [],
+      "hidden": false,
+      "inputs": [
+        {
+          "count": 1,
+          "displayName": "Pink Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7039
+        },
+        {
+          "count": 0,
+          "displayName": "Containing scanned Block",
+          "item": "gregtech:gt.multiitem.technological",
+          "meta": 32001,
+          "nbt": "{display:{Name:\"Containing scanned Block\"}}"
+        }
+      ],
+      "maxChances": [
+        10000
+      ],
+      "needsEmptyOutput": false,
+      "noNbtChecks": false,
+      "outputs": [
+        {
+          "count": 1,
+          "displayName": "Pink Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7039
+        }
+      ],
+      "source_recipe_index": 2,
+      "source_row_sha256": "82e4de7b4cc02a786dfc6b3f06f617b73f06d3547b6cd3946978905ec9c4498d",
+      "specialValue": 0,
+      "template_key": "gt.recipe.printer#0000"
+    },
+    {
+      "canBeBuffered": false,
+      "chances": [
+        10000
+      ],
+      "duration": 1024,
+      "enabled": true,
+      "euPerTick": 16,
+      "fake": true,
+      "fluidInputs": [
+        {
+          "amount": 144,
+          "displayName": "Chemical Black Dye",
+          "fluid": "dye.chemical.black"
+        }
+      ],
+      "fluidOutputs": [],
+      "hidden": false,
+      "inputs": [
+        {
+          "count": 6,
+          "displayName": "Paper",
+          "item": "minecraft:paper",
+          "meta": "*",
+          "metaRaw": 32767
+        },
+        {
+          "count": 0,
+          "displayName": "Containing large scanned Book",
+          "item": "gregtech:gt.multiitem.technological",
+          "meta": 32001,
+          "nbt": "{display:{Name:\"Containing large scanned Book\"}}"
+        }
+      ],
+      "maxChances": [
+        10000
+      ],
+      "needsEmptyOutput": false,
+      "noNbtChecks": false,
+      "outputs": [
+        {
+          "count": 1,
+          "displayName": "Many Printed Pages",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7003
+        }
+      ],
+      "source_recipe_index": 3,
+      "source_row_sha256": "6fd17bdb441f56138dbecf37631907243267c57a9d6475663b021bc3ddf8faa9",
+      "specialValue": 0,
+      "template_key": "gt.recipe.printer#0000"
+    },
+    {
+      "canBeBuffered": true,
+      "chances": [
+        10000
+      ],
+      "duration": 256,
+      "enabled": true,
+      "euPerTick": 16,
+      "fake": false,
+      "fluidInputs": [
+        {
+          "amount": 144,
+          "displayName": "Chemical Black Dye",
+          "fluid": "dye.chemical.black"
+        }
+      ],
+      "fluidOutputs": [],
+      "hidden": false,
+      "inputs": [
+        {
+          "count": 1,
+          "displayName": "Book",
+          "item": "minecraft:book",
+          "meta": "*",
+          "metaRaw": 32767
+        }
+      ],
+      "maxChances": [
+        10000
+      ],
+      "needsEmptyOutput": false,
+      "noNbtChecks": true,
+      "outputs": [
+        {
+          "count": 1,
+          "displayName": "Book",
+          "item": "gregtech:gt.multiitem.books",
+          "meta": 8,
+          "nbt": "{author:\"GregTech Electrics\",book:\"Manual_Printer\",title:\"Scanner & Printer Manual\"}"
+        }
+      ],
+      "source_recipe_index": 4,
+      "source_row_sha256": "fc935786bbbf0ac16846b448d520a7faeb14d4a178f94dd5430f2bb73dc45ffb",
+      "specialValue": 0,
+      "template_key": "gt.recipe.printer#0000"
+    },
+    {
+      "canBeBuffered": false,
+      "chances": [
+        10000
+      ],
+      "duration": 64,
+      "enabled": true,
+      "euPerTick": 16,
+      "fake": true,
+      "fluidInputs": [
+        {
+          "amount": 16,
+          "displayName": "Chemical Yellow Dye",
+          "fluid": "dye.chemical.yellow"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Magenta Dye",
+          "fluid": "dye.chemical.magenta"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Cyan Dye",
+          "fluid": "dye.chemical.cyan"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Black Dye",
+          "fluid": "dye.chemical.black"
+        }
+      ],
+      "fluidOutputs": [],
+      "hidden": false,
+      "inputs": [
+        {
+          "count": 1,
+          "displayName": "Light Gray Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7037
+        },
+        {
+          "count": 0,
+          "displayName": "Containing scanned Block",
+          "item": "gregtech:gt.multiitem.technological",
+          "meta": 32001,
+          "nbt": "{display:{Name:\"Containing scanned Block\"}}"
+        }
+      ],
+      "maxChances": [
+        10000
+      ],
+      "needsEmptyOutput": false,
+      "noNbtChecks": false,
+      "outputs": [
+        {
+          "count": 1,
+          "displayName": "Light Gray Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7037
+        }
+      ],
+      "source_recipe_index": 5,
+      "source_row_sha256": "a0303b0d6dc05209315e5b85de3f8de0618f669d63b40b6314539106c0711971",
+      "specialValue": 0,
+      "template_key": "gt.recipe.printer#0000"
+    },
+    {
+      "canBeBuffered": false,
+      "chances": [
+        10000
+      ],
+      "duration": 64,
+      "enabled": true,
+      "euPerTick": 16,
+      "fake": true,
+      "fluidInputs": [
+        {
+          "amount": 16,
+          "displayName": "Chemical Yellow Dye",
+          "fluid": "dye.chemical.yellow"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Magenta Dye",
+          "fluid": "dye.chemical.magenta"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Cyan Dye",
+          "fluid": "dye.chemical.cyan"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Black Dye",
+          "fluid": "dye.chemical.black"
+        }
+      ],
+      "fluidOutputs": [],
+      "hidden": false,
+      "inputs": [
+        {
+          "count": 1,
+          "displayName": "White Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7045
+        },
+        {
+          "count": 0,
+          "displayName": "Containing scanned Block",
+          "item": "gregtech:gt.multiitem.technological",
+          "meta": 32001,
+          "nbt": "{display:{Name:\"Containing scanned Block\"}}"
+        }
+      ],
+      "maxChances": [
+        10000
+      ],
+      "needsEmptyOutput": false,
+      "noNbtChecks": false,
+      "outputs": [
+        {
+          "count": 1,
+          "displayName": "White Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7045
+        }
+      ],
+      "source_recipe_index": 6,
+      "source_row_sha256": "af392b4800d4afcf262d3759d0f4b2c1035fb5e76dc3719d773e86c9b87bea2c",
+      "specialValue": 0,
+      "template_key": "gt.recipe.printer#0000"
+    },
+    {
+      "canBeBuffered": false,
+      "chances": [
+        10000
+      ],
+      "duration": 64,
+      "enabled": true,
+      "euPerTick": 16,
+      "fake": true,
+      "fluidInputs": [
+        {
+          "amount": 16,
+          "displayName": "Chemical Yellow Dye",
+          "fluid": "dye.chemical.yellow"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Magenta Dye",
+          "fluid": "dye.chemical.magenta"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Cyan Dye",
+          "fluid": "dye.chemical.cyan"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Black Dye",
+          "fluid": "dye.chemical.black"
+        }
+      ],
+      "fluidOutputs": [],
+      "hidden": false,
+      "inputs": [
+        {
+          "count": 1,
+          "displayName": "Brown Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7033
+        },
+        {
+          "count": 0,
+          "displayName": "Containing scanned Block",
+          "item": "gregtech:gt.multiitem.technological",
+          "meta": 32001,
+          "nbt": "{display:{Name:\"Containing scanned Block\"}}"
+        }
+      ],
+      "maxChances": [
+        10000
+      ],
+      "needsEmptyOutput": false,
+      "noNbtChecks": false,
+      "outputs": [
+        {
+          "count": 1,
+          "displayName": "Brown Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7033
+        }
+      ],
+      "source_recipe_index": 7,
+      "source_row_sha256": "cee7db96ef79cb2c84972671cf719a9a32cafbd257b582216b478bd5af6189c4",
+      "specialValue": 0,
+      "template_key": "gt.recipe.printer#0000"
+    },
+    {
+      "canBeBuffered": false,
+      "chances": [
+        10000
+      ],
+      "duration": 64,
+      "enabled": true,
+      "euPerTick": 16,
+      "fake": true,
+      "fluidInputs": [
+        {
+          "amount": 16,
+          "displayName": "Chemical Yellow Dye",
+          "fluid": "dye.chemical.yellow"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Magenta Dye",
+          "fluid": "dye.chemical.magenta"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Cyan Dye",
+          "fluid": "dye.chemical.cyan"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Black Dye",
+          "fluid": "dye.chemical.black"
+        }
+      ],
+      "fluidOutputs": [],
+      "hidden": false,
+      "inputs": [
+        {
+          "count": 1,
+          "displayName": "Black Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7030
+        },
+        {
+          "count": 0,
+          "displayName": "Containing scanned Block",
+          "item": "gregtech:gt.multiitem.technological",
+          "meta": 32001,
+          "nbt": "{display:{Name:\"Containing scanned Block\"}}"
+        }
+      ],
+      "maxChances": [
+        10000
+      ],
+      "needsEmptyOutput": false,
+      "noNbtChecks": false,
+      "outputs": [
+        {
+          "count": 1,
+          "displayName": "Black Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7030
+        }
+      ],
+      "source_recipe_index": 8,
+      "source_row_sha256": "d8e2e6441d42e1b93a649ecf8bdef74c94e52ca96efe7a9e007f6ce7ba68af0a",
+      "specialValue": 0,
+      "template_key": "gt.recipe.printer#0000"
+    },
+    {
+      "canBeBuffered": false,
+      "chances": [
+        10000
+      ],
+      "duration": 64,
+      "enabled": true,
+      "euPerTick": 16,
+      "fake": true,
+      "fluidInputs": [
+        {
+          "amount": 16,
+          "displayName": "Chemical Yellow Dye",
+          "fluid": "dye.chemical.yellow"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Magenta Dye",
+          "fluid": "dye.chemical.magenta"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Cyan Dye",
+          "fluid": "dye.chemical.cyan"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Black Dye",
+          "fluid": "dye.chemical.black"
+        }
+      ],
+      "fluidOutputs": [],
+      "hidden": false,
+      "inputs": [
+        {
+          "count": 1,
+          "displayName": "Gray Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7038
+        },
+        {
+          "count": 0,
+          "displayName": "Containing scanned Block",
+          "item": "gregtech:gt.multiitem.technological",
+          "meta": 32001,
+          "nbt": "{display:{Name:\"Containing scanned Block\"}}"
+        }
+      ],
+      "maxChances": [
+        10000
+      ],
+      "needsEmptyOutput": false,
+      "noNbtChecks": false,
+      "outputs": [
+        {
+          "count": 1,
+          "displayName": "Gray Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7038
+        }
+      ],
+      "source_recipe_index": 9,
+      "source_row_sha256": "71380f6f5f6503e23d20eff5f655ac641c6232dcaeaf33fb521bb3828252f9a1",
+      "specialValue": 0,
+      "template_key": "gt.recipe.printer#0000"
+    },
+    {
+      "canBeBuffered": false,
+      "chances": [
+        10000
+      ],
+      "duration": 64,
+      "enabled": true,
+      "euPerTick": 16,
+      "fake": true,
+      "fluidInputs": [
+        {
+          "amount": 16,
+          "displayName": "Chemical Yellow Dye",
+          "fluid": "dye.chemical.yellow"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Magenta Dye",
+          "fluid": "dye.chemical.magenta"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Cyan Dye",
+          "fluid": "dye.chemical.cyan"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Black Dye",
+          "fluid": "dye.chemical.black"
+        }
+      ],
+      "fluidOutputs": [],
+      "hidden": false,
+      "inputs": [
+        {
+          "count": 1,
+          "displayName": "Cyan Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7036
+        },
+        {
+          "count": 0,
+          "displayName": "Containing scanned Block",
+          "item": "gregtech:gt.multiitem.technological",
+          "meta": 32001,
+          "nbt": "{display:{Name:\"Containing scanned Block\"}}"
+        }
+      ],
+      "maxChances": [
+        10000
+      ],
+      "needsEmptyOutput": false,
+      "noNbtChecks": false,
+      "outputs": [
+        {
+          "count": 1,
+          "displayName": "Cyan Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7036
+        }
+      ],
+      "source_recipe_index": 10,
+      "source_row_sha256": "5de999dd36b250c311aa68aa84d4e843eb971f434fa9bd7ddbea14aa36456df8",
+      "specialValue": 0,
+      "template_key": "gt.recipe.printer#0000"
+    },
+    {
+      "canBeBuffered": false,
+      "chances": [
+        10000
+      ],
+      "duration": 64,
+      "enabled": true,
+      "euPerTick": 16,
+      "fake": true,
+      "fluidInputs": [
+        {
+          "amount": 16,
+          "displayName": "Chemical Yellow Dye",
+          "fluid": "dye.chemical.yellow"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Magenta Dye",
+          "fluid": "dye.chemical.magenta"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Cyan Dye",
+          "fluid": "dye.chemical.cyan"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Black Dye",
+          "fluid": "dye.chemical.black"
+        }
+      ],
+      "fluidOutputs": [],
+      "hidden": false,
+      "inputs": [
+        {
+          "count": 1,
+          "displayName": "Yellow Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7041
+        },
+        {
+          "count": 0,
+          "displayName": "Containing scanned Block",
+          "item": "gregtech:gt.multiitem.technological",
+          "meta": 32001,
+          "nbt": "{display:{Name:\"Containing scanned Block\"}}"
+        }
+      ],
+      "maxChances": [
+        10000
+      ],
+      "needsEmptyOutput": false,
+      "noNbtChecks": false,
+      "outputs": [
+        {
+          "count": 1,
+          "displayName": "Yellow Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7041
+        }
+      ],
+      "source_recipe_index": 11,
+      "source_row_sha256": "a10f3232f745e40202b16ff317eb47b6b01e48eebace6f56d693d828048c79ae",
+      "specialValue": 0,
+      "template_key": "gt.recipe.printer#0000"
+    },
+    {
+      "canBeBuffered": false,
+      "chances": [
+        10000
+      ],
+      "duration": 32,
+      "enabled": true,
+      "euPerTick": 16,
+      "fake": true,
+      "fluidInputs": [
+        {
+          "amount": 16,
+          "displayName": "Chemical White Dye",
+          "fluid": "dye.chemical.white"
+        }
+      ],
+      "fluidOutputs": [],
+      "hidden": false,
+      "inputs": [
+        {
+          "count": 1,
+          "displayName": "Empty Blueprint",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7010
+        },
+        {
+          "count": 0,
+          "displayName": "Containing scanned Blueprint",
+          "item": "gregtech:gt.multiitem.technological",
+          "meta": 32001,
+          "nbt": "{display:{Name:\"Containing scanned Blueprint\"}}"
+        }
+      ],
+      "maxChances": [
+        10000
+      ],
+      "needsEmptyOutput": false,
+      "noNbtChecks": false,
+      "outputs": [
+        {
+          "count": 1,
+          "displayName": "Blueprint",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7011
+        }
+      ],
+      "source_recipe_index": 12,
+      "source_row_sha256": "bdbb0da65fc806f66c0efc26b57a2c57b5ca46fc4db57dc949ba0ee5dbf456cd",
+      "specialValue": 0,
+      "template_key": "gt.recipe.printer#0000"
+    },
+    {
+      "canBeBuffered": false,
+      "chances": [
+        10000
+      ],
+      "duration": 64,
+      "enabled": true,
+      "euPerTick": 16,
+      "fake": true,
+      "fluidInputs": [
+        {
+          "amount": 16,
+          "displayName": "Chemical Yellow Dye",
+          "fluid": "dye.chemical.yellow"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Magenta Dye",
+          "fluid": "dye.chemical.magenta"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Cyan Dye",
+          "fluid": "dye.chemical.cyan"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Black Dye",
+          "fluid": "dye.chemical.black"
+        }
+      ],
+      "fluidOutputs": [],
+      "hidden": false,
+      "inputs": [
+        {
+          "count": 1,
+          "displayName": "Blue Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7034
+        },
+        {
+          "count": 0,
+          "displayName": "Containing scanned Block",
+          "item": "gregtech:gt.multiitem.technological",
+          "meta": 32001,
+          "nbt": "{display:{Name:\"Containing scanned Block\"}}"
+        }
+      ],
+      "maxChances": [
+        10000
+      ],
+      "needsEmptyOutput": false,
+      "noNbtChecks": false,
+      "outputs": [
+        {
+          "count": 1,
+          "displayName": "Blue Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7034
+        }
+      ],
+      "source_recipe_index": 13,
+      "source_row_sha256": "8d962698790c1693565314b6f5f0b6ddd023a730445ead5103deed26221817da",
+      "specialValue": 0,
+      "template_key": "gt.recipe.printer#0000"
+    },
+    {
+      "canBeBuffered": false,
+      "chances": [
+        10000
+      ],
+      "duration": 128,
+      "enabled": true,
+      "euPerTick": 16,
+      "fake": true,
+      "fluidInputs": [
+        {
+          "amount": 144,
+          "displayName": "Chemical Blue Dye",
+          "fluid": "dye.chemical.blue"
+        }
+      ],
+      "fluidOutputs": [],
+      "hidden": false,
+      "inputs": [
+        {
+          "count": 1,
+          "displayName": "Paper",
+          "item": "minecraft:paper",
+          "meta": "*",
+          "metaRaw": 32767
+        },
+        {
+          "count": 0,
+          "displayName": "Containing scanned Blueprint",
+          "item": "gregtech:gt.multiitem.technological",
+          "meta": 32001,
+          "nbt": "{display:{Name:\"Containing scanned Blueprint\"}}"
+        }
+      ],
+      "maxChances": [
+        10000
+      ],
+      "needsEmptyOutput": false,
+      "noNbtChecks": false,
+      "outputs": [
+        {
+          "count": 1,
+          "displayName": "Blueprint",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7011
+        }
+      ],
+      "source_recipe_index": 14,
+      "source_row_sha256": "ce0e3ebcc5ea22f525e99b6532d12dac09e526540e3cb4851d0add6529d326f4",
+      "specialValue": 0,
+      "template_key": "gt.recipe.printer#0000"
+    },
+    {
+      "canBeBuffered": false,
+      "chances": [
+        10000
+      ],
+      "duration": 64,
+      "enabled": true,
+      "euPerTick": 16,
+      "fake": true,
+      "fluidInputs": [
+        {
+          "amount": 16,
+          "displayName": "Chemical Yellow Dye",
+          "fluid": "dye.chemical.yellow"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Magenta Dye",
+          "fluid": "dye.chemical.magenta"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Cyan Dye",
+          "fluid": "dye.chemical.cyan"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Black Dye",
+          "fluid": "dye.chemical.black"
+        }
+      ],
+      "fluidOutputs": [],
+      "hidden": false,
+      "inputs": [
+        {
+          "count": 1,
+          "displayName": "Magenta Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7043
+        },
+        {
+          "count": 0,
+          "displayName": "Containing scanned Block",
+          "item": "gregtech:gt.multiitem.technological",
+          "meta": 32001,
+          "nbt": "{display:{Name:\"Containing scanned Block\"}}"
+        }
+      ],
+      "maxChances": [
+        10000
+      ],
+      "needsEmptyOutput": false,
+      "noNbtChecks": false,
+      "outputs": [
+        {
+          "count": 1,
+          "displayName": "Magenta Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7043
+        }
+      ],
+      "source_recipe_index": 15,
+      "source_row_sha256": "6511a33a87fa24c0074cc1dc1dd6911e225118693bea275f64f8ff082ee41b8b",
+      "specialValue": 0,
+      "template_key": "gt.recipe.printer#0000"
+    },
+    {
+      "canBeBuffered": false,
+      "chances": [
+        10000
+      ],
+      "duration": 64,
+      "enabled": true,
+      "euPerTick": 16,
+      "fake": true,
+      "fluidInputs": [
+        {
+          "amount": 16,
+          "displayName": "Chemical Yellow Dye",
+          "fluid": "dye.chemical.yellow"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Magenta Dye",
+          "fluid": "dye.chemical.magenta"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Cyan Dye",
+          "fluid": "dye.chemical.cyan"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Black Dye",
+          "fluid": "dye.chemical.black"
+        }
+      ],
+      "fluidOutputs": [],
+      "hidden": false,
+      "inputs": [
+        {
+          "count": 1,
+          "displayName": "Lime Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7040
+        },
+        {
+          "count": 0,
+          "displayName": "Containing scanned Block",
+          "item": "gregtech:gt.multiitem.technological",
+          "meta": 32001,
+          "nbt": "{display:{Name:\"Containing scanned Block\"}}"
+        }
+      ],
+      "maxChances": [
+        10000
+      ],
+      "needsEmptyOutput": false,
+      "noNbtChecks": false,
+      "outputs": [
+        {
+          "count": 1,
+          "displayName": "Lime Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7040
+        }
+      ],
+      "source_recipe_index": 16,
+      "source_row_sha256": "ae8a91acd40ee02df4ff1183d8cad9fac63e506a43b0f2248e5353923a040ade",
+      "specialValue": 0,
+      "template_key": "gt.recipe.printer#0000"
+    },
+    {
+      "canBeBuffered": false,
+      "chances": [
+        10000
+      ],
+      "duration": 64,
+      "enabled": true,
+      "euPerTick": 16,
+      "fake": true,
+      "fluidInputs": [
+        {
+          "amount": 16,
+          "displayName": "Chemical Yellow Dye",
+          "fluid": "dye.chemical.yellow"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Magenta Dye",
+          "fluid": "dye.chemical.magenta"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Cyan Dye",
+          "fluid": "dye.chemical.cyan"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Black Dye",
+          "fluid": "dye.chemical.black"
+        }
+      ],
+      "fluidOutputs": [],
+      "hidden": false,
+      "inputs": [
+        {
+          "count": 1,
+          "displayName": "Light Blue Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7042
+        },
+        {
+          "count": 0,
+          "displayName": "Containing scanned Block",
+          "item": "gregtech:gt.multiitem.technological",
+          "meta": 32001,
+          "nbt": "{display:{Name:\"Containing scanned Block\"}}"
+        }
+      ],
+      "maxChances": [
+        10000
+      ],
+      "needsEmptyOutput": false,
+      "noNbtChecks": false,
+      "outputs": [
+        {
+          "count": 1,
+          "displayName": "Light Blue Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7042
+        }
+      ],
+      "source_recipe_index": 17,
+      "source_row_sha256": "14b4747797ff4b1970944f8f035f9255cc064647018fa776f78eaa9e21aa6b7f",
+      "specialValue": 0,
+      "template_key": "gt.recipe.printer#0000"
+    },
+    {
+      "canBeBuffered": false,
+      "chances": [
+        10000
+      ],
+      "duration": 64,
+      "enabled": true,
+      "euPerTick": 16,
+      "fake": true,
+      "fluidInputs": [
+        {
+          "amount": 16,
+          "displayName": "Chemical Yellow Dye",
+          "fluid": "dye.chemical.yellow"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Magenta Dye",
+          "fluid": "dye.chemical.magenta"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Cyan Dye",
+          "fluid": "dye.chemical.cyan"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Black Dye",
+          "fluid": "dye.chemical.black"
+        }
+      ],
+      "fluidOutputs": [],
+      "hidden": false,
+      "inputs": [
+        {
+          "count": 1,
+          "displayName": "Empty Map",
+          "item": "minecraft:map",
+          "meta": "*",
+          "metaRaw": 32767
+        },
+        {
+          "count": 0,
+          "displayName": "Containing scanned Map",
+          "item": "gregtech:gt.multiitem.technological",
+          "meta": 32001,
+          "nbt": "{display:{Name:\"Containing scanned Map\"}}"
+        }
+      ],
+      "maxChances": [
+        10000
+      ],
+      "needsEmptyOutput": false,
+      "noNbtChecks": false,
+      "outputs": [
+        {
+          "count": 1,
+          "displayName": "Map",
+          "item": "minecraft:filled_map",
+          "meta": 0
+        }
+      ],
+      "source_recipe_index": 18,
+      "source_row_sha256": "e7b80a81a7e8619a47e77bca3ad1d28ea066eaa5530885ecfa179ac7366f3026",
+      "specialValue": 0,
+      "template_key": "gt.recipe.printer#0000"
+    },
+    {
+      "canBeBuffered": false,
+      "chances": [
+        10000
+      ],
+      "duration": 64,
+      "enabled": true,
+      "euPerTick": 16,
+      "fake": true,
+      "fluidInputs": [
+        {
+          "amount": 16,
+          "displayName": "Chemical Yellow Dye",
+          "fluid": "dye.chemical.yellow"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Magenta Dye",
+          "fluid": "dye.chemical.magenta"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Cyan Dye",
+          "fluid": "dye.chemical.cyan"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Black Dye",
+          "fluid": "dye.chemical.black"
+        }
+      ],
+      "fluidOutputs": [],
+      "hidden": false,
+      "inputs": [
+        {
+          "count": 1,
+          "displayName": "Green Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7032
+        },
+        {
+          "count": 0,
+          "displayName": "Containing scanned Block",
+          "item": "gregtech:gt.multiitem.technological",
+          "meta": 32001,
+          "nbt": "{display:{Name:\"Containing scanned Block\"}}"
+        }
+      ],
+      "maxChances": [
+        10000
+      ],
+      "needsEmptyOutput": false,
+      "noNbtChecks": false,
+      "outputs": [
+        {
+          "count": 1,
+          "displayName": "Green Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7032
+        }
+      ],
+      "source_recipe_index": 19,
+      "source_row_sha256": "ad517bc51518f4e9e2b6709491a58dc7a8658e6a32cd5f4c48feb32340915a3c",
+      "specialValue": 0,
+      "template_key": "gt.recipe.printer#0000"
+    },
+    {
+      "canBeBuffered": false,
+      "chances": [
+        10000
+      ],
+      "duration": 64,
+      "enabled": true,
+      "euPerTick": 16,
+      "fake": true,
+      "fluidInputs": [
+        {
+          "amount": 16,
+          "displayName": "Chemical Yellow Dye",
+          "fluid": "dye.chemical.yellow"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Magenta Dye",
+          "fluid": "dye.chemical.magenta"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Cyan Dye",
+          "fluid": "dye.chemical.cyan"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Black Dye",
+          "fluid": "dye.chemical.black"
+        }
+      ],
+      "fluidOutputs": [],
+      "hidden": false,
+      "inputs": [
+        {
+          "count": 1,
+          "displayName": "Purple Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7035
+        },
+        {
+          "count": 0,
+          "displayName": "Containing scanned Block",
+          "item": "gregtech:gt.multiitem.technological",
+          "meta": 32001,
+          "nbt": "{display:{Name:\"Containing scanned Block\"}}"
+        }
+      ],
+      "maxChances": [
+        10000
+      ],
+      "needsEmptyOutput": false,
+      "noNbtChecks": false,
+      "outputs": [
+        {
+          "count": 1,
+          "displayName": "Purple Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7035
+        }
+      ],
+      "source_recipe_index": 20,
+      "source_row_sha256": "a02ac33e45cae1ce015af6c1afe115d5611ad23d8ff24048e7e9811eee268e9d",
+      "specialValue": 0,
+      "template_key": "gt.recipe.printer#0000"
+    },
+    {
+      "canBeBuffered": false,
+      "chances": [
+        10000
+      ],
+      "duration": 64,
+      "enabled": true,
+      "euPerTick": 16,
+      "fake": true,
+      "fluidInputs": [
+        {
+          "amount": 16,
+          "displayName": "Chemical Yellow Dye",
+          "fluid": "dye.chemical.yellow"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Magenta Dye",
+          "fluid": "dye.chemical.magenta"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Cyan Dye",
+          "fluid": "dye.chemical.cyan"
+        },
+        {
+          "amount": 16,
+          "displayName": "Chemical Black Dye",
+          "fluid": "dye.chemical.black"
+        }
+      ],
+      "fluidOutputs": [],
+      "hidden": false,
+      "inputs": [
+        {
+          "count": 1,
+          "displayName": "Orange Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7044
+        },
+        {
+          "count": 0,
+          "displayName": "Containing scanned Block",
+          "item": "gregtech:gt.multiitem.technological",
+          "meta": 32001,
+          "nbt": "{display:{Name:\"Containing scanned Block\"}}"
+        }
+      ],
+      "maxChances": [
+        10000
+      ],
+      "needsEmptyOutput": false,
+      "noNbtChecks": false,
+      "outputs": [
+        {
+          "count": 1,
+          "displayName": "Orange Canvas",
+          "item": "gregtech:gt.multiitem.randomtools",
+          "meta": 7044
+        }
+      ],
+      "source_recipe_index": 21,
+      "source_row_sha256": "908a5e21f2eb54500af927575459a9a23a1660a1828d49e33914ea8a828716ee",
+      "specialValue": 0,
+      "template_key": "gt.recipe.printer#0000"
+    }
+  ],
+  "source_map": "gt.recipe.printer",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+}

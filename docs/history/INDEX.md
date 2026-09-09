@@ -18,7 +18,7 @@
 ## 当前 active 卡
 
 无 unique-active。机器可读 `unique_active_wave = null`。
-Prep 仍排队，不占落地锁。
+Prep 不占落地锁。辊压成型机仍待开工；集群轧机与其余八张加工机 prep 已做完可停手。
 
 ## 当前 prep 卡
 
@@ -28,23 +28,23 @@ Prep 仍排队，不占落地锁。
 [辊压成型机](card-plans/prep/辊压成型机详细计划.md)
 （`machines/roll-former`，dump 28；建议第一张 live）、
 [集群轧机](card-plans/prep/集群轧机详细计划.md)
-（`machines/cluster-mill`，dump 307；四层外壳已跟普通外壳同材料域）、
+（`machines/cluster-mill`，prep 已做完；dump 307 / selected 247；四层外壳已跟普通外壳同材料域）、
 [切片机](card-plans/prep/切片机详细计划.md)
-（`machines/slicer`，dump 33；`IL.CONVEYERS` 模块与多数活塞 blocked）、
+（`machines/slicer`，prep 已做完；dump 33 / selected 32；`IL.CONVEYERS` 模块与多数活塞 blocked）、
 [织机](card-plans/prep/织机详细计划.md)
-（`machines/loom`，dump 1334；动能四台 D0 全绿；电驱同图五台缺多数电机）、
+（`machines/loom`，prep 已做完；dump 1334 / selected 1090；动能四台 D0 全绿；电驱同图五台缺多数电机）、
 [压力清洗机](card-plans/prep/压力清洗机详细计划.md)
-（`machines/pressure-washer`，dump 312；D0 全绿；贴图键 `debarker`）、
+（`machines/pressure-washer`，prep 已做完；dump 312 / selected 192；D0 全绿；贴图键 `debarker`）、
 [注射机](card-plans/prep/注射机详细计划.md)
-（`machines/injector`，dump 638；仅 20264 活塞 EV 可 exact）、
+（`machines/injector`，prep 已做完；dump 638 / selected 611；仅 20264 活塞 EV 可 exact）、
 [印刷机](card-plans/prep/印刷机详细计划.md)
-（`machines/printer`，dump 22；五台缺传送带模块；不要当第一张 live）、
+（`machines/printer`，prep 已做完；dump 22 / selected 0；五台缺传送带模块；不要当第一张 live）、
 [层压机](card-plans/prep/层压机详细计划.md)
-（`machines/laminator`，dump 498；HU；D0 全绿）、
+（`machines/laminator`，prep 已做完；dump 498 / selected 232；HU；D0 全绿）、
 [熔融机](card-plans/prep/熔融机详细计划.md)
-（`machines/melter`，dump 6756；单机 22010；不是熔炼炉）、
+（`machines/melter`，prep 已做完；dump 6756 / selected 3973；单机 22010；不是熔炼炉）、
 [纳米加工机](card-plans/prep/纳米加工机详细计划.md)
-（`machines/nanofab`，dump 64；激光气体/处理器/发射器/传感器 blocked）。
+（`machines/nanofab`，prep 已做完；dump 64 / selected 52；激光气体/处理器/发射器/传感器 blocked）。
 未签发为 prep：聚变、QU Energizer、massfab、replicator、Boxinator/Unboxinator（load）、
 磁极化/磁选（MU）、冷冻机与低温混合机（CU；计划正文禁止照抄 GT6 显示名里的档位字样）。
 `gt.recipe.hammer` 的主机是手锤/风镐，不是 Basic Machine，不要开成加工机 prep。

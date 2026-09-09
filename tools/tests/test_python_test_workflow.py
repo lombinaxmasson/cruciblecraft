@@ -113,6 +113,7 @@ class PythonTestWorkflowTest(unittest.TestCase):
                 "test_recipe_fresh",
                 "test_machine_delivery",
                 "test_cluster_mill_prep",
+                "test_prep_machines",
             ),
             names,
         )

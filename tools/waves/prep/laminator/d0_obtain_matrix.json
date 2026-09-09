@@ -1,0 +1,109 @@
+{
+  "capability_slug": "machines/laminator",
+  "grid": [
+    "SwS",
+    "GMG",
+    "SCS"
+  ],
+  "hosts": [
+    {
+      "casing": {
+        "cc": "cruciblecraft:steel/machine_casing",
+        "gt6": "OP.casingMachine(ANY.Steel)",
+        "status": "ok"
+      },
+      "copper_double_plate": {
+        "cc": "cruciblecraft:copper/double_plate",
+        "gt6": "OP.plateDouble(ANY.Cu)",
+        "status": "ok"
+      },
+      "host": 20391,
+      "rod": {
+        "cc": "cruciblecraft:steel/rod",
+        "gt6": "OP.stick(ANY.Steel)",
+        "status": "ok"
+      },
+      "small_gear": {
+        "cc": "cruciblecraft:steel/small_gear",
+        "gt6": "OP.gearGtSmall(ANY.Steel)",
+        "status": "ok"
+      },
+      "status": "source_exact"
+    },
+    {
+      "casing": {
+        "cc": "cruciblecraft:invar/machine_casing",
+        "gt6": "OP.casingMachine(MT.Invar)",
+        "status": "ok"
+      },
+      "copper_double_plate": {
+        "cc": "cruciblecraft:copper/double_plate",
+        "gt6": "OP.plateDouble(ANY.Cu)",
+        "status": "ok"
+      },
+      "host": 20392,
+      "rod": {
+        "cc": "cruciblecraft:invar/rod",
+        "gt6": "OP.stick(MT.Invar)",
+        "status": "ok"
+      },
+      "small_gear": {
+        "cc": "cruciblecraft:invar/small_gear",
+        "gt6": "OP.gearGtSmall(MT.Invar)",
+        "status": "ok"
+      },
+      "status": "source_exact"
+    },
+    {
+      "casing": {
+        "cc": "cruciblecraft:titanium/machine_casing",
+        "gt6": "OP.casingMachine(MT.Ti)",
+        "status": "ok"
+      },
+      "copper_double_plate": {
+        "cc": "cruciblecraft:copper/double_plate",
+        "gt6": "OP.plateDouble(ANY.Cu)",
+        "status": "ok"
+      },
+      "host": 20393,
+      "rod": {
+        "cc": "cruciblecraft:titanium/rod",
+        "gt6": "OP.stick(MT.Ti)",
+        "status": "ok"
+      },
+      "small_gear": {
+        "cc": "cruciblecraft:titanium/small_gear",
+        "gt6": "OP.gearGtSmall(MT.Ti)",
+        "status": "ok"
+      },
+      "status": "source_exact"
+    },
+    {
+      "casing": {
+        "cc": "cruciblecraft:tungsten_carbide/machine_casing",
+        "gt6": "OP.casingMachine(MT.TungstenCarbide)",
+        "status": "ok"
+      },
+      "copper_double_plate": {
+        "cc": "cruciblecraft:copper/double_plate",
+        "gt6": "OP.plateDouble(ANY.Cu)",
+        "status": "ok"
+      },
+      "host": 20394,
+      "rod": {
+        "cc": "cruciblecraft:tungsten_carbide/rod",
+        "gt6": "OP.stick(MT.TungstenCarbide)",
+        "status": "ok"
+      },
+      "small_gear": {
+        "cc": "cruciblecraft:tungsten_carbide/small_gear",
+        "gt6": "OP.gearGtSmall(MT.TungstenCarbide)",
+        "status": "ok"
+      },
+      "status": "source_exact"
+    }
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "prep_runtime_ready"
+}

@@ -323,16 +323,16 @@ topology 预分配 implementation child。不想要的类在 realization 卡标
 它不创建 squeezer / juicer / fermenter / bumble RecipeMap，也不实现封面网或作物生长。
 缺失单块 RecipeMap（Slicer / Printer / Roll Former / Cluster Mill / Loom / Melter 等）
 live 导入仍要等晋升落地。已签发 prep（不改 unique-active）：
-[辊压成型机](../history/card-plans/prep/辊压成型机详细计划.md)、
-[集群轧机](../history/card-plans/prep/集群轧机详细计划.md)（未注册 spec + 247/307 isolated compile；60 行 foil overflow；四层外壳已跟普通外壳同材料域）、
-[切片机](../history/card-plans/prep/切片机详细计划.md)、
-[织机](../history/card-plans/prep/织机详细计划.md)（动能 D0 全绿；电驱同图）、
-[压力清洗机](../history/card-plans/prep/压力清洗机详细计划.md)、
-[注射机](../history/card-plans/prep/注射机详细计划.md)、
-[印刷机](../history/card-plans/prep/印刷机详细计划.md)、
-[层压机](../history/card-plans/prep/层压机详细计划.md)、
-[熔融机](../history/card-plans/prep/熔融机详细计划.md)、
-[纳米加工机](../history/card-plans/prep/纳米加工机详细计划.md)。
+[辊压成型机](../history/card-plans/prep/辊压成型机详细计划.md)（仍待开工）、
+[集群轧机](../history/card-plans/prep/集群轧机详细计划.md)（prep 已做完；未注册 spec + 247/307 isolated compile；60 行 foil overflow；四层外壳已跟普通外壳同材料域）、
+[切片机](../history/card-plans/prep/切片机详细计划.md)（prep 已做完；未注册 spec + 32/33 isolated compile；1 行 paper tiny_plate overflow；五台因传送带模块 blocked）、
+[织机](../history/card-plans/prep/织机详细计划.md)（prep 已做完；未注册 spec + 1090/1334 isolated compile；动能 D0 全绿；电驱 20361/20364 exact）、
+[压力清洗机](../history/card-plans/prep/压力清洗机详细计划.md)（prep 已做完；未注册 spec + 192/312 isolated compile；D0 全绿；贴图键 `debarker`）、
+[注射机](../history/card-plans/prep/注射机详细计划.md)（prep 已做完；未注册 spec + 611/638 isolated compile；仅 20264 exact）、
+[印刷机](../history/card-plans/prep/印刷机详细计划.md)（prep 已做完；未注册 spec + 0/22 isolated compile；22 行 chemical dye overflow；五台传送带模块 blocked）、
+[层压机](../history/card-plans/prep/层压机详细计划.md)（prep 已做完；未注册 spec + 232/498 isolated compile；D0 全绿）、
+[熔融机](../history/card-plans/prep/熔融机详细计划.md)（prep 已做完；未注册 spec + 3973/6756 isolated compile；22010 exact；不是熔炼炉）、
+[纳米加工机](../history/card-plans/prep/纳米加工机详细计划.md)（prep 已做完；未注册 spec + 52/64 isolated compile；五台 IL 零件 blocked）。
 规则见 [能力交付流程 §8](capability-delivery-workflow.md) 与
 [`card-plans/prep/`](../history/card-plans/prep/)。批量交付管线（`machine_delivery.json` + SourcePack +
 人工 `production_lock` + `python tools/verify.py integration --profile recipes`）

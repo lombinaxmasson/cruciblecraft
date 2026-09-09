@@ -1,0 +1,3521 @@
+{
+  "family_count": 1,
+  "generated_by": "python tools/build_recipe_bulk.py import-source",
+  "host": "cruciblecraft:slicer",
+  "import_slug": "prep/slicer",
+  "relation_count": 32,
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m240",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Apple",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 240
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m240"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10907",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Hollow Quarters)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10907
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10907"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m241",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Apple Slice",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 241
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m241"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 0,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 0,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "64d58f1dbd5e88998ded78d7e4906c3360f823c5dbbe76e7c4e40fa42c6ac9a5",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/5deeb8cf1c698228",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m90",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Banana",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 90
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m90"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10901",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Flat)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10901
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10901"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m91",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Banana Slice",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 91
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m91"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 1,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 1,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "692fd5fe86f09c1b3b6d44172f364f39bbe8c46b8dd524336e92d3b9c28c65ad",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/d9c0c7735b8428bf",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_runtime_id",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "minecraft:melon_block",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Melon",
+            "item": "minecraft:melon_block",
+            "meta": "*"
+          },
+          "tag": null,
+          "value": "minecraft:melon_block"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10903",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Eigths)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10903
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10903"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_runtime_id",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "minecraft:melon_slice",
+          "slot_class": "occupied",
+          "source": {
+            "count": 8,
+            "displayName": "Melon",
+            "item": "minecraft:melon",
+            "meta": 0
+          },
+          "tag": null,
+          "value": "minecraft:melon_slice"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_runtime_id",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "minecraft:melon_seeds",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Melon Seeds",
+            "item": "minecraft:melon_seeds",
+            "meta": 0
+          },
+          "tag": null,
+          "value": "minecraft:melon_seeds"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 2,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 2,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "bfd2725e9bd8539269659e66ac7e776453a0956f70d431d4ff1d69ca3a7d30af",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/1d07e4feae318242",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m220",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Apple",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 220
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m220"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10907",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Hollow Quarters)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10907
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10907"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m221",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Apple Slice",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 221
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m221"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 3,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 3,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "bbb71fd72661db03b2f3537b26ea5f46c751545f1066bf1d01ea664fd750f365",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/904709ff33b430f1",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_runtime_id",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "minecraft:leather_helmet",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Leather Cap",
+            "item": "minecraft:leather_helmet",
+            "meta": "*"
+          },
+          "tag": null,
+          "value": "minecraft:leather_helmet"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10905",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Split)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10905
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10905"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_runtime_id",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "minecraft:leather",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Leather",
+            "item": "minecraft:leather",
+            "meta": 0
+          },
+          "tag": null,
+          "value": "minecraft:leather"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 4,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 4,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "f3cb510d1aa2002cfedcb614cb85dc673256d08b1c90fddca6c1cc15f6108a02",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/1b28632f3cc89ba8",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_runtime_id",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "minecraft:leather_boots",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Leather Boots",
+            "item": "minecraft:leather_boots",
+            "meta": "*"
+          },
+          "tag": null,
+          "value": "minecraft:leather_boots"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10905",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Split)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10905
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10905"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_runtime_id",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "minecraft:leather",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Leather",
+            "item": "minecraft:leather",
+            "meta": 0
+          },
+          "tag": null,
+          "value": "minecraft:leather"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 5,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 5,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "c1f098615cd613f6fccb98028d315ec7be743bd00109797980aac5124d52ba27",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/892bde898d1b5912",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m10",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Tomato",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 10
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m10"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10901",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Flat)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10901
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10901"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m11",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Tomato Slice",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 11
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m11"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 6,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 6,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "f0051e61c6bcbcf11d5d5075f4ad89f0a19c93906c01306f2bbfcca76827ef9b",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/605711038dd58725",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m14001",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Loaf of Toast",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 14001
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m14001"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10901",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Flat)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10901
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10901"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m14002",
+          "slot_class": "occupied",
+          "source": {
+            "count": 8,
+            "displayName": "Toast",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 14002
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m14002"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 7,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 7,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "f52ef1e1626fa6e1f1471914c6d406f33016e485c356d8fe1d3a165a3113e936",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/9cc314bd29adb40e",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m32006",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Abyssal Dough",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 32006
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m32006"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10901",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Flat)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10901
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10901"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m2006",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Cookie shaped Abyssal Dough",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 2006
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m2006"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 8,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 8,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "9bc3a1ee0ec91e3f3179e0f661eba5f14b6bf7c4456ea517a26792fa240af708",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/2db4f170a4f05951",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_runtime_id",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "minecraft:leather_chestplate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Leather Tunic",
+            "item": "minecraft:leather_chestplate",
+            "meta": "*"
+          },
+          "tag": null,
+          "value": "minecraft:leather_chestplate"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10905",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Split)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10905
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10905"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_runtime_id",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "minecraft:leather",
+          "slot_class": "occupied",
+          "source": {
+            "count": 2,
+            "displayName": "Leather",
+            "item": "minecraft:leather",
+            "meta": 0
+          },
+          "tag": null,
+          "value": "minecraft:leather"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 9,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 9,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "5ba1738e29248709208645b3f2bda0669354433d2ebcee40401a7d1fdcb0b1a6",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/11dd3dc992e400a0",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m1000",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Cheese",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 1000
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m1000"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10901",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Flat)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10901
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10901"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m1001",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Cheese Slice",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 1001
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m1001"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 10,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 10,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "43308484bca34809d0ddac944d1c21252138ae6f8fd6c836681e42b01ddc63e2",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/2a8463cef3b5a724",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_runtime_id",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "minecraft:bread",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Bread",
+            "item": "minecraft:bread",
+            "meta": 0
+          },
+          "tag": null,
+          "value": "minecraft:bread"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10905",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Split)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10905
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10905"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m6002",
+          "slot_class": "occupied",
+          "source": {
+            "count": 2,
+            "displayName": "Sliced Bread",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 6002
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m6002"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 11,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 11,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "1c96636f3ff21a61c75838a3c940513379b0cde0b3611340d64c291b26229665",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/f0b6a1c29727c4fc",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m30",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Onion",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 30
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m30"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10901",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Flat)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10901
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10901"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m31",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Onion Slice",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 31
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m31"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 12,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 12,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "8178f0ee74a8c9431056c3b980cb34132248835f4e4f2b6a7ef080eab19dec1e",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/4231e6ea7c880ec7",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m20",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Maxim Tomato",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 20
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m20"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10901",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Flat)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10901
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10901"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m11",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Tomato Slice",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 11
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m11"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 13,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 13,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "ed6be55eef993263fa9eae4a4655942e0c609a34c4d4cf014c01cc8a1fd185c8",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/6c2ef6418962a1a1",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m1061",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Boiled Egg",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 1061
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m1061"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10901",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Flat)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10901
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10901"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m1072",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Sliced Egg",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 1072
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m1072"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 14,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 14,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "f04efb8ad34dd8ea652213e45e93f6d3807ffecc0b6424abd4efe5256c9c1854",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/9e70eb915ed12e93",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m5001",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Bun",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 5001
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m5001"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10905",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Split)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10905
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10905"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m5002",
+          "slot_class": "occupied",
+          "source": {
+            "count": 2,
+            "displayName": "Sliced Bun",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 5002
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m5002"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 15,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 15,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "9b864838e8af67eac31d409ec899497934094dd99cc8bed97b59089b04760cfc",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/9f4ffa73792cf4cf",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m32111",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Cheese Bar",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 32111
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m32111"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10901",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Flat)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10901
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10901"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m1001",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Cheese Slice",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 1001
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m1001"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 16,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 16,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "95e6be7137b19d10581c4d73dcaa2510542778a7eba9281353ca112f1404828c",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/91508c03ed90c089",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "minecraft:apple",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Apple",
+            "item": "minecraft:apple",
+            "meta": 0
+          },
+          "tag": null,
+          "value": "minecraft:apple"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10907",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Hollow Quarters)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10907
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10907"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m231",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Apple Slice",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 231
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m231"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 17,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 17,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "1343d98d3bb33b1a72ecf91b9a33bf25392db56016c6339cf90566c4e8381a7f",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/0e66ce3fa1b1f92b",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m0",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Lemon",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 0
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m0"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10901",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Flat)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10901
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10901"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m1",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Lemon Slice",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 1
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m1"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 18,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 18,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "3709d37da03e008b6ca13adafdeed9e480304f96b34563987e6051210b521b2a",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/18c5fe0432c61cb8",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_runtime_id",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "minecraft:potato",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Potato",
+            "item": "minecraft:potato",
+            "meta": 0
+          },
+          "tag": null,
+          "value": "minecraft:potato"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10901",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Flat)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10901
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10901"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m9000",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Potato Chips (Raw)",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 9000
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m9000"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 19,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 19,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "4be1b3fdd1b542552ea40b3f75c8b08e2277f666857a8628dfd07c36df1a54ad",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/4c834a8ef84fd114",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m42",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Pickle",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 42
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m42"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10901",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Flat)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10901
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10901"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m43",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Pickle Slice",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 43
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m43"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 20,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 20,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "7c115de953528333c7b09ad560cd53dc7b776b8a32a3e8ad1bded2bda8326f23",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/02fc27ab0bd19c29",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m32004",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Sugary Raisin Dough",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 32004
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m32004"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10901",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Flat)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10901
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10901"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m2002",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Cookie shaped Raisin Dough",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 2002
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m2002"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 21,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 21,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "356919d22a377960e184e271616d154115836e151144be0a35b629d0a538b657",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/a9222e62be10bc31",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_runtime_id",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "minecraft:potato",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Potato",
+            "item": "minecraft:potato",
+            "meta": 0
+          },
+          "tag": null,
+          "value": "minecraft:potato"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10902",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Grid)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10902
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10902"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m8000",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Potato Strips",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 8000
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m8000"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 22,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 22,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "2e3db0ad32e8521203044c2ca2d33b5a4f26594990b3e3baf1a1a6937e37c110",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/02e9b1e1f4a3df5f",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m1060",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Boiled Egg",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 1060
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m1060"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10901",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Flat)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10901
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10901"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m1072",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Sliced Egg",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 1072
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m1072"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 23,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 24,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "6fee1b733ee93189fafdeef6cfa6f94e9943ca6f2983429bacb1ed9f94104b36",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/c48fd2bbe6d130bc",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m32002",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Chocolate Dough",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 32002
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m32002"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10901",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Flat)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10901
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10901"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m2000",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Cookie shaped Dough",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 2000
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m2000"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 24,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 25,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "4cae05431207e4f9dee8cef6c2d8ed03b6bbe820331535226e637e5eebcf715e",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/b3e93a5e283e9875",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m40",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Cucumber",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 40
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m40"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10901",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Flat)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10901
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10901"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m41",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Cucumber Slice",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 41
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m41"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 25,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 26,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "c5ddc3ba1c4af554d970ad6b9de08b115f7b3b7a62c672f9bb5cf7ab5aa9c7b3",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/4f79936da901ff13",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_runtime_id",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "minecraft:leather_leggings",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Leather Pants",
+            "item": "minecraft:leather_leggings",
+            "meta": "*"
+          },
+          "tag": null,
+          "value": "minecraft:leather_leggings"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10905",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Split)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10905
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10905"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_runtime_id",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "minecraft:leather",
+          "slot_class": "occupied",
+          "source": {
+            "count": 2,
+            "displayName": "Leather",
+            "item": "minecraft:leather",
+            "meta": 0
+          },
+          "tag": null,
+          "value": "minecraft:leather"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 26,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 27,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "0380c2a59199db51cf955741c4e6194d522cb8a52eb5751445489bb3a1f2431a",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/a88d6547fe57c75b",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_runtime_id",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "minecraft:carrot",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Carrot",
+            "item": "minecraft:carrot",
+            "meta": 0
+          },
+          "tag": null,
+          "value": "minecraft:carrot"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10901",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Flat)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10901
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10901"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m81",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Carrot Slice",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 81
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m81"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 27,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 28,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "f4dd3755e4ee5b28576944aeec2fa67bba45435a499a68c08d50c9eb4ec31626",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/5a48c3629e206622",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m32005",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Sugary Chocolate Raisin Dough",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 32005
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m32005"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10901",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Flat)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10901
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10901"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m2004",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Cookie shaped Chocolate Raisin Dough",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 2004
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m2004"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 28,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 29,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "909157ac07b128fd17340b4ea76e749b9e93d630595c92eef3c1be84e9abcb06",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/410aab005a88d581",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m7001",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Baguette",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 7001
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m7001"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10905",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Split)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10905
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10905"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m7002",
+          "slot_class": "occupied",
+          "source": {
+            "count": 2,
+            "displayName": "Sliced Baguette",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 7002
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m7002"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 29,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 30,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "f1be5e8929ac65c8e1667e15f6827f536a511bdfdae6024493204592e6df7efc",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/6ffed502c36a3eed",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m270",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Ananas",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 270
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m270"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10901",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Flat)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10901
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10901"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m271",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Ananas Slice",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 271
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m271"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 30,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 31,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "d710ba938b3f95b3efc27a2e9d5bd6b01123664368f85c31189334426a99921f",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/bc8342fad9499113",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m210",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Apple",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 210
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m210"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_technological_m10907",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Hollow Quarters)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10907
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_technological_m10907"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": null,
+          "kind": "multiitem",
+          "mapping": "explicit_object_expression",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gt_multiitem/multiitem_food_m211",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Apple Slice",
+            "item": "gregtech:gt.multiitem.food",
+            "meta": 211
+          },
+          "tag": null,
+          "value": "cruciblecraft:gt_multiitem/multiitem_food_m211"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 31,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 32,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "cca760fdda25f6ebc9ee41faa56b468313836f35568e0a2676580c032a32a792",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/98451c47b1de8c45",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    }
+  ],
+  "source_pack_id": "prep/machines-slicer",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:slicer"
+}

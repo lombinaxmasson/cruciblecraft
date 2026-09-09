@@ -1,0 +1,27 @@
+{
+  "files": [
+    {
+      "path": "tools/waves/prep/loom/source_pack/dump_slice.json",
+      "role": "dump_slice",
+      "sha256": "00db4ddeb89c5a98d4c46940954c6c45526e88b8c37fe2209e84e5968578caa1"
+    },
+    {
+      "path": "tools/waves/prep/loom/source_pack/work_set.json",
+      "role": "work_set",
+      "sha256": "d9b9c72a973f4d1b4caa1ad3d4eacc10ff787ea599654be85a1aa52e68bc9389"
+    }
+  ],
+  "full_replay": {
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "provenance_policy": {
+    "append_only": true,
+    "forbid_gt6u": true
+  },
+  "schema_version": 1,
+  "source_dialect": "gt6",
+  "source_pack_id": "prep/machines-loom",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_system": "gt6"
+}
