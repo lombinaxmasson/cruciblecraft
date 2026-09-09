@@ -135,6 +135,8 @@ public final class ModCreativeTabs {
                         });
                         ModItems.transformerItemsById().values().forEach(
                                 item -> output.accept(item.get()));
+                        ModItems.heatExchangerItemsById().values().forEach(
+                                item -> output.accept(item.get()));
                         output.accept(ModItems.ROTATIONAL_AXLE.get());
                         output.accept(ModItems.ROTATIONAL_GEARBOX.get());
                         output.accept(ModItems.BRONZE_CRUSHER.get());

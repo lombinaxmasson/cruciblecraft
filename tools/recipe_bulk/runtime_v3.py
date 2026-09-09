@@ -88,7 +88,26 @@ def load_delta(wave_slug: str) -> dict[str, Any]:
     return document
 
 
+_COMPOSE_CACHE: tuple[str, dict[str, Any]] | None = None
+
+
+def _cache_key() -> str:
+    return _file_hash(V2_PATH) + "".join(
+        _file_hash(path) for path in DELTA_PATHS.values()
+    )
+
+
 def compose(v2: dict[str, Any] | None = None) -> dict[str, Any]:
+    global _COMPOSE_CACHE
+    if v2 is None and _COMPOSE_CACHE is not None and _COMPOSE_CACHE[0] == _cache_key():
+        return _COMPOSE_CACHE[1]
+    payload = _compose(v2)
+    if v2 is None:
+        _COMPOSE_CACHE = (_cache_key(), payload)
+    return payload
+
+
+def _compose(v2: dict[str, Any] | None = None) -> dict[str, Any]:
     if not V2_PATH.is_file():
         raise RuntimeV3ConflictError(f"missing frozen v2 runtime manifest {V2_PATH}")
     v2_hash = _file_hash(V2_PATH)

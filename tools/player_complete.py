@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import functools
 import json
 import os
 import re
@@ -162,6 +163,56 @@ def form_item_ids() -> set[str]:
     return ids
 
 
+def item_lang_keys(item_id: str) -> tuple[str, ...]:
+    base = f"item.cruciblecraft.{item_id}"
+    dotted = f"item.cruciblecraft.{item_id.replace('/', '.')}"
+    if base == dotted:
+        return (base,)
+    return (base, dotted)
+
+
+def lookup_lang(table: dict[str, Any], item_id: str) -> str:
+    for key in item_lang_keys(item_id):
+        value = table.get(key)
+        if isinstance(value, str) and value:
+            return value
+    return ""
+
+
+def _add_recipe_result_ids(root: Path, ids: set[str]) -> None:
+    if not root.is_dir():
+        return
+    for path in root.rglob("*.json"):
+        try:
+            document = io.load_json(path)
+        except (OSError, json.JSONDecodeError, ValueError):
+            continue
+        if not isinstance(document, dict):
+            continue
+        result = document.get("result")
+        if isinstance(result, dict):
+            runtime = str(result.get("id") or "")
+            if runtime:
+                ids.add(runtime.split(":", 1)[-1])
+        for row in document.get("item_outputs") or []:
+            if not isinstance(row, dict):
+                continue
+            runtime = str(row.get("id") or row.get("item") or "")
+            if runtime:
+                ids.add(runtime.split(":", 1)[-1])
+
+
+@functools.lru_cache(maxsize=1)
+def recipe_output_ids() -> set[str]:
+    found: set[str] = set()
+    _add_recipe_result_ids(GENERATED / "data/cruciblecraft/recipe", found)
+    _add_recipe_result_ids(
+        ROOT / "src/main/resources/data/cruciblecraft/recipe",
+        found,
+    )
+    return found
+
+
 def check_static_player_surface(slug: str, item_ids: list[str]) -> list[str]:
     errors: list[str] = []
     english = io.load_json(
@@ -171,6 +222,7 @@ def check_static_player_surface(slug: str, item_ids: list[str]) -> list[str]:
         GENERATED / "assets/cruciblecraft/lang/zh_cn.json"
     )
     form_items = form_item_ids()
+    recipe_outputs = recipe_output_ids()
     for item in item_ids:
         recipe = GENERATED / "data/cruciblecraft/recipe" / f"{item}.json"
         root_recipe = (
@@ -182,21 +234,25 @@ def check_static_player_surface(slug: str, item_ids: list[str]) -> list[str]:
             / "src/main/resources/assets/cruciblecraft/models/item"
             / f"{item}.json"
         )
-        lang_key = f"item.cruciblecraft.{item}"
         if (
             item not in form_items
+            and item not in recipe_outputs
             and not recipe.is_file()
             and not root_recipe.is_file()
         ):
             errors.append(f"{slug}: missing recipe {recipe.as_posix()}")
         if not model.is_file() and not root_model.is_file():
             errors.append(f"{slug}: missing model {model.as_posix()}")
-        if lang_key not in english:
-            errors.append(f"{slug}: missing en_us {lang_key}")
-        if lang_key not in chinese:
-            errors.append(f"{slug}: missing zh_cn {lang_key}")
-        zh = str(chinese.get(lang_key) or "")
-        if "Cover" in zh or not zh:
+        if not lookup_lang(english, item):
+            errors.append(
+                f"{slug}: missing en_us {' or '.join(item_lang_keys(item))}"
+            )
+        zh = lookup_lang(chinese, item)
+        if not zh:
+            errors.append(
+                f"{slug}: missing zh_cn {' or '.join(item_lang_keys(item))}"
+            )
+        elif "Cover" in zh:
             errors.append(f"{slug}: zh_cn for {item} is not a player-facing name")
     emi = (
         ROOT

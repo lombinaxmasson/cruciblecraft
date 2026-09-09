@@ -33,6 +33,8 @@ import com.masson.cruciblecraft.registry.ModComponents;
 import com.masson.cruciblecraft.energy.battery.EnergyBatteryTierCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterTierCatalog;
 import com.masson.cruciblecraft.energy.transformer.EnergyTransformerTierCatalog;
+import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerCatalog;
+import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerProfile;
 import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.registry.ModItems;
@@ -344,6 +346,7 @@ public final class ModRecipeProvider extends RecipeProvider {
         addBatteryCellRecipes(output);
         addBatteryRecipes(output);
         addTransformerRecipes(output);
+        addHeatExchangerRecipes(output);
         for (MachineVariant variant
                 : com.masson.cruciblecraft.registry.ModMachineVariants.ALL) {
             emitAcquisition(output, variant);
@@ -1136,6 +1139,11 @@ public final class ModRecipeProvider extends RecipeProvider {
                     emitCasingFormRecipe(
                             output,
                             material,
+                            MaterialPrefixes.MACHINE_CASING_QUADRUPLE,
+                            MaterialPrefixes.QUADRUPLE_PLATE);
+                    emitCasingFormRecipe(
+                            output,
+                            material,
                             MaterialPrefixes.MACHINE_CASING_DENSE,
                             MaterialPrefixes.DENSE_PLATE);
                 });
@@ -1720,6 +1728,47 @@ public final class ModRecipeProvider extends RecipeProvider {
             return;
         }
         builder.unlockedBy("has_part", has(unlock)).save(output, id(path));
+    }
+
+    private static void addHeatExchangerRecipes(RecipeOutput output) {
+        for (HeatExchangerProfile profile : HeatExchangerCatalog.profiles()) {
+            emitHeatExchangerRecipe(output, profile);
+        }
+    }
+
+    private static void emitHeatExchangerRecipe(
+            RecipeOutput output, HeatExchangerProfile profile) {
+        LinkedHashMap<String, Ingredient> ingredients = new LinkedHashMap<>();
+        for (var entry : profile.recipe().keys().entrySet()) {
+            Item item = resolveHeatExchangerIngredient(entry.getValue());
+            if (item == null) {
+                return;
+            }
+            ingredients.put(entry.getKey(), Ingredient.of(item));
+        }
+        acceptShapedCatalyst(
+                output,
+                profile.id().getPath(),
+                profile.recipe().pattern(),
+                ingredients,
+                Map.of(
+                        profile.recipe().catalyst(),
+                        Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                new ItemStack(
+                        ModItems.heatExchangerItemsById()
+                                .get(profile.id())
+                                .get()));
+    }
+
+    private static Item resolveHeatExchangerIngredient(
+            HeatExchangerProfile.Ingredient ingredient) {
+        MaterialPrefix prefix;
+        try {
+            prefix = new MaterialPrefix("cruciblecraft:" + ingredient.prefix());
+        } catch (IllegalArgumentException ignored) {
+            return null;
+        }
+        return MaterialLookup.item(ingredient.material(), prefix).orElse(null);
     }
 
     private static Item resolveTransformerIngredient(

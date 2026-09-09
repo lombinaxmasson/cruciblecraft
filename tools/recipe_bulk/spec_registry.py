@@ -71,6 +71,11 @@ def derive_wave_spec(slug: str) -> WaveSpec:
     if path is None:
         raise SpecRegistryError(f"unknown import slug {slug}")
     document = load_import_spec(path)
+    if str(slug).startswith("prep/"):
+        raise SpecRegistryError(
+            f"{slug}: prep waves cannot compile into src/recipe_generated; "
+            "use isolated compile"
+        )
     lock_path = production_lock_path(path, document)
     if not lock_path.is_file():
         raise SpecRegistryError(

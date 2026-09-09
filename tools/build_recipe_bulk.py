@@ -127,26 +127,11 @@ def _check_wave_tree(wave_id: str) -> list[str]:
         return [f"{wave_id} generated recipe tree missing"]
     from tools.recipe_bulk.matrix import load_compact_family_documents
 
-    generated = load_compact_family_documents(spec.generated_root)
-    prefixes = tuple(spec.tree_prefixes)
-    if prefixes:
-        generated = {
-            path: doc
-            for path, doc in generated.items()
-            if any(
-                Path(path).relative_to(spec.generated_root).as_posix().startswith(
-                    prefix.rstrip("/") + "/"
-                )
-                for prefix in prefixes
-            )
-        }
-    if spec.path_prefix:
-        marker = "/" + spec.path_prefix.replace("\\", "/").strip("/") + "/"
-        generated = {
-            path: doc
-            for path, doc in generated.items()
-            if marker in path.replace("\\", "/")
-        }
+    generated = load_compact_family_documents(
+        spec.generated_root,
+        path_prefix=spec.path_prefix,
+        tree_prefixes=spec.tree_prefixes,
+    )
     expected = {str(path): doc for path, doc in built["planned"]}
     if generated != expected:
         return [f"{wave_id} generated recipe tree drifted"]

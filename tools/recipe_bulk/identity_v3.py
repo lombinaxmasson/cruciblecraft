@@ -103,7 +103,28 @@ def _apply_row(
         )
 
 
+_COMPOSE_CACHE: tuple[str, dict[str, Any]] | None = None
+_INDEX_CACHE: dict[str, dict[str, dict[str, Any]]] | None = None
+_INDEX_KEY: str | None = None
+
+
+def _cache_key() -> str:
+    return _file_hash(V2_PATH) + "".join(
+        _file_hash(path) for path in DELTA_PATHS.values()
+    )
+
+
 def compose(v2: dict[str, Any] | None = None) -> dict[str, Any]:
+    global _COMPOSE_CACHE
+    if v2 is None and _COMPOSE_CACHE is not None and _COMPOSE_CACHE[0] == _cache_key():
+        return _COMPOSE_CACHE[1]
+    payload = _compose(v2)
+    if v2 is None:
+        _COMPOSE_CACHE = (_cache_key(), payload)
+    return payload
+
+
+def _compose(v2: dict[str, Any] | None = None) -> dict[str, Any]:
     if not V2_PATH.is_file():
         raise IdentityV3ConflictError(f"missing frozen v2 ledger {V2_PATH}")
     v2_hash = _file_hash(V2_PATH)
@@ -200,8 +221,18 @@ def build() -> dict[str, Any]:
 
 
 def index_ledger(document: dict[str, Any] | None = None) -> dict[str, dict[str, dict[str, Any]]]:
-    payload = document if document is not None and "records" in document else compose()
-    return identity_v1.index_ledger(payload)
+    global _INDEX_CACHE, _INDEX_KEY
+    if document is None or "records" not in document:
+        key = _cache_key()
+        if document is None and _INDEX_CACHE is not None and _INDEX_KEY == key:
+            return _INDEX_CACHE
+        payload = compose() if document is None or "records" not in document else document
+        index = identity_v1.index_ledger(payload)
+        if document is None:
+            _INDEX_CACHE = index
+            _INDEX_KEY = key
+        return index
+    return identity_v1.index_ledger(document)
 
 
 def lookup_first(

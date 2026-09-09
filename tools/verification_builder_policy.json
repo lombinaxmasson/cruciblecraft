@@ -135,6 +135,20 @@
         "--capability",
         "energy/nuclear-fission-observation-safety"
       ]
+    },
+    {
+      "name": "build_player_complete_heat_exchangers",
+      "script": "tools/build_player_complete.py",
+      "ordinary_args": [
+        "--run",
+        "--capability",
+        "energy/heat-exchangers"
+      ]
+    },
+    {
+      "name": "build_recipe_fresh",
+      "script": "tools/build_recipe_fresh.py",
+      "ordinary_args": ["--check"]
     }
   ]
 }

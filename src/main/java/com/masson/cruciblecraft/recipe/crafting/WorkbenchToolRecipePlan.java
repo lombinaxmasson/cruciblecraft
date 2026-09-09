@@ -27,7 +27,7 @@ import com.masson.cruciblecraft.material.def.MaterialDefinition;
  */
 public final class WorkbenchToolRecipePlan {
     public static final String STONE_TAG = "PROPERTIES.STONE";
-    public static final int NON_WORKBENCH_GENERATED_RECIPES = 1_758;
+    public static final int NON_WORKBENCH_GENERATED_RECIPES = 1_770;
     private static final MaterialPrefix ROCK =
             new MaterialPrefix("cruciblecraft:rock");
     private static final MaterialPrefix PLATE_GEM =

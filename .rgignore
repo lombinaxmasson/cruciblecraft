@@ -1,0 +1,8 @@
+# Ripgrep reads .gitignore first. These negations un-ignore local GT6 trees for
+# `rg` in the terminal and for Agent Grep when it is not using Instant Grep.
+!gt6_code/
+!gt6_code/**
+!gt6_referencable_port_code/
+!gt6_referencable_port_code/**
+!gt6_referencable_port_code/**/*.png
+!*.png

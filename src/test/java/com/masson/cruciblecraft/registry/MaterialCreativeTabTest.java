@@ -112,7 +112,7 @@ class MaterialCreativeTabTest {
                         Map.entry(MaterialCreativeTab.ORES, 294),
                         Map.entry(MaterialCreativeTab.ORE_PROCESSING, 3_902),
                         Map.entry(MaterialCreativeTab.DUSTS, 3_019),
-                        Map.entry(MaterialCreativeTab.METALS_GEMS, 3_340),
+                        Map.entry(MaterialCreativeTab.METALS_GEMS, 3_550),
                         // battery_alloy plate from materials/battery_alloy.json
                         Map.entry(MaterialCreativeTab.PLATES, 3_196),
                         Map.entry(MaterialCreativeTab.PARTS, 3_313),

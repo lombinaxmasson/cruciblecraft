@@ -2,7 +2,6 @@ package com.masson.cruciblecraft.client.color;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
-import com.masson.cruciblecraft.energy.converter.EnergyConverterKindCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterTierCatalog;
 import com.masson.cruciblecraft.energy.transformer.EnergyTransformerTierCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
@@ -109,85 +108,12 @@ public final class MachineBlockColor {
     }
 
     static String machineTextureId(String id) {
-        var converter = EnergyConverterTierCatalog.findByPath(id);
-        if (converter != null) {
-            return EnergyConverterKindCatalog.require(converter.kindId())
-                    .textureProfile();
-        }
-        String profile = com.masson.cruciblecraft.machine.processing
-                .MachineTierCatalog.textureProfile(id);
-        if (!profile.equals(id)) {
-            return profile;
-        }
-        return switch (id) {
-            case "steel_centrifuge", "titanium_centrifuge" -> "centrifuge";
-            case "steel_sifter", "titanium_sifter" -> "sifter";
-            case "steel_lathe", "titanium_lathe" -> "lathe";
-            case "steel_rollingmill", "titanium_rollingmill" -> "rollingmill";
-            case "steel_wiremill", "titanium_wiremill" -> "wiremill";
-            case "steel_shredder", "titanium_shredder" -> "shredder";
-            case "steel_press", "titanium_press" -> "press";
-            case "aluminium_electrolyzer", "stainless_steel_electrolyzer" ->
-                    "electrolyzer";
-            case "invar_distillery", "titanium_distillery" -> "distillery";
-            case "distillation_tower" -> "distillery";
-            case "large_boiler" -> "boiler";
-            case "large_crucible" -> "coke_oven";
-            case "drying", "invar_drying", "titanium_drying" -> "dryer";
-            case "invar_smelter", "titanium_smelter" -> "smelter";
-            default -> profile;
-        };
+        return com.masson.cruciblecraft.machine.processing
+                .MachineTextureProfiles.textureId(id);
     }
 
     static boolean hasMachineTextures(String textureId) {
-        return switch (textureId) {
-            case "large_centrifuge",
-                    "sluice",
-                    "bath",
-                    "centrifuge",
-                    "shredder",
-                    "sifter",
-                    "smelter",
-                    "extruder",
-                    "cutter",
-                    "lathe",
-                    "rollingmill",
-                    "rollbender",
-                    "bender",
-                    "wiremill",
-                    "assembler",
-                    "welder",
-                    "press",
-                    "electrolyzer",
-                    "mixer",
-                    "distillery",
-                    "autoclave",
-                    "dryer",
-                    "compressor",
-                    "generifier",
-                    "electric_motor",
-                    "electric_heater",
-                    "electric_engine",
-                    "rotational_gearbox",
-                    "fuel_engine",
-                    "burning_gas_generator",
-                    "burning_box_solid",
-                    "burning_box_brick",
-                    "burning_box_liquid",
-                    "burning_box_fluid_bed",
-                    "boiler",
-                    "tank_3x3x3",
-                    "mortar",
-                    "coke_oven",
-                    "bronze_boiler",
-                    "bronze_crusher",
-                    "bronze_dynamo",
-                    "bronze_steam_engine",
-                    "laser_engraver",
-                    "fusion_reactor",
-                    "reactor_core_1x1",
-                    "reactor_core_2x2" -> true;
-            default -> false;
-        };
+        return com.masson.cruciblecraft.machine.processing
+                .MachineTextureProfiles.hasMachineTextures(textureId);
     }
 }

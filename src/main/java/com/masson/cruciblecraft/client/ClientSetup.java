@@ -269,30 +269,9 @@ public class ClientSetup {
         event.register(ModMenus.DRAWER.get(), StorageScreen::new);
         event.register(ModMenus.COKE_OVEN.get(), CokeOvenScreen::new);
         event.register(ModMenus.CRUSHER.get(), CrusherScreen::new);
-        event.register(ModMenus.SLUICE.get(), ConfiguredProcessingMachineScreen::new);
-        event.register(ModMenus.BATH.get(), ConfiguredProcessingMachineScreen::new);
-        event.register(ModMenus.CENTRIFUGE.get(), ConfiguredProcessingMachineScreen::new);
-        event.register(ModMenus.SHREDDER.get(), ConfiguredProcessingMachineScreen::new);
-        event.register(ModMenus.SIFTER.get(), ConfiguredProcessingMachineScreen::new);
-        event.register(ModMenus.SMELTER.get(), ConfiguredProcessingMachineScreen::new);
-        event.register(ModMenus.MORTAR.get(), ConfiguredProcessingMachineScreen::new);
-        event.register(ModMenus.EXTRUDER.get(), ConfiguredProcessingMachineScreen::new);
-        event.register(ModMenus.CUTTER.get(), ConfiguredProcessingMachineScreen::new);
-        event.register(ModMenus.LATHE.get(), ConfiguredProcessingMachineScreen::new);
-        event.register(ModMenus.ROLLINGMILL.get(), ConfiguredProcessingMachineScreen::new);
-        event.register(ModMenus.ROLLBENDER.get(), ConfiguredProcessingMachineScreen::new);
-        event.register(ModMenus.WIREMILL.get(), ConfiguredProcessingMachineScreen::new);
-        event.register(ModMenus.BENDER.get(), ConfiguredProcessingMachineScreen::new);
-        event.register(ModMenus.ASSEMBLER.get(), ConfiguredProcessingMachineScreen::new);
-        event.register(ModMenus.WELDER.get(), ConfiguredProcessingMachineScreen::new);
-        event.register(ModMenus.PRESS.get(), ConfiguredProcessingMachineScreen::new);
-        event.register(ModMenus.ELECTROLYZER.get(), ConfiguredProcessingMachineScreen::new);
-        event.register(ModMenus.MIXER.get(), ConfiguredProcessingMachineScreen::new);
-        event.register(ModMenus.DISTILLERY.get(), ConfiguredProcessingMachineScreen::new);
-        event.register(ModMenus.AUTOCLAVE.get(), ConfiguredProcessingMachineScreen::new);
-        event.register(ModMenus.DRYING.get(), ConfiguredProcessingMachineScreen::new);
-        event.register(ModMenus.COMPRESSOR.get(), ConfiguredProcessingMachineScreen::new);
-        event.register(ModMenus.GENERIFIER.get(), ConfiguredProcessingMachineScreen::new);
+        for (var menu : ModMenus.processingMenus()) {
+            event.register(menu.get(), ConfiguredProcessingMachineScreen::new);
+        }
     }
 
     @SubscribeEvent

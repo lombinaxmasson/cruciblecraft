@@ -1,9 +1,12 @@
 # 冻结与未实现账本
 
 > 现行人读索引，不是 production authority。
-> 最后核对：2026-09-09（人读 unique active 是热交换器第一切片；
-> 机器可读 `unique_active_wave = null` 直到实施开始；
+> 最后核对：2026-09-09（无 unique-active；
+> 机器可读 `unique_active_wave = null`；
 > 空盖革获得已按真铝 `capcellcon` 补齐；
+> 已关闭
+> [热交换器第一切片](../history/card-plans/closed/热交换器第一切片详细计划.md)
+> ，slug `energy/heat-exchangers`，`player_complete`；
 > 已关闭
 > [裂变观测安全与能源 Jade](../history/card-plans/closed/裂变观测安全与能源Jade详细计划.md)
 > ，slug `energy/nuclear-fission-observation-safety`，`player_complete`；
@@ -47,7 +50,7 @@
 | --- | --- | --- |
 | `frozen` | 分母、来源、可行性已冻 | 各 `*_R0_READY` |
 | `runtime_ready` | `src/main` 机制可运行，内容可尚未导入 | 电转换 10 台；LU 光纤 + 雕刻机；裂变堆芯/棒；聚变控制器 + 18 条 fusion |
-| `player_complete` | 生存可获得、可运行、可存档，且有 production lock / census（若需要） | 流体网基础传输；物品网仓储/导入/导出盖板；通用网仓储/导入/导出盖板；物流核心 + Dump；物流监视器；电池 37 储能块（五族空芯 + FluidContainerData 灌液 + `B`/`C`；energium 宝石前缀已 `form_items`）；变压器 9 台电（已关）；裂变生存 46 棒 / 2 堆芯；裂变热流体 8 身份 / 9 转换 |
+| `player_complete` | 生存可获得、可运行、可存档，且有 production lock / census（若需要） | 流体网基础传输；物品网仓储/导入/导出盖板；通用网仓储/导入/导出盖板；物流核心 + Dump；物流监视器；电池 37 储能块（五族空芯 + FluidContainerData 灌液 + `B`/`C`；energium 宝石前缀已 `form_items`）；变压器 9 台电（已关）；裂变生存 46 棒 / 2 堆芯；裂变热流体 8 身份 / 9 转换；热交换器 8 个单体 |
 
 **后续顺序**（可玩垂直切片；同一时刻一条 delivery lane）。物流 1.2 不在这张表里，
 由人手工测，不占 `unique_active_wave`。能力账本主键见
@@ -95,8 +98,8 @@
 `player_complete`。配方 blocked 账本卡也已关闭（fluidbed 49
 `explicitly_blocked`）。第 7 项已关闭为
 [裂变观测安全与能源 Jade](../history/card-plans/closed/裂变观测安全与能源Jade详细计划.md)
-（并入电池 / 转换机 Jade；热交换器是第 8 项第一张，已签发）。
-人读 unique active 是热交换器第一切片。
+（并入电池 / 转换机 Jade；热交换器是第 8 项第一张，已 `player_complete`）。
+无 unique-active。
 其余核电候选项保持未分配。
 
 1. **已关闭：配方数据正确性与 EMI 重复注册**：RecipeManager 解析错误归零（fluidbed
@@ -130,20 +133,19 @@
    世界爆炸仍 blocked）。并入电池 37 与活转换机 179 的 Jade 第二切片。
    空盖革获得已在闭卡后按真铝 `capcellcon` + CCC 模具 + Canner He/Ne/Ar 补齐，
    不是替身。热交换器 / 涡轮 / 冷却器仍是第 8 项。专用 GUI 不强制。
-8. **进行中：热交换器第一切片**：
-   [详细计划](../history/card-plans/active/热交换器第一切片详细计划.md)；
+8. **已关闭：热交换器第一切片**：
+   [详细计划](../history/card-plans/closed/热交换器第一切片详细计划.md)；
    计划 slug `energy/heat-exchangers`。8 个单体 `MultiTileEntityGeneratorHotFluid`
    （9103/9107/9108/9109 + 致密 9153/9157/9158/9159）；`FM.Hot` → HU。
-   蒸汽涡轮、冷却器、大型 17197 是后续卡。机器可读 `unique_active_wave = null`
-   直到实施开始。
+   蒸汽涡轮、冷却器、大型 17197 是后续卡。机器可读 `unique_active_wave = null`。
 9. **GT6_w 建筑方块 / Multiitem 有界批次**：按 live catalog 家族逐批做命名、已有
    identity 复用/冲突、精确配方和来源贴图。Extruder 已有 compact 管线只做证据指出的
    缺口，不借机全量重构；核能真实配料需要的身份可在第 5–8 项中由对应切片认领。
 10. **聚变 / 等离子**：等裂变与热力合同稳定后再开；控制器生存配方、等离子独立流体
     和燃料/输出链都必须有来源，不因已有 18 条 fusion runtime 就提前宣称完成。
 
-若前项测量证明没有阻塞，后项可以重新排序；第 1–7 项已关，
-第 8 项第一张（热交换器）已签发。聚变仍位于热力合同之后。
+若前项测量证明没有阻塞，后项可以重新排序；第 1–8 项第一张已关。
+聚变仍位于热力合同之后。
 配方 blocked 账本已关。蒸汽涡轮 / 冷却器 / 聚变不预分配进本卡分母。
 
 `fuels_fluidbed` 现只发 6 条可加载配方。其余 49 条由
@@ -154,9 +156,9 @@
 `explicitly_blocked`，不是 stand-in。Bath 150 family 与 petroleum 历史
 702 行是另栏分母，不能加进这 49。
 
-当前人读 unique active 是
-[热交换器第一切片](../history/card-plans/active/热交换器第一切片详细计划.md)
-（第 8 项第一张；`unique_active_wave = null` 直到实施开始）。最近关闭
+当前无 unique-active。最近关闭
+[热交换器第一切片](../history/card-plans/closed/热交换器第一切片详细计划.md)
+（第 8 项第一张；`player_complete`；`unique_active_wave = null`）。最近关闭
 [裂变观测安全与能源 Jade](../history/card-plans/closed/裂变观测安全与能源Jade详细计划.md)
 （`recipe/blocked-chain-ledger` 已关，`unique_active_wave = null`）。
 最近关闭
@@ -225,8 +227,8 @@ Dump 盖板是标记（无优先级）；搬运在 Core tick 的最后一档，�
 [紧凑配方传输编解码](../history/card-plans/closed/紧凑配方传输编解码详细计划.md)
 为 `COMPACT_RECIPE_WIRE_CODEC_READY`。Dump / Logistics Core 已关。已关闭
 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
-为四件状态盖板 `player_complete`。人读 unique active 是
-[热交换器第一切片](../history/card-plans/active/热交换器第一切片详细计划.md)；
+为四件状态盖板 `player_complete`。无 unique-active；最近关闭
+[热交换器第一切片](../history/card-plans/closed/热交换器第一切片详细计划.md)；
 最近关闭
 [裂变观测安全与能源 Jade](../history/card-plans/closed/裂变观测安全与能源Jade详细计划.md)。
 最近关闭
@@ -246,7 +248,7 @@ Dump 盖板是标记（无优先级）；搬运在 Core tick 的最后一档，�
 热流体与热量合同已 `player_complete`（11/9/8）。观测安全与能源 Jade 已
 `player_complete`
 （[裂变观测安全与能源 Jade](../history/card-plans/closed/裂变观测安全与能源Jade详细计划.md)）。
-热交换器第一切片已签发；蒸汽涡轮 / 冷却器 / 聚变仍后继。
+热交换器第一切片已 `player_complete`；蒸汽涡轮 / 冷却器 / 聚变仍后继。
 聚变控制器配方和等离子流体仍 blocked。
 
 | 项 | 分母 | 读法 |
@@ -261,7 +263,7 @@ Dump 盖板是标记（无优先级）；搬运在 Core tick 的最后一档，�
 | massfab / replicator | 920 / 895 | Track C 邻居，**不是**聚变配方 |
 
 裂变生存配方已 `player_complete`。热流体与热量合同已 `player_complete`。
-观测安全与能源 Jade 已 `player_complete`。热交换器第一切片已签发；
+观测安全与能源 Jade 已 `player_complete`。热交换器第一切片已 `player_complete`；
 蒸汽涡轮 / 冷却器 / 聚变仍未开。
 聚变不发明等离子燃料；化学态仍只有 LIQUID/GAS。
 
@@ -299,8 +301,8 @@ topology 预分配 implementation child。不想要的类在 realization 卡标
 
 | 人类名 | slug / `--check` | 冻了什么 | 判定 | 可行性文件 |
 | --- | --- | --- | --- | --- |
-| 物流封面网 | `portfolio/logistics-cover-net-r0` | 7 个 kind：`logistics_item_storage` / `transfer`、`logistics_fluid_storage` / `transfer`、`logistics_generic_storage` / `transfer` / `dump` | **部分实现**。仓储/导入/导出盖板已 `player_complete`：[`logistics/item-network-core`](capability-delivery-workflow.md)、[`logistics/fluid-network/basic-transfer`](capability-delivery-workflow.md)、[`logistics/generic-network/core`](../history/card-plans/closed/通用网络核心详细计划.md)。Dump 与 `logistics_core` 已由 [`logistics/logistics-core`](../history/card-plans/closed/物流核心详细计划.md) `player_complete`。`dump_policy` 见 [物流封面网余量](../history/card-plans/closed/物流封面网余量详细计划.md)：Dump 是 Core 最后一档物品溢出，不是 Generic 管网盖板。不得把 Display CPU 算进这七 kind，也不得把本行从本节删掉。Display CPU 已由 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md) `player_complete`。人读 unique active 现为
-[热交换器第一切片](../history/card-plans/active/热交换器第一切片详细计划.md)。
+| 物流封面网 | `portfolio/logistics-cover-net-r0` | 7 个 kind：`logistics_item_storage` / `transfer`、`logistics_fluid_storage` / `transfer`、`logistics_generic_storage` / `transfer` / `dump` | **部分实现**。仓储/导入/导出盖板已 `player_complete`：[`logistics/item-network-core`](capability-delivery-workflow.md)、[`logistics/fluid-network/basic-transfer`](capability-delivery-workflow.md)、[`logistics/generic-network/core`](../history/card-plans/closed/通用网络核心详细计划.md)。Dump 与 `logistics_core` 已由 [`logistics/logistics-core`](../history/card-plans/closed/物流核心详细计划.md) `player_complete`。`dump_policy` 见 [物流封面网余量](../history/card-plans/closed/物流封面网余量详细计划.md)：Dump 是 Core 最后一档物品溢出，不是 Generic 管网盖板。不得把 Display CPU 算进这七 kind，也不得把本行从本节删掉。Display CPU 已由 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md) `player_complete`。无 unique-active；最近关闭
+[热交换器第一切片](../history/card-plans/closed/热交换器第一切片详细计划.md)。
 该 R0 不拥有它。 | [`feasibility.json`](../../tools/waves/portfolio/logistics-cover-net-r0/feasibility.json) |
 | Panels | `portfolio/exclusion-reclaim-r0` | 6 sites / 348 expanded | `requires_new_runtime` | [`feasibility.json`](../../tools/waves/portfolio/exclusion-reclaim-r0/feasibility.json) |
 | Sensors | 同上 | 21 / 21 | `requires_new_runtime` | 同上 |
@@ -319,6 +321,15 @@ topology 预分配 implementation child。不想要的类在 realization 卡标
 
 导入器 `GENERIC_RECIPE_IMPORT_READY` 只表示**已有 host** 时可以 `import-source`。
 它不创建 squeezer / juicer / fermenter / bumble RecipeMap，也不实现封面网或作物生长。
+缺失单块 RecipeMap（Slicer / Printer / Roll Former / Cluster Mill / Loom / Melter 等）
+live 导入仍要等晋升落地。已签发 prep（不改 unique-active）：
+[辊压成型机](../history/card-plans/prep/辊压成型机详细计划.md)、
+[集群轧机](../history/card-plans/prep/集群轧机详细计划.md)（未注册 spec + 247/307 isolated compile；60 行 foil overflow；四层外壳已跟普通外壳同材料域）、
+[切片机](../history/card-plans/prep/切片机详细计划.md)。
+规则见 [能力交付流程 §8](capability-delivery-workflow.md) 与
+[`card-plans/prep/`](../history/card-plans/prep/)。批量交付管线（`machine_delivery.json` + SourcePack +
+人工 `production_lock` + `python tools/verify.py integration --profile recipes`）
+已就绪，不因 unique-active 空窗自动改队列。
 
 物流 R0 另外把四个 `logistics_display_cpu_*` 标成该切片
 `out_of_scope`（见该波 `inherited_denominator.json`）。对照图 seed 仍有
@@ -465,8 +476,8 @@ topology 预分配 implementation child。不想要的类在 realization 卡标
   [物流核心](../history/card-plans/closed/物流核心详细计划.md)
   `player_complete`。已关闭
   [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md)
-  为四件状态盖板 `player_complete`。人读 unique active 是
-[热交换器第一切片](../history/card-plans/active/热交换器第一切片详细计划.md)；
+  为四件状态盖板 `player_complete`。无 unique-active；最近关闭
+[热交换器第一切片](../history/card-plans/closed/热交换器第一切片详细计划.md)；
 最近关闭
   [裂变观测安全与能源 Jade](../history/card-plans/closed/裂变观测安全与能源Jade详细计划.md)。
   最近关闭

@@ -1297,8 +1297,19 @@ public final class GTRecipeMapLoader {
             boolean remainderCompact = isBathRemainderCompactRecipe(recipeId);
             boolean deferredRecycling =
                     CompactWaveRecipeIds.isSmelterDeferredRecyclingRecipe(recipeId);
+            boolean nuclearCannerFill = isNuclearRecipe(recipeId)
+                    && map == ModRecipeMaps.CANNER
+                    && !recipe.fluidInputs().isEmpty();
             for (var machine : ModProcessingMachines.allForRecipeMap(
                     map.id())) {
+                if (nuclearCannerFill
+                        && machine == ModProcessingMachines.CANNER) {
+                    // GT6 Geiger fill is item + noble-gas in. The frozen
+                    // bronze canner envelope is 0 FI / 1 FO for rod unload.
+                    // Keep the authored recipes exact; do not raise the
+                    // canner tank gate on another unique-active card.
+                    continue;
+                }
                 if ((remainderCompact || deferredRecycling)
                         && ModProcessingMachines.CHEMICAL_HOST_MACHINES.contains(machine)) {
                     // Bath remainder/identity/tiny-purified compact rows share

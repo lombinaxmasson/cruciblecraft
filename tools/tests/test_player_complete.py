@@ -25,6 +25,7 @@ TRANSFORMERS_SLUG = "energy/transformers"
 NUCLEAR_SLUG = "energy/nuclear-fission-survival"
 HOT_FLUIDS_SLUG = "energy/nuclear-fission-hot-fluids"
 OBSERVATION_SLUG = "energy/nuclear-fission-observation-safety"
+HEAT_EXCHANGERS_SLUG = "energy/heat-exchangers"
 FLUID_TEST_IDS = [
     "coverIdentitySurvivesBlockEntityReload",
     "coversAreSurvivalCraftable",
@@ -60,6 +61,17 @@ class PlayerCompleteTest(unittest.TestCase):
             ["logistics_fluid_storage_cover"],
         )
         self.assertEqual([], errors)
+
+    def test_machine_recipe_output_counts_as_obtain(self) -> None:
+        filled_geiger = "gt_multiitem/multiitem_randomtools_m10002"
+        self.assertIn(filled_geiger, player_complete.recipe_output_ids())
+        self.assertEqual(
+            [],
+            player_complete.check_static_player_surface(
+                OBSERVATION_SLUG,
+                [filled_geiger],
+            ),
+        )
 
     def test_form_items_obtain_does_not_require_shaped_recipe(self) -> None:
         self.assertIn(
@@ -224,6 +236,22 @@ class PlayerCompleteTest(unittest.TestCase):
             [],
             player_complete.check_static_player_surface(
                 OBSERVATION_SLUG,
+                list(signoff["craftable_items"]),
+            ),
+        )
+
+    def test_heat_exchangers_capability_declares_all_game_tests(self) -> None:
+        self.assert_declared_game_tests(HEAT_EXCHANGERS_SLUG)
+
+    def test_heat_exchangers_capability_static_player_surface(self) -> None:
+        capability = capability_ledger.load_capability(
+            capability_ledger.CAP_ROOT / HEAT_EXCHANGERS_SLUG / "capability.json"
+        )
+        signoff = player_complete.load_signoff(capability)
+        self.assertEqual(
+            [],
+            player_complete.check_static_player_surface(
+                HEAT_EXCHANGERS_SLUG,
                 list(signoff["craftable_items"]),
             ),
         )

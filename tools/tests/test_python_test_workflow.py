@@ -100,6 +100,23 @@ class PythonTestWorkflowTest(unittest.TestCase):
             {workflow.test_module(case) for case in selection.cases},
         )
 
+    def test_recipe_bulk_path_selects_fresh_modules(self) -> None:
+        paths = ["tools/recipe_bulk/compile.py"]
+        names, unmatched = workflow.affected_module_names(self.policy, paths)
+        self.assertEqual((), unmatched)
+        self.assertEqual(
+            (
+                "test_material_form_authority",
+                "test_build_semantic_recipes",
+                "test_recipe_bulk",
+                "test_generic_recipe_import",
+                "test_recipe_fresh",
+                "test_machine_delivery",
+                "test_cluster_mill_prep",
+            ),
+            names,
+        )
+
     def test_changed_active_test_selects_only_its_declared_group(self) -> None:
         paths = ["tools/tests/test_python_test_workflow.py"]
         names, unmatched = workflow.affected_module_names(self.policy, paths)

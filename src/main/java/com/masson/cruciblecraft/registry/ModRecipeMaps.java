@@ -59,6 +59,7 @@ public final class ModRecipeMaps {
     public static final RecipeMap FUELS_FLUIDBED = create("fuels_fluidbed");
     public static final RecipeMap FUSION = create("fusion");
     public static final RecipeMap FUELS_PLASMA = create("fuels_plasma");
+    public static final RecipeMap FUELS_HOT = create("fuels_hot");
 
     public static final List<RecipeMap> ALL = List.of(
             COKE_OVEN,
@@ -99,7 +100,8 @@ public final class ModRecipeMaps {
             FUELS_GAS,
             FUELS_FLUIDBED,
             FUSION,
-            FUELS_PLASMA);
+            FUELS_PLASMA,
+            FUELS_HOT);
 
     private ModRecipeMaps() {}
 

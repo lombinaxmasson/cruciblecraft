@@ -307,6 +307,16 @@ class VerificationProfileTest(unittest.TestCase):
         self.assertIn("runtime-java", self.profiles["release_profiles"])
         self.assertIn("player-complete", self.profiles["release_profiles"])
         self.assertIn("recipe-generators", self.profiles["release_profiles"])
+        fresh = self.profiles["profiles"]["recipes"]
+        self.assertIn("recipes", self.profiles["active_profiles"])
+        self.assertNotIn("recipes", self.profiles["release_profiles"])
+        self.assertIs(False, fresh["datagen"])
+        self.assertEqual([], fresh["gradle_tasks"])
+        self.assertEqual(["build_recipe_fresh"], fresh["builders"])
+        self.assertNotIn(
+            "src/recipe_generated/**",
+            fresh["owned_paths"],
+        )
 
     def test_runtime_java_does_not_select_datagen(self) -> None:
         classified = verify_entry.classify_paths(
@@ -348,6 +358,16 @@ class VerificationProfileTest(unittest.TestCase):
         )
         self.assertEqual(["recipe-generators"], classified["selected_profiles"])
         self.assertEqual([], classified["unmatched_paths"])
+
+    def test_recipe_bulk_tooling_selects_recipe_generators_and_recipes(self) -> None:
+        classified = verify_entry.classify_paths(
+            self.profiles,
+            ["tools/recipe_bulk/compile.py"],
+        )
+        self.assertEqual(
+            ["recipe-generators", "recipes"],
+            classified["selected_profiles"],
+        )
 
     def test_if_changed_skips_when_diff_does_not_own_the_profile(self) -> None:
         receipt = {"profiles": [], "commands": [], "results": []}
@@ -470,6 +490,10 @@ class VerificationProfileTest(unittest.TestCase):
         )
         self.assertIn(
             "python3 tools/verify.py integration --profile recipe-generators --if-changed",
+            text,
+        )
+        self.assertIn(
+            "python3 tools/verify.py integration --profile recipes --if-changed",
             text,
         )
         self.assertIn(

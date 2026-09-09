@@ -7,11 +7,23 @@
 
 ## 1. 固定流程
 
+机器身份与 RecipeMap 编译分开：
+
+- `machine_delivery.json` 是 kind-level sidecar：RecipeMap、spec family、能量、
+  槽/罐签名、GT6 source、贴图 profile。名称、acquisition 与 variant 行仍在
+  `machine_kinds.json` / `machine_tiers.json` / `machine_acquisition.json`。
+- 新 kind 仍要一次人工 Java `ProcessingMachineSpec`（槽位、流体容量、能量模式、
+  输入动作、GUI）。之后屏幕、模型、语言、掉落、标签、EMI 与合成由 catalog/datagen
+  推导，不再改固定白名单。
+- 编译单位是 RecipeMap/family，不是机器档位。RU/EU 同图只导入、锁定、编译一次。
+
+配方接入：
+
 ```text
 Source Pack
-  -> RecipeImportSpec
-  -> catalog / candidate
-  -> human-reviewed production lock
+  -> RecipeImportSpec + work_set
+  -> import-source（source.json + lock_candidate.json）
+  -> 人工审核 production_lock.json
   -> recipe_bulk compile
   -> generated/runtime equivalence
   -> player path + machine execution
@@ -19,12 +31,18 @@ Source Pack
   -> capability profile PASS
 ```
 
-现有 host 接新来源统一走 `recipe_import.json` 与 `import-source`，不得新增 per-wave
-builder 或把卡号写入 `WaveSpec`、Java 类型、配方路径、codec、cache key。
+新 RecipeMap 只增加 `SourcePack + recipe_import.json + work_set + 人工
+production_lock`。不得新增 per-wave builder，也不得把卡号写入 `WaveSpec`、Java
+类型、配方路径、codec、cache key。`import-source` 不得写 `production_lock.json`
+或 `src/recipe_generated`。缺形态、缺身份或跨域依赖保持 `blocked`，不发 stand-in。
 
-同一时刻只允许一条 active delivery lane。一个 Card 可以拥有多个
+落地同时只允许一条 active delivery lane。Prep 卡（计划在
+`docs/history/card-plans/prep/`）可以签发并在分支上 `import-source` /
+isolated compile，但不得写 live `src/recipe_generated`，也不得把
+`unique_active_wave` 改成自己。一个 Card 可以拥有多个
 `(target_map, publication_group)`；一个 group 可以拥有多个 query-addressable shards。
-Shard 是运行时索引单位，不是另一张卡。
+Shard 是运行时索引单位，不是另一张卡。缺失单块机器晋升落地仍要 unique-active
+空窗；prep 签发不因工具管线自动改 unique-active。
 
 ## 2. Source Pack 与 production lock
 
@@ -75,23 +93,31 @@ compact publication、recipe identity 与 shard membership 摘要属于运行时
 
 ## 4. Fresh 验证
 
-active recipe profile 每次 fresh 执行：
+active `recipes` profile 每次 fresh 执行：
 
-1. Source Pack 外部完整性与 spec schema
-2. 在临时目录重新 compile
-3. 解析后 JSON 结构或逐文件字节比较
-4. Java/JUnit 的真实 provider、codec、router 与 RecipeManager 测试
-5. 需要时 isolated GameTestServer
-6. datagen 两次运行的目录清单与逐文件字节比较
-7. load/census 结构与预算断言
-
-结果写入 `build/verification/latest.json`，不提交，不含内部内容摘要，也不复用旧 PASS。
+1. Source Pack 外部完整性与 spec schema（`import-source --check`）
+2. 机器 delivery sidecar 与 kind/tier catalog 一致
+3. 在临时目录对小图（exact singleton）和大图（exact_multi）重新 compile
+4. 公布 `family_count`、source rows、logical relations、representation、
+   publication groups/shards、overflow；reload/sync 指标在 isolated compile 中
+   标 `not_executed`，不得用旧 receipt 填 PASS
+5. Java/JUnit 的真实 provider、codec、router 与 RecipeManager 测试由
+   `runtime-java` 承担
+6. 内容卡需要 isolated GameTest 时，用 Gradle 属性隔离，不把
+   `gametest_receipt.json` / `readiness.json` / closeout seal 当当前 PASS
 
 ```powershell
 python tools/build_recipe_bulk.py import-source --spec <path> --check
 python tools/build_recipe_bulk.py compile --wave all --check
 python tools/verify.py integration --profile recipes
+python tools/verify.py integration --profile recipes --if-changed
+.\gradlew.bat runGameTestServer -PwaveRecipes=<host/cohort>
 ```
+
+`recipes` 在 active profiles，不进 release：它不启动 GameTestServer。内容导入卡
+必须带 `-PwaveRecipes=<slug>`；工具 profile 只断言该属性存在。表示只允许
+`exact` / `exact_multi` / `matrix_v1`；没有 source-row 等价证明和 Java runtime
+支持时禁止 parameterized。
 
 GameTest、load 与 census 的历史 JSON/日志只用于调查当时发生过什么。当前能力晋级必须在
 同一次 verification 调用中重新执行所需 runtime 测试。

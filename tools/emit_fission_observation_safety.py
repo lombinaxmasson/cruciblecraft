@@ -397,11 +397,15 @@ def write_models_and_art() -> None:
             f"assets/gregtech/textures/items/gt.multiitem.randomtools/{meta}.png",
             f"assets/cruciblecraft/textures/item/gt6_import/{name}.png",
         )
+        canonical = (
+            SRC / "assets" / "cruciblecraft" / "textures" / "item" / f"{model_path}.png"
+        )
+        copy_png(src, canonical)
         dump(
             model_root / Path(model_path + ".json"),
             {
                 "parent": "minecraft:item/generated",
-                "textures": {"layer0": f"cruciblecraft:item/gt6_import/{name}"},
+                "textures": {"layer0": f"cruciblecraft:item/{model_path}"},
             },
         )
     for kind, slots in worn.items():

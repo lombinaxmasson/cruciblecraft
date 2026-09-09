@@ -2,7 +2,10 @@
 """Contract tests for the reusable recipe bulk compiler."""
 from __future__ import annotations
 
+import tempfile
 import unittest
+from pathlib import Path
+from unittest import mock
 
 from tools.recipe_bulk.emit import hex_stable_id, semantic_replay_key
 from tools.recipe_bulk.resolver import ResolutionError, resolve_operand
@@ -243,6 +246,128 @@ class RecipeBulkCompilerTest(unittest.TestCase):
         mixed_doc = wrap_document({"family_id": "gt.recipe.bath#mixed"}, [first, mixed])
         self.assertEqual([first, mixed], mixed_doc["relations"])
         self.assertNotIn("matrix", mixed_doc)
+
+    def test_write_stable_skips_unchanged_bytes(self) -> None:
+        from tools import io_common as files
+
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "doc.json"
+            files.write_stable(path, {"ok": True})
+            with mock.patch("tools.atomic_io.write_bytes") as writer:
+                files.write_stable(path, {"ok": True})
+            writer.assert_not_called()
+
+    def test_write_tree_is_incremental_and_scoped(self) -> None:
+        from tools import io_common as files
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            keep = root / "pilot" / "host" / "gt_recipe_keep.json"
+            extra = root / "pilot" / "host" / "gt_recipe_extra.json"
+            other = root / "other" / "gt_recipe_other.json"
+            document = {
+                "family_id": "keep",
+                "type": "cruciblecraft:compact_gt_recipe_family",
+            }
+            files.write_stable(keep, document)
+            files.write_stable(extra, {"family_id": "extra", "type": document["type"]})
+            files.write_stable(other, {"family_id": "other", "type": document["type"]})
+            compile_mod.write_tree(
+                [(keep, document)],
+                root,
+                root,
+                path_prefix="pilot/host",
+            )
+            self.assertTrue(keep.is_file())
+            self.assertFalse(extra.is_file())
+            self.assertTrue(other.is_file())
+
+    def test_scoped_family_load_skips_other_prefixes(self) -> None:
+        from tools import io_common as files
+        from tools.recipe_bulk.matrix import load_compact_family_documents
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            wanted = root / "pilot" / "smelter" / "gt_recipe_keep.json"
+            other = root / "smelter" / "ordinary_closure" / "gt_recipe_other.json"
+            payload = {
+                "family_id": "keep",
+                "type": "cruciblecraft:compact_gt_recipe_family",
+            }
+            files.write_stable(wanted, payload)
+            files.write_stable(
+                other,
+                {
+                    "family_id": "other",
+                    "type": "cruciblecraft:compact_gt_recipe_family",
+                },
+            )
+            loaded = load_compact_family_documents(root, path_prefix="pilot/smelter")
+            self.assertEqual([str(wanted)], list(loaded))
+
+    def test_parameterized_source_fails_closed(self) -> None:
+        from tools import io_common as files
+        from tools.recipe_bulk.models import WaveSpec
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source_path = root / "source.json"
+            lock_path = root / "production_lock.json"
+            files.write_stable(
+                source_path,
+                {
+                    "relations": [
+                        {
+                            "family_id": "family-a",
+                            "parameterized": True,
+                            "source_recipe_index": 0,
+                            "stable_id": "cruciblecraft:gt6/dead",
+                            "template_key": "gt.recipe.smelter#0001",
+                        }
+                    ]
+                },
+            )
+            files.write_stable(
+                lock_path,
+                {
+                    "production": {
+                        "families": [
+                            {
+                                "cohort": "pilot",
+                                "publication_group": "cruciblecraft:smelter/pilot",
+                                "template_key": "gt.recipe.smelter#0001",
+                            }
+                        ]
+                    }
+                },
+            )
+            spec = WaveSpec(
+                wave_id="generic-import/param-forbidden",
+                archetype="lock_relation_set",
+                template_kind="exact_relation_set",
+                host="cruciblecraft:smelter",
+                target_map="cruciblecraft:smelter",
+                source_path=source_path,
+                generated_root=root / "recipe_generated",
+                equivalence_path=root / "equivalence.json",
+                selection_policy="lock_templates",
+                publication_policy="lock",
+                path_layout="cohort_nested",
+                compile_authority="recipe_bulk",
+                relation_sort="source_recipe_index_then_stable_id",
+                stable_id_policy="lock",
+                target_map_policy="spec",
+                source_kind_policy="relation_provenance",
+                lock_path=lock_path,
+                wave_slug="generic-import/param-forbidden",
+                cohort="pilot",
+                path_prefix="pilot/smelter/param_forbidden",
+            )
+            with self.assertRaisesRegex(ValueError, "parameterized source must not compile"):
+                compile_mod.planned_documents_for(
+                    "generic-import/param-forbidden",
+                    spec=spec,
+                )
 
 
 def _matrix_relation(stable_id: str, item: str) -> dict:

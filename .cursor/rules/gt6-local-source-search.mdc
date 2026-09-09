@@ -1,0 +1,18 @@
+---
+description: Search local gitignored GT6 Java and gregtech6_w art; resolve names before treating a part as missing.
+alwaysApply: true
+---
+
+# GT6 local source search
+
+Java/tick is `gt6_code/gregtech6`. Art is `gt6_referencable_port_code/gregtech6_w`.
+Both stay gitignored. `.cursorignore` / `.rgignore` re-include them for search.
+
+When mapping a recipe or texture:
+
+1. Grep/Glob those two trees. Do not conclude "not in the repo" from a CC-only search.
+2. If Grep is empty, Shell `rg --no-ignore` with an explicit path. Instant Grep
+   can still hide gitignored `!` paths.
+3. Run `python tools/gt6_resolve.py "OP.capcellcon(MT.Al)"` (or the GT6 token)
+   before marking a slot blocked. `unmapped` / `missing_prefix` is not a license
+   to stand in a different part.

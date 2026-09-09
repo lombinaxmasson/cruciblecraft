@@ -6,6 +6,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -767,7 +768,14 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
             | tool_head_required_forms.get(material_id, set())
             | semantic_required_forms.get(material_id, set())
             | rock_forms.get(material_id, set())
-            | (factual & {"machine_casing", "machine_casing_double"})
+            | (
+                factual
+                & {
+                    "machine_casing",
+                    "machine_casing_double",
+                    "machine_casing_quadruple",
+                }
+            )
         )
         compatibility = ((
             pre_gate_forms.get(material_id, set()) - selected_forms
@@ -1055,6 +1063,76 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
     return operand_document, gate_document
 
 
+def _object_span(text: str, open_idx: int) -> tuple[int, int]:
+    depth = 0
+    for index in range(open_idx, len(text)):
+        char = text[index]
+        if char == "{":
+            depth += 1
+        elif char == "}":
+            depth -= 1
+            if depth == 0:
+                return open_idx, index + 1
+    raise ValueError("unterminated JSON object")
+
+
+def patch_ordinary_casing_family() -> dict[str, int]:
+    """Register quadruple casings beside every gated ordinary casing.
+
+    Full ``--write`` needs dump-backed roaster evidence. This keeps the live
+    gate aligned with ``generates_machine_casing`` without replaying maps.
+    """
+    from tools import currentness
+
+    text = GATE_OUT.read_text(encoding="utf-8")
+    data = json.loads(text)
+    added = 0
+    marker = '\n  "materials": {'
+    start = text.index(marker) + 1
+    _, end = _object_span(text, text.index("{", start))
+    section = text[start:end]
+    materials = data.get("materials") or {}
+    targets = [
+        material
+        for material, forms in materials.items()
+        if "machine_casing" in forms and "machine_casing_quadruple" not in forms
+    ]
+    for material in targets:
+        old_forms = list(materials[material])
+        new_forms = sorted([*old_forms, "machine_casing_quadruple"])
+        materials[material] = new_forms
+        added += 1
+        pattern = (
+            rf'(    "{re.escape(material)}": \[\n'
+            rf'      "{re.escape(old_forms[0])}",[\s\S]*?\n    \])'
+        )
+        replacement = (
+            f'    "{material}": [\n'
+            + ",\n".join(f'      "{form}"' for form in new_forms)
+            + "\n    ]"
+        )
+        section, count = re.subn(pattern, replacement, section, count=1)
+        if count != 1:
+            raise ValueError(f"failed to patch materials forms for {material}")
+    registered = int(data["counts"]["registered_forms"])
+    if added:
+        text = text[:start] + section + text[end:]
+        text = text.replace(
+            f'"registered_forms": {registered}',
+            f'"registered_forms": {registered + added}',
+            1,
+        )
+        json.loads(text)
+        check_or_write(GATE_OUT, text, True)
+        currentness.write_sidecar(GATE_OUT)
+        registered += added
+    return {
+        "added": added,
+        "targets": len(targets),
+        "registered_forms": registered,
+    }
+
+
 def check_or_write(path: Path, content: str, write: bool) -> bool:
     if write:
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -1225,6 +1303,14 @@ def main() -> int:
     parser.add_argument("--write", action="store_true")
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--review", action="store_true")
+    parser.add_argument(
+        "--patch-casing-family",
+        action="store_true",
+        help=(
+            "register quadruple casings for every gated ordinary casing "
+            "without a dump replay"
+        ),
+    )
     replay_mode = parser.add_mutually_exclusive_group()
     replay_mode.add_argument(
         "--reference-only",
@@ -1239,6 +1325,12 @@ def main() -> int:
     args = parser.parse_args()
     if args.write and args.check:
         parser.error("--write and --check are mutually exclusive")
+    if args.patch_casing_family and (args.write or args.check or args.review):
+        parser.error("--patch-casing-family cannot combine with --write/--check/--review")
+    if args.patch_casing_family:
+        result = patch_ordinary_casing_family()
+        print(json.dumps(result, sort_keys=True))
+        return 0
     if (args.reference_only or args.full_replay) and not args.check:
         parser.error("--reference-only and --full-replay require --check")
     if args.check and args.reference_only:

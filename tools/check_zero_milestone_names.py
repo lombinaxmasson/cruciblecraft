@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Fail if active roots still use milestone-style TXX names.
 
-Exempt only docs/history/card-plans/closed/**. Unique-active plans in
-docs/history/card-plans/active/** must not use milestone TXX names. Temporary allowlist
+Exempt only docs/history/card-plans/closed/**. Unique-active and prep plans in
+docs/history/card-plans/active/** and card-plans/prep/** must not use milestone TXX names. Temporary allowlist
 entries must carry owner, reason, and expiry. Program closeout requires an
 empty allowlist. `--quick` is a manual audit of live logistics/verification
 Java and unique-active plans. It is not a `verify.py` gate and does not scan
@@ -315,6 +315,7 @@ QUICK_PREFIXES = (
     "src/main/java/com/masson/cruciblecraft/logistics/",
     "src/main/java/com/masson/cruciblecraft/verification/",
     "docs/history/card-plans/active/",
+    "docs/history/card-plans/prep/",
 )
 
 QUICK_FILES = {

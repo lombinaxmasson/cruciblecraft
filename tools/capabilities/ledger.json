@@ -70,6 +70,37 @@
     },
     {
       "depends_on": [
+        "energy/nuclear-fission-hot-fluids"
+      ],
+      "maturity": "player_complete",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/energy/heatexchanger/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/EnergyHeatExchangersGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_runtime_heat_exchangers/**",
+        "src/main/resources/data/cruciblecraft/heat_exchangers.json",
+        "src/main/resources/data/cruciblecraft/recipe/energy/fuels_hot/**",
+        "src/main/resources/data/cruciblecraft/material_prefixes/machine_casing_quadruple.json",
+        "src/main/resources/assets/cruciblecraft/gt6_heat_exchangers_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/heat_exchanger/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/material/machine_casing_quadruple*.png",
+        "src/test/java/com/masson/cruciblecraft/energy/heatexchanger/**",
+        "tools/capabilities/energy/heat-exchangers/**",
+        "tools/waves/runtime/heat-exchangers/**",
+        "tools/tests/test_energy_heat_exchangers.py",
+        "tools/emit_heat_exchangers.py"
+      ],
+      "path": "tools/capabilities/energy/heat-exchangers/capability.json",
+      "player_signoff": "tools/capabilities/energy/heat-exchangers/player_signoff.json",
+      "profiles": [
+        "capability-runtime",
+        "player-complete"
+      ],
+      "slug": "energy/heat-exchangers",
+      "title": "Heat Exchangers",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "energy/nuclear-fission-survival"
       ],
       "maturity": "player_complete",
@@ -115,6 +146,13 @@
         "src/main/java/com/masson/cruciblecraft/gametest/NuclearFissionObservationSafetyGameTests.java",
         "src/main/resources/data/cruciblecraft_wave_runtime_fission_observation_safety/**",
         "src/main/resources/assets/cruciblecraft/gt6_fission_observation_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/gt6_geiger_obtain_art_manifest.json",
+        "src/main/resources/data/cruciblecraft/material_prefixes/capcellcon.json",
+        "src/main/resources/data/cruciblecraft/recipe/gt_multiitem/extruder_shape_ccc.json",
+        "src/main/resources/data/cruciblecraft/recipe/gt_multiitem/multiitem_randomtools_m10001.json",
+        "src/main/resources/data/cruciblecraft/recipe/nuclear/aluminium_capcellcon.json",
+        "src/main/resources/data/cruciblecraft/recipe/nuclear/geiger_canner_*.json",
+        "tools/emit_geiger_obtain.py",
         "src/main/resources/assets/cruciblecraft/textures/**/gt6_import/hazmat_*",
         "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/thermometer_quicksilver.png",
         "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/geiger_*.png",
@@ -442,10 +480,11 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 13,
+  "capability_count": 14,
   "declared_player_complete": [
     "energy/batteries",
     "energy/converter-catalog",
+    "energy/heat-exchangers",
     "energy/nuclear-fission-hot-fluids",
     "energy/nuclear-fission-observation-safety",
     "energy/nuclear-fission-survival",
@@ -460,6 +499,7 @@
   "impact": {
     "energy/batteries": [
       "energy/batteries",
+      "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
@@ -468,12 +508,17 @@
     "energy/converter-catalog": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/transformers"
     ],
+    "energy/heat-exchangers": [
+      "energy/heat-exchangers"
+    ],
     "energy/nuclear-fission-hot-fluids": [
+      "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety"
     ],
@@ -481,11 +526,13 @@
       "energy/nuclear-fission-observation-safety"
     ],
     "energy/nuclear-fission-survival": [
+      "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival"
     ],
     "energy/transformers": [
+      "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
@@ -494,6 +541,7 @@
     "logistics/cover-net-r0": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
@@ -508,6 +556,7 @@
     "logistics/display-cpu": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
@@ -517,6 +566,7 @@
     "logistics/fluid-network/basic-transfer": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
@@ -529,6 +579,7 @@
     "logistics/generic-network/core": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
@@ -540,6 +591,7 @@
     "logistics/item-network-core": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
@@ -553,6 +605,7 @@
     "logistics/logistics-core": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
@@ -568,6 +621,7 @@
     "capability-runtime": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
@@ -583,6 +637,7 @@
     "player-complete": [
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",

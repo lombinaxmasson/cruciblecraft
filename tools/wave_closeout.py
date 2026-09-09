@@ -671,6 +671,31 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             next_unassigned=True,
             owns_families=0,
         ),
+        "runtime/heat-exchangers": WaveCloseoutSpec(
+            wave_slug="runtime/heat-exchangers",
+            census=WAVES_ROOT / "runtime" / "heat-exchangers" / "census_delta.json",
+            topology=WAVES_ROOT / "runtime" / "heat-exchangers" / "topology.json",
+            readiness=WAVES_ROOT / "runtime" / "heat-exchangers" / "readiness.json",
+            receipt=WAVES_ROOT / "runtime" / "heat-exchangers" / "gametest_receipt.json",
+            production_lock=None,
+            generated_root=None,
+            support_root=None,
+            gametest_java=(
+                io.ROOT
+                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "EnergyHeatExchangersGameTests.java"
+            ),
+            gametest_log=(
+                WAVES_ROOT / "runtime" / "heat-exchangers" / "gametest.log"
+            ),
+            publication_group_manifest=None,
+            shard_manifest=None,
+            runtime_dependency_manifest=None,
+            complete_key="wave_complete",
+            unique_active_wave=None,
+            next_unassigned=True,
+            owns_families=0,
+        ),
         "runtime/fission-observation-safety": WaveCloseoutSpec(
             wave_slug="runtime/fission-observation-safety",
             census=WAVES_ROOT / "runtime" / "fission-observation-safety" / "census_delta.json",
