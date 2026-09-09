@@ -24,6 +24,7 @@ import com.masson.cruciblecraft.energy.battery.EnergyBatteryCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterKindCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterTierCatalog;
 import com.masson.cruciblecraft.energy.transformer.EnergyTransformerCatalog;
+import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerCatalog;
 import com.masson.cruciblecraft.machine.processing.MachineKindCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModFluids;
@@ -1123,6 +1124,7 @@ public class ModLanguageProvider extends LanguageProvider {
         return switch (serializedName) {
             case "machine_casing" -> "Machine Casing";
             case "machine_casing_double" -> "Double Machine Casing";
+            case "machine_casing_quadruple" -> "Quadruple Machine Casing";
             case "machine_casing_dense" -> "Dense Machine Casing";
             case "capcellcon" -> "Capsule Cell Container";
             default -> title(serializedName);
@@ -1206,6 +1208,7 @@ public class ModLanguageProvider extends LanguageProvider {
         addConverterCatalogNames();
         addBatteryCatalogNames();
         addTransformerCatalogNames();
+        addHeatExchangerCatalogNames();
         BathMteIdentityCatalog.newItems().forEach(identity ->
                 add(
                         "item." + CrucibleCraft.MODID + "."
@@ -1320,6 +1323,21 @@ public class ModLanguageProvider extends LanguageProvider {
         EnergyTransformerCatalog.profiles().forEach(profile -> {
             String path = profile.id().getPath();
             String name = transformerDisplayName(profile);
+            add("block." + CrucibleCraft.MODID + "." + path, name);
+            add("item." + CrucibleCraft.MODID + "." + path, name);
+        });
+    }
+
+    private void addHeatExchangerCatalogNames() {
+        add(
+                "tooltip.cruciblecraft.heat_exchanger.hu_rate",
+                chinese ? "输出 %s HU/t" : "Outputs %s HU/t");
+        add(
+                "tooltip.cruciblecraft.heat_exchanger.efficiency",
+                chinese ? "效率 %s%%" : "Efficiency %s%%");
+        HeatExchangerCatalog.profiles().forEach(profile -> {
+            String path = profile.id().getPath();
+            String name = chinese ? profile.langZh() : profile.langEn();
             add("block." + CrucibleCraft.MODID + "." + path, name);
             add("item." + CrucibleCraft.MODID + "." + path, name);
         });

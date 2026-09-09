@@ -1,0 +1,22 @@
+---
+description: Never use placeholder textures; import SOURCE_BACKED art from local gregtech6_w.
+alwaysApply: true
+---
+
+# GT6 art: no placeholders
+
+New blocks and items get textures from local
+`gt6_referencable_port_code/gregtech6_w` (gitignored; search it, do not assume
+it is absent). Copy into
+`src/main/resources/assets/cruciblecraft/textures/**/gt6_import/` (or an
+existing family such as `gt6_energy_art/`). Java/tick source of truth remains
+`gt6_code/gregtech6`. Do not fetch GitHub.
+
+Do not alias another CC texture (`multiblock_casing`, `pipe_filter_cover`,
+`conveyor_cover`, copper/furnace cubes) as a stand-in. Destination files use
+CrucibleCraft registry paths, never 1.7.10 `gt.meta.*` / numbered multiitem
+names.
+
+Record each copy in a small art manifest (`source` → `gt6_source` →
+`destination`). Historical machine/multiitem art debt is out of scope until a
+card owns it; do not expand that while another unique active is open.

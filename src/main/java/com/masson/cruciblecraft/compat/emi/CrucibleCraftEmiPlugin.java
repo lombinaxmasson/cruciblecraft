@@ -87,6 +87,7 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         registerFusionRecipes(registry);
         registerProcessingMachines(registry);
         registerFuelMaps(registry);
+        registerHeatExchangerFuels(registry);
         registerDisplayStacks(registry);
         for (var cover : List.of(
                 ModItems.LOGISTICS_ITEM_STORAGE_COVER,
@@ -304,6 +305,24 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                         EmiStack.of(ModItems.converterItemsById()
                                 .get(profile.id())
                                 .get())));
+    }
+
+    private static void registerHeatExchangerFuels(EmiRegistry registry) {
+        Block[] workstations = ModBlocks.heatExchangerBlockArray();
+        if (workstations.length == 0) {
+            return;
+        }
+        EmiRecipeCategory category = new EmiRecipeCategory(
+                id("fuels_hot"),
+                EmiStack.of(workstations[0]));
+        registry.addCategory(category);
+        for (Block block : workstations) {
+            registry.addWorkstation(category, EmiStack.of(block));
+        }
+        for (var entry : ModRecipeMaps.FUELS_HOT.entries()) {
+            registry.addRecipe(new FuelMapEmiRecipe(
+                    entry.id(), category, entry.recipe()));
+        }
     }
 
     private static void registerProcessingMachines(EmiRegistry registry) {

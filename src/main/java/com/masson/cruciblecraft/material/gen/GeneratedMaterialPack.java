@@ -694,6 +694,7 @@ public final class GeneratedMaterialPack {
         return switch (serializedName) {
             case "machine_casing" -> "Machine Casing";
             case "machine_casing_double" -> "Double Machine Casing";
+            case "machine_casing_quadruple" -> "Quadruple Machine Casing";
             case "machine_casing_dense" -> "Dense Machine Casing";
             case "capcellcon" -> "Capsule Cell Container";
             default -> title(serializedName);
@@ -896,6 +897,7 @@ public final class GeneratedMaterialPack {
             MaterialDefinition material, MaterialPrefix form) {
         return (form.equals(MaterialPrefixes.MACHINE_CASING)
                 || form.equals(MaterialPrefixes.MACHINE_CASING_DOUBLE)
+                || form.equals(MaterialPrefixes.MACHINE_CASING_QUADRUPLE)
                 || form.equals(MaterialPrefixes.MACHINE_CASING_DENSE))
                 && !material.formItems().containsKey(form);
     }
@@ -903,6 +905,9 @@ public final class GeneratedMaterialPack {
     private static String casingEnglish(MaterialPrefix form) {
         if (form.equals(MaterialPrefixes.MACHINE_CASING_DENSE)) {
             return "Dense Machine Casing";
+        }
+        if (form.equals(MaterialPrefixes.MACHINE_CASING_QUADRUPLE)) {
+            return "Quadruple Machine Casing";
         }
         return form.equals(MaterialPrefixes.MACHINE_CASING_DOUBLE)
                 ? "Double Machine Casing"

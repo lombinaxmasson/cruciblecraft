@@ -6,10 +6,13 @@
 > PASS。`runClient` 只在晋级（`runtime_ready → player_complete`）时强制。
 > 合同见 [capability-delivery-workflow.md](capability-delivery-workflow.md)。
 >
-> **当前状态**：人读 unique active 是
-> [热交换器第一切片](../history/card-plans/active/热交换器第一切片详细计划.md)
+> **当前状态**：无 unique-active。机器可读 `unique_active_wave = null`。
+> Prep 已签发（不占落地锁）：[辊压成型机](../history/card-plans/prep/辊压成型机详细计划.md)、
+> [集群轧机](../history/card-plans/prep/集群轧机详细计划.md)、
+> [切片机](../history/card-plans/prep/切片机详细计划.md)。最近关闭
+> [热交换器第一切片](../history/card-plans/closed/热交换器第一切片详细计划.md)
 > （计划 slug `energy/heat-exchangers`；8 个单体热交换器；涡轮 / 冷却器 /
-> 17197 仍后续）。机器可读 `unique_active_wave = null`，直到实施开始。
+> 17197 仍后续；`player_complete` / `accepted`）。
 > 闭卡后已补空盖革 source-exact 获得（铝 `capcellcon` + CCC + Canner He/Ne/Ar）。
 > 最近关闭
 > [裂变观测安全与能源 Jade](../history/card-plans/closed/裂变观测安全与能源Jade详细计划.md)
@@ -25,7 +28,7 @@
 > phase5 tracks.C `started = true`；sealed growth-order
 > `nuclear_started` 仍为 `false`，直到 `portfolio/nuclear` 认领。
 >
-> **现行 `player_complete`（11）**：
+> **现行 `player_complete`（12）**：
 > `logistics/fluid-network/basic-transfer`、
 > `logistics/item-network-core`、
 > `logistics/generic-network/core`、
@@ -38,7 +41,8 @@
 > `energy/nuclear-fission-survival`（46 棒 / 8 kind / 2 堆芯 / 48 关系）、
 > `energy/nuclear-fission-hot-fluids`（11 source / 9 conversion / 8 hot identity）、
 > `energy/nuclear-fission-observation-safety`（2 堆芯 HU Jade / 8 防护服 /
-> 温度计·盖革 / 37 电池 Jade / 179 转换机 Jade）。
+> 温度计·盖革 / 37 电池 Jade / 179 转换机 Jade）、
+> `energy/heat-exchangers`（8 个单体 `FM.Hot` → HU）。
 >
 > 关闭档案与机制卡 `*_READY` 见 [docs/history](../history/INDEX.md)。
 > `*_READY` 不是游戏里已有这些内容。缺口总账是
@@ -91,17 +95,21 @@ GitHub push 承担，不创建 GitHub Release、不上传 jar、不累计 RC soa
 同一时刻只允许一张内容工作处于 active 状态。编号卡时代已经结束；现行顺序是
 semantic wave，不是下一张里程碑编号。
 
-**当前人读 unique active** 是
-[热交换器第一切片](../history/card-plans/active/热交换器第一切片详细计划.md)
-（第 8 项第一张；8 个单体身份）。机器可读 `unique_active_wave = null`，
-直到实施开始。最近关闭
+**当前人读 unique active** 无。机器可读 `unique_active_wave = null`。
+最近关闭
+[热交换器第一切片](../history/card-plans/closed/热交换器第一切片详细计划.md)
+（第 8 项第一张；8 个单体身份；`player_complete`）。最近关闭
 [裂变观测安全与能源 Jade](../history/card-plans/closed/裂变观测安全与能源Jade详细计划.md)
 （`energy/nuclear-fission-observation-safety`，`player_complete`）。已关闭
 [配方 blocked 链账本与首条收口](../history/card-plans/closed/配方blocked链账本与首条收口详细计划.md)
 （`recipe/blocked-chain-ledger`；fluidbed 49 `explicitly_blocked`）。已关闭
 [裂变热流体与热量合同](../history/card-plans/closed/裂变热流体与热量合同详细计划.md)
-（`energy/nuclear-fission-hot-fluids`，`player_complete`）。第 1–7 项已关。
-热交换器第一切片已签发；蒸汽涡轮、冷却器与聚变仍未签发。
+（`energy/nuclear-fission-hot-fluids`，`player_complete`）。第 1–8 项第一张已关。蒸汽涡轮、冷却器与聚变仍未签发。
+Prep 已签发（不占 unique-active，规则见
+[能力交付流程 §8](capability-delivery-workflow.md)）：
+[辊压成型机](../history/card-plans/prep/辊压成型机详细计划.md)、
+[集群轧机](../history/card-plans/prep/集群轧机详细计划.md)、
+[切片机](../history/card-plans/prep/切片机详细计划.md)。
 Bath identity / form / object 是账本次序里的下一条链，尚未签发。不要从只读
 growth-order 档案倒推。
 

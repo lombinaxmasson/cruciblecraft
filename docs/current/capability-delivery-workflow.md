@@ -7,7 +7,9 @@
 
 ## 1. 进度单位
 
-同时只允许一条 **active delivery lane**。工作包必须写清 owned paths。
+落地（unique-active）同时只允许一条 **active delivery lane**。
+独立大卡可以走 **prep 车道**（§8）：签发计划与分支实施不占这条锁，
+合入共享注册表时才晋升落地。工作包必须写清 owned paths。
 这不是「无限 GT6」的许可证。
 
 工作包（issue / 计划文档）只管理 WIP。它不进入：
@@ -115,11 +117,6 @@
 
 known-issues 不得再充当「未关门但下一张卡照开」的垃圾桶。
 
-## 7. 贴图
-
-新内容禁止占位图。有 GT6 原图就从本地 `gregtech6_w` 迁，合同见
-[gt6-art-policy.md](gt6-art-policy.md)。
-
 ## 6. 日常命令
 
 ```powershell
@@ -145,3 +142,61 @@ python tools/verify.py integration --profile player-complete
 日常 `--check` 只要 `--gametest-receipt`；`--client-receipt` 可选。
 
 `python tools/build_<slug>.py --check` 与机制卡 `*_READY` **不是** player_complete。
+
+## 7. 贴图
+
+新内容禁止占位图。有 GT6 原图就从本地 `gregtech6_w` 迁，合同见
+[gt6-art-policy.md](gt6-art-policy.md)。Prep 分支上的本机贴图目录也遵守该合同；
+禁止在别人的 unique-active owned paths 上顺手扩历史美术债。
+
+## 8. Prep 车道
+
+Prep 拆开原先捆在「一条 lane」里的三件事：人读 WIP、共享文件落地锁、
+`player_complete` 晋级门。只降低第一项。晋级门与无 stand-in 获得格不降。
+
+| 步 | 进 master？ | `unique_active_wave` | `capability.json` |
+| --- | --- | --- | --- |
+| 1. 签发计划 | 可以。只合计划文档 | 保持当前落地卡的值；本卡自己是 `null` | 不创建 |
+| 2. 开工分支 | 不合实施。只在 `prep/<slug>` / 独立 worktree | 分支里的 wave 也必须是 `null` | 不要 `workflow=active` |
+| 3. 晋升落地 | 当前 unique-active 已关才合共享文件 | 这时才改成本卡 slug | 这时才建，`workflow=active` |
+
+计划放 [`docs/history/card-plans/prep/`](../history/card-plans/prep/)，**不要**放进
+`card-plans/active/`。路线图「当前 unique active」一行不准改成 prep 卡。
+`card-plans/prep/` 与 `active/` 一样禁止里程碑卡号。
+
+签发页眉必须有：
+
+```text
+lane                    = prep
+capability_slug         = …
+unique_active_wave      = null
+prep_owned_paths        = 新 Java 包、本机贴图目录、tools/waves/prep/<slug>/**
+landing_owned_paths     = ModBlocks / ModItems / ModBlockEntities / ModMenus /
+                          ModRecipeMaps / ModProcessingMachines / ModCapabilities /
+                          machine_kinds.json / machine_tiers.json /
+                          machine_acquisition.json / machine_delivery.json /
+                          EnergyType.java / src/recipe_generated/**
+landing_depends_on      = 当前 unique-active 关闭（加工机还要第一张 live 小图已证明加入流程）
+```
+
+D0 获得格在签发当天写成 GT6→CC 或 `explicitly_blocked`。用
+`python tools/gt6_resolve.py` 翻译；未映射不得换零件。
+
+开工允许：未挂进 `ALL` 的 spec 源文件、本机贴图与 art manifest、
+`tools/waves/prep/<slug>/` 下的 Source Pack、`import-source`、人工
+`production_lock`、临时目录 isolated compile。
+禁止：改 `landing_owned_paths`、改当前 unique-active 的 owned_paths、
+把 live `src/recipe_generated` 写进 `import-source` 的 `output_paths`。
+
+同时开工的 prep **实施**分支最多两张；计划可以多排队。
+需要改 `EnergyType`、load 硬顶或与 unique-active 抢同一前缀文件的卡
+（聚变、QU Energizer、massfab、Boxinator、Polarizer/磁选的 MU）**不要走 prep**。
+
+`prep 做好了` 不是 `player_complete`。分支上 D0、未注册 spec、来源贴图、
+isolated compile PASS、相对 master 不含 `landing_owned_paths` 即可停手等落地槽。
+
+晋升：计划从 `prep/` 挪到 `active/`，创建 capability，一次挂 spec / sidecar /
+RecipeMap / live compile，再跑内容卡 GameTest。`recipes` profile 不能当晋级。
+
+签发不等于开工。本步只合计划文档；不创建 `capability.json`、`tools/waves/**`
+或实施分支，也不改 `unique_active_wave`。

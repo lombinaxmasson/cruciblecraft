@@ -114,16 +114,15 @@ def emit_wave(slug: str, *, write_gate: bool) -> dict[str, Any]:
     spec = recipe_wave(slug)
     root = wave.wave_dir(slug)
     root.mkdir(parents=True, exist_ok=True)
-    first = ordinary_source.replay(slug)
+    replayed = ordinary_source.replay(slug)
     if slug.startswith("mixer/"):
-        first["membership_note"] = wave.mixer_membership_note()
-    fluids = wave.build_fluid_mapping(slug, first)
+        replayed["membership_note"] = wave.mixer_membership_note()
+    fluids = wave.build_fluid_mapping(slug, replayed)
+    wrote_overlays = False
     if fluids.get("mapping"):
         census.write_stable(root / "fluid_mapping.json", fluids)
-        first = ordinary_source.replay(slug)
-        if slug.startswith("mixer/"):
-            first["membership_note"] = wave.mixer_membership_note()
-    catalog = wave.build_object_catalog(slug, first["relations"])
+        wrote_overlays = True
+    catalog = wave.build_object_catalog(slug, replayed["relations"])
     census.write_stable(root / "object_catalog.json", catalog)
     merged_objects = wave.merge_object_catalogs()
     census.write_stable(wave.BUNDLED_OBJECT_CATALOG, merged_objects)
@@ -131,9 +130,11 @@ def emit_wave(slug: str, *, write_gate: bool) -> dict[str, Any]:
     wave.write_b1_scatter(merged_objects)
     merged_fluids = wave.merge_fluid_mappings()
     census.write_stable(wave.BUNDLED_FLUID_MAPPING, merged_fluids)
-    replayed = ordinary_source.replay(slug)
-    if slug.startswith("mixer/"):
-        replayed["membership_note"] = wave.mixer_membership_note()
+    if wrote_overlays or catalog.get("identities"):
+        ordinary_source.invalidate_runtime_maps()
+        replayed = ordinary_source.replay(slug)
+        if slug.startswith("mixer/"):
+            replayed["membership_note"] = wave.mixer_membership_note()
     blocked = [
         row for row in replayed["classifications"] if row["disposition"] == "blocked"
     ]

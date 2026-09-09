@@ -448,13 +448,18 @@ def require_dump() -> None:
 
 
 def load_map_recipes(map_name: str) -> list[dict[str, Any]]:
+    cached = _CACHE.get("dump:" + map_name)
+    if cached is not None:
+        return cached
     path = DUMP_MAPS / f"{map_name}.json"
     if not path.is_file():
         raise OSError("missing GT6 dump map required for full replay: " + relative(path))
     document = load_json(path)
     if document.get("nameInternal") != map_name:
         raise ValueError(f"map identity mismatch: {map_name}")
-    return list(document.get("recipes") or [])
+    recipes = list(document.get("recipes") or [])
+    _CACHE["dump:" + map_name] = recipes
+    return recipes
 
 
 def recipe_template_ids(map_name: str, recipes: list[dict[str, Any]]) -> dict[int, str]:

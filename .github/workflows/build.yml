@@ -48,6 +48,9 @@ jobs:
       - name: Verify recipe generators
         run: python3 tools/verify.py integration --profile recipe-generators --if-changed
 
+      - name: Verify recipes
+        run: python3 tools/verify.py integration --profile recipes --if-changed
+
       - name: Verify semantic generators
         run: python3 tools/verify.py integration --profile semantic-generators --if-changed
 

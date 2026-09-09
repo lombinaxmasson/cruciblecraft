@@ -59,6 +59,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 (id, block) -> dropSelf(block.get()));
         ModBlocks.transformerBlocksById().forEach(
                 (id, block) -> dropSelf(block.get()));
+        ModBlocks.heatExchangerBlocksById().forEach(
+                (id, block) -> dropSelf(block.get()));
         ModBlocks.electricalConductorBlocks().forEach(
                 block -> dropSelf(block.get()));
         ModBlocks.pipeBlocks().forEach(
@@ -145,6 +147,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         ModBlocks.batteryBlocksById().forEach(
                 (id, holder) -> blocks.add(holder.get()));
         ModBlocks.transformerBlocksById().forEach(
+                (id, holder) -> blocks.add(holder.get()));
+        ModBlocks.heatExchangerBlocksById().forEach(
                 (id, holder) -> blocks.add(holder.get()));
         ModMachineVariants.ALL.forEach(variant ->
                 blocks.add(ModBlocks.configuredProcessingBlock(variant)));

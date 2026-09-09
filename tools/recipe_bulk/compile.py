@@ -82,13 +82,15 @@ def _load_bath_tiny_purified_spec() -> dict[str, Any]:
     return spec
 
 
-def _ledger_index_for(wave_id: str):
+def _ledger_index_for(wave_id: str, spec: Any | None = None):
     if wave_id in BATH_WAVES:
         from tools.recipe_bulk import identity_v2
 
         return identity_v2.index_ledger()
-    spec = recipe_wave(wave_id)
-    if spec.wave_slug:
+    resolved = spec if spec is not None else recipe_wave(wave_id)
+    if str(getattr(resolved, "path_prefix", "") or "").startswith("pilot/"):
+        return {"records": {}, "blockers": {}}
+    if resolved.wave_slug:
         from tools.recipe_bulk import identity_v3
 
         return identity_v3.index_ledger()
@@ -144,8 +146,12 @@ def _consume_identity(relation: dict[str, Any], *, wave_id: str) -> str:
     return json.dumps(payload, sort_keys=True, separators=(",", ":"))
 
 
-def planned_documents_for(wave_id: str) -> list[tuple[Path, dict[str, Any]]]:
-    spec = recipe_wave(wave_id)
+def planned_documents_for(
+    wave_id: str,
+    *,
+    spec: Any | None = None,
+) -> list[tuple[Path, dict[str, Any]]]:
+    spec = spec or recipe_wave(wave_id)
     if spec.identity_only:
         raise ValueError(f"{wave_id} is identity-only and has no recipe compile")
     if spec.dry_run_without_lock and (
@@ -162,7 +168,7 @@ def planned_documents_for(wave_id: str) -> list[tuple[Path, dict[str, Any]]]:
         _load_bath_identity_spec()
     if wave_id == "bath/tiny-purified":
         _load_bath_tiny_purified_spec()
-    ledger_index = _ledger_index_for(wave_id)
+    ledger_index = _ledger_index_for(wave_id, spec)
     relations, lock_rows = select_source_relations(spec)
     grouped = group_relations(spec, relations)
     planned: list[tuple[Path, dict[str, Any]]] = []
@@ -238,6 +244,35 @@ def planned_documents_for(wave_id: str) -> list[tuple[Path, dict[str, Any]]]:
     return planned
 
 
+def scoped_recipe_paths(
+    root: Path,
+    path_prefix: str | None = None,
+    tree_prefixes: tuple[str, ...] = (),
+) -> list[Path]:
+    if not root.exists():
+        return []
+    path_marker = (
+        "/" + path_prefix.replace("\\", "/").strip("/") + "/"
+        if path_prefix
+        else None
+    )
+    tree_markers = tuple(
+        "/" + prefix.replace("\\", "/").strip("/") + "/"
+        for prefix in tree_prefixes
+    )
+    found: list[Path] = []
+    for path in root.rglob("gt_recipe_*.json"):
+        normalized = "/" + path.relative_to(root).as_posix()
+        if path_marker and path_marker not in normalized:
+            continue
+        if tree_markers and not any(
+            normalized.startswith(marker) for marker in tree_markers
+        ):
+            continue
+        found.append(path)
+    return found
+
+
 def planned_documents() -> list[tuple[Path, dict[str, Any]]]:
     return planned_documents_for("block/object")
 
@@ -251,28 +286,15 @@ def write_tree(
     tree_prefixes: tuple[str, ...] = (),
 ) -> None:
     origin = generated_root or _block_object_common().GENERATED_ROOT
-    if root.exists():
-        path_marker = (
-            "/" + path_prefix.replace("\\", "/").strip("/") + "/"
-            if path_prefix
-            else None
-        )
-        tree_markers = tuple(
-            "/" + prefix.replace("\\", "/").strip("/") + "/"
-            for prefix in tree_prefixes
-        )
-        for path in root.rglob("gt_recipe_*.json"):
-            normalized = "/" + path.relative_to(root).as_posix()
-            if path_marker and path_marker not in normalized:
-                continue
-            if tree_markers and not any(
-                normalized.startswith(marker) for marker in tree_markers
-            ):
-                continue
-            path.unlink()
+    planned_dest: dict[Path, dict[str, Any]] = {}
     for path, document in planned:
         rel = path.relative_to(origin)
-        dest = root / rel
+        planned_dest[root / rel] = document
+    if root.exists():
+        for path in scoped_recipe_paths(root, path_prefix, tree_prefixes):
+            if path not in planned_dest:
+                path.unlink()
+    for dest, document in planned_dest.items():
         dest.parent.mkdir(parents=True, exist_ok=True)
         payload = files.stable_json(document)
         thp.assert_text_has_no_mapped_unique_tool_heads(payload, files.relative(dest))
@@ -309,8 +331,10 @@ def compile_report(planned: list[tuple[Path, dict[str, Any]]]) -> dict[str, Any]
 def wave_compile_report(
     wave_id: str,
     planned: list[tuple[Path, dict[str, Any]]],
+    *,
+    spec: Any | None = None,
 ) -> dict[str, Any]:
-    spec = recipe_wave(wave_id)
+    spec = spec or recipe_wave(wave_id)
     by_group: dict[str, int] = defaultdict(int)
     relation_count = 0
     for _path, document in planned:
@@ -337,13 +361,13 @@ def wave_compile_report(
     }
 
 
-def compile_wave(wave_id: str) -> dict[str, Any]:
-    spec = recipe_wave(wave_id)
-    planned = planned_documents_for(wave_id)
+def compile_wave(wave_id: str, *, spec: Any | None = None) -> dict[str, Any]:
+    spec = spec or recipe_wave(wave_id)
+    planned = planned_documents_for(wave_id, spec=spec)
     payload: dict[str, Any] = {
         "planned": planned,
         "recipes": {str(path): doc for path, doc in planned},
-        "report": wave_compile_report(wave_id, planned),
+        "report": wave_compile_report(wave_id, planned, spec=spec),
         "wave_id": wave_id,
     }
     if wave_id == "block/object":

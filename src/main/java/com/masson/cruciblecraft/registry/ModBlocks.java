@@ -80,6 +80,9 @@ import com.masson.cruciblecraft.energy.battery.EnergyBatteryProfile;
 import com.masson.cruciblecraft.energy.transformer.EnergyTransformerCatalog;
 import com.masson.cruciblecraft.energy.transformer.EnergyTransformerProfile;
 import com.masson.cruciblecraft.energy.transformer.TransformerBlock;
+import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerBlock;
+import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerCatalog;
+import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerProfile;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterFuelSpecs;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterProfile;
@@ -566,6 +569,7 @@ public final class ModBlocks {
             for (MaterialPrefix form : List.of(
                     MaterialPrefixes.MACHINE_CASING,
                     MaterialPrefixes.MACHINE_CASING_DOUBLE,
+                    MaterialPrefixes.MACHINE_CASING_QUADRUPLE,
                     MaterialPrefixes.MACHINE_CASING_DENSE)) {
                 if (!MaterialCatalog.registeredForms(material).contains(form)
                         || material.formItems().containsKey(form)) {
@@ -1007,6 +1011,51 @@ public final class ModBlocks {
         return BlockBehaviour.Properties.of()
                 .mapColor(MapColor.METAL)
                 .strength(3.0F, 6.0F)
+                .sound(SoundType.METAL);
+    }
+
+    private static final Map<
+            ResourceLocation,
+            DeferredBlock<HeatExchangerBlock>> HEAT_EXCHANGER_BLOCKS =
+                    registerHeatExchangerBlocks();
+
+    private static Map<ResourceLocation, DeferredBlock<HeatExchangerBlock>>
+            registerHeatExchangerBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<HeatExchangerBlock>>
+                blocks = new LinkedHashMap<>();
+        for (HeatExchangerProfile profile : HeatExchangerCatalog.profiles()) {
+            DeferredBlock<HeatExchangerBlock> block = BLOCKS.register(
+                    profile.id().getPath(),
+                    () -> new HeatExchangerBlock(
+                            profile, heatExchangerProperties(profile)));
+            if (blocks.put(profile.id(), block) != null) {
+                throw new IllegalStateException(
+                        "Duplicate heat exchanger block " + profile.id());
+            }
+        }
+        if (blocks.size() != HeatExchangerCatalog.profiles().size()) {
+            throw new IllegalStateException(
+                    "Heat exchanger registration drifted from catalog rows");
+        }
+        return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    public static Map<ResourceLocation, DeferredBlock<HeatExchangerBlock>>
+            heatExchangerBlocksById() {
+        return HEAT_EXCHANGER_BLOCKS;
+    }
+
+    public static Block[] heatExchangerBlockArray() {
+        return HEAT_EXCHANGER_BLOCKS.values().stream()
+                .map(DeferredBlock::get)
+                .toArray(Block[]::new);
+    }
+
+    private static BlockBehaviour.Properties heatExchangerProperties(
+            HeatExchangerProfile profile) {
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.METAL)
+                .strength(profile.hardness(), profile.resistance())
                 .sound(SoundType.METAL);
     }
 
@@ -1473,6 +1522,9 @@ public final class ModBlocks {
         if (form.equals(MaterialPrefixes.MACHINE_CASING_DENSE)) {
             hardness = 9.0F;
             resistance = 18.0F;
+        } else if (form.equals(MaterialPrefixes.MACHINE_CASING_QUADRUPLE)) {
+            hardness = 4.0F;
+            resistance = 10.0F;
         } else if (form.equals(MaterialPrefixes.MACHINE_CASING_DOUBLE)) {
             hardness = 2.0F;
             resistance = 6.0F;

@@ -14,7 +14,8 @@
 
 唯一豁免：[`docs/history/card-plans/closed/`](../history/card-plans/closed/)
 （已关闭的历史计划）。[`card-plans/active/`](../history/card-plans/active/)
-unique-active 计划、工作日志、阶段档案、handoff、`archive/sealed/**`、`tools/`
+与 [`card-plans/prep/`](../history/card-plans/prep/)
+unique-active / prep 计划、工作日志、阶段档案、handoff、`archive/sealed/**`、`tools/`
 闭卡账本 **不在豁免内**。
 
 领域术语不是卡号，不要改：
@@ -131,7 +132,8 @@ ordinary-closure 活动账本、收据、currentness 和测试消费者。数量
 [`tools/check_zero_milestone_names.py`](../../tools/check_zero_milestone_names.py)
 现已：
 
-- 豁免 **仅** `docs/history/card-plans/closed/**`。`card-plans/active/` 不得出现 TXX。
+- 豁免 **仅** `docs/history/card-plans/closed/**`。`card-plans/active/` 与
+  `card-plans/prep/` 不得出现 TXX。
 - `SCAN_ROOTS` 含 `src/t14Benchmark/`、`docs/history`、`docs/decisions`；
   `SCAN_FILES` 含根 README 与 `docs/README.md`。路径命中仍读正文。
 - 匹配 `t18b` / `T13c`。`--quick` 由 `verification` profile 调度。
@@ -196,7 +198,7 @@ ordinary-closure 活动账本、收据、currentness 和测试消费者。数量
 | 项 | 内容 |
 |---|---|
 | 对象 | `check_zero_milestone_names.py`、其单测 |
-| 已做 | 豁免仅 `docs/history/card-plans/closed/**`；`active/` 进 `--quick`；`SCAN_ROOTS` 含 history / decisions / benchmark；已从 `verify.py` 日常门卸下；`--quick` 不再扫 capability JSON；单测覆盖新豁免与 `t18b`；ALLOWLIST 空 |
+| 已做 | 豁免仅 `docs/history/card-plans/closed/**`；`active/` 与 `prep/` 进 `--quick`；`SCAN_ROOTS` 含 history / decisions / benchmark；已从 `verify.py` 日常门卸下；`--quick` 不再扫 capability JSON；单测覆盖新豁免与 `t18b`；ALLOWLIST 空 |
 | 故意未做 | 不把 `--quick` 扩成全量活代码扫描（生产绑定仍有卡号，扩了会打断 CI） |
 
 ### 8.1 删除历史档案与 seal — 已完成
@@ -295,7 +297,8 @@ ordinary-closure 活动账本、收据、currentness 和测试消费者。数量
 ### 8.5 非计划文档
 
 豁免外的 Markdown / README 去掉卡号**文件名**；正文里历史叙述改成 slug 或删。
-`docs/history/card-plans/closed/**` 可继续出现 TXX；`card-plans/active/` 不行。
+`docs/history/card-plans/closed/**` 可继续出现 TXX；`card-plans/active/` 与
+`card-plans/prep/` 不行。
 
 | 对象 | 说明 |
 |---|---|

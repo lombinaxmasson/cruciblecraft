@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+  "machines": [
+    {
+      "id": "cruciblecraft:heat_exchanger_invar",
+      "source_id": 9103,
+      "source_line": 709,
+      "gt6_class": "MultiTileEntityGeneratorHotFluid",
+      "dense": false,
+      "material": "invar",
+      "any_w": false,
+      "hu_rate": 16,
+      "efficiency_bps": 10000,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Heat Exchanger (Invar)",
+      "lang_zh": "热交换器（殷钢）",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "OwO",
+          "PMP"
+        ],
+        "keys": {
+          "M": {
+            "prefix": "machine_casing",
+            "material": "invar"
+          },
+          "O": {
+            "prefix": "small_fluid_pipe",
+            "material": "copper",
+            "family": "ANY.Cu"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "lead"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper",
+            "family": "ANY.Cu"
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:heat_exchanger_tungsten",
+      "source_id": 9107,
+      "source_line": 710,
+      "gt6_class": "MultiTileEntityGeneratorHotFluid",
+      "dense": false,
+      "material": "tungsten",
+      "any_w": true,
+      "hu_rate": 128,
+      "efficiency_bps": 10000,
+      "hardness": 10.0,
+      "resistance": 10.0,
+      "lang_en": "Heat Exchanger (Tungsten)",
+      "lang_zh": "热交换器（钨）",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "OwO",
+          "PMP"
+        ],
+        "keys": {
+          "M": {
+            "prefix": "machine_casing",
+            "material": "tungsten"
+          },
+          "O": {
+            "prefix": "small_fluid_pipe",
+            "material": "copper",
+            "family": "ANY.Cu"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "lead"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "annealed_copper",
+            "family": null
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:heat_exchanger_tungstensteel",
+      "source_id": 9108,
+      "source_line": 711,
+      "gt6_class": "MultiTileEntityGeneratorHotFluid",
+      "dense": false,
+      "material": "tungstensteel",
+      "any_w": false,
+      "hu_rate": 128,
+      "efficiency_bps": 9000,
+      "hardness": 12.5,
+      "resistance": 12.5,
+      "lang_en": "Heat Exchanger (Tungstensteel)",
+      "lang_zh": "热交换器（钨钢）",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "OwO",
+          "PMP"
+        ],
+        "keys": {
+          "M": {
+            "prefix": "machine_casing",
+            "material": "tungstensteel"
+          },
+          "O": {
+            "prefix": "small_fluid_pipe",
+            "material": "copper",
+            "family": "ANY.Cu"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "lead"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "annealed_copper",
+            "family": null
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:heat_exchanger_tantalum_hafnium_carbide",
+      "source_id": 9109,
+      "source_line": 712,
+      "gt6_class": "MultiTileEntityGeneratorHotFluid",
+      "dense": false,
+      "material": "tantalum_hafnium_carbide",
+      "any_w": false,
+      "hu_rate": 256,
+      "efficiency_bps": 10000,
+      "hardness": 12.5,
+      "resistance": 12.5,
+      "lang_en": "Heat Exchanger (Tantalum Hafnium Carbide)",
+      "lang_zh": "热交换器（钽铪碳化物）",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "OwO",
+          "PMP"
+        ],
+        "keys": {
+          "M": {
+            "prefix": "machine_casing",
+            "material": "tantalum_hafnium_carbide"
+          },
+          "O": {
+            "prefix": "small_fluid_pipe",
+            "material": "copper",
+            "family": "ANY.Cu"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "lead"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "annealed_copper",
+            "family": null
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:dense_heat_exchanger_invar",
+      "source_id": 9153,
+      "source_line": 714,
+      "gt6_class": "MultiTileEntityGeneratorHotFluid",
+      "dense": true,
+      "material": "invar",
+      "any_w": false,
+      "hu_rate": 64,
+      "efficiency_bps": 10000,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Dense Heat Exchanger (Invar)",
+      "lang_zh": "致密热交换器（殷钢）",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "OwO",
+          "PMP"
+        ],
+        "keys": {
+          "M": {
+            "prefix": "machine_casing_quadruple",
+            "material": "invar"
+          },
+          "O": {
+            "prefix": "large_fluid_pipe",
+            "material": "copper",
+            "family": "ANY.Cu"
+          },
+          "P": {
+            "prefix": "quadruple_plate",
+            "material": "lead"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "copper",
+            "family": "ANY.Cu"
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:dense_heat_exchanger_tungsten",
+      "source_id": 9157,
+      "source_line": 715,
+      "gt6_class": "MultiTileEntityGeneratorHotFluid",
+      "dense": true,
+      "material": "tungsten",
+      "any_w": true,
+      "hu_rate": 512,
+      "efficiency_bps": 10000,
+      "hardness": 10.0,
+      "resistance": 10.0,
+      "lang_en": "Dense Heat Exchanger (Tungsten)",
+      "lang_zh": "致密热交换器（钨）",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "OwO",
+          "PMP"
+        ],
+        "keys": {
+          "M": {
+            "prefix": "machine_casing_quadruple",
+            "material": "tungsten"
+          },
+          "O": {
+            "prefix": "large_fluid_pipe",
+            "material": "copper",
+            "family": "ANY.Cu"
+          },
+          "P": {
+            "prefix": "quadruple_plate",
+            "material": "lead"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "annealed_copper",
+            "family": null
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:dense_heat_exchanger_tungstensteel",
+      "source_id": 9158,
+      "source_line": 716,
+      "gt6_class": "MultiTileEntityGeneratorHotFluid",
+      "dense": true,
+      "material": "tungstensteel",
+      "any_w": false,
+      "hu_rate": 512,
+      "efficiency_bps": 9000,
+      "hardness": 12.5,
+      "resistance": 12.5,
+      "lang_en": "Dense Heat Exchanger (Tungstensteel)",
+      "lang_zh": "致密热交换器（钨钢）",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "OwO",
+          "PMP"
+        ],
+        "keys": {
+          "M": {
+            "prefix": "machine_casing_quadruple",
+            "material": "tungstensteel"
+          },
+          "O": {
+            "prefix": "large_fluid_pipe",
+            "material": "copper",
+            "family": "ANY.Cu"
+          },
+          "P": {
+            "prefix": "quadruple_plate",
+            "material": "lead"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "annealed_copper",
+            "family": null
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:dense_heat_exchanger_tantalum_hafnium_carbide",
+      "source_id": 9159,
+      "source_line": 717,
+      "gt6_class": "MultiTileEntityGeneratorHotFluid",
+      "dense": true,
+      "material": "tantalum_hafnium_carbide",
+      "any_w": false,
+      "hu_rate": 1024,
+      "efficiency_bps": 10000,
+      "hardness": 12.5,
+      "resistance": 12.5,
+      "lang_en": "Dense Heat Exchanger (Tantalum Hafnium Carbide)",
+      "lang_zh": "致密热交换器（钽铪碳化物）",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "OwO",
+          "PMP"
+        ],
+        "keys": {
+          "M": {
+            "prefix": "machine_casing_quadruple",
+            "material": "tantalum_hafnium_carbide"
+          },
+          "O": {
+            "prefix": "large_fluid_pipe",
+            "material": "copper",
+            "family": "ANY.Cu"
+          },
+          "P": {
+            "prefix": "quadruple_plate",
+            "material": "lead"
+          },
+          "C": {
+            "prefix": "dense_plate",
+            "material": "annealed_copper",
+            "family": null
+          }
+        },
+        "catalyst": "w"
+      }
+    }
+  ]
+}

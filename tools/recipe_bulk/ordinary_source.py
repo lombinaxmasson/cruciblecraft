@@ -142,8 +142,15 @@ def load_work(host: str) -> list[WorkFamily]:
     return work
 
 
+_BASE_CATALOGS: assembler.Catalogs | None = None
+_RUNTIME_MAPS: dict[str, Any] | None = None
+
+
 def load_catalogs(required_forms: dict[str, set[str]] | None = None) -> assembler.Catalogs:
-    catalogs = assembler.load_catalogs()
+    global _BASE_CATALOGS
+    if _BASE_CATALOGS is None:
+        _BASE_CATALOGS = assembler.load_catalogs()
+    catalogs = _BASE_CATALOGS
     prefix = dict(catalogs.prefix_item_to_form)
     prefix.update(identities.PREFIX_ITEM_TO_FORM_OVERLAY)
     prefix.update(EXTRA_PREFIX_ITEM_TO_FORM)
@@ -1172,6 +1179,27 @@ def _family_consume_key(relations: list[dict[str, Any]]) -> str:
     return json.dumps(rows, sort_keys=True, separators=(",", ":"))
 
 
+def load_runtime_maps() -> dict[str, Any]:
+    global _RUNTIME_MAPS
+    if _RUNTIME_MAPS is None:
+        _RUNTIME_MAPS = {
+            "stone": load_stone_runtime(),
+            "mte": load_mte_runtime(),
+            "block": load_block_runtime(),
+            "items": load_item_overlay(),
+            "aliases": identities.load_reused_aliases(),
+            "fluids": load_fluid_overlay(),
+        }
+    return _RUNTIME_MAPS
+
+
+def invalidate_runtime_maps() -> None:
+    global _RUNTIME_MAPS, _LEDGER_FLUID_OVERLAY, _LEDGER_ITEM_RUNTIME
+    _RUNTIME_MAPS = None
+    _LEDGER_FLUID_OVERLAY = None
+    _LEDGER_ITEM_RUNTIME = None
+
+
 def replay(slug: str) -> dict[str, Any]:
     spec = recipe_wave(slug)
     host = spec.host
@@ -1181,14 +1209,7 @@ def replay(slug: str) -> dict[str, Any]:
     recipes = owner.load_map_recipes(source_map_for(host))
     ordinary = load_ordinary_indices(host)
     assigned = assign_rows(recipes, work, ordinary, host)
-    maps = {
-        "stone": load_stone_runtime(),
-        "mte": load_mte_runtime(),
-        "block": load_block_runtime(),
-        "items": load_item_overlay(),
-        "aliases": identities.load_reused_aliases(),
-        "fluids": load_fluid_overlay(),
-    }
+    maps = dict(load_runtime_maps())
     catalogs = load_catalogs()
     relations: list[dict[str, Any]] = []
     for item in work:
@@ -1284,10 +1305,11 @@ def replay(slug: str) -> dict[str, Any]:
             if source.get("fluid"):
                 unmapped_fluids[str(source.get("fluid"))] += 1
     summary = remaining_summary(host)
+    production_ids = {item.family_id for item in production}
     production_relations = [
         relation
         for relation in relations
-        if any(item.family_id == relation["family_id"] for item in production)
+        if relation["family_id"] in production_ids
     ]
     return {
         "assigned": sum(len(rows) for rows in assigned.values()),

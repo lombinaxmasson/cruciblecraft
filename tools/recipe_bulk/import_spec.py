@@ -179,6 +179,18 @@ def existing_hosts() -> set[str]:
     return set(existing_recipe_maps())
 
 
+def _allows_unregistered_prep_host(document: dict[str, Any]) -> bool:
+    """Allow isolated prep imports before their RecipeMap lands in Java."""
+    slug = str(document.get("import_slug") or "")
+    source_pack = str(document.get("source_pack") or "").replace("\\", "/")
+    target = str(document.get("target_map") or "")
+    return (
+        slug.startswith("prep/")
+        and source_pack.startswith("tools/waves/prep/")
+        and bool(re.fullmatch(r"cruciblecraft:[a-z0-9_]+", target))
+    )
+
+
 def validate_import_spec_document(document: dict[str, Any]) -> None:
     extra = sorted(set(document) - set(IMPORT_SPEC_SCHEMA["properties"]))
     if extra:
@@ -199,10 +211,11 @@ def validate_import_spec_document(document: dict[str, Any]) -> None:
         raise ImportSpecError(f"invalid import_slug {slug}")
     maps = existing_recipe_maps()
     target = str(document["target_map"])
-    if target not in maps:
+    prep_host = _allows_unregistered_prep_host(document)
+    if target not in maps and not prep_host:
         raise ImportSpecError(f"unknown target map {target}")
     host = str(document["host"])
-    if host not in existing_hosts():
+    if host not in existing_hosts() and not prep_host:
         raise ImportSpecError(f"unknown host {host}")
     if host != target:
         raise ImportSpecError(f"host {host} must match target_map {target}")

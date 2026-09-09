@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.registry;
 
 import java.util.Collection;
 import java.util.IdentityHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -165,6 +166,13 @@ public final class ModMenus {
                     "No processing menu registered for machine " + spec.id());
         }
         return holder;
+    }
+
+    public static List<DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>>
+            processingMenus() {
+        return ModProcessingMachines.CONFIGURED_MACHINES.stream()
+                .map(ModMenus::forMachine)
+                .toList();
     }
 
     static int processingMenuCount() {

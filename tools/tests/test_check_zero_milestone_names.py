@@ -68,6 +68,9 @@ class ZeroMilestoneNameScannerTest(unittest.TestCase):
         self.assertTrue(
             scanner.is_quick_target("docs/history/card-plans/active/显示CPU详细计划.md")
         )
+        self.assertTrue(
+            scanner.is_quick_target("docs/history/card-plans/prep/辊压成型机详细计划.md")
+        )
         self.assertFalse(scanner.is_quick_target("src/main/java/com/masson/cruciblecraft/CrucibleCraft.java"))
         self.assertFalse(scanner.is_quick_target("src/recipe_generated/resources/data/cruciblecraft/recipe/" + lower_milestone + ".json"))
         self.assertFalse(scanner.is_quick_target("tools/build_t" + "35_runtime_registry.py"))
@@ -87,6 +90,11 @@ class ZeroMilestoneNameScannerTest(unittest.TestCase):
         self.assertFalse(
             scanner.is_exempt(
                 "docs/history/card-plans/active/显示CPU详细计划.md"
+            )
+        )
+        self.assertFalse(
+            scanner.is_exempt(
+                "docs/history/card-plans/prep/辊压成型机详细计划.md"
             )
         )
         self.assertFalse(scanner.is_exempt("archive/sealed/" + milestone + "/archive_manifest.json"))

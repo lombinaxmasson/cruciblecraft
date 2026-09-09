@@ -205,10 +205,31 @@ def rewrite_document(document: dict[str, Any]) -> dict[str, Any]:
     return wrap_document(document, relations)
 
 
-def load_compact_family_documents(root: Path) -> dict[str, dict[str, Any]]:
+def load_compact_family_documents(
+    root: Path,
+    *,
+    path_prefix: str | None = None,
+    tree_prefixes: tuple[str, ...] = (),
+) -> dict[str, dict[str, Any]]:
     documents: dict[str, dict[str, Any]] = {}
+    path_marker = (
+        "/" + path_prefix.replace("\\", "/").strip("/") + "/"
+        if path_prefix
+        else None
+    )
+    tree_markers = tuple(
+        "/" + prefix.replace("\\", "/").strip("/") + "/"
+        for prefix in tree_prefixes
+    )
     for path in sorted(root.rglob("*.json")):
         if not path.is_file():
+            continue
+        normalized = "/" + path.relative_to(root).as_posix()
+        if path_marker and path_marker not in normalized:
+            continue
+        if tree_markers and not any(
+            normalized.startswith(marker) for marker in tree_markers
+        ):
             continue
         document = files.load_json(path)
         if isinstance(document, dict) and document.get("type") == COMPACT_FAMILY_TYPE:

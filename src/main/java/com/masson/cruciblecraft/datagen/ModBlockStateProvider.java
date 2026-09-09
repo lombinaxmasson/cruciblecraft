@@ -11,7 +11,7 @@ import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.logistics.hopper.HopperKind;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
-import com.masson.cruciblecraft.machine.processing.MachineTierCatalog;
+import com.masson.cruciblecraft.machine.processing.MachineTextureProfiles;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModMachineVariants;
 
@@ -121,6 +121,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         registerConverters();
         registerBatteries();
         registerTransformers();
+        registerHeatExchangers();
         simpleBlockWithItem(
                 ModBlocks.ROTATIONAL_AXLE.get(),
                 models().cubeAll(
@@ -672,6 +673,55 @@ public class ModBlockStateProvider extends BlockStateProvider {
         }
     }
 
+    private void registerHeatExchangers() {
+        ModelFile idle = heatExchangerCube("overlay");
+        ModelFile active = heatExchangerCube("overlay_active");
+        for (var profile : com.masson.cruciblecraft.energy.heatexchanger
+                .HeatExchangerCatalog.profiles()) {
+            var block = ModBlocks.heatExchangerBlocksById()
+                    .get(profile.id())
+                    .get();
+            getVariantBuilder(block).forAllStates(state -> {
+                Direction facing = state.getValue(
+                        com.masson.cruciblecraft.energy.heatexchanger
+                                .HeatExchangerBlock.FACING);
+                boolean lit = state.getValue(
+                        com.masson.cruciblecraft.energy.heatexchanger
+                                .HeatExchangerBlock.LIT);
+                var builder = ConfiguredModel.builder()
+                        .modelFile(lit ? active : idle);
+                return switch (facing) {
+                    case SOUTH -> builder.rotationY(180).build();
+                    case WEST -> builder.rotationY(270).build();
+                    case EAST -> builder.rotationY(90).build();
+                    default -> builder.build();
+                };
+            });
+            simpleBlockItem(block, idle);
+        }
+    }
+
+    private ModelFile heatExchangerCube(String overlay) {
+        String name = "heat_exchanger/" + overlay;
+        String base = "block/machine/heat_exchanger";
+        return models()
+                .withExistingParent(
+                        name, modLoc("block/machine_cube_2_layer"))
+                .texture("particle", modLoc(base + "/colored/front"))
+                .texture("bot_down", modLoc(base + "/colored/bottom"))
+                .texture("bot_up", modLoc(base + "/colored/top"))
+                .texture("bot_north", modLoc(base + "/colored/front"))
+                .texture("bot_south", modLoc(base + "/colored/back"))
+                .texture("bot_west", modLoc(base + "/colored/left"))
+                .texture("bot_east", modLoc(base + "/colored/right"))
+                .texture("top_down", modLoc(base + "/" + overlay + "/bottom"))
+                .texture("top_up", modLoc(base + "/" + overlay + "/top"))
+                .texture("top_north", modLoc(base + "/" + overlay + "/front"))
+                .texture("top_south", modLoc(base + "/" + overlay + "/back"))
+                .texture("top_west", modLoc(base + "/" + overlay + "/left"))
+                .texture("top_east", modLoc(base + "/" + overlay + "/right"));
+    }
+
     private ModelFile transformerCube(String overlay) {
         String name = "transformer/electric_" + overlay;
         String base = "block/machine/transformer/electric";
@@ -948,85 +998,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     /** Shared GT6 texture folders for tiered / aliased machine ids. */
     private static String machineTextureId(String id) {
-        String catalogProfile = MachineTierCatalog.textureProfile(id);
-        if (!catalogProfile.equals(id)) {
-            return catalogProfile;
-        }
-        return switch (id) {
-            case "steel_centrifuge", "titanium_centrifuge" -> "centrifuge";
-            case "steel_sifter", "titanium_sifter" -> "sifter";
-            case "steel_lathe", "titanium_lathe" -> "lathe";
-            case "steel_rollingmill", "titanium_rollingmill" -> "rollingmill";
-            case "steel_wiremill", "titanium_wiremill" -> "wiremill";
-            case "steel_shredder", "titanium_shredder" -> "shredder";
-            case "steel_press", "titanium_press" -> "press";
-            case "aluminium_electrolyzer", "stainless_steel_electrolyzer" ->
-                    "electrolyzer";
-            case "invar_distillery", "titanium_distillery" -> "distillery";
-            case "distillation_tower" -> "distillery";
-            case "large_boiler" -> "boiler";
-            case "tank_3x3x3" -> "tank_3x3x3";
-            case "large_crucible" -> "coke_oven";
-            case "drying", "invar_drying", "titanium_drying" -> "dryer";
-            case "invar_smelter", "titanium_smelter" -> "smelter";
-            default -> MachineTierCatalog.textureProfile(id);
-        };
+        return MachineTextureProfiles.textureId(id);
     }
 
     private static String shapedMachineModel(String textureId) {
-        return switch (textureId) {
-            case "mortar", "sifter", "bath" -> textureId;
-            default -> null;
-        };
+        return MachineTextureProfiles.shapedMachineModel(textureId);
     }
 
     private static boolean hasMachineTextures(String textureId) {
-        return switch (textureId) {
-            case "large_centrifuge",
-                    "sluice",
-                    "bath",
-                    "canner",
-                    "centrifuge",
-                    "shredder",
-                    "sifter",
-                    "smelter",
-                    "extruder",
-                    "cutter",
-                    "lathe",
-                    "rollingmill",
-                    "rollbender",
-                    "bender",
-                    "wiremill",
-                    "assembler",
-                    "welder",
-                    "press",
-                    "electrolyzer",
-                    "mixer",
-                    "distillery",
-                    "autoclave",
-                    "dryer",
-                    "compressor",
-                    "generifier",
-                    "electric_motor",
-                    "electric_heater",
-                    "electric_engine",
-                    "rotational_gearbox",
-                    "fuel_engine",
-                    "burning_gas_generator",
-                    "burning_box_solid",
-                    "burning_box_brick",
-                    "burning_box_liquid",
-                    "burning_box_fluid_bed",
-                    "boiler",
-                    "tank_3x3x3",
-                    "mortar",
-                    "coke_oven",
-                    "bronze_crusher",
-                    "laser_engraver",
-                    "fusion_reactor",
-                    "reactor_core_1x1",
-                    "reactor_core_2x2" -> true;
-            default -> false;
-        };
+        return MachineTextureProfiles.hasMachineTextures(textureId);
     }
 }

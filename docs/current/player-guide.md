@@ -98,8 +98,8 @@ GT 配方与 bounded dust 保真度不变。
   `Thorium_Salt` 仍 blocked）。堆芯 HU Jade、辐射/烫伤、8 件防护服、温度计与
   盖革行为，以及 37 电池 / 179 转换机 Jade 已
   `player_complete`（[裂变观测安全与能源 Jade](../history/card-plans/closed/裂变观测安全与能源Jade详细计划.md)）。
-  空盖革可用铝胶囊单元容器 + 氦/氖/氩灌装获得。热交换器第一切片已签发；
-  蒸汽涡轮、冷却器与聚变生存配方仍未开，不当成可玩终局；
+  空盖革可用铝胶囊单元容器 + 氦/氖/氩灌装获得。8 个单体热交换器已
+  `player_complete`（`FM.Hot` → HU；钨钢效率 90%）。蒸汽涡轮、冷却器与聚变生存配方仍未开，不当成可玩终局；
 - 本包是 RC，不是正式 GA，也不是 `1.0.0`；soak 只接 release blocker；
 - 反馈：https://github.com/icodestuljh/cruciblecraft/issues（附上
   版本号 + 复现步骤 + 存档/日志）。

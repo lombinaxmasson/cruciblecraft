@@ -1,0 +1,653 @@
+{
+  "$schema": "schema/machine_delivery.schema.json",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "note": "Kind-level delivery sidecar. Names, acquisition templates and variant rows stay in machine_kinds.json / machine_tiers.json / machine_acquisition.json. New kinds still need one Java ProcessingMachineSpec; catalog/datagen then derive screens, models, language and energy audit.",
+  "texture_aliases": {
+    "distillation_tower": "distillery",
+    "large_boiler": "boiler",
+    "tank_3x3x3": "tank_3x3x3",
+    "large_crucible": "coke_oven"
+  },
+  "shaped_models": ["bath", "mortar", "sifter"],
+  "hosts": [
+    {
+      "id": "cruciblecraft:bronze_crusher",
+      "recipe_map": "cruciblecraft:crusher",
+      "spec_family": "opening",
+      "energy": { "type": "KINETIC_PUSH", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 1,
+        "item_outputs": 1,
+        "fluid_inputs": 0,
+        "fluid_outputs": 0
+      },
+      "gt6_panel": {
+        "in_items": 1,
+        "out_items": 12,
+        "in_fluids": 0,
+        "out_fluids": 0
+      },
+      "texture_profile": "bronze_crusher",
+      "gt6_source": "Loader_MultiTileEntities.java:1300",
+      "art_destination": "textures/block/machine/bronze_crusher",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:sluice",
+      "recipe_map": "cruciblecraft:sluice",
+      "spec_family": "primary",
+      "energy": { "type": "KINETIC_ROTATION", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 1,
+        "item_outputs": 4,
+        "fluid_inputs": 1,
+        "fluid_outputs": 0
+      },
+      "gt6_panel": {
+        "in_items": 1,
+        "out_items": 9,
+        "in_fluids": 1,
+        "out_fluids": 1
+      },
+      "texture_profile": "sluice",
+      "gt6_source": "Loader_MultiTileEntities.java:1464",
+      "art_destination": "textures/block/machine/sluice",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:bath",
+      "recipe_map": "cruciblecraft:bath",
+      "spec_family": "primary",
+      "energy": { "type": "TIME", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 1,
+        "item_outputs": 6,
+        "fluid_inputs": 1,
+        "fluid_outputs": 3
+      },
+      "gt6_panel": {
+        "in_items": 6,
+        "out_items": 6,
+        "in_fluids": 1,
+        "out_fluids": 3
+      },
+      "texture_profile": "bath",
+      "gt6_source": "Loader_MultiTileEntities.java:1653",
+      "art_destination": "textures/block/machine/bath",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:centrifuge",
+      "recipe_map": "cruciblecraft:centrifuge",
+      "spec_family": "primary",
+      "energy": { "type": "KINETIC_ROTATION", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 1,
+        "item_outputs": 6,
+        "fluid_inputs": 1,
+        "fluid_outputs": 6
+      },
+      "gt6_panel": {
+        "in_items": 1,
+        "out_items": 6,
+        "in_fluids": 1,
+        "out_fluids": 6
+      },
+      "texture_profile": "centrifuge",
+      "gt6_source": "Loader_MultiTileEntities.java:1330",
+      "art_destination": "textures/block/machine/centrifuge",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:shredder",
+      "recipe_map": "cruciblecraft:shredder",
+      "spec_family": "primary",
+      "energy": { "type": "KINETIC_ROTATION", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 1,
+        "item_outputs": 4,
+        "fluid_inputs": 0,
+        "fluid_outputs": 0
+      },
+      "gt6_panel": {
+        "in_items": 1,
+        "out_items": 12,
+        "in_fluids": 0,
+        "out_fluids": 0
+      },
+      "texture_profile": "shredder",
+      "gt6_source": "Loader_MultiTileEntities.java:1294",
+      "art_destination": "textures/block/machine/shredder",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:sifter",
+      "recipe_map": "cruciblecraft:sifter",
+      "spec_family": "primary",
+      "energy": { "type": "KINETIC_PUSH", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 1,
+        "item_outputs": 4,
+        "fluid_inputs": 0,
+        "fluid_outputs": 0
+      },
+      "gt6_panel": {
+        "in_items": 1,
+        "out_items": 12,
+        "in_fluids": 0,
+        "out_fluids": 0
+      },
+      "texture_profile": "sifter",
+      "gt6_source": "Loader_MultiTileEntities.java:1312",
+      "art_destination": "textures/block/machine/sifter",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:mortar",
+      "recipe_map": "cruciblecraft:mortar",
+      "spec_family": "primary",
+      "energy": { "type": "KINETIC", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 1,
+        "item_outputs": 4,
+        "fluid_inputs": 0,
+        "fluid_outputs": 0
+      },
+      "gt6_panel": {
+        "in_items": 1,
+        "out_items": 2,
+        "in_fluids": 0,
+        "out_fluids": 0
+      },
+      "texture_profile": "mortar",
+      "gt6_source": "cc_25_plus_12_mapping.processing.mortar",
+      "art_destination": "textures/block/machine/mortar",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:smelter",
+      "recipe_map": "cruciblecraft:smelter",
+      "spec_family": "primary",
+      "energy": { "type": "HEAT", "mode": "ADJACENT" },
+      "slots": {
+        "item_inputs": 1,
+        "item_outputs": 4,
+        "fluid_inputs": 0,
+        "fluid_outputs": 1
+      },
+      "gt6_panel": {
+        "in_items": 1,
+        "out_items": 1,
+        "in_fluids": 1,
+        "out_fluids": 1
+      },
+      "texture_profile": "smelter",
+      "gt6_source": "Loader_MultiTileEntities.java:1431",
+      "art_destination": "textures/block/machine/smelter",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:extruder",
+      "recipe_map": "cruciblecraft:extruder",
+      "spec_family": "component",
+      "energy": { "type": "HEAT", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 2,
+        "item_outputs": 1,
+        "fluid_inputs": 0,
+        "fluid_outputs": 0
+      },
+      "gt6_panel": {
+        "in_items": 2,
+        "out_items": 2,
+        "in_fluids": 0,
+        "out_fluids": 0
+      },
+      "texture_profile": "extruder",
+      "gt6_source": "Loader_MultiTileEntities.java:1406",
+      "art_destination": "textures/block/machine/extruder",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:cutter",
+      "recipe_map": "cruciblecraft:cutter",
+      "spec_family": "component",
+      "energy": { "type": "KINETIC_ROTATION", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 1,
+        "item_outputs": 1,
+        "fluid_inputs": 0,
+        "fluid_outputs": 0
+      },
+      "gt6_panel": {
+        "in_items": 1,
+        "out_items": 3,
+        "in_fluids": 1,
+        "out_fluids": 0
+      },
+      "texture_profile": "cutter",
+      "gt6_source": "Loader_MultiTileEntities.java:1318",
+      "art_destination": "textures/block/machine/cutter",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:lathe",
+      "recipe_map": "cruciblecraft:lathe",
+      "spec_family": "component",
+      "energy": { "type": "KINETIC_ROTATION", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 1,
+        "item_outputs": 1,
+        "fluid_inputs": 0,
+        "fluid_outputs": 0
+      },
+      "gt6_panel": {
+        "in_items": 1,
+        "out_items": 2,
+        "in_fluids": 0,
+        "out_fluids": 0
+      },
+      "texture_profile": "lathe",
+      "gt6_source": "Loader_MultiTileEntities.java:1306",
+      "art_destination": "textures/block/machine/lathe",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:rollingmill",
+      "recipe_map": "cruciblecraft:rollingmill",
+      "spec_family": "component",
+      "energy": { "type": "KINETIC_ROTATION", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 1,
+        "item_outputs": 1,
+        "fluid_inputs": 0,
+        "fluid_outputs": 0
+      },
+      "gt6_panel": {
+        "in_items": 1,
+        "out_items": 1,
+        "in_fluids": 0,
+        "out_fluids": 0
+      },
+      "texture_profile": "rollingmill",
+      "gt6_source": "Loader_MultiTileEntities.java:1349",
+      "art_destination": "textures/block/machine/rollingmill",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:rollbender",
+      "recipe_map": "cruciblecraft:rollbender",
+      "spec_family": "component",
+      "energy": { "type": "KINETIC_ROTATION", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 1,
+        "item_outputs": 1,
+        "fluid_inputs": 0,
+        "fluid_outputs": 0
+      },
+      "gt6_panel": {
+        "in_items": 1,
+        "out_items": 1,
+        "in_fluids": 0,
+        "out_fluids": 0
+      },
+      "texture_profile": "rollbender",
+      "gt6_source": "Loader_MultiTileEntities.java:1355",
+      "art_destination": "textures/block/machine/rollbender",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:wiremill",
+      "recipe_map": "cruciblecraft:wiremill",
+      "spec_family": "component",
+      "energy": { "type": "KINETIC_ROTATION", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 2,
+        "item_outputs": 1,
+        "fluid_inputs": 0,
+        "fluid_outputs": 0
+      },
+      "gt6_panel": {
+        "in_items": 1,
+        "out_items": 1,
+        "in_fluids": 0,
+        "out_fluids": 0
+      },
+      "texture_profile": "wiremill",
+      "gt6_source": "Loader_MultiTileEntities.java:1373",
+      "art_destination": "textures/block/machine/wiremill",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:bender",
+      "recipe_map": "cruciblecraft:bender",
+      "spec_family": "component",
+      "energy": { "type": "KINETIC", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 1,
+        "item_outputs": 1,
+        "fluid_inputs": 0,
+        "fluid_outputs": 0
+      },
+      "gt6_panel": {
+        "in_items": 1,
+        "out_items": 1,
+        "in_fluids": 0,
+        "out_fluids": 0
+      },
+      "texture_profile": "bender",
+      "gt6_source": "cc_25_plus_12_mapping.processing.bender",
+      "art_destination": "textures/block/machine/bender",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:assembler",
+      "recipe_map": "cruciblecraft:assembler",
+      "spec_family": "component",
+      "energy": { "type": "KINETIC", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 6,
+        "item_outputs": 1,
+        "fluid_inputs": 1,
+        "fluid_outputs": 0
+      },
+      "gt6_panel": {
+        "in_items": 2,
+        "out_items": 1,
+        "in_fluids": 1,
+        "out_fluids": 0
+      },
+      "texture_profile": "assembler",
+      "gt6_source": "cc_25_plus_12_mapping.processing.assembler",
+      "art_destination": "textures/block/machine/assembler",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:welder",
+      "recipe_map": "cruciblecraft:welder",
+      "spec_family": "component",
+      "energy": { "type": "KINETIC", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 2,
+        "item_outputs": 1,
+        "fluid_inputs": 1,
+        "fluid_outputs": 0
+      },
+      "gt6_panel": {
+        "in_items": 9,
+        "out_items": 1,
+        "in_fluids": 1,
+        "out_fluids": 0
+      },
+      "texture_profile": "welder",
+      "gt6_source": "cc_25_plus_12_mapping.processing.welder",
+      "art_destination": "textures/block/machine/welder",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:press",
+      "recipe_map": "cruciblecraft:press",
+      "spec_family": "component",
+      "energy": { "type": "KINETIC_PUSH", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 3,
+        "item_outputs": 1,
+        "fluid_inputs": 0,
+        "fluid_outputs": 0
+      },
+      "gt6_panel": {
+        "in_items": 3,
+        "out_items": 1,
+        "in_fluids": 0,
+        "out_fluids": 0
+      },
+      "texture_profile": "press",
+      "gt6_source": "Loader_MultiTileEntities.java:1425",
+      "art_destination": "textures/block/machine/press",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:electrolyzer",
+      "recipe_map": "cruciblecraft:electrolyzer",
+      "spec_family": "chemical",
+      "energy": { "type": "ELECTRIC", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 2,
+        "item_outputs": 6,
+        "fluid_inputs": 2,
+        "fluid_outputs": 3
+      },
+      "gt6_panel": {
+        "in_items": 2,
+        "out_items": 6,
+        "in_fluids": 2,
+        "out_fluids": 6
+      },
+      "texture_profile": "electrolyzer",
+      "gt6_source": "Loader_MultiTileEntities.java:1336",
+      "art_destination": "textures/block/machine/electrolyzer",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:mixer",
+      "recipe_map": "cruciblecraft:mixer",
+      "spec_family": "chemical",
+      "energy": { "type": "KINETIC_ROTATION", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 6,
+        "item_outputs": 1,
+        "fluid_inputs": 6,
+        "fluid_outputs": 2
+      },
+      "gt6_panel": {
+        "in_items": 6,
+        "out_items": 1,
+        "in_fluids": 6,
+        "out_fluids": 2
+      },
+      "texture_profile": "mixer",
+      "gt6_source": "Loader_MultiTileEntities.java:1392",
+      "art_destination": "textures/block/machine/mixer",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:distillery",
+      "recipe_map": "cruciblecraft:distillery",
+      "spec_family": "chemical",
+      "energy": { "type": "HEAT", "mode": "ADJACENT" },
+      "slots": {
+        "item_inputs": 2,
+        "item_outputs": 2,
+        "fluid_inputs": 2,
+        "fluid_outputs": 3
+      },
+      "gt6_panel": {
+        "in_items": 1,
+        "out_items": 2,
+        "in_fluids": 1,
+        "out_fluids": 2
+      },
+      "texture_profile": "distillery",
+      "gt6_source": "Loader_MultiTileEntities.java:1398",
+      "art_destination": "textures/block/machine/distillery",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:autoclave",
+      "recipe_map": "cruciblecraft:autoclave",
+      "spec_family": "chemical",
+      "energy": { "type": "TIME", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 2,
+        "item_outputs": 3,
+        "fluid_inputs": 1,
+        "fluid_outputs": 1
+      },
+      "gt6_panel": {
+        "in_items": 2,
+        "out_items": 3,
+        "in_fluids": 1,
+        "out_fluids": 1
+      },
+      "texture_profile": "autoclave",
+      "gt6_source": "Loader_MultiTileEntities.java:1655",
+      "art_destination": "textures/block/machine/autoclave",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:drying",
+      "recipe_map": "cruciblecraft:drying",
+      "spec_family": "chemical",
+      "energy": { "type": "HEAT", "mode": "ADJACENT" },
+      "slots": {
+        "item_inputs": 1,
+        "item_outputs": 1,
+        "fluid_inputs": 1,
+        "fluid_outputs": 1
+      },
+      "gt6_panel": {
+        "in_items": 1,
+        "out_items": 1,
+        "in_fluids": 1,
+        "out_fluids": 3
+      },
+      "texture_profile": "dryer",
+      "gt6_source": "Loader_MultiTileEntities.java:1477",
+      "art_destination": "textures/block/machine/dryer",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:compressor",
+      "recipe_map": "cruciblecraft:compressor",
+      "spec_family": "chemical",
+      "energy": { "type": "KINETIC_PUSH", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 1,
+        "item_outputs": 1,
+        "fluid_inputs": 0,
+        "fluid_outputs": 0
+      },
+      "gt6_panel": {
+        "in_items": 1,
+        "out_items": 1,
+        "in_fluids": 0,
+        "out_fluids": 0
+      },
+      "texture_profile": "compressor",
+      "gt6_source": "Loader_MultiTileEntities.java:1343",
+      "art_destination": "textures/block/machine/compressor",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:generifier",
+      "recipe_map": "cruciblecraft:generifier",
+      "spec_family": "hydrocarbon",
+      "energy": { "type": "TIME", "mode": "ADJACENT" },
+      "slots": {
+        "item_inputs": 0,
+        "item_outputs": 0,
+        "fluid_inputs": 1,
+        "fluid_outputs": 1
+      },
+      "gt6_panel": {
+        "in_items": 1,
+        "out_items": 1,
+        "in_fluids": 1,
+        "out_fluids": 1
+      },
+      "texture_profile": "generifier",
+      "gt6_source": "Loader_MultiTileEntities.java:1652",
+      "art_destination": "textures/block/machine/generifier",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:roaster",
+      "recipe_map": "cruciblecraft:roaster",
+      "spec_family": "chemical",
+      "energy": { "type": "HEAT", "mode": "ADJACENT" },
+      "slots": {
+        "item_inputs": 1,
+        "item_outputs": 3,
+        "fluid_inputs": 1,
+        "fluid_outputs": 1
+      },
+      "gt6_panel": {
+        "in_items": 1,
+        "out_items": 3,
+        "in_fluids": 1,
+        "out_fluids": 1
+      },
+      "texture_profile": "roaster",
+      "gt6_source": "Loader_MultiTileEntities.java:1386",
+      "art_destination": "textures/block/machine/roaster",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:coagulator",
+      "recipe_map": "cruciblecraft:coagulator",
+      "spec_family": "chemical",
+      "energy": { "type": "TIME", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 0,
+        "item_outputs": 1,
+        "fluid_inputs": 1,
+        "fluid_outputs": 0
+      },
+      "gt6_panel": {
+        "in_items": 0,
+        "out_items": 1,
+        "in_fluids": 1,
+        "out_fluids": 0
+      },
+      "texture_profile": "coagulator",
+      "gt6_source": "Loader_MultiTileEntities.java:1651",
+      "art_destination": "textures/block/machine/coagulator",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:canner",
+      "recipe_map": "cruciblecraft:canner",
+      "spec_family": "chemical",
+      "energy": { "type": "ELECTRIC", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 2,
+        "item_outputs": 1,
+        "fluid_inputs": 0,
+        "fluid_outputs": 1
+      },
+      "gt6_panel": {
+        "in_items": 2,
+        "out_items": 1,
+        "in_fluids": 0,
+        "out_fluids": 1
+      },
+      "texture_profile": "canner",
+      "gt6_source": "Loader_MultiTileEntities.java:1379",
+      "art_destination": "textures/block/machine/canner",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:laser_engraver",
+      "recipe_map": "cruciblecraft:laser_engraver",
+      "spec_family": "laser",
+      "energy": { "type": "LU", "mode": "BUFFERED" },
+      "slots": {
+        "item_inputs": 2,
+        "item_outputs": 1,
+        "fluid_inputs": 0,
+        "fluid_outputs": 0
+      },
+      "gt6_panel": {
+        "in_items": 2,
+        "out_items": 1,
+        "in_fluids": 0,
+        "out_fluids": 0
+      },
+      "texture_profile": "laser_engraver",
+      "gt6_source": "gt.recipe.laserengraver",
+      "art_destination": "textures/block/machine/laser_engraver",
+      "kind_catalog": false
+    }
+  ]
+}

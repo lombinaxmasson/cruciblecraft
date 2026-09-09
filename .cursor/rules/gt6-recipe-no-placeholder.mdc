@@ -1,0 +1,35 @@
+---
+description: GT6 recipes must match source keys; no stand-in ingredients to fake player_complete.
+alwaysApply: true
+---
+
+# GT6 recipes: no stand-in ingredients
+
+Java/tick source of truth remains local `gt6_code/gregtech6`. Do not fetch
+GitHub. Search that tree (it is gitignored; see `gt6-local-source-search`).
+Translate names with `python tools/gt6_resolve.py` before treating a part as
+missing.
+
+A shaped/shapeless/machine recipe is complete only when every grid/slot is
+the same GT6 object after registry-name translation (`OP.wireGt01` → CC
+`wire`, `MT.Os` → `osmium_elemental`). `ANY.Cu` may land on a copper-family
+member, never an unrelated metal.
+
+**Forbidden** (this is how battery cells were faked with plates/dust/rods):
+
+- Replace a missing part with a different material, prefix, vanilla item, or
+  a single `programmed_circuit` so the machine is "survival craftable".
+- Invent geometry, collapse `OD_CIRCUITS[tier]`, or write
+  「缺形态时 DESIGN_POLICY 用已有材料做生存获得」 in a new/active plan.
+- Treat creative-tab access or "players can still assemble something" as
+  `player_complete`.
+
+If any ingredient is missing: do not emit a stand-in recipe; keep
+`runtime_ready`; record the missing part as `blocked` / gap. Either add the
+real part in-scope or leave the recipe unimplemented.
+
+Closed-card stand-ins are not stable. When the real GT6 part exists, replace
+the fake grid/slot on the next touching change — do not wait for a reclaim
+card. Do not invent a new stand-in to keep a closed `player_complete` green.
+
+Art placeholders are a separate rule (`gt6-art-no-placeholder`).

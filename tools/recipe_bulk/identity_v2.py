@@ -98,6 +98,20 @@ def load_delta(wave_id: str) -> dict[str, Any]:
 
 
 def compose(v1: dict[str, Any] | None = None) -> dict[str, Any]:
+    global _COMPOSE_CACHE
+    if v1 is None and _COMPOSE_CACHE is not None:
+        return _COMPOSE_CACHE
+    payload = _compose(v1)
+    if v1 is None:
+        _COMPOSE_CACHE = payload
+    return payload
+
+
+_COMPOSE_CACHE: dict[str, Any] | None = None
+_INDEX_CACHE: dict[str, dict[str, dict[str, Any]]] | None = None
+
+
+def _compose(v1: dict[str, Any] | None = None) -> dict[str, Any]:
     base = v1 if v1 is not None else files.load_json(V1_PATH)
     if base.get("status") != "GLOBAL_BUILD_IDENTITY_LEDGER_V1":
         raise IdentityV2ConflictError("v1 identity ledger status drifted")
@@ -161,10 +175,12 @@ def build() -> dict[str, Any]:
 
 
 def index_ledger(document: dict[str, Any] | None = None) -> dict[str, dict[str, dict[str, Any]]]:
-    # Compile must see append-only deltas even before the composed v2 file is
-    # rewritten. Frozen v2 on disk stays byte-identical.
-    payload = document if document is not None else compose()
-    return identity_v1.index_ledger(payload)
+    global _INDEX_CACHE
+    if document is None:
+        if _INDEX_CACHE is None:
+            _INDEX_CACHE = identity_v1.index_ledger(compose())
+        return _INDEX_CACHE
+    return identity_v1.index_ledger(document)
 
 
 def lookup_first(

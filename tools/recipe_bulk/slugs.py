@@ -73,6 +73,7 @@ KNOWN_SEMANTIC_SLUGS = (
     "runtime/converter-catalog",
     "runtime/batteries",
     "runtime/transformers",
+    "runtime/heat-exchangers",
     "runtime/fission-survival",
     "runtime/fission-hot-fluids",
     "runtime/fission-observation-safety",

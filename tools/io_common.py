@@ -29,7 +29,10 @@ def stable_json(value: Any) -> str:
 def write_stable(path: Path, document: Any) -> None:
     from tools import atomic_io
 
-    atomic_io.write_bytes(path, stable_json(document).encode("utf-8"))
+    payload = stable_json(document).encode("utf-8")
+    if path.is_file() and path.read_bytes() == payload:
+        return
+    atomic_io.write_bytes(path, payload)
 
 
 def stale_error(path: Path, expected_text: str, actual_text: str) -> str:

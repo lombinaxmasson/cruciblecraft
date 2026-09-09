@@ -1,0 +1,8 @@
+# Git still ignores local GT6 trees. Re-include them for Cursor search/index.
+# Instant Grep must be off for these negations to work; see .vscode/settings.json.
+!gt6_code/
+!gt6_code/**
+!gt6_referencable_port_code/
+!gt6_referencable_port_code/**
+!gt6_referencable_port_code/**/*.png
+!*.png

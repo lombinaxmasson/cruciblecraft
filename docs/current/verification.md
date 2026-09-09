@@ -16,6 +16,7 @@ python tools/verify.py integration --profile verification
 python tools/verify.py integration --profile runtime-java
 python tools/verify.py integration --profile semantic-generators
 python tools/verify.py integration --profile recipe-generators
+python tools/verify.py integration --profile recipes
 python tools/verify.py integration --profile capability-runtime
 python tools/verify.py integration --profile player-complete
 python tools/verify.py promotion
@@ -31,11 +32,14 @@ python tools/verify.py release
 - `recipe-generators` 跑 material-form `--check` 和相关 Python 合同。
   `build_semantic_recipes.py --check` 是手工重建，不再当日常门；它会把
   预存在的 generated JSON 漂移当成无关改动的失败。
+- `recipes` 是 fresh 配方接入门：机器 delivery sidecar、`import-source --check`、
+  临时目录小图/大图 compile。不跑 GameTestServer，不把旧 receipt 当 PASS。
+  它是 active-only，不进 `release`。
 - 改 datagen provider 会同时命中 `runtime-java` 与 `semantic-generators`：
   JUnit 加上双 datagen。
 - `integration --profile` 默认 fresh 执行该 profile 的 builders、Python tests、
   Gradle tasks 和 datagen；不复用旧 PASS。CI 对 `runtime-java`、
-  `recipe-generators` 与 `semantic-generators` 加 `--if-changed`：有 diff base
+  `recipe-generators`、`recipes` 与 `semantic-generators` 加 `--if-changed`：有 diff base
   且本 profile 未命中则 SKIP；没有 diff base（无 `GITHUB_BASE_REF`，且
   `GITHUB_EVENT_BEFORE` 为空或全零）时仍执行，避免覆盖收缩。`release` 始终跑全部
   release profiles。

@@ -1,0 +1,312 @@
+{
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_path": "Loader_MultiTileEntities.java:707-717",
+  "blocked_extra_fm_hot": [
+    "lava",
+    "blaze",
+    "ic2_hot_coolant",
+    "geothermal_water",
+    "hot_water"
+  ],
+  "rows": [
+    {
+      "source_id": 9103,
+      "cc_id": "cruciblecraft:heat_exchanger_invar",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "OP.casingMachine(MT.invar)",
+          "cc": "cruciblecraft:invar/machine_casing",
+          "status": "exact",
+          "note": "ANY.W lands on tungsten; quadruple casing added in-scope for this card's four materials only."
+        },
+        "O": {
+          "gt6": "OP.pipeSmall(ANY.Cu)",
+          "cc": "cruciblecraft:copper/small_fluid_pipe",
+          "status": "exact",
+          "note": "ANY.Cu family member; annealed_copper pipes are not registered."
+        },
+        "P": {
+          "gt6": "OP.plate(MT.Pb)",
+          "cc": "cruciblecraft:lead/plate",
+          "status": "exact",
+          "note": "Lead plate / quadruple plate already live."
+        },
+        "C": {
+          "gt6": "OP.plateDouble(ANY.Cu)",
+          "cc": "cruciblecraft:copper/double_plate",
+          "status": "exact",
+          "note": "9103/9153 use ANY.Cu copper; the other six use AnnealedCopper."
+        },
+        "w": {
+          "gt6": "wrench catalyst",
+          "cc": "cruciblecraft:material_wrench",
+          "status": "exact",
+          "note": "GT6 aMachine recipe; CC shaped_catalyst."
+        }
+      }
+    },
+    {
+      "source_id": 9107,
+      "cc_id": "cruciblecraft:heat_exchanger_tungsten",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "OP.casingMachine(ANY.W)",
+          "cc": "cruciblecraft:tungsten/machine_casing",
+          "status": "exact",
+          "note": "ANY.W lands on tungsten; quadruple casing added in-scope for this card's four materials only."
+        },
+        "O": {
+          "gt6": "OP.pipeSmall(ANY.Cu)",
+          "cc": "cruciblecraft:copper/small_fluid_pipe",
+          "status": "exact",
+          "note": "ANY.Cu family member; annealed_copper pipes are not registered."
+        },
+        "P": {
+          "gt6": "OP.plate(MT.Pb)",
+          "cc": "cruciblecraft:lead/plate",
+          "status": "exact",
+          "note": "Lead plate / quadruple plate already live."
+        },
+        "C": {
+          "gt6": "OP.plateDouble(MT.AnnealedCopper)",
+          "cc": "cruciblecraft:annealed_copper/double_plate",
+          "status": "exact",
+          "note": "9103/9153 use ANY.Cu copper; the other six use AnnealedCopper."
+        },
+        "w": {
+          "gt6": "wrench catalyst",
+          "cc": "cruciblecraft:material_wrench",
+          "status": "exact",
+          "note": "GT6 aMachine recipe; CC shaped_catalyst."
+        }
+      }
+    },
+    {
+      "source_id": 9108,
+      "cc_id": "cruciblecraft:heat_exchanger_tungstensteel",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "OP.casingMachine(MT.tungstensteel)",
+          "cc": "cruciblecraft:tungstensteel/machine_casing",
+          "status": "exact",
+          "note": "ANY.W lands on tungsten; quadruple casing added in-scope for this card's four materials only."
+        },
+        "O": {
+          "gt6": "OP.pipeSmall(ANY.Cu)",
+          "cc": "cruciblecraft:copper/small_fluid_pipe",
+          "status": "exact",
+          "note": "ANY.Cu family member; annealed_copper pipes are not registered."
+        },
+        "P": {
+          "gt6": "OP.plate(MT.Pb)",
+          "cc": "cruciblecraft:lead/plate",
+          "status": "exact",
+          "note": "Lead plate / quadruple plate already live."
+        },
+        "C": {
+          "gt6": "OP.plateDouble(MT.AnnealedCopper)",
+          "cc": "cruciblecraft:annealed_copper/double_plate",
+          "status": "exact",
+          "note": "9103/9153 use ANY.Cu copper; the other six use AnnealedCopper."
+        },
+        "w": {
+          "gt6": "wrench catalyst",
+          "cc": "cruciblecraft:material_wrench",
+          "status": "exact",
+          "note": "GT6 aMachine recipe; CC shaped_catalyst."
+        }
+      }
+    },
+    {
+      "source_id": 9109,
+      "cc_id": "cruciblecraft:heat_exchanger_tantalum_hafnium_carbide",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "OP.casingMachine(MT.tantalum_hafnium_carbide)",
+          "cc": "cruciblecraft:tantalum_hafnium_carbide/machine_casing",
+          "status": "exact",
+          "note": "ANY.W lands on tungsten; quadruple casing added in-scope for this card's four materials only."
+        },
+        "O": {
+          "gt6": "OP.pipeSmall(ANY.Cu)",
+          "cc": "cruciblecraft:copper/small_fluid_pipe",
+          "status": "exact",
+          "note": "ANY.Cu family member; annealed_copper pipes are not registered."
+        },
+        "P": {
+          "gt6": "OP.plate(MT.Pb)",
+          "cc": "cruciblecraft:lead/plate",
+          "status": "exact",
+          "note": "Lead plate / quadruple plate already live."
+        },
+        "C": {
+          "gt6": "OP.plateDouble(MT.AnnealedCopper)",
+          "cc": "cruciblecraft:annealed_copper/double_plate",
+          "status": "exact",
+          "note": "9103/9153 use ANY.Cu copper; the other six use AnnealedCopper."
+        },
+        "w": {
+          "gt6": "wrench catalyst",
+          "cc": "cruciblecraft:material_wrench",
+          "status": "exact",
+          "note": "GT6 aMachine recipe; CC shaped_catalyst."
+        }
+      }
+    },
+    {
+      "source_id": 9153,
+      "cc_id": "cruciblecraft:dense_heat_exchanger_invar",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "OP.casingMachineQuadruple(MT.invar)",
+          "cc": "cruciblecraft:invar/machine_casing_quadruple",
+          "status": "exact",
+          "note": "ANY.W lands on tungsten; quadruple casing added in-scope for this card's four materials only."
+        },
+        "O": {
+          "gt6": "OP.pipeLarge(ANY.Cu)",
+          "cc": "cruciblecraft:copper/large_fluid_pipe",
+          "status": "exact",
+          "note": "ANY.Cu family member; annealed_copper pipes are not registered."
+        },
+        "P": {
+          "gt6": "OP.plateQuadruple(MT.Pb)",
+          "cc": "cruciblecraft:lead/quadruple_plate",
+          "status": "exact",
+          "note": "Lead plate / quadruple plate already live."
+        },
+        "C": {
+          "gt6": "OP.plateDense(ANY.Cu)",
+          "cc": "cruciblecraft:copper/dense_plate",
+          "status": "exact",
+          "note": "9103/9153 use ANY.Cu copper; the other six use AnnealedCopper."
+        },
+        "w": {
+          "gt6": "wrench catalyst",
+          "cc": "cruciblecraft:material_wrench",
+          "status": "exact",
+          "note": "GT6 aMachine recipe; CC shaped_catalyst."
+        }
+      }
+    },
+    {
+      "source_id": 9157,
+      "cc_id": "cruciblecraft:dense_heat_exchanger_tungsten",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "OP.casingMachineQuadruple(ANY.W)",
+          "cc": "cruciblecraft:tungsten/machine_casing_quadruple",
+          "status": "exact",
+          "note": "ANY.W lands on tungsten; quadruple casing added in-scope for this card's four materials only."
+        },
+        "O": {
+          "gt6": "OP.pipeLarge(ANY.Cu)",
+          "cc": "cruciblecraft:copper/large_fluid_pipe",
+          "status": "exact",
+          "note": "ANY.Cu family member; annealed_copper pipes are not registered."
+        },
+        "P": {
+          "gt6": "OP.plateQuadruple(MT.Pb)",
+          "cc": "cruciblecraft:lead/quadruple_plate",
+          "status": "exact",
+          "note": "Lead plate / quadruple plate already live."
+        },
+        "C": {
+          "gt6": "OP.plateDense(MT.AnnealedCopper)",
+          "cc": "cruciblecraft:annealed_copper/dense_plate",
+          "status": "exact",
+          "note": "9103/9153 use ANY.Cu copper; the other six use AnnealedCopper."
+        },
+        "w": {
+          "gt6": "wrench catalyst",
+          "cc": "cruciblecraft:material_wrench",
+          "status": "exact",
+          "note": "GT6 aMachine recipe; CC shaped_catalyst."
+        }
+      }
+    },
+    {
+      "source_id": 9158,
+      "cc_id": "cruciblecraft:dense_heat_exchanger_tungstensteel",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "OP.casingMachineQuadruple(MT.tungstensteel)",
+          "cc": "cruciblecraft:tungstensteel/machine_casing_quadruple",
+          "status": "exact",
+          "note": "ANY.W lands on tungsten; quadruple casing added in-scope for this card's four materials only."
+        },
+        "O": {
+          "gt6": "OP.pipeLarge(ANY.Cu)",
+          "cc": "cruciblecraft:copper/large_fluid_pipe",
+          "status": "exact",
+          "note": "ANY.Cu family member; annealed_copper pipes are not registered."
+        },
+        "P": {
+          "gt6": "OP.plateQuadruple(MT.Pb)",
+          "cc": "cruciblecraft:lead/quadruple_plate",
+          "status": "exact",
+          "note": "Lead plate / quadruple plate already live."
+        },
+        "C": {
+          "gt6": "OP.plateDense(MT.AnnealedCopper)",
+          "cc": "cruciblecraft:annealed_copper/dense_plate",
+          "status": "exact",
+          "note": "9103/9153 use ANY.Cu copper; the other six use AnnealedCopper."
+        },
+        "w": {
+          "gt6": "wrench catalyst",
+          "cc": "cruciblecraft:material_wrench",
+          "status": "exact",
+          "note": "GT6 aMachine recipe; CC shaped_catalyst."
+        }
+      }
+    },
+    {
+      "source_id": 9159,
+      "cc_id": "cruciblecraft:dense_heat_exchanger_tantalum_hafnium_carbide",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "OP.casingMachineQuadruple(MT.tantalum_hafnium_carbide)",
+          "cc": "cruciblecraft:tantalum_hafnium_carbide/machine_casing_quadruple",
+          "status": "exact",
+          "note": "ANY.W lands on tungsten; quadruple casing added in-scope for this card's four materials only."
+        },
+        "O": {
+          "gt6": "OP.pipeLarge(ANY.Cu)",
+          "cc": "cruciblecraft:copper/large_fluid_pipe",
+          "status": "exact",
+          "note": "ANY.Cu family member; annealed_copper pipes are not registered."
+        },
+        "P": {
+          "gt6": "OP.plateQuadruple(MT.Pb)",
+          "cc": "cruciblecraft:lead/quadruple_plate",
+          "status": "exact",
+          "note": "Lead plate / quadruple plate already live."
+        },
+        "C": {
+          "gt6": "OP.plateDense(MT.AnnealedCopper)",
+          "cc": "cruciblecraft:annealed_copper/dense_plate",
+          "status": "exact",
+          "note": "9103/9153 use ANY.Cu copper; the other six use AnnealedCopper."
+        },
+        "w": {
+          "gt6": "wrench catalyst",
+          "cc": "cruciblecraft:material_wrench",
+          "status": "exact",
+          "note": "GT6 aMachine recipe; CC shaped_catalyst."
+        }
+      }
+    }
+  ],
+  "exact_count": 8,
+  "blocked_count": 0
+}

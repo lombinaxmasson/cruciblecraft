@@ -10,6 +10,8 @@ import com.masson.cruciblecraft.energy.battery.BatteryBlockItem;
 import com.masson.cruciblecraft.energy.battery.EnergyBatteryCatalog;
 import com.masson.cruciblecraft.energy.transformer.EnergyTransformerCatalog;
 import com.masson.cruciblecraft.energy.transformer.TransformerBlockItem;
+import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerBlockItem;
+import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
@@ -443,6 +445,9 @@ public final class ModItems {
     private static final Map<
             ResourceLocation, DeferredItem<TransformerBlockItem>> TRANSFORMER_ITEMS =
                     registerTransformerItems();
+    private static final Map<
+            ResourceLocation, DeferredItem<HeatExchangerBlockItem>>
+                    HEAT_EXCHANGER_ITEMS = registerHeatExchangerItems();
     public static final DeferredItem<BlockItem> BRONZE_BOILER =
             converterItem("bronze_boiler");
     public static final DeferredItem<BlockItem> BRONZE_STEAM_ENGINE =
@@ -1206,6 +1211,35 @@ public final class ModItems {
     public static Map<ResourceLocation, DeferredItem<TransformerBlockItem>>
             transformerItemsById() {
         return TRANSFORMER_ITEMS;
+    }
+
+    private static Map<ResourceLocation, DeferredItem<HeatExchangerBlockItem>>
+            registerHeatExchangerItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<HeatExchangerBlockItem>>
+                items = new LinkedHashMap<>();
+        for (var profile : HeatExchangerCatalog.profiles()) {
+            DeferredItem<HeatExchangerBlockItem> item = ITEMS.register(
+                    profile.id().getPath(),
+                    () -> new HeatExchangerBlockItem(
+                            ModBlocks.heatExchangerBlocksById()
+                                    .get(profile.id())
+                                    .get(),
+                            new Item.Properties()));
+            if (items.put(profile.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate heat exchanger item " + profile.id());
+            }
+        }
+        if (items.size() != HeatExchangerCatalog.profiles().size()) {
+            throw new IllegalStateException(
+                    "Heat exchanger item registration drifted from catalog rows");
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    public static Map<ResourceLocation, DeferredItem<HeatExchangerBlockItem>>
+            heatExchangerItemsById() {
+        return HEAT_EXCHANGER_ITEMS;
     }
 
     private static Map<ResourceLocation, DeferredItem<BlockItem>>

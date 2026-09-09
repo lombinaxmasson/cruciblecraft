@@ -26,9 +26,12 @@ out/
 bin/
 !**/src/**/bin/
 
-### VS Code ###
-.vscode/
-.cursor/
+### VS Code / Cursor ###
+.vscode/*
+!.vscode/settings.json
+.cursor/*
+!.cursor/rules/
+!.cursor/rules/*.mdc
 
 ### Mac OS ###
 .DS_Store

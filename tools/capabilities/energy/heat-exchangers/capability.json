@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "slug": "energy/heat-exchangers",
+  "title": "Heat Exchangers",
+  "maturity": "player_complete",
+  "workflow": "accepted",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/energy/heatexchanger/**",
+    "src/main/java/com/masson/cruciblecraft/gametest/EnergyHeatExchangersGameTests.java",
+    "src/main/resources/data/cruciblecraft_wave_runtime_heat_exchangers/**",
+    "src/main/resources/data/cruciblecraft/heat_exchangers.json",
+    "src/main/resources/data/cruciblecraft/recipe/energy/fuels_hot/**",
+    "src/main/resources/data/cruciblecraft/material_prefixes/machine_casing_quadruple.json",
+    "src/main/resources/assets/cruciblecraft/gt6_heat_exchangers_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/heat_exchanger/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/material/machine_casing_quadruple*.png",
+    "src/test/java/com/masson/cruciblecraft/energy/heatexchanger/**",
+    "tools/capabilities/energy/heat-exchangers/**",
+    "tools/waves/runtime/heat-exchangers/**",
+    "tools/tests/test_energy_heat_exchangers.py",
+    "tools/emit_heat_exchangers.py"
+  ],
+  "depends_on": [
+    "energy/nuclear-fission-hot-fluids"
+  ],
+  "profiles": [
+    "capability-runtime",
+    "player-complete"
+  ],
+  "wave_slug": "runtime/heat-exchangers",
+  "legacy_readiness": "tools/waves/runtime/heat-exchangers/readiness.json",
+  "player_signoff": "tools/capabilities/energy/heat-exchangers/player_signoff.json",
+  "required_test_ids": [
+    "playerSurfaceIsRegistered",
+    "invarConsumesHotTinAndBuffersHu",
+    "tungstensteelEfficiencyIsNinetyPercent",
+    "reloadPreservesTanksAndEnergy",
+    "representativeRecipesAreSurvivalCraftable"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "heat_exchanger:single_block",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:heat_exchanger_invar",
+        "cruciblecraft:heat_exchanger_tungsten",
+        "cruciblecraft:heat_exchanger_tungstensteel",
+        "cruciblecraft:heat_exchanger_tantalum_hafnium_carbide",
+        "cruciblecraft:dense_heat_exchanger_invar",
+        "cruciblecraft:dense_heat_exchanger_tungsten",
+        "cruciblecraft:dense_heat_exchanger_tungstensteel",
+        "cruciblecraft:dense_heat_exchanger_tantalum_hafnium_carbide"
+      ],
+      "reason": "GT6 MultiTileEntityGeneratorHotFluid 9103/9107-9109/9153/9157-9159. FM.Hot in, HU out. Not a cooler, turbine, or 17197."
+    },
+    {
+      "semantic_key": "heat_exchanger:large_17197",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "MultiTileEntityLargeHeatExchanger 17197 is a follow-up card."
+    },
+    {
+      "semantic_key": "thermal:steam_turbine",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "Steam turbines STEAM to RU stay on a later card."
+    },
+    {
+      "semantic_key": "thermal:cooler",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "Electric/flux coolers stay on a later card."
+    }
+  ],
+  "note": "Eight single-block heat exchangers. unique_active_wave stays null. Quadruple casing is in-scope only for Invar, tungsten, tungstensteel, and tantalum_hafnium_carbide. Extra FM.Hot rows (lava, blaze, IC2 coolant) stay out."
+}

@@ -125,6 +125,21 @@ class ChemicalPublicationBudgetTest {
         assertDoesNotThrow(() -> GTRecipeMapLoader.validateChemicalRecipeProvenance(
                 ModRecipeMaps.CANNER,
                 List.of(entry("nuclear/tritium_enriched_rod_unload"))));
+        GTRecipe geigerFill = new GTRecipe(
+                List.of(Ingredient.of(Items.GLASS_BOTTLE)),
+                List.of(1),
+                List.of(new ItemStack(Items.POTION)),
+                List.of(new net.neoforged.neoforge.fluids.FluidStack(
+                        net.minecraft.world.level.material.Fluids.WATER, 1000)),
+                List.of(),
+                List.of(GTRecipe.GUARANTEED_CHANCE),
+                64,
+                16L,
+                0L);
+        assertDoesNotThrow(() -> GTRecipeMapLoader.validateTarget(
+                id("nuclear/geiger_canner_neon"),
+                ModRecipeMaps.CANNER,
+                geigerFill));
         assertThrows(IllegalArgumentException.class, () ->
                 GTRecipeMapLoader.validateChemicalRecipeProvenance(
                         ModRecipeMaps.CANNER,

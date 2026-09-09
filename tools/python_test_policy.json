@@ -15,6 +15,7 @@
     "test_energy_converter_catalog",
     "test_energy_batteries",
     "test_energy_transformers",
+    "test_energy_heat_exchangers",
     "test_energy_nuclear_fission_survival",
     "test_energy_nuclear_fission_hot_fluids",
     "test_energy_nuclear_fission_observation_safety",
@@ -28,6 +29,11 @@
     "test_tree_compare",
     "test_material_form_authority",
     "test_build_semantic_recipes",
+    "test_recipe_bulk",
+    "test_generic_recipe_import",
+    "test_recipe_fresh",
+    "test_machine_delivery",
+    "test_cluster_mill_prep",
     "test_capability_ledger",
     "test_registry_identity",
     "test_player_complete",
@@ -108,6 +114,14 @@
     },
     {
       "paths": [
+        "tools/tests/test_energy_heat_exchangers.py"
+      ],
+      "test_modules": [
+        "test_energy_heat_exchangers"
+      ]
+    },
+    {
+      "paths": [
         "tools/tests/test_energy_nuclear_fission_survival.py"
       ],
       "test_modules": [
@@ -163,6 +177,32 @@
       "test_modules": [
         "test_material_form_authority",
         "test_build_semantic_recipes"
+      ]
+    },
+    {
+      "paths": [
+        "tools/recipe_bulk/**",
+        "tools/build_recipe_bulk.py",
+        "tools/build_recipe_fresh.py",
+        "tools/machine_delivery.py",
+        "tools/tests/test_recipe_bulk.py",
+        "tools/tests/test_generic_recipe_import.py",
+        "tools/tests/test_recipe_fresh.py",
+        "tools/tests/test_machine_delivery.py",
+        "tools/tests/test_cluster_mill_prep.py",
+        "tools/waves/prep/cluster-mill/**",
+        "src/test/resources/generic_recipe_import/**",
+        "src/main/resources/data/cruciblecraft/machine_delivery.json",
+        "src/main/resources/data/cruciblecraft/schema/machine_delivery.schema.json",
+        "src/main/java/com/masson/cruciblecraft/machine/processing/MachineDeliveryCatalog.java",
+        "src/main/java/com/masson/cruciblecraft/machine/processing/MachineTextureProfiles.java"
+      ],
+      "test_modules": [
+        "test_recipe_bulk",
+        "test_generic_recipe_import",
+        "test_recipe_fresh",
+        "test_machine_delivery",
+        "test_cluster_mill_prep"
       ]
     },
     {
@@ -292,6 +332,16 @@
         "tools/capabilities/energy/transformers/**",
         "tools/waves/runtime/transformers/**",
         "tools/tests/test_energy_transformers.py",
+        "src/main/java/com/masson/cruciblecraft/energy/heatexchanger/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/EnergyHeatExchangersGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_runtime_heat_exchangers/**",
+        "src/main/resources/data/cruciblecraft/heat_exchangers.json",
+        "src/main/resources/assets/cruciblecraft/gt6_heat_exchangers_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/heat_exchanger/**",
+        "src/test/java/com/masson/cruciblecraft/energy/heatexchanger/**",
+        "tools/capabilities/energy/heat-exchangers/**",
+        "tools/waves/runtime/heat-exchangers/**",
+        "tools/tests/test_energy_heat_exchangers.py",
         "tools/waves/runtime/fission-survival/**",
         "tools/capabilities/energy/nuclear-fission-survival/**",
         "tools/tests/test_energy_nuclear_fission_survival.py",
@@ -314,6 +364,7 @@
         "test_energy_converter_catalog",
         "test_energy_batteries",
         "test_energy_transformers",
+        "test_energy_heat_exchangers",
         "test_energy_nuclear_fission_survival",
         "test_energy_nuclear_fission_hot_fluids",
         "test_energy_nuclear_fission_observation_safety",
@@ -333,6 +384,7 @@
         "tools/capabilities/logistics/display-cpu/**",
         "tools/capabilities/energy/converter-catalog/**",
         "tools/capabilities/energy/batteries/**",
+        "tools/capabilities/energy/heat-exchangers/**",
         "tools/capabilities/energy/transformers/**",
         "tools/capabilities/energy/nuclear-fission-survival/**",
         "tools/capabilities/energy/nuclear-fission-hot-fluids/**",

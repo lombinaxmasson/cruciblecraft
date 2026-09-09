@@ -10,17 +10,35 @@
 | `CrucibleCraft-总体规划.md` | [docs/current/roadmap.md](../current/roadmap.md) | 现行 |
 | （无历史入口；现行缺口总账） | [docs/current/unimplemented-gap.md](../current/unimplemented-gap.md) | 现行；机制卡 READY ≠ 已实现 |
 | `docs/CrucibleCraft-玩家指南.md` | [docs/current/player-guide.md](../current/player-guide.md) | 现行 |
-| `.plans/` | [card-plans/active](card-plans/active/) | 历史卡计划 |
+| `.plans/` | [card-plans/active](card-plans/active/) | unique-active 计划 |
+| （无历史入口） | [card-plans/prep](card-plans/prep/) | 已签发、不占落地锁的 prep 计划 |
 | `plans/` | [card-plans/closed](card-plans/closed/) | 关闭计划 |
 | numbered builders / currentness / sessions / DAG | [`tools/legacy_verification_index.json`](../../tools/legacy_verification_index.json) | 原字节只读；不参与 active verification |
 
 ## 当前 active 卡
 
-人读 unique active 是
-[热交换器第一切片](card-plans/active/热交换器第一切片详细计划.md)
-（计划 slug `energy/heat-exchangers`；8 个单体热交换器；涡轮 / 冷却器 / 17197 仍后续）。
-机器可读 `unique_active_wave = null`，直到实施开始。
-最近关闭
+无 unique-active。机器可读 `unique_active_wave = null`。
+Prep 仍排队，不占落地锁。
+
+## 当前 prep 卡
+
+不占 unique-active。规则见
+[能力交付流程 §8](../current/capability-delivery-workflow.md)。
+已签发：
+[辊压成型机](card-plans/prep/辊压成型机详细计划.md)
+（`machines/roll-former`，dump 28；建议热交换器关闭后第一张 live）、
+[集群轧机](card-plans/prep/集群轧机详细计划.md)
+（`machines/cluster-mill`，dump 307；四层外壳已跟普通外壳同材料域）、
+[切片机](card-plans/prep/切片机详细计划.md)
+（`machines/slicer`，dump 33；`IL.CONVEYERS` 模块与多数活塞 blocked）。
+未签发为 prep：聚变、QU Energizer、massfab、Boxinator、磁极化/磁选（MU）。
+`gt.recipe.hammer` 的主机是手锤/风镐，不是 Basic Machine，不要开成加工机 prep。
+
+## 最近关闭
+
+[热交换器第一切片](card-plans/closed/热交换器第一切片详细计划.md)
+（slug `energy/heat-exchangers`；8 个单体 `FM.Hot` → HU；`player_complete` /
+`accepted`）。已关闭
 [裂变观测安全与能源 Jade](card-plans/closed/裂变观测安全与能源Jade详细计划.md)
 （slug `energy/nuclear-fission-observation-safety`；`player_complete` /
 `accepted`）。已关闭
