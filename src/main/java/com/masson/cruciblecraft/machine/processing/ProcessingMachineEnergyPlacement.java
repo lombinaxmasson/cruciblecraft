@@ -24,6 +24,8 @@ public final class ProcessingMachineEnergyPlacement {
                 || spec.recipeMapId().equals(
                         ModProcessingMachines.SMELTER.recipeMapId())
                 || spec.recipeMapId().equals(
+                        ModProcessingMachines.MELTER.recipeMapId())
+                || spec.recipeMapId().equals(
                         ModProcessingMachines.ROASTER.recipeMapId());
     }
 

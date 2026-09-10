@@ -7810,7 +7810,7 @@ public final class CrucibleCraftGameTests {
             GameTestHelper helper) {
         List<MachineCraftingCase> cases = heatMachineCraftingCases();
         helper.assertTrue(
-                cases.size() == 9,
+                cases.size() == 10,
                 "Heat machines must execute all selected three-by-three HU variants");
         executeMachineCraftingCases(helper, cases);
     }
@@ -8756,7 +8756,8 @@ public final class CrucibleCraftGameTests {
                         "titanium_smelter",
                         "titanium",
                         ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
-                        ModItems.TITANIUM_SMELTER.get()));
+                        ModItems.TITANIUM_SMELTER.get()),
+                melterCraftingCase());
     }
 
     private static MachineCraftingCase heatDistilleryCraftingCase(
@@ -8816,6 +8817,37 @@ public final class CrucibleCraftGameTests {
                 smelter
                         ? List.of(" U ", "PMP", "BCB")
                         : List.of(" P ", "BMB", "BCB"),
+                Map.copyOf(key));
+    }
+
+    private static MachineCraftingCase melterCraftingCase() {
+        Map<Character, Item> key = new java.util.LinkedHashMap<>();
+        key.put(
+                'C',
+                material(
+                        "copper",
+                        MaterialPrefixes.DOUBLE_PLATE,
+                        1).getItem());
+        key.put('B', Items.BRICKS);
+        key.put('M', material(
+                "iron",
+                MaterialPrefixes.MACHINE_CASING,
+                1).getItem());
+        key.put('P', material(
+                "iron",
+                MaterialPrefixes.FLUID_PIPE,
+                1).getItem());
+        key.put('U', ModItems.CRUCIBLE.get());
+        key.put('w', ModItems.MATERIAL_WRENCH.get());
+        key.put('h', ModItems.SMITHING_HAMMER.get());
+        return new MachineCraftingCase(
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, "machines/melter"),
+                ModItems.tieredProcessingItemsById()
+                        .get(ResourceLocation.fromNamespaceAndPath(
+                                CrucibleCraft.MODID, "melter"))
+                        .get(),
+                List.of("wUh", "PMP", "BCB"),
                 Map.copyOf(key));
     }
 

@@ -15,8 +15,11 @@ import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
 
 import com.google.gson.JsonParser;
+import com.masson.cruciblecraft.machine.processing.MachineTierCatalog;
 import com.masson.cruciblecraft.registry.ModMachineVariants;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
+
+import net.minecraft.resources.ResourceLocation;
 
 class ProcessingMachineResourceTest {
     private static final Path GENERATED = Path.of("src/generated/resources");
@@ -38,8 +41,11 @@ class ProcessingMachineResourceTest {
             assertTrue(stone.contains(id), id + " must require a stone-tier tool");
             assertTrue(Files.isRegularFile(GENERATED.resolve(
                     "data/cruciblecraft/loot_table/blocks/" + machine + ".json")));
-            assertTrue(Files.isRegularFile(GENERATED.resolve(
-                    "data/cruciblecraft/recipe/machines/" + machine + ".json")));
+            if (!MachineTierCatalog.acquisitionBlocked(
+                    ResourceLocation.fromNamespaceAndPath("cruciblecraft", machine))) {
+                assertTrue(Files.isRegularFile(GENERATED.resolve(
+                        "data/cruciblecraft/recipe/machines/" + machine + ".json")));
+            }
             assertTrue(Files.isRegularFile(GENERATED.resolve(
                     "assets/cruciblecraft/blockstates/" + machine + ".json")));
             assertTrue(Files.isRegularFile(GENERATED.resolve(
@@ -486,12 +492,19 @@ class ProcessingMachineResourceTest {
         }
         var result = recipe.getAsJsonObject("result");
         assertEquals(resultId, result.get("id").getAsString(), relative);
-        assertEquals(
-                material,
-                result.getAsJsonObject("components")
-                        .get("cruciblecraft:tool_material")
-                        .getAsString(),
-                relative);
+        if (result.has("components")) {
+            assertEquals(
+                    material,
+                    result.getAsJsonObject("components")
+                            .get("cruciblecraft:tool_material")
+                            .getAsString(),
+                    relative);
+        } else {
+            assertEquals(
+                    "iron",
+                    material,
+                    relative + " relies on MaterialToolItem's iron default");
+        }
     }
 
     private static void assertShapedHead(

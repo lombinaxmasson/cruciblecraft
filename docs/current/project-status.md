@@ -10,14 +10,7 @@
 
 ## Prep（不占落地锁）
 
-- `machines/injector` — [注射机详细计划](../history/card-plans/prep/注射机详细计划.md)
-- `machines/laminator` — [层压机详细计划](../history/card-plans/prep/层压机详细计划.md)
-- `machines/loom` — [织机详细计划](../history/card-plans/prep/织机详细计划.md)
-- `machines/melter` — [熔融机详细计划](../history/card-plans/prep/熔融机详细计划.md)
-- `machines/nanofab` — [纳米加工机详细计划](../history/card-plans/prep/纳米加工机详细计划.md)
-- `machines/pressure-washer` — [压力清洗机详细计划](../history/card-plans/prep/压力清洗机详细计划.md)
 - `machines/printer` — [印刷机详细计划](../history/card-plans/prep/印刷机详细计划.md)
-- `machines/slicer` — [切片机详细计划](../history/card-plans/prep/切片机详细计划.md)
 
 ## player_complete（14）
 
@@ -38,6 +31,18 @@
 - `logistics/logistics-core` — Logistics Core
 - `machines/cluster-mill` — Cluster Mill — [集群轧机详细计划](../history/card-plans/closed/集群轧机详细计划.md)
 - `machines/roll-former` — Roll Former — [辊压成型机详细计划](../history/card-plans/closed/辊压成型机详细计划.md)
+
+## runtime_ready（accepted，非玩家完成）（7）
+
+RecipeMap / 主机已挂，获得格或配方仍 blocked。不得宣称 `player_complete`。
+
+- `machines/injector` — Injector — [注射机详细计划](../history/card-plans/closed/注射机详细计划.md)
+- `machines/laminator` — Laminator — [层压机详细计划](../history/card-plans/closed/层压机详细计划.md)
+- `machines/loom` — Loom — [织机详细计划](../history/card-plans/closed/织机详细计划.md)
+- `machines/melter` — Melter — [熔融机详细计划](../history/card-plans/closed/熔融机详细计划.md)
+- `machines/nanofab` — Nanoscale Fabricator — [纳米加工机详细计划](../history/card-plans/closed/纳米加工机详细计划.md)
+- `machines/pressure-washer` — Pressure Washer — [压力清洗机详细计划](../history/card-plans/closed/压力清洗机详细计划.md)
+- `machines/slicer` — Slicer — [切片机详细计划](../history/card-plans/closed/切片机详细计划.md)
 
 ## 关闭计划（有 capability 的 player_complete）
 

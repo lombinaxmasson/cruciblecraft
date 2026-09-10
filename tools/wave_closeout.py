@@ -471,6 +471,11 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             None,
             True,
         ),
+        "portfolio/mte-identity-disposition-r0": _portfolio(
+            "portfolio/mte-identity-disposition-r0",
+            None,
+            True,
+        ),
         "runtime/item-network-core": WaveCloseoutSpec(
             wave_slug="runtime/item-network-core",
             census=WAVES_ROOT / "runtime" / "item-network-core" / "census_delta.json",

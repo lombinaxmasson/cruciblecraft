@@ -1,0 +1,27 @@
+{
+  "files": [
+    {
+      "path": "tools/waves/machines/pressure-washer/source_pack/dump_slice.json",
+      "role": "dump_slice",
+      "sha256": "84cbe0e998c78fa208bf0c9a843ffcec3c97142f0c1684b7dfbfc5b78370041f"
+    },
+    {
+      "path": "tools/waves/machines/pressure-washer/source_pack/work_set.json",
+      "role": "work_set",
+      "sha256": "5e3badf8879a337d12bc7ce77c10cfad4ea76550740a24630b9784c65f401458"
+    }
+  ],
+  "full_replay": {
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "provenance_policy": {
+    "append_only": true,
+    "forbid_gt6u": true
+  },
+  "schema_version": 1,
+  "source_dialect": "gt6",
+  "source_pack_id": "machines/pressure-washer",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_system": "gt6"
+}

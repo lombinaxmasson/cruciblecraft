@@ -79,11 +79,22 @@ ORDINARY_VANILLA_SPECIAL: dict[tuple[str, int], str] = {
 }
 ORDINARY_VANILLA_RENAMES: dict[str, str] = {
     "minecraft:lit_furnace": "minecraft:furnace",
+    "minecraft:melon_block": "minecraft:melon",
     "minecraft:stonebrick": "minecraft:stone_bricks",
+    "minecraft:web": "minecraft:cobweb",
+}
+LEGACY_VANILLA_META_RENAMES: dict[tuple[str, int], str] = {
+    ("minecraft:log", 0): "minecraft:oak_log",
+    ("minecraft:log", 1): "minecraft:spruce_log",
+    ("minecraft:log", 2): "minecraft:birch_log",
+    ("minecraft:log", 3): "minecraft:jungle_log",
+    ("minecraft:log2", 0): "minecraft:acacia_log",
+    ("minecraft:log2", 1): "minecraft:dark_oak_log",
 }
 ORDINARY_VANILLA_WILDCARDS: dict[str, tuple[str, str]] = {
     "minecraft:log": ("cruciblecraft:gt6_legacy_log", "minecraft:oak_log"),
     "minecraft:log2": ("cruciblecraft:gt6_legacy_log2", "minecraft:acacia_log"),
+    "minecraft:wool": ("minecraft:wool", "minecraft:white_wool"),
 }
 
 
@@ -489,6 +500,8 @@ def map_item_operand(
             identities.vanilla_wildcard_tag(item_id),
             identities.vanilla_wildcard_representative(item_id),
         )
+        if not wildcard[0] and item_id in ORDINARY_VANILLA_WILDCARDS:
+            wildcard = ORDINARY_VANILLA_WILDCARDS[item_id]
     elif meta == "*" and item_id in ORDINARY_VANILLA_WILDCARDS:
         wildcard = ORDINARY_VANILLA_WILDCARDS[item_id]
     if wildcard and wildcard[0] and wildcard[1]:
@@ -505,6 +518,8 @@ def map_item_operand(
         )
         return operand, []
     vanilla = ORDINARY_VANILLA_SPECIAL.get((item_id, int(meta) if isinstance(meta, int) else -1))
+    if vanilla is None and isinstance(meta, int):
+        vanilla = LEGACY_VANILLA_META_RENAMES.get((item_id, meta))
     if vanilla is None and item_id in ORDINARY_VANILLA_RENAMES:
         vanilla = ORDINARY_VANILLA_RENAMES[item_id]
     if vanilla is None:

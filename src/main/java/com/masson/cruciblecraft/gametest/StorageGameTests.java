@@ -263,11 +263,11 @@ public final class StorageGameTests {
         Set<String> catalog = machineCatalogIds(false);
         Set<String> generic = machineCatalogIds(true);
         helper.assertTrue(
-                catalog.size() == 94,
+                catalog.size() == 99,
                 "Live machine catalog rows drifted: " + catalog.size());
         helper.assertTrue(
-                generic.size() == 93
-                        && ModMachineVariants.ALL.size() == 93,
+                generic.size() == 98
+                        && ModMachineVariants.ALL.size() == 98,
                 "Generic machine registrations drifted: "
                         + ModMachineVariants.ALL.size());
         helper.succeed();

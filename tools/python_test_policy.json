@@ -37,6 +37,8 @@
     "test_prep_machines",
     "test_roll_former",
     "test_cluster_mill",
+    "test_slicer",
+    "test_melter",
     "test_capability_ledger",
     "test_project_status",
     "test_capability_close",
@@ -229,15 +231,21 @@
       "paths": [
         "tools/tests/test_roll_former.py",
         "tools/tests/test_cluster_mill.py",
+        "tools/tests/test_slicer.py",
+        "tools/tests/test_melter.py",
         "tools/waves/machines/**",
         "src/main/java/com/masson/cruciblecraft/gametest/RollFormerGameTests.java",
         "src/main/java/com/masson/cruciblecraft/gametest/ClusterMillGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/SlicerGameTests.java",
         "src/main/resources/data/cruciblecraft_wave_machines_roll_former/**",
-        "src/main/resources/data/cruciblecraft_wave_machines_cluster_mill/**"
+        "src/main/resources/data/cruciblecraft_wave_machines_cluster_mill/**",
+        "src/main/resources/data/cruciblecraft_wave_machines_slicer/**"
       ],
       "test_modules": [
         "test_roll_former",
-        "test_cluster_mill"
+        "test_cluster_mill",
+        "test_slicer",
+        "test_melter"
       ]
     },
     {
@@ -413,7 +421,8 @@
         "test_registry_identity",
         "test_jade_observation",
         "test_roll_former",
-        "test_cluster_mill"
+        "test_cluster_mill",
+        "test_slicer"
       ]
     },
     {

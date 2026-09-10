@@ -1,0 +1,50 @@
+{
+  "schema_version": 2,
+  "slug": "machines/pressure-washer",
+  "title": "Pressure Washer",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/content/item/PressureWasherOperandCatalog.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/PressureWasherGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/machine/processing/prep/PressureWasherPrepSpec.java",
+    "src/main/resources/assets/cruciblecraft/gt6_pressure_washer_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/debarker/**",
+    "src/main/resources/assets/cruciblecraft/textures/item/gt_multiitem/multiitem_food_m280.png",
+    "src/main/resources/data/cruciblecraft/machine_delivery.json",
+    "src/main/resources/data/cruciblecraft/machine_kinds.json",
+    "src/main/resources/data/cruciblecraft/machine_tiers.json",
+    "src/main/resources/data/cruciblecraft_wave_machines_pressure_washer/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/pressurewasher/**",
+    "tools/capabilities/machines/pressure-washer/**",
+    "tools/waves/machines/pressure-washer/**",
+    "tools/tests/test_pressure_washer.py"
+  ],
+  "depends_on": [
+    "machines/roll-former"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/pressure-washer",
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:pressurewasher:20551-20554",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:pressurewasher",
+        "cruciblecraft:steel_pressurewasher",
+        "cruciblecraft:titanium_pressurewasher",
+        "cruciblecraft:tungstensteel_pressurewasher"
+      ],
+      "reason": "GT6 MultiTileEntityBasicMachine 20551-20554. RM.PressureWasher/Debarker, RU buffered, left item in/right item out, up/down fluid in, back energy. All four D0 hosts are source-exact."
+    },
+    {
+      "semantic_key": "recipe:pressurewasher:stone_overflow",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "120 gt.stone rows are unmapped. Do not replace GT6 stone identities with unrelated blocks."
+    }
+  ],
+  "note": "192 selected exact rows; 120 unmapped gt.stone rows explicitly_blocked. Four hosts are source-exact. Close at runtime_ready, not player_complete."
+}

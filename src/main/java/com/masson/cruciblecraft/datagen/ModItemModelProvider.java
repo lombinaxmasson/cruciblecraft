@@ -3,6 +3,8 @@ package com.masson.cruciblecraft.datagen;
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.content.item.TechnologicalPartCatalog;
+import com.masson.cruciblecraft.content.item.SlicerOperandCatalog;
+import com.masson.cruciblecraft.content.item.PressureWasherOperandCatalog;
 import com.masson.cruciblecraft.content.item.GtWoodCatalog;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverComponentTiers;
@@ -177,6 +179,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         }
         TechnologicalPartCatalog.parts().forEach(part ->
                 generatedImportedGt6(part.registryPath(), part.texture()));
+        SlicerOperandCatalog.operands().forEach(operand ->
+                generatedGt6Multiitem(operand.registryPath()));
+        PressureWasherOperandCatalog.operands().forEach(operand ->
+                generatedGt6Multiitem(operand.registryPath()));
         ModBlocks.pipeBlocks().forEach(holder -> {
             var pipe = holder.get().pipe();
             String modelKey = pipe.kind().name().toLowerCase(
@@ -204,6 +210,11 @@ public class ModItemModelProvider extends ItemModelProvider {
     private void generatedImportedGt6(String name, String texture) {
         withExistingParent(name, mcLoc("item/generated"))
                 .texture("layer0", modLoc("item/gt6_import/" + texture));
+    }
+
+    private void generatedGt6Multiitem(String name) {
+        withExistingParent("item/" + name, mcLoc("item/generated"))
+                .texture("layer0", modLoc("item/" + name));
     }
 
     private void tool(String name, String... textureLayers) {

@@ -39,7 +39,6 @@ public record ProcessingEmiRegistrationPlan(
         List<MachineRegistration> machines = new ArrayList<>();
         List<RecipeRegistration> recipes = new ArrayList<>();
         Set<ResourceLocation> categoryIds = new HashSet<>();
-        Set<ResourceLocation> mapIds = new HashSet<>();
         Set<String> categoryRecipeIds = new HashSet<>();
         for (ProcessingMachineSpec spec : specs) {
             Objects.requireNonNull(spec, "spec");
@@ -47,10 +46,6 @@ public record ProcessingEmiRegistrationPlan(
             if (!categoryIds.add(spec.id())) {
                 throw new IllegalArgumentException(
                         "Duplicate processing EMI category " + spec.id());
-            }
-            if (!mapIds.add(map.id())) {
-                throw new IllegalArgumentException(
-                        "Duplicate processing EMI recipe map " + map.id());
             }
             MachineRegistration machine =
                     new MachineRegistration(spec, spec.id(), map);

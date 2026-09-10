@@ -1,0 +1,54 @@
+{
+  "schema_version": 2,
+  "slug": "machines/slicer",
+  "title": "Slicer",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/gametest/SlicerGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/content/item/SlicerOperandCatalog.java",
+    "src/main/java/com/masson/cruciblecraft/machine/processing/prep/SlicerPrepSpec.java",
+    "src/main/resources/assets/cruciblecraft/gt6_slicer_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/slicer/**",
+    "src/main/resources/data/cruciblecraft/slicer_operands.json",
+    "src/main/resources/data/cruciblecraft_wave_machines_slicer/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/slicer/**",
+    "tools/capabilities/machines/slicer/**",
+    "tools/waves/machines/slicer/**",
+    "tools/tests/test_slicer.py"
+  ],
+  "depends_on": [
+    "machines/roll-former"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/slicer",
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:slicer:20381-20385",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:slicer",
+        "cruciblecraft:aluminium_slicer",
+        "cruciblecraft:stainless_steel_slicer",
+        "cruciblecraft:chromium_slicer",
+        "cruciblecraft:titanium_slicer"
+      ],
+      "reason": "GT6 MultiTileEntityBasicMachine 20381-20385. RM.Slicer, EU, left/up in, right/down out, back energy. Hosts are runtime-registered but not survival-craftable."
+    },
+    {
+      "semantic_key": "machine:slicer:host_obtain",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "All five hosts need IL.CONVEYERS modules. Compact conveyor covers are not this slot. Do not invent programmed_circuit or cover stand-ins."
+    },
+    {
+      "semantic_key": "recipe:slicer:paper_tiny_plate",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "One gt.recipe.slicer dump row needs unmapped paper:tiny_plate. Do not stand in another plate form."
+    }
+  ],
+  "note": "32 selected exact rows; 1 unmapped paper:tiny_plate row explicitly_blocked. Thirty-three exact GT6 food operands are runtime-registered from the local source. Five hosts stay acquisition-blocked. Close at runtime_ready, not player_complete."
+}

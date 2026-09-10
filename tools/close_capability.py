@@ -103,7 +103,14 @@ def _rebuild_projections() -> list[str]:
     return errors
 
 
-def close_capability(slug: str, *, verify: bool = False) -> list[str]:
+def close_capability(
+    slug: str,
+    *,
+    verify: bool = False,
+    maturity: str = "player_complete",
+) -> list[str]:
+    if maturity not in ("player_complete", "runtime_ready"):
+        raise ValueError(f"unsupported close maturity {maturity!r}")
     compiled = capability_ledger.compile_ledger()
     unique = compiled.get("unique_active_slug")
     if unique != slug:
@@ -112,12 +119,23 @@ def close_capability(slug: str, *, verify: bool = False) -> list[str]:
         )
     path = capability_ledger.CAP_ROOT / slug / "capability.json"
     capability = capability_ledger.load_capability(path)
-    errors = player_complete.check_declared_test_ids(capability)
-    signoff = player_complete.load_signoff(capability)
-    errors.extend(player_complete.check_signoff(capability, signoff))
-    items = list(signoff.get("craftable_items") or [])
-    errors.extend(player_complete.check_static_player_surface(slug, items))
-    errors.extend(player_complete.check_surface_catalog(slug, items))
+    errors: list[str] = []
+    if maturity == "player_complete":
+        errors.extend(player_complete.check_declared_test_ids(capability))
+        signoff = player_complete.load_signoff(capability)
+        errors.extend(player_complete.check_signoff(capability, signoff))
+        items = list(signoff.get("craftable_items") or [])
+        errors.extend(player_complete.check_static_player_surface(slug, items))
+        errors.extend(player_complete.check_surface_catalog(slug, items))
+    else:
+        if "player-complete" in list(capability.get("profiles") or []):
+            errors.append(
+                f"{slug}: runtime_ready close cannot keep a player-complete profile"
+            )
+        if capability.get("player_signoff"):
+            errors.append(
+                f"{slug}: runtime_ready close cannot keep player_signoff"
+            )
     for lock_path in _owned_wave_files(capability, "production_lock.json"):
         note = str(_load_json(lock_path).get("note") or "")
         if _lock_claims_player_complete(note):
@@ -128,7 +146,7 @@ def close_capability(slug: str, *, verify: bool = False) -> list[str]:
     if errors:
         return errors
     document = _load_json(path)
-    document["maturity"] = "player_complete"
+    document["maturity"] = maturity
     document["workflow"] = "accepted"
     _write_json(path, document)
     for filename in ("topology.json", "readiness.json"):
@@ -146,7 +164,12 @@ def close_capability(slug: str, *, verify: bool = False) -> list[str]:
     _append_path_map(active_plan.name)
     errors = _rebuild_projections()
     if verify:
-        errors.extend(player_complete.run_fresh_capability(slug, client=True))
+        if maturity != "player_complete":
+            errors.append(
+                f"{slug}: --verify is only for player_complete close"
+            )
+        else:
+            errors.extend(player_complete.run_fresh_capability(slug, client=True))
     return errors
 
 
@@ -154,13 +177,23 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--capability", required=True)
     parser.add_argument(
+        "--maturity",
+        default="player_complete",
+        choices=("player_complete", "runtime_ready"),
+        help="close maturity; runtime_ready skips player signoff and craftability",
+    )
+    parser.add_argument(
         "--verify",
         action="store_true",
         help="also run a fresh GameTest plus runClient after the close writes",
     )
     args = parser.parse_args(argv)
     try:
-        errors = close_capability(args.capability, verify=args.verify)
+        errors = close_capability(
+            args.capability,
+            verify=args.verify,
+            maturity=args.maturity,
+        )
     except ValueError as error:
         print(str(error), file=sys.stderr)
         return 1

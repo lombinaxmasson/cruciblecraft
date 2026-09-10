@@ -13,7 +13,7 @@ class CapabilityCloseTest(unittest.TestCase):
     def test_close_requires_the_unique_active_capability(self) -> None:
         compiled = capability_ledger.compile_ledger()
         self.assertIsNone(compiled["unique_active_slug"])
-        with self.assertRaisesRegex(ValueError, "unique-active is None"):
+        with self.assertRaisesRegex(ValueError, "unique-active is"):
             close_capability.close_capability("machines/cluster-mill")
 
     def test_path_map_records_prep_and_active_for_roll_former(self) -> None:

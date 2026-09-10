@@ -1,0 +1,48 @@
+{
+  "schema_version": 2,
+  "slug": "machines/laminator",
+  "title": "Laminator",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/gametest/LaminatorGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/machine/processing/prep/LaminatorPrepSpec.java",
+    "src/main/resources/assets/cruciblecraft/gt6_laminator_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/laminator/**",
+    "src/main/resources/data/cruciblecraft/machine_delivery.json",
+    "src/main/resources/data/cruciblecraft/machine_kinds.json",
+    "src/main/resources/data/cruciblecraft/machine_tiers.json",
+    "src/main/resources/data/cruciblecraft_wave_machines_laminator/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/laminator/**",
+    "tools/capabilities/machines/laminator/**",
+    "tools/waves/machines/laminator/**",
+    "tools/tests/test_laminator.py"
+  ],
+  "depends_on": [
+    "machines/roll-former"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/laminator",
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:laminator:20391-20394",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:laminator",
+        "cruciblecraft:invar_laminator",
+        "cruciblecraft:titanium_laminator",
+        "cruciblecraft:tungsten_carbide_laminator"
+      ],
+      "reason": "GT6 MultiTileEntityBasicMachine 20391-20394. RM.Laminator, HU adjacent, left/up in, right out, down heat. All four D0 hosts are source-exact."
+    },
+    {
+      "semantic_key": "recipe:laminator:unmapped_mte_overflow",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "266 rows require unmapped MTE operands; six more require unregistered gt_block log identities. No unrelated cable, block or material stand-ins."
+    }
+  ],
+  "note": "Prep selected 232 rows; live publishes 226 runtime-registered exact rows. 266 MTE rows and six gt_block log rows are explicitly_blocked. Four hosts are source-exact. Close at runtime_ready, not player_complete."
+}

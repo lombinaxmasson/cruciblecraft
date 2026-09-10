@@ -1,0 +1,38 @@
+{
+  "allows_implementation_child": false,
+  "generated_by": "python tools/build_mte_identity_disposition_r0.py",
+  "questions": [
+    {
+      "id": "host_bounds",
+      "must_answer": "Which BEs implement tapDrain / nozzleDrain / funnelFill / crucible pour. GT6 also hits barrels, basic machines, reactor cores, hot-fluid machines, and multiblock tanks."
+    },
+    {
+      "id": "placement",
+      "must_answer": "AttachmentSmall face placement vs pipe covers. CoverBehaviorRegistry must not be used as completion."
+    },
+    {
+      "id": "four_behaviors",
+      "must_answer": "Crucible faucet, fluid tap, nozzle, and fluid funnel are four settlements sharing placement, not one drain interface."
+    },
+    {
+      "id": "uncatalogued_gt6",
+      "must_answer": "Whether to register variants absent from this catalog (ceramic faucet 1705 and similar). Registration is new_distinct, not a rewrite of these 1,817 rows."
+    },
+    {
+      "id": "player_acquisition",
+      "must_answer": "Survival path for the 33 registered identities."
+    },
+    {
+      "id": "fail_closed",
+      "must_answer": "Unknown attachment variants must not silent no-op."
+    },
+    {
+      "id": "delete_later",
+      "must_answer": "How to keep this card's hashes if a later card marks one behavior out_of_scope."
+    }
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "ATTACHMENT_CONTRACT_READY",
+  "wave_slug": "portfolio/mte-identity-disposition-r0"
+}

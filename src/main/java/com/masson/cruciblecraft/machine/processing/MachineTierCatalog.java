@@ -64,6 +64,13 @@ public final class MachineTierCatalog {
         return entry;
     }
 
+    /** True when the catalog records a source-backed obtain-grid gap. */
+    public static boolean acquisitionBlocked(ResourceLocation id) {
+        Objects.requireNonNull(id, "id");
+        Entry entry = CATALOG.byId().get(id);
+        return entry != null && nonBlank(entry.acquisitionBlocker());
+    }
+
     public static NamingPolicy namingPolicy() {
         return CATALOG.namingPolicy();
     }

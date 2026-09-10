@@ -101,6 +101,11 @@ def render_status(ledger: dict[str, Any] | None = None) -> str:
     else:
         lines.append("无已签发 prep 计划。")
     complete = list(compiled["declared_player_complete"])
+    runtime_ready = [
+        row["slug"]
+        for row in compiled["capabilities"]
+        if row["maturity"] == "runtime_ready" and row["workflow"] == "accepted"
+    ]
     lines.extend(
         [
             "",
@@ -116,6 +121,23 @@ def render_status(ledger: dict[str, Any] | None = None) -> str:
         plan = plans["closed"].get(slug)
         plan_bit = f" — {_plan_md(plan)}" if plan is not None else ""
         lines.append(f"- `{slug}` — {row['title']}{plan_bit}")
+    lines.extend(
+        [
+            "",
+            f"## runtime_ready（accepted，非玩家完成）（{len(runtime_ready)}）",
+            "",
+            "RecipeMap / 主机已挂，获得格或配方仍 blocked。不得宣称 `player_complete`。",
+            "",
+        ]
+    )
+    if runtime_ready:
+        for slug in runtime_ready:
+            row = by_slug[slug]
+            plan = plans["closed"].get(slug)
+            plan_bit = f" — {_plan_md(plan)}" if plan is not None else ""
+            lines.append(f"- `{slug}` — {row['title']}{plan_bit}")
+    else:
+        lines.append("无。")
     closed_complete = [
         (slug, path)
         for slug, path in sorted(plans["closed"].items())

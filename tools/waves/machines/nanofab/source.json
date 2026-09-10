@@ -1,0 +1,768 @@
+{
+  "family_count": 1,
+  "generated_by": "python tools/build_recipe_bulk.py import-source",
+  "host": "cruciblecraft:nanofab",
+  "import_slug": "machines/nanofab",
+  "relation_count": 7,
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 4352,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:nanofab/gt.recipe.nanofab#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:nanofab",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        },
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        17
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:programmed_circuit",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Selector Tag",
+            "item": "gregapi:gt.integrated_circuit",
+            "meta": 12
+          },
+          "tag": null,
+          "value": "cruciblecraft:programmed_circuit"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:carbon/dust",
+          "slot_class": "occupied",
+          "source": {
+            "count": 17,
+            "displayName": "Carbon Dust",
+            "item": "gregtech:gt.meta.dust",
+            "meta": 60
+          },
+          "tag": null,
+          "value": "cruciblecraft:carbon/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rotor",
+          "mapping": "registered_material_form",
+          "material": "graphene",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:graphene/rotor",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Graphene Rotor",
+            "item": "gregtech:gt.meta.rotor",
+            "meta": 9175
+          },
+          "tag": "c:rotors/graphene",
+          "value": "graphene:rotor"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 0,
+      "slot_notes": [],
+      "source_map": "gt.recipe.nanofab",
+      "source_recipe_index": 0,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "6657c25ae3668daa1947a0024a59b24c146262c6beadde3227b0e05f245e1365",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/9b516bdb69ce092b",
+      "target_map": "cruciblecraft:nanofab",
+      "template_key": "gt.recipe.nanofab#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 32,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:nanofab/gt.recipe.nanofab#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:nanofab",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        },
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        9
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:programmed_circuit",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Selector Tag",
+            "item": "gregapi:gt.integrated_circuit",
+            "meta": 6
+          },
+          "tag": null,
+          "value": "cruciblecraft:programmed_circuit"
+        },
+        {
+          "alias": null,
+          "form": "dust_div72",
+          "mapping": "registered_material_form",
+          "material": "carbon",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:carbon/dust_div72",
+          "slot_class": "occupied",
+          "source": {
+            "count": 9,
+            "displayName": "1/72nd of a Pile of Carbon Dust",
+            "item": "gregtech:gt.meta.dustDiv72",
+            "meta": 60
+          },
+          "tag": "c:dust_div72s/carbon",
+          "value": "carbon:dust_div72"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "bolt",
+          "mapping": "registered_material_form",
+          "material": "graphene",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:graphene/bolt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Graphene Bolt",
+            "item": "gregtech:gt.meta.bolt",
+            "meta": 9175
+          },
+          "tag": "c:bolts/graphene",
+          "value": "graphene:bolt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 1,
+      "slot_notes": [],
+      "source_map": "gt.recipe.nanofab",
+      "source_recipe_index": 2,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "d12f726d88c7177a1fe291119358a378cb29c8727a8223f272e2556b1c059e59",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/ae3e8aacb21735db",
+      "target_map": "cruciblecraft:nanofab",
+      "template_key": "gt.recipe.nanofab#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 2048,
+      "eut": 64,
+      "family_id": "portfolio:track_a/cruciblecraft:nanofab/gt.recipe.nanofab#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:nanofab",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        },
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:programmed_circuit",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Selector Tag",
+            "item": "gregapi:gt.integrated_circuit",
+            "meta": 0
+          },
+          "tag": null,
+          "value": "cruciblecraft:programmed_circuit"
+        },
+        {
+          "alias": null,
+          "form": "centrifuged_crushed_ore",
+          "mapping": "registered_material_form",
+          "material": "dolamide",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:dolamide/centrifuged_crushed_ore",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Refined Dolamide Ore",
+            "item": "gregtech:gt.meta.crushedCentrifuged",
+            "meta": 8753
+          },
+          "tag": "c:centrifuged_crushed_ores/dolamide",
+          "value": "dolamide:centrifuged_crushed_ore"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "gem",
+          "mapping": "registered_material_form",
+          "material": "dilithium",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:dilithium/gem",
+          "slot_class": "occupied",
+          "source": {
+            "count": 2,
+            "displayName": "Dilithium Crystal",
+            "item": "gregtech:gt.meta.gem",
+            "meta": 8317
+          },
+          "tag": "c:gems/dilithium",
+          "value": "dilithium:gem"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 2,
+      "slot_notes": [],
+      "source_map": "gt.recipe.nanofab",
+      "source_recipe_index": 3,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "0f3c248bf4300e5d9ac8d67bec0301483ee554d7b12b9d70c1d16cbbed5ef8de",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/e67395af4f9d9d37",
+      "target_map": "cruciblecraft:nanofab",
+      "template_key": "gt.recipe.nanofab#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 256,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:nanofab/gt.recipe.nanofab#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:nanofab",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        },
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        4
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:programmed_circuit",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Selector Tag",
+            "item": "gregapi:gt.integrated_circuit",
+            "meta": 8
+          },
+          "tag": null,
+          "value": "cruciblecraft:programmed_circuit"
+        },
+        {
+          "alias": null,
+          "form": "small_dust",
+          "mapping": "registered_material_form",
+          "material": "carbon",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:carbon/small_dust",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Small Pile of Carbon Dust",
+            "item": "gregtech:gt.meta.dustSmall",
+            "meta": 60
+          },
+          "tag": "c:small_dusts/carbon",
+          "value": "carbon:small_dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "long_rod",
+          "mapping": "registered_material_form",
+          "material": "graphene",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:graphene/long_rod",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Long Graphene Rod",
+            "item": "gregtech:gt.meta.stickLong",
+            "meta": 9175
+          },
+          "tag": "c:long_rods/graphene",
+          "value": "graphene:long_rod"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 3,
+      "slot_notes": [],
+      "source_map": "gt.recipe.nanofab",
+      "source_recipe_index": 4,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "e092e4f5582c72e2a231ca9cd16fc05d780baf33acf293a8f984fcb1fa3fc3b7",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/0e1c58905120cb36",
+      "target_map": "cruciblecraft:nanofab",
+      "template_key": "gt.recipe.nanofab#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 256,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:nanofab/gt.recipe.nanofab#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:nanofab",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        },
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        9
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:programmed_circuit",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Selector Tag",
+            "item": "gregapi:gt.integrated_circuit",
+            "meta": 6
+          },
+          "tag": null,
+          "value": "cruciblecraft:programmed_circuit"
+        },
+        {
+          "alias": null,
+          "form": "tiny_dust",
+          "mapping": "registered_material_form",
+          "material": "carbon",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:carbon/tiny_dust",
+          "slot_class": "occupied",
+          "source": {
+            "count": 9,
+            "displayName": "Tiny Pile of Carbon Dust",
+            "item": "gregtech:gt.meta.dustTiny",
+            "meta": 60
+          },
+          "tag": "c:tiny_dusts/carbon",
+          "value": "carbon:tiny_dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "bolt",
+          "mapping": "registered_material_form",
+          "material": "graphene",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:graphene/bolt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 8,
+            "displayName": "Graphene Bolt",
+            "item": "gregtech:gt.meta.bolt",
+            "meta": 9175
+          },
+          "tag": "c:bolts/graphene",
+          "value": "graphene:bolt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 4,
+      "slot_notes": [],
+      "source_map": "gt.recipe.nanofab",
+      "source_recipe_index": 11,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "15636ed2956ec24c08e637b146c8d8e79777c9a0bd8197f8dec2997e822f0240",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/4e680b09001328b4",
+      "target_map": "cruciblecraft:nanofab",
+      "template_key": "gt.recipe.nanofab#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 2048,
+      "eut": 512,
+      "family_id": "portfolio:track_a/cruciblecraft:nanofab/gt.recipe.nanofab#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:nanofab",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        },
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        2
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:programmed_circuit",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Selector Tag",
+            "item": "gregapi:gt.integrated_circuit",
+            "meta": 0
+          },
+          "tag": null,
+          "value": "cruciblecraft:programmed_circuit"
+        },
+        {
+          "alias": null,
+          "form": "dust",
+          "mapping": "registered_material_form",
+          "material": "dolamide",
+          "reachable": true,
+          "runtime_id": "cruciblecraft:dolamide/dust",
+          "slot_class": "occupied",
+          "source": {
+            "count": 2,
+            "displayName": "Dolamide Dust",
+            "item": "gregtech:gt.meta.dust",
+            "meta": 8753
+          },
+          "tag": "c:dusts/dolamide",
+          "value": "dolamide:dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "gem",
+          "mapping": "registered_material_form",
+          "material": "dilithium",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:dilithium/gem",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Dilithium Crystal",
+            "item": "gregtech:gt.meta.gem",
+            "meta": 8317
+          },
+          "tag": "c:gems/dilithium",
+          "value": "dilithium:gem"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 5,
+      "slot_notes": [],
+      "source_map": "gt.recipe.nanofab",
+      "source_recipe_index": 38,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "f21d54f7c67e4d9c66bcda827dd8da0850b5789543fed2e6b4967328ec0ad27c",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/3d674d99f6d05a17",
+      "target_map": "cruciblecraft:nanofab",
+      "template_key": "gt.recipe.nanofab#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 4096,
+      "eut": 512,
+      "family_id": "portfolio:track_a/cruciblecraft:nanofab/gt.recipe.nanofab#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:nanofab",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        },
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        2
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:programmed_circuit",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Selector Tag",
+            "item": "gregapi:gt.integrated_circuit",
+            "meta": 0
+          },
+          "tag": null,
+          "value": "cruciblecraft:programmed_circuit"
+        },
+        {
+          "alias": null,
+          "form": "dust",
+          "mapping": "registered_material_form",
+          "material": "dilithium",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:dilithium/dust",
+          "slot_class": "occupied",
+          "source": {
+            "count": 2,
+            "displayName": "Dilithium Dust",
+            "item": "gregtech:gt.meta.dust",
+            "meta": 8317
+          },
+          "tag": "c:dusts/dilithium",
+          "value": "dilithium:dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "gem",
+          "mapping": "registered_material_form",
+          "material": "dilithium",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:dilithium/gem",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Dilithium Crystal",
+            "item": "gregtech:gt.meta.gem",
+            "meta": 8317
+          },
+          "tag": "c:gems/dilithium",
+          "value": "dilithium:gem"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 6,
+      "slot_notes": [],
+      "source_map": "gt.recipe.nanofab",
+      "source_recipe_index": 61,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "6d29b91686ca7f41f99699344658ae52bea512e07bc47c89ecbc772393742495",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/060e0a1358d20b17",
+      "target_map": "cruciblecraft:nanofab",
+      "template_key": "gt.recipe.nanofab#0000",
+      "unsupported_semantics": []
+    }
+  ],
+  "source_pack_id": "machines/nanofab",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:nanofab"
+}

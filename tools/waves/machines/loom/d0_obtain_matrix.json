@@ -1,0 +1,214 @@
+{
+  "capability_slug": "machines/loom",
+  "grid": [
+    "ShS",
+    "GMG",
+    "SwS"
+  ],
+  "hosts": [
+    {
+      "casing": {
+        "cc": "cruciblecraft:bronze/machine_casing",
+        "gt6": "OP.casingMachine(MT.Bronze)",
+        "status": "ok"
+      },
+      "gear": {
+        "cc": "cruciblecraft:bronze/gear",
+        "gt6": "OP.gearGt(MT.Bronze)",
+        "status": "ok"
+      },
+      "host": 20211,
+      "long_rod": {
+        "cc": "cruciblecraft:bronze/long_rod",
+        "gt6": "OP.stickLong(MT.Bronze)",
+        "status": "ok"
+      },
+      "material": [
+        "bronze"
+      ],
+      "status": "source_exact"
+    },
+    {
+      "casing": {
+        "cc": "cruciblecraft:steel/machine_casing",
+        "gt6": "OP.casingMachine(ANY.Steel)",
+        "status": "ok"
+      },
+      "gear": {
+        "cc": "cruciblecraft:steel/gear",
+        "gt6": "OP.gearGt(ANY.Steel)",
+        "status": "ok"
+      },
+      "host": 20212,
+      "long_rod": {
+        "cc": "cruciblecraft:steel/long_rod",
+        "gt6": "OP.stickLong(ANY.Steel)",
+        "status": "ok"
+      },
+      "material": [
+        "steel"
+      ],
+      "status": "source_exact"
+    },
+    {
+      "casing": {
+        "cc": "cruciblecraft:titanium/machine_casing",
+        "gt6": "OP.casingMachine(MT.Ti)",
+        "status": "ok"
+      },
+      "gear": {
+        "cc": "cruciblecraft:titanium/gear",
+        "gt6": "OP.gearGt(MT.Ti)",
+        "status": "ok"
+      },
+      "host": 20213,
+      "long_rod": {
+        "cc": "cruciblecraft:titanium/long_rod",
+        "gt6": "OP.stickLong(MT.Ti)",
+        "status": "ok"
+      },
+      "material": [
+        "titanium"
+      ],
+      "status": "source_exact"
+    },
+    {
+      "casing": {
+        "cc": "cruciblecraft:tungstensteel/machine_casing",
+        "gt6": "OP.casingMachine(MT.TungstenSteel)",
+        "status": "ok"
+      },
+      "gear": {
+        "cc": "cruciblecraft:tungstensteel/gear",
+        "gt6": "OP.gearGt(MT.TungstenSteel)",
+        "status": "ok"
+      },
+      "host": 20214,
+      "long_rod": {
+        "cc": "cruciblecraft:tungstensteel/long_rod",
+        "gt6": "OP.stickLong(MT.TungstenSteel)",
+        "status": "ok"
+      },
+      "material": [
+        "tungstensteel"
+      ],
+      "status": "source_exact"
+    },
+    {
+      "casing": {
+        "cc": "cruciblecraft:steel_galvanized/machine_casing",
+        "gt6": "OP.casingMachine(MT.SteelGalvanized)",
+        "status": "ok"
+      },
+      "host": 20361,
+      "long_rod": {
+        "cc": "cruciblecraft:steel_galvanized/long_rod",
+        "gt6": "OP.stickLong(MT.SteelGalvanized)",
+        "status": "ok"
+      },
+      "material": [
+        "steel_galvanized"
+      ],
+      "motor": {
+        "cc": "cruciblecraft:compact_electric_motor_lv",
+        "gt6": "IL.MOTORS[1]",
+        "status": "ok"
+      },
+      "status": "source_exact"
+    },
+    {
+      "casing": {
+        "cc": "cruciblecraft:aluminium/machine_casing",
+        "gt6": "OP.casingMachine(MT.Al)",
+        "status": "ok"
+      },
+      "host": 20362,
+      "long_rod": {
+        "cc": "cruciblecraft:aluminium/long_rod",
+        "gt6": "OP.stickLong(MT.Al)",
+        "status": "ok"
+      },
+      "material": [
+        "aluminium"
+      ],
+      "motor": {
+        "cc": "",
+        "gt6": "IL.MOTORS[2]",
+        "reason": "compact motor module missing for this tier",
+        "status": "blocked"
+      },
+      "status": "explicitly_blocked"
+    },
+    {
+      "casing": {
+        "cc": "cruciblecraft:stainless_steel/machine_casing",
+        "gt6": "OP.casingMachine(MT.StainlessSteel)",
+        "status": "ok"
+      },
+      "host": 20363,
+      "long_rod": {
+        "cc": "cruciblecraft:stainless_steel/long_rod",
+        "gt6": "OP.stickLong(MT.StainlessSteel)",
+        "status": "ok"
+      },
+      "material": [
+        "stainless_steel"
+      ],
+      "motor": {
+        "cc": "",
+        "gt6": "IL.MOTORS[3]",
+        "reason": "compact motor module missing for this tier",
+        "status": "blocked"
+      },
+      "status": "explicitly_blocked"
+    },
+    {
+      "casing": {
+        "cc": "cruciblecraft:chromium/machine_casing",
+        "gt6": "OP.casingMachine(MT.Cr)",
+        "status": "ok"
+      },
+      "host": 20364,
+      "long_rod": {
+        "cc": "cruciblecraft:chromium/long_rod",
+        "gt6": "OP.stickLong(MT.Cr)",
+        "status": "ok"
+      },
+      "material": [
+        "chromium"
+      ],
+      "motor": {
+        "cc": "cruciblecraft:compact_electric_motor_ev",
+        "gt6": "IL.MOTORS[4]",
+        "status": "ok"
+      },
+      "status": "source_exact"
+    },
+    {
+      "casing": {
+        "cc": "cruciblecraft:titanium/machine_casing",
+        "gt6": "OP.casingMachine(MT.Ti)",
+        "status": "ok"
+      },
+      "host": 20365,
+      "long_rod": {
+        "cc": "cruciblecraft:titanium/long_rod",
+        "gt6": "OP.stickLong(MT.Ti)",
+        "status": "ok"
+      },
+      "material": [
+        "titanium"
+      ],
+      "motor": {
+        "cc": "",
+        "gt6": "IL.MOTORS[5]",
+        "reason": "compact motor module missing for this tier",
+        "status": "blocked"
+      },
+      "status": "explicitly_blocked"
+    }
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "runtime_ready"
+}

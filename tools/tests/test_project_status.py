@@ -15,11 +15,12 @@ class ProjectStatusTest(unittest.TestCase):
         self.assertIn("# 项目状态", text)
         self.assertIn("不要手改", text)
         self.assertIsNone(compiled["unique_active_slug"])
-        self.assertIn("无。`capability.json` 里没有 `workflow=active`。", text)
+        self.assertIn("`machines/slicer`", text)
+        self.assertIn("workflow=accepted", text)
         self.assertIn("machines/cluster-mill", text)
         self.assertIn("machines/roll-former", text)
         self.assertIn("## Prep（不占落地锁）", text)
-        self.assertIn("machines/slicer", text)
+        self.assertIn("## runtime_ready", text)
         self.assertIn("python tools/close_capability.py", text)
 
     def test_pointer_files_link_status_and_do_not_recite(self) -> None:

@@ -442,6 +442,12 @@ public final class ModBlocks {
             STEEL_CLUSTERMILL = tieredProcessing("steel_clustermill");
     public static final DeferredBlock<ProcessingMachineBlock>
             TITANIUM_CLUSTERMILL = tieredProcessing("titanium_clustermill");
+    public static final DeferredBlock<ProcessingMachineBlock> SLICER =
+            tieredProcessing("slicer");
+    public static final DeferredBlock<ProcessingMachineBlock>
+            ALUMINIUM_SLICER = tieredProcessing("aluminium_slicer");
+    public static final DeferredBlock<ProcessingMachineBlock>
+            STAINLESS_STEEL_SLICER = tieredProcessing("stainless_steel_slicer");
     public static final DeferredBlock<ProcessingMachineBlock> ROLLBENDER =
             tieredProcessing("rollbender");
     public static final DeferredBlock<ProcessingMachineBlock> WIREMILL =

@@ -1,0 +1,111 @@
+package com.masson.cruciblecraft.gametest;
+
+import java.util.List;
+
+import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
+import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
+import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
+import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
+import com.masson.cruciblecraft.recipe.gt.RecipeMap;
+import com.masson.cruciblecraft.registry.ModBlocks;
+import com.masson.cruciblecraft.registry.ModProcessingMachines;
+import com.masson.cruciblecraft.registry.ModRecipeMaps;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.gametest.framework.GameTest;
+import net.minecraft.gametest.framework.GameTestHelper;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.gametest.GameTestHolder;
+import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
+
+/** Runtime gate for the Injector family with one exact EV host. */
+@GameTestHolder(InjectorGameTests.NAMESPACE)
+@PrefixGameTestTemplate(false)
+public final class InjectorGameTests {
+    public static final String NAMESPACE = "cruciblecraft_wave_machines_injector";
+    private static final String TEMPLATE = "empty";
+    private static final Direction FRONT = Direction.NORTH;
+    private static final ResourceLocation PUBLICATION_GROUP =
+            ResourceLocation.fromNamespaceAndPath(
+                    "cruciblecraft", "injector/pilot/injector");
+
+    private InjectorGameTests() {}
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void playerSurfaceIsRegistered(GameTestHelper helper) {
+        helper.assertTrue(
+                ModBlocks.tieredProcessingBlocksById().containsKey(id("injector")),
+                "Injector block is missing from the catalog");
+        helper.assertTrue(
+                ModProcessingMachines.INJECTOR != null
+                        && ModRecipeMaps.INJECTOR != null,
+                "Injector RecipeMap or spec missing");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void liveMapPublishesSixHundredElevenRows(
+            GameTestHelper helper) {
+        RecipeMap.RecipeFamily family = ModRecipeMaps.INJECTOR
+                .family(CompactRecipeFamilyProvider.familyId(
+                        ModRecipeMaps.INJECTOR.id(), PUBLICATION_GROUP))
+                .orElse(null);
+        helper.assertTrue(
+                family != null && family.logicalRecipeCount() == 103,
+                "Injector family is not the 103 non-shadowed rows: "
+                        + (family == null ? "missing" : family.logicalRecipeCount()));
+        helper.assertTrue(
+                ModRecipeMaps.INJECTOR.entries().size() == 103,
+                "Injector map drifted from 103 rows: "
+                        + ModRecipeMaps.INJECTOR.entries().size());
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void chromiumExactAndOtherHostsBlocked(
+            GameTestHelper helper) {
+        helper.assertTrue(
+                helper.getLevel().getRecipeManager()
+                        .byKey(id("machines/chromium_injector"))
+                        .isPresent(),
+                "Chromium EV Injector acquisition recipe missing");
+        for (String path : List.of(
+                "injector",
+                "aluminium_injector",
+                "stainless_steel_injector",
+                "titanium_injector")) {
+            helper.assertFalse(
+                    helper.getLevel().getRecipeManager()
+                            .byKey(id("machines/" + path))
+                            .isPresent(),
+                    "Blocked Injector host became craftable: " + path);
+        }
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void placedInjectorResolvesSpec(GameTestHelper helper) {
+        Block block = ModBlocks.tieredProcessingBlocksById()
+                .get(id("chromium_injector"))
+                .get();
+        helper.setBlock(
+                new BlockPos(2, 2, 2),
+                block.defaultBlockState().setValue(
+                        ProcessingMachineBlock.FACING, FRONT));
+        ConfiguredProcessingMachineBlockEntity machine =
+                helper.getBlockEntity(new BlockPos(2, 2, 2));
+        helper.assertTrue(
+                machine != null
+                        && (machine.spec() == ModProcessingMachines.INJECTOR
+                                || machine.variant().kind().behavior()
+                                        == ModProcessingMachines.INJECTOR),
+                "Placed Injector resolved the wrong machine kind");
+        helper.succeed();
+    }
+
+    private static ResourceLocation id(String path) {
+        return ResourceLocation.fromNamespaceAndPath("cruciblecraft", path);
+    }
+}

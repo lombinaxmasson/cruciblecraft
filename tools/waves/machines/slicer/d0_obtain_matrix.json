@@ -1,0 +1,171 @@
+{
+  "capability_slug": "machines/slicer",
+  "grid": [
+    "PRw",
+    "YMC"
+  ],
+  "hosts": [
+    {
+      "casing": {
+        "cc": "cruciblecraft:steel_galvanized/machine_casing",
+        "gt6": "OP.casingMachine(MT.SteelGalvanized)",
+        "status": "ok"
+      },
+      "circuit": {
+        "cc": "cruciblecraft:circuit_basic",
+        "gt6": "OD_CIRCUITS[1]",
+        "status": "ok"
+      },
+      "conveyor": {
+        "cc": "",
+        "gt6": "IL.CONVEYERS[1]",
+        "reason": "compact conveyor module missing; cover is not this slot",
+        "status": "blocked"
+      },
+      "host": 20381,
+      "material": "steel_galvanized",
+      "piston": {
+        "cc": "",
+        "gt6": "IL.PISTONS[1]",
+        "reason": "compact piston module missing for this tier",
+        "status": "blocked"
+      },
+      "rod": {
+        "cc": "cruciblecraft:steel_galvanized/rod",
+        "gt6": "OP.stick(MT.SteelGalvanized)",
+        "status": "ok"
+      },
+      "status": "explicitly_blocked"
+    },
+    {
+      "casing": {
+        "cc": "cruciblecraft:aluminium/machine_casing",
+        "gt6": "OP.casingMachine(MT.Al)",
+        "status": "ok"
+      },
+      "circuit": {
+        "cc": "cruciblecraft:circuit_good",
+        "gt6": "OD_CIRCUITS[2]",
+        "status": "ok"
+      },
+      "conveyor": {
+        "cc": "",
+        "gt6": "IL.CONVEYERS[2]",
+        "reason": "compact conveyor module missing; cover is not this slot",
+        "status": "blocked"
+      },
+      "host": 20382,
+      "material": "aluminium",
+      "piston": {
+        "cc": "",
+        "gt6": "IL.PISTONS[2]",
+        "reason": "compact piston module missing for this tier",
+        "status": "blocked"
+      },
+      "rod": {
+        "cc": "cruciblecraft:aluminium/rod",
+        "gt6": "OP.stick(MT.Al)",
+        "status": "ok"
+      },
+      "status": "explicitly_blocked"
+    },
+    {
+      "casing": {
+        "cc": "cruciblecraft:stainless_steel/machine_casing",
+        "gt6": "OP.casingMachine(MT.StainlessSteel)",
+        "status": "ok"
+      },
+      "circuit": {
+        "cc": "cruciblecraft:circuit_advanced",
+        "gt6": "OD_CIRCUITS[3]",
+        "status": "ok"
+      },
+      "conveyor": {
+        "cc": "",
+        "gt6": "IL.CONVEYERS[3]",
+        "reason": "compact conveyor module missing; cover is not this slot",
+        "status": "blocked"
+      },
+      "host": 20383,
+      "material": "stainless_steel",
+      "piston": {
+        "cc": "",
+        "gt6": "IL.PISTONS[3]",
+        "reason": "compact piston module missing for this tier",
+        "status": "blocked"
+      },
+      "rod": {
+        "cc": "cruciblecraft:stainless_steel/rod",
+        "gt6": "OP.stick(MT.StainlessSteel)",
+        "status": "ok"
+      },
+      "status": "explicitly_blocked"
+    },
+    {
+      "casing": {
+        "cc": "cruciblecraft:chromium/machine_casing",
+        "gt6": "OP.casingMachine(MT.Cr)",
+        "status": "ok"
+      },
+      "circuit": {
+        "cc": "cruciblecraft:circuit_elite",
+        "gt6": "OD_CIRCUITS[4]",
+        "status": "ok"
+      },
+      "conveyor": {
+        "cc": "",
+        "gt6": "IL.CONVEYERS[4]",
+        "reason": "compact conveyor module missing; cover is not this slot",
+        "status": "blocked"
+      },
+      "host": 20384,
+      "material": "chromium",
+      "piston": {
+        "cc": "cruciblecraft:compact_electric_piston_ev",
+        "gt6": "IL.PISTONS[4]",
+        "status": "ok"
+      },
+      "rod": {
+        "cc": "cruciblecraft:chromium/rod",
+        "gt6": "OP.stick(MT.Cr)",
+        "status": "ok"
+      },
+      "status": "explicitly_blocked"
+    },
+    {
+      "casing": {
+        "cc": "cruciblecraft:titanium/machine_casing",
+        "gt6": "OP.casingMachine(MT.Ti)",
+        "status": "ok"
+      },
+      "circuit": {
+        "cc": "cruciblecraft:circuit_master",
+        "gt6": "OD_CIRCUITS[5]",
+        "status": "ok"
+      },
+      "conveyor": {
+        "cc": "",
+        "gt6": "IL.CONVEYERS[5]",
+        "reason": "compact conveyor module missing; cover is not this slot",
+        "status": "blocked"
+      },
+      "host": 20385,
+      "material": "titanium",
+      "piston": {
+        "cc": "",
+        "gt6": "IL.PISTONS[5]",
+        "reason": "compact piston module missing for this tier",
+        "status": "blocked"
+      },
+      "rod": {
+        "cc": "cruciblecraft:titanium/rod",
+        "gt6": "OP.stick(MT.Ti)",
+        "status": "ok"
+      },
+      "status": "explicitly_blocked"
+    }
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "runtime_ready"
+}

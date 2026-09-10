@@ -32,6 +32,8 @@ import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.BathIdentityCatalog;
 import com.masson.cruciblecraft.content.item.SemanticObjectCatalog;
+import com.masson.cruciblecraft.content.item.SlicerOperandCatalog;
+import com.masson.cruciblecraft.content.item.PressureWasherOperandCatalog;
 import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.content.item.BatteryCellItem;
 import com.masson.cruciblecraft.content.item.FlintKnifeItem;
@@ -260,6 +262,10 @@ public final class ModItems {
             registerBathIdentityItems();
     private static final Map<ResourceLocation, DeferredItem<Item>> SEMANTIC_IDENTITY_ITEMS =
             registerSemanticIdentityItems();
+    private static final Map<ResourceLocation, DeferredItem<Item>> SLICER_OPERAND_ITEMS =
+            registerSlicerOperandItems();
+    private static final Map<ResourceLocation, DeferredItem<Item>>
+            PRESSURE_WASHER_OPERAND_ITEMS = registerPressureWasherOperandItems();
     public static DeferredItem<? extends Item> BRONZE_DOUBLE_MACHINE_CASING;
     public static DeferredItem<? extends Item> STEEL_DOUBLE_MACHINE_CASING;
     public static DeferredItem<? extends Item> TITANIUM_DOUBLE_MACHINE_CASING;
@@ -558,6 +564,12 @@ public final class ModItems {
             tieredProcessingItem("steel_clustermill");
     public static final DeferredItem<BlockItem> TITANIUM_CLUSTERMILL =
             tieredProcessingItem("titanium_clustermill");
+    public static final DeferredItem<BlockItem> SLICER =
+            tieredProcessingItem("slicer");
+    public static final DeferredItem<BlockItem> ALUMINIUM_SLICER =
+            tieredProcessingItem("aluminium_slicer");
+    public static final DeferredItem<BlockItem> STAINLESS_STEEL_SLICER =
+            tieredProcessingItem("stainless_steel_slicer");
     public static final DeferredItem<BlockItem> ROLLBENDER =
             tieredProcessingItem("rollbender");
     public static final DeferredItem<BlockItem> WIREMILL =
@@ -1463,6 +1475,15 @@ public final class ModItems {
         return SEMANTIC_IDENTITY_ITEMS;
     }
 
+    public static Map<ResourceLocation, DeferredItem<Item>> slicerOperandItemsById() {
+        return SLICER_OPERAND_ITEMS;
+    }
+
+    public static Map<ResourceLocation, DeferredItem<Item>>
+            pressureWasherOperandItemsById() {
+        return PRESSURE_WASHER_OPERAND_ITEMS;
+    }
+
     private static Map<String, DeferredItem<Item>> registerEmptyToolHeads() {
         LinkedHashMap<String, DeferredItem<Item>> items = new LinkedHashMap<>();
         for (String path : List.of(
@@ -1575,6 +1596,48 @@ public final class ModItems {
             throw new IllegalStateException(
                     "Semantic identity item registration drifted from "
                             + SemanticObjectCatalog.VARIANT_COUNT);
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    private static Map<ResourceLocation, DeferredItem<Item>> registerSlicerOperandItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<Item>> items = new LinkedHashMap<>();
+        for (SlicerOperandCatalog.Operand operand : SlicerOperandCatalog.operands()) {
+            if (SEMANTIC_IDENTITY_ITEMS.containsKey(operand.id())) {
+                throw new IllegalStateException(
+                        "Slicer operand already registered as semantic identity: "
+                                + operand.id());
+            }
+            DeferredItem<Item> item = ITEMS.register(
+                    operand.registryPath(),
+                    () -> new CatalogNamedItem(
+                            new Item.Properties(),
+                            operand.englishName(),
+                            operand.chineseName()));
+            if (items.put(operand.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate slicer operand item " + operand.id());
+            }
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    private static Map<ResourceLocation, DeferredItem<Item>>
+            registerPressureWasherOperandItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<Item>> items =
+                new LinkedHashMap<>();
+        for (PressureWasherOperandCatalog.Operand operand
+                : PressureWasherOperandCatalog.operands()) {
+            DeferredItem<Item> item = ITEMS.register(
+                    operand.registryPath(),
+                    () -> new CatalogNamedItem(
+                            new Item.Properties(),
+                            operand.englishName(),
+                            operand.chineseName()));
+            if (items.put(operand.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate pressure washer operand item " + operand.id());
+            }
         }
         return java.util.Collections.unmodifiableMap(items);
     }

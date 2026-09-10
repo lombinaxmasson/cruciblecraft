@@ -1,0 +1,27 @@
+{
+  "files": [
+    {
+      "path": "tools/waves/machines/nanofab/source_pack/dump_slice.json",
+      "role": "dump_slice",
+      "sha256": "b2812343c2f2494b429e56e40350000519dce95e2404c3002d653b93e415fe13"
+    },
+    {
+      "path": "tools/waves/machines/nanofab/source_pack/work_set.json",
+      "role": "work_set",
+      "sha256": "ac12f31c1665c77f98cd301eabce6e2ea18fde81232b44d669a5a5aa55156ed7"
+    }
+  ],
+  "full_replay": {
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "provenance_policy": {
+    "append_only": true,
+    "forbid_gt6u": true
+  },
+  "schema_version": 1,
+  "source_dialect": "gt6",
+  "source_pack_id": "machines/nanofab",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_system": "gt6"
+}

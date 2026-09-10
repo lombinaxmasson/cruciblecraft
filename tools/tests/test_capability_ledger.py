@@ -23,6 +23,13 @@ TRANSFORMERS = "energy/transformers"
 HEAT_EXCHANGERS = "energy/heat-exchangers"
 ROLL_FORMER = "machines/roll-former"
 CLUSTER_MILL = "machines/cluster-mill"
+SLICER = "machines/slicer"
+INJECTOR = "machines/injector"
+LAMINATOR = "machines/laminator"
+LOOM = "machines/loom"
+MELTER = "machines/melter"
+NANOFAB = "machines/nanofab"
+PRESSURE_WASHER = "machines/pressure-washer"
 NUCLEAR = "energy/nuclear-fission-survival"
 HOT_FLUIDS = "energy/nuclear-fission-hot-fluids"
 OBSERVATION = "energy/nuclear-fission-observation-safety"
@@ -156,13 +163,16 @@ class CapabilityLedgerTest(unittest.TestCase):
             if row["workflow"] == "active"
         ]
         self.assertEqual([], active)
-        self.assertEqual({}, ledger.load_card_plan_index()["active"])
-        self.assertIn(
+        self.assertEqual(
+            set(),
+            set(ledger.load_card_plan_index()["active"]),
+        )
+        self.assertNotIn(
             "machines/slicer",
             ledger.load_card_plan_index()["prep"],
         )
         self.assertIn(
-            CLUSTER_MILL,
+            "machines/slicer",
             ledger.load_card_plan_index()["closed"],
         )
 
@@ -190,6 +200,13 @@ class CapabilityLedgerTest(unittest.TestCase):
                 CONVERTER,
                 ROLL_FORMER,
                 CLUSTER_MILL,
+                SLICER,
+                INJECTOR,
+                LAMINATOR,
+                LOOM,
+                MELTER,
+                NANOFAB,
+                PRESSURE_WASHER,
             },
             set(compiled["impact"]["logistics/cover-net-r0"]),
         )
@@ -247,7 +264,14 @@ class CapabilityLedgerTest(unittest.TestCase):
                 GENERIC,
                 CORE,
                 CLUSTER_MILL,
+                INJECTOR,
+                LAMINATOR,
+                LOOM,
+                MELTER,
+                NANOFAB,
+                PRESSURE_WASHER,
                 ROLL_FORMER,
+                SLICER,
             ],
             hit,
         )
