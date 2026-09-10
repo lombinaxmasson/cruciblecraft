@@ -16,6 +16,7 @@ import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 
+import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 
 /** Registry-safe processing specifications for currently implemented machines. */
@@ -106,8 +107,9 @@ public final class ModProcessingMachines {
                     1, 1, 1, 1,
                     EnergyType.HEAT,
                     ProcessingMachineSpec.EnergyMode.ADJACENT);
+    public static final ProcessingMachineSpec MELTER = melterSpec();
     public static final List<ProcessingMachineSpec> PRIMARY_MACHINES = List.of(
-            SLUICE, BATH, CENTRIFUGE, SHREDDER, SIFTER, SMELTER, MORTAR);
+            SLUICE, BATH, CENTRIFUGE, SHREDDER, SIFTER, SMELTER, MELTER, MORTAR);
     public static final ProcessingMachineSpec EXTRUDER =
             componentSpec(
                     "extruder",
@@ -146,6 +148,15 @@ public final class ModProcessingMachines {
                     1, 1, 0, 0);
     public static final ProcessingMachineSpec ROLLFORMER = rollFormerSpec();
     public static final ProcessingMachineSpec CLUSTERMILL = clusterMillSpec();
+    public static final ProcessingMachineSpec SLICER = slicerSpec();
+    public static final ProcessingMachineSpec LAMINATOR = laminatorSpec();
+    public static final ProcessingMachineSpec PRESSUREWASHER =
+            pressureWasherSpec();
+    public static final ProcessingMachineSpec LOOM = loomSpec();
+    public static final ProcessingMachineSpec ELECTRICLOOM =
+            electricLoomSpec();
+    public static final ProcessingMachineSpec INJECTOR = injectorSpec();
+    public static final ProcessingMachineSpec NANOFAB = nanofabSpec();
     public static final ProcessingMachineSpec ROLLBENDER =
             componentSpec(
                     "rollbender",
@@ -428,7 +439,16 @@ public final class ModProcessingMachines {
                                             HYDROCARBON_PROCESSING_MACHINES)
                                     .flatMap(List::stream),
                             java.util.stream.Stream.of(
-                                    LASER_ENGRAVER, ROLLFORMER, CLUSTERMILL))
+                                    LASER_ENGRAVER,
+                                    ROLLFORMER,
+                                    CLUSTERMILL,
+                                    SLICER,
+                                    LAMINATOR,
+                                    PRESSUREWASHER,
+                                    LOOM,
+                                    ELECTRICLOOM,
+                                    INJECTOR,
+                                    NANOFAB))
                     .distinct()
                     .toList();
     private static final Map<ResourceLocation, ProcessingMachineSpec> BY_ID =
@@ -1132,6 +1152,404 @@ public final class ModProcessingMachines {
                         1, 1, 0, 0,
                         1, 1, 0, 0,
                         PROCESSING_STATUSES));
+    }
+
+    private static ProcessingMachineSpec laminatorSpec() {
+        return new ProcessingMachineSpec(
+                id("laminator"),
+                id("laminator"),
+                () -> ModRecipeMaps.LAMINATOR,
+                new ProcessingMachineSpec.SlotLayout(3, List.of(0, 1), List.of(2)),
+                new ProcessingMachineSpec.TankLayout(List.of(), List.of()),
+                new ProcessingMachineSpec.EnergySpec(
+                        EnergyType.HEAT,
+                        ProcessingMachineSpec.EnergyMode.ADJACENT,
+                        0L,
+                        8_192L),
+                new ProcessingMachineSpec.SidedIoPolicy(
+                        (front, side) -> {
+                            if (side == null) {
+                                return ProcessingMachineSpec.CapabilityAccess.NONE;
+                            }
+                            if (side == Direction.UP
+                                    || side == front.getCounterClockWise()) {
+                                return ProcessingMachineSpec.CapabilityAccess.INPUT;
+                            }
+                            if (side == Direction.DOWN
+                                    || side == front.getClockWise()) {
+                                return ProcessingMachineSpec.CapabilityAccess.OUTPUT;
+                            }
+                            return ProcessingMachineSpec.CapabilityAccess.NONE;
+                        },
+                        (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE,
+                        (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE),
+                ModProcessingMachines::validateLaminatorRecipe,
+                ProcessingMachineSpec.BufferPolicy.PAUSE,
+                Gt6BasicMachineGui.ui(
+                        2, 1, 0, 0,
+                        2, 1, 0, 0,
+                        PROCESSING_STATUSES));
+    }
+
+    private static Optional<String> validateLaminatorRecipe(GTRecipe recipe) {
+        if (recipe.itemInputs().size() > 2
+                || recipe.itemOutputs().size() != 1
+                || !recipe.fluidInputs().isEmpty()
+                || !recipe.fluidOutputs().isEmpty()
+                || recipe.eut() <= 0L
+                || recipe.eut() > 8_192L) {
+            return Optional.of("laminator_recipe_shape");
+        }
+        return Optional.empty();
+    }
+
+    private static ProcessingMachineSpec melterSpec() {
+        return new ProcessingMachineSpec(
+                id("melter"),
+                id("melter"),
+                () -> ModRecipeMaps.MELTER,
+                new ProcessingMachineSpec.SlotLayout(2, List.of(0), List.of(1)),
+                new ProcessingMachineSpec.TankLayout(
+                        List.of(new ProcessingMachineSpec.TankSpec(0, 4_000)),
+                        List.of(new ProcessingMachineSpec.TankSpec(1, 8_000))),
+                new ProcessingMachineSpec.EnergySpec(
+                        EnergyType.HEAT,
+                        ProcessingMachineSpec.EnergyMode.ADJACENT,
+                        0L,
+                        1_024L),
+                new ProcessingMachineSpec.SidedIoPolicy(
+                        (front, side) -> side == Direction.UP
+                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                                : side != null && side == front.getCounterClockWise()
+                                        ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
+                                        : ProcessingMachineSpec.CapabilityAccess.NONE,
+                        (front, side) -> side == Direction.UP
+                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                                : side != null && side == front.getClockWise()
+                                        ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
+                                        : ProcessingMachineSpec.CapabilityAccess.NONE,
+                        (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE),
+                ModProcessingMachines::validateMelterRecipe,
+                ProcessingMachineSpec.BufferPolicy.PAUSE,
+                Gt6BasicMachineGui.ui(
+                        1, 1, 1, 1,
+                        1, 1, 1, 1,
+                        PROCESSING_STATUSES));
+    }
+
+    private static Optional<String> validateMelterRecipe(GTRecipe recipe) {
+        if (recipe.itemInputs().size() > 1
+                || recipe.itemOutputs().size() > 1
+                || recipe.fluidInputs().size() > 1
+                || recipe.fluidOutputs().size() > 1
+                || recipe.eut() <= 0L
+                || recipe.eut() > 1_024L
+                || (recipe.itemInputs().isEmpty() && recipe.fluidInputs().isEmpty())
+                || (recipe.itemOutputs().isEmpty() && recipe.fluidOutputs().isEmpty())) {
+            return Optional.of("melter_recipe_shape");
+        }
+        if (recipe.fluidInputs().stream()
+                        .anyMatch(stack -> stack.getAmount() > 4_000)
+                || recipe.fluidOutputs().stream()
+                        .anyMatch(stack -> stack.getAmount() > 8_000)) {
+            return Optional.of("melter_recipe_amount");
+        }
+        return Optional.empty();
+    }
+
+    private static ProcessingMachineSpec pressureWasherSpec() {
+        return new ProcessingMachineSpec(
+                id("pressurewasher"),
+                id("pressurewasher"),
+                () -> ModRecipeMaps.PRESSUREWASHER,
+                new ProcessingMachineSpec.SlotLayout(3, List.of(0), List.of(1, 2)),
+                new ProcessingMachineSpec.TankLayout(
+                        List.of(new ProcessingMachineSpec.TankSpec(0, 4_000)),
+                        List.of()),
+                new ProcessingMachineSpec.EnergySpec(
+                        EnergyType.KINETIC_ROTATION,
+                        ProcessingMachineSpec.EnergyMode.BUFFERED,
+                        4_096L,
+                        256L),
+                new ProcessingMachineSpec.SidedIoPolicy(
+                        (front, side) -> side == null
+                                ? ProcessingMachineSpec.CapabilityAccess.NONE
+                                : side == front.getCounterClockWise()
+                                        ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                                        : side == front.getClockWise()
+                                                ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
+                                                : ProcessingMachineSpec.CapabilityAccess.NONE,
+                        (front, side) -> side == Direction.UP
+                                || side == Direction.DOWN
+                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                                : ProcessingMachineSpec.CapabilityAccess.NONE,
+                        (front, side) -> side != null && side == front.getOpposite()
+                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                                : ProcessingMachineSpec.CapabilityAccess.NONE),
+                ModProcessingMachines::validatePressureWasherRecipe,
+                ProcessingMachineSpec.BufferPolicy.PAUSE,
+                Gt6BasicMachineGui.ui(
+                        1, 2, 1, 0,
+                        1, 2, 1, 0,
+                        PROCESSING_STATUSES));
+    }
+
+    private static Optional<String> validatePressureWasherRecipe(GTRecipe recipe) {
+        if (recipe.itemInputs().size() > 1
+                || recipe.itemOutputs().size() > 2
+                || recipe.fluidInputs().size() > 1
+                || !recipe.fluidOutputs().isEmpty()
+                || recipe.eut() <= 0L
+                || recipe.eut() > 256L) {
+            return Optional.of("pressurewasher_recipe_shape");
+        }
+        if (recipe.fluidInputs().stream()
+                .anyMatch(stack -> stack.getAmount() > 4_000)) {
+            return Optional.of("pressurewasher_recipe_amount");
+        }
+        return Optional.empty();
+    }
+
+    private static ProcessingMachineSpec loomSpec() {
+        return loomSpec(
+                "loom",
+                EnergyType.KINETIC_ROTATION,
+                ProcessingMachineSpec.EnergyMode.BUFFERED,
+                4_096L,
+                256L);
+    }
+
+    private static ProcessingMachineSpec electricLoomSpec() {
+        return loomSpec(
+                "electricloom",
+                EnergyType.ELECTRIC,
+                ProcessingMachineSpec.EnergyMode.BUFFERED,
+                65_536L,
+                8_192L);
+    }
+
+    private static ProcessingMachineSpec loomSpec(
+            String id,
+            EnergyType energyType,
+            ProcessingMachineSpec.EnergyMode energyMode,
+            long capacity,
+            long maxPacket) {
+        return new ProcessingMachineSpec(
+                id(id),
+                id("loom"),
+                () -> ModRecipeMaps.LOOM,
+                new ProcessingMachineSpec.SlotLayout(
+                        7, List.of(0, 1, 2, 3, 4, 5), List.of(6)),
+                new ProcessingMachineSpec.TankLayout(List.of(), List.of()),
+                new ProcessingMachineSpec.EnergySpec(
+                        energyType, energyMode, capacity, maxPacket),
+                new ProcessingMachineSpec.SidedIoPolicy(
+                        (front, side) -> side == Direction.UP
+                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                                : side == Direction.DOWN
+                                        ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
+                                        : ProcessingMachineSpec.CapabilityAccess.NONE,
+                        (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE,
+                        (front, side) -> side == front.getCounterClockWise()
+                                || side == front.getClockWise()
+                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                                : ProcessingMachineSpec.CapabilityAccess.NONE),
+                ModProcessingMachines::validateLoomRecipe,
+                ProcessingMachineSpec.BufferPolicy.PAUSE,
+                Gt6BasicMachineGui.ui(
+                        6, 1, 0, 0,
+                        6, 1, 0, 0,
+                        PROCESSING_STATUSES));
+    }
+
+    private static Optional<String> validateLoomRecipe(GTRecipe recipe) {
+        if (recipe.itemInputs().isEmpty()
+                || recipe.itemInputs().size() > 6
+                || recipe.itemOutputs().size() != 1
+                || !recipe.fluidInputs().isEmpty()
+                || !recipe.fluidOutputs().isEmpty()
+                || recipe.eut() <= 0L
+                || recipe.eut() > 8_192L) {
+            return Optional.of("loom_recipe_shape");
+        }
+        return Optional.empty();
+    }
+
+    private static ProcessingMachineSpec injectorSpec() {
+        return new ProcessingMachineSpec(
+                id("injector"),
+                id("injector"),
+                () -> ModRecipeMaps.INJECTOR,
+                new ProcessingMachineSpec.SlotLayout(3, List.of(0, 1), List.of(2)),
+                new ProcessingMachineSpec.TankLayout(
+                        List.of(
+                                new ProcessingMachineSpec.TankSpec(0, 4_000),
+                                new ProcessingMachineSpec.TankSpec(1, 4_000)),
+                        List.of(new ProcessingMachineSpec.TankSpec(2, 4_000))),
+                new ProcessingMachineSpec.EnergySpec(
+                        EnergyType.ELECTRIC,
+                        ProcessingMachineSpec.EnergyMode.BUFFERED,
+                        65_536L,
+                        8_192L),
+                new ProcessingMachineSpec.SidedIoPolicy(
+                        (front, side) -> side == null
+                                ? ProcessingMachineSpec.CapabilityAccess.NONE
+                                : side == Direction.UP
+                                        || side == front.getCounterClockWise()
+                                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                                                : side == Direction.DOWN
+                                                        || side == front.getClockWise()
+                                                                ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
+                                                                : ProcessingMachineSpec.CapabilityAccess.NONE,
+                        (front, side) -> side == null
+                                ? ProcessingMachineSpec.CapabilityAccess.NONE
+                                : side == Direction.UP
+                                        || side == front.getCounterClockWise()
+                                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                                                : side == Direction.DOWN
+                                                        || side == front.getClockWise()
+                                                                ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
+                                                                : ProcessingMachineSpec.CapabilityAccess.NONE,
+                        (front, side) -> side != null && side == front.getOpposite()
+                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                                : ProcessingMachineSpec.CapabilityAccess.NONE),
+                ModProcessingMachines::validateInjectorRecipe,
+                ProcessingMachineSpec.BufferPolicy.PAUSE,
+                Gt6BasicMachineGui.ui(
+                        2, 1, 2, 1,
+                        2, 1, 2, 1,
+                        PROCESSING_STATUSES));
+    }
+
+    private static Optional<String> validateInjectorRecipe(GTRecipe recipe) {
+        if (recipe.itemInputs().size() > 2
+                || recipe.itemOutputs().size() > 1
+                || recipe.fluidInputs().size() > 2
+                || recipe.fluidOutputs().size() > 1
+                || recipe.eut() <= 0L
+                || recipe.eut() > 8_192L
+                || (recipe.itemInputs().isEmpty() && recipe.fluidInputs().isEmpty())
+                || (recipe.itemOutputs().isEmpty() && recipe.fluidOutputs().isEmpty())) {
+            return Optional.of("injector_recipe_shape");
+        }
+        if (recipe.fluidInputs().stream()
+                        .anyMatch(stack -> stack.getAmount() > 4_000)
+                || recipe.fluidOutputs().stream()
+                        .anyMatch(stack -> stack.getAmount() > 4_000)) {
+            return Optional.of("injector_recipe_amount");
+        }
+        return Optional.empty();
+    }
+
+    private static ProcessingMachineSpec nanofabSpec() {
+        return new ProcessingMachineSpec(
+                id("nanofab"),
+                id("nanofab"),
+                () -> ModRecipeMaps.NANOFAB,
+                new ProcessingMachineSpec.SlotLayout(3, List.of(0, 1), List.of(2)),
+                new ProcessingMachineSpec.TankLayout(
+                        List.of(new ProcessingMachineSpec.TankSpec(0, 4_000)),
+                        List.of(new ProcessingMachineSpec.TankSpec(1, 4_000))),
+                new ProcessingMachineSpec.EnergySpec(
+                        EnergyType.ELECTRIC,
+                        ProcessingMachineSpec.EnergyMode.BUFFERED,
+                        65_536L,
+                        8_192L),
+                new ProcessingMachineSpec.SidedIoPolicy(
+                        (front, side) -> side == null
+                                ? ProcessingMachineSpec.CapabilityAccess.NONE
+                                : side == Direction.UP
+                                        || side == front.getCounterClockWise()
+                                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                                                : side == Direction.DOWN
+                                                        || side == front.getClockWise()
+                                                                ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
+                                                                : ProcessingMachineSpec.CapabilityAccess.NONE,
+                        (front, side) -> side == null
+                                ? ProcessingMachineSpec.CapabilityAccess.NONE
+                                : side == Direction.UP
+                                        || side == front.getCounterClockWise()
+                                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                                                : side == Direction.DOWN
+                                                        || side == front.getClockWise()
+                                                                ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
+                                                                : ProcessingMachineSpec.CapabilityAccess.NONE,
+                        (front, side) -> side != null && side == front.getOpposite()
+                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                                : ProcessingMachineSpec.CapabilityAccess.NONE),
+                ModProcessingMachines::validateNanofabRecipe,
+                ProcessingMachineSpec.BufferPolicy.PAUSE,
+                Gt6BasicMachineGui.ui(
+                        2, 1, 1, 1,
+                        2, 1, 1, 1,
+                        PROCESSING_STATUSES));
+    }
+
+    private static Optional<String> validateNanofabRecipe(GTRecipe recipe) {
+        if (recipe.itemInputs().size() > 2
+                || recipe.itemOutputs().size() > 1
+                || recipe.fluidInputs().size() > 1
+                || recipe.fluidOutputs().size() > 1
+                || recipe.eut() <= 0L
+                || recipe.eut() > 8_192L) {
+            return Optional.of("nanofab_recipe_shape");
+        }
+        if (recipe.fluidInputs().stream()
+                        .anyMatch(stack -> stack.getAmount() > 4_000)
+                || recipe.fluidOutputs().stream()
+                        .anyMatch(stack -> stack.getAmount() > 4_000)) {
+            return Optional.of("nanofab_recipe_amount");
+        }
+        return Optional.empty();
+    }
+
+    private static ProcessingMachineSpec slicerSpec() {
+        return new ProcessingMachineSpec(
+                id("slicer"),
+                id("slicer"),
+                () -> ModRecipeMaps.SLICER,
+                new ProcessingMachineSpec.SlotLayout(4, List.of(0, 1), List.of(2, 3)),
+                new ProcessingMachineSpec.TankLayout(List.of(), List.of()),
+                new ProcessingMachineSpec.EnergySpec(
+                        EnergyType.ELECTRIC,
+                        ProcessingMachineSpec.EnergyMode.BUFFERED,
+                        65_536L,
+                        8_192L),
+                new ProcessingMachineSpec.SidedIoPolicy(
+                        (front, side) -> {
+                            if (side == null) {
+                                return ProcessingMachineSpec.CapabilityAccess.NONE;
+                            }
+                            if (side == Direction.UP || side == front.getCounterClockWise()) {
+                                return ProcessingMachineSpec.CapabilityAccess.INPUT;
+                            }
+                            if (side == Direction.DOWN || side == front.getClockWise()) {
+                                return ProcessingMachineSpec.CapabilityAccess.OUTPUT;
+                            }
+                            return ProcessingMachineSpec.CapabilityAccess.NONE;
+                        },
+                        (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE,
+                        (front, side) -> side != null && side == front.getOpposite()
+                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                                : ProcessingMachineSpec.CapabilityAccess.NONE),
+                ModProcessingMachines::validateSlicerRecipe,
+                ProcessingMachineSpec.BufferPolicy.PAUSE,
+                Gt6BasicMachineGui.ui(
+                        2, 2, 0, 0,
+                        2, 2, 0, 0,
+                        PROCESSING_STATUSES));
+    }
+
+    private static Optional<String> validateSlicerRecipe(GTRecipe recipe) {
+        if (recipe.itemInputs().size() > 2
+                || recipe.itemOutputs().size() > 2
+                || !recipe.fluidInputs().isEmpty()
+                || !recipe.fluidOutputs().isEmpty()
+                || recipe.eut() <= 0L
+                || recipe.eut() > 8_192L) {
+            return Optional.of("slicer_recipe_shape");
+        }
+        return Optional.empty();
     }
 
     private static ProcessingMachineSpec laserSpec() {

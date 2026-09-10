@@ -1,0 +1,32 @@
+{
+  "acquisition": {
+    "bath_mte": 46,
+    "smelter_mte_scatter": 1771
+  },
+  "authority_hashes": {
+    "capability_map": "01f8d16860ad9b484c405929bb2e6dd650102ac0200aeaaf13539a1b0f660392",
+    "growth_order": "159dde552217dba3e23fcc82d9209ec6c6510fde51de834a6e24dafbae857e0e",
+    "loader_multi_tile_entities": "93414ed9510ff0465b062efbfe7775d256100425379a24d3857c437cef7ddc27",
+    "smelter_mte_identity_catalog": "4a87bc6c052b0118d20b690bd26206213206311ab5b14cf0a6c4e80ae910d254",
+    "smelter_mte_identity_seal": "4979b0cd386a668dd3ce8ef80421f57d0bcb3985298bd0021a85bcc9a0587ce7"
+  },
+  "capability_row": {
+    "1x_disposition": "in_1x_closed",
+    "cc_mechanism": "BathMteIdentityCatalog + SmelterMteIdentityCatalog",
+    "correspondence_class": "identity_only",
+    "growth_blocker": "no_generator",
+    "gt6_anchor": "Bath / Smelter MTE holdable identity",
+    "gt6_domain": "tileentity",
+    "inherited_from_seed": true,
+    "recheck_condition": "Identity is not a behavior generator."
+  },
+  "catalog_identity_count": 1817,
+  "generated_by": "python tools/build_mte_identity_disposition_r0.py",
+  "kind": "mte_item",
+  "registry_path_pattern": "gt_mte/mte_<meta>",
+  "schema_version": 1,
+  "smelter_mte_identity_status": "SMELTER_MTE_IDENTITY_READY",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "INHERITED_DENOMINATOR_READY",
+  "wave_slug": "portfolio/mte-identity-disposition-r0"
+}

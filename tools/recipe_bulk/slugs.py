@@ -65,6 +65,7 @@ KNOWN_SEMANTIC_SLUGS = (
     "portfolio/non-ore-worldgen-r0",
     "portfolio/vanilla-replace-r0",
     "portfolio/crops-food-bees-r0",
+    "portfolio/mte-identity-disposition-r0",
     "runtime/item-network-core",
     "runtime/fluid-network-basic-transfer",
     "runtime/generic-network-core",
@@ -79,6 +80,13 @@ KNOWN_SEMANTIC_SLUGS = (
     "runtime/fission-observation-safety",
     "machines/roll-former",
     "machines/cluster-mill",
+    "machines/slicer",
+    "machines/laminator",
+    "machines/pressure-washer",
+    "machines/loom",
+    "machines/injector",
+    "machines/nanofab",
+    "machines/melter",
 )
 
 

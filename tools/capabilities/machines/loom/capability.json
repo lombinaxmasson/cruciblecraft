@@ -1,0 +1,64 @@
+{
+  "schema_version": 2,
+  "slug": "machines/loom",
+  "title": "Loom",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/gametest/LoomGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/machine/processing/prep/ElectricLoomPrepSpec.java",
+    "src/main/java/com/masson/cruciblecraft/machine/processing/prep/LoomPrepSpec.java",
+    "src/main/resources/assets/cruciblecraft/gt6_electricloom_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/gt6_loom_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/electricloom/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/loom/**",
+    "src/main/resources/data/cruciblecraft/machine_delivery.json",
+    "src/main/resources/data/cruciblecraft/machine_kinds.json",
+    "src/main/resources/data/cruciblecraft/machine_tiers.json",
+    "src/main/resources/data/cruciblecraft_wave_machines_loom/**",
+    "src/main/resources/data/cruciblecraft_wave_machines_loom/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/loom/**",
+    "tools/capabilities/machines/loom/**",
+    "tools/waves/machines/loom/**",
+    "tools/tests/test_loom.py"
+  ],
+  "depends_on": [
+    "machines/roll-former"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/loom",
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:loom:20211-20214",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:loom",
+        "cruciblecraft:steel_loom",
+        "cruciblecraft:titanium_loom",
+        "cruciblecraft:tungstensteel_loom"
+      ],
+      "reason": "GT6 kinetic loom hosts 20211-20214. RU, six item inputs, one item output, top/bottom item flow and left/right energy."
+    },
+    {
+      "semantic_key": "machine:loom:electric-20361-20365",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:electricloom",
+        "cruciblecraft:aluminium_electricloom",
+        "cruciblecraft:stainless_steel_electricloom",
+        "cruciblecraft:chromium_electricloom",
+        "cruciblecraft:titanium_electricloom"
+      ],
+      "reason": "GT6 electric loom hosts 20361-20365 share the loom RecipeMap. LV and EV motors are present; MV/HV/IV motor modules remain blocked."
+    },
+    {
+      "semantic_key": "recipe:loom:overflow",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "244 rows require unmapped MTE or plant_gt_fiber operands; 637 additional rows have shadowed input signatures and cannot be safely published. No unrelated material stand-ins."
+    }
+  ],
+  "note": "Prep selected 1090 exact rows; live publishes 453 rows after blocking 244 MTE/plant_gt_fiber rows and 637 shadowed input signatures. Kinetic hosts and LV/EV electric hosts are source-exact; three electric motor tiers remain acquisition-blocked. Close at runtime_ready, not player_complete."
+}

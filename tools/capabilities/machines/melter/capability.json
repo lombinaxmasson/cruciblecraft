@@ -1,0 +1,67 @@
+{
+  "schema_version": 2,
+  "slug": "machines/melter",
+  "title": "Melter",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/gametest/MelterGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/machine/processing/prep/MelterPrepSpec.java",
+    "src/main/resources/assets/cruciblecraft/gt6_melter_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/melter/**",
+    "src/main/resources/data/cruciblecraft_wave_machines_melter/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/melter/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/melter.json",
+    "tools/capabilities/machines/melter/**",
+    "tools/waves/machines/melter/**",
+    "tools/tests/test_melter.py"
+  ],
+  "depends_on": [
+    "machines/roll-former"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/melter",
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:melter:22010",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:melter"
+      ],
+      "reason": "GT6 MultiTileEntityBasicMachine 22010, RM.Melter. HU/HEAT adjacent, one item input/output and one fluid input/output. The live host uses the source-exact iron-family casing and medium fluid pipe D0 mapping."
+    },
+    {
+      "semantic_key": "machine:melter:parallel",
+      "disposition": "source_semantics_preserved",
+      "runtime_ids": [
+        "cruciblecraft:melter"
+      ],
+      "reason": "GT6 NBT_PARALLEL=1000, NBT_PARALLEL_DURATION=true and cheap overclocking remain recorded in machine_tiers.json and runtime_notes.json; no silent reduction to one."
+    },
+    {
+      "semantic_key": "machine:melter:load_scale",
+      "disposition": "runtime_ready",
+      "runtime_ids": [
+        "cruciblecraft:melter"
+      ],
+      "reason": "The 6756-row dump and 3973-row selected family are below the 21000 hard cap. Load evidence records the publication as UNVERIFIED_SCALE rather than treating telemetry overage as a failed close."
+    },
+    {
+      "semantic_key": "machine:melter:host_obtain",
+      "disposition": "source_exact",
+      "runtime_ids": [
+        "cruciblecraft:melter"
+      ],
+      "reason": "D0 is source-exact: OP.casingMachine(ANY.Iron) maps to iron machine_casing, OP.pipeMedium(ANY.Iron) to iron fluid_pipe, OP.plateDouble(ANY.Cu) to copper double_plate, Blocks.brick_block to minecraft:bricks, and MTE 1005 to cruciblecraft:crucible."
+    },
+    {
+      "semantic_key": "recipe:melter:overflow",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "2783 rows remain blocked for unmapped plastic/glass/mercury fluids, arrow_gt_plastic and closed tool-head identities. No unrelated fluid, item, programmed circuit or smelter stand-in is permitted."
+    }
+  ],
+  "note": "The live family publishes 3973 exact rows from the 6756-row gt.recipe.melter dump. D0 host acquisition is source-exact; overflow stays blocked. Close at runtime_ready, not player_complete."
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": 2,
+  "slug": "machines/nanofab",
+  "title": "Nanoscale Fabricator",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/gametest/NanofabGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/machine/processing/prep/NanofabPrepSpec.java",
+    "src/main/resources/assets/cruciblecraft/gt6_nanofab_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/nanofab/**",
+    "src/main/resources/data/cruciblecraft/machine_delivery.json",
+    "src/main/resources/data/cruciblecraft/machine_kinds.json",
+    "src/main/resources/data/cruciblecraft/machine_tiers.json",
+    "src/main/resources/data/cruciblecraft_wave_machines_nanofab/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/nanofab/**",
+    "tools/capabilities/machines/nanofab/**",
+    "tools/waves/machines/nanofab/**",
+    "tools/tests/test_nanofab.py"
+  ],
+  "depends_on": [
+    "machines/roll-former"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/nanofab",
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:nanofab:20441-20445",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:nanofab",
+        "cruciblecraft:aluminium_nanofab",
+        "cruciblecraft:stainless_steel_nanofab",
+        "cruciblecraft:chromium_nanofab",
+        "cruciblecraft:titanium_nanofab"
+      ],
+      "reason": "GT6 Nanofab hosts 20441-20445. EU buffered, two item inputs/one output, one fluid input/one output. All five hosts remain acquisition-blocked."
+    },
+    {
+      "semantic_key": "machine:nanofab:host_obtain",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "All five hosts need laser-gas components, sapphire crystal processor, emitters, and sensors. No Geiger/Canner cell, circuit-board, or programmed_circuit stand-in."
+    },
+    {
+      "semantic_key": "recipe:nanofab:overflow",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "12 prep overflow rows plus 45 shadowed programmed_circuit signatures are blocked. No identity or circuit-NBT stand-ins."
+    }
+  ],
+  "note": "Prep selected 52 rows; live publishes 7 non-shadowed exact rows. 57 rows are explicitly_blocked for graphene/MTE/dolamide gaps or shadowed circuit signatures. All five hosts remain acquisition-blocked. Close at runtime_ready, not player_complete."
+}

@@ -490,6 +490,178 @@
     },
     {
       "depends_on": [
+        "machines/roll-former"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/gametest/InjectorGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/machine/processing/prep/InjectorPrepSpec.java",
+        "src/main/resources/assets/cruciblecraft/gt6_injector_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/injector/**",
+        "src/main/resources/data/cruciblecraft/machine_delivery.json",
+        "src/main/resources/data/cruciblecraft/machine_kinds.json",
+        "src/main/resources/data/cruciblecraft/machine_tiers.json",
+        "src/main/resources/data/cruciblecraft_wave_machines_injector/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/injector/**",
+        "tools/capabilities/machines/injector/**",
+        "tools/waves/machines/injector/**",
+        "tools/tests/test_injector.py"
+      ],
+      "path": "tools/capabilities/machines/injector/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/injector",
+      "title": "Injector",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "machines/roll-former"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/gametest/LaminatorGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/machine/processing/prep/LaminatorPrepSpec.java",
+        "src/main/resources/assets/cruciblecraft/gt6_laminator_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/laminator/**",
+        "src/main/resources/data/cruciblecraft/machine_delivery.json",
+        "src/main/resources/data/cruciblecraft/machine_kinds.json",
+        "src/main/resources/data/cruciblecraft/machine_tiers.json",
+        "src/main/resources/data/cruciblecraft_wave_machines_laminator/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/laminator/**",
+        "tools/capabilities/machines/laminator/**",
+        "tools/waves/machines/laminator/**",
+        "tools/tests/test_laminator.py"
+      ],
+      "path": "tools/capabilities/machines/laminator/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/laminator",
+      "title": "Laminator",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "machines/roll-former"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/gametest/LoomGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/machine/processing/prep/ElectricLoomPrepSpec.java",
+        "src/main/java/com/masson/cruciblecraft/machine/processing/prep/LoomPrepSpec.java",
+        "src/main/resources/assets/cruciblecraft/gt6_electricloom_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/gt6_loom_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/electricloom/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/loom/**",
+        "src/main/resources/data/cruciblecraft/machine_delivery.json",
+        "src/main/resources/data/cruciblecraft/machine_kinds.json",
+        "src/main/resources/data/cruciblecraft/machine_tiers.json",
+        "src/main/resources/data/cruciblecraft_wave_machines_loom/**",
+        "src/main/resources/data/cruciblecraft_wave_machines_loom/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/loom/**",
+        "tools/capabilities/machines/loom/**",
+        "tools/waves/machines/loom/**",
+        "tools/tests/test_loom.py"
+      ],
+      "path": "tools/capabilities/machines/loom/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/loom",
+      "title": "Loom",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "machines/roll-former"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/gametest/MelterGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/machine/processing/prep/MelterPrepSpec.java",
+        "src/main/resources/assets/cruciblecraft/gt6_melter_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/melter/**",
+        "src/main/resources/data/cruciblecraft_wave_machines_melter/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/melter/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/melter.json",
+        "tools/capabilities/machines/melter/**",
+        "tools/waves/machines/melter/**",
+        "tools/tests/test_melter.py"
+      ],
+      "path": "tools/capabilities/machines/melter/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/melter",
+      "title": "Melter",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "machines/roll-former"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/gametest/NanofabGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/machine/processing/prep/NanofabPrepSpec.java",
+        "src/main/resources/assets/cruciblecraft/gt6_nanofab_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/nanofab/**",
+        "src/main/resources/data/cruciblecraft/machine_delivery.json",
+        "src/main/resources/data/cruciblecraft/machine_kinds.json",
+        "src/main/resources/data/cruciblecraft/machine_tiers.json",
+        "src/main/resources/data/cruciblecraft_wave_machines_nanofab/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/nanofab/**",
+        "tools/capabilities/machines/nanofab/**",
+        "tools/waves/machines/nanofab/**",
+        "tools/tests/test_nanofab.py"
+      ],
+      "path": "tools/capabilities/machines/nanofab/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/nanofab",
+      "title": "Nanoscale Fabricator",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "machines/roll-former"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/content/item/PressureWasherOperandCatalog.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/PressureWasherGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/machine/processing/prep/PressureWasherPrepSpec.java",
+        "src/main/resources/assets/cruciblecraft/gt6_pressure_washer_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/debarker/**",
+        "src/main/resources/assets/cruciblecraft/textures/item/gt_multiitem/multiitem_food_m280.png",
+        "src/main/resources/data/cruciblecraft/machine_delivery.json",
+        "src/main/resources/data/cruciblecraft/machine_kinds.json",
+        "src/main/resources/data/cruciblecraft/machine_tiers.json",
+        "src/main/resources/data/cruciblecraft_wave_machines_pressure_washer/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/pressurewasher/**",
+        "tools/capabilities/machines/pressure-washer/**",
+        "tools/waves/machines/pressure-washer/**",
+        "tools/tests/test_pressure_washer.py"
+      ],
+      "path": "tools/capabilities/machines/pressure-washer/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/pressure-washer",
+      "title": "Pressure Washer",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "energy/heat-exchangers"
       ],
       "maturity": "player_complete",
@@ -515,6 +687,33 @@
       "workflow": "accepted"
     },
     {
+      "depends_on": [
+        "machines/roll-former"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/gametest/SlicerGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/content/item/SlicerOperandCatalog.java",
+        "src/main/java/com/masson/cruciblecraft/machine/processing/prep/SlicerPrepSpec.java",
+        "src/main/resources/assets/cruciblecraft/gt6_slicer_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/slicer/**",
+        "src/main/resources/data/cruciblecraft/slicer_operands.json",
+        "src/main/resources/data/cruciblecraft_wave_machines_slicer/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/slicer/**",
+        "tools/capabilities/machines/slicer/**",
+        "tools/waves/machines/slicer/**",
+        "tools/tests/test_slicer.py"
+      ],
+      "path": "tools/capabilities/machines/slicer/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/slicer",
+      "title": "Slicer",
+      "workflow": "accepted"
+    },
+    {
       "depends_on": [],
       "maturity": "frozen",
       "owned_paths": [
@@ -532,7 +731,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 16,
+  "capability_count": 23,
   "declared_player_complete": [
     "energy/batteries",
     "energy/converter-catalog",
@@ -559,7 +758,14 @@
       "energy/nuclear-fission-survival",
       "energy/transformers",
       "machines/cluster-mill",
-      "machines/roll-former"
+      "machines/injector",
+      "machines/laminator",
+      "machines/loom",
+      "machines/melter",
+      "machines/nanofab",
+      "machines/pressure-washer",
+      "machines/roll-former",
+      "machines/slicer"
     ],
     "energy/converter-catalog": [
       "energy/batteries",
@@ -570,19 +776,40 @@
       "energy/nuclear-fission-survival",
       "energy/transformers",
       "machines/cluster-mill",
-      "machines/roll-former"
+      "machines/injector",
+      "machines/laminator",
+      "machines/loom",
+      "machines/melter",
+      "machines/nanofab",
+      "machines/pressure-washer",
+      "machines/roll-former",
+      "machines/slicer"
     ],
     "energy/heat-exchangers": [
       "energy/heat-exchangers",
       "machines/cluster-mill",
-      "machines/roll-former"
+      "machines/injector",
+      "machines/laminator",
+      "machines/loom",
+      "machines/melter",
+      "machines/nanofab",
+      "machines/pressure-washer",
+      "machines/roll-former",
+      "machines/slicer"
     ],
     "energy/nuclear-fission-hot-fluids": [
       "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "machines/cluster-mill",
-      "machines/roll-former"
+      "machines/injector",
+      "machines/laminator",
+      "machines/loom",
+      "machines/melter",
+      "machines/nanofab",
+      "machines/pressure-washer",
+      "machines/roll-former",
+      "machines/slicer"
     ],
     "energy/nuclear-fission-observation-safety": [
       "energy/nuclear-fission-observation-safety"
@@ -593,7 +820,14 @@
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "machines/cluster-mill",
-      "machines/roll-former"
+      "machines/injector",
+      "machines/laminator",
+      "machines/loom",
+      "machines/melter",
+      "machines/nanofab",
+      "machines/pressure-washer",
+      "machines/roll-former",
+      "machines/slicer"
     ],
     "energy/transformers": [
       "energy/heat-exchangers",
@@ -602,7 +836,14 @@
       "energy/nuclear-fission-survival",
       "energy/transformers",
       "machines/cluster-mill",
-      "machines/roll-former"
+      "machines/injector",
+      "machines/laminator",
+      "machines/loom",
+      "machines/melter",
+      "machines/nanofab",
+      "machines/pressure-washer",
+      "machines/roll-former",
+      "machines/slicer"
     ],
     "logistics/cover-net-r0": [
       "energy/batteries",
@@ -619,7 +860,14 @@
       "logistics/item-network-core",
       "logistics/logistics-core",
       "machines/cluster-mill",
-      "machines/roll-former"
+      "machines/injector",
+      "machines/laminator",
+      "machines/loom",
+      "machines/melter",
+      "machines/nanofab",
+      "machines/pressure-washer",
+      "machines/roll-former",
+      "machines/slicer"
     ],
     "logistics/display-cpu": [
       "energy/batteries",
@@ -631,7 +879,14 @@
       "energy/transformers",
       "logistics/display-cpu",
       "machines/cluster-mill",
-      "machines/roll-former"
+      "machines/injector",
+      "machines/laminator",
+      "machines/loom",
+      "machines/melter",
+      "machines/nanofab",
+      "machines/pressure-washer",
+      "machines/roll-former",
+      "machines/slicer"
     ],
     "logistics/fluid-network/basic-transfer": [
       "energy/batteries",
@@ -646,7 +901,14 @@
       "logistics/generic-network/core",
       "logistics/logistics-core",
       "machines/cluster-mill",
-      "machines/roll-former"
+      "machines/injector",
+      "machines/laminator",
+      "machines/loom",
+      "machines/melter",
+      "machines/nanofab",
+      "machines/pressure-washer",
+      "machines/roll-former",
+      "machines/slicer"
     ],
     "logistics/generic-network/core": [
       "energy/batteries",
@@ -660,7 +922,14 @@
       "logistics/generic-network/core",
       "logistics/logistics-core",
       "machines/cluster-mill",
-      "machines/roll-former"
+      "machines/injector",
+      "machines/laminator",
+      "machines/loom",
+      "machines/melter",
+      "machines/nanofab",
+      "machines/pressure-washer",
+      "machines/roll-former",
+      "machines/slicer"
     ],
     "logistics/item-network-core": [
       "energy/batteries",
@@ -676,7 +945,14 @@
       "logistics/item-network-core",
       "logistics/logistics-core",
       "machines/cluster-mill",
-      "machines/roll-former"
+      "machines/injector",
+      "machines/laminator",
+      "machines/loom",
+      "machines/melter",
+      "machines/nanofab",
+      "machines/pressure-washer",
+      "machines/roll-former",
+      "machines/slicer"
     ],
     "logistics/logistics-core": [
       "energy/batteries",
@@ -689,14 +965,49 @@
       "logistics/display-cpu",
       "logistics/logistics-core",
       "machines/cluster-mill",
-      "machines/roll-former"
+      "machines/injector",
+      "machines/laminator",
+      "machines/loom",
+      "machines/melter",
+      "machines/nanofab",
+      "machines/pressure-washer",
+      "machines/roll-former",
+      "machines/slicer"
     ],
     "machines/cluster-mill": [
       "machines/cluster-mill"
     ],
+    "machines/injector": [
+      "machines/injector"
+    ],
+    "machines/laminator": [
+      "machines/laminator"
+    ],
+    "machines/loom": [
+      "machines/loom"
+    ],
+    "machines/melter": [
+      "machines/melter"
+    ],
+    "machines/nanofab": [
+      "machines/nanofab"
+    ],
+    "machines/pressure-washer": [
+      "machines/pressure-washer"
+    ],
     "machines/roll-former": [
       "machines/cluster-mill",
-      "machines/roll-former"
+      "machines/injector",
+      "machines/laminator",
+      "machines/loom",
+      "machines/melter",
+      "machines/nanofab",
+      "machines/pressure-washer",
+      "machines/roll-former",
+      "machines/slicer"
+    ],
+    "machines/slicer": [
+      "machines/slicer"
     ],
     "registry/tool-head-remainder": [
       "registry/tool-head-remainder"
@@ -718,7 +1029,14 @@
       "logistics/item-network-core",
       "logistics/logistics-core",
       "machines/cluster-mill",
+      "machines/injector",
+      "machines/laminator",
+      "machines/loom",
+      "machines/melter",
+      "machines/nanofab",
+      "machines/pressure-washer",
       "machines/roll-former",
+      "machines/slicer",
       "registry/tool-head-remainder"
     ],
     "player-complete": [

@@ -1,0 +1,42 @@
+{
+  "capability_slug": "machines/melter",
+  "grid": [
+    "wUh",
+    "PMP",
+    "BCB"
+  ],
+  "hosts": [
+    {
+      "bricks": {
+        "cc": "minecraft:bricks",
+        "gt6": "Blocks.brick_block",
+        "status": "ok"
+      },
+      "casing": {
+        "cc": "cruciblecraft:iron/machine_casing",
+        "gt6": "OP.casingMachine(ANY.Iron)",
+        "status": "ok"
+      },
+      "copper_double_plate": {
+        "cc": "cruciblecraft:copper/double_plate",
+        "gt6": "OP.plateDouble(ANY.Cu)",
+        "status": "ok"
+      },
+      "crucible": {
+        "cc": "cruciblecraft:crucible",
+        "gt6": "aRegistry.getItem(1005)",
+        "status": "ok"
+      },
+      "host": 22010,
+      "pipe": {
+        "cc": "cruciblecraft:iron/fluid_pipe",
+        "gt6": "OP.pipeMedium(ANY.Iron)",
+        "status": "ok"
+      },
+      "status": "source_exact"
+    }
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "prep_runtime_ready"
+}

@@ -744,6 +744,10 @@ public final class ModRecipeProvider extends RecipeProvider {
     private static void emitAcquisition(
             RecipeOutput output,
             MachineVariant variant) {
+        if (com.masson.cruciblecraft.machine.processing.MachineTierCatalog
+                .acquisitionBlocked(variant.id())) {
+            return;
+        }
         var resolved = com.masson.cruciblecraft.machine.processing.MachineAcquisition.resolve(variant);
         Item result = ModItems.tieredProcessingItemsById()
                 .get(variant.id())
@@ -774,6 +778,22 @@ public final class ModRecipeProvider extends RecipeProvider {
                             : wirePrefix(resolved.distilleryWire().wirePrefix()),
                     variant.kind().id().getPath(),
                     path);
+            case "melter" -> melterCrafting(
+                    output, result, casing, material, path);
+            case "laminator" -> laminatorCrafting(
+                    output, result, casing, material, path);
+            case "pressurewasher" -> pressureWasherCrafting(
+                    output, result, casing, material, path);
+            case "loom" -> loomCrafting(
+                    output, result, casing, material, path);
+            case "electricloom" -> electricLoomCrafting(
+                    output, result, casing, material, path);
+            case "injector" -> injectorCrafting(
+                    output, result, casing, material, path);
+            case "nanofab" -> {
+                throw new IllegalStateException(
+                        "Blocked nanofab variant reached crafting: " + path);
+            }
             case "electrolyzer" -> electrolyzerCrafting(
                     output,
                     result,
@@ -1155,6 +1175,219 @@ public final class ModRecipeProvider extends RecipeProvider {
                     "Unsupported heat machine kind " + kind);
         }
         builder.save(output, id("machines/" + id));
+    }
+
+    private static void melterCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String material,
+            String id) {
+        Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+        ingredients.put("M", Ingredient.of(casing));
+        ingredients.put("P", Ingredient.of(materialItem(
+                material, MaterialPrefixes.FLUID_PIPE)));
+        ingredients.put("C", Ingredient.of(materialItem(
+                "copper", MaterialPrefixes.DOUBLE_PLATE)));
+        ingredients.put("B", Ingredient.of(Items.BRICKS));
+        ingredients.put("U", Ingredient.of(ModItems.CRUCIBLE.get()));
+        acceptShapedCatalyst(
+                output,
+                "machines/" + id,
+                List.of("wUh", "PMP", "BCB"),
+                ingredients,
+                Map.of(
+                        "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()),
+                        "h", Ingredient.of(ModItems.SMITHING_HAMMER.get())),
+                new ItemStack(result));
+    }
+
+    private static void laminatorCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String material,
+            String id) {
+        Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+        ingredients.put(
+                "G",
+                Ingredient.of(materialItem(
+                        material, MaterialPrefixes.SMALL_GEAR)));
+        ingredients.put(
+                "S",
+                Ingredient.of(materialItem(
+                        material, MaterialPrefixes.ROD)));
+        ingredients.put(
+                "M",
+                Ingredient.of(casing));
+        ingredients.put(
+                "C",
+                Ingredient.of(materialItem(
+                        "copper", MaterialPrefixes.DOUBLE_PLATE)));
+        // GT6 Loader_MultiTileEntities.java:1532-1535 {"SwS","GMG","SCS"}.
+        acceptShapedCatalyst(
+                output,
+                "machines/" + id,
+                List.of("SwS", "GMG", "SCS"),
+                ingredients,
+                Map.of("w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                new ItemStack(result));
+    }
+
+    private static void pressureWasherCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String material,
+            String id) {
+        MaterialPrefix pipePrefix = switch (id) {
+            case "pressurewasher" -> MaterialPrefixes.SMALL_FLUID_PIPE;
+            case "steel_pressurewasher" -> MaterialPrefixes.FLUID_PIPE;
+            case "titanium_pressurewasher" -> MaterialPrefixes.LARGE_FLUID_PIPE;
+            case "tungstensteel_pressurewasher" ->
+                    MaterialPrefixes.HUGE_FLUID_PIPE;
+            default -> throw new IllegalArgumentException(
+                    "Unknown pressure washer variant " + id);
+        };
+        Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+        ingredients.put(
+                "R",
+                Ingredient.of(materialItem(
+                        "stainless_steel", MaterialPrefixes.ROTOR)));
+        ingredients.put(
+                "P",
+                Ingredient.of(materialItem("stainless_steel", pipePrefix)));
+        ingredients.put(
+                "G",
+                Ingredient.of(materialItem(material, MaterialPrefixes.SMALL_GEAR)));
+        ingredients.put("M", Ingredient.of(casing));
+        // GT6 Loader_MultiTileEntities.java:1615-1618 {"RPG","wMG"}.
+        acceptShapedCatalyst(
+                output,
+                "machines/" + id,
+                List.of("RPG", "wMG", "   "),
+                ingredients,
+                Map.of("w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                new ItemStack(result));
+    }
+
+    private static void loomCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String material,
+            String id) {
+        Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+        ingredients.put("S", Ingredient.of(materialItem(
+                material, MaterialPrefixes.LONG_ROD)));
+        ingredients.put("G", Ingredient.of(materialItem(
+                material, MaterialPrefixes.GEAR)));
+        ingredients.put("M", Ingredient.of(casing));
+        // GT6 Loader_MultiTileEntities.java:1412-1415 {"ShS","GMG","SwS"}.
+        acceptShapedCatalyst(
+                output,
+                "machines/" + id,
+                List.of("ShS", "GMG", "SwS"),
+                ingredients,
+                Map.of(
+                        "h", Ingredient.of(ModItems.SMITHING_HAMMER.get()),
+                        "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                new ItemStack(result));
+    }
+
+    private static void electricLoomCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String material,
+            String id) {
+        String motorPath = switch (id) {
+            case "electricloom" -> "compact_electric_motor_lv";
+            case "chromium_electricloom" -> "compact_electric_motor_ev";
+            default -> throw new IllegalStateException(
+                    "Blocked electric loom variant reached crafting: " + id);
+        };
+        Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+        ingredients.put("S", Ingredient.of(materialItem(
+                material, MaterialPrefixes.LONG_ROD)));
+        ingredients.put("G", Ingredient.of(
+                ModItems.technologicalPart(motorPath).get()));
+        ingredients.put("M", Ingredient.of(casing));
+        // GT6 electric Loom uses the kinetic grid with IL.MOTORS in G.
+        acceptShapedCatalyst(
+                output,
+                "machines/" + id,
+                List.of("ShS", "GMG", "SwS"),
+                ingredients,
+                Map.of(
+                        "h", Ingredient.of(ModItems.SMITHING_HAMMER.get()),
+                        "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                new ItemStack(result));
+    }
+
+    private static void injectorCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String material,
+            String id) {
+        int tier = switch (id) {
+            case "injector" -> 1;
+            case "aluminium_injector" -> 2;
+            case "stainless_steel_injector" -> 3;
+            case "chromium_injector" -> 4;
+            case "titanium_injector" -> 5;
+            default -> throw new IllegalArgumentException(
+                    "Unknown injector variant " + id);
+        };
+        String pipe = switch (tier) {
+            case 1 -> "tiny_fluid_pipe";
+            case 2 -> "small_fluid_pipe";
+            case 3 -> "fluid_pipe";
+            case 4 -> "large_fluid_pipe";
+            case 5 -> "huge_fluid_pipe";
+            default -> throw new AssertionError(tier);
+        };
+        String cable = switch (tier) {
+            case 1 -> "tin";
+            case 2 -> "copper";
+            case 3 -> "gold";
+            case 4 -> "aluminium";
+            case 5 -> "platinum";
+            default -> throw new AssertionError(tier);
+        };
+        Item piston = tier == 4
+                ? ModItems.technologicalPart("compact_electric_piston_ev").get()
+                : null;
+        if (piston == null) {
+            throw new IllegalStateException(
+                    "Blocked injector variant reached crafting: " + id);
+        }
+        Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+        ingredients.put("X", Ingredient.of(piston));
+        ingredients.put("P", Ingredient.of(materialItem(
+                "stainless_steel",
+                MaterialPrefixCatalog.require(pipe))));
+        ingredients.put("C", Ingredient.of(ModItems.technologicalPart(
+                switch (tier) {
+                    case 1 -> "circuit_basic";
+                    case 2 -> "circuit_good";
+                    case 3 -> "circuit_advanced";
+                    case 4 -> "circuit_elite";
+                    case 5 -> "circuit_master";
+                    default -> throw new AssertionError(tier);
+                }).get()));
+        ingredients.put("M", Ingredient.of(casing));
+        ingredients.put("W", Ingredient.of(materialItem(
+                cable, MaterialPrefixes.CABLE)));
+        // GT6 Loader_MultiTileEntities.java:1443-1447 {"XPw","CMW"}.
+        acceptShapedCatalyst(
+                output,
+                "machines/" + id,
+                List.of("XPw", "CMW", "   "),
+                ingredients,
+                Map.of("w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                new ItemStack(result));
     }
 
     private static void addCasingFormRecipes(RecipeOutput output) {

@@ -216,7 +216,9 @@
         "test_registry_identity",
         "test_jade_observation",
         "test_roll_former",
-        "test_cluster_mill"
+        "test_cluster_mill",
+        "test_slicer",
+        "test_melter"
       ],
       "builders": [
         "build_capability_ledger",
@@ -335,11 +337,15 @@
         "tools/tests/test_energy_heat_exchangers.py",
         "tools/tests/test_roll_former.py",
         "tools/tests/test_cluster_mill.py",
+        "tools/tests/test_slicer.py",
+        "tools/tests/test_melter.py",
         "tools/waves/machines/**",
         "src/main/java/com/masson/cruciblecraft/gametest/RollFormerGameTests.java",
         "src/main/java/com/masson/cruciblecraft/gametest/ClusterMillGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/SlicerGameTests.java",
         "src/main/resources/data/cruciblecraft_wave_machines_roll_former/**",
         "src/main/resources/data/cruciblecraft_wave_machines_cluster_mill/**",
+        "src/main/resources/data/cruciblecraft_wave_machines_slicer/**",
         "tools/waves/runtime/fission-survival/**",
         "tools/capabilities/energy/nuclear-fission-survival/**",
         "tools/tests/test_energy_nuclear_fission_survival.py",

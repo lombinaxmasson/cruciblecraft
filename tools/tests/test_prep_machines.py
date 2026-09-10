@@ -41,14 +41,7 @@ EXPECTED = {
     "nanofab": (64, 52, 12),
 }
 NEEDLES = {
-    "slicer": ("slicer", "SlicerPrepSpec"),
-    "loom": ("electricloom", "LoomPrepSpec", "ElectricLoomPrepSpec"),
-    "pressure-washer": ("pressurewasher", "PressureWasherPrepSpec"),
-    "injector": ("injector", "InjectorPrepSpec"),
     "printer": ("printer", "PrinterPrepSpec"),
-    "laminator": ("laminator", "LaminatorPrepSpec"),
-    "melter": ("create(\"melter\")", "MelterPrepSpec"),
-    "nanofab": ("nanofab", "NanofabPrepSpec"),
 }
 
 
@@ -62,6 +55,7 @@ def _load_builder():
 
 
 prep = _load_builder()
+OPEN_PREP_MACHINES = ("printer", "melter")
 
 
 def _read(path: Path) -> str:
@@ -70,7 +64,7 @@ def _read(path: Path) -> str:
 
 class PrepMachinesTest(unittest.TestCase):
     def test_prep_check_passes_isolated_compile(self) -> None:
-        for name in prep.MACHINES:
+        for name in OPEN_PREP_MACHINES:
             with self.subTest(name=name):
                 self.assertEqual([], prep.check_machine(name))
 
@@ -175,31 +169,14 @@ class PrepMachinesTest(unittest.TestCase):
                 self.assertNotIn(slug, WAVE_CHOICES)
                 self.assertNotIn(slug, KNOWN_SEMANTIC_SLUGS)
         live = ROOT / "src" / "recipe_generated" / "resources" / "data" / "cruciblecraft" / "recipe"
-        for needle in (
-            "slicer",
-            "pressurewasher",
-            "injector",
-            "printer",
-            "laminator",
-            "nanofab",
-        ):
+        for needle in ("printer",):
             self.assertEqual([], list(live.rglob(f"*{needle}*")))
         self.assertEqual([], list(live.rglob("*electricloom*")))
-        self.assertEqual(
-            [],
-            [
-                path
+        self.assertTrue(
+            any(
+                path.name.lower() == "melter"
                 for path in live.rglob("*melter*")
-                if "smelter" not in path.name.lower()
-            ],
-        )
-        self.assertEqual(
-            [],
-            [
-                path
-                for path in live.rglob("*loom*")
-                if "bloom" not in path.name.lower()
-            ],
+            )
         )
 
     def test_landing_owned_paths_do_not_register_the_machines(self) -> None:
@@ -213,10 +190,7 @@ class PrepMachinesTest(unittest.TestCase):
         for path in LANDING_JAVA + LANDING_DATA:
             text = _read(path)
             lowered = text.lower()
-            self.assertNotIn("electricloom", lowered, path.name)
-            self.assertNotIn("pressurewasher", lowered, path.name)
-            self.assertNotIn("nanofab", lowered, path.name)
-            self.assertNotIn("slicer", lowered, path.name)
+            self.assertNotIn("printer", lowered, path.name)
         ledger = census.load_json(ROOT / "tools" / "blocked_recipe_ledger.json")
         self.assertIsNone(ledger["unique_active_wave"])
 

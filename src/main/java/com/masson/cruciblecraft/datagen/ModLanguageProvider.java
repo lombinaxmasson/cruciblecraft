@@ -1230,6 +1230,19 @@ public class ModLanguageProvider extends LanguageProvider {
                         "item." + CrucibleCraft.MODID + "."
                                 + identity.registryPath().replace('/', '.'),
                         chinese ? identity.chineseName() : identity.englishName()));
+        com.masson.cruciblecraft.content.item.SlicerOperandCatalog.operands().forEach(operand ->
+                add(
+                        "item." + CrucibleCraft.MODID + "."
+                                + operand.registryPath().replace('/', '.'),
+                        chinese ? operand.chineseName() : operand.englishName()));
+        com.masson.cruciblecraft.content.item.PressureWasherOperandCatalog
+                .operands().forEach(operand ->
+                        add(
+                                "item." + CrucibleCraft.MODID + "."
+                                        + operand.registryPath().replace('/', '.'),
+                                chinese
+                                        ? operand.chineseName()
+                                        : operand.englishName()));
         BathMteFluidCatalog.fluids().forEach(fluid -> {
             String path = fluid.id().getPath().replace('/', '.');
             add("fluid." + CrucibleCraft.MODID + "." + path, fluid.englishName());

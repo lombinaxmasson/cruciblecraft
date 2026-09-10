@@ -26,6 +26,7 @@ public final class ModRecipeMaps {
     public static final RecipeMap SHREDDER = create("shredder");
     public static final RecipeMap SIFTER = create("sifter");
     public static final RecipeMap SMELTER = create("smelter");
+    public static final RecipeMap MELTER = create("melter");
     /**
      * Reserved leftover map. GT6 has no generic cooler and no passive
      * {@code ingotHot → ingot} conversion. The map stays registered and empty
@@ -39,6 +40,12 @@ public final class ModRecipeMaps {
     public static final RecipeMap ROLLINGMILL = create("rollingmill");
     public static final RecipeMap ROLLFORMER = create("rollformer");
     public static final RecipeMap CLUSTERMILL = create("clustermill");
+    public static final RecipeMap SLICER = create("slicer");
+    public static final RecipeMap LAMINATOR = create("laminator");
+    public static final RecipeMap PRESSUREWASHER = create("pressurewasher");
+    public static final RecipeMap LOOM = create("loom");
+    public static final RecipeMap INJECTOR = create("injector");
+    public static final RecipeMap NANOFAB = create("nanofab");
     public static final RecipeMap ROLLBENDER = create("rollbender");
     public static final RecipeMap WIREMILL = create("wiremill");
     public static final RecipeMap BENDER = create("bender");
@@ -75,6 +82,7 @@ public final class ModRecipeMaps {
             SHREDDER,
             SIFTER,
             SMELTER,
+            MELTER,
             COOLING,
             MORTAR,
             EXTRUDER,
@@ -83,6 +91,12 @@ public final class ModRecipeMaps {
             ROLLINGMILL,
             ROLLFORMER,
             CLUSTERMILL,
+            SLICER,
+            LAMINATOR,
+            PRESSUREWASHER,
+            LOOM,
+            INJECTOR,
+            NANOFAB,
             ROLLBENDER,
             WIREMILL,
             BENDER,

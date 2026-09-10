@@ -1,0 +1,54 @@
+{
+  "generated_by": "python tools/build_mte_identity_disposition_r0.py",
+  "kinds": [
+    {
+      "covers": "1,817 holdable CatalogNamedItem identities",
+      "does_not_cover": "faucet / tap / nozzle / fluid-funnel behavior",
+      "mechanism": "SmelterMteIdentityCatalog / BathMteIdentityCatalog"
+    },
+    {
+      "covers": "closed storage/lock 28/624 registration",
+      "does_not_cover": "folding chest scatter back onto native blocks",
+      "mechanism": "storage/lock"
+    },
+    {
+      "covers": "named ProcessingMachine / converter hosts",
+      "does_not_cover": "scatter MTE item is not that live block",
+      "mechanism": "machine_tiers.json / ModProcessingMachines"
+    },
+    {
+      "covers": "ceramic crucible + CeramicMoldBlock adjacent pour",
+      "does_not_cover": "GT6 AttachmentSmall crucible faucet",
+      "mechanism": "CrucibleBlock / CeramicMoldBlock"
+    },
+    {
+      "covers": "steel_dust_funnel dust insertion",
+      "does_not_cover": "item barrels or blockDust",
+      "mechanism": "DustFunnelBlock"
+    },
+    {
+      "covers": "independent KU/RU shafts",
+      "does_not_cover": "MultiTileEntityAxle / GearBox identities",
+      "mechanism": "rotation energy"
+    },
+    {
+      "covers": "pipe cover behaviors",
+      "does_not_cover": "TileEntityBase11AttachmentSmall placement",
+      "mechanism": "CoverBehaviorRegistry"
+    },
+    {
+      "covers": "cell fill/drain later clue",
+      "does_not_cover": "this card implementing funnels; Canner is out",
+      "mechanism": "CellItem / CellFluidHandler"
+    },
+    {
+      "covers": "world gas-cloud landing clue",
+      "does_not_cover": "this card implementing nozzles",
+      "mechanism": "GasCloudBlock"
+    }
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "EXISTING_MECHANISM_READY",
+  "wave_slug": "portfolio/mte-identity-disposition-r0"
+}

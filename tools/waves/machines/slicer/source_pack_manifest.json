@@ -1,0 +1,27 @@
+{
+  "files": [
+    {
+      "path": "tools/waves/machines/slicer/source_pack/dump_slice.json",
+      "role": "dump_slice",
+      "sha256": "cc7d5e814f1f000b7454995506d44aac3eabea4c25659b4e6156c76772f49eec"
+    },
+    {
+      "path": "tools/waves/machines/slicer/source_pack/work_set.json",
+      "role": "work_set",
+      "sha256": "2c93ea6ce5ecda548cbbcd4dd90343898e2149f048ac74e3c0d1a5b2696143b7"
+    }
+  ],
+  "full_replay": {
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "provenance_policy": {
+    "append_only": true,
+    "forbid_gt6u": true
+  },
+  "schema_version": 1,
+  "source_dialect": "gt6",
+  "source_pack_id": "machines/slicer",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_system": "gt6"
+}

@@ -86,6 +86,8 @@ public final class ModMenus {
             processing("sifter", ModProcessingMachines.SIFTER);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> SMELTER =
             processing("smelter", ModProcessingMachines.SMELTER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> MELTER =
+            processing("melter", ModProcessingMachines.MELTER);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> MORTAR =
             processing("mortar", ModProcessingMachines.MORTAR);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> EXTRUDER =
@@ -100,6 +102,20 @@ public final class ModMenus {
             processing("rollformer", ModProcessingMachines.ROLLFORMER);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> CLUSTERMILL =
             processing("clustermill", ModProcessingMachines.CLUSTERMILL);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> SLICER =
+            processing("slicer", ModProcessingMachines.SLICER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> LAMINATOR =
+            processing("laminator", ModProcessingMachines.LAMINATOR);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> PRESSUREWASHER =
+            processing("pressurewasher", ModProcessingMachines.PRESSUREWASHER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> LOOM =
+            processing("loom", ModProcessingMachines.LOOM);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> ELECTRICLOOM =
+            processing("electricloom", ModProcessingMachines.ELECTRICLOOM);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> INJECTOR =
+            processing("injector", ModProcessingMachines.INJECTOR);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> NANOFAB =
+            processing("nanofab", ModProcessingMachines.NANOFAB);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> ROLLBENDER =
             processing("rollbender", ModProcessingMachines.ROLLBENDER);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> WIREMILL =

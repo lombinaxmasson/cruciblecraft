@@ -245,17 +245,27 @@ topology 预分配 implementation child。不想要的类在 realization 卡标
 | Crops | `portfolio/crops-food-bees-r0` | `plant.glowtus` / `plant.bush` + dump `gt.recipe.squeezer` 5322（规模，非 census） | `requires_new_runtime` | [`feasibility.json`](../../tools/waves/portfolio/crops-food-bees-r0/feasibility.json) |
 | Food | 同上 | dump juicer 96 + fermenter 6435（规模，非 census） | `requires_new_runtime` | 同上 |
 | Bees | 同上 | `WorldgenHives` 10 + bumblequeen 80 + bumblelyzer 1440（规模，非 census） | `requires_new_runtime` | 同上 |
+| 流体附件（catalog 33） | `portfolio/mte-identity-disposition-r0` | catalog 浇铸口 22 / 流体龙头 3 / 喷嘴 2 / 帽喷嘴 3 / 流体漏斗 3 的**行为** | `requires_new_runtime`；`allows_implementation_child = false`。游戏里仍然没有龙头 / 喷嘴 / 流体漏斗 / 浇铸口；邻接模具浇铸仍是现有简化路径。1,817 个 holdable 身份仍是散落物，不是已实现。对照图「Bath / Smelter MTE holdable identity」行保持 `identity_only`。 | [`feasibility.json`](../../tools/waves/portfolio/mte-identity-disposition-r0/feasibility.json) |
 
 导入器 `GENERIC_RECIPE_IMPORT_READY` 只表示**已有 host** 时可以 `import-source`。
 它不创建 squeezer / juicer / fermenter / bumble RecipeMap，也不实现封面网或作物生长。
-缺失单块 RecipeMap（Slicer / Printer / Loom / Melter 等）
-live 导入仍要等晋升落地。辊压成型机 RecipeMap 已挂并 `player_complete`。
+缺失单块 RecipeMap（Printer / Loom / Melter 等）
+live 导入仍要等晋升落地。切片机 RecipeMap 已挂并停在 `runtime_ready`
+（五台获得格缺传送带模块，1 行 `paper:tiny_plate` overflow）。
+辊压成型机 RecipeMap 已挂并 `player_complete`。
 集群轧机 RecipeMap 已挂并 `player_complete`（307 selected / 0 overflow）。
 Prep 清单见 [project-status.md](project-status.md)。规则见
 [能力交付流程 §8](capability-delivery-workflow.md) 与
 [`card-plans/prep/`](../history/card-plans/prep/)。批量交付管线（`machine_delivery.json` + SourcePack +
 人工 `production_lock` + `python tools/verify.py integration --profile recipes`）
 已就绪，不因 unique-active 空窗自动改队列。
+
+印刷机 prep 当前保留为明确 blocked：`gt.recipe.printer` 的 22 行全部依赖
+未映射的 `fluid dye.chemical.*`，`tools/machine_fluid_mapping.json` 将其分类为
+`out_of_scope_g10_dyeing`，因此 selected family 为 0、production lock 为空。
+五台主机另有 `IL.CONVEYERS` 模块缺口；compact conveyor cover 不是该槽位。
+在真实染料流体身份和传送带模块进入后续内容卡前，不生成空 live family，也不使用
+其它流体替代。
 
 物流 R0 另外把四个 `logistics_display_cpu_*` 标成该切片
 `out_of_scope`（见该波 `inherited_denominator.json`）。对照图 seed 仍有
@@ -274,7 +284,7 @@ Prep 清单见 [project-status.md](project-status.md)。规则见
 | 电池芯 / 灌液格 | GT6 `IL.Battery_*_Cell_Empty/Filled`，`MultiItemTechnological` `20000–20009` | 十件芯、五族空芯、FluidContainerData 灌液与 EU `B`/`C` 已回收；`battery_part:filled_cell` = `new_distinct`。LU 宝石前缀已 `form_items` 并到晶体 BlockItem（GT6 `setTarget`）。不并进变压器卡 |
 | 建筑方块 identity | `GT6 building-block item/block identities` | 从未 R0 |
 | 建筑方块 behavior | hardness / multiblock parts / decorative machines | 从未 R0 |
-| Display CPU / 其余未认领域 | seed「misc systems…」 | 四件 Display CPU 状态盖板已 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md) `player_complete`。misc 其余仍 none。R0 `display_cpu_out_of_scope` 不改 |
+| Display CPU / 其余未认领域 | seed「misc systems…」 | 四件 Display CPU 状态盖板已 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md) `player_complete`。catalog 流体附件**行为**已由 [MTE 身份分母处置 R0](../history/card-plans/closed/MTE身份分母处置R0详细计划.md) 判过 `requires_new_runtime`，见第 1 节。misc 其余 unowned 仍 none。R0 `display_cpu_out_of_scope` 不改 |
 | 封面余量 `controller_*` | capability map | 物流 R0 没吃 |
 | 封面余量 `detector_*` | 同上 | 物流 R0 没吃 |
 | 封面余量 redstone | `controller_redstone` / `controller_auto_redstone` | 物流 R0 没吃 |
