@@ -1,55 +1,11 @@
 # CrucibleCraft 总体规划
 
-> 唯一总体规划与项目导航
-> 最后更新：2026-09-09
+> 唯一总体规划与项目导航。
 > 进度只计 `player_complete` 声明，加上当前 revision 的 fresh GameTest
 > PASS。`runClient` 只在晋级（`runtime_ready → player_complete`）时强制。
 > 合同见 [capability-delivery-workflow.md](capability-delivery-workflow.md)。
->
-> **当前状态**：无 unique-active。机器可读 `unique_active_wave = null`。
-> Prep 已签发（不占落地锁）：[辊压成型机](../history/card-plans/prep/辊压成型机详细计划.md)（仍待开工）、
-> [集群轧机](../history/card-plans/prep/集群轧机详细计划.md)（prep 已做完）、
-> [切片机](../history/card-plans/prep/切片机详细计划.md)（prep 已做完）、
-> [织机](../history/card-plans/prep/织机详细计划.md)（prep 已做完）、
-> [压力清洗机](../history/card-plans/prep/压力清洗机详细计划.md)（prep 已做完）、
-> [注射机](../history/card-plans/prep/注射机详细计划.md)（prep 已做完）、
-> [印刷机](../history/card-plans/prep/印刷机详细计划.md)（prep 已做完）、
-> [层压机](../history/card-plans/prep/层压机详细计划.md)（prep 已做完）、
-> [熔融机](../history/card-plans/prep/熔融机详细计划.md)（prep 已做完）、
-> [纳米加工机](../history/card-plans/prep/纳米加工机详细计划.md)（prep 已做完）。最近关闭
-> [热交换器第一切片](../history/card-plans/closed/热交换器第一切片详细计划.md)
-> （计划 slug `energy/heat-exchangers`；8 个单体热交换器；涡轮 / 冷却器 /
-> 17197 仍后续；`player_complete` / `accepted`）。
-> 闭卡后已补空盖革 source-exact 获得（铝 `capcellcon` + CCC + Canner He/Ne/Ar）。
-> 最近关闭
-> [裂变观测安全与能源 Jade](../history/card-plans/closed/裂变观测安全与能源Jade详细计划.md)
-> （`energy/nuclear-fission-observation-safety`，`player_complete` /
-> `accepted`；堆芯 HU Jade、8 件防护服、温度计/盖革、辐射/烫伤/失败语义，
-> 以及 37 电池 + 179 转换机 Jade）。最近关闭
-> [配方 blocked 链账本与首条收口](../history/card-plans/closed/配方blocked链账本与首条收口详细计划.md)
-> （slug `recipe/blocked-chain-ledger`；可复算账本；fluidbed 49 第一条链
-> `explicitly_blocked`）。已关闭
-> [裂变热流体与热量合同](../history/card-plans/closed/裂变热流体与热量合同详细计划.md)
-> （`energy/nuclear-fission-hot-fluids`，`player_complete` / `accepted`；
-> 11/9/8 热流体与热量合同）。机器可读 `unique_active_wave = null`。
-> phase5 tracks.C `started = true`；sealed growth-order
-> `nuclear_started` 仍为 `false`，直到 `portfolio/nuclear` 认领。
->
-> **现行 `player_complete`（12）**：
-> `logistics/fluid-network/basic-transfer`、
-> `logistics/item-network-core`、
-> `logistics/generic-network/core`、
-> `logistics/logistics-core`、
-> `logistics/display-cpu`、
-> `energy/converter-catalog`（kind × 材质 169 行；活目录 179，多出的
-> 10 台电加热器/电引擎未进该卡分母）、
-> `energy/batteries`（37 储能块）、
-> `energy/transformers`（9 台电 `10040–10048`）、
-> `energy/nuclear-fission-survival`（46 棒 / 8 kind / 2 堆芯 / 48 关系）、
-> `energy/nuclear-fission-hot-fluids`（11 source / 9 conversion / 8 hot identity）、
-> `energy/nuclear-fission-observation-safety`（2 堆芯 HU Jade / 8 防护服 /
-> 温度计·盖革 / 37 电池 Jade / 179 转换机 Jade）、
-> `energy/heat-exchangers`（8 个单体 `FM.Hot` → HU）。
+> 现行 unique-active、prep 与完成集合只写在
+> [project-status.md](project-status.md)，不要在本页手抄。
 >
 > 关闭档案与机制卡 `*_READY` 见 [docs/history](../history/INDEX.md)。
 > `*_READY` 不是游戏里已有这些内容。缺口总账是
@@ -102,28 +58,11 @@ GitHub push 承担，不创建 GitHub Release、不上传 jar、不累计 RC soa
 同一时刻只允许一张内容工作处于 active 状态。编号卡时代已经结束；现行顺序是
 semantic wave，不是下一张里程碑编号。
 
-**当前人读 unique active** 无。机器可读 `unique_active_wave = null`。
-最近关闭
-[热交换器第一切片](../history/card-plans/closed/热交换器第一切片详细计划.md)
-（第 8 项第一张；8 个单体身份；`player_complete`）。最近关闭
-[裂变观测安全与能源 Jade](../history/card-plans/closed/裂变观测安全与能源Jade详细计划.md)
-（`energy/nuclear-fission-observation-safety`，`player_complete`）。已关闭
-[配方 blocked 链账本与首条收口](../history/card-plans/closed/配方blocked链账本与首条收口详细计划.md)
-（`recipe/blocked-chain-ledger`；fluidbed 49 `explicitly_blocked`）。已关闭
-[裂变热流体与热量合同](../history/card-plans/closed/裂变热流体与热量合同详细计划.md)
-（`energy/nuclear-fission-hot-fluids`，`player_complete`）。第 1–8 项第一张已关。蒸汽涡轮、冷却器与聚变仍未签发。
-Prep 已签发（不占 unique-active，规则见
-[能力交付流程 §8](capability-delivery-workflow.md)）：
-[辊压成型机](../history/card-plans/prep/辊压成型机详细计划.md)（仍待开工）、
-[集群轧机](../history/card-plans/prep/集群轧机详细计划.md)（prep 已做完）、
-[切片机](../history/card-plans/prep/切片机详细计划.md)（prep 已做完）、
-[织机](../history/card-plans/prep/织机详细计划.md)（prep 已做完）、
-[压力清洗机](../history/card-plans/prep/压力清洗机详细计划.md)（prep 已做完）、
-[注射机](../history/card-plans/prep/注射机详细计划.md)（prep 已做完）、
-[印刷机](../history/card-plans/prep/印刷机详细计划.md)（prep 已做完）、
-[层压机](../history/card-plans/prep/层压机详细计划.md)（prep 已做完）、
-[熔融机](../history/card-plans/prep/熔融机详细计划.md)（prep 已做完）、
-[纳米加工机](../history/card-plans/prep/纳米加工机详细计划.md)（prep 已做完）。
+现行 unique-active、prep 与 `player_complete` 只写在
+[project-status.md](project-status.md)。同一时刻只允许一张内容工作处于
+active 状态；prep 不占落地锁，规则见
+[能力交付流程 §8](capability-delivery-workflow.md)。
+第 1–8 项第一张已关。蒸汽涡轮、冷却器与聚变仍未签发。
 Bath identity / form / object 是账本次序里的下一条链，尚未签发。不要从只读
 growth-order 档案倒推。
 
@@ -204,7 +143,8 @@ stable ids 或 closing gap。未来核心 runtime 变化走当前 compatibility/
 Recipe gap 清零后，deferred ordinary ledger 也已关闭或独立 scope。storage 本身
 已作为独立 bundle 关闭，不再等待 execution gap 清零。Storage 分母仍是 census 冻结的
 28 source sites / 624 expanded registrations；跨分类的 `mass_storage_logistics` 1/1
-保持独立计数。
+保持独立计数。T44 关的是注册与单物品容量；GT6 储物桶 `mPartialUnits` 前缀单位换算
+（大中小粉、锭/粒等）仍缺，见 [冻结与未实现账本](unimplemented-gap.md) 第 4 节。
 
 ## 5. 可玩性与表现层
 

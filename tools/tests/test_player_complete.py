@@ -15,17 +15,9 @@ from tools import player_complete
 from tools import io_common as files
 
 SLUG = "logistics/fluid-network/basic-transfer"
-ITEM_SLUG = "logistics/item-network-core"
-GENERIC_SLUG = "logistics/generic-network/core"
-CORE_SLUG = "logistics/logistics-core"
-DISPLAY_SLUG = "logistics/display-cpu"
-CONVERTER_SLUG = "energy/converter-catalog"
 BATTERIES_SLUG = "energy/batteries"
-TRANSFORMERS_SLUG = "energy/transformers"
-NUCLEAR_SLUG = "energy/nuclear-fission-survival"
-HOT_FLUIDS_SLUG = "energy/nuclear-fission-hot-fluids"
 OBSERVATION_SLUG = "energy/nuclear-fission-observation-safety"
-HEAT_EXCHANGERS_SLUG = "energy/heat-exchangers"
+CLUSTER_MILL_SLUG = "machines/cluster-mill"
 FLUID_TEST_IDS = [
     "coverIdentitySurvivesBlockEntityReload",
     "coversAreSurvivalCraftable",
@@ -93,181 +85,21 @@ class PlayerCompleteTest(unittest.TestCase):
             )
         )
 
-    def test_item_capability_declares_all_game_tests(self) -> None:
-        self.assert_declared_game_tests(ITEM_SLUG)
-
-    def test_generic_capability_declares_all_game_tests(self) -> None:
-        self.assert_declared_game_tests(GENERIC_SLUG)
-
-    def test_generic_capability_static_player_surface(self) -> None:
-        capability = capability_ledger.load_capability(
-            capability_ledger.CAP_ROOT / GENERIC_SLUG / "capability.json"
-        )
-        signoff = player_complete.load_signoff(capability)
-        self.assertEqual(
-            [],
-            player_complete.check_static_player_surface(
-                GENERIC_SLUG,
-                list(signoff["craftable_items"]),
-            ),
-        )
-
-    def test_core_capability_declares_all_game_tests(self) -> None:
-        self.assert_declared_game_tests(CORE_SLUG)
-
-    def test_core_capability_static_player_surface(self) -> None:
-        capability = capability_ledger.load_capability(
-            capability_ledger.CAP_ROOT / CORE_SLUG / "capability.json"
-        )
-        signoff = player_complete.load_signoff(capability)
-        self.assertEqual(
-            [],
-            player_complete.check_static_player_surface(
-                CORE_SLUG,
-                list(signoff["craftable_items"]),
-            ),
-        )
-
-    def test_display_capability_declares_all_game_tests(self) -> None:
-        self.assert_declared_game_tests(DISPLAY_SLUG)
-
-    def test_display_capability_static_player_surface(self) -> None:
-        capability = capability_ledger.load_capability(
-            capability_ledger.CAP_ROOT / DISPLAY_SLUG / "capability.json"
-        )
-        signoff = player_complete.load_signoff(capability)
-        self.assertEqual(
-            [],
-            player_complete.check_static_player_surface(
-                DISPLAY_SLUG,
-                list(signoff["craftable_items"]),
-            ),
-        )
-
-    def test_converter_capability_declares_all_game_tests(self) -> None:
-        self.assert_declared_game_tests(CONVERTER_SLUG)
-
-    def test_converter_capability_static_player_surface(self) -> None:
-        capability = capability_ledger.load_capability(
-            capability_ledger.CAP_ROOT / CONVERTER_SLUG / "capability.json"
-        )
-        signoff = player_complete.load_signoff(capability)
-        self.assertEqual(
-            [],
-            player_complete.check_static_player_surface(
-                CONVERTER_SLUG,
-                list(signoff["craftable_items"]),
-            ),
-        )
-
-    def test_batteries_capability_declares_all_game_tests(self) -> None:
-        self.assert_declared_game_tests(BATTERIES_SLUG)
-
-    def test_batteries_capability_static_player_surface(self) -> None:
-        capability = capability_ledger.load_capability(
-            capability_ledger.CAP_ROOT / BATTERIES_SLUG / "capability.json"
-        )
-        signoff = player_complete.load_signoff(capability)
-        self.assertEqual(
-            [],
-            player_complete.check_static_player_surface(
-                BATTERIES_SLUG,
-                list(signoff["craftable_items"]),
-            ),
-        )
-
-    def test_transformers_capability_declares_all_game_tests(self) -> None:
-        self.assert_declared_game_tests(TRANSFORMERS_SLUG)
-
-    def test_transformers_capability_static_player_surface(self) -> None:
-        capability = capability_ledger.load_capability(
-            capability_ledger.CAP_ROOT / TRANSFORMERS_SLUG / "capability.json"
-        )
-        signoff = player_complete.load_signoff(capability)
-        self.assertEqual(
-            [],
-            player_complete.check_static_player_surface(
-                TRANSFORMERS_SLUG,
-                list(signoff["craftable_items"]),
-            ),
-        )
-
-    def test_nuclear_capability_declares_all_game_tests(self) -> None:
-        self.assert_declared_game_tests(NUCLEAR_SLUG)
-
-    def test_nuclear_capability_static_player_surface(self) -> None:
-        capability = capability_ledger.load_capability(
-            capability_ledger.CAP_ROOT / NUCLEAR_SLUG / "capability.json"
-        )
-        signoff = player_complete.load_signoff(capability)
-        self.assertEqual(
-            [],
-            player_complete.check_static_player_surface(
-                NUCLEAR_SLUG,
-                list(signoff["craftable_items"]),
-            ),
-        )
-
-    def test_nuclear_hot_fluids_capability_declares_all_game_tests(self) -> None:
-        self.assert_declared_game_tests(HOT_FLUIDS_SLUG)
-
-    def test_nuclear_hot_fluids_capability_static_player_surface(self) -> None:
-        capability = capability_ledger.load_capability(
-            capability_ledger.CAP_ROOT / HOT_FLUIDS_SLUG / "capability.json"
-        )
-        signoff = player_complete.load_signoff(capability)
-        self.assertEqual(
-            [],
-            player_complete.check_static_player_surface(
-                HOT_FLUIDS_SLUG,
-                list(signoff["craftable_items"]),
-            ),
-        )
-
-    def test_nuclear_observation_safety_capability_declares_all_game_tests(self) -> None:
-        self.assert_declared_game_tests(OBSERVATION_SLUG)
-
-    def test_nuclear_observation_safety_capability_static_player_surface(self) -> None:
-        capability = capability_ledger.load_capability(
-            capability_ledger.CAP_ROOT / OBSERVATION_SLUG / "capability.json"
-        )
-        signoff = player_complete.load_signoff(capability)
-        self.assertEqual(
-            [],
-            player_complete.check_static_player_surface(
-                OBSERVATION_SLUG,
-                list(signoff["craftable_items"]),
-            ),
-        )
-
-    def test_heat_exchangers_capability_declares_all_game_tests(self) -> None:
-        self.assert_declared_game_tests(HEAT_EXCHANGERS_SLUG)
-
-    def test_heat_exchangers_capability_static_player_surface(self) -> None:
-        capability = capability_ledger.load_capability(
-            capability_ledger.CAP_ROOT / HEAT_EXCHANGERS_SLUG / "capability.json"
-        )
-        signoff = player_complete.load_signoff(capability)
-        self.assertEqual(
-            [],
-            player_complete.check_static_player_surface(
-                HEAT_EXCHANGERS_SLUG,
-                list(signoff["craftable_items"]),
-            ),
-        )
-
-    def test_item_capability_static_player_surface(self) -> None:
-        capability = capability_ledger.load_capability(
-            capability_ledger.CAP_ROOT / ITEM_SLUG / "capability.json"
-        )
-        signoff = player_complete.load_signoff(capability)
-        self.assertEqual(
-            [],
-            player_complete.check_static_player_surface(
-                ITEM_SLUG,
-                list(signoff["craftable_items"]),
-            ),
-        )
+    def test_declared_player_complete_capabilities_have_tests_and_surfaces(self) -> None:
+        slugs = player_complete.player_complete_slugs()
+        self.assertIn(CLUSTER_MILL_SLUG, slugs)
+        self.assertIn(SLUG, slugs)
+        for slug in slugs:
+            capability = capability_ledger.load_capability(
+                capability_ledger.CAP_ROOT / slug / "capability.json"
+            )
+            self.assert_declared_game_tests(slug)
+            signoff = player_complete.load_signoff(capability)
+            items = list(signoff["craftable_items"])
+            self.assertEqual(
+                [],
+                player_complete.check_static_player_surface(slug, items),
+            )
 
     def gametest_receipt(self) -> dict[str, object]:
         wave = self.capability["wave_slug"]
@@ -439,33 +271,14 @@ class PlayerCompleteTest(unittest.TestCase):
             )
         self.assertTrue(any("is not runClient" in row for row in errors))
 
-    def test_surface_catalog_matches_signoff(self) -> None:
-        catalog = player_complete.load_surface_catalog()
-        surfaces = catalog["surfaces"]
-        for slug in (
-            SLUG,
-            ITEM_SLUG,
-            GENERIC_SLUG,
-            CORE_SLUG,
-            DISPLAY_SLUG,
-            CONVERTER_SLUG,
-            BATTERIES_SLUG,
-            TRANSFORMERS_SLUG,
-            NUCLEAR_SLUG,
-            HOT_FLUIDS_SLUG,
-        ):
-            capability = capability_ledger.load_capability(
-                capability_ledger.CAP_ROOT / slug / "capability.json"
-            )
-            signoff = player_complete.load_signoff(capability)
-            self.assertEqual(
-                [],
-                player_complete.check_surface_catalog(
-                    slug,
-                    list(signoff["craftable_items"]),
-                ),
-            )
-            self.assertIn(slug, surfaces)
+    def test_all_discovers_the_player_complete_profile(self) -> None:
+        slugs = player_complete.player_complete_slugs()
+        self.assertEqual(slugs, player_complete.resolve_slugs(None, True))
+        self.assertIn(CLUSTER_MILL_SLUG, slugs)
+        stderr = io.StringIO()
+        with contextlib.redirect_stderr(stderr):
+            with self.assertRaises(SystemExit):
+                player_complete.main(["--check", "--all"])
 
     def test_run_mode_uses_game_test_only_by_default(self) -> None:
         calls: list[list[str]] = []

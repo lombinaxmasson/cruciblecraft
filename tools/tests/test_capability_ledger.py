@@ -21,6 +21,8 @@ CONVERTER = "energy/converter-catalog"
 BATTERIES = "energy/batteries"
 TRANSFORMERS = "energy/transformers"
 HEAT_EXCHANGERS = "energy/heat-exchangers"
+ROLL_FORMER = "machines/roll-former"
+CLUSTER_MILL = "machines/cluster-mill"
 NUCLEAR = "energy/nuclear-fission-survival"
 HOT_FLUIDS = "energy/nuclear-fission-hot-fluids"
 OBSERVATION = "energy/nuclear-fission-observation-safety"
@@ -47,6 +49,8 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertIn(BATTERIES, slugs)
         self.assertIn(TRANSFORMERS, slugs)
         self.assertIn(HEAT_EXCHANGERS, slugs)
+        self.assertIn(ROLL_FORMER, slugs)
+        self.assertIn(CLUSTER_MILL, slugs)
         self.assertIn(NUCLEAR, slugs)
         self.assertIn(HOT_FLUIDS, slugs)
         self.assertIn(OBSERVATION, slugs)
@@ -77,6 +81,20 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertEqual(
             ["capability-runtime", "player-complete"],
             heat["profiles"],
+        )
+        roll_former = next(row for row in documents if row["slug"] == ROLL_FORMER)
+        self.assertEqual("player_complete", roll_former["maturity"])
+        self.assertEqual("accepted", roll_former["workflow"])
+        self.assertEqual(
+            ["capability-runtime", "player-complete"],
+            roll_former["profiles"],
+        )
+        cluster_mill = next(row for row in documents if row["slug"] == CLUSTER_MILL)
+        self.assertEqual("player_complete", cluster_mill["maturity"])
+        self.assertEqual("accepted", cluster_mill["workflow"])
+        self.assertEqual(
+            ["capability-runtime", "player-complete"],
+            cluster_mill["profiles"],
         )
         fluid = next(row for row in documents if row["slug"] == FLUID)
         self.assertEqual("player_complete", fluid["maturity"])
@@ -118,48 +136,43 @@ class CapabilityLedgerTest(unittest.TestCase):
         for row in compiled["capabilities"]:
             self.assertNotIn("legacy_readiness", row)
             self.assertNotIn("wave_slug", row)
-        self.assertEqual(
-            [
-                BATTERIES,
-                CONVERTER,
-                HEAT_EXCHANGERS,
-                HOT_FLUIDS,
-                OBSERVATION,
-                NUCLEAR,
-                TRANSFORMERS,
-                DISPLAY,
-                FLUID,
-                GENERIC,
-                ITEM,
-                CORE,
-            ],
-            compiled["declared_player_complete"],
-        )
+        complete = compiled["declared_player_complete"]
+        self.assertEqual(complete, compiled["profiles"]["player-complete"])
+        self.assertIn(CLUSTER_MILL, complete)
+        self.assertIn(ROLL_FORMER, complete)
+        self.assertIn(HEAT_EXCHANGERS, complete)
+        self.assertIsNone(compiled["unique_active_slug"])
         self.assertEqual(
             "declaration is not proof; player_complete requires fresh "
             "GameTestServer execution; runClient is required on promotion",
             compiled["progress_rule"],
         )
 
+    def test_unique_active_is_the_single_workflow_active_capability(self) -> None:
+        compiled = ledger.compile_ledger()
+        active = [
+            row["slug"]
+            for row in compiled["capabilities"]
+            if row["workflow"] == "active"
+        ]
+        self.assertEqual([], active)
+        self.assertEqual({}, ledger.load_card_plan_index()["active"])
+        self.assertIn(
+            "machines/slicer",
+            ledger.load_card_plan_index()["prep"],
+        )
+        self.assertIn(
+            CLUSTER_MILL,
+            ledger.load_card_plan_index()["closed"],
+        )
+
     def test_ledger_contains_profiles_and_impact_without_proof_fields(self) -> None:
         compiled = ledger.compile_ledger()
         self.assertEqual(
-            [
-                BATTERIES,
-                CONVERTER,
-                HEAT_EXCHANGERS,
-                HOT_FLUIDS,
-                OBSERVATION,
-                NUCLEAR,
-                TRANSFORMERS,
-                DISPLAY,
-                FLUID,
-                GENERIC,
-                ITEM,
-                CORE,
-            ],
-            compiled["profiles"]["player-complete"],
+            set(compiled["declared_player_complete"]),
+            set(compiled["profiles"]["player-complete"]),
         )
+        self.assertIn(CLUSTER_MILL, compiled["profiles"]["player-complete"])
         self.assertEqual(
             {
                 BATTERIES,
@@ -175,6 +188,8 @@ class CapabilityLedgerTest(unittest.TestCase):
                 CORE,
                 DISPLAY,
                 CONVERTER,
+                ROLL_FORMER,
+                CLUSTER_MILL,
             },
             set(compiled["impact"]["logistics/cover-net-r0"]),
         )
@@ -207,6 +222,8 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertIn(HOT_FLUIDS, hit)
         self.assertIn(OBSERVATION, hit)
         self.assertIn(HEAT_EXCHANGERS, hit)
+        self.assertIn(ROLL_FORMER, hit)
+        self.assertIn(CLUSTER_MILL, hit)
         self.assertNotIn("registry/tool-head-remainder", hit)
 
     def test_fluid_pipe_does_not_stale_tool_head_remainder(self) -> None:
@@ -229,6 +246,8 @@ class CapabilityLedgerTest(unittest.TestCase):
                 FLUID,
                 GENERIC,
                 CORE,
+                CLUSTER_MILL,
+                ROLL_FORMER,
             ],
             hit,
         )
@@ -241,31 +260,7 @@ class CapabilityLedgerTest(unittest.TestCase):
             side_effect=lambda revision, relative: (
                 previous
                 if relative.endswith("basic-transfer/capability.json")
-                else json.dumps(
-                    {
-                        "maturity": (
-                            "player_complete"
-                            if relative.endswith("item-network-core/capability.json")
-                            or relative.endswith("generic-network/core/capability.json")
-                            or relative.endswith("logistics-core/capability.json")
-                            or relative.endswith("display-cpu/capability.json")
-                            or relative.endswith("converter-catalog/capability.json")
-                            or relative.endswith("batteries/capability.json")
-                            or relative.endswith("transformers/capability.json")
-                            or relative.endswith(
-                                "nuclear-fission-survival/capability.json"
-                            )
-                            or relative.endswith(
-                                "nuclear-fission-hot-fluids/capability.json"
-                            )
-                            or relative.endswith(
-                                "nuclear-fission-observation-safety/capability.json"
-                            )
-                            or relative.endswith("heat-exchangers/capability.json")
-                            else "frozen"
-                        )
-                    }
-                )
+                else json.dumps({"maturity": "player_complete"})
             ),
         ):
             self.assertEqual(
@@ -278,30 +273,7 @@ class CapabilityLedgerTest(unittest.TestCase):
             ledger,
             "_git_show",
             side_effect=lambda revision, relative: json.dumps(
-                {
-                    "maturity": (
-                        "player_complete"
-                        if relative.endswith("basic-transfer/capability.json")
-                        or relative.endswith("item-network-core/capability.json")
-                        or relative.endswith("generic-network/core/capability.json")
-                        or relative.endswith("logistics-core/capability.json")
-                        or relative.endswith("display-cpu/capability.json")
-                        or relative.endswith("converter-catalog/capability.json")
-                        or relative.endswith("batteries/capability.json")
-                        or relative.endswith("transformers/capability.json")
-                        or relative.endswith(
-                            "nuclear-fission-survival/capability.json"
-                        )
-                        or relative.endswith(
-                            "nuclear-fission-hot-fluids/capability.json"
-                        )
-                        or relative.endswith(
-                            "nuclear-fission-observation-safety/capability.json"
-                        )
-                        or relative.endswith("heat-exchangers/capability.json")
-                        else "frozen"
-                    )
-                }
+                {"maturity": "player_complete"}
             ),
         ):
             self.assertEqual([], ledger.player_complete_promotions("HEAD"))

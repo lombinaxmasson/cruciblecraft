@@ -218,80 +218,26 @@ class VerificationProfileTest(unittest.TestCase):
             if row["name"] == "build_player_complete"
         )
         self.assertEqual("tools/build_player_complete.py", row["script"])
-        self.assertEqual(
-            [
-                "--run",
-                "--capability",
-                "logistics/fluid-network/basic-transfer",
-            ],
-            row["ordinary_args"],
-        )
+        self.assertEqual(["--run", "--all"], row["ordinary_args"])
         self.assertEqual([], row.get("environment_args") or [])
         self.assertEqual(
             [
                 verify_entry.sys.executable,
                 "tools/build_player_complete.py",
                 "--run",
-                "--capability",
-                "logistics/fluid-network/basic-transfer",
+                "--all",
             ],
             verify_entry.builder_command(row),
         )
-        item_row = next(
-            row
-            for row in self.builder_policy["builders"]
-            if row["name"] == "build_player_complete_item"
-        )
-        self.assertEqual("tools/build_player_complete.py", item_row["script"])
+        names = [item["name"] for item in self.builder_policy["builders"]]
+        self.assertNotIn("build_player_complete_item", names)
         self.assertEqual(
-            [
-                "--run",
-                "--capability",
-                "logistics/item-network-core",
-            ],
-            item_row["ordinary_args"],
+            ["build_player_complete"],
+            self.profiles["profiles"]["player-complete"]["builders"],
         )
-        generic_row = next(
-            row
-            for row in self.builder_policy["builders"]
-            if row["name"] == "build_player_complete_generic"
-        )
-        self.assertEqual("tools/build_player_complete.py", generic_row["script"])
-        self.assertEqual(
-            [
-                "--run",
-                "--capability",
-                "logistics/generic-network/core",
-            ],
-            generic_row["ordinary_args"],
-        )
-        core_row = next(
-            row
-            for row in self.builder_policy["builders"]
-            if row["name"] == "build_player_complete_core"
-        )
-        self.assertEqual("tools/build_player_complete.py", core_row["script"])
-        self.assertEqual(
-            [
-                "--run",
-                "--capability",
-                "logistics/logistics-core",
-            ],
-            core_row["ordinary_args"],
-        )
-        display_row = next(
-            row
-            for row in self.builder_policy["builders"]
-            if row["name"] == "build_player_complete_display"
-        )
-        self.assertEqual("tools/build_player_complete.py", display_row["script"])
-        self.assertEqual(
-            [
-                "--run",
-                "--capability",
-                "logistics/display-cpu",
-            ],
-            display_row["ordinary_args"],
+        self.assertIn(
+            "tools/capabilities/**",
+            self.profiles["profiles"]["player-complete"]["owned_paths"],
         )
 
     def test_semantic_profile_requires_datagen_and_junit(self) -> None:
@@ -560,7 +506,7 @@ class VerificationProfileTest(unittest.TestCase):
         self.assertNotIn("check_zero_milestone_names", policy_names)
         self.assertNotIn("build_semantic_recipes", policy_names)
         self.assertEqual(
-            ["material_form_authority"],
+            ["material_form_authority", "build_component_rules"],
             self.profiles["profiles"]["recipe-generators"]["builders"],
         )
 

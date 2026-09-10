@@ -1,0 +1,53 @@
+{
+  "schema_version": 2,
+  "slug": "machines/roll-former",
+  "title": "Roll Former",
+  "maturity": "player_complete",
+  "workflow": "accepted",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/gametest/RollFormerGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/machine/processing/prep/RollFormerPrepSpec.java",
+    "src/main/resources/assets/cruciblecraft/gt6_rollformer_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/rollformer/**",
+    "src/main/resources/data/cruciblecraft_wave_machines_roll_former/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/rollformer/**",
+    "tools/capabilities/machines/roll-former/**",
+    "tools/waves/machines/roll-former/**",
+    "tools/tests/test_roll_former.py"
+  ],
+  "depends_on": [
+    "energy/heat-exchangers"
+  ],
+  "profiles": [
+    "capability-runtime",
+    "player-complete"
+  ],
+  "wave_slug": "machines/roll-former",
+  "player_signoff": "tools/capabilities/machines/roll-former/player_signoff.json",
+  "required_test_ids": [
+    "bronzeHostRunsFirstLiveRecipe",
+    "fourHostsAreSurvivalCraftable",
+    "liveMapPublishesTwentySixSelectedRows",
+    "playerSurfaceIsRegistered"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:rollformer:20131-20134",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:rollformer",
+        "cruciblecraft:steel_rollformer",
+        "cruciblecraft:titanium_rollformer",
+        "cruciblecraft:tungstensteel_rollformer"
+      ],
+      "reason": "GT6 MultiTileEntityBasicMachine 20131-20134. RM.RollFormer, RU, left in / right out / back energy. Not rolling mill 20111-20114."
+    },
+    {
+      "semantic_key": "recipe:rollformer:rail_gt",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "Two gt.recipe.rollformer dump rows need unmapped rail_gt forms. Do not stand in tungsten_carbide or obsidian_steel rails."
+    }
+  ],
+  "note": "26 selected exact rows; 2 unmapped rail_gt rows explicitly_blocked. Opening-15 kinetic set stays frozen."
+}

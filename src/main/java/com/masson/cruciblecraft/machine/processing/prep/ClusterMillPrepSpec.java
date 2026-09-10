@@ -15,8 +15,9 @@ import net.minecraft.resources.ResourceLocation;
  * Prep-only source shape for the GT6 Cluster Mill.
  *
  * <p>This spec deliberately is not referenced by any registry. Landing will
- * bind the same shape to {@code ModRecipeMaps.CLUSTERMILL} after the prep card
- * is promoted and the missing quadruple-casing forms have an exact expression.
+ * bind the same shape to {@code ModRecipeMaps.CLUSTERMILL}. Item IO is left in
+ * / right out; energy is back, matching GT6 {@code SBIT_L}/{@code SBIT_R}/
+ * {@code SBIT_B}.
  */
 public final class ClusterMillPrepSpec {
     private static final ResourceLocation ID =
@@ -52,17 +53,22 @@ public final class ClusterMillPrepSpec {
                     4_096L,
                     256L),
             new ProcessingMachineSpec.SidedIoPolicy(
-                    (front, side) -> side == null
-                            ? ProcessingMachineSpec.CapabilityAccess.NONE
-                            : side == front
-                                    ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
-                                    : ProcessingMachineSpec.CapabilityAccess.INPUT,
-                    (front, side) ->
-                            ProcessingMachineSpec.CapabilityAccess.NONE,
-                    (front, side) -> side != null
-                            && side == front.getOpposite()
-                                    ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                    : ProcessingMachineSpec.CapabilityAccess.NONE),
+                    (front, side) -> {
+                        if (side == null) {
+                            return ProcessingMachineSpec.CapabilityAccess.NONE;
+                        }
+                        if (side == front.getCounterClockWise()) {
+                            return ProcessingMachineSpec.CapabilityAccess.INPUT;
+                        }
+                        if (side == front.getClockWise()) {
+                            return ProcessingMachineSpec.CapabilityAccess.OUTPUT;
+                        }
+                        return ProcessingMachineSpec.CapabilityAccess.NONE;
+                    },
+                    (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE,
+                    (front, side) -> side != null && side == front.getOpposite()
+                            ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                            : ProcessingMachineSpec.CapabilityAccess.NONE),
             ClusterMillPrepSpec::validate,
             ProcessingMachineSpec.BufferPolicy.PAUSE,
             Gt6BasicMachineGui.ui(

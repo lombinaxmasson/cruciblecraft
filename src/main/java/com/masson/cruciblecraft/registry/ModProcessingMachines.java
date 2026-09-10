@@ -144,6 +144,8 @@ public final class ModProcessingMachines {
                     false,
                     EnergyType.KINETIC_ROTATION,
                     1, 1, 0, 0);
+    public static final ProcessingMachineSpec ROLLFORMER = rollFormerSpec();
+    public static final ProcessingMachineSpec CLUSTERMILL = clusterMillSpec();
     public static final ProcessingMachineSpec ROLLBENDER =
             componentSpec(
                     "rollbender",
@@ -425,7 +427,8 @@ public final class ModProcessingMachines {
                                             CHEMICAL_HOST_MACHINES,
                                             HYDROCARBON_PROCESSING_MACHINES)
                                     .flatMap(List::stream),
-                            java.util.stream.Stream.of(LASER_ENGRAVER))
+                            java.util.stream.Stream.of(
+                                    LASER_ENGRAVER, ROLLFORMER, CLUSTERMILL))
                     .distinct()
                     .toList();
     private static final Map<ResourceLocation, ProcessingMachineSpec> BY_ID =
@@ -1053,6 +1056,82 @@ public final class ModProcessingMachines {
             return true;
         }
         return false;
+    }
+
+    private static ProcessingMachineSpec rollFormerSpec() {
+        return new ProcessingMachineSpec(
+                id("rollformer"),
+                id("rollformer"),
+                () -> ModRecipeMaps.ROLLFORMER,
+                new ProcessingMachineSpec.SlotLayout(2, List.of(0), List.of(1)),
+                new ProcessingMachineSpec.TankLayout(List.of(), List.of()),
+                new ProcessingMachineSpec.EnergySpec(
+                        EnergyType.KINETIC_ROTATION,
+                        ProcessingMachineSpec.EnergyMode.BUFFERED,
+                        4_096L,
+                        256L),
+                new ProcessingMachineSpec.SidedIoPolicy(
+                        (front, side) -> {
+                            if (side == null) {
+                                return ProcessingMachineSpec.CapabilityAccess.NONE;
+                            }
+                            if (side == front.getCounterClockWise()) {
+                                return ProcessingMachineSpec.CapabilityAccess.INPUT;
+                            }
+                            if (side == front.getClockWise()) {
+                                return ProcessingMachineSpec.CapabilityAccess.OUTPUT;
+                            }
+                            return ProcessingMachineSpec.CapabilityAccess.NONE;
+                        },
+                        (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE,
+                        (front, side) -> side != null && side == front.getOpposite()
+                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                                : ProcessingMachineSpec.CapabilityAccess.NONE),
+                recipe -> validateComponentRecipe(
+                        recipe, 1, false, false, false),
+                ProcessingMachineSpec.BufferPolicy.PAUSE,
+                Gt6BasicMachineGui.ui(
+                        1, 1, 0, 0,
+                        1, 1, 0, 0,
+                        PROCESSING_STATUSES));
+    }
+
+    private static ProcessingMachineSpec clusterMillSpec() {
+        return new ProcessingMachineSpec(
+                id("clustermill"),
+                id("clustermill"),
+                () -> ModRecipeMaps.CLUSTERMILL,
+                new ProcessingMachineSpec.SlotLayout(2, List.of(0), List.of(1)),
+                new ProcessingMachineSpec.TankLayout(List.of(), List.of()),
+                new ProcessingMachineSpec.EnergySpec(
+                        EnergyType.KINETIC_ROTATION,
+                        ProcessingMachineSpec.EnergyMode.BUFFERED,
+                        4_096L,
+                        256L),
+                new ProcessingMachineSpec.SidedIoPolicy(
+                        (front, side) -> {
+                            if (side == null) {
+                                return ProcessingMachineSpec.CapabilityAccess.NONE;
+                            }
+                            if (side == front.getCounterClockWise()) {
+                                return ProcessingMachineSpec.CapabilityAccess.INPUT;
+                            }
+                            if (side == front.getClockWise()) {
+                                return ProcessingMachineSpec.CapabilityAccess.OUTPUT;
+                            }
+                            return ProcessingMachineSpec.CapabilityAccess.NONE;
+                        },
+                        (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE,
+                        (front, side) -> side != null && side == front.getOpposite()
+                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                                : ProcessingMachineSpec.CapabilityAccess.NONE),
+                recipe -> validateComponentRecipe(
+                        recipe, 1, false, false, false),
+                ProcessingMachineSpec.BufferPolicy.PAUSE,
+                Gt6BasicMachineGui.ui(
+                        1, 1, 0, 0,
+                        1, 1, 0, 0,
+                        PROCESSING_STATUSES));
     }
 
     private static ProcessingMachineSpec laserSpec() {

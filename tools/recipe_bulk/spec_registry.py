@@ -86,6 +86,7 @@ def derive_wave_spec(slug: str) -> WaveSpec:
     source_path = census.ROOT / str(outputs["source"])
     wave_root = source_path.parent
     host = str(document["host"])
+    path_prefix = host.split(":", 1)[-1]
     return WaveSpec(
         wave_id=slug,
         archetype="lock_relation_set",
@@ -108,6 +109,7 @@ def derive_wave_spec(slug: str) -> WaveSpec:
         wave_slug=slug,
         cohort=slug.split("/", 1)[-1].replace("-", "_"),
         representation="exact_or_exact_multi",
+        path_prefix=path_prefix,
         dry_run_without_lock=False,
     )
 

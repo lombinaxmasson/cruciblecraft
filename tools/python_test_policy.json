@@ -35,13 +35,18 @@
     "test_machine_delivery",
     "test_cluster_mill_prep",
     "test_prep_machines",
+    "test_roll_former",
+    "test_cluster_mill",
     "test_capability_ledger",
+    "test_project_status",
+    "test_capability_close",
     "test_registry_identity",
     "test_player_complete",
     "test_block_art",
     "test_multiitem_art",
     "test_generated_resource_gate",
-    "test_jade_observation"
+    "test_jade_observation",
+    "test_build_component_rules"
   ],
   "affected_rules": [
     {
@@ -182,6 +187,18 @@
     },
     {
       "paths": [
+        "tools/build_component_rules.py",
+        "tools/component_rule_sources/**",
+        "tools/component_rule_manifest.json",
+        "src/component_rule_generated/**",
+        "tools/tests/test_build_component_rules.py"
+      ],
+      "test_modules": [
+        "test_build_component_rules"
+      ]
+    },
+    {
+      "paths": [
         "tools/recipe_bulk/**",
         "tools/build_recipe_bulk.py",
         "tools/build_recipe_fresh.py",
@@ -206,6 +223,21 @@
         "test_machine_delivery",
         "test_cluster_mill_prep",
         "test_prep_machines"
+      ]
+    },
+    {
+      "paths": [
+        "tools/tests/test_roll_former.py",
+        "tools/tests/test_cluster_mill.py",
+        "tools/waves/machines/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/RollFormerGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/ClusterMillGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_machines_roll_former/**",
+        "src/main/resources/data/cruciblecraft_wave_machines_cluster_mill/**"
+      ],
+      "test_modules": [
+        "test_roll_former",
+        "test_cluster_mill"
       ]
     },
     {
@@ -253,10 +285,15 @@
         "tools/capabilities/**",
         "tools/capability_ledger.py",
         "tools/build_capability_ledger.py",
+        "tools/project_status.py",
+        "tools/build_project_status.py",
+        "tools/close_capability.py",
+        "tools/tests/test_capability_ledger.py",
+        "tools/tests/test_project_status.py",
+        "tools/tests/test_capability_close.py",
         "tools/registry_identity.py",
         "tools/build_registry_identity.py",
         "tools/registry_identity_manifest.json",
-        "tools/tests/test_capability_ledger.py",
         "tools/tests/test_registry_identity.py",
         "src/main/java/com/masson/cruciblecraft/logistics/fluidnet/**",
         "src/main/java/com/masson/cruciblecraft/content/blockentity/FluidPipeBlockEntity.java",
@@ -361,6 +398,8 @@
       ],
       "test_modules": [
         "test_capability_ledger",
+        "test_project_status",
+        "test_capability_close",
         "test_logistics_cover_net_remainder",
         "test_logistics_core",
         "test_display_cpu",
@@ -372,7 +411,9 @@
         "test_energy_nuclear_fission_hot_fluids",
         "test_energy_nuclear_fission_observation_safety",
         "test_registry_identity",
-        "test_jade_observation"
+        "test_jade_observation",
+        "test_roll_former",
+        "test_cluster_mill"
       ]
     },
     {
@@ -380,18 +421,7 @@
         "tools/player_complete.py",
         "tools/build_player_complete.py",
         "tools/tests/test_player_complete.py",
-        "tools/capabilities/logistics/fluid-network/basic-transfer/**",
-        "tools/capabilities/logistics/item-network-core/**",
-        "tools/capabilities/logistics/generic-network/core/**",
-        "tools/capabilities/logistics/logistics-core/**",
-        "tools/capabilities/logistics/display-cpu/**",
-        "tools/capabilities/energy/converter-catalog/**",
-        "tools/capabilities/energy/batteries/**",
-        "tools/capabilities/energy/heat-exchangers/**",
-        "tools/capabilities/energy/transformers/**",
-        "tools/capabilities/energy/nuclear-fission-survival/**",
-        "tools/capabilities/energy/nuclear-fission-hot-fluids/**",
-        "tools/capabilities/energy/nuclear-fission-observation-safety/**",
+        "tools/capabilities/**",
         "src/main/java/com/masson/cruciblecraft/verification/PlayerCompleteSmoke.java",
         "src/main/resources/cruciblecraft/player_complete_surfaces.json",
         "src/main/java/com/masson/cruciblecraft/client/ClientSmoke.java",

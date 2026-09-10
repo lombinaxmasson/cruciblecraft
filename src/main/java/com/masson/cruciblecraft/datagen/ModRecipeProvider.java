@@ -985,6 +985,42 @@ public final class ModRecipeProvider extends RecipeProvider {
             String kind,
             String id) {
         Item gear = materialItem(material, MaterialPrefixes.GEAR);
+        if ("clustermill".equals(kind)) {
+            Item smallGear = materialItem(material, MaterialPrefixes.SMALL_GEAR);
+            Item quadruple = materialItem(
+                    material, MaterialPrefixes.MACHINE_CASING_QUADRUPLE);
+            Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+            ingredients.put("S", Ingredient.of(smallGear));
+            ingredients.put("G", Ingredient.of(gear));
+            ingredients.put("M", Ingredient.of(quadruple));
+            // GT6 Loader_MultiTileEntities.java:1367 {"SSS","wGh","SMS"}.
+            acceptShapedCatalyst(
+                    output,
+                    "machines/" + id,
+                    List.of("SSS", "wGh", "SMS"),
+                    ingredients,
+                    Map.of(
+                            "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()),
+                            "h", Ingredient.of(ModItems.SMITHING_HAMMER.get())),
+                    new ItemStack(result));
+            return;
+        }
+        if ("rollformer".equals(kind)) {
+            Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+            ingredients.put("G", Ingredient.of(gear));
+            ingredients.put("M", Ingredient.of(casing));
+            // GT6 Loader_MultiTileEntities.java:1361 {"wG ","GMG"," Gh"}.
+            acceptShapedCatalyst(
+                    output,
+                    "machines/" + id,
+                    List.of("wG ", "GMG", " Gh"),
+                    ingredients,
+                    Map.of(
+                            "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()),
+                            "h", Ingredient.of(ModItems.SMITHING_HAMMER.get())),
+                    new ItemStack(result));
+            return;
+        }
         ShapedRecipeBuilder builder =
                 ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
                         .define('C', casing)

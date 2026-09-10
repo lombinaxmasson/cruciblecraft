@@ -430,6 +430,18 @@ public final class ModBlocks {
             STEEL_ROLLINGMILL = tieredProcessing("steel_rollingmill");
     public static final DeferredBlock<ProcessingMachineBlock>
             TITANIUM_ROLLINGMILL = tieredProcessing("titanium_rollingmill");
+    public static final DeferredBlock<ProcessingMachineBlock> ROLLFORMER =
+            tieredProcessing("rollformer");
+    public static final DeferredBlock<ProcessingMachineBlock>
+            STEEL_ROLLFORMER = tieredProcessing("steel_rollformer");
+    public static final DeferredBlock<ProcessingMachineBlock>
+            TITANIUM_ROLLFORMER = tieredProcessing("titanium_rollformer");
+    public static final DeferredBlock<ProcessingMachineBlock> CLUSTERMILL =
+            tieredProcessing("clustermill");
+    public static final DeferredBlock<ProcessingMachineBlock>
+            STEEL_CLUSTERMILL = tieredProcessing("steel_clustermill");
+    public static final DeferredBlock<ProcessingMachineBlock>
+            TITANIUM_CLUSTERMILL = tieredProcessing("titanium_clustermill");
     public static final DeferredBlock<ProcessingMachineBlock> ROLLBENDER =
             tieredProcessing("rollbender");
     public static final DeferredBlock<ProcessingMachineBlock> WIREMILL =

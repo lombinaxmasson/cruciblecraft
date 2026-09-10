@@ -760,12 +760,34 @@ def run_fresh_capability(
     return errors
 
 
+def player_complete_slugs() -> list[str]:
+    """Return capability slugs discovered from the player-complete profile."""
+    compiled = capability_ledger.compile_ledger()
+    return list(compiled["profiles"].get("player-complete") or [])
+
+
+def resolve_slugs(capability: str | None, all_flag: bool) -> list[str]:
+    if all_flag == bool(capability):
+        raise ValueError("choose exactly one of --capability or --all")
+    if capability:
+        return [capability]
+    slugs = player_complete_slugs()
+    if not slugs:
+        raise ValueError("player-complete profile has no capabilities")
+    return slugs
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     modes = parser.add_mutually_exclusive_group(required=True)
     modes.add_argument("--check", action="store_true")
     modes.add_argument("--run", action="store_true")
-    parser.add_argument("--capability", required=True)
+    parser.add_argument("--capability")
+    parser.add_argument(
+        "--all",
+        action="store_true",
+        help="run every capability on the player-complete profile",
+    )
     parser.add_argument(
         "--offline",
         action="store_true",
@@ -788,24 +810,37 @@ def main(argv: list[str] | None = None) -> int:
     )
     args = parser.parse_args(argv)
     try:
+        slugs = resolve_slugs(args.capability, args.all)
+    except ValueError as error:
+        parser.error(str(error))
+        return 2
+    if args.all and not args.run:
+        parser.error("--all requires --run")
+    try:
+        errors: list[str] = []
         if args.run:
             if args.gametest_receipt or args.client_receipt:
                 parser.error("--run creates and consumes its own temporary receipts")
-            errors = run_fresh_capability(
-                args.capability,
-                offline=args.offline,
-                client=args.client,
-            )
+            for slug in slugs:
+                errors.extend(
+                    run_fresh_capability(
+                        slug,
+                        offline=args.offline,
+                        client=args.client,
+                    )
+                )
+                if errors:
+                    break
         else:
             if args.gametest_receipt is None:
                 print(
-                    f"{args.capability}: fresh GameTest receipt required; "
+                    f"{slugs[0]}: fresh GameTest receipt required; "
                     "pass --gametest-receipt PATH",
                     file=sys.stderr,
                 )
                 return 1
             errors = check_capability(
-                args.capability,
+                slugs[0],
                 gametest_receipt=args.gametest_receipt,
                 client_receipt=args.client_receipt,
                 require_client=args.client,
@@ -816,7 +851,9 @@ def main(argv: list[str] | None = None) -> int:
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1
-    print(f"player-complete verified by fresh execution: {args.capability}")
+    print(
+        "player-complete verified by fresh execution: " + ", ".join(slugs)
+    )
     return 0
 
 

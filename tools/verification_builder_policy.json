@@ -40,110 +40,17 @@
     {
       "name": "build_player_complete",
       "script": "tools/build_player_complete.py",
-      "ordinary_args": [
-        "--run",
-        "--capability",
-        "logistics/fluid-network/basic-transfer"
-      ]
+      "ordinary_args": ["--run", "--all"]
     },
     {
-      "name": "build_player_complete_item",
-      "script": "tools/build_player_complete.py",
-      "ordinary_args": [
-        "--run",
-        "--capability",
-        "logistics/item-network-core"
-      ]
+      "name": "build_project_status",
+      "script": "tools/build_project_status.py",
+      "ordinary_args": ["--check"]
     },
     {
-      "name": "build_player_complete_generic",
-      "script": "tools/build_player_complete.py",
-      "ordinary_args": [
-        "--run",
-        "--capability",
-        "logistics/generic-network/core"
-      ]
-    },
-    {
-      "name": "build_player_complete_core",
-      "script": "tools/build_player_complete.py",
-      "ordinary_args": [
-        "--run",
-        "--capability",
-        "logistics/logistics-core"
-      ]
-    },
-    {
-      "name": "build_player_complete_display",
-      "script": "tools/build_player_complete.py",
-      "ordinary_args": [
-        "--run",
-        "--capability",
-        "logistics/display-cpu"
-      ]
-    },
-    {
-      "name": "build_player_complete_converter_catalog",
-      "script": "tools/build_player_complete.py",
-      "ordinary_args": [
-        "--run",
-        "--capability",
-        "energy/converter-catalog"
-      ]
-    },
-    {
-      "name": "build_player_complete_batteries",
-      "script": "tools/build_player_complete.py",
-      "ordinary_args": [
-        "--run",
-        "--capability",
-        "energy/batteries"
-      ]
-    },
-    {
-      "name": "build_player_complete_transformers",
-      "script": "tools/build_player_complete.py",
-      "ordinary_args": [
-        "--run",
-        "--capability",
-        "energy/transformers"
-      ]
-    },
-    {
-      "name": "build_player_complete_nuclear",
-      "script": "tools/build_player_complete.py",
-      "ordinary_args": [
-        "--run",
-        "--capability",
-        "energy/nuclear-fission-survival"
-      ]
-    },
-    {
-      "name": "build_player_complete_nuclear_hot_fluids",
-      "script": "tools/build_player_complete.py",
-      "ordinary_args": [
-        "--run",
-        "--capability",
-        "energy/nuclear-fission-hot-fluids"
-      ]
-    },
-    {
-      "name": "build_player_complete_nuclear_observation_safety",
-      "script": "tools/build_player_complete.py",
-      "ordinary_args": [
-        "--run",
-        "--capability",
-        "energy/nuclear-fission-observation-safety"
-      ]
-    },
-    {
-      "name": "build_player_complete_heat_exchangers",
-      "script": "tools/build_player_complete.py",
-      "ordinary_args": [
-        "--run",
-        "--capability",
-        "energy/heat-exchangers"
-      ]
+      "name": "build_component_rules",
+      "script": "tools/build_component_rules.py",
+      "ordinary_args": ["--check"]
     },
     {
       "name": "build_recipe_fresh",

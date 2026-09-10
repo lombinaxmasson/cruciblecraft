@@ -46,11 +46,14 @@ class ClusterMillPrepSpecTest {
         assertEquals(256L, spec.energy().maxPacket());
         Direction front = Direction.NORTH;
         assertEquals(
-                ProcessingMachineSpec.CapabilityAccess.OUTPUT,
-                spec.sidedIo().items().resolve(front, front));
-        assertEquals(
                 ProcessingMachineSpec.CapabilityAccess.INPUT,
                 spec.sidedIo().items().resolve(front, Direction.WEST));
+        assertEquals(
+                ProcessingMachineSpec.CapabilityAccess.OUTPUT,
+                spec.sidedIo().items().resolve(front, Direction.EAST));
+        assertEquals(
+                ProcessingMachineSpec.CapabilityAccess.NONE,
+                spec.sidedIo().items().resolve(front, front));
         assertEquals(
                 ProcessingMachineSpec.CapabilityAccess.NONE,
                 spec.sidedIo().fluids().resolve(front, Direction.WEST));

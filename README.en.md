@@ -8,6 +8,7 @@ recipe, energy, logistics, and world-generation systems to modern Minecraft,
 backed by a maintainable and verifiable data-driven implementation.
 
 - [Player guide](docs/current/player-guide.md)
+- [Project status](docs/current/project-status.md)
 - [Roadmap and current progress](docs/current/roadmap.md)
 - [Issue tracker](https://github.com/icodestuljh/cruciblecraft/issues)
 
@@ -117,10 +118,8 @@ players can use it end to end:
   persistence, and verification paths are complete
 
 The roadmap counts only `player_complete` capabilities as player-facing
-implementation progress. Basic fluid-network transfer, item-network
-storage/import/export covers, generic-network storage/import/export
-covers, Logistics Core plus Dump, and Display CPU monitors have reached
-that state.
+implementation progress. The generated completion set is
+[project status](docs/current/project-status.md).
 See the [capability delivery workflow](docs/current/capability-delivery-workflow.md)
 for the complete contract.
 

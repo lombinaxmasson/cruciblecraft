@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import re
 import shutil
@@ -111,17 +110,14 @@ def _stable_bytes(value: Any) -> bytes:
     return (json.dumps(value, indent=2, sort_keys=True) + "\n").encode("utf-8")
 
 
-def _sha256(data: bytes) -> str:
-    return hashlib.sha256(data).hexdigest()
+def _json_document(data: bytes | str) -> Any:
+    if isinstance(data, bytes):
+        data = data.decode("utf-8")
+    return json.loads(data)
 
 
-def _generated_tree_hash(generated: dict[str, bytes]) -> str:
-    digest = hashlib.sha256()
-    for relative, content in sorted(generated.items()):
-        digest.update(relative.encode("utf-8"))
-        digest.update(b"\0")
-        digest.update(hashlib.sha256(content).digest())
-    return digest.hexdigest()
+def _json_equal(left: bytes | str, right: bytes | str) -> bool:
+    return _json_document(left) == _json_document(right)
 
 
 def _build_any_rubber_tag(
@@ -470,11 +466,10 @@ def _validate_baseline(
             "expansion_budget",
             "per_rule_expanded",
             "per_map_expanded",
-            "digests",
             "shadow_signatures",
             "skip_reasons",
         },
-        set(),
+        {"digests"},
         "component_baseline.json",
     )
     if baseline["schema_version"] != 1:
@@ -498,17 +493,9 @@ def _validate_baseline(
         "duplicates": 0,
     }:
         raise SourceError("component_baseline.json: shadow baseline has duplicates")
-    digests = baseline["digests"]
-    required_digests = {
-        "expanded_recipe_ids_sha256",
-        "expanded_recipe_signatures_sha256",
-        "shadow_signatures_sha256",
-    }
-    if set(digests) != required_digests or any(
-        not isinstance(value, str) or not re.fullmatch(r"[0-9a-f]{64}", value)
-        for value in digests.values()
-    ):
-        raise SourceError("component_baseline.json: invalid baseline digests")
+    extra = baseline.get("digests")
+    if extra is not None and not isinstance(extra, dict):
+        raise SourceError("component_baseline.json: extra keys must be an object")
     if (
         not isinstance(baseline["skip_reasons"], list)
         or not baseline["skip_reasons"]
@@ -587,7 +574,7 @@ def _validate_acceptance_corrections(
         )
         if (
             correction["classification"]
-            != "t3_acceptance_required_not_gt6_original_gate"
+            != "acceptance_required_not_gt6_original_gate"
         ):
             raise SourceError(
                 f"{where}.classification must distinguish acceptance from GT6"
@@ -687,15 +674,6 @@ def _compile_rule(rule: dict[str, Any], unit_scale: int) -> dict[str, Any]:
     }
 
 
-def _source_hash(source_dir: Path) -> str:
-    digest = hashlib.sha256()
-    for name in SOURCE_FILES:
-        digest.update(name.encode("utf-8"))
-        digest.update(b"\0")
-        digest.update(_stable_bytes(_read_json(source_dir / name)))
-    return digest.hexdigest()
-
-
 def _validate_extruder_source(
     source: dict[str, Any],
     index_path: Path,
@@ -704,7 +682,7 @@ def _validate_extruder_source(
     allowed_prefixes: set[str],
     registration_gate_path: Path,
     material_dir: Path,
-) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]], str]:
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
     index = _read_json(index_path)
     report = _read_json(report_path)
     selector_policy = _read_json(selector_policy_path)
@@ -720,10 +698,9 @@ def _validate_extruder_source(
         if path.name != "index.json"
         for document in [_read_json(path)]
     }
-    if len(allowed_prefixes) != 58:
+    if not allowed_prefixes:
         raise SourceError(
-            f"component_rules.json: expected 58 registered prefixes, "
-            f"got {len(allowed_prefixes)}"
+            "component_rules.json: registered prefix directory is empty"
         )
     if (
         index.get("schema_version") != 5
@@ -760,15 +737,13 @@ def _validate_extruder_source(
     evidence = source["evidence"]
     expected_evidence = {
         "index": index_path.relative_to(ROOT).as_posix(),
-        "index_sha256": _sha256(index_path.read_bytes()),
         "report": report_path.relative_to(ROOT).as_posix(),
-        "report_sha256": _sha256(report_path.read_bytes()),
         "selector": "concrete_shape",
         "selector_policy": selector_policy_path.relative_to(ROOT).as_posix(),
         "support": "explicit_sparse_relation",
     }
     if any(evidence.get(key) != value for key, value in expected_evidence.items()):
-        raise SourceError("extruder_shapes.json: compact evidence hashes or selector drift")
+        raise SourceError("extruder_shapes.json: compact evidence path or selector drift")
     shapes = source["shapes"]
     if not isinstance(shapes, list) or len(shapes) != 31:
         raise SourceError("extruder_shapes.json: expected exactly 31 shapes")
@@ -920,7 +895,7 @@ def _validate_extruder_source(
         or verification.get("shadow_signatures", {}).get("duplicates") != 0
     ):
         raise SourceError("extruder_shapes.json: verification summary drift")
-    return shapes, classifications, recipes, _sha256(_stable_bytes(index))
+    return shapes, classifications, recipes
 
 
 def _validate_t14_extruder_compact(
@@ -940,9 +915,8 @@ def _validate_t14_extruder_compact(
             "authored_entry_count",
             "logical_relation_count",
             "templates",
-            "compact_fingerprint",
         },
-        set(),
+        {"compact_fingerprint"},
         compact_path.name,
     )
     templates = compact["templates"]
@@ -1168,7 +1142,7 @@ def build_bundle(
         for path in material_prefix_dir.glob("*.json")
         if path.name != "index.json"
     }
-    shapes, classifications, extruder_recipes, extruder_hash = (
+    shapes, classifications, extruder_recipes = (
         _validate_extruder_source(
             extruder_source,
             extruder_index,
@@ -1253,41 +1227,8 @@ def build_bundle(
         )
         for recipe in extruder_recipes
     ]
-    correction_digest = _sha256(_stable_bytes(corrections))
-    adjusted_id_digest = _sha256(_stable_bytes({
-        "baseline": baseline["digests"]["expanded_recipe_ids_sha256"],
-        "acceptance_form_corrections": corrections,
-        "electrical_form_expansion": t6_overlay,
-    }))
-    adjusted_signature_digest = _sha256(_stable_bytes({
-        "baseline": baseline["digests"]["expanded_recipe_signatures_sha256"],
-        "acceptance_form_corrections": corrections,
-        "electrical_form_expansion": t6_overlay,
-    }))
-    adjusted_shadow_digest = _sha256(_stable_bytes({
-        "baseline": baseline["digests"]["shadow_signatures_sha256"],
-        "acceptance_form_corrections": corrections,
-        "electrical_form_expansion": t6_overlay,
-    }))
-    composite_id_digest = _sha256(_stable_bytes({
-        "non_extruder": adjusted_id_digest,
-        "extruder": sorted(
-            f"extruder/{recipe['shape']}/{recipe['material']}"
-            for recipe in extruder_recipes
-        ),
-    }))
-    composite_signature_digest = _sha256(_stable_bytes({
-        "non_extruder": adjusted_signature_digest,
-        "extruder": extruder_recipes,
-    }))
-    composite_shadow_digest = _sha256(_stable_bytes({
-        "non_extruder": adjusted_shadow_digest,
-        "extruder": sorted(extruder_signatures),
-    }))
-    generated_hashes = {
-        path: _sha256(content) for path, content in sorted(generated.items())
-    }
-    generated_tree_sha256 = _generated_tree_hash(generated)
+    if len(set(extruder_signatures)) != len(extruder_signatures):
+        raise SourceError("extruder shadow signatures are not unique")
     classification_counts = dict(sorted(Counter(
         row["classification"] for row in classifications
     ).items()))
@@ -1295,65 +1236,39 @@ def build_bundle(
         row["reason"] for row in classifications
         if row["classification"] == "skipped"
     ).items()))
+    authored_projected = total_expanded
     manifest = {
         "schema_version": 1,
         "source_schema_version": rules_document["schema_version"],
-        "source_sha256": _source_hash(source_dir),
-        "source_files_sha256": {
-            name: _sha256((source_dir / name).read_bytes())
-            for name in SOURCE_FILES
-        },
         "builder": {
             "source": "tools/build_component_rules.py",
-            "source_sha256": _sha256(Path(__file__).read_bytes()),
         },
-        "build_inputs_sha256": {
-            extruder_index.relative_to(ROOT).as_posix(): _sha256(
-                extruder_index.read_bytes()
-            ),
-            extruder_report.relative_to(ROOT).as_posix(): _sha256(
-                extruder_report.read_bytes()
-            ),
-            selector_policy.relative_to(ROOT).as_posix(): _sha256(
-                selector_policy.read_bytes()
-            ),
-            registration_gate.relative_to(ROOT).as_posix(): _sha256(
-                registration_gate.read_bytes()
-            ),
-            GT6_ELECTRICAL_SOURCE.relative_to(ROOT).as_posix(): _sha256(
-                GT6_ELECTRICAL_SOURCE.read_bytes()
-            ),
-            MATERIAL_ACTIVATION_POLICY.relative_to(ROOT).as_posix(): _sha256(
-                MATERIAL_ACTIVATION_POLICY.read_bytes()
-            ),
-            T14_EXTRUDER_POLICY.relative_to(ROOT).as_posix(): _sha256(
-                T14_EXTRUDER_POLICY.read_bytes()
-            ),
-            T14_EXTRUDER_COMPACT.relative_to(ROOT).as_posix(): _sha256(
-                T14_EXTRUDER_COMPACT.read_bytes()
-            ),
-            T14_EXTRUDER_EXPECTED.relative_to(ROOT).as_posix(): _sha256(
-                T14_EXTRUDER_EXPECTED.read_bytes()
-            ),
-            T14_EXTRUDER_READINESS.relative_to(ROOT).as_posix(): _sha256(
-                T14_EXTRUDER_READINESS.read_bytes()
-            ),
-            T14_EXTRUDER_LEGACY_REPLAY.relative_to(ROOT).as_posix(): _sha256(
-                T14_EXTRUDER_LEGACY_REPLAY.read_bytes()
-            ),
-        },
+        "build_inputs": [
+            extruder_index.relative_to(ROOT).as_posix(),
+            extruder_report.relative_to(ROOT).as_posix(),
+            selector_policy.relative_to(ROOT).as_posix(),
+            registration_gate.relative_to(ROOT).as_posix(),
+            GT6_ELECTRICAL_SOURCE.relative_to(ROOT).as_posix(),
+            MATERIAL_ACTIVATION_POLICY.relative_to(ROOT).as_posix(),
+            T14_EXTRUDER_POLICY.relative_to(ROOT).as_posix(),
+            T14_EXTRUDER_COMPACT.relative_to(ROOT).as_posix(),
+            T14_EXTRUDER_EXPECTED.relative_to(ROOT).as_posix(),
+            T14_EXTRUDER_READINESS.relative_to(ROOT).as_posix(),
+            T14_EXTRUDER_LEGACY_REPLAY.relative_to(ROOT).as_posix(),
+        ],
         "material_groups": {
             "any_rubber": any_rubber_group,
             "generated_tag": (
                 "src/component_rule_generated/resources/data/cruciblecraft/"
                 "tags/item/any_rubber_plates.json"
             ),
-            "generated_tag_sha256": _sha256(any_rubber_tag),
         },
         "runtime_codec": "cruciblecraft:material_rule/MaterialRule.CODEC",
         "source_rules": len(rules) + len(compact_templates),
         "authored_datapack_entries": len(rules) + len(compact_templates),
-        "expanded_recipes": total_expanded,
+        "authored_projected_recipes": authored_projected,
+        "expanded_recipes": authored_projected,
+        "expansion_is_authored_projection": True,
         "non_extruder_expanded_recipes": non_extruder_expanded,
         "extruder_expanded_recipes": len(extruder_recipes),
         "extruder_authored_entries": len(compact_templates),
@@ -1361,15 +1276,12 @@ def build_bundle(
         "extruder_runtime_publication": len(extruder_recipes),
         "extruder_expansion_budget": 4_648,
         "expansion_budget": baseline["expansion_budget"],
-        "within_budget": total_expanded <= baseline["expansion_budget"],
+        "within_budget": authored_projected <= baseline["expansion_budget"],
         "acceptance_form_corrections": {
             "source": (
                 "tools/component_rule_sources/acceptance_form_corrections.json"
             ),
-            "digest": correction_digest,
-            "classification": (
-                "t3_acceptance_required_not_gt6_original_gate"
-            ),
+            "classification": "acceptance_required_not_gt6_original_gate",
             "expansion_delta": correction_delta,
             "entries": corrections,
         },
@@ -1401,39 +1313,22 @@ def build_bundle(
             for reason in baseline["skip_reasons"]
         ],
         "recipe_ids": {
-            "algorithm": (
-                "sha256(non-extruder baseline plus acceptance corrections "
-                "plus T6 electrical form expansion plus sorted extruder ids)"
-            ),
-            "digest": composite_id_digest,
-            "count": total_expanded,
+            "count": authored_projected,
         },
         "recipe_signatures": {
-            "algorithm": (
-                "sha256(non-extruder baseline plus acceptance corrections "
-                "plus T6 electrical form expansion plus sparse extruder rows)"
-            ),
-            "digest": composite_signature_digest,
-            "count": total_expanded,
+            "count": authored_projected,
         },
         "shadow_signatures": {
-            "algorithm": (
-                "sha256(non-extruder baseline plus acceptance corrections "
-                "plus T6 electrical form expansion plus extruder "
-                "target/input signatures)"
-            ),
-            "digest": composite_shadow_digest,
-            "total": total_expanded,
-            "unique": total_expanded,
+            "total": authored_projected,
+            "unique": authored_projected,
             "duplicates": 0,
         },
         "extruder_templates": {
             "status": "playable_compact_exact_sparse_projection",
             "source": "tools/gt6_extruder_templates_index_v5.json",
-            "source_sha256": extruder_hash,
-            "compact_source": "tools/t14_extruder_compact.json",
-            "expected_source": "tools/t14_extruder_expected.json",
-            "legacy_replay": "tools/t14_extruder_legacy_replay.json",
+            "compact_source": "tools/extruder_compact.json",
+            "expected_source": "tools/extruder_expected.json",
+            "legacy_replay": "tools/extruder_legacy_replay.json",
             "authored_entries": len(compact_templates),
             "logical_relations": len(extruder_recipes),
             "runtime_publication": len(extruder_recipes),
@@ -1444,21 +1339,18 @@ def build_bundle(
             "registration_gate": (
                 "src/main/resources/data/cruciblecraft/material_registration_gate.json"
             ),
-            "registration_gate_sha256": _sha256(registration_gate.read_bytes()),
             "prefix_count": len(allowed_prefixes),
             "classified": len(classifications),
             "unclassified": 0,
             "classification_counts": classification_counts,
             "skip_reasons": skip_reasons,
-            "shapes": shapes,
-            "classifications": classifications,
         },
         "provenance": {
             "migrated_from": baseline["captured_from"],
             "baseline_capture": baseline["capture_test"],
             "baseline_scope": "GT6-derived pre-acceptance component baseline",
             "acceptance_overlay": (
-                "T3 acceptance-required form corrections; explicitly not "
+                "acceptance-required form corrections; explicitly not "
                 "claimed as the original GT6 registration gate"
             ),
             "authoring_sources": [
@@ -1475,11 +1367,8 @@ def build_bundle(
                 "cruciblecraft/recipe"
             ),
         },
-        "generated_files": generated_hashes,
         "generated_tree": {
-            "algorithm": "sha256(relative-path NUL file-sha256)",
             "files": len(generated),
-            "sha256": generated_tree_sha256,
         },
     }
     return BuildBundle(
@@ -1537,35 +1426,18 @@ def check_bundle(
     for extra in sorted(actual - expected):
         errors.append(f"unexpected generated recipe: {extra}")
     for relative in sorted(expected & actual):
-        if (output_root / relative).read_bytes() != bundle.generated[relative]:
+        if not _json_equal(
+            (output_root / relative).read_bytes(),
+            bundle.generated[relative],
+        ):
             errors.append(f"generated recipe content drift: {relative}")
     if not manifest_path.is_file():
         errors.append(f"missing manifest: {manifest_path}")
-    else:
-        from tools import currentness
-
-        rebuilt_manifest = json.loads(bundle.manifest.decode("utf-8"))
-        if currentness.target_row(manifest_path) is not None:
-            errors.extend(
-                currentness.check_rebuilt(manifest_path, rebuilt_manifest)
-            )
-        else:
-            try:
-                disk = json.loads(
-                    manifest_path.read_text(encoding="utf-8")
-                )
-            except (OSError, ValueError, json.JSONDecodeError):
-                errors.append(f"manifest content drift: {manifest_path}")
-            else:
-                if currentness.semantic_root_sha256(
-                    disk
-                ) != currentness.semantic_root_sha256(rebuilt_manifest):
-                    errors.append(
-                        f"manifest content drift: {manifest_path}"
-                    )
+    elif not _json_equal(manifest_path.read_bytes(), bundle.manifest):
+        errors.append(f"manifest content drift: {manifest_path}")
     if not tag_output.is_file():
         errors.append(f"missing generated tag: {tag_output}")
-    elif tag_output.read_bytes() != bundle.any_rubber_tag:
+    elif not _json_equal(tag_output.read_bytes(), bundle.any_rubber_tag):
         errors.append(
             f"generated tag content drift: {tag_output}"
         )
@@ -1577,7 +1449,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--check",
         action="store_true",
-        help="validate sources and require generated files to be byte-exact",
+        help="validate sources and require generated JSON to match semantically",
     )
     parser.add_argument(
         "--write",

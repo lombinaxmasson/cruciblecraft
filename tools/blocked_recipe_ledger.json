@@ -5234,6 +5234,36 @@
     ],
     "capability_blocked": [
       {
+        "blocker_root": "heat_exchanger:large_17197",
+        "capability": "energy/heat-exchangers",
+        "freshness": "current",
+        "id": "energy/heat-exchangers/heat_exchanger:large_17197",
+        "owner": "energy/heat-exchangers",
+        "player_path_disposition": "capability_blocked",
+        "reason": "MultiTileEntityLargeHeatExchanger 17197 is a follow-up card.",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      {
+        "blocker_root": "thermal:steam_turbine",
+        "capability": "energy/heat-exchangers",
+        "freshness": "current",
+        "id": "energy/heat-exchangers/thermal:steam_turbine",
+        "owner": "energy/heat-exchangers",
+        "player_path_disposition": "capability_blocked",
+        "reason": "Steam turbines STEAM to RU stay on a later card.",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      {
+        "blocker_root": "thermal:cooler",
+        "capability": "energy/heat-exchangers",
+        "freshness": "current",
+        "id": "energy/heat-exchangers/thermal:cooler",
+        "owner": "energy/heat-exchangers",
+        "player_path_disposition": "capability_blocked",
+        "reason": "Electric/flux coolers stay on a later card.",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      {
         "blocker_root": "reactor:temperature_kelvin",
         "capability": "energy/nuclear-fission-hot-fluids",
         "freshness": "current",
@@ -5271,6 +5301,36 @@
         "owner": "energy/nuclear-fission-hot-fluids",
         "player_path_disposition": "capability_blocked",
         "reason": "Thorium_Salt to LiCl is not a hot-fluid output and has no CC-owned input identity. Not substituted.",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      {
+        "blocker_root": "reactor:temperature_kelvin",
+        "capability": "energy/nuclear-fission-observation-safety",
+        "freshness": "current",
+        "id": "energy/nuclear-fission-observation-safety/reactor:temperature_kelvin",
+        "owner": "energy/nuclear-fission-observation-safety",
+        "player_path_disposition": "capability_blocked",
+        "reason": "Heat is HU. Do not invent Kelvin as HU times a constant.",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      {
+        "blocker_root": "reactor:world_explode",
+        "capability": "energy/nuclear-fission-observation-safety",
+        "freshness": "current",
+        "id": "energy/nuclear-fission-observation-safety/reactor:world_explode",
+        "owner": "energy/nuclear-fission-observation-safety",
+        "player_path_disposition": "capability_blocked",
+        "reason": "GT6 explode() TODO stays commented.",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      {
+        "blocker_root": "reactor:backpack_radioactivity",
+        "capability": "energy/nuclear-fission-observation-safety",
+        "freshness": "current",
+        "id": "energy/nuclear-fission-observation-safety/reactor:backpack_radioactivity",
+        "owner": "energy/nuclear-fission-observation-safety",
+        "player_path_disposition": "capability_blocked",
+        "reason": "No CC material radioactivity level table.",
         "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
       },
       {
@@ -5321,6 +5381,16 @@
         "owner": "energy/transformers",
         "player_path_disposition": "capability_blocked",
         "reason": "CC rotational_gearbox is not GT6 MultiTileEntityTransformerRotation. Must not impersonate an electric transformer.",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      {
+        "blocker_root": "recipe:rollformer:rail_gt",
+        "capability": "machines/roll-former",
+        "freshness": "current",
+        "id": "machines/roll-former/recipe:rollformer:rail_gt",
+        "owner": "machines/roll-former",
+        "player_path_disposition": "capability_blocked",
+        "reason": "Two gt.recipe.rollformer dump rows need unmapped rail_gt forms. Do not stand in tungsten_carbide or obsidian_steel rails.",
         "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
       }
     ],

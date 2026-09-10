@@ -1,0 +1,27 @@
+{
+  "files": [
+    {
+      "path": "tools/waves/machines/roll-former/source_pack/dump_slice.json",
+      "role": "dump_slice",
+      "sha256": "fcabebff045f53f43bdaf05f92e8adc3ab1448ea2ceeeeb4a6e40ca28934e54e"
+    },
+    {
+      "path": "tools/waves/machines/roll-former/source_pack/work_set.json",
+      "role": "work_set",
+      "sha256": "195c052cbc90209a9ad65594e052fadab8338d11cd73d7458dbaf49edb666ccf"
+    }
+  ],
+  "full_replay": {
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "provenance_policy": {
+    "append_only": true,
+    "forbid_gt6u": true
+  },
+  "schema_version": 1,
+  "source_dialect": "gt6",
+  "source_pack_id": "machines/roll-former",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_system": "gt6"
+}

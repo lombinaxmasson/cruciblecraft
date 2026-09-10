@@ -259,7 +259,7 @@ ordinary-closure 活动账本、收据、currentness 和测试消费者。数量
 | NBT `t11_schema_version` | `SubsurfaceFluidDepositBlockEntity` | 世界存档 | `fluid_deposit_schema_version`（提交后只认新键） |
 | `/data/cruciblecraft/t11_materials/` | `MaterialLoader`；`t11_materials/index.json`、`natural_gas.json` | 材质加载 | `hydrocarbon_materials/` |
 | 闸门键 `t38_*` / `t39_*` / `t40_*` / `t48_required_forms` | `material_registration_gate.json` | `MaterialRegistrationGate`、`SemanticProjection`（后者缺 t48） | 按域：`compact_acquisition_forms`、`bath_required_forms` 等 |
-| `t3_acceptance_required_not_gt6_original_gate`、`t10_known_forms` | 同上 | 闸门 / `ComponentRuleDataTest` | 语义 gate 名 |
+| `acceptance_required_not_gt6_original_gate`、`t10_known_forms` | 同上 | 闸门 / `ComponentRuleDataTest` | 语义 gate 名 |
 | `energy_converters.json` `"stage": "T18a"|"T18b"|"T18c"` | 资源 + `energy_converters.schema.json`（含未用 `T18d`） | catalog 字段；`EnergyConverterCatalogTest` 过滤 | `steam_ku_chain` / `liquid_fuel_ru_chain` / `gas_hu_chain` |
 | publication baseline 9 文件 | `t16`–`t28_publication_baseline.json`（含 `t26_5_`） | `CrucibleCraftGameTests` 硬编码名 + `t16_acquisition` 键 | 按能力域文件名 |
 | census fixture | `census/t35_runtime_registry_gate.json` | `RecipeCensusRuntimeRegistryGateFixture.RESOURCE` | `census/runtime_registry_gate.json` |

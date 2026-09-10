@@ -282,7 +282,7 @@ public final class GTRecipeMapLoader {
                     map, ordered, families.get(map), preparedEpoch, compactDedupRules);
             candidates.put(map, ordered);
         }
-        validateRequiredMaps(candidates);
+        validateRequiredMaps(candidates, families);
         int componentHostRecipes = 0;
         int toolRecipes = 0;
         int chemicalRecipesOnComponentMaps = 0;
@@ -1345,7 +1345,8 @@ public final class GTRecipeMapLoader {
     }
 
     static void validateRequiredMaps(
-            Map<RecipeMap, List<RecipeMap.Entry>> candidates) {
+            Map<RecipeMap, List<RecipeMap.Entry>> candidates,
+            Map<RecipeMap, List<RecipeMap.RecipeFamily>> families) {
         java.util.LinkedHashSet<RecipeMap> required = new java.util.LinkedHashSet<>();
         required.add(ModRecipeMaps.COKE_OVEN);
         required.add(ModRecipeMaps.CRUSHER);
@@ -1357,6 +1358,7 @@ public final class GTRecipeMapLoader {
                 .map(com.masson.cruciblecraft.machine.generation
                         .FuelGeneratorSpec::requireRecipeMap)
                 .forEach(required::add);
+        families = families == null ? Map.of() : families;
         for (RecipeMap map : required) {
             List<RecipeMap.Entry> entries = candidates.get(map);
             if (entries == null) {
@@ -1365,7 +1367,10 @@ public final class GTRecipeMapLoader {
             boolean provisionedChemicalMap = ModProcessingMachines.CHEMICAL_DEDICATED_MACHINES.stream()
                     .map(ProcessingMachineSpec::requireRecipeMap)
                     .anyMatch(candidate -> candidate == map);
-            if (entries.isEmpty() && !provisionedChemicalMap) {
+            int familyRows = families.getOrDefault(map, List.of()).stream()
+                    .mapToInt(RecipeMap.RecipeFamily::logicalRecipeCount)
+                    .sum();
+            if (entries.isEmpty() && familyRows == 0 && !provisionedChemicalMap) {
                 throw new IllegalArgumentException(
                         "Required playable map " + map.id() + " loaded zero recipes");
             }

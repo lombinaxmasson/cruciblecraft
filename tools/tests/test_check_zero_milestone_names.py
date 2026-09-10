@@ -66,10 +66,10 @@ class ZeroMilestoneNameScannerTest(unittest.TestCase):
         self.assertTrue(scanner.is_quick_target("src/main/java/com/masson/cruciblecraft/logistics/fluidnet/FluidLogisticsNetwork.java"))
         self.assertFalse(scanner.is_quick_target("tools/capabilities/logistics/cover-net-r0/capability.json"))
         self.assertTrue(
-            scanner.is_quick_target("docs/history/card-plans/active/显示CPU详细计划.md")
+            scanner.is_quick_target("docs/history/card-plans/active/集群轧机详细计划.md")
         )
         self.assertTrue(
-            scanner.is_quick_target("docs/history/card-plans/prep/辊压成型机详细计划.md")
+            scanner.is_quick_target("docs/history/card-plans/prep/切片机详细计划.md")
         )
         self.assertFalse(scanner.is_quick_target("src/main/java/com/masson/cruciblecraft/CrucibleCraft.java"))
         self.assertFalse(scanner.is_quick_target("src/recipe_generated/resources/data/cruciblecraft/recipe/" + lower_milestone + ".json"))

@@ -188,7 +188,7 @@ class RecipeMapSpecificityTest {
         candidates.put(ModRecipeMaps.CRUSHER, List.of());
         long crusherRevision = ModRecipeMaps.CRUSHER.revision();
         assertThrows(IllegalArgumentException.class, () ->
-                GTRecipeMapLoader.validateRequiredMaps(candidates));
+                GTRecipeMapLoader.validateRequiredMaps(candidates, Map.of()));
         assertEquals(crusherRevision, ModRecipeMaps.CRUSHER.revision());
     }
 

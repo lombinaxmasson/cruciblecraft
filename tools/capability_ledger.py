@@ -21,9 +21,16 @@ from tools import io_common as io
 CAP_ROOT = io.TOOLS / "capabilities"
 LEDGER = CAP_ROOT / "ledger.json"
 VERIFICATION_PROFILES = io.TOOLS / "verification_profiles.json"
+CARD_PLANS = io.ROOT / "docs" / "history" / "card-plans"
+CARD_PLAN_LANES = ("active", "prep", "closed")
 SLUG_RE = re.compile(
     r"^[a-z][a-z0-9]*(?:-[a-z0-9]+)*(?:/[a-z][a-z0-9]*(?:-[a-z0-9]+)*)+$"
 )
+CAPABILITY_SLUG_LINE = re.compile(
+    r"^capability_slug\s*=\s*(\S+)\s*$",
+    re.MULTILINE,
+)
+PLAN_SLUG_LINE = re.compile(r"计划 slug：`([^`]+)`")
 MATURITY = ("frozen", "runtime_ready", "player_complete")
 WORKFLOW = ("active", "paused", "accepted")
 
@@ -100,6 +107,135 @@ def load_capability(path: Path) -> dict[str, Any]:
     return document
 
 
+def parse_card_plan_slug(path: Path) -> str | None:
+    """Return the capability slug declared by a card-plan markdown file."""
+    text = path.read_text(encoding="utf-8")
+    match = CAPABILITY_SLUG_LINE.search(text)
+    if match:
+        value = match.group(1).strip().strip("`")
+        if value and value not in {"null", "None", "none"}:
+            return value
+    match = PLAN_SLUG_LINE.search(text)
+    if match:
+        value = match.group(1).strip()
+        if value and value not in {"null", "None", "none"}:
+            return value
+    return None
+
+
+def card_plan_title(path: Path) -> str:
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if line.startswith("# "):
+            return line[2:].strip()
+    return path.stem
+
+
+def card_plan_files(lane: str) -> list[Path]:
+    directory = CARD_PLANS / lane
+    if not directory.is_dir():
+        return []
+    return sorted(path for path in directory.glob("*.md") if path.is_file())
+
+
+def load_card_plan_index() -> dict[str, dict[str, Path]]:
+    """Map each plan lane to capability_slug → markdown path."""
+    index: dict[str, dict[str, Path]] = {lane: {} for lane in CARD_PLAN_LANES}
+    for lane in CARD_PLAN_LANES:
+        for path in card_plan_files(lane):
+            slug = parse_card_plan_slug(path)
+            if slug is None:
+                if lane == "active":
+                    raise ValueError(
+                        f"{io.relative(path)}: active plan missing capability_slug"
+                    )
+                continue
+            existing = index[lane].get(slug)
+            if existing is not None:
+                raise ValueError(
+                    f"duplicate capability_slug {slug} in {lane}: "
+                    f"{io.relative(path)} and {io.relative(existing)}"
+                )
+            index[lane][slug] = path
+    return index
+
+
+def _validate_unique_active_plans(
+    unique_active_slug: str | None,
+    capabilities: list[dict[str, Any]],
+    plans: dict[str, dict[str, Path]],
+) -> None:
+    by_slug = {row["slug"]: row for row in capabilities}
+    active_plans = plans["active"]
+    prep_plans = plans["prep"]
+    closed_plans = plans["closed"]
+    if unique_active_slug is None:
+        if active_plans:
+            extras = ", ".join(sorted(active_plans))
+            raise ValueError(
+                "card-plans/active must be empty when no capability is workflow=active; "
+                f"found {extras}"
+            )
+    else:
+        if unique_active_slug not in active_plans:
+            raise ValueError(
+                f"{unique_active_slug}: workflow=active requires a plan in "
+                "docs/history/card-plans/active/"
+            )
+        if len(active_plans) != 1:
+            extras = ", ".join(sorted(active_plans))
+            raise ValueError(
+                "card-plans/active must contain exactly one capability plan; "
+                f"found {extras}"
+            )
+        for lane in ("prep", "closed"):
+            if unique_active_slug in plans[lane]:
+                raise ValueError(
+                    f"{unique_active_slug}: active capability still has a {lane} plan"
+                )
+    for slug, path in active_plans.items():
+        capability = by_slug.get(slug)
+        if capability is None:
+            raise ValueError(
+                f"{io.relative(path)}: active plan {slug} has no capability.json"
+            )
+        if capability["workflow"] != "active":
+            raise ValueError(
+                f"{slug}: plan is in card-plans/active/ but workflow="
+                f"{capability['workflow']}"
+            )
+    for slug, path in prep_plans.items():
+        capability = by_slug.get(slug)
+        if capability is not None and capability["workflow"] == "active":
+            raise ValueError(
+                f"{slug}: prep plan {io.relative(path)} cannot occupy unique-active"
+            )
+        if slug in active_plans:
+            raise ValueError(f"{slug}: plan is in both prep/ and active/")
+    for slug, path in closed_plans.items():
+        if slug in active_plans or slug in prep_plans:
+            raise ValueError(
+                f"{slug}: closed plan {io.relative(path)} still has an open lane copy"
+            )
+        capability = by_slug.get(slug)
+        if capability is not None and capability["workflow"] == "active":
+            raise ValueError(
+                f"{slug}: workflow=active but plan is in card-plans/closed/"
+            )
+    for row in capabilities:
+        slug = row["slug"]
+        if row["workflow"] == "active" and slug not in active_plans:
+            raise ValueError(
+                f"{slug}: workflow=active requires docs/history/card-plans/active/"
+            )
+        if (
+            row["maturity"] == "player_complete"
+            and (slug in active_plans or slug in prep_plans)
+        ):
+            raise ValueError(
+                f"{slug}: player_complete plan must live in card-plans/closed/"
+            )
+
+
 def match_owned(owned_paths: list[str], rel: str) -> bool:
     posix = rel.replace("\\", "/")
     for pattern in owned_paths:
@@ -160,30 +296,54 @@ def compile_ledger() -> dict[str, Any]:
             raise ValueError(
                 f"{row['slug']} names inactive profiles {unknown_profiles}"
             )
-    declared_player_complete = [
+    declared_player_complete = sorted(
         row["slug"]
         for row in capabilities
-        if row["maturity"] == "player_complete"
+        if row["maturity"] == "player_complete" and row["workflow"] == "accepted"
+    )
+    active_workflows = [
+        row["slug"] for row in capabilities if row["workflow"] == "active"
     ]
+    if len(active_workflows) > 1:
+        raise ValueError(
+            "multiple workflow=active capabilities: " + ", ".join(active_workflows)
+        )
+    unique_active_slug = active_workflows[0] if active_workflows else None
+    _validate_unique_active_plans(
+        unique_active_slug,
+        capabilities,
+        load_card_plan_index(),
+    )
     profiles: dict[str, list[str]] = {}
     for row in capabilities:
         for profile in row["profiles"]:
             profiles.setdefault(profile, []).append(row["slug"])
+    compiled_profiles = {
+        profile: sorted(profile_slugs)
+        for profile, profile_slugs in sorted(profiles.items())
+    }
+    profiled_complete = set(compiled_profiles.get("player-complete") or [])
+    declared_complete = set(declared_player_complete)
+    if profiled_complete != declared_complete:
+        missing = sorted(declared_complete - profiled_complete)
+        extra = sorted(profiled_complete - declared_complete)
+        raise ValueError(
+            "player_complete declarations must join the player-complete profile; "
+            f"missing={missing}, extra={extra}"
+        )
     return {
         "capability_count": len(capabilities),
         "capabilities": capabilities,
         "declared_player_complete": declared_player_complete,
         "generated_by": "tools/build_capability_ledger.py",
         "impact": dependency_impact(capabilities),
-        "profiles": {
-            profile: sorted(profile_slugs)
-            for profile, profile_slugs in sorted(profiles.items())
-        },
+        "profiles": compiled_profiles,
         "progress_rule": (
             "declaration is not proof; player_complete requires fresh "
             "GameTestServer execution; runClient is required on promotion"
         ),
         "schema_version": 2,
+        "unique_active_slug": unique_active_slug,
     }
 
 
