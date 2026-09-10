@@ -546,6 +546,18 @@ public final class ModItems {
             tieredProcessingItem("steel_rollingmill");
     public static final DeferredItem<BlockItem> TITANIUM_ROLLINGMILL =
             tieredProcessingItem("titanium_rollingmill");
+    public static final DeferredItem<BlockItem> ROLLFORMER =
+            tieredProcessingItem("rollformer");
+    public static final DeferredItem<BlockItem> STEEL_ROLLFORMER =
+            tieredProcessingItem("steel_rollformer");
+    public static final DeferredItem<BlockItem> TITANIUM_ROLLFORMER =
+            tieredProcessingItem("titanium_rollformer");
+    public static final DeferredItem<BlockItem> CLUSTERMILL =
+            tieredProcessingItem("clustermill");
+    public static final DeferredItem<BlockItem> STEEL_CLUSTERMILL =
+            tieredProcessingItem("steel_clustermill");
+    public static final DeferredItem<BlockItem> TITANIUM_CLUSTERMILL =
+            tieredProcessingItem("titanium_clustermill");
     public static final DeferredItem<BlockItem> ROLLBENDER =
             tieredProcessingItem("rollbender");
     public static final DeferredItem<BlockItem> WIREMILL =

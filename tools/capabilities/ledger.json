@@ -463,6 +463,58 @@
       "workflow": "accepted"
     },
     {
+      "depends_on": [
+        "machines/roll-former"
+      ],
+      "maturity": "player_complete",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/gametest/ClusterMillGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/machine/processing/prep/ClusterMillPrepSpec.java",
+        "src/main/resources/assets/cruciblecraft/gt6_cluster_mill_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/clustermill/**",
+        "src/main/resources/data/cruciblecraft_wave_machines_cluster_mill/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/clustermill/**",
+        "tools/capabilities/machines/cluster-mill/**",
+        "tools/waves/machines/cluster-mill/**",
+        "tools/tests/test_cluster_mill.py"
+      ],
+      "path": "tools/capabilities/machines/cluster-mill/capability.json",
+      "player_signoff": "tools/capabilities/machines/cluster-mill/player_signoff.json",
+      "profiles": [
+        "capability-runtime",
+        "player-complete"
+      ],
+      "slug": "machines/cluster-mill",
+      "title": "Cluster Mill",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "energy/heat-exchangers"
+      ],
+      "maturity": "player_complete",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/gametest/RollFormerGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/machine/processing/prep/RollFormerPrepSpec.java",
+        "src/main/resources/assets/cruciblecraft/gt6_rollformer_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/rollformer/**",
+        "src/main/resources/data/cruciblecraft_wave_machines_roll_former/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/rollformer/**",
+        "tools/capabilities/machines/roll-former/**",
+        "tools/waves/machines/roll-former/**",
+        "tools/tests/test_roll_former.py"
+      ],
+      "path": "tools/capabilities/machines/roll-former/capability.json",
+      "player_signoff": "tools/capabilities/machines/roll-former/player_signoff.json",
+      "profiles": [
+        "capability-runtime",
+        "player-complete"
+      ],
+      "slug": "machines/roll-former",
+      "title": "Roll Former",
+      "workflow": "accepted"
+    },
+    {
       "depends_on": [],
       "maturity": "frozen",
       "owned_paths": [
@@ -480,7 +532,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 14,
+  "capability_count": 16,
   "declared_player_complete": [
     "energy/batteries",
     "energy/converter-catalog",
@@ -493,7 +545,9 @@
     "logistics/fluid-network/basic-transfer",
     "logistics/generic-network/core",
     "logistics/item-network-core",
-    "logistics/logistics-core"
+    "logistics/logistics-core",
+    "machines/cluster-mill",
+    "machines/roll-former"
   ],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -503,7 +557,9 @@
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
-      "energy/transformers"
+      "energy/transformers",
+      "machines/cluster-mill",
+      "machines/roll-former"
     ],
     "energy/converter-catalog": [
       "energy/batteries",
@@ -512,15 +568,21 @@
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
-      "energy/transformers"
+      "energy/transformers",
+      "machines/cluster-mill",
+      "machines/roll-former"
     ],
     "energy/heat-exchangers": [
-      "energy/heat-exchangers"
+      "energy/heat-exchangers",
+      "machines/cluster-mill",
+      "machines/roll-former"
     ],
     "energy/nuclear-fission-hot-fluids": [
       "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
-      "energy/nuclear-fission-observation-safety"
+      "energy/nuclear-fission-observation-safety",
+      "machines/cluster-mill",
+      "machines/roll-former"
     ],
     "energy/nuclear-fission-observation-safety": [
       "energy/nuclear-fission-observation-safety"
@@ -529,14 +591,18 @@
       "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
-      "energy/nuclear-fission-survival"
+      "energy/nuclear-fission-survival",
+      "machines/cluster-mill",
+      "machines/roll-former"
     ],
     "energy/transformers": [
       "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
-      "energy/transformers"
+      "energy/transformers",
+      "machines/cluster-mill",
+      "machines/roll-former"
     ],
     "logistics/cover-net-r0": [
       "energy/batteries",
@@ -551,7 +617,9 @@
       "logistics/fluid-network/basic-transfer",
       "logistics/generic-network/core",
       "logistics/item-network-core",
-      "logistics/logistics-core"
+      "logistics/logistics-core",
+      "machines/cluster-mill",
+      "machines/roll-former"
     ],
     "logistics/display-cpu": [
       "energy/batteries",
@@ -561,7 +629,9 @@
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/transformers",
-      "logistics/display-cpu"
+      "logistics/display-cpu",
+      "machines/cluster-mill",
+      "machines/roll-former"
     ],
     "logistics/fluid-network/basic-transfer": [
       "energy/batteries",
@@ -574,7 +644,9 @@
       "logistics/display-cpu",
       "logistics/fluid-network/basic-transfer",
       "logistics/generic-network/core",
-      "logistics/logistics-core"
+      "logistics/logistics-core",
+      "machines/cluster-mill",
+      "machines/roll-former"
     ],
     "logistics/generic-network/core": [
       "energy/batteries",
@@ -586,7 +658,9 @@
       "energy/transformers",
       "logistics/display-cpu",
       "logistics/generic-network/core",
-      "logistics/logistics-core"
+      "logistics/logistics-core",
+      "machines/cluster-mill",
+      "machines/roll-former"
     ],
     "logistics/item-network-core": [
       "energy/batteries",
@@ -600,7 +674,9 @@
       "logistics/fluid-network/basic-transfer",
       "logistics/generic-network/core",
       "logistics/item-network-core",
-      "logistics/logistics-core"
+      "logistics/logistics-core",
+      "machines/cluster-mill",
+      "machines/roll-former"
     ],
     "logistics/logistics-core": [
       "energy/batteries",
@@ -611,7 +687,16 @@
       "energy/nuclear-fission-survival",
       "energy/transformers",
       "logistics/display-cpu",
-      "logistics/logistics-core"
+      "logistics/logistics-core",
+      "machines/cluster-mill",
+      "machines/roll-former"
+    ],
+    "machines/cluster-mill": [
+      "machines/cluster-mill"
+    ],
+    "machines/roll-former": [
+      "machines/cluster-mill",
+      "machines/roll-former"
     ],
     "registry/tool-head-remainder": [
       "registry/tool-head-remainder"
@@ -632,6 +717,8 @@
       "logistics/generic-network/core",
       "logistics/item-network-core",
       "logistics/logistics-core",
+      "machines/cluster-mill",
+      "machines/roll-former",
       "registry/tool-head-remainder"
     ],
     "player-complete": [
@@ -646,9 +733,12 @@
       "logistics/fluid-network/basic-transfer",
       "logistics/generic-network/core",
       "logistics/item-network-core",
-      "logistics/logistics-core"
+      "logistics/logistics-core",
+      "machines/cluster-mill",
+      "machines/roll-former"
     ]
   },
   "progress_rule": "declaration is not proof; player_complete requires fresh GameTestServer execution; runClient is required on promotion",
-  "schema_version": 2
+  "schema_version": 2,
+  "unique_active_slug": null
 }

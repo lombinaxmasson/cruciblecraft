@@ -87,21 +87,16 @@ class ClusterMillPrepTest(unittest.TestCase):
         lock = census.load_json(prep.PRODUCTION_LOCK)
         accounting = work["accounting"]
         self.assertEqual(307, accounting["source_rows"])
-        self.assertEqual(247, accounting["selected_rows"])
-        self.assertEqual(60, accounting["overflow_rows"])
-        self.assertEqual(247, source["relation_count"])
-        self.assertEqual(247, lock["production"]["relation_count"])
+        self.assertEqual(307, accounting["selected_rows"])
+        self.assertEqual(0, accounting["overflow_rows"])
+        self.assertEqual(307, source["relation_count"])
+        self.assertEqual(307, lock["production"]["relation_count"])
         self.assertEqual(1, lock["production"]["family_count"])
         self.assertTrue(lock["production_authority"])
         self.assertIn("not player_complete", lock["note"])
-        self.assertEqual(60, overflow["blocked_rows"])
-        reasons = " ".join(
-            reason
-            for row in overflow["overflow"]
-            for reason in row.get("reasons") or []
-        )
-        self.assertIn("unregistered material form", reasons)
-        self.assertNotIn("programmed_circuit", reasons)
+        self.assertEqual(0, overflow["blocked_rows"])
+        self.assertEqual([], overflow.get("overflow") or [])
+        self.assertNotIn("programmed_circuit", str(overflow))
         first = source["relations"][0]
         self.assertEqual(["netherite:plate"], [row["value"] for row in first["item_inputs"]])
         self.assertEqual(["netherite:foil"], [row["value"] for row in first["item_outputs"]])
@@ -115,34 +110,19 @@ class ClusterMillPrepTest(unittest.TestCase):
         self.assertNotIn("prep/cluster-mill", SEMANTIC_COMPILE_ORDER)
         self.assertNotIn("prep/cluster-mill", WAVE_CHOICES)
         self.assertNotIn("prep/cluster-mill", KNOWN_SEMANTIC_SLUGS)
-        self.assertNotIn("machines/cluster-mill", KNOWN_SEMANTIC_SLUGS)
-        live = list(
-            (
-                ROOT
-                / "src"
-                / "recipe_generated"
-                / "resources"
-                / "data"
-                / "cruciblecraft"
-                / "recipe"
-            ).rglob("*clustermill*")
-        )
-        self.assertEqual([], live)
+        self.assertIn("machines/cluster-mill", KNOWN_SEMANTIC_SLUGS)
 
-    def test_landing_owned_paths_do_not_register_the_machine(self) -> None:
+    def test_prep_spec_stays_unregistered_while_live_hosts_land(self) -> None:
         spec = _read(
             JAVA / "machine" / "processing" / "prep" / "ClusterMillPrepSpec.java"
         )
         self.assertIn("UNREGISTERED_MAP", spec)
         self.assertIn("KINETIC_ROTATION", spec)
-        for path in LANDING_JAVA + LANDING_DATA:
-            text = _read(path)
-            self.assertNotIn("clustermill", text.lower(), path.name)
-            self.assertNotIn("ClusterMill", text, path.name)
         processing = _read(JAVA / "registry" / "ModProcessingMachines.java")
         self.assertNotIn("ClusterMillPrepSpec", processing)
         maps = _read(JAVA / "registry" / "ModRecipeMaps.java")
-        self.assertNotIn("create(\"clustermill\")", maps)
+        self.assertIn("create(\"clustermill\")", maps)
+        self.assertIn("CLUSTERMILL", processing)
         ledger = census.load_json(ROOT / "tools" / "blocked_recipe_ledger.json")
         self.assertIsNone(ledger["unique_active_wave"])
 

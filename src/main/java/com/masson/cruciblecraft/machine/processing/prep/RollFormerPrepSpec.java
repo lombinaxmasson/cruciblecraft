@@ -12,11 +12,11 @@ import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 import net.minecraft.resources.ResourceLocation;
 
 /**
- * Prep-only source shape for the GT6 Roll Former.
+ * Unregistered copy of the live Roll Former contract.
  *
- * <p>This spec deliberately is not referenced by any registry. Landing will
- * bind the same shape to {@code ModRecipeMaps.ROLLFORMER} after the current
- * unique-active card is closed.
+ * <p>The registered host is {@code ModProcessingMachines.ROLLFORMER}. This
+ * file stays out of every registry so prep-era source shape can still be
+ * compared without a second RecipeMap.
  */
 public final class RollFormerPrepSpec {
     private static final ResourceLocation ID =
@@ -36,8 +36,8 @@ public final class RollFormerPrepSpec {
             "unknown");
 
     /**
-     * An isolated copy of the component-machine contract. It must not be
-     * added to a registry until the roll-former prep card is promoted.
+     * Isolated copy of the live left-in / right-out / back-RU contract.
+     * Do not add this field to a registry.
      */
     public static final ProcessingMachineSpec SPEC = new ProcessingMachineSpec(
             ID,
@@ -51,17 +51,22 @@ public final class RollFormerPrepSpec {
                     4_096L,
                     256L),
             new ProcessingMachineSpec.SidedIoPolicy(
-                    (front, side) -> side == null
-                            ? ProcessingMachineSpec.CapabilityAccess.NONE
-                            : side == front
-                                    ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
-                                    : ProcessingMachineSpec.CapabilityAccess.INPUT,
-                    (front, side) ->
-                            ProcessingMachineSpec.CapabilityAccess.NONE,
-                    (front, side) -> side != null
-                            && side == front.getOpposite()
-                                    ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                    : ProcessingMachineSpec.CapabilityAccess.NONE),
+                    (front, side) -> {
+                        if (side == null) {
+                            return ProcessingMachineSpec.CapabilityAccess.NONE;
+                        }
+                        if (side == front.getCounterClockWise()) {
+                            return ProcessingMachineSpec.CapabilityAccess.INPUT;
+                        }
+                        if (side == front.getClockWise()) {
+                            return ProcessingMachineSpec.CapabilityAccess.OUTPUT;
+                        }
+                        return ProcessingMachineSpec.CapabilityAccess.NONE;
+                    },
+                    (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE,
+                    (front, side) -> side != null && side == front.getOpposite()
+                            ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                            : ProcessingMachineSpec.CapabilityAccess.NONE),
             RollFormerPrepSpec::validate,
             ProcessingMachineSpec.BufferPolicy.PAUSE,
             Gt6BasicMachineGui.ui(

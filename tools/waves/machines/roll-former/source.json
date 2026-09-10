@@ -1,0 +1,2248 @@
+{
+  "family_count": 1,
+  "generated_by": "python tools/build_recipe_bulk.py import-source",
+  "host": "cruciblecraft:rollformer",
+  "import_slug": "machines/roll-former",
+  "relation_count": 26,
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 192,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:iron/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Iron Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 260
+          },
+          "tag": null,
+          "value": "cruciblecraft:iron/plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "iron",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:iron/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Iron Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 260
+          },
+          "tag": "c:rail_gts/iron",
+          "value": "iron:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 0,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 0,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "23eec75c7f71560bf507eb9c716c5c604d2dc074e3f826601101aa19d5926431",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/43824eaebe50f361",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 256,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": "plate",
+          "mapping": "registered_material_form",
+          "material": "tungsten",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:tungsten/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Tungsten Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 740
+          },
+          "tag": "c:plates/tungsten",
+          "value": "tungsten:plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "tungsten",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:tungsten/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Tungsten Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 740
+          },
+          "tag": "c:rail_gts/tungsten",
+          "value": "tungsten:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 1,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 1,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "98145681aa2613d85af5ef941ba709327a545fea02c02134044460ab4df13fbf",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/23d654c31b2ba4c3",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": "plate",
+          "mapping": "registered_material_form",
+          "material": "copper",
+          "reachable": true,
+          "runtime_id": "cruciblecraft:copper/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Copper Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 290
+          },
+          "tag": "c:plates/copper",
+          "value": "copper:plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "copper",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:copper/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Copper Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 290
+          },
+          "tag": "c:rail_gts/copper",
+          "value": "copper:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 2,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 2,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "3e0b28a4e527211b341db4cae5325edc37bb2ed0cef44702e43237ed351c5eb7",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/9f687ead9e34cb1e",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 320,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": "plate",
+          "mapping": "registered_material_form",
+          "material": "tungstensteel",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:tungstensteel/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Tungstensteel Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 8635
+          },
+          "tag": "c:plates/tungstensteel",
+          "value": "tungstensteel:plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "tungstensteel",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:tungstensteel/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Tungstensteel Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 8635
+          },
+          "tag": "c:rail_gts/tungstensteel",
+          "value": "tungstensteel:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 3,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 3,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "93fcf6879a79c077fc51699081880a90880c9f995d798d649c325b9cea1286c8",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/f42de5867a671e82",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 256,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": "plate",
+          "mapping": "registered_material_form",
+          "material": "titanium",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:titanium/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Titanium Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 220
+          },
+          "tag": "c:plates/titanium",
+          "value": "titanium:plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "titanium",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:titanium/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Titanium Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 220
+          },
+          "tag": "c:rail_gts/titanium",
+          "value": "titanium:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 4,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 4,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "ba4824ced704ccb5b3b3767dbb6ea3ab3606d67041e2dd7d6e951467ebf5daad",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/6a11740dc2d05600",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 256,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": "plate",
+          "mapping": "registered_material_form",
+          "material": "tungsten_sintered",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:tungsten_sintered/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Sintered Tungsten Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 8652
+          },
+          "tag": "c:plates/tungsten_sintered",
+          "value": "tungsten_sintered:plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "tungsten_sintered",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:tungsten_sintered/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Sintered Tungsten Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 8652
+          },
+          "tag": "c:rail_gts/tungsten_sintered",
+          "value": "tungsten_sintered:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 5,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 5,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "57f89ed5f89fdb1a4591bafc26dd300d381ddc795ecd9005399b7f5b5d08cb2b",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/da387903101b0e22",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 192,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:meteoric_steel/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Meteoric Steel Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 8650
+          },
+          "tag": null,
+          "value": "cruciblecraft:meteoric_steel/plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "meteoric_steel",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:meteoric_steel/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Meteoric Steel Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 8650
+          },
+          "tag": "c:rail_gts/meteoric_steel",
+          "value": "meteoric_steel:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 6,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 6,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "e21c3bcd4552e008b349db7601fc6d7a1f9cffaecc8ba0020d1c3035a4bc5ee3",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/3acbc1ecf318663e",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 256,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:meteorite/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Meteorite Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 8757
+          },
+          "tag": null,
+          "value": "cruciblecraft:meteorite/plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "meteorite",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:meteorite/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Meteorite Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 8757
+          },
+          "tag": "c:rail_gts/meteorite",
+          "value": "meteorite:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 7,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 7,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "c6e8c389de2844f43b2307fecbbba7049f162b1874b773d18e034909e4d160c7",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/369871545bd209d7",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 192,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": "plate",
+          "mapping": "registered_material_form",
+          "material": "stainless_steel",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:stainless_steel/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Stainless Steel Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 8636
+          },
+          "tag": "c:plates/stainless_steel",
+          "value": "stainless_steel:plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "stainless_steel",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:stainless_steel/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Stainless Steel Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 8636
+          },
+          "tag": "c:rail_gts/stainless_steel",
+          "value": "stainless_steel:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 8,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 8,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "de154c932f4e07326af4b2d5ce7f8ce5b62000757348e23255e8aade6d1d11df",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/1c70a8645b79660d",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": "plate",
+          "mapping": "registered_material_form",
+          "material": "electrum",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:electrum/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Electrum Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 8600
+          },
+          "tag": "c:plates/electrum",
+          "value": "electrum:plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "electrum",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:electrum/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Electrum Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 8600
+          },
+          "tag": "c:rail_gts/electrum",
+          "value": "electrum:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 9,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 9,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "0992170a022acca9153e0e51c01c3cc64568178ce276fb4d023c16aa78c8bc5b",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/9c0148438023b60d",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 192,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:steel/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Steel Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 8630
+          },
+          "tag": null,
+          "value": "cruciblecraft:steel/plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "steel",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:steel/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Steel Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 8630
+          },
+          "tag": "c:rail_gts/steel",
+          "value": "steel:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 10,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 10,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "2184553e061eb45a539e68967986e66fa357702463529c26735b03e9c5677116",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/5d6b95346f3b5a44",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 320,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": "plate",
+          "mapping": "registered_material_form",
+          "material": "hsss",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:hsss/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "HSS-S Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 8798
+          },
+          "tag": "c:plates/hsss",
+          "value": "hsss:plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "hsss",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:hsss/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "HSS-S Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 8798
+          },
+          "tag": "c:rail_gts/hsss",
+          "value": "hsss:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 11,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 11,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "2722b8da650fdef5c89bc807d49a589ead88a2775bf6a371e823087f18b0b3ff",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/d5b687a2894a56d6",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": "plate",
+          "mapping": "registered_material_form",
+          "material": "bronze",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:bronze/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Bronze Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 8610
+          },
+          "tag": "c:plates/bronze",
+          "value": "bronze:plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "bronze",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:bronze/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Bronze Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 8610
+          },
+          "tag": "c:rail_gts/bronze",
+          "value": "bronze:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 12,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 12,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "7f2cccb2466bf867d141b3dacce15648aa8deaf69ce8ef5cad9f817e21560346",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/41d3b1a008c25102",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": "plate",
+          "mapping": "registered_material_form",
+          "material": "aluminium",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:aluminium/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Aluminium Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 130
+          },
+          "tag": "c:plates/aluminium",
+          "value": "aluminium:plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "aluminium",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:aluminium/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Aluminium Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 130
+          },
+          "tag": "c:rail_gts/aluminium",
+          "value": "aluminium:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 13,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 13,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "8fa57ef60d7c12ca24734cf4a5b712af4a0d9bf0aad844ddf5de07ac57ceb336",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/7bb4bad214f0853e",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": "plate",
+          "mapping": "registered_material_form",
+          "material": "silver",
+          "reachable": true,
+          "runtime_id": "cruciblecraft:silver/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Silver Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 470
+          },
+          "tag": "c:plates/silver",
+          "value": "silver:plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "silver",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:silver/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Silver Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 470
+          },
+          "tag": "c:rail_gts/silver",
+          "value": "silver:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 14,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 14,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "961592424b7a4b4e0d1cb5817dee97920b21e8b1ef2b487c44c6017b6cdfd591",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/74c6bc17c03c7311",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:gold/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Gold Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 790
+          },
+          "tag": null,
+          "value": "cruciblecraft:gold/plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "gold",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:gold/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Gold Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 790
+          },
+          "tag": "c:rail_gts/gold",
+          "value": "gold:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 15,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 15,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "baad641ce785a1881ff4458bc714a358b24f75d0c260e6f096af2b7a43c9a911",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/97f5e288a2ad889a",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 384,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": "plate",
+          "mapping": "registered_material_form",
+          "material": "adamantium",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:adamantium/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Adamantium Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 2220
+          },
+          "tag": "c:plates/adamantium",
+          "value": "adamantium:plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "adamantium",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:adamantium/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Adamantium Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 2220
+          },
+          "tag": "c:rail_gts/adamantium",
+          "value": "adamantium:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 16,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 16,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "36382845a69e25e1d2670fed80fc10ae8a4a81a07c4b4bf457187cf342a66afd",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/0d4c6d4fc515bbe6",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 192,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:wrought_iron/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Wrought Iron Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 8643
+          },
+          "tag": null,
+          "value": "cruciblecraft:wrought_iron/plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "wrought_iron",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:wrought_iron/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Wrought Iron Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 8643
+          },
+          "tag": "c:rail_gts/wrought_iron",
+          "value": "wrought_iron:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 17,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 17,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "3a87cfb58e1fb82ecb072a42c92cc5ddbafd06dd86149f6301eaa1913ecda11b",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/bbd1c9b83264faf7",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 192,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": "plate",
+          "mapping": "registered_material_form",
+          "material": "platinum",
+          "reachable": true,
+          "runtime_id": "cruciblecraft:platinum/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Platinum Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 780
+          },
+          "tag": "c:plates/platinum",
+          "value": "platinum:plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "platinum",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:platinum/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Platinum Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 780
+          },
+          "tag": "c:rail_gts/platinum",
+          "value": "platinum:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 18,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 19,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "2a6cb7788c46f82a6a897c54edac9365d7dc5cdef79450cab3baa4246e50e8f3",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/91f214213d2ff64a",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 192,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "proven_equivalent",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:meteoric_iron/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Meteoric Iron Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 8649
+          },
+          "tag": null,
+          "value": "cruciblecraft:meteoric_iron/plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "meteoric_iron",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:meteoric_iron/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Meteoric Iron Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 8649
+          },
+          "tag": "c:rail_gts/meteoric_iron",
+          "value": "meteoric_iron:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 19,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 20,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "b7994360ca712595fdd470c0372c757a6a79ad7d63fc717f7ef9e65fb151870a",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/0c6c5e84af4c5ee7",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 256,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": "plate",
+          "mapping": "registered_material_form",
+          "material": "hssg",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:hssg/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "HSS-G Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 8796
+          },
+          "tag": "c:plates/hssg",
+          "value": "hssg:plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "hssg",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:hssg/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "HSS-G Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 8796
+          },
+          "tag": "c:rail_gts/hssg",
+          "value": "hssg:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 20,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 21,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "6849dede33de848f74579703df389edeac2dff800687023448d7a511b6579ec6",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/7375ab5609271af2",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 320,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": "plate",
+          "mapping": "registered_material_form",
+          "material": "hsse",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:hsse/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "HSS-E Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 8797
+          },
+          "tag": "c:plates/hsse",
+          "value": "hsse:plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "hsse",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:hsse/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "HSS-E Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 8797
+          },
+          "tag": "c:rail_gts/hsse",
+          "value": "hsse:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 21,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 22,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "2eaa87d14b9ce3917bb29ef85c3a13f05d5dea6e0884181f8e12f8c3bb24102e",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/6016bb2a3afeeab9",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 320,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": "plate",
+          "mapping": "registered_material_form",
+          "material": "osmium_elemental",
+          "reachable": true,
+          "runtime_id": "cruciblecraft:osmium_elemental/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Osmium Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 760
+          },
+          "tag": "c:plates/osmium_elemental",
+          "value": "osmium_elemental:plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "osmium_elemental",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:osmium_elemental/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Osmium Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 760
+          },
+          "tag": "c:rail_gts/osmium_elemental",
+          "value": "osmium_elemental:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 22,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 23,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "057eb6b1ba62caecd61f964eae9731273eadea02dd1fececa1691afad572d9c5",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/8cb3268d7f0b3fd9",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": "plate",
+          "mapping": "registered_material_form",
+          "material": "annealed_copper",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:annealed_copper/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Annealed Copper Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 8640
+          },
+          "tag": "c:plates/annealed_copper",
+          "value": "annealed_copper:plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "annealed_copper",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:annealed_copper/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Annealed Copper Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 8640
+          },
+          "tag": "c:rail_gts/annealed_copper",
+          "value": "annealed_copper:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 23,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 24,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "2980dbd2d0a531c4588c27a4c0b2af80495dd8dc5dd7e94e25984e5496adb4da",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/8f0f9e9cf62ea097",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 192,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": "plate",
+          "mapping": "registered_material_form",
+          "material": "hslasteel",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:hslasteel/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "HSLA-Steel Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 8637
+          },
+          "tag": "c:plates/hslasteel",
+          "value": "hslasteel:plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "hslasteel",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:hslasteel/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "HSLA-Steel Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 8637
+          },
+          "tag": "c:rail_gts/hslasteel",
+          "value": "hslasteel:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 24,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 25,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "878dbb9019497d0a7ef60fee75f71a8246995a6e8546c11cf9416f94b1b523b1",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/5ba070909cf133d1",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:rollformer/gt.recipe.rollformer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:rollformer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": "plate",
+          "mapping": "registered_material_form",
+          "material": "magnalium",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:magnalium/plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Magnalium Plate",
+            "item": "gregtech:gt.meta.plate",
+            "meta": 8665
+          },
+          "tag": "c:plates/magnalium",
+          "value": "magnalium:plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "rail_gt",
+          "mapping": "registered_material_form",
+          "material": "magnalium",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:magnalium/rail_gt",
+          "slot_class": "occupied",
+          "source": {
+            "count": 4,
+            "displayName": "Magnalium Rail",
+            "item": "gregtech:gt.meta.railGt",
+            "meta": 8665
+          },
+          "tag": "c:rail_gts/magnalium",
+          "value": "magnalium:rail_gt"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 25,
+      "slot_notes": [],
+      "source_map": "gt.recipe.rollformer",
+      "source_recipe_index": 26,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "77768cf14d4b4dc3a8e96cb72dad2c0828268b5399ffbe9d37394821336bde58",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/04dc1f9ffaecb5e9",
+      "target_map": "cruciblecraft:rollformer",
+      "template_key": "gt.recipe.rollformer#0000",
+      "unsupported_semantics": []
+    }
+  ],
+  "source_pack_id": "machines/roll-former",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:rollformer"
+}

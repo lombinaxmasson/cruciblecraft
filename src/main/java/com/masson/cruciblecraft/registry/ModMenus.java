@@ -96,6 +96,10 @@ public final class ModMenus {
             processing("lathe", ModProcessingMachines.LATHE);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> ROLLINGMILL =
             processing("rollingmill", ModProcessingMachines.ROLLINGMILL);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> ROLLFORMER =
+            processing("rollformer", ModProcessingMachines.ROLLFORMER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> CLUSTERMILL =
+            processing("clustermill", ModProcessingMachines.CLUSTERMILL);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> ROLLBENDER =
             processing("rollbender", ModProcessingMachines.ROLLBENDER);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> WIREMILL =

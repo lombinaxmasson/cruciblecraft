@@ -13,7 +13,8 @@
     "electrolyzer_ordinary_closure_required_forms",
     "centrifuge_ordinary_closure_required_forms",
     "autoclave_ordinary_closure_required_forms",
-    "compressor_ordinary_closure_required_forms"
+    "compressor_ordinary_closure_required_forms",
+    "machines_cluster_mill_required_forms"
   ],
   "note": "Single overlay authority. Card builders write required_forms.json only; they do not write material_registration_gate.json.",
   "schema_version": 1,
@@ -466,6 +467,16 @@
           "dust"
         ]
       }
+    },
+    {
+      "extra_factual_forms": [],
+      "field": "required_forms",
+      "gate_section": "machines_cluster_mill_required_forms",
+      "id": "machines_cluster_mill_required_forms",
+      "java_runtime_visible": true,
+      "owner": "machines/cluster-mill",
+      "path": "tools/waves/machines/cluster-mill/required_forms.json",
+      "required_factual_prereqs": {}
     }
   ],
   "status": "MATERIAL_FORM_AUTHORITY",

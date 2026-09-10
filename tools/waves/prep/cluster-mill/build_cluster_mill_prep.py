@@ -373,10 +373,10 @@ def check() -> list[str]:
         errors.append("work_set accounting selected_rows disagrees with family relations")
     if accounting.get("overflow_rows") != len(overflow.get("overflow") or []):
         errors.append("work_set accounting overflow_rows disagrees with overflow")
-    if len(work.get("overflow") or []) != 60:
-        errors.append("work_set overflow must contain 60 rows")
-    if accounting.get("selected_rows") != 247:
-        errors.append("work_set selected_rows must be 247")
+    if len(work.get("overflow") or []) != 0:
+        errors.append("work_set overflow must be empty after foil forms are gated")
+    if accounting.get("selected_rows") != 307:
+        errors.append("work_set selected_rows must be 307")
     if accounting.get("source_rows") != (
         int(accounting.get("selected_rows") or 0)
         + int(accounting.get("overflow_rows") or 0)
@@ -439,8 +439,8 @@ def check() -> list[str]:
         return errors
     if metrics.get("family_count") != 1:
         errors.append("isolated compile must emit one family")
-    if metrics.get("relation_count") != 247:
-        errors.append("isolated compile must emit 247 relations")
+    if metrics.get("relation_count") != 307:
+        errors.append("isolated compile must emit 307 relations")
     if metrics.get("representations", {}).get("exact_multi") != 1:
         errors.append("isolated compile must stay exact_multi")
     if metrics.get("overflow"):

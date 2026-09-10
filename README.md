@@ -7,6 +7,7 @@ CrucibleCraft 是一个面向 Minecraft 1.21.1 / NeoForge 的非官方 GregTech 
 能源、物流与世界生成体系，同时保留可维护、可验证的数据驱动实现。
 
 - [玩家指南](docs/current/player-guide.md)
+- [项目状态](docs/current/project-status.md)
 - [当前进度与规划](docs/current/roadmap.md)
 - [问题反馈](https://github.com/icodestuljh/cruciblecraft/issues)
 
@@ -96,8 +97,8 @@ Source Pack（GT6 来源或明确的项目设计）
 - `runtime_ready`：运行时机制已经可用，但内容或玩家路径可能尚未补齐；
 - `player_complete`：生存获取、运行、界面、翻译、存档和验证路径均已闭合。
 
-路线图只把 `player_complete` 计为玩家层面的实现进度。当前流体网基础传输、
-物品网仓储/导入/导出盖板、通用网仓储/导入/导出盖板、物流核心 + Dump 和 Display CPU 四件物流监视器已经达到这一状态。完整定义见
+路线图只把 `player_complete` 计为玩家层面的实现进度。现行完成集合见
+[项目状态](docs/current/project-status.md)。完整定义见
 [能力交付流程](docs/current/capability-delivery-workflow.md)。
 
 ### 验证

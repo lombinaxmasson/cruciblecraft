@@ -738,34 +738,8 @@ def write_capability() -> None:
 
 
 def patch_docs() -> None:
-    replacements = (
-        ("机器可读 `unique_active_wave = null`，直到实施开始。",
-         "机器可读 `unique_active_wave = runtime/heat-exchangers`。"),
-        ("`unique_active_wave = null` 直到实施开始",
-         "`unique_active_wave = runtime/heat-exchangers`"),
-        ("`unique_active_wave = null` 直到实施开始。",
-         "`unique_active_wave = runtime/heat-exchangers`。"),
-        ("机器可读 `unique_active_wave = null`，直到实施开始",
-         "机器可读 `unique_active_wave = runtime/heat-exchangers`"),
-    )
-    files = [
-        ROOT / "docs" / "current" / "roadmap.md",
-        ROOT / "docs" / "current" / "unimplemented-gap.md",
-        ROOT / "docs" / "current" / "known-issues.md",
-        ROOT / "docs" / "README.md",
-        ROOT / "docs" / "history" / "card-plans" / "active" / "热交换器第一切片详细计划.md",
-    ]
-    for path in files:
-        text = path.read_text(encoding="utf-8")
-        original = text
-        for old, new in replacements:
-            text = text.replace(old, new)
-        text = text.replace(
-            "unique_active_wave           = null until implementation starts",
-            "unique_active_wave           = runtime/heat-exchangers",
-        )
-        if text != original:
-            path.write_text(text, encoding="utf-8")
+    """Status recaps live on the generated project-status page; do not patch them."""
+    return
 
 
 def patch_resolve_overlay() -> None:

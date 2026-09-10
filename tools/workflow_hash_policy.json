@@ -80,7 +80,8 @@
       "path_patterns": [
         "src/generated/**",
         "src/recipe_generated/**",
-        "src/test/resources/**"
+        "src/test/resources/**",
+        "src/component_rule_generated/**"
       ]
     }
   ],
@@ -177,6 +178,13 @@
       "id": "generated_compact_publication_policy_hashes",
       "path_patterns": [
         "src/compact_recipe_policy_generated/**"
+      ],
+      "token_regex": "(?i)(?:sha256|hash|digest|checksum)"
+    },
+    {
+      "id": "component_rule_sources",
+      "path_patterns": [
+        "tools/component_rule_sources/**"
       ],
       "token_regex": "(?i)(?:sha256|hash|digest|checksum)"
     }

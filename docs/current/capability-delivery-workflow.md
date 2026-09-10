@@ -121,18 +121,12 @@ known-issues 不得再充当「未关门但下一张卡照开」的垃圾桶。
 
 ```powershell
 python tools/build_capability_ledger.py --check
-python tools/build_registry_identity.py --check
+python tools/build_project_status.py --check
 python tools/verify.py integration --profile capability-runtime
 python tools/verify.py promotion
-python tools/build_player_complete.py --run --capability logistics/fluid-network/basic-transfer
-python tools/build_player_complete.py --run --capability logistics/item-network-core
-python tools/build_player_complete.py --run --capability logistics/generic-network/core
-python tools/build_player_complete.py --run --capability logistics/logistics-core
-python tools/build_player_complete.py --run --capability logistics/display-cpu
-python tools/build_player_complete.py --run --capability energy/nuclear-fission-survival
-python tools/build_player_complete.py --run --client --capability energy/nuclear-fission-survival
-python tools/build_player_complete.py --run --capability energy/nuclear-fission-hot-fluids
-python tools/build_player_complete.py --run --client --capability energy/nuclear-fission-hot-fluids
+python tools/build_player_complete.py --run --all
+python tools/build_player_complete.py --run --client --capability <slug>
+python tools/close_capability.py --capability <slug>
 python tools/verify.py integration --profile player-complete
 ```
 
@@ -161,7 +155,8 @@ Prep 拆开原先捆在「一条 lane」里的三件事：人读 WIP、共享文
 | 3. 晋升落地 | 当前 unique-active 已关才合共享文件 | 这时才改成本卡 slug | 这时才建，`workflow=active` |
 
 计划放 [`docs/history/card-plans/prep/`](../history/card-plans/prep/)，**不要**放进
-`card-plans/active/`。路线图「当前 unique active」一行不准改成 prep 卡。
+`card-plans/active/`。现行 unique-active 只写在
+[project-status.md](project-status.md)，不准改成 prep 卡。
 `card-plans/prep/` 与 `active/` 一样禁止里程碑卡号。
 
 签发页眉必须有：

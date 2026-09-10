@@ -1200,11 +1200,12 @@ public class ModLanguageProvider extends LanguageProvider {
     }
 
     private void addCatalogMachineNames() {
-        ModMachineVariants.ALL.forEach(variant ->
-                add(
-                        "block." + CrucibleCraft.MODID + "."
-                                + variant.id().getPath(),
-                        catalogMachineName(variant)));
+        ModMachineVariants.ALL.forEach(variant -> {
+            String path = variant.id().getPath();
+            String name = catalogMachineName(variant);
+            add("block." + CrucibleCraft.MODID + "." + path, name);
+            add("item." + CrucibleCraft.MODID + "." + path, name);
+        });
         addConverterCatalogNames();
         addBatteryCatalogNames();
         addTransformerCatalogNames();
