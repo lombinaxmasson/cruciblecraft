@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the live Laminator Source Pack and compile its 232 exact rows."""
+"""Build the live Laminator Source Pack and compile its 438 exact rows."""
 from __future__ import annotations
 
 import argparse
@@ -35,11 +35,14 @@ FAMILY_ID = (
 )
 TEMPLATE_KEY = "gt.recipe.laminator#0000"
 SOURCE_ROWS = 498
-PREP_SELECTED_ROWS = 232
-SELECTED_ROWS = 226
-PREP_OVERFLOW_ROWS = 266
-OVERFLOW_ROWS = 272
+PREP_SELECTED_ROWS = 444
+SELECTED_ROWS = 438
+PREP_OVERFLOW_ROWS = 54
+OVERFLOW_ROWS = 60
 LIVE_NEEDLE = "laminator"
+CAPABILITY_PATH = (
+    ROOT / "tools" / "capabilities" / "machines" / "laminator" / "capability.json"
+)
 WAVE = ROOT / "tools" / "waves" / "machines" / "laminator"
 LIVE_GENERATED = (
     ROOT / "src" / "recipe_generated" / "resources" / "data"
@@ -48,9 +51,8 @@ LIVE_GENERATED = (
 POLICY_PATH = LIVE_GENERATED / "publication_policy" / "laminator.json"
 PUBLICATION_GROUP = f"{TARGET_MAP}/pilot/laminator"
 LOCK_NOTE = (
-    "live compile for machines/laminator; prep selected 232 rows; "
-    "226 runtime-registered exact rows; 6 gt_block log rows and 266 "
-    "unmapped MTE rows explicitly_blocked; "
+    "live compile for machines/laminator; 438 runtime-registered exact rows; "
+    "6 gt_block log rows and 54 unmapped MTE rows explicitly_blocked; "
     "not player_complete"
 )
 ART_MANIFEST = "gt6_laminator_art_manifest.json"
@@ -118,6 +120,15 @@ def _host_status(slots: dict[str, dict[str, str]]) -> str:
         if all(slot.get("status") == "ok" for slot in slots.values())
         else "explicitly_blocked"
     )
+
+
+def unique_active_wave() -> str | None:
+    if not CAPABILITY_PATH.is_file():
+        return IMPORT_SLUG
+    document = census.load_json(CAPABILITY_PATH)
+    if document.get("workflow") == "active":
+        return IMPORT_SLUG
+    return None
 
 
 def d0_matrix() -> dict[str, Any]:
@@ -263,6 +274,7 @@ def write_source_pack() -> dict[str, int]:
 
 
 def write_wave_sidecars() -> None:
+    wave = unique_active_wave()
     _write(
         WAVE / "topology.json",
         {
@@ -274,7 +286,7 @@ def write_wave_sidecars() -> None:
             "schema_version": 1,
             "source_revision": SOURCE_REVISION,
             "status": "WAVE_READY",
-            "unique_active_wave": IMPORT_SLUG,
+            "unique_active_wave": wave,
             "wave_slug": IMPORT_SLUG,
         },
     )
@@ -300,7 +312,7 @@ def write_wave_sidecars() -> None:
             "schema_version": 1,
             "source_revision": SOURCE_REVISION,
             "status": "LAMINATOR_RUNTIME_READY",
-            "unique_active_wave": IMPORT_SLUG,
+            "unique_active_wave": wave,
             "wave_slug": IMPORT_SLUG,
         },
     )
@@ -437,6 +449,15 @@ def check() -> list[str]:
         20394: "source_exact",
     }:
         errors.append("all four D0 hosts must stay source_exact")
+    topology = census.load_json(WAVE / "topology.json")
+    readiness = census.load_json(WAVE / "readiness.json")
+    expected_wave = unique_active_wave()
+    if topology.get("unique_active_wave") != expected_wave:
+        errors.append("topology unique_active_wave drifted from capability workflow")
+    if readiness.get("unique_active_wave") != expected_wave:
+        errors.append("readiness unique_active_wave drifted from capability workflow")
+    if errors:
+        return errors
     try:
         common.isolated_compile(WAVE, LIVE_NEEDLE)
     except Exception as error:

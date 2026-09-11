@@ -19,13 +19,13 @@ class GT6L3MaterialsTest(unittest.TestCase):
     def test_pinned_plan_covers_every_bundled_prefix(self) -> None:
         artifact = json.loads(l3.OUT.read_text(encoding="utf-8"))
         self.assertEqual(self.document, artifact)
-        self.assertEqual(46, artifact["verification"]["prefix_count"])
+        self.assertEqual(50, artifact["verification"]["prefix_count"])
         self.assertEqual(
             16,
             artifact["verification"]["direct_tag_prefix_count"],
         )
         self.assertEqual(
-            28,
+            32,
             artifact["verification"]["composite_prefix_count"],
         )
         self.assertEqual(
@@ -71,7 +71,7 @@ class GT6L3MaterialsTest(unittest.TestCase):
             )
             for filename in index
         }
-        self.assertEqual(57, len(definitions))
+        self.assertEqual(132, len(definitions))
         outputs = l3.prefix_definition_outputs(self.document)
         for path, definition in definitions.items():
             with self.subTest(prefix=definition["id"]):

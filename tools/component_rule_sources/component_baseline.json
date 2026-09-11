@@ -2,8 +2,8 @@
   "schema_version": 1,
   "captured_from": "src/main/java/com/masson/cruciblecraft/recipe/rule/T3ComponentRules.java",
   "capture_test": "ComponentBaselineDumpTest",
-  "source_rules": 28,
-  "expanded_recipes": 5352,
+  "source_rules": 31,
+  "expanded_recipes": 5421,
   "expansion_budget": 10000,
   "per_rule_expanded": {
     "assembler/dodecuple_wire_and_rubber_to_dodecuple_cable": 23,
@@ -33,7 +33,10 @@
     "wiremill/octuple_and_quadruple_to_dodecuple_wire": 23,
     "wiremill/octuple_to_hexadecuple_wire": 23,
     "wiremill/quadruple_to_octuple_wire": 23,
-    "wiremill/wire_to_double_wire": 23
+    "wiremill/wire_to_double_wire": 23,
+    "wiremill/wire_and_double_to_triple_wire": 23,
+    "wiremill/wire_and_quadruple_to_quintuple_wire": 23,
+    "wiremill/wire_and_quadruple_to_sextuple_wire": 23
   },
   "per_map_expanded": {
     "assembler": 568,
@@ -44,7 +47,7 @@
     "rollbender": 438,
     "rollingmill": 336,
     "welder": 321,
-    "wiremill": 280
+    "wiremill": 349
   },
   "digests": {
     "expanded_recipe_ids_sha256": "49a509ae3e71380b592a4919a52531e24e041499c7cc9f603c3e1acd6bbecb8a",
@@ -52,8 +55,8 @@
     "shadow_signatures_sha256": "45ace1137a00a5c1e8b69e3ea565ca06dc9e9d4b38ed285432d54c3b79552fc7"
   },
   "shadow_signatures": {
-    "total": 5352,
-    "unique": 5352,
+    "total": 5421,
+    "unique": 5421,
     "duplicates": 0
   },
   "skip_reasons": [

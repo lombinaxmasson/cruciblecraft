@@ -162,6 +162,7 @@ def live_materials() -> dict[str, dict[str, Any]]:
             "live": True,
             "generation_flags": list(document.get("generation_flags") or []),
             "include_prefixes": list(document.get("include_prefixes") or []),
+            "form_items": dict(document.get("form_items") or {}),
         }
         keys = [material_id, meta.get("source_name"), *(meta.get("aliases") or [])]
         for key in keys:
@@ -315,6 +316,8 @@ def resolve_material(token: str, *, family: bool = False) -> dict[str, Any]:
 
 
 def form_exists(cc_material: str, cc_prefix: str) -> bool:
+    if form_item(cc_material, cc_prefix) is not None:
+        return True
     item = f"cruciblecraft:{cc_material}/{cc_prefix}"
     if item in registered_ids():
         return True
@@ -332,13 +335,23 @@ def form_exists(cc_material: str, cc_prefix: str) -> bool:
     return False
 
 
+def form_item(cc_material: str, cc_prefix: str) -> str | None:
+    row = live_materials().get(cc_material) or live_materials().get(_norm(cc_material))
+    if row is None:
+        return None
+    item = (row.get("form_items") or {}).get(cc_prefix)
+    return str(item) if item else None
+
+
 def resolve_form(prefix: dict[str, Any], material: dict[str, Any]) -> dict[str, Any]:
     cc_prefix = prefix.get("cc_prefix")
     cc_material = material.get("cc_material")
     if material.get("kind") == "family":
         items = []
         for member in material.get("cc_materials") or []:
-            item = f"cruciblecraft:{member}/{cc_prefix}" if cc_prefix else None
+            item = form_item(member, cc_prefix) if cc_prefix else None
+            if item is None and cc_prefix:
+                item = f"cruciblecraft:{member}/{cc_prefix}"
             items.append(
                 {
                     "cc_material": member,
@@ -354,7 +367,7 @@ def resolve_form(prefix: dict[str, Any], material: dict[str, Any]) -> dict[str, 
         }
     if not cc_prefix or not cc_material:
         return {"status": prefix.get("status") if not cc_prefix else material.get("status"), "item": None}
-    item = f"cruciblecraft:{cc_material}/{cc_prefix}"
+    item = form_item(cc_material, cc_prefix) or f"cruciblecraft:{cc_material}/{cc_prefix}"
     exists = form_exists(cc_material, cc_prefix)
     return {
         "status": "ok" if exists else "missing_form",

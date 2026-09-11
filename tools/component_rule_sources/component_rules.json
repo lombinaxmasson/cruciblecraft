@@ -14,10 +14,13 @@
     "plate": 144,
     "quadruple_plate": 576,
     "quadruple_wire": 288,
+    "quintuple_wire": 360,
     "ring": 36,
     "rod": 72,
     "triple_plate": 432,
-    "wire": 72
+    "triple_wire": 216,
+    "wire": 72,
+    "sextuple_wire": 432
   },
   "rules": [
     {
@@ -431,6 +434,66 @@
       "source_units": 288,
       "duration": 120,
       "eut": 32
+    },
+    {
+      "id": "wiremill/wire_and_double_to_triple_wire",
+      "kind": "target_transform",
+      "map": "wiremill",
+      "selector": "working",
+      "inputs": [
+        {
+          "prefix": "wire",
+          "count": 1
+        },
+        {
+          "prefix": "double_wire",
+          "count": 1
+        }
+      ],
+      "output": "triple_wire",
+      "source_units": 216,
+      "duration": 120,
+      "eut": 32
+    },
+    {
+      "id": "wiremill/wire_and_quadruple_to_quintuple_wire",
+      "kind": "target_transform",
+      "map": "wiremill",
+      "selector": "working",
+      "inputs": [
+        {
+          "prefix": "wire",
+          "count": 1
+        },
+        {
+          "prefix": "quadruple_wire",
+          "count": 1
+        }
+      ],
+      "output": "quintuple_wire",
+      "source_units": 360,
+      "duration": 160,
+      "eut": 48
+    },
+    {
+      "id": "wiremill/wire_and_quadruple_to_sextuple_wire",
+      "kind": "target_transform",
+      "map": "wiremill",
+      "selector": "working",
+      "inputs": [
+        {
+          "prefix": "wire",
+          "count": 2
+        },
+        {
+          "prefix": "quadruple_wire",
+          "count": 1
+        }
+      ],
+      "output": "sextuple_wire",
+      "source_units": 432,
+      "duration": 180,
+      "eut": 48
     },
     {
       "id": "wiremill/wire_to_double_wire",

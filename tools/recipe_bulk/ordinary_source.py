@@ -203,6 +203,19 @@ def load_mte_runtime() -> dict[tuple[str, int], str]:
             mapped[(str(identity["source_item"]), int(identity["meta"]))] = str(
                 identity["runtime_id"]
             )
+    overlay = (
+        census.TOOLS
+        / "waves"
+        / "content"
+        / "electric-wire-cable-mte-fold"
+        / "operand_runtime_map.json"
+    )
+    if overlay.is_file():
+        document = census.load_json(overlay)
+        for row in document.get("mappings") or []:
+            mapped[
+                ("gregtech:gt.multitileentity", int(row["meta"]))
+            ] = str(row["runtime_id"])
     return mapped
 
 

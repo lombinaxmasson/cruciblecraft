@@ -38,7 +38,13 @@
     "test_roll_former",
     "test_cluster_mill",
     "test_slicer",
+    "test_injector",
+    "test_laminator",
+    "test_loom",
+    "test_nanofab",
     "test_melter",
+    "test_electric_wire_cable_mte_fold",
+    "test_technological_parts_foundation",
     "test_capability_ledger",
     "test_project_status",
     "test_capability_close",
@@ -170,21 +176,29 @@
     },
     {
       "paths": [
-        "tools/material_form_authority.py",
-        "tools/material_form_authority.json",
-        "tools/material_form_authority.schema.json",
-        "tools/build_semantic_recipes.py",
-        "tools/tests/test_material_form_authority.py",
-        "tools/tests/test_build_semantic_recipes.py",
-        "tools/recipe_bulk/**",
-        "tools/source_pack_manifest.schema.json",
-        "tools/recipe_import_spec.schema.json",
+        "src/compact_recipe_policy_generated/**",
+        "src/main/resources/data/cruciblecraft/material_prefixes/**",
         "src/recipe_generated/**",
-        "src/compact_recipe_policy_generated/**"
+        "tools/build_semantic_recipes.py",
+        "tools/compare_gt6_recipes.py",
+        "tools/gt6_generation_bits.json",
+        "tools/gt6_l3_prefix_plan.json",
+        "tools/gt6_oredict_cross_reference.json",
+        "tools/gt6_prefix_mapping.json",
+        "tools/import_gt6_oredict.py",
+        "tools/material_form_authority.json",
+        "tools/material_form_authority.py",
+        "tools/material_form_authority.schema.json",
+        "tools/operand_reachability.py",
+        "tools/recipe_bulk/**",
+        "tools/recipe_import_spec.schema.json",
+        "tools/source_pack_manifest.schema.json",
+        "tools/tests/test_build_semantic_recipes.py",
+        "tools/tests/test_material_form_authority.py"
       ],
       "test_modules": [
-        "test_material_form_authority",
-        "test_build_semantic_recipes"
+        "test_build_semantic_recipes",
+        "test_material_form_authority"
       ]
     },
     {
@@ -232,11 +246,22 @@
         "tools/tests/test_roll_former.py",
         "tools/tests/test_cluster_mill.py",
         "tools/tests/test_slicer.py",
+        "tools/tests/test_injector.py",
+        "tools/tests/test_laminator.py",
+        "tools/tests/test_loom.py",
+        "tools/tests/test_nanofab.py",
         "tools/tests/test_melter.py",
+        "tools/tests/test_electric_wire_cable_mte_fold.py",
+        "tools/tests/test_technological_parts_foundation.py",
+        "tools/technological_parts_foundation.py",
+        "tools/build_technological_parts_foundation.py",
+        "tools/waves/content/technological-parts-foundation/**",
+        "src/main/resources/data/cruciblecraft/technological_parts.json",
         "tools/waves/machines/**",
         "src/main/java/com/masson/cruciblecraft/gametest/RollFormerGameTests.java",
         "src/main/java/com/masson/cruciblecraft/gametest/ClusterMillGameTests.java",
         "src/main/java/com/masson/cruciblecraft/gametest/SlicerGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/InjectorGameTests.java",
         "src/main/resources/data/cruciblecraft_wave_machines_roll_former/**",
         "src/main/resources/data/cruciblecraft_wave_machines_cluster_mill/**",
         "src/main/resources/data/cruciblecraft_wave_machines_slicer/**"
@@ -245,7 +270,13 @@
         "test_roll_former",
         "test_cluster_mill",
         "test_slicer",
-        "test_melter"
+        "test_injector",
+        "test_laminator",
+        "test_loom",
+        "test_nanofab",
+        "test_melter",
+        "test_electric_wire_cable_mte_fold",
+        "test_technological_parts_foundation"
       ]
     },
     {
@@ -422,7 +453,8 @@
         "test_jade_observation",
         "test_roll_former",
         "test_cluster_mill",
-        "test_slicer"
+        "test_slicer",
+        "test_injector"
       ]
     },
     {
@@ -439,6 +471,22 @@
       ],
       "test_modules": [
         "test_player_complete"
+      ]
+    },
+    {
+      "paths": [
+        "tools/gt6_prefix_mapping.json",
+        "tools/gt6_generation_bits.json",
+        "tools/gt6_l3_prefix_plan.json",
+        "tools/gt6_oredict_cross_reference.json",
+        "tools/import_gt6_oredict.py",
+        "tools/compare_gt6_recipes.py",
+        "tools/operand_reachability.py",
+        "src/main/resources/data/cruciblecraft/material_prefixes/**"
+      ],
+      "test_modules": [
+        "test_material_form_authority",
+        "test_technological_parts_foundation"
       ]
     }
   ]

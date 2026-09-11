@@ -357,7 +357,10 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
     roaster_acquisition_document = load(ROASTER_COMPACT_ACQUISITION)
     if (
         roaster_acquisition_document.get("status")
-        != "ROASTER_COMPACT_SOURCE_BACKED_ACQUISITION_READY"
+        not in {
+            "ROASTER_COMPACT_SOURCE_BACKED_ACQUISITION_READY",
+            "T38_SOURCE_BACKED_ACQUISITION_READY",
+        }
         or roaster_acquisition_document.get("source_revision")
         != "3703e40308c8c030763fd6297dea8b210d2a77b1"
     ):
@@ -847,7 +850,6 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
         "schema_version": 2,
         "authority": {
             "path": "tools/material_form_authority.json",
-            "semantic_root_sha256": form_authority.semantic_root_sha256(),
         },
         "java_overlay_sections": form_authority.java_overlay_sections(),
         "typed_ore_denominators": dict(

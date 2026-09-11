@@ -3468,7 +3468,8 @@
     "field": "records[].pre_gate_registered_forms",
     "note": "audit-only legacy baseline; the builder never reads the previous material_registration_gate.json",
     "path": "tools/gt6_material_activation_policy.json",
-    "recursive": false
+    "recursive": false,
+    "sha256": "3d614781da228bf6c702db6467325619a777726e367f9cd5ee9bea8f33fae277"
   },
   "compatibility_forms": {
     "adamantine": [
@@ -4204,8 +4205,7 @@
       "gem"
     ],
     "nether_star": [
-      "block",
-      "gem"
+      "block"
     ],
     "netherite": [
       "cable",
@@ -6971,10 +6971,9 @@
     "bath_required_forms": 1679,
     "centrifuge_required_forms": 5,
     "chemical_required_forms": 7,
-    "compatibility_forms": 852,
+    "compatibility_forms": 851,
     "electrical_wire_forms": 29,
     "electrolyzer_required_forms": 3,
-    "fission_survival_required_forms": 68,
     "known_ingot_forms": 967,
     "materials": 1773,
     "metadata_only_materials": 663,
@@ -6984,7 +6983,7 @@
     "ore_source_materials": 137,
     "pipe_forms": 282,
     "recipe_gated_forms": 13338,
-    "registered_forms": 32201,
+    "registered_forms": 32261,
     "roaster_required_forms": 12,
     "tool_head_required_forms": 7990,
     "worldgen_acquisition_forms": 44
@@ -7435,128 +7434,6 @@
       "small_dust"
     ]
   },
-  "fission_survival_required_forms": {
-    "americium": [
-      "dust_div72",
-      "rod",
-      "tiny_dust"
-    ],
-    "americium241": [
-      "dust_div72",
-      "rod",
-      "tiny_dust"
-    ],
-    "beryllium": [
-      "rod"
-    ],
-    "blutonium": [
-      "dust_div72",
-      "rod",
-      "tiny_dust"
-    ],
-    "cd_in_ag_alloy": [
-      "rod"
-    ],
-    "cobalt60": [
-      "dust_div72",
-      "rod",
-      "tiny_dust"
-    ],
-    "cyanite": [
-      "dust_div72",
-      "rod",
-      "tiny_dust"
-    ],
-    "graphite": [
-      "rod"
-    ],
-    "lead": [
-      "dense_plate",
-      "long_rod",
-      "machine_casing_dense"
-    ],
-    "lithium": [
-      "bolt"
-    ],
-    "ludicrite": [
-      "dust_div72",
-      "rod",
-      "tiny_dust"
-    ],
-    "naquadah": [
-      "bolt",
-      "dust_div72",
-      "rod",
-      "tiny_dust"
-    ],
-    "naquadah_enriched": [
-      "dust_div72",
-      "rod",
-      "tiny_dust"
-    ],
-    "naquadria": [
-      "dust_div72",
-      "rod",
-      "tiny_dust"
-    ],
-    "plutonium": [
-      "dust_div72",
-      "rod",
-      "tiny_dust"
-    ],
-    "plutonium239": [
-      "dust_div72",
-      "rod",
-      "tiny_dust"
-    ],
-    "plutonium241": [
-      "dust_div72",
-      "rod",
-      "tiny_dust"
-    ],
-    "plutonium243": [
-      "dust_div72",
-      "rod",
-      "tiny_dust"
-    ],
-    "ruby": [
-      "lens"
-    ],
-    "silicon": [
-      "tiny_plate_gem"
-    ],
-    "thorium": [
-      "bolt",
-      "dust_div72",
-      "rod",
-      "tiny_dust"
-    ],
-    "uranium": [
-      "bolt",
-      "dust_div72",
-      "rod",
-      "tiny_dust"
-    ],
-    "uranium233": [
-      "dust_div72",
-      "rod",
-      "tiny_dust"
-    ],
-    "uranium235": [
-      "dust_div72",
-      "rod",
-      "tiny_dust"
-    ],
-    "yellorium": [
-      "dust_div72",
-      "rod",
-      "tiny_dust"
-    ],
-    "zirconium": [
-      "ingot",
-      "scrap"
-    ]
-  },
   "java_overlay_sections": [
     "worldgen_acquisition_forms",
     "roaster_required_forms",
@@ -7571,8 +7448,8 @@
     "centrifuge_ordinary_closure_required_forms",
     "autoclave_ordinary_closure_required_forms",
     "compressor_ordinary_closure_required_forms",
-    "fission_survival_required_forms",
-    "machines_cluster_mill_required_forms"
+    "machines_cluster_mill_required_forms",
+    "technological_parts_foundation_required_forms"
   ],
   "known_ingot_forms": {
     "abyssalnite": [
@@ -9896,7 +9773,6 @@
       "block",
       "bolt",
       "cable",
-      "capcellcon",
       "chain",
       "chunk",
       "curved_plate",
@@ -9938,6 +9814,7 @@
       "quadruple_wire",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "rail_gt",
       "raw_ore",
       "ring",
@@ -9947,6 +9824,7 @@
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_casing",
       "small_dust",
       "small_fluid_pipe",
@@ -9992,6 +9870,7 @@
       "tool_head_universal_spade",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "wire"
     ],
     "aluminium_alloy": [
@@ -10363,7 +10242,6 @@
       "double_ingot",
       "double_plate",
       "dust",
-      "dust_div72",
       "fine_wire",
       "foil",
       "gear",
@@ -10403,7 +10281,6 @@
       "double_ingot",
       "double_plate",
       "dust",
-      "dust_div72",
       "fine_wire",
       "foil",
       "gear",
@@ -10757,6 +10634,7 @@
       "quadruple_wire",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "rail_gt",
       "ring",
       "rod",
@@ -10764,6 +10642,7 @@
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_casing",
       "small_gear",
       "small_spring",
@@ -10804,6 +10683,7 @@
       "tool_head_universal_spade",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "wire"
     ],
     "anthracite": [
@@ -14014,10 +13894,12 @@
       "quadruple_plate",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "rod",
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_dust",
       "storage_ingot",
       "storage_plate",
@@ -14025,6 +13907,7 @@
       "tiny_plate",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "wire"
     ],
     "blue_aventurine": [
@@ -14516,7 +14399,6 @@
       "double_ingot",
       "double_plate",
       "dust",
-      "dust_div72",
       "foil",
       "ingot",
       "ingot_hot",
@@ -15418,12 +15300,14 @@
       "quadruple_plate",
       "quadruple_wire",
       "quintuple_plate",
+      "quintuple_wire",
       "raw_ore",
       "ring",
       "rock",
       "rod",
       "rotor",
       "screw",
+      "sextuple_wire",
       "small_dust",
       "small_gear",
       "storage_plate",
@@ -15434,6 +15318,7 @@
       "tool_head_wrench",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "washed_crushed_ore",
       "wire"
     ],
@@ -16719,7 +16604,6 @@
       "double_ingot",
       "double_plate",
       "dust",
-      "dust_div72",
       "fine_wire",
       "foil",
       "gear",
@@ -17126,12 +17010,14 @@
       "quadruple_wire",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "ring",
       "rod",
       "rotor",
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_casing",
       "small_dust",
       "small_gear",
@@ -17175,6 +17061,7 @@
       "tool_head_universal_spade",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "wire"
     ],
     "construction_foam": [
@@ -17315,6 +17202,7 @@
       "quadruple_wire",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "rail_gt",
       "raw_ore",
       "ring",
@@ -17324,6 +17212,7 @@
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_casing",
       "small_dust",
       "small_fluid_pipe",
@@ -17371,6 +17260,7 @@
       "tool_head_universal_spade",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "washed_crushed_ore",
       "wire"
     ],
@@ -17764,7 +17654,6 @@
       "double_ingot",
       "double_plate",
       "dust",
-      "dust_div72",
       "foil",
       "ingot",
       "ingot_hot",
@@ -19501,6 +19390,7 @@
       "quadruple_wire",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "raw_ore",
       "ring",
       "rock",
@@ -19509,6 +19399,7 @@
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_casing",
       "small_dust",
       "small_fluid_pipe",
@@ -19557,6 +19448,7 @@
       "tool_head_universal_spade",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "washed_crushed_ore",
       "wire"
     ],
@@ -19697,10 +19589,12 @@
       "quadruple_plate",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "rod",
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_dust",
       "storage_ingot",
       "storage_plate",
@@ -19708,6 +19602,7 @@
       "tiny_plate",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "wire"
     ],
     "electrum": [
@@ -19760,6 +19655,7 @@
       "quadruple_wire",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "rail_gt",
       "raw_ore",
       "ring",
@@ -19769,6 +19665,7 @@
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_casing",
       "small_dust",
       "small_gear",
@@ -19815,6 +19712,7 @@
       "tool_head_universal_spade",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "washed_crushed_ore",
       "wire"
     ],
@@ -20219,6 +20117,7 @@
       "bolt",
       "dust",
       "gear",
+      "gem",
       "long_rod",
       "ring",
       "rod",
@@ -20238,6 +20137,7 @@
       "dust",
       "dust_div72",
       "gear",
+      "gem",
       "lens",
       "long_rod",
       "plant_gt_berry",
@@ -20540,12 +20440,6 @@
       "centrifuged_crushed_ore",
       "crushed_ore",
       "dust",
-      "gem",
-      "gem_chipped",
-      "gem_exquisite",
-      "gem_flawed",
-      "gem_flawless",
-      "gem_legendary",
       "long_rod",
       "purified_dust",
       "raw_ore",
@@ -20564,11 +20458,6 @@
       "crushed_ore",
       "dust",
       "gem",
-      "gem_chipped",
-      "gem_exquisite",
-      "gem_flawed",
-      "gem_flawless",
-      "gem_legendary",
       "long_rod",
       "purified_dust",
       "raw_ore",
@@ -22778,6 +22667,7 @@
       "quadruple_wire",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "rail_gt",
       "raw_ore",
       "ring",
@@ -22787,6 +22677,7 @@
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_casing",
       "small_dust",
       "small_fluid_pipe",
@@ -22837,6 +22728,7 @@
       "tool_head_wrench",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "washed_crushed_ore",
       "wire"
     ],
@@ -23187,13 +23079,16 @@
       "gear",
       "long_rod",
       "plate",
+      "quintuple_wire",
       "ring",
       "rod",
       "rotor",
       "screw",
+      "sextuple_wire",
       "small_gear",
       "small_spring",
       "spring",
+      "triple_wire",
       "wire"
     ],
     "graphite": [
@@ -24628,6 +24523,7 @@
       "quadruple_plate",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "rail_gt",
       "ring",
       "rod",
@@ -24635,6 +24531,7 @@
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_casing",
       "small_dust",
       "small_fluid_pipe",
@@ -24680,6 +24577,7 @@
       "tool_head_universal_spade",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "wire"
     ],
     "hslatungsten_alloy": [
@@ -25651,6 +25549,7 @@
       "quadruple_wire",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "raw_ore",
       "ring",
       "rock",
@@ -25659,6 +25558,7 @@
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_casing",
       "small_dust",
       "small_fluid_pipe",
@@ -25707,6 +25607,7 @@
       "tool_head_universal_spade",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "washed_crushed_ore",
       "wire"
     ],
@@ -26354,12 +26255,14 @@
       "quadruple_wire",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "ring",
       "rod",
       "rotor",
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_casing",
       "small_dust",
       "small_gear",
@@ -26403,6 +26306,7 @@
       "tool_head_universal_spade",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "wire"
     ],
     "kaolinite": [
@@ -26914,7 +26818,6 @@
       "ingot_hot",
       "long_rod",
       "machine_casing",
-      "machine_casing_dense",
       "machine_casing_double",
       "machine_casing_quadruple",
       "minecart_wheels",
@@ -26935,6 +26838,7 @@
       "quadruple_wire",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "raw_ore",
       "ring",
       "rock",
@@ -26943,6 +26847,7 @@
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_casing",
       "small_dust",
       "small_gear",
@@ -26992,6 +26897,7 @@
       "tool_head_wrench",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "washed_crushed_ore",
       "wire"
     ],
@@ -27584,7 +27490,6 @@
       "double_ingot",
       "double_plate",
       "dust",
-      "dust_div72",
       "foil",
       "ingot",
       "ingot_hot",
@@ -30515,6 +30420,7 @@
       "quadruple_plate",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "raw_ore",
       "ring",
       "rock",
@@ -30523,6 +30429,7 @@
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_casing",
       "small_dust",
       "small_gear",
@@ -30569,6 +30476,7 @@
       "tool_head_universal_spade",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "washed_crushed_ore",
       "wire"
     ],
@@ -31084,12 +30992,14 @@
       "quadruple_wire",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "ring",
       "rod",
       "rotor",
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_casing",
       "small_dust",
       "small_fluid_pipe",
@@ -31135,6 +31045,7 @@
       "tool_head_universal_spade",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "wire"
     ],
     "netherized_diamond": [
@@ -31259,12 +31170,14 @@
       "quadruple_wire",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "ring",
       "rod",
       "rotor",
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_casing",
       "small_dust",
       "small_gear",
@@ -31308,6 +31221,7 @@
       "tool_head_universal_spade",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "wire"
     ],
     "nickel": [
@@ -31623,13 +31537,16 @@
       "quadruple_plate",
       "quadruple_wire",
       "quintuple_plate",
+      "quintuple_wire",
       "rod",
       "screw",
+      "sextuple_wire",
       "small_dust",
       "storage_plate",
       "tiny_dust",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "wire"
     ],
     "niter": [
@@ -32541,12 +32458,14 @@
       "quadruple_wire",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "ring",
       "rod",
       "rotor",
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_casing",
       "small_dust",
       "small_gear",
@@ -32590,6 +32509,7 @@
       "tool_head_universal_spade",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "wire"
     ],
     "osmium_elemental": [
@@ -32643,6 +32563,7 @@
       "quadruple_wire",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "rail_gt",
       "raw_ore",
       "ring",
@@ -32652,6 +32573,7 @@
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_casing",
       "small_dust",
       "small_gear",
@@ -32698,6 +32620,7 @@
       "tool_head_universal_spade",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "washed_crushed_ore",
       "wire"
     ],
@@ -33721,6 +33644,7 @@
       "quadruple_wire",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "rail_gt",
       "raw_ore",
       "ring",
@@ -33730,6 +33654,7 @@
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_casing",
       "small_dust",
       "small_gear",
@@ -33776,6 +33701,7 @@
       "tool_head_universal_spade",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "washed_crushed_ore",
       "wire"
     ],
@@ -33860,7 +33786,6 @@
       "double_ingot",
       "double_plate",
       "dust",
-      "dust_div72",
       "fine_wire",
       "foil",
       "gear",
@@ -33926,7 +33851,6 @@
       "double_ingot",
       "double_plate",
       "dust",
-      "dust_div72",
       "fine_wire",
       "foil",
       "gear",
@@ -33992,7 +33916,6 @@
       "double_ingot",
       "double_plate",
       "dust",
-      "dust_div72",
       "fine_wire",
       "foil",
       "gear",
@@ -34032,7 +33955,6 @@
       "double_ingot",
       "double_plate",
       "dust",
-      "dust_div72",
       "fine_wire",
       "foil",
       "gear",
@@ -37054,6 +36976,7 @@
       "quadruple_wire",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "rail_gt",
       "raw_ore",
       "ring",
@@ -37063,6 +36986,7 @@
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_casing",
       "small_dust",
       "small_gear",
@@ -37109,6 +37033,7 @@
       "tool_head_universal_spade",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "washed_crushed_ore",
       "wire"
     ],
@@ -38038,6 +37963,7 @@
       "quadruple_wire",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "rail_gt",
       "ring",
       "rock",
@@ -38046,6 +37972,7 @@
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_casing",
       "small_dust",
       "small_fluid_pipe",
@@ -38097,6 +38024,7 @@
       "tool_head_wrench",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "washed_crushed_ore",
       "wire"
     ],
@@ -39588,7 +39516,6 @@
       "double_ingot",
       "double_plate",
       "dust",
-      "dust_div72",
       "fine_wire",
       "foil",
       "gear",
@@ -39795,6 +39722,7 @@
       "quadruple_wire",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "raw_ore",
       "ring",
       "rock",
@@ -39803,6 +39731,7 @@
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_casing",
       "small_dust",
       "small_fluid_pipe",
@@ -39819,6 +39748,7 @@
       "tiny_washed_crushed_ore",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "washed_crushed_ore",
       "wire"
     ],
@@ -40734,6 +40664,7 @@
       "quadruple_wire",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "rail_gt",
       "raw_ore",
       "ring",
@@ -40743,6 +40674,7 @@
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_casing",
       "small_dust",
       "small_fluid_pipe",
@@ -40788,6 +40720,7 @@
       "tool_head_universal_spade",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "washed_crushed_ore",
       "wire"
     ],
@@ -40982,6 +40915,7 @@
       "quadruple_wire",
       "quintuple_ingot",
       "quintuple_plate",
+      "quintuple_wire",
       "rail_gt",
       "ring",
       "rod",
@@ -40989,6 +40923,7 @@
       "round",
       "scrap",
       "screw",
+      "sextuple_wire",
       "small_casing",
       "small_dust",
       "small_fluid_pipe",
@@ -41034,6 +40969,7 @@
       "tool_head_universal_spade",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "wire"
     ],
     "tungstic_acid": [
@@ -41304,7 +41240,6 @@
       "double_ingot",
       "double_plate",
       "dust",
-      "dust_div72",
       "fine_wire",
       "foil",
       "gear",
@@ -41344,7 +41279,6 @@
       "double_ingot",
       "double_plate",
       "dust",
-      "dust_div72",
       "fine_wire",
       "foil",
       "gear",
@@ -41384,7 +41318,6 @@
       "double_ingot",
       "double_plate",
       "dust",
-      "dust_div72",
       "fine_wire",
       "foil",
       "gear",
@@ -41586,13 +41519,16 @@
       "quadruple_plate",
       "quadruple_wire",
       "quintuple_plate",
+      "quintuple_wire",
       "rod",
       "screw",
+      "sextuple_wire",
       "small_dust",
       "storage_plate",
       "tiny_dust",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "wire"
     ],
     "vanadium_magnetite": [
@@ -43788,7 +43724,6 @@
       "double_ingot",
       "double_plate",
       "dust",
-      "dust_div72",
       "foil",
       "ingot",
       "ingot_hot",
@@ -44191,13 +44126,16 @@
       "plate",
       "quadruple_plate",
       "quintuple_plate",
+      "quintuple_wire",
       "rod",
       "screw",
+      "sextuple_wire",
       "small_dust",
       "storage_plate",
       "tiny_dust",
       "triple_ingot",
       "triple_plate",
+      "triple_wire",
       "wire"
     ],
     "zanite": [
@@ -44432,7 +44370,6 @@
       "rock",
       "rod",
       "rotor",
-      "scrap",
       "screw",
       "small_dust",
       "small_gear",
@@ -57077,117 +57014,325 @@
   "sources": {
     "acceptance_form_corrections": {
       "classification": "acceptance_required_not_gt6_original_gate",
-      "path": "tools/component_rule_sources/acceptance_form_corrections.json"
+      "path": "tools/component_rule_sources/acceptance_form_corrections.json",
+      "sha256": "c341471c9b0c00705e5a55d06ac643911bac5a1cf7aa0680cf4eced863cf155d"
     },
     "autoclave_ordinary_closure_required_forms": {
       "classification": "semantic_ordinary_runtime_required",
       "field": "required_forms",
-      "path": "tools/waves/autoclave/ordinary-closure/required_forms.json"
+      "path": "tools/waves/autoclave/ordinary-closure/required_forms.json",
+      "sha256": "6549f4848de46afc3876a35b5ba1978c11ed21d31f56ec173297d8b77ea3e88c"
     },
     "bath_compact_required_forms": {
       "classification": "bath_compact_output_runtime_required",
       "field": "required_forms",
       "path": "tools/bath_required_forms.json",
-      "source_path": "tools/bath_remainder_source.json"
+      "sha256": "23bd52e844dcaadc3bb459a5022fa91fda431748736ad0b23717c06812babcff",
+      "source_path": "tools/bath_remainder_source.json",
+      "source_sha256": "32d44f976db0272ad5e903acffa6fb0daec16e820791529ae8c2bd2d85fa6f93"
     },
     "centrifuge_compact_required_forms": {
       "classification": "centrifuge_compact_output_runtime_required",
       "field": "required_forms",
       "path": "tools/centrifuge_required_forms.json",
-      "source_path": "tools/centrifuge_source.json"
+      "sha256": "7c427e997dda4fbf76f0d4fed3d1b1c317144b0dbbab49c2617d1d6af9513a77",
+      "source_path": "tools/centrifuge_source.json",
+      "source_sha256": "2efdfc8c286615f4ddacf0da8c0b2675f3f22c5cdc82e8d37bc5ea791bc50fac"
     },
     "centrifuge_ordinary_closure_required_forms": {
       "classification": "semantic_ordinary_runtime_required",
       "field": "required_forms",
-      "path": "tools/waves/centrifuge/ordinary-closure/required_forms.json"
+      "path": "tools/waves/centrifuge/ordinary-closure/required_forms.json",
+      "sha256": "1960ef3fac07d9dde6a75dbd529c41c5c9111277f0e4f8ba1d94194bdef2ccf4"
     },
     "chemical_selected_source_route_forms": {
       "classification": "chemical_selected_source_route_required",
       "field": "required_form_overrides.forms",
-      "path": "tools/chemical_policy.json"
+      "path": "tools/chemical_policy.json",
+      "sha256": "5e366cf4824d5f55fe79ce48451d35b031b964a4ef6023a21227b1282cfaebbc"
     },
     "compressor_ordinary_closure_required_forms": {
       "classification": "semantic_ordinary_runtime_required",
       "field": "required_forms",
-      "path": "tools/waves/compressor/ordinary-closure/required_forms.json"
+      "path": "tools/waves/compressor/ordinary-closure/required_forms.json",
+      "sha256": "6c5b948a6c43553df07f6060c46176ad34c76c34e5684ed8019bd2c30cb5b608"
     },
     "drying_ordinary_closure_required_forms": {
       "classification": "semantic_ordinary_runtime_required",
       "field": "required_forms",
-      "path": "tools/waves/drying/ordinary-closure/required_forms.json"
+      "path": "tools/waves/drying/ordinary-closure/required_forms.json",
+      "sha256": "c2f06506adb779188b9ed29a5c7c8cfa971f9ffde1813d2e128762224d0004fe"
     },
     "electrical_source_backed_wire_forms": {
       "classification": "electrical_source_backed_runtime_required",
       "field": "conductors[] plus live material wireGt01 specification",
-      "path": "tools/gt6_electrical_source.json"
+      "path": "tools/gt6_electrical_source.json",
+      "sha256": "3a9c7649387c016723d60e1738faf6e20ab2a2c3301b4cf006761231fa3b5238"
     },
     "electrolyzer_compact_required_forms": {
       "classification": "electrolyzer_compact_output_runtime_required",
       "field": "required_forms",
       "path": "tools/electrolyzer_required_forms.json",
-      "source_path": "tools/electrolyzer_source.json"
+      "sha256": "161f8fc8d5b0b541163bb843583d9ed59d1d213c474bee9d0c5ae5fda1c83c51",
+      "source_path": "tools/electrolyzer_source.json",
+      "source_sha256": "e0d5532bbf94b05c937b43e93ab25e37fe27f63c16ba96d4552d68f501b63518"
     },
     "electrolyzer_ordinary_closure_required_forms": {
       "classification": "semantic_ordinary_runtime_required",
       "field": "required_forms",
-      "path": "tools/waves/electrolyzer/ordinary-closure/required_forms.json"
+      "path": "tools/waves/electrolyzer/ordinary-closure/required_forms.json",
+      "sha256": "a399583a7d9f5341534d63851927a9e4c2bf435bcf19f2733b2cbb0749298787"
     },
     "factual_ore_sources": {
       "field": "resolved factual prefix `ore`",
       "path": "src/main/resources/data/cruciblecraft/materials/*.json"
     },
-    "fission_survival_required_forms": {
-      "classification": "semantic_ordinary_runtime_required",
-      "field": "required_forms",
-      "path": "tools/waves/runtime/fission-survival/required_forms.json"
-    },
     "known_ingot_forms": {
       "classification": "known_ingot_source_domain_runtime_required",
       "field": "route_projections.multi_ingot/hot_ingot.materials",
+      "hot_material_set_sha256": "72ce04d9d05809c63a888f2a643ee3b9e533bb46dcaf4e60c1f20c00a862acc6",
+      "multi_material_set_sha256": "c03dc254e818bd4e5a853d9738fefde5eac29af1dd5b428d80b9ac0c69ff44ba",
       "path": "tools/known_ingot_preflight_projection.json"
     },
     "l1b_recipe_operands": {
-      "path": "tools/gt6_l1b_selected_recipe_operands.json"
+      "path": "tools/gt6_l1b_selected_recipe_operands.json",
+      "sha256": "ba58101edecd46a9c601afa5d114b18b5547cb62f90f4886f74b3a5400485b9b"
+    },
+    "machines_cluster_mill_required_forms": {
+      "classification": "semantic_ordinary_runtime_required",
+      "field": "required_forms",
+      "path": "tools/waves/machines/cluster-mill/required_forms.json",
+      "sha256": "47b4774d908675ff41f971dea314316a3b5dbbc9fc882b8f41a96c0d553aa1c7"
     },
     "material_tag_policy": {
       "classification": "audit_only_non_form_source",
       "field": "tags[] classification and acceptance",
-      "path": "src/main/resources/data/cruciblecraft/material_tag_policy.json"
+      "path": "src/main/resources/data/cruciblecraft/material_tag_policy.json",
+      "sha256": "cf4617e438aed6d41f168dc953bb0f9e83858c5450a91bffb8d4c2153e6a8240"
     },
     "mixer_ordinary_closure_required_forms": {
       "classification": "semantic_ordinary_runtime_required",
       "field": "required_forms",
-      "path": "tools/waves/mixer/ordinary-closure/required_forms.json"
+      "path": "tools/waves/mixer/ordinary-closure/required_forms.json",
+      "sha256": "df7e40cc48bcc4b7bcedd1bdab045510953e94a1f7c65f35eb29fab6cc62d60f"
     },
     "ore_chain_operands": {
-      "path": "tools/gt6_ore_chain_operands.json"
+      "path": "tools/gt6_ore_chain_operands.json",
+      "sha256": "08f32ae6f4d9e094f52fce4a41dd6507ddf5166d93d64506486996381b286188"
     },
     "pipe_source_backed_pipe_forms": {
       "classification": "pipe_source_backed_runtime_required",
       "field": "fluid_domain/item_domain material_catalog",
-      "path": "tools/pipe_readiness.json"
+      "path": "tools/pipe_readiness.json",
+      "sha256": "00ac96624550a2086fe37024ada05697aa6cb58f1c17df7d772827ee42b32a75"
     },
     "roaster_compact_required_forms": {
       "classification": "roaster_compact_output_runtime_required",
       "field": "required_forms",
       "path": "tools/roaster_required_forms.json",
-      "source_path": "tools/roaster_source.json"
+      "sha256": "d161d2e7125db41d1d36389abc9bb9e8e29d202eddf68dff68814ede766cb4b2",
+      "source_path": "tools/roaster_source.json",
+      "source_sha256": "6939d11266642cfe00e6f946a7265b669c1cfb75c1dd34a258447b14e3f349f7"
     },
     "smelter_ordinary_closure_required_forms": {
       "classification": "semantic_ordinary_runtime_required",
       "field": "required_forms",
-      "path": "tools/waves/smelter/ordinary-closure/required_forms.json"
+      "path": "tools/waves/smelter/ordinary-closure/required_forms.json",
+      "sha256": "ea2ab4eb8be9e09ebfc3081396674db23f865f046e2b466b12cb1280b7af30c9"
+    },
+    "technological_parts_foundation_required_forms": {
+      "classification": "semantic_ordinary_runtime_required",
+      "field": "required_forms",
+      "path": "tools/waves/content/technological-parts-foundation/required_forms.json",
+      "sha256": "23bdf813c9f4e8273a22d6605bdb7b9b23ab0ef28cb6e4baf960646432c86043"
     },
     "tool_head_prefix_required_forms": {
       "classification": "tool_head_prefix_runtime_required",
       "field": "required_forms",
-      "path": "tools/tool_head_required_forms.json"
+      "path": "tools/tool_head_required_forms.json",
+      "sha256": "077fe2be622963c827ca7fde3747317c8e829876ff36bd6b6ddc35a4bb9d26e3"
     },
     "worldgen_acquisition_forms": {
       "classification": "source_backed_worldgen_runtime_required",
       "field": "required_forms",
-      "path": "tools/worldgen_source_backed_acquisition.json"
+      "path": "tools/worldgen_source_backed_acquisition.json",
+      "sha256": "677ef552fb302637716d6a749febf71de9cab3f29ed6e777a29bf3034ce35535"
     }
+  },
+  "technological_parts_foundation_required_forms": {
+    "aluminium": [
+      "curved_plate",
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "annealed_copper": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "blue_alloy": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "cadmium": [
+      "curved_plate"
+    ],
+    "carborundum": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "chromium": [
+      "curved_plate"
+    ],
+    "constantan": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "copper": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "efrine": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "electrotine_alloy": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "electrum": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "ender_eye": [
+      "gem"
+    ],
+    "ender_pearl": [
+      "gem"
+    ],
+    "gold": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "graphene": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "hslasteel": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "iridium": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "kanthal": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "lead": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "naquadah": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "nether_star": [
+      "gem"
+    ],
+    "netherite": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "nichrome": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "niobium_titanium": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "osmiridium": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "osmium_elemental": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "platinum": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "silver": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "stainless_steel": [
+      "curved_plate"
+    ],
+    "steel": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "steel_galvanized": [
+      "curved_plate"
+    ],
+    "tin": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "tin_alloy": [
+      "curved_plate"
+    ],
+    "titanium": [
+      "curved_plate"
+    ],
+    "tungsten": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "tungstensteel": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "vanadium_gallium": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ],
+    "yttrium_barium_cuprate": [
+      "quintuple_wire",
+      "sextuple_wire",
+      "triple_wire"
+    ]
   },
   "tool_head_required_forms": {
     "abyssalnite": [

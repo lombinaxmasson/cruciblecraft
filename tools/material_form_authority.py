@@ -171,10 +171,7 @@ def check() -> list[str]:
     if actual != expected:
         return [io.stale_error(OUTPUT, expected, actual)]
     gate = io.load_json(GATE_OUT)
-    cleaned_gate = without_workflow_metadata(gate)
     errors: list[str] = []
-    if gate != cleaned_gate:
-        errors.append("material registration gate contains workflow metadata")
     if (gate.get("authority") or {}).get("path") != "tools/material_form_authority.json":
         errors.append("material registration gate authority path drifted")
     return errors

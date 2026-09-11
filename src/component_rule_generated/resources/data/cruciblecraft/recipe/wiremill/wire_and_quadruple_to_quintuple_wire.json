@@ -1,0 +1,26 @@
+{
+  "conditions": [
+    "has_registered_for(\"processing_target:working\", quintuple_wire)"
+  ],
+  "duration": "160 * (144 * prefix_units(quintuple_wire) / gcd(target_units(working) * 360, 144 * prefix_units(quintuple_wire)))",
+  "eut": "48",
+  "item_inputs": [
+    {
+      "count": "1 * (144 * prefix_units(quintuple_wire) / gcd(target_units(working) * 360, 144 * prefix_units(quintuple_wire)))",
+      "prefix": "cruciblecraft:wire"
+    },
+    {
+      "count": "1 * (144 * prefix_units(quintuple_wire) / gcd(target_units(working) * 360, 144 * prefix_units(quintuple_wire)))",
+      "prefix": "cruciblecraft:quadruple_wire"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": "target_units(working) * 360 / gcd(target_units(working) * 360, 144 * prefix_units(quintuple_wire))",
+      "material_selector": "processing_target:working",
+      "prefix": "cruciblecraft:quintuple_wire"
+    }
+  ],
+  "target": "cruciblecraft:wiremill",
+  "type": "cruciblecraft:material_rule"
+}

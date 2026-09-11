@@ -7,6 +7,8 @@ import unittest
 from tools import capability_ledger
 from tools import project_status
 
+FOUNDATION = "content/technological-parts-foundation"
+
 
 class ProjectStatusTest(unittest.TestCase):
     def test_render_projects_unique_active_and_player_complete(self) -> None:
@@ -14,7 +16,10 @@ class ProjectStatusTest(unittest.TestCase):
         text = project_status.render_status(compiled)
         self.assertIn("# 项目状态", text)
         self.assertIn("不要手改", text)
-        self.assertIsNone(compiled["unique_active_slug"])
+        self.assertEqual(FOUNDATION, compiled["unique_active_slug"])
+        self.assertIn("`content/technological-parts-foundation`", text)
+        self.assertNotIn("没有 `workflow=active`", text)
+        self.assertIn("`content/electric-wire-cable-mte-fold`", text)
         self.assertIn("`machines/slicer`", text)
         self.assertIn("workflow=accepted", text)
         self.assertIn("machines/cluster-mill", text)

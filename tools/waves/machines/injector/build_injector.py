@@ -16,6 +16,7 @@ if str(TOOLS) not in sys.path:
     sys.path.insert(1, str(TOOLS))
 
 from tools import census_common as census
+from tools import technological_parts_foundation as parts
 from tools.gt6_resolve import resolve
 from tools.recipe_bulk import compile as compile_mod
 from tools.recipe_bulk import source_import
@@ -120,13 +121,14 @@ def d0_matrix() -> dict[str, Any]:
     hosts: list[dict[str, Any]] = []
     for host, material, tier, pipe_form in D0_HOSTS:
         token = f"MT.{material}"
+        piston_item = parts.PISTONS.get(tier)
         piston = (
             {
-                "cc": "cruciblecraft:compact_electric_piston_ev",
+                "cc": piston_item,
                 "gt6": f"IL.PISTONS[{tier}]",
                 "status": "ok",
             }
-            if tier == 4
+            if piston_item
             else {
                 "cc": "",
                 "gt6": f"IL.PISTONS[{tier}]",
@@ -582,11 +584,11 @@ def check() -> list[str]:
         errors.append("d0 grid drifted")
     statuses = {row["host"]: row["status"] for row in d0.get("hosts") or []}
     if statuses != {
-        20261: "explicitly_blocked",
-        20262: "explicitly_blocked",
-        20263: "explicitly_blocked",
+        20261: "source_exact",
+        20262: "source_exact",
+        20263: "source_exact",
         20264: "source_exact",
-        20265: "explicitly_blocked",
+        20265: "source_exact",
     }:
         errors.append("injector D0 host statuses drifted")
     try:

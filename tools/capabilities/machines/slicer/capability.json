@@ -35,13 +35,7 @@
         "cruciblecraft:chromium_slicer",
         "cruciblecraft:titanium_slicer"
       ],
-      "reason": "GT6 MultiTileEntityBasicMachine 20381-20385. RM.Slicer, EU, left/up in, right/down out, back energy. Hosts are runtime-registered but not survival-craftable."
-    },
-    {
-      "semantic_key": "machine:slicer:host_obtain",
-      "disposition": "blocked",
-      "runtime_ids": [],
-      "reason": "All five hosts need IL.CONVEYERS modules. Compact conveyor covers are not this slot. Do not invent programmed_circuit or cover stand-ins."
+      "reason": "GT6 MultiTileEntityBasicMachine 20381-20385. RM.Slicer, EU, left/up in, right/down out, back energy. All five hosts are survival-craftable via technological-parts-foundation."
     },
     {
       "semantic_key": "recipe:slicer:paper_tiny_plate",
@@ -50,5 +44,5 @@
       "reason": "One gt.recipe.slicer dump row needs unmapped paper:tiny_plate. Do not stand in another plate form."
     }
   ],
-  "note": "32 selected exact rows; 1 unmapped paper:tiny_plate row explicitly_blocked. Thirty-three exact GT6 food operands are runtime-registered from the local source. Five hosts stay acquisition-blocked. Close at runtime_ready, not player_complete."
+  "note": "32 selected exact rows; 1 unmapped paper:tiny_plate row explicitly_blocked. Thirty-three exact GT6 food operands are runtime-registered from the local source. All five hosts are source-exact via technological-parts-foundation. Close at runtime_ready, not player_complete."
 }

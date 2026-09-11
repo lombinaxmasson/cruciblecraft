@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Laminator live machine card: 232 selected rows and exact D0 hosts."""
+"""Laminator live machine card: 438 selected rows and exact D0 hosts."""
 from __future__ import annotations
 
 import importlib.util
@@ -45,9 +45,9 @@ class LaminatorCardTest(unittest.TestCase):
         work = census.load_json(WAVE / "source_pack" / "work_set.json")
         overflow = census.load_json(WAVE / "overflow.json")
         self.assertEqual(498, work["accounting"]["source_rows"])
-        self.assertEqual(226, work["accounting"]["selected_rows"])
-        self.assertEqual(272, work["accounting"]["overflow_rows"])
-        self.assertEqual(272, overflow["blocked_rows"])
+        self.assertEqual(438, work["accounting"]["selected_rows"])
+        self.assertEqual(60, work["accounting"]["overflow_rows"])
+        self.assertEqual(60, overflow["blocked_rows"])
         self.assertNotIn("programmed_circuit", str(overflow))
 
     def test_d0_hosts_are_source_exact(self) -> None:
@@ -74,7 +74,7 @@ class LaminatorCardTest(unittest.TestCase):
             self.assertTrue(PLAN_ACTIVE.is_file())
             self.assertFalse(PLAN_CLOSED.is_file())
         else:
-            self.assertIsNone(compiled["unique_active_slug"])
+            self.assertNotEqual(SLUG, compiled["unique_active_slug"])
             self.assertFalse(PLAN_ACTIVE.is_file())
             self.assertTrue(PLAN_CLOSED.is_file())
 

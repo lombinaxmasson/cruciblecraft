@@ -19,8 +19,8 @@
     "expansion_delta": 2,
     "source": "tools/component_rule_sources/acceptance_form_corrections.json"
   },
-  "authored_datapack_entries": 48,
-  "authored_projected_recipes": 8141,
+  "authored_datapack_entries": 51,
+  "authored_projected_recipes": 8210,
   "build_inputs": [
     "tools/gt6_extruder_templates_index_v5.json",
     "tools/gt6_extruder_templates_report.json",
@@ -73,7 +73,7 @@
     ],
     "expansion_delta": 5
   },
-  "expanded_recipes": 8141,
+  "expanded_recipes": 8210,
   "expansion_budget": 10000,
   "expansion_is_authored_projection": true,
   "extruder_authored_entries": 20,
@@ -94,7 +94,7 @@
     "family_compression_ratio": 139.1,
     "legacy_replay": "tools/extruder_legacy_replay.json",
     "logical_relations": 2782,
-    "prefix_count": 129,
+    "prefix_count": 132,
     "registration_gate": "src/main/resources/data/cruciblecraft/material_registration_gate.json",
     "runtime_publication": 2782,
     "skip_reasons": {
@@ -107,7 +107,7 @@
     "unclassified": 0
   },
   "generated_tree": {
-    "files": 48
+    "files": 51
   },
   "material_groups": {
     "any_rubber": {
@@ -123,7 +123,7 @@
     },
     "generated_tag": "src/component_rule_generated/resources/data/cruciblecraft/tags/item/any_rubber_plates.json"
   },
-  "non_extruder_expanded_recipes": 5359,
+  "non_extruder_expanded_recipes": 5428,
   "per_map": {
     "assembler": {
       "expanded_recipes": 568,
@@ -162,8 +162,8 @@
       "source_rules": 1
     },
     "wiremill": {
-      "expanded_recipes": 287,
-      "source_rules": 7
+      "expanded_recipes": 356,
+      "source_rules": 10
     }
   },
   "per_rule_expanded": {
@@ -214,6 +214,9 @@
     "wiremill/octuple_and_quadruple_to_dodecuple_wire": 23,
     "wiremill/octuple_to_hexadecuple_wire": 23,
     "wiremill/quadruple_to_octuple_wire": 23,
+    "wiremill/wire_and_double_to_triple_wire": 23,
+    "wiremill/wire_and_quadruple_to_quintuple_wire": 23,
+    "wiremill/wire_and_quadruple_to_sextuple_wire": 23,
     "wiremill/wire_to_double_wire": 24
   },
   "provenance": {
@@ -233,17 +236,17 @@
     "runtime_loader": "com.masson.cruciblecraft.recipe.gt.GTRecipeMapLoader"
   },
   "recipe_ids": {
-    "count": 8141
+    "count": 8210
   },
   "recipe_signatures": {
-    "count": 8141
+    "count": 8210
   },
   "runtime_codec": "cruciblecraft:material_rule/MaterialRule.CODEC",
   "schema_version": 1,
   "shadow_signatures": {
     "duplicates": 0,
-    "total": 8141,
-    "unique": 8141
+    "total": 8210,
+    "unique": 8210
   },
   "skip_reasons": [
     {
@@ -267,10 +270,10 @@
       "stage": "MaterialRuleExpansion"
     }
   ],
-  "source_rules": 48,
+  "source_rules": 51,
   "source_schema_version": 1,
   "unit_conservation": {
-    "conserving_rules": 2809,
+    "conserving_rules": 2812,
     "documented_compatibility_bridges": 1,
     "status": "verified",
     "unit_scale": 144

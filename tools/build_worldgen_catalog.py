@@ -228,7 +228,10 @@ def load_closure_veins(
     # the immutable T20 closure declaration.  A material already present in
     # the core rows (for example iridium) remains owned by that core ledger.
     roaster_document = require_mapping(load(ROASTER_COMPACT_ACQUISITION), str(ROASTER_COMPACT_ACQUISITION))
-    if roaster_document.get("status") != "ROASTER_COMPACT_SOURCE_BACKED_ACQUISITION_READY":
+    if roaster_document.get("status") not in {
+        "ROASTER_COMPACT_SOURCE_BACKED_ACQUISITION_READY",
+        "T38_SOURCE_BACKED_ACQUISITION_READY",
+    }:
         raise ValueError("roaster/compact source-backed acquisition overlay is not ready")
     roaster_veins = roaster_document.get("veins")
     if not isinstance(roaster_veins, list):
@@ -273,7 +276,10 @@ def load_roaster_player_path_veins(
     document = require_mapping(load(ROASTER_COMPACT_ACQUISITION), str(ROASTER_COMPACT_ACQUISITION))
     if (
         document.get("schema_version") != 1
-        or document.get("status") != "ROASTER_COMPACT_SOURCE_BACKED_ACQUISITION_READY"
+        or document.get("status") not in {
+            "ROASTER_COMPACT_SOURCE_BACKED_ACQUISITION_READY",
+            "T38_SOURCE_BACKED_ACQUISITION_READY",
+        }
         or document.get("source_revision")
         != "3703e40308c8c030763fd6297dea8b210d2a77b1"
     ):

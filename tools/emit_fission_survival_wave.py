@@ -758,7 +758,7 @@ def write_circuit_and_machine_recipes() -> None:
         catalysts={"d": "cruciblecraft:material_screwdriver"},
     )
     shaped(
-        "compact_electric_pump_lv_gt6",
+        "compact_electric_pump_lv",
         ["TXO", "dPw", "OMT"],
         {
             "T": "cruciblecraft:steel_galvanized/screw",
