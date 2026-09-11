@@ -1139,10 +1139,14 @@ public class ModLanguageProvider extends LanguageProvider {
     }
 
     private void addTechnologicalPartNames() {
-        TechnologicalPartCatalog.parts().forEach(part ->
-                addItem(
-                        ModItems.technologicalPart(part.registryPath()),
-                        chinese ? part.chineseName() : part.englishName()));
+        TechnologicalPartCatalog.parts().forEach(part -> {
+            if (CoverComponentTiers.findByItemPath(part.registryPath()).isPresent()) {
+                return;
+            }
+            addItem(
+                    ModItems.technologicalPart(part.registryPath()),
+                    chinese ? part.chineseName() : part.englishName());
+        });
     }
 
     private String rodName(

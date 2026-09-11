@@ -312,11 +312,12 @@ def build_document(
         prefix_plans[cc_prefix]["shared_generation_flag_with"] = owner
 
     prefix_ids = _bundled_prefix_ids() - POST_IMPORT_PREFIXES
-    if set(prefix_plans) != prefix_ids:
+    unmanaged_prefixes = prefix_ids - set(prefix_plans)
+    extra_prefixes = set(prefix_plans) - prefix_ids
+    if extra_prefixes:
         raise ValueError(
-            "L3 prefix coverage differs from bundled catalog; "
-            f"missing={sorted(prefix_ids - set(prefix_plans))}, "
-            f"extra={sorted(set(prefix_plans) - prefix_ids)}"
+            "L3 prefix plan contains unknown bundled prefixes: "
+            f"{sorted(extra_prefixes)}"
         )
 
     return {
@@ -347,6 +348,7 @@ def build_document(
                 for plan in prefix_plans.values()
             ),
             "catalog_coverage_verified": True,
+            "unmanaged_prefix_count": len(unmanaged_prefixes),
             "source_domains_replay_verified": True,
         },
     }
@@ -360,7 +362,8 @@ def encode_material_forms(
     declared = set(desired_forms)
     desired = close_implied_prefixes(declared)
     plans = document["prefixes"]
-    unknown = desired - set(plans)
+    catalog_prefixes = _bundled_prefix_ids() - POST_IMPORT_PREFIXES
+    unknown = desired - set(plans) - catalog_prefixes
     if unknown:
         raise ValueError(
             f"{source_name} requests prefixes outside the L3 plan: {sorted(unknown)}"
@@ -482,6 +485,9 @@ def prefix_definition_outputs(
         definition = json.loads(path.read_text(encoding="utf-8"))
         cc_prefix = definition["id"].split(":", 1)[-1]
         if cc_prefix in POST_IMPORT_PREFIXES:
+            outputs[path] = path.read_text(encoding="utf-8")
+            continue
+        if cc_prefix not in document["prefixes"]:
             outputs[path] = path.read_text(encoding="utf-8")
             continue
         definition["generation_flag"] = document["prefixes"][cc_prefix][

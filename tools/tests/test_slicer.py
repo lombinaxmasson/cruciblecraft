@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Slicer unique-active card: 32 selected rows, blocked host obtain."""
+"""Slicer live machine card: 32 selected rows, LV/EV host obtain exact."""
 from __future__ import annotations
 
 import importlib.util
@@ -86,25 +86,33 @@ class SlicerCardTest(unittest.TestCase):
         self.assertEqual("cruciblecraft:slicer", policy["target_map"])
         self.assertNotIn("player_complete", str(policy))
 
-    def test_d0_five_hosts_are_blocked(self) -> None:
+    def test_d0_lv_and_ev_hosts_are_exact(self) -> None:
         document = census.load_json(WAVE / "d0_obtain_matrix.json")
         self.assertEqual(["PRw", "YMC"], document["grid"])
         statuses = {row["host"]: row["status"] for row in document["hosts"]}
         self.assertEqual(
             {
-                20381: "explicitly_blocked",
-                20382: "explicitly_blocked",
-                20383: "explicitly_blocked",
-                20384: "explicitly_blocked",
-                20385: "explicitly_blocked",
+                20381: "source_exact",
+                20382: "source_exact",
+                20383: "source_exact",
+                20384: "source_exact",
+                20385: "source_exact",
             },
             statuses,
         )
+        lv = next(row for row in document["hosts"] if row["host"] == 20381)
         ev = next(row for row in document["hosts"] if row["host"] == 20384)
+        self.assertEqual("ok", lv["piston"]["status"])
+        self.assertEqual("ok", lv["conveyor"]["status"])
+        self.assertEqual(
+            "cruciblecraft:compact_electric_conveyor_lv",
+            lv["conveyor"]["cc"],
+        )
         self.assertEqual("ok", ev["piston"]["status"])
-        self.assertEqual("blocked", ev["conveyor"]["status"])
+        self.assertEqual("ok", ev["conveyor"]["status"])
         self.assertNotIn("programmed_circuit", str(document))
-        self.assertNotIn("compact_electric_conveyor", str(document))
+        from tools.technological_parts_foundation import has_split_module_standin
+        self.assertFalse(has_split_module_standin(str(document)))
 
     def test_prep_import_cannot_write_live_tree(self) -> None:
         with self.assertRaisesRegex(ValueError, "src/recipe_generated"):
@@ -129,7 +137,7 @@ class SlicerCardTest(unittest.TestCase):
             if row["disposition"] == "blocked"
         }
         self.assertEqual(
-            {"machine:slicer:host_obtain", "recipe:slicer:paper_tiny_plate"},
+            {"recipe:slicer:paper_tiny_plate"},
             blocked,
         )
         owned = next(
@@ -172,7 +180,7 @@ class SlicerCardTest(unittest.TestCase):
         else:
             self.assertTrue(PLAN_CLOSED.is_file())
             self.assertFalse(PLAN_ACTIVE.is_file())
-            self.assertIsNone(compiled["unique_active_slug"])
+            self.assertNotEqual(CAPABILITY_SLUG, compiled["unique_active_slug"])
             self.assertIsNone(topology["unique_active_wave"])
             self.assertIsNone(readiness["unique_active_wave"])
 

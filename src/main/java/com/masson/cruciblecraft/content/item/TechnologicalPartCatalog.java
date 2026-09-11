@@ -8,6 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
@@ -21,7 +22,7 @@ public final class TechnologicalPartCatalog {
             "/data/cruciblecraft/technological_parts.json";
     private static final String SOURCE_REVISION =
             "3703e40308c8c030763fd6297dea8b210d2a77b1";
-    private static final int PART_COUNT = 28;
+    private static final int PART_COUNT = 73;
     private static final Gson GSON = new Gson();
     private static final Catalog CATALOG = loadBundled();
 
@@ -33,6 +34,13 @@ public final class TechnologicalPartCatalog {
 
     public static String sourceRevision() {
         return CATALOG.sourceRevision();
+    }
+
+    public static Optional<Part> findByPath(String registryPath) {
+        if (registryPath == null || registryPath.isBlank()) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(CATALOG.byPath().get(registryPath));
     }
 
     private static Catalog loadBundled() {
@@ -54,6 +62,7 @@ public final class TechnologicalPartCatalog {
             }
             List<Part> parts = new ArrayList<>(PART_COUNT);
             Map<ResourceLocation, Part> byId = new LinkedHashMap<>();
+            Map<String, Part> byPath = new LinkedHashMap<>();
             for (PartRow row : document.parts) {
                 ResourceLocation id = ResourceLocation.parse(row.id);
                 if (!CrucibleCraft.MODID.equals(id.getNamespace())
@@ -70,9 +79,17 @@ public final class TechnologicalPartCatalog {
                 if (byId.put(id, part) != null) {
                     throw new IllegalStateException("Duplicate technological part " + id);
                 }
+                if (byPath.put(row.registryPath, part) != null) {
+                    throw new IllegalStateException(
+                            "Duplicate technological part path " + row.registryPath);
+                }
                 parts.add(part);
             }
-            return new Catalog(SOURCE_REVISION, List.copyOf(parts), Map.copyOf(byId));
+            return new Catalog(
+                    SOURCE_REVISION,
+                    List.copyOf(parts),
+                    Map.copyOf(byId),
+                    Map.copyOf(byPath));
         } catch (IOException failure) {
             throw new IllegalStateException("Failed to read technological parts", failure);
         }
@@ -97,7 +114,8 @@ public final class TechnologicalPartCatalog {
     private record Catalog(
             String sourceRevision,
             List<Part> parts,
-            Map<ResourceLocation, Part> byId) {}
+            Map<ResourceLocation, Part> byId,
+            Map<String, Part> byPath) {}
 
     private static final class Document {
         @SerializedName("schema_version")

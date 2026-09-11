@@ -39,23 +39,72 @@ public final class CircuitTierGameTests {
             "machine/bath/circuit_elite_molten_soldering_alloy",
             "machine/bath/circuit_ultimate_molten_soldering_alloy",
             "prefix/boule2plate_gem/redstone_alloy",
-            "prefix/plate_gem2tiny/redstone_alloy");
+            "prefix/plate_gem2tiny/redstone_alloy",
+            "compact_electric_conveyor_lv",
+            "compact_electric_conveyor_ev",
+            "compact_electric_piston_lv",
+            "compact_electric_motor_ulv_iron_magnetic",
+            "compact_electric_motor_ulv_steel_magnetic",
+            "compact_electric_motor_mv",
+            "compact_electric_motor_hv",
+            "compact_electric_motor_iv",
+            "compact_electric_piston_ulv",
+            "compact_electric_piston_mv",
+            "compact_electric_piston_hv",
+            "compact_electric_piston_iv",
+            "compact_electric_conveyor_ulv",
+            "compact_electric_conveyor_mv",
+            "compact_electric_conveyor_hv",
+            "compact_electric_conveyor_iv",
+            "compact_signal_emitter_ulv",
+            "compact_signal_emitter_lv",
+            "compact_signal_emitter_mv",
+            "compact_signal_emitter_hv",
+            "compact_signal_emitter_ev",
+            "compact_signal_emitter_iv",
+            "compact_sensor_ulv",
+            "compact_sensor_lv",
+            "compact_sensor_mv",
+            "compact_sensor_hv",
+            "compact_sensor_ev",
+            "compact_sensor_iv",
+            "compact_electric_pump_ulv",
+            "compact_electric_pump_lv",
+            "compact_electric_pump_mv",
+            "compact_electric_pump_hv",
+            "compact_electric_pump_ev",
+            "compact_electric_pump_iv",
+            "compact_electric_robot_arm_ulv",
+            "compact_electric_robot_arm_lv",
+            "compact_electric_robot_arm_mv",
+            "compact_electric_robot_arm_hv",
+            "compact_electric_robot_arm_ev",
+            "compact_electric_robot_arm_iv",
+            "compact_force_field_emitter_ulv",
+            "compact_force_field_emitter_lv",
+            "compact_force_field_emitter_mv",
+            "compact_force_field_emitter_hv",
+            "compact_force_field_emitter_ev",
+            "compact_force_field_emitter_iv");
 
     private CircuitTierGameTests() {}
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void remainingCircuitTiersAreRegistered(GameTestHelper helper) {
         helper.assertTrue(
-                TechnologicalPartCatalog.parts().size() == 28,
-                "Technological parts catalog drifted from T1–T6 set");
+                TechnologicalPartCatalog.parts().size() == 73,
+                "Technological parts catalog drifted from 73 identities");
         for (String path : List.of(
+                "compact_electric_conveyor_lv",
+                "compact_electric_conveyor_ev",
+                "compact_electric_piston_lv",
                 "circuit_good",
                 "circuit_advanced",
                 "circuit_elite",
                 "circuit_ultimate")) {
             helper.assertTrue(
                     ModItems.technologicalPart(path).get() != null,
-                    "Missing circuit item " + path);
+                    "Missing technological part " + path);
         }
         helper.succeed();
     }

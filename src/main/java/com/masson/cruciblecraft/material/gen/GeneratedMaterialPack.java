@@ -932,8 +932,17 @@ public final class GeneratedMaterialPack {
         if (form.equals(MaterialPrefixes.DOUBLE_WIRE)) {
             return "item/material/wire_bundle_2";
         }
+        if (form.equals(MaterialPrefixes.TRIPLE_WIRE)) {
+            return "item/material/wire_bundle_3";
+        }
         if (form.equals(MaterialPrefixes.QUADRUPLE_WIRE)) {
             return "item/material/wire_bundle_4";
+        }
+        if (form.equals(MaterialPrefixes.QUINTUPLE_WIRE)) {
+            return "item/material/wire_bundle_5";
+        }
+        if (form.equals(MaterialPrefixes.SEXTUPLE_WIRE)) {
+            return "item/material/wire_bundle_6";
         }
         if (form.equals(MaterialPrefixes.OCTUPLE_WIRE)) {
             return "item/material/wire_bundle_8";

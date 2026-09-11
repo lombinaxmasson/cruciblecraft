@@ -82,7 +82,7 @@ class PressureWasherCardTest(unittest.TestCase):
             self.assertTrue(PLAN_ACTIVE.is_file())
             self.assertFalse(PLAN_CLOSED.is_file())
         else:
-            self.assertIsNone(compiled["unique_active_slug"])
+            self.assertNotEqual(SLUG, compiled["unique_active_slug"])
             self.assertFalse(PLAN_ACTIVE.is_file())
             self.assertTrue(PLAN_CLOSED.is_file())
 

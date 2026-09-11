@@ -88,35 +88,10 @@ public final class ModRecipeProvider extends RecipeProvider {
     }
 
     private static void compactElectricCoverRecipes(RecipeOutput output) {
+        Item circuit = ModItems.PROGRAMMED_CIRCUIT.get();
         for (CoverComponentTiers.Family family
                 : CoverComponentTiers.Family.values()) {
-            CoverComponentTiers.Entry ulv = CoverComponentTiers.entries()
-                    .stream()
-                    .filter(entry -> entry.family() == family
-                            && entry.tier() == 0)
-                    .findFirst()
-                    .orElseThrow();
-            var ulvItem = ModItems.compactElectricCover(ulv.itemPath()).get();
-            if (family == CoverComponentTiers.Family.CONVEYOR) {
-                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ulvItem)
-                        .pattern("IRI")
-                        .pattern("IHI")
-                        .define('I', Items.IRON_INGOT)
-                        .define('R', Items.POWERED_RAIL)
-                        .define('H', Items.HOPPER)
-                        .unlockedBy("has_hopper", has(Items.HOPPER))
-                        .save(output, id(ulv.itemPath()));
-            } else {
-                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ulvItem)
-                        .pattern("IRI")
-                        .pattern("IPI")
-                        .define('I', Items.IRON_INGOT)
-                        .define('R', Items.REDSTONE)
-                        .define('P', Items.PISTON)
-                        .unlockedBy("has_piston", has(Items.PISTON))
-                        .save(output, id(ulv.itemPath()));
-            }
-            for (int tier = 1;
+            for (int tier = 6;
                     tier < CoverComponentTiers.TIER_COUNT;
                     tier++) {
                 CoverComponentTiers.Entry previous =
@@ -136,10 +111,10 @@ public final class ModRecipeProvider extends RecipeProvider {
                                         next.itemPath()).get())
                         .requires(ModItems.compactElectricCover(
                                 previous.itemPath()).get())
-                        .requires(ModItems.PROGRAMMED_CIRCUIT.get())
+                        .requires(circuit)
                         .unlockedBy(
                                 "has_programmed_circuit",
-                                has(ModItems.PROGRAMMED_CIRCUIT.get()))
+                                has(circuit))
                         .save(output, id(next.itemPath()));
             }
         }
@@ -790,6 +765,8 @@ public final class ModRecipeProvider extends RecipeProvider {
                     output, result, casing, material, path);
             case "injector" -> injectorCrafting(
                     output, result, casing, material, path);
+            case "slicer" -> slicerCrafting(
+                    output, result, casing, material, path);
             case "nanofab" -> {
                 throw new IllegalStateException(
                         "Blocked nanofab variant reached crafting: " + path);
@@ -1303,7 +1280,10 @@ public final class ModRecipeProvider extends RecipeProvider {
             String id) {
         String motorPath = switch (id) {
             case "electricloom" -> "compact_electric_motor_lv";
+            case "aluminium_electricloom" -> "compact_electric_motor_mv";
+            case "stainless_steel_electricloom" -> "compact_electric_motor_hv";
             case "chromium_electricloom" -> "compact_electric_motor_ev";
+            case "titanium_electricloom" -> "compact_electric_motor_iv";
             default -> throw new IllegalStateException(
                     "Blocked electric loom variant reached crafting: " + id);
         };
@@ -1356,9 +1336,14 @@ public final class ModRecipeProvider extends RecipeProvider {
             case 5 -> "platinum";
             default -> throw new AssertionError(tier);
         };
-        Item piston = tier == 4
-                ? ModItems.technologicalPart("compact_electric_piston_ev").get()
-                : null;
+        Item piston = switch (tier) {
+            case 1 -> ModItems.technologicalPart("compact_electric_piston_lv").get();
+            case 2 -> ModItems.technologicalPart("compact_electric_piston_mv").get();
+            case 3 -> ModItems.technologicalPart("compact_electric_piston_hv").get();
+            case 4 -> ModItems.technologicalPart("compact_electric_piston_ev").get();
+            case 5 -> ModItems.technologicalPart("compact_electric_piston_iv").get();
+            default -> null;
+        };
         if (piston == null) {
             throw new IllegalStateException(
                     "Blocked injector variant reached crafting: " + id);
@@ -1385,6 +1370,71 @@ public final class ModRecipeProvider extends RecipeProvider {
                 output,
                 "machines/" + id,
                 List.of("XPw", "CMW", "   "),
+                ingredients,
+                Map.of("w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                new ItemStack(result));
+    }
+
+    private static void slicerCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String material,
+            String id) {
+        int tier = switch (id) {
+            case "slicer" -> 1;
+            case "aluminium_slicer" -> 2;
+            case "stainless_steel_slicer" -> 3;
+            case "chromium_slicer" -> 4;
+            case "titanium_slicer" -> 5;
+            default -> throw new IllegalArgumentException(
+                    "Unknown slicer variant " + id);
+        };
+        Item piston = switch (tier) {
+            case 1 -> ModItems.technologicalPart("compact_electric_piston_lv").get();
+            case 2 -> ModItems.technologicalPart("compact_electric_piston_mv").get();
+            case 3 -> ModItems.technologicalPart("compact_electric_piston_hv").get();
+            case 4 -> ModItems.technologicalPart("compact_electric_piston_ev").get();
+            case 5 -> ModItems.technologicalPart("compact_electric_piston_iv").get();
+            default -> null;
+        };
+        Item conveyor = switch (tier) {
+            case 1 -> ModItems.technologicalPart(
+                    "compact_electric_conveyor_lv").get();
+            case 2 -> ModItems.technologicalPart(
+                    "compact_electric_conveyor_mv").get();
+            case 3 -> ModItems.technologicalPart(
+                    "compact_electric_conveyor_hv").get();
+            case 4 -> ModItems.technologicalPart(
+                    "compact_electric_conveyor_ev").get();
+            case 5 -> ModItems.technologicalPart(
+                    "compact_electric_conveyor_iv").get();
+            default -> null;
+        };
+        if (piston == null || conveyor == null) {
+            throw new IllegalStateException(
+                    "Blocked slicer variant reached crafting: " + id);
+        }
+        Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+        ingredients.put("P", Ingredient.of(piston));
+        ingredients.put("R", Ingredient.of(materialItem(
+                material, MaterialPrefixes.ROD)));
+        ingredients.put("Y", Ingredient.of(conveyor));
+        ingredients.put("M", Ingredient.of(casing));
+        ingredients.put("C", Ingredient.of(ModItems.technologicalPart(
+                switch (tier) {
+                    case 1 -> "circuit_basic";
+                    case 2 -> "circuit_good";
+                    case 3 -> "circuit_advanced";
+                    case 4 -> "circuit_elite";
+                    case 5 -> "circuit_master";
+                    default -> throw new AssertionError(tier);
+                }).get()));
+        // GT6 Loader_MultiTileEntities.java:1525-1529 {"PRw","YMC"}.
+        acceptShapedCatalyst(
+                output,
+                "machines/" + id,
+                List.of("PRw", "YMC", "   "),
                 ingredients,
                 Map.of("w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
                 new ItemStack(result));

@@ -249,9 +249,10 @@ topology 预分配 implementation child。不想要的类在 realization 卡标
 
 导入器 `GENERIC_RECIPE_IMPORT_READY` 只表示**已有 host** 时可以 `import-source`。
 它不创建 squeezer / juicer / fermenter / bumble RecipeMap，也不实现封面网或作物生长。
-缺失单块 RecipeMap（Printer / Loom / Melter 等）
-live 导入仍要等晋升落地。切片机 RecipeMap 已挂并停在 `runtime_ready`
-（五台获得格缺传送带模块，1 行 `paper:tiny_plate` overflow）。
+缺失单块 RecipeMap（Printer / Melter 等）
+live 导入仍要等晋升落地。切片机、注射机和电动织机 RecipeMap 已挂并停在
+`runtime_ready`；技术中间件基础卡已将 0–5 档获得格接通，切片机仍有
+1 行 `paper:tiny_plate` overflow。
 辊压成型机 RecipeMap 已挂并 `player_complete`。
 集群轧机 RecipeMap 已挂并 `player_complete`（307 selected / 0 overflow）。
 Prep 清单见 [project-status.md](project-status.md)。规则见
@@ -263,8 +264,9 @@ Prep 清单见 [project-status.md](project-status.md)。规则见
 印刷机 prep 当前保留为明确 blocked：`gt.recipe.printer` 的 22 行全部依赖
 未映射的 `fluid dye.chemical.*`，`tools/machine_fluid_mapping.json` 将其分类为
 `out_of_scope_g10_dyeing`，因此 selected family 为 0、production lock 为空。
-五台主机另有 `IL.CONVEYERS` 模块缺口；compact conveyor cover 不是该槽位。
-在真实染料流体身份和传送带模块进入后续内容卡前，不生成空 live family，也不使用
+五档主机获得格已由技术中间件基础卡按真实电机/活塞/传送带模块
+`source_exact`；compact conveyor cover 不是该槽位。
+在真实染料流体身份进入后续内容卡前，不生成空 live family，也不使用
 其它流体替代。
 
 物流 R0 另外把四个 `logistics_display_cpu_*` 标成该切片

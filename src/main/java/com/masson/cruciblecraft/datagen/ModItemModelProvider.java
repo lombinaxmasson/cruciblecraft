@@ -89,11 +89,13 @@ public class ModItemModelProvider extends ItemModelProvider {
         CoverComponentTiers.entries().forEach(entry ->
                 generatedImportedGt6(
                         entry.itemPath(),
-                        switch (entry.family()) {
-                            case CONVEYOR -> "conveyor_cover";
-                            case ROBOT_ARM -> "robot_arm_cover";
-                            case PUMP -> "compact_electric_pump";
-                        }));
+                        TechnologicalPartCatalog.findByPath(entry.itemPath())
+                                .map(TechnologicalPartCatalog.Part::texture)
+                                .orElse(switch (entry.family()) {
+                                    case CONVEYOR -> "conveyor_cover";
+                                    case ROBOT_ARM -> "robot_arm_cover";
+                                    case PUMP -> "compact_electric_pump";
+                                })));
         generatedCc("unknown_material");
         ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
                 generatedCc(shape.registryPath()));
@@ -177,8 +179,12 @@ public class ModItemModelProvider extends ItemModelProvider {
                             "layer1",
                             modLoc("item/gt6_import/reactor_rod_overlay"));
         }
-        TechnologicalPartCatalog.parts().forEach(part ->
-                generatedImportedGt6(part.registryPath(), part.texture()));
+        TechnologicalPartCatalog.parts().forEach(part -> {
+            if (CoverComponentTiers.findByItemPath(part.registryPath()).isPresent()) {
+                return;
+            }
+            generatedImportedGt6(part.registryPath(), part.texture());
+        });
         SlicerOperandCatalog.operands().forEach(operand ->
                 generatedGt6Multiitem(operand.registryPath()));
         PressureWasherOperandCatalog.operands().forEach(operand ->

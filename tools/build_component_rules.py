@@ -321,9 +321,9 @@ def _validate_rules(document: dict[str, Any]) -> list[dict[str, Any]]:
     rules = document["rules"]
     if not isinstance(rules, list):
         raise SourceError("component_rules.json: rules must be an array")
-    if len(rules) != 28:
+    if len(rules) != 31:
         raise SourceError(
-            f"component_rules.json: expected 28 non-extruder rules, found {len(rules)}"
+            f"component_rules.json: expected 31 non-extruder rules, found {len(rules)}"
         )
     ids: list[str] = []
     for index, rule in enumerate(rules):

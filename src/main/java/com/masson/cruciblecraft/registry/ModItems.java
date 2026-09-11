@@ -1098,6 +1098,9 @@ public final class ModItems {
         LinkedHashMap<ResourceLocation, DeferredItem<Item>> items =
                 new LinkedHashMap<>();
         for (TechnologicalPartCatalog.Part part : TechnologicalPartCatalog.parts()) {
+            if (CoverComponentTiers.findByItemPath(part.registryPath()).isPresent()) {
+                continue;
+            }
             DeferredItem<Item> item = ITEMS.register(
                     part.registryPath(),
                     () -> new CatalogNamedItem(
@@ -1186,13 +1189,19 @@ public final class ModItems {
         return TECHNOLOGICAL_PARTS.values();
     }
 
-    public static DeferredItem<Item> technologicalPart(String path) {
+    public static DeferredItem<? extends Item> technologicalPart(String path) {
         DeferredItem<Item> item = TECHNOLOGICAL_PARTS.get(
                 ResourceLocation.fromNamespaceAndPath(CrucibleCraft.MODID, path));
-        if (item == null) {
-            throw new IllegalArgumentException("Unknown technological part " + path);
+        if (item != null) {
+            return item;
         }
-        return item;
+        if (TechnologicalPartCatalog.findByPath(path).isPresent()) {
+            DeferredItem<PipeCoverItem> cover = COMPACT_ELECTRIC_COVERS.get(path);
+            if (cover != null) {
+                return cover;
+            }
+        }
+        throw new IllegalArgumentException("Unknown technological part " + path);
     }
 
     public static DeferredItem<BatteryCellItem> batteryCell(String path) {

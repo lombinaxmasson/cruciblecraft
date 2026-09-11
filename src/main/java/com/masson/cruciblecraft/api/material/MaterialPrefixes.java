@@ -42,7 +42,10 @@ public final class MaterialPrefixes {
     public static final MaterialPrefix FINE_WIRE = builtin("fine_wire");
     public static final MaterialPrefix WIRE = builtin("wire");
     public static final MaterialPrefix DOUBLE_WIRE = builtin("double_wire");
+    public static final MaterialPrefix TRIPLE_WIRE = builtin("triple_wire");
     public static final MaterialPrefix QUADRUPLE_WIRE = builtin("quadruple_wire");
+    public static final MaterialPrefix QUINTUPLE_WIRE = builtin("quintuple_wire");
+    public static final MaterialPrefix SEXTUPLE_WIRE = builtin("sextuple_wire");
     public static final MaterialPrefix OCTUPLE_WIRE = builtin("octuple_wire");
     public static final MaterialPrefix DODECUPLE_WIRE = builtin("dodecuple_wire");
     public static final MaterialPrefix HEXADECUPLE_WIRE = builtin("hexadecuple_wire");

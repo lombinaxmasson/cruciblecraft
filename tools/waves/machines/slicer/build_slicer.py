@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Build the live Slicer Source Pack, freeze the lock, and compile 32 rows.
 
-Hosts stay acquisition-blocked (missing conveyor modules). This lane does not
-invent missing parts and does not claim ``player_complete``.
+LV/EV hosts are source-exact via technological-parts-foundation. MV/HV/IV
+stay blocked. This lane does not invent missing parts and does not claim
+``player_complete``.
 """
 from __future__ import annotations
 
@@ -21,6 +22,7 @@ if str(TOOLS) not in sys.path:
     sys.path.insert(1, str(TOOLS))
 
 from tools import census_common as census
+from tools import technological_parts_foundation as parts
 from tools.gt6_resolve import resolve
 from tools.recipe_bulk import compile as compile_mod
 from tools.recipe_bulk import source_import
@@ -75,9 +77,8 @@ CIRCUITS = {
     4: "cruciblecraft:circuit_elite",
     5: "cruciblecraft:circuit_master",
 }
-PISTONS = {
-    4: "cruciblecraft:compact_electric_piston_ev",
-}
+PISTONS = dict(parts.PISTONS)
+CONVEYERS = dict(parts.CONVEYERS)
 D0_HOSTS = (
     (20381, "steel_galvanized", "SteelGalvanized", 1),
     (20382, "aluminium", "Al", 2),
@@ -144,8 +145,12 @@ def _piston(tier: int) -> dict[str, str]:
 
 
 def _conveyor(tier: int) -> dict[str, str]:
+    token = f"IL.CONVEYERS[{tier}]"
+    item = CONVEYERS.get(tier)
+    if item:
+        return _ok(token, item)
     return _blocked(
-        f"IL.CONVEYERS[{tier}]",
+        token,
         "compact conveyor module missing; cover is not this slot",
     )
 
@@ -297,7 +302,7 @@ def write_wave_sidecars() -> None:
         WAVE / "readiness.json",
         {
             "evidence": {
-                "blocked_host_obtain": 5,
+                "blocked_host_obtain": 0,
                 "blocked_tiny_plate_rows": OVERFLOW_ROWS,
                 "dump_rows": SOURCE_ROWS,
                 "hosts": 5,
@@ -473,20 +478,23 @@ def check() -> list[str]:
         errors.append("d0 grid must match GT6 PRw / YMC")
     statuses = {row["host"]: row["status"] for row in d0.get("hosts") or []}
     if statuses != {
-        20381: "explicitly_blocked",
-        20382: "explicitly_blocked",
-        20383: "explicitly_blocked",
-        20384: "explicitly_blocked",
-        20385: "explicitly_blocked",
+        20381: "source_exact",
+        20382: "source_exact",
+        20383: "source_exact",
+        20384: "source_exact",
+        20385: "source_exact",
     }:
-        errors.append("all five D0 hosts must stay explicitly_blocked")
+        errors.append("slicer D0 host statuses drifted")
     ev = next((row for row in d0.get("hosts") or [] if row.get("host") == 20384), None)
-    if ev is None or ev.get("piston", {}).get("status") != "ok":
-        errors.append("20384 EV piston must stay source-exact")
-    if ev is None or ev.get("conveyor", {}).get("status") != "blocked":
-        errors.append("20384 conveyor module must stay blocked")
-    if "programmed_circuit" in str(d0) or "compact_electric_conveyor" in str(d0):
-        errors.append("d0 must not invent programmed_circuit or conveyor-cover stand-ins")
+    lv = next((row for row in d0.get("hosts") or [] if row.get("host") == 20381), None)
+    if lv is None or ev is None:
+        errors.append("slicer D0 is missing LV or EV host")
+    elif lv.get("piston", {}).get("status") != "ok" or lv.get("conveyor", {}).get("status") != "ok":
+        errors.append("20381 LV piston and conveyor must be source-exact")
+    elif ev.get("piston", {}).get("status") != "ok" or ev.get("conveyor", {}).get("status") != "ok":
+        errors.append("20384 EV piston and conveyor must be source-exact")
+    if "programmed_circuit" in str(d0) or parts.has_split_module_standin(str(d0)):
+        errors.append("d0 must not invent programmed_circuit or split conveyor modules")
 
     topology = census.load_json(WAVE / "topology.json")
     readiness = census.load_json(WAVE / "readiness.json")

@@ -36,13 +36,7 @@
         "cruciblecraft:chromium_injector",
         "cruciblecraft:titanium_injector"
       ],
-      "reason": "GT6 Injector hosts 20261-20265. EU buffered, two item inputs/one output, two fluid inputs/one output. Chromium EV host is source-exact; missing piston tiers remain blocked."
-    },
-    {
-      "semantic_key": "machine:injector:host_obtain",
-      "disposition": "blocked",
-      "runtime_ids": [],
-      "reason": "20261-20263 and 20265 need missing compact piston modules. No wrong-tier piston or circuit stand-in."
+      "reason": "GT6 Injector hosts 20261-20265. EU buffered, two item inputs/one output, two fluid inputs/one output. All five hosts are source-exact via technological-parts-foundation."
     },
     {
       "semantic_key": "recipe:injector:overflow",
@@ -51,5 +45,5 @@
       "reason": "27 prep overflow rows, 449 rows requiring unregistered glass-object or legacy slab identities, and 59 shadowed input rows are blocked. No fluid or identity stand-ins."
     }
   ],
-  "note": "Prep selected 611 rows; live publishes 103 non-shadowed runtime-registered exact rows. 535 rows are explicitly_blocked for prep fluid/collision gaps, unregistered glass/slab identities, or shadowed input signatures. Chromium EV host is source-exact; four hosts remain acquisition-blocked. Close at runtime_ready, not player_complete."
+  "note": "Prep selected 611 rows; live publishes 103 non-shadowed runtime-registered exact rows. 535 rows are explicitly_blocked for prep fluid/collision gaps, unregistered glass/slab identities, or shadowed input signatures. LV and Chromium EV hosts are source-exact via technological-parts-foundation; MV/HV/IV stay acquisition-blocked. Close at runtime_ready, not player_complete."
 }

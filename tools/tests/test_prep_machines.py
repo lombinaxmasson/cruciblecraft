@@ -32,7 +32,7 @@ LANDING_DATA = (
 )
 EXPECTED = {
     "slicer": (33, 32, 1),
-    "loom": (1334, 1090, 244),
+    "loom": (1334, 1129, 205),
     "pressure-washer": (312, 192, 120),
     "injector": (638, 611, 27),
     "printer": (22, 0, 22),
@@ -55,7 +55,7 @@ def _load_builder():
 
 
 prep = _load_builder()
-OPEN_PREP_MACHINES = ("printer", "melter")
+OPEN_PREP_MACHINES = ("printer",)
 
 
 def _read(path: Path) -> str:
@@ -91,17 +91,17 @@ class PrepMachinesTest(unittest.TestCase):
         slicer_status = {row["host"]: row["status"] for row in slicer["hosts"]}
         self.assertEqual(
             {
-                20381: "explicitly_blocked",
-                20382: "explicitly_blocked",
-                20383: "explicitly_blocked",
-                20384: "explicitly_blocked",
-                20385: "explicitly_blocked",
+                20381: "source_exact",
+                20382: "source_exact",
+                20383: "source_exact",
+                20384: "source_exact",
+                20385: "source_exact",
             },
             slicer_status,
         )
         ev = next(row for row in slicer["hosts"] if row["host"] == 20384)
         self.assertEqual("ok", ev["piston"]["status"])
-        self.assertEqual("blocked", ev["conveyor"]["status"])
+        self.assertEqual("ok", ev["conveyor"]["status"])
 
         loom = census.load_json(prep.common.wave_dir("loom") / "d0_obtain_matrix.json")
         loom_status = {row["host"]: row["status"] for row in loom["hosts"]}
@@ -109,7 +109,9 @@ class PrepMachinesTest(unittest.TestCase):
         self.assertEqual("source_exact", loom_status[20214])
         self.assertEqual("source_exact", loom_status[20361])
         self.assertEqual("source_exact", loom_status[20364])
-        self.assertEqual("explicitly_blocked", loom_status[20362])
+        self.assertEqual("source_exact", loom_status[20362])
+        self.assertEqual("source_exact", loom_status[20363])
+        self.assertEqual("source_exact", loom_status[20365])
         self.assertEqual(5_000, census.load_json(
             prep.common.wave_dir("loom") / "runtime_notes.json"
         )["electric_efficiency_permille"])
@@ -126,13 +128,19 @@ class PrepMachinesTest(unittest.TestCase):
         )
         inj = {row["host"]: row["status"] for row in injector["hosts"]}
         self.assertEqual("source_exact", inj[20264])
-        self.assertEqual("explicitly_blocked", inj[20261])
+        self.assertEqual("source_exact", inj[20261])
 
         printer = census.load_json(
             prep.common.wave_dir("printer") / "d0_obtain_matrix.json"
         )
-        self.assertTrue(all(row["status"] == "explicitly_blocked" for row in printer["hosts"]))
-        self.assertTrue(all(row["conveyor"]["status"] == "blocked" for row in printer["hosts"]))
+        printer_status = {row["host"]: row["status"] for row in printer["hosts"]}
+        self.assertEqual("source_exact", printer_status[20271])
+        self.assertEqual("source_exact", printer_status[20274])
+        self.assertTrue(all(status == "source_exact" for status in printer_status.values()))
+        self.assertEqual(
+            "cruciblecraft:compact_electric_conveyor_lv",
+            next(row for row in printer["hosts"] if row["host"] == 20271)["conveyor"]["cc"],
+        )
 
         laminator = census.load_json(
             prep.common.wave_dir("laminator") / "d0_obtain_matrix.json"
@@ -157,7 +165,8 @@ class PrepMachinesTest(unittest.TestCase):
         self.assertTrue(all(row["status"] == "explicitly_blocked" for row in nanofab["hosts"]))
         blob = str(slicer) + str(loom) + str(printer) + str(nanofab) + str(injector)
         self.assertNotIn("programmed_circuit", blob)
-        self.assertNotIn("compact_electric_conveyor", blob)
+        from tools.technological_parts_foundation import has_split_module_standin
+        self.assertFalse(has_split_module_standin(blob))
 
     def test_live_compile_and_known_waves_stay_closed(self) -> None:
         for name in prep.MACHINES:

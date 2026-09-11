@@ -23,8 +23,8 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 /**
  * Runtime gate for the source-backed Laminator family.
  *
- * <p>The four hosts are source-exact, while the 266 unmapped MTE rows stay
- * outside the live compact family.
+ * <p>The four hosts are source-exact, while the remaining unmapped MTE rows
+ * stay outside the live compact family.
  */
 @GameTestHolder(LaminatorGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
@@ -51,19 +51,19 @@ public final class LaminatorGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
-    public static void liveMapPublishesTwoHundredThirtyTwoRows(
+    public static void liveMapPublishesFourHundredThirtyEightRows(
             GameTestHelper helper) {
         RecipeMap.RecipeFamily family = ModRecipeMaps.LAMINATOR
                 .family(CompactRecipeFamilyProvider.familyId(
                         ModRecipeMaps.LAMINATOR.id(), PUBLICATION_GROUP))
                 .orElse(null);
         helper.assertTrue(
-                family != null && family.logicalRecipeCount() == 226,
-                "Laminator compact family is not the 226 runtime rows: "
+                family != null && family.logicalRecipeCount() == 438,
+                "Laminator compact family is not the 438 runtime rows: "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
         helper.assertTrue(
-                ModRecipeMaps.LAMINATOR.entries().size() == 226,
-                "Laminator live map drifted from 226 runtime rows: "
+                ModRecipeMaps.LAMINATOR.entries().size() == 438,
+                "Laminator live map drifted from 438 runtime rows: "
                         + ModRecipeMaps.LAMINATOR.entries().size());
         helper.succeed();
     }

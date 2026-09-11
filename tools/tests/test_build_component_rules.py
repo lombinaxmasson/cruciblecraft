@@ -20,8 +20,8 @@ class ComponentRuleBuilderTest(unittest.TestCase):
         bundle = self.bundle
         manifest = self.manifest
 
-        self.assertEqual(48, manifest["source_rules"])
-        self.assertEqual(48, manifest["authored_datapack_entries"])
+        self.assertEqual(51, manifest["source_rules"])
+        self.assertEqual(51, manifest["authored_datapack_entries"])
         self.assertEqual(
             manifest["expanded_recipes"],
             manifest["authored_projected_recipes"],
@@ -100,7 +100,7 @@ class ComponentRuleBuilderTest(unittest.TestCase):
     def test_generated_rules_are_runtime_material_rule_json(self) -> None:
         bundle = self.bundle
 
-        self.assertEqual(48, len(bundle.generated))
+        self.assertEqual(51, len(bundle.generated))
         self.assertEqual(sorted(bundle.generated), list(bundle.generated))
         for relative, content in bundle.generated.items():
             document = json.loads(content)

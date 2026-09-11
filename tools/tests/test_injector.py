@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Injector live machine card: 611 selected rows and EV-only exact host."""
+"""Injector live machine card: 611 selected rows and LV/EV exact hosts."""
 from __future__ import annotations
 
 import importlib.util
@@ -50,15 +50,15 @@ class InjectorCardTest(unittest.TestCase):
         self.assertEqual(535, overflow["blocked_rows"])
         self.assertNotIn("programmed_circuit", str(overflow))
 
-    def test_d0_ev_only_exact(self) -> None:
+    def test_d0_lv_and_ev_exact(self) -> None:
         document = census.load_json(WAVE / "d0_obtain_matrix.json")
         self.assertEqual(["XPw", "CMW"], document["grid"])
         statuses = {row["host"]: row["status"] for row in document["hosts"]}
+        self.assertEqual("source_exact", statuses[20261])
+        self.assertEqual("source_exact", statuses[20262])
+        self.assertEqual("source_exact", statuses[20263])
         self.assertEqual("source_exact", statuses[20264])
-        self.assertEqual(
-            {"explicitly_blocked"},
-            {statuses[host] for host in (20261, 20262, 20263, 20265)},
-        )
+        self.assertEqual("source_exact", statuses[20265])
 
     def test_capability_is_runtime_ready(self) -> None:
         capability = census.load_json(CAPABILITY)
@@ -71,7 +71,7 @@ class InjectorCardTest(unittest.TestCase):
             self.assertTrue(PLAN_ACTIVE.is_file())
             self.assertFalse(PLAN_CLOSED.is_file())
         else:
-            self.assertIsNone(compiled["unique_active_slug"])
+            self.assertNotEqual(SLUG, compiled["unique_active_slug"])
             self.assertFalse(PLAN_ACTIVE.is_file())
             self.assertTrue(PLAN_CLOSED.is_file())
 

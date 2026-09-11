@@ -2,6 +2,140 @@
   "capabilities": [
     {
       "depends_on": [
+        "machines/laminator",
+        "machines/loom",
+        "machines/melter",
+        "machines/nanofab"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/导线电缆MTE折回详细计划.md",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/laminator/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/loom/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/melter/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/nanofab/**",
+        "tools/build_electric_wire_cable_mte_fold.py",
+        "tools/electric_wire_cable_mte_fold.py",
+        "tools/capabilities/content/electric-wire-cable-mte-fold/**",
+        "tools/recipe_bulk/ordinary_source.py",
+        "tools/tests/test_electric_wire_cable_mte_fold.py",
+        "tools/waves/content/electric-wire-cable-mte-fold/**",
+        "tools/waves/machines/laminator/**",
+        "tools/waves/machines/loom/**",
+        "tools/waves/machines/melter/**",
+        "tools/waves/machines/nanofab/**"
+      ],
+      "path": "tools/capabilities/content/electric-wire-cable-mte-fold/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/electric-wire-cable-mte-fold",
+      "title": "Electric Wire/Cable MTE Fold",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "machines/injector",
+        "machines/loom",
+        "machines/slicer"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/active/技术中间件基础详细计划.md",
+        "src/component_rule_generated/resources/data/cruciblecraft/recipe/wiremill/**",
+        "src/generated/resources/assets/cruciblecraft/lang/en_us.json",
+        "src/generated/resources/assets/cruciblecraft/lang/zh_cn.json",
+        "src/generated/resources/assets/cruciblecraft/models/item/compact_electric_*.json",
+        "src/generated/resources/assets/cruciblecraft/models/item/compact_electric_piston_lv.json",
+        "src/generated/resources/assets/cruciblecraft/models/item/compact_force_field_emitter_*.json",
+        "src/generated/resources/assets/cruciblecraft/models/item/compact_sensor_*.json",
+        "src/generated/resources/assets/cruciblecraft/models/item/compact_signal_emitter_*.json",
+        "src/generated/resources/data/cruciblecraft/recipe/machines/*_electricloom.json",
+        "src/generated/resources/data/cruciblecraft/recipe/machines/*_injector.json",
+        "src/generated/resources/data/cruciblecraft/recipe/machines/*_slicer.json",
+        "src/generated/resources/data/cruciblecraft/recipe/machines/chromium_slicer.json",
+        "src/generated/resources/data/cruciblecraft/recipe/machines/injector.json",
+        "src/generated/resources/data/cruciblecraft/recipe/tools/nether_star/**",
+        "src/main/java/com/masson/cruciblecraft/api/material/MaterialPrefixes.java",
+        "src/main/java/com/masson/cruciblecraft/content/item/TechnologicalPartCatalog.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModItemModelProvider.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/CircuitTierGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/InjectorGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/LoomGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/SlicerGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+        "src/main/resources/assets/cruciblecraft/gt6_technological_parts_foundation_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/models/item/material/wire_bundle_3.json",
+        "src/main/resources/assets/cruciblecraft/models/item/material/wire_bundle_5.json",
+        "src/main/resources/assets/cruciblecraft/models/item/material/wire_bundle_6.json",
+        "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/compact_*.png",
+        "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/compact_electric_piston_lv.png",
+        "src/main/resources/data/cruciblecraft/machine_tiers.json",
+        "src/main/resources/data/cruciblecraft/material_prefixes/quintuple_wire.json",
+        "src/main/resources/data/cruciblecraft/material_prefixes/sextuple_wire.json",
+        "src/main/resources/data/cruciblecraft/material_prefixes/triple_wire.json",
+        "src/main/resources/data/cruciblecraft/materials/aluminium.json",
+        "src/main/resources/data/cruciblecraft/materials/ender_eye.json",
+        "src/main/resources/data/cruciblecraft/materials/ender_pearl.json",
+        "src/main/resources/data/cruciblecraft/materials/nether_star.json",
+        "src/main/resources/data/cruciblecraft/materials/steel_galvanized.json",
+        "src/main/resources/data/cruciblecraft/materials/tin_alloy.json",
+        "src/main/resources/data/cruciblecraft/materials/titanium.json",
+        "src/main/resources/data/cruciblecraft/recipe/compact_electric_*.json",
+        "src/main/resources/data/cruciblecraft/recipe/compact_electric_piston_lv.json",
+        "src/main/resources/data/cruciblecraft/recipe/compact_force_field_emitter_*.json",
+        "src/main/resources/data/cruciblecraft/recipe/compact_sensor_*.json",
+        "src/main/resources/data/cruciblecraft/recipe/compact_signal_emitter_*.json",
+        "src/main/resources/data/cruciblecraft/technological_parts.json",
+        "src/test/java/com/masson/cruciblecraft/content/item/TechnologicalPartCatalogTest.java",
+        "tools/build_component_rules.py",
+        "tools/build_gt6_material_form_gate.py",
+        "tools/build_technological_parts_foundation.py",
+        "tools/capabilities/content/technological-parts-foundation/**",
+        "tools/compare_gt6_recipes.py",
+        "tools/emit_fission_survival_wave.py",
+        "tools/component_rule_sources/component_baseline.json",
+        "tools/component_rule_sources/component_rules.json",
+        "tools/gt6_generation_bits.json",
+        "tools/gt6_l3_prefix_plan.json",
+        "tools/gt6_oredict_cross_reference.json",
+        "tools/gt6_prefix_mapping.json",
+        "tools/import_gt6_oredict.py",
+        "tools/material_form_authority.json",
+        "tools/material_form_authority.py",
+        "tools/technological_parts_foundation.py",
+        "tools/tests/test_build_component_rules.py",
+        "tools/tests/test_material_form_authority.py",
+        "tools/tests/test_prep_machines.py",
+        "tools/tests/test_slicer.py",
+        "tools/tests/test_technological_parts_foundation.py",
+        "tools/waves/content/technological-parts-foundation/**",
+        "tools/waves/content/technological-parts-foundation/required_forms.json",
+        "tools/waves/machines/injector/d0_obtain_matrix.json",
+        "tools/waves/machines/loom/d0_obtain_matrix.json",
+        "tools/waves/machines/slicer/build_slicer.py",
+        "tools/waves/machines/slicer/d0_obtain_matrix.json",
+        "tools/waves/prep/build_prep_machines.py",
+        "tools/waves/prep/injector/d0_obtain_matrix.json",
+        "tools/waves/prep/loom/d0_obtain_matrix.json",
+        "tools/waves/prep/printer/d0_obtain_matrix.json",
+        "tools/waves/prep/slicer/d0_obtain_matrix.json"
+      ],
+      "path": "tools/capabilities/content/technological-parts-foundation/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/technological-parts-foundation",
+      "title": "Technological Parts Foundation",
+      "workflow": "active"
+    },
+    {
+      "depends_on": [
         "energy/converter-catalog"
       ],
       "maturity": "player_complete",
@@ -731,7 +865,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 23,
+  "capability_count": 25,
   "declared_player_complete": [
     "energy/batteries",
     "energy/converter-catalog",
@@ -750,7 +884,15 @@
   ],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
+    "content/electric-wire-cable-mte-fold": [
+      "content/electric-wire-cable-mte-fold"
+    ],
+    "content/technological-parts-foundation": [
+      "content/technological-parts-foundation"
+    ],
     "energy/batteries": [
+      "content/electric-wire-cable-mte-fold",
+      "content/technological-parts-foundation",
       "energy/batteries",
       "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
@@ -768,6 +910,8 @@
       "machines/slicer"
     ],
     "energy/converter-catalog": [
+      "content/electric-wire-cable-mte-fold",
+      "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
       "energy/heat-exchangers",
@@ -786,6 +930,8 @@
       "machines/slicer"
     ],
     "energy/heat-exchangers": [
+      "content/electric-wire-cable-mte-fold",
+      "content/technological-parts-foundation",
       "energy/heat-exchangers",
       "machines/cluster-mill",
       "machines/injector",
@@ -798,6 +944,8 @@
       "machines/slicer"
     ],
     "energy/nuclear-fission-hot-fluids": [
+      "content/electric-wire-cable-mte-fold",
+      "content/technological-parts-foundation",
       "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
@@ -815,6 +963,8 @@
       "energy/nuclear-fission-observation-safety"
     ],
     "energy/nuclear-fission-survival": [
+      "content/electric-wire-cable-mte-fold",
+      "content/technological-parts-foundation",
       "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
@@ -830,6 +980,8 @@
       "machines/slicer"
     ],
     "energy/transformers": [
+      "content/electric-wire-cable-mte-fold",
+      "content/technological-parts-foundation",
       "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
@@ -846,6 +998,8 @@
       "machines/slicer"
     ],
     "logistics/cover-net-r0": [
+      "content/electric-wire-cable-mte-fold",
+      "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
       "energy/heat-exchangers",
@@ -870,6 +1024,8 @@
       "machines/slicer"
     ],
     "logistics/display-cpu": [
+      "content/electric-wire-cable-mte-fold",
+      "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
       "energy/heat-exchangers",
@@ -889,6 +1045,8 @@
       "machines/slicer"
     ],
     "logistics/fluid-network/basic-transfer": [
+      "content/electric-wire-cable-mte-fold",
+      "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
       "energy/heat-exchangers",
@@ -911,6 +1069,8 @@
       "machines/slicer"
     ],
     "logistics/generic-network/core": [
+      "content/electric-wire-cable-mte-fold",
+      "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
       "energy/heat-exchangers",
@@ -932,6 +1092,8 @@
       "machines/slicer"
     ],
     "logistics/item-network-core": [
+      "content/electric-wire-cable-mte-fold",
+      "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
       "energy/heat-exchangers",
@@ -955,6 +1117,8 @@
       "machines/slicer"
     ],
     "logistics/logistics-core": [
+      "content/electric-wire-cable-mte-fold",
+      "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
       "energy/heat-exchangers",
@@ -978,24 +1142,32 @@
       "machines/cluster-mill"
     ],
     "machines/injector": [
+      "content/technological-parts-foundation",
       "machines/injector"
     ],
     "machines/laminator": [
+      "content/electric-wire-cable-mte-fold",
       "machines/laminator"
     ],
     "machines/loom": [
+      "content/electric-wire-cable-mte-fold",
+      "content/technological-parts-foundation",
       "machines/loom"
     ],
     "machines/melter": [
+      "content/electric-wire-cable-mte-fold",
       "machines/melter"
     ],
     "machines/nanofab": [
+      "content/electric-wire-cable-mte-fold",
       "machines/nanofab"
     ],
     "machines/pressure-washer": [
       "machines/pressure-washer"
     ],
     "machines/roll-former": [
+      "content/electric-wire-cable-mte-fold",
+      "content/technological-parts-foundation",
       "machines/cluster-mill",
       "machines/injector",
       "machines/laminator",
@@ -1007,6 +1179,7 @@
       "machines/slicer"
     ],
     "machines/slicer": [
+      "content/technological-parts-foundation",
       "machines/slicer"
     ],
     "registry/tool-head-remainder": [
@@ -1015,6 +1188,8 @@
   },
   "profiles": {
     "capability-runtime": [
+      "content/electric-wire-cable-mte-fold",
+      "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
       "energy/heat-exchangers",
@@ -1058,5 +1233,5 @@
   },
   "progress_rule": "declaration is not proof; player_complete requires fresh GameTestServer execution; runClient is required on promotion",
   "schema_version": 2,
-  "unique_active_slug": null
+  "unique_active_slug": "content/technological-parts-foundation"
 }

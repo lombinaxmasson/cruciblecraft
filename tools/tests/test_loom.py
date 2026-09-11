@@ -45,9 +45,9 @@ class LoomCardTest(unittest.TestCase):
         work = census.load_json(WAVE / "source_pack" / "work_set.json")
         overflow = census.load_json(WAVE / "overflow.json")
         self.assertEqual(1334, work["accounting"]["source_rows"])
-        self.assertEqual(453, work["accounting"]["selected_rows"])
-        self.assertEqual(881, work["accounting"]["overflow_rows"])
-        self.assertEqual(881, overflow["blocked_rows"])
+        self.assertEqual(465, work["accounting"]["selected_rows"])
+        self.assertEqual(869, work["accounting"]["overflow_rows"])
+        self.assertEqual(869, overflow["blocked_rows"])
         self.assertNotIn("programmed_circuit", str(overflow))
 
     def test_d0_mixed_hosts_are_honest(self) -> None:
@@ -60,10 +60,10 @@ class LoomCardTest(unittest.TestCase):
                 20213: "source_exact",
                 20214: "source_exact",
                 20361: "source_exact",
-                20362: "explicitly_blocked",
-                20363: "explicitly_blocked",
+                20362: "source_exact",
+                20363: "source_exact",
                 20364: "source_exact",
-                20365: "explicitly_blocked",
+                20365: "source_exact",
             },
             {row["host"]: row["status"] for row in document["hosts"]},
         )
@@ -79,7 +79,7 @@ class LoomCardTest(unittest.TestCase):
             self.assertTrue(PLAN_ACTIVE.is_file())
             self.assertFalse(PLAN_CLOSED.is_file())
         else:
-            self.assertIsNone(compiled["unique_active_slug"])
+            self.assertNotEqual(SLUG, compiled["unique_active_slug"])
             self.assertFalse(PLAN_ACTIVE.is_file())
             self.assertTrue(PLAN_CLOSED.is_file())
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the live Loom Source Pack and compile its 1090 exact rows."""
+"""Build the live Loom Source Pack and compile its 465 exact rows."""
 from __future__ import annotations
 
 import argparse
@@ -16,6 +16,7 @@ if str(TOOLS) not in sys.path:
     sys.path.insert(1, str(TOOLS))
 
 from tools import census_common as census
+from tools import technological_parts_foundation as parts
 from tools.gt6_resolve import resolve
 from tools.recipe_bulk import compile as compile_mod
 from tools.recipe_bulk import source_import
@@ -35,11 +36,14 @@ FAMILY_ID = (
 )
 TEMPLATE_KEY = "gt.recipe.loom#0000"
 SOURCE_ROWS = 1334
-PREP_SELECTED_ROWS = 1090
-PREP_OVERFLOW_ROWS = 244
-SELECTED_ROWS = 453
-OVERFLOW_ROWS = 881
+PREP_SELECTED_ROWS = 1102
+PREP_OVERFLOW_ROWS = 232
+SELECTED_ROWS = 465
+OVERFLOW_ROWS = 869
 LIVE_NEEDLE = "loom"
+CAPABILITY_PATH = (
+    ROOT / "tools" / "capabilities" / "machines" / "loom" / "capability.json"
+)
 WAVE = ROOT / "tools" / "waves" / "machines" / "loom"
 LIVE_GENERATED = (
     ROOT / "src" / "recipe_generated" / "resources" / "data"
@@ -48,8 +52,9 @@ LIVE_GENERATED = (
 POLICY_PATH = LIVE_GENERATED / "publication_policy" / "loom.json"
 PUBLICATION_GROUP = f"{TARGET_MAP}/pilot/loom"
 LOCK_NOTE = (
-    "live compile for machines/loom; 1090 selected exact rows; "
-    "244 unmapped MTE/plant_gt_fiber rows explicitly_blocked; not player_complete"
+    "live compile for machines/loom; 465 runtime-registered exact rows; "
+    "232 unmapped MTE/plant_gt_fiber rows and 637 shadowed input signatures "
+    "explicitly_blocked; not player_complete"
 )
 ART_MANIFEST = "gt6_loom_art_manifest.json"
 D0_HOSTS = (
@@ -117,6 +122,15 @@ def _host_status(slots: dict[str, dict[str, str]]) -> str:
     )
 
 
+def unique_active_wave() -> str | None:
+    if not CAPABILITY_PATH.is_file():
+        return IMPORT_SLUG
+    document = census.load_json(CAPABILITY_PATH)
+    if document.get("workflow") == "active":
+        return IMPORT_SLUG
+    return None
+
+
 def d0_matrix() -> dict[str, Any]:
     hosts: list[dict[str, Any]] = []
     for host, material, prefer, drive in D0_HOSTS:
@@ -128,13 +142,10 @@ def d0_matrix() -> dict[str, Any]:
         if drive == "kinetic":
             slots["gear"] = _form(f"OP.gearGt({token})", prefer=prefer)
         else:
-            motor = {
-                20361: "compact_electric_motor_lv",
-                20364: "compact_electric_motor_ev",
-            }.get(host)
+            motor = parts.MOTORS.get(host - 20360)
             slots["motor"] = (
                 {
-                    "cc": f"cruciblecraft:{motor}",
+                    "cc": motor,
                     "gt6": f"IL.MOTORS[{host - 20360}]",
                     "status": "ok",
                 }
@@ -343,6 +354,7 @@ def write_source_pack() -> dict[str, int]:
 
 
 def write_wave_sidecars() -> None:
+    wave = unique_active_wave()
     _write(
         WAVE / "topology.json",
         {
@@ -354,7 +366,7 @@ def write_wave_sidecars() -> None:
             "schema_version": 1,
             "source_revision": SOURCE_REVISION,
             "status": "WAVE_READY",
-            "unique_active_wave": IMPORT_SLUG,
+            "unique_active_wave": wave,
             "wave_slug": IMPORT_SLUG,
         },
     )
@@ -379,7 +391,7 @@ def write_wave_sidecars() -> None:
             "schema_version": 1,
             "source_revision": SOURCE_REVISION,
             "status": "LOOM_RUNTIME_READY",
-            "unique_active_wave": IMPORT_SLUG,
+            "unique_active_wave": wave,
             "wave_slug": IMPORT_SLUG,
         },
     )
@@ -515,12 +527,21 @@ def check() -> list[str]:
         20213: "source_exact",
         20214: "source_exact",
         20361: "source_exact",
-        20362: "explicitly_blocked",
-        20363: "explicitly_blocked",
+        20362: "source_exact",
+        20363: "source_exact",
         20364: "source_exact",
-        20365: "explicitly_blocked",
+        20365: "source_exact",
     }:
         errors.append("loom D0 host statuses drifted")
+    topology = census.load_json(WAVE / "topology.json")
+    readiness = census.load_json(WAVE / "readiness.json")
+    expected_wave = unique_active_wave()
+    if topology.get("unique_active_wave") != expected_wave:
+        errors.append("topology unique_active_wave drifted from capability workflow")
+    if readiness.get("unique_active_wave") != expected_wave:
+        errors.append("readiness unique_active_wave drifted from capability workflow")
+    if errors:
+        return errors
     try:
         common.isolated_compile(WAVE, LIVE_NEEDLE)
     except Exception as error:

@@ -171,7 +171,10 @@ class MaterialVisualResourceTest {
         var expected = java.util.Map.of(
                 "wire", "cruciblecraft:conductor/wiregt01_item",
                 "double_wire", "cruciblecraft:item/material/wire_bundle_2",
+                "triple_wire", "cruciblecraft:item/material/wire_bundle_3",
                 "quadruple_wire", "cruciblecraft:item/material/wire_bundle_4",
+                "quintuple_wire", "cruciblecraft:item/material/wire_bundle_5",
+                "sextuple_wire", "cruciblecraft:item/material/wire_bundle_6",
                 "octuple_wire", "cruciblecraft:item/material/wire_bundle_8",
                 "dodecuple_wire", "cruciblecraft:item/material/wire_bundle_12",
                 "hexadecuple_wire", "cruciblecraft:item/material/wire_bundle_16");

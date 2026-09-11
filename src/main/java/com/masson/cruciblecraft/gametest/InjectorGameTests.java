@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
-/** Runtime gate for the Injector family with one exact EV host. */
+/** Runtime gate for the Injector family with LV and EV exact hosts. */
 @GameTestHolder(InjectorGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class InjectorGameTests {
@@ -64,23 +64,19 @@ public final class InjectorGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
-    public static void chromiumExactAndOtherHostsBlocked(
+    public static void allHostsAreExact(
             GameTestHelper helper) {
-        helper.assertTrue(
-                helper.getLevel().getRecipeManager()
-                        .byKey(id("machines/chromium_injector"))
-                        .isPresent(),
-                "Chromium EV Injector acquisition recipe missing");
         for (String path : List.of(
                 "injector",
                 "aluminium_injector",
                 "stainless_steel_injector",
+                "chromium_injector",
                 "titanium_injector")) {
-            helper.assertFalse(
+            helper.assertTrue(
                     helper.getLevel().getRecipeManager()
                             .byKey(id("machines/" + path))
                             .isPresent(),
-                    "Blocked Injector host became craftable: " + path);
+                    "Exact Injector host missing acquisition recipe: " + path);
         }
         helper.succeed();
     }

@@ -30,6 +30,8 @@ LOOM = "machines/loom"
 MELTER = "machines/melter"
 NANOFAB = "machines/nanofab"
 PRESSURE_WASHER = "machines/pressure-washer"
+WIRE_CABLE_FOLD = "content/electric-wire-cable-mte-fold"
+FOUNDATION = "content/technological-parts-foundation"
 NUCLEAR = "energy/nuclear-fission-survival"
 HOT_FLUIDS = "energy/nuclear-fission-hot-fluids"
 OBSERVATION = "energy/nuclear-fission-observation-safety"
@@ -59,6 +61,8 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertIn(ROLL_FORMER, slugs)
         self.assertIn(CLUSTER_MILL, slugs)
         self.assertIn(NUCLEAR, slugs)
+        self.assertIn(WIRE_CABLE_FOLD, slugs)
+        self.assertIn(FOUNDATION, slugs)
         self.assertIn(HOT_FLUIDS, slugs)
         self.assertIn(OBSERVATION, slugs)
         self.assertIn("registry/tool-head-remainder", slugs)
@@ -148,7 +152,7 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertIn(CLUSTER_MILL, complete)
         self.assertIn(ROLL_FORMER, complete)
         self.assertIn(HEAT_EXCHANGERS, complete)
-        self.assertIsNone(compiled["unique_active_slug"])
+        self.assertEqual(FOUNDATION, compiled["unique_active_slug"])
         self.assertEqual(
             "declaration is not proof; player_complete requires fresh "
             "GameTestServer execution; runClient is required on promotion",
@@ -162,10 +166,11 @@ class CapabilityLedgerTest(unittest.TestCase):
             for row in compiled["capabilities"]
             if row["workflow"] == "active"
         ]
-        self.assertEqual([], active)
-        self.assertEqual(
-            set(),
-            set(ledger.load_card_plan_index()["active"]),
+        self.assertEqual([FOUNDATION], active)
+        self.assertEqual({FOUNDATION}, set(ledger.load_card_plan_index()["active"]))
+        self.assertIn(
+            WIRE_CABLE_FOLD,
+            ledger.load_card_plan_index()["closed"],
         )
         self.assertNotIn(
             "machines/slicer",
@@ -207,6 +212,8 @@ class CapabilityLedgerTest(unittest.TestCase):
                 MELTER,
                 NANOFAB,
                 PRESSURE_WASHER,
+                WIRE_CABLE_FOLD,
+                FOUNDATION,
             },
             set(compiled["impact"]["logistics/cover-net-r0"]),
         )
@@ -252,6 +259,8 @@ class CapabilityLedgerTest(unittest.TestCase):
         )
         self.assertEqual(
             [
+                WIRE_CABLE_FOLD,
+                FOUNDATION,
                 BATTERIES,
                 CONVERTER,
                 HEAT_EXCHANGERS,

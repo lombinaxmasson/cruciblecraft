@@ -1,0 +1,52 @@
+{
+  "schema_version": 2,
+  "slug": "content/electric-wire-cable-mte-fold",
+  "title": "Electric Wire/Cable MTE Fold",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/导线电缆MTE折回详细计划.md",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/laminator/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/loom/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/melter/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/nanofab/**",
+    "tools/build_electric_wire_cable_mte_fold.py",
+    "tools/electric_wire_cable_mte_fold.py",
+    "tools/capabilities/content/electric-wire-cable-mte-fold/**",
+    "tools/recipe_bulk/ordinary_source.py",
+    "tools/tests/test_electric_wire_cable_mte_fold.py",
+    "tools/waves/content/electric-wire-cable-mte-fold/**",
+    "tools/waves/machines/laminator/**",
+    "tools/waves/machines/loom/**",
+    "tools/waves/machines/melter/**",
+    "tools/waves/machines/nanofab/**"
+  ],
+  "depends_on": [
+    "machines/laminator",
+    "machines/loom",
+    "machines/melter",
+    "machines/nanofab"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/electric-wire-cable-mte-fold",
+  "identity_disposition": [
+    {
+      "semantic_key": "mte:electric-wire-cable:addElectricWires",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:tin/wire",
+        "cruciblecraft:tin/cable"
+      ],
+      "reason": "Loader addElectricWires ids fold onto already-registered CC conductor items and blocks. Scatter gt_mte identities are not recipe objects."
+    },
+    {
+      "semantic_key": "mte:electric-wire-cable:unregistered-gauges",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "Superconductor wires and unregistered graphene/high-gauge forms stay unmapped. No wrong-gauge or scatter stand-in."
+    }
+  ],
+  "note": "Fold 30 addElectricWires invocations onto census-registered CC conductors. Laminator live 438/60; loom 465/869; nanofab overflow stays 57; melter stays 3973/2783 after replacing scatter wire operands. Closed at runtime_ready, not player_complete. 61 Loader ids stay unmapped."
+}

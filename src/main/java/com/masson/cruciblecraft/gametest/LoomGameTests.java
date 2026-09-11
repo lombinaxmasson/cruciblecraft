@@ -47,25 +47,25 @@ public final class LoomGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
-    public static void sharedMapPublishesOneThousandNinetyRows(
+    public static void sharedMapPublishesFourHundredSixtyFiveRows(
             GameTestHelper helper) {
         RecipeMap.RecipeFamily family = ModRecipeMaps.LOOM
                 .family(CompactRecipeFamilyProvider.familyId(
                         ModRecipeMaps.LOOM.id(), PUBLICATION_GROUP))
                 .orElse(null);
         helper.assertTrue(
-                family != null && family.logicalRecipeCount() == 453,
-                "Loom family is not the 453 non-shadowed rows: "
+                family != null && family.logicalRecipeCount() == 465,
+                "Loom family is not the 465 non-shadowed rows: "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
         helper.assertTrue(
-                ModRecipeMaps.LOOM.entries().size() == 453,
-                "Loom map drifted from 453 non-shadowed rows: "
+                ModRecipeMaps.LOOM.entries().size() == 465,
+                "Loom map drifted from 465 non-shadowed rows: "
                         + ModRecipeMaps.LOOM.entries().size());
         helper.succeed();
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
-    public static void exactAndBlockedAcquisitionHosts(
+    public static void allAcquisitionHostsAreExact(
             GameTestHelper helper) {
         for (String path : List.of(
                 "loom",
@@ -73,22 +73,15 @@ public final class LoomGameTests {
                 "titanium_loom",
                 "tungstensteel_loom",
                 "electricloom",
-                "chromium_electricloom")) {
+                "aluminium_electricloom",
+                "stainless_steel_electricloom",
+                "chromium_electricloom",
+                "titanium_electricloom")) {
             helper.assertTrue(
                     helper.getLevel().getRecipeManager()
                             .byKey(id("machines/" + path))
                             .isPresent(),
                     "Loom acquisition recipe missing: " + path);
-        }
-        for (String path : List.of(
-                "aluminium_electricloom",
-                "stainless_steel_electricloom",
-                "titanium_electricloom")) {
-            helper.assertFalse(
-                    helper.getLevel().getRecipeManager()
-                            .byKey(id("machines/" + path))
-                            .isPresent(),
-                    "Blocked electric Loom host became craftable: " + path);
         }
         helper.succeed();
     }

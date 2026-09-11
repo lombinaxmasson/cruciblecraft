@@ -20,6 +20,7 @@ if str(ROOT / "tools") not in sys.path:
     sys.path.insert(1, str(ROOT / "tools"))
 
 from tools import census_common as census
+from tools import technological_parts_foundation as parts
 from tools.gt6_resolve import resolve
 
 _COMMON_PATH = Path(__file__).with_name("machine_prep_common.py")
@@ -43,13 +44,8 @@ CIRCUITS = {
     5: "cruciblecraft:circuit_master",
     6: "cruciblecraft:circuit_ultimate",
 }
-MOTORS = {
-    1: "cruciblecraft:compact_electric_motor_lv",
-    4: "cruciblecraft:compact_electric_motor_ev",
-}
-PISTONS = {
-    4: "cruciblecraft:compact_electric_piston_ev",
-}
+MOTORS = dict(parts.MOTORS)
+PISTONS = dict(parts.PISTONS)
 
 
 def _write(path: Path, document: Any) -> None:
@@ -107,8 +103,12 @@ def _piston(tier: int) -> dict[str, str]:
 
 
 def _conveyor(tier: int) -> dict[str, str]:
+    token = f"IL.CONVEYERS[{tier}]"
+    item = parts.CONVEYERS.get(tier)
+    if item:
+        return _ok(token, item)
     return _blocked(
-        f"IL.CONVEYERS[{tier}]",
+        token,
         "compact conveyor module missing; cover is not this slot",
     )
 

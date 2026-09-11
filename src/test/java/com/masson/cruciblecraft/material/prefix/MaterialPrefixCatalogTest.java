@@ -190,11 +190,14 @@ class MaterialPrefixCatalogTest {
                         MaterialPrefixes.ROD,
                         MaterialPrefixes.SMALL_DUST),
                 List.copyOf(MaterialPrefixCatalog.values()).subList(0, 15));
-        assertEquals(129, MaterialPrefixCatalog.values().size());
+        assertEquals(132, MaterialPrefixCatalog.values().size());
         assertEquals(16, MaterialPrefixes.TINY_CRUSHED_ORE.units());
         assertEquals(144, MaterialPrefixes.WASHED_CRUSHED_ORE.units());
         assertEquals(144, MaterialPrefixes.CENTRIFUGED_CRUSHED_ORE.units());
         assertEquals(144, MaterialPrefixes.PURIFIED_DUST.units());
+        assertEquals(216, MaterialPrefixes.TRIPLE_WIRE.units());
+        assertEquals(360, MaterialPrefixes.QUINTUPLE_WIRE.units());
+        assertEquals(432, MaterialPrefixes.SEXTUPLE_WIRE.units());
         assertEquals(
                 List.of(
                         1296, 144, 144, 144, 16, 144, 144, 22,

@@ -107,7 +107,7 @@ public final class SlicerGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
-    public static void fiveHostsAreNotSurvivalCraftable(GameTestHelper helper) {
+    public static void allHostsAreExact(GameTestHelper helper) {
         for (String path : HOSTS) {
             Item result = ModItems.tieredProcessingItemsById()
                     .get(id(path))
@@ -115,11 +115,13 @@ public final class SlicerGameTests {
             helper.assertTrue(
                     result != null,
                     "Slicer host item missing: " + path);
-            helper.assertFalse(
+        }
+        for (String path : HOSTS) {
+            helper.assertTrue(
                     helper.getLevel().getRecipeManager()
                             .byKey(id("machines/" + path))
                             .isPresent(),
-                    "Slicer host must not have a survival recipe: " + path);
+                    "Exact slicer host missing acquisition recipe: " + path);
         }
         helper.succeed();
     }
