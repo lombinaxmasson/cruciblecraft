@@ -89,6 +89,126 @@ def source_row(recipe: dict[str, Any], index: int, digest: str, template_key: st
     return row
 
 
+_REGISTERED_RUNTIME_IDS: set[str] | None = None
+
+
+MATERIAL_GATE = (
+    ROOT
+    / "src"
+    / "main"
+    / "resources"
+    / "data"
+    / "cruciblecraft"
+    / "material_registration_gate.json"
+)
+MATERIAL_DEFINITION_ROOTS = (
+    ROOT
+    / "src"
+    / "main"
+    / "resources"
+    / "data"
+    / "cruciblecraft"
+    / "materials",
+    ROOT
+    / "src"
+    / "main"
+    / "resources"
+    / "data"
+    / "cruciblecraft"
+    / "hydrocarbon_materials",
+)
+RUNTIME_ID_OVERLAY = (
+    ROOT
+    / "tools"
+    / "waves"
+    / "machines"
+    / "sanding"
+    / "mte_runtime_overlay.json"
+)
+
+
+def _registered_material_item_ids() -> set[str]:
+    """Project Java's material-form registration into the prep audit.
+
+    ``runtime_registry_gate.json`` is a static census and does not enumerate
+    every ``DeferredRegister`` item created from the material registration
+    gate.  The Java path registers every gated material form, using
+    ``form_items`` overrides where present and the canonical material path
+    otherwise.
+    """
+    gate = census.load_json(MATERIAL_GATE)
+    form_items: dict[tuple[str, str], str] = {}
+    for root in MATERIAL_DEFINITION_ROOTS:
+        if not root.is_dir():
+            continue
+        for path in sorted(root.glob("*.json")):
+            if path.name == "index.json":
+                continue
+            definition = census.load_json(path)
+            material_id = str(definition.get("id") or path.stem)
+            for form, item_id in (definition.get("form_items") or {}).items():
+                form_items[(material_id, str(form))] = str(item_id)
+
+    registered: set[str] = set()
+    for material_id, forms in (gate.get("materials") or {}).items():
+        material = str(material_id)
+        for form in forms or []:
+            prefix = str(form)
+            if prefix == "ore":
+                registered.add(f"cruciblecraft:{material}_ore")
+                continue
+            registered.add(
+                form_items.get(
+                    (material, prefix),
+                    f"cruciblecraft:{material}/{prefix}",
+                )
+            )
+    return registered
+
+
+def registered_runtime_ids() -> set[str]:
+    global _REGISTERED_RUNTIME_IDS
+    if _REGISTERED_RUNTIME_IDS is None:
+        gate = census.load_json(
+            ROOT
+            / "src"
+            / "main"
+            / "resources"
+            / "census"
+            / "runtime_registry_gate.json"
+        )
+        categories = gate.get("categories") or {}
+        _REGISTERED_RUNTIME_IDS = set(categories.get("items") or []) | set(
+            categories.get("blocks") or []
+        )
+        _REGISTERED_RUNTIME_IDS.update(_registered_material_item_ids())
+        for overlay_path in (RUNTIME_ID_OVERLAY,):
+            if not overlay_path.is_file():
+                continue
+            overlay = census.load_json(overlay_path)
+            _REGISTERED_RUNTIME_IDS.update(
+                str(row["runtime_id"])
+                for row in overlay.get("mappings") or []
+                if row.get("runtime_id")
+            )
+    return _REGISTERED_RUNTIME_IDS
+
+
+def missing_runtime_item_operands(relation: dict[str, Any]) -> list[str]:
+    registered = registered_runtime_ids()
+    missing: list[str] = []
+    for key in ("item_inputs", "item_outputs"):
+        for operand in relation.get(key) or []:
+            runtime = str(operand.get("runtime_id") or "")
+            if not runtime:
+                continue
+            if runtime.startswith("minecraft:") or runtime.startswith("neoforge:"):
+                continue
+            if runtime not in registered:
+                missing.append(f"unregistered runtime item {runtime}")
+    return missing
+
+
 def audit_rows(
     dump: dict[str, Any],
     *,
@@ -136,6 +256,27 @@ def audit_rows(
         blockers = list(dict.fromkeys(str(error) for error in errors))
         if source_import._relation_unmapped(relation):
             blockers.append("unmapped operand")
+        if host == "cruciblecraft:sanding":
+            blockers.extend(missing_runtime_item_operands(relation))
+        if host == "cruciblecraft:melter":
+            if any(
+                    int(
+                        fluid.get("amount")
+                        or (fluid.get("source") or {}).get("amount")
+                        or 0
+                    ) > 4_000
+                    for fluid in relation.get("fluid_inputs") or []
+            ):
+                blockers.append("melter fluid input exceeds 4000 mB tank")
+            if any(
+                    int(
+                        fluid.get("amount")
+                        or (fluid.get("source") or {}).get("amount")
+                        or 0
+                    ) > 8_000
+                    for fluid in relation.get("fluid_outputs") or []
+            ):
+                blockers.append("melter fluid output exceeds 8000 mB tank")
         entry = {
             "source_recipe_index": index,
             "source_row_sha256": digest,

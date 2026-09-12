@@ -1,5 +1,5 @@
 {
-  "blocked_rows": 2783,
+  "blocked_rows": 2796,
   "overflow": [
     {
       "input": "Medium Tungsten Carbide Bullet",
@@ -60,6 +60,7 @@
       "input": "Magenta Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.1@13",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -170,6 +171,7 @@
       "input": "Pink Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.1@9",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -260,7 +262,8 @@
       "output": null,
       "reasons": [
         "null runtime item_input gregtech:gt.meta.machine.dense@8610",
-        "unmapped operand"
+        "unmapped operand",
+        "melter fluid output exceeds 8000 mB tank"
       ],
       "source_recipe_index": 47,
       "source_row_sha256": "d6906e08502377cbfad293525182adba66ed1046374f5c606bbe41249062a8f9",
@@ -492,6 +495,7 @@
       "input": "Brown Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.2@3",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -937,6 +941,7 @@
       "input": "Light Gray Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.0@7",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -1160,7 +1165,8 @@
       "output": null,
       "reasons": [
         "null runtime item_input gregtech:gt.meta.machine.dense@8709",
-        "unmapped operand"
+        "unmapped operand",
+        "melter fluid output exceeds 8000 mB tank"
       ],
       "source_recipe_index": 234,
       "source_row_sha256": "071dda8d785ec337990677d28c199eb5061982dd034a90474ecbf85c3c5659ef",
@@ -1193,7 +1199,8 @@
       "output": null,
       "reasons": [
         "null runtime item_input gregtech:gt.meta.machine.dense@290",
-        "unmapped operand"
+        "unmapped operand",
+        "melter fluid output exceeds 8000 mB tank"
       ],
       "source_recipe_index": 245,
       "source_row_sha256": "20917e95326e1caeb3d34a738d5815c64e6a67bbe1fb124fa3666b666a0e3cf1",
@@ -1281,7 +1288,8 @@
       "output": null,
       "reasons": [
         "null runtime item_input gregtech:gt.meta.machine.dense@8708",
-        "unmapped operand"
+        "unmapped operand",
+        "melter fluid output exceeds 8000 mB tank"
       ],
       "source_recipe_index": 265,
       "source_row_sha256": "0fc76ca2af8e5761577d4fbacc8559d40bc48f5d9447a5d52230cffd4a7bded7",
@@ -1694,6 +1702,7 @@
       "input": "Purple Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.1@5",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -1884,6 +1893,7 @@
       "input": "Cyan Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.1@6",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -2385,6 +2395,7 @@
       "input": "Light Blue Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.5@12",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -2592,6 +2603,17 @@
       "status": "blocked"
     },
     {
+      "input": "White Concrete Slab",
+      "output": null,
+      "reasons": [
+        "unregistered block gregtech:gt.block.concrete.slab.3@0",
+        "unmapped operand"
+      ],
+      "source_recipe_index": 516,
+      "source_row_sha256": "5816240ac991380d4c14ccfd6d215b7003cccd42b9a3cfc8d04b0a706bc990e2",
+      "status": "blocked"
+    },
+    {
       "input": "Medium Pumice Bullet",
       "output": null,
       "reasons": [
@@ -2683,6 +2705,7 @@
       "input": "Pink Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.0@9",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -2973,6 +2996,7 @@
       "input": "Pink Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.4@9",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -3106,7 +3130,8 @@
       "output": null,
       "reasons": [
         "null runtime item_input gregtech:gt.meta.machine.dense@8615",
-        "unmapped operand"
+        "unmapped operand",
+        "melter fluid output exceeds 8000 mB tank"
       ],
       "source_recipe_index": 632,
       "source_row_sha256": "6b026bf69c48d266f5caca5399cdb04bc9b3e5fb9a036cef5f125a2c5f6711fb",
@@ -3738,6 +3763,7 @@
       "input": "Orange Glass",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass@14",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -3754,6 +3780,17 @@
       ],
       "source_recipe_index": 789,
       "source_row_sha256": "6427adfa73f7b9299b32b0e07a91ba50971e41ac42481f6b0a02b363df139732",
+      "status": "blocked"
+    },
+    {
+      "input": "White Concrete Slab",
+      "output": null,
+      "reasons": [
+        "unregistered block gregtech:gt.block.concrete.slab.5@0",
+        "unmapped operand"
+      ],
+      "source_recipe_index": 791,
+      "source_row_sha256": "487d76d8f2fc430c6216bbb1bb6d1a1b74b1db7d7d8631cfd6faa2a43c466c3d",
       "status": "blocked"
     },
     {
@@ -3850,7 +3887,8 @@
       "output": null,
       "reasons": [
         "null runtime item_input gregtech:gt.meta.machine.dense@8614",
-        "unmapped operand"
+        "unmapped operand",
+        "melter fluid output exceeds 8000 mB tank"
       ],
       "source_recipe_index": 808,
       "source_row_sha256": "57948c7303cf21209d1e53f691eeae0337220e39869edc28cca171561cb72bb1",
@@ -4369,7 +4407,8 @@
       "output": null,
       "reasons": [
         "null runtime item_input gregtech:gt.meta.machine.dense@510",
-        "unmapped operand"
+        "unmapped operand",
+        "melter fluid output exceeds 8000 mB tank"
       ],
       "source_recipe_index": 925,
       "source_row_sha256": "a148fa37636e7ea48fcaeb54bcae79573a1d0b568e9c553a905dd105be0fc421",
@@ -4594,6 +4633,7 @@
       "input": "Red Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.0@1",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -4763,7 +4803,8 @@
       "output": null,
       "reasons": [
         "null runtime item_input gregtech:gt.meta.machine.dense@8621",
-        "unmapped operand"
+        "unmapped operand",
+        "melter fluid output exceeds 8000 mB tank"
       ],
       "source_recipe_index": 1007,
       "source_row_sha256": "eb5a82c70aebbd77138ba3835352a7b426769d63020647ec16ed0331761dbb16",
@@ -4840,6 +4881,7 @@
       "input": "Red Glass",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass@1",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -5494,6 +5536,7 @@
       "input": "Blue Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.4@4",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -5594,6 +5637,7 @@
       "input": "White Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.5@0",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -5862,6 +5906,7 @@
       "input": "Brown Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.5@3",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -6657,6 +6702,7 @@
       "input": "Purple Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.0@5",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -6745,6 +6791,7 @@
       "input": "White Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.1@15",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -7246,6 +7293,17 @@
       "status": "blocked"
     },
     {
+      "input": "White Asphalt Slab",
+      "output": null,
+      "reasons": [
+        "unregistered block gregtech:gt.block.asphalt.slab.2@0",
+        "unmapped operand"
+      ],
+      "source_recipe_index": 1519,
+      "source_row_sha256": "60fceffb0863f207f0ca9fd47d4c02315daba79548cc7c2a0cf81a39562f88f2",
+      "status": "blocked"
+    },
+    {
       "input": "Small Brazilwood Bullet",
       "output": null,
       "reasons": [
@@ -7305,7 +7363,8 @@
       "output": null,
       "reasons": [
         "null runtime item_input gregtech:gt.meta.machine.dense@830",
-        "unmapped operand"
+        "unmapped operand",
+        "melter fluid output exceeds 8000 mB tank"
       ],
       "source_recipe_index": 1530,
       "source_row_sha256": "476347aa8877f2e4ca156e3742bd08e6efb092f6d749aba7b1ed5a3c250fbbeb",
@@ -7436,6 +7495,7 @@
       "input": "Yellow Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.0@11",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -7750,6 +7810,16 @@
       ],
       "source_recipe_index": 1634,
       "source_row_sha256": "921d1b9c9d80551f67f1e174e498bebd95098c8366b595bd86ffd0dd42a0d31a",
+      "status": "blocked"
+    },
+    {
+      "input": "Stone Anvil",
+      "output": null,
+      "reasons": [
+        "melter fluid output exceeds 8000 mB tank"
+      ],
+      "source_recipe_index": 1635,
+      "source_row_sha256": "b8bb224cc1a20ef94ec722f372fdae9825b2cd7f9f64100130aac465ffb7e1f0",
       "status": "blocked"
     },
     {
@@ -8213,7 +8283,8 @@
       "output": null,
       "reasons": [
         "null runtime item_input gregtech:gt.meta.machine.dense@8620",
-        "unmapped operand"
+        "unmapped operand",
+        "melter fluid output exceeds 8000 mB tank"
       ],
       "source_recipe_index": 1759,
       "source_row_sha256": "f9ada37db023a43f10535e00cbe77382bf1f78adb5277f6a3183220a64b87b7e",
@@ -8544,6 +8615,7 @@
       "input": "Red Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.5@1",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -8700,6 +8772,7 @@
       "input": "Blue Glass",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass@4",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -8856,7 +8929,8 @@
       "output": null,
       "reasons": [
         "null runtime item_input gregtech:gt.meta.machine.dense@8667",
-        "unmapped operand"
+        "unmapped operand",
+        "melter fluid output exceeds 8000 mB tank"
       ],
       "source_recipe_index": 1895,
       "source_row_sha256": "f121f811c4bf983540c27a53799705fa6c65bc7bd4bb7a340d000bb35d3b1b10",
@@ -9001,6 +9075,7 @@
       "input": "Lime Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.2@10",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -9078,6 +9153,7 @@
       "input": "Red Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.1@1",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -9214,6 +9290,7 @@
       "input": "Black Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.3@0",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -9589,6 +9666,7 @@
       "input": "Green Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.0@2",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -9887,6 +9965,7 @@
       "input": "White Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.5@15",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -10657,7 +10736,8 @@
       "output": null,
       "reasons": [
         "null runtime item_input gregtech:gt.meta.machine.dense@130",
-        "unmapped operand"
+        "unmapped operand",
+        "melter fluid output exceeds 8000 mB tank"
       ],
       "source_recipe_index": 2273,
       "source_row_sha256": "a4910cc0a5c5d37dfbe75deeb87c04939cc6db7b8b6231427ff76193fa758553",
@@ -10835,6 +10915,7 @@
       "input": "Pink Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.5@9",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -10857,6 +10938,7 @@
       "input": "Brown Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.0@3",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -11169,6 +11251,7 @@
       "input": "Magenta Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.4@13",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -11313,7 +11396,8 @@
       "output": null,
       "reasons": [
         "null runtime item_input gregtech:gt.meta.machine.dense@820",
-        "unmapped operand"
+        "unmapped operand",
+        "melter fluid output exceeds 8000 mB tank"
       ],
       "source_recipe_index": 2414,
       "source_row_sha256": "4dcdc7fde07858e84ce2afca9bf7a63788ef33316d7627f93df260965f5ed8f6",
@@ -11433,6 +11517,7 @@
       "input": "Brown Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.1@3",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -12906,7 +12991,8 @@
       "output": null,
       "reasons": [
         "null runtime item_input gregtech:gt.meta.machine.dense@8700",
-        "unmapped operand"
+        "unmapped operand",
+        "melter fluid output exceeds 8000 mB tank"
       ],
       "source_recipe_index": 2775,
       "source_row_sha256": "52ef326a0ba044ad43e1576dc33a28af42e7ddd4613c060ba0022454006786af",
@@ -12938,6 +13024,7 @@
       "input": "White Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.3@0",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -13146,6 +13233,17 @@
       "status": "blocked"
     },
     {
+      "input": "White Concrete Slab",
+      "output": null,
+      "reasons": [
+        "unregistered block gregtech:gt.block.concrete.slab.2@0",
+        "unmapped operand"
+      ],
+      "source_recipe_index": 2824,
+      "source_row_sha256": "f75348cdfc0fc946aab221964434d911705320aee506c4ca065b290f82372bc9",
+      "status": "blocked"
+    },
+    {
       "input": "Medium Vibranium Steel Bullet",
       "output": null,
       "reasons": [
@@ -13194,6 +13292,7 @@
       "input": "White Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.4@0",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -13584,6 +13683,7 @@
       "input": "Light Gray Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.1@7",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -13606,6 +13706,7 @@
       "input": "Light Blue Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.4@12",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -13970,6 +14071,7 @@
       "input": "Blue Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.5@4",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -14014,6 +14116,7 @@
       "input": "Yellow Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.5@11",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -14914,6 +15017,17 @@
       "status": "blocked"
     },
     {
+      "input": "White Asphalt Slab",
+      "output": null,
+      "reasons": [
+        "unregistered block gregtech:gt.block.asphalt.slab.5@0",
+        "unmapped operand"
+      ],
+      "source_recipe_index": 3229,
+      "source_row_sha256": "d41f9f0853c634d0f228a3591055ee4083cc1f1c792edf7762130e23d20745f1",
+      "status": "blocked"
+    },
+    {
       "input": "Large Basalz Bullet",
       "output": null,
       "reasons": [
@@ -15565,6 +15679,7 @@
       "input": "Lime Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.1@10",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -15852,6 +15967,17 @@
       "status": "blocked"
     },
     {
+      "input": "White Concrete Slab",
+      "output": null,
+      "reasons": [
+        "unregistered block gregtech:gt.block.concrete.slab.1@0",
+        "unmapped operand"
+      ],
+      "source_recipe_index": 3422,
+      "source_row_sha256": "06f3a3347c3e13fdaeafd7c0b7155d2fcc9df959ee410822970a9eb2e0d13f8c",
+      "status": "blocked"
+    },
+    {
       "input": "Medium Bohrium Bullet",
       "output": null,
       "reasons": [
@@ -16132,6 +16258,7 @@
       "input": "Magenta Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.3@13",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -16143,6 +16270,7 @@
       "input": "Cyan Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.5@6",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -16221,6 +16349,7 @@
       "input": "Light Blue Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.0@12",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -16538,6 +16667,17 @@
       "status": "blocked"
     },
     {
+      "input": "White Asphalt Slab",
+      "output": null,
+      "reasons": [
+        "unregistered block gregtech:gt.block.asphalt.slab.3@0",
+        "unmapped operand"
+      ],
+      "source_recipe_index": 3571,
+      "source_row_sha256": "58f47ff1fae9ea44f5d75cf6f2966d98434387d91f81a9d11bdf12360b47467c",
+      "status": "blocked"
+    },
+    {
       "input": "Large Green Hexorium Bullet",
       "output": null,
       "reasons": [
@@ -16842,6 +16982,7 @@
       "input": "White Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.2@0",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -16887,7 +17028,8 @@
       "output": null,
       "reasons": [
         "null runtime item_input gregtech:gt.meta.machine.dense@8665",
-        "unmapped operand"
+        "unmapped operand",
+        "melter fluid output exceeds 8000 mB tank"
       ],
       "source_recipe_index": 3656,
       "source_row_sha256": "667802d388f0c3fe25908e4923625d31f3e3b046515600d75bb523e8fe83ddf2",
@@ -17264,6 +17406,7 @@
       "input": "White Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.0@0",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -17630,6 +17773,7 @@
       "input": "Gray Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.4@8",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -17852,6 +17996,7 @@
       "input": "Yellow Glass",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass@11",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -17874,6 +18019,7 @@
       "input": "Frost Protection Suit Mask",
       "output": null,
       "reasons": [
+        "unregistered armor gregtech:gt.armor.hazmat.frost.head@0",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -18028,6 +18174,7 @@
       "input": "Light Gray Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.4@7",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -18061,6 +18208,7 @@
       "input": "Black Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.5@0",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -18293,6 +18441,7 @@
       "input": "Cyan Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.3@6",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -18846,7 +18995,8 @@
       "output": null,
       "reasons": [
         "null runtime item_input gregtech:gt.meta.machine.dense@8672",
-        "unmapped operand"
+        "unmapped operand",
+        "melter fluid output exceeds 8000 mB tank"
       ],
       "source_recipe_index": 4111,
       "source_row_sha256": "95ec8a7e44eeabc4a024337fa3034b78305e64473048f8c359e31ee16a79a1fe",
@@ -19321,6 +19471,7 @@
       "input": "Purple Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.4@5",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -19790,6 +19941,7 @@
       "input": "Orange Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.0@14",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -19957,7 +20109,8 @@
       "output": null,
       "reasons": [
         "null runtime item_input gregtech:gt.meta.machine.dense@8640",
-        "unmapped operand"
+        "unmapped operand",
+        "melter fluid output exceeds 8000 mB tank"
       ],
       "source_recipe_index": 4338,
       "source_row_sha256": "eb9d07087725735c5caba5873d94d1ca1d250be9949f9c873767aafee5a456e2",
@@ -20309,6 +20462,17 @@
       "status": "blocked"
     },
     {
+      "input": "White Asphalt Slab",
+      "output": null,
+      "reasons": [
+        "unregistered block gregtech:gt.block.asphalt.slab.1@0",
+        "unmapped operand"
+      ],
+      "source_recipe_index": 4418,
+      "source_row_sha256": "283cf7a4c652a8c0d8cc2dc20789af99517ec1c0be165342bf474d050d206a57",
+      "status": "blocked"
+    },
+    {
       "input": "Light Wenge Arrow",
       "output": null,
       "reasons": [
@@ -20379,6 +20543,7 @@
       "input": "Magenta Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.5@13",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -20548,6 +20713,7 @@
       "input": "Magenta Glass",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass@13",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -20803,6 +20969,7 @@
       "input": "Magenta Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.0@13",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -20869,6 +21036,7 @@
       "input": "Cyan Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.0@6",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -20993,7 +21161,8 @@
       "output": null,
       "reasons": [
         "null runtime item_input gregtech:gt.meta.machine.dense@8612",
-        "unmapped operand"
+        "unmapped operand",
+        "melter fluid output exceeds 8000 mB tank"
       ],
       "source_recipe_index": 4565,
       "source_row_sha256": "8b0dc8a23a3796655ccce6904d7bc0ff513f018e5bd341697044d9fd09fda4dd",
@@ -21048,6 +21217,7 @@
       "input": "Black Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.1@0",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -21290,6 +21460,7 @@
       "input": "Blue Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.3@4",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -21448,6 +21619,7 @@
       "input": "Lime Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.0@10",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -21637,6 +21809,7 @@
       "input": "Lime Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.5@10",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -21694,7 +21867,8 @@
       "output": null,
       "reasons": [
         "null runtime item_input gregtech:gt.meta.machine.dense@320",
-        "unmapped operand"
+        "unmapped operand",
+        "melter fluid output exceeds 8000 mB tank"
       ],
       "source_recipe_index": 4708,
       "source_row_sha256": "6342d7cbb24a65ffa542bac6aaebe0a478229a97e3154a3145d786faf6cacc48",
@@ -22105,6 +22279,7 @@
       "input": "Light Blue Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.3@12",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -22803,6 +22978,7 @@
       "input": "Gray Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.1@8",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -22926,6 +23102,7 @@
       "input": "Green Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.5@2",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -22970,6 +23147,7 @@
       "input": "Gray Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.0@8",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -23036,6 +23214,7 @@
       "input": "White Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.1@0",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -23474,6 +23653,7 @@
       "input": "Light Gray Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.5@7",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -23829,7 +24009,8 @@
       "output": null,
       "reasons": [
         "null runtime item_input gregtech:gt.meta.machine.dense@500",
-        "unmapped operand"
+        "unmapped operand",
+        "melter fluid output exceeds 8000 mB tank"
       ],
       "source_recipe_index": 5153,
       "source_row_sha256": "b3e833d08b45827b72310f2cb727bd79f86cc4f378d13b1b3ccdc37ecda56a1e",
@@ -24255,6 +24436,7 @@
       "input": "Brown Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.4@3",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -24400,6 +24582,7 @@
       "input": "Circuit Plate",
       "output": null,
       "reasons": [
+        "unregistered multiitem gregtech:gt.multiitem.technological@30000",
         "blocked_unmapped fluid_output fluid plastic",
         "unmapped operand"
       ],
@@ -24998,6 +25181,7 @@
       "input": "White Glass",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass@0",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -25370,6 +25554,17 @@
       ],
       "source_recipe_index": 5506,
       "source_row_sha256": "1ac3beea0aa56c2c24d79a61299de7421580e548b010ae3c10018b5d539643ef",
+      "status": "blocked"
+    },
+    {
+      "input": "Blank Cover",
+      "output": null,
+      "reasons": [
+        "unregistered multiitem gregtech:gt.multiitem.technological@1000",
+        "unmapped operand"
+      ],
+      "source_recipe_index": 5507,
+      "source_row_sha256": "9941722c4d64d5fa91a4f78567effe59634a3fb9b1d0203546aca110dffdb66c",
       "status": "blocked"
     },
     {
@@ -25810,6 +26005,7 @@
       "input": "Light Blue Glass",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass@12",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -25910,7 +26106,8 @@
       "output": null,
       "reasons": [
         "unmapped MTE gregtech:gt.multitileentity@1000",
-        "unmapped operand"
+        "unmapped operand",
+        "melter fluid output exceeds 8000 mB tank"
       ],
       "source_recipe_index": 5645,
       "source_row_sha256": "857404c967c759b46278d8317e517c3bc20b592346a55c20b7b2e43eae50efa3",
@@ -26100,6 +26297,7 @@
       "input": "Light Gray Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.3@7",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -26167,6 +26365,7 @@
       "input": "Orange Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.1@14",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -26222,6 +26421,7 @@
       "input": "Green Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.3@2",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -26361,6 +26561,17 @@
       ],
       "source_recipe_index": 5756,
       "source_row_sha256": "b2b5efef740c482d34e3c318ab4b2ac13e5b06bb0a63539b662fac977fd054f4",
+      "status": "blocked"
+    },
+    {
+      "input": "White Asphalt Slab",
+      "output": null,
+      "reasons": [
+        "unregistered block gregtech:gt.block.asphalt.slab.4@0",
+        "unmapped operand"
+      ],
+      "source_recipe_index": 5757,
+      "source_row_sha256": "e107583dfc1268eccb3ca6280176a57fbfa9ebf365653b76aac0e8d966e48f40",
       "status": "blocked"
     },
     {
@@ -26659,6 +26870,7 @@
       "input": "White Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.0@15",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -26793,6 +27005,7 @@
       "input": "Orange Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.3@14",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -26804,6 +27017,7 @@
       "input": "Yellow Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.1@11",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -27284,6 +27498,7 @@
       "input": "Gray Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.3@8",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -27438,6 +27653,7 @@
       "input": "Blue Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.0@4",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -27718,6 +27934,7 @@
       "input": "Brown Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.3@3",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -27739,6 +27956,7 @@
       "input": "Purple Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.5@5",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -28070,6 +28288,7 @@
       "input": "Light Blue Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.1@12",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -28692,6 +28911,17 @@
       "status": "blocked"
     },
     {
+      "input": "White Concrete Slab",
+      "output": null,
+      "reasons": [
+        "unregistered block gregtech:gt.block.concrete.slab.4@0",
+        "unmapped operand"
+      ],
+      "source_recipe_index": 6263,
+      "source_row_sha256": "34009a02b33e3a795f983a20a6f92a7f95a2deaf38c19c9ff6211b17b9059425",
+      "status": "blocked"
+    },
+    {
       "input": "Medium Peanut Wood Bullet",
       "output": null,
       "reasons": [
@@ -28916,6 +29146,7 @@
       "input": "Circuit Plate (Magic)",
       "output": null,
       "reasons": [
+        "unregistered multiitem gregtech:gt.multiitem.technological@30012",
         "blocked_unmapped fluid_output fluid plastic",
         "unmapped operand"
       ],
@@ -29017,6 +29248,7 @@
       "input": "Plastic Key",
       "output": null,
       "reasons": [
+        "unregistered multiitem gregtech:gt.multiitem.randomtools@30009",
         "blocked_unmapped fluid_output fluid plastic",
         "unmapped operand"
       ],
@@ -29946,6 +30178,17 @@
       "status": "blocked"
     },
     {
+      "input": "Cheese",
+      "output": null,
+      "reasons": [
+        "unregistered multiitem gregtech:gt.multiitem.food@1000",
+        "unmapped operand"
+      ],
+      "source_recipe_index": 6551,
+      "source_row_sha256": "c013f39cc3c1f7e91cb3fa7effb9bda9fe19a9860d721323ce4365a2dfb1ac68",
+      "status": "blocked"
+    },
+    {
       "input": "Light Cosmic Neutronium Arrow",
       "output": null,
       "reasons": [
@@ -30435,6 +30678,7 @@
       "input": "Black Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.0@0",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -30514,6 +30758,7 @@
       "input": "Green Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.2@2",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],
@@ -30547,6 +30792,7 @@
       "input": "Purple Glass Slab",
       "output": null,
       "reasons": [
+        "unregistered block gregtech:gt.block.glass.slab.2@5",
         "blocked_unmapped fluid_output fluid glass",
         "unmapped operand"
       ],

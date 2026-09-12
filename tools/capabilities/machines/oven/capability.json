@@ -1,0 +1,51 @@
+{
+  "schema_version": 2,
+  "slug": "machines/oven",
+  "title": "Oven",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/gametest/OvenGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/machine/processing/prep/OvenPrepSpec.java",
+    "src/main/resources/assets/cruciblecraft/gt6_oven_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/oven/**",
+    "src/main/resources/assets/cruciblecraft/textures/gui/machines/oven.png",
+    "src/main/resources/data/cruciblecraft_wave_machines_oven/**",
+    "tools/capabilities/machines/oven/**",
+    "tools/waves/machines/oven/**",
+    "tools/tests/test_oven.py"
+  ],
+  "depends_on": [
+    "machines/roll-former"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/oven",
+  "required_test_ids": [
+    "fourHostsAreSurvivalCraftable",
+    "liveMapMirrorsVanillaSmelting",
+    "playerSurfaceIsRegistered",
+    "steelHostSmeltsCobble"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:oven:20001-20004",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:oven",
+        "cruciblecraft:invar_oven",
+        "cruciblecraft:titanium_oven",
+        "cruciblecraft:tungsten_carbide_oven"
+      ],
+      "reason": "GT6 MultiTileEntityBasicMachine 20001-20004. RM.Furnace, HU on the bottom face, left in / right out. Not the vanilla furnace block, not smelter, not melter."
+    },
+    {
+      "semantic_key": "recipe:oven:cooking_oil_xp",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "GT6 RecipeMapFurnace optional cooking-oil meat bonus and XP fluid stay out of this child. Live spec has zero fluid tanks."
+    }
+  ],
+  "note": "Hosts are source-exact Heat_T[1..4]. The gt6 dump mc.recipe.furnace is empty; reload snapshots vanilla RecipeType.SMELTING into ModRecipeMaps.OVEN at duration 16 / eut 16. Cooking-oil and XP fluids stay blocked. Close at runtime_ready, not player_complete."
+}

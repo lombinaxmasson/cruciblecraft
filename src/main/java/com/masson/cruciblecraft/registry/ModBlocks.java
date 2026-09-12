@@ -59,6 +59,10 @@ import com.masson.cruciblecraft.content.block.GtBlockObjectBarsBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectCFoamFreshBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectLogBlock;
+import com.masson.cruciblecraft.content.block.GtTreeHoleBlock;
+import com.masson.cruciblecraft.content.block.GtTreeLeavesBlock;
+import com.masson.cruciblecraft.content.block.GtTreeLogBlock;
+import com.masson.cruciblecraft.content.block.GtTreeSaplingBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectRailBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectSlabBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectSpikeBlock;
@@ -98,6 +102,7 @@ import com.masson.cruciblecraft.content.storage.StorageBehaviorProfile;
 import com.masson.cruciblecraft.content.storage.StorageVariant;
 import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.worldgen.OreHostVariantCatalog.Host;
+import com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -136,6 +141,18 @@ public final class ModBlocks {
                     new LinkedHashMap<>();
     private static final Map<ResourceLocation, MachineVariant>
             CONFIGURED_PROCESSING_VARIANTS = new LinkedHashMap<>();
+    private static final Map<GtTreeSpecies, DeferredBlock<GtTreeSaplingBlock>>
+            TREE_SAPLINGS = new LinkedHashMap<>();
+    private static final Map<GtTreeSpecies, DeferredBlock<GtTreeLogBlock>> TREE_LOGS =
+            new LinkedHashMap<>();
+    private static final Map<GtTreeSpecies, DeferredBlock<GtTreeLeavesBlock>> TREE_LEAVES =
+            new LinkedHashMap<>();
+    private static final Map<GtTreeSpecies, DeferredBlock<GtTreeHoleBlock>> TREE_HOLES =
+            new LinkedHashMap<>();
+
+    static {
+        registerGtTrees();
+    }
 
     /** M0 placeholder block — later reused as firebox cladding. */
     public static final DeferredBlock<Block> FIREBRICK = BLOCKS.registerSimpleBlock(
@@ -440,6 +457,20 @@ public final class ModBlocks {
             STEEL_ROLLFORMER = tieredProcessing("steel_rollformer");
     public static final DeferredBlock<ProcessingMachineBlock>
             TITANIUM_ROLLFORMER = tieredProcessing("titanium_rollformer");
+    public static final DeferredBlock<ProcessingMachineBlock> SANDING =
+            tieredProcessing("sanding");
+    public static final DeferredBlock<ProcessingMachineBlock>
+            STEEL_SANDING = tieredProcessing("steel_sanding");
+    public static final DeferredBlock<ProcessingMachineBlock>
+            TITANIUM_SANDING = tieredProcessing("titanium_sanding");
+    public static final DeferredBlock<ProcessingMachineBlock> OVEN =
+            tieredProcessing("oven");
+    public static final DeferredBlock<ProcessingMachineBlock> INVAR_OVEN =
+            tieredProcessing("invar_oven");
+    public static final DeferredBlock<ProcessingMachineBlock>
+            TITANIUM_OVEN = tieredProcessing("titanium_oven");
+    public static final DeferredBlock<ProcessingMachineBlock>
+            TUNGSTEN_CARBIDE_OVEN = tieredProcessing("tungsten_carbide_oven");
     public static final DeferredBlock<ProcessingMachineBlock> CLUSTERMILL =
             tieredProcessing("clustermill");
     public static final DeferredBlock<ProcessingMachineBlock>
@@ -1532,6 +1563,106 @@ public final class ModBlocks {
         return CONFIGURED_PROCESSING_BLOCKS.values().stream()
                 .map(DeferredBlock::get)
                 .toArray(Block[]::new);
+    }
+
+    public static DeferredBlock<GtTreeSaplingBlock> treeSapling(GtTreeSpecies species) {
+        return TREE_SAPLINGS.get(species);
+    }
+
+    public static DeferredBlock<GtTreeLogBlock> treeLog(GtTreeSpecies species) {
+        return TREE_LOGS.get(species);
+    }
+
+    public static DeferredBlock<GtTreeLeavesBlock> treeLeaves(GtTreeSpecies species) {
+        return TREE_LEAVES.get(species);
+    }
+
+    public static DeferredBlock<GtTreeHoleBlock> treeHole(GtTreeSpecies species) {
+        DeferredBlock<GtTreeHoleBlock> hole = TREE_HOLES.get(species);
+        if (hole == null) {
+            throw new IllegalArgumentException("No tree hole for " + species.id());
+        }
+        return hole;
+    }
+
+    public static java.util.Collection<DeferredBlock<GtTreeSaplingBlock>> treeSaplings() {
+        return TREE_SAPLINGS.values();
+    }
+
+    public static java.util.Collection<DeferredBlock<GtTreeLogBlock>> treeLogs() {
+        return TREE_LOGS.values();
+    }
+
+    public static java.util.Collection<DeferredBlock<GtTreeLeavesBlock>> treeLeavesBlocks() {
+        return TREE_LEAVES.values();
+    }
+
+    public static java.util.Collection<DeferredBlock<GtTreeHoleBlock>> treeHoles() {
+        return TREE_HOLES.values();
+    }
+
+    public static Block[] treeHoleBlockArray() {
+        return TREE_HOLES.values().stream().map(DeferredBlock::get).toArray(Block[]::new);
+    }
+
+    private static void registerGtTrees() {
+        for (GtTreeSpecies species : GtTreeSpecies.ALL) {
+            TREE_SAPLINGS.put(
+                    species,
+                    BLOCKS.register(
+                            species.saplingPath(),
+                            () -> new GtTreeSaplingBlock(species, saplingProperties())));
+            TREE_LOGS.put(
+                    species,
+                    BLOCKS.register(
+                            species.logPath(),
+                            () -> new GtTreeLogBlock(species, logProperties())));
+            TREE_LEAVES.put(
+                    species,
+                    BLOCKS.register(
+                            species.leavesPath(),
+                            () -> new GtTreeLeavesBlock(species, leavesProperties())));
+            if (species.hasHole()) {
+                TREE_HOLES.put(
+                        species,
+                        BLOCKS.register(
+                                species.holePath(),
+                                () -> new GtTreeHoleBlock(species, logProperties())));
+            }
+        }
+    }
+
+    private static BlockBehaviour.Properties saplingProperties() {
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.PLANT)
+                .noCollission()
+                .noOcclusion()
+                .instabreak()
+                .sound(SoundType.GRASS)
+                .randomTicks()
+                .pushReaction(PushReaction.DESTROY);
+    }
+
+    private static BlockBehaviour.Properties logProperties() {
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.WOOD)
+                .strength(2.0F)
+                .sound(SoundType.WOOD)
+                .ignitedByLava();
+    }
+
+    private static BlockBehaviour.Properties leavesProperties() {
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.PLANT)
+                .strength(0.2F)
+                .randomTicks()
+                .sound(SoundType.GRASS)
+                .noOcclusion()
+                .isSuffocating((state, getter, pos) -> false)
+                .isViewBlocking((state, getter, pos) -> false)
+                .isRedstoneConductor((state, getter, pos) -> false)
+                .ignitedByLava()
+                .pushReaction(PushReaction.DESTROY);
     }
 
     private static BlockBehaviour.Properties machineProperties() {

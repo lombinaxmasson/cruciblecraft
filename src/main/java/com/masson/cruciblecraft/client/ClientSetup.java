@@ -164,6 +164,17 @@ public class ClientSetup {
                         .map(net.minecraft.world.level.block.Block::asItem)
                         .toArray(Item[]::new));
         event.register(GtBlockDyeColor.itemColor(), GtBlockDyeColor.tintedItems());
+        event.register(
+                (stack, tintIndex) -> {
+                    if (tintIndex != 0) {
+                        return 0xFFFFFFFF;
+                    }
+                    return 0xFF000000 | 0xFF66CC;
+                },
+                ModBlocks.treeLeaves(
+                                com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies.RAINBOWOOD)
+                        .get()
+                        .asItem());
     }
 
     @SubscribeEvent
@@ -246,6 +257,22 @@ public class ClientSetup {
                 RockColor::blockColor,
                 RockColor.rockBlocks());
         event.register(GtBlockDyeColor.blockColor(), GtBlockDyeColor.tintedBlocks());
+        event.register(
+                (state, level, pos, tintIndex) -> {
+                    if (tintIndex != 0) {
+                        return 0xFFFFFFFF;
+                    }
+                    if (state.getBlock() instanceof com.masson.cruciblecraft.content.block.GtTreeLeavesBlock leaves
+                            && leaves.species()
+                                    == com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies.RAINBOWOOD) {
+                        return 0xFF000000
+                                | com.masson.cruciblecraft.content.block.GtTreeLeavesBlock.rainbowColor(pos);
+                    }
+                    return 0xFFFFFFFF;
+                },
+                ModBlocks.treeLeaves(
+                                com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies.RAINBOWOOD)
+                        .get());
     }
 
     @SubscribeEvent

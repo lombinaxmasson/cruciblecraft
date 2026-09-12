@@ -46,6 +46,18 @@ T40_REQUIRED_FORMS = {
         (TOOLS / "electrolyzer_required_forms.json").read_text(encoding="utf-8")
     )["required_forms"].items()
 }
+SANDING_REQUIRED_FORMS = {
+    material: set(forms)
+    for material, forms in json.loads(
+        (
+            TOOLS
+            / "waves"
+            / "machines"
+            / "sanding"
+            / "required_forms.json"
+        ).read_text(encoding="utf-8")
+    )["required_forms"].items()
+}
 
 
 class MaterialFormGateTest(unittest.TestCase):
@@ -109,8 +121,28 @@ class MaterialFormGateTest(unittest.TestCase):
             self.gate["counts"]["centrifuge_required_forms"],
         )
         self.assertEqual(3, self.gate["counts"]["electrolyzer_required_forms"])
-        self.assertEqual(7990, self.gate["counts"]["tool_head_required_forms"])
+        self.assertEqual(13938, self.gate["counts"]["tool_head_required_forms"])
         self.assertIn("tool_head_required_forms", self.gate["java_overlay_sections"])
+        self.assertEqual(
+            sum(map(len, SANDING_REQUIRED_FORMS.values())),
+            sum(
+                map(
+                    len,
+                    self.gate["machines_sanding_required_forms"].values(),
+                )
+            ),
+        )
+        self.assertEqual(
+            {
+                material: sorted(forms)
+                for material, forms in sorted(SANDING_REQUIRED_FORMS.items())
+            },
+            self.gate["machines_sanding_required_forms"],
+        )
+        self.assertIn(
+            "machines_sanding_required_forms",
+            self.gate["java_overlay_sections"],
+        )
         self.assertEqual(
             sum(map(len, T38_ACQUISITION_FORMS.values())),
             self.gate["counts"]["worldgen_acquisition_forms"],

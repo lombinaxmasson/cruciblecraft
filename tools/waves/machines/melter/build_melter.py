@@ -48,8 +48,8 @@ FAMILY_ID = (
 )
 TEMPLATE_KEY = "gt.recipe.melter#0000"
 SOURCE_ROWS = 6_756
-SELECTED_ROWS = 3_973
-OVERFLOW_ROWS = 2_783
+SELECTED_ROWS = 3_960
+OVERFLOW_ROWS = 2_796
 LOAD_HARD_CAP = 21_000
 LIVE_NEEDLE = "melter"
 WAVE = ROOT / "tools" / "waves" / "machines" / "melter"
@@ -68,8 +68,8 @@ LIVE_GENERATED = (
 POLICY_PATH = LIVE_GENERATED / "publication_policy" / "melter.json"
 PUBLICATION_GROUP = f"{TARGET_MAP}/pilot/melter"
 LOCK_NOTE = (
-    "live compile for machines/melter; 3973 runtime-registered exact rows "
-    "from the 6756-row gt.recipe.melter dump; 2783 overflow rows explicitly "
+    "live compile for machines/melter; 3960 runtime-registered exact rows "
+    "from the 6756-row gt.recipe.melter dump; 2796 overflow rows explicitly "
     "blocked; load publication is UNVERIFIED_SCALE and below the 21000 hard "
     "cap; not player_complete"
 )

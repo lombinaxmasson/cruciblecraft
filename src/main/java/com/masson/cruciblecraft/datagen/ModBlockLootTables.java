@@ -8,10 +8,14 @@ import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModMachineVariants;
 
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
 
 public class ModBlockLootTables extends BlockLootSubProvider {
     private static final Set<String> HANDWRITTEN_CONVERTER_LOOT = Set.of(
@@ -77,6 +81,33 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.TUNGSTENSTEEL_WALL.get());
         dropSelf(ModBlocks.STAINLESS_STEEL_WALL.get());
         dropSelf(ModBlocks.LARGE_IRIDIUM_COIL.get());
+        for (var species : com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies.ALL) {
+            dropSelf(ModBlocks.treeSapling(species).get());
+            dropSelf(ModBlocks.treeLog(species).get());
+            add(
+                    ModBlocks.treeLeaves(species).get(),
+                    createSilkTouchOrShearsDispatchTable(
+                            ModBlocks.treeLeaves(species).get(),
+                            applyExplosionCondition(
+                                    ModBlocks.treeLeaves(species).get(),
+                                    LootItem.lootTableItem(
+                                                    ModBlocks.treeSapling(species).get())
+                                            .when(
+                                                    BonusLevelTableCondition.bonusLevelFlatChance(
+                                                            registries
+                                                                    .lookupOrThrow(
+                                                                            Registries
+                                                                                    .ENCHANTMENT)
+                                                                    .getOrThrow(
+                                                                            Enchantments
+                                                                                    .FORTUNE),
+                                                            NORMAL_LEAVES_SAPLING_CHANCES)))));
+            if (species.hasHole()) {
+                add(
+                        ModBlocks.treeHole(species).get(),
+                        createSingleItemTable(ModBlocks.treeLog(species).get()));
+            }
+        }
         for (GtStoneCatalog.Variant variant : GtStoneCatalog.variants()) {
             Block block = ModBlocks.gtStoneBlocksById().get(variant.id()).get();
             if (variant.slab()) {
@@ -164,6 +195,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         ModBlocks.gtBlockObjectBlocks().forEach(holder -> blocks.add(holder.get()));
         ModBlocks.bathRemainderBlockObjectBlocks().forEach(
                 holder -> blocks.add(holder.get()));
+        ModBlocks.treeSaplings().forEach(holder -> blocks.add(holder.get()));
+        ModBlocks.treeLogs().forEach(holder -> blocks.add(holder.get()));
+        ModBlocks.treeLeavesBlocks().forEach(holder -> blocks.add(holder.get()));
+        ModBlocks.treeHoles().forEach(holder -> blocks.add(holder.get()));
         return blocks;
     }
 }

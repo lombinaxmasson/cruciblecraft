@@ -73,7 +73,7 @@
       ],
       "maturity": "runtime_ready",
       "owned_paths": [
-        "docs/history/card-plans/closed/技术中间件基础详细计划.md",
+        "docs/history/card-plans/active/技术中间件基础详细计划.md",
         "src/component_rule_generated/resources/data/cruciblecraft/recipe/wiremill/**",
         "src/generated/resources/assets/cruciblecraft/lang/en_us.json",
         "src/generated/resources/assets/cruciblecraft/lang/zh_cn.json",
@@ -801,6 +801,31 @@
       ],
       "maturity": "runtime_ready",
       "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/gametest/OvenGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/machine/processing/prep/OvenPrepSpec.java",
+        "src/main/resources/assets/cruciblecraft/gt6_oven_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/oven/**",
+        "src/main/resources/assets/cruciblecraft/textures/gui/machines/oven.png",
+        "src/main/resources/data/cruciblecraft_wave_machines_oven/**",
+        "tools/capabilities/machines/oven/**",
+        "tools/waves/machines/oven/**",
+        "tools/tests/test_oven.py"
+      ],
+      "path": "tools/capabilities/machines/oven/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/oven",
+      "title": "Oven",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "machines/roll-former"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
         "src/main/java/com/masson/cruciblecraft/content/item/PressureWasherOperandCatalog.java",
         "src/main/java/com/masson/cruciblecraft/gametest/PressureWasherGameTests.java",
         "src/main/java/com/masson/cruciblecraft/machine/processing/prep/PressureWasherPrepSpec.java",
@@ -857,6 +882,33 @@
       ],
       "maturity": "runtime_ready",
       "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/gametest/SandingGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/machine/processing/prep/SandingPrepSpec.java",
+        "src/main/resources/assets/cruciblecraft/gt6_sanding_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/sander/**",
+        "src/main/resources/assets/cruciblecraft/textures/gui/machines/sanding.png",
+        "src/main/resources/data/cruciblecraft_wave_machines_sanding/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/sanding/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/sanding.json",
+        "tools/capabilities/machines/sanding/**",
+        "tools/waves/machines/sanding/**",
+        "tools/tests/test_sanding.py"
+      ],
+      "path": "tools/capabilities/machines/sanding/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/sanding",
+      "title": "Sanding Machine",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "machines/roll-former"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
         "src/main/java/com/masson/cruciblecraft/gametest/SlicerGameTests.java",
         "src/main/java/com/masson/cruciblecraft/content/item/SlicerOperandCatalog.java",
         "src/main/java/com/masson/cruciblecraft/machine/processing/prep/SlicerPrepSpec.java",
@@ -880,6 +932,35 @@
     },
     {
       "depends_on": [],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/工具头前缀与打磨机余量回收详细计划.md",
+        "tools/build_tool_head_prefix_reclaim.py",
+        "tools/build_sanding_reclaim_forms.py",
+        "tools/material_form_authority.json",
+        "tools/build_gt6_material_form_gate.py",
+        "tools/tool_head_prefix_reclaim_source.json",
+        "tools/tool_head_prefix.py",
+        "tools/tool_head_prefix_remap.json",
+        "tools/tool_head_required_forms.json",
+        "tools/recipe_bulk/ordinary_source.py",
+        "tools/waves/prep/machine_prep_common.py",
+        "tools/waves/machines/sanding/required_forms.json",
+        "tools/waves/machines/sanding/mte_runtime_overlay.json",
+        "src/main/resources/data/cruciblecraft/tool_head_prefix_remap.json",
+        "src/main/resources/data/cruciblecraft/material_registration_gate.json"
+      ],
+      "path": "tools/capabilities/registry/tool-head-prefix-reclaim/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "registry/tool-head-prefix-reclaim",
+      "title": "Sharpener overflow reclaim",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [],
       "maturity": "frozen",
       "owned_paths": [
         "tools/tool_head_prefix.py",
@@ -894,9 +975,80 @@
       "slug": "registry/tool-head-remainder",
       "title": "Tool-head remainder identities",
       "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "content/technological-parts-foundation",
+        "worldgen/gt-trees"
+      ],
+      "maturity": "frozen",
+      "owned_paths": [
+        "docs/history/card-plans/prep/GT地牢详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/CrucibleCraft.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/GtDungeonGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModStructures.java",
+        "src/main/java/com/masson/cruciblecraft/worldgen/GtDungeonPiece.java",
+        "src/main/java/com/masson/cruciblecraft/worldgen/GtDungeonStructure.java",
+        "src/main/resources/data/cruciblecraft/worldgen/structure/**",
+        "src/main/resources/data/cruciblecraft/worldgen/structure_set/**",
+        "src/main/resources/data/cruciblecraft_wave_worldgen_gt_dungeon/**",
+        "tools/capabilities/worldgen/gt-dungeon/**",
+        "tools/waves/prep/gt-dungeon/**"
+      ],
+      "path": "tools/capabilities/worldgen/gt-dungeon/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "worldgen/gt-dungeon",
+      "title": "GT Dungeon",
+      "workflow": "paused"
+    },
+    {
+      "depends_on": [
+        "content/technological-parts-foundation"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT树详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/GtTreeHoleBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/GtTreeLeavesBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/GtTreeLogBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/GtTreeSaplingBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/GtTreeHoleBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/GtTreesGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModCapabilities.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModFeatures.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+        "src/main/java/com/masson/cruciblecraft/worldgen/tree/**",
+        "src/main/java/com/masson/cruciblecraft/worldgen/tree/prep/**",
+        "src/main/resources/assets/cruciblecraft/gt6_gt_trees_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/tree/**",
+        "src/main/resources/assets/cruciblecraft/textures/item/tree/**",
+        "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_tree_*.json",
+        "src/main/resources/data/cruciblecraft/worldgen/configured_feature/tree_*.json",
+        "src/main/resources/data/cruciblecraft/worldgen/placed_feature/tree_*.json",
+        "src/main/resources/data/cruciblecraft_wave_worldgen_gt_trees/**",
+        "src/test/java/com/masson/cruciblecraft/worldgen/tree/**",
+        "tools/build_gt_trees.py",
+        "tools/capabilities/worldgen/gt-trees/**",
+        "tools/gt_trees.py",
+        "tools/tests/test_gt_trees.py",
+        "tools/waves/prep/gt-trees/**"
+      ],
+      "path": "tools/capabilities/worldgen/gt-trees/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "worldgen/gt-trees",
+      "title": "GT Trees",
+      "workflow": "accepted"
     }
   ],
-  "capability_count": 26,
+  "capability_count": 31,
   "declared_player_complete": [
     "energy/batteries",
     "energy/converter-catalog",
@@ -923,7 +1075,9 @@
     ],
     "content/technological-parts-foundation": [
       "content/sensors",
-      "content/technological-parts-foundation"
+      "content/technological-parts-foundation",
+      "worldgen/gt-dungeon",
+      "worldgen/gt-trees"
     ],
     "energy/batteries": [
       "content/electric-wire-cable-mte-fold",
@@ -941,9 +1095,13 @@
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
+      "machines/oven",
       "machines/pressure-washer",
       "machines/roll-former",
-      "machines/slicer"
+      "machines/sanding",
+      "machines/slicer",
+      "worldgen/gt-dungeon",
+      "worldgen/gt-trees"
     ],
     "energy/converter-catalog": [
       "content/electric-wire-cable-mte-fold",
@@ -962,9 +1120,13 @@
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
+      "machines/oven",
       "machines/pressure-washer",
       "machines/roll-former",
-      "machines/slicer"
+      "machines/sanding",
+      "machines/slicer",
+      "worldgen/gt-dungeon",
+      "worldgen/gt-trees"
     ],
     "energy/heat-exchangers": [
       "content/electric-wire-cable-mte-fold",
@@ -977,9 +1139,13 @@
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
+      "machines/oven",
       "machines/pressure-washer",
       "machines/roll-former",
-      "machines/slicer"
+      "machines/sanding",
+      "machines/slicer",
+      "worldgen/gt-dungeon",
+      "worldgen/gt-trees"
     ],
     "energy/nuclear-fission-hot-fluids": [
       "content/electric-wire-cable-mte-fold",
@@ -994,9 +1160,13 @@
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
+      "machines/oven",
       "machines/pressure-washer",
       "machines/roll-former",
-      "machines/slicer"
+      "machines/sanding",
+      "machines/slicer",
+      "worldgen/gt-dungeon",
+      "worldgen/gt-trees"
     ],
     "energy/nuclear-fission-observation-safety": [
       "energy/nuclear-fission-observation-safety"
@@ -1015,9 +1185,13 @@
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
+      "machines/oven",
       "machines/pressure-washer",
       "machines/roll-former",
-      "machines/slicer"
+      "machines/sanding",
+      "machines/slicer",
+      "worldgen/gt-dungeon",
+      "worldgen/gt-trees"
     ],
     "energy/transformers": [
       "content/electric-wire-cable-mte-fold",
@@ -1034,9 +1208,13 @@
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
+      "machines/oven",
       "machines/pressure-washer",
       "machines/roll-former",
-      "machines/slicer"
+      "machines/sanding",
+      "machines/slicer",
+      "worldgen/gt-dungeon",
+      "worldgen/gt-trees"
     ],
     "logistics/cover-net-r0": [
       "content/electric-wire-cable-mte-fold",
@@ -1061,9 +1239,13 @@
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
+      "machines/oven",
       "machines/pressure-washer",
       "machines/roll-former",
-      "machines/slicer"
+      "machines/sanding",
+      "machines/slicer",
+      "worldgen/gt-dungeon",
+      "worldgen/gt-trees"
     ],
     "logistics/display-cpu": [
       "content/electric-wire-cable-mte-fold",
@@ -1083,9 +1265,13 @@
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
+      "machines/oven",
       "machines/pressure-washer",
       "machines/roll-former",
-      "machines/slicer"
+      "machines/sanding",
+      "machines/slicer",
+      "worldgen/gt-dungeon",
+      "worldgen/gt-trees"
     ],
     "logistics/fluid-network/basic-transfer": [
       "content/electric-wire-cable-mte-fold",
@@ -1108,9 +1294,13 @@
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
+      "machines/oven",
       "machines/pressure-washer",
       "machines/roll-former",
-      "machines/slicer"
+      "machines/sanding",
+      "machines/slicer",
+      "worldgen/gt-dungeon",
+      "worldgen/gt-trees"
     ],
     "logistics/generic-network/core": [
       "content/electric-wire-cable-mte-fold",
@@ -1132,9 +1322,13 @@
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
+      "machines/oven",
       "machines/pressure-washer",
       "machines/roll-former",
-      "machines/slicer"
+      "machines/sanding",
+      "machines/slicer",
+      "worldgen/gt-dungeon",
+      "worldgen/gt-trees"
     ],
     "logistics/item-network-core": [
       "content/electric-wire-cable-mte-fold",
@@ -1158,9 +1352,13 @@
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
+      "machines/oven",
       "machines/pressure-washer",
       "machines/roll-former",
-      "machines/slicer"
+      "machines/sanding",
+      "machines/slicer",
+      "worldgen/gt-dungeon",
+      "worldgen/gt-trees"
     ],
     "logistics/logistics-core": [
       "content/electric-wire-cable-mte-fold",
@@ -1181,9 +1379,13 @@
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
+      "machines/oven",
       "machines/pressure-washer",
       "machines/roll-former",
-      "machines/slicer"
+      "machines/sanding",
+      "machines/slicer",
+      "worldgen/gt-dungeon",
+      "worldgen/gt-trees"
     ],
     "machines/cluster-mill": [
       "machines/cluster-mill"
@@ -1191,7 +1393,9 @@
     "machines/injector": [
       "content/sensors",
       "content/technological-parts-foundation",
-      "machines/injector"
+      "machines/injector",
+      "worldgen/gt-dungeon",
+      "worldgen/gt-trees"
     ],
     "machines/laminator": [
       "content/electric-wire-cable-mte-fold",
@@ -1201,7 +1405,9 @@
       "content/electric-wire-cable-mte-fold",
       "content/sensors",
       "content/technological-parts-foundation",
-      "machines/loom"
+      "machines/loom",
+      "worldgen/gt-dungeon",
+      "worldgen/gt-trees"
     ],
     "machines/melter": [
       "content/electric-wire-cable-mte-fold",
@@ -1210,6 +1416,9 @@
     "machines/nanofab": [
       "content/electric-wire-cable-mte-fold",
       "machines/nanofab"
+    ],
+    "machines/oven": [
+      "machines/oven"
     ],
     "machines/pressure-washer": [
       "machines/pressure-washer"
@@ -1224,17 +1433,36 @@
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
+      "machines/oven",
       "machines/pressure-washer",
       "machines/roll-former",
-      "machines/slicer"
+      "machines/sanding",
+      "machines/slicer",
+      "worldgen/gt-dungeon",
+      "worldgen/gt-trees"
+    ],
+    "machines/sanding": [
+      "machines/sanding"
     ],
     "machines/slicer": [
       "content/sensors",
       "content/technological-parts-foundation",
-      "machines/slicer"
+      "machines/slicer",
+      "worldgen/gt-dungeon",
+      "worldgen/gt-trees"
+    ],
+    "registry/tool-head-prefix-reclaim": [
+      "registry/tool-head-prefix-reclaim"
     ],
     "registry/tool-head-remainder": [
       "registry/tool-head-remainder"
+    ],
+    "worldgen/gt-dungeon": [
+      "worldgen/gt-dungeon"
+    ],
+    "worldgen/gt-trees": [
+      "worldgen/gt-dungeon",
+      "worldgen/gt-trees"
     ]
   },
   "profiles": {
@@ -1261,10 +1489,15 @@
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
+      "machines/oven",
       "machines/pressure-washer",
       "machines/roll-former",
+      "machines/sanding",
       "machines/slicer",
-      "registry/tool-head-remainder"
+      "registry/tool-head-prefix-reclaim",
+      "registry/tool-head-remainder",
+      "worldgen/gt-dungeon",
+      "worldgen/gt-trees"
     ],
     "player-complete": [
       "energy/batteries",

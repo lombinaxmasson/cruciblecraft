@@ -17,6 +17,12 @@ final class PrepSidedIo {
                 : ProcessingMachineSpec.CapabilityAccess.NONE;
     }
 
+    static ProcessingMachineSpec.SideRule upEnergy() {
+        return (front, side) -> side == Direction.UP
+                ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                : ProcessingMachineSpec.CapabilityAccess.NONE;
+    }
+
     static ProcessingMachineSpec.SideRule leftRightEnergy() {
         return (front, side) -> {
             if (side == null || !side.getAxis().isHorizontal()) {

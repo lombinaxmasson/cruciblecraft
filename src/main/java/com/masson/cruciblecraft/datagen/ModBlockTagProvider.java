@@ -126,6 +126,22 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
                     .require(holder.getId());
             addGtBlockObjectTags(holder, variant, gtBlockObjects, rails, pickaxe, stone, axe);
         });
+        var logs = tag(BlockTags.LOGS);
+        var logsThatBurn = tag(BlockTags.LOGS_THAT_BURN);
+        var leaves = tag(BlockTags.LEAVES);
+        var saplings = tag(BlockTags.SAPLINGS);
+        var hoe = tag(BlockTags.MINEABLE_WITH_HOE);
+        ModBlocks.treeLogs().forEach(holder -> {
+            axe.add(holder.getKey());
+            logs.add(holder.getKey());
+            logsThatBurn.add(holder.getKey());
+        });
+        ModBlocks.treeHoles().forEach(holder -> axe.add(holder.getKey()));
+        ModBlocks.treeLeavesBlocks().forEach(holder -> {
+            leaves.add(holder.getKey());
+            hoe.add(holder.getKey());
+        });
+        ModBlocks.treeSaplings().forEach(holder -> saplings.add(holder.getKey()));
     }
 
     private void addGtBlockObjectTags(

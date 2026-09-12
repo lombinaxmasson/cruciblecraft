@@ -14,6 +14,8 @@ import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.logistics.hopper.HopperKind;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
 import com.masson.cruciblecraft.machine.processing.MachineTextureProfiles;
+import com.masson.cruciblecraft.content.block.GtTreeHoleBlock;
+import com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModMachineVariants;
 
@@ -45,6 +47,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+        registerGtTrees();
         var firebrick =
                 models().getExistingFile(modLoc("block/firebrick_gt6"));
         simpleBlockWithItem(
@@ -1045,5 +1048,59 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private static boolean hasMachineTextures(String textureId) {
         return MachineTextureProfiles.hasMachineTextures(textureId);
+    }
+
+    private void registerGtTrees() {
+        for (GtTreeSpecies species : GtTreeSpecies.ALL) {
+            String saplingPath = "block/" + species.saplingPath();
+            ModelFile sapling = models()
+                    .cross(saplingPath, modLoc("block/tree/" + species.id() + "/sapling"))
+                    .renderType("cutout");
+            simpleBlock(ModBlocks.treeSapling(species).get(), sapling);
+            ModelFile leaves = models()
+                    .cubeAll(
+                            "block/" + species.leavesPath(),
+                            modLoc("block/tree/" + species.id() + "/leaves"))
+                    .renderType("cutout_mipped");
+            simpleBlock(ModBlocks.treeLeaves(species).get(), leaves);
+            itemModels().getBuilder("item/" + species.leavesPath()).parent(leaves);
+            ResourceLocation side = modLoc(
+                    "block/gt6/iconsets/log_side_" + species.gt6TextureKey());
+            ResourceLocation top = modLoc(
+                    "block/gt6/iconsets/log_top_" + species.gt6TextureKey());
+            ModelFile log = models().cubeColumn("block/" + species.logPath(), side, top);
+            ModelFile logHorizontal = models().cubeColumnHorizontal(
+                    "block/" + species.logPath() + "_horizontal", side, top);
+            axisBlock(ModBlocks.treeLog(species).get(), log, logHorizontal);
+            itemModels().getBuilder("item/" + species.logPath()).parent(log);
+            if (species.hasHole()) {
+                registerTreeHole(species, side, top);
+            }
+        }
+    }
+
+    private void registerTreeHole(
+            GtTreeSpecies species, ResourceLocation side, ResourceLocation top) {
+        String emptyName = "block/" + species.holePath();
+        String filledName = "block/" + species.holePath() + "_full";
+        String product = species == GtTreeSpecies.RUBBER ? "log_resin" : "log_sap";
+        ModelFile empty = models().orientable(
+                emptyName,
+                side,
+                modLoc("block/tree/" + species.id() + "/log_hole"),
+                top);
+        ModelFile filled = models().orientable(
+                filledName,
+                side,
+                modLoc("block/tree/" + species.id() + "/" + product),
+                top);
+        getVariantBuilder(ModBlocks.treeHole(species).get()).forAllStates(state -> {
+            Direction facing = state.getValue(GtTreeHoleBlock.FACING);
+            boolean full = state.getValue(GtTreeHoleBlock.HAS_PRODUCT);
+            return ConfiguredModel.builder()
+                    .modelFile(full ? filled : empty)
+                    .rotationY(((int) facing.toYRot() + 180) % 360)
+                    .build();
+        });
     }
 }

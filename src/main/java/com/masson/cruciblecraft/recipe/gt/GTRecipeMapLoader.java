@@ -26,10 +26,14 @@ import com.masson.cruciblecraft.registry.ModFuelGenerators;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.item.crafting.RecipeType;
 
 /** Builds immutable concrete RecipeMap and material metadata snapshots. */
 public final class GTRecipeMapLoader {
@@ -114,6 +118,7 @@ public final class GTRecipeMapLoader {
             validateTarget(holder.id(), map, entry.recipe());
             resolved.get(map).add(new ResolvedRecipe(holder.id(), entry.recipe(), false));
         }
+        snapshotVanillaOvenRecipes(manager, resolved.get(ModRecipeMaps.OVEN));
         long parseMillis = elapsedMs(phaseMark);
         phaseMark = System.nanoTime();
 
@@ -1705,6 +1710,45 @@ public final class GTRecipeMapLoader {
                                 .toList(),
                         MaterialCatalog.startupValues(),
                         MaterialLookup::isValidPreference);
+    }
+
+    private static void snapshotVanillaOvenRecipes(
+            RecipeManager manager, List<ResolvedRecipe> output) {
+        for (RecipeHolder<?> holder : manager.getAllRecipesFor(RecipeType.SMELTING)) {
+            if (!(holder.value() instanceof AbstractCookingRecipe cooking)) {
+                continue;
+            }
+            var ingredients = cooking.getIngredients();
+            if (ingredients.isEmpty()) {
+                continue;
+            }
+            Ingredient input = ingredients.getFirst();
+            if (input.isEmpty() || input.getItems().length == 0) {
+                continue;
+            }
+            ItemStack result = cooking.getResultItem(RegistryAccess.EMPTY);
+            if (result.isEmpty()) {
+                continue;
+            }
+            ResourceLocation recipeId = ResourceLocation.fromNamespaceAndPath(
+                    CrucibleCraft.MODID,
+                    "oven/vanilla/"
+                            + holder.id().getNamespace()
+                            + "/"
+                            + holder.id().getPath());
+            GTRecipe recipe = new GTRecipe(
+                    List.of(input),
+                    List.of(1),
+                    List.of(result.copy()),
+                    List.of(),
+                    List.of(),
+                    List.of(GTRecipe.GUARANTEED_CHANCE),
+                    16,
+                    16L,
+                    0L);
+            validateTarget(recipeId, ModRecipeMaps.OVEN, recipe);
+            output.add(new ResolvedRecipe(recipeId, recipe, false));
+        }
     }
 
     private record RuleSource(ResourceLocation id, MaterialRule rule) {}

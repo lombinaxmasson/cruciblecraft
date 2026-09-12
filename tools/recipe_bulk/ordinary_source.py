@@ -80,6 +80,7 @@ ORDINARY_VANILLA_SPECIAL: dict[tuple[str, int], str] = {
 ORDINARY_VANILLA_RENAMES: dict[str, str] = {
     "minecraft:lit_furnace": "minecraft:furnace",
     "minecraft:melon_block": "minecraft:melon",
+    "minecraft:netherbrick": "minecraft:nether_brick",
     "minecraft:stonebrick": "minecraft:stone_bricks",
     "minecraft:web": "minecraft:cobweb",
 }
@@ -216,6 +217,22 @@ def load_mte_runtime() -> dict[tuple[str, int], str]:
             mapped[
                 ("gregtech:gt.multitileentity", int(row["meta"]))
             ] = str(row["runtime_id"])
+    sanding_overlay = (
+        census.TOOLS
+        / "waves"
+        / "machines"
+        / "sanding"
+        / "mte_runtime_overlay.json"
+    )
+    if sanding_overlay.is_file():
+        document = census.load_json(sanding_overlay)
+        for row in document.get("mappings") or []:
+            mapped[
+                (
+                    str(row.get("source_item") or "gregtech:gt.multitileentity"),
+                    int(row["meta"]),
+                )
+            ] = str(row["runtime_id"])
     return mapped
 
 
@@ -225,6 +242,22 @@ def load_block_runtime() -> dict[tuple[str, int], str]:
 
 def load_semantic_object_overlay() -> dict[tuple[str, int | None], dict[str, Any]]:
     mapped: dict[tuple[str, int | None], dict[str, Any]] = {}
+    bundled = (
+        census.ROOT
+        / "src"
+        / "main"
+        / "resources"
+        / "data"
+        / "cruciblecraft"
+        / "semantic_object_catalog.json"
+    )
+    if bundled.is_file():
+        document = census.load_json(bundled)
+        for identity in document.get("identities") or []:
+            source_item = str(identity.get("source_item") or "")
+            meta = identity.get("meta")
+            key = (source_item, int(meta) if isinstance(meta, int) else None)
+            mapped[key] = dict(identity)
     for slug in (
         "smelter/ordinary-closure",
         "mixer/ordinary-closure",
@@ -586,6 +619,11 @@ def map_item_operand(
         if isinstance(use_meta, int):
             operand = _empty_operand(item)
             runtime = _assert_runtime(object_runtime(item_id, use_meta, object_kind))
+            if object_kind != "tool_head" or not thp.is_mapped(item_id, use_meta):
+                operand["value"] = f"{item_id}@{use_meta}"
+                return operand, [
+                    f"unregistered {object_kind} {item_id}@{use_meta}"
+                ]
             operand.update(
                 {
                     "mapping": (

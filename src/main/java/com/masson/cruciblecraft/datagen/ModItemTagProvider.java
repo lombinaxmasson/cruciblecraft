@@ -10,6 +10,7 @@ import com.masson.cruciblecraft.registry.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
@@ -31,5 +32,15 @@ public final class ModItemTagProvider extends TagsProvider<Item> {
         var shapes = tag(ModItemTags.EXTRUDER_SHAPES);
         ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
                 shapes.add(ModItems.extruderShape(shape.id()).getKey()));
+        var logs = tag(ItemTags.LOGS);
+        var logsThatBurn = tag(ItemTags.LOGS_THAT_BURN);
+        var leaves = tag(ItemTags.LEAVES);
+        var saplings = tag(ItemTags.SAPLINGS);
+        for (var species : com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies.ALL) {
+            logs.add(ModItems.treeLogItem(species).getKey());
+            logsThatBurn.add(ModItems.treeLogItem(species).getKey());
+            leaves.add(ModItems.treeLeavesItem(species).getKey());
+            saplings.add(ModItems.treeSaplingItem(species).getKey());
+        }
     }
 }

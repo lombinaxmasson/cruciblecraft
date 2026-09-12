@@ -20,10 +20,11 @@
 
 当前边界：
 
-- unique-active 当前为空；prep 是 `machines/printer`。
-  `content/technological-parts-foundation` 与 `content/sensors` 已关 `runtime_ready`。
-  具体状态见
-  [project-status.md](project-status.md)。
+- unique-active 当前为空；prep 是 `machines/printer`、
+  `worldgen/gt-dungeon`、`worldgen/gt-planet-rocks`、`worldgen/gt-center`。
+  地牢已退回 prep，结构载体仍在仓库里，但房间几何与 GT 石材形态未完成，
+  不得宣称 `runtime_ready`。
+  具体状态见 [project-status.md](project-status.md)。
 - `player_complete` 清单只看 [project-status.md](project-status.md)，不在本页复制。
 - catalog **1,817 个 MTE 身份**是独立的身份分母，不等于机器 overflow，也不等于
   1,817 个待实现机制；详见第 0.1 节。
@@ -51,10 +52,10 @@
 四块：**机器配方尾账**、**MTE catalog 分母 1,817**、**LuV–PUV1 零件**、
 **下一阶段内容切片**。1,817 是 `gt_mte` catalog 行，不是织机/层压机 overflow。
 
-现行 unique-active：无。`content/technological-parts-foundation` 与 Sensors 已关 `runtime_ready`。0–5 档
-`IL.MOTORS / PISTONS / CONVEYERS / EMITTERS / SENSORS / PUMPS / ROBOT_ARMS /
-FIELD_GENERATORS` 已按源网格落地；传送带 / 泵 / 机械臂 0–5 与紧凑电动盖板同一
-registry 物品。印刷机仍是 prep。LuV–PUV1 不在本卡分母内。
+现行 unique-active：无。Sensors 已关闭 `runtime_ready`。熔炉已关闭 `runtime_ready`。打磨机已关闭 `runtime_ready`。`worldgen/gt-trees` 已关闭
+`runtime_ready`。地牢退回 prep，上一轮的 `runtime_ready` 声明仍撤回。技术中间件
+基础已关闭 `runtime_ready`。印刷机与两张非矿 worldgen（行星岩 / Center）
+仍是 prep。LuV–PUV1 不在本卡分母内。
 
 ### 当前机器配方尾账
 
@@ -67,9 +68,12 @@ registry 物品。印刷机仍是 prep。LuV–PUV1 不在本卡分母内。
 | 注射机 `machines/injector` | `runtime_ready` | 五档 `source_exact` | dump 638 / selected 103 / overflow **535**（其中 runtime operand 508） | 未映射流体（`ic2coolant` / `soda` / `thoriumsalt` 等）、shadow 行、未注册运行时操作数 |
 | 织机 `machines/loom` | `runtime_ready` | 九档 `source_exact` | dump 1334 / selected 465；MTE+纤维 **232** + shadow **637** | 未映射导线/电缆 MTE、`plant_gt_fiber`、shadow 签名 |
 | 层压机 `machines/laminator` | `runtime_ready` | 四档 `source_exact` | dump 498 / selected 438；MTE **54** + 运行时操作数 **6** | 未映射 MTE；6 行原木块操作数 |
-| 熔融机 `machines/melter` | `runtime_ready` | 一档 `source_exact` | dump 6756 / selected 3973 / overflow **2783** | 规模 `UNVERIFIED_SCALE`；不得把 2783 抄成待办清单 |
+| 熔融机 `machines/melter` | `runtime_ready` | 一档 `source_exact` | dump 6756 / selected 3960 / overflow **2796** | 12 行未注册的 multiitem / GT block 身份与 1 行超过 8000 mB 出液罐上限的关系已明确 blocked；其余规模 `UNVERIFIED_SCALE`，不得把 2796 抄成待办清单 |
 | 纳米加工机 `machines/nanofab` | `runtime_ready` | 五档仍 `explicitly_blocked` | dump 64 / selected 7；石墨烯/MTE **12** + shadow **45** | 获得格仍缺 `IL.Comp_Laser_Gas_Ar/Kr/Xe` 与蓝宝石晶体处理器。`compact_signal_emitter_*` / `compact_sensor_*` 0–5 已存在，但 D0 / `machine_tiers.json` 文案仍写发射器/传感器 missing（过期）。石墨烯 `small_casing` / `curved_plate` 仍 blocked |
 | 压力清洗机 `machines/pressure-washer` | `runtime_ready` | 四档 `source_exact` | dump 312 / selected 192 / overflow **120** | 未映射 GT 石头 |
+| 打磨机 `machines/sanding` | `runtime_ready`（已关） | 四档 `source_exact` | dump 7637 / selected 7637 / overflow **0** | 工具头 remap、sharpener 所需材质形态和 14502/14512 MTE overlay 已按真实对象补齐。Grindstone `32703` 不在本卡。关闭目标不是 `player_complete` |
+| 熔炉 `machines/oven` | `runtime_ready`（已关） | 四档 `source_exact` Heat_T | dump `mc.recipe.furnace` **0**；live 为原版 `SMELTING` 快照 | 烹饪油肉类加成与 XP 流体 blocked。不替换原版熔炉方块。20001–20003 不在 R0 ledger。关闭目标不是 `player_complete` |
+| Sensors `content/sensors` | 已关 `runtime_ready` | 21 个 GT6 Sensor MTE | 无 RecipeMap | Electro_Meter / Tacho_Meter 与 Gibbl/质量/转速已按真实对象接入。ComputerCraft 外设仍 blocked。不得宣称 `player_complete` |
 | 印刷机 `machines/printer` | **prep** | 五档 `source_exact` | dump 22 / selected **0** / overflow **22** | 全部 `fluid dye.chemical.*`，`out_of_scope_g10_dyeing`。无 live family。盖板 `compact_electric_conveyor_*` **就是** `IL.CONVEYERS` 槽 |
 | 导线电缆 MTE 折回 `content/electric-wire-cable-mte-fold` | `runtime_ready` | — | Loader id mapped **259** / unmapped **61** | 只折配方操作数里已有 CC conductor 的电导线/电缆；不等于 catalog 1,817 |
 
@@ -88,6 +92,10 @@ R0 计划 [MTE 身份分母处置 R0](../history/card-plans/closed/MTE身份分�
 其中 `identity_only` 是没有行为的散落 / 展示身份，`attachment_candidate` 是仍缺
 runtime 的附件行为；只有 `realized_natively` 已由 CC 的具名机制覆盖。
 因此不得把 1,817 写成 1,817 个已实现机制，也不得把它们全部当成同一种待办。
+现已新增 [MTE 全量 Prep 总索引](../history/card-plans/prep/MTE全量Prep总索引.md)
+与 12 张家族 prep 卡；索引引用 R0 ledger 的逐行全量事实，其中 1,540 行进入
+后续规划，277 行保留为 `realized_natively` 审计项。prep 卡只冻结来源、
+所有权、依赖和 blocked 边界，不创建 capability 或 runtime。
 
 | disposition | 个数 | 含义 |
 | --- | --- | --- |
@@ -169,20 +177,24 @@ GT6 紧凑零件循环是 `VN[0..9]`：ULV, LV, MV, HV, EV, IV, **LuV, ZPM, UV, 
 
 | 项 | 分母 | 读法 |
 | --- | --- | --- |
-| Trees 第一切片（橡胶树优先） | `WorldgenTree*` **9**（rubber / maple / willow / bluemahoe / hazel / cinnamon / coconut / rainbowood / bluespruce） | 已冻 `requires_new_runtime`。9 个 feature ≠ 9 种木材配方。橡胶树能替换史莱姆→橡胶板桥，接到刚落地的传送带/泵网格。不要带地牢 1、行星岩 3、Center 5 |
-| Sensors | 21 / 21 | 已关 `runtime_ready`。Electro_Meter / Tacho_Meter 与 Gibbl/质量/转速已按真实对象接入。ComputerCraft 外设仍 blocked。`compact_sensor_*` 仍是 `IL.SENSORS` **零件物品** |
-| Crops 世界生成 | `plant.glowtus` / `plant.bush` **2** | 已冻。不要带 squeezer dump 5322。无榨汁主机。切片机 selected 32 行缺作物生存来源，但作物卡要等树之后、且不得和 Food/Bees 捆一张 |
+| GT 树（九棵，已关 `runtime_ready`） | `WorldgenTree*` **9**（rubber / maple / willow / bluemahoe / hazel / cinnamon / coconut / rainbowood / bluespruce） | 已关 `runtime_ready`，不是 `player_complete`。计划 [GT 树详细计划](../history/card-plans/closed/GT树详细计划.md)。9 个 feature ≠ 9 种木材配方。含三树洞。不要带地牢 1、行星岩 3、Center 5。史莱姆→橡胶板桥本卡不删 |
+| GT 地牢（prep / `frozen`） | `WorldgenDungeonGT` **1**（`overworld.structure.dungeon.large`） | 结构，不是 scatter / 矿脉。计划 [GT 地牢详细计划](../history/card-plans/prep/GT地牢详细计划.md)。Structure + 多区块 Piece 已注册，但格点、typed layout、GT 石材形态和房间几何未完成；钥匙 `IL.KEYS`、跨模组图书室、跨维传送门与 MTE 房间内容仍 blocked。不得宣称 `runtime_ready` / `player_complete` |
+| GT 行星岩（已签发 prep） | `moon.rocks` / `mars.rocks` / `planet.rocks` **3** | 共用 32757 放置器。计划 [GT 行星岩详细计划](../history/card-plans/prep/GT行星岩详细计划.md)。禁止写进现行主世界 catalog，不得别名 `surface_rock_scatter`。落地依赖额外维度 |
+| GT Center（已签发 prep） | `center.biomes` / `streets` / `nexus` / `beacon` / `testing` **5** | dump `enabled: false` 不是 skip。计划 [GT Center 详细计划](../history/card-plans/prep/GT中枢详细计划.md)。五条共用 `GENERATE_*`。测试厅不是生存内容。默认保持关闭 |
+| Sensors | 21 / 21 | 已关 `runtime_ready`。`compact_sensor_*` 仍是 `IL.SENSORS` **零件物品**，不是这 21 个 Sensor MTE |
+| Crops 世界生成 | `plant.glowtus` / `plant.bush` **2** | 已冻。不要带 squeezer dump 5322。无榨汁主机。切片机 selected 32 行缺作物生存来源，但作物卡建议在 Sensors 之后、且不得和 Food/Bees 捆一张 |
 
 ### 路线结论
 
-1. 当前卡保持 `runtime_ready`，不宣称 `player_complete`，不把 LuV–PUV1 拉进本卡。
+1. 树已关 `runtime_ready`，不宣称 `player_complete`，不把 LuV–PUV1 拉进下一张卡。
 2. catalog **1,817** 个 MTE 身份已登记：1,507 仍是散落物，277 是遗留 `gt_mte` 行
-   （CC 另有原生机制），33 个流体附件要新 runtime。实现按家族另开卡，不是一张吃完全表。
+   （CC 另有原生机制），33 个流体附件要新 runtime。现已按家族完成 12 张
+   prep 卡和一张全量索引；它们冻结规划，不是 runtime 实现。
 3. 有对应高压主机（LuV 加工机、晶体充电器等）和能源路线之前，高压零件另立专卡；
    不得用 `programmed_circuit` 或错误线规顶缺格。
-4. Sensors 已关 `runtime_ready`，不宣称 `player_complete`。推荐下一张：**橡胶树第一切片**。
-   之后按依赖选机器尾账（纳米加工机辅件、染料流体、纸 tiny_plate）或作物两植物切片。
+4. Sensors 已关 `runtime_ready`，不宣称 `player_complete`。行星岩 / Center 已签发 prep，排队不占落地锁。
 5. 同一时刻仍只允许一条 unique-active。印刷机继续留 prep，直到染料流体身份存在。
+   行星岩 / Center 同样等落地槽，且行星岩还要额外维度 runtime。
 
 ---
 
@@ -196,16 +208,16 @@ runtime / 内容卡，不把关闭冻结卡当成实现证明。
 | Panels | `portfolio/exclusion-reclaim-r0` | 6 sites / 348 expanded | `requires_new_runtime` | [`feasibility.json`](../../tools/waves/portfolio/exclusion-reclaim-r0/feasibility.json) |
 | Sensors | `content/sensors` | 21 / 21 | 已关 `runtime_ready`；ComputerCraft 外设仍 blocked | [Sensors详细计划](../history/card-plans/closed/Sensors详细计划.md) |
 | Portals | 同上 | 19 / 19 | `requires_new_runtime` | 同上 |
-| 非矿树 | `portfolio/non-ore-worldgen-r0` | `WorldgenTree*` 9 | `requires_new_runtime` | [`feasibility.json`](../../tools/waves/portfolio/non-ore-worldgen-r0/feasibility.json) |
-| 非矿地牢 | 同上 | `WorldgenDungeonGT` 1 | `requires_new_runtime` | 同上 |
-| 非矿行星岩 | 同上 | moon / mars / planet rocks 3 | `requires_new_runtime` | 同上 |
-| 非矿 Center | 同上 | biomes / streets / nexus / beacon / testing 5 | `requires_new_runtime` | 同上 |
+| 非矿树 | `portfolio/non-ore-worldgen-r0` | `WorldgenTree*` 9 | 已关 `runtime_ready` | [`feasibility.json`](../../tools/waves/portfolio/non-ore-worldgen-r0/feasibility.json)；已关 [GT 树](../history/card-plans/closed/GT树详细计划.md) |
+| 非矿地牢 | 同上 | `WorldgenDungeonGT` 1 | prep / `frozen` | 同上；prep [GT 地牢](../history/card-plans/prep/GT地牢详细计划.md)，房间内容与钥匙/传送门保持 blocked |
+| 非矿行星岩 | 同上 | moon / mars / planet rocks 3 | `requires_new_runtime` | 同上；prep [GT 行星岩](../history/card-plans/prep/GT行星岩详细计划.md) |
+| 非矿 Center | 同上 | biomes / streets / nexus / beacon / testing 5 | `requires_new_runtime` | 同上；prep [GT Center](../history/card-plans/prep/GT中枢详细计划.md) |
 | Vanilla loader | `portfolio/vanilla-replace-r0` | `Loader_Recipes_Vanilla` | `requires_new_runtime`；纸的 MVP 已不再是缺口，熔炉 / 骨头 / Vanilla.java 后半仍 `frozen` | [`feasibility.json`](../../tools/waves/portfolio/vanilla-replace-r0/feasibility.json)；[`vanilla_replace_lock.json`](../../tools/waves/content/vanilla-replace-mvp/vanilla_replace_lock.json) |
 | Replace / ASM | 同上 | `Loader_Recipes_Replace` + `Replacements` | `requires_new_runtime`；本卡未实现扫描器 / ASM，余量仍 `frozen`。**不是** `player_complete` | 同上 |
 | Crops | `portfolio/crops-food-bees-r0` | `plant.glowtus` / `plant.bush` + dump `gt.recipe.squeezer` 5322（规模，非 census） | `requires_new_runtime` | [`feasibility.json`](../../tools/waves/portfolio/crops-food-bees-r0/feasibility.json) |
 | Food | 同上 | dump juicer 96 + fermenter 6435（规模，非 census） | `requires_new_runtime` | 同上 |
 | Bees | 同上 | `WorldgenHives` 10 + bumblequeen 80 + bumblelyzer 1440（规模，非 census） | `requires_new_runtime` | 同上 |
-| 流体附件（catalog 33） | `portfolio/mte-identity-disposition-r0` | catalog 浇铸口 22 / 流体龙头 3 / 喷嘴 2 / 帽喷嘴 3 / 流体漏斗 3 的**行为** | `requires_new_runtime`；`allows_implementation_child = false`。游戏里仍然没有龙头 / 喷嘴 / 流体漏斗 / 浇铸口；邻接模具浇铸仍是现有简化路径。完整 catalog **1,817** 见第 0.1 节（1,507 `identity_only` + 277 `realized_natively` + 33 附件）。对照图「Bath / Smelter MTE holdable identity」行保持 `identity_only`。 | [`feasibility.json`](../../tools/waves/portfolio/mte-identity-disposition-r0/feasibility.json) |
+| 流体附件（catalog 33） | `content/mte-fluid-attachments` | catalog 浇铸口 22 / 流体龙头 3 / 喷嘴 2 / 帽喷嘴 3 / 流体漏斗 3 的**行为** | prep 已冻结，仍为 `requires_new_runtime`；游戏里仍然没有龙头 / 流体龙头 / 喷嘴 / 流体漏斗 / 浇铸口。邻接模具浇铸仍是现有简化路径；未来 runtime child 必须单独回答 host、face placement、四类行为和生存获得格。 | [`MTE流体附件详细计划`](../history/card-plans/prep/MTE流体附件详细计划.md)；[`feasibility.json`](../../tools/waves/portfolio/mte-identity-disposition-r0/feasibility.json) |
 
 `GENERIC_RECIPE_IMPORT_READY` 只表示已有 host 时可以 `import-source`，不创建新的
 RecipeMap，也不实现封面网或世界内容。Prep 与已完成 capability 的状态只看
@@ -222,6 +234,15 @@ RecipeMap，也不实现封面网或世界内容。Prep 与已完成 capability 
 GT6 里传送带零件就是盖板 `compact_electric_conveyor_*`，不再另开 `_module_` 身份。
 在真实染料流体身份进入后续内容卡前，不生成空 live family，也不使用
 其它流体替代。见第 0.1 节。
+
+打磨机是 MTE 加工机身份卡的第一张 runtime child，已关闭 `runtime_ready`：
+`gt.recipe.sharpener` 7637 行，selected 7637 / overflow 0，四台 Kinetic 主机 20511–20514 获得格
+source-exact。工具头 remap、sharpener 材质形态和 14502/14512 MTE overlay 已补齐，overflow 为 0。
+Grindstone `32703` 不在本卡。关闭目标不是 `player_complete`。
+计划 [打磨机详细计划](../history/card-plans/closed/打磨机详细计划.md)。
+余量回收记录见
+[工具头前缀与打磨机余量回收详细计划](../history/card-plans/closed/工具头前缀与打磨机余量回收详细计划.md)。
+现行 unique-active 为空，见第 0.1 节。Sensors 与熔炉已关闭 `runtime_ready`。
 
 其余未认领的封面 `controller_*`、`detector_*`、redstone 以及建筑方块
 identity / behavior，仍没有实现 owner，不能从 `cc_mechanism = none` 直接推导工作量。

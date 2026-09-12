@@ -25,6 +25,7 @@ import com.masson.cruciblecraft.content.item.CellItem;
 import com.masson.cruciblecraft.content.item.CeramicMoldBlockItem;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.content.item.GtWoodCatalog;
+import com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies;
 import com.masson.cruciblecraft.content.item.BathMteIdentityCatalog;
 import com.masson.cruciblecraft.content.item.TechnologicalPartCatalog;
 import com.masson.cruciblecraft.content.item.SmelterMteIdentityCatalog;
@@ -42,7 +43,6 @@ import com.masson.cruciblecraft.content.item.HazmatArmorItem;
 import com.masson.cruciblecraft.content.item.ElectroMeterItem;
 import com.masson.cruciblecraft.content.item.TachoMeterItem;
 import com.masson.cruciblecraft.content.item.ThermometerItem;
-import com.masson.cruciblecraft.content.sensor.SensorKind;
 import com.masson.cruciblecraft.content.item.HopperBlockItem;
 import com.masson.cruciblecraft.content.storage.StorageVariant;
 import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
@@ -93,6 +93,7 @@ import com.masson.cruciblecraft.content.mold.MoldShape;
 import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariant;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
+import com.masson.cruciblecraft.content.sensor.SensorKind;
 import com.masson.cruciblecraft.material.CellContentGate;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
@@ -123,6 +124,18 @@ public final class ModItems {
             MATERIAL_ORE_ITEMS = new LinkedHashMap<>();
 
     public static final DeferredItem<BlockItem> FIREBRICK = ITEMS.registerSimpleBlockItem("firebrick", ModBlocks.FIREBRICK);
+    private static final Map<GtTreeSpecies, DeferredItem<BlockItem>> TREE_SAPLING_ITEMS =
+            new LinkedHashMap<>();
+    private static final Map<GtTreeSpecies, DeferredItem<BlockItem>> TREE_LOG_ITEMS =
+            new LinkedHashMap<>();
+    private static final Map<GtTreeSpecies, DeferredItem<BlockItem>> TREE_LEAVES_ITEMS =
+            new LinkedHashMap<>();
+    public static final DeferredItem<Item> RUBBER_RESIN = ITEMS.register(
+            "tree/rubber_resin", () -> new Item(new Item.Properties()));
+
+    static {
+        registerGtTrees();
+    }
     public static final DeferredItem<LuFiberCableItem> LU_FIBER_CABLE =
             ITEMS.register(
                     "lu_fiber_cable",
@@ -565,6 +578,20 @@ public final class ModItems {
             tieredProcessingItem("steel_rollformer");
     public static final DeferredItem<BlockItem> TITANIUM_ROLLFORMER =
             tieredProcessingItem("titanium_rollformer");
+    public static final DeferredItem<BlockItem> SANDING =
+            tieredProcessingItem("sanding");
+    public static final DeferredItem<BlockItem> STEEL_SANDING =
+            tieredProcessingItem("steel_sanding");
+    public static final DeferredItem<BlockItem> TITANIUM_SANDING =
+            tieredProcessingItem("titanium_sanding");
+    public static final DeferredItem<BlockItem> OVEN =
+            tieredProcessingItem("oven");
+    public static final DeferredItem<BlockItem> INVAR_OVEN =
+            tieredProcessingItem("invar_oven");
+    public static final DeferredItem<BlockItem> TITANIUM_OVEN =
+            tieredProcessingItem("titanium_oven");
+    public static final DeferredItem<BlockItem> TUNGSTEN_CARBIDE_OVEN =
+            tieredProcessingItem("tungsten_carbide_oven");
     public static final DeferredItem<BlockItem> CLUSTERMILL =
             tieredProcessingItem("clustermill");
     public static final DeferredItem<BlockItem> STEEL_CLUSTERMILL =
@@ -1727,6 +1754,35 @@ public final class ModItems {
 
     private static String key(String materialId, MaterialPrefix form) {
         return materialId + "/" + form.serializedName();
+    }
+
+    private static void registerGtTrees() {
+        for (GtTreeSpecies species : GtTreeSpecies.ALL) {
+            TREE_SAPLING_ITEMS.put(
+                    species,
+                    ITEMS.registerSimpleBlockItem(
+                            species.saplingPath(), ModBlocks.treeSapling(species)));
+            TREE_LOG_ITEMS.put(
+                    species,
+                    ITEMS.registerSimpleBlockItem(
+                            species.logPath(), ModBlocks.treeLog(species)));
+            TREE_LEAVES_ITEMS.put(
+                    species,
+                    ITEMS.registerSimpleBlockItem(
+                            species.leavesPath(), ModBlocks.treeLeaves(species)));
+        }
+    }
+
+    public static DeferredItem<BlockItem> treeSaplingItem(GtTreeSpecies species) {
+        return TREE_SAPLING_ITEMS.get(species);
+    }
+
+    public static DeferredItem<BlockItem> treeLogItem(GtTreeSpecies species) {
+        return TREE_LOG_ITEMS.get(species);
+    }
+
+    public static DeferredItem<BlockItem> treeLeavesItem(GtTreeSpecies species) {
+        return TREE_LEAVES_ITEMS.get(species);
     }
 
     private ModItems() {}

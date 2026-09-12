@@ -1,0 +1,82 @@
+{
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "rooms": [
+    {
+      "source_class": "DungeonChunkRoomWorkshop",
+      "tag": "gt.dungeon.workshop",
+      "status": "carrier_shell_only",
+      "missing": [
+        "gt.multitileentity workshop identities",
+        "exact room dispatch and source geometry"
+      ]
+    },
+    {
+      "source_class": "DungeonChunkRoomMiningBedrock",
+      "tag": "gt.dungeon.mining.bedrock",
+      "status": "blocked",
+      "reason": "WorldgenOresBedrock has no CC runtime equivalent; do not substitute an overworld ore vein"
+    },
+    {
+      "source_class": "DungeonChunkRoomLibraryNormal",
+      "tag": "gt.dungeon.library.normal",
+      "status": "carrier_shell_only",
+      "missing": [
+        "GT shelf and book MTE identities",
+        "exact room dispatch and source geometry"
+      ]
+    },
+    {
+      "source_class": "DungeonChunkRoomLibraryMystcraft",
+      "tag": "gt.dungeon.library.mystcraft",
+      "status": "blocked",
+      "reason": "Mystcraft is not loaded"
+    },
+    {
+      "source_class": "DungeonChunkRoomLibraryThaumcraft",
+      "tag": "gt.dungeon.library.thaumcraft",
+      "status": "blocked",
+      "reason": "Thaumcraft is not loaded"
+    },
+    {
+      "source_class": "DungeonChunkRoomFarmMobs",
+      "tag": "gt.dungeon.farm.mobs",
+      "status": "carrier_shell_only",
+      "missing": [
+        "GT farm MTE identities",
+        "farm platform geometry and exact room dispatch"
+      ]
+    },
+    {
+      "source_class": "DungeonChunkRoomFarmCrop",
+      "tag": "gt.dungeon.farm.crop",
+      "status": "blocked",
+      "reason": "GT/Pam crop identities are not all registered; do not fill missing crops with wheat"
+    },
+    {
+      "source_class": "DungeonChunkRoomFarmFish",
+      "tag": "gt.dungeon.farm.fish",
+      "status": "carrier_shell_only",
+      "missing": [
+        "GT fish farm MTE identities",
+        "exact room dispatch and source geometry"
+      ]
+    },
+    {
+      "source_class": "DungeonChunkRoomStorage",
+      "tag": "gt.dungeon.storage",
+      "status": "blocked",
+      "reason": "GT storage, coin, shelf, and loot MTE identities are not registered"
+    }
+  ],
+  "infrastructure": [
+    "DungeonChunkPillar",
+    "DungeonChunkRoomEmpty",
+    "DungeonChunkDoorPiston",
+    "DungeonChunkCorridor",
+    "DungeonChunkCorridor3",
+    "DungeonChunkCorridor4",
+    "DungeonChunkEntrance",
+    "DungeonChunkBarracks"
+  ],
+  "status": "ROOM_LEDGER_FROZEN"
+}

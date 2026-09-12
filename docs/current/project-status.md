@@ -10,7 +10,23 @@
 
 ## Prep（不占落地锁）
 
+- `content/mte-connector` — [MTE 连接件详细计划](../history/card-plans/prep/MTE连接件详细计划.md)
+- `content/mte-decorative` — [MTE 装饰件详细计划](../history/card-plans/prep/MTE装饰件详细计划.md)
+- `content/mte-drive` — [MTE 传动件详细计划](../history/card-plans/prep/MTE传动件详细计划.md)
+- `content/mte-energy-converter` — [MTE 能源转换器详细计划](../history/card-plans/prep/MTE能源转换器详细计划.md)
+- `content/mte-extender` — [MTE Extender详细计划](../history/card-plans/prep/MTE扩展器详细计划.md)
+- `content/mte-fluid-attachments` — [MTE 流体附件详细计划](../history/card-plans/prep/MTE流体附件详细计划.md)
+- `content/mte-furniture-storage` — [MTE 家具储物详细计划](../history/card-plans/prep/MTE家具储物详细计划.md)
+- `content/mte-misc-tool` — [MTE 杂项工具详细计划](../history/card-plans/prep/MTE杂项工具详细计划.md)
+- `content/mte-multiblock` — [MTE 多方块设备详细计划](../history/card-plans/prep/MTE多方块设备详细计划.md)
+- `content/mte-prep-index` — [MTE 全量 Prep 总索引](../history/card-plans/prep/MTE全量Prep总索引.md)
+- `content/mte-processing-machine` — [MTE 加工机身份详细计划](../history/card-plans/prep/MTE加工机身份详细计划.md)
+- `content/mte-redstone-wire` — [MTE 红石线详细计划](../history/card-plans/prep/MTE红石线详细计划.md)
+- `content/mte-untyped` — [MTE 未分类余量详细计划](../history/card-plans/prep/MTE未分类余量详细计划.md)
 - `machines/printer` — [印刷机详细计划](../history/card-plans/prep/印刷机详细计划.md)
+- `worldgen/gt-center` — [GT Center 详细计划](../history/card-plans/prep/GT中枢详细计划.md)
+- `worldgen/gt-dungeon` — [GT 地牢详细计划](../history/card-plans/prep/GT地牢详细计划.md)
+- `worldgen/gt-planet-rocks` — [GT 行星岩详细计划](../history/card-plans/prep/GT行星岩详细计划.md)
 
 ## player_complete（14）
 
@@ -32,7 +48,7 @@
 - `machines/cluster-mill` — Cluster Mill — [集群轧机详细计划](../history/card-plans/closed/集群轧机详细计划.md)
 - `machines/roll-former` — Roll Former — [辊压成型机详细计划](../history/card-plans/closed/辊压成型机详细计划.md)
 
-## runtime_ready（accepted，非玩家完成）（10）
+## runtime_ready（accepted，非玩家完成）（14）
 
 RecipeMap / 主机已挂，获得格或配方仍 blocked。不得宣称 `player_complete`。
 
@@ -44,8 +60,12 @@ RecipeMap / 主机已挂，获得格或配方仍 blocked。不得宣称 `player_
 - `machines/loom` — Loom — [织机详细计划](../history/card-plans/closed/织机详细计划.md)
 - `machines/melter` — Melter — [熔融机详细计划](../history/card-plans/closed/熔融机详细计划.md)
 - `machines/nanofab` — Nanoscale Fabricator — [纳米加工机详细计划](../history/card-plans/closed/纳米加工机详细计划.md)
+- `machines/oven` — Oven — [熔炉详细计划](../history/card-plans/closed/熔炉详细计划.md)
 - `machines/pressure-washer` — Pressure Washer — [压力清洗机详细计划](../history/card-plans/closed/压力清洗机详细计划.md)
+- `machines/sanding` — Sanding Machine — [打磨机详细计划](../history/card-plans/closed/打磨机详细计划.md)
 - `machines/slicer` — Slicer — [切片机详细计划](../history/card-plans/closed/切片机详细计划.md)
+- `registry/tool-head-prefix-reclaim` — Sharpener overflow reclaim — [工具头前缀与打磨机余量回收详细计划](../history/card-plans/closed/工具头前缀与打磨机余量回收详细计划.md)
+- `worldgen/gt-trees` — GT Trees — [GT 树详细计划](../history/card-plans/closed/GT树详细计划.md)
 
 ## 关闭计划（有 capability 的 player_complete）
 

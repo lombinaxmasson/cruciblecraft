@@ -356,6 +356,54 @@ def d0_melter() -> dict[str, Any]:
     )
 
 
+def d0_sanding() -> dict[str, Any]:
+    hosts = []
+    for host, token, prefer in (
+        (20511, "MT.Bronze", ()),
+        (20512, "ANY.Steel", ("steel",)),
+        (20513, "MT.Ti", ()),
+        (20514, "MT.TungstenSteel", ()),
+    ):
+        slots = {
+            "casing": _form(f"OP.casingMachineDouble({token})", prefer=prefer),
+            "gear": _form(f"OP.gearGt({token})", prefer=prefer),
+            "sandstone": _ok("OD.sandstone", "minecraft:sandstone"),
+            "small_gear": _form(f"OP.gearGtSmall({token})", prefer=prefer),
+        }
+        hosts.append({"host": host, **slots, "status": _host_status(slots)})
+    return _matrix(
+        "machines/sanding",
+        ["SGS", "XXX", "wMh"],
+        hosts,
+        "prep_runtime_ready",
+    )
+
+
+def d0_oven() -> dict[str, Any]:
+    hosts = []
+    for host, token, prefer in (
+        (20001, "ANY.Steel", ("steel",)),
+        (20002, "MT.Invar", ()),
+        (20003, "MT.Ti", ()),
+        (20004, "MT.TungstenCarbide", ()),
+    ):
+        slots = {
+            "bricks": _ok("Blocks.brick_block", "minecraft:bricks"),
+            "casing": _form(f"OP.casingMachine({token})", prefer=prefer),
+            "copper_double_plate": _form(
+                "OP.plateDouble(ANY.Cu)",
+                prefer=("copper", "annealed_copper"),
+            ),
+        }
+        hosts.append({"host": host, **slots, "status": _host_status(slots)})
+    return _matrix(
+        "machines/oven",
+        ["wMh", "BCB"],
+        hosts,
+        "prep_runtime_ready",
+    )
+
+
 def d0_nanofab() -> dict[str, Any]:
     hosts = []
     for host, mt, tier in (
@@ -518,6 +566,55 @@ MACHINES: dict[str, dict[str, Any]] = {
         "extra_art": (),
         "forbidden_art": ("multiblock_casing", "heat_exchanger", "/smelter/"),
     },
+    "sanding": {
+        "slug": "sanding",
+        "source_map": "gt.recipe.sharpener",
+        "target_map": "cruciblecraft:sanding",
+        "host": "cruciblecraft:sanding",
+        "source_rows": 7637,
+        "live_needle": "sanding",
+        "art": {
+            "gt6_folder": "sander",
+            "cc_folder": "sander",
+            "gui_source": "sharpener.png",
+            "gui_dest_stems": ("sanding",),
+            "manifest": "gt6_sanding_art_manifest.json",
+        },
+        "d0": d0_sanding,
+        "extra_art": (),
+        "forbidden_art": (
+            "multiblock_casing",
+            "heat_exchanger",
+            "/rollformer/",
+            "/clustermill/",
+            "/rollingmill/",
+        ),
+    },
+    "oven": {
+        "slug": "oven",
+        "source_map": "mc.recipe.furnace",
+        "target_map": "cruciblecraft:oven",
+        "host": "cruciblecraft:oven",
+        "source_rows": 0,
+        "live_needle": "oven",
+        "skip_source_pack": True,
+        "art": {
+            "gt6_folder": "oven",
+            "cc_folder": "oven",
+            "gui_source": "oven.png",
+            "gui_dest_stems": ("oven",),
+            "manifest": "gt6_oven_art_manifest.json",
+        },
+        "d0": d0_oven,
+        "extra_art": (),
+        "forbidden_art": (
+            "multiblock_casing",
+            "heat_exchanger",
+            "/smelter/",
+            "/melter/",
+            "/furnace/",
+        ),
+    },
     "nanofab": {
         "slug": "nanofab",
         "source_map": "gt.recipe.nanofab",
@@ -553,20 +650,23 @@ def write_machine(name: str) -> dict[str, int]:
     _copy_art(machine["art"])
     for extra in machine.get("extra_art") or ():
         _copy_art(extra)
-    counts = common.write_source_pack(
-        slug=machine["slug"],
-        source_map=machine["source_map"],
-        target_map=machine["target_map"],
-        host=machine["host"],
-        source_rows=machine["source_rows"],
-        source_pack_id=f"prep/machines-{machine['slug']}",
-        family_id=(
-            f"portfolio:track_a/{machine['target_map']}/"
-            f"{machine['source_map']}#0000"
-        ),
-        template_key=f"{machine['source_map']}#0000",
-        import_slug=f"prep/{machine['slug']}",
-    )
+    if machine.get("skip_source_pack"):
+        counts = {"selected_rows": 0, "overflow_rows": 0, "source_rows": 0}
+    else:
+        counts = common.write_source_pack(
+            slug=machine["slug"],
+            source_map=machine["source_map"],
+            target_map=machine["target_map"],
+            host=machine["host"],
+            source_rows=machine["source_rows"],
+            source_pack_id=f"prep/machines-{machine['slug']}",
+            family_id=(
+                f"portfolio:track_a/{machine['target_map']}/"
+                f"{machine['source_map']}#0000"
+            ),
+            template_key=f"{machine['source_map']}#0000",
+            import_slug=f"prep/{machine['slug']}",
+        )
     _write(common.wave_dir(machine["slug"]) / "d0_obtain_matrix.json", machine["d0"]())
     if name == "melter":
         _write(
@@ -597,11 +697,143 @@ def write_machine(name: str) -> dict[str, int]:
                 "source_revision": SOURCE_REVISION,
             },
         )
+    if name == "sanding":
+        _write(
+            common.wave_dir("sanding") / "runtime_notes.json",
+            {
+                "energy_accepted_sides": "UP",
+                "eut": 16,
+                "gt6_hosts": [20511, 20512, 20513, 20514],
+                "note": (
+                    "GT6 NBT_ENERGY_ACCEPTED_SIDES=SBIT_U. Dump machines also "
+                    "list Grindstone 32703; that class is MultiTileEntityGrindStone "
+                    "and stays out of this child. Missing tool_head_raw_* / "
+                    "tool_head_* forms and closed remaps stay blocked; do not "
+                    "stand in plates/dust."
+                ),
+                "out_of_scope": ["grindstone_32703"],
+                "schema_version": 1,
+                "source_revision": SOURCE_REVISION,
+            },
+        )
+        _write(common.wave_dir("sanding") / "landing_gate.json", sanding_landing_gate())
+    if name == "oven":
+        _write(
+            common.wave_dir("oven") / "runtime_notes.json",
+            {
+                "dump_rows": 0,
+                "energy_accepted_sides": "DOWN",
+                "eut": 16,
+                "gt6_hosts": [20001, 20002, 20003, 20004],
+                "note": (
+                    "GT6 NBT_ENERGY_ACCEPTED_SIDES=SBIT_D. Dump mc.recipe.furnace "
+                    "is empty; live map snapshots vanilla RecipeType.SMELTING. "
+                    "Cooking-oil meat bonus and XP fluid stay blocked. Hosts "
+                    "20001-20003 are not in the R0 ledger. Not player_complete."
+                ),
+                "out_of_scope": ["cooking_oil_xp", "vanilla_furnace_block"],
+                "schema_version": 1,
+                "source_revision": SOURCE_REVISION,
+            },
+        )
+        _write(common.wave_dir("oven") / "landing_gate.json", oven_landing_gate())
     return counts
+
+
+def sanding_landing_gate() -> dict[str, Any]:
+    return {
+        "capability_slug": "machines/sanding",
+        "import_slug": "machines/sanding",
+        "landing_blocked_by": None,
+        "note": (
+            "Promoted to unique-active machines/sanding. Live compile 7637 "
+            "selected / 0 overflow blocked. Not player_complete."
+        ),
+        "promotion_checklist": [
+            "Move 打磨机详细计划.md from prep/ to active/ and create capability.json workflow=active",
+            "Register RecipeMap sanding, ProcessingMachineSpec, menu",
+            "Add kind sanding and four Kinetic_T variants 20511-20514 to machine_kinds/tiers",
+            "Add machine_delivery host texture_profile sander",
+            "Add kinetic craft branch SGS/XXX/wMh with vanilla sandstone",
+            "Live compile 7637 selected rows; keep 0 overflow blocked",
+            "Update ProcessingMachineEnergyPlacement or GameTest to inject RU on UP",
+            "Bump MachineRuntimeGameTests catalog count from 99 to 103",
+            "Add SandingGameTests: four hosts, UP energy, 1-to-2 recipe, D0 craft",
+        ],
+        "required_test_ids": [
+            "bronzeHostRunsFirstLiveRecipe",
+            "fourHostsAreSurvivalCraftable",
+            "liveMapPublishesSelectedRows",
+            "playerSurfaceIsRegistered",
+        ],
+        "schema_version": 1,
+        "selected_rows": 7637,
+        "source_revision": SOURCE_REVISION,
+        "variants": [
+            {
+                "id": "cruciblecraft:sanding",
+                "material": "bronze",
+                "sourceId": 20511,
+            },
+            {
+                "id": "cruciblecraft:steel_sanding",
+                "material": "steel",
+                "sourceId": 20512,
+            },
+            {
+                "id": "cruciblecraft:titanium_sanding",
+                "material": "titanium",
+                "sourceId": 20513,
+            },
+            {
+                "id": "cruciblecraft:tungstensteel_sanding",
+                "material": "tungstensteel",
+                "sourceId": 20514,
+            },
+        ],
+    }
+
+
+def oven_landing_gate() -> dict[str, Any]:
+    return {
+        "capability_slug": "machines/oven",
+        "import_slug": "machines/oven",
+        "landing_blocked_by": None,
+        "note": (
+            "Promoted to unique-active machines/oven. Vanilla SMELTING snapshot "
+            "into RM.Furnace. Empty dump is not a compact family. Not player_complete."
+        ),
+        "schema_version": 1,
+        "source_revision": SOURCE_REVISION,
+        "variants": [
+            {
+                "id": "cruciblecraft:oven",
+                "material": "steel",
+                "source_id": 20001,
+            },
+            {
+                "id": "cruciblecraft:invar_oven",
+                "material": "invar",
+                "source_id": 20002,
+            },
+            {
+                "id": "cruciblecraft:titanium_oven",
+                "material": "titanium",
+                "source_id": 20003,
+            },
+            {
+                "id": "cruciblecraft:tungsten_carbide_oven",
+                "material": "tungsten_carbide",
+                "source_id": 20004,
+            },
+        ],
+    }
 
 
 def freeze_machine(name: str) -> None:
     machine = MACHINES[name]
+    if machine.get("skip_source_pack"):
+        return
     common.freeze_lock(
         common.wave_dir(machine["slug"]),
         f"prep/{machine['slug']}",
@@ -616,19 +848,29 @@ def check_machine(name: str) -> list[str]:
         f"prep isolated compile for machines/{machine['slug']}; "
         "not a live RecipeMap import; not player_complete"
     )
-    errors = common.check_source_pack(
-        slug=machine["slug"],
-        source_rows=machine["source_rows"],
-        import_slug=f"prep/{machine['slug']}",
-        note=note,
-        live_needle=machine["live_needle"],
-        min_art_imports=20,
-        art_manifest=machine["art"]["manifest"],
-        forbidden_art=machine.get(
-            "forbidden_art",
-            ("multiblock_casing", "heat_exchanger"),
-        ),
-    )
+    if machine.get("skip_source_pack"):
+        errors = common.check_art_manifest(
+            machine["art"]["manifest"],
+            min_art_imports=20,
+            forbidden_art=machine.get(
+                "forbidden_art",
+                ("multiblock_casing", "heat_exchanger"),
+            ),
+        )
+    else:
+        errors = common.check_source_pack(
+            slug=machine["slug"],
+            source_rows=machine["source_rows"],
+            import_slug=f"prep/{machine['slug']}",
+            note=note,
+            live_needle=machine["live_needle"],
+            min_art_imports=20,
+            art_manifest=machine["art"]["manifest"],
+            forbidden_art=machine.get(
+                "forbidden_art",
+                ("multiblock_casing", "heat_exchanger"),
+            ),
+        )
     for extra in machine.get("extra_art") or ():
         errors.extend(
             common.check_art_manifest(
@@ -647,6 +889,99 @@ def check_machine(name: str) -> list[str]:
         notes = census.load_json(common.wave_dir("melter") / "runtime_notes.json")
         if notes.get("parallel") != 1000:
             errors.append("melter parallel 1000 must be recorded")
+    if name == "sanding":
+        hosts = d0.get("hosts") or []
+        if len(hosts) != 4:
+            errors.append("sanding D0 must freeze four Kinetic_T hosts")
+        if any(row.get("status") != "source_exact" for row in hosts):
+            errors.append("sanding D0 hosts must all be source_exact")
+        for row in hosts:
+            if row.get("sandstone", {}).get("cc") != "minecraft:sandstone":
+                errors.append("sanding X slot must be vanilla sandstone")
+            if "programmed_circuit" in str(row):
+                errors.append("sanding D0 must not use programmed_circuit")
+        notes = census.load_json(common.wave_dir("sanding") / "runtime_notes.json")
+        if notes.get("energy_accepted_sides") != "UP":
+            errors.append("sanding energy side must stay UP")
+        if "grindstone_32703" not in (notes.get("out_of_scope") or []):
+            errors.append("sanding must keep grindstone 32703 out of scope")
+        spec = (
+            ROOT
+            / "src"
+            / "main"
+            / "java"
+            / "com"
+            / "masson"
+            / "cruciblecraft"
+            / "machine"
+            / "processing"
+            / "prep"
+            / "SandingPrepSpec.java"
+        )
+        if not spec.is_file():
+            errors.append("missing SandingPrepSpec")
+        else:
+            text = spec.read_text(encoding="utf-8")
+            if "upEnergy" not in text or "KINETIC_ROTATION" not in text:
+                errors.append("SandingPrepSpec must keep RU top-face energy")
+            if "CONFIGURED_MACHINES" in text:
+                errors.append("SandingPrepSpec must stay unregistered")
+        gate_path = common.wave_dir("sanding") / "landing_gate.json"
+        if not gate_path.is_file():
+            errors.append("missing sanding landing_gate.json")
+        else:
+            gate = census.load_json(gate_path)
+            expected = sanding_landing_gate()
+            if gate != expected:
+                errors.append("sanding landing_gate.json drifted")
+    if name == "oven":
+        hosts = d0.get("hosts") or []
+        if len(hosts) != 4:
+            errors.append("oven D0 must freeze four Heat_T hosts")
+        if any(row.get("status") != "source_exact" for row in hosts):
+            errors.append("oven D0 hosts must all be source_exact")
+        for row in hosts:
+            if row.get("bricks", {}).get("cc") != "minecraft:bricks":
+                errors.append("oven B slot must be vanilla bricks")
+            if "programmed_circuit" in str(row):
+                errors.append("oven D0 must not use programmed_circuit")
+            casing = str(row.get("casing", {}).get("cc") or "")
+            if casing.endswith("machine_casing_double"):
+                errors.append("oven M slot must be single machine_casing")
+        notes = census.load_json(common.wave_dir("oven") / "runtime_notes.json")
+        if notes.get("energy_accepted_sides") != "DOWN":
+            errors.append("oven energy side must stay DOWN")
+        if "cooking_oil_xp" not in (notes.get("out_of_scope") or []):
+            errors.append("oven must keep cooking-oil / XP fluids out of scope")
+        spec = (
+            ROOT
+            / "src"
+            / "main"
+            / "java"
+            / "com"
+            / "masson"
+            / "cruciblecraft"
+            / "machine"
+            / "processing"
+            / "prep"
+            / "OvenPrepSpec.java"
+        )
+        if not spec.is_file():
+            errors.append("missing OvenPrepSpec")
+        else:
+            text = spec.read_text(encoding="utf-8")
+            if "HEAT" not in text or "ADJACENT" not in text:
+                errors.append("OvenPrepSpec must keep HU adjacent energy")
+            if "CONFIGURED_MACHINES" in text:
+                errors.append("OvenPrepSpec must stay unregistered")
+        gate_path = common.wave_dir("oven") / "landing_gate.json"
+        if not gate_path.is_file():
+            errors.append("missing oven landing_gate.json")
+        else:
+            gate = census.load_json(gate_path)
+            expected = oven_landing_gate()
+            if gate != expected:
+                errors.append("oven landing_gate.json drifted")
     return errors
 
 

@@ -1,0 +1,40 @@
+{
+  "feature": "overworld.structure.dungeon.large",
+  "gt6_class": "gregapi.worldgen.dungeon.WorldgenDungeonGT",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "constructor": {
+    "default_enabled": true,
+    "probability": 100,
+    "min_size": 3,
+    "max_size": 7,
+    "min_y": 20,
+    "max_y": 20,
+    "room_chance": 6,
+    "overworld": true,
+    "nether": false,
+    "end": false,
+    "portal_nether": true,
+    "portal_end": true,
+    "portal_twilight": true,
+    "portal_aether": true,
+    "portal_myst": true,
+    "zpm": true
+  },
+  "placement": {
+    "alignment_period_chunks": 11,
+    "alignment_remainder": 5,
+    "origin_exclusion_blocks": 368,
+    "bedrock_probe": "candidate_chunk_min_x_plus_8,min_build_height,candidate_chunk_min_z_plus_8",
+    "carrier": "minecraft:structure",
+    "structure_set": "cruciblecraft:gt_dungeon",
+    "structure_piece_footprint_chunks": "5..9",
+    "structure_set_candidate_policy": "spacing_1_then_java_lattice_gate"
+  },
+  "runtime_ids": {
+    "structure": "cruciblecraft:gt_dungeon",
+    "structure_set": "cruciblecraft:gt_dungeon",
+    "structure_type": "cruciblecraft:gt_dungeon",
+    "structure_piece": "cruciblecraft:gt_dungeon"
+  },
+  "status": "SOURCE_BACKED_IN_PROGRESS"
+}

@@ -29,6 +29,7 @@ import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.registry.ModMenus;
 import com.masson.cruciblecraft.registry.ModMultiblockPlugins;
 import com.masson.cruciblecraft.registry.ModRecipes;
+import com.masson.cruciblecraft.registry.ModStructures;
 import com.mojang.logging.LogUtils;
 
 import net.neoforged.bus.api.IEventBus;
@@ -60,6 +61,8 @@ public class CrucibleCraft {
         ModFluids.FLUIDS.register(modEventBus);
         ModBlocks.BLOCKS.register(modEventBus);
         ModFeatures.FEATURES.register(modEventBus);
+        ModStructures.STRUCTURE_TYPES.register(modEventBus);
+        ModStructures.STRUCTURE_PIECES.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         com.masson.cruciblecraft.registry.ModArmorMaterials.ARMOR_MATERIALS.register(
                 modEventBus);

@@ -14,7 +14,7 @@ class CapabilityCloseTest(unittest.TestCase):
         compiled = capability_ledger.compile_ledger()
         self.assertIsNone(compiled["unique_active_slug"])
         with self.assertRaisesRegex(ValueError, "unique-active is"):
-            close_capability.close_capability("machines/cluster-mill")
+            close_capability.close_capability("worldgen/gt-trees")
 
     def test_path_map_records_prep_and_active_for_roll_former(self) -> None:
         document = io.load_json(close_capability.PATH_MAP)

@@ -87,6 +87,8 @@ KNOWN_SEMANTIC_SLUGS = (
     "machines/injector",
     "machines/nanofab",
     "machines/melter",
+    "machines/sanding",
+    "machines/oven",
     "content/electric-wire-cable-mte-fold",
     "content/technological-parts-foundation",
 )

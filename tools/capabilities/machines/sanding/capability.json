@@ -1,0 +1,53 @@
+{
+  "schema_version": 2,
+  "slug": "machines/sanding",
+  "title": "Sanding Machine",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/gametest/SandingGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/machine/processing/prep/SandingPrepSpec.java",
+    "src/main/resources/assets/cruciblecraft/gt6_sanding_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/sander/**",
+    "src/main/resources/assets/cruciblecraft/textures/gui/machines/sanding.png",
+    "src/main/resources/data/cruciblecraft_wave_machines_sanding/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/sanding/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/sanding.json",
+    "tools/capabilities/machines/sanding/**",
+    "tools/waves/machines/sanding/**",
+    "tools/tests/test_sanding.py"
+  ],
+  "depends_on": [
+    "machines/roll-former"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/sanding",
+  "required_test_ids": [
+    "bronzeHostRunsFirstLiveRecipe",
+    "fourHostsAreSurvivalCraftable",
+    "liveMapPublishesSelectedRows",
+    "playerSurfaceIsRegistered"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:sanding:20511-20514",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:sanding",
+        "cruciblecraft:steel_sanding",
+        "cruciblecraft:titanium_sanding",
+        "cruciblecraft:tungstensteel_sanding"
+      ],
+      "reason": "GT6 MultiTileEntityBasicMachine 20511-20514. RM.Sharpening, RU on the top face, left in / right out. Not Grindstone 32703."
+    },
+    {
+      "semantic_key": "machine:sanding:grindstone_32703",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "Grindstone 32703 also binds RM.Sharpening but is MultiTileEntityGrindStone. Out of this child."
+    }
+  ],
+  "note": "Live compile publishes all 7637 exact rows whose every operand is in the current runtime registry, from the gt.recipe.sharpener dump. Four Kinetic_T hosts are source-exact, including OD.sandstone as minecraft:sandstone. The separate Grindstone 32703 identity remains out of scope. Close at runtime_ready, not player_complete."
+}

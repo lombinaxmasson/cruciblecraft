@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "slug": "registry/tool-head-prefix-reclaim",
+  "title": "Sharpener overflow reclaim",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/工具头前缀与打磨机余量回收详细计划.md",
+    "tools/build_tool_head_prefix_reclaim.py",
+    "tools/build_sanding_reclaim_forms.py",
+    "tools/material_form_authority.json",
+    "tools/build_gt6_material_form_gate.py",
+    "tools/tool_head_prefix_reclaim_source.json",
+    "tools/tool_head_prefix.py",
+    "tools/tool_head_prefix_remap.json",
+    "tools/tool_head_required_forms.json",
+    "tools/recipe_bulk/ordinary_source.py",
+    "tools/waves/prep/machine_prep_common.py",
+    "tools/waves/machines/sanding/required_forms.json",
+    "tools/waves/machines/sanding/mte_runtime_overlay.json",
+    "src/main/resources/data/cruciblecraft/tool_head_prefix_remap.json",
+    "src/main/resources/data/cruciblecraft/material_registration_gate.json"
+  ],
+  "depends_on": [],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": null,
+  "legacy_readiness": null,
+  "player_signoff": null,
+  "identity_disposition": [],
+  "note": "Reclaims all 7637 GT6 sharpener rows through source-backed tool-head remap, material forms, and the two existing Energium MTE identities. It creates no unique tool-head item and does not claim player_complete."
+}

@@ -39,6 +39,7 @@ BUNDLED_SEMANTIC = (
     ROOT / "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
 )
 BATH_IDENTITY_IDENTITY_CATALOG = TOOLS / "bath_identity_identity_catalog.json"
+TOOL_HEAD_RECLAIM_SOURCE = TOOLS / "tool_head_prefix_reclaim_source.json"
 
 _CAMEL_RE = re.compile(r"([a-z0-9])([A-Z])")
 _META_PREFIX = "gregtech:gt.meta."
@@ -227,6 +228,7 @@ def collect_tool_head_rows() -> dict[tuple[str, int], dict[str, Any]]:
         BATH_IDENTITY_IDENTITY_CATALOG,
         BUNDLED_BATH,
         BUNDLED_SEMANTIC,
+        TOOL_HEAD_RECLAIM_SOURCE,
         *[
             TOOLS / "waves" / slug / "object_catalog.json"
             for slug in ORDINARY_OBJECT_CATALOGS
@@ -362,10 +364,10 @@ def build_remap() -> dict[str, Any]:
             "source_item_count": len(source_items),
             "union_keys": len(rows),
         },
-        "generated_by": "python tools/build_tool_head_prefix_remap.py",
+        "generated_by": "python tools/build_tool_head_prefix_reclaim.py",
         "mapped": mapped,
         "note": (
-            "One remap for bath ∪ semantic toolHead* identities. "
+            "One remap for bath ∪ semantic ∪ reclaim toolHead* identities. "
             "material_id_to_cc misses stay remainder. No unique-item aliases."
         ),
         "prefixes": {
@@ -393,7 +395,7 @@ def required_forms_document(remap: dict[str, Any] | None = None) -> dict[str, An
     prefixes = document.get("prefixes") or {}
     return {
         "counts": dict(document.get("counts") or {}),
-        "generated_by": "python tools/build_tool_head_prefix_remap.py",
+        "generated_by": "python tools/build_tool_head_prefix_reclaim.py",
         "new_prefix_forms": sorted(prefixes),
         "note": (
             "Tool-head required forms from the single remap. "

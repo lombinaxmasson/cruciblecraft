@@ -247,5 +247,9 @@ public final class ModCapabilities {
                 Capabilities.FluidHandler.BLOCK,
                 ModBlockEntities.FLUID_BED_BURNING_BOX.get(),
                 (blockEntity, side) -> blockEntity.fluids(side));
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.TREE_HOLE.get(),
+                (blockEntity, side) -> blockEntity.fluids());
     }
 }

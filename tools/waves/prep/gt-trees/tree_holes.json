@@ -1,0 +1,52 @@
+{
+  "generated_by": "tools/gt_trees.py",
+  "holes": [
+    {
+      "cc_fluid": "",
+      "fluid": "FL.Resin_Rubber",
+      "fluid_reason": "FL.Resin_Rubber / fluidrubbertreesap is not a CC fluid; latex is not a stand-in",
+      "fluid_status": "explicitly_blocked",
+      "gt6_name": "Rubber Resin Hole",
+      "item": "rubber_resin",
+      "millibuckets": 250,
+      "mode": "grow_rubber",
+      "nearby_xz": 256,
+      "regen_ticks": 600,
+      "source_id": 32762,
+      "species": "rubber"
+    },
+    {
+      "cc_fluid": "",
+      "fluid": "FL.Sap_Maple",
+      "fluid_reason": "FL.Sap_Maple is missing; do not fill maple holes with latex or rainbow sap",
+      "fluid_status": "explicitly_blocked",
+      "gt6_name": "Tapped Maple",
+      "item": "",
+      "log_meta": "LogA maple",
+      "millibuckets": 250,
+      "mode": "drill_maple",
+      "regen_ticks": 600,
+      "source_id": 32761,
+      "species": "maple",
+      "tool": "drill"
+    },
+    {
+      "cc_fluid": "cruciblecraft:rainbow_sap",
+      "fluid": "FL.Sap_Rainbow",
+      "fluid_reason": "bath_remainder_fluid_mapping already names rainbow_sap",
+      "fluid_status": "reuse_canonical",
+      "gt6_name": "Tapped Rainbowood",
+      "item": "",
+      "log_meta": "LogB rainbowood",
+      "millibuckets": 250,
+      "mode": "drill_rainbowood",
+      "regen_ticks": 600,
+      "source_id": 32760,
+      "species": "rainbowood",
+      "tool": "drill"
+    }
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "PREP_GT_TREES_HOLES"
+}

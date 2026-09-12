@@ -1,0 +1,28 @@
+{
+  "capability_slug": "worldgen/gt-dungeon",
+  "feature_count": 1,
+  "structure_count": 1,
+  "structure_set_count": 1,
+  "runtime": {
+    "structure": "cruciblecraft:gt_dungeon",
+    "piece": "cruciblecraft:gt_dungeon",
+    "palette": "cruciblecraft:gt_stones",
+    "biomes": "#minecraft:is_overworld",
+    "generation_step": "underground_structures",
+    "default_enabled": true
+  },
+  "source_contract": {
+    "probability": 100,
+    "min_size": 3,
+    "max_size": 7,
+    "min_y": 20,
+    "max_y": 20,
+    "room_chance": 6,
+    "alignment": "abs(chunk_x)%11 == 5 and abs(chunk_z)%11 == 5",
+    "origin_exclusion": "|x| < 368 and |z| < 368",
+    "bedrock_contact": "required at the modern world's minimum build height"
+  },
+  "blocked_count": 10,
+  "geometry_policy": "GT_STONE_ONLY_NO_VANILLA_ROOM_STAND_INS",
+  "status": "FROZEN_CARRIER_WITH_EXPLICIT_BLOCKS"
+}

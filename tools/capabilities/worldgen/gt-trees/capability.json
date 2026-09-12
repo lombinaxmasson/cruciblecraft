@@ -1,0 +1,185 @@
+{
+  "schema_version": 2,
+  "slug": "worldgen/gt-trees",
+  "title": "GT Trees",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT树详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/block/GtTreeHoleBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/GtTreeLeavesBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/GtTreeLogBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/GtTreeSaplingBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/GtTreeHoleBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/GtTreesGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModCapabilities.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModFeatures.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+    "src/main/java/com/masson/cruciblecraft/worldgen/tree/**",
+    "src/main/java/com/masson/cruciblecraft/worldgen/tree/prep/**",
+    "src/main/resources/assets/cruciblecraft/gt6_gt_trees_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/tree/**",
+    "src/main/resources/assets/cruciblecraft/textures/item/tree/**",
+    "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_tree_*.json",
+    "src/main/resources/data/cruciblecraft/worldgen/configured_feature/tree_*.json",
+    "src/main/resources/data/cruciblecraft/worldgen/placed_feature/tree_*.json",
+    "src/main/resources/data/cruciblecraft_wave_worldgen_gt_trees/**",
+    "src/test/java/com/masson/cruciblecraft/worldgen/tree/**",
+    "tools/build_gt_trees.py",
+    "tools/capabilities/worldgen/gt-trees/**",
+    "tools/gt_trees.py",
+    "tools/tests/test_gt_trees.py",
+    "tools/waves/prep/gt-trees/**"
+  ],
+  "depends_on": [
+    "content/technological-parts-foundation"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "worldgen/gt-trees",
+  "required_test_ids": [
+    "biomeFilterMatchesFrozenMap",
+    "everySpeciesGrowsLogsAndLeaves",
+    "handDrillTapsMapleAndRainbowood",
+    "mapleAndRainbowoodGrowPlaceNoHoles",
+    "playerSurfaceIsRegistered",
+    "rubberGrowPlacesOneHole",
+    "rubberHoleEmptyHandGivesResin"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "worldgen:tree.rubber",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:tree/rubber_sapling",
+        "cruciblecraft:tree/rubber_log",
+        "cruciblecraft:tree/rubber_leaves",
+        "cruciblecraft:tree/rubber_hole",
+        "cruciblecraft:tree_rubber"
+      ],
+      "reason": "GT6 WorldgenTreeRubber. Growing sapling/log/leaves/hole, not leftover gt_block/log_*."
+    },
+    {
+      "semantic_key": "worldgen:tree.maple",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:tree/maple_sapling",
+        "cruciblecraft:tree/maple_log",
+        "cruciblecraft:tree/maple_leaves",
+        "cruciblecraft:tree/maple_hole",
+        "cruciblecraft:tree_maple"
+      ],
+      "reason": "GT6 WorldgenTreeMaple. Hole is drill-tapped, not placed by grow."
+    },
+    {
+      "semantic_key": "worldgen:tree.willow",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:tree/willow_sapling",
+        "cruciblecraft:tree/willow_log",
+        "cruciblecraft:tree/willow_leaves",
+        "cruciblecraft:tree_willow"
+      ],
+      "reason": "GT6 WorldgenTreeWillow."
+    },
+    {
+      "semantic_key": "worldgen:tree.bluemahoe",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:tree/blue_mahoe_sapling",
+        "cruciblecraft:tree/blue_mahoe_log",
+        "cruciblecraft:tree/blue_mahoe_leaves",
+        "cruciblecraft:tree_blue_mahoe"
+      ],
+      "reason": "GT6 WorldgenTreeBlueMahoe."
+    },
+    {
+      "semantic_key": "worldgen:tree.hazel",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:tree/hazel_sapling",
+        "cruciblecraft:tree/hazel_log",
+        "cruciblecraft:tree/hazel_leaves",
+        "cruciblecraft:tree_hazel"
+      ],
+      "reason": "GT6 WorldgenTreeHazel. Hazelnut food drops stay blocked."
+    },
+    {
+      "semantic_key": "worldgen:tree.cinnamon",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:tree/cinnamon_sapling",
+        "cruciblecraft:tree/cinnamon_log",
+        "cruciblecraft:tree/cinnamon_leaves",
+        "cruciblecraft:tree_cinnamon"
+      ],
+      "reason": "GT6 WorldgenTreeCinnamon."
+    },
+    {
+      "semantic_key": "worldgen:tree.coconut",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:tree/coconut_sapling",
+        "cruciblecraft:tree/coconut_log",
+        "cruciblecraft:tree/coconut_leaves",
+        "cruciblecraft:tree_coconut"
+      ],
+      "reason": "GT6 WorldgenTreeCoconut. Coconut food drops stay blocked."
+    },
+    {
+      "semantic_key": "worldgen:tree.rainbowood",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:tree/rainbowood_sapling",
+        "cruciblecraft:tree/rainbowood_log",
+        "cruciblecraft:tree/rainbowood_leaves",
+        "cruciblecraft:tree/rainbowood_hole",
+        "cruciblecraft:tree_rainbowood"
+      ],
+      "reason": "GT6 WorldgenTreeRainbowood. Overworld 1/8192 plus drill hole."
+    },
+    {
+      "semantic_key": "worldgen:tree.bluespruce",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:tree/blue_spruce_sapling",
+        "cruciblecraft:tree/blue_spruce_log",
+        "cruciblecraft:tree/blue_spruce_leaves",
+        "cruciblecraft:tree_blue_spruce"
+      ],
+      "reason": "GT6 WorldgenTreeBlueSpruce."
+    },
+    {
+      "semantic_key": "item:rubber_resin",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:tree/rubber_resin"
+      ],
+      "reason": "GT6 IL.Resin / food 12050 art. Not leftover gt_multiitem/multiitem_food_m12050."
+    },
+    {
+      "semantic_key": "fluid:FL.Resin_Rubber",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "FL.Resin_Rubber is missing; latex is not a stand-in. Rubber hole still harvests rubber_resin."
+    },
+    {
+      "semantic_key": "fluid:FL.Sap_Maple",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "FL.Sap_Maple is missing; maple hole still freezes and drills."
+    },
+    {
+      "semantic_key": "fluid:FL.Sap_Rainbow",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:rainbow_sap"
+      ],
+      "reason": "bath_remainder_fluid_mapping already names rainbow_sap."
+    }
+  ],
+  "note": "Nine WorldgenTree* features plus three tree holes. Close at runtime_ready, not player_complete. Do not delete press/slime_ball_to_rubber_plate. Maple sap and rubber resin fluids stay blocked. Dungeon, planet rocks, and Center stay queued prep."
+}
