@@ -13,7 +13,7 @@ import net.minecraft.world.level.Level;
 
 /** GT6 quicksilver thermometer: reports reactor lastHeat as HU. */
 public final class ThermometerItem extends Item {
-    public static final String REGISTRY_PATH = "gt_multiitem/multiitem_randomtools_m10000";
+    public static final String REGISTRY_PATH = "mercury/thermometer_measures_temperature";
 
     private final String englishName;
     private final String chineseName;

@@ -54,6 +54,41 @@ class SlicerCardTest(unittest.TestCase):
     def test_builder_check_passes(self) -> None:
         self.assertEqual([], builder.check())
 
+    def test_food_multiitem_output_stays_registered(self) -> None:
+        from tools.build_assembler_source import Catalogs
+        from tools.recipe_bulk.ordinary_source import map_item_operand
+
+        catalogs = Catalogs(
+            prefix_item_to_form={},
+            material_id_to_cc={},
+            registered_forms={},
+            form_items={},
+            prefix_tags={},
+            fluid_to_cc={},
+            reachable=set(),
+        )
+        operand, errors = map_item_operand(
+            {
+                "item": "gregtech:gt.multiitem.food",
+                "meta": 241,
+                "count": 4,
+            },
+            catalogs,
+            stone_runtime={},
+            mte_runtime={},
+            block_runtime={},
+            item_overlay={},
+            reused_aliases={},
+            side="output",
+        )
+        self.assertEqual([], errors)
+        self.assertEqual("explicit_object_expression", operand["mapping"])
+        self.assertEqual("multiitem", operand["kind"])
+        self.assertEqual(
+            "cruciblecraft:apple/slice",
+            operand["runtime_id"],
+        )
+
     def test_selected_and_overflow_stay_exact(self) -> None:
         work = census.load_json(WAVE / "source_pack" / "work_set.json")
         overflow = census.load_json(WAVE / "overflow.json")

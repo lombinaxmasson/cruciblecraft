@@ -1,0 +1,90 @@
+{
+  "schema_version": 2,
+  "slug": "logistics/cover-remainder",
+  "title": "Cover remainder",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/盖板余量详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/logistics/machinecover/**",
+    "src/main/java/com/masson/cruciblecraft/gametest/CoverRemainderGameTests.java",
+    "src/main/resources/data/cruciblecraft/machine_cover_definitions.json",
+    "src/main/resources/data/cruciblecraft_wave_runtime_cover_remainder/**",
+    "src/main/resources/assets/cruciblecraft/gt6_machine_covers_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/cover_blank_cover.png",
+    "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/controller_*_cover.png",
+    "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/display_energy_cover.png",
+    "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/selector_*_cover.png",
+    "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/detector_*_cover.png",
+    "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/scale_*_cover.png",
+    "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/redstone_*_cover.png",
+    "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/vent_cover.png",
+    "src/test/java/com/masson/cruciblecraft/datagen/CoverRemainderResourceTest.java",
+    "tools/capabilities/logistics/cover-remainder/**",
+    "tools/waves/runtime/cover-remainder/**",
+    "tools/tests/test_cover_remainder.py"
+  ],
+  "depends_on": [
+    "logistics/cover-net-r0"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "runtime/cover-remainder",
+  "legacy_readiness": "tools/waves/runtime/cover-remainder/readiness.json",
+  "required_test_ids": [
+    "autoSwitchRequiresPossibleAndCanTick",
+    "blankCoverIsSurvivalCraftable",
+    "blankCoverRequiresCraftingTable",
+    "controllerStopsProcessingWhenOff",
+    "detectorEmitsWhenPossible",
+    "displayVisualUsesGt6Layout",
+    "playerSurfaceIsRegistered",
+    "selectorUsesFakeCircuit",
+    "torchRefusesMachineHost",
+    "ventFillsCollectableAir"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "cover:machine-remainder",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:cover_blank",
+        "cruciblecraft:controller_display",
+        "cruciblecraft:controller_auto",
+        "cruciblecraft:display_energy",
+        "cruciblecraft:controller_redstone",
+        "cruciblecraft:controller_auto_redstone",
+        "cruciblecraft:selector_redstone",
+        "cruciblecraft:controller_auto_timer_1m",
+        "cruciblecraft:controller_auto_timer_5m",
+        "cruciblecraft:controller_auto_timer_10m",
+        "cruciblecraft:controller_auto_timer_20m",
+        "cruciblecraft:controller_auto_timer_30m",
+        "cruciblecraft:scale_energy",
+        "cruciblecraft:detector_running_possible",
+        "cruciblecraft:detector_running_passively",
+        "cruciblecraft:detector_running_actively",
+        "cruciblecraft:scale_progress",
+        "cruciblecraft:detector_running_successfully",
+        "cruciblecraft:redstone_emitter",
+        "cruciblecraft:vent",
+        "cruciblecraft:controller_covers",
+        "cruciblecraft:selector_button_panel",
+        "cruciblecraft:redstone_conductor_in",
+        "cruciblecraft:redstone_conductor_out",
+        "cruciblecraft:selector_tag",
+        "cruciblecraft:redstone_torch",
+        "cruciblecraft:redstone_repeater"
+      ],
+      "reason": "GT6 MultiItemTechnological 1000-1030 remainder covers. 24 new items plus programmed_circuit selector_tag and vanilla torch/repeater definitions. Not Display CPU, not logistics net, not compact electric covers."
+    },
+    {
+      "semantic_key": "cover:redstone_torch_repeater:wire_host",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "GT6 CoverRedstoneTorch/Repeater only attach to MultiTileEntityWireRedstoneInsulated. CC redstone-wire MTE is still prep. Definitions exist and refuse every current host."
+    }
+  ],
+  "note": "27 sidecar cover definitions on processing machines. Java/tick is gt6_code/gregtech6 at 3703e40308c8c030763fd6297dea8b210d2a77b1; art is gt6_referencable_port_code/gregtech6_w at 936083c247a70b1bbc5f19996a83d75c27d196e2. Do not replace either official local source with GT6U. Torch/repeater stay blocked-host. Close at runtime_ready, not player_complete."
+}

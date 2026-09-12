@@ -762,7 +762,7 @@ def build_r0_documents() -> dict[str, Any]:
         "capability_row": capability_row,
         "catalog_identity_count": EXPECTED_IDENTITIES,
         "kind": "mte_item",
-        "registry_path_pattern": "gt_mte/mte_<meta>",
+        "registry_path_pattern": "tools/catalog_modern_id_map.json",
         "smelter_mte_identity_status": PREDECESSOR_STATUS,
         "status": "INHERITED_DENOMINATOR_READY",
     }

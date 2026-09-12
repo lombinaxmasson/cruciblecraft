@@ -398,7 +398,6 @@ def slug_source_item(item_id: str) -> str:
 
 
 def runtime_id_for(kind: str, source_item: str, meta: int) -> str:
-    slug = slug_source_item(source_item)
     if kind == "tool_head":
         mapped = thp.mapped_runtime(source_item, meta)
         if mapped:
@@ -413,10 +412,14 @@ def runtime_id_for(kind: str, source_item: str, meta: int) -> str:
                 f"mapped tool-head remap is closed; refusing unique item for "
                 f"{source_item}@{meta}"
             )
-        return f"cruciblecraft:gt_tool_head/{slug}_m{meta}"
-    if kind == "multiitem":
-        return f"cruciblecraft:gt_multiitem/{slug}_m{meta}"
-    return f"cruciblecraft:gt_object/{slug}_m{meta}"
+    from tools import catalog_modern_ids as modern
+
+    try:
+        return modern.runtime_id_for(source_item, meta)
+    except ValueError:
+        raise ValueError(
+            f"no modern catalog id for {kind} {source_item}@{meta}"
+        ) from None
 
 
 def registry_path_for(kind: str, source_item: str, meta: int) -> str:

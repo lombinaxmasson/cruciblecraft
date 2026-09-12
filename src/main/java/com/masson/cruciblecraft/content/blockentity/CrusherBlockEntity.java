@@ -81,6 +81,7 @@ public final class CrusherBlockEntity extends ProcessingMachineBlockEntity
         if (level == null || level.isClientSide) {
             return;
         }
+        dropCovers();
         for (int slot = 0; slot < inventory().getSlots(); slot++) {
             ItemStack stack = inventory().getStackInSlot(slot);
             if (!stack.isEmpty()) {

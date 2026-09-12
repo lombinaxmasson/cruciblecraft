@@ -33,6 +33,7 @@ class ProvidedToolActionsTest {
         assertEquals(
                 Set.of(ToolAction.CROWBAR),
                 ProvidedToolActions.of(ToolKind.UNIVERSAL_SPADE));
+        assertEquals(Set.of(ToolAction.CHISEL), ProvidedToolActions.of(ToolKind.CHISEL));
         assertTrue(ProvidedToolActions.of(ToolKind.PICKAXE).isEmpty());
         assertTrue(ProvidedToolActions.of(ToolKind.FILE).isEmpty());
     }
@@ -50,5 +51,7 @@ class ProvidedToolActionsTest {
         assertTrue(ToolAction.PLUNGER.expandsPipeGrid());
         assertFalse(ToolAction.WIRE_CUTTER.expandsPipeGrid());
         assertFalse(ToolAction.SCREWDRIVER.expandsPipeGrid());
+        assertFalse(ToolAction.CHISEL.expandsPipeGrid());
+        assertTrue(ToolAction.SOFT_HAMMER.ordinal() < ToolAction.CHISEL.ordinal());
     }
 }

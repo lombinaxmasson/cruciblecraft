@@ -32,12 +32,28 @@ NO_ITEM_BLOCKS = {
     "gas_cloud",
     "subsurface_fluid_deposit",
 }
-PYTHON_OWNED_GENERATED_PREFIXES = (
-    "assets/cruciblecraft/models/gt_block/",
-    "assets/cruciblecraft/models/gt_stone/",
-    "assets/cruciblecraft/models/item/gt_block/",
-    "assets/cruciblecraft/models/item/gt_stone/",
-)
+def python_owned_generated_prefixes() -> tuple[str, ...]:
+    prefixes = {
+        "assets/cruciblecraft/models/gt_block/",
+        "assets/cruciblecraft/models/gt_stone/",
+        "assets/cruciblecraft/models/item/gt_block/",
+        "assets/cruciblecraft/models/item/gt_stone/",
+    }
+    from tools import catalog_modern_ids as modern
+
+    if modern.MAP_PATH.is_file():
+        for row in modern.load_map().get("rows") or []:
+            old = str(row.get("old_registry_path") or "")
+            path = str(row.get("registry_path") or "")
+            if not path or not old.startswith(("gt_block/", "gt_stone/")):
+                continue
+            head = path.split("/", 1)[0]
+            prefixes.add(f"assets/cruciblecraft/models/{head}/")
+            prefixes.add(f"assets/cruciblecraft/models/item/{head}/")
+    return tuple(sorted(prefixes))
+
+
+PYTHON_OWNED_GENERATED_PREFIXES = python_owned_generated_prefixes()
 ART_MANIFESTS = (
     ROOT / "tools/block_art_manifest.json",
     ROOT / "tools/multiitem_art_manifest.json",

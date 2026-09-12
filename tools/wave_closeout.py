@@ -601,6 +601,31 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             next_unassigned=True,
             owns_families=0,
         ),
+        "runtime/cover-remainder": WaveCloseoutSpec(
+            wave_slug="runtime/cover-remainder",
+            census=WAVES_ROOT / "runtime" / "cover-remainder" / "census_delta.json",
+            topology=WAVES_ROOT / "runtime" / "cover-remainder" / "topology.json",
+            readiness=WAVES_ROOT / "runtime" / "cover-remainder" / "readiness.json",
+            receipt=WAVES_ROOT / "runtime" / "cover-remainder" / "gametest_receipt.json",
+            production_lock=None,
+            generated_root=None,
+            support_root=None,
+            gametest_java=(
+                io.ROOT
+                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "CoverRemainderGameTests.java"
+            ),
+            gametest_log=(
+                WAVES_ROOT / "runtime" / "cover-remainder" / "gametest.log"
+            ),
+            publication_group_manifest=None,
+            shard_manifest=None,
+            runtime_dependency_manifest=None,
+            complete_key="wave_complete",
+            unique_active_wave=None,
+            next_unassigned=True,
+            owns_families=0,
+        ),
         "runtime/converter-catalog": WaveCloseoutSpec(
             wave_slug="runtime/converter-catalog",
             census=WAVES_ROOT / "runtime" / "converter-catalog" / "census_delta.json",

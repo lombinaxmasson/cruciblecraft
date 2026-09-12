@@ -119,14 +119,21 @@ def build_catalog() -> dict[str, Any]:
             registry_path = bath_id.split(":", 1)[1]
             acquisition = "bath_mte"
         else:
-            registry_path = f"gt_mte/mte_{meta}"
+            from tools import catalog_modern_ids as modern
+
+            registry_path = modern.registry_path_for(MTE_ITEM, meta)
             runtime_id = f"cruciblecraft:{registry_path}"
             registry_kind = "item"
             acquisition = "smelter_mte_scatter"
         if runtime_id in seen_runtime and not overlap:
             raise ValueError(f"duplicate runtime_id {runtime_id}")
         seen_runtime.add(runtime_id)
-        english = names.get(meta) or f"GT Multitileentity {meta}"
+        from tools import catalog_modern_ids as modern
+
+        mapped = modern.by_source().get((MTE_ITEM, meta)) or {}
+        english = str(mapped.get("english_name") or names.get(meta) or "").strip()
+        if not english or modern.is_garbage_name(english):
+            raise ValueError(f"unnamed smelter MTE identity {meta}")
         identities.append(
             {
                 "acquisition_authority": acquisition,

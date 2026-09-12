@@ -12,6 +12,7 @@ import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
 import com.masson.cruciblecraft.logistics.pipe.PipeAcquisitionRecipeCatalog;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverComponentTiers;
 import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.logistics.hopper.HopperKind;
@@ -124,6 +125,370 @@ public final class ModRecipeProvider extends RecipeProvider {
                         .save(output, id(next.itemPath()));
             }
         }
+    }
+
+    private static void machineCoverRecipes(RecipeOutput output) {
+        Item aluminiumPlate = sourceItem(
+                "aluminium", MaterialPrefixes.PLATE);
+        Item aluminiumScrew = sourceItem(
+                "aluminium", MaterialPrefixes.SCREW);
+        boolean blankAvailable = available(aluminiumPlate, aluminiumScrew);
+        if (blankAvailable) {
+            acceptShapedCatalyst(
+                    output,
+                    MachineCoverKinds.itemPath("cover_blank"),
+                    List.of("Sh ", "Pd "),
+                    Map.of(
+                            "P", Ingredient.of(aluminiumPlate),
+                            "S", Ingredient.of(aluminiumScrew)),
+                    Map.of(
+                            "h", Ingredient.of(ModItems.SMITHING_HAMMER.get()),
+                            "d", Ingredient.of(
+                                    ModItems.MATERIAL_SCREWDRIVER.get())),
+                    new ItemStack(machineCoverItem("cover_blank")));
+        }
+
+        Item tinCable = sourceItem("tin", MaterialPrefixes.CABLE);
+        Item copperCable = sourceItem("copper", MaterialPrefixes.CABLE);
+        Item tinWire = sourceItem("tin", MaterialPrefixes.WIRE);
+        Item lumiumWire = sourceItem("lumium", MaterialPrefixes.WIRE);
+        Item redAlloyWire = sourceItem(
+                "red_alloy", MaterialPrefixes.WIRE);
+        Item ironRod = sourceItem("iron", MaterialPrefixes.ROD);
+        Item ironRotor = sourceItem("iron", MaterialPrefixes.ROTOR);
+        Item brassSmallGear = sourceItem(
+                "brass", MaterialPrefixes.SMALL_GEAR);
+        Item circuitBasic = techPart("circuit_basic");
+        Item circuitGood = techPart("circuit_good");
+        Item circuitAdvanced = techPart("circuit_advanced");
+        Item circuitElite = techPart("circuit_elite");
+        Item circuitMaster = techPart("circuit_master");
+        Item selector = ModItems.PROGRAMMED_CIRCUIT.get();
+        Ingredient button = Ingredient.of(ItemTags.BUTTONS);
+
+        if (blankAvailable
+                && available(tinCable, lumiumWire, circuitBasic)) {
+            machineRecipe(
+                    output,
+                    "controller_display",
+                    List.of("LLB", "CQW"),
+                    Map.of(
+                            "L", Ingredient.of(lumiumWire),
+                            "B", Ingredient.of(Items.LEVER),
+                            "C", Ingredient.of(circuitBasic),
+                            "Q", blank(),
+                            "W", Ingredient.of(tinCable)));
+        }
+        if (blankAvailable && available(tinCable, circuitBasic)) {
+            machineRecipe(
+                    output,
+                    "controller_auto",
+                    List.of("BW ", "CQ "),
+                    Map.of(
+                            "B", Ingredient.of(Items.LEVER),
+                            "W", Ingredient.of(tinCable),
+                            "C", Ingredient.of(circuitBasic),
+                            "Q", blank()));
+        }
+        if (blankAvailable
+                && available(tinCable, tinWire, lumiumWire, circuitBasic)) {
+            machineRecipe(
+                    output,
+                    "display_energy",
+                    List.of("CLB", "WQW"),
+                    Map.of(
+                            "C", Ingredient.of(circuitBasic),
+                            "L", Ingredient.of(lumiumWire),
+                            "B", Ingredient.of(tinWire),
+                            "W", Ingredient.of(tinCable),
+                            "Q", blank()));
+        }
+        if (blankAvailable && available(tinCable, circuitBasic)) {
+            machineRecipe(
+                    output,
+                    "controller_redstone",
+                    List.of("BW ", "CQ "),
+                    Map.of(
+                            "B", Ingredient.of(Items.REDSTONE_TORCH),
+                            "W", Ingredient.of(tinCable),
+                            "C", Ingredient.of(circuitBasic),
+                            "Q", blank()));
+        }
+        if (blankAvailable && available(copperCable, circuitGood)) {
+            machineRecipe(
+                    output,
+                    "controller_auto_redstone",
+                    List.of("BW ", "CQ "),
+                    Map.of(
+                            "B", Ingredient.of(Items.LEVER),
+                            "W", Ingredient.of(copperCable),
+                            "C", Ingredient.of(circuitGood),
+                            "Q", blank()));
+        }
+        if (blankAvailable && available(copperCable, circuitBasic)) {
+            machineRecipe(
+                    output,
+                    "selector_redstone",
+                    List.of(" C ", "WQX", " B "),
+                    Map.of(
+                            "C", Ingredient.of(circuitBasic),
+                            "W", Ingredient.of(copperCable),
+                            "Q", blank(),
+                            "X", Ingredient.of(selector),
+                            "B", Ingredient.of(Items.COMPARATOR)));
+        }
+        if (blankAvailable) {
+            timerRecipe(
+                    output,
+                    "controller_auto_timer_1m",
+                    circuitMaster,
+                    List.of("BWd", "CQ "));
+            timerRecipe(
+                    output,
+                    "controller_auto_timer_5m",
+                    circuitElite,
+                    List.of("BW ", "CQd"));
+            timerRecipe(
+                    output,
+                    "controller_auto_timer_10m",
+                    circuitAdvanced,
+                    List.of("BW ", "CQ ", "  d"));
+            timerRecipe(
+                    output,
+                    "controller_auto_timer_20m",
+                    circuitGood,
+                    List.of("BW ", "CQ ", " d "));
+            timerRecipe(
+                    output,
+                    "controller_auto_timer_30m",
+                    circuitBasic,
+                    List.of("BW ", "CQ ", "d  "));
+        }
+        if (blankAvailable && available(tinCable, tinWire, circuitGood)) {
+            machineRecipe(
+                    output,
+                    "scale_energy",
+                    List.of("WQW", "BCB"),
+                    Map.of(
+                            "W", Ingredient.of(tinCable),
+                            "Q", blank(),
+                            "B", Ingredient.of(tinWire),
+                            "C", Ingredient.of(circuitGood)));
+        }
+        if (blankAvailable && available(tinCable, circuitGood)) {
+            machineRecipe(
+                    output,
+                    "detector_running_possible",
+                    List.of("WQW", "BCB"),
+                    Map.of(
+                            "W", Ingredient.of(tinCable),
+                            "Q", blank(),
+                            "B", Ingredient.of(Items.COMPARATOR),
+                            "C", Ingredient.of(circuitGood)));
+            machineRecipe(
+                    output,
+                    "detector_running_passively",
+                    List.of("WQW", "BCB"),
+                    Map.of(
+                            "W", Ingredient.of(tinCable),
+                            "Q", blank(),
+                            "B", Ingredient.of(Items.REPEATER),
+                            "C", Ingredient.of(circuitGood)));
+            machineRecipe(
+                    output,
+                    "detector_running_actively",
+                    List.of("WQW", "BCX"),
+                    Map.of(
+                            "W", Ingredient.of(tinCable),
+                            "Q", blank(),
+                            "B", Ingredient.of(Items.COMPARATOR),
+                            "C", Ingredient.of(circuitGood),
+                            "X", Ingredient.of(Items.REPEATER)));
+            machineRecipe(
+                    output,
+                    "detector_running_successfully",
+                    List.of("WQW", "BCX"),
+                    Map.of(
+                            "W", Ingredient.of(tinCable),
+                            "Q", blank(),
+                            "B", button,
+                            "C", Ingredient.of(circuitGood),
+                            "X", Ingredient.of(Items.REDSTONE_TORCH)));
+        }
+        if (blankAvailable
+                && available(tinCable, circuitGood, brassSmallGear)) {
+            machineRecipe(
+                    output,
+                    "scale_progress",
+                    List.of("WQW", "BCB"),
+                    Map.of(
+                            "W", Ingredient.of(tinCable),
+                            "Q", blank(),
+                            "B", Ingredient.of(brassSmallGear),
+                            "C", Ingredient.of(circuitGood)));
+        }
+        if (blankAvailable && available(tinCable)) {
+            machineRecipe(
+                    output,
+                    "redstone_emitter",
+                    List.of("BQB", "WXW"),
+                    Map.of(
+                            "B", button,
+                            "Q", blank(),
+                            "W", Ingredient.of(tinCable),
+                            "X", Ingredient.of(Items.COMPARATOR)));
+        }
+        if (available(ironRod, ironRotor)) {
+            machineRecipe(
+                    output,
+                    "vent",
+                    List.of("RRR", "RXR", "RRR"),
+                    Map.of(
+                            "R", Ingredient.of(ironRod),
+                            "X", Ingredient.of(ironRotor)));
+        }
+        if (blankAvailable && available(tinCable, circuitGood)) {
+            machineRecipe(
+                    output,
+                    "controller_covers",
+                    List.of("BW ", "CQ "),
+                    Map.of(
+                            "B", Ingredient.of(Items.COMPARATOR),
+                            "W", Ingredient.of(tinCable),
+                            "C", Ingredient.of(circuitGood),
+                            "Q", blank()));
+        }
+        if (blankAvailable && available(circuitBasic)) {
+            machineRecipe(
+                    output,
+                    "selector_button_panel",
+                    List.of("BXB", "BQB", "BCB"),
+                    Map.of(
+                            "B", button,
+                            "X", Ingredient.of(selector),
+                            "Q", blank(),
+                            "C", Ingredient.of(circuitBasic)));
+        }
+        if (blankAvailable && available(redAlloyWire)) {
+            machineRecipe(
+                    output,
+                    "redstone_conductor_in",
+                    List.of("R  ", "Q  "),
+                    Map.of(
+                            "R", Ingredient.of(redAlloyWire),
+                            "Q", blank()));
+            machineRecipe(
+                    output,
+                    "redstone_conductor_out",
+                    List.of("Q  ", "R  "),
+                    Map.of(
+                            "R", Ingredient.of(redAlloyWire),
+                            "Q", blank()));
+            ShapelessRecipeBuilder.shapeless(
+                            RecipeCategory.MISC,
+                            machineCoverItem("redstone_conductor_in"))
+                    .requires(machineCoverItem("redstone_conductor_out"))
+                    .unlockedBy(
+                            "has_redstone_conductor_out",
+                            has(machineCoverItem("redstone_conductor_out")))
+                    .save(output, id("redstone_conductor_in_convert"));
+            ShapelessRecipeBuilder.shapeless(
+                            RecipeCategory.MISC,
+                            machineCoverItem("redstone_conductor_out"))
+                    .requires(machineCoverItem("redstone_conductor_in"))
+                    .unlockedBy(
+                            "has_redstone_conductor_in",
+                            has(machineCoverItem("redstone_conductor_in")))
+                    .save(output, id("redstone_conductor_out_convert"));
+        }
+        // selector_tag is carried by an existing programmed circuit and has
+        // no new item recipe; material screwdriver is a catalyst for timers.
+    }
+
+    private static Ingredient blank() {
+        return Ingredient.of(machineCoverItem("cover_blank"));
+    }
+
+    private static Item machineCoverItem(String definitionPath) {
+        return ModItems.machineCover(
+                MachineCoverKinds.itemPath(definitionPath)).get();
+    }
+
+    private static void machineRecipe(
+            RecipeOutput output,
+            String path,
+            List<String> pattern,
+            Map<String, Ingredient> ingredients) {
+        output.accept(
+                id(MachineCoverKinds.itemPath(path)),
+                new ShapedCatalystRecipe(
+                        pattern,
+                        ingredients,
+                        Map.of(),
+                        new ItemStack(machineCoverItem(path))),
+                null);
+    }
+
+    private static void timerRecipe(
+            RecipeOutput output,
+            String path,
+            Item circuit,
+            List<String> pattern) {
+        Item tinCable = sourceItem("tin", MaterialPrefixes.CABLE);
+        if (circuit == null || tinCable == null) {
+            return;
+        }
+        machineCatalystRecipe(
+                output,
+                path,
+                pattern,
+                Map.of(
+                        "B", Ingredient.of(Items.REPEATER),
+                        "W", Ingredient.of(tinCable),
+                        "C", Ingredient.of(circuit),
+                        "Q", blank()),
+                Map.of(
+                        "d", Ingredient.of(
+                                ModItems.MATERIAL_SCREWDRIVER.get())));
+    }
+
+    private static void machineCatalystRecipe(
+            RecipeOutput output,
+            String path,
+            List<String> pattern,
+            Map<String, Ingredient> ingredients,
+            Map<String, Ingredient> catalysts) {
+        output.accept(
+                id(MachineCoverKinds.itemPath(path)),
+                new ShapedCatalystRecipe(
+                        pattern,
+                        ingredients,
+                        catalysts,
+                        new ItemStack(machineCoverItem(path))),
+                null);
+    }
+
+    private static Item sourceItem(
+            String material,
+            MaterialPrefix prefix) {
+        return MaterialLookup.item(material, prefix).orElse(null);
+    }
+
+    private static Item techPart(String path) {
+        try {
+            return ModItems.technologicalPart(path).get();
+        } catch (IllegalArgumentException exception) {
+            return null;
+        }
+    }
+
+    private static boolean available(Item... items) {
+        for (Item item : items) {
+            if (item == null) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private static void addHopperRecipes(RecipeOutput output) {
@@ -576,6 +941,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_piston", has(Items.PISTON))
                 .save(output, id("robot_arm_cover"));
         compactElectricCoverRecipes(output);
+        machineCoverRecipes(output);
         ShapedRecipeBuilder.shaped(
                         RecipeCategory.MISC,
                         ModItems.PRESSURE_VALVE_COVER.get())

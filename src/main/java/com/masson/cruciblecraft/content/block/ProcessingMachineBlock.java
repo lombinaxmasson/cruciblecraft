@@ -2,7 +2,12 @@ package com.masson.cruciblecraft.content.block;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.masson.cruciblecraft.api.tool.ToolAction;
+import com.masson.cruciblecraft.api.tool.ToolInteractable;
+import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverBlockInteraction;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverHost;
 import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
@@ -17,6 +22,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -32,7 +38,8 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 
 /** Shared facing/menu/ticker block for immutable configured processing specs. */
-public class ProcessingMachineBlock extends Block implements EntityBlock {
+public class ProcessingMachineBlock extends Block
+        implements EntityBlock, ToolInteractable {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     private final MachineVariant variant;
 
@@ -132,11 +139,63 @@ public class ProcessingMachineBlock extends Block implements EntityBlock {
 
     @Override protected InteractionResult useWithoutItem(
             BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
+        if (level.getBlockEntity(pos) instanceof MachineCoverHost machine
+                && MachineCoverBlockInteraction.rightClick(
+                        machine, level, pos, player, hit)) {
+            return InteractionResult.SUCCESS;
+        }
         if (!level.isClientSide && player instanceof ServerPlayer server
                 && level.getBlockEntity(pos) instanceof ConfiguredProcessingMachineBlockEntity machine) {
             server.openMenu(machine, data -> data.writeBlockPos(pos));
         }
         return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    public ToolResult useTool(
+            ToolAction action,
+            net.minecraft.world.item.context.UseOnContext context) {
+        if (context.getLevel().getBlockEntity(context.getClickedPos())
+                instanceof MachineCoverHost machine) {
+            return MachineCoverBlockInteraction.useTool(
+                    machine, action, context);
+        }
+        return ToolResult.PASS;
+    }
+
+    @Override
+    protected boolean isSignalSource(BlockState state) {
+        return true;
+    }
+
+    @Override
+    protected int getSignal(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            Direction direction) {
+        return MachineCoverBlockInteraction.weakRedstone(
+                level, pos, direction);
+    }
+
+    @Override
+    protected int getDirectSignal(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            Direction direction) {
+        return MachineCoverBlockInteraction.directRedstone(
+                level, pos, direction);
+    }
+
+    @Override
+    public boolean canConnectRedstone(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            @Nullable Direction direction) {
+        return MachineCoverBlockInteraction.canConnectRedstone(
+                level, pos, direction);
     }
 
     @Override protected void onRemove(

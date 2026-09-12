@@ -18,6 +18,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
+
 import net.minecraft.resources.ResourceLocation;
 
 /** Strict bundled catalog for data-defined cover instances. */
@@ -36,6 +38,8 @@ public final class CoverDefinitionCatalog {
             "/data/cruciblecraft/logistics_display_cpu_cover_definitions.json";
     private static final String COMPONENT_TIER_RESOURCE =
             "/data/cruciblecraft/cover_component_tier_definitions.json";
+    private static final String MACHINE_COVER_RESOURCE =
+            "/data/cruciblecraft/machine_cover_definitions.json";
     private static final Set<String> DOCUMENT_FIELDS =
             Set.of("schemaVersion", "definitions");
     private static final Set<String> DEFINITION_FIELDS = Set.of(
@@ -132,10 +136,16 @@ public final class CoverDefinitionCatalog {
                 definitions,
                 COMPONENT_TIER_RESOURCE,
                 "compact electric cover catalog");
+        loadInto(
+                definitions,
+                MACHINE_COVER_RESOURCE,
+                "machine cover catalog");
         Set<String> ids = definitions.keySet().stream()
                 .map(ResourceLocation::toString)
                 .collect(java.util.stream.Collectors.toSet());
-        int expected = 23 + CoverComponentTiers.definitionIds().size();
+        int expected = 23
+                + CoverComponentTiers.definitionIds().size()
+                + MachineCoverKinds.DEFINITION_COUNT;
         if (!ids.containsAll(REQUIRED_ITEM_NETWORK_IDS)
                 || !ids.containsAll(REQUIRED_FLUID_NETWORK_IDS)
                 || !ids.containsAll(REQUIRED_GENERIC_NETWORK_IDS)

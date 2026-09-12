@@ -3,6 +3,7 @@ package com.masson.cruciblecraft.network;
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverHost;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinition;
 
 import net.minecraft.core.BlockPos;
@@ -100,6 +101,8 @@ public record CoverConfigurationPayload(
                 pipe.configureCover(side, field, payload.value);
             } else if (blockEntity instanceof FluidPipeBlockEntity pipe) {
                 pipe.configureCover(side, field, payload.value);
+            } else if (blockEntity instanceof MachineCoverHost machine) {
+                machine.configureCover(side, field, payload.value);
             }
         }).exceptionally(failure -> {
             CrucibleCraft.LOGGER.warn(

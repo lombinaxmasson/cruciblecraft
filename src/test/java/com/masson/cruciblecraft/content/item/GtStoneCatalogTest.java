@@ -35,7 +35,7 @@ class GtStoneCatalogTest {
         assertTrue(slabs > 0);
         assertFalse(ids.contains("cruciblecraft:gt_stone/andesite"));
         GtStoneCatalog.Variant andesite = GtStoneCatalog.require(
-                ResourceLocation.parse("cruciblecraft:gt_stone/andesite_m8"));
+                ResourceLocation.parse("cruciblecraft:andesite/reinforced_bricks"));
         assertFalse(andesite.slab());
         assertEquals(8, andesite.meta());
     }

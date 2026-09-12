@@ -43,11 +43,41 @@ public record MachineTransaction(
             List<ProcessingMachineSpec.TankSpec> inputTanks,
             List<ProcessingMachineSpec.TankSpec> outputTanks,
             List<ItemStack> rolledOutputs) {
+        return prepare(
+                recipe,
+                items,
+                inputSlots,
+                outputSlots,
+                fluids,
+                inputTanks,
+                outputTanks,
+                rolledOutputs,
+                List.of());
+    }
+
+    public static Optional<MachineTransaction> prepare(
+            GTRecipe recipe,
+            List<ItemStack> items,
+            List<Integer> inputSlots,
+            List<Integer> outputSlots,
+            List<FluidStack> fluids,
+            List<ProcessingMachineSpec.TankSpec> inputTanks,
+            List<ProcessingMachineSpec.TankSpec> outputTanks,
+            List<ItemStack> rolledOutputs,
+            List<ItemStack> extraOffered) {
         List<ItemStack> afterItems = copyItems(items);
         List<FluidStack> afterFluids = copyFluids(fluids);
 
-        List<ItemStack> offeredItems =
-                inputSlots.stream().map(afterItems::get).toList();
+        List<ItemStack> offeredItems = new ArrayList<>(
+                inputSlots.stream().map(afterItems::get).toList());
+        if (extraOffered != null) {
+            for (ItemStack extra : extraOffered) {
+                offeredItems.add(
+                        extra == null || extra.isEmpty()
+                                ? ItemStack.EMPTY
+                                : extra.copy());
+            }
+        }
         Optional<long[][]> itemAllocation = recipe.itemAllocation(offeredItems);
         if (itemAllocation.isEmpty()) {
             return Optional.empty();

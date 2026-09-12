@@ -39,6 +39,8 @@ COVER_FILES = (
     / "src/main/resources/data/cruciblecraft/logistics_dump_cover_definitions.json",
     ROOT
     / "src/main/resources/data/cruciblecraft/logistics_display_cpu_cover_definitions.json",
+    ROOT
+    / "src/main/resources/data/cruciblecraft/machine_cover_definitions.json",
 )
 BATH = ROOT / "src/main/resources/data/cruciblecraft/bath_identity_catalog.json"
 SEMANTIC = (
@@ -109,7 +111,16 @@ NETWORK_REGISTER_RE = re.compile(
 )
 
 EXPECTED_COVER_BEHAVIORS = [
+    "cruciblecraft:controller_auto",
+    "cruciblecraft:controller_auto_redstone",
+    "cruciblecraft:controller_auto_timer",
+    "cruciblecraft:controller_covers",
+    "cruciblecraft:controller_display",
+    "cruciblecraft:controller_redstone",
     "cruciblecraft:conveyor",
+    "cruciblecraft:cover_blank",
+    "cruciblecraft:detector_running",
+    "cruciblecraft:display_energy",
     "cruciblecraft:filter",
     "cruciblecraft:logistics_display_cpu",
     "cruciblecraft:logistics_fluid_storage",
@@ -121,10 +132,21 @@ EXPECTED_COVER_BEHAVIORS = [
     "cruciblecraft:logistics_item_transfer",
     "cruciblecraft:pressure_valve",
     "cruciblecraft:pump_adapter",
+    "cruciblecraft:redstone_conductor_in",
+    "cruciblecraft:redstone_conductor_out",
+    "cruciblecraft:redstone_emitter",
+    "cruciblecraft:redstone_repeater",
+    "cruciblecraft:redstone_torch",
     "cruciblecraft:retriever_item",
     "cruciblecraft:robot_arm",
+    "cruciblecraft:scale_energy",
+    "cruciblecraft:scale_progress",
+    "cruciblecraft:selector_button_panel",
     "cruciblecraft:selector_manual",
+    "cruciblecraft:selector_redstone",
+    "cruciblecraft:selector_tag",
     "cruciblecraft:shutter",
+    "cruciblecraft:vent",
 ]
 
 
@@ -365,6 +387,26 @@ def collect_behaviors() -> list[str]:
         "cruciblecraft:logistics_generic_transfer",
         "cruciblecraft:logistics_generic_dump",
         "cruciblecraft:logistics_display_cpu",
+        "cruciblecraft:cover_blank",
+        "cruciblecraft:controller_auto",
+        "cruciblecraft:controller_auto_redstone",
+        "cruciblecraft:controller_auto_timer",
+        "cruciblecraft:controller_covers",
+        "cruciblecraft:controller_display",
+        "cruciblecraft:controller_redstone",
+        "cruciblecraft:detector_running",
+        "cruciblecraft:display_energy",
+        "cruciblecraft:redstone_conductor_in",
+        "cruciblecraft:redstone_conductor_out",
+        "cruciblecraft:redstone_emitter",
+        "cruciblecraft:redstone_repeater",
+        "cruciblecraft:redstone_torch",
+        "cruciblecraft:scale_energy",
+        "cruciblecraft:scale_progress",
+        "cruciblecraft:selector_button_panel",
+        "cruciblecraft:selector_redstone",
+        "cruciblecraft:selector_tag",
+        "cruciblecraft:vent",
     ):
         if candidate not in behaviors:
             behaviors.append(candidate)

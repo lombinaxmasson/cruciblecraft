@@ -55,7 +55,7 @@ class PlayerCompleteTest(unittest.TestCase):
         self.assertEqual([], errors)
 
     def test_machine_recipe_output_counts_as_obtain(self) -> None:
-        filled_geiger = "gt_multiitem/multiitem_randomtools_m10002"
+        filled_geiger = "tool/geiger_counter_measures_neutron_count"
         self.assertIn(filled_geiger, player_complete.recipe_output_ids())
         self.assertEqual(
             [],

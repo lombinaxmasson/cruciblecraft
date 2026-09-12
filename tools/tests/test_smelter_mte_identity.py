@@ -2,8 +2,10 @@
 """Smelter MTE identity catalog: 1817 exact metas, Bath overlap mapped."""
 from __future__ import annotations
 
+import re
 import unittest
 
+from tools import catalog_modern_ids as modern
 from tools import closeout_seal
 from tools import census_common as census
 from tools.recipe_bulk.ordinary_source import load_mte_runtime
@@ -45,7 +47,11 @@ class SmelterMteIdentityTest(unittest.TestCase):
             self.assertTrue(str(row["runtime_id"]).startswith("cruciblecraft:"))
             self.assertEqual("exact_item", row["mapping_class"])
         for row in created:
-            self.assertEqual(f"gt_mte/mte_{row['meta']}", row["registry_path"])
+            self.assertEqual(
+                modern.registry_path_for("gregtech:gt.multitileentity", int(row["meta"])),
+                row["registry_path"],
+            )
+            self.assertFalse(re.search(r"gt_mte/mte_\d+$", str(row["registry_path"])))
 
     def test_mte_runtime_overlay_covers_catalog(self) -> None:
         catalog = census.load_json(CATALOG)

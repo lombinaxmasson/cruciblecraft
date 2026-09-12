@@ -325,14 +325,14 @@ def write_recipes() -> None:
                 "C": {"item": "cruciblecraft:circuit_basic"},
             },
             "result": {
-                "id": "cruciblecraft:gt_multiitem/multiitem_randomtools_m10001",
+                "id": "cruciblecraft:tool/geiger_counter_empty_fill_with_proper_inert_gas",
                 "count": 1,
             },
             "catalysts": {"d": {"item": "cruciblecraft:material_screwdriver"}},
         },
     )
-    empty = {"item": "cruciblecraft:gt_multiitem/multiitem_randomtools_m10001"}
-    filled = "cruciblecraft:gt_multiitem/multiitem_randomtools_m10002"
+    empty = {"item": "cruciblecraft:tool/geiger_counter_empty_fill_with_proper_inert_gas"}
+    filled = "cruciblecraft:tool/geiger_counter_measures_neutron_count"
     for gas in ("helium", "neon", "argon"):
         gt_recipe(
             recipe / "nuclear" / f"geiger_canner_{gas}.json",

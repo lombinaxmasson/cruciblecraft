@@ -37,6 +37,7 @@ DUNGEON = "worldgen/gt-dungeon"
 SANDING = "machines/sanding"
 OVEN = "machines/oven"
 SENSORS = "content/sensors"
+CATALOG_MODERN = "registry/catalog-modern-ids"
 NUCLEAR = "energy/nuclear-fission-survival"
 HOT_FLUIDS = "energy/nuclear-fission-hot-fluids"
 OBSERVATION = "energy/nuclear-fission-observation-safety"
@@ -55,6 +56,7 @@ class CapabilityLedgerTest(unittest.TestCase):
         slugs = [row["slug"] for row in documents]
         self.assertIn(FLUID, slugs)
         self.assertIn("logistics/cover-net-r0", slugs)
+        self.assertIn("logistics/cover-remainder", slugs)
         self.assertIn(ITEM, slugs)
         self.assertIn(GENERIC, slugs)
         self.assertIn(CORE, slugs)
@@ -76,6 +78,7 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertIn(HOT_FLUIDS, slugs)
         self.assertIn(OBSERVATION, slugs)
         self.assertIn("registry/tool-head-remainder", slugs)
+        self.assertIn(CATALOG_MODERN, slugs)
         converter = next(row for row in documents if row["slug"] == CONVERTER)
         self.assertEqual("player_complete", converter["maturity"])
         self.assertEqual("accepted", converter["workflow"])
@@ -162,7 +165,7 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertIn(CLUSTER_MILL, complete)
         self.assertIn(ROLL_FORMER, complete)
         self.assertIn(HEAT_EXCHANGERS, complete)
-        self.assertIsNone(compiled["unique_active_slug"])
+        self.assertEqual(CATALOG_MODERN, compiled["unique_active_slug"])
         self.assertEqual(
             "declaration is not proof; player_complete requires fresh "
             "GameTestServer execution; runClient is required on promotion",
@@ -176,8 +179,15 @@ class CapabilityLedgerTest(unittest.TestCase):
             for row in compiled["capabilities"]
             if row["workflow"] == "active"
         ]
-        self.assertEqual([], active)
-        self.assertEqual(set(), set(ledger.load_card_plan_index()["active"]))
+        self.assertEqual([CATALOG_MODERN], active)
+        self.assertEqual(
+            {CATALOG_MODERN},
+            set(ledger.load_card_plan_index()["active"]),
+        )
+        self.assertIn(
+            "logistics/cover-remainder",
+            ledger.load_card_plan_index()["closed"],
+        )
         self.assertIn(SENSORS, ledger.load_card_plan_index()["closed"])
         self.assertIn(
             TREES,
@@ -238,6 +248,7 @@ class CapabilityLedgerTest(unittest.TestCase):
                 DUNGEON,
                 SANDING,
                 OVEN,
+                "logistics/cover-remainder",
             },
             set(compiled["impact"]["logistics/cover-net-r0"]),
         )

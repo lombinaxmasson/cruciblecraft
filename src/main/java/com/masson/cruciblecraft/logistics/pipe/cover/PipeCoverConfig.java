@@ -19,6 +19,8 @@ public record PipeCoverConfig(
         int visual,
         int redstone) {
     public static final int MAX_MATCH_ID_LENGTH = 128;
+    /** GT6 cover visuals are a signed short. */
+    public static final int MAX_VISUAL = 32_767;
     public static final PipeCoverConfig EMPTY = new PipeCoverConfig(
             Optional.empty(),
             Optional.empty(),
@@ -63,7 +65,7 @@ public record PipeCoverConfig(
         networkId.ifPresent(value -> bounded(
                 "network id", value, 0, CoverDefinition.MAX_NETWORK_ID));
         invert.ifPresent(value -> bounded("invert", value, 0, 1));
-        bounded("visual", visual, 0, 10);
+        bounded("visual", visual, 0, MAX_VISUAL);
         bounded("redstone", redstone, 0, 15);
     }
 

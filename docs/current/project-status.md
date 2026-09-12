@@ -6,7 +6,7 @@
 
 ## Unique active
 
-无。`capability.json` 里没有 `workflow=active`。
+`registry/catalog-modern-ids`（Catalog modern IDs，`workflow=active`，`maturity=runtime_ready`）；计划 [目录身份现代 id 详细计划](../history/card-plans/active/目录身份现代id详细计划.md)。
 
 ## Prep（不占落地锁）
 
@@ -48,13 +48,14 @@
 - `machines/cluster-mill` — Cluster Mill — [集群轧机详细计划](../history/card-plans/closed/集群轧机详细计划.md)
 - `machines/roll-former` — Roll Former — [辊压成型机详细计划](../history/card-plans/closed/辊压成型机详细计划.md)
 
-## runtime_ready（accepted，非玩家完成）（14）
+## runtime_ready（accepted，非玩家完成）（15）
 
 RecipeMap / 主机已挂，获得格或配方仍 blocked。不得宣称 `player_complete`。
 
 - `content/electric-wire-cable-mte-fold` — Electric Wire/Cable MTE Fold — [导线电缆 MTE 折回详细计划](../history/card-plans/closed/导线电缆MTE折回详细计划.md)
 - `content/sensors` — Sensors — [Sensors 详细计划](../history/card-plans/closed/Sensors详细计划.md)
 - `content/technological-parts-foundation` — Technological Parts Foundation — [技术中间件基础详细计划](../history/card-plans/closed/技术中间件基础详细计划.md)
+- `logistics/cover-remainder` — Cover remainder — [盖板余量详细计划](../history/card-plans/closed/盖板余量详细计划.md)
 - `machines/injector` — Injector — [注射机详细计划](../history/card-plans/closed/注射机详细计划.md)
 - `machines/laminator` — Laminator — [层压机详细计划](../history/card-plans/closed/层压机详细计划.md)
 - `machines/loom` — Loom — [织机详细计划](../history/card-plans/closed/织机详细计划.md)

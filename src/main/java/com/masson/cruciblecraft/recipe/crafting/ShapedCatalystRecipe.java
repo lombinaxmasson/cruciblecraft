@@ -22,12 +22,19 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
 /**
- * A fixed-width crafting recipe with GT6-style tool catalyst slots.
+ * A 3-column crafting recipe with GT6-style tool catalyst slots.
  *
  * <p>GT6's {@code CR.DEF_NCC} recipes put tools in lower-case pattern slots.
  * Vanilla shaped recipes cannot preserve those tools, so this recipe keeps
  * the lower-case slots in the grid and applies
  * {@link CraftingToolWear} instead of consuming the stack.
+ *
+ * <p>Patterns stay 3 columns to match GT6 source, including trailing spaces.
+ * Matching uses the occupied bounding box because 1.21
+ * {@link CraftingInput#of} strips empty borders. Recipe-book placement still
+ * requires a 3x3 crafting table; a shrunk 2-column grid can still match in a
+ * player 2x2 because vanilla {@code getRecipeFor} does not consult
+ * {@link #canCraftInDimensions}.
  */
 public final class ShapedCatalystRecipe implements CraftingRecipe {
     public static final MapCodec<ShapedCatalystRecipe> CODEC =
@@ -50,6 +57,7 @@ public final class ShapedCatalystRecipe implements CraftingRecipe {
     private final Map<String, Ingredient> ingredients;
     private final Map<String, Ingredient> catalysts;
     private final ItemStack result;
+    private final Occupied occupied;
 
     public ShapedCatalystRecipe(
             List<String> pattern,
@@ -65,6 +73,7 @@ public final class ShapedCatalystRecipe implements CraftingRecipe {
         this.ingredients = Map.copyOf(new LinkedHashMap<>(ingredients));
         this.catalysts = Map.copyOf(new LinkedHashMap<>(catalysts));
         this.result = result.copy();
+        this.occupied = Occupied.of(this.pattern);
         validateSymbols();
     }
 
@@ -86,28 +95,22 @@ public final class ShapedCatalystRecipe implements CraftingRecipe {
 
     @Override
     public boolean matches(CraftingInput input, Level level) {
-        if (input.width() != 3
-                || (input.height() != pattern.size() && input.height() != 3)) {
+        if (input.width() != occupied.width()
+                || input.height() != occupied.height()) {
             return false;
         }
-        for (int row = 0; row < pattern.size(); row++) {
-            String line = pattern.get(row);
-            for (int column = 0; column < 3; column++) {
-                String symbol = String.valueOf(line.charAt(column));
+        for (int row = 0; row < occupied.height(); row++) {
+            String line = pattern.get(occupied.minRow() + row);
+            for (int column = 0; column < occupied.width(); column++) {
+                String symbol = String.valueOf(
+                        line.charAt(occupied.minColumn() + column));
                 Ingredient ingredient = ingredientFor(symbol);
-                ItemStack stack = input.getItem(row * 3 + column);
+                ItemStack stack = input.getItem(row * input.width() + column);
                 if (ingredient == null) {
                     if (!stack.isEmpty()) {
                         return false;
                     }
                 } else if (!ingredient.test(stack)) {
-                    return false;
-                }
-            }
-        }
-        if (input.height() == 3 && pattern.size() == 2) {
-            for (int column = 0; column < 3; column++) {
-                if (!input.getItem(6 + column).isEmpty()) {
                     return false;
                 }
             }
@@ -126,19 +129,20 @@ public final class ShapedCatalystRecipe implements CraftingRecipe {
     public NonNullList<ItemStack> getRemainingItems(CraftingInput input) {
         NonNullList<ItemStack> remaining =
                 NonNullList.withSize(input.size(), ItemStack.EMPTY);
-        if (input.width() != 3
-                || (input.height() != pattern.size() && input.height() != 3)) {
+        if (input.width() != occupied.width()
+                || input.height() != occupied.height()) {
             return remaining;
         }
-        for (int row = 0; row < pattern.size(); row++) {
-            String line = pattern.get(row);
-            for (int column = 0; column < 3; column++) {
-                String symbol = String.valueOf(line.charAt(column));
+        for (int row = 0; row < occupied.height(); row++) {
+            String line = pattern.get(occupied.minRow() + row);
+            for (int column = 0; column < occupied.width(); column++) {
+                String symbol = String.valueOf(
+                        line.charAt(occupied.minColumn() + column));
                 if (catalysts.containsKey(symbol)) {
+                    int index = row * input.width() + column;
                     remaining.set(
-                            row * 3 + column,
-                            CraftingToolWear.apply(
-                                    input.getItem(row * 3 + column)));
+                            index,
+                            CraftingToolWear.apply(input.getItem(index)));
                 }
             }
         }
@@ -147,7 +151,7 @@ public final class ShapedCatalystRecipe implements CraftingRecipe {
 
     @Override
     public boolean canCraftInDimensions(int width, int height) {
-        return width >= 3 && height >= pattern.size();
+        return width >= 3 && height >= 3;
     }
 
     @Override
@@ -207,6 +211,41 @@ public final class ShapedCatalystRecipe implements CraftingRecipe {
         if (symbol == null || symbol.length() != 1 || " ".equals(symbol)) {
             throw new IllegalArgumentException(
                     "Shaped catalyst symbols must be one non-space character");
+        }
+    }
+
+    /**
+     * Occupied bounding box of the stored 3-column GT6 pattern.
+     *
+     * <p>1.21 {@link CraftingInput#of} strips empty borders, so a pattern
+     * like {@code "Sh "} / {@code "Pd "} is presented as a 2x2 input.
+     */
+    private record Occupied(int minColumn, int minRow, int width, int height) {
+        static Occupied of(List<String> pattern) {
+            int minColumn = 3;
+            int maxColumn = -1;
+            int minRow = pattern.size();
+            int maxRow = -1;
+            for (int row = 0; row < pattern.size(); row++) {
+                String line = pattern.get(row);
+                for (int column = 0; column < 3; column++) {
+                    if (line.charAt(column) != ' ') {
+                        minColumn = Math.min(minColumn, column);
+                        maxColumn = Math.max(maxColumn, column);
+                        minRow = Math.min(minRow, row);
+                        maxRow = Math.max(maxRow, row);
+                    }
+                }
+            }
+            if (maxColumn < 0) {
+                throw new IllegalArgumentException(
+                        "Shaped catalyst pattern is empty");
+            }
+            return new Occupied(
+                    minColumn,
+                    minRow,
+                    maxColumn - minColumn + 1,
+                    maxRow - minRow + 1);
         }
     }
 }

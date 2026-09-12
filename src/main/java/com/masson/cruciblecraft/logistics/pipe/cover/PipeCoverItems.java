@@ -1,9 +1,12 @@
 package com.masson.cruciblecraft.logistics.pipe.cover;
 
 import com.masson.cruciblecraft.registry.ModItems;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
+import com.masson.cruciblecraft.registry.ModComponents;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 /** Maps a persisted cover definition to the player-facing cover item. */
@@ -13,6 +16,22 @@ public final class PipeCoverItems {
     public static ItemStack stackFor(PipeCover cover) {
         if (cover == null) {
             return ItemStack.EMPTY;
+        }
+        String path = cover.definitionId().getPath();
+        if ("selector_tag".equals(path)) {
+            ItemStack stack = new ItemStack(ModItems.PROGRAMMED_CIRCUIT.get());
+            stack.set(
+                    ModComponents.CIRCUIT_CONFIG.get(),
+                    Math.max(1, Math.min(
+                            com.masson.cruciblecraft.content.item.ProgrammedCircuitItem.MAX_CONFIG,
+                            cover.config().redstone() + 1)));
+            return stack;
+        }
+        if ("redstone_torch".equals(path)) {
+            return new ItemStack(Items.REDSTONE_TORCH);
+        }
+        if ("redstone_repeater".equals(path)) {
+            return new ItemStack(Items.REPEATER);
         }
         DeferredItem<?> item = itemFor(cover.definitionId());
         return item == null ? ItemStack.EMPTY : new ItemStack(item.get());
@@ -60,9 +79,15 @@ public final class PipeCoverItems {
                     ModItems.LOGISTICS_DISPLAY_CPU_STORAGE_COVER;
             case "logistics_display_cpu_conversion" ->
                     ModItems.LOGISTICS_DISPLAY_CPU_CONVERSION_COVER;
-            default -> CoverComponentTiers.findByDefinition(definitionId)
-                    .map(entry -> ModItems.compactElectricCover(entry.itemPath()))
-                    .orElse(null);
+            default -> {
+                var compact = CoverComponentTiers.findByDefinition(definitionId)
+                        .map(entry -> ModItems.compactElectricCover(
+                                entry.itemPath()));
+                if (compact.isPresent()) {
+                    yield compact.orElseThrow();
+                }
+                yield MachineCoverKinds.itemFor(definitionId);
+            }
         };
     }
 }

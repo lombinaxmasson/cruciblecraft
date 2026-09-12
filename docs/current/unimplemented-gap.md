@@ -20,7 +20,8 @@
 
 当前边界：
 
-- unique-active 当前为空；prep 是 `machines/printer`、
+- unique-active 以 [project-status.md](project-status.md) 为准，本页不复述；
+  prep 是 `machines/printer`、
   `worldgen/gt-dungeon`、`worldgen/gt-planet-rocks`、`worldgen/gt-center`。
   地牢已退回 prep，结构载体仍在仓库里，但房间几何与 GT 石材形态未完成，
   不得宣称 `runtime_ready`。
@@ -52,7 +53,7 @@
 四块：**机器配方尾账**、**MTE catalog 分母 1,817**、**LuV–PUV1 零件**、
 **下一阶段内容切片**。1,817 是 `gt_mte` catalog 行，不是织机/层压机 overflow。
 
-现行 unique-active：无。Sensors 已关闭 `runtime_ready`。熔炉已关闭 `runtime_ready`。打磨机已关闭 `runtime_ready`。`worldgen/gt-trees` 已关闭
+现行 unique-active 见 [project-status.md](project-status.md)。盖板余量已关闭 `runtime_ready`。Sensors 已关闭 `runtime_ready`。熔炉已关闭 `runtime_ready`。打磨机已关闭 `runtime_ready`。`worldgen/gt-trees` 已关闭
 `runtime_ready`。地牢退回 prep，上一轮的 `runtime_ready` 声明仍撤回。技术中间件
 基础已关闭 `runtime_ready`。印刷机与两张非矿 worldgen（行星岩 / Center）
 仍是 prep。LuV–PUV1 不在本卡分母内。
@@ -242,10 +243,13 @@ Grindstone `32703` 不在本卡。关闭目标不是 `player_complete`。
 计划 [打磨机详细计划](../history/card-plans/closed/打磨机详细计划.md)。
 余量回收记录见
 [工具头前缀与打磨机余量回收详细计划](../history/card-plans/closed/工具头前缀与打磨机余量回收详细计划.md)。
-现行 unique-active 为空，见第 0.1 节。Sensors 与熔炉已关闭 `runtime_ready`。
+现行 unique-active 见 [project-status.md](project-status.md)。盖板余量、Sensors 与熔炉已关闭
+`runtime_ready`。
 
-其余未认领的封面 `controller_*`、`detector_*`、redstone 以及建筑方块
-identity / behavior，仍没有实现 owner，不能从 `cc_mechanism = none` 直接推导工作量。
+剩余的 `controller_*`、`detector_*`、redstone 盖板已由 `logistics/cover-remainder`
+关闭为 `runtime_ready`；绝缘红石线宿主仍 blocked。建筑方块 identity / behavior
+仍没有 owner，不能从 `cc_mechanism = none` 直接推导工作量。盖板分母与合同见
+[盖板余量详细计划](../history/card-plans/closed/盖板余量详细计划.md)。
 
 ---
 
@@ -255,7 +259,8 @@ identity / behavior，仍没有实现 owner，不能从 `cc_mechanism = none` �
 
 | 项 | 在哪 | 现状 |
 | --- | --- | --- |
-| 物流余量 | `controller_*` / `detector_*` / redstone | 仍没有实现 owner |
+| 物流余量 | `redstone_torch` / `redstone_repeater` 绝缘红石线宿主 | 已关 `runtime_ready` `logistics/cover-remainder`；CC 红石线 MTE 仍是 prep。见[盖板余量详细计划](../history/card-plans/closed/盖板余量详细计划.md) |
+| 配方引擎 | `ShapedCatalystRecipe` 占用包围盒 vs 玩家 2×2 | 1.21 `CraftingInput.of` 去空边后两列网格仍能 `matches()`；`canCraftInDimensions` 已要求 3×3。不是下一张卡。 |
 | 计数上限与 kind envelope | capability map 的 report-only / count-ceiling 行 | 新 RecipeMap 前要先明确处理方式 |
 | 蒸汽涡轮 / 冷却器 | 热交换器第一切片不等于这两类主机 | 仍需独立 runtime、配方和玩家路径 |
 | 聚变 / 等离子 | 控制器生存配方、独立等离子流体和燃料 / 输出链 | 仍 blocked；不从已有 fusion 行推导 |

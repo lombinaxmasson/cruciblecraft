@@ -67,6 +67,8 @@ public final class DistillationTowerBlockEntity
         }
         if (tower.structureValid && !tower.pluginQuarantined) {
             tower.tickProcessingServer();
+        } else {
+            tower.tickCoversServer();
         }
     }
 

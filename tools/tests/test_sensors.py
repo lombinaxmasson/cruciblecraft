@@ -50,11 +50,11 @@ class SensorsCardTest(unittest.TestCase):
         self.assertEqual("source_exact", hosts[31015]["status"])
         self.assertEqual("source_exact", hosts[31019]["status"])
         self.assertEqual(
-            "cruciblecraft:gt_multiitem/multiitem_randomtools_m10003",
+            "cruciblecraft:tool/electrometer_measures_electricity",
             hosts[31015]["x"]["cc"],
         )
         self.assertEqual(
-            "cruciblecraft:gt_multiitem/multiitem_randomtools_m10004",
+            "cruciblecraft:tool/tachometer_measures_rotation_speed",
             hosts[31019]["x"]["cc"],
         )
         self.assertEqual(

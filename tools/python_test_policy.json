@@ -22,6 +22,7 @@
     "test_blocked_recipe_ledger",
     "test_logistics_core",
     "test_display_cpu",
+    "test_cover_remainder",
     "test_verification_profiles",
     "test_python_test_workflow",
     "test_check_no_workflow_hashes",
@@ -51,6 +52,7 @@
     "test_capability_ledger",
     "test_project_status",
     "test_capability_close",
+    "test_catalog_modern_ids",
     "test_registry_identity",
     "test_player_complete",
     "test_block_art",
@@ -175,6 +177,26 @@
       ],
       "test_modules": [
         "test_display_cpu"
+      ]
+    },
+    {
+      "paths": [
+        "tools/tests/test_cover_remainder.py",
+        "tools/capabilities/logistics/cover-remainder/**",
+        "tools/waves/runtime/cover-remainder/**",
+        "tools/wave_closeout.py",
+        "tools/recipe_bulk/slugs.py",
+        "src/main/java/com/masson/cruciblecraft/logistics/machinecover/**",
+        "src/main/java/com/masson/cruciblecraft/content/item/PipeCoverItem.java",
+        "src/main/java/com/masson/cruciblecraft/CrucibleCraft.java",
+        "src/main/resources/data/cruciblecraft/machine_cover_definitions.json",
+        "src/main/resources/assets/cruciblecraft/gt6_machine_covers_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/*_cover.png",
+        "src/test/java/com/masson/cruciblecraft/datagen/CoverRemainderResourceTest.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/CoverRemainderGameTests.java"
+      ],
+      "test_modules": [
+        "test_cover_remainder"
       ]
     },
     {
@@ -370,6 +392,9 @@
         "tools/tests/test_capability_ledger.py",
         "tools/tests/test_project_status.py",
         "tools/tests/test_capability_close.py",
+        "tools/catalog_modern_ids.py",
+        "tools/catalog_modern_id_map.json",
+        "tools/tests/test_catalog_modern_ids.py",
         "tools/registry_identity.py",
         "tools/build_registry_identity.py",
         "tools/registry_identity_manifest.json",
@@ -479,6 +504,7 @@
         "test_capability_ledger",
         "test_project_status",
         "test_capability_close",
+        "test_catalog_modern_ids",
         "test_logistics_cover_net_remainder",
         "test_logistics_core",
         "test_display_cpu",

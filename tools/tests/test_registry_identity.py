@@ -16,7 +16,7 @@ class RegistryIdentityTest(unittest.TestCase):
         self.assertEqual(
             identity.EXPECTED_COVER_BEHAVIORS, manifest["cover_behaviors"]
         )
-        self.assertEqual(16, manifest["behavior_count"])
+        self.assertEqual(36, manifest["behavior_count"])
 
     def test_low_heat_is_declared_new_distinct(self) -> None:
         rows = identity.dispositions()

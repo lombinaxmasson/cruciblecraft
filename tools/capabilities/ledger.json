@@ -73,7 +73,7 @@
       ],
       "maturity": "runtime_ready",
       "owned_paths": [
-        "docs/history/card-plans/active/技术中间件基础详细计划.md",
+        "docs/history/card-plans/closed/技术中间件基础详细计划.md",
         "src/component_rule_generated/resources/data/cruciblecraft/recipe/wiremill/**",
         "src/generated/resources/assets/cruciblecraft/lang/en_us.json",
         "src/generated/resources/assets/cruciblecraft/lang/zh_cn.json",
@@ -314,7 +314,7 @@
         "src/main/resources/assets/cruciblecraft/gt6_geiger_obtain_art_manifest.json",
         "src/main/resources/data/cruciblecraft/material_prefixes/capcellcon.json",
         "src/main/resources/data/cruciblecraft/recipe/gt_multiitem/extruder_shape_ccc.json",
-        "src/main/resources/data/cruciblecraft/recipe/gt_multiitem/multiitem_randomtools_m10001.json",
+        "src/main/resources/data/cruciblecraft/recipe/tool/geiger_counter_empty_fill_with_proper_inert_gas.json",
         "src/main/resources/data/cruciblecraft/recipe/nuclear/aluminium_capcellcon.json",
         "src/main/resources/data/cruciblecraft/recipe/nuclear/geiger_canner_*.json",
         "tools/emit_geiger_obtain.py",
@@ -413,6 +413,40 @@
       ],
       "slug": "logistics/cover-net-r0",
       "title": "Logistics cover network R0",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "logistics/cover-net-r0"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/盖板余量详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/logistics/machinecover/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/CoverRemainderGameTests.java",
+        "src/main/resources/data/cruciblecraft/machine_cover_definitions.json",
+        "src/main/resources/data/cruciblecraft_wave_runtime_cover_remainder/**",
+        "src/main/resources/assets/cruciblecraft/gt6_machine_covers_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/cover_blank_cover.png",
+        "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/controller_*_cover.png",
+        "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/display_energy_cover.png",
+        "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/selector_*_cover.png",
+        "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/detector_*_cover.png",
+        "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/scale_*_cover.png",
+        "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/redstone_*_cover.png",
+        "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/vent_cover.png",
+        "src/test/java/com/masson/cruciblecraft/datagen/CoverRemainderResourceTest.java",
+        "tools/capabilities/logistics/cover-remainder/**",
+        "tools/waves/runtime/cover-remainder/**",
+        "tools/tests/test_cover_remainder.py"
+      ],
+      "path": "tools/capabilities/logistics/cover-remainder/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "logistics/cover-remainder",
+      "title": "Cover remainder",
       "workflow": "accepted"
     },
     {
@@ -831,7 +865,7 @@
         "src/main/java/com/masson/cruciblecraft/machine/processing/prep/PressureWasherPrepSpec.java",
         "src/main/resources/assets/cruciblecraft/gt6_pressure_washer_art_manifest.json",
         "src/main/resources/assets/cruciblecraft/textures/block/machine/debarker/**",
-        "src/main/resources/assets/cruciblecraft/textures/item/gt_multiitem/multiitem_food_m280.png",
+        "src/main/resources/assets/cruciblecraft/textures/item/cinnamon/bark_don_t_let_anyone_challenge_you.png",
         "src/main/resources/data/cruciblecraft/machine_delivery.json",
         "src/main/resources/data/cruciblecraft/machine_kinds.json",
         "src/main/resources/data/cruciblecraft/machine_tiers.json",
@@ -929,6 +963,35 @@
       "slug": "machines/slicer",
       "title": "Slicer",
       "workflow": "accepted"
+    },
+    {
+      "depends_on": [],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/active/目录身份现代id详细计划.md",
+        "tools/catalog_modern_ids.py",
+        "tools/catalog_modern_id_map.json",
+        "tools/tests/test_catalog_modern_ids.py",
+        "tools/capabilities/registry/catalog-modern-ids/**",
+        "tools/waves/portfolio/mte-identity-disposition-r0/disposition_ledger.json",
+        "tools/waves/portfolio/mte-identity-disposition-r0/inherited_denominator.json",
+        "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json",
+        "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json",
+        "src/main/resources/data/cruciblecraft/semantic_object_catalog.json",
+        "src/main/resources/data/cruciblecraft/bath_identity_catalog.json",
+        "src/main/resources/data/cruciblecraft/gt_block_object_catalog.json",
+        "src/main/resources/data/cruciblecraft/bath_remainder_identity_catalog.json",
+        "src/main/resources/data/cruciblecraft/gt_stone_catalog.json",
+        "src/main/resources/data/cruciblecraft/slicer_operands.json"
+      ],
+      "path": "tools/capabilities/registry/catalog-modern-ids/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "registry/catalog-modern-ids",
+      "title": "Catalog modern IDs",
+      "workflow": "active"
     },
     {
       "depends_on": [],
@@ -1048,7 +1111,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 31,
+  "capability_count": 33,
   "declared_player_complete": [
     "energy/batteries",
     "energy/converter-catalog",
@@ -1228,6 +1291,7 @@
       "energy/nuclear-fission-survival",
       "energy/transformers",
       "logistics/cover-net-r0",
+      "logistics/cover-remainder",
       "logistics/display-cpu",
       "logistics/fluid-network/basic-transfer",
       "logistics/generic-network/core",
@@ -1246,6 +1310,9 @@
       "machines/slicer",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
+    ],
+    "logistics/cover-remainder": [
+      "logistics/cover-remainder"
     ],
     "logistics/display-cpu": [
       "content/electric-wire-cable-mte-fold",
@@ -1451,6 +1518,9 @@
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
+    "registry/catalog-modern-ids": [
+      "registry/catalog-modern-ids"
+    ],
     "registry/tool-head-prefix-reclaim": [
       "registry/tool-head-prefix-reclaim"
     ],
@@ -1478,6 +1548,7 @@
       "energy/nuclear-fission-survival",
       "energy/transformers",
       "logistics/cover-net-r0",
+      "logistics/cover-remainder",
       "logistics/display-cpu",
       "logistics/fluid-network/basic-transfer",
       "logistics/generic-network/core",
@@ -1494,6 +1565,7 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "registry/catalog-modern-ids",
       "registry/tool-head-prefix-reclaim",
       "registry/tool-head-remainder",
       "worldgen/gt-dungeon",
@@ -1518,5 +1590,5 @@
   },
   "progress_rule": "declaration is not proof; player_complete requires fresh GameTestServer execution; runClient is required on promotion",
   "schema_version": 2,
-  "unique_active_slug": null
+  "unique_active_slug": "registry/catalog-modern-ids"
 }
