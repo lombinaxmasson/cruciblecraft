@@ -12,10 +12,7 @@ from tools import io_common as io
 class CapabilityCloseTest(unittest.TestCase):
     def test_close_requires_the_unique_active_capability(self) -> None:
         compiled = capability_ledger.compile_ledger()
-        self.assertEqual(
-            "content/technological-parts-foundation",
-            compiled["unique_active_slug"],
-        )
+        self.assertIsNone(compiled["unique_active_slug"])
         with self.assertRaisesRegex(ValueError, "unique-active is"):
             close_capability.close_capability("machines/cluster-mill")
 

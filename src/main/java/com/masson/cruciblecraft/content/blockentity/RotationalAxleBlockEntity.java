@@ -25,6 +25,8 @@ public final class RotationalAxleBlockEntity extends BlockEntity
             new PerTickEnergyBudget();
     private long stored;
     private long packetSize;
+    private long transferredThisTick;
+    private long transferredLast;
     private Direction receivedFrom;
     private boolean overloaded;
 
@@ -38,6 +40,7 @@ public final class RotationalAxleBlockEntity extends BlockEntity
             BlockPos pos,
             BlockState state,
             RotationalAxleBlockEntity axle) {
+        axle.rollTransfer();
         Direction output = axle.outputSide();
         if (output != null) {
             RotationalEnergyTransfer.emit(
@@ -161,6 +164,7 @@ public final class RotationalAxleBlockEntity extends BlockEntity
                     "Axle output budget changed after simulation");
         }
         stored -= EnergyPackets.units(packetSize, available);
+        transferredThisTick += EnergyPackets.units(packetSize, available);
         if (stored == 0L) {
             packetSize = 0L;
             receivedFrom = null;
@@ -187,6 +191,15 @@ public final class RotationalAxleBlockEntity extends BlockEntity
         return overloaded;
     }
 
+    public long transferredLast() {
+        return transferredLast;
+    }
+
+    private void rollTransfer() {
+        transferredLast = transferredThisTick;
+        transferredThisTick = 0L;
+    }
+
     private Direction outputSide() {
         return receivedFrom == null
                 ? null
@@ -211,6 +224,7 @@ public final class RotationalAxleBlockEntity extends BlockEntity
             tag.putString("received_from", receivedFrom.getName());
         }
         tag.putBoolean("overloaded", overloaded);
+        tag.putLong("transferred_last", transferredLast);
     }
 
     @Override
@@ -227,6 +241,7 @@ public final class RotationalAxleBlockEntity extends BlockEntity
         receivedFrom = Direction.byName(
                 tag.getString("received_from"));
         overloaded = tag.getBoolean("overloaded");
+        transferredLast = Math.max(0L, tag.getLong("transferred_last"));
         if (stored == 0L || packetSize == 0L) {
             stored = 0L;
             packetSize = 0L;

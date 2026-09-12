@@ -32,6 +32,7 @@ NANOFAB = "machines/nanofab"
 PRESSURE_WASHER = "machines/pressure-washer"
 WIRE_CABLE_FOLD = "content/electric-wire-cable-mte-fold"
 FOUNDATION = "content/technological-parts-foundation"
+SENSORS = "content/sensors"
 NUCLEAR = "energy/nuclear-fission-survival"
 HOT_FLUIDS = "energy/nuclear-fission-hot-fluids"
 OBSERVATION = "energy/nuclear-fission-observation-safety"
@@ -63,6 +64,7 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertIn(NUCLEAR, slugs)
         self.assertIn(WIRE_CABLE_FOLD, slugs)
         self.assertIn(FOUNDATION, slugs)
+        self.assertIn(SENSORS, slugs)
         self.assertIn(HOT_FLUIDS, slugs)
         self.assertIn(OBSERVATION, slugs)
         self.assertIn("registry/tool-head-remainder", slugs)
@@ -152,7 +154,7 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertIn(CLUSTER_MILL, complete)
         self.assertIn(ROLL_FORMER, complete)
         self.assertIn(HEAT_EXCHANGERS, complete)
-        self.assertEqual(FOUNDATION, compiled["unique_active_slug"])
+        self.assertIsNone(compiled["unique_active_slug"])
         self.assertEqual(
             "declaration is not proof; player_complete requires fresh "
             "GameTestServer execution; runClient is required on promotion",
@@ -166,8 +168,10 @@ class CapabilityLedgerTest(unittest.TestCase):
             for row in compiled["capabilities"]
             if row["workflow"] == "active"
         ]
-        self.assertEqual([FOUNDATION], active)
-        self.assertEqual({FOUNDATION}, set(ledger.load_card_plan_index()["active"]))
+        self.assertEqual([], active)
+        self.assertEqual(set(), set(ledger.load_card_plan_index()["active"]))
+        self.assertIn(FOUNDATION, ledger.load_card_plan_index()["closed"])
+        self.assertIn(SENSORS, ledger.load_card_plan_index()["closed"])
         self.assertIn(
             WIRE_CABLE_FOLD,
             ledger.load_card_plan_index()["closed"],
@@ -214,6 +218,7 @@ class CapabilityLedgerTest(unittest.TestCase):
                 PRESSURE_WASHER,
                 WIRE_CABLE_FOLD,
                 FOUNDATION,
+                SENSORS,
             },
             set(compiled["impact"]["logistics/cover-net-r0"]),
         )
@@ -260,6 +265,7 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertEqual(
             [
                 WIRE_CABLE_FOLD,
+                SENSORS,
                 FOUNDATION,
                 BATTERIES,
                 CONVERTER,
@@ -280,7 +286,7 @@ class CapabilityLedgerTest(unittest.TestCase):
                 NANOFAB,
                 PRESSURE_WASHER,
                 ROLL_FORMER,
-                SLICER,
+                SLICER
             ],
             hit,
         )

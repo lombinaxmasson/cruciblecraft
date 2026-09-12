@@ -5,6 +5,8 @@ import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
 import com.masson.cruciblecraft.content.block.CableBlock;
 import com.masson.cruciblecraft.content.block.CeramicMoldBlock;
 import com.masson.cruciblecraft.content.block.HopperBlock;
+import com.masson.cruciblecraft.content.block.SensorBlock;
+import com.masson.cruciblecraft.content.sensor.SensorKind;
 import com.masson.cruciblecraft.content.block.LogisticsCoreBlock;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtStoneCatalog;
@@ -154,6 +156,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 "reactor_core_2x2", ModBlocks.REACTOR_CORE_2X2.get());
         registerPipes();
         registerHoppers();
+        registerSensors();
         registerStorage();
         registerGtStones();
         registerGtBlockObjects();
@@ -260,6 +263,41 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(
                 ModBlocks.STEEL_DUST_FUNNEL.get(),
                 models().getExistingFile(modLoc("block/dust_funnel")));
+    }
+
+    private void registerSensors() {
+        for (SensorKind kind : SensorKind.all()) {
+            SensorBlock block = ModBlocks.sensorBlocksById().get(kind.id()).get();
+            String folder = "block/machine/sensor/" + kind.textureFolder();
+            ModelFile model = models()
+                    .withExistingParent(kind.path(), modLoc("block/sensor_slab"))
+                    .texture("particle", folder + "/colored/front")
+                    .texture("bot_north", folder + "/colored/front")
+                    .texture("bot_south", folder + "/colored/back")
+                    .texture("bot_up", folder + "/colored/side")
+                    .texture("bot_down", folder + "/colored/side")
+                    .texture("bot_west", folder + "/colored/side")
+                    .texture("bot_east", folder + "/colored/side")
+                    .texture("top_north", folder + "/overlay/front")
+                    .texture("top_south", folder + "/overlay/back")
+                    .texture("top_up", folder + "/overlay/side")
+                    .texture("top_down", folder + "/overlay/side")
+                    .texture("top_west", folder + "/overlay/side")
+                    .texture("top_east", folder + "/overlay/side");
+            getVariantBuilder(block).forAllStates(state -> {
+                Direction facing = state.getValue(SensorBlock.FACING);
+                var builder = ConfiguredModel.builder().modelFile(model);
+                return switch (facing) {
+                    case DOWN -> builder.rotationX(90).build();
+                    case UP -> builder.rotationX(270).build();
+                    case SOUTH -> builder.rotationY(180).build();
+                    case WEST -> builder.rotationY(270).build();
+                    case EAST -> builder.rotationY(90).build();
+                    case NORTH -> builder.build();
+                };
+            });
+            simpleBlockItem(block, model);
+        }
     }
 
     private void registerStorage() {

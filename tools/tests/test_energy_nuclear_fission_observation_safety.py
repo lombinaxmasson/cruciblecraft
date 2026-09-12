@@ -148,7 +148,7 @@ class FissionObservationSafetyCardTest(unittest.TestCase):
 
     def test_catalog_has_eight_wearable_and_thermometer(self) -> None:
         catalog = json.loads(CATALOG.read_text(encoding="utf-8"))
-        self.assertEqual(247, catalog["identity_count"])
+        self.assertEqual(249, catalog["identity_count"])
         by_path = {row["registry_path"]: row for row in catalog["identities"]}
         self.assertEqual(HAZMAT, HAZMAT & set(by_path))
         for path in HAZMAT:

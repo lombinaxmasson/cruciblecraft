@@ -1,0 +1,634 @@
+{
+  "imports": [
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/thermometer/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/thermometer/colored/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/thermometer/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/thermometer/colored/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/thermometer/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/thermometer/colored/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/thermometer/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/thermometer/overlay/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/thermometer/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/thermometer/overlay/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/thermometer/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/thermometer/overlay/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/gibblometer/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/gibblometer/colored/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/gibblometer/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/gibblometer/colored/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/gibblometer/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/gibblometer/colored/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/gibblometer/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/gibblometer/overlay/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/gibblometer/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/gibblometer/overlay/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/gibblometer/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/gibblometer/overlay/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/luminometer/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/luminometer/colored/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/luminometer/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/luminometer/colored/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/luminometer/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/luminometer/colored/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/luminometer/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/luminometer/overlay/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/luminometer/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/luminometer/overlay/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/luminometer/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/luminometer/overlay/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/chronometer/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/chronometer/colored/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/chronometer/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/chronometer/colored/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/chronometer/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/chronometer/colored/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/chronometer/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/chronometer/overlay/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/chronometer/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/chronometer/overlay/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/chronometer/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/chronometer/overlay/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/itemometer/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/itemometer/colored/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/itemometer/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/itemometer/colored/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/itemometer/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/itemometer/colored/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/itemometer/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/itemometer/overlay/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/itemometer/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/itemometer/overlay/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/itemometer/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/itemometer/overlay/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/stackometer/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/stackometer/colored/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/stackometer/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/stackometer/colored/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/stackometer/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/stackometer/colored/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/stackometer/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/stackometer/overlay/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/stackometer/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/stackometer/overlay/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/stackometer/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/stackometer/overlay/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/fluidometer/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/fluidometer/colored/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/fluidometer/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/fluidometer/colored/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/fluidometer/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/fluidometer/colored/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/fluidometer/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/fluidometer/overlay/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/fluidometer/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/fluidometer/overlay/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/fluidometer/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/fluidometer/overlay/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/bucketometer/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/bucketometer/colored/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/bucketometer/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/bucketometer/colored/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/bucketometer/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/bucketometer/colored/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/bucketometer/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/bucketometer/overlay/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/bucketometer/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/bucketometer/overlay/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/bucketometer/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/bucketometer/overlay/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/lightweightometer/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/lightweightometer/colored/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/lightweightometer/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/lightweightometer/colored/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/lightweightometer/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/lightweightometer/colored/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/lightweightometer/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/lightweightometer/overlay/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/lightweightometer/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/lightweightometer/overlay/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/lightweightometer/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/lightweightometer/overlay/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/mediumweightometer/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/mediumweightometer/colored/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/mediumweightometer/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/mediumweightometer/colored/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/mediumweightometer/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/mediumweightometer/colored/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/mediumweightometer/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/mediumweightometer/overlay/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/mediumweightometer/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/mediumweightometer/overlay/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/mediumweightometer/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/mediumweightometer/overlay/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/heavyweightometer/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/heavyweightometer/colored/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/heavyweightometer/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/heavyweightometer/colored/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/heavyweightometer/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/heavyweightometer/colored/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/heavyweightometer/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/heavyweightometer/overlay/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/heavyweightometer/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/heavyweightometer/overlay/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/heavyweightometer/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/heavyweightometer/overlay/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/superheavyweightometer/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/superheavyweightometer/colored/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/superheavyweightometer/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/superheavyweightometer/colored/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/superheavyweightometer/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/superheavyweightometer/colored/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/superheavyweightometer/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/superheavyweightometer/overlay/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/superheavyweightometer/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/superheavyweightometer/overlay/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/superheavyweightometer/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/superheavyweightometer/overlay/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/electrometer/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/electrometer/colored/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/electrometer/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/electrometer/colored/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/electrometer/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/electrometer/colored/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/electrometer/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/electrometer/overlay/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/electrometer/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/electrometer/overlay/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/electrometer/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/electrometer/overlay/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/tpsmeter/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/tpsmeter/colored/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/tpsmeter/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/tpsmeter/colored/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/tpsmeter/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/tpsmeter/colored/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/tpsmeter/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/tpsmeter/overlay/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/tpsmeter/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/tpsmeter/overlay/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/tpsmeter/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/tpsmeter/overlay/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/playercounter/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/playercounter/colored/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/playercounter/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/playercounter/colored/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/playercounter/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/playercounter/colored/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/playercounter/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/playercounter/overlay/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/playercounter/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/playercounter/overlay/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/playercounter/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/playercounter/overlay/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/progressmeter/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/progressmeter/colored/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/progressmeter/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/progressmeter/colored/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/progressmeter/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/progressmeter/colored/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/progressmeter/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/progressmeter/overlay/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/progressmeter/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/progressmeter/overlay/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/progressmeter/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/progressmeter/overlay/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/tachometer/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/tachometer/colored/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/tachometer/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/tachometer/colored/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/tachometer/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/tachometer/colored/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/tachometer/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/tachometer/overlay/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/tachometer/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/tachometer/overlay/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/tachometer/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/tachometer/overlay/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/geigercounter/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/geigercounter/colored/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/geigercounter/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/geigercounter/colored/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/geigercounter/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/geigercounter/colored/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/geigercounter/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/geigercounter/overlay/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/geigercounter/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/geigercounter/overlay/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/geigercounter/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/geigercounter/overlay/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/laserometer/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/laserometer/colored/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/laserometer/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/laserometer/colored/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/laserometer/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/laserometer/colored/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/laserometer/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/laserometer/overlay/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/laserometer/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/laserometer/overlay/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/laserometer/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/laserometer/overlay/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/kilobucketometer/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/kilobucketometer/colored/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/kilobucketometer/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/kilobucketometer/colored/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/kilobucketometer/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/kilobucketometer/colored/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/kilobucketometer/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/kilobucketometer/overlay/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/kilobucketometer/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/kilobucketometer/overlay/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/kilobucketometer/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/kilobucketometer/overlay/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/kilogibblometer/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/kilogibblometer/colored/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/kilogibblometer/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/kilogibblometer/colored/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/kilogibblometer/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/kilogibblometer/colored/side.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/kilogibblometer/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/kilogibblometer/overlay/front.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/kilogibblometer/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/kilogibblometer/overlay/back.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/machines/redstone/sensors/kilogibblometer/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/sensor/kilogibblometer/overlay/side.png"
+    }
+  ]
+}

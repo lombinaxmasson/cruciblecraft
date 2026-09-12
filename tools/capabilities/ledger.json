@@ -36,13 +36,44 @@
     },
     {
       "depends_on": [
+        "content/technological-parts-foundation"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/Sensors详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/SensorBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/SensorBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/item/ElectroMeterItem.java",
+        "src/main/java/com/masson/cruciblecraft/content/item/TachoMeterItem.java",
+        "src/main/java/com/masson/cruciblecraft/content/sensor/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/SensorGameTests.java",
+        "src/main/resources/assets/cruciblecraft/gt6_sensor_tools_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/gt6_sensors_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/models/block/sensor_slab.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/sensor/**",
+        "src/main/resources/data/cruciblecraft_wave_content_sensors/**",
+        "tools/capabilities/content/sensors/**",
+        "tools/tests/test_sensors.py",
+        "tools/waves/content/sensors/**"
+      ],
+      "path": "tools/capabilities/content/sensors/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/sensors",
+      "title": "Sensors",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "machines/injector",
         "machines/loom",
         "machines/slicer"
       ],
       "maturity": "runtime_ready",
       "owned_paths": [
-        "docs/history/card-plans/active/技术中间件基础详细计划.md",
+        "docs/history/card-plans/closed/技术中间件基础详细计划.md",
         "src/component_rule_generated/resources/data/cruciblecraft/recipe/wiremill/**",
         "src/generated/resources/assets/cruciblecraft/lang/en_us.json",
         "src/generated/resources/assets/cruciblecraft/lang/zh_cn.json",
@@ -132,7 +163,7 @@
       ],
       "slug": "content/technological-parts-foundation",
       "title": "Technological Parts Foundation",
-      "workflow": "active"
+      "workflow": "accepted"
     },
     {
       "depends_on": [
@@ -865,7 +896,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 25,
+  "capability_count": 26,
   "declared_player_complete": [
     "energy/batteries",
     "energy/converter-catalog",
@@ -887,11 +918,16 @@
     "content/electric-wire-cable-mte-fold": [
       "content/electric-wire-cable-mte-fold"
     ],
+    "content/sensors": [
+      "content/sensors"
+    ],
     "content/technological-parts-foundation": [
+      "content/sensors",
       "content/technological-parts-foundation"
     ],
     "energy/batteries": [
       "content/electric-wire-cable-mte-fold",
+      "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
       "energy/heat-exchangers",
@@ -911,6 +947,7 @@
     ],
     "energy/converter-catalog": [
       "content/electric-wire-cable-mte-fold",
+      "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
@@ -931,6 +968,7 @@
     ],
     "energy/heat-exchangers": [
       "content/electric-wire-cable-mte-fold",
+      "content/sensors",
       "content/technological-parts-foundation",
       "energy/heat-exchangers",
       "machines/cluster-mill",
@@ -945,6 +983,7 @@
     ],
     "energy/nuclear-fission-hot-fluids": [
       "content/electric-wire-cable-mte-fold",
+      "content/sensors",
       "content/technological-parts-foundation",
       "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
@@ -964,6 +1003,7 @@
     ],
     "energy/nuclear-fission-survival": [
       "content/electric-wire-cable-mte-fold",
+      "content/sensors",
       "content/technological-parts-foundation",
       "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
@@ -981,6 +1021,7 @@
     ],
     "energy/transformers": [
       "content/electric-wire-cable-mte-fold",
+      "content/sensors",
       "content/technological-parts-foundation",
       "energy/heat-exchangers",
       "energy/nuclear-fission-hot-fluids",
@@ -999,6 +1040,7 @@
     ],
     "logistics/cover-net-r0": [
       "content/electric-wire-cable-mte-fold",
+      "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
@@ -1025,6 +1067,7 @@
     ],
     "logistics/display-cpu": [
       "content/electric-wire-cable-mte-fold",
+      "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
@@ -1046,6 +1089,7 @@
     ],
     "logistics/fluid-network/basic-transfer": [
       "content/electric-wire-cable-mte-fold",
+      "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
@@ -1070,6 +1114,7 @@
     ],
     "logistics/generic-network/core": [
       "content/electric-wire-cable-mte-fold",
+      "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
@@ -1093,6 +1138,7 @@
     ],
     "logistics/item-network-core": [
       "content/electric-wire-cable-mte-fold",
+      "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
@@ -1118,6 +1164,7 @@
     ],
     "logistics/logistics-core": [
       "content/electric-wire-cable-mte-fold",
+      "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
@@ -1142,6 +1189,7 @@
       "machines/cluster-mill"
     ],
     "machines/injector": [
+      "content/sensors",
       "content/technological-parts-foundation",
       "machines/injector"
     ],
@@ -1151,6 +1199,7 @@
     ],
     "machines/loom": [
       "content/electric-wire-cable-mte-fold",
+      "content/sensors",
       "content/technological-parts-foundation",
       "machines/loom"
     ],
@@ -1167,6 +1216,7 @@
     ],
     "machines/roll-former": [
       "content/electric-wire-cable-mte-fold",
+      "content/sensors",
       "content/technological-parts-foundation",
       "machines/cluster-mill",
       "machines/injector",
@@ -1179,6 +1229,7 @@
       "machines/slicer"
     ],
     "machines/slicer": [
+      "content/sensors",
       "content/technological-parts-foundation",
       "machines/slicer"
     ],
@@ -1189,6 +1240,7 @@
   "profiles": {
     "capability-runtime": [
       "content/electric-wire-cable-mte-fold",
+      "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
@@ -1233,5 +1285,5 @@
   },
   "progress_rule": "declaration is not proof; player_complete requires fresh GameTestServer execution; runClient is required on promotion",
   "schema_version": 2,
-  "unique_active_slug": "content/technological-parts-foundation"
+  "unique_active_slug": null
 }

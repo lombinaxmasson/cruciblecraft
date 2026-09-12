@@ -1,0 +1,342 @@
+{
+  "capability_slug": "content/sensors",
+  "grid_notes": "Shared frame letters P/W/R/G/B/C from Loader_MultiTileEntities sensors(). X/Y are per-identity specials. Electrometer and Tachometer D0 use IL.Electro_Meter / IL.Tacho_Meter.",
+  "shared": {
+    "P": {
+      "cc": "cruciblecraft:tin_alloy/double_plate",
+      "gt6": "OP.plateDouble(MT.TinAlloy)",
+      "status": "ok"
+    },
+    "W": {
+      "cc": "cruciblecraft:red_alloy/fine_wire",
+      "gt6": "OP.wireFine(MT.RedAlloy)",
+      "status": "ok"
+    },
+    "R": {
+      "cc": "minecraft:redstone",
+      "gt6": "OD.itemRedstone",
+      "status": "ok"
+    },
+    "G": {
+      "cc": "minecraft:glass",
+      "gt6": "OD.blockGlassColorless",
+      "status": "ok"
+    },
+    "B": {
+      "cc": "cruciblecraft:tin_alloy/bolt",
+      "gt6": "OP.bolt(MT.TinAlloy)",
+      "status": "ok"
+    },
+    "C": {
+      "cc": "minecraft:comparator",
+      "gt6": "Items.comparator",
+      "status": "ok"
+    }
+  },
+  "hosts": [
+    {
+      "host": 31000,
+      "path": "thermometer",
+      "grid": ["WRW", "RXR", "WPW"],
+      "status": "source_exact",
+      "behavior": "live",
+      "x": {
+        "cc": "cruciblecraft:gt_multiitem/multiitem_randomtools_m10000",
+        "gt6": "IL.Thermometer_Quicksilver",
+        "status": "ok"
+      }
+    },
+    {
+      "host": 31001,
+      "path": "gibblometer",
+      "grid": ["WPW", "BXB", "WPW"],
+      "status": "source_exact",
+      "behavior": "live",
+      "x": {
+        "cc": "cruciblecraft:glass/gem",
+        "gt6": "OP.gem(ANY.SiO2)",
+        "status": "ok",
+        "note": "ANY.SiO2 family member; glass/gem is registered."
+      }
+    },
+    {
+      "host": 31002,
+      "path": "luminometer",
+      "grid": ["WGW", "YXY", "WPW"],
+      "status": "source_exact",
+      "behavior": "live",
+      "x": {
+        "cc": "cruciblecraft:silicon/plate",
+        "gt6": "OP.plate(ANY.Si)",
+        "status": "ok"
+      },
+      "y": {
+        "cc": "cruciblecraft:copper/fine_wire",
+        "gt6": "OP.wireFine(ANY.Cu)",
+        "status": "ok"
+      }
+    },
+    {
+      "host": 31003,
+      "path": "chronometer",
+      "grid": ["WGW", "GXG", "WPW"],
+      "status": "source_exact",
+      "behavior": "live",
+      "x": {
+        "cc": "minecraft:clock",
+        "gt6": "Items.clock",
+        "status": "ok"
+      }
+    },
+    {
+      "host": 31004,
+      "path": "itemometer",
+      "grid": ["WYW", "BXB", "WPW"],
+      "status": "source_exact",
+      "behavior": "live",
+      "x": {
+        "cc": "minecraft:light_weighted_pressure_plate",
+        "gt6": "OD.pressurePlateGold",
+        "status": "ok"
+      },
+      "y": {
+        "cc": "minecraft:chest",
+        "gt6": "OD.craftingChest",
+        "status": "ok"
+      }
+    },
+    {
+      "host": 31005,
+      "path": "stackometer",
+      "grid": ["WYW", "BXB", "WPW"],
+      "status": "source_exact",
+      "behavior": "live",
+      "x": {
+        "cc": "minecraft:heavy_weighted_pressure_plate",
+        "gt6": "OD.pressurePlateIron",
+        "status": "ok"
+      },
+      "y": {
+        "cc": "minecraft:chest",
+        "gt6": "OD.craftingChest",
+        "status": "ok"
+      }
+    },
+    {
+      "host": 31006,
+      "path": "fluidometer",
+      "grid": ["WYW", "BXB", "WPW"],
+      "status": "source_exact",
+      "behavior": "live",
+      "x": {
+        "cc": "minecraft:stone_pressure_plate",
+        "gt6": "OD.pressurePlateStone",
+        "status": "ok"
+      },
+      "y": {
+        "cc": "minecraft:bucket",
+        "gt6": "Items.bucket",
+        "status": "ok"
+      }
+    },
+    {
+      "host": 31007,
+      "path": "bucketometer",
+      "grid": ["WYW", "BXB", "WPW"],
+      "status": "source_exact",
+      "behavior": "live",
+      "x": {
+        "cc": "minecraft:light_weighted_pressure_plate",
+        "gt6": "OD.pressurePlateGold",
+        "status": "ok"
+      },
+      "y": {
+        "cc": "minecraft:bucket",
+        "gt6": "Items.bucket",
+        "status": "ok"
+      }
+    },
+    {
+      "host": 31010,
+      "path": "light_weightometer",
+      "grid": ["WPW", "BXB", "WPW"],
+      "status": "source_exact",
+      "behavior": "live",
+      "x": {
+        "cc": "minecraft:oak_pressure_plate",
+        "gt6": "OD.pressurePlateWood",
+        "status": "ok"
+      }
+    },
+    {
+      "host": 31011,
+      "path": "medium_weightometer",
+      "grid": ["WPW", "BXB", "WPW"],
+      "status": "source_exact",
+      "behavior": "live",
+      "x": {
+        "cc": "minecraft:stone_pressure_plate",
+        "gt6": "OD.pressurePlateStone",
+        "status": "ok"
+      }
+    },
+    {
+      "host": 31012,
+      "path": "heavy_weightometer",
+      "grid": ["WPW", "BXB", "WPW"],
+      "status": "source_exact",
+      "behavior": "live",
+      "x": {
+        "cc": "minecraft:light_weighted_pressure_plate",
+        "gt6": "OD.pressurePlateGold",
+        "status": "ok"
+      }
+    },
+    {
+      "host": 31013,
+      "path": "super_heavy_weightometer",
+      "grid": ["WPW", "BXB", "WPW"],
+      "status": "source_exact",
+      "behavior": "live",
+      "x": {
+        "cc": "minecraft:heavy_weighted_pressure_plate",
+        "gt6": "OD.pressurePlateIron",
+        "status": "ok"
+      }
+    },
+    {
+      "host": 31015,
+      "path": "electrometer",
+      "grid": ["WGW", "YXY", "WPW"],
+      "status": "source_exact",
+      "behavior": "live",
+      "x": {
+        "cc": "cruciblecraft:gt_multiitem/multiitem_randomtools_m10003",
+        "gt6": "IL.Electro_Meter",
+        "status": "ok"
+      },
+      "y": {
+        "cc": "cruciblecraft:copper/wire",
+        "gt6": "OP.wireGt01(ANY.Cu)",
+        "status": "ok"
+      }
+    },
+    {
+      "host": 31016,
+      "path": "tps_meter",
+      "grid": ["WGW", "XXX", "WPW"],
+      "status": "source_exact",
+      "behavior": "live",
+      "x": {
+        "cc": "minecraft:clock",
+        "gt6": "Items.clock",
+        "status": "ok"
+      }
+    },
+    {
+      "host": 31017,
+      "path": "player_counter",
+      "grid": ["WGW", "CXC", "WPW"],
+      "status": "source_exact",
+      "behavior": "live",
+      "x": {
+        "cc": "minecraft:stone_pressure_plate",
+        "gt6": "OD.pressurePlateStone",
+        "status": "ok"
+      }
+    },
+    {
+      "host": 31018,
+      "path": "progress_meter",
+      "grid": ["WGW", "CXC", "WPW"],
+      "status": "source_exact",
+      "behavior": "live",
+      "x": {
+        "cc": "cruciblecraft:brass/small_gear",
+        "gt6": "OP.gearGtSmall(MT.Brass)",
+        "status": "ok"
+      }
+    },
+    {
+      "host": 31019,
+      "path": "tachometer",
+      "grid": ["WGW", "YXY", "WPW"],
+      "status": "source_exact",
+      "behavior": "live",
+      "x": {
+        "cc": "cruciblecraft:gt_multiitem/multiitem_randomtools_m10004",
+        "gt6": "IL.Tacho_Meter",
+        "status": "ok"
+      },
+      "y": {
+        "cc": "cruciblecraft:brass/gear",
+        "gt6": "OP.gearGt(MT.Brass)",
+        "status": "ok"
+      }
+    },
+    {
+      "host": 31020,
+      "path": "geiger_counter",
+      "grid": ["WGW", "YXY", "WPW"],
+      "status": "source_exact",
+      "behavior": "live",
+      "x": {
+        "cc": "cruciblecraft:gt_multiitem/multiitem_randomtools_m10002",
+        "gt6": "IL.Geiger_Counter",
+        "status": "ok"
+      },
+      "y": {
+        "cc": "cruciblecraft:lead/double_plate",
+        "gt6": "OP.plateDouble(MT.Pb)",
+        "status": "ok"
+      }
+    },
+    {
+      "host": 31021,
+      "path": "laserometer",
+      "grid": ["WGW", "YXY", "WPW"],
+      "status": "source_exact",
+      "behavior": "live",
+      "x": {
+        "cc": "cruciblecraft:compact_sensor_lv",
+        "gt6": "IL.SENSORS[1]",
+        "status": "ok",
+        "note": "Ingredient is the compact sensor part, not the Sensor MTE."
+      },
+      "y": {
+        "cc": "cruciblecraft:copper/fine_wire",
+        "gt6": "OP.wireFine(ANY.Cu)",
+        "status": "ok"
+      }
+    },
+    {
+      "host": 31022,
+      "path": "kilo_bucketometer",
+      "grid": ["WYW", "BXB", "WPW"],
+      "status": "source_exact",
+      "behavior": "live",
+      "x": {
+        "cc": "minecraft:heavy_weighted_pressure_plate",
+        "gt6": "OD.pressurePlateIron",
+        "status": "ok"
+      },
+      "y": {
+        "cc": "minecraft:bucket",
+        "gt6": "Items.bucket",
+        "status": "ok"
+      }
+    },
+    {
+      "host": 31023,
+      "path": "kilo_gibblometer",
+      "grid": ["WPW", "BXB", "WPW"],
+      "status": "source_exact",
+      "behavior": "live",
+      "x": {
+        "cc": "cruciblecraft:diamantine/gem",
+        "gt6": "OP.gem(ANY.Diamond)",
+        "status": "ok"
+      }
+    }
+  ]
+}

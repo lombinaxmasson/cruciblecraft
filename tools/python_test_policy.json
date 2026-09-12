@@ -45,6 +45,7 @@
     "test_melter",
     "test_electric_wire_cable_mte_fold",
     "test_technological_parts_foundation",
+    "test_sensors",
     "test_capability_ledger",
     "test_project_status",
     "test_capability_close",
@@ -487,6 +488,21 @@
       "test_modules": [
         "test_material_form_authority",
         "test_technological_parts_foundation"
+      ]
+    },
+    {
+      "paths": [
+        "tools/tests/test_sensors.py",
+        "tools/capabilities/content/sensors/**",
+        "tools/waves/content/sensors/**",
+        "src/main/java/com/masson/cruciblecraft/content/sensor/**",
+        "src/main/java/com/masson/cruciblecraft/content/block/SensorBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/SensorBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/SensorGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_content_sensors/**"
+      ],
+      "test_modules": [
+        "test_sensors"
       ]
     }
   ]

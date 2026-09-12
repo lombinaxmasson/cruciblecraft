@@ -19,6 +19,7 @@ import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidBedBurningBoxBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.GasCloudBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.HopperBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.SensorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.BookshelfBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.BottleCrateBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DrawerBlockEntity;
@@ -428,6 +429,15 @@ public final class ModBlockEntities {
                             () -> BlockEntityType.Builder.of(
                                     TransformerBlockEntity::new,
                                     ModBlocks.transformerBlockArray())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<SensorBlockEntity>>
+                    SENSOR = BLOCK_ENTITIES.register(
+                            "sensor",
+                            () -> BlockEntityType.Builder.of(
+                                    SensorBlockEntity::new,
+                                    ModBlocks.sensorBlockArray())
                                     .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,

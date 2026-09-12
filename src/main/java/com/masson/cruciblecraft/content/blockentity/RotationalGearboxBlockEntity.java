@@ -24,6 +24,8 @@ public final class RotationalGearboxBlockEntity extends BlockEntity
             new PerTickEnergyBudget();
     private long stored;
     private long packetSize;
+    private long transferredThisTick;
+    private long transferredLast;
     private boolean overloaded;
 
     public RotationalGearboxBlockEntity(
@@ -36,6 +38,7 @@ public final class RotationalGearboxBlockEntity extends BlockEntity
             BlockPos pos,
             BlockState state,
             RotationalGearboxBlockEntity gearbox) {
+        gearbox.rollTransfer();
         RotationalEnergyTransfer.emit(
                 level,
                 pos,
@@ -125,6 +128,7 @@ public final class RotationalGearboxBlockEntity extends BlockEntity
         }
         stored = 0L;
         packetSize = 0L;
+        transferredThisTick += EnergyPackets.units(size, 1L);
         setChanged();
         return 1L;
     }
@@ -145,6 +149,15 @@ public final class RotationalGearboxBlockEntity extends BlockEntity
 
     public boolean overloaded() {
         return overloaded;
+    }
+
+    public long transferredLast() {
+        return transferredLast;
+    }
+
+    private void rollTransfer() {
+        transferredLast = transferredThisTick;
+        transferredThisTick = 0L;
     }
 
     private Direction front() {
@@ -169,6 +182,7 @@ public final class RotationalGearboxBlockEntity extends BlockEntity
         tag.putLong("stored_ru", stored);
         tag.putLong("packet_size", packetSize);
         tag.putBoolean("overloaded", overloaded);
+        tag.putLong("transferred_last", transferredLast);
     }
 
     @Override
@@ -180,6 +194,7 @@ public final class RotationalGearboxBlockEntity extends BlockEntity
         packetSize = Math.max(
                 0L, Math.min(MAX_PACKET, tag.getLong("packet_size")));
         overloaded = tag.getBoolean("overloaded");
+        transferredLast = Math.max(0L, tag.getLong("transferred_last"));
         if (stored == 0L || packetSize == 0L) {
             stored = 0L;
             packetSize = 0L;

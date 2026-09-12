@@ -89,6 +89,10 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
             pickaxe.add(block.getKey());
             stone.add(block.getKey());
         });
+        ModBlocks.sensorBlocks().forEach(block -> {
+            pickaxe.add(block.getKey());
+            stone.add(block.getKey());
+        });
         var axe = tag(BlockTags.MINEABLE_WITH_AXE);
         ModBlocks.variantStorageBlocks().forEach(block -> {
             var variant = block.get().variant();

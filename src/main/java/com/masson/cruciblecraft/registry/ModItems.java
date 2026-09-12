@@ -39,7 +39,10 @@ import com.masson.cruciblecraft.content.item.BatteryCellItem;
 import com.masson.cruciblecraft.content.item.FlintKnifeItem;
 import com.masson.cruciblecraft.content.item.GeigerCounterItem;
 import com.masson.cruciblecraft.content.item.HazmatArmorItem;
+import com.masson.cruciblecraft.content.item.ElectroMeterItem;
+import com.masson.cruciblecraft.content.item.TachoMeterItem;
 import com.masson.cruciblecraft.content.item.ThermometerItem;
+import com.masson.cruciblecraft.content.sensor.SensorKind;
 import com.masson.cruciblecraft.content.item.HopperBlockItem;
 import com.masson.cruciblecraft.content.storage.StorageVariant;
 import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
@@ -489,6 +492,10 @@ public final class ModItems {
             net.minecraft.resources.ResourceLocation,
             DeferredItem<HopperBlockItem>> HOPPER_ITEMS =
                     registerHopperItems();
+    private static final Map<
+            net.minecraft.resources.ResourceLocation,
+            DeferredItem<BlockItem>> SENSOR_ITEMS =
+                    registerSensorItems();
     private static final Map<
             net.minecraft.resources.ResourceLocation,
             DeferredItem<BlockItem>> STORAGE_ITEMS =
@@ -1325,6 +1332,31 @@ public final class ModItems {
     }
 
     private static Map<ResourceLocation, DeferredItem<BlockItem>>
+            registerSensorItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<BlockItem>> items =
+                new LinkedHashMap<>();
+        for (SensorKind kind : SensorKind.all()) {
+            DeferredItem<BlockItem> item = ITEMS.registerSimpleBlockItem(
+                    kind.path(),
+                    ModBlocks.sensorBlocksById().get(kind.id()));
+            if (items.put(kind.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate sensor item " + kind.id());
+            }
+        }
+        if (items.size() != SensorKind.EXPECTED_SIZE) {
+            throw new IllegalStateException(
+                    "Sensor item registration drifted from 21 GT6 identities");
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    public static Map<ResourceLocation, DeferredItem<BlockItem>>
+            sensorItemsById() {
+        return SENSOR_ITEMS;
+    }
+
+    private static Map<ResourceLocation, DeferredItem<BlockItem>>
             registerStorageItems() {
         LinkedHashMap<ResourceLocation, DeferredItem<BlockItem>> items =
                 new LinkedHashMap<>();
@@ -1659,6 +1691,14 @@ public final class ModItems {
         }
         if (ThermometerItem.REGISTRY_PATH.equals(identity.registryPath())) {
             return new ThermometerItem(
+                    properties, identity.englishName(), identity.chineseName());
+        }
+        if (ElectroMeterItem.REGISTRY_PATH.equals(identity.registryPath())) {
+            return new ElectroMeterItem(
+                    properties, identity.englishName(), identity.chineseName());
+        }
+        if (TachoMeterItem.REGISTRY_PATH.equals(identity.registryPath())) {
+            return new TachoMeterItem(
                     properties, identity.englishName(), identity.chineseName());
         }
         if (GeigerCounterItem.EMPTY_PATH.equals(identity.registryPath())) {

@@ -232,6 +232,52 @@
       "texture": "cruciblecraft:item/gt6_import/geiger_filled"
     },
     {
+      "acquisition_authority": "content/sensors",
+      "behavior": "electrometer",
+      "chinese_name": "电量计",
+      "display_requirements": {
+        "distinguishable": true,
+        "holdable": true,
+        "model": "item/generated"
+      },
+      "english_name": "Electrometer",
+      "input_count": 1,
+      "kind": "multiitem",
+      "mapping_class": "exact_item",
+      "meta": 10003,
+      "occurrence_count": 1,
+      "output_count": 0,
+      "registry_kind": "item",
+      "registry_path": "gt_multiitem/multiitem_randomtools_m10003",
+      "runtime_id": "cruciblecraft:gt_multiitem/multiitem_randomtools_m10003",
+      "source_evidence": "docs/history/card-plans/closed/Sensors详细计划.md",
+      "source_item": "gregtech:gt.multiitem.randomtools",
+      "texture": "cruciblecraft:item/gt6_import/electrometer"
+    },
+    {
+      "acquisition_authority": "content/sensors",
+      "behavior": "tachometer",
+      "chinese_name": "转速计",
+      "display_requirements": {
+        "distinguishable": true,
+        "holdable": true,
+        "model": "item/generated"
+      },
+      "english_name": "Tachometer",
+      "input_count": 1,
+      "kind": "multiitem",
+      "mapping_class": "exact_item",
+      "meta": 10004,
+      "occurrence_count": 1,
+      "output_count": 0,
+      "registry_kind": "item",
+      "registry_path": "gt_multiitem/multiitem_randomtools_m10004",
+      "runtime_id": "cruciblecraft:gt_multiitem/multiitem_randomtools_m10004",
+      "source_evidence": "docs/history/card-plans/closed/Sensors详细计划.md",
+      "source_item": "gregtech:gt.multiitem.randomtools",
+      "texture": "cruciblecraft:item/gt6_import/tachometer"
+    },
+    {
       "acquisition_authority": "smelter/ordinary-closure",
       "behavior": "multiitem",
       "chinese_name": "Bismuth Bronze Compound",
@@ -5683,9 +5729,9 @@
       "texture": "minecraft:item/iron_ingot"
     }
   ],
-  "identity_count": 247,
+  "identity_count": 249,
   "schema_version": 1,
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "status": "SEMANTIC_OBJECT_CATALOG",
-  "variant_count": 247
+  "variant_count": 249
 }

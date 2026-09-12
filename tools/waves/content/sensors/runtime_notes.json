@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "wave_slug": "content/sensors",
+  "unique_active_wave": null,
+  "covers_allowed": false,
+  "logistics_cover_net": false,
+  "computer_craft_peripheral": "blocked",
+  "redstone": {
+    "weak": "0-15",
+    "strong": 0,
+    "modes": [
+      "DISPLAY",
+      "PERCENT",
+      "GREATER",
+      "EQUAL",
+      "SMALLER",
+      "SCALE",
+      "FULL",
+      "NOT_FULL"
+    ]
+  },
+  "live_hosts": [
+    "thermometer: crucible/mold Celsius to Kelvin",
+    "luminometer: world light",
+    "chronometer: day time",
+    "itemometer/stackometer: IItemHandler",
+    "fluidometer/bucketometer/kilo_bucketometer: IFluidHandler",
+    "electrometer: EU CableBlockEntity.wattageLast",
+    "tps_meter: wall clock",
+    "player_counter: server player count",
+    "progress_meter: ProcessingMachineBlockEntity / coke oven",
+    "geiger_counter: ReactorCoreBlockEntity.neutronSum",
+    "laserometer: LU fiber wattageLast",
+    "gibblometer/kilo_gibblometer: fluid pipe / machine input tanks / boiler steam / crucible OM.total",
+    "weightometers: IItemHandler OM.weight and crucible contents",
+    "tachometer: axle/gearbox transferredLast"
+  ],
+  "fail_closed": [],
+  "note": "Not a RecipeMap. compact_sensor_* parts stay parts. Grindstone 32703 is out of this card."
+}
