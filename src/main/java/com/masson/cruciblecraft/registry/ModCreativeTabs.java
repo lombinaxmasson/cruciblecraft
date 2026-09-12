@@ -150,6 +150,8 @@ public final class ModCreativeTabs {
                                         .asItem()));
                         ModBlocks.hopperBlocks().forEach(block ->
                                 output.accept(block.get().asItem()));
+                        ModBlocks.sensorBlocks().forEach(block ->
+                                output.accept(block.get().asItem()));
                         com.masson.cruciblecraft.content.storage.StorageVariantCatalog
                                 .sourceVisible()
                                 .forEach(variant ->

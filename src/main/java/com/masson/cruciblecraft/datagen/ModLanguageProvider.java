@@ -16,6 +16,7 @@ import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
 import com.masson.cruciblecraft.content.item.TechnologicalPartCatalog;
 import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
+import com.masson.cruciblecraft.content.sensor.SensorKind;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverComponentTiers;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.MaterialZhNames;
@@ -427,6 +428,7 @@ public class ModLanguageProvider extends LanguageProvider {
             add("emi.category.cruciblecraft.crusher", "破碎机");
             add("emi.category.cruciblecraft.mold_casting", "陶瓷模具铸造");
             addHopperTranslations(true);
+            addSensorTranslations();
             addStorageTranslations(true);
             // v1 关键路径材料名域：表内材料按表生成，表外显式 post_1_0
             // （不写 zh 键，回退 en_us，禁止英文冒充）。
@@ -919,6 +921,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("cruciblecraft.configuration.section.cruciblecraft.client.toml.title", "Client");
         add("cruciblecraft.configuration.temperatureUnit", "Temperature Unit");
         addHopperTranslations(false);
+        addSensorTranslations();
         addStorageTranslations(false);
     }
 
@@ -979,6 +982,38 @@ public class ModLanguageProvider extends LanguageProvider {
             add("message.cruciblecraft.hopper.queue_no_exact", "Queue hoppers have no exact mode");
             add("message.cruciblecraft.dust_funnel.mode", "Dust funnel output: %s");
         }
+    }
+
+    private void addSensorTranslations() {
+        for (SensorKind kind : SensorKind.all()) {
+            String name = chinese ? kind.langZh() : kind.langEn();
+            add("block." + CrucibleCraft.MODID + "." + kind.path(), name);
+            add("item." + CrucibleCraft.MODID + "." + kind.path(), name);
+        }
+        add(
+                "message.cruciblecraft.sensor.mode.display",
+                chinese ? "显示" : "Display");
+        add(
+                "message.cruciblecraft.sensor.mode.percent",
+                chinese ? "百分比" : "Percent");
+        add(
+                "message.cruciblecraft.sensor.mode.greater",
+                chinese ? "大于" : "Greater");
+        add(
+                "message.cruciblecraft.sensor.mode.equal",
+                chinese ? "等于" : "Equal");
+        add(
+                "message.cruciblecraft.sensor.mode.smaller",
+                chinese ? "小于" : "Smaller");
+        add(
+                "message.cruciblecraft.sensor.mode.scale",
+                chinese ? "比例" : "Scale");
+        add(
+                "message.cruciblecraft.sensor.mode.full",
+                chinese ? "已满" : "Full");
+        add(
+                "message.cruciblecraft.sensor.mode.not_full",
+                chinese ? "未满" : "Not full");
     }
 
     private void addJadePluginConfig() {

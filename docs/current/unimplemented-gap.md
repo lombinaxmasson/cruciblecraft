@@ -20,8 +20,9 @@
 
 当前边界：
 
-- unique-active 是 `content/technological-parts-foundation`，当前为
-  `runtime_ready`；prep 是 `machines/printer`。具体状态见
+- unique-active 当前为空；prep 是 `machines/printer`。
+  `content/technological-parts-foundation` 与 `content/sensors` 已关 `runtime_ready`。
+  具体状态见
   [project-status.md](project-status.md)。
 - `player_complete` 清单只看 [project-status.md](project-status.md)，不在本页复制。
 - catalog **1,817 个 MTE 身份**是独立的身份分母，不等于机器 overflow，也不等于
@@ -50,8 +51,7 @@
 四块：**机器配方尾账**、**MTE catalog 分母 1,817**、**LuV–PUV1 零件**、
 **下一阶段内容切片**。1,817 是 `gt_mte` catalog 行，不是织机/层压机 overflow。
 
-现行 unique-active：`content/technological-parts-foundation`，
-`maturity=runtime_ready`。0–5 档
+现行 unique-active：无。`content/technological-parts-foundation` 与 Sensors 已关 `runtime_ready`。0–5 档
 `IL.MOTORS / PISTONS / CONVEYERS / EMITTERS / SENSORS / PUMPS / ROBOT_ARMS /
 FIELD_GENERATORS` 已按源网格落地；传送带 / 泵 / 机械臂 0–5 与紧凑电动盖板同一
 registry 物品。印刷机仍是 prep。LuV–PUV1 不在本卡分母内。
@@ -170,7 +170,7 @@ GT6 紧凑零件循环是 `VN[0..9]`：ULV, LV, MV, HV, EV, IV, **LuV, ZPM, UV, 
 | 项 | 分母 | 读法 |
 | --- | --- | --- |
 | Trees 第一切片（橡胶树优先） | `WorldgenTree*` **9**（rubber / maple / willow / bluemahoe / hazel / cinnamon / coconut / rainbowood / bluespruce） | 已冻 `requires_new_runtime`。9 个 feature ≠ 9 种木材配方。橡胶树能替换史莱姆→橡胶板桥，接到刚落地的传送带/泵网格。不要带地牢 1、行星岩 3、Center 5 |
-| Sensors | 21 / 21 | 已冻 `requires_new_runtime`。刚落地的 `compact_sensor_*` 是 `IL.SENSORS` **零件物品**，不是这 21 个 Sensor MTE，也不是 MTE 家族 decorative 24，也不是 exclusion-reclaim 的 Panels 348 |
+| Sensors | 21 / 21 | 已关 `runtime_ready`。Electro_Meter / Tacho_Meter 与 Gibbl/质量/转速已按真实对象接入。ComputerCraft 外设仍 blocked。`compact_sensor_*` 仍是 `IL.SENSORS` **零件物品** |
 | Crops 世界生成 | `plant.glowtus` / `plant.bush` **2** | 已冻。不要带 squeezer dump 5322。无榨汁主机。切片机 selected 32 行缺作物生存来源，但作物卡要等树之后、且不得和 Food/Bees 捆一张 |
 
 ### 路线结论
@@ -180,7 +180,7 @@ GT6 紧凑零件循环是 `VN[0..9]`：ULV, LV, MV, HV, EV, IV, **LuV, ZPM, UV, 
    （CC 另有原生机制），33 个流体附件要新 runtime。实现按家族另开卡，不是一张吃完全表。
 3. 有对应高压主机（LuV 加工机、晶体充电器等）和能源路线之前，高压零件另立专卡；
    不得用 `programmed_circuit` 或错误线规顶缺格。
-4. 推荐下一张落地顺序：**当前卡收尾 → 橡胶树第一切片 → Sensors**。
+4. Sensors 已关 `runtime_ready`，不宣称 `player_complete`。推荐下一张：**橡胶树第一切片**。
    之后按依赖选机器尾账（纳米加工机辅件、染料流体、纸 tiny_plate）或作物两植物切片。
 5. 同一时刻仍只允许一条 unique-active。印刷机继续留 prep，直到染料流体身份存在。
 
@@ -194,7 +194,7 @@ runtime / 内容卡，不把关闭冻结卡当成实现证明。
 | 人类名 | slug / `--check` | 冻了什么 | 判定 | 可行性文件 |
 | --- | --- | --- | --- | --- |
 | Panels | `portfolio/exclusion-reclaim-r0` | 6 sites / 348 expanded | `requires_new_runtime` | [`feasibility.json`](../../tools/waves/portfolio/exclusion-reclaim-r0/feasibility.json) |
-| Sensors | 同上 | 21 / 21 | `requires_new_runtime` | 同上 |
+| Sensors | `content/sensors` | 21 / 21 | 已关 `runtime_ready`；ComputerCraft 外设仍 blocked | [Sensors详细计划](../history/card-plans/closed/Sensors详细计划.md) |
 | Portals | 同上 | 19 / 19 | `requires_new_runtime` | 同上 |
 | 非矿树 | `portfolio/non-ore-worldgen-r0` | `WorldgenTree*` 9 | `requires_new_runtime` | [`feasibility.json`](../../tools/waves/portfolio/non-ore-worldgen-r0/feasibility.json) |
 | 非矿地牢 | 同上 | `WorldgenDungeonGT` 1 | `requires_new_runtime` | 同上 |

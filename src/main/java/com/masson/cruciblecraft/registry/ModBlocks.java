@@ -45,6 +45,8 @@ import com.masson.cruciblecraft.content.block.TankBlock;
 import com.masson.cruciblecraft.content.block.MultiblockPortBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.block.HopperBlock;
+import com.masson.cruciblecraft.content.block.SensorBlock;
+import com.masson.cruciblecraft.content.sensor.SensorKind;
 import com.masson.cruciblecraft.content.block.BookshelfBlock;
 import com.masson.cruciblecraft.content.block.BottleCrateBlock;
 import com.masson.cruciblecraft.content.block.DrawerBlock;
@@ -369,6 +371,8 @@ public final class ModBlocks {
                     registerTieredProcessingBlocks();
     private static final Map<ResourceLocation, DeferredBlock<HopperBlock>>
             HOPPER_BLOCKS = registerHopperBlocks();
+    private static final Map<ResourceLocation, DeferredBlock<SensorBlock>>
+            SENSOR_BLOCKS = registerSensorBlocks();
     private static final Map<ResourceLocation, DeferredBlock<Block>>
             GT_STONE_BLOCKS = registerGtStoneBlocks();
     private static final Map<ResourceLocation, DeferredBlock<Block>>
@@ -1123,6 +1127,49 @@ public final class ModBlocks {
 
     public static Collection<DeferredBlock<HopperBlock>> hopperBlocks() {
         return HOPPER_BLOCKS.values();
+    }
+
+    private static Map<ResourceLocation, DeferredBlock<SensorBlock>>
+            registerSensorBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<SensorBlock>> blocks =
+                new LinkedHashMap<>();
+        for (SensorKind kind : SensorKind.all()) {
+            DeferredBlock<SensorBlock> block = BLOCKS.register(
+                    kind.path(),
+                    () -> new SensorBlock(kind, sensorProperties()));
+            if (blocks.put(kind.id(), block) != null) {
+                throw new IllegalStateException(
+                        "Duplicate sensor block " + kind.id());
+            }
+        }
+        if (blocks.size() != SensorKind.EXPECTED_SIZE) {
+            throw new IllegalStateException(
+                    "Sensor registration drifted from 21 GT6 identities");
+        }
+        return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    public static Map<ResourceLocation, DeferredBlock<SensorBlock>>
+            sensorBlocksById() {
+        return SENSOR_BLOCKS;
+    }
+
+    public static Collection<DeferredBlock<SensorBlock>> sensorBlocks() {
+        return SENSOR_BLOCKS.values();
+    }
+
+    public static Block[] sensorBlockArray() {
+        return SENSOR_BLOCKS.values().stream()
+                .map(DeferredBlock::get)
+                .toArray(Block[]::new);
+    }
+
+    private static BlockBehaviour.Properties sensorProperties() {
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.METAL)
+                .strength(1.0F, 4.0F)
+                .sound(SoundType.METAL)
+                .noOcclusion();
     }
 
     private static Map<ResourceLocation, DeferredBlock<Block>>

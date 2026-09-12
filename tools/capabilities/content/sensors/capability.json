@@ -1,0 +1,75 @@
+{
+  "schema_version": 2,
+  "slug": "content/sensors",
+  "title": "Sensors",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/Sensors详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/block/SensorBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/SensorBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/item/ElectroMeterItem.java",
+    "src/main/java/com/masson/cruciblecraft/content/item/TachoMeterItem.java",
+    "src/main/java/com/masson/cruciblecraft/content/sensor/**",
+    "src/main/java/com/masson/cruciblecraft/gametest/SensorGameTests.java",
+    "src/main/resources/assets/cruciblecraft/gt6_sensor_tools_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/gt6_sensors_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/models/block/sensor_slab.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/sensor/**",
+    "src/main/resources/data/cruciblecraft_wave_content_sensors/**",
+    "tools/capabilities/content/sensors/**",
+    "tools/tests/test_sensors.py",
+    "tools/waves/content/sensors/**"
+  ],
+  "depends_on": [
+    "content/technological-parts-foundation"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/sensors",
+  "required_test_ids": [
+    "facingAndWeakRedstone",
+    "liveHostsReportNonZero",
+    "playerSurfaceIsRegistered",
+    "survivalCraftableHostsMatchD0",
+    "twentyOneIdentitiesAreRegistered"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:sensors:31000-31023",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:thermometer",
+        "cruciblecraft:gibblometer",
+        "cruciblecraft:luminometer",
+        "cruciblecraft:chronometer",
+        "cruciblecraft:itemometer",
+        "cruciblecraft:stackometer",
+        "cruciblecraft:fluidometer",
+        "cruciblecraft:bucketometer",
+        "cruciblecraft:light_weightometer",
+        "cruciblecraft:medium_weightometer",
+        "cruciblecraft:heavy_weightometer",
+        "cruciblecraft:super_heavy_weightometer",
+        "cruciblecraft:electrometer",
+        "cruciblecraft:tps_meter",
+        "cruciblecraft:player_counter",
+        "cruciblecraft:progress_meter",
+        "cruciblecraft:tachometer",
+        "cruciblecraft:geiger_counter",
+        "cruciblecraft:laserometer",
+        "cruciblecraft:kilo_bucketometer",
+        "cruciblecraft:kilo_gibblometer"
+      ],
+      "reason": "GT6 Sensor MTEs 31000-31023 (gaps 31008, 31009, 31014). One registry/runtime id per source id. compact_sensor_* parts, Panels, decorative MTEs, and redstone wires are out of this denominator."
+    },
+    {
+      "semantic_key": "peripheral:sensors:computercraft",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "ITileEntityComputerizable / ComputerCraft peripheral is out of this card. Sensors are not in the logistics/cover net."
+    }
+  ],
+  "note": "21 GT6 Sensor identities land as facing slabs with eight comparison modes and weak redstone 0-15. Covers are not allowed. Live hosts: temperature (crucible/mold Kelvin), light, time, item/stack/fluid/bucket counts, TPS, player count, processing progress, EU/LU cable wattageLast, reactor neutrons, fluid-pipe/machine/boiler/crucible Gibbl, inventory/crucible OM.weight, axle/gearbox transferredLast. Electrometer/Tachometer D0 uses IL.Electro_Meter / IL.Tacho_Meter. ComputerCraft peripheral stays blocked. Close at runtime_ready, not player_complete."
+}

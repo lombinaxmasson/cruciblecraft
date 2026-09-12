@@ -16,6 +16,11 @@ import com.masson.cruciblecraft.logistics.pipe.cover.CoverComponentTiers;
 import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.logistics.hopper.HopperKind;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
+import com.masson.cruciblecraft.content.item.GeigerCounterItem;
+import com.masson.cruciblecraft.content.item.ElectroMeterItem;
+import com.masson.cruciblecraft.content.item.TachoMeterItem;
+import com.masson.cruciblecraft.content.item.ThermometerItem;
+import com.masson.cruciblecraft.content.sensor.SensorKind;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.recipe.rule.MaterialRule;
@@ -81,6 +86,7 @@ public final class ModRecipeProvider extends RecipeProvider {
         RecipeOutput recipesOnly = new AdvancementFreeRecipeOutput(output);
         addMachineRecipes(recipesOnly);
         addHopperRecipes(recipesOnly);
+        addSensorRecipes(recipesOnly);
         addStorageRecipes(recipesOnly);
         MaterialCatalog.startupValues().stream()
                 .sorted(Comparator.comparing(MaterialDefinition::id))
@@ -151,6 +157,107 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_hopper", has(Items.HOPPER))
                 .unlockedBy("has_plate", has(ironPlate))
                 .save(output, id("hoppers/steel_dust_funnel"));
+    }
+
+    private static void addSensorRecipes(RecipeOutput output) {
+        Item plate = materialItem("tin_alloy", MaterialPrefixes.DOUBLE_PLATE);
+        Item fineWire = materialItem("red_alloy", MaterialPrefixes.FINE_WIRE);
+        Item bolt = materialItem("tin_alloy", MaterialPrefixes.BOLT);
+        for (SensorKind kind : SensorKind.all()) {
+            if (kind.d0Blocked()) {
+                continue;
+            }
+            Item result = ModItems.sensorItemsById().get(kind.id()).get();
+            ShapedRecipeBuilder builder = ShapedRecipeBuilder.shaped(
+                            RecipeCategory.MISC, result)
+                    .pattern(kind.grid()[0])
+                    .pattern(kind.grid()[1])
+                    .pattern(kind.grid()[2])
+                    .unlockedBy("has_redstone", has(Items.REDSTONE));
+            String letters = String.join("", kind.grid());
+            if (letters.indexOf('P') >= 0) {
+                builder.define('P', plate);
+            }
+            if (letters.indexOf('W') >= 0) {
+                builder.define('W', fineWire);
+            }
+            if (letters.indexOf('R') >= 0) {
+                builder.define('R', Items.REDSTONE);
+            }
+            if (letters.indexOf('G') >= 0) {
+                builder.define('G', Items.GLASS);
+            }
+            if (letters.indexOf('B') >= 0) {
+                builder.define('B', bolt);
+            }
+            if (letters.indexOf('C') >= 0) {
+                builder.define('C', Items.COMPARATOR);
+            }
+            if (letters.indexOf('X') >= 0) {
+                builder.define('X', sensorSpecial(kind.specialX()));
+            }
+            if (letters.indexOf('Y') >= 0) {
+                builder.define('Y', sensorSpecial(kind.specialY()));
+            }
+            builder.save(output, id("sensors/" + kind.path()));
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result)
+                    .requires(result)
+                    .unlockedBy("has_sensor", has(result))
+                    .save(output, id("sensors/" + kind.path() + "_cycle"));
+        }
+    }
+
+    private static Ingredient sensorSpecial(String key) {
+        return switch (key) {
+            case "thermometer" -> Ingredient.of(semanticItem(
+                    ThermometerItem.REGISTRY_PATH));
+            case "electro_meter" -> Ingredient.of(semanticItem(
+                    ElectroMeterItem.REGISTRY_PATH));
+            case "tacho_meter" -> Ingredient.of(semanticItem(
+                    TachoMeterItem.REGISTRY_PATH));
+            case "sio2_gem" -> Ingredient.of(
+                    materialItem("glass", MaterialPrefixes.GEM));
+            case "silicon_plate" -> Ingredient.of(
+                    materialItem("silicon", MaterialPrefixes.PLATE));
+            case "copper_fine_wire" -> Ingredient.of(
+                    materialItem("copper", MaterialPrefixes.FINE_WIRE));
+            case "copper_wire" -> Ingredient.of(
+                    materialItem("copper", MaterialPrefixes.WIRE));
+            case "clock" -> Ingredient.of(Items.CLOCK);
+            case "gold_pressure_plate" -> Ingredient.of(
+                    Items.LIGHT_WEIGHTED_PRESSURE_PLATE);
+            case "iron_pressure_plate" -> Ingredient.of(
+                    Items.HEAVY_WEIGHTED_PRESSURE_PLATE);
+            case "stone_pressure_plate" -> Ingredient.of(
+                    Items.STONE_PRESSURE_PLATE);
+            case "wood_pressure_plate" -> Ingredient.of(
+                    Items.OAK_PRESSURE_PLATE);
+            case "chest" -> Ingredient.of(Items.CHEST);
+            case "bucket" -> Ingredient.of(Items.BUCKET);
+            case "brass_small_gear" -> Ingredient.of(
+                    materialItem("brass", MaterialPrefixes.SMALL_GEAR));
+            case "brass_gear" -> Ingredient.of(
+                    materialItem("brass", MaterialPrefixes.GEAR));
+            case "geiger_counter" -> Ingredient.of(semanticItem(
+                    GeigerCounterItem.FILLED_PATH));
+            case "lead_double_plate" -> Ingredient.of(
+                    materialItem("lead", MaterialPrefixes.DOUBLE_PLATE));
+            case "compact_sensor_lv" -> Ingredient.of(
+                    ModItems.technologicalPart("compact_sensor_lv").get());
+            case "diamond_gem" -> Ingredient.of(
+                    materialItem("diamantine", MaterialPrefixes.GEM));
+            default -> throw new IllegalStateException(
+                    "Unknown sensor D0 special " + key);
+        };
+    }
+
+    private static Item semanticItem(String path) {
+        var item = ModItems.semanticIdentityItemsById().get(
+                ResourceLocation.fromNamespaceAndPath("cruciblecraft", path));
+        if (item == null) {
+            throw new IllegalStateException("Missing semantic item " + path);
+        }
+        return item.get();
     }
 
     private static void addDisplayCpuRecipes(RecipeOutput output) {
