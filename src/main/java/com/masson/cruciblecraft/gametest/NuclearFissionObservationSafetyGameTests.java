@@ -48,14 +48,14 @@ public final class NuclearFissionObservationSafetyGameTests {
             "energy/nuclear-fission-observation-safety";
     private static final BlockPos POS = new BlockPos(2, 1, 2);
     private static final String[] HAZMAT = {
-            "gt_object/gt_armor_hazmat_radiation_head_m0",
-            "gt_object/gt_armor_hazmat_radiation_chest_m0",
-            "gt_object/gt_armor_hazmat_radiation_legs_m0",
-            "gt_object/gt_armor_hazmat_radiation_boots_m0",
-            "gt_object/gt_armor_hazmat_heat_head_m0",
-            "gt_object/gt_armor_hazmat_heat_chest_m0",
-            "gt_object/gt_armor_hazmat_heat_legs_m0",
-            "gt_object/gt_armor_hazmat_heat_boots_m0"
+            "radiation/hazard_suit_helmet",
+            "radiation/hazard_suit_shirt",
+            "radiation/hazard_suit_pants",
+            "radiation/hazard_suit_boots",
+            "heat/protection_suit_helmet",
+            "heat/protection_suit_shirt",
+            "heat/protection_suit_pants",
+            "heat/protection_suit_boots"
     };
 
     private NuclearFissionObservationSafetyGameTests() {}
@@ -314,18 +314,17 @@ public final class NuclearFissionObservationSafetyGameTests {
     }
 
     private static void equip(Pig pig, String suit) {
-        pig.setItemSlot(
-                EquipmentSlot.HEAD,
-                stack("gt_object/gt_armor_hazmat_" + suit + "_head_m0"));
-        pig.setItemSlot(
-                EquipmentSlot.CHEST,
-                stack("gt_object/gt_armor_hazmat_" + suit + "_chest_m0"));
-        pig.setItemSlot(
-                EquipmentSlot.LEGS,
-                stack("gt_object/gt_armor_hazmat_" + suit + "_legs_m0"));
-        pig.setItemSlot(
-                EquipmentSlot.FEET,
-                stack("gt_object/gt_armor_hazmat_" + suit + "_boots_m0"));
+        if ("radiation".equals(suit)) {
+            pig.setItemSlot(EquipmentSlot.HEAD, stack("radiation/hazard_suit_helmet"));
+            pig.setItemSlot(EquipmentSlot.CHEST, stack("radiation/hazard_suit_shirt"));
+            pig.setItemSlot(EquipmentSlot.LEGS, stack("radiation/hazard_suit_pants"));
+            pig.setItemSlot(EquipmentSlot.FEET, stack("radiation/hazard_suit_boots"));
+            return;
+        }
+        pig.setItemSlot(EquipmentSlot.HEAD, stack("heat/protection_suit_helmet"));
+        pig.setItemSlot(EquipmentSlot.CHEST, stack("heat/protection_suit_shirt"));
+        pig.setItemSlot(EquipmentSlot.LEGS, stack("heat/protection_suit_pants"));
+        pig.setItemSlot(EquipmentSlot.FEET, stack("heat/protection_suit_boots"));
     }
 
     private static ItemStack stack(String path) {

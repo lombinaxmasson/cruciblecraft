@@ -216,16 +216,16 @@ class MaterialVisualResourceTest {
         assertEquals(
                 "Lighter (Empty)",
                 english.get(
-                        "item.cruciblecraft.gt_multiitem.multiitem_randomtools_m5004")
+                        "item.cruciblecraft.tool.lighter_empty_requires_canning_machine_to_be_filled")
                         .getAsString());
         assertEquals(
                 "%s 斧头",
                 chinese.get("item.cruciblecraft.material_form.tool_head_axe")
                         .getAsString());
-        assertTrue(english.has("block.cruciblecraft.gt_block.planks2_m11"));
-        assertTrue(chinese.has("block.cruciblecraft.gt_block.planks2_m11"));
+        assertTrue(english.has("block.cruciblecraft.planks2.blue"));
+        assertTrue(chinese.has("block.cruciblecraft.planks2.blue"));
         assertTrue(clientFiles.containsKey(
-                "assets/cruciblecraft/models/item/gt_block/planks2_m11.json"));
+                "assets/cruciblecraft/models/item/planks2/blue.json"));
     }
 
     private static JsonObject json(String document) {

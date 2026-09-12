@@ -11,8 +11,8 @@ public final class PressureWasherOperandCatalog {
             new Operand(
                     ResourceLocation.fromNamespaceAndPath(
                             "cruciblecraft",
-                            "gt_multiitem/multiitem_food_m280"),
-                    "gt_multiitem/multiitem_food_m280",
+                            "cinnamon/bark_don_t_let_anyone_challenge_you"),
+                    "cinnamon/bark_don_t_let_anyone_challenge_you",
                     280,
                     "Cinnamon Bark",
                     "肉桂树皮"));

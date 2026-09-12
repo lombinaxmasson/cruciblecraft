@@ -71,6 +71,7 @@ KNOWN_SEMANTIC_SLUGS = (
     "runtime/generic-network-core",
     "runtime/logistics-core",
     "runtime/display-cpu",
+    "runtime/cover-remainder",
     "runtime/converter-catalog",
     "runtime/batteries",
     "runtime/transformers",

@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
+
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import org.junit.jupiter.api.Test;
@@ -19,12 +21,16 @@ class CoverDefinitionCatalogTest {
     @Test
     void catalogHasExactDefinitionsAndBehaviors() {
         CoverBehaviorRegistry.validateDefinitions();
-        assertEquals(23, CoverDefinitionCatalog.definitions().size()
-                - CoverComponentTiers.definitionIds().size());
         assertEquals(
-                23 + CoverComponentTiers.definitionIds().size(),
+                23 + MachineCoverKinds.DEFINITION_COUNT,
+                CoverDefinitionCatalog.definitions().size()
+                        - CoverComponentTiers.definitionIds().size());
+        assertEquals(
+                23
+                        + MachineCoverKinds.DEFINITION_COUNT
+                        + CoverComponentTiers.definitionIds().size(),
                 CoverDefinitionCatalog.definitions().size());
-        assertEquals(16, CoverBehaviorRegistry.registeredIds().size());
+        assertEquals(36, CoverBehaviorRegistry.registeredIds().size());
     }
 
     @Test
@@ -60,7 +66,7 @@ class CoverDefinitionCatalogTest {
                         "cruciblecraft:pressure_valve",
                         "cruciblecraft:selector_manual"),
                 ids.subList(0, 8));
-        assertEquals(16, ids.size());
+        assertEquals(36, ids.size());
         assertTrue(ids.containsAll(List.of(
                 "cruciblecraft:logistics_item_storage",
                 "cruciblecraft:logistics_item_transfer",
@@ -69,7 +75,11 @@ class CoverDefinitionCatalogTest {
                 "cruciblecraft:logistics_generic_storage",
                 "cruciblecraft:logistics_generic_transfer",
                 "cruciblecraft:logistics_generic_dump",
-                "cruciblecraft:logistics_display_cpu")));
+                "cruciblecraft:logistics_display_cpu",
+                "cruciblecraft:controller_auto",
+                "cruciblecraft:controller_auto_timer",
+                "cruciblecraft:detector_running",
+                "cruciblecraft:selector_tag")));
     }
 
     @Test
@@ -162,6 +172,11 @@ class CoverDefinitionCatalogTest {
                         Optional.empty(),
                         0,
                         0));
+        assertEquals(2047, PipeCoverConfig.EMPTY.withDisplay(2047, 0).visual());
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> PipeCoverConfig.EMPTY.withDisplay(
+                        PipeCoverConfig.MAX_VISUAL + 1, 0));
     }
 
     @Test

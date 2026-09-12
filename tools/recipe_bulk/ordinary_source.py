@@ -619,7 +619,10 @@ def map_item_operand(
         if isinstance(use_meta, int):
             operand = _empty_operand(item)
             runtime = _assert_runtime(object_runtime(item_id, use_meta, object_kind))
-            if object_kind != "tool_head" or not thp.is_mapped(item_id, use_meta):
+            registered = object_kind == "multiitem" or (
+                object_kind == "tool_head" and thp.is_mapped(item_id, use_meta)
+            )
+            if not registered:
                 operand["value"] = f"{item_id}@{use_meta}"
                 return operand, [
                     f"unregistered {object_kind} {item_id}@{use_meta}"

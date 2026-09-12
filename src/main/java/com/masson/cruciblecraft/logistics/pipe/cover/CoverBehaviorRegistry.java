@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverCovers;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverBehaviors;
+
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -145,6 +148,8 @@ public final class CoverBehaviorRegistry {
         com.masson.cruciblecraft.logistics.genericnet.GenericNetworkCovers.bootstrap();
         com.masson.cruciblecraft.logistics.core.LogisticsDumpCovers.bootstrap();
         com.masson.cruciblecraft.logistics.displaycpu.DisplayCpuCovers.bootstrap();
+        MachineCoverCovers.bootstrap();
+        MachineCoverBehaviors.validateDefinitions();
         for (CoverDefinition definition
                 : CoverDefinitionCatalog.definitions()) {
             if (!BEHAVIORS.containsKey(definition.behaviorId())) {

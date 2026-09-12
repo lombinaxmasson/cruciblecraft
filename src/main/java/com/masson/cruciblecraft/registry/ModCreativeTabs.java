@@ -108,6 +108,8 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.SELECTOR_MANUAL_COVER.get());
                         ModItems.compactElectricCovers().forEach(
                                 cover -> output.accept(cover.get()));
+                        ModItems.machineCovers().forEach(
+                                cover -> output.accept(cover.get()));
                         output.accept(ModItems.LOGISTICS_ITEM_STORAGE_COVER.get());
                         output.accept(ModItems.LOGISTICS_ITEM_IMPORT_COVER.get());
                         output.accept(ModItems.LOGISTICS_ITEM_EXPORT_COVER.get());

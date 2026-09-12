@@ -377,11 +377,9 @@ def assert_runtime_id(value: Any, *, consume: bool) -> str:
 
 
 def mte_registry_path(source_item: str, meta: int) -> str:
-    item = str(source_item)
-    if item == "gregtech:gt.multitileentity":
-        return f"gt_mte/mte_{meta}"
-    tail = item.replace(":", "_").replace(".", "_")
-    return f"gt_mte/{tail}_{meta}"
+    from tools import catalog_modern_ids as modern
+
+    return modern.registry_path_for(source_item, meta)
 
 
 def mte_runtime_id(source_item: str, meta: int) -> str:

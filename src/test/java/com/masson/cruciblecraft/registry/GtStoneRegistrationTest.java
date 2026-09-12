@@ -45,7 +45,7 @@ class GtStoneRegistrationTest {
         assertEquals(406, ids.size());
         assertTrue(slabs > 0);
         assertFalse(ids.contains("cruciblecraft:gt_stone/andesite"));
-        assertTrue(ids.contains("cruciblecraft:gt_stone/andesite_m8"));
-        assertTrue(ids.contains("cruciblecraft:gt_stone/andesite_slab_0_m8"));
+        assertTrue(ids.contains("cruciblecraft:andesite/reinforced_bricks"));
+        assertTrue(ids.contains("cruciblecraft:andesite/reinforced_bricks/slab_down"));
     }
 }

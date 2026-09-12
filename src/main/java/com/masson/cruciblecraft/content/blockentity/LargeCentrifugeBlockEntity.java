@@ -60,6 +60,8 @@ public final class LargeCentrifugeBlockEntity
         }
         if (centrifuge.structureValid && !centrifuge.pluginQuarantined) {
             centrifuge.tickProcessingServer();
+        } else {
+            centrifuge.tickCoversServer();
         }
     }
 

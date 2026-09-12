@@ -299,9 +299,9 @@ def object_kind(source_item: str) -> str:
 
 
 def registry_path(source_item: str, meta: int) -> str:
-    tail = str(source_item).removeprefix("gregtech:gt.block.")
-    slug = tail.replace(".", "_")
-    return f"gt_block/{slug}_m{meta}"
+    from tools import catalog_modern_ids as modern
+
+    return modern.registry_path_for(source_item, meta)
 
 
 def runtime_id(source_item: str, meta: int) -> str:

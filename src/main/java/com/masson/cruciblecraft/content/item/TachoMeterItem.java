@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 /** GT6 Tachometer: reports last-tick axle/gearbox RU flow. */
 public final class TachoMeterItem extends Item {
     public static final String REGISTRY_PATH =
-            "gt_multiitem/multiitem_randomtools_m10004";
+            "tool/tachometer_measures_rotation_speed";
 
     private final String englishName;
     private final String chineseName;

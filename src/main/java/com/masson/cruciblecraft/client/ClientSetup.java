@@ -284,6 +284,20 @@ public class ClientSetup {
         event.registerBlockEntityRenderer(
                 ModBlockEntities.FLUID_PIPE.get(), PipeCoverRenderer::new);
         event.registerBlockEntityRenderer(
+                ModBlockEntities.PROCESSING_MACHINE.get(),
+                PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.CRUSHER.get(), PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.DISTILLATION_TOWER.get(),
+                PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.LARGE_CENTRIFUGE.get(),
+                PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.LASER_ENGRAVER.get(),
+                PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
                 ModBlockEntities.BATTERY.get(),
                 com.masson.cruciblecraft.energy.battery.BatteryRenderer::new);
     }

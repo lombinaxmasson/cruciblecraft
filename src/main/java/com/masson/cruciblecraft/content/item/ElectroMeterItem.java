@@ -14,7 +14,7 @@ import net.minecraft.world.level.Level;
 /** GT6 Electrometer: reports last-tick EU/LU cable wattage. */
 public final class ElectroMeterItem extends Item {
     public static final String REGISTRY_PATH =
-            "gt_multiitem/multiitem_randomtools_m10003";
+            "tool/electrometer_measures_electricity";
 
     private final String englishName;
     private final String chineseName;

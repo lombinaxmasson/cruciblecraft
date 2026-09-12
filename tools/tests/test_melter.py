@@ -51,12 +51,11 @@ class MelterCardTest(unittest.TestCase):
         work = census.load_json(WAVE / "source_pack" / "work_set.json")
         overflow = census.load_json(WAVE / "overflow.json")
         self.assertEqual(6_756, work["accounting"]["source_rows"])
-        self.assertEqual(3_960, work["accounting"]["selected_rows"])
-        self.assertEqual(2_796, work["accounting"]["overflow_rows"])
-        self.assertEqual(2_796, overflow["blocked_rows"])
+        self.assertEqual(3_961, work["accounting"]["selected_rows"])
+        self.assertEqual(2_795, work["accounting"]["overflow_rows"])
+        self.assertEqual(2_795, overflow["blocked_rows"])
         blocked_inputs = str(overflow)
         self.assertIn("gregtech:gt.multiitem.technological@1000", blocked_inputs)
-        self.assertIn("gregtech:gt.multiitem.food@1000", blocked_inputs)
         self.assertNotIn("programmed_circuit", str(overflow))
 
     def test_d0_host_and_load_note_are_source_exact(self) -> None:

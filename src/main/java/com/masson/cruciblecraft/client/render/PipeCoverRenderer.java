@@ -7,6 +7,9 @@ import org.joml.Matrix4f;
 import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
 import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverHost;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverVisuals;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverComponentTiers;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverItemFilters;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
@@ -28,7 +31,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
-/** GT6-style face plates on item and fluid pipes. */
+/** GT6-style face plates on pipes and processing machines. */
 public final class PipeCoverRenderer<T extends BlockEntity>
         implements BlockEntityRenderer<T> {
     private static final ResourceLocation ATLAS =
@@ -38,6 +41,7 @@ public final class PipeCoverRenderer<T extends BlockEntity>
                     "cruciblecraft", "block/gt6_import/covers/base");
     private static final float INSET = 0.002f;
     private static final float OVERLAY = 0.001f;
+    private static final float COVER_THICKNESS = 1.0f / 16.0f;
 
     public PipeCoverRenderer(BlockEntityRendererProvider.Context context) {}
 
@@ -50,10 +54,13 @@ public final class PipeCoverRenderer<T extends BlockEntity>
             int packedLight,
             int packedOverlay) {
         Map<Direction, PipeCover> covers;
+        float half = 0.5f;
         if (blockEntity instanceof ItemPipeBlockEntity pipe) {
             covers = pipe.coverSnapshot();
         } else if (blockEntity instanceof FluidPipeBlockEntity pipe) {
             covers = pipe.coverSnapshot();
+        } else if (blockEntity instanceof MachineCoverHost machine) {
+            covers = machine.covers().snapshot();
         } else {
             return;
         }
@@ -61,25 +68,24 @@ public final class PipeCoverRenderer<T extends BlockEntity>
             return;
         }
         BlockState state = blockEntity.getBlockState();
-        int width = 8;
         if (state.getBlock() instanceof AbstractPipeBlock pipe) {
-            width = pipe.pipe().width();
+            half = Math.max(pipe.pipe().width() / 32.0f, 0.25f);
         }
-        float half = Math.max(width / 32.0f, 0.25f);
         TextureAtlasSprite base = sprite(BASE);
         VertexConsumer vertices = buffers.getBuffer(
                 RenderType.cutoutMipped());
         for (Map.Entry<Direction, PipeCover> entry : covers.entrySet()) {
             PipeCover cover = entry.getValue();
-            pose(poseStack, vertices, entry.getKey(), half, 0.0f, base, packedLight);
+            Direction face = entry.getKey();
             if (DisplayCpuKinds.isDisplay(cover.definitionId())) {
+                pose(poseStack, vertices, face, half, 0.0f, base, packedLight);
                 String folder = "display_cpu_"
                         + cover.definitionId().getPath().substring(
                                 "logistics_display_cpu_".length());
                 pose(
                         poseStack,
                         vertices,
-                        entry.getKey(),
+                        face,
                         half,
                         OVERLAY,
                         sprite(coverTexture(folder, "underlay")),
@@ -87,7 +93,7 @@ public final class PipeCoverRenderer<T extends BlockEntity>
                 pose(
                         poseStack,
                         vertices,
-                        entry.getKey(),
+                        face,
                         half,
                         OVERLAY * 2,
                         sprite(coverTexture(
@@ -96,6 +102,17 @@ public final class PipeCoverRenderer<T extends BlockEntity>
                         packedLight);
                 continue;
             }
+            if (renderRemainder(
+                    poseStack,
+                    vertices,
+                    cover,
+                    face,
+                    half,
+                    base,
+                    packedLight)) {
+                continue;
+            }
+            pose(poseStack, vertices, face, half, 0.0f, base, packedLight);
             ResourceLocation overlay = overlay(cover);
             if (overlay == null) {
                 continue;
@@ -103,12 +120,169 @@ public final class PipeCoverRenderer<T extends BlockEntity>
             pose(
                     poseStack,
                     vertices,
-                    entry.getKey(),
+                    face,
                     half,
                     OVERLAY,
                     sprite(overlay),
                     packedLight);
         }
+    }
+
+    private static boolean renderRemainder(
+            PoseStack poseStack,
+            VertexConsumer vertices,
+            PipeCover cover,
+            Direction face,
+            float half,
+            TextureAtlasSprite sharedBase,
+            int packedLight) {
+        if (!MachineCoverKinds.isRemainder(cover.definitionId())) {
+            return false;
+        }
+        String path = cover.definitionId().getPath();
+        if ("controller_display".equals(path)) {
+            int visual = cover.config().visual();
+            String skin = MachineCoverVisuals.displaySkin(visual);
+            pose(
+                    poseStack,
+                    vertices,
+                    face,
+                    half,
+                    0.0f,
+                    sprite(coverTexture(
+                            "controller_display/" + skin, "base")),
+                    packedLight);
+            float extra = OVERLAY;
+            for (int light = 0; light < 4; light++) {
+                if (!MachineCoverVisuals.displayLightPresent(visual, light)) {
+                    continue;
+                }
+                boolean on = MachineCoverVisuals.displayLightOn(visual, light);
+                pose(
+                        poseStack,
+                        vertices,
+                        face,
+                        half,
+                        extra,
+                        sprite(coverTexture(
+                                "controller_display/" + skin,
+                                (light + 1) + (on ? "_on" : "_off"))),
+                        packedLight);
+                extra += OVERLAY;
+            }
+            return true;
+        }
+        if ("display_energy".equals(path)
+                || "redstone_emitter".equals(path)
+                || "selector_redstone".equals(path)
+                || "selector_tag".equals(path)
+                || "selector_button_panel".equals(path)) {
+            int frame;
+            String underlay = "underlay";
+            if ("display_energy".equals(path)) {
+                frame = Math.max(0, Math.min(10, cover.config().visual()));
+            } else if ("selector_button_panel".equals(path)) {
+                frame = MachineCoverVisuals.buttonMode(cover.config().visual());
+                underlay = MachineCoverVisuals.buttonUnderlay(
+                        cover.config().visual());
+            } else {
+                frame = Math.max(0, Math.min(15, cover.config().redstone()));
+            }
+            pose(
+                    poseStack,
+                    vertices,
+                    face,
+                    half,
+                    0.0f,
+                    sprite(coverTexture(path, underlay)),
+                    packedLight);
+            pose(
+                    poseStack,
+                    vertices,
+                    face,
+                    half,
+                    OVERLAY,
+                    sprite(coverTexture(path, Integer.toString(frame))),
+                    packedLight);
+            return true;
+        }
+        if ("controller_covers".equals(path)) {
+            pose(
+                    poseStack,
+                    vertices,
+                    face,
+                    half,
+                    0.0f,
+                    sprite(coverTexture(path, "base")),
+                    packedLight);
+            pose(
+                    poseStack,
+                    vertices,
+                    face,
+                    half,
+                    OVERLAY,
+                    sprite(coverTexture(path, "circuit")),
+                    packedLight);
+            return true;
+        }
+        if ("vent".equals(path)) {
+            poseCoverSlab(
+                    poseStack,
+                    vertices,
+                    face,
+                    half,
+                    0.0f,
+                    sprite(coverTexture(path, MachineCoverVisuals.ventFront())),
+                    sprite(coverTexture(path, MachineCoverVisuals.ventBack())),
+                    sprite(coverTexture(path, MachineCoverVisuals.ventSides())),
+                    packedLight);
+            return true;
+        }
+        pose(poseStack, vertices, face, half, 0.0f, sharedBase, packedLight);
+        ResourceLocation overlay = remainderOverlay(cover);
+        if (overlay != null) {
+            pose(
+                    poseStack,
+                    vertices,
+                    face,
+                    half,
+                    OVERLAY,
+                    sprite(overlay),
+                    packedLight);
+        }
+        return true;
+    }
+
+    private static ResourceLocation remainderOverlay(PipeCover cover) {
+        String path = cover.definitionId().getPath();
+        if ("cover_blank".equals(path)) {
+            int frame = Math.floorMod(cover.config().visual(), 6);
+            return coverTexture(path, Integer.toString(frame));
+        }
+        if ("redstone_conductor_in".equals(path)) {
+            return coverTexture(path, "in");
+        }
+        if ("redstone_conductor_out".equals(path)) {
+            return coverTexture(path, "out");
+        }
+        return switch (path) {
+            case "controller_auto",
+                    "controller_redstone",
+                    "controller_auto_redstone",
+                    "controller_auto_timer_1m",
+                    "controller_auto_timer_5m",
+                    "controller_auto_timer_10m",
+                    "controller_auto_timer_20m",
+                    "controller_auto_timer_30m",
+                    "scale_energy",
+                    "scale_progress",
+                    "detector_running_possible",
+                    "detector_running_passively",
+                    "detector_running_actively",
+                    "detector_running_successfully" ->
+                    coverTexture(path, "circuit");
+            default -> null;
+        };
     }
 
     private static ResourceLocation overlay(PipeCover cover) {
@@ -160,6 +334,115 @@ public final class PipeCoverRenderer<T extends BlockEntity>
 
     private static TextureAtlasSprite sprite(ResourceLocation location) {
         return Minecraft.getInstance().getTextureAtlas(ATLAS).apply(location);
+    }
+
+    private static void poseCoverSlab(
+            PoseStack poseStack,
+            VertexConsumer vertices,
+            Direction face,
+            float half,
+            float extraInset,
+            TextureAtlasSprite front,
+            TextureAtlasSprite back,
+            TextureAtlasSprite sides,
+            int light) {
+        float outer = INSET + extraInset;
+        float inner = outer + COVER_THICKNESS;
+        float min = 0.5f - half;
+        float max = 0.5f + half;
+        Matrix4f pose = poseStack.last().pose();
+        switch (face) {
+            case NORTH -> {
+                quad(poseStack, vertices, pose, front, light, Direction.NORTH,
+                        max, min, outer, max, max, outer, min, max, outer, min, min, outer);
+                quad(poseStack, vertices, pose, back, light, Direction.SOUTH,
+                        min, min, inner, min, max, inner, max, max, inner, max, min, inner);
+                quad(poseStack, vertices, pose, sides, light, Direction.UP,
+                        min, max, outer, max, max, outer, max, max, inner, min, max, inner);
+                quad(poseStack, vertices, pose, sides, light, Direction.DOWN,
+                        min, min, inner, max, min, inner, max, min, outer, min, min, outer);
+                quad(poseStack, vertices, pose, sides, light, Direction.WEST,
+                        min, min, inner, min, max, inner, min, max, outer, min, min, outer);
+                quad(poseStack, vertices, pose, sides, light, Direction.EAST,
+                        max, min, outer, max, max, outer, max, max, inner, max, min, inner);
+            }
+            case SOUTH -> {
+                float southOuter = 1.0f - outer;
+                float southInner = 1.0f - inner;
+                quad(poseStack, vertices, pose, front, light, Direction.SOUTH,
+                        min, min, southOuter, min, max, southOuter, max, max, southOuter, max, min, southOuter);
+                quad(poseStack, vertices, pose, back, light, Direction.NORTH,
+                        max, min, southInner, max, max, southInner, min, max, southInner, min, min, southInner);
+                quad(poseStack, vertices, pose, sides, light, Direction.UP,
+                        max, max, southOuter, min, max, southOuter, min, max, southInner, max, max, southInner);
+                quad(poseStack, vertices, pose, sides, light, Direction.DOWN,
+                        max, min, southInner, min, min, southInner, min, min, southOuter, max, min, southOuter);
+                quad(poseStack, vertices, pose, sides, light, Direction.WEST,
+                        min, min, southOuter, min, max, southOuter, min, max, southInner, min, min, southInner);
+                quad(poseStack, vertices, pose, sides, light, Direction.EAST,
+                        max, min, southInner, max, max, southInner, max, max, southOuter, max, min, southOuter);
+            }
+            case WEST -> {
+                quad(poseStack, vertices, pose, front, light, Direction.WEST,
+                        outer, min, min, outer, max, min, outer, max, max, outer, min, max);
+                quad(poseStack, vertices, pose, back, light, Direction.EAST,
+                        inner, min, max, inner, max, max, inner, max, min, inner, min, min);
+                quad(poseStack, vertices, pose, sides, light, Direction.UP,
+                        outer, max, min, inner, max, min, inner, max, max, outer, max, max);
+                quad(poseStack, vertices, pose, sides, light, Direction.DOWN,
+                        outer, min, max, inner, min, max, inner, min, min, outer, min, min);
+                quad(poseStack, vertices, pose, sides, light, Direction.NORTH,
+                        outer, min, min, outer, max, min, inner, max, min, inner, min, min);
+                quad(poseStack, vertices, pose, sides, light, Direction.SOUTH,
+                        inner, min, max, inner, max, max, outer, max, max, outer, min, max);
+            }
+            case EAST -> {
+                float eastOuter = 1.0f - outer;
+                float eastInner = 1.0f - inner;
+                quad(poseStack, vertices, pose, front, light, Direction.EAST,
+                        eastOuter, min, max, eastOuter, max, max, eastOuter, max, min, eastOuter, min, min);
+                quad(poseStack, vertices, pose, back, light, Direction.WEST,
+                        eastInner, min, min, eastInner, max, min, eastInner, max, max, eastInner, min, max);
+                quad(poseStack, vertices, pose, sides, light, Direction.UP,
+                        eastInner, max, min, eastOuter, max, min, eastOuter, max, max, eastInner, max, max);
+                quad(poseStack, vertices, pose, sides, light, Direction.DOWN,
+                        eastInner, min, max, eastOuter, min, max, eastOuter, min, min, eastInner, min, min);
+                quad(poseStack, vertices, pose, sides, light, Direction.NORTH,
+                        eastInner, min, min, eastInner, max, min, eastOuter, max, min, eastOuter, min, min);
+                quad(poseStack, vertices, pose, sides, light, Direction.SOUTH,
+                        eastOuter, min, max, eastOuter, max, max, eastInner, max, max, eastInner, min, max);
+            }
+            case DOWN -> {
+                quad(poseStack, vertices, pose, front, light, Direction.DOWN,
+                        min, outer, max, max, outer, max, max, outer, min, min, outer, min);
+                quad(poseStack, vertices, pose, back, light, Direction.UP,
+                        min, inner, min, max, inner, min, max, inner, max, min, inner, max);
+                quad(poseStack, vertices, pose, sides, light, Direction.NORTH,
+                        max, outer, min, min, outer, min, min, inner, min, max, inner, min);
+                quad(poseStack, vertices, pose, sides, light, Direction.SOUTH,
+                        min, outer, max, max, outer, max, max, inner, max, min, inner, max);
+                quad(poseStack, vertices, pose, sides, light, Direction.WEST,
+                        min, outer, min, min, outer, max, min, inner, max, min, inner, min);
+                quad(poseStack, vertices, pose, sides, light, Direction.EAST,
+                        max, outer, max, max, outer, min, max, inner, min, max, inner, max);
+            }
+            case UP -> {
+                float upOuter = 1.0f - outer;
+                float upInner = 1.0f - inner;
+                quad(poseStack, vertices, pose, front, light, Direction.UP,
+                        min, upOuter, min, max, upOuter, min, max, upOuter, max, min, upOuter, max);
+                quad(poseStack, vertices, pose, back, light, Direction.DOWN,
+                        min, upInner, max, max, upInner, max, max, upInner, min, min, upInner, min);
+                quad(poseStack, vertices, pose, sides, light, Direction.NORTH,
+                        min, upOuter, min, max, upOuter, min, max, upInner, min, min, upInner, min);
+                quad(poseStack, vertices, pose, sides, light, Direction.SOUTH,
+                        max, upOuter, max, min, upOuter, max, min, upInner, max, max, upInner, max);
+                quad(poseStack, vertices, pose, sides, light, Direction.WEST,
+                        min, upOuter, max, min, upOuter, min, min, upInner, min, min, upInner, max);
+                quad(poseStack, vertices, pose, sides, light, Direction.EAST,
+                        max, upOuter, min, max, upOuter, max, max, upInner, max, max, upInner, min);
+            }
+        }
     }
 
     private static void pose(

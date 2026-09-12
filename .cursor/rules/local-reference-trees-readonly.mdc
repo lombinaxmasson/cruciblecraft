@@ -1,0 +1,28 @@
+---
+description: Gitignored local reference trees are read-only. Never junction, copy-into-worktree, or delete them.
+alwaysApply: true
+---
+
+# Local reference trees are read-only
+
+These paths are **not in git**. Destroying them is unrecoverable from this repo:
+
+- `gt6_code/` (official Java/tick: `gregtech6`)
+- `gt6_referencable_port_code/` (official art: `gregtech6_w`)
+- `gt6u_code/`, `gtceu_code/`, `gt6_dump/`
+
+**Never** `Remove-Item`, `rm -rf`, `shutil.rmtree`, `git clean -fdx`, `git checkout --`,
+`git reset --hard`, or `git worktree remove` against them or any directory that
+**junctions / symlinks / bind-mounts** onto them.
+
+**Never** `mklink /J`, `mklink /D`, `New-Item -ItemType Junction/SymbolicLink`,
+or Python `os.symlink` from a worktree, temp dir, or other clone onto those
+trees. Windows `git worktree remove --force` **follows junctions and deletes the
+target**. That is how `gregtech6` and `gregtech6_w` were emptied.
+
+Isolated commits / extra worktrees: copy **tracked** files only. Do not link or
+copy these trees "so compile/search works over there." Search and compile stay
+in the main working copy.
+
+If a command might touch them, stop. Ask the user. Do not "clean up" empty
+parents, junctions, or leftover worktrees that still point here.

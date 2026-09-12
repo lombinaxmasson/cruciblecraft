@@ -7,6 +7,7 @@ import com.masson.cruciblecraft.content.item.SlicerOperandCatalog;
 import com.masson.cruciblecraft.content.item.PressureWasherOperandCatalog;
 import com.masson.cruciblecraft.content.item.GtWoodCatalog;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverComponentTiers;
 import com.masson.cruciblecraft.registry.ModBlocks;
 
@@ -96,6 +97,8 @@ public class ModItemModelProvider extends ItemModelProvider {
                                     case ROBOT_ARM -> "robot_arm_cover";
                                     case PUMP -> "compact_electric_pump";
                                 })));
+        MachineCoverKinds.ITEMS.forEach(entry ->
+                generatedImportedGt6(entry.itemPath()));
         generatedCc("unknown_material");
         ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
                 generatedCc(shape.registryPath()));

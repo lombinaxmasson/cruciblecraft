@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "slug": "registry/catalog-modern-ids",
+  "title": "Catalog modern IDs",
+  "maturity": "runtime_ready",
+  "workflow": "active",
+  "owned_paths": [
+    "docs/history/card-plans/active/目录身份现代id详细计划.md",
+    "tools/catalog_modern_ids.py",
+    "tools/catalog_modern_id_map.json",
+    "tools/tests/test_catalog_modern_ids.py",
+    "tools/capabilities/registry/catalog-modern-ids/**",
+    "tools/waves/portfolio/mte-identity-disposition-r0/disposition_ledger.json",
+    "tools/waves/portfolio/mte-identity-disposition-r0/inherited_denominator.json",
+    "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json",
+    "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json",
+    "src/main/resources/data/cruciblecraft/semantic_object_catalog.json",
+    "src/main/resources/data/cruciblecraft/bath_identity_catalog.json",
+    "src/main/resources/data/cruciblecraft/gt_block_object_catalog.json",
+    "src/main/resources/data/cruciblecraft/bath_remainder_identity_catalog.json",
+    "src/main/resources/data/cruciblecraft/gt_stone_catalog.json",
+    "src/main/resources/data/cruciblecraft/slicer_operands.json"
+  ],
+  "depends_on": [],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": null,
+  "legacy_readiness": null,
+  "player_signoff": null,
+  "identity_disposition": [],
+  "note": "Renames numbered catalog runtime ids to modern semantic paths. Scatter items stay distinct from live hosts. Close target is runtime_ready, not player_complete."
+}

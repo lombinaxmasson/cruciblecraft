@@ -8,6 +8,7 @@ import struct
 import zlib
 from pathlib import Path
 
+from tools import catalog_modern_ids as modern
 from tools import io_common as io
 
 ROOT = io.ROOT
@@ -30,9 +31,9 @@ GT6_ART = (
 )
 SLOT = {"head": 0, "chest": 1, "legs": 2, "boots": 3}
 HANDHELD = (
-    ("thermometer_quicksilver", 10000, "gt_multiitem/multiitem_randomtools_m10000"),
-    ("geiger_empty", 10001, "gt_multiitem/multiitem_randomtools_m10001"),
-    ("geiger_filled", 10002, "gt_multiitem/multiitem_randomtools_m10002"),
+    ("thermometer_quicksilver", 10000, "mercury/thermometer_measures_temperature"),
+    ("geiger_empty", 10001, "tool/geiger_counter_empty_fill_with_proper_inert_gas"),
+    ("geiger_filled", 10002, "tool/geiger_counter_measures_neutron_count"),
 )
 
 HAZMAT = [
@@ -293,7 +294,7 @@ def patch_catalog() -> None:
         "Quicksilver Thermometer",
         "水银温度计",
         "gregtech:gt.multiitem.randomtools",
-        "gt_multiitem/multiitem_randomtools_m10000",
+        "mercury/thermometer_measures_temperature",
         "cruciblecraft:item/gt6_import/thermometer_quicksilver",
         10000,
         "multiitem",
@@ -303,7 +304,7 @@ def patch_catalog() -> None:
         insert_at = next(
             index
             for index, row in enumerate(identities)
-            if row["registry_path"] == "gt_multiitem/multiitem_randomtools_m10001"
+            if row["registry_path"] == "tool/geiger_counter_empty_fill_with_proper_inert_gas"
         )
         identities.insert(insert_at, thermometer)
         by_path[thermometer["registry_path"]] = thermometer
@@ -311,8 +312,8 @@ def patch_catalog() -> None:
         by_path[thermometer["registry_path"]].update(thermometer)
 
     geiger_textures = {
-        "gt_multiitem/multiitem_randomtools_m10001": "cruciblecraft:item/gt6_import/geiger_empty",
-        "gt_multiitem/multiitem_randomtools_m10002": "cruciblecraft:item/gt6_import/geiger_filled",
+        "tool/geiger_counter_empty_fill_with_proper_inert_gas": "cruciblecraft:item/gt6_import/geiger_empty",
+        "tool/geiger_counter_measures_neutron_count": "cruciblecraft:item/gt6_import/geiger_filled",
     }
     for path, texture in geiger_textures.items():
         if path not in by_path:
@@ -320,7 +321,7 @@ def patch_catalog() -> None:
         by_path[path]["texture"] = texture
 
     for piece in HAZMAT:
-        path = f"gt_object/gt_armor_hazmat_{piece['suit']}_{piece['piece']}_m0"
+        path = modern.registry_path_for(piece["source"], 0)
         row = catalog_row(
             piece["english"],
             piece["chinese"],
@@ -337,19 +338,13 @@ def patch_catalog() -> None:
             by_path[path]["chinese_name"] = piece["chinese"]
             by_path[path]["behavior"] = "armor"
             continue
-        marker = f"gt_object/gt_armor_hazmat_{piece['suit']}_boots_m0"
-        insert_at = next(
-            index
-            for index, existing in enumerate(identities)
-            if existing["registry_path"] == marker
-        )
-        identities.insert(insert_at, row)
+        identities.append(row)
         by_path[path] = row
 
     document["identities"] = identities
     document["identity_count"] = len(identities)
     document["variant_count"] = len(identities)
-    if document["identity_count"] != 247:
+    if document["identity_count"] != 249:
         raise SystemExit(
             f"catalog identity_count drifted to {document['identity_count']}"
         )
@@ -464,64 +459,68 @@ def write_recipes() -> None:
         "x": {"item": "cruciblecraft:material_screwdriver"},
         "f": {"item": "cruciblecraft:material_file"},
     }
+
+    def recipe_path(source: str, meta: int) -> Path:
+        return recipe_root / f"{modern.registry_path_for(source, meta)}.json"
+
     shaped(
-        recipe_root / "gt_object" / "gt_armor_hazmat_radiation_head_m0.json",
+        recipe_path("gregtech:gt.armor.hazmat.radiation.head", 0),
         ["PPP", "PGP", "x f"],
         {"P": lead, "G": glass},
-        "cruciblecraft:gt_object/gt_armor_hazmat_radiation_head_m0",
+        "cruciblecraft:radiation/hazard_suit_helmet",
         tools,
     )
     shaped(
-        recipe_root / "gt_object" / "gt_armor_hazmat_radiation_chest_m0.json",
+        recipe_path("gregtech:gt.armor.hazmat.radiation.chest", 0),
         ["PxP", "PPP", "PfP"],
         {"P": lead},
-        "cruciblecraft:gt_object/gt_armor_hazmat_radiation_chest_m0",
+        "cruciblecraft:radiation/hazard_suit_shirt",
         tools,
     )
     shaped(
-        recipe_root / "gt_object" / "gt_armor_hazmat_radiation_legs_m0.json",
+        recipe_path("gregtech:gt.armor.hazmat.radiation.legs", 0),
         ["PPP", "PxP", "PfP"],
         {"P": lead},
-        "cruciblecraft:gt_object/gt_armor_hazmat_radiation_legs_m0",
+        "cruciblecraft:radiation/hazard_suit_pants",
         tools,
     )
     shaped(
-        recipe_root / "gt_object" / "gt_armor_hazmat_radiation_boots_m0.json",
+        recipe_path("gregtech:gt.armor.hazmat.radiation.boots", 0),
         ["x f", "P P", "P P"],
         {"P": lead},
-        "cruciblecraft:gt_object/gt_armor_hazmat_radiation_boots_m0",
+        "cruciblecraft:radiation/hazard_suit_boots",
         tools,
     )
     shaped(
-        recipe_root / "gt_object" / "gt_armor_hazmat_heat_head_m0.json",
+        recipe_path("gregtech:gt.armor.hazmat.heat.head", 0),
         ["FFF", "FGF", "x f"],
         {"F": foil, "G": black_glass},
-        "cruciblecraft:gt_object/gt_armor_hazmat_heat_head_m0",
+        "cruciblecraft:heat/protection_suit_helmet",
         tools,
     )
     shaped(
-        recipe_root / "gt_object" / "gt_armor_hazmat_heat_chest_m0.json",
+        recipe_path("gregtech:gt.armor.hazmat.heat.chest", 0),
         ["FxF", "FFF", "FfF"],
         {"F": foil},
-        "cruciblecraft:gt_object/gt_armor_hazmat_heat_chest_m0",
+        "cruciblecraft:heat/protection_suit_shirt",
         tools,
     )
     shaped(
-        recipe_root / "gt_object" / "gt_armor_hazmat_heat_legs_m0.json",
+        recipe_path("gregtech:gt.armor.hazmat.heat.legs", 0),
         ["FFF", "FxF", "FfF"],
         {"F": foil},
-        "cruciblecraft:gt_object/gt_armor_hazmat_heat_legs_m0",
+        "cruciblecraft:heat/protection_suit_pants",
         tools,
     )
     shaped(
-        recipe_root / "gt_object" / "gt_armor_hazmat_heat_boots_m0.json",
+        recipe_path("gregtech:gt.armor.hazmat.heat.boots", 0),
         ["x f", "F F", "F F"],
         {"F": foil},
-        "cruciblecraft:gt_object/gt_armor_hazmat_heat_boots_m0",
+        "cruciblecraft:heat/protection_suit_boots",
         tools,
     )
     shaped(
-        recipe_root / "gt_multiitem" / "multiitem_randomtools_m10000.json",
+        recipe_path("gregtech:gt.multiitem.randomtools", 10000),
         [" G ", "CMC", " D "],
         {
             "C": {"item": "cruciblecraft:copper/plate"},
@@ -529,7 +528,7 @@ def write_recipes() -> None:
             "M": {"item": "cruciblecraft:mercury/ingot"},
             "D": {"item": "minecraft:red_dye"},
         },
-        "cruciblecraft:gt_multiitem/multiitem_randomtools_m10000",
+        "cruciblecraft:mercury/thermometer_measures_temperature",
     )
     dump(
         recipe_root / "gt_multiitem" / "extruder_shape_ccc.json",
@@ -542,7 +541,7 @@ def write_recipes() -> None:
         },
     )
     dump(
-        recipe_root / "gt_multiitem" / "multiitem_randomtools_m10001.json",
+        recipe_path("gregtech:gt.multiitem.randomtools", 10001),
         {
             "type": "cruciblecraft:shaped_catalyst",
             "pattern": ["TXT", "PCP", "TdT"],
@@ -553,7 +552,7 @@ def write_recipes() -> None:
                 "C": {"item": "cruciblecraft:circuit_basic"},
             },
             "result": {
-                "id": "cruciblecraft:gt_multiitem/multiitem_randomtools_m10001",
+                "id": "cruciblecraft:tool/geiger_counter_empty_fill_with_proper_inert_gas",
                 "count": 1,
             },
             "catalysts": {"d": {"item": "cruciblecraft:material_screwdriver"}},
@@ -583,7 +582,7 @@ def write_recipes() -> None:
         },
     )
     empty_geiger = {
-        "item": "cruciblecraft:gt_multiitem/multiitem_randomtools_m10001"
+        "item": "cruciblecraft:tool/geiger_counter_empty_fill_with_proper_inert_gas"
     }
     for gas in ("helium", "neon", "argon"):
         dump(
@@ -598,7 +597,7 @@ def write_recipes() -> None:
                 "item_input_counts": [1],
                 "item_outputs": [
                     {
-                        "id": "cruciblecraft:gt_multiitem/multiitem_randomtools_m10002",
+                        "id": "cruciblecraft:tool/geiger_counter_measures_neutron_count",
                         "count": 1,
                     }
                 ],
@@ -793,7 +792,7 @@ def write_wave() -> None:
                     "branch": "geiger_canner_helium",
                     "disposition": "ready",
                     "parts": [
-                        "gt_multiitem/multiitem_randomtools_m10001",
+                        "tool/geiger_counter_empty_fill_with_proper_inert_gas",
                         "cruciblecraft:helium",
                     ],
                 },
@@ -801,7 +800,7 @@ def write_wave() -> None:
                     "branch": "geiger_canner_neon",
                     "disposition": "ready",
                     "parts": [
-                        "gt_multiitem/multiitem_randomtools_m10001",
+                        "tool/geiger_counter_empty_fill_with_proper_inert_gas",
                         "cruciblecraft:neon",
                     ],
                 },
@@ -809,7 +808,7 @@ def write_wave() -> None:
                     "branch": "geiger_canner_argon",
                     "disposition": "ready",
                     "parts": [
-                        "gt_multiitem/multiitem_randomtools_m10001",
+                        "tool/geiger_counter_empty_fill_with_proper_inert_gas",
                         "cruciblecraft:argon",
                     ],
                 },
@@ -874,7 +873,7 @@ def write_capability() -> None:
                 "src/main/resources/assets/cruciblecraft/gt6_geiger_obtain_art_manifest.json",
                 "src/main/resources/data/cruciblecraft/material_prefixes/capcellcon.json",
                 "src/main/resources/data/cruciblecraft/recipe/gt_multiitem/extruder_shape_ccc.json",
-                "src/main/resources/data/cruciblecraft/recipe/gt_multiitem/multiitem_randomtools_m10001.json",
+                "src/main/resources/data/cruciblecraft/recipe/tool/geiger_counter_empty_fill_with_proper_inert_gas.json",
                 "src/main/resources/data/cruciblecraft/recipe/nuclear/aluminium_capcellcon.json",
                 "src/main/resources/data/cruciblecraft/recipe/nuclear/geiger_canner_*.json",
                 "tools/emit_geiger_obtain.py",
@@ -923,14 +922,14 @@ def write_capability() -> None:
                     "semantic_key": "reactor:hazmat",
                     "disposition": "new_distinct",
                     "runtime_ids": [
-                        "cruciblecraft:gt_object/gt_armor_hazmat_radiation_head_m0",
-                        "cruciblecraft:gt_object/gt_armor_hazmat_radiation_chest_m0",
-                        "cruciblecraft:gt_object/gt_armor_hazmat_radiation_legs_m0",
-                        "cruciblecraft:gt_object/gt_armor_hazmat_radiation_boots_m0",
-                        "cruciblecraft:gt_object/gt_armor_hazmat_heat_head_m0",
-                        "cruciblecraft:gt_object/gt_armor_hazmat_heat_chest_m0",
-                        "cruciblecraft:gt_object/gt_armor_hazmat_heat_legs_m0",
-                        "cruciblecraft:gt_object/gt_armor_hazmat_heat_boots_m0",
+                        "cruciblecraft:radiation/hazard_suit_helmet",
+                        "cruciblecraft:radiation/hazard_suit_shirt",
+                        "cruciblecraft:radiation/hazard_suit_pants",
+                        "cruciblecraft:radiation/hazard_suit_boots",
+                        "cruciblecraft:heat/protection_suit_helmet",
+                        "cruciblecraft:heat/protection_suit_shirt",
+                        "cruciblecraft:heat/protection_suit_pants",
+                        "cruciblecraft:heat/protection_suit_boots",
                     ],
                     "reason": "Eight wearable radiation/heat pieces. Insect/biochem/frost/universal stay later.",
                 },
@@ -938,9 +937,9 @@ def write_capability() -> None:
                     "semantic_key": "reactor:handheld_tools",
                     "disposition": "new_distinct",
                     "runtime_ids": [
-                        "cruciblecraft:gt_multiitem/multiitem_randomtools_m10000",
-                        "cruciblecraft:gt_multiitem/multiitem_randomtools_m10001",
-                        "cruciblecraft:gt_multiitem/multiitem_randomtools_m10002",
+                        "cruciblecraft:mercury/thermometer_measures_temperature",
+                        "cruciblecraft:tool/geiger_counter_empty_fill_with_proper_inert_gas",
+                        "cruciblecraft:tool/geiger_counter_measures_neutron_count",
                     ],
                     "reason": "Thermometer HU and Geiger neutrons. Empty Geiger is aluminium capcellcon + Canner fill.",
                 },
@@ -974,8 +973,8 @@ def write_capability() -> None:
                     "runtime_ids": [
                         "cruciblecraft:aluminium/capcellcon",
                         "cruciblecraft:extruder_shape_ccc",
-                        "cruciblecraft:gt_multiitem/multiitem_randomtools_m10001",
-                        "cruciblecraft:gt_multiitem/multiitem_randomtools_m10002",
+                        "cruciblecraft:tool/geiger_counter_empty_fill_with_proper_inert_gas",
+                        "cruciblecraft:tool/geiger_counter_measures_neutron_count",
                     ],
                     "reason": "Aluminium OP.capcellcon only. CCC shape + extruder + empty Geiger + He/Ne/Ar Canner.",
                 },
@@ -998,17 +997,17 @@ def write_capability() -> None:
             "signer": "player",
             "date": "2026-09-09",
             "craftable_items": [
-                "gt_object/gt_armor_hazmat_radiation_head_m0",
-                "gt_object/gt_armor_hazmat_radiation_chest_m0",
-                "gt_object/gt_armor_hazmat_radiation_legs_m0",
-                "gt_object/gt_armor_hazmat_radiation_boots_m0",
-                "gt_object/gt_armor_hazmat_heat_head_m0",
-                "gt_object/gt_armor_hazmat_heat_chest_m0",
-                "gt_object/gt_armor_hazmat_heat_legs_m0",
-                "gt_object/gt_armor_hazmat_heat_boots_m0",
-                "gt_multiitem/multiitem_randomtools_m10000",
-                "gt_multiitem/multiitem_randomtools_m10001",
-                "gt_multiitem/multiitem_randomtools_m10002",
+                "radiation/hazard_suit_helmet",
+                "radiation/hazard_suit_shirt",
+                "radiation/hazard_suit_pants",
+                "radiation/hazard_suit_boots",
+                "heat/protection_suit_helmet",
+                "heat/protection_suit_shirt",
+                "heat/protection_suit_pants",
+                "heat/protection_suit_boots",
+                "mercury/thermometer_measures_temperature",
+                "tool/geiger_counter_empty_fill_with_proper_inert_gas",
+                "tool/geiger_counter_measures_neutron_count",
             ],
             "checklist": {
                 "two_cores_jade_hu_no_kelvin": True,

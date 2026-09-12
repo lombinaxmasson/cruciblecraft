@@ -5,6 +5,9 @@ import java.util.List;
 import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
 import com.masson.cruciblecraft.logistics.displaycpu.DisplayCpuKinds;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverBehaviors;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverHost;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinition;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinitionCatalog;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
@@ -56,6 +59,27 @@ public final class PipeCoverItem extends Item {
     public InteractionResult useOn(UseOnContext context) {
         var blockEntity = context.getLevel().getBlockEntity(
                 context.getClickedPos());
+        if (blockEntity instanceof MachineCoverHost machine) {
+            PipeCover cover = PipeCover.of(definitionId);
+            if (!MachineCoverBehaviors.canPlace(
+                    machine,
+                    context.getClickedFace(),
+                    cover)) {
+                return InteractionResult.FAIL;
+            }
+            boolean changed = machine.setCover(
+                    context.getClickedFace(), cover);
+            if (changed
+                    && context.getPlayer() != null
+                    && !context.getPlayer().getAbilities().instabuild) {
+                context.getItemInHand().shrink(1);
+            }
+            return InteractionResult.sidedSuccess(
+                    context.getLevel().isClientSide);
+        }
+        if (MachineCoverKinds.requiresMachineHost(definitionId)) {
+            return InteractionResult.FAIL;
+        }
         CoverDefinition.Medium medium =
                 blockEntity instanceof FluidPipeBlockEntity
                         ? CoverDefinition.Medium.FLUID

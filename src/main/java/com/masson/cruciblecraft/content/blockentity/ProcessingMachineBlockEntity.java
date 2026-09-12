@@ -31,10 +31,19 @@ import com.masson.cruciblecraft.machine.processing.ProcessingRuntime;
 import com.masson.cruciblecraft.machine.processing.SidedFluidHandler;
 import com.masson.cruciblecraft.machine.processing.SidedItemHandler;
 import com.masson.cruciblecraft.material.MaterialCatalog;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverBehaviors;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverHost;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinition;
+import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
+import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverItems;
+import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverSet;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeCache;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeMapLoader;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
+import com.masson.cruciblecraft.content.item.ProgrammedCircuitItem;
+import com.masson.cruciblecraft.registry.ModComponents;
+import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.registry.ModMachineIdentities;
 
 import net.minecraft.core.BlockPos;
@@ -49,6 +58,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
@@ -61,7 +71,8 @@ import net.neoforged.neoforge.items.ItemStackHandler;
  */
 public abstract class ProcessingMachineBlockEntity extends BlockEntity
         implements IEnergyHandler, MachineTransaction.ResourceAccess,
-        com.masson.cruciblecraft.content.multiblock.MultiblockPortHost {
+        com.masson.cruciblecraft.content.multiblock.MultiblockPortHost,
+        MachineCoverHost {
     private static final int CHECKPOINT_INTERVAL = 20;
 
     private final MachineVariant variant;
@@ -72,6 +83,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     private final List<FluidTank> tanks;
     private final GTRecipeCache recipeCache;
     private final MachineEnergyBuffer energy;
+    private final PipeCoverSet covers = new PipeCoverSet();
     private final Map<ProcessingMachineSpec.CapabilityAccess, IItemHandler> itemViews =
             new EnumMap<>(ProcessingMachineSpec.CapabilityAccess.class);
     private final Map<ProcessingMachineSpec.CapabilityAccess, IFluidHandler> fluidViews =
@@ -98,6 +110,12 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     private Optional<Integer> unsupportedProcessingVersion = Optional.empty();
     private Optional<Integer> unsupportedInventorySlots = Optional.empty();
     private Optional<String> materialQuarantine = Optional.empty();
+    private boolean coverEnabled = true;
+    private boolean coversStopped;
+    private int selectorMode;
+    private long lastSuccessfulGameTime = Long.MIN_VALUE;
+    private long coverRecipeCacheTick = Long.MIN_VALUE;
+    private Optional<RecipeMap.Match> coverRecipeCache;
     private MachineIdentityPolicy.Identity savedMachineIdentity =
             new MachineIdentityPolicy.Identity("", "", "", "");
     private Optional<String> persistedIdentityQuarantine = Optional.empty();
@@ -180,10 +198,20 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         }
     }
 
+    protected final void tickCoversServer() {
+        if (level == null || level.isClientSide) {
+            return;
+        }
+        MachineCoverBehaviors.tickAll(this);
+    }
+
     protected final void tickProcessingServer() {
         if (level == null || level.isClientSide) {
             return;
         }
+        coverRecipeCacheTick = level.getGameTime();
+        coverRecipeCache = null;
+        tickCoversServer();
         if (!processingAllowed()) {
             return;
         }
@@ -302,6 +330,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                 throw new IllegalStateException(
                         "Processing resources changed after committed energy extraction");
             }
+            lastSuccessfulGameTime = level.getGameTime();
             onProcessingCompleted(match.id().toString());
             runtime.completed(plan.effectiveDuration());
             clearSelection();
@@ -316,16 +345,35 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     }
 
     private Optional<RecipeMap.Match> findRecipe() {
-        List<ItemStack> itemInputs =
-                spec.items().inputs().stream().map(inventory::getStackInSlot).toList();
+        if (level != null
+                && coverRecipeCacheTick == level.getGameTime()
+                && coverRecipeCache != null) {
+            return coverRecipeCache;
+        }
+        List<ItemStack> itemInputs = new ArrayList<>(
+                spec.items().inputs().stream().map(inventory::getStackInSlot).toList());
         List<FluidStack> fluidInputs =
                 spec.fluids().inputs().stream().map(
                         tank -> tanks.get(tank.index()).getFluid()).toList();
         if (itemInputs.stream().allMatch(ItemStack::isEmpty)
                 && fluidInputs.stream().allMatch(FluidStack::isEmpty)) {
-            return Optional.empty();
+            coverRecipeCache = Optional.empty();
+            return coverRecipeCache;
         }
-        return recipeCache.find(itemInputs, fluidInputs);
+        itemInputs.addAll(selectorCircuitOffered());
+        coverRecipeCache = recipeCache.find(itemInputs, fluidInputs);
+        return coverRecipeCache;
+    }
+
+    private List<ItemStack> selectorCircuitOffered() {
+        if (!MachineCoverBehaviors.hasSelector(this)) {
+            return List.of();
+        }
+        ItemStack circuit = new ItemStack(ModItems.PROGRAMMED_CIRCUIT.get());
+        circuit.set(
+                ModComponents.CIRCUIT_CONFIG.get(),
+                ProgrammedCircuitItem.normalize(selectorMode + 1));
+        return List.of(circuit);
     }
 
     void select(
@@ -421,7 +469,8 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                 fluidSnapshot(),
                 spec.fluids().inputs(),
                 spec.fluids().outputs(),
-                rolledOutputs);
+                rolledOutputs,
+                selectorCircuitOffered());
     }
 
     private Optional<PlannedExecution> planExecution(
@@ -450,7 +499,8 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                             spec.fluids().inputs(),
                             spec.fluids().outputs(),
                             ParallelRecipeOperations.maximumItemOutputs(
-                                    recipe, operations));
+                                    recipe, operations),
+                            selectorCircuitOffered());
             if (capacity.isPresent()) {
                 return Optional.of(new PlannedExecution(
                         operations, plan.orElseThrow()));
@@ -745,10 +795,278 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     }
     public final long resourceRevision() { return resourceRevision; }
 
+    @Override
+    public final PipeCoverSet covers() {
+        return covers;
+    }
+
+    @Override
+    public final boolean setCover(Direction side, PipeCover cover) {
+        if (side == null
+                || cover == null
+                || !MachineCoverBehaviors.canPlace(this, side, cover)) {
+            return false;
+        }
+        boolean changed = covers.set(side, cover);
+        if (changed) {
+            markMutation();
+            syncCoverUpdate(side);
+        }
+        return changed;
+    }
+
+    @Override
+    public final void replaceCover(Direction side, PipeCover cover) {
+        if (side == null) {
+            return;
+        }
+        if (covers.set(side, cover)) {
+            markMutation();
+            syncCoverUpdate(side);
+        }
+    }
+
+    @Override
+    public final boolean configureCover(
+            Direction side,
+            CoverDefinition.ConfigField field,
+            int value) {
+        if (side == null || field == null) {
+            return false;
+        }
+        if (!covers.configure(side, field, value)) {
+            return false;
+        }
+        markMutation();
+        syncCoverUpdate(side);
+        return true;
+    }
+
+    @Override
+    public final boolean removeCover(
+            Direction side,
+            net.minecraft.world.entity.player.Player player) {
+        if (side == null) {
+            return false;
+        }
+        Optional<PipeCover> taken = covers.take(side);
+        if (taken.isEmpty()) {
+            return false;
+        }
+        ItemStack stack = PipeCoverItems.stackFor(taken.orElseThrow());
+        if (!stack.isEmpty()) {
+            if (player == null || !player.addItem(stack)) {
+                if (level != null && !level.isClientSide) {
+                    Block.popResource(level, worldPosition, stack);
+                }
+            }
+        }
+        markMutation();
+        syncCoverUpdate(side);
+        return true;
+    }
+
+    public final void dropCovers() {
+        if (level == null || level.isClientSide) {
+            return;
+        }
+        for (ItemStack stack : covers.removeAllAsItems()) {
+            Block.popResource(level, worldPosition, stack);
+        }
+        markMutation();
+        syncCoverUpdate(null);
+    }
+
+    @Override
+    public final boolean coverEnabled() {
+        return coverEnabled;
+    }
+
+    @Override
+    public final void setCoverEnabled(boolean enabled) {
+        if (coverEnabled != enabled) {
+            coverEnabled = enabled;
+            markMutation();
+            notifyRedstone();
+        }
+    }
+
+    @Override
+    public final boolean coversStopped() {
+        return coversStopped;
+    }
+
+    @Override
+    public final void setCoversStopped(boolean stopped) {
+        if (coversStopped != stopped) {
+            coversStopped = stopped;
+            markMutation();
+        }
+    }
+
+    @Override
+    public final boolean canTick() {
+        return level != null && !level.isClientSide;
+    }
+
+    @Override
+    public final boolean runningPossible() {
+        return findRecipe().isPresent()
+                || runningActively()
+                || progress() > 0
+                || workProgress > 0L
+                || (runtime.active() && duration() > 0);
+    }
+
+    @Override
+    public final boolean runningPassively() {
+        String status = runtime.status();
+        return runtime.active()
+                && !"idle".equals(status)
+                && !"underpowered".equals(status);
+    }
+
+    @Override
+    public final boolean runningActively() {
+        return runtime.active() && runtime.status().isEmpty();
+    }
+
+    @Override
+    public final boolean runningSuccessfully() {
+        return level != null
+                && lastSuccessfulGameTime == level.getGameTime();
+    }
+
+    @Override
+    public final int selectorMode() {
+        return selectorMode;
+    }
+
+    @Override
+    public final void setSelectorMode(int mode) {
+        int bounded = Math.max(0, Math.min(15, mode));
+        if (selectorMode != bounded) {
+            selectorMode = bounded;
+            recipeCache.invalidate();
+            coverRecipeCache = null;
+            coverRecipeCacheTick = Long.MIN_VALUE;
+            markMutation();
+        }
+    }
+
+    @Override
+    public final boolean hasEnergyBuffer() {
+        return energy != null;
+    }
+
+    @Override
+    public final long energyStored() {
+        return energy == null ? 0L : energy.stored();
+    }
+
+    @Override
+    public final long energyCapacity() {
+        return energy == null ? 0L : energy.capacity();
+    }
+
+    @Override
+    public final boolean hasFluidTanks() {
+        return !tanks.isEmpty();
+    }
+
+    @Override
+    public final int fillAir(int amount) {
+        if (amount <= 0 || tanks.isEmpty() || level == null) {
+            return 0;
+        }
+        Optional<Fluid> air = MachineCoverBehaviors.ventAir(level, worldPosition);
+        if (air.isEmpty()) {
+            return 0;
+        }
+        List<FluidTank> targets = spec.fluids().inputs().isEmpty()
+                ? tanks
+                : spec.fluids().inputs().stream()
+                        .map(tank -> tanks.get(tank.index()))
+                        .toList();
+        int remaining = amount;
+        int filled = 0;
+        Fluid fluid = air.orElseThrow();
+        for (FluidTank tank : targets) {
+            if (remaining <= 0) {
+                break;
+            }
+            FluidStack current = tank.getFluid();
+            if (!current.isEmpty() && !current.is(fluid)) {
+                continue;
+            }
+            int space = tank.getCapacity() - current.getAmount();
+            int accepted = Math.min(remaining, space);
+            if (accepted <= 0) {
+                continue;
+            }
+            tank.setFluid(new FluidStack(fluid, current.getAmount() + accepted));
+            filled += accepted;
+            remaining -= accepted;
+        }
+        return filled;
+    }
+
+    @Override
+    public final int incomingRedstone(Direction side) {
+        if (level == null || side == null) {
+            return 0;
+        }
+        BlockPos neighbor = worldPosition.relative(side);
+        return Math.max(
+                level.getSignal(neighbor, side.getOpposite()),
+                level.getDirectSignal(neighbor, side.getOpposite()));
+    }
+
+    @Override
+    public final void notifyRedstone() {
+        if (level == null || level.isClientSide) {
+            return;
+        }
+        level.updateNeighborsAt(worldPosition, getBlockState().getBlock());
+        for (Direction side : Direction.values()) {
+            level.updateNeighborsAt(
+                    worldPosition.relative(side),
+                    getBlockState().getBlock());
+        }
+    }
+
+    private void syncCoverUpdate(Direction side) {
+        if (level == null || level.isClientSide) {
+            return;
+        }
+        level.sendBlockUpdated(
+                worldPosition,
+                getBlockState(),
+                getBlockState(),
+                Block.UPDATE_CLIENTS);
+        notifyRedstone();
+    }
+
+    @Override
+    public final long gameTime() {
+        return level == null ? 0L : level.getGameTime();
+    }
+
+    @Override
+    public final Level level() {
+        return level;
+    }
+
+    @Override
+    public final BlockPos hostPos() {
+        return worldPosition;
+    }
+
     final boolean processingAllowed() {
         return unsupportedProcessingVersion.isEmpty()
                 && unsupportedInventorySlots.isEmpty()
-                && materialQuarantine.isEmpty();
+                && materialQuarantine.isEmpty()
+                && coverEnabled;
     }
 
     protected final void markMutation() {
@@ -765,6 +1083,8 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     private void resourcesChanged() {
         resourceRevision++;
         recipeCache.invalidate();
+        coverRecipeCache = null;
+        coverRecipeCacheTick = Long.MIN_VALUE;
         markMutation();
     }
 
@@ -883,6 +1203,12 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                         ? selectedFingerprint.orElse("")
                         : restoredRecipeFingerprint,
                 rolledOutputs).write(tag, registries);
+        tag.putBoolean("machine_cover_enabled", coverEnabled);
+        tag.putBoolean("machine_covers_stopped", coversStopped);
+        tag.putInt("machine_selector_mode", selectorMode);
+        CompoundTag coverTag = new CompoundTag();
+        covers.save(coverTag, registries);
+        tag.put("machine_covers", coverTag);
     }
 
     @Override protected void loadAdditional(
@@ -927,6 +1253,17 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         }
         resourceRevision = Math.max(resourceRevision, state.resourceRevision());
         rolledOutputs = chanceState.outputs();
+        coverEnabled = !tag.contains("machine_cover_enabled")
+                || tag.getBoolean("machine_cover_enabled");
+        coversStopped = tag.getBoolean("machine_covers_stopped");
+        selectorMode = Math.max(
+                0,
+                Math.min(15, tag.getInt("machine_selector_mode")));
+        if (tag.contains("machine_covers")) {
+            covers.load(
+                    tag.getCompound("machine_covers"),
+                    registries);
+        }
         selectedMatch = null;
         selectedPlan = null;
         selectedRecipeFingerprint = Optional.empty();
@@ -971,6 +1308,12 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                 tag.putString("material_quarantine", reason));
         tag.putLong("power_demand", powerDemand);
         tag.putLong("energy", energy == null ? 0L : energy.stored());
+        tag.putBoolean("machine_cover_enabled", coverEnabled);
+        tag.putBoolean("machine_covers_stopped", coversStopped);
+        tag.putInt("machine_selector_mode", selectorMode);
+        CompoundTag coverTag = new CompoundTag();
+        covers.save(coverTag, registries);
+        tag.put("machine_covers", coverTag);
         tag.putInt("tank_count", tanks.size());
         for (int tank = 0; tank < tanks.size(); tank++) {
             tag.put("tank_" + tank, tanks.get(tank).writeToNBT(registries, new CompoundTag()));
@@ -999,6 +1342,17 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         powerDemand = Math.max(0L, tag.getLong("power_demand"));
         if (energy != null) {
             energy.restore(tag.getLong("energy"));
+        }
+        coverEnabled = !tag.contains("machine_cover_enabled")
+                || tag.getBoolean("machine_cover_enabled");
+        coversStopped = tag.getBoolean("machine_covers_stopped");
+        selectorMode = Math.max(
+                0,
+                Math.min(15, tag.getInt("machine_selector_mode")));
+        if (tag.contains("machine_covers")) {
+            covers.load(
+                    tag.getCompound("machine_covers"),
+                    registries);
         }
         for (int tank = 0; tank < Math.min(tanks.size(), tag.getInt("tank_count")); tank++) {
             tanks.get(tank).readFromNBT(registries, tag.getCompound("tank_" + tank));

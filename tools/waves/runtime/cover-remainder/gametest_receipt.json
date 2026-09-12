@@ -1,0 +1,26 @@
+{
+  "command": ".\\gradlew.bat runGameTestServer -PwaveRecipes=runtime/cover-remainder --no-daemon",
+  "failed": 0,
+  "java_source": "src/main/java/com/masson/cruciblecraft/gametest/CoverRemainderGameTests.java",
+  "log_path": "tools/waves/runtime/cover-remainder/gametest.log",
+  "namespace": "cruciblecraft_wave_runtime_cover_remainder",
+  "note": "Isolated dedicated GameTestServer. Skip is not pass. ShapedCatalystRecipe matches the occupied bounding box because 1.21 CraftingInput.of strips empty GT6 trailing-space columns; canCraftInDimensions requires 3x3.",
+  "passed": 10,
+  "required_tests": 10,
+  "schema_version": 1,
+  "skip_is_not_pass": true,
+  "status": "PASS",
+  "test_ids": [
+    "autoSwitchRequiresPossibleAndCanTick",
+    "blankCoverIsSurvivalCraftable",
+    "blankCoverRequiresCraftingTable",
+    "controllerStopsProcessingWhenOff",
+    "detectorEmitsWhenPossible",
+    "displayVisualUsesGt6Layout",
+    "playerSurfaceIsRegistered",
+    "selectorUsesFakeCircuit",
+    "torchRefusesMachineHost",
+    "ventFillsCollectableAir"
+  ],
+  "wave_slug": "runtime/cover-remainder"
+}

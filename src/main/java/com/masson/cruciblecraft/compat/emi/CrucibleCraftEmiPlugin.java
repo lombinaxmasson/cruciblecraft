@@ -106,6 +106,8 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                 ModItems.LOGISTICS_DISPLAY_CPU_CONVERSION_COVER)) {
             registry.addEmiStack(EmiStack.of(cover.get()));
         }
+        ModItems.machineCovers().forEach(
+                cover -> registry.addEmiStack(EmiStack.of(cover.get())));
     }
 
     /** Item-list polish layers: routed tool variants join the index as

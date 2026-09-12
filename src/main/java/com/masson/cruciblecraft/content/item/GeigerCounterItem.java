@@ -17,8 +17,8 @@ import net.minecraft.world.level.Level;
 
 /** Empty Geiger has no reading. Filled Geiger reports neutron sum and toggles. */
 public final class GeigerCounterItem extends Item {
-    public static final String EMPTY_PATH = "gt_multiitem/multiitem_randomtools_m10001";
-    public static final String FILLED_PATH = "gt_multiitem/multiitem_randomtools_m10002";
+    public static final String EMPTY_PATH = "tool/geiger_counter_empty_fill_with_proper_inert_gas";
+    public static final String FILLED_PATH = "tool/geiger_counter_measures_neutron_count";
 
     private final boolean filled;
     private final String englishName;

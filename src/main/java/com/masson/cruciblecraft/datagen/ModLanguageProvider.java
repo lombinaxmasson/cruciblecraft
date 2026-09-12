@@ -17,6 +17,7 @@ import com.masson.cruciblecraft.content.item.TechnologicalPartCatalog;
 import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
 import com.masson.cruciblecraft.content.sensor.SensorKind;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverComponentTiers;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.MaterialZhNames;
@@ -187,6 +188,10 @@ public class ModLanguageProvider extends LanguageProvider {
                     addItem(
                             ModItems.compactElectricCover(entry.itemPath()),
                             entry.family().chineseName(entry.tier())));
+            MachineCoverKinds.ITEMS.forEach(entry ->
+                    addItem(
+                            ModItems.machineCover(entry.itemPath()),
+                            entry.chinese()));
             addBlock(ModBlocks.LOGISTICS_CORE, "物流核心");
             addBlock(ModBlocks.GALVANIZED_STEEL_WALL, "镀锌钢墙");
             addBlock(ModBlocks.VENTILATION_UNIT, "通风单元");
@@ -708,6 +713,10 @@ public class ModLanguageProvider extends LanguageProvider {
                 addItem(
                         ModItems.compactElectricCover(entry.itemPath()),
                         entry.family().englishName(entry.tier())));
+        MachineCoverKinds.ITEMS.forEach(entry ->
+                addItem(
+                        ModItems.machineCover(entry.itemPath()),
+                        entry.english()));
         addBlock(ModBlocks.LOGISTICS_CORE, "Logistics Core");
         addBlock(ModBlocks.GALVANIZED_STEEL_WALL, "Galvanized Steel Wall");
         addBlock(ModBlocks.VENTILATION_UNIT, "Ventilation Unit");

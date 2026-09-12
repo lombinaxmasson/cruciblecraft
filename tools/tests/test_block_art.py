@@ -31,7 +31,7 @@ class BlockArtTest(unittest.TestCase):
         identity = {
             "kind": "block",
             "meta": 0,
-            "registry_path": "gt_object/gt_block_lilypad_glowtus_m0",
+            "registry_path": "lilypad_glowtus/white_glowtus",
             "source_item": "gregtech:gt.block.lilypad.glowtus",
             "texture": "minecraft:item/iron_ingot",
         }

@@ -18,6 +18,7 @@ import com.masson.cruciblecraft.logistics.displaycpu.DisplayCpuCovers;
 import com.masson.cruciblecraft.logistics.fluidnet.FluidNetworkCovers;
 import com.masson.cruciblecraft.logistics.genericnet.GenericNetworkCovers;
 import com.masson.cruciblecraft.logistics.itemnet.ItemNetworkCovers;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverCovers;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModComponents;
@@ -109,6 +110,7 @@ public class CrucibleCraft {
             GenericNetworkCovers.bootstrap();
             LogisticsDumpCovers.bootstrap();
             DisplayCpuCovers.bootstrap();
+            MachineCoverCovers.bootstrap();
             CoverBehaviorRegistry.validateDefinitions();
         });
         LOGGER.info("CrucibleCraft common setup");

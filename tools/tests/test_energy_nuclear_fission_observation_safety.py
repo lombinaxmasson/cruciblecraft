@@ -47,14 +47,14 @@ CATALOG = (
     / "semantic_object_catalog.json"
 )
 HAZMAT = {
-    "gt_object/gt_armor_hazmat_radiation_head_m0",
-    "gt_object/gt_armor_hazmat_radiation_chest_m0",
-    "gt_object/gt_armor_hazmat_radiation_legs_m0",
-    "gt_object/gt_armor_hazmat_radiation_boots_m0",
-    "gt_object/gt_armor_hazmat_heat_head_m0",
-    "gt_object/gt_armor_hazmat_heat_chest_m0",
-    "gt_object/gt_armor_hazmat_heat_legs_m0",
-    "gt_object/gt_armor_hazmat_heat_boots_m0",
+    "radiation/hazard_suit_helmet",
+    "radiation/hazard_suit_shirt",
+    "radiation/hazard_suit_pants",
+    "radiation/hazard_suit_boots",
+    "heat/protection_suit_helmet",
+    "heat/protection_suit_shirt",
+    "heat/protection_suit_pants",
+    "heat/protection_suit_boots",
 }
 
 
@@ -154,18 +154,18 @@ class FissionObservationSafetyCardTest(unittest.TestCase):
         for path in HAZMAT:
             self.assertNotEqual("minecraft:item/iron_ingot", by_path[path]["texture"])
             self.assertTrue(by_path[path]["texture"].startswith("cruciblecraft:item/gt6_import/"))
-        self.assertIn("gt_multiitem/multiitem_randomtools_m10000", by_path)
+        self.assertIn("mercury/thermometer_measures_temperature", by_path)
         self.assertEqual(
             "cruciblecraft:item/gt6_import/thermometer_quicksilver",
-            by_path["gt_multiitem/multiitem_randomtools_m10000"]["texture"],
+            by_path["mercury/thermometer_measures_temperature"]["texture"],
         )
         self.assertEqual(
             "cruciblecraft:item/gt6_import/geiger_empty",
-            by_path["gt_multiitem/multiitem_randomtools_m10001"]["texture"],
+            by_path["tool/geiger_counter_empty_fill_with_proper_inert_gas"]["texture"],
         )
         self.assertEqual(
             "cruciblecraft:item/gt6_import/geiger_filled",
-            by_path["gt_multiitem/multiitem_randomtools_m10002"]["texture"],
+            by_path["tool/geiger_counter_measures_neutron_count"]["texture"],
         )
 
     def test_art_is_copied_from_gregtech6_w(self) -> None:
@@ -228,7 +228,7 @@ class FissionObservationSafetyCardTest(unittest.TestCase):
             / "recipe"
         )
         empty = json.loads(
-            (recipe / "gt_multiitem" / "multiitem_randomtools_m10001.json").read_text(
+            (recipe / "tool" / "geiger_counter_empty_fill_with_proper_inert_gas.json").read_text(
                 encoding="utf-8"
             )
         )
@@ -311,6 +311,6 @@ class FissionObservationSafetyCardTest(unittest.TestCase):
         self.assertFalse(signoff["checklist"]["geiger_obtain_explicitly_blocked"])
         self.assertTrue(signoff["checklist"]["no_stand_in_capcellcon"])
         self.assertIn(
-            "gt_multiitem/multiitem_randomtools_m10001",
+            "tool/geiger_counter_empty_fill_with_proper_inert_gas",
             signoff["craftable_items"],
         )

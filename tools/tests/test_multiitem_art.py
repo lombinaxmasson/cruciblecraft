@@ -15,19 +15,19 @@ class MultiitemArtTest(unittest.TestCase):
             art.source_rel("gregtech:gt.multiitem.food", 10),
         )
         self.assertEqual(
-            "cruciblecraft:item/gt_multiitem/multiitem_food_m10",
-            art.texture_id("gt_multiitem/multiitem_food_m10"),
+            "cruciblecraft:item/food/tomato_solid_ketchup",
+            art.texture_id("food/tomato_solid_ketchup"),
         )
         identity = {
             "kind": "multiitem",
             "meta": 10,
-            "registry_path": "gt_multiitem/multiitem_food_m10",
+            "registry_path": "food/tomato_solid_ketchup",
             "source_item": "gregtech:gt.multiitem.food",
             "texture": art.PLACEHOLDER_TEXTURE,
         }
         self.assertTrue(art.bindable(identity))
         self.assertEqual(
-            "cruciblecraft:item/gt_multiitem/multiitem_food_m10",
+            "cruciblecraft:item/food/tomato_solid_ketchup",
             art.model_layer0(identity),
         )
 

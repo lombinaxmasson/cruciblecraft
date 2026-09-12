@@ -93,6 +93,7 @@ import com.masson.cruciblecraft.content.mold.MoldShape;
 import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariant;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
 import com.masson.cruciblecraft.content.sensor.SensorKind;
 import com.masson.cruciblecraft.material.CellContentGate;
 import com.masson.cruciblecraft.material.MaterialCatalog;
@@ -458,6 +459,9 @@ public final class ModItems {
     private static final Map<
             String, DeferredItem<PipeCoverItem>> COMPACT_ELECTRIC_COVERS =
                     registerCompactElectricCovers();
+    private static final Map<
+            String, DeferredItem<PipeCoverItem>> MACHINE_COVERS =
+                    registerMachineCovers();
     private static final Map<
             ResourceLocation, DeferredItem<BlockItem>> CONVERTER_ITEMS =
                     registerConverterItems();
@@ -972,6 +976,15 @@ public final class ModItems {
         return COMPACT_ELECTRIC_COVERS.values();
     }
 
+    public static DeferredItem<PipeCoverItem> machineCover(
+            String itemPath) {
+        return MACHINE_COVERS.get(itemPath);
+    }
+
+    public static Collection<DeferredItem<PipeCoverItem>> machineCovers() {
+        return MACHINE_COVERS.values();
+    }
+
     public static DeferredItem<BlockItem> oreItem(String materialId, Host host) {
         DeferredItem<BlockItem> item =
                 MATERIAL_ORE_ITEMS.get(new ModBlocks.OreBlockKey(materialId, host));
@@ -1065,6 +1078,28 @@ public final class ModItems {
         if (items.size() != CoverComponentTiers.entries().size()) {
             throw new IllegalStateException(
                     "Compact electric cover registration drifted");
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    private static Map<String, DeferredItem<PipeCoverItem>>
+            registerMachineCovers() {
+        LinkedHashMap<String, DeferredItem<PipeCoverItem>> items =
+                new LinkedHashMap<>();
+        for (var entry : MachineCoverKinds.ITEMS) {
+            DeferredItem<PipeCoverItem> item = ITEMS.register(
+                    entry.itemPath(),
+                    () -> new PipeCoverItem(
+                            entry.definitionId(),
+                            new Item.Properties()));
+            if (items.put(entry.itemPath(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate machine cover " + entry.itemPath());
+            }
+        }
+        if (items.size() != MachineCoverKinds.ITEM_COUNT) {
+            throw new IllegalStateException(
+                    "Machine cover item registration drifted");
         }
         return java.util.Collections.unmodifiableMap(items);
     }

@@ -356,7 +356,9 @@ def parse_stone_identity(item_id: str) -> dict[str, Any]:
 
 
 def registry_path(item_id: str, meta: int) -> str:
-    return f"gt_stone/{source_item_slug(item_id)}_m{int(meta)}"
+    from tools import catalog_modern_ids as modern
+
+    return modern.registry_path_for(item_id, int(meta))
 
 
 def runtime_id(item_id: str, meta: Any) -> str:
