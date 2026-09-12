@@ -1,0 +1,27 @@
+{
+  "files": [
+    {
+      "path": "tools/waves/prep/sanding/source_pack/dump_slice.json",
+      "role": "dump_slice",
+      "sha256": "6bda430b207132527f3873fca13968b81c23975b4aec4b669c4ec9e636a22247"
+    },
+    {
+      "path": "tools/waves/prep/sanding/source_pack/work_set.json",
+      "role": "work_set",
+      "sha256": "310bdb13a80989fb0b8f7e1a949a01992c9748a2cd235429a719e30d0b63f6ac"
+    }
+  ],
+  "full_replay": {
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "provenance_policy": {
+    "append_only": true,
+    "forbid_gt6u": true
+  },
+  "schema_version": 1,
+  "source_dialect": "gt6",
+  "source_pack_id": "prep/machines-sanding",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_system": "gt6"
+}

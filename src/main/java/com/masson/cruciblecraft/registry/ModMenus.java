@@ -100,6 +100,10 @@ public final class ModMenus {
             processing("rollingmill", ModProcessingMachines.ROLLINGMILL);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> ROLLFORMER =
             processing("rollformer", ModProcessingMachines.ROLLFORMER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> SANDING =
+            processing("sanding", ModProcessingMachines.SANDING);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> OVEN =
+            processing("oven", ModProcessingMachines.OVEN);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> CLUSTERMILL =
             processing("clustermill", ModProcessingMachines.CLUSTERMILL);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> SLICER =

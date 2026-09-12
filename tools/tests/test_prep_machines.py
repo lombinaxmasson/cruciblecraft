@@ -37,8 +37,9 @@ EXPECTED = {
     "injector": (638, 611, 27),
     "printer": (22, 0, 22),
     "laminator": (498, 232, 266),
-    "melter": (6756, 3973, 2783),
+    "melter": (6756, 3960, 2796),
     "nanofab": (64, 52, 12),
+    "sanding": (7637, 7637, 0),
 }
 NEEDLES = {
     "printer": ("printer", "PrinterPrepSpec"),
@@ -77,6 +78,10 @@ class PrepMachinesTest(unittest.TestCase):
                 lock = census.load_json(wave / "production_lock.json")
                 accounting = work["accounting"]
                 self.assertEqual(source_rows, accounting["source_rows"])
+                if selected is None:
+                    selected = accounting["selected_rows"]
+                    overflow_rows = accounting["overflow_rows"]
+                    self.assertEqual(source_rows, selected + overflow_rows)
                 self.assertEqual(selected, accounting["selected_rows"])
                 self.assertEqual(overflow_rows, accounting["overflow_rows"])
                 self.assertEqual(overflow_rows, overflow["blocked_rows"])
@@ -163,7 +168,41 @@ class PrepMachinesTest(unittest.TestCase):
             prep.common.wave_dir("nanofab") / "d0_obtain_matrix.json"
         )
         self.assertTrue(all(row["status"] == "explicitly_blocked" for row in nanofab["hosts"]))
-        blob = str(slicer) + str(loom) + str(printer) + str(nanofab) + str(injector)
+        sanding = census.load_json(
+            prep.common.wave_dir("sanding") / "d0_obtain_matrix.json"
+        )
+        self.assertEqual(["SGS", "XXX", "wMh"], sanding["grid"])
+        self.assertTrue(all(row["status"] == "source_exact" for row in sanding["hosts"]))
+        self.assertEqual(
+            "minecraft:sandstone",
+            next(row for row in sanding["hosts"] if row["host"] == 20511)["sandstone"]["cc"],
+        )
+        self.assertEqual(
+            "UP",
+            census.load_json(prep.common.wave_dir("sanding") / "runtime_notes.json")[
+                "energy_accepted_sides"
+            ],
+        )
+        gate = census.load_json(prep.common.wave_dir("sanding") / "landing_gate.json")
+        self.assertIsNone(gate["landing_blocked_by"])
+        self.assertEqual(prep.sanding_landing_gate(), gate)
+        self.assertIsNone(
+            census.load_json(ROOT / "tools" / "capabilities" / "ledger.json")[
+                "unique_active_slug"
+            ]
+        )
+        oven = census.load_json(
+            prep.common.wave_dir("oven") / "d0_obtain_matrix.json"
+        )
+        self.assertEqual(["wMh", "BCB"], oven["grid"])
+        self.assertTrue(all(row["status"] == "source_exact" for row in oven["hosts"]))
+        self.assertEqual(
+            "DOWN",
+            census.load_json(prep.common.wave_dir("oven") / "runtime_notes.json")[
+                "energy_accepted_sides"
+            ],
+        )
+        blob = str(slicer) + str(loom) + str(printer) + str(nanofab) + str(injector) + str(sanding) + str(oven)
         self.assertNotIn("programmed_circuit", blob)
         from tools.technological_parts_foundation import has_split_module_standin
         self.assertFalse(has_split_module_standin(blob))
@@ -172,8 +211,12 @@ class PrepMachinesTest(unittest.TestCase):
         for name in prep.MACHINES:
             slug = f"prep/{name}"
             with self.subTest(slug=slug):
-                with self.assertRaisesRegex(ValueError, "src/recipe_generated"):
-                    recipe_wave(slug)
+                if prep.MACHINES[name].get("skip_source_pack"):
+                    with self.assertRaises((ValueError, KeyError)):
+                        recipe_wave(slug)
+                else:
+                    with self.assertRaisesRegex(ValueError, "src/recipe_generated"):
+                        recipe_wave(slug)
                 self.assertNotIn(slug, SEMANTIC_COMPILE_ORDER)
                 self.assertNotIn(slug, WAVE_CHOICES)
                 self.assertNotIn(slug, KNOWN_SEMANTIC_SLUGS)
@@ -227,6 +270,14 @@ class PrepMachinesTest(unittest.TestCase):
                     self.assertNotIn("multiblock_casing", row["destination"])
         self.assertTrue((ASSETS / "textures" / "gui" / "machines" / "slicer.png").is_file())
         self.assertTrue((ASSETS / "textures" / "gui" / "machines" / "melter.png").is_file())
+        self.assertTrue((ASSETS / "textures" / "gui" / "machines" / "sanding.png").is_file())
+        self.assertTrue((ASSETS / "textures" / "gui" / "machines" / "oven.png").is_file())
+        self.assertTrue(
+            (ASSETS / "textures" / "block" / "machine" / "sander" / "colored" / "front.png").is_file()
+        )
+        self.assertTrue(
+            (ASSETS / "textures" / "block" / "machine" / "oven" / "colored" / "front.png").is_file()
+        )
         self.assertTrue(
             (ASSETS / "textures" / "block" / "machine" / "debarker" / "colored" / "front.png").is_file()
         )

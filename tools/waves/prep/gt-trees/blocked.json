@@ -1,0 +1,43 @@
+{
+  "blocked": [
+    {
+      "id": "maple_sap_fluid",
+      "reason": "FL.Sap_Maple has no CC fluid; maple hole blocks still freeze",
+      "status": "explicitly_blocked"
+    },
+    {
+      "id": "rubber_resin_fluid",
+      "reason": "FL.Resin_Rubber is missing; latex is not a stand-in",
+      "status": "explicitly_blocked"
+    },
+    {
+      "id": "resin_to_rubber",
+      "reason": "GT6 uses extractor/juicer/squeezer; CC has no squeezer; coagulator eats latex not resin",
+      "status": "explicitly_blocked"
+    },
+    {
+      "id": "slime_ball_to_rubber_plate",
+      "reason": "press/slime_ball_to_rubber_plate stays until a later player_complete card",
+      "status": "keep"
+    },
+    {
+      "id": "hazelnut_coconut_drops",
+      "reason": "food identities belong to Crops/Food; leaves must not emit stand-in food",
+      "status": "explicitly_blocked"
+    },
+    {
+      "id": "seasonal_leaves",
+      "reason": "maple brown/orange/red/yellow and blue-spruce xmas overlays are not this card",
+      "status": "out_of_scope"
+    },
+    {
+      "id": "extra_dimensions",
+      "reason": "DESIGN_POLICY_OVERWORLD_ACCESS; Twilight/Erebus/Alfheim/Aether/Tropics stay off",
+      "status": "out_of_scope"
+    }
+  ],
+  "generated_by": "tools/gt_trees.py",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "PREP_GT_TREES_BLOCKED"
+}

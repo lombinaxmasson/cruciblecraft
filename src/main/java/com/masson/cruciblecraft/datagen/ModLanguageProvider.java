@@ -216,6 +216,7 @@ public class ModLanguageProvider extends LanguageProvider {
             addBlock(ModBlocks.LARGE_IRIDIUM_COIL, "大型铱线圈");
             addReactorRodNames();
             addTechnologicalPartNames();
+            addGtTreeNames();
             addBlock(ModBlocks.MULTIBLOCK_CASING, "通用多方块外壳");
             addBlock(ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT, "多方块物品流体端口");
             addBlock(ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT, "多方块能源输入端口");
@@ -531,6 +532,7 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.LARGE_IRIDIUM_COIL, "Large Iridium Coil");
         addReactorRodNames();
         addTechnologicalPartNames();
+        addGtTreeNames();
         addBlock(ModBlocks.COKE_OVEN, "Coke Oven Controller");
         addBlock(ModBlocks.MULTIBLOCK_CASING, "Multiblock Casing");
         addBlock(
@@ -1485,5 +1487,27 @@ public class ModLanguageProvider extends LanguageProvider {
             case "iv" -> "极高压";
             default -> voltage.toUpperCase(Locale.ROOT);
         };
+    }
+
+    private void addGtTreeNames() {
+        for (com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies species :
+                com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies.ALL) {
+            if (chinese) {
+                addBlock(ModBlocks.treeSapling(species), species.chineseName() + "树苗");
+                addBlock(ModBlocks.treeLog(species), species.chineseName() + "原木");
+                addBlock(ModBlocks.treeLeaves(species), species.chineseName() + "树叶");
+                if (species.hasHole()) {
+                    addBlock(ModBlocks.treeHole(species), species.chineseHoleName());
+                }
+            } else {
+                addBlock(ModBlocks.treeSapling(species), species.englishName() + " Sapling");
+                addBlock(ModBlocks.treeLog(species), species.englishName() + " Log");
+                addBlock(ModBlocks.treeLeaves(species), species.englishName() + " Leaves");
+                if (species.hasHole()) {
+                    addBlock(ModBlocks.treeHole(species), species.englishHoleName());
+                }
+            }
+        }
+        addItem(ModItems.RUBBER_RESIN, chinese ? "橡胶树脂" : "Rubber Resin");
     }
 }

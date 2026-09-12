@@ -12,6 +12,9 @@ public final class ProcessingMachineEnergyPlacement {
         if (isHeatMachine(spec)) {
             return new Connection(Direction.DOWN, Direction.UP);
         }
+        if (isSandingMachine(spec)) {
+            return new Connection(Direction.UP, Direction.DOWN);
+        }
         Direction provider = front.getOpposite();
         return new Connection(provider, provider.getOpposite());
     }
@@ -26,7 +29,14 @@ public final class ProcessingMachineEnergyPlacement {
                 || spec.recipeMapId().equals(
                         ModProcessingMachines.MELTER.recipeMapId())
                 || spec.recipeMapId().equals(
-                        ModProcessingMachines.ROASTER.recipeMapId());
+                        ModProcessingMachines.ROASTER.recipeMapId())
+                || spec.recipeMapId().equals(
+                        ModProcessingMachines.OVEN.recipeMapId());
+    }
+
+    private static boolean isSandingMachine(ProcessingMachineSpec spec) {
+        return spec.recipeMapId().equals(
+                ModProcessingMachines.SANDING.recipeMapId());
     }
 
     public record Connection(Direction providerOffset, Direction providerFace) {}

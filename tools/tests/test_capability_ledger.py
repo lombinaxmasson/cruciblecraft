@@ -32,6 +32,10 @@ NANOFAB = "machines/nanofab"
 PRESSURE_WASHER = "machines/pressure-washer"
 WIRE_CABLE_FOLD = "content/electric-wire-cable-mte-fold"
 FOUNDATION = "content/technological-parts-foundation"
+TREES = "worldgen/gt-trees"
+DUNGEON = "worldgen/gt-dungeon"
+SANDING = "machines/sanding"
+OVEN = "machines/oven"
 SENSORS = "content/sensors"
 NUCLEAR = "energy/nuclear-fission-survival"
 HOT_FLUIDS = "energy/nuclear-fission-hot-fluids"
@@ -64,6 +68,10 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertIn(NUCLEAR, slugs)
         self.assertIn(WIRE_CABLE_FOLD, slugs)
         self.assertIn(FOUNDATION, slugs)
+        self.assertIn(TREES, slugs)
+        self.assertIn(DUNGEON, slugs)
+        self.assertIn(SANDING, slugs)
+        self.assertIn(OVEN, slugs)
         self.assertIn(SENSORS, slugs)
         self.assertIn(HOT_FLUIDS, slugs)
         self.assertIn(OBSERVATION, slugs)
@@ -170,16 +178,23 @@ class CapabilityLedgerTest(unittest.TestCase):
         ]
         self.assertEqual([], active)
         self.assertEqual(set(), set(ledger.load_card_plan_index()["active"]))
-        self.assertIn(FOUNDATION, ledger.load_card_plan_index()["closed"])
         self.assertIn(SENSORS, ledger.load_card_plan_index()["closed"])
+        self.assertIn(
+            TREES,
+            ledger.load_card_plan_index()["closed"],
+        )
         self.assertIn(
             WIRE_CABLE_FOLD,
             ledger.load_card_plan_index()["closed"],
         )
         self.assertNotIn(
-            "machines/slicer",
+            "worldgen/gt-trees",
             ledger.load_card_plan_index()["prep"],
         )
+        self.assertIn(DUNGEON, ledger.load_card_plan_index()["prep"])
+        self.assertNotIn(SANDING, ledger.load_card_plan_index()["prep"])
+        self.assertIn(SANDING, ledger.load_card_plan_index()["closed"])
+        self.assertIn(OVEN, ledger.load_card_plan_index()["closed"])
         self.assertIn(
             "machines/slicer",
             ledger.load_card_plan_index()["closed"],
@@ -219,6 +234,10 @@ class CapabilityLedgerTest(unittest.TestCase):
                 WIRE_CABLE_FOLD,
                 FOUNDATION,
                 SENSORS,
+                TREES,
+                DUNGEON,
+                SANDING,
+                OVEN,
             },
             set(compiled["impact"]["logistics/cover-net-r0"]),
         )
@@ -284,9 +303,13 @@ class CapabilityLedgerTest(unittest.TestCase):
                 LOOM,
                 MELTER,
                 NANOFAB,
+                OVEN,
                 PRESSURE_WASHER,
                 ROLL_FORMER,
-                SLICER
+                SANDING,
+                SLICER,
+                DUNGEON,
+                TREES,
             ],
             hit,
         )

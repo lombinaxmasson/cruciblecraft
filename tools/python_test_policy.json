@@ -35,6 +35,7 @@
     "test_machine_delivery",
     "test_cluster_mill_prep",
     "test_prep_machines",
+    "test_gt_trees",
     "test_roll_former",
     "test_cluster_mill",
     "test_slicer",
@@ -42,10 +43,11 @@
     "test_laminator",
     "test_loom",
     "test_nanofab",
-    "test_melter",
-    "test_electric_wire_cable_mte_fold",
+        "test_melter",
+        "test_sanding",
+        "test_oven",
+        "test_electric_wire_cable_mte_fold",
     "test_technological_parts_foundation",
-    "test_sensors",
     "test_capability_ledger",
     "test_project_status",
     "test_capability_close",
@@ -227,6 +229,10 @@
         "tools/tests/test_cluster_mill_prep.py",
         "tools/tests/test_prep_machines.py",
         "tools/waves/prep/**",
+        "src/main/java/com/masson/cruciblecraft/machine/processing/prep/**",
+        "src/main/resources/assets/cruciblecraft/gt6_sanding_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/sander/**",
+        "src/main/resources/assets/cruciblecraft/textures/gui/machines/sanding.png",
         "src/test/resources/generic_recipe_import/**",
         "src/main/resources/data/cruciblecraft/machine_delivery.json",
         "src/main/resources/data/cruciblecraft/schema/machine_delivery.schema.json",
@@ -244,6 +250,33 @@
     },
     {
       "paths": [
+        "tools/gt_trees.py",
+        "tools/build_gt_trees.py",
+        "tools/tests/test_gt_trees.py",
+        "tools/waves/prep/gt-trees/**",
+        "src/main/java/com/masson/cruciblecraft/worldgen/tree/**",
+        "src/main/java/com/masson/cruciblecraft/content/block/GtTree*.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/GtTreeHoleBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/GtTreesGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/worldgen/tree/**",
+        "src/main/resources/assets/cruciblecraft/gt6_gt_trees_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/tree/**",
+        "src/main/resources/assets/cruciblecraft/textures/item/tree/**",
+        "src/main/resources/data/cruciblecraft/worldgen/**/tree_*.json",
+        "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_tree_*.json",
+        "src/main/resources/data/cruciblecraft_wave_worldgen_gt_trees/**",
+        "src/generated/resources/assets/cruciblecraft/blockstates/tree/**",
+        "src/generated/resources/assets/cruciblecraft/models/block/tree/**",
+        "src/generated/resources/assets/cruciblecraft/models/item/tree/**",
+        "src/generated/resources/data/cruciblecraft/loot_table/blocks/tree/**",
+        "tools/capabilities/worldgen/gt-trees/**"
+      ],
+      "test_modules": [
+        "test_gt_trees"
+      ]
+    },
+    {
+      "paths": [
         "tools/tests/test_roll_former.py",
         "tools/tests/test_cluster_mill.py",
         "tools/tests/test_slicer.py",
@@ -252,6 +285,8 @@
         "tools/tests/test_loom.py",
         "tools/tests/test_nanofab.py",
         "tools/tests/test_melter.py",
+        "tools/tests/test_sanding.py",
+        "tools/tests/test_oven.py",
         "tools/tests/test_electric_wire_cable_mte_fold.py",
         "tools/tests/test_technological_parts_foundation.py",
         "tools/technological_parts_foundation.py",
@@ -263,6 +298,8 @@
         "src/main/java/com/masson/cruciblecraft/gametest/ClusterMillGameTests.java",
         "src/main/java/com/masson/cruciblecraft/gametest/SlicerGameTests.java",
         "src/main/java/com/masson/cruciblecraft/gametest/InjectorGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/SandingGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/OvenGameTests.java",
         "src/main/resources/data/cruciblecraft_wave_machines_roll_former/**",
         "src/main/resources/data/cruciblecraft_wave_machines_cluster_mill/**",
         "src/main/resources/data/cruciblecraft_wave_machines_slicer/**"
@@ -276,6 +313,8 @@
         "test_loom",
         "test_nanofab",
         "test_melter",
+        "test_sanding",
+        "test_oven",
         "test_electric_wire_cable_mte_fold",
         "test_technological_parts_foundation"
       ]
@@ -455,7 +494,9 @@
         "test_roll_former",
         "test_cluster_mill",
         "test_slicer",
-        "test_injector"
+        "test_injector",
+        "test_sanding",
+        "test_oven"
       ]
     },
     {
@@ -488,21 +529,6 @@
       "test_modules": [
         "test_material_form_authority",
         "test_technological_parts_foundation"
-      ]
-    },
-    {
-      "paths": [
-        "tools/tests/test_sensors.py",
-        "tools/capabilities/content/sensors/**",
-        "tools/waves/content/sensors/**",
-        "src/main/java/com/masson/cruciblecraft/content/sensor/**",
-        "src/main/java/com/masson/cruciblecraft/content/block/SensorBlock.java",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/SensorBlockEntity.java",
-        "src/main/java/com/masson/cruciblecraft/gametest/SensorGameTests.java",
-        "src/main/resources/data/cruciblecraft_wave_content_sensors/**"
-      ],
-      "test_modules": [
-        "test_sensors"
       ]
     }
   ]

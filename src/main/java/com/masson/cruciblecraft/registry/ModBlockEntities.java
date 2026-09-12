@@ -18,6 +18,7 @@ import com.masson.cruciblecraft.content.blockentity.FluidDepositExtractorBlockEn
 import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidBedBurningBoxBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.GasCloudBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.GtTreeHoleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.HopperBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SensorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.BookshelfBlockEntity;
@@ -444,9 +445,18 @@ public final class ModBlockEntities {
             BlockEntityType<HeatExchangerBlockEntity>>
                     HEAT_EXCHANGER = BLOCK_ENTITIES.register(
                             "heat_exchanger",
+                    () -> BlockEntityType.Builder.of(
+                            HeatExchangerBlockEntity::new,
+                            ModBlocks.heatExchangerBlockArray())
+                            .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<GtTreeHoleBlockEntity>>
+                    TREE_HOLE = BLOCK_ENTITIES.register(
+                            "tree_hole",
                             () -> BlockEntityType.Builder.of(
-                                    HeatExchangerBlockEntity::new,
-                                    ModBlocks.heatExchangerBlockArray())
+                                    GtTreeHoleBlockEntity::new,
+                                    ModBlocks.treeHoleBlockArray())
                                     .build(null));
 
     private ModBlockEntities() {}

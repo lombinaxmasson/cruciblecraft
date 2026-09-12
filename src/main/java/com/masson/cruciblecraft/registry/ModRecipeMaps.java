@@ -39,6 +39,8 @@ public final class ModRecipeMaps {
     public static final RecipeMap LATHE = create("lathe");
     public static final RecipeMap ROLLINGMILL = create("rollingmill");
     public static final RecipeMap ROLLFORMER = create("rollformer");
+    public static final RecipeMap SANDING = create("sanding");
+    public static final RecipeMap OVEN = create("oven");
     public static final RecipeMap CLUSTERMILL = create("clustermill");
     public static final RecipeMap SLICER = create("slicer");
     public static final RecipeMap LAMINATOR = create("laminator");
@@ -90,6 +92,8 @@ public final class ModRecipeMaps {
             LATHE,
             ROLLINGMILL,
             ROLLFORMER,
+            SANDING,
+            OVEN,
             CLUSTERMILL,
             SLICER,
             LAMINATOR,

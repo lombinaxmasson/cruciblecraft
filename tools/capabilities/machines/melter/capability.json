@@ -46,7 +46,7 @@
       "runtime_ids": [
         "cruciblecraft:melter"
       ],
-      "reason": "The 6756-row dump and 3973-row selected family are below the 21000 hard cap. Load evidence records the publication as UNVERIFIED_SCALE rather than treating telemetry overage as a failed close."
+      "reason": "The 6756-row dump and 3960-row selected family are below the 21000 hard cap. Load evidence records the publication as UNVERIFIED_SCALE rather than treating telemetry overage as a failed close."
     },
     {
       "semantic_key": "machine:melter:host_obtain",
@@ -60,8 +60,8 @@
       "semantic_key": "recipe:melter:overflow",
       "disposition": "blocked",
       "runtime_ids": [],
-      "reason": "2783 rows remain blocked for unmapped plastic/glass/mercury fluids, arrow_gt_plastic and closed tool-head identities. No unrelated fluid, item, programmed circuit or smelter stand-in is permitted."
+      "reason": "2796 rows remain blocked for unmapped plastic/glass/mercury fluids, arrow_gt_plastic, 12 unregistered GT block/multiitem identities, one 9072 mB output over the 8000 mB tank limit and closed tool-head identities. No unrelated fluid, item, programmed circuit or smelter stand-in is permitted."
     }
   ],
-  "note": "The live family publishes 3973 exact rows from the 6756-row gt.recipe.melter dump. D0 host acquisition is source-exact; overflow stays blocked. Close at runtime_ready, not player_complete."
+  "note": "The live family publishes 3960 exact rows from the 6756-row gt.recipe.melter dump. D0 host acquisition is source-exact; overflow stays blocked. Close at runtime_ready, not player_complete."
 }

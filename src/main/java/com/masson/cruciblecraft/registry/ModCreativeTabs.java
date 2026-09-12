@@ -84,6 +84,12 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.ROD_MOLD.get());
                         output.accept(ModItems.BOLT_MOLD.get());
                         output.accept(ModItems.MATCH.get());
+                        output.accept(ModItems.RUBBER_RESIN.get());
+                        com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies.ALL.forEach(species -> {
+                            output.accept(ModItems.treeSaplingItem(species).get());
+                            output.accept(ModItems.treeLogItem(species).get());
+                            output.accept(ModItems.treeLeavesItem(species).get());
+                        });
                         output.accept(ModItems.PROGRAMMED_CIRCUIT.get());
                         output.accept(ModItems.CREOSOTE_BUCKET.get());
                         output.accept(ModItems.STEAM_BUCKET.get());

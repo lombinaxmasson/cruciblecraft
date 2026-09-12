@@ -189,6 +189,12 @@ public class ModItemModelProvider extends ItemModelProvider {
                 generatedGt6Multiitem(operand.registryPath()));
         PressureWasherOperandCatalog.operands().forEach(operand ->
                 generatedGt6Multiitem(operand.registryPath()));
+        for (var species : com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies.ALL) {
+            withExistingParent("item/" + species.saplingPath(), mcLoc("item/generated"))
+                    .texture("layer0", modLoc("block/tree/" + species.id() + "/sapling"));
+        }
+        withExistingParent("item/tree/rubber_resin", mcLoc("item/generated"))
+                .texture("layer0", modLoc("item/tree/rubber_resin"));
         ModBlocks.pipeBlocks().forEach(holder -> {
             var pipe = holder.get().pipe();
             String modelKey = pipe.kind().name().toLowerCase(

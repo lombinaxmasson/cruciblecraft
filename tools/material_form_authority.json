@@ -7,6 +7,7 @@
     "electrolyzer_required_forms",
     "bath_required_forms",
     "tool_head_required_forms",
+    "machines_sanding_required_forms",
     "smelter_ordinary_closure_required_forms",
     "mixer_ordinary_closure_required_forms",
     "drying_ordinary_closure_required_forms",
@@ -178,6 +179,37 @@
       "owner": "registry/tool-head-prefix",
       "path": "tools/tool_head_required_forms.json",
       "required_factual_prereqs": {}
+    },
+    {
+      "extra_factual_forms": [
+        "billet",
+        "dust_div72",
+        "gem",
+        "gem_chipped",
+        "ingot",
+        "lens",
+        "nugget",
+        "plate_gem",
+        "rock",
+        "rod",
+        "round",
+        "small_dust",
+        "tiny_dust"
+      ],
+      "field": "required_forms",
+      "gate_section": "machines_sanding_required_forms",
+      "id": "machines_sanding_required_forms",
+      "java_runtime_visible": true,
+      "owner": "registry/tool-head-prefix-reclaim",
+      "path": "tools/waves/machines/sanding/required_forms.json",
+      "required_factual_prereqs": {
+        "dust_div72": [
+          "dust"
+        ],
+        "small_dust": [
+          "dust"
+        ]
+      }
     },
     {
       "extra_factual_forms": [

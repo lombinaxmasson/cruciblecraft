@@ -1,0 +1,56 @@
+{
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "blocked": [
+    {
+      "id": "IL.KEYS",
+      "status": "explicitly_blocked",
+      "reason": "CC has no source-equivalent GT metal key items; do not substitute metal ingots, tripwire hooks, or vanilla keys"
+    },
+    {
+      "id": "portal.nether",
+      "status": "explicitly_blocked",
+      "reason": "Cross-dimension portal runtime is a separate card"
+    },
+    {
+      "id": "portal.end",
+      "status": "explicitly_blocked",
+      "reason": "Cross-dimension portal runtime is a separate card"
+    },
+    {
+      "id": "portal.twilight",
+      "status": "explicitly_blocked",
+      "reason": "Twilight runtime is not present"
+    },
+    {
+      "id": "portal.aether",
+      "status": "explicitly_blocked",
+      "reason": "Aether runtime is not present"
+    },
+    {
+      "id": "portal.myst",
+      "status": "explicitly_blocked",
+      "reason": "Mystcraft runtime is not present"
+    },
+    {
+      "id": "zpm",
+      "status": "explicitly_blocked",
+      "reason": "GT6 ZPM identity 14999 is not registered; do not replace with a battery or circuit"
+    },
+    {
+      "id": "bedrock_ore_room",
+      "status": "explicitly_blocked",
+      "reason": "WorldgenOresBedrock is not implemented in CC"
+    },
+    {
+      "id": "gt_multitileentity_room_contents",
+      "status": "explicitly_blocked",
+      "reason": "Workshop, storage, shelves, coins, cups, tanks, and farm fixtures require their exact MTE identities"
+    },
+    {
+      "id": "gt_stone_decoration_metas",
+      "status": "explicitly_blocked",
+      "reason": "GT6 brick/tile/lamp/glass forms without a registered CC identity are not replaced with vanilla stone bricks, glowstone, or glass"
+    }
+  ],
+  "status": "BLOCKED_LEDGER_EXACT"
+}

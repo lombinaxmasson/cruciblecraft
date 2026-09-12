@@ -8,6 +8,11 @@ from tools import capability_ledger
 from tools import project_status
 
 FOUNDATION = "content/technological-parts-foundation"
+TREES = "worldgen/gt-trees"
+DUNGEON = "worldgen/gt-dungeon"
+SANDING = "machines/sanding"
+OVEN = "machines/oven"
+SENSORS = "content/sensors"
 
 
 class ProjectStatusTest(unittest.TestCase):
@@ -17,9 +22,11 @@ class ProjectStatusTest(unittest.TestCase):
         self.assertIn("# 项目状态", text)
         self.assertIn("不要手改", text)
         self.assertIsNone(compiled["unique_active_slug"])
-        self.assertIn("`content/technological-parts-foundation`", text)
+        self.assertIn("`worldgen/gt-trees`", text)
+        self.assertIn("`worldgen/gt-dungeon`", text)
+        self.assertIn("`machines/sanding`", text)
+        self.assertIn("`machines/oven`", text)
         self.assertIn("`content/sensors`", text)
-        self.assertIn("没有 `workflow=active`", text)
         self.assertIn("`content/electric-wire-cable-mte-fold`", text)
         self.assertIn("`machines/slicer`", text)
         self.assertIn("workflow=accepted", text)

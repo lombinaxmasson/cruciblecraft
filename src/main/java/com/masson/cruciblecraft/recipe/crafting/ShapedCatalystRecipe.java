@@ -22,7 +22,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
 /**
- * A fixed 3x3 crafting recipe with GT6-style tool catalyst slots.
+ * A fixed-width crafting recipe with GT6-style tool catalyst slots.
  *
  * <p>GT6's {@code CR.DEF_NCC} recipes put tools in lower-case pattern slots.
  * Vanilla shaped recipes cannot preserve those tools, so this recipe keeps
@@ -56,10 +56,10 @@ public final class ShapedCatalystRecipe implements CraftingRecipe {
             Map<String, Ingredient> ingredients,
             Map<String, Ingredient> catalysts,
             ItemStack result) {
-        if (pattern.size() != 3
+        if ((pattern.size() != 2 && pattern.size() != 3)
                 || pattern.stream().anyMatch(row -> row.length() != 3)) {
             throw new IllegalArgumentException(
-                    "Shaped catalyst recipes must have a 3x3 pattern");
+                    "Shaped catalyst recipes must have a 3-column pattern with two or three rows");
         }
         this.pattern = List.copyOf(pattern);
         this.ingredients = Map.copyOf(new LinkedHashMap<>(ingredients));
@@ -86,10 +86,11 @@ public final class ShapedCatalystRecipe implements CraftingRecipe {
 
     @Override
     public boolean matches(CraftingInput input, Level level) {
-        if (input.width() != 3 || input.height() != 3) {
+        if (input.width() != 3
+                || (input.height() != pattern.size() && input.height() != 3)) {
             return false;
         }
-        for (int row = 0; row < 3; row++) {
+        for (int row = 0; row < pattern.size(); row++) {
             String line = pattern.get(row);
             for (int column = 0; column < 3; column++) {
                 String symbol = String.valueOf(line.charAt(column));
@@ -100,6 +101,13 @@ public final class ShapedCatalystRecipe implements CraftingRecipe {
                         return false;
                     }
                 } else if (!ingredient.test(stack)) {
+                    return false;
+                }
+            }
+        }
+        if (input.height() == 3 && pattern.size() == 2) {
+            for (int column = 0; column < 3; column++) {
+                if (!input.getItem(6 + column).isEmpty()) {
                     return false;
                 }
             }
@@ -118,10 +126,11 @@ public final class ShapedCatalystRecipe implements CraftingRecipe {
     public NonNullList<ItemStack> getRemainingItems(CraftingInput input) {
         NonNullList<ItemStack> remaining =
                 NonNullList.withSize(input.size(), ItemStack.EMPTY);
-        if (input.width() != 3 || input.height() != 3) {
+        if (input.width() != 3
+                || (input.height() != pattern.size() && input.height() != 3)) {
             return remaining;
         }
-        for (int row = 0; row < 3; row++) {
+        for (int row = 0; row < pattern.size(); row++) {
             String line = pattern.get(row);
             for (int column = 0; column < 3; column++) {
                 String symbol = String.valueOf(line.charAt(column));
@@ -138,7 +147,7 @@ public final class ShapedCatalystRecipe implements CraftingRecipe {
 
     @Override
     public boolean canCraftInDimensions(int width, int height) {
-        return width >= 3 && height >= 3;
+        return width >= 3 && height >= pattern.size();
     }
 
     @Override

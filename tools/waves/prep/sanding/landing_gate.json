@@ -1,0 +1,48 @@
+{
+  "capability_slug": "machines/sanding",
+  "import_slug": "machines/sanding",
+  "landing_blocked_by": null,
+  "note": "Promoted to unique-active machines/sanding. Live compile 7637 selected / 0 overflow blocked. Not player_complete.",
+  "promotion_checklist": [
+    "Move 打磨机详细计划.md from prep/ to active/ and create capability.json workflow=active",
+    "Register RecipeMap sanding, ProcessingMachineSpec, menu",
+    "Add kind sanding and four Kinetic_T variants 20511-20514 to machine_kinds/tiers",
+    "Add machine_delivery host texture_profile sander",
+    "Add kinetic craft branch SGS/XXX/wMh with vanilla sandstone",
+    "Live compile 7637 selected rows; keep 0 overflow blocked",
+    "Update ProcessingMachineEnergyPlacement or GameTest to inject RU on UP",
+    "Bump MachineRuntimeGameTests catalog count from 99 to 103",
+    "Add SandingGameTests: four hosts, UP energy, 1-to-2 recipe, D0 craft"
+  ],
+  "required_test_ids": [
+    "bronzeHostRunsFirstLiveRecipe",
+    "fourHostsAreSurvivalCraftable",
+    "liveMapPublishesSelectedRows",
+    "playerSurfaceIsRegistered"
+  ],
+  "schema_version": 1,
+  "selected_rows": 7637,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "variants": [
+    {
+      "id": "cruciblecraft:sanding",
+      "material": "bronze",
+      "sourceId": 20511
+    },
+    {
+      "id": "cruciblecraft:steel_sanding",
+      "material": "steel",
+      "sourceId": 20512
+    },
+    {
+      "id": "cruciblecraft:titanium_sanding",
+      "material": "titanium",
+      "sourceId": 20513
+    },
+    {
+      "id": "cruciblecraft:tungstensteel_sanding",
+      "material": "tungstensteel",
+      "sourceId": 20514
+    }
+  ]
+}

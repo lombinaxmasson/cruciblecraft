@@ -862,6 +862,8 @@ public final class ModRecipeProvider extends RecipeProvider {
                     path);
             case "melter" -> melterCrafting(
                     output, result, casing, material, path);
+            case "oven" -> ovenCrafting(
+                    output, result, casing, path);
             case "laminator" -> laminatorCrafting(
                     output, result, casing, material, path);
             case "pressurewasher" -> pressureWasherCrafting(
@@ -1125,6 +1127,25 @@ public final class ModRecipeProvider extends RecipeProvider {
                     new ItemStack(result));
             return;
         }
+        if ("sanding".equals(kind)) {
+            Item smallGear = materialItem(material, MaterialPrefixes.SMALL_GEAR);
+            Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+            ingredients.put("S", Ingredient.of(smallGear));
+            ingredients.put("G", Ingredient.of(gear));
+            ingredients.put("X", Ingredient.of(Items.SANDSTONE));
+            ingredients.put("M", Ingredient.of(casing));
+            // GT6 Loader_MultiTileEntities.java:1589 {"SGS","XXX","wMh"}.
+            acceptShapedCatalyst(
+                    output,
+                    "machines/" + id,
+                    List.of("SGS", "XXX", "wMh"),
+                    ingredients,
+                    Map.of(
+                            "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()),
+                            "h", Ingredient.of(ModItems.SMITHING_HAMMER.get())),
+                    new ItemStack(result));
+            return;
+        }
         ShapedRecipeBuilder builder =
                 ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
                         .define('C', casing)
@@ -1259,6 +1280,27 @@ public final class ModRecipeProvider extends RecipeProvider {
                     "Unsupported heat machine kind " + kind);
         }
         builder.save(output, id("machines/" + id));
+    }
+
+    private static void ovenCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String id) {
+        Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+        ingredients.put("M", Ingredient.of(casing));
+        ingredients.put("C", Ingredient.of(materialItem(
+                "copper", MaterialPrefixes.DOUBLE_PLATE)));
+        ingredients.put("B", Ingredient.of(Items.BRICKS));
+        acceptShapedCatalyst(
+                output,
+                "machines/" + id,
+                List.of("wMh", "BCB"),
+                ingredients,
+                Map.of(
+                        "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()),
+                        "h", Ingredient.of(ModItems.SMITHING_HAMMER.get())),
+                new ItemStack(result));
     }
 
     private static void melterCrafting(

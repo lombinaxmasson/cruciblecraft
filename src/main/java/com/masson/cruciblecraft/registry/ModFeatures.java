@@ -7,6 +7,7 @@ import com.masson.cruciblecraft.worldgen.GtStoneScatterFeature;
 import com.masson.cruciblecraft.worldgen.LargeVeinFeature;
 import com.masson.cruciblecraft.worldgen.SubsurfaceFluidDepositFeature;
 import com.masson.cruciblecraft.worldgen.SurfaceRockFeature;
+import com.masson.cruciblecraft.worldgen.tree.GtTreeFeature;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -70,6 +71,10 @@ public final class ModFeatures {
                     FEATURES.register(
                             "semantic_object_scatter",
                             GtItemScatterFeature::new);
+
+    /** GT6 WorldgenTree* via com.masson.cruciblecraft.worldgen.tree.prep GtTreeGrower / GtTreeSpecies / GtTreePlacement. */
+    public static final DeferredHolder<Feature<?>, GtTreeFeature> GT_TREE =
+            FEATURES.register("gt_tree", GtTreeFeature::new);
 
     private ModFeatures() {}
 }

@@ -147,6 +147,8 @@ public final class ModProcessingMachines {
                     EnergyType.KINETIC_ROTATION,
                     1, 1, 0, 0);
     public static final ProcessingMachineSpec ROLLFORMER = rollFormerSpec();
+    public static final ProcessingMachineSpec SANDING = sandingSpec();
+    public static final ProcessingMachineSpec OVEN = ovenSpec();
     public static final ProcessingMachineSpec CLUSTERMILL = clusterMillSpec();
     public static final ProcessingMachineSpec SLICER = slicerSpec();
     public static final ProcessingMachineSpec LAMINATOR = laminatorSpec();
@@ -441,6 +443,8 @@ public final class ModProcessingMachines {
                             java.util.stream.Stream.of(
                                     LASER_ENGRAVER,
                                     ROLLFORMER,
+                                    SANDING,
+                                    OVEN,
                                     CLUSTERMILL,
                                     SLICER,
                                     LAMINATOR,
@@ -1114,6 +1118,114 @@ public final class ModProcessingMachines {
                         1, 1, 0, 0,
                         1, 1, 0, 0,
                         PROCESSING_STATUSES));
+    }
+
+    private static ProcessingMachineSpec ovenSpec() {
+        return new ProcessingMachineSpec(
+                id("oven"),
+                id("oven"),
+                () -> ModRecipeMaps.OVEN,
+                new ProcessingMachineSpec.SlotLayout(2, List.of(0), List.of(1)),
+                new ProcessingMachineSpec.TankLayout(List.of(), List.of()),
+                new ProcessingMachineSpec.EnergySpec(
+                        EnergyType.HEAT,
+                        ProcessingMachineSpec.EnergyMode.ADJACENT,
+                        0L,
+                        8_192L),
+                new ProcessingMachineSpec.SidedIoPolicy(
+                        (front, side) -> {
+                            if (side == null) {
+                                return ProcessingMachineSpec.CapabilityAccess.NONE;
+                            }
+                            if (side == front.getCounterClockWise()) {
+                                return ProcessingMachineSpec.CapabilityAccess.INPUT;
+                            }
+                            if (side == front.getClockWise()) {
+                                return ProcessingMachineSpec.CapabilityAccess.OUTPUT;
+                            }
+                            return ProcessingMachineSpec.CapabilityAccess.NONE;
+                        },
+                        (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE,
+                        (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE),
+                ModProcessingMachines::validateOvenRecipe,
+                ProcessingMachineSpec.BufferPolicy.PAUSE,
+                Gt6BasicMachineGui.ui(
+                        1, 1, 0, 0,
+                        1, 1, 0, 0,
+                        PROCESSING_STATUSES));
+    }
+
+    private static Optional<String> validateOvenRecipe(GTRecipe recipe) {
+        if (recipe.itemInputs().size() != 1
+                || recipe.itemOutputs().size() != 1
+                || !recipe.fluidInputs().isEmpty()
+                || !recipe.fluidOutputs().isEmpty()
+                || recipe.eut() != 16L
+                || recipe.duration() != 16) {
+            return Optional.of("oven_recipe_shape");
+        }
+        if (recipe.itemInputCounts().size() != 1
+                || recipe.itemInputCounts().getFirst() <= 0
+                || recipe.itemOutputs().getFirst().isEmpty()
+                || recipe.itemOutputs().getFirst().getCount() <= 0) {
+            return Optional.of("oven_recipe_amount");
+        }
+        return Optional.empty();
+    }
+
+    private static ProcessingMachineSpec sandingSpec() {
+        return new ProcessingMachineSpec(
+                id("sanding"),
+                id("sanding"),
+                () -> ModRecipeMaps.SANDING,
+                new ProcessingMachineSpec.SlotLayout(3, List.of(0), List.of(1, 2)),
+                new ProcessingMachineSpec.TankLayout(List.of(), List.of()),
+                new ProcessingMachineSpec.EnergySpec(
+                        EnergyType.KINETIC_ROTATION,
+                        ProcessingMachineSpec.EnergyMode.BUFFERED,
+                        4_096L,
+                        256L),
+                new ProcessingMachineSpec.SidedIoPolicy(
+                        (front, side) -> {
+                            if (side == null) {
+                                return ProcessingMachineSpec.CapabilityAccess.NONE;
+                            }
+                            if (side == front.getCounterClockWise()) {
+                                return ProcessingMachineSpec.CapabilityAccess.INPUT;
+                            }
+                            if (side == front.getClockWise()) {
+                                return ProcessingMachineSpec.CapabilityAccess.OUTPUT;
+                            }
+                            return ProcessingMachineSpec.CapabilityAccess.NONE;
+                        },
+                        (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE,
+                        (front, side) -> side == Direction.UP
+                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                                : ProcessingMachineSpec.CapabilityAccess.NONE),
+                ModProcessingMachines::validateSandingRecipe,
+                ProcessingMachineSpec.BufferPolicy.PAUSE,
+                Gt6BasicMachineGui.ui(
+                        1, 2, 0, 0,
+                        1, 2, 0, 0,
+                        PROCESSING_STATUSES));
+    }
+
+    private static Optional<String> validateSandingRecipe(GTRecipe recipe) {
+        if (recipe.itemInputs().size() != 1
+                || recipe.itemOutputs().isEmpty()
+                || recipe.itemOutputs().size() > 2
+                || !recipe.fluidInputs().isEmpty()
+                || !recipe.fluidOutputs().isEmpty()
+                || recipe.eut() != 16L) {
+            return Optional.of("sanding_recipe_shape");
+        }
+        if (recipe.itemInputCounts().size() != 1
+                || recipe.itemInputCounts().getFirst() <= 0
+                || recipe.itemOutputs().getFirst().isEmpty()
+                || recipe.itemOutputs().getFirst().getCount() <= 0) {
+            return Optional.of("sanding_recipe_amount");
+        }
+        return Optional.empty();
     }
 
     private static ProcessingMachineSpec clusterMillSpec() {

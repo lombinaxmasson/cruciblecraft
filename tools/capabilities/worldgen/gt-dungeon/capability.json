@@ -1,0 +1,50 @@
+{
+  "schema_version": 2,
+  "slug": "worldgen/gt-dungeon",
+  "title": "GT Dungeon",
+  "maturity": "frozen",
+  "workflow": "paused",
+  "owned_paths": [
+    "docs/history/card-plans/prep/GT地牢详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/CrucibleCraft.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/GtDungeonGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModStructures.java",
+    "src/main/java/com/masson/cruciblecraft/worldgen/GtDungeonPiece.java",
+    "src/main/java/com/masson/cruciblecraft/worldgen/GtDungeonStructure.java",
+    "src/main/resources/data/cruciblecraft/worldgen/structure/**",
+    "src/main/resources/data/cruciblecraft/worldgen/structure_set/**",
+    "src/main/resources/data/cruciblecraft_wave_worldgen_gt_dungeon/**",
+    "tools/capabilities/worldgen/gt-dungeon/**",
+    "tools/waves/prep/gt-dungeon/**"
+  ],
+  "depends_on": [
+    "content/technological-parts-foundation",
+    "worldgen/gt-trees"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "worldgen/gt-dungeon",
+  "required_test_ids": [
+    "structureRegistriesAreLoaded",
+    "sourcePlacementGateIsStable",
+    "layoutRemainsConnected"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "worldgen:dungeon.large",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:gt_dungeon"
+      ],
+      "reason": "GT6 WorldgenDungeonGT is a structure with a serialized multi-chunk piece, not a surface scatter or vanilla dungeon alias."
+    },
+    {
+      "semantic_key": "worldgen:dungeon.gt6_room_contents",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "GT keys, ZPM, cross-mod portals, unavailable MTE fixtures, bedrock ores, and missing crop/material forms remain source-exact blocked."
+    }
+  ],
+  "note": "Paused and returned to prep so machines/sanding can occupy unique-active. The structure carrier remains registered, but GT stone decoration metas, exact room dispatch, farm/entrance geometry, keys, ZPM, bedrock ore, and cross-mod portals remain blocked. Do not call this runtime_ready until the carrier and room geometry are re-verified together."
+}

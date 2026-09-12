@@ -253,7 +253,7 @@ public record CompactGTRecipeFamilyDefinition(
                 RecordCodecBuilder.create(instance -> instance.group(
                         ResourceLocation.CODEC.fieldOf("stable_id")
                                 .forGetter(Relation::stableId),
-                        Ingredient.CODEC_NONEMPTY.listOf()
+                        CompactRelationItemCodecs.ITEM_INPUTS
                                 .optionalFieldOf("item_inputs", List.of())
                                 .forGetter(Relation::itemInputs),
                         Codec.INT.listOf()
@@ -262,7 +262,7 @@ public record CompactGTRecipeFamilyDefinition(
                         ItemInputAction.CODEC.listOf()
                                 .optionalFieldOf("item_input_actions", List.of())
                                 .forGetter(Relation::itemInputActions),
-                        ItemStack.STRICT_CODEC.listOf()
+                        CompactRelationItemCodecs.ITEM_OUTPUTS
                                 .optionalFieldOf("item_outputs", List.of())
                                 .forGetter(Relation::itemOutputs),
                         FluidStack.CODEC.listOf()
@@ -310,19 +310,24 @@ public record CompactGTRecipeFamilyDefinition(
                         "Compact relation shadow_order must not be negative: "
                                 + stableId);
             }
-            new GTRecipe(
-                    itemInputs,
-                    itemInputCounts,
-                    itemInputActions,
-                    itemOutputs,
-                    fluidInputs,
-                    fluidOutputs,
-                    outputChances,
-                    duration,
-                    eut,
-                    specialValue,
-                    canBeBuffered,
-                    Optional.of(provenance));
+            try {
+                new GTRecipe(
+                        itemInputs,
+                        itemInputCounts,
+                        itemInputActions,
+                        itemOutputs,
+                        fluidInputs,
+                        fluidOutputs,
+                        outputChances,
+                        duration,
+                        eut,
+                        specialValue,
+                        canBeBuffered,
+                        Optional.of(provenance));
+            } catch (IllegalArgumentException exception) {
+                throw new IllegalArgumentException(
+                        stableId + ": " + exception.getMessage(), exception);
+            }
         }
 
         public GTRecipe materialize() {
@@ -469,10 +474,10 @@ public record CompactGTRecipeFamilyDefinition(
 
         public static final Codec<MatrixDicts> CODEC =
                 RecordCodecBuilder.create(instance -> instance.group(
-                        Ingredient.CODEC_NONEMPTY.listOf().listOf()
+                        CompactRelationItemCodecs.ITEM_INPUT_DICTS
                                 .optionalFieldOf("item_inputs", List.of())
                                 .forGetter(MatrixDicts::itemInputs),
-                        ItemStack.STRICT_CODEC.listOf().listOf()
+                        CompactRelationItemCodecs.ITEM_OUTPUT_DICTS
                                 .optionalFieldOf("item_outputs", List.of())
                                 .forGetter(MatrixDicts::itemOutputs),
                         FluidIo.CODEC.listOf()

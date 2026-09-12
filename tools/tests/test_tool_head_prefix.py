@@ -35,6 +35,9 @@ class ToolHeadPrefixTest(unittest.TestCase):
         counts = document.get("counts") or {}
         self.assertIn("mapped", counts)
         self.assertIn("remainder", counts)
+        self.assertEqual(13_938, counts["mapped"])
+        self.assertEqual(13_938, counts["union_keys"])
+        self.assertEqual(0, counts["remainder"])
         self.assertEqual(len(mapped), int(counts["mapped"]))
         self.assertEqual(len(remainder), int(counts["remainder"]))
         keys = {(row["source_item"], row["meta"]) for row in mapped}
