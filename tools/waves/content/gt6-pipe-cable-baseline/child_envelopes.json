@@ -1,0 +1,155 @@
+{
+  "children": [
+    {
+      "blocked": [
+        "pipeQuadruple",
+        "pipeNonuple",
+        "plasmaProof runtime",
+        "magicProof runtime",
+        "flammable runtime",
+        "contactDamage runtime"
+      ],
+      "depends_on": [
+        "content/gt6-pipe-cable-baseline",
+        "registry/catalog-modern-ids"
+      ],
+      "existing_insufficient": [
+        "importPullsFromStorage",
+        "fluidPipeCapacityTemperatureAndCorrosionFailClosed"
+      ],
+      "expected_tests": [
+        "fluidPipeCapacityMatchesGt6Gauge",
+        "fluidPipeTickCadenceMatchesGt6",
+        "fluidPipePlasmaMagicAcidGasFailures",
+        "fluidPipeChunkUnloadRetainsTank",
+        "fluidPipeSideContract"
+      ],
+      "issued": true,
+      "no_stand_in": true,
+      "owns": "five live gauges correction; quadruple/nonuple remain blocked until implemented in place",
+      "slug": "content/gt6-fluid-pipe-runtime"
+    },
+    {
+      "blocked": [
+        "restrictive gauges until in_place BlockItem",
+        "cover-pump-only as GT6 inventory substitute"
+      ],
+      "depends_on": [
+        "content/gt6-pipe-cable-baseline",
+        "registry/catalog-modern-ids"
+      ],
+      "existing_insufficient": [
+        "importPullsFromStorage",
+        "itemPipeFilterValvePumpAutomatesRoute"
+      ],
+      "expected_tests": [
+        "itemPipeHasInternalInventory",
+        "itemPipeDisabledInputsOutputs",
+        "itemPipeTenTickSend",
+        "itemPipeRestrictiveStepSize",
+        "itemPipeFullDoesNotVoid"
+      ],
+      "issued": true,
+      "no_stand_in": true,
+      "owns": "in-pipe inventory, disabled I/O, 10-tick send, restrictive three gauges",
+      "slug": "content/gt6-item-pipe-runtime"
+    },
+    {
+      "blocked": [
+        "red_alloy/signalum/lumium wire",
+        "unregistered graphene/superconductor gauges",
+        "wireGt07/09/10/14 without CC prefix"
+      ],
+      "depends_on": [
+        "content/gt6-pipe-cable-baseline",
+        "content/electric-wire-cable-mte-fold"
+      ],
+      "existing_insufficient": [
+        "cableChainAppliesExactPerBlockLoss",
+        "cableOverloadBurnsOnTheSafeFollowingTick"
+      ],
+      "expected_tests": [
+        "electricWireGt01IsCableBlock",
+        "higherWireGaugesArePlaceableOrExplicitlyUpgrade",
+        "cableLossAndOverloadPerSpecification",
+        "redstoneMaterialsAreNotElectricalConductors"
+      ],
+      "issued": true,
+      "no_stand_in": true,
+      "owns": "live BlockItem audit for wireGt01-16 and cableGt01/02/04/08/12",
+      "slug": "content/gt6-eu-wire-cable-runtime"
+    },
+    {
+      "blocked": [
+        "EU capability",
+        "CableNetworkTraversal",
+        "PipeTopology"
+      ],
+      "depends_on": [
+        "content/mte-redstone-wire"
+      ],
+      "existing_insufficient": [
+        "weakAndStrongRedstone",
+        "foldedOntoWireGt01NotVanilla"
+      ],
+      "expected_tests": [
+        "redstoneMixedMaterialUsesSenderLoss",
+        "redstoneVanillaInputCachedPerTick",
+        "redstoneSinksIgnored",
+        "redstoneNotCableBlock"
+      ],
+      "issued": true,
+      "no_stand_in": true,
+      "owns": "sender-side mixed-material loss, vanilla cache, sink/kind evidence; must not reopen identity fold",
+      "slug": "content/gt6-redstone-wire-correction"
+    },
+    {
+      "blocked": [
+        "until laminator exact GT6 plate/foil recipe exists"
+      ],
+      "depends_on": [
+        "content/gt6-pipe-cable-baseline",
+        "content/gt6-redstone-wire-correction"
+      ],
+      "expected_tests": [
+        "insulatedRedstoneIsNotEuCable"
+      ],
+      "issued": false,
+      "no_stand_in": true,
+      "owns": "27006/27056/27506 in_place insulated redstone, not GTCEu EU cable",
+      "slug": "content/gt6-redstone-insulated"
+    },
+    {
+      "blocked": [
+        "player_complete before manifest closeout"
+      ],
+      "depends_on": [
+        "content/gt6-fluid-pipe-runtime",
+        "content/gt6-item-pipe-runtime",
+        "content/gt6-eu-wire-cable-runtime"
+      ],
+      "expected_tests": [
+        "connectorArtManifestResolvesLocalGt6",
+        "foldedRowsCopyZeroPng",
+        "inPlaceRowsHaveNoIronIngotModel"
+      ],
+      "issued": true,
+      "no_stand_in": true,
+      "owns": "GT6 iconset copy + per-runtime tint/overlay; fold rows copy 0 png",
+      "slug": "content/gt6-connector-art"
+    }
+  ],
+  "note": "This audit does not issue unique-active. Children must be separate cards. No stand-in recipes. No GTCEu EnergyNet/fluid net/item net transplant.",
+  "registry_census": [
+    "live PipeCatalog fluid/item BlockItem counts",
+    "ElectricalConductorCatalog 115 cables / 231 wires",
+    "RedstoneWireKind 3",
+    "remaining fluid_pipe_tile / item_pipe_tile / electric_wire dummy counts"
+  ],
+  "schema": "gt6-pipe-cable-child-envelopes-v1",
+  "source_currentness": [
+    "python tools/gt6_pipes.py via tools/gt6_pipe_source.json",
+    "python tools/build_gt6_pipe_cable_baseline.py --check",
+    "git -C gt6_code/gregtech6 rev-parse HEAD == 3703e40308c8c030763fd6297dea8b210d2a77b1"
+  ]
+}

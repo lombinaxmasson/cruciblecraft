@@ -1,0 +1,588 @@
+{
+  "schema": "gt6-item-pipe-runtime-subset-v1",
+  "capability_slug": "content/gt6-item-pipe-runtime",
+  "note": "Execution subset of the closed baseline identity_resolution_ledger. Do not modify that ledger or the R0 disposition ledger.",
+  "counts": {
+    "in_catalog_item": 63,
+    "fold_live_block": 57,
+    "already_shared": 0,
+    "keep_distinct": 6,
+    "upgrade_live_item": 0
+  },
+  "blocked": [
+    "pipeRestrictiveMedium",
+    "pipeRestrictiveLarge",
+    "pipeRestrictiveHuge",
+    "cover-pump-only as GT6 inventory substitute"
+  ],
+  "archive": "no NeoForge alias; folded dummy stacks become the live BlockItem; unloaded dummy blocks become air",
+  "rows": [
+    {
+      "meta": 25002,
+      "disposition": "fold_live_block",
+      "cc_form": "item_pipe",
+      "material": "brass",
+      "dummy_path": "item_pipe_tile/brass",
+      "live_block": "cruciblecraft:brass/item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25003,
+      "disposition": "fold_live_block",
+      "cc_form": "large_item_pipe",
+      "material": "brass",
+      "dummy_path": "item_pipe_tile/large_brass_item_pipe",
+      "live_block": "cruciblecraft:brass/large_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25004,
+      "disposition": "fold_live_block",
+      "cc_form": "huge_item_pipe",
+      "material": "brass",
+      "dummy_path": "item_pipe_tile/huge_brass_item_pipe",
+      "live_block": "cruciblecraft:brass/huge_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25027,
+      "disposition": "fold_live_block",
+      "cc_form": "item_pipe",
+      "material": "constantan",
+      "dummy_path": "item_pipe_tile/constantan",
+      "live_block": "cruciblecraft:constantan/item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25028,
+      "disposition": "fold_live_block",
+      "cc_form": "large_item_pipe",
+      "material": "constantan",
+      "dummy_path": "item_pipe_tile/large_constantan_item_pipe",
+      "live_block": "cruciblecraft:constantan/large_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25029,
+      "disposition": "fold_live_block",
+      "cc_form": "huge_item_pipe",
+      "material": "constantan",
+      "dummy_path": "item_pipe_tile/huge_constantan_item_pipe",
+      "live_block": "cruciblecraft:constantan/huge_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25052,
+      "disposition": "fold_live_block",
+      "cc_form": "item_pipe",
+      "material": "cobalt_brass",
+      "dummy_path": "item_pipe_tile/cobalt_brass",
+      "live_block": "cruciblecraft:cobalt_brass/item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25053,
+      "disposition": "fold_live_block",
+      "cc_form": "large_item_pipe",
+      "material": "cobalt_brass",
+      "dummy_path": "item_pipe_tile/large_cobalt_brass_item_pipe",
+      "live_block": "cruciblecraft:cobalt_brass/large_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25054,
+      "disposition": "fold_live_block",
+      "cc_form": "huge_item_pipe",
+      "material": "cobalt_brass",
+      "dummy_path": "item_pipe_tile/huge_cobalt_brass_item_pipe",
+      "live_block": "cruciblecraft:cobalt_brass/huge_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25077,
+      "disposition": "fold_live_block",
+      "cc_form": "item_pipe",
+      "material": "germanium",
+      "dummy_path": "item_pipe_tile/germanium",
+      "live_block": "cruciblecraft:germanium/item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25078,
+      "disposition": "fold_live_block",
+      "cc_form": "large_item_pipe",
+      "material": "germanium",
+      "dummy_path": "item_pipe_tile/large_germanium_item_pipe",
+      "live_block": "cruciblecraft:germanium/large_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25079,
+      "disposition": "fold_live_block",
+      "cc_form": "huge_item_pipe",
+      "material": "germanium",
+      "dummy_path": "item_pipe_tile/huge_germanium_item_pipe",
+      "live_block": "cruciblecraft:germanium/huge_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25102,
+      "disposition": "fold_live_block",
+      "cc_form": "item_pipe",
+      "material": "electrum",
+      "dummy_path": "item_pipe_tile/electrum",
+      "live_block": "cruciblecraft:electrum/item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25103,
+      "disposition": "fold_live_block",
+      "cc_form": "large_item_pipe",
+      "material": "electrum",
+      "dummy_path": "item_pipe_tile/large_electrum_item_pipe",
+      "live_block": "cruciblecraft:electrum/large_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25104,
+      "disposition": "fold_live_block",
+      "cc_form": "huge_item_pipe",
+      "material": "electrum",
+      "dummy_path": "item_pipe_tile/huge_electrum_item_pipe",
+      "live_block": "cruciblecraft:electrum/huge_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25127,
+      "disposition": "fold_live_block",
+      "cc_form": "item_pipe",
+      "material": "black_bronze",
+      "dummy_path": "item_pipe_tile/black_bronze",
+      "live_block": "cruciblecraft:black_bronze/item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25128,
+      "disposition": "fold_live_block",
+      "cc_form": "large_item_pipe",
+      "material": "black_bronze",
+      "dummy_path": "item_pipe_tile/large_black_bronze_item_pipe",
+      "live_block": "cruciblecraft:black_bronze/large_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25129,
+      "disposition": "fold_live_block",
+      "cc_form": "huge_item_pipe",
+      "material": "black_bronze",
+      "dummy_path": "item_pipe_tile/huge_black_bronze_item_pipe",
+      "live_block": "cruciblecraft:black_bronze/huge_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25152,
+      "disposition": "fold_live_block",
+      "cc_form": "item_pipe",
+      "material": "aluminium_brass",
+      "dummy_path": "item_pipe_tile/aluminium_brass",
+      "live_block": "cruciblecraft:aluminium_brass/item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25153,
+      "disposition": "fold_live_block",
+      "cc_form": "large_item_pipe",
+      "material": "aluminium_brass",
+      "dummy_path": "item_pipe_tile/large_aluminium_brass_item_pipe",
+      "live_block": "cruciblecraft:aluminium_brass/large_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25154,
+      "disposition": "fold_live_block",
+      "cc_form": "huge_item_pipe",
+      "material": "aluminium_brass",
+      "dummy_path": "item_pipe_tile/huge_aluminium_brass_item_pipe",
+      "live_block": "cruciblecraft:aluminium_brass/huge_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25177,
+      "disposition": "fold_live_block",
+      "cc_form": "item_pipe",
+      "material": "manyullyn",
+      "dummy_path": "item_pipe_tile/manyullyn",
+      "live_block": "cruciblecraft:manyullyn/item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25178,
+      "disposition": "fold_live_block",
+      "cc_form": "large_item_pipe",
+      "material": "manyullyn",
+      "dummy_path": "item_pipe_tile/large_manyullyn_item_pipe",
+      "live_block": "cruciblecraft:manyullyn/large_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25179,
+      "disposition": "fold_live_block",
+      "cc_form": "huge_item_pipe",
+      "material": "manyullyn",
+      "dummy_path": "item_pipe_tile/huge_manyullyn_item_pipe",
+      "live_block": "cruciblecraft:manyullyn/huge_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25202,
+      "disposition": "fold_live_block",
+      "cc_form": "item_pipe",
+      "material": "platinum",
+      "dummy_path": "item_pipe_tile/platinum",
+      "live_block": "cruciblecraft:platinum/item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25203,
+      "disposition": "fold_live_block",
+      "cc_form": "large_item_pipe",
+      "material": "platinum",
+      "dummy_path": "item_pipe_tile/large_platinum_item_pipe",
+      "live_block": "cruciblecraft:platinum/large_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25204,
+      "disposition": "fold_live_block",
+      "cc_form": "huge_item_pipe",
+      "material": "platinum",
+      "dummy_path": "item_pipe_tile/huge_platinum_item_pipe",
+      "live_block": "cruciblecraft:platinum/huge_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25227,
+      "disposition": "fold_live_block",
+      "cc_form": "item_pipe",
+      "material": "sterling_silver",
+      "dummy_path": "item_pipe_tile/sterling_silver",
+      "live_block": "cruciblecraft:sterling_silver/item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25228,
+      "disposition": "fold_live_block",
+      "cc_form": "large_item_pipe",
+      "material": "sterling_silver",
+      "dummy_path": "item_pipe_tile/large_sterling_silver_item_pipe",
+      "live_block": "cruciblecraft:sterling_silver/large_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25229,
+      "disposition": "fold_live_block",
+      "cc_form": "huge_item_pipe",
+      "material": "sterling_silver",
+      "dummy_path": "item_pipe_tile/huge_sterling_silver_item_pipe",
+      "live_block": "cruciblecraft:sterling_silver/huge_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25252,
+      "disposition": "fold_live_block",
+      "cc_form": "item_pipe",
+      "material": "rose_gold",
+      "dummy_path": "item_pipe_tile/rose_gold",
+      "live_block": "cruciblecraft:rose_gold/item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25253,
+      "disposition": "fold_live_block",
+      "cc_form": "large_item_pipe",
+      "material": "rose_gold",
+      "dummy_path": "item_pipe_tile/large_rose_gold_item_pipe",
+      "live_block": "cruciblecraft:rose_gold/large_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25254,
+      "disposition": "fold_live_block",
+      "cc_form": "huge_item_pipe",
+      "material": "rose_gold",
+      "dummy_path": "item_pipe_tile/huge_rose_gold_item_pipe",
+      "live_block": "cruciblecraft:rose_gold/huge_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25277,
+      "disposition": "fold_live_block",
+      "cc_form": "item_pipe",
+      "material": "angmallen",
+      "dummy_path": "item_pipe_tile/angmallen",
+      "live_block": "cruciblecraft:angmallen/item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25278,
+      "disposition": "fold_live_block",
+      "cc_form": "large_item_pipe",
+      "material": "angmallen",
+      "dummy_path": "item_pipe_tile/large_angmallen_item_pipe",
+      "live_block": "cruciblecraft:angmallen/large_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25279,
+      "disposition": "fold_live_block",
+      "cc_form": "huge_item_pipe",
+      "material": "angmallen",
+      "dummy_path": "item_pipe_tile/huge_angmallen_item_pipe",
+      "live_block": "cruciblecraft:angmallen/huge_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25302,
+      "disposition": "fold_live_block",
+      "cc_form": "item_pipe",
+      "material": "osmium_elemental",
+      "dummy_path": "item_pipe_tile/osmium_elemental",
+      "live_block": "cruciblecraft:osmium_elemental/item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25303,
+      "disposition": "fold_live_block",
+      "cc_form": "large_item_pipe",
+      "material": "osmium_elemental",
+      "dummy_path": "item_pipe_tile/large_osmium_item_pipe",
+      "live_block": "cruciblecraft:osmium_elemental/large_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25304,
+      "disposition": "fold_live_block",
+      "cc_form": "huge_item_pipe",
+      "material": "osmium_elemental",
+      "dummy_path": "item_pipe_tile/huge_osmium_item_pipe",
+      "live_block": "cruciblecraft:osmium_elemental/huge_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25327,
+      "disposition": "fold_live_block",
+      "cc_form": "item_pipe",
+      "material": "magnalium",
+      "dummy_path": "item_pipe_tile/magnalium",
+      "live_block": "cruciblecraft:magnalium/item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25328,
+      "disposition": "fold_live_block",
+      "cc_form": "large_item_pipe",
+      "material": "magnalium",
+      "dummy_path": "item_pipe_tile/large_magnalium_item_pipe",
+      "live_block": "cruciblecraft:magnalium/large_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25329,
+      "disposition": "fold_live_block",
+      "cc_form": "huge_item_pipe",
+      "material": "magnalium",
+      "dummy_path": "item_pipe_tile/huge_magnalium_item_pipe",
+      "live_block": "cruciblecraft:magnalium/huge_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25352,
+      "disposition": "fold_live_block",
+      "cc_form": "item_pipe",
+      "material": "arsenic_copper",
+      "dummy_path": "item_pipe_tile/arsenic_copper",
+      "live_block": "cruciblecraft:arsenic_copper/item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25353,
+      "disposition": "fold_live_block",
+      "cc_form": "large_item_pipe",
+      "material": "arsenic_copper",
+      "dummy_path": "item_pipe_tile/large_arsenic_copper_item_pipe",
+      "live_block": "cruciblecraft:arsenic_copper/large_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25354,
+      "disposition": "fold_live_block",
+      "cc_form": "huge_item_pipe",
+      "material": "arsenic_copper",
+      "dummy_path": "item_pipe_tile/huge_arsenic_copper_item_pipe",
+      "live_block": "cruciblecraft:arsenic_copper/huge_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25377,
+      "disposition": "fold_live_block",
+      "cc_form": "item_pipe",
+      "material": "arsenic_bronze",
+      "dummy_path": "item_pipe_tile/arsenic_bronze",
+      "live_block": "cruciblecraft:arsenic_bronze/item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25378,
+      "disposition": "fold_live_block",
+      "cc_form": "large_item_pipe",
+      "material": "arsenic_bronze",
+      "dummy_path": "item_pipe_tile/large_arsenic_bronze_item_pipe",
+      "live_block": "cruciblecraft:arsenic_bronze/large_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25379,
+      "disposition": "fold_live_block",
+      "cc_form": "huge_item_pipe",
+      "material": "arsenic_bronze",
+      "dummy_path": "item_pipe_tile/huge_arsenic_bronze_item_pipe",
+      "live_block": "cruciblecraft:arsenic_bronze/huge_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25402,
+      "disposition": "fold_live_block",
+      "cc_form": "item_pipe",
+      "material": "enderium",
+      "dummy_path": "item_pipe_tile/enderium",
+      "live_block": "cruciblecraft:enderium/item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25403,
+      "disposition": "fold_live_block",
+      "cc_form": "large_item_pipe",
+      "material": "enderium",
+      "dummy_path": "item_pipe_tile/large_enderium_item_pipe",
+      "live_block": "cruciblecraft:enderium/large_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25404,
+      "disposition": "fold_live_block",
+      "cc_form": "huge_item_pipe",
+      "material": "enderium",
+      "dummy_path": "item_pipe_tile/huge_enderium_item_pipe",
+      "live_block": "cruciblecraft:enderium/huge_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25427,
+      "disposition": "fold_live_block",
+      "cc_form": "item_pipe",
+      "material": "ultimet",
+      "dummy_path": "item_pipe_tile/ultimet",
+      "live_block": "cruciblecraft:ultimet/item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25428,
+      "disposition": "fold_live_block",
+      "cc_form": "large_item_pipe",
+      "material": "ultimet",
+      "dummy_path": "item_pipe_tile/large_ultimet_item_pipe",
+      "live_block": "cruciblecraft:ultimet/large_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25429,
+      "disposition": "fold_live_block",
+      "cc_form": "huge_item_pipe",
+      "material": "ultimet",
+      "dummy_path": "item_pipe_tile/huge_ultimet_item_pipe",
+      "live_block": "cruciblecraft:ultimet/huge_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25480,
+      "disposition": "keep_distinct",
+      "cc_form": null,
+      "material": "elven_elementium",
+      "dummy_path": "item_pipe_tile/restrictive_elementium_item_pipe",
+      "live_block": null,
+      "reason": "No live conductor/pipe host for this GT6 gauge. Keep the modern dummy id and implement the real Block/BlockItem there. Do not alias another pipe or EU cable."
+    },
+    {
+      "meta": 25481,
+      "disposition": "keep_distinct",
+      "cc_form": null,
+      "material": "elven_elementium",
+      "dummy_path": "item_pipe_tile/restrictive_large_elementium_item_pipe",
+      "live_block": null,
+      "reason": "No live conductor/pipe host for this GT6 gauge. Keep the modern dummy id and implement the real Block/BlockItem there. Do not alias another pipe or EU cable."
+    },
+    {
+      "meta": 25482,
+      "disposition": "keep_distinct",
+      "cc_form": null,
+      "material": "elven_elementium",
+      "dummy_path": "item_pipe_tile/restrictive_huge_elementium_item_pipe",
+      "live_block": null,
+      "reason": "No live conductor/pipe host for this GT6 gauge. Keep the modern dummy id and implement the real Block/BlockItem there. Do not alias another pipe or EU cable."
+    },
+    {
+      "meta": 25502,
+      "disposition": "fold_live_block",
+      "cc_form": "item_pipe",
+      "material": "osmiridium",
+      "dummy_path": "item_pipe_tile/osmiridium",
+      "live_block": "cruciblecraft:osmiridium/item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25503,
+      "disposition": "fold_live_block",
+      "cc_form": "large_item_pipe",
+      "material": "osmiridium",
+      "dummy_path": "item_pipe_tile/large_osmiridium_item_pipe",
+      "live_block": "cruciblecraft:osmiridium/large_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25504,
+      "disposition": "fold_live_block",
+      "cc_form": "huge_item_pipe",
+      "material": "osmiridium",
+      "dummy_path": "item_pipe_tile/huge_osmiridium_item_pipe",
+      "live_block": "cruciblecraft:osmiridium/huge_item_pipe",
+      "reason": "Dummy CatalogNamedItem and live BlockItem are the same GT6 object. Fold dummy onto the live host; do not copy a second art set."
+    },
+    {
+      "meta": 25905,
+      "disposition": "keep_distinct",
+      "cc_form": null,
+      "material": "vibranium_silver",
+      "dummy_path": "item_pipe_tile/restrictive_vibranium_silver_item_pipe",
+      "live_block": null,
+      "reason": "No live conductor/pipe host for this GT6 gauge. Keep the modern dummy id and implement the real Block/BlockItem there. Do not alias another pipe or EU cable."
+    },
+    {
+      "meta": 25906,
+      "disposition": "keep_distinct",
+      "cc_form": null,
+      "material": "vibranium_silver",
+      "dummy_path": "item_pipe_tile/restrictive_large_vibranium_silver_item_pipe",
+      "live_block": null,
+      "reason": "No live conductor/pipe host for this GT6 gauge. Keep the modern dummy id and implement the real Block/BlockItem there. Do not alias another pipe or EU cable."
+    },
+    {
+      "meta": 25907,
+      "disposition": "keep_distinct",
+      "cc_form": null,
+      "material": "vibranium_silver",
+      "dummy_path": "item_pipe_tile/restrictive_huge_vibranium_silver_item_pipe",
+      "live_block": null,
+      "reason": "No live conductor/pipe host for this GT6 gauge. Keep the modern dummy id and implement the real Block/BlockItem there. Do not alias another pipe or EU cable."
+    }
+  ]
+}

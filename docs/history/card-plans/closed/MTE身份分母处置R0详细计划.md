@@ -34,6 +34,7 @@
 > capability 晋级、storage/lock 分母改动、机器身份重映射、GT6 未进
 > catalog 的 MTE 变体注册、核能、玩家发行
 > 签发层级：当前工作树；签发与关闭都不自动创建 Git commit
+> 读法修订（2026-09-12）：物品重复与贴图终态见文内专节，不改关闭记录。
 
 ```text
 lane                         = closed
@@ -55,6 +56,21 @@ partial_close_allowed         = false
 authority。本计划只签发工作边界；R0 的机器可读 artifact 在实施时由
 builder 生成。签发当下不创建 `tools/waves/**`、不翻转
 `unique_active_wave`。
+
+## 读法修订（2026-09-12）
+
+本卡把 `identity_only` 冻成「本卡不补行为」，并写明「不是永久产品禁令」。
+`realized_natively` 表示 CC 另有具名机制，**本身份当时仍是遗留散落物**。
+后续 runtime 必须按 [MTE 全量 Prep 总索引 §0.1](../prep/MTE全量Prep总索引.md)
+逐 meta 处理双物品。`realized_natively` 不等于自动折回，`identity_only`
+也不等于永远保留 dummy；必须同时证明 Loader meta、材料、class/spec 与
+live item/live block。只有普通 item 的配方映射不是可放置身份折回。
+
+本卡关闭快照是 `1507 identity_only / 277 realized_natively /
+33 attachment_candidate`。后续 sanding 4 与 tungsten-carbide oven/roaster 2
+使当前 live ledger 成为 `1501 / 283 / 33`；这是闭卡后的能力重分类，不回写
+本卡历史正文。正文中的 `gt_mte/mte_<meta>` 也是关闭时路径；当前路径以
+`tools/catalog_modern_id_map.json` 按 meta 为权威。铁锭不是可发行美术。
 
 ---
 

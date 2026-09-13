@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-fluid-pipe-runtime",
+  "title": "GT6 Fluid Pipe Runtime",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6流体管运行时详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/FluidPipeBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalog.java",
+    "src/main/java/com/masson/cruciblecraft/logistics/pipe/PipeTransferPhase.java",
+    "src/main/java/com/masson/cruciblecraft/logistics/pipe/fluid/FluidPipeBlockedMedia.java",
+    "src/main/java/com/masson/cruciblecraft/logistics/pipe/fluid/FluidPipeCadence.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/FluidPipeRuntimeGameTests.java",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_fluid_pipe_runtime/**",
+    "tools/capabilities/content/gt6-fluid-pipe-runtime/**",
+    "tools/waves/content/gt6-fluid-pipe-runtime/**",
+    "tools/gt6_fluid_pipe_runtime.py",
+    "tools/build_gt6_fluid_pipe_runtime.py",
+    "tools/tests/test_gt6_fluid_pipe_runtime.py"
+  ],
+  "depends_on": [
+    "registry/catalog-modern-ids"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-fluid-pipe-runtime",
+  "required_test_ids": [
+    "fluidPipeCapacityMatchesGt6Gauge",
+    "fluidPipeChunkUnloadRetainsTank",
+    "fluidPipePlasmaMagicAcidGasFailures",
+    "fluidPipeSideContract",
+    "fluidPipeTickCadenceMatchesGt6"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "connector:fluid-pipe:five-gauge-live",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:copper/tiny_fluid_pipe",
+        "cruciblecraft:copper/small_fluid_pipe",
+        "cruciblecraft:copper/fluid_pipe",
+        "cruciblecraft:copper/large_fluid_pipe",
+        "cruciblecraft:copper/huge_fluid_pipe"
+      ],
+      "reason": "Five live gauges already registered. Fold exact dummy BlockItem duplicates onto those hosts; do not raise the pipe block budget."
+    },
+    {
+      "semantic_key": "connector:fluid-pipe:quadruple-nonuple",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "pipeQuadruple/pipeNonuple stay dummy items. No stand-in BlockItem and no budget bump."
+    }
+  ],
+  "note": "GT6 five-gauge fluid cadence, capacity, and fail-closed media. Close at runtime_ready, not player_complete. Do not edit R0 or the baseline identity ledger."
+}

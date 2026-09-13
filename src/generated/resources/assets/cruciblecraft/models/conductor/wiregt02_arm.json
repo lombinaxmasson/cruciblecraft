@@ -1,0 +1,63 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "north": {
+          "texture": "#end",
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#side",
+          "tintindex": 0
+        }
+      },
+      "from": [
+        6.5,
+        6.5,
+        0
+      ],
+      "to": [
+        9.5,
+        9.5,
+        6.5
+      ]
+    },
+    {
+      "faces": {
+        "north": {
+          "texture": "#overlay"
+        }
+      },
+      "from": [
+        6.498,
+        6.498,
+        -0.002
+      ],
+      "to": [
+        9.502,
+        9.502,
+        6.502
+      ]
+    }
+  ],
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "end": "cruciblecraft:block/gt6_import/materialicons/copper/wire",
+    "overlay": "cruciblecraft:block/gt6_import/materialicons/copper/wire_overlay",
+    "particle": "cruciblecraft:block/gt6_import/materialicons/copper/wire",
+    "side": "cruciblecraft:block/gt6_import/materialicons/copper/wire"
+  }
+}

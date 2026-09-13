@@ -1,0 +1,49 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-redstone-wire-correction",
+  "title": "GT6 Redstone Wire Correction",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6红石线行为校正详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/RedstoneWireBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/redstonewire/RedstoneWireSinks.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/RedstoneWireCorrectionGameTests.java",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_redstone_wire_correction/**",
+    "tools/capabilities/content/gt6-redstone-wire-correction/**",
+    "tools/waves/content/gt6-redstone-wire-correction/**",
+    "tools/tests/test_gt6_redstone_wire_correction.py"
+  ],
+  "depends_on": [
+    "content/mte-redstone-wire"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-redstone-wire-correction",
+  "required_test_ids": [
+    "redstoneMixedMaterialUsesSenderLoss",
+    "redstoneVanillaInputCachedPerTick",
+    "redstoneSinksIgnored",
+    "redstoneNotCableBlock"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "connector:redstone-wire:behavior-correction",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:red_alloy/wire",
+        "cruciblecraft:signalum/wire",
+        "cruciblecraft:lumium/wire"
+      ],
+      "reason": "Identity stays on closed content/mte-redstone-wire. This child only corrects sender-side loss, per-tick vanilla cache, and GT6 sinks."
+    },
+    {
+      "semantic_key": "connector:redstone-wire:not-eu-or-pipe",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "Must not attach ENERGY, CableNetworkTraversal, or PipeTopology."
+    }
+  ],
+  "note": "Behavior correction on the live wireGt01 redstone MTEs. Close at runtime_ready, not player_complete. Do not reopen the identity card, copy art, or invent recipes."
+}

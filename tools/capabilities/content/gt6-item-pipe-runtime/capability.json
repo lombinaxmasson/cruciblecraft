@@ -1,0 +1,53 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-item-pipe-runtime",
+  "title": "GT6 Item Pipe Runtime",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6物品管运行时详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/ItemPipeBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/ItemPipeBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/AbstractPipeBlock.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/ItemPipeRuntimeGameTests.java",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_item_pipe_runtime/**",
+    "tools/capabilities/content/gt6-item-pipe-runtime/**",
+    "tools/waves/content/gt6-item-pipe-runtime/**",
+    "tools/gt6_item_pipe_runtime.py",
+    "tools/build_gt6_item_pipe_runtime.py",
+    "tools/tests/test_gt6_item_pipe_runtime.py"
+  ],
+  "depends_on": [
+    "registry/catalog-modern-ids"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-item-pipe-runtime",
+  "required_test_ids": [
+    "itemPipeDisabledInputsOutputs",
+    "itemPipeFullDoesNotVoid",
+    "itemPipeHasInternalInventory",
+    "itemPipeRestrictiveStepSize",
+    "itemPipeTenTickSend"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "connector:item-pipe:ordinary-gauges",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:brass/item_pipe",
+        "cruciblecraft:brass/large_item_pipe",
+        "cruciblecraft:brass/huge_item_pipe"
+      ],
+      "reason": "Ordinary medium/large/huge already registered. Fold exact dummy BlockItem duplicates onto those hosts; do not raise the pipe block budget."
+    },
+    {
+      "semantic_key": "connector:item-pipe:restrictive",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "pipeRestrictiveMedium/Large/Huge stay dummy items. No canonical prefix, no stand-in BlockItem, and no budget bump."
+    }
+  ],
+  "note": "GT6 in-pipe inventory, disabled I/O, and 10-tick send. Close at runtime_ready, not player_complete. Do not edit R0 or the baseline identity ledger."
+}

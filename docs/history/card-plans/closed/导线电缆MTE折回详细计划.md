@@ -7,6 +7,8 @@
 > conductor。不实现龙头，不注册新材料，不把 `gt_mte` 散落物当配方对象。
 > 机器可读 `unique_active_wave = null`（已闭卡）。
 > 关闭目标：`runtime_ready`，不是 `player_complete`。
+> 读法修订（2026-09-12）：只折了配方操作数；散落身份仍须逐 meta
+> 区分 live BlockItem 与普通 item。
 >
 > Java/tick 源：`gt6_code/gregtech6` @ `3703e40308c8c030763fd6297dea8b210d2a77b1`。
 
@@ -28,6 +30,16 @@ landing_owned_paths           = tools/recipe_bulk/ordinary_source.py
                                src/recipe_generated/resources/data/cruciblecraft/recipe/nanofab/**
 landing_depends_on           = MTE 身份分母处置 R0 已关；unique-active 空窗
 ```
+
+## 读法修订（2026-09-12）
+
+本卡关闭时只折了配方操作数，明确不折 `identity_only` 散落物。那是当时分母，
+不是产品许可「配方走活线、JEI 再留一根铁锭 dummy」。但 mapped 259 也不是
+dummy 删除清单：它含 catalog 外 id，且 `double_wire` 等可能只有普通材料
+item、没有可放置 BlockItem。连接件 runtime 必须按
+[MTE 全量 Prep 总索引 §0.1](../prep/MTE全量Prep总索引.md) 逐 meta 判定：
+同一 live BlockItem 才撤 dummy；只有 item 时解决 canonical item 的 BlockItem
+升级；未注册规格继续在 dummy id 上实现并迁 `gregtech6_w`。折回行不迁第二套图。
 
 ---
 

@@ -1,0 +1,119 @@
+{
+  "art": {
+    "role": "textures and models only",
+    "tree": "gt6_referencable_port_code/gregtech6_w"
+  },
+  "cc_provenance_not_contract": [
+    {
+      "allowed": "placement and wrench/cutter UX",
+      "from": "GTM gt6StylePipesCables",
+      "path": "src/main/java/com/masson/cruciblecraft/content/block/Gt6StyleConnections.java"
+    },
+    {
+      "allowed": "implementation sketch only",
+      "from": "GTM per-segment 5-tick distribution",
+      "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/FluidPipeBlockEntity.java"
+    },
+    {
+      "allowed": "not GT6 fluid/item tick contract",
+      "from": "GTM staggered cadence",
+      "path": "src/main/java/com/masson/cruciblecraft/logistics/pipe/PipeTransferPhase.java"
+    }
+  ],
+  "electric_invocations": 30,
+  "fluid_direct_calls": 40,
+  "gtceu_reference": {
+    "known_misread": "GTCEu Red Alloy cableProperties(V[0], 1, 0) is ULV EU cable; GT6 binds OP.wireGt01(RedAlloy/Signalum/Lumium) to WireRedstone 27000/27050/27500 and OP.cableGt01 to insulated redstone 27006/27056/27506.",
+    "role": "Provenance for early CC pipe/cable organization and the Red Alloy ULV EU-cable misread. Must not override GT6 Loader identities.",
+    "tree_present": true
+  },
+  "gtm_reference": {
+    "files": {
+      "src/main/java/com/gregtechceu/gtceu/common/pipelike/fluidpipe/FluidPipeType.java": {
+        "relevant_lines": [
+          19,
+          27
+        ],
+        "sha256": "f55ab727dc883552ffb73a0f6e4ed2fdf185fd3ee400de9a23f435d9b5492f59"
+      },
+      "src/main/java/com/gregtechceu/gtceu/common/pipelike/item/ItemPipeType.java": {
+        "relevant_lines": [
+          17,
+          27
+        ],
+        "sha256": "3c47111960837adb492af7438bb236142326b939f73ec76a8898c64866e0d056"
+      }
+    },
+    "license": "LGPL-3.0",
+    "repository": "GregTechCEu/GregTech-Modern",
+    "revision": "de5d2c4a4c863b94a10bfb5d0839df2de8246628",
+    "role": "Naming, model size and modern connection UX provenance only. Not GT6 capacity, loss, routing, cover, redstone or EU contract."
+  },
+  "item_direct_calls": 21,
+  "java_tick": {
+    "files": {
+      "src/main/java/gregapi/tileentity/connectors/ITileEntityRedstoneWire.java": {
+        "lines": [
+          32,
+          43,
+          38
+        ],
+        "sha256": "191c58b9bb61d48d2cd8d07f493157c3a4f6968ebc644114577e0b09a2b47717"
+      },
+      "src/main/java/gregapi/tileentity/connectors/MultiTileEntityPipeFluid.java": {
+        "lines": [
+          83,
+          91,
+          235
+        ],
+        "sha256": "3a6850055375e7975145b03abab44c5922746a6f4053dd8d3163de989f37b110"
+      },
+      "src/main/java/gregapi/tileentity/connectors/MultiTileEntityPipeItem.java": {
+        "lines": [
+          76,
+          173,
+          194
+        ],
+        "sha256": "0e9aa956b807d8390b20dd70f224b2b8d0a7be8df25fe66660abffda8b88069b"
+      },
+      "src/main/java/gregapi/tileentity/connectors/MultiTileEntityWireElectric.java": {
+        "lines": [
+          71,
+          145,
+          170
+        ],
+        "sha256": "60dd3bf9147a220ab327a1aed3f0081382678eb0d6190e865e84e1b7dae89724"
+      },
+      "src/main/java/gregapi/tileentity/connectors/MultiTileEntityWireRedstone.java": {
+        "lines": [
+          35,
+          51,
+          79
+        ],
+        "sha256": "cd79da42bb5b24a211615bb25edb653995c867f7404928f40d8e6f73ca59ec15"
+      },
+      "src/main/java/gregapi/tileentity/connectors/MultiTileEntityWireRedstoneInsulated.java": {
+        "lines": [
+          108,
+          121,
+          168
+        ],
+        "sha256": "4f93b8caf163e85f0560bfba5934bb42e76c39caf9a954c279cfcb10af49b8c2"
+      },
+      "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java": {
+        "lines": [
+          1822,
+          1893,
+          1914
+        ],
+        "sha256": "96f579dd5c0a26a759ddee34c312dadbc5d52123e2b85e82da6a40f68b494393"
+      }
+    },
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "tree": "gt6_code/gregtech6"
+  },
+  "pipe_source_extraction": "tools/gt6_pipe_source.json",
+  "redstone_catalog": 3,
+  "schema": "gt6-pipe-cable-source-authority-v1",
+  "this_card_modifies_src_main": false
+}

@@ -16,6 +16,7 @@ import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
 import com.masson.cruciblecraft.machine.processing.MachineTextureProfiles;
 import com.masson.cruciblecraft.content.block.GtTreeHoleBlock;
 import com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies;
+import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModMachineVariants;
 
@@ -338,7 +339,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                                 + "_item",
                         conductorWidth(specification),
                         conductorSide(specification),
-                        modLoc("block/material/wire_end"),
+                        conductorSide(specification),
                         conductorOverlay(specification));
             }
         });
@@ -387,8 +388,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 conductorWidth(specification),
                 false,
                 conductorSide(specification),
-                modLoc("block/material/wire_end"),
-                null);
+                conductorSide(specification),
+                conductorOverlay(specification));
     }
 
     private ModelFile conductorArm(String specification) {
@@ -399,24 +400,33 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 conductorWidth(specification),
                 true,
                 conductorSide(specification),
-                modLoc("block/material/wire_end"),
+                conductorSide(specification),
                 conductorOverlay(specification));
     }
 
     private ResourceLocation conductorSide(String specification) {
-        return "wireGt01".equals(specification)
-                ? modLoc("block/material/wire_side")
-                : modLoc("block/cable/insulation_5");
+        if (specification == null || specification.isEmpty()) {
+            throw new IllegalArgumentException("blank conductor specification");
+        }
+        return modLoc("block/gt6_import/materialicons/copper/wire");
     }
 
     private ResourceLocation conductorOverlay(String specification) {
         return switch (specification) {
-            case "cableGt01" -> modLoc("block/cable/insulation_0");
-            case "cableGt02" -> modLoc("block/cable/insulation_1");
-            case "cableGt04" -> modLoc("block/cable/insulation_2");
-            case "cableGt08" -> modLoc("block/cable/insulation_3");
-            case "cableGt12" -> modLoc("block/cable/insulation_4");
-            default -> null;
+            case "cableGt01" ->
+                    modLoc("block/gt6_import/iconsets/insulation_tiny");
+            case "cableGt02" ->
+                    modLoc("block/gt6_import/iconsets/insulation_small");
+            case "cableGt04" ->
+                    modLoc("block/gt6_import/iconsets/insulation_medium");
+            case "cableGt08" ->
+                    modLoc("block/gt6_import/iconsets/insulation_large");
+            case "cableGt12" ->
+                    modLoc("block/gt6_import/iconsets/insulation_huge");
+            default -> specification.startsWith("wireGt")
+                    ? modLoc(
+                            "block/gt6_import/materialicons/copper/wire_overlay")
+                    : null;
         };
     }
 
@@ -438,16 +448,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     private static float conductorWidth(String specification) {
-        return switch (specification) {
-            case "wireGt01" -> 2.0F;
-            case "cableGt01" -> 4.0F;
-            case "cableGt02" -> 6.0F;
-            case "cableGt04" -> 8.0F;
-            case "cableGt08" -> 10.0F;
-            case "cableGt12" -> 12.0F;
-            default -> throw new IllegalArgumentException(
-                    "Unsupported conductor specification " + specification);
-        };
+        return ElectricalConductorCatalog.widthPixels(specification);
     }
 
     private void registerPipes() {
@@ -460,8 +461,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
             AbstractPipeBlock block = holder.get();
             String modelKey = block.pipe().kind().name().toLowerCase(
                     java.util.Locale.ROOT) + "_" + block.pipe().width();
-            ResourceLocation side = modLoc("block/pipe/pipe_side");
-            ResourceLocation end = pipeEndTexture(block.pipe().width());
+            ResourceLocation side = pipeTexture(block.pipe().width());
+            ResourceLocation overlay = pipeOverlay(block.pipe().width());
             ModelFile core = cores.computeIfAbsent(
                     modelKey,
                     ignored -> pipeCube(
@@ -469,8 +470,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
                             block.pipe().width(),
                             false,
                             side,
-                            end,
-                            null));
+                            side,
+                            overlay));
             ModelFile arm = arms.computeIfAbsent(
                     modelKey,
                     ignored -> pipeCube(
@@ -478,8 +479,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
                             block.pipe().width(),
                             true,
                             side,
-                            end,
-                            null));
+                            side,
+                            overlay));
             var multipart = getMultipartBuilder(block);
             multipart.part().modelFile(core).addModel().end();
             conductorArm(
@@ -499,19 +500,37 @@ public class ModBlockStateProvider extends BlockStateProvider {
                         "pipe/" + modelKey + "_item",
                         block.pipe().width(),
                         side,
-                        end,
-                        null);
+                        side,
+                        overlay);
             }
         });
     }
 
-    private ResourceLocation pipeEndTexture(int width) {
+    private ResourceLocation pipeTexture(int width) {
         return switch (width) {
-            case 4 -> modLoc("block/pipe/pipe_tiny_in");
-            case 6 -> modLoc("block/pipe/pipe_small_in");
-            case 8 -> modLoc("block/pipe/pipe_normal_in");
-            case 12 -> modLoc("block/pipe/pipe_large_in");
-            case 16 -> modLoc("block/pipe/pipe_huge_in");
+            case 4 -> modLoc("block/gt6_import/materialicons/copper/pipetiny");
+            case 6 -> modLoc("block/gt6_import/materialicons/copper/pipesmall");
+            case 8 ->
+                    modLoc("block/gt6_import/materialicons/copper/pipemedium");
+            case 12 -> modLoc("block/gt6_import/materialicons/copper/pipelarge");
+            case 16 -> modLoc("block/gt6_import/materialicons/copper/pipehuge");
+            default -> throw new IllegalArgumentException(
+                    "Unsupported pipe width " + width);
+        };
+    }
+
+    private ResourceLocation pipeOverlay(int width) {
+        return switch (width) {
+            case 4 ->
+                    modLoc("block/gt6_import/materialicons/copper/pipetiny_overlay");
+            case 6 ->
+                    modLoc("block/gt6_import/materialicons/copper/pipesmall_overlay");
+            case 8 ->
+                    modLoc("block/gt6_import/materialicons/copper/pipemedium_overlay");
+            case 12 ->
+                    modLoc("block/gt6_import/materialicons/copper/pipelarge_overlay");
+            case 16 ->
+                    modLoc("block/gt6_import/materialicons/copper/pipehuge_overlay");
             default -> throw new IllegalArgumentException(
                     "Unsupported pipe width " + width);
         };
@@ -545,16 +564,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 arm ? minimum : maximum,
                 arm ? Direction.NORTH : null,
                 false);
-        if (arm && overlay != null) {
+        if (overlay != null) {
             addPipeElement(
                     builder,
                     minimum,
                     minimum,
-                    0.0F,
+                    arm ? 0.0F : minimum,
                     maximum,
                     maximum,
-                    minimum,
-                    Direction.NORTH,
+                    arm ? minimum : maximum,
+                    arm ? Direction.NORTH : null,
                     true);
         }
         return builder;
@@ -592,14 +611,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
             var overlayElement = builder.element()
                     .from(minimum, minimum, 0.0F)
                     .to(maximum, maximum, 16.0F);
-            overlayElement.face(Direction.NORTH)
-                    .texture("#overlay")
-                    .tintindex(0)
-                    .end();
-            overlayElement.face(Direction.SOUTH)
-                    .texture("#overlay")
-                    .tintindex(0)
-                    .end();
+            for (Direction direction : Direction.values()) {
+                overlayElement.face(direction)
+                        .texture("#overlay")
+                        .end();
+            }
             overlayElement.end();
         }
         return builder;
@@ -624,13 +640,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 continue;
             }
             boolean cap = endFace == direction;
-            if (overlay && !cap) {
+            if (overlay && endFace != null && !cap) {
                 continue;
             }
-            element.face(direction)
-                    .texture(overlay ? "#overlay" : cap ? "#end" : "#side")
-                    .tintindex(0)
-                    .end();
+            var face = element.face(direction)
+                    .texture(overlay ? "#overlay" : cap ? "#end" : "#side");
+            if (!overlay) {
+                face.tintindex(0);
+            }
+            face.end();
         }
         element.end();
     }

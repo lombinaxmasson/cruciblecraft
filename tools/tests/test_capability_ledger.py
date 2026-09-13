@@ -31,6 +31,9 @@ MELTER = "machines/melter"
 NANOFAB = "machines/nanofab"
 PRESSURE_WASHER = "machines/pressure-washer"
 WIRE_CABLE_FOLD = "content/electric-wire-cable-mte-fold"
+CONNECTOR_ART = "content/gt6-connector-art"
+FLUID_RUNTIME = "content/gt6-fluid-pipe-runtime"
+EU_RUNTIME = "content/gt6-eu-wire-cable-runtime"
 FOUNDATION = "content/technological-parts-foundation"
 TREES = "worldgen/gt-trees"
 DUNGEON = "worldgen/gt-dungeon"
@@ -38,6 +41,8 @@ SANDING = "machines/sanding"
 OVEN = "machines/oven"
 SENSORS = "content/sensors"
 CATALOG_MODERN = "registry/catalog-modern-ids"
+MTE_REDSTONE = "content/mte-redstone-wire"
+REDSTONE_CORRECTION = "content/gt6-redstone-wire-correction"
 NUCLEAR = "energy/nuclear-fission-survival"
 HOT_FLUIDS = "energy/nuclear-fission-hot-fluids"
 OBSERVATION = "energy/nuclear-fission-observation-safety"
@@ -79,6 +84,8 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertIn(OBSERVATION, slugs)
         self.assertIn("registry/tool-head-remainder", slugs)
         self.assertIn(CATALOG_MODERN, slugs)
+        self.assertIn(MTE_REDSTONE, slugs)
+        self.assertIn(REDSTONE_CORRECTION, slugs)
         converter = next(row for row in documents if row["slug"] == CONVERTER)
         self.assertEqual("player_complete", converter["maturity"])
         self.assertEqual("accepted", converter["workflow"])
@@ -165,7 +172,16 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertIn(CLUSTER_MILL, complete)
         self.assertIn(ROLL_FORMER, complete)
         self.assertIn(HEAT_EXCHANGERS, complete)
-        self.assertEqual(CATALOG_MODERN, compiled["unique_active_slug"])
+        active = [
+            row["slug"]
+            for row in compiled["capabilities"]
+            if row["workflow"] == "active"
+        ]
+        self.assertLessEqual(len(active), 1)
+        self.assertEqual(
+            compiled["unique_active_slug"],
+            active[0] if active else None,
+        )
         self.assertEqual(
             "declaration is not proof; player_complete requires fresh "
             "GameTestServer execution; runClient is required on promotion",
@@ -179,10 +195,23 @@ class CapabilityLedgerTest(unittest.TestCase):
             for row in compiled["capabilities"]
             if row["workflow"] == "active"
         ]
-        self.assertEqual([CATALOG_MODERN], active)
+        self.assertLessEqual(len(active), 1)
         self.assertEqual(
-            {CATALOG_MODERN},
-            set(ledger.load_card_plan_index()["active"]),
+            compiled["unique_active_slug"],
+            active[0] if active else None,
+        )
+        plans = ledger.load_card_plan_index()
+        if not active:
+            self.assertEqual({}, plans["active"])
+        else:
+            self.assertEqual({active[0]}, set(plans["active"]))
+        self.assertIn(
+            MTE_REDSTONE,
+            ledger.load_card_plan_index()["closed"],
+        )
+        self.assertIn(
+            CATALOG_MODERN,
+            ledger.load_card_plan_index()["closed"],
         )
         self.assertIn(
             "logistics/cover-remainder",
@@ -242,6 +271,8 @@ class CapabilityLedgerTest(unittest.TestCase):
                 NANOFAB,
                 PRESSURE_WASHER,
                 WIRE_CABLE_FOLD,
+                CONNECTOR_ART,
+                EU_RUNTIME,
                 FOUNDATION,
                 SENSORS,
                 TREES,
@@ -295,6 +326,9 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertEqual(
             [
                 WIRE_CABLE_FOLD,
+                CONNECTOR_ART,
+                EU_RUNTIME,
+                FLUID_RUNTIME,
                 SENSORS,
                 FOUNDATION,
                 BATTERIES,

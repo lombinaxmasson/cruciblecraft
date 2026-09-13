@@ -21,6 +21,7 @@ import com.masson.cruciblecraft.content.blockentity.GasCloudBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.GtTreeHoleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.HopperBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SensorBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.RedstoneWireBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.BookshelfBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.BottleCrateBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DrawerBlockEntity;
@@ -439,6 +440,15 @@ public final class ModBlockEntities {
                             () -> BlockEntityType.Builder.of(
                                     SensorBlockEntity::new,
                                     ModBlocks.sensorBlockArray())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<RedstoneWireBlockEntity>>
+                    REDSTONE_WIRE = BLOCK_ENTITIES.register(
+                            "redstone_wire",
+                            () -> BlockEntityType.Builder.of(
+                                    RedstoneWireBlockEntity::new,
+                                    ModBlocks.redstoneWireBlockArray())
                                     .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,

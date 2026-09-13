@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 
-/** Material-specific item pipe with GTM-style cached endpoint routes. */
+/** Material-specific item pipe with GT6 in-pipe inventory and monkey-wrench I/O. */
 public final class ItemPipeBlock extends AbstractPipeBlock {
     public ItemPipeBlock(
             PipeCatalog.Entry pipe, Properties properties) {

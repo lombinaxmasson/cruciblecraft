@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
@@ -19,20 +20,54 @@ import com.masson.cruciblecraft.material.def.MaterialDefinition;
  */
 public final class ElectricalConductorCatalog {
     public static final int EXPECTED_CABLE_BLOCKS = 115;
-    public static final int EXPECTED_WIRE_BLOCKS = 29;
+    public static final int EXPECTED_WIRE_BLOCKS = 231;
+    private static final Set<String> REDSTONE_MATERIALS =
+            Set.of("red_alloy", "signalum", "lumium");
 
     private static final Map<MaterialPrefix, String> SPECIFICATION_BY_FORM =
-            Map.of(
-                    MaterialPrefixes.WIRE, "wireGt01",
-                    MaterialPrefixes.CABLE, "cableGt01",
-                    MaterialPrefixes.DOUBLE_CABLE, "cableGt02",
-                    MaterialPrefixes.QUADRUPLE_CABLE, "cableGt04",
-                    MaterialPrefixes.OCTUPLE_CABLE, "cableGt08",
-                    MaterialPrefixes.DODECUPLE_CABLE, "cableGt12");
+            Map.ofEntries(
+                    Map.entry(MaterialPrefixes.WIRE, "wireGt01"),
+                    Map.entry(MaterialPrefixes.DOUBLE_WIRE, "wireGt02"),
+                    Map.entry(MaterialPrefixes.TRIPLE_WIRE, "wireGt03"),
+                    Map.entry(MaterialPrefixes.QUADRUPLE_WIRE, "wireGt04"),
+                    Map.entry(MaterialPrefixes.QUINTUPLE_WIRE, "wireGt05"),
+                    Map.entry(MaterialPrefixes.SEXTUPLE_WIRE, "wireGt06"),
+                    Map.entry(MaterialPrefixes.OCTUPLE_WIRE, "wireGt08"),
+                    Map.entry(MaterialPrefixes.DODECUPLE_WIRE, "wireGt12"),
+                    Map.entry(MaterialPrefixes.HEXADECUPLE_WIRE, "wireGt16"),
+                    Map.entry(MaterialPrefixes.CABLE, "cableGt01"),
+                    Map.entry(MaterialPrefixes.DOUBLE_CABLE, "cableGt02"),
+                    Map.entry(MaterialPrefixes.QUADRUPLE_CABLE, "cableGt04"),
+                    Map.entry(MaterialPrefixes.OCTUPLE_CABLE, "cableGt08"),
+                    Map.entry(MaterialPrefixes.DODECUPLE_CABLE, "cableGt12"));
 
     private static volatile State state = State.empty();
 
     private ElectricalConductorCatalog() {}
+
+    public static String specificationFor(MaterialPrefix form) {
+        return SPECIFICATION_BY_FORM.get(form);
+    }
+
+    public static int widthPixels(String specification) {
+        return switch (specification) {
+            case "wireGt01" -> 2;
+            case "wireGt02" -> 3;
+            case "wireGt03" -> 4;
+            case "wireGt04" -> 6;
+            case "wireGt05", "wireGt06" -> 7;
+            case "wireGt08" -> 8;
+            case "wireGt12" -> 12;
+            case "wireGt16" -> 16;
+            case "cableGt01" -> 4;
+            case "cableGt02" -> 6;
+            case "cableGt04" -> 8;
+            case "cableGt08" -> 12;
+            case "cableGt12" -> 16;
+            default -> throw new IllegalArgumentException(
+                    "Unsupported conductor specification " + specification);
+        };
+    }
 
     public static synchronized void initialize(
             Collection<MaterialDefinition> definitions) {
@@ -45,10 +80,10 @@ public final class ElectricalConductorCatalog {
                 .sorted(java.util.Comparator.comparing(MaterialDefinition::id))
                 .forEach(material -> registerMaterial(entries, material));
         List<Entry> cables = entries.values().stream()
-                .filter(entry -> !entry.form().equals(MaterialPrefixes.WIRE))
+                .filter(entry -> !entry.bareWire())
                 .toList();
         List<Entry> wires = entries.values().stream()
-                .filter(entry -> entry.form().equals(MaterialPrefixes.WIRE))
+                .filter(Entry::bareWire)
                 .toList();
         if (cables.size() != EXPECTED_CABLE_BLOCKS
                 || wires.size() != EXPECTED_WIRE_BLOCKS) {
@@ -67,6 +102,9 @@ public final class ElectricalConductorCatalog {
     private static void registerMaterial(
             Map<Key, Entry> entries,
             MaterialDefinition material) {
+        if (REDSTONE_MATERIALS.contains(material.id())) {
+            return;
+        }
         Map<String, ElectricalProperties> specifications = material.gt6Metadata()
                 .map(metadata -> metadata.electricalBySpecification())
                 .orElse(Map.of());
@@ -160,7 +198,7 @@ public final class ElectricalConductorCatalog {
         }
 
         public boolean bareWire() {
-            return form.equals(MaterialPrefixes.WIRE);
+            return sourceSpecification.startsWith("wire");
         }
 
         public String registryName() {

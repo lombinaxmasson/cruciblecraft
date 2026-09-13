@@ -28,10 +28,13 @@ class CatalogModernIdsTest(unittest.TestCase):
         )
         self.assertEqual(SLUG, capability["slug"])
         self.assertEqual("runtime_ready", capability["maturity"])
-        self.assertEqual("active", capability["workflow"])
         self.assertNotEqual("player_complete", capability["maturity"])
         compiled = ledger.compile_ledger()
-        self.assertEqual(SLUG, compiled["unique_active_slug"])
+        if capability["workflow"] == "active":
+            self.assertEqual(SLUG, compiled["unique_active_slug"])
+        else:
+            self.assertEqual("accepted", capability["workflow"])
+            self.assertNotEqual(SLUG, compiled["unique_active_slug"])
         self.assertNotIn(SLUG, compiled["declared_player_complete"])
 
     def test_authority_table_covers_catalogs_without_numbered_tails(self) -> None:
@@ -52,15 +55,58 @@ class CatalogModernIdsTest(unittest.TestCase):
         self.assertEqual([], remainder)
 
     def test_live_hosts_are_not_stolen(self) -> None:
-        reserved = {
-            "slicer",
-            "tin/wire",
-            "tin/item_pipe",
-            "steel_dust_funnel",
-        }
+        live = modern.live_host_paths()
+        self.assertIn("adamantium/fluid_pipe", live)
+        self.assertIn("tin/wire", live)
+        self.assertIn("tin/item_pipe", live)
+        self.assertIn("slicer", live)
+        self.assertIn("steel_dust_funnel", live)
         document = census.load_json(modern.MAP_PATH)
         mapped = {row["registry_path"] for row in document["rows"]}
-        self.assertTrue(reserved.isdisjoint(mapped))
+        folded = modern.folded_existing_item_paths()
+        self.assertEqual([], sorted((mapped & live) - folded))
+
+    def test_osmium_display_name_is_not_germanium_alias(self) -> None:
+        materials = modern._material_index()
+        self.assertEqual("osmium_elemental", materials["osmium"])
+        self.assertEqual("osmium_elemental", materials["os"])
+        self.assertEqual("germanium", materials["germanium"])
+        self.assertEqual(
+            "osmium_elemental",
+            modern._english_material("Osmium Item Pipe", materials),
+        )
+        self.assertEqual(
+            "germanium",
+            modern._english_material("Germanium Item Pipe", materials),
+        )
+        row = next(
+            item
+            for item in census.load_json(modern.MAP_PATH)["rows"]
+            if int(item["meta"]) == 25302
+            and item["source_item"] == "gregtech:gt.multitileentity"
+        )
+        self.assertEqual("Osmium Item Pipe", row["english_name"])
+        self.assertIn("osmium", row["registry_path"])
+        self.assertNotIn("germanium", row["registry_path"])
+
+    def test_existing_item_targets_are_registered(self) -> None:
+        registered = modern.registered_holdable_paths()
+        catalog = census.load_json(
+            census.ROOT
+            / "src"
+            / "main"
+            / "resources"
+            / "data"
+            / "cruciblecraft"
+            / "smelter_mte_identity_catalog.json"
+        )
+        dangling = [
+            (row["meta"], row["registry_path"])
+            for row in catalog["identities"]
+            if row.get("registry_kind") == "existing_item"
+            and row["registry_path"] not in registered
+        ]
+        self.assertEqual([], dangling)
 
 
 if __name__ == "__main__":

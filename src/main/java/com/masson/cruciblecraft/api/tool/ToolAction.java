@@ -20,6 +20,9 @@ public enum ToolAction {
 
     /** GTM pipe outline/raytrace expands for wrench, crowbar, and plunger. */
     public boolean expandsPipeGrid() {
-        return this == WRENCH || this == CROWBAR || this == PLUNGER;
+        return this == WRENCH
+                || this == CROWBAR
+                || this == PLUNGER
+                || this == MONKEY_WRENCH;
     }
 }

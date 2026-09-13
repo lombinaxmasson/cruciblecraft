@@ -47,6 +47,8 @@ import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.block.HopperBlock;
 import com.masson.cruciblecraft.content.block.SensorBlock;
 import com.masson.cruciblecraft.content.sensor.SensorKind;
+import com.masson.cruciblecraft.content.block.RedstoneWireBlock;
+import com.masson.cruciblecraft.content.redstonewire.RedstoneWireKind;
 import com.masson.cruciblecraft.content.block.BookshelfBlock;
 import com.masson.cruciblecraft.content.block.BottleCrateBlock;
 import com.masson.cruciblecraft.content.block.DrawerBlock;
@@ -390,6 +392,8 @@ public final class ModBlocks {
             HOPPER_BLOCKS = registerHopperBlocks();
     private static final Map<ResourceLocation, DeferredBlock<SensorBlock>>
             SENSOR_BLOCKS = registerSensorBlocks();
+    private static final Map<ResourceLocation, DeferredBlock<RedstoneWireBlock>>
+            REDSTONE_WIRE_BLOCKS = registerRedstoneWireBlocks();
     private static final Map<ResourceLocation, DeferredBlock<Block>>
             GT_STONE_BLOCKS = registerGtStoneBlocks();
     private static final Map<ResourceLocation, DeferredBlock<Block>>
@@ -1193,6 +1197,56 @@ public final class ModBlocks {
         return SENSOR_BLOCKS.values().stream()
                 .map(DeferredBlock::get)
                 .toArray(Block[]::new);
+    }
+
+    private static Map<ResourceLocation, DeferredBlock<RedstoneWireBlock>>
+            registerRedstoneWireBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<RedstoneWireBlock>> blocks =
+                new LinkedHashMap<>();
+        for (RedstoneWireKind kind : RedstoneWireKind.all()) {
+            DeferredBlock<RedstoneWireBlock> block = BLOCKS.register(
+                    kind.path(),
+                    () -> new RedstoneWireBlock(
+                            kind, redstoneWireProperties(kind)));
+            if (blocks.put(kind.id(), block) != null) {
+                throw new IllegalStateException(
+                        "Duplicate redstone wire block " + kind.id());
+            }
+        }
+        if (blocks.size() != RedstoneWireKind.EXPECTED_SIZE) {
+            throw new IllegalStateException(
+                    "Redstone wire registration drifted from 3 GT6 identities");
+        }
+        return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    public static Map<ResourceLocation, DeferredBlock<RedstoneWireBlock>>
+            redstoneWireBlocksById() {
+        return REDSTONE_WIRE_BLOCKS;
+    }
+
+    public static Collection<DeferredBlock<RedstoneWireBlock>>
+            redstoneWireBlocks() {
+        return REDSTONE_WIRE_BLOCKS.values();
+    }
+
+    public static Block[] redstoneWireBlockArray() {
+        return REDSTONE_WIRE_BLOCKS.values().stream()
+                .map(DeferredBlock::get)
+                .toArray(Block[]::new);
+    }
+
+    private static BlockBehaviour.Properties redstoneWireProperties(
+            RedstoneWireKind kind) {
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.COLOR_RED)
+                .strength(1.0F, 2.0F)
+                .sound(SoundType.METAL)
+                .noOcclusion()
+                .isRedstoneConductor((state, level, pos) -> false)
+                .lightLevel(state -> kind.glowing()
+                        ? state.getValue(RedstoneWireBlock.POWER)
+                        : 0);
     }
 
     private static BlockBehaviour.Properties sensorProperties() {

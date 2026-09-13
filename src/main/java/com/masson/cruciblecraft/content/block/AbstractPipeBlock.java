@@ -134,6 +134,7 @@ public abstract class AbstractPipeBlock extends Block
                     context.getLevel(),
                     context.getClickedPos(),
                     ToolClick.hit(context));
+            case MONKEY_WRENCH -> cycleItemPipeIo(context);
             default -> ToolResult.PASS;
         };
     }
@@ -177,6 +178,28 @@ public abstract class AbstractPipeBlock extends Block
             return ToolResult.SUCCESS;
         }
         return ToolResult.PASS;
+    }
+
+    private static ToolResult cycleItemPipeIo(UseOnContext context) {
+        Level level = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        BlockEntity be = level.getBlockEntity(pos);
+        if (!(be instanceof ItemPipeBlockEntity pipe)) {
+            return ToolResult.PASS;
+        }
+        Direction side = Gt6StyleConnections.sideFromHit(ToolClick.hit(context));
+        BlockPos neighbor = pos.relative(side);
+        if (level.getBlockState(neighbor).getBlock() instanceof ItemPipeBlock) {
+            return ToolResult.REJECT;
+        }
+        if (level.isClientSide) {
+            return ToolResult.SUCCESS;
+        }
+        if (!pipe.cycleDisabledIo(side)) {
+            return ToolResult.REJECT;
+        }
+        ToolClick.hurt(context);
+        return ToolResult.SUCCESS;
     }
 
     private static ToolResult pryCover(UseOnContext context) {

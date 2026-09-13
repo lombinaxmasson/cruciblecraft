@@ -48,11 +48,18 @@
         "test_sanding",
         "test_oven",
         "test_electric_wire_cable_mte_fold",
+    "test_gt6_pipe_cable_baseline",
     "test_technological_parts_foundation",
     "test_capability_ledger",
     "test_project_status",
     "test_capability_close",
     "test_catalog_modern_ids",
+    "test_mte_redstone_wire",
+    "test_gt6_redstone_wire_correction",
+    "test_gt6_fluid_pipe_runtime",
+    "test_gt6_item_pipe_runtime",
+    "test_gt6_eu_wire_cable_runtime",
+    "test_gt6_connector_art",
     "test_registry_identity",
     "test_player_complete",
     "test_block_art",
@@ -343,6 +350,127 @@
     },
     {
       "paths": [
+        "tools/gt6_pipe_cable_baseline.py",
+        "tools/build_gt6_pipe_cable_baseline.py",
+        "tools/tests/test_gt6_pipe_cable_baseline.py",
+        "tools/waves/content/gt6-pipe-cable-baseline/**",
+        "tools/gt6_pipe_source.json",
+        "tools/gt6_pipes.py",
+        "docs/history/card-plans/closed/GT6管道与线缆语义重基线详细计划.md"
+      ],
+      "test_modules": [
+        "test_gt6_pipe_cable_baseline"
+      ]
+    },
+    {
+      "paths": [
+        "tools/tests/test_gt6_redstone_wire_correction.py",
+        "tools/capabilities/content/gt6-redstone-wire-correction/**",
+        "tools/waves/content/gt6-redstone-wire-correction/**",
+        "src/main/java/com/masson/cruciblecraft/content/redstonewire/RedstoneWireSinks.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/RedstoneWireBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/RedstoneWireCorrectionGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_redstone_wire_correction/**",
+        "docs/history/card-plans/active/GT6红石线行为校正详细计划.md",
+        "docs/history/card-plans/closed/GT6红石线行为校正详细计划.md"
+      ],
+      "test_modules": [
+        "test_gt6_redstone_wire_correction",
+        "test_mte_redstone_wire",
+        "test_gt6_pipe_cable_baseline"
+      ]
+    },
+    {
+      "paths": [
+        "tools/gt6_fluid_pipe_runtime.py",
+        "tools/build_gt6_fluid_pipe_runtime.py",
+        "tools/tests/test_gt6_fluid_pipe_runtime.py",
+        "tools/capabilities/content/gt6-fluid-pipe-runtime/**",
+        "tools/waves/content/gt6-fluid-pipe-runtime/**",
+        "src/main/java/com/masson/cruciblecraft/logistics/pipe/fluid/FluidPipeBlockedMedia.java",
+        "src/main/java/com/masson/cruciblecraft/logistics/pipe/fluid/FluidPipeCadence.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/FluidPipeBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/FluidPipeRuntimeGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_fluid_pipe_runtime/**",
+        "docs/history/card-plans/active/GT6流体管运行时详细计划.md",
+        "docs/history/card-plans/closed/GT6流体管运行时详细计划.md"
+      ],
+      "test_modules": [
+        "test_gt6_fluid_pipe_runtime",
+        "test_gt6_pipe_cable_baseline",
+        "test_catalog_modern_ids"
+      ]
+    },
+    {
+      "paths": [
+        "tools/gt6_item_pipe_runtime.py",
+        "tools/build_gt6_item_pipe_runtime.py",
+        "tools/tests/test_gt6_item_pipe_runtime.py",
+        "tools/capabilities/content/gt6-item-pipe-runtime/**",
+        "tools/waves/content/gt6-item-pipe-runtime/**",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/ItemPipeBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/ItemPipeBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/AbstractPipeBlock.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/ItemPipeRuntimeGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_item_pipe_runtime/**",
+        "docs/history/card-plans/active/GT6物品管运行时详细计划.md",
+        "docs/history/card-plans/closed/GT6物品管运行时详细计划.md"
+      ],
+      "test_modules": [
+        "test_gt6_item_pipe_runtime",
+        "test_gt6_pipe_cable_baseline",
+        "test_catalog_modern_ids"
+      ]
+    },
+    {
+      "paths": [
+        "tools/gt6_eu_wire_cable_runtime.py",
+        "tools/build_gt6_eu_wire_cable_runtime.py",
+        "tools/tests/test_gt6_eu_wire_cable_runtime.py",
+        "tools/capabilities/content/gt6-eu-wire-cable-runtime/**",
+        "tools/waves/content/gt6-eu-wire-cable-runtime/**",
+        "src/main/java/com/masson/cruciblecraft/energy/cable/ElectricalConductorCatalog.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/CableBlock.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModBlockStateProvider.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModBlockLootTables.java",
+        "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/EuWireCableRuntimeGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_eu_wire_cable_runtime/**",
+        "docs/history/card-plans/active/GT6导线电缆运行时详细计划.md",
+        "docs/history/card-plans/closed/GT6导线电缆运行时详细计划.md"
+      ],
+      "test_modules": [
+        "test_gt6_eu_wire_cable_runtime",
+        "test_gt6_pipe_cable_baseline",
+        "test_catalog_modern_ids",
+        "test_electric_wire_cable_mte_fold"
+      ]
+    },
+    {
+      "paths": [
+        "tools/gt6_connector_art.py",
+        "tools/build_gt6_connector_art.py",
+        "tools/tests/test_gt6_connector_art.py",
+        "tools/capabilities/content/gt6-connector-art/**",
+        "tools/waves/content/gt6-connector-art/**",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModBlockStateProvider.java",
+        "src/test/java/com/masson/cruciblecraft/datagen/PipeCableVisualResourceTest.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/ConnectorArtGameTests.java",
+        "src/main/resources/assets/cruciblecraft/gt6_fluid_pipe_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/gt6_item_pipe_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/gt6_eu_wire_cable_art_manifest.json",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_connector_art/**",
+        "docs/history/card-plans/active/GT6连接件美术详细计划.md",
+        "docs/history/card-plans/closed/GT6连接件美术详细计划.md"
+      ],
+      "test_modules": [
+        "test_gt6_connector_art",
+        "test_gt6_pipe_cable_baseline",
+        "test_catalog_modern_ids"
+      ]
+    },
+    {
+      "paths": [
         "tools/blocked_recipe_ledger.py",
         "tools/blocked_recipe_ledger.json",
         "tools/energy_converter_fluidbed_blocked.json",
@@ -395,6 +523,12 @@
         "tools/catalog_modern_ids.py",
         "tools/catalog_modern_id_map.json",
         "tools/tests/test_catalog_modern_ids.py",
+        "tools/tests/test_mte_redstone_wire.py",
+        "tools/tests/test_gt6_redstone_wire_correction.py",
+        "tools/tests/test_gt6_fluid_pipe_runtime.py",
+        "tools/tests/test_gt6_item_pipe_runtime.py",
+        "tools/tests/test_gt6_eu_wire_cable_runtime.py",
+        "tools/tests/test_gt6_connector_art.py",
         "tools/registry_identity.py",
         "tools/build_registry_identity.py",
         "tools/registry_identity_manifest.json",
@@ -505,6 +639,13 @@
         "test_project_status",
         "test_capability_close",
         "test_catalog_modern_ids",
+        "test_mte_redstone_wire",
+        "test_gt6_redstone_wire_correction",
+        "test_gt6_fluid_pipe_runtime",
+        "test_gt6_item_pipe_runtime",
+        "test_gt6_eu_wire_cable_runtime",
+        "test_gt6_connector_art",
+        "test_gt6_pipe_cable_baseline",
         "test_logistics_cover_net_remainder",
         "test_logistics_core",
         "test_display_cpu",

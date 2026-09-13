@@ -1,0 +1,31 @@
+{
+  "capability_slug": "content/mte-redstone-wire",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "grid_notes": "GT6 setTarget_(OP.wireGt01, material, MTE). Folding the dummy onto that live item does not invent a second shaped/wiremill grid. Obtain stays blocked until a true wireGt01 recipe is published. Laminator insulation outputs 27006/27056/27506 are out of denom.",
+  "hosts": [
+    {
+      "host": 27000,
+      "path": "red_alloy/wire",
+      "gt6": "OP.wireGt01(MT.RedAlloy) setTarget MTE 27000",
+      "cc_already": "cruciblecraft:red_alloy/wire",
+      "status": "explicitly_blocked",
+      "reason": "Identity is folded. Do not invent a second grid; wait for the real wireGt01 recipe."
+    },
+    {
+      "host": 27050,
+      "path": "signalum/wire",
+      "gt6": "OP.wireGt01(MT.Signalum) setTarget MTE 27050",
+      "cc_already": "cruciblecraft:signalum/wire",
+      "status": "explicitly_blocked",
+      "reason": "Same as 27000."
+    },
+    {
+      "host": 27500,
+      "path": "lumium/wire",
+      "gt6": "OP.wireGt01(MT.Lumium) setTarget MTE 27500",
+      "cc_already": "cruciblecraft:lumium/wire",
+      "status": "explicitly_blocked",
+      "reason": "Same as 27000. Wirelamp is still wireGt01."
+    }
+  ]
+}

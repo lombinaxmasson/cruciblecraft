@@ -1,0 +1,31 @@
+{
+  "capability_slug": "content/mte-redstone-wire",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "grid_notes": "GT6 setTarget_(OP.wireGt01, material, MTE). The only source obtain for these three is the ordinary wireGt01 recipe. CC already registered that form as red_alloy/wire, signalum/wire, lumium/wire. A second shaped/wiremill grid would be a stand-in. Laminator insulation outputs 27006/27056/27506 are out of denom.",
+  "hosts": [
+    {
+      "host": 27000,
+      "path": "redstone_wire/red_alloy",
+      "gt6": "OP.wireGt01(MT.RedAlloy) setTarget MTE 27000",
+      "cc_already": "cruciblecraft:red_alloy/wire",
+      "status": "explicitly_blocked",
+      "reason": "GT6 has one item; CC split EU material wire from the redstone MTE. Do not steal wireGt01 recipes or invent a second grid."
+    },
+    {
+      "host": 27050,
+      "path": "redstone_wire/signalum",
+      "gt6": "OP.wireGt01(MT.Signalum) setTarget MTE 27050",
+      "cc_already": "cruciblecraft:signalum/wire",
+      "status": "explicitly_blocked",
+      "reason": "Same split as 27000."
+    },
+    {
+      "host": 27500,
+      "path": "lumium/wirelamp",
+      "gt6": "OP.wireGt01(MT.Lumium) setTarget MTE 27500",
+      "cc_already": "cruciblecraft:lumium/wire",
+      "status": "explicitly_blocked",
+      "reason": "Same split as 27000. Wirelamp is still wireGt01, not a lamp recipe."
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-eu-wire-cable-runtime",
+  "title": "GT6 EU Wire/Cable Runtime",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6导线电缆运行时详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/energy/cable/ElectricalConductorCatalog.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/CableBlock.java",
+    "src/main/java/com/masson/cruciblecraft/datagen/ModBlockStateProvider.java",
+    "src/main/java/com/masson/cruciblecraft/datagen/ModBlockLootTables.java",
+    "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/EuWireCableRuntimeGameTests.java",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_eu_wire_cable_runtime/**",
+    "tools/capabilities/content/gt6-eu-wire-cable-runtime/**",
+    "tools/waves/content/gt6-eu-wire-cable-runtime/**",
+    "tools/gt6_eu_wire_cable_runtime.py",
+    "tools/build_gt6_eu_wire_cable_runtime.py",
+    "tools/tests/test_gt6_eu_wire_cable_runtime.py"
+  ],
+  "depends_on": [
+    "content/electric-wire-cable-mte-fold",
+    "registry/catalog-modern-ids"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-eu-wire-cable-runtime",
+  "required_test_ids": [
+    "cableLossAndOverloadPerSpecification",
+    "electricWireGt01IsCableBlock",
+    "higherWireGaugesArePlaceableOrExplicitlyUpgrade",
+    "redstoneMaterialsAreNotElectricalConductors"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "connector:eu-wire-cable:mapped-gauges",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:tin/wire",
+        "cruciblecraft:tin/double_wire",
+        "cruciblecraft:tin/cable"
+      ],
+      "reason": "Canonical prefixed wire/cable forms upgrade in place to CableBlockItem. Fold exact dummy BlockItem duplicates onto those hosts."
+    },
+    {
+      "semantic_key": "connector:eu-wire-cable:blocked-gauges",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "wireGt07/09/10/11/13/14/15 and unprefixed graphene/superconductor stay dummy. Redstone materials never enter ElectricalConductorCatalog."
+    }
+  ],
+  "note": "GT6 mapped wire/cable gauges become live CableBlockItems. Recipe mapped 259 is evidence, not dummy deletion. Close at runtime_ready, not player_complete. Do not edit R0 or the baseline identity ledger by hand."
+}

@@ -27,7 +27,10 @@ import com.masson.cruciblecraft.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.item.ItemStack;
@@ -38,16 +41,21 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.items.IItemHandler;
 
-/** Cached-route item pipe with source-first active pump covers. */
+/**
+ * GT6 in-pipe inventory plus cover pumps. Inventory send is every 10
+ * server ticks; cover pumps stay on the shared five-tick logistics phase.
+ */
 public final class ItemPipeBlockEntity extends BlockEntity {
     public static final int TRANSFER_INTERVAL =
             PipeTransferPhase.INTERVAL;
+    public static final int SEND_INTERVAL = 10;
 
     private final PipeCoverSet covers = new PipeCoverSet();
     private final EnumMap<Direction, IItemHandler> sidedHandlers =
             new EnumMap<>(Direction.class);
     private final ItemPipeRouteCache routeCache =
             new ItemPipeRouteCache();
+    private final NonNullList<ItemStack> inventory;
     private long cachedTopologyVersion = Long.MIN_VALUE;
     private long windowStart = Long.MIN_VALUE;
     private int consumedThisWindow;
@@ -59,10 +67,16 @@ public final class ItemPipeBlockEntity extends BlockEntity {
     private boolean recoveryWarningLogged;
     private ItemStack recoveryBuffer = ItemStack.EMPTY;
     private Direction recoveryIngress;
+    private Direction lastReceivedFrom;
+    private Direction oldLastReceivedFrom;
+    private byte disabledInputs;
+    private byte disabledOutputs;
     private boolean networkChunkLoaded = true;
 
     public ItemPipeBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.ITEM_PIPE.get(), pos, state);
+        inventory = NonNullList.withSize(
+                inventorySize(state), ItemStack.EMPTY);
         for (Direction side : Direction.values()) {
             sidedHandlers.put(side, new SidedHandler(side));
         }
@@ -95,6 +109,9 @@ public final class ItemPipeBlockEntity extends BlockEntity {
         if (PipeTransferPhase.isDue(level.getGameTime(), pos)) {
             pipe.tickCovers(level);
         }
+        if (Math.floorMod(level.getGameTime(), SEND_INTERVAL) == 0L) {
+            pipe.sendStored(level);
+        }
     }
 
     public IItemHandler itemHandler(Direction side) {
@@ -103,7 +120,8 @@ public final class ItemPipeBlockEntity extends BlockEntity {
 
     public boolean acceptsIncoming(
             Direction side, ItemStack stack) {
-        return covers.allowsIncoming(
+        return !isInputDisabled(side)
+                && covers.allowsIncoming(
                         side,
                         CoverDefinition.Medium.ITEM,
                         0,
@@ -113,12 +131,58 @@ public final class ItemPipeBlockEntity extends BlockEntity {
 
     public boolean allowsOutgoing(
             Direction side, ItemStack stack) {
-        return covers.allowsOutgoing(
+        return !isOutputDisabled(side)
+                && covers.allowsOutgoing(
                         side,
                         CoverDefinition.Medium.ITEM,
                         0,
                         0)
                 && covers.matches(side, stack);
+    }
+
+    public int inventorySize() {
+        return inventory.size();
+    }
+
+    public ItemStack stackInSlot(int slot) {
+        if (slot < 0 || slot >= inventory.size()) {
+            return ItemStack.EMPTY;
+        }
+        return inventory.get(slot).copy();
+    }
+
+    public boolean isInputDisabled(Direction side) {
+        return side != null && bitSet(disabledInputs, side);
+    }
+
+    public boolean isOutputDisabled(Direction side) {
+        return side != null && bitSet(disabledOutputs, side);
+    }
+
+    public boolean cycleDisabledIo(Direction side) {
+        if (side == null) {
+            return false;
+        }
+        boolean in = isInputDisabled(side);
+        boolean out = isOutputDisabled(side);
+        if (in) {
+            if (out) {
+                disabledInputs = toggleBit(disabledInputs, side);
+                disabledOutputs = toggleBit(disabledOutputs, side);
+            } else {
+                disabledOutputs = toggleBit(disabledOutputs, side);
+            }
+        } else if (out) {
+            disabledInputs = toggleBit(disabledInputs, side);
+            disabledOutputs = toggleBit(disabledOutputs, side);
+        } else {
+            disabledOutputs = toggleBit(disabledOutputs, side);
+        }
+        setChanged();
+        if (level != null && !level.isClientSide) {
+            syncToClient();
+        }
+        return true;
     }
 
     public int availableItems() {
@@ -192,6 +256,15 @@ public final class ItemPipeBlockEntity extends BlockEntity {
         for (ItemStack stack : covers.removeAllAsItems()) {
             Block.popResource(level, worldPosition, stack);
         }
+        for (int slot = 0; slot < inventory.size(); slot++) {
+            ItemStack stored = inventory.get(slot);
+            if (!stored.isEmpty()) {
+                Block.popResource(level, worldPosition, stored);
+                inventory.set(slot, ItemStack.EMPTY);
+            }
+        }
+        lastReceivedFrom = null;
+        oldLastReceivedFrom = null;
         invalidateRoutes();
         setChanged();
         if (!level.isClientSide) {
@@ -461,6 +534,119 @@ public final class ItemPipeBlockEntity extends BlockEntity {
         }
     }
 
+    private void sendStored(Level level) {
+        if (oldLastReceivedFrom != lastReceivedFrom) {
+            oldLastReceivedFrom = lastReceivedFrom;
+            return;
+        }
+        if (lastReceivedFrom == null || !containsInventory()) {
+            if (!containsInventory()) {
+                lastReceivedFrom = null;
+            }
+            oldLastReceivedFrom = lastReceivedFrom;
+            return;
+        }
+        for (int slot = 0;
+                slot < inventory.size() && availableItems() > 0;
+                slot++) {
+            ItemStack stored = inventory.get(slot);
+            if (stored.isEmpty()) {
+                continue;
+            }
+            ItemStack remainder = deliver(
+                    lastReceivedFrom, stored, false);
+            if (remainder.getCount() != stored.getCount()) {
+                inventory.set(slot, remainder);
+                setChanged();
+            }
+        }
+        if (!containsInventory()) {
+            lastReceivedFrom = null;
+        }
+        oldLastReceivedFrom = lastReceivedFrom;
+    }
+
+    private ItemStack storeIncoming(
+            Direction side, ItemStack stack, boolean simulate) {
+        if (stack.isEmpty()
+                || side == null
+                || !AbstractPipeBlock.isConnected(liveState(), side)
+                || !acceptsIncoming(side, stack)) {
+            return stack;
+        }
+        if (containsInventory()
+                && lastReceivedFrom != null
+                && lastReceivedFrom != side) {
+            return stack;
+        }
+        ItemStack remaining = stack.copy();
+        for (int slot = 0;
+                slot < inventory.size() && !remaining.isEmpty();
+                slot++) {
+            remaining = mergeIntoSlot(slot, remaining, simulate);
+        }
+        if (!simulate
+                && remaining.getCount() < stack.getCount()
+                && lastReceivedFrom == null) {
+            lastReceivedFrom = side;
+            setChanged();
+        }
+        return remaining;
+    }
+
+    private ItemStack mergeIntoSlot(
+            int slot, ItemStack stack, boolean simulate) {
+        ItemStack existing = inventory.get(slot);
+        if (existing.isEmpty()) {
+            int limit = Math.min(stack.getMaxStackSize(), stackLimit());
+            int stored = Math.min(stack.getCount(), limit);
+            if (!simulate) {
+                inventory.set(slot, stack.copyWithCount(stored));
+                setChanged();
+            }
+            return stored == stack.getCount()
+                    ? ItemStack.EMPTY
+                    : stack.copyWithCount(stack.getCount() - stored);
+        }
+        if (!ItemStack.isSameItemSameComponents(existing, stack)) {
+            return stack;
+        }
+        int limit = Math.min(stack.getMaxStackSize(), stackLimit());
+        int space = limit - existing.getCount();
+        if (space <= 0) {
+            return stack;
+        }
+        int stored = Math.min(stack.getCount(), space);
+        if (!simulate) {
+            existing.grow(stored);
+            setChanged();
+        }
+        return stored == stack.getCount()
+                ? ItemStack.EMPTY
+                : stack.copyWithCount(stack.getCount() - stored);
+    }
+
+    private boolean containsInventory() {
+        for (ItemStack stack : inventory) {
+            if (!stack.isEmpty()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean bitSet(byte mask, Direction side) {
+        return (mask & (1 << side.ordinal())) != 0;
+    }
+
+    private static byte toggleBit(byte mask, Direction side) {
+        return (byte) (mask ^ (1 << side.ordinal()));
+    }
+
+    private int stackLimit() {
+        return 64;
+    }
+
     private ItemStack insert(
             Direction ingress, ItemStack stack, boolean simulate) {
         if (stack.isEmpty()
@@ -470,6 +656,14 @@ public final class ItemPipeBlockEntity extends BlockEntity {
                 || level == null
                 || level.isClientSide
                 || availableItems() <= 0) {
+            return stack;
+        }
+        return deliver(ingress, stack, simulate);
+    }
+
+    private ItemStack deliver(
+            Direction ingress, ItemStack stack, boolean simulate) {
+        if (level == null || level.isClientSide || availableItems() <= 0) {
             return stack;
         }
         List<Route> routes = routes(ingress, stack);
@@ -553,6 +747,13 @@ public final class ItemPipeBlockEntity extends BlockEntity {
                 "Item pipe block entity has non-pipe state");
     }
 
+    private static int inventorySize(BlockState state) {
+        if (!(state.getBlock() instanceof ItemPipeBlock pipe)) {
+            return 1;
+        }
+        return Math.max(1, pipe.pipe().item().stacksPerSecond());
+    }
+
     @Override
     protected void saveAdditional(
             CompoundTag tag, HolderLookup.Provider registries) {
@@ -564,6 +765,26 @@ public final class ItemPipeBlockEntity extends BlockEntity {
         tag.putLong("total_delivered", totalDelivered);
         tag.putLong("clog_events", clogEvents);
         tag.putInt("next_route", nextRoute);
+        tag.putByte("disabled_inputs", disabledInputs);
+        tag.putByte("disabled_outputs", disabledOutputs);
+        if (lastReceivedFrom != null) {
+            tag.putString("last_received_from", lastReceivedFrom.getName());
+        }
+        if (oldLastReceivedFrom != null) {
+            tag.putString("old_last_received_from", oldLastReceivedFrom.getName());
+        }
+        ListTag items = new ListTag();
+        for (int slot = 0; slot < inventory.size(); slot++) {
+            ItemStack stored = inventory.get(slot);
+            if (stored.isEmpty()) {
+                continue;
+            }
+            CompoundTag slotTag = new CompoundTag();
+            slotTag.putByte("slot", (byte) slot);
+            slotTag.put("item", stored.save(registries));
+            items.add(slotTag);
+        }
+        tag.put("pipe_inventory", items);
         if (!recoveryBuffer.isEmpty() && recoveryIngress != null) {
             tag.put("cover_recovery_item", recoveryBuffer.save(registries));
             tag.putString(
@@ -582,6 +803,26 @@ public final class ItemPipeBlockEntity extends BlockEntity {
         totalDelivered = tag.getLong("total_delivered");
         clogEvents = tag.getLong("clog_events");
         nextRoute = Math.max(0, tag.getInt("next_route"));
+        disabledInputs = tag.getByte("disabled_inputs");
+        disabledOutputs = tag.getByte("disabled_outputs");
+        lastReceivedFrom = Direction.byName(tag.getString("last_received_from"));
+        oldLastReceivedFrom = Direction.byName(
+                tag.getString("old_last_received_from"));
+        for (int slot = 0; slot < inventory.size(); slot++) {
+            inventory.set(slot, ItemStack.EMPTY);
+        }
+        ListTag items = tag.getList("pipe_inventory", Tag.TAG_COMPOUND);
+        for (int index = 0; index < items.size(); index++) {
+            CompoundTag slotTag = items.getCompound(index);
+            int slot = slotTag.getByte("slot") & 0xFF;
+            if (slot >= inventory.size()) {
+                continue;
+            }
+            inventory.set(
+                    slot,
+                    ItemStack.parseOptional(
+                            registries, slotTag.getCompound("item")));
+        }
         recoveryBuffer = tag.contains("cover_recovery_item")
                 ? ItemStack.parseOptional(
                         registries,
@@ -740,29 +981,55 @@ public final class ItemPipeBlockEntity extends BlockEntity {
 
         @Override
         public int getSlots() {
-            return 1;
+            return inventory.size();
         }
 
         @Override
         public ItemStack getStackInSlot(int slot) {
-            return ItemStack.EMPTY;
+            return stackInSlot(slot);
         }
 
         @Override
         public ItemStack insertItem(
                 int slot, ItemStack stack, boolean simulate) {
-            return insert(side, stack, simulate);
+            if (slot < 0 || slot >= inventory.size()) {
+                return stack;
+            }
+            return storeIncoming(side, stack, simulate);
         }
 
         @Override
         public ItemStack extractItem(
                 int slot, int amount, boolean simulate) {
-            return ItemStack.EMPTY;
+            if (slot < 0
+                    || slot >= inventory.size()
+                    || amount <= 0
+                    || !AbstractPipeBlock.isConnected(liveState(), side)) {
+                return ItemStack.EMPTY;
+            }
+            ItemStack stored = inventory.get(slot);
+            if (stored.isEmpty()) {
+                return ItemStack.EMPTY;
+            }
+            int taken = Math.min(amount, stored.getCount());
+            ItemStack extracted = stored.copyWithCount(taken);
+            if (!simulate) {
+                stored.shrink(taken);
+                if (stored.isEmpty()) {
+                    inventory.set(slot, ItemStack.EMPTY);
+                }
+                if (!containsInventory()) {
+                    lastReceivedFrom = null;
+                    oldLastReceivedFrom = null;
+                }
+                setChanged();
+            }
+            return extracted;
         }
 
         @Override
         public int getSlotLimit(int slot) {
-            return itemLimit();
+            return stackLimit();
         }
 
         @Override

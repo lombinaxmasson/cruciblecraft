@@ -40,7 +40,12 @@ class SmelterMteIdentityTest(unittest.TestCase):
         created = [
             row for row in catalog["identities"] if row["registry_kind"] == "item"
         ]
-        self.assertEqual(len(overlap), int(catalog["bath_overlap_count"]))
+        bath = [
+            row
+            for row in overlap
+            if row.get("acquisition_authority") == "bath_mte"
+        ]
+        self.assertEqual(len(bath), int(catalog["bath_overlap_count"]))
         self.assertEqual(len(created), int(catalog["new_item_count"]))
         self.assertEqual(1817, len(overlap) + len(created))
         for row in overlap:
