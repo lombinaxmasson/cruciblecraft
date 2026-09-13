@@ -26,6 +26,14 @@ from tools import tool_head_prefix as thp
 MAP_PATH = io.TOOLS / "catalog_modern_id_map.json"
 DATA = ROOT / "src" / "main" / "resources" / "data" / "cruciblecraft"
 ASSETS = ROOT / "src" / "main" / "resources" / "assets" / "cruciblecraft"
+GATE_PATH = DATA / "material_registration_gate.json"
+SMELTER_TAG = DATA / "tags" / "item" / "smelter_mte_items.json"
+BATH_MTE_TAG = DATA / "tags" / "item" / "bath_mte_items.json"
+DUMMY_REMAP_DIRS = (
+    io.TOOLS / "waves" / "smelter" / "deferred-recycling",
+    io.TOOLS / "waves" / "smelter" / "deferred-recycling-edge",
+    io.TOOLS / "waves" / "recycling" / "smelter-mte-identity",
+)
 LOADER = (
     ROOT
     / "gt6_code"
@@ -81,6 +89,10 @@ LH_ADD = re.compile(
 )
 UNLOC = re.compile(r'"(gt\.(?:block|stone)[^"]+)"')
 SAFE_EXPR = re.compile(r"^[0-9A-Za-z+]+$")
+SET_LOCAL = re.compile(
+    r"\b([A-Za-z][A-Za-z0-9_]*)\s*=[^\n]*?"
+    r"\.setLocal\(\s*\"([^\"]+)\"\s*\)"
+)
 
 DYE_COLORS = (
     "white",
@@ -209,6 +221,14 @@ SKIP_REPLACE_FILES = {
     "ordinary_source.py",
 }
 _MAP_CACHE: dict[str, Any] | None = None
+_LAST_REPAIRS: list[tuple[str, str]] = []
+_FAMILY_ROOTS = frozenset(
+    {
+        *TAG_FAMILY_PREFIX.values(),
+        *FAMILY_PREFIX.values(),
+        *MULTIITEM_FAMILY.values(),
+    }
+)
 
 
 def is_numbered_path(path: str) -> bool:
@@ -251,6 +271,14 @@ def is_garbage_name(name: str) -> bool:
     return False
 
 
+def _mt_set_locals() -> dict[str, str]:
+    """MT.Os.setLocal("Osmium") display names used by MTE getLocal()."""
+    if not gt6_resolve.MT_JAVA.is_file():
+        return {}
+    text = gt6_resolve.MT_JAVA.read_text(encoding="utf-8", errors="replace")
+    return {match.group(1): match.group(2) for match in SET_LOCAL.finditer(text)}
+
+
 def _material_index() -> dict[str, str]:
     materials: dict[str, str] = {}
     for key, row in gt6_resolve.live_materials().items():
@@ -267,7 +295,107 @@ def _material_index() -> dict[str, str]:
         materials[slug_token(field)] = cc
         if source:
             materials[slug_token(source)] = cc
+    # OreDict aliases such as Germanium's "Osmium" (FakeOsmium = Ge) must not
+    # beat MT.setLocal display names. MTE english uses getLocal(), so Os pipes
+    # are "Osmium Item Pipe" and belong to osmium_elemental.
+    for field, local in _mt_set_locals().items():
+        resolved = gt6_resolve.resolve_material(field)
+        cc = str(resolved.get("cc_material") or "")
+        if cc:
+            materials[slug_token(local)] = cc
     return materials
+
+
+def _material_tokens(cc: str) -> set[str]:
+    return {token for token in [cc, *cc.split("_")] if token}
+
+
+def _borrowed_material_segments(
+    path: str, expected_cc: str, cc_ids: set[str]
+) -> list[str]:
+    allowed = _material_tokens(expected_cc)
+    return [
+        segment
+        for segment in path.split("/")
+        if segment in cc_ids and segment not in allowed
+    ]
+
+
+def _english_material(english: str, materials: dict[str, str]) -> str:
+    words = [part for part in slug_token(english).split("_") if part]
+    if not words:
+        return ""
+    for width in range(min(3, len(words)), 0, -1):
+        key = "_".join(words[:width])
+        if key in materials:
+            return materials[key]
+    for width in range(min(3, len(words)), 0, -1):
+        key = "_".join(words[-width:])
+        if key in materials and width < len(words):
+            return materials[key]
+    return ""
+
+
+def catalog_item_paths() -> set[str]:
+    """Holdable paths actually registered as catalog `item` rows."""
+    paths: set[str] = set()
+    for path in CATALOG_FILES:
+        if not path.is_file():
+            continue
+        document = census.load_json(path)
+        if path.name == "gt_stone_catalog.json":
+            for identity in document.get("identities") or []:
+                for variant in identity.get("variants") or []:
+                    if str(variant.get("registry_kind") or "item") == "item":
+                        paths.add(
+                            strip_ns(str(variant.get("registry_path") or ""))
+                        )
+            continue
+        key = "operands" if "operands" in document else "identities"
+        for identity in document.get(key) or []:
+            if str(identity.get("registry_kind") or "item") == "item":
+                paths.add(
+                    strip_ns(
+                        str(
+                            identity.get("registry_path")
+                            or identity.get("runtime_id")
+                            or ""
+                        )
+                    )
+                )
+    return {path for path in paths if path}
+
+
+def folded_existing_item_paths() -> set[str]:
+    """Catalog rows already folded onto a live host. Not dummy theft."""
+    paths: set[str] = set()
+    for path in CATALOG_FILES:
+        if not path.is_file():
+            continue
+        document = census.load_json(path)
+        key = "operands" if "operands" in document else "identities"
+        identities = list(document.get(key) or [])
+        if path.name == "gt_stone_catalog.json":
+            identities = []
+            for identity in document.get("identities") or []:
+                identities.extend(identity.get("variants") or [])
+        for identity in identities:
+            if str(identity.get("registry_kind") or "") != "existing_item":
+                continue
+            target = strip_ns(
+                str(
+                    identity.get("registry_path")
+                    or identity.get("runtime_id")
+                    or ""
+                )
+            )
+            if target:
+                paths.add(target)
+    return paths
+
+
+def registered_holdable_paths() -> set[str]:
+    return live_host_paths() | catalog_item_paths()
 
 
 def _render_concat(expr: str, local: str) -> str | None:
@@ -482,28 +610,49 @@ def _iter_identity_rows() -> list[dict[str, Any]]:
     return rows
 
 
-def occupied_live_paths(numbered: set[str]) -> set[str]:
-    occupied: set[str] = set()
-    for row in gt6_resolve.live_materials().values():
-        for item in (row.get("form_items") or {}).values():
-            occupied.add(strip_ns(str(item)))
-    from tools import registry_identity
+def live_host_paths() -> set[str]:
+    """Material forms and hardcoded hosts that Java actually registers.
 
-    manifest = registry_identity.compile_manifest()
-    for entry in manifest.get("live_entries") or []:
-        path = strip_ns(str(entry.get("registry_path") or ""))
-        if path and path not in numbered:
-            occupied.add(path)
-    for token in (
+    Catalog dummies stay out of this set. After the numbered rewrite,
+    registry_identity live_entries include those dummies, so they cannot
+    be used as the occupied set.
+    """
+    occupied: set[str] = {
         "slicer",
         "tin/wire",
         "tin/item_pipe",
         "steel_dust_funnel",
         "programmed_circuit",
         "cover_blank_cover",
-    ):
-        occupied.add(token)
+    }
+    if GATE_PATH.is_file():
+        gate = census.load_json(GATE_PATH)
+        for section in ("materials", "pipe_forms", "electrical_wire_forms"):
+            for material, forms in (gate.get(section) or {}).items():
+                for form in forms or []:
+                    if material and form:
+                        occupied.add(f"{material}/{form}")
+    seen_materials: set[str] = set()
+    for row in gt6_resolve.live_materials().values():
+        cc = str(row.get("cc_material") or "")
+        if not cc or cc in seen_materials:
+            continue
+        seen_materials.add(cc)
+        for form in row.get("include_prefixes") or []:
+            occupied.add(f"{cc}/{form}")
+        for flag in row.get("generation_flags") or []:
+            token = str(flag)
+            prefix = "cruciblecraft:generates_"
+            if token.startswith(prefix):
+                occupied.add(f"{cc}/{token.removeprefix(prefix)}")
+        for item in (row.get("form_items") or {}).values():
+            occupied.add(strip_ns(str(item)))
     return {path for path in occupied if path}
+
+
+def occupied_live_paths(numbered: set[str]) -> set[str]:
+    del numbered
+    return live_host_paths()
 
 
 def resolve_english(
@@ -731,6 +880,151 @@ def _name_candidates(
     return candidates
 
 
+def _order_candidates(candidates: list[str], *, prefer_family: bool) -> list[str]:
+    if not prefer_family:
+        return candidates
+    preferred = [path for path in candidates if path.split("/", 1)[0] in _FAMILY_ROOTS]
+    rest = [path for path in candidates if path not in preferred]
+    return preferred + rest
+
+
+def _choose_registry_path(
+    row: dict[str, Any],
+    english: str,
+    materials: dict[str, str],
+    r0: dict[int, dict[str, Any]],
+    taken: set[str],
+    *,
+    prefer_family: bool = False,
+) -> tuple[str, str, list[str]]:
+    candidates = _name_candidates(english, row, materials, r0)
+    for candidate in _order_candidates(candidates, prefer_family=prefer_family):
+        if candidate not in taken:
+            reason = ""
+            if candidate != (candidates[0] if candidates else ""):
+                reason = f"collision avoided {candidates[0]}"
+            return candidate, reason, candidates
+    source_slug = slug_token(
+        str(row["source_item"]).removeprefix("gregtech:").replace(".", "_")
+    )
+    english_slug = slug_token(english)
+    meta = int(row["meta"])
+    extras = [
+        f"{source_slug}/{english_slug}",
+        f"{source_slug}/{english_slug}/{STONE_VARIANT.get(meta, DYE_COLORS[meta % 16])}",
+    ]
+    family_row = (
+        r0.get(meta) if str(row["source_item"]).endswith("multitileentity") else {}
+    )
+    if family_row:
+        class_name = str(family_row.get("gt6_class_or_tag") or "").split(" / ", 1)[0]
+        class_slug = slug_token(class_name.replace("MultiTileEntity", ""))
+        extras.append(f"{class_slug}/{english_slug}")
+    for index in range(26):
+        letter = chr(ord("a") + index)
+        extras.append(f"{source_slug}/{english_slug}/{letter}")
+        extras.append(f"{english_slug}/{letter}")
+    for candidate in extras:
+        if (
+            candidate
+            and candidate not in taken
+            and PATH_RE.fullmatch(candidate)
+            and not re.search(r"_m\d+$", candidate)
+        ):
+            return (
+                candidate,
+                f"collision avoided {candidates[0] if candidates else 'empty'}",
+                candidates,
+            )
+    return "", "", candidates
+
+
+def repair_live_host_collisions(document: dict[str, Any]) -> list[tuple[str, str]]:
+    live = live_host_paths()
+    folded = folded_existing_item_paths()
+    rows = list(document.get("rows") or [])
+    taken = {str(row["registry_path"]) for row in rows} | set(live)
+    materials = _material_index()
+    r0 = r0_by_meta()
+    remaps: list[tuple[str, str]] = []
+    for row in rows:
+        current = str(row["registry_path"])
+        if current not in live or current in folded:
+            continue
+        taken.discard(current)
+        chosen, reason, candidates = _choose_registry_path(
+            row,
+            str(row.get("english_name") or ""),
+            materials,
+            r0,
+            taken,
+            prefer_family=True,
+        )
+        if not chosen:
+            raise ValueError(
+                "no free semantic id for live-host collision "
+                f"{current} {row.get('source_item')}@{row.get('meta')} "
+                f"candidates={candidates}"
+            )
+        remaps.append((current, chosen))
+        row["registry_path"] = chosen
+        row["runtime_id"] = f"cruciblecraft:{chosen}"
+        row["collision_reason"] = reason or f"collision avoided live host {current}"
+        taken.add(chosen)
+    document["collision_count"] = sum(
+        1 for row in rows if row.get("collision_reason")
+    )
+    return remaps
+
+
+def repair_wrong_material_paths(document: dict[str, Any]) -> list[tuple[str, str]]:
+    """Reassign rows whose english material borrowed another CC material path."""
+    materials = _material_index()
+    cc_ids = {cc for cc in materials.values() if cc}
+    live = live_host_paths()
+    rows = list(document.get("rows") or [])
+    taken = {str(row["registry_path"]) for row in rows} | set(live)
+    r0 = r0_by_meta()
+    remaps: list[tuple[str, str]] = []
+    for row in rows:
+        if str(row.get("source_item") or "") != "gregtech:gt.multitileentity":
+            continue
+        expected = _english_material(str(row.get("english_name") or ""), materials)
+        if not expected:
+            continue
+        current = str(row["registry_path"])
+        borrowed = _borrowed_material_segments(current, expected, cc_ids)
+        if not borrowed:
+            continue
+        taken.discard(current)
+        chosen, reason, candidates = _choose_registry_path(
+            row,
+            str(row.get("english_name") or ""),
+            materials,
+            r0,
+            taken,
+            prefer_family=True,
+        )
+        if not chosen:
+            taken.add(current)
+            raise ValueError(
+                "no free semantic id for material repair "
+                f"{current} {row.get('source_item')}@{row.get('meta')} "
+                f"expected={expected} borrowed={borrowed} candidates={candidates}"
+            )
+        remaps.append((current, chosen))
+        row["registry_path"] = chosen
+        row["runtime_id"] = f"cruciblecraft:{chosen}"
+        row["collision_reason"] = (
+            reason or f"material {expected} replaced {borrowed[0]}"
+        )
+        taken.add(chosen)
+    document["collision_count"] = sum(
+        1 for row in rows if row.get("collision_reason")
+    )
+    return remaps
+
+
 def assign_paths(rows: list[dict[str, Any]]) -> dict[str, Any]:
     numbered = {row["old_registry_path"] for row in rows}
     reserved = occupied_live_paths(numbered)
@@ -764,45 +1058,9 @@ def assign_paths(rows: list[dict[str, Any]]) -> dict[str, Any]:
                 }
             )
             continue
-        candidates = _name_candidates(english, row, materials, r0)
-        chosen = ""
-        reason = ""
-        for candidate in candidates:
-            if candidate in taken:
-                continue
-            chosen = candidate
-            if candidate != candidates[0]:
-                reason = f"collision avoided {candidates[0]}"
-            break
-        if not chosen:
-            source_slug = slug_token(
-                str(row["source_item"]).removeprefix("gregtech:").replace(".", "_")
-            )
-            english_slug = slug_token(english)
-            meta = int(row["meta"])
-            extras = [
-                f"{source_slug}/{english_slug}",
-                f"{source_slug}/{english_slug}/{STONE_VARIANT.get(meta, DYE_COLORS[meta % 16])}",
-            ]
-            family_row = r0.get(meta) if row["source_item"].endswith("multitileentity") else {}
-            if family_row:
-                class_name = str(family_row.get("gt6_class_or_tag") or "").split(" / ", 1)[0]
-                class_slug = slug_token(class_name.replace("MultiTileEntity", ""))
-                extras.append(f"{class_slug}/{english_slug}")
-            for index in range(26):
-                letter = chr(ord("a") + index)
-                extras.append(f"{source_slug}/{english_slug}/{letter}")
-                extras.append(f"{english_slug}/{letter}")
-            for candidate in extras:
-                if (
-                    candidate
-                    and candidate not in taken
-                    and PATH_RE.fullmatch(candidate)
-                    and not re.search(r"_m\d+$", candidate)
-                ):
-                    chosen = candidate
-                    reason = f"collision avoided {candidates[0] if candidates else 'empty'}"
-                    break
+        chosen, reason, candidates = _choose_registry_path(
+            row, english, materials, r0, taken
+        )
         if not chosen:
             blocked.append(
                 {
@@ -845,12 +1103,17 @@ def assign_paths(rows: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def build_map() -> dict[str, Any]:
+    global _LAST_REPAIRS
     numbered = _iter_identity_rows()
     if numbered:
-        return assign_paths(numbered)
-    if MAP_PATH.is_file():
-        return census.load_json(MAP_PATH)
-    raise ValueError("no numbered catalog identities to map")
+        document = assign_paths(numbered)
+    elif MAP_PATH.is_file():
+        document = census.load_json(MAP_PATH)
+    else:
+        raise ValueError("no numbered catalog identities to map")
+    _LAST_REPAIRS = repair_live_host_collisions(document)
+    _LAST_REPAIRS.extend(repair_wrong_material_paths(document))
+    return document
 
 
 def load_map() -> dict[str, Any]:
@@ -1081,6 +1344,103 @@ def relocate_asset_files() -> None:
             _relocate_prefixed(root, old, new, ".json")
 
 
+def relocate_collision_item_models(remaps: list[tuple[str, str]]) -> None:
+    for old, new in remaps:
+        src = ASSETS / "models" / "item" / f"{old}.json"
+        dest = ASSETS / "models" / "item" / f"{new}.json"
+        if not src.is_file():
+            continue
+        try:
+            text = src.read_text(encoding="utf-8")
+        except (OSError, UnicodeDecodeError):
+            continue
+        if "minecraft:item/iron_ingot" not in text:
+            continue
+        _relocate(src, dest)
+
+
+def rewrite_catalog_item_tags() -> None:
+    for catalog_path, tag_path in (
+        (DATA / "smelter_mte_identity_catalog.json", SMELTER_TAG),
+        (DATA / "bath_mte_identity_catalog.json", BATH_MTE_TAG),
+    ):
+        if not catalog_path.is_file() or not tag_path.is_file():
+            continue
+        catalog = census.load_json(catalog_path)
+        new_ids = [
+            identity["runtime_id"]
+            for identity in catalog.get("identities") or []
+            if identity.get("registry_kind") == "item"
+        ]
+        census.write_stable(tag_path, {"replace": False, "values": new_ids})
+
+
+def patch_r0_paths() -> None:
+    if not R0_LEDGER.is_file():
+        return
+    mapped = {
+        int(row["meta"]): str(row["registry_path"])
+        for row in load_map().get("rows") or []
+        if row.get("source_item") == "gregtech:gt.multitileentity"
+    }
+    document = census.load_json(R0_LEDGER)
+    changed = False
+    for identity in document.get("identities") or []:
+        meta = identity.get("meta")
+        if not isinstance(meta, int) or meta not in mapped:
+            continue
+        if identity.get("registry_path") != mapped[meta]:
+            identity["registry_path"] = mapped[meta]
+            changed = True
+    if changed:
+        census.write_stable(R0_LEDGER, document)
+        r0_by_meta.cache_clear()
+
+
+def apply_dummy_scoped_remaps(remaps: list[tuple[str, str]]) -> int:
+    if not remaps:
+        return 0
+    pairs = []
+    for old, new in remaps:
+        pairs.append((f"cruciblecraft:{old}", f"cruciblecraft:{new}"))
+        pairs.append((old, new))
+    pairs.sort(key=lambda item: len(item[0]), reverse=True)
+    changed = 0
+    files: list[Path] = []
+    for root in DUMMY_REMAP_DIRS:
+        if root.is_file():
+            files.append(root)
+        elif root.is_dir():
+            files.extend(path for path in root.rglob("*.json") if path.is_file())
+    for path in files:
+        if _should_skip(path):
+            continue
+        try:
+            text = path.read_text(encoding="utf-8")
+        except (OSError, UnicodeDecodeError):
+            continue
+        updated = text
+        for old, new in pairs:
+            updated = updated.replace(old, new)
+        if updated != text:
+            path.write_text(updated, encoding="utf-8", newline="\n")
+            changed += 1
+    return changed
+
+
+def write_registry_identity_manifest() -> None:
+    from tools import registry_identity
+
+    manifest = registry_identity.compile_manifest()
+    if manifest.get("errors"):
+        raise ValueError(
+            "registry identity errors after catalog repair: "
+            + "; ".join(str(item) for item in manifest["errors"][:8])
+        )
+    encoded = registry_identity.dumps(manifest)
+    registry_identity.atomic_io.write_bytes(registry_identity.MANIFEST, encoded)
+
+
 def numbered_live_hits() -> list[str]:
     hits: list[str] = []
     scan = [
@@ -1144,16 +1504,16 @@ def check() -> list[str]:
     errors: list[str] = []
     if not MAP_PATH.is_file():
         return ["missing tools/catalog_modern_id_map.json"]
-    numbered = _iter_identity_rows()
     committed = census.load_json(MAP_PATH)
-    if numbered:
-        live = assign_paths(numbered)
-        drift = census.first_json_diff(live, committed)
-        if drift:
-            errors.append(f"catalog_modern_id_map.json drifted: {drift}")
+    live = build_map()
+    drift = census.first_json_diff(live, committed)
+    if drift:
+        errors.append(f"catalog_modern_id_map.json drifted: {drift}")
     rows = committed.get("rows") or []
     if not rows:
         errors.append("catalog_modern_id_map.json has no rows")
+    live_hosts = live_host_paths()
+    folded = folded_existing_item_paths()
     catalog_paths = _catalog_paths_by_source()
     for row in rows:
         key = (str(row["source_item"]), int(row["meta"]))
@@ -1173,9 +1533,58 @@ def check() -> list[str]:
         source = str(row.get("source_item") or "")
         if re.match(r"^gregtech:gt_", source):
             errors.append(f"corrupted GT6 source_item {source}@{row['meta']}")
+        if expected in live_hosts and expected not in folded:
+            errors.append(
+                f"dummy stole live host {expected} ({row['source_item']}@{row['meta']})"
+            )
     remainder = thp.load_remap().get("remainder") or []
     if remainder:
         errors.append(f"tool-head remainder must be 0, found {len(remainder)}")
+    materials = _material_index()
+    cc_ids = {cc for cc in materials.values() if cc}
+    registered = registered_holdable_paths()
+    for path in CATALOG_FILES:
+        if not path.is_file():
+            continue
+        document = census.load_json(path)
+        identities = []
+        if path.name == "gt_stone_catalog.json":
+            for identity in document.get("identities") or []:
+                for variant in identity.get("variants") or []:
+                    identities.append(variant)
+        else:
+            key = "operands" if "operands" in document else "identities"
+            identities = list(document.get(key) or [])
+        for identity in identities:
+            if str(identity.get("registry_kind") or "") != "existing_item":
+                continue
+            target = strip_ns(
+                str(
+                    identity.get("registry_path")
+                    or identity.get("runtime_id")
+                    or ""
+                )
+            )
+            if target not in registered:
+                errors.append(
+                    f"existing_item {identity.get('meta')} -> {target} is not "
+                    "a live host or catalog item"
+                )
+    for row in rows:
+        if str(row.get("source_item") or "") != "gregtech:gt.multitileentity":
+            continue
+        expected_cc = _english_material(str(row.get("english_name") or ""), materials)
+        if not expected_cc:
+            continue
+        borrowed = _borrowed_material_segments(
+            str(row["registry_path"]), expected_cc, cc_ids
+        )
+        for segment in borrowed:
+            errors.append(
+                f"meta {row['meta']} english {row.get('english_name')!r} "
+                f"is {expected_cc} but path borrowed {segment}: "
+                f"{row['registry_path']}"
+            )
     for path in CATALOG_FILES:
         if not path.is_file():
             continue
@@ -1198,6 +1607,52 @@ def write_map() -> dict[str, Any]:
     return document
 
 
+def _modern_path_remaps(
+    previous: dict[str, Any], document: dict[str, Any]
+) -> list[tuple[str, str]]:
+    old_by_key = {
+        (str(row["source_item"]), int(row["meta"])): str(row["registry_path"])
+        for row in previous.get("rows") or []
+    }
+    remaps: list[tuple[str, str]] = []
+    for row in document.get("rows") or []:
+        key = (str(row["source_item"]), int(row["meta"]))
+        old = old_by_key.get(key)
+        new = str(row["registry_path"])
+        if old and old != new:
+            remaps.append((old, new))
+    return remaps
+
+
+def apply() -> dict[str, Any]:
+    previous = census.load_json(MAP_PATH) if MAP_PATH.is_file() else {"rows": []}
+    document = write_map()
+    path_remaps = _LAST_REPAIRS + _modern_path_remaps(previous, document)
+    apply_catalogs()
+    relocate_asset_files()
+    relocate_collision_item_models(path_remaps)
+    rewrite_catalog_item_tags()
+    patch_r0_paths()
+    dummy_files = apply_dummy_scoped_remaps(path_remaps)
+    numbered_files = 0
+    if _iter_identity_rows():
+        numbered_files = apply_text_replacements(
+            [
+                ROOT / "src",
+                io.TOOLS,
+                ROOT / "docs",
+            ]
+        )
+    write_registry_identity_manifest()
+    return {
+        "row_count": document["row_count"],
+        "live_host_repairs": len(_LAST_REPAIRS),
+        "path_remaps": len(path_remaps),
+        "dummy_remap_files": dummy_files,
+        "numbered_replace_files": numbered_files,
+    }
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--write", action="store_true")
@@ -1207,20 +1662,20 @@ def main(argv: list[str] | None = None) -> int:
     if args.write == args.check == args.apply and not (args.write or args.check or args.apply):
         parser.error("choose --write, --apply, and/or --check")
     try:
-        if args.write:
-            document = write_map()
-            print(json.dumps({"wrote": str(MAP_PATH), "row_count": document["row_count"]}))
         if args.apply:
-            apply_catalogs()
-            relocate_asset_files()
-            changed = apply_text_replacements(
-                [
-                    ROOT / "src",
-                    io.TOOLS,
-                    ROOT / "docs",
-                ]
+            result = apply()
+            print(json.dumps(result))
+        elif args.write:
+            document = write_map()
+            print(
+                json.dumps(
+                    {
+                        "wrote": str(MAP_PATH),
+                        "row_count": document["row_count"],
+                        "live_host_repairs": len(_LAST_REPAIRS),
+                    }
+                )
             )
-            print(json.dumps({"applied_files": changed}))
         if args.check:
             errors = check()
             if errors:
