@@ -20,6 +20,15 @@
 > [Ordinary 尾账收口与封板修复](Ordinary尾账收口与封板修复详细计划.md)
 > 签发层级：当前工作树；本次计划签发不创建 Git commit
 
+## 读法修订（2026-09-12）
+
+`recovery completion = 1,817` 是按 GT6 meta 冻结的回收关系，不证明需要
+1,817 个永久独立 dummy item。后续 MTE 身份收口若把某 meta 精确折回 live
+BlockItem，Smelter 关系输入必须随同指向 canonical live id，不能为保住 1,817
+计数继续注册第二件铁锭物品；keep-distinct/in-place 行则保留现代 id。
+关系完成也不豁免美术门：仍独立的可持有 MTE 在玩家完成前必须迁真实 GT6 art。
+本节不改本卡历史 relation 数或关闭收据。
+
 权威流程仍是
 [Ordinary Recipe Wave 流程与规范](../../../current/recipe-wave-workflow.md)。本计划增加的
 约束是：

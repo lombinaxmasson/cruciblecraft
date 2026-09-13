@@ -1,7 +1,7 @@
 # MTE 家具储物详细计划
 
 > 计划 slug：`content/mte-furniture-storage`
-> 状态：prep 已冻结（2026-09-11）。本文件位于 `card-plans/prep/`。
+> 状态：prep 已冻结（2026-09-11）；2026-09-12 修订物品重复与贴图终态，仍不落地 runtime。本文件位于 `card-plans/prep/`。
 > 性质：MTE 全量身份分母的家族 prep 卡，不是 runtime 实现卡。
 > 本卡覆盖 `563` 个待规划身份；该家族在全量 catalog 中共有
 > `563` 行，另有 `0` 行已标记 `realized_natively`，
@@ -39,7 +39,13 @@ GT6 家族标签：MultiTileEntityAdvancedCraftingTable / Crafting Tables, Multi
 
 本卡运行时边界：Chests、Safes、Storage、Crafting Tables、Scaffolds 等身份。
 
-当前判定：`CatalogNamedItem 不是箱柜、保险箱、储物或脚手架行为；不得用原版容器、木箱或现有 storage/lock 直接覆盖 GT6 身份`。
+当前判定不能写成「563 行都没有宿主」：
+
+- Chest、Safe、Advanced Crafting Table、Scaffold 没有同 meta 的 CC 宿主，
+  在 dummy 现代 id 上原地实现并迁 GT6 源图；
+- Bookshelf、Bottle Crate、Locker、Drawer、Mass Storage 与现行
+  `storage_variants.json` 有来源交集，但必须按 `source_legacy_id + material`
+  逐 meta 证明。精确命中才折回；现有 storage/lock 或原版容器相似不构成证明。
 
 `identity_only` 表示当前只有可持有/散落身份，不是行为实现，也不是
 玩家完成。`attachment_candidate` 表示已经点名真实行为缺口，不允许用
@@ -47,7 +53,7 @@ GT6 家族标签：MultiTileEntityAdvancedCraftingTable / Crafting Tables, Multi
 
 后续卡约束：Any runtime child must be independently source-backed; this prep card does not authorize implementation.。
 
-后续若要行为实现，必须另开 runtime child，逐个身份补源类、放置/交互合同、真实获得格和 GameTest；本 prep 卡不把展示身份折成行为。
+后续若要行为实现，必须另开 runtime child，逐个身份按总索引 §0.1 折回或迁图，并补源类、放置/交互合同、真实获得格和 GameTest；本 prep 卡不把展示身份折成行为，也不落地贴图。
 
 ---
 
@@ -63,12 +69,24 @@ GT6 家族标签：MultiTileEntityAdvancedCraftingTable / Crafting Tables, Multi
 
 ---
 
-## 2. 美术与实现门
+## 2. 物品重复与美术
 
-本卡不新增方块/物品贴图，不复制占位图。未来 runtime child 如需新内容，
-必须从本地 `gt6_referencable_port_code/gregtech6_w` 迁移真实来源并单独写
-art manifest；现有 CC 方块、管道、容器、casing 和 vanilla 方块不得作为
-身份等价替代。
+本卡不复制 png、不改 `src/main`。铁锭模型不是可发行美术。
+R0 的 `identity_only` / `realized_natively` 不是物品去重结论。
+
+产品终态服从 [MTE 全量 Prep 总索引 §0.1](MTE全量Prep总索引.md)。
+未来 runtime child 必须逐 `meta` 记录 Loader 注册点、材料与规格、
+live item、live block、处置、贴图和存档证据。只有同一 Loader meta +
+同一材料/class/spec 且已有 live BlockItem 才能完整折回；配方映射到普通
+item 不等于可放置 MTE 已折回。
+
+本家族先对 `storage_variants.json` 的来源表达式做逐 meta 展开。精确命中的
+Bookshelf / Bottle Crate / Locker / Drawer / Mass Storage 折回相应 live
+BlockItem 并复用其 art；未命中项和 Chest / Safe / Crafting Table /
+Scaffold 在 dummy id 上原地替换，迁 GT6 的 kind-level 模型、层与材质 tint。
+禁止 alias 原版箱子或任意 CC 容器。
+
+未来 runtime child 必须把折回或迁图写进那张卡的合同；本 prep 卡仍不落地。
 
 ---
 
@@ -78,8 +96,9 @@ art manifest；现有 CC 方块、管道、容器、casing 和 vanilla 方块不
 - [x] 待规划行有唯一 prep card 归属
 - [x] `realized_natively` 行已从本卡实现范围排除并保留在总索引
 - [x] blocked / no-stand-in 边界已写明
+- [x] 2026-09-12 逐 meta 物品去重与完整迁图合同已写入（见总索引 §0.1）
 - [x] 由 R0 disposition ledger 与本卡 family/disposition 对照完成
-- [ ] 另开 runtime child 后，重新回答真实行为、获得格、存档和测试
+- [ ] 另开 runtime child 后，重新回答真实行为、获得格、存档、折回或迁图、和测试
 
 本卡完成意味着 **prep 规格完成**，不意味着 `runtime_ready` 或
 `player_complete`。
