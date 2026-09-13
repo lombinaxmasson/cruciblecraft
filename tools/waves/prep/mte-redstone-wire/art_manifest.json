@@ -1,0 +1,37 @@
+{
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "PLANNED_NO_PLACEHOLDER",
+  "note": "Copies land with the runtime child. Icon-set is shared; do not copy per meta. RedAlloy/Signalum/Lumium are clloy/clloymachine SET_COPPER.",
+  "new_art_copies": [
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/copper/wire.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6_import/materialicons/copper/wire.png",
+      "runtime_ids": [
+        "cruciblecraft:redstone_wire/red_alloy",
+        "cruciblecraft:redstone_wire/signalum",
+        "cruciblecraft:lumium/wirelamp"
+      ]
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/copper/wire_overlay.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6_import/materialicons/copper/wire_overlay.png",
+      "runtime_ids": [
+        "cruciblecraft:redstone_wire/red_alloy",
+        "cruciblecraft:redstone_wire/signalum",
+        "cruciblecraft:lumium/wirelamp"
+      ]
+    }
+  ],
+  "tint": {
+    "redstone_wire/red_alloy": "#C80000",
+    "redstone_wire/signalum": "#FF4000",
+    "lumium/wirelamp": "#FFFF74"
+  },
+  "blocked_art": [
+    "minecraft:redstone dust",
+    "red_alloy/wire EU conductor models",
+    "iron_ingot dummy"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-connector-art",
+  "title": "GT6 Connector Art",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6连接件美术详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/datagen/ModBlockStateProvider.java",
+    "src/test/java/com/masson/cruciblecraft/datagen/PipeCableVisualResourceTest.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/ConnectorArtGameTests.java",
+    "src/main/resources/assets/cruciblecraft/gt6_fluid_pipe_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/gt6_item_pipe_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/gt6_eu_wire_cable_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/materialicons/copper/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/iconsets/**",
+    "src/main/resources/assets/cruciblecraft/models/item/fluid_pipe_tile/**",
+    "src/main/resources/assets/cruciblecraft/models/item/item_pipe_tile/**",
+    "src/main/resources/assets/cruciblecraft/models/item/electric_wire/**",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_connector_art/**",
+    "tools/capabilities/content/gt6-connector-art/**",
+    "tools/waves/content/gt6-connector-art/**",
+    "tools/gt6_connector_art.py",
+    "tools/build_gt6_connector_art.py",
+    "tools/tests/test_gt6_connector_art.py"
+  ],
+  "depends_on": [
+    "content/gt6-fluid-pipe-runtime",
+    "content/gt6-item-pipe-runtime",
+    "content/gt6-eu-wire-cable-runtime"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-connector-art",
+  "required_test_ids": [
+    "connectorArtManifestResolvesLocalGt6",
+    "foldedRowsCopyZeroPng",
+    "inPlaceRowsHaveNoIronIngotModel"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "connector:art:shared-iconset",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:copper/tiny_fluid_pipe",
+        "cruciblecraft:brass/item_pipe",
+        "cruciblecraft:tin/wire"
+      ],
+      "reason": "GT6 copper pipe/wire iconsets are shared. Fold/already_shared rows copy 0 extra PNG. Live BlockItems reuse those textures with material tint."
+    },
+    {
+      "semantic_key": "connector:art:keep-distinct-dummies",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "Quadruple/nonuple fluid, restrictive item, and unprefixed wire gauges stay dummy items. Replace iron-ingot models with the shared GT6 iconset; do not invent BlockItems or cable.png."
+    }
+  ],
+  "note": "Migrate local GT6 pipe/wire/insulation art. Do not recopy redstone copper wire. Close at runtime_ready, not player_complete. Do not edit R0 or the baseline identity ledger."
+}

@@ -80,7 +80,8 @@ public final class CableBlock extends Block
                 properties,
                 conductor.electrical(),
                 false,
-                widthFor(conductor.sourceSpecification()));
+                ElectricalConductorCatalog.widthPixels(
+                        conductor.sourceSpecification()));
     }
 
     /** Creates the source-backed, lossless LU fiber wire. */
@@ -339,16 +340,4 @@ public final class CableBlock extends Block
                 : null;
     }
 
-    private static int widthFor(String specification) {
-        return switch (specification) {
-            case "wireGt01" -> 2;
-            case "cableGt01" -> 4;
-            case "cableGt02" -> 6;
-            case "cableGt04" -> 8;
-            case "cableGt08" -> 10;
-            case "cableGt12" -> 12;
-            default -> throw new IllegalArgumentException(
-                    "Unsupported conductor specification " + specification);
-        };
-    }
 }

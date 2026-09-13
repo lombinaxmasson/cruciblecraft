@@ -21,6 +21,8 @@ import com.masson.cruciblecraft.content.item.MaterialStorageBlockItem;
 import com.masson.cruciblecraft.content.item.CableBlockItem;
 import com.masson.cruciblecraft.content.item.CatalogNamedBlockItem;
 import com.masson.cruciblecraft.content.item.CatalogNamedItem;
+import com.masson.cruciblecraft.content.item.RedstoneWireBlockItem;
+import com.masson.cruciblecraft.content.redstonewire.RedstoneWireKind;
 import com.masson.cruciblecraft.content.item.CellItem;
 import com.masson.cruciblecraft.content.item.CeramicMoldBlockItem;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
@@ -884,6 +886,17 @@ public final class ModItems {
                                     com.masson.cruciblecraft.energy.cable
                                             .ElectricalConductorCatalog
                                             .require(material.id(), form),
+                                    new Item.Properties()));
+                } else if (RedstoneWireKind.owns(material.id(), form)) {
+                    RedstoneWireKind kind = RedstoneWireKind.byPath(
+                            registryName).orElseThrow();
+                    item = ITEMS.register(
+                            registryName,
+                            () -> new RedstoneWireBlockItem(
+                                    ModBlocks.redstoneWireBlocksById()
+                                            .get(kind.id())
+                                            .get(),
+                                    kind,
                                     new Item.Properties()));
                 } else if (PipeCatalog.contains(
                         material.id(), form, PipeCatalog.Kind.FLUID)) {

@@ -40,6 +40,9 @@ public final class Gt6StyleConnections {
         if (state.getBlock() instanceof CableBlock) {
             return CableBlock.PROPERTY_BY_DIRECTION;
         }
+        if (state.getBlock() instanceof RedstoneWireBlock) {
+            return RedstoneWireBlock.PROPERTY_BY_DIRECTION;
+        }
         if (state.getBlock() instanceof AbstractPipeBlock) {
             return AbstractPipeBlock.PROPERTY_BY_DIRECTION;
         }
@@ -65,6 +68,10 @@ public final class Gt6StyleConnections {
                     || (selfCable.supports(EnergyType.LU)
                             && neighborCable.supports(EnergyType.LU));
         }
+        if (self.getBlock() instanceof RedstoneWireBlock
+                && neighbor.getBlock() instanceof RedstoneWireBlock) {
+            return true;
+        }
         return self.getBlock() instanceof AbstractPipeBlock selfPipe
                 && neighbor.getBlock() instanceof AbstractPipeBlock neighborPipe
                 && selfPipe.pipe().kind() == neighborPipe.pipe().kind();
@@ -75,6 +82,9 @@ public final class Gt6StyleConnections {
         BlockState state = level.getBlockState(pos);
         if (state.getBlock() instanceof CableBlock cable) {
             return cable.connectsTo(level, pos, side);
+        }
+        if (state.getBlock() instanceof RedstoneWireBlock) {
+            return true;
         }
         if (state.getBlock() instanceof AbstractPipeBlock pipe) {
             return pipe.connectsTo(level, pos, side);
@@ -248,7 +258,8 @@ public final class Gt6StyleConnections {
      */
     public static boolean holdingMatchingTool(
             BlockState state, ItemStack held) {
-        if (state.getBlock() instanceof CableBlock) {
+        if (state.getBlock() instanceof CableBlock
+                || state.getBlock() instanceof RedstoneWireBlock) {
             return ToolActionSource.provides(held, ToolAction.WIRE_CUTTER);
         }
         return state.getBlock() instanceof AbstractPipeBlock

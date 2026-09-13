@@ -3,9 +3,9 @@
   "slug": "registry/catalog-modern-ids",
   "title": "Catalog modern IDs",
   "maturity": "runtime_ready",
-  "workflow": "active",
+  "workflow": "accepted",
   "owned_paths": [
-    "docs/history/card-plans/active/目录身份现代id详细计划.md",
+    "docs/history/card-plans/closed/目录身份现代id详细计划.md",
     "tools/catalog_modern_ids.py",
     "tools/catalog_modern_id_map.json",
     "tools/tests/test_catalog_modern_ids.py",
@@ -29,5 +29,5 @@
   "legacy_readiness": null,
   "player_signoff": null,
   "identity_disposition": [],
-  "note": "Renames numbered catalog runtime ids to modern semantic paths. Scatter items stay distinct from live hosts. Close target is runtime_ready, not player_complete."
+  "note": "Renames numbered catalog runtime ids to modern semantic paths. This card does not merge live hosts (rename safety, no NeoForge aliases); live_host_paths prevents id theft but is not fold authority. Product end-state requires per-meta live item/live block resolution in MTE prep index §0.1. Current ledger is 1501 identity_only / 283 realized_natively / 33 attachment_candidate. existing_item must resolve to a live host or catalog item; MT.Os display name Osmium maps to osmium_elemental, not Germanium's FakeOsmium alias. Close target is runtime_ready, not player_complete."
 }

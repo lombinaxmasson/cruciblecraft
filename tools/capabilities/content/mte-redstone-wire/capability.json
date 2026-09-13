@@ -1,0 +1,85 @@
+{
+  "schema_version": 2,
+  "slug": "content/mte-redstone-wire",
+  "title": "MTE Redstone Wire",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/MTE红石线详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/block/RedstoneWireBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/RedstoneWireBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/item/RedstoneWireBlockItem.java",
+    "src/main/java/com/masson/cruciblecraft/content/redstonewire/**",
+    "src/main/java/com/masson/cruciblecraft/gametest/RedstoneWireGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+    "src/main/resources/data/cruciblecraft_wave_content_mte_redstone_wire/**",
+    "src/main/resources/assets/cruciblecraft/gt6_redstone_wire_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/materialicons/copper/**",
+    "src/main/resources/assets/cruciblecraft/models/block/redstone_wire/**",
+    "src/main/resources/assets/cruciblecraft/blockstates/red_alloy/wire.json",
+    "src/main/resources/assets/cruciblecraft/blockstates/signalum/wire.json",
+    "src/main/resources/assets/cruciblecraft/blockstates/lumium/wire.json",
+    "src/main/resources/assets/cruciblecraft/models/item/red_alloy/wire.json",
+    "src/main/resources/assets/cruciblecraft/models/item/signalum/wire.json",
+    "src/main/resources/assets/cruciblecraft/models/item/lumium/wire.json",
+    "src/main/resources/data/cruciblecraft/loot_table/blocks/red_alloy/wire.json",
+    "src/main/resources/data/cruciblecraft/loot_table/blocks/signalum/wire.json",
+    "src/main/resources/data/cruciblecraft/loot_table/blocks/lumium/wire.json",
+    "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json",
+    "src/main/resources/data/cruciblecraft/tags/item/smelter_mte_items.json",
+    "tools/catalog_modern_id_map.json",
+    "tools/catalog_modern_ids.py",
+    "tools/capabilities/content/mte-redstone-wire/**",
+    "tools/smelter_mte_identity_catalog.json",
+    "tools/tests/test_catalog_modern_ids.py",
+    "tools/tests/test_mte_redstone_wire.py",
+    "tools/tests/test_smelter_mte_identity.py",
+    "tools/waves/content/mte-redstone-wire/**",
+    "tools/waves/machines/melter/lock_candidate.json",
+    "tools/waves/machines/melter/production_lock.json",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/melter/melter/gt_recipe_melter_0000.json",
+    "tools/waves/machines/melter/source.json",
+    "tools/waves/machines/melter/source_receipt.json",
+    "tools/waves/machines/melter/source_review.json",
+    "tools/waves/prep/mte-redstone-wire/**"
+  ],
+  "depends_on": [
+    "registry/catalog-modern-ids"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/mte-redstone-wire",
+  "required_test_ids": [
+    "foldedOntoWireGt01NotVanilla",
+    "lumiumEmitsLight",
+    "noSurvivalRecipes",
+    "threeIdentitiesAreRegistered",
+    "weakAndStrongRedstone"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "connector:redstone-wire:27000-27500",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:red_alloy/wire",
+        "cruciblecraft:signalum/wire",
+        "cruciblecraft:lumium/wire"
+      ],
+      "reason": "GT6 setTarget binds OP.wireGt01 to MTE 27000/27050/27500. Those materials are not addElectricWires EU cables. upgrade_live_item replaces the dummy ids with the live wire BlockItem. Insulated 27006/27056/27506 stay out of denominator."
+    },
+    {
+      "semantic_key": "connector:redstone-wire:insulated-extras",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "GT6 insulated 27006/27056/27506 are laminator extras not in catalog 1817."
+    },
+    {
+      "semantic_key": "connector:redstone-wire:covers",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "GT6 connectors accept MTE covers. CC EU cables also do not host covers. Cover remainder stays on the logistics cover lane."
+    }
+  ],
+  "note": "Three GT6 redstone-wire identities are the live wireGt01 items: 2px cutter connectors, vanilla redstone in/out, range 16/64/16, lumium light = visual 0-15. Dummy redstone_wire/* and lumium/wirelamp are withdrawn. Obtain stays explicitly_blocked until a real wireGt01 recipe is published. Close at runtime_ready, not player_complete."
+}

@@ -71,6 +71,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 block -> dropSelf(block.get()));
         ModBlocks.hopperBlocks().forEach(block -> dropSelf(block.get()));
         ModBlocks.sensorBlocks().forEach(block -> dropSelf(block.get()));
+        ModBlocks.redstoneWireBlocks().forEach(block -> dropSelf(block.get()));
         ModBlocks.variantStorageBlocks().forEach(block -> dropSelf(block.get()));
         dropSelf(ModBlocks.STEEL_DUST_FUNNEL.get());
         dropSelf(ModBlocks.LU_FIBER_CABLE.get());
@@ -185,6 +186,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         ModMachineVariants.ALL.forEach(variant ->
                 blocks.add(ModBlocks.configuredProcessingBlock(variant)));
         ModBlocks.electricalConductorBlocks().forEach(
+                holder -> blocks.add(holder.get()));
+        ModBlocks.redstoneWireBlocks().forEach(
                 holder -> blocks.add(holder.get()));
         ModBlocks.pipeBlocks().forEach(holder -> blocks.add(holder.get()));
         ModBlocks.hopperBlocks().forEach(holder -> blocks.add(holder.get()));

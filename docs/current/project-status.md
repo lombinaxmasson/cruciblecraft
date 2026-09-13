@@ -6,7 +6,7 @@
 
 ## Unique active
 
-`registry/catalog-modern-ids`（Catalog modern IDs，`workflow=active`，`maturity=runtime_ready`）；计划 [目录身份现代 id 详细计划](../history/card-plans/active/目录身份现代id详细计划.md)。
+无。`capability.json` 里没有 `workflow=active`。
 
 ## Prep（不占落地锁）
 
@@ -21,7 +21,6 @@
 - `content/mte-multiblock` — [MTE 多方块设备详细计划](../history/card-plans/prep/MTE多方块设备详细计划.md)
 - `content/mte-prep-index` — [MTE 全量 Prep 总索引](../history/card-plans/prep/MTE全量Prep总索引.md)
 - `content/mte-processing-machine` — [MTE 加工机身份详细计划](../history/card-plans/prep/MTE加工机身份详细计划.md)
-- `content/mte-redstone-wire` — [MTE 红石线详细计划](../history/card-plans/prep/MTE红石线详细计划.md)
 - `content/mte-untyped` — [MTE 未分类余量详细计划](../history/card-plans/prep/MTE未分类余量详细计划.md)
 - `machines/printer` — [印刷机详细计划](../history/card-plans/prep/印刷机详细计划.md)
 - `worldgen/gt-center` — [GT Center 详细计划](../history/card-plans/prep/GT中枢详细计划.md)
@@ -48,11 +47,17 @@
 - `machines/cluster-mill` — Cluster Mill — [集群轧机详细计划](../history/card-plans/closed/集群轧机详细计划.md)
 - `machines/roll-former` — Roll Former — [辊压成型机详细计划](../history/card-plans/closed/辊压成型机详细计划.md)
 
-## runtime_ready（accepted，非玩家完成）（15）
+## runtime_ready（accepted，非玩家完成）（22）
 
 RecipeMap / 主机已挂，获得格或配方仍 blocked。不得宣称 `player_complete`。
 
 - `content/electric-wire-cable-mte-fold` — Electric Wire/Cable MTE Fold — [导线电缆 MTE 折回详细计划](../history/card-plans/closed/导线电缆MTE折回详细计划.md)
+- `content/gt6-connector-art` — GT6 Connector Art — [GT6 连接件美术详细计划](../history/card-plans/closed/GT6连接件美术详细计划.md)
+- `content/gt6-eu-wire-cable-runtime` — GT6 EU Wire/Cable Runtime — [GT6 导线电缆运行时详细计划](../history/card-plans/closed/GT6导线电缆运行时详细计划.md)
+- `content/gt6-fluid-pipe-runtime` — GT6 Fluid Pipe Runtime — [GT6 流体管运行时详细计划](../history/card-plans/closed/GT6流体管运行时详细计划.md)
+- `content/gt6-item-pipe-runtime` — GT6 Item Pipe Runtime — [GT6 物品管运行时详细计划](../history/card-plans/closed/GT6物品管运行时详细计划.md)
+- `content/gt6-redstone-wire-correction` — GT6 Redstone Wire Correction — [GT6 红石线行为校正详细计划](../history/card-plans/closed/GT6红石线行为校正详细计划.md)
+- `content/mte-redstone-wire` — MTE Redstone Wire — [MTE 红石线详细计划](../history/card-plans/closed/MTE红石线详细计划.md)
 - `content/sensors` — Sensors — [Sensors 详细计划](../history/card-plans/closed/Sensors详细计划.md)
 - `content/technological-parts-foundation` — Technological Parts Foundation — [技术中间件基础详细计划](../history/card-plans/closed/技术中间件基础详细计划.md)
 - `logistics/cover-remainder` — Cover remainder — [盖板余量详细计划](../history/card-plans/closed/盖板余量详细计划.md)
@@ -65,6 +70,7 @@ RecipeMap / 主机已挂，获得格或配方仍 blocked。不得宣称 `player_
 - `machines/pressure-washer` — Pressure Washer — [压力清洗机详细计划](../history/card-plans/closed/压力清洗机详细计划.md)
 - `machines/sanding` — Sanding Machine — [打磨机详细计划](../history/card-plans/closed/打磨机详细计划.md)
 - `machines/slicer` — Slicer — [切片机详细计划](../history/card-plans/closed/切片机详细计划.md)
+- `registry/catalog-modern-ids` — Catalog modern IDs — [目录身份现代 id 详细计划](../history/card-plans/closed/目录身份现代id详细计划.md)
 - `registry/tool-head-prefix-reclaim` — Sharpener overflow reclaim — [工具头前缀与打磨机余量回收详细计划](../history/card-plans/closed/工具头前缀与打磨机余量回收详细计划.md)
 - `worldgen/gt-trees` — GT Trees — [GT 树详细计划](../history/card-plans/closed/GT树详细计划.md)
 

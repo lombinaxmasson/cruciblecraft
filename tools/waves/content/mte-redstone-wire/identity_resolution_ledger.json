@@ -1,0 +1,131 @@
+{
+  "capability_slug": "content/mte-redstone-wire",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "schema": "mte-identity-resolution-v1",
+  "note": "Catalog denom is 3. GT6 also registers insulated 27006/27056/27506 via laminator; those metas are not in the 1817 catalog and stay out of this card. R0 remains identity_only; runtime is upgrade_live_item.",
+  "rows": [
+    {
+      "meta": 27000,
+      "english_name": "Red Alloy Wire",
+      "gt6_loader": "Loader_MultiTileEntities.java:1895",
+      "gt6_class": "gregapi.tileentity.connectors.MultiTileEntityWireRedstone",
+      "gt6_tag": "Redstone Wires",
+      "material": "red_alloy",
+      "gt6_material": "MT.RedAlloy",
+      "spec": {
+        "op_target": "OP.wireGt01",
+        "diameter_px": 2,
+        "pipe_loss": "ITileEntityRedstoneWire.MAX_RANGE / 16",
+        "range": 16,
+        "glowing": false
+      },
+      "registry_path": "red_alloy/wire",
+      "registry_kind": "existing_item",
+      "live_item": "cruciblecraft:red_alloy/wire",
+      "live_item_kind": "redstone_wire_block_item",
+      "live_block": "cruciblecraft:red_alloy/wire",
+      "disposition": "upgrade_live_item",
+      "reason": "GT6 setTarget binds OP.wireGt01(RedAlloy) to MTE 27000. RedAlloy is not addElectricWires. The live material wire is that MTE; upgrade it in-place to a placeable BlockItem and withdraw dummy redstone_wire/red_alloy.",
+      "art": {
+        "texture_set": "copper",
+        "gt6_source": [
+          "src/main/resources/assets/gregtech/textures/blocks/materialicons/copper/wire.png",
+          "src/main/resources/assets/gregtech/textures/blocks/materialicons/copper/wire_overlay.png"
+        ],
+        "destination_family": "textures/block/gt6_import/materialicons/copper/",
+        "tint": "#C80000",
+        "shared_iconset": true
+      },
+      "archive": "dummy redstone_wire/red_alloy unregistered; missing mappings become air; no NeoForge alias"
+    },
+    {
+      "meta": 27050,
+      "english_name": "Signalum Wire",
+      "gt6_loader": "Loader_MultiTileEntities.java:1898",
+      "gt6_class": "gregapi.tileentity.connectors.MultiTileEntityWireRedstone",
+      "gt6_tag": "Redstone Wires",
+      "material": "signalum",
+      "gt6_material": "MT.Signalum",
+      "spec": {
+        "op_target": "OP.wireGt01",
+        "diameter_px": 2,
+        "pipe_loss": "ITileEntityRedstoneWire.MAX_RANGE / 64",
+        "range": 64,
+        "glowing": false
+      },
+      "registry_path": "signalum/wire",
+      "registry_kind": "existing_item",
+      "live_item": "cruciblecraft:signalum/wire",
+      "live_item_kind": "redstone_wire_block_item",
+      "live_block": "cruciblecraft:signalum/wire",
+      "disposition": "upgrade_live_item",
+      "reason": "Same as 27000. Signalum is not an EU CableBlock.",
+      "art": {
+        "texture_set": "copper",
+        "gt6_source": [
+          "src/main/resources/assets/gregtech/textures/blocks/materialicons/copper/wire.png",
+          "src/main/resources/assets/gregtech/textures/blocks/materialicons/copper/wire_overlay.png"
+        ],
+        "destination_family": "textures/block/gt6_import/materialicons/copper/",
+        "tint": "#FF4000",
+        "shared_iconset": true
+      },
+      "archive": "dummy redstone_wire/signalum unregistered; missing mappings become air; no NeoForge alias"
+    },
+    {
+      "meta": 27500,
+      "english_name": "Lumium Wirelamp",
+      "gt6_loader": "Loader_MultiTileEntities.java:1901",
+      "gt6_class": "gregapi.tileentity.connectors.MultiTileEntityWireRedstone",
+      "gt6_tag": "Redstone Wires",
+      "material": "lumium",
+      "gt6_material": "MT.Lumium",
+      "spec": {
+        "op_target": "OP.wireGt01",
+        "diameter_px": 2,
+        "pipe_loss": "ITileEntityRedstoneWire.MAX_RANGE / 16",
+        "range": 16,
+        "glowing": true
+      },
+      "registry_path": "lumium/wire",
+      "registry_kind": "existing_item",
+      "live_item": "cruciblecraft:lumium/wire",
+      "live_item_kind": "redstone_wire_block_item",
+      "live_block": "cruciblecraft:lumium/wire",
+      "disposition": "upgrade_live_item",
+      "reason": "Wirelamp is still OP.wireGt01(Lumium). Display name stays Wirelamp; registry path is lumium/wire. Withdraw dummy lumium/wirelamp.",
+      "art": {
+        "texture_set": "copper",
+        "gt6_source": [
+          "src/main/resources/assets/gregtech/textures/blocks/materialicons/copper/wire.png",
+          "src/main/resources/assets/gregtech/textures/blocks/materialicons/copper/wire_overlay.png"
+        ],
+        "destination_family": "textures/block/gt6_import/materialicons/copper/",
+        "tint": "#FFFF74",
+        "shared_iconset": true,
+        "emissive_when_powered": true
+      },
+      "archive": "dummy lumium/wirelamp unregistered; missing mappings become air; no NeoForge alias"
+    }
+  ],
+  "out_of_denominator": [
+    {
+      "meta": 27006,
+      "english_name": "Red Alloy Cable",
+      "gt6_class": "MultiTileEntityWireRedstoneInsulated",
+      "reason": "Not in catalog 1817. Laminator plate/foil on 27000. Future child."
+    },
+    {
+      "meta": 27056,
+      "english_name": "Signalum Cable",
+      "gt6_class": "MultiTileEntityWireRedstoneInsulated",
+      "reason": "Not in catalog 1817. Laminator on 27050. Future child."
+    },
+    {
+      "meta": 27506,
+      "english_name": "Lumium Cable",
+      "gt6_class": "MultiTileEntityWireRedstoneInsulated",
+      "reason": "Not in catalog 1817. Laminator on 27500. Future child."
+    }
+  ]
+}

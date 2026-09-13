@@ -1,0 +1,35 @@
+{
+  "has_energy_capability": {
+    "cable": true,
+    "pipe": false,
+    "redstone": false
+  },
+  "redstone_materials_not_eu": [
+    "lumium",
+    "red_alloy",
+    "signalum"
+  ],
+  "sameNetwork": {
+    "cross_family": "forbidden",
+    "eu_or_lu_cables": "CableBlock only with matching EnergyType",
+    "pipes": "AbstractPipeBlock same PipeCatalog.Kind only",
+    "redstone": "RedstoneWireBlock to RedstoneWireBlock only"
+  },
+  "schema": "gt6-pipe-cable-isolation-v1",
+  "shared_helper": {
+    "allowed": "placement, nine-grid, wrench/cutter face toggle",
+    "class": "Gt6StyleConnections",
+    "invalidates_pipe_topology_only": true,
+    "not_authorized": "shared Fluid/EU/Item/Redstone network"
+  },
+  "uses_cable_network_traversal": {
+    "cable": true,
+    "pipe": false,
+    "redstone": false
+  },
+  "uses_pipe_topology": {
+    "cable": false,
+    "pipe": true,
+    "redstone": false
+  }
+}

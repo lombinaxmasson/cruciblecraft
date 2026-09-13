@@ -17,6 +17,7 @@ import com.masson.cruciblecraft.content.item.TechnologicalPartCatalog;
 import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
 import com.masson.cruciblecraft.content.sensor.SensorKind;
+import com.masson.cruciblecraft.content.redstonewire.RedstoneWireKind;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverComponentTiers;
 import com.masson.cruciblecraft.material.MaterialCatalog;
@@ -435,6 +436,7 @@ public class ModLanguageProvider extends LanguageProvider {
             add("emi.category.cruciblecraft.mold_casting", "陶瓷模具铸造");
             addHopperTranslations(true);
             addSensorTranslations();
+            addRedstoneWireTranslations();
             addStorageTranslations(true);
             // v1 关键路径材料名域：表内材料按表生成，表外显式 post_1_0
             // （不写 zh 键，回退 en_us，禁止英文冒充）。
@@ -933,6 +935,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("cruciblecraft.configuration.temperatureUnit", "Temperature Unit");
         addHopperTranslations(false);
         addSensorTranslations();
+        addRedstoneWireTranslations();
         addStorageTranslations(false);
     }
 
@@ -1025,6 +1028,21 @@ public class ModLanguageProvider extends LanguageProvider {
         add(
                 "message.cruciblecraft.sensor.mode.not_full",
                 chinese ? "未满" : "Not full");
+    }
+
+    private void addRedstoneWireTranslations() {
+        for (RedstoneWireKind kind : RedstoneWireKind.all()) {
+            String name = chinese ? kind.langZh() : kind.langEn();
+            String key = kind.path().replace('/', '.');
+            add("block." + CrucibleCraft.MODID + "." + key, name);
+            add("item." + CrucibleCraft.MODID + "." + key, name);
+        }
+        add(
+                "tooltip.cruciblecraft.redstone_wire.range",
+                chinese ? "范围：%s" : "Range: %s");
+        add(
+                "tooltip.cruciblecraft.redstone_wire.bandwidth",
+                chinese ? "带宽：%s" : "Bandwidth: %s");
     }
 
     private void addJadePluginConfig() {

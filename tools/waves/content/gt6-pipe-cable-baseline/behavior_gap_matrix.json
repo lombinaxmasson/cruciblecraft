@@ -1,0 +1,175 @@
+{
+  "domains": {
+    "connections": [
+      {
+        "cc": "Gt6StyleConnections.sameNetwork splits CableBlock EU/LU, RedstoneWireBlock, AbstractPipeBlock kind",
+        "cc_evidence": "Gt6StyleConnections.sameNetwork",
+        "connections_file": "src/main/java/com/masson/cruciblecraft/content/block/Gt6StyleConnections.java",
+        "gt6": "each connector class has its own canConnect / energy type",
+        "id": "helper_vs_network",
+        "provenance": "GTM gt6StylePipesCables placement/wrench/cutter UX only",
+        "status": "aligned_ux_only"
+      }
+    ],
+    "eu": [
+      {
+        "cc": "ElectricalConductorCatalog maps wireGt01/02/03/04/05/06/08/12/16 and cableGt01/02/04/08/12; 231 wires / 115 cables; wireGt07/09/10/11/13/14/15 stay blocked",
+        "child": "content/gt6-eu-wire-cable-runtime",
+        "gt6": "wireGt01-16 all placeable MTE; cableGt01/02/04/08/12 if aCable",
+        "id": "gauges",
+        "status": "gap"
+      },
+      {
+        "cc": "CableNetworkTraversal.applySegmentLoss + CableLoadState burn to FIRE",
+        "child": "content/gt6-eu-wire-cable-runtime",
+        "existing_tests": [
+          "cableChainAppliesExactPerBlockLoss",
+          "cableOverloadBurnsOnTheSafeFollowingTick",
+          "cableBranchUsesStableGreedyDirectionOrder",
+          "cableRingVisitsEachNodeOnce"
+        ],
+        "gt6": "transferElectricity subtracts mLoss per hop; burn if |V|>mVoltage or amperes>mAmperage; mBurnCounter>=16 setToFire",
+        "id": "packet_loss_overload",
+        "status": "needs_per_gauge_replay"
+      },
+      {
+        "cc": "RedstoneWireKind owns those wires; ElectricalConductorCatalog must not include them",
+        "child": "content/gt6-eu-wire-cable-runtime",
+        "gt6": "RedAlloy/Signalum/Lumium are WireRedstone, not addElectricWires",
+        "id": "redstone_exclusion",
+        "status": "aligned_identity"
+      },
+      {
+        "cc": "content/electric-wire-cable-mte-fold mapped 259 recipe operands; unmapped 61; not dummy deletion",
+        "child": "content/gt6-eu-wire-cable-runtime",
+        "gt6": "setTarget binds OP.wireGt0N to the MTE",
+        "id": "recipe_mapped_is_not_blockitem",
+        "status": "frozen"
+      }
+    ],
+    "fluid": [
+      {
+        "cc": "PipeTransferPhase.INTERVAL = 5 staggered ticks",
+        "cc_evidence": "src/main/java/com/masson/cruciblecraft/logistics/pipe/PipeTransferPhase.java:7",
+        "child": "content/gt6-fluid-pipe-runtime",
+        "gt6": "onServerTickPre every tick; even positions SERVER_TICK_PRE, odd SERVER_TICK_PR2",
+        "gt6_evidence": "MultiTileEntityPipeFluid.java:235-257",
+        "id": "cadence",
+        "status": "gap"
+      },
+      {
+        "cc": "single FluidTank; PipeCatalog has no pipeQuadruple/pipeNonuple form",
+        "child": "content/gt6-fluid-pipe-runtime",
+        "gt6": "mTanks length from NBT_TANK_COUNT; quadruple=4, nonuple=9",
+        "id": "tanks",
+        "status": "gap"
+      },
+      {
+        "cc": "metadata capacity stored; runtime transferLimit = min(capacity, 8000)",
+        "child": "content/gt6-fluid-pipe-runtime",
+        "gt6": "tiny/small/medium/large/huge = aStat * 1/2/6/12/24; transfer is tank distribute",
+        "id": "capacity",
+        "status": "needs_runtime_test"
+      },
+      {
+        "cc": "FluidPipeProperties stores plasmaProof/magicProof/contactDamage/flammable; validateFluid only temperature/gas/acid",
+        "cc_evidence": "FluidPipeBlockEntity.validateFluid",
+        "child": "content/gt6-fluid-pipe-runtime",
+        "gt6": "plasma/magic/acid/gas trash+damage/replace; contact damage and flammability NBT",
+        "id": "plasma_magic_flammable_contact",
+        "status": "gap",
+        "stored_but_unread": {
+          "flammable": true,
+          "magicProof": true,
+          "plasmaProof": true
+        }
+      },
+      {
+        "cc": "GTM-style per-segment buffer; Gt6StyleConnections GTM UX",
+        "cc_evidence": "FluidPipeBlockEntity class javadoc; Gt6StyleConnections javadoc",
+        "child": "content/gt6-fluid-pipe-runtime",
+        "gt6": "MultiTileEntityPipeFluid",
+        "id": "provenance",
+        "status": "frozen_reference_only"
+      }
+    ],
+    "item": [
+      {
+        "cc": "SidedHandler.getStackInSlot returns EMPTY; extractItem returns EMPTY; recoveryBuffer only",
+        "cc_evidence": "ItemPipeBlockEntity.SidedHandler",
+        "child": "content/gt6-item-pipe-runtime",
+        "gt6": "in-pipe inventory; getMinimumInventorySize=1; send when inventory occupied",
+        "id": "inventory",
+        "status": "gap"
+      },
+      {
+        "cc": "PipeTransferPhase 5-tick cover pumps",
+        "child": "content/gt6-item-pipe-runtime",
+        "gt6": "SERVER_TIME % 10 == 0 send",
+        "id": "cadence",
+        "status": "gap"
+      },
+      {
+        "cc": "cover allow/deny bits only; no GT6 input/output disable bytes",
+        "child": "content/gt6-item-pipe-runtime",
+        "gt6": "mDisabledInputs / mDisabledOutputs wrench cycle",
+        "id": "disabled_io",
+        "status": "gap"
+      },
+      {
+        "cc": "PipeCatalog has no restrictive form; dummy only if catalogued",
+        "child": "content/gt6-item-pipe-runtime",
+        "gt6": "pipeRestrictiveMedium/Large/Huge stepSize * 100/50/25",
+        "id": "restrictive",
+        "status": "blocked"
+      },
+      {
+        "cc": "ItemPipeNetworkTraversal route cache + cover pump; reusable architecture, not GT6 contract",
+        "child": "content/gt6-item-pipe-runtime",
+        "gt6": "scanPipes cost = stepSize; inventory push",
+        "id": "routing",
+        "status": "needs_runtime_test"
+      }
+    ],
+    "redstone": [
+      {
+        "cc": "other.redstone - kind.loss() uses the receiver kind",
+        "cc_evidence": "RedstoneWireBlockEntity.redstoneAt",
+        "child": "content/gt6-redstone-wire-correction",
+        "gt6": "getRedstoneMinusLoss = sender.mRedstone - sender.mLoss",
+        "gt6_evidence": "MultiTileEntityWireRedstoneInsulated.getRedstoneMinusLoss",
+        "id": "sender_loss",
+        "mixed_hop": true,
+        "status": "gap"
+      },
+      {
+        "cc": "DropperBlock/DISPENSER skipped; no per-side vanilla cache array",
+        "child": "content/gt6-redstone-wire-correction",
+        "gt6": "mVanillaSides cached per tick; REDSTONE_SINKS dropper/dispenser ignored",
+        "id": "vanilla_cache_and_sinks",
+        "status": "partial"
+      },
+      {
+        "cc": "RedstoneWireBlock is not CableBlock, has no ENERGY capability, no CableNetworkTraversal",
+        "child": "content/mte-redstone-wire",
+        "gt6": "TD.Connectors.WIRE_REDSTONE, not EU",
+        "id": "isolation",
+        "status": "aligned"
+      },
+      {
+        "cc": "not in catalog 1817; blocked; not GTCEu ULV EU cable",
+        "child": "content/gt6-redstone-insulated",
+        "gt6": "OP.cableGt01 -> 27006/27056/27506 WireRedstoneInsulated",
+        "id": "insulated",
+        "status": "blocked"
+      }
+    ]
+  },
+  "java_needles": {
+    "fluid_five_tick": true,
+    "item_empty_slot": true,
+    "redstone_receiver_loss": false
+  },
+  "schema": "gt6-pipe-cable-behavior-gap-v1",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+}

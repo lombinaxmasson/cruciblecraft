@@ -23,6 +23,7 @@ import com.google.gson.JsonObject;
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
+import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.MaterialFingerprint;
 import com.masson.cruciblecraft.material.MaterialZhNames;
@@ -210,11 +211,13 @@ public final class GeneratedMaterialPack {
                 String pipeModelKey = pipeModelKey(material, form);
                 boolean placeableStorage = isPlaceableStorage(material, form);
                 boolean placeableCasing = isPlaceableCasing(material, form);
+                boolean redstoneWire = isRedstoneWire(material, form);
                 if (electricalSpecification != null
                         || pipeModelKey != null
                         || placeableStorage
                         || placeableCasing
-                        || isRockForm(form)) {
+                        || isRockForm(form)
+                        || redstoneWire) {
                     addTag(
                             files,
                             "data/" + tagNamespace + "/tags/block/" + formTag
@@ -322,19 +325,25 @@ public final class GeneratedMaterialPack {
                     continue;
                 }
                 JsonObject model = new JsonObject();
+                if (isRedstoneWire(material, form)) {
+                    model.addProperty(
+                            "parent",
+                            CrucibleCraft.MODID + ":block/redstone_wire/item");
+                    files.put(
+                            "assets/" + CrucibleCraft.MODID + "/models/item/"
+                                    + material.registryName(form) + ".json",
+                            GSON.toJson(model));
+                    continue;
+                }
                 String electricalSpecification =
                         electricalSpecification(material, form);
                 if (electricalSpecification != null) {
-                    String itemParent = wireBundleItemParent(form);
                     model.addProperty(
                             "parent",
-                            itemParent != null
-                                    && !form.equals(MaterialPrefixes.WIRE)
-                                    ? CrucibleCraft.MODID + ":" + itemParent
-                                    : CrucibleCraft.MODID + ":conductor/"
-                                            + electricalSpecification.toLowerCase(
-                                                    java.util.Locale.ROOT)
-                                            + "_item");
+                            CrucibleCraft.MODID + ":conductor/"
+                                    + electricalSpecification.toLowerCase(
+                                            java.util.Locale.ROOT)
+                                    + "_item");
                     oreTranslations.addProperty(
                             "block." + CrucibleCraft.MODID + "."
                                     + material.registryName(form),
@@ -925,6 +934,12 @@ public final class GeneratedMaterialPack {
                 : null;
     }
 
+    private static boolean isRedstoneWire(
+            MaterialDefinition material, MaterialPrefix form) {
+        return com.masson.cruciblecraft.content.redstonewire.RedstoneWireKind
+                .owns(material.id(), form);
+    }
+
     private static String wireBundleItemParent(MaterialPrefix form) {
         if (form.equals(MaterialPrefixes.WIRE)) {
             return "item/material/wire_bundle_1";
@@ -958,13 +973,8 @@ public final class GeneratedMaterialPack {
 
     private static String electricalSpecification(
             MaterialDefinition material, MaterialPrefix form) {
-        String specification = Map.of(
-                MaterialPrefixes.WIRE, "wireGt01",
-                MaterialPrefixes.CABLE, "cableGt01",
-                MaterialPrefixes.DOUBLE_CABLE, "cableGt02",
-                MaterialPrefixes.QUADRUPLE_CABLE, "cableGt04",
-                MaterialPrefixes.OCTUPLE_CABLE, "cableGt08",
-                MaterialPrefixes.DODECUPLE_CABLE, "cableGt12").get(form);
+        String specification =
+                ElectricalConductorCatalog.specificationFor(form);
         return specification != null
                         && material.gt6Metadata()
                                 .map(metadata -> metadata

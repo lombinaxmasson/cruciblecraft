@@ -259,6 +259,20 @@ public class ClientSetup {
         event.register(GtBlockDyeColor.blockColor(), GtBlockDyeColor.tintedBlocks());
         event.register(
                 (state, level, pos, tintIndex) -> {
+                    if (tintIndex != 0
+                            || !(state.getBlock()
+                                    instanceof com.masson.cruciblecraft.content.block
+                                            .RedstoneWireBlock wire)) {
+                        return 0xFFFFFFFF;
+                    }
+                    return com.masson.cruciblecraft.material.MaterialCatalog
+                            .find(wire.kind().materialId())
+                            .map(material -> 0xFF000000 | material.colorRgb())
+                            .orElse(0xFFFFFFFF);
+                },
+                ModBlocks.redstoneWireBlockArray());
+        event.register(
+                (state, level, pos, tintIndex) -> {
                     if (tintIndex != 0) {
                         return 0xFFFFFFFF;
                     }

@@ -36,6 +36,205 @@
     },
     {
       "depends_on": [
+        "content/gt6-fluid-pipe-runtime",
+        "content/gt6-item-pipe-runtime",
+        "content/gt6-eu-wire-cable-runtime"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6连接件美术详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModBlockStateProvider.java",
+        "src/test/java/com/masson/cruciblecraft/datagen/PipeCableVisualResourceTest.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/ConnectorArtGameTests.java",
+        "src/main/resources/assets/cruciblecraft/gt6_fluid_pipe_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/gt6_item_pipe_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/gt6_eu_wire_cable_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/materialicons/copper/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/iconsets/**",
+        "src/main/resources/assets/cruciblecraft/models/item/fluid_pipe_tile/**",
+        "src/main/resources/assets/cruciblecraft/models/item/item_pipe_tile/**",
+        "src/main/resources/assets/cruciblecraft/models/item/electric_wire/**",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_connector_art/**",
+        "tools/capabilities/content/gt6-connector-art/**",
+        "tools/waves/content/gt6-connector-art/**",
+        "tools/gt6_connector_art.py",
+        "tools/build_gt6_connector_art.py",
+        "tools/tests/test_gt6_connector_art.py"
+      ],
+      "path": "tools/capabilities/content/gt6-connector-art/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-connector-art",
+      "title": "GT6 Connector Art",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "content/electric-wire-cable-mte-fold",
+        "registry/catalog-modern-ids"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6导线电缆运行时详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/energy/cable/ElectricalConductorCatalog.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/CableBlock.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModBlockStateProvider.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModBlockLootTables.java",
+        "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/EuWireCableRuntimeGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_eu_wire_cable_runtime/**",
+        "tools/capabilities/content/gt6-eu-wire-cable-runtime/**",
+        "tools/waves/content/gt6-eu-wire-cable-runtime/**",
+        "tools/gt6_eu_wire_cable_runtime.py",
+        "tools/build_gt6_eu_wire_cable_runtime.py",
+        "tools/tests/test_gt6_eu_wire_cable_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-eu-wire-cable-runtime/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-eu-wire-cable-runtime",
+      "title": "GT6 EU Wire/Cable Runtime",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6流体管运行时详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/FluidPipeBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalog.java",
+        "src/main/java/com/masson/cruciblecraft/logistics/pipe/PipeTransferPhase.java",
+        "src/main/java/com/masson/cruciblecraft/logistics/pipe/fluid/FluidPipeBlockedMedia.java",
+        "src/main/java/com/masson/cruciblecraft/logistics/pipe/fluid/FluidPipeCadence.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/FluidPipeRuntimeGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_fluid_pipe_runtime/**",
+        "tools/capabilities/content/gt6-fluid-pipe-runtime/**",
+        "tools/waves/content/gt6-fluid-pipe-runtime/**",
+        "tools/gt6_fluid_pipe_runtime.py",
+        "tools/build_gt6_fluid_pipe_runtime.py",
+        "tools/tests/test_gt6_fluid_pipe_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-fluid-pipe-runtime/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-fluid-pipe-runtime",
+      "title": "GT6 Fluid Pipe Runtime",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6物品管运行时详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/ItemPipeBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/ItemPipeBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/AbstractPipeBlock.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/ItemPipeRuntimeGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_item_pipe_runtime/**",
+        "tools/capabilities/content/gt6-item-pipe-runtime/**",
+        "tools/waves/content/gt6-item-pipe-runtime/**",
+        "tools/gt6_item_pipe_runtime.py",
+        "tools/build_gt6_item_pipe_runtime.py",
+        "tools/tests/test_gt6_item_pipe_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-item-pipe-runtime/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-item-pipe-runtime",
+      "title": "GT6 Item Pipe Runtime",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "content/mte-redstone-wire"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6红石线行为校正详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/RedstoneWireBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/redstonewire/RedstoneWireSinks.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/RedstoneWireCorrectionGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_redstone_wire_correction/**",
+        "tools/capabilities/content/gt6-redstone-wire-correction/**",
+        "tools/waves/content/gt6-redstone-wire-correction/**",
+        "tools/tests/test_gt6_redstone_wire_correction.py"
+      ],
+      "path": "tools/capabilities/content/gt6-redstone-wire-correction/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-redstone-wire-correction",
+      "title": "GT6 Redstone Wire Correction",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/MTE红石线详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/RedstoneWireBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/RedstoneWireBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/item/RedstoneWireBlockItem.java",
+        "src/main/java/com/masson/cruciblecraft/content/redstonewire/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/RedstoneWireGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+        "src/main/resources/data/cruciblecraft_wave_content_mte_redstone_wire/**",
+        "src/main/resources/assets/cruciblecraft/gt6_redstone_wire_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/materialicons/copper/**",
+        "src/main/resources/assets/cruciblecraft/models/block/redstone_wire/**",
+        "src/main/resources/assets/cruciblecraft/blockstates/red_alloy/wire.json",
+        "src/main/resources/assets/cruciblecraft/blockstates/signalum/wire.json",
+        "src/main/resources/assets/cruciblecraft/blockstates/lumium/wire.json",
+        "src/main/resources/assets/cruciblecraft/models/item/red_alloy/wire.json",
+        "src/main/resources/assets/cruciblecraft/models/item/signalum/wire.json",
+        "src/main/resources/assets/cruciblecraft/models/item/lumium/wire.json",
+        "src/main/resources/data/cruciblecraft/loot_table/blocks/red_alloy/wire.json",
+        "src/main/resources/data/cruciblecraft/loot_table/blocks/signalum/wire.json",
+        "src/main/resources/data/cruciblecraft/loot_table/blocks/lumium/wire.json",
+        "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json",
+        "src/main/resources/data/cruciblecraft/tags/item/smelter_mte_items.json",
+        "tools/catalog_modern_id_map.json",
+        "tools/catalog_modern_ids.py",
+        "tools/capabilities/content/mte-redstone-wire/**",
+        "tools/smelter_mte_identity_catalog.json",
+        "tools/tests/test_catalog_modern_ids.py",
+        "tools/tests/test_mte_redstone_wire.py",
+        "tools/tests/test_smelter_mte_identity.py",
+        "tools/waves/content/mte-redstone-wire/**",
+        "tools/waves/machines/melter/lock_candidate.json",
+        "tools/waves/machines/melter/production_lock.json",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/melter/melter/gt_recipe_melter_0000.json",
+        "tools/waves/machines/melter/source.json",
+        "tools/waves/machines/melter/source_receipt.json",
+        "tools/waves/machines/melter/source_review.json",
+        "tools/waves/prep/mte-redstone-wire/**"
+      ],
+      "path": "tools/capabilities/content/mte-redstone-wire/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/mte-redstone-wire",
+      "title": "MTE Redstone Wire",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "content/technological-parts-foundation"
       ],
       "maturity": "runtime_ready",
@@ -968,7 +1167,7 @@
       "depends_on": [],
       "maturity": "runtime_ready",
       "owned_paths": [
-        "docs/history/card-plans/active/目录身份现代id详细计划.md",
+        "docs/history/card-plans/closed/目录身份现代id详细计划.md",
         "tools/catalog_modern_ids.py",
         "tools/catalog_modern_id_map.json",
         "tools/tests/test_catalog_modern_ids.py",
@@ -991,7 +1190,7 @@
       ],
       "slug": "registry/catalog-modern-ids",
       "title": "Catalog modern IDs",
-      "workflow": "active"
+      "workflow": "accepted"
     },
     {
       "depends_on": [],
@@ -1111,7 +1310,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 33,
+  "capability_count": 39,
   "declared_player_complete": [
     "energy/batteries",
     "energy/converter-catalog",
@@ -1131,7 +1330,31 @@
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
     "content/electric-wire-cable-mte-fold": [
-      "content/electric-wire-cable-mte-fold"
+      "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-art",
+      "content/gt6-eu-wire-cable-runtime"
+    ],
+    "content/gt6-connector-art": [
+      "content/gt6-connector-art"
+    ],
+    "content/gt6-eu-wire-cable-runtime": [
+      "content/gt6-connector-art",
+      "content/gt6-eu-wire-cable-runtime"
+    ],
+    "content/gt6-fluid-pipe-runtime": [
+      "content/gt6-connector-art",
+      "content/gt6-fluid-pipe-runtime"
+    ],
+    "content/gt6-item-pipe-runtime": [
+      "content/gt6-connector-art",
+      "content/gt6-item-pipe-runtime"
+    ],
+    "content/gt6-redstone-wire-correction": [
+      "content/gt6-redstone-wire-correction"
+    ],
+    "content/mte-redstone-wire": [
+      "content/gt6-redstone-wire-correction",
+      "content/mte-redstone-wire"
     ],
     "content/sensors": [
       "content/sensors"
@@ -1144,6 +1367,8 @@
     ],
     "energy/batteries": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-art",
+      "content/gt6-eu-wire-cable-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
@@ -1168,6 +1393,8 @@
     ],
     "energy/converter-catalog": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-art",
+      "content/gt6-eu-wire-cable-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
@@ -1193,6 +1420,8 @@
     ],
     "energy/heat-exchangers": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-art",
+      "content/gt6-eu-wire-cable-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/heat-exchangers",
@@ -1212,6 +1441,8 @@
     ],
     "energy/nuclear-fission-hot-fluids": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-art",
+      "content/gt6-eu-wire-cable-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/heat-exchangers",
@@ -1236,6 +1467,8 @@
     ],
     "energy/nuclear-fission-survival": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-art",
+      "content/gt6-eu-wire-cable-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/heat-exchangers",
@@ -1258,6 +1491,8 @@
     ],
     "energy/transformers": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-art",
+      "content/gt6-eu-wire-cable-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/heat-exchangers",
@@ -1281,6 +1516,8 @@
     ],
     "logistics/cover-net-r0": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-art",
+      "content/gt6-eu-wire-cable-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
@@ -1316,6 +1553,8 @@
     ],
     "logistics/display-cpu": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-art",
+      "content/gt6-eu-wire-cable-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
@@ -1342,6 +1581,8 @@
     ],
     "logistics/fluid-network/basic-transfer": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-art",
+      "content/gt6-eu-wire-cable-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
@@ -1371,6 +1612,8 @@
     ],
     "logistics/generic-network/core": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-art",
+      "content/gt6-eu-wire-cable-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
@@ -1399,6 +1642,8 @@
     ],
     "logistics/item-network-core": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-art",
+      "content/gt6-eu-wire-cable-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
@@ -1429,6 +1674,8 @@
     ],
     "logistics/logistics-core": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-art",
+      "content/gt6-eu-wire-cable-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
@@ -1466,10 +1713,14 @@
     ],
     "machines/laminator": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-art",
+      "content/gt6-eu-wire-cable-runtime",
       "machines/laminator"
     ],
     "machines/loom": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-art",
+      "content/gt6-eu-wire-cable-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "machines/loom",
@@ -1478,10 +1729,14 @@
     ],
     "machines/melter": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-art",
+      "content/gt6-eu-wire-cable-runtime",
       "machines/melter"
     ],
     "machines/nanofab": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-art",
+      "content/gt6-eu-wire-cable-runtime",
       "machines/nanofab"
     ],
     "machines/oven": [
@@ -1492,6 +1747,8 @@
     ],
     "machines/roll-former": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-art",
+      "content/gt6-eu-wire-cable-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "machines/cluster-mill",
@@ -1519,6 +1776,12 @@
       "worldgen/gt-trees"
     ],
     "registry/catalog-modern-ids": [
+      "content/gt6-connector-art",
+      "content/gt6-eu-wire-cable-runtime",
+      "content/gt6-fluid-pipe-runtime",
+      "content/gt6-item-pipe-runtime",
+      "content/gt6-redstone-wire-correction",
+      "content/mte-redstone-wire",
       "registry/catalog-modern-ids"
     ],
     "registry/tool-head-prefix-reclaim": [
@@ -1538,6 +1801,12 @@
   "profiles": {
     "capability-runtime": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-art",
+      "content/gt6-eu-wire-cable-runtime",
+      "content/gt6-fluid-pipe-runtime",
+      "content/gt6-item-pipe-runtime",
+      "content/gt6-redstone-wire-correction",
+      "content/mte-redstone-wire",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
@@ -1590,5 +1859,5 @@
   },
   "progress_rule": "declaration is not proof; player_complete requires fresh GameTestServer execution; runClient is required on promotion",
   "schema_version": 2,
-  "unique_active_slug": "registry/catalog-modern-ids"
+  "unique_active_slug": null
 }

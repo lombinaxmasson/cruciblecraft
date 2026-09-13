@@ -21,7 +21,13 @@ class ProjectStatusTest(unittest.TestCase):
         text = project_status.render_status(compiled)
         self.assertIn("# 项目状态", text)
         self.assertIn("不要手改", text)
-        self.assertEqual("registry/catalog-modern-ids", compiled["unique_active_slug"])
+        unique = compiled["unique_active_slug"]
+        if unique is None:
+            self.assertIn("没有 `workflow=active`", text)
+        else:
+            self.assertIn(f"`{unique}`", text)
+            self.assertIn("`workflow=active`", text)
+        self.assertIn("`content/mte-redstone-wire`", text)
         self.assertIn("`registry/catalog-modern-ids`", text)
         self.assertIn("`logistics/cover-remainder`", text)
         self.assertIn("`worldgen/gt-trees`", text)

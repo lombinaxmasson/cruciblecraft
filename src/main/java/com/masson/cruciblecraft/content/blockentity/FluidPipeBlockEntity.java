@@ -14,6 +14,8 @@ import com.masson.cruciblecraft.logistics.pipe.cover.CoverBehavior;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinition;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverSet;
+import com.masson.cruciblecraft.logistics.pipe.fluid.FluidPipeBlockedMedia;
+import com.masson.cruciblecraft.logistics.pipe.fluid.FluidPipeCadence;
 import com.masson.cruciblecraft.logistics.pipe.fluid.FluidPipeFailureState;
 import com.masson.cruciblecraft.logistics.pipe.fluid.FluidPipeFailureState.Failure;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
@@ -40,7 +42,9 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 
 /**
- * GTM-style per-segment fluid buffer with deterministic local distribution.
+ * GT6 per-segment fluid buffer. Pipe-to-pipe distribution runs every server
+ * tick ({@code SERVER_TICK_PRE}/{@code PR2}); cover pumps stay on the shared
+ * five-tick logistics phase.
  */
 public final class FluidPipeBlockEntity extends BlockEntity {
     public static final int TRANSFER_INTERVAL =
@@ -108,14 +112,12 @@ public final class FluidPipeBlockEntity extends BlockEntity {
         }
         pipe.rollMetrics(level.getGameTime());
         pipe.rollMetricWindow(level.getGameTime());
-        boolean transferTick = PipeTransferPhase.isDue(
-                level.getGameTime(), pos);
-        if (transferTick) {
+        if (PipeTransferPhase.isDue(level.getGameTime(), pos)) {
             pipe.tickCovers(level);
-            pipe.distribute(level);
-            pipe.receivedFrom = null;
-            pipe.receivedAtTick = Long.MIN_VALUE;
         }
+        pipe.distribute(level);
+        pipe.receivedFrom = null;
+        pipe.receivedAtTick = Long.MIN_VALUE;
         pipe.flushClientSync(level.getGameTime());
     }
 
@@ -304,6 +306,8 @@ public final class FluidPipeBlockEntity extends BlockEntity {
             FluidStack simulated =
                     source.drain(limit, IFluidHandler.FluidAction.SIMULATE);
             if (simulated.isEmpty()
+                    || FluidPipeBlockedMedia.rejects(
+                            simulated, pipe().pipe().fluid())
                     || validateFluid(simulated) != Failure.NONE
                     || !matches(matchId, simulated)
                     || !covers.matches(side, simulated)
@@ -377,7 +381,7 @@ public final class FluidPipeBlockEntity extends BlockEntity {
         if (tank.isEmpty()) {
             return;
         }
-        Direction[] directions = Direction.values();
+        Direction[] directions = FluidPipeCadence.scanOrder(worldPosition);
         int start = Math.floorMod(nextOutput++, directions.length);
         int remaining = transferLimit();
         for (int index = 0;
@@ -539,8 +543,8 @@ public final class FluidPipeBlockEntity extends BlockEntity {
         return Failure.NONE;
     }
 
-    private int transferLimit() {
-        return Math.max(1, Math.min(tank.getCapacity(), 8_000));
+    public int transferLimit() {
+        return Math.max(1, tank.getCapacity());
     }
 
     private void recordFailure(Failure failure, long amount) {
@@ -845,6 +849,8 @@ public final class FluidPipeBlockEntity extends BlockEntity {
                             tank.getFluidAmount(),
                             tank.getCapacity())
                     && covers.matches(side, stack)
+                    && !FluidPipeBlockedMedia.rejects(
+                            stack, pipe().pipe().fluid())
                     && validateFluid(stack) == Failure.NONE;
         }
 
@@ -859,6 +865,10 @@ public final class FluidPipeBlockEntity extends BlockEntity {
                             tank.getFluidAmount(),
                             tank.getCapacity())
                     || !covers.matches(side, resource)) {
+                return 0;
+            }
+            if (FluidPipeBlockedMedia.rejects(
+                    resource, pipe().pipe().fluid())) {
                 return 0;
             }
             Failure failure = validateFluid(resource);

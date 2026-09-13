@@ -39,7 +39,7 @@
         "cruciblecraft:tin/wire",
         "cruciblecraft:tin/cable"
       ],
-      "reason": "Loader addElectricWires ids fold onto already-registered CC conductor items and blocks. Scatter gt_mte identities are not recipe objects."
+      "reason": "Loader addElectricWires recipe operands reuse already-registered CC conductor items or blocks. Catalog scatter identities are not recipe objects; this does not prove their placeable BlockItem identity is folded."
     },
     {
       "semantic_key": "mte:electric-wire-cable:unregistered-gauges",
@@ -48,5 +48,5 @@
       "reason": "Superconductor wires and unregistered graphene/high-gauge forms stay unmapped. No wrong-gauge or scatter stand-in."
     }
   ],
-  "note": "Fold 30 addElectricWires invocations onto census-registered CC conductors. Laminator live 438/60; loom 465/869; nanofab overflow stays 57; melter stays 3973/2783 after replacing scatter wire operands. Closed at runtime_ready, not player_complete. 61 Loader ids stay unmapped."
+  "note": "Fold 30 addElectricWires recipe invocations onto census-registered CC conductors. Laminator live 438/60; loom 465/869; nanofab overflow stays 57; melter stays 3973/2783 after replacing scatter wire operands. Closed at runtime_ready, not player_complete. 61 Loader ids stay unmapped. Mapped is not a dummy-removal set: connector runtime must distinguish a live BlockItem from an item-only form per prep index §0.1."
 }

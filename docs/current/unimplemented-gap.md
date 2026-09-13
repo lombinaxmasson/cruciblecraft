@@ -22,10 +22,15 @@
 
 - unique-active 以 [project-status.md](project-status.md) 为准，本页不复述；
   prep 是 `machines/printer`、
-  `worldgen/gt-dungeon`、`worldgen/gt-planet-rocks`、`worldgen/gt-center`。
+  `worldgen/gt-dungeon`、`worldgen/gt-planet-rocks`、`worldgen/gt-center`，
+  以及 `content/mte-prep-index` 下 12 张 MTE 家族 prep 卡。
   地牢已退回 prep，结构载体仍在仓库里，但房间几何与 GT 石材形态未完成，
   不得宣称 `runtime_ready`。
   具体状态见 [project-status.md](project-status.md)。
+- 跨域审计 [GT6 管道与线缆语义重基线](../history/card-plans/closed/GT6管道与线缆语义重基线详细计划.md)
+  已关闭（无 capability）。它冻结了 GTCEu 不得覆盖 GT6、四套网络隔离、
+  以及 catalog 666 行 live/dummy 处置；流体/物品/EU/红石 runtime 仍须
+  按该卡 envelope 另开 child，不得再把 GTCEu 合同当成 GT6。
 - `player_complete` 清单只看 [project-status.md](project-status.md)，不在本页复制。
 - catalog **1,817 个 MTE 身份**是独立的身份分母，不等于机器 overflow，也不等于
   1,817 个待实现机制；详见第 0.1 节。
@@ -41,8 +46,9 @@
 | MTE 身份分母 | [`disposition_ledger.json`](../../tools/waves/portfolio/mte-identity-disposition-r0/disposition_ledger.json) / [`family_map.json`](../../tools/waves/portfolio/mte-identity-disposition-r0/family_map.json) |
 | 机器尾账 | 各 `tools/waves/machines/**/readiness.json`、`overflow.json` |
 | GT6 语义与形态 | 本地 `gt6_code/gregtech6` 与对应 source-backed artifact |
+| GT6 贴图迁移 | [gt6-art-policy.md](gt6-art-policy.md) 与本地 `gt6_referencable_port_code/gregtech6_w` |
 
-## 0.1 分类总览（2026-09-11）
+## 0.1 分类总览（2026-09-12）
 
 人读索引，不是 production authority。数字以各波 `readiness.json` /
 `overflow.json`、[project-status.md](project-status.md)、
@@ -76,7 +82,7 @@
 | 熔炉 `machines/oven` | `runtime_ready`（已关） | 四档 `source_exact` Heat_T | dump `mc.recipe.furnace` **0**；live 为原版 `SMELTING` 快照 | 烹饪油肉类加成与 XP 流体 blocked。不替换原版熔炉方块。20001–20003 不在 R0 ledger。关闭目标不是 `player_complete` |
 | Sensors `content/sensors` | 已关 `runtime_ready` | 21 个 GT6 Sensor MTE | 无 RecipeMap | Electro_Meter / Tacho_Meter 与 Gibbl/质量/转速已按真实对象接入。ComputerCraft 外设仍 blocked。不得宣称 `player_complete` |
 | 印刷机 `machines/printer` | **prep** | 五档 `source_exact` | dump 22 / selected **0** / overflow **22** | 全部 `fluid dye.chemical.*`，`out_of_scope_g10_dyeing`。无 live family。盖板 `compact_electric_conveyor_*` **就是** `IL.CONVEYERS` 槽 |
-| 导线电缆 MTE 折回 `content/electric-wire-cable-mte-fold` | `runtime_ready` | — | Loader id mapped **259** / unmapped **61** | 只折配方操作数里已有 CC conductor 的电导线/电缆；不等于 catalog 1,817 |
+| 导线电缆 MTE 折回 `content/electric-wire-cable-mte-fold` | `runtime_ready` | — | Loader id mapped **259** / unmapped **61** | 只折配方操作数；mapped 不是 dummy 删除集合，须另判 live BlockItem。不等于 catalog 1,817 已折完 |
 
 切片机 / 注射机 / 织机 **不再卡 0–5 档电机、活塞、传送带**。橡胶板当前仍走
 `press/slime_ball_to_rubber_plate`（`component_rules.json`：
@@ -89,19 +95,39 @@
 权威：[`disposition_ledger.json`](../../tools/waves/portfolio/mte-identity-disposition-r0/disposition_ledger.json)
 与 [`family_map.json`](../../tools/waves/portfolio/mte-identity-disposition-r0/family_map.json)。
 R0 计划 [MTE 身份分母处置 R0](../history/card-plans/closed/MTE身份分母处置R0详细计划.md)。
-这是 `gt_mte/mte_*` catalog **holdable 身份**，不是加工机 overflow 行数。
+这是原 `gt_mte/mte_*`、现由 `catalog_modern_id_map.json` 定址的 catalog
+**holdable 身份**，不是加工机 overflow 行数。
 其中 `identity_only` 是没有行为的散落 / 展示身份，`attachment_candidate` 是仍缺
-runtime 的附件行为；只有 `realized_natively` 已由 CC 的具名机制覆盖。
+runtime 的附件行为；`realized_natively` 只说明 CC 在该领域有具名机制，
+不等于该 meta 已与 live item / block 合并。
 因此不得把 1,817 写成 1,817 个已实现机制，也不得把它们全部当成同一种待办。
 现已新增 [MTE 全量 Prep 总索引](../history/card-plans/prep/MTE全量Prep总索引.md)
-与 12 张家族 prep 卡；索引引用 R0 ledger 的逐行全量事实，其中 1,540 行进入
-后续规划，277 行保留为 `realized_natively` 审计项。prep 卡只冻结来源、
-所有权、依赖和 blocked 边界，不创建 capability 或 runtime。
+与 12 张家族 prep 卡；索引引用当前 ledger 的逐行事实，其中 1,534 行进入
+后续规划，283 行保留为 `realized_natively` 审计项。prep 卡只冻结来源、
+所有权、依赖、blocked 边界和 **物品重复/贴图终态（索引 §0.1）**，不创建
+capability 或 runtime，也不复制 png。
+
+`registry/catalog-modern-ids` 改名时不合并活主机，所以现在会同时存在活形态
+（`{材料}/fluid_pipe` 等）与 dummy（`fluid_pipe_tile/…` 等，铁锭模型）。
+这不是产品终态。JEI 双物品是债。runtime child 必须逐 meta 比较 Loader
+注册、材料/class/spec、live item 与 live block。精确 live BlockItem 才完整
+折回；配方只能映射到普通 item 时，仍须解决可放置身份；像但不是或没有宿主
+则在现代 dummy id 上原地实现并迁 `gregtech6_w`。铁锭不是可发行美术。
+`registry/catalog-modern-ids` 已关 `runtime_ready`。24 个 Bath 重叠
+`existing_item` 指向 Bath 已注册 dummy；meta 25302 Osmium 现为
+`item_pipe_tile/osmium_elemental`。
+
+`content/gt6-pipe-cable-baseline` 已关闭 prep 审计（无 capability）。
+权威在 [GT6 管道与线缆语义重基线](../history/card-plans/closed/GT6管道与线缆语义重基线详细计划.md)
+与 `tools/waves/content/gt6-pipe-cable-baseline/`。它冻结了 GTCEu 不得覆盖
+GT6、四套网络隔离、以及 catalog 666 行的 live/dummy 处置；**没有**把流体管、
+物品管、EU 线或红石线晋级为新的 `player_complete`。后续 child 必须按该卡
+envelope 分开落地，禁止 stand-in。
 
 | disposition | 个数 | 含义 |
 | --- | --- | --- |
-| `identity_only` | **1,507** | 已注册散落物 / 展示身份。R0 不要求补行为或配方；后续卡可以再分类，不得把散落物折进配方当机器 |
-| `realized_natively` | **277** | CC 已有具名原生机制（加工机 kind、坩埚/模具、Dust Funnel、Bath 46 等）。本身份仍是遗留 `gt_mte` 行，不是那台方块 |
+| `identity_only` | **1,501** | 已注册散落物 / 展示身份（多数仍是铁锭模型）。这不是“永不折回”：管/线、能源转换机、部分加工机和储物仍须逐 meta 对 live host |
+| `realized_natively` | **283** | CC 在该领域已有机制，但可能是 already_shared、精确重复或仅相似机制；不能整类自动折回 |
 | `attachment_candidate` | **33** | 流体附件：浇铸口 22 / 流体龙头 3 / 喷嘴 2 / 帽喷嘴 3 / 流体漏斗 3。行为 `requires_new_runtime`；游戏里没有龙头/喷嘴/漏斗/浇铸口 |
 | `deferred` | 0 | — |
 | **合计** | **1,817** | `unmatched = 0` |
@@ -127,9 +153,20 @@ runtime 的附件行为；只有 `realized_natively` 已由 CC 的具名机制�
 | untyped | 1 | Untyped |
 
 导线电缆折回卡只处理 **配方操作数** 里已有 CC conductor 的 Loader id
-（mapped **259** / unmapped **61**），不把 `identity_only` 散落物折成机器。
-流体管、物品管、轴/齿轮箱、红石线、家具箱柜仍是散落物。织机 / 层压机剩余
+（mapped **259** / unmapped **61**），**没有**撤掉对应散落 dummy。
+mapped 还包含 catalog 外 id 和只有普通 item、没有 BlockItem 的规格，不能
+机械当 dummy 删除集合。连接件 runtime 只折回精确 live BlockItem；item-only
+规格必须先解决 canonical item 的 BlockItem 升级。流体管、物品管同样按
+meta/material/kind/size 对 PipeCatalog；未注册规格保持 dummy + 迁图。
+轴/齿轮箱与红石线对 KU / 原版红石是「像但不是」，keep-both + 迁 GT6 图。
+家具中的 Chest/Safe/Table/Scaffold 无宿主；Bookshelf/Crate/Locker/Drawer/
+Mass Storage 先对 `storage_variants.source_legacy_id`。织机 / 层压机剩余
 unmapped MTE 行是缺规格或未注册材料，不是这 1,817 里「已经折完」的证明。
+
+283 个 `realized_natively` 的去重审计仍有明确入口：connector 46、hopper 101、
+crucible_foundry 85、processing_machine 50、reactor 1。特别是
+`realized_natively` 不能把材料化 Smeltery/Mold 折进单一陶瓷坩埚，也不能把
+错误 kind 的加工机按名称吞掉。
 
 ### LuV–PUV1 技术零件（延期，另立专卡）
 
@@ -188,9 +225,10 @@ GT6 紧凑零件循环是 `VN[0..9]`：ULV, LV, MV, HV, EV, IV, **LuV, ZPM, UV, 
 ### 路线结论
 
 1. 树已关 `runtime_ready`，不宣称 `player_complete`，不把 LuV–PUV1 拉进下一张卡。
-2. catalog **1,817** 个 MTE 身份已登记：1,507 仍是散落物，277 是遗留 `gt_mte` 行
-   （CC 另有原生机制），33 个流体附件要新 runtime。现已按家族完成 12 张
-   prep 卡和一张全量索引；它们冻结规划，不是 runtime 实现。
+2. catalog **1,817** 个 MTE 身份已登记：1,501 个 `identity_only`、283 个
+   `realized_natively`、33 个流体附件。R0 disposition 与物品去重是两条轴；
+   全部 1,817 行都要逐 meta 的 live item/live block、迁图和存档处置。
+   12 张 prep + 索引已冻结合同，仍不是 runtime 实现。
 3. 有对应高压主机（LuV 加工机、晶体充电器等）和能源路线之前，高压零件另立专卡；
    不得用 `programmed_circuit` 或错误线规顶缺格。
 4. Sensors 已关 `runtime_ready`，不宣称 `player_complete`。行星岩 / Center 已签发 prep，排队不占落地锁。
@@ -218,7 +256,7 @@ runtime / 内容卡，不把关闭冻结卡当成实现证明。
 | Crops | `portfolio/crops-food-bees-r0` | `plant.glowtus` / `plant.bush` + dump `gt.recipe.squeezer` 5322（规模，非 census） | `requires_new_runtime` | [`feasibility.json`](../../tools/waves/portfolio/crops-food-bees-r0/feasibility.json) |
 | Food | 同上 | dump juicer 96 + fermenter 6435（规模，非 census） | `requires_new_runtime` | 同上 |
 | Bees | 同上 | `WorldgenHives` 10 + bumblequeen 80 + bumblelyzer 1440（规模，非 census） | `requires_new_runtime` | 同上 |
-| 流体附件（catalog 33） | `content/mte-fluid-attachments` | catalog 浇铸口 22 / 流体龙头 3 / 喷嘴 2 / 帽喷嘴 3 / 流体漏斗 3 的**行为** | prep 已冻结，仍为 `requires_new_runtime`；游戏里仍然没有龙头 / 流体龙头 / 喷嘴 / 流体漏斗 / 浇铸口。邻接模具浇铸仍是现有简化路径；未来 runtime child 必须单独回答 host、face placement、四类行为和生存获得格。 | [`MTE流体附件详细计划`](../history/card-plans/prep/MTE流体附件详细计划.md)；[`feasibility.json`](../../tools/waves/portfolio/mte-identity-disposition-r0/feasibility.json) |
+| 流体附件（catalog 33） | `content/mte-fluid-attachments` | catalog 浇铸口 22 / 流体龙头 3 / 喷嘴 2 / 帽喷嘴 3 / 流体漏斗 3 的**行为** | prep 已冻结，仍为 `requires_new_runtime`；游戏里仍然没有龙头 / 流体龙头 / 喷嘴 / 流体漏斗 / 浇铸口。邻接模具浇铸仍是现有简化路径；未来 runtime child 必须单独回答 host、face placement、四类行为、生存获得格，并在 dummy 现代 id 上原地替换、迁 `gregtech6_w`（禁止 alias 管道盖板）。 | [`MTE流体附件详细计划`](../history/card-plans/prep/MTE流体附件详细计划.md)；[`feasibility.json`](../../tools/waves/portfolio/mte-identity-disposition-r0/feasibility.json) |
 
 `GENERIC_RECIPE_IMPORT_READY` 只表示已有 host 时可以 `import-source`，不创建新的
 RecipeMap，也不实现封面网或世界内容。Prep 与已完成 capability 的状态只看

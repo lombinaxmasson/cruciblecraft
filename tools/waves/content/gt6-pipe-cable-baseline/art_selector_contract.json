@@ -1,0 +1,78 @@
+{
+  "already_imported": {
+    "redstone_manifest": "src/main/resources/assets/cruciblecraft/gt6_redstone_wire_art_manifest.json",
+    "redstone_wire": true
+  },
+  "cable_layers": "wire.png + iconsets/insulation_{tiny,small,medium,large,huge}.png",
+  "destination_family": "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/",
+  "do_not_copy_per_meta": true,
+  "iconset_count": 41,
+  "java_tick_hashes": {
+    "src/main/java/gregapi/tileentity/connectors/ITileEntityRedstoneWire.java": "191c58b9bb61d48d2cd8d07f493157c3a4f6968ebc644114577e0b09a2b47717",
+    "src/main/java/gregapi/tileentity/connectors/MultiTileEntityPipeFluid.java": "3a6850055375e7975145b03abab44c5922746a6f4053dd8d3163de989f37b110",
+    "src/main/java/gregapi/tileentity/connectors/MultiTileEntityPipeItem.java": "0e9aa956b807d8390b20dd70f224b2b8d0a7be8df25fe66660abffda8b88069b",
+    "src/main/java/gregapi/tileentity/connectors/MultiTileEntityWireElectric.java": "60dd3bf9147a220ab327a1aed3f0081382678eb0d6190e865e84e1b7dae89724",
+    "src/main/java/gregapi/tileentity/connectors/MultiTileEntityWireRedstone.java": "cd79da42bb5b24a211615bb25edb653995c867f7404928f40d8e6f73ca59ec15",
+    "src/main/java/gregapi/tileentity/connectors/MultiTileEntityWireRedstoneInsulated.java": "4f93b8caf163e85f0560bfba5934bb42e76c39caf9a954c279cfcb10af49b8c2",
+    "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java": "96f579dd5c0a26a759ddee34c312dadbc5d52123e2b85e82da6a40f68b494393"
+  },
+  "manifest_fields": [
+    "source",
+    "gt6_source",
+    "destination",
+    "sha256",
+    "runtime_ids"
+  ],
+  "no_dedicated_cable_png": true,
+  "pipe_layers": "pipetiny|small|medium|large|huge|quadruple|nonuple|side + *_overlay.png",
+  "placeholder_forbidden": [
+    "multiblock_casing",
+    "pipe_filter_cover",
+    "conveyor_cover",
+    "minecraft:item/iron_ingot"
+  ],
+  "player_complete_requires_art": true,
+  "present": {
+    "iconsets/insulation_huge.png": true,
+    "iconsets/insulation_large.png": true,
+    "iconsets/insulation_medium.png": true,
+    "iconsets/insulation_small.png": true,
+    "iconsets/insulation_tiny.png": true,
+    "iconsets/pipe_restrictor.png": true,
+    "pipehuge.png": true,
+    "pipelarge.png": true,
+    "pipemedium.png": true,
+    "pipenonuple.png": true,
+    "pipequadruple.png": true,
+    "pipeside.png": true,
+    "pipesmall.png": true,
+    "pipetiny.png": true,
+    "pipetiny_overlay.png": true,
+    "wire.png": true,
+    "wire_overlay.png": true
+  },
+  "sample_hashes": {
+    "iconsets/insulation_huge.png": "081ae186c680cccc6cd602558cfb4baef9f5a150ba9583d27ad72f2f410e74ce",
+    "iconsets/insulation_large.png": "4154396a428bfd2a4c020b784a877268cb1ac72ddb9c5e7b5a7f6c32f0d53434",
+    "iconsets/insulation_medium.png": "fb3c6765612def8793fad6fe4c203b38b87226f1044c0ecdb27c2a87cf0aeb97",
+    "iconsets/insulation_small.png": "5332c96d9c4af24985a10a954547d3608fe33bdd803b16ee42cef9bd38a9b207",
+    "iconsets/insulation_tiny.png": "7835cf39b86904ee279b7656c1ed080ed736f47efe2e164cb908726c93fd6e42",
+    "iconsets/pipe_restrictor.png": "a4475239dde4c56f32edd83170659de295b39a9b7f01fcabf9800e86767ebbdf",
+    "materialicons/copper/pipehuge.png": "0d68c9cb4e02877ab952d3c32e1d91623fab96845010a5840b77a7c6677b9fba",
+    "materialicons/copper/pipelarge.png": "49a2a50437bae92289c6e3606f86698e6a6c9389489093e21d6ed2ebcfb1c75d",
+    "materialicons/copper/pipemedium.png": "7fec3da0c971cc6c0aaa732111a8fba640c1e11a361388f0589d7c09cc3c37fc",
+    "materialicons/copper/pipenonuple.png": "6a25297793ec9083bf2fbce04a070153734397b7bf45a0f82daa2018c267173e",
+    "materialicons/copper/pipequadruple.png": "de2fcf3894452c3a7244e755412d9cba67dc7e729802a02ed1005cf96e3f3f15",
+    "materialicons/copper/pipeside.png": "93307398f8105dcf985714999867029e39d2f108db35d59290d56fb61ccef8ee",
+    "materialicons/copper/pipesmall.png": "e9fe74166db46bbb1144f8122edd2cb6fc06058fb626fe3bcd55bfc050f14e93",
+    "materialicons/copper/pipetiny.png": "eb9136b5d7959d162125378c87c7044864dbc5d42982b78fe0ad0d5ade97ffc5",
+    "materialicons/copper/pipetiny_overlay.png": "0940268eecf5efbfa5d2ead4e701af85aad1c77849d06850003add66e433b5d4",
+    "materialicons/copper/wire.png": "d9343ea989b6585f8fea8ed6aba7db86f477bc7f63553db1f8d4d06794077bad",
+    "materialicons/copper/wire_overlay.png": "0940268eecf5efbfa5d2ead4e701af85aad1c77849d06850003add66e433b5d4"
+  },
+  "schema": "gt6-pipe-cable-art-selector-v1",
+  "shared_iconset": true,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_root": "gt6_referencable_port_code/gregtech6_w",
+  "this_card_copies_png": false
+}

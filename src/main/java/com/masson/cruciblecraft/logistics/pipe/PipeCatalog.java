@@ -24,6 +24,10 @@ import com.masson.cruciblecraft.material.def.MaterialDefinition;
 public final class PipeCatalog {
     public static final int MAX_RUNTIME_BLOCKS = 300;
 
+    /**
+     * Live fluid gauges only. GT6 {@code pipeQuadruple}/{@code pipeNonuple}
+     * stay unregistered and must not raise this budget.
+     */
     private static final Map<MaterialPrefix, String> FLUID_SPEC_BY_FORM =
             Map.of(
                     MaterialPrefixes.TINY_FLUID_PIPE, "pipeTiny",
@@ -31,6 +35,10 @@ public final class PipeCatalog {
                     MaterialPrefixes.FLUID_PIPE, "pipeMedium",
                     MaterialPrefixes.LARGE_FLUID_PIPE, "pipeLarge",
                     MaterialPrefixes.HUGE_FLUID_PIPE, "pipeHuge");
+    /**
+     * Ordinary medium/large/huge only. Restrictive gauges stay unregistered
+     * until a later in-place BlockItem child; do not raise this budget.
+     */
     private static final Map<MaterialPrefix, String> ITEM_SPEC_BY_FORM =
             Map.of(
                     MaterialPrefixes.ITEM_PIPE, "pipeMedium",
