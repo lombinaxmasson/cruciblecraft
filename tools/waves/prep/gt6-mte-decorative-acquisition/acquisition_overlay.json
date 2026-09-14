@@ -1,0 +1,27 @@
+{
+  "auto_promote_player_complete": false,
+  "blocker_id": "obtain/mte-inplace-runtime",
+  "capability_slug": "content/gt6-mte-decorative-acquisition",
+  "counts": {
+    "explicitly_blocked": 23,
+    "hosts": 24,
+    "source_exact": 1
+  },
+  "domain": "decorative",
+  "isolated_recipes": 1,
+  "landing_verification": [
+    "GameTest",
+    "EMI",
+    "reload",
+    "load",
+    "census"
+  ],
+  "live_recipes_written": true,
+  "live_verification": "landed",
+  "note": "Source-exact live recipes written. Shared obtain/mte-inplace-runtime is resolved after D0 and GameTest. Remaining D0 gaps stay blocked. Do not promote player_complete.",
+  "rewrites_r0": false,
+  "runtime_slug": "content/gt6-mte-decorative-runtime",
+  "schema": "gt6-mte-inplace-acquisition-overlay-v1",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "writes_machine_acquisition": false
+}

@@ -1,0 +1,217 @@
+{
+  "auto_promote_player_complete": false,
+  "blocker_id": "obtain/mte-inplace-runtime",
+  "capability_slug": "content/gt6-mte-inplace-acquisition",
+  "child_order": [
+    "extender",
+    "decorative",
+    "attachments",
+    "furniture_chest",
+    "furniture_scaffold",
+    "furniture_safe",
+    "furniture_table",
+    "furniture_barrel",
+    "furniture_storage",
+    "drive",
+    "converter_remainder",
+    "crucible_foundry",
+    "misc_tool",
+    "multiblock"
+  ],
+  "does_not_merge_counts": true,
+  "families": [
+    {
+      "capability_slug": "content/gt6-mte-extender-acquisition",
+      "child_order": 1,
+      "counts": {
+        "explicitly_blocked": 0,
+        "hosts": 2,
+        "source_exact": 2
+      },
+      "domain": "extender",
+      "runtime_slug": "content/gt6-mte-extender-runtime",
+      "wave": "tools/waves/prep/gt6-mte-extender-acquisition"
+    },
+    {
+      "capability_slug": "content/gt6-mte-decorative-acquisition",
+      "child_order": 2,
+      "counts": {
+        "explicitly_blocked": 23,
+        "hosts": 24,
+        "source_exact": 1
+      },
+      "domain": "decorative",
+      "runtime_slug": "content/gt6-mte-decorative-runtime",
+      "wave": "tools/waves/prep/gt6-mte-decorative-acquisition"
+    },
+    {
+      "capability_slug": "content/gt6-mte-fluid-attachments-acquisition",
+      "child_order": 3,
+      "counts": {
+        "explicitly_blocked": 9,
+        "hosts": 33,
+        "source_exact": 24
+      },
+      "domain": "attachments",
+      "runtime_slug": "content/gt6-mte-fluid-attachments-runtime",
+      "wave": "tools/waves/prep/gt6-mte-fluid-attachments-acquisition"
+    },
+    {
+      "capability_slug": "content/gt6-mte-furniture-chest-acquisition",
+      "child_order": 4,
+      "counts": {
+        "explicitly_blocked": 1,
+        "hosts": 101,
+        "source_exact": 100
+      },
+      "domain": "furniture_chest",
+      "runtime_slug": "content/gt6-mte-furniture-chest-runtime",
+      "wave": "tools/waves/prep/gt6-mte-furniture-chest-acquisition"
+    },
+    {
+      "capability_slug": "content/gt6-mte-furniture-scaffold-acquisition",
+      "child_order": 5,
+      "counts": {
+        "explicitly_blocked": 0,
+        "hosts": 50,
+        "source_exact": 50
+      },
+      "domain": "furniture_scaffold",
+      "runtime_slug": "content/gt6-mte-furniture-scaffold-runtime",
+      "wave": "tools/waves/prep/gt6-mte-furniture-scaffold-acquisition"
+    },
+    {
+      "capability_slug": "content/gt6-mte-furniture-safe-acquisition",
+      "child_order": 6,
+      "counts": {
+        "explicitly_blocked": 0,
+        "hosts": 100,
+        "source_exact": 100
+      },
+      "domain": "furniture_safe",
+      "runtime_slug": "content/gt6-mte-furniture-safe-runtime",
+      "wave": "tools/waves/prep/gt6-mte-furniture-safe-acquisition"
+    },
+    {
+      "capability_slug": "content/gt6-mte-furniture-table-acquisition",
+      "child_order": 7,
+      "counts": {
+        "explicitly_blocked": 0,
+        "hosts": 50,
+        "source_exact": 50
+      },
+      "domain": "furniture_table",
+      "runtime_slug": "content/gt6-mte-furniture-table-runtime",
+      "wave": "tools/waves/prep/gt6-mte-furniture-table-acquisition"
+    },
+    {
+      "capability_slug": "content/gt6-mte-furniture-barrel-acquisition",
+      "child_order": 8,
+      "counts": {
+        "explicitly_blocked": 8,
+        "hosts": 12,
+        "source_exact": 4
+      },
+      "domain": "furniture_barrel",
+      "runtime_slug": "content/gt6-mte-furniture-barrel-runtime",
+      "wave": "tools/waves/prep/gt6-mte-furniture-barrel-acquisition"
+    },
+    {
+      "capability_slug": "content/gt6-mte-furniture-storage-acquisition",
+      "child_order": 9,
+      "counts": {
+        "explicitly_blocked": 50,
+        "hosts": 250,
+        "source_exact": 200
+      },
+      "domain": "furniture_storage",
+      "runtime_slug": "content/gt6-mte-furniture-storage-runtime",
+      "wave": "tools/waves/prep/gt6-mte-furniture-storage-acquisition"
+    },
+    {
+      "capability_slug": "content/gt6-mte-drive-acquisition",
+      "child_order": 10,
+      "counts": {
+        "explicitly_blocked": 36,
+        "hosts": 63,
+        "source_exact": 27
+      },
+      "domain": "drive",
+      "runtime_slug": "content/gt6-mte-drive-runtime",
+      "wave": "tools/waves/prep/gt6-mte-drive-acquisition"
+    },
+    {
+      "capability_slug": "content/gt6-mte-converter-remainder-acquisition",
+      "child_order": 11,
+      "counts": {
+        "explicitly_blocked": 0,
+        "hosts": 8,
+        "source_exact": 8
+      },
+      "domain": "converter_remainder",
+      "runtime_slug": "content/gt6-mte-converter-remainder-runtime",
+      "wave": "tools/waves/prep/gt6-mte-converter-remainder-acquisition"
+    },
+    {
+      "capability_slug": "content/gt6-mte-crucible-foundry-acquisition",
+      "child_order": 12,
+      "counts": {
+        "explicitly_blocked": 0,
+        "hosts": 85,
+        "source_exact": 85
+      },
+      "domain": "crucible_foundry",
+      "runtime_slug": "content/gt6-mte-crucible-foundry-runtime",
+      "wave": "tools/waves/prep/gt6-mte-crucible-foundry-acquisition"
+    },
+    {
+      "capability_slug": "content/gt6-mte-misc-tool-acquisition",
+      "child_order": 13,
+      "counts": {
+        "explicitly_blocked": 7,
+        "hosts": 39,
+        "source_exact": 32
+      },
+      "domain": "misc_tool",
+      "runtime_slug": "content/gt6-mte-misc-tool-runtime",
+      "wave": "tools/waves/prep/gt6-mte-misc-tool-acquisition"
+    },
+    {
+      "capability_slug": "content/gt6-mte-multiblock-acquisition",
+      "child_order": 14,
+      "counts": {
+        "explicitly_blocked": 16,
+        "hosts": 74,
+        "source_exact": 58
+      },
+      "domain": "multiblock",
+      "runtime_slug": "content/gt6-mte-multiblock-runtime",
+      "wave": "tools/waves/prep/gt6-mte-multiblock-acquisition"
+    }
+  ],
+  "landed_domains": [
+    "extender",
+    "decorative",
+    "attachments",
+    "furniture_chest",
+    "furniture_scaffold",
+    "furniture_safe",
+    "furniture_table",
+    "furniture_barrel",
+    "furniture_storage",
+    "drive",
+    "converter_remainder",
+    "crucible_foundry",
+    "misc_tool",
+    "multiblock"
+  ],
+  "loader_sha256": "93414ed9510ff0465b062efbfe7775d256100425379a24d3857c437cef7ddc27",
+  "r0_sha256": "1c4c5c669d9d085aa7e399ce962cef2e8381a3d841115e6a45e4d96ba892c8d1",
+  "rewrites_r0": false,
+  "schema": "gt6-mte-inplace-acquisition-contract-v1",
+  "separate_per_capability": true,
+  "shared_blocker_close": "Close obtain/mte-inplace-runtime only after every family D0 and fresh GameTest/EMI/reload/census. Closing does not change the 14 runtime capabilities off runtime_ready.",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "unique_active_wave": null,
+  "writes_machine_acquisition": false
+}

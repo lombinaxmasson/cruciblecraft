@@ -6,7 +6,7 @@
 
 ## Unique active
 
-`localization/language-key-display-name-normalization`（Language Key and Display Name Normalization，`workflow=active`，`maturity=runtime_ready`）；计划 [语言键与显示名规范收口详细计划](../history/card-plans/active/语言键与显示名规范收口详细计划.md)。
+无。`capability.json` 里没有 `workflow=active`。
 
 ## Prep（不占落地锁）
 
@@ -50,7 +50,7 @@
 - `machines/cluster-mill` — Cluster Mill — [集群轧机详细计划](../history/card-plans/closed/集群轧机详细计划.md)
 - `machines/roll-former` — Roll Former — [辊压成型机详细计划](../history/card-plans/closed/辊压成型机详细计划.md)
 
-## runtime_ready（accepted，非玩家完成）（52）
+## runtime_ready（accepted，非玩家完成）（54）
 
 RecipeMap / 主机已挂，获得格或配方仍 blocked。不得宣称 `player_complete`。
 
@@ -81,6 +81,7 @@ RecipeMap / 主机已挂，获得格或配方仍 blocked。不得宣称 `player_
 - `content/gt6-mte-furniture-storage-runtime` — GT6 Furniture Storage Runtime — [GT6家具储物runtime详细计划](../history/card-plans/closed/GT6家具储物runtime详细计划.md)
 - `content/gt6-mte-furniture-table-runtime` — GT6 Furniture Crafting Table Runtime — [GT6家具工作台runtime详细计划](../history/card-plans/closed/GT6家具工作台runtime详细计划.md)
 - `content/gt6-mte-hopper-host-fold` — GT6 Hopper Host Fold — [GT6 漏斗主机折回详细计划](../history/card-plans/closed/GT6漏斗主机折回详细计划.md)
+- `content/gt6-mte-inplace-acquisition` — GT6 In-place MTE Acquisition — [MTE In-place 获得格收口](../history/card-plans/closed/MTE原地获得格详细计划.md)
 - `content/gt6-mte-misc-tool-runtime` — GT6 Misc Tool Runtime — [GT6杂项工具runtime详细计划](../history/card-plans/closed/GT6杂项工具runtime详细计划.md)
 - `content/gt6-mte-multiblock-runtime` — GT6 Multiblock Runtime — [GT6多方块设备runtime详细计划](../history/card-plans/closed/GT6多方块设备runtime详细计划.md)
 - `content/gt6-mte-processing-host-fold` — GT6 Processing Host Fold — [GT6 加工机主机折回详细计划](../history/card-plans/closed/GT6加工机主机折回详细计划.md)
@@ -92,6 +93,7 @@ RecipeMap / 主机已挂，获得格或配方仍 blocked。不得宣称 `player_
 - `content/mte-redstone-wire` — MTE Redstone Wire — [MTE 红石线详细计划](../history/card-plans/closed/MTE红石线详细计划.md)
 - `content/sensors` — Sensors — [Sensors 详细计划](../history/card-plans/closed/Sensors详细计划.md)
 - `content/technological-parts-foundation` — Technological Parts Foundation — [技术中间件基础详细计划](../history/card-plans/closed/技术中间件基础详细计划.md)
+- `localization/language-key-display-name-normalization` — Language Key and Display Name Normalization — [语言键与显示名规范收口详细计划](../history/card-plans/closed/语言键与显示名规范收口详细计划.md)
 - `logistics/cover-remainder` — Cover remainder — [盖板余量详细计划](../history/card-plans/closed/盖板余量详细计划.md)
 - `machines/injector` — Injector — [注射机详细计划](../history/card-plans/closed/注射机详细计划.md)
 - `machines/laminator` — Laminator — [层压机详细计划](../history/card-plans/closed/层压机详细计划.md)

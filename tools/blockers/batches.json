@@ -15,16 +15,23 @@
         "tools/waves/bath/tiny-purified/readiness.json",
         "tools/waves/bath/tiny-purified/card_topology.json"
       ]
+    },
+    {
+      "blocker_ids": [
+        "obtain/mte-inplace-runtime"
+      ],
+      "resolution": "content/gt6-mte-inplace-acquisition 落地 732 条 source-exact shaped_catalyst 格；150 个缺形态/OD/plank 缺口留在各族 current_gap.json。14 个 runtime 仍 runtime_ready。",
+      "authority": [
+        "tools/capabilities/content/gt6-mte-inplace-acquisition/capability.json",
+        "tools/waves/prep/gt6-mte-inplace-acquisition/contract.json",
+        "tools/waves/content/gt6-mte-inplace-acquisition/gametest_receipt.json"
+      ]
     }
   ],
   "recommended_order": [
     {
       "batch_id": "batch/identity-eu-gauge-closure",
       "basis": "61 个 loader_ids 是最大的已冻结 identity 数；EU partial 与 HSLA 线仍需分子任务审计。"
-    },
-    {
-      "batch_id": "batch/obtain-mte-inplace-closure",
-      "basis": "同一个 root cause 与 obtain marker 绑定 14 个跨 MTE family 的 runtime capability。"
     },
     {
       "batch_id": "batch/machines-nanofab-host-closure",
@@ -80,42 +87,6 @@
         "石墨烯与超导缺形态继续 blocked。",
         "HSLA alias / gauge 是独立子任务。",
         "连接件美术 dummy 不是 runtime identity 工作。"
-      ],
-      "does_not_merge_counts": true,
-      "auto_promote_player_complete": false
-    },
-    {
-      "id": "batch/obtain-mte-inplace-closure",
-      "title": "In-place MTE source-exact 获得格收口",
-      "kind": "shared_obtain_audit",
-      "members": [
-        {
-          "blocker_id": "obtain/mte-inplace-runtime",
-          "role": "primary"
-        }
-      ],
-      "production_lock_policy": "separate_per_capability",
-      "production_locks": [
-        "tools/waves/content/gt6-mte-converter-remainder-runtime/production_lock.json",
-        "tools/waves/content/gt6-mte-crucible-foundry-runtime/production_lock.json",
-        "tools/waves/content/gt6-mte-decorative-runtime/production_lock.json",
-        "tools/waves/content/gt6-mte-drive-runtime/production_lock.json",
-        "tools/waves/content/gt6-mte-extender-runtime/production_lock.json",
-        "tools/waves/content/gt6-mte-fluid-attachments-runtime/production_lock.json",
-        "tools/waves/content/gt6-mte-furniture-barrel-runtime/production_lock.json",
-        "tools/waves/content/gt6-mte-furniture-chest-runtime/production_lock.json",
-        "tools/waves/content/gt6-mte-furniture-safe-runtime/production_lock.json",
-        "tools/waves/content/gt6-mte-furniture-scaffold-runtime/production_lock.json",
-        "tools/waves/content/gt6-mte-furniture-storage-runtime/production_lock.json",
-        "tools/waves/content/gt6-mte-furniture-table-runtime/production_lock.json",
-        "tools/waves/content/gt6-mte-misc-tool-runtime/production_lock.json",
-        "tools/waves/content/gt6-mte-multiblock-runtime/production_lock.json"
-      ],
-      "excluded_blocker_ids": [],
-      "boundary_notes": [
-        "共享 root cause 是 runtime_without_source_exact_obtain，所有成员都使用 Obtain stays explicitly_blocked marker。",
-        "每个 family 仍按自己的 GT6 source-exact 格或槽位合同审计。",
-        "关闭此 blocker 不会把 14 个 capability 全部晋级 player_complete。"
       ],
       "does_not_merge_counts": true,
       "auto_promote_player_complete": false

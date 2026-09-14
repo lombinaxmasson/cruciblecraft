@@ -1,0 +1,209 @@
+{
+  "blocked": 16,
+  "capability_slug": "content/gt6-mte-multiblock-acquisition",
+  "domain": "multiblock",
+  "rows": [
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 17000,
+      "missing": [
+        {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "getItem(18000)",
+          "kind": "mte_item",
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "slot": "M",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "coal_coke/oven"
+    },
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 17221,
+      "missing": [
+        {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "gt:re-battery1",
+          "kind": null,
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "slot": "B",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "stainless_steel/dynamo_main_housing"
+    },
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 17222,
+      "missing": [
+        {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "gt:re-battery1",
+          "kind": null,
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "slot": "B",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "titanium/dynamo_main_housing"
+    },
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 17223,
+      "missing": [
+        {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "gt:re-battery1",
+          "kind": null,
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "slot": "B",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "tungstensteel/dynamo_main_housing"
+    },
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 17224,
+      "missing": [
+        {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "gt:re-battery1",
+          "kind": null,
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "slot": "B",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "adamantium/dynamo_main_housing"
+    },
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 18001,
+      "missing": [
+        {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:wood_treated/plate",
+          "gt": "plate(MT.WoodTreated)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "python tools/gt6_resolve.py; gated material forms must be on material_registration_gate.json. Circuits and other technological parts come from technological_parts.json, not runtime_registry_gate.json.",
+          "resolve_status": "ok",
+          "slot": "W",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "wood/wall"
+    },
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 18022,
+      "missing": [],
+      "reason": "no_source_grid",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "multiblock/dense_stainless_steel_wall"
+    },
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 18023,
+      "missing": [],
+      "reason": "no_source_grid",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "multiblock/dense_tungstensteel_wall"
+    },
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 18024,
+      "missing": [],
+      "reason": "no_source_grid",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "multiblock/dense_tungsten_wall"
+    },
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 18025,
+      "missing": [],
+      "reason": "no_source_grid",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "multiblock/dense_adamantium_wall"
+    },
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 18026,
+      "missing": [],
+      "reason": "no_source_grid",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "multiblock/dense_titanium_wall"
+    },
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 18027,
+      "missing": [],
+      "reason": "no_source_grid",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "multiblock/dense_invar_wall"
+    },
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 18028,
+      "missing": [],
+      "reason": "no_source_grid",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "multiblock/dense_galvanized_steel_wall"
+    },
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 18029,
+      "missing": [],
+      "reason": "no_source_grid",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "multiblock/dense_steel_wall"
+    },
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 18030,
+      "missing": [],
+      "reason": "no_source_grid",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "multiblock/dense_bronze_wall"
+    },
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 18031,
+      "missing": [],
+      "reason": "no_source_grid",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "multiblock/dense_lead_wall"
+    }
+  ],
+  "schema": "gt6-mte-inplace-acquisition-gap-v1",
+  "source_exact": 58
+}

@@ -1,0 +1,169 @@
+{
+  "blocked": 8,
+  "capability_slug": "content/gt6-mte-furniture-barrel-acquisition",
+  "domain": "furniture_barrel",
+  "rows": [
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 6983,
+      "missing": [
+        {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.plankSkyroot",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "slot": "P",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "skyroot/item_barrel"
+    },
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 6984,
+      "missing": [
+        {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:silverwood/plate",
+          "gt": "plate(MT.Silverwood)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "slot": "P",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "silverwood/item_barrel"
+    },
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 6985,
+      "missing": [
+        {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:greatwood/plate",
+          "gt": "plate(MT.Greatwood)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "slot": "P",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "greatwood/item_barrel"
+    },
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 6986,
+      "missing": [
+        {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:shimmerwood/plate",
+          "gt": "plate(MT.Shimmerwood)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "slot": "P",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "shimmerwood/item_barrel"
+    },
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 6987,
+      "missing": [
+        {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:dreamwood/plate",
+          "gt": "plate(MT.Dreamwood)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "slot": "P",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "dreamwood/item_barrel"
+    },
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 6988,
+      "missing": [
+        {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:livingwood/plate",
+          "gt": "plate(MT.Livingwood)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "slot": "P",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "livingwood/item_barrel"
+    },
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 6989,
+      "missing": [
+        {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.plankWeedwood",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "slot": "P",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "weedwood/item_barrel"
+    },
+    {
+      "blocker_id": "obtain/mte-inplace-runtime",
+      "meta": 6999,
+      "missing": [
+        {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:wood_treated/plate",
+          "gt": "plate(MT.WoodTreated)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "python tools/gt6_resolve.py; gated material forms must be on material_registration_gate.json. Circuits and other technological parts come from technological_parts.json, not runtime_registry_gate.json.",
+          "resolve_status": "ok",
+          "slot": "P",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
+      "stable_id": "furniture/wooden_item_barrel"
+    }
+  ],
+  "schema": "gt6-mte-inplace-acquisition-gap-v1",
+  "source_exact": 4
+}

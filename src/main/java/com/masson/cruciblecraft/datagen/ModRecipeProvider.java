@@ -49,6 +49,7 @@ import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerProfile;
 import com.masson.cruciblecraft.energy.largeheatexchanger.LargeHeatExchangerCatalog;
 import com.masson.cruciblecraft.energy.largeheatexchanger.LargeHeatExchangerProfile;
 import com.masson.cruciblecraft.energy.steam.SteamTurbineCatalog;
+import com.masson.cruciblecraft.content.mte.MteInPlaceAcquisitionCatalog;
 import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.registry.ModItems;
@@ -780,6 +781,7 @@ public final class ModRecipeProvider extends RecipeProvider {
         addTransformerRecipes(output);
         addHeatExchangerRecipes(output);
         addSteamTurbineRecipes(output);
+        addMteInPlaceAcquisitionRecipes(output);
         for (MachineVariant variant
                 : com.masson.cruciblecraft.registry.ModMachineVariants.ALL) {
             emitAcquisition(output, variant);
@@ -3117,6 +3119,74 @@ public final class ModRecipeProvider extends RecipeProvider {
         }
     }
 
+    private static void addMteInPlaceAcquisitionRecipes(RecipeOutput output) {
+        for (MteInPlaceAcquisitionCatalog.Recipe recipe
+                : MteInPlaceAcquisitionCatalog.recipes()) {
+            if (!BuiltInRegistries.ITEM.containsKey(recipe.resultId())) {
+                continue;
+            }
+            Item result = BuiltInRegistries.ITEM.get(recipe.resultId());
+            if (result == Items.AIR) {
+                continue;
+            }
+            boolean missing = false;
+            LinkedHashMap<String, Ingredient> ingredients = new LinkedHashMap<>();
+            for (var entry : recipe.ingredients().entrySet()) {
+                Ingredient ingredient = mteAcquisitionIngredient(entry.getValue());
+                if (ingredient == null) {
+                    missing = true;
+                    break;
+                }
+                ingredients.put(entry.getKey(), ingredient);
+            }
+            if (missing) {
+                continue;
+            }
+            LinkedHashMap<String, Ingredient> catalysts = new LinkedHashMap<>();
+            for (var entry : recipe.catalysts().entrySet()) {
+                Ingredient ingredient = mteAcquisitionIngredient(entry.getValue());
+                if (ingredient == null) {
+                    missing = true;
+                    break;
+                }
+                catalysts.put(entry.getKey(), ingredient);
+            }
+            if (missing) {
+                continue;
+            }
+            acceptShapedCatalyst(
+                    output,
+                    recipe.path(),
+                    recipe.pattern(),
+                    ingredients,
+                    catalysts,
+                    new ItemStack(result, recipe.count()));
+        }
+    }
+
+    private static Ingredient mteAcquisitionIngredient(
+            MteInPlaceAcquisitionCatalog.Slot slot) {
+        if (slot == null) {
+            return null;
+        }
+        if (slot.tag() != null && !slot.tag().isBlank()) {
+            ResourceLocation tag = ResourceLocation.tryParse(slot.tag());
+            if (tag == null) {
+                return null;
+            }
+            return Ingredient.of(TagKey.create(Registries.ITEM, tag));
+        }
+        if (slot.item() == null || slot.item().isBlank()) {
+            return null;
+        }
+        ResourceLocation loc = ResourceLocation.tryParse(slot.item());
+        if (loc == null || !BuiltInRegistries.ITEM.containsKey(loc)) {
+            return null;
+        }
+        Item item = BuiltInRegistries.ITEM.get(loc);
+        return item == Items.AIR ? null : Ingredient.of(item);
+    }
+
     private static void addSteamTurbineRecipes(RecipeOutput output) {
         for (SteamTurbineCatalog.Profile profile : SteamTurbineCatalog.profiles()) {
             var item = ModItems.mteInPlaceItemsById().get(profile.id());
@@ -3212,9 +3282,21 @@ public final class ModRecipeProvider extends RecipeProvider {
 
     private static Item catalystItem(String key) {
         return switch (key) {
-            case "w" -> ModItems.MATERIAL_WRENCH.get();
+            case "a" -> ModItems.MATERIAL_AXE.get();
+            case "c" -> ModItems.MATERIAL_CROWBAR.get();
+            case "d" -> ModItems.MATERIAL_SCREWDRIVER.get();
+            case "f" -> ModItems.MATERIAL_FILE.get();
             case "h" -> ModItems.SMITHING_HAMMER.get();
+            case "k" -> ModItems.MATERIAL_KNIFE.get();
+            case "n" -> ModItems.MATERIAL_MONKEY_WRENCH.get();
+            case "o" -> ModItems.MATERIAL_BENDING_CYLINDER_SMALL.get();
+            case "q" -> ModItems.MATERIAL_SCISSORS.get();
+            case "r" -> ModItems.MATERIAL_SOFT_HAMMER.get();
+            case "s" -> ModItems.MATERIAL_SAW.get();
+            case "w" -> ModItems.MATERIAL_WRENCH.get();
             case "x" -> ModItems.MATERIAL_WIRE_CUTTER.get();
+            case "y" -> ModItems.MATERIAL_CHISEL.get();
+            case "z" -> ModItems.MATERIAL_BENDING_CYLINDER.get();
             default -> null;
         };
     }

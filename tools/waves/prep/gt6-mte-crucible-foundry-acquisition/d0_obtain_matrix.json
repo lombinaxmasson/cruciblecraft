@@ -1,0 +1,3843 @@
+{
+  "auto_promote_player_complete": false,
+  "blocker_id": "obtain/mte-inplace-runtime",
+  "capability_slug": "content/gt6-mte-crucible-foundry-acquisition",
+  "counts": {
+    "explicitly_blocked": 0,
+    "hosts": 85,
+    "source_exact": 85
+  },
+  "domain": "crucible_foundry",
+  "expected": 85,
+  "hosts": [
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntitySmeltery / Smelting Crucibles",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/smelting_crucible_invar.json",
+        "present": true
+      },
+      "meta": 1021,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:invar/plate",
+          "gt": "plate(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PwP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/smelting_crucible_invar",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/smelting_crucible_invar",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntitySmeltery / Smelting Crucibles",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/smelting_crucible_steel.json",
+        "present": true
+      },
+      "meta": 1022,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:steel/plate",
+          "gt": "plate(MT.Steel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PwP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/smelting_crucible_steel",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/smelting_crucible_steel",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntitySmeltery / Smelting Crucibles",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/smelting_crucible_titanium.json",
+        "present": true
+      },
+      "meta": 1023,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:titanium/plate",
+          "gt": "plate(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PwP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/smelting_crucible_titanium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/smelting_crucible_titanium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntitySmeltery / Smelting Crucibles",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/smelting_crucible_tungsten.json",
+        "present": true
+      },
+      "meta": 1024,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:tungsten/plate",
+          "gt": "plate(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PwP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/smelting_crucible_tungsten",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/smelting_crucible_tungsten",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntitySmeltery / Smelting Crucibles",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/stainless_steel/smelting_crucible.json",
+        "present": true
+      },
+      "meta": 1025,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:stainless_steel/plate",
+          "gt": "plate(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PwP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:stainless_steel/smelting_crucible",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "stainless_steel/smelting_crucible",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntitySmeltery / Smelting Crucibles",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/smelting_crucible_knightmetal.json",
+        "present": true
+      },
+      "meta": 1027,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:knightmetal/plate",
+          "gt": "plate(MT.Knightmetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PwP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/smelting_crucible_knightmetal",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/smelting_crucible_knightmetal",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntitySmeltery / Smelting Crucibles",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fiery_steel/smelting_crucible.json",
+        "present": true
+      },
+      "meta": 1028,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:fiery_steel/plate",
+          "gt": "plate(MT.FierySteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PwP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fiery_steel/smelting_crucible",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fiery_steel/smelting_crucible",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntitySmeltery / Smelting Crucibles",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/smelting_crucible_thaumium.json",
+        "present": true
+      },
+      "meta": 1029,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:thaumium/plate",
+          "gt": "plate(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PwP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/smelting_crucible_thaumium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/smelting_crucible_thaumium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntitySmeltery / Smelting Crucibles",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/meteoric_iron/smelting_crucible.json",
+        "present": true
+      },
+      "meta": 1031,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:meteoric_iron/plate",
+          "gt": "plate(MT.MeteoricIron)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PwP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:meteoric_iron/smelting_crucible",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "meteoric_iron/smelting_crucible",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntitySmeltery / Smelting Crucibles",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/meteoric_steel/smelting_crucible.json",
+        "present": true
+      },
+      "meta": 1032,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:meteoric_steel/plate",
+          "gt": "plate(MT.MeteoricSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PwP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:meteoric_steel/smelting_crucible",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "meteoric_steel/smelting_crucible",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntitySmeltery / Smelting Crucibles",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/smelting_crucible_chromium.json",
+        "present": true
+      },
+      "meta": 1033,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:chromium/plate",
+          "gt": "plate(MT.Cr)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PwP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/smelting_crucible_chromium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/smelting_crucible_chromium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntitySmeltery / Smelting Crucibles",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/smelting_crucible_molybdenum.json",
+        "present": true
+      },
+      "meta": 1034,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:molybdenum/plate",
+          "gt": "plate(MT.Mo)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PwP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/smelting_crucible_molybdenum",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/smelting_crucible_molybdenum",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntitySmeltery / Smelting Crucibles",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/smelting_crucible_osmium.json",
+        "present": true
+      },
+      "meta": 1037,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:osmium_elemental/plate",
+          "gt": "plate(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PwP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/smelting_crucible_osmium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/smelting_crucible_osmium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntitySmeltery / Smelting Crucibles",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/smelting_crucible_vanadium.json",
+        "present": true
+      },
+      "meta": 1038,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:vanadium/plate",
+          "gt": "plate(MT.V)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PwP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/smelting_crucible_vanadium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/smelting_crucible_vanadium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntitySmeltery / Smelting Crucibles",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/smelting_crucible_iridium.json",
+        "present": true
+      },
+      "meta": 1039,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:iridium/plate",
+          "gt": "plate(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PwP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/smelting_crucible_iridium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/smelting_crucible_iridium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntitySmeltery / Smelting Crucibles",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/hslasteel/smelting_crucible.json",
+        "present": true
+      },
+      "meta": 1041,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:hslasteel/plate",
+          "gt": "plate(MT.HSLA)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PwP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:hslasteel/smelting_crucible",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "hslasteel/smelting_crucible",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntitySmeltery / Smelting Crucibles",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/smelting_crucible_octine.json",
+        "present": true
+      },
+      "meta": 1042,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:octine/plate",
+          "gt": "plate(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PwP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/smelting_crucible_octine",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/smelting_crucible_octine",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntitySmeltery / Smelting Crucibles",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/smelting_crucible_netherite.json",
+        "present": true
+      },
+      "meta": 1044,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:netherite/plate",
+          "gt": "plate(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PwP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/smelting_crucible_netherite",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/smelting_crucible_netherite",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntitySmeltery / Smelting Crucibles",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/smelting_crucible_adamantium.json",
+        "present": true
+      },
+      "meta": 1049,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:adamantium/plate",
+          "gt": "plate(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PwP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/smelting_crucible_adamantium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/smelting_crucible_adamantium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMold / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/mold_stone.json",
+        "present": true
+      },
+      "meta": 1050,
+      "operands": {
+        "B": {
+          "cc": "minecraft:stone",
+          "gt": "Blocks.stone",
+          "kind": "block",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "B B",
+        "BBB"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/mold_stone",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/mold_stone",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMold / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/mold_bronze.json",
+        "present": true
+      },
+      "meta": 1070,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:bronze/plate",
+          "gt": "plate(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/mold_bronze",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/mold_bronze",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMold / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/mold_invar.json",
+        "present": true
+      },
+      "meta": 1071,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:invar/plate",
+          "gt": "plate(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/mold_invar",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/mold_invar",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMold / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/mold_steel.json",
+        "present": true
+      },
+      "meta": 1072,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:steel/plate",
+          "gt": "plate(MT.Steel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/mold_steel",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/mold_steel",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMold / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/mold_titanium.json",
+        "present": true
+      },
+      "meta": 1073,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:titanium/plate",
+          "gt": "plate(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/mold_titanium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/mold_titanium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMold / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/mold_tungsten.json",
+        "present": true
+      },
+      "meta": 1074,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:tungsten/plate",
+          "gt": "plate(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/mold_tungsten",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/mold_tungsten",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMold / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/stainless_steel/mold.json",
+        "present": true
+      },
+      "meta": 1075,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:stainless_steel/plate",
+          "gt": "plate(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:stainless_steel/mold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "stainless_steel/mold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMold / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/mold_knightmetal.json",
+        "present": true
+      },
+      "meta": 1077,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:knightmetal/plate",
+          "gt": "plate(MT.Knightmetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/mold_knightmetal",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/mold_knightmetal",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMold / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fiery_steel/mold.json",
+        "present": true
+      },
+      "meta": 1078,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:fiery_steel/plate",
+          "gt": "plate(MT.FierySteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fiery_steel/mold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fiery_steel/mold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMold / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/mold_thaumium.json",
+        "present": true
+      },
+      "meta": 1079,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:thaumium/plate",
+          "gt": "plate(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/mold_thaumium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/mold_thaumium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMold / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/void_metal/mold.json",
+        "present": true
+      },
+      "meta": 1080,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:void_metal/plate",
+          "gt": "plate(MT.VoidMetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:void_metal/mold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "void_metal/mold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMold / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/meteoric_iron/mold.json",
+        "present": true
+      },
+      "meta": 1081,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:meteoric_iron/plate",
+          "gt": "plate(MT.MeteoricIron)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:meteoric_iron/mold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "meteoric_iron/mold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMold / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/meteoric_steel/mold.json",
+        "present": true
+      },
+      "meta": 1082,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:meteoric_steel/plate",
+          "gt": "plate(MT.MeteoricSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:meteoric_steel/mold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "meteoric_steel/mold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMold / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/mold_chromium.json",
+        "present": true
+      },
+      "meta": 1083,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:chromium/plate",
+          "gt": "plate(MT.Cr)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/mold_chromium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/mold_chromium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMold / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/mold_molybdenum.json",
+        "present": true
+      },
+      "meta": 1084,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:molybdenum/plate",
+          "gt": "plate(MT.Mo)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/mold_molybdenum",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/mold_molybdenum",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMold / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/mold_osmium.json",
+        "present": true
+      },
+      "meta": 1087,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:osmium_elemental/plate",
+          "gt": "plate(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/mold_osmium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/mold_osmium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMold / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/mold_vanadium.json",
+        "present": true
+      },
+      "meta": 1088,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:vanadium/plate",
+          "gt": "plate(MT.V)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/mold_vanadium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/mold_vanadium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMold / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/mold_iridium.json",
+        "present": true
+      },
+      "meta": 1089,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:iridium/plate",
+          "gt": "plate(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/mold_iridium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/mold_iridium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMold / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/hslasteel/mold.json",
+        "present": true
+      },
+      "meta": 1091,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:hslasteel/plate",
+          "gt": "plate(MT.HSLA)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:hslasteel/mold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "hslasteel/mold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMold / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/mold_octine.json",
+        "present": true
+      },
+      "meta": 1092,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:octine/plate",
+          "gt": "plate(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/mold_octine",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/mold_octine",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMold / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/mold_netherite.json",
+        "present": true
+      },
+      "meta": 1094,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:netherite/plate",
+          "gt": "plate(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/mold_netherite",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/mold_netherite",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMold / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/mold_adamantium.json",
+        "present": true
+      },
+      "meta": 1099,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:adamantium/plate",
+          "gt": "plate(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/mold_adamantium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/mold_adamantium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBasin / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/basin_stone.json",
+        "present": true
+      },
+      "meta": 1750,
+      "operands": {
+        "B": {
+          "cc": "minecraft:stone",
+          "gt": "Blocks.stone",
+          "kind": "block",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "BhB",
+        "ByB",
+        " B "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/basin_stone",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/basin_stone",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBasin / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/basin_bronze.json",
+        "present": true
+      },
+      "meta": 1770,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:bronze/plate",
+          "gt": "plate(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PyP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/basin_bronze",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/basin_bronze",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBasin / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/basin_invar.json",
+        "present": true
+      },
+      "meta": 1771,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:invar/plate",
+          "gt": "plate(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PyP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/basin_invar",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/basin_invar",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBasin / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/basin_steel.json",
+        "present": true
+      },
+      "meta": 1772,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:steel/plate",
+          "gt": "plate(MT.Steel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PyP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/basin_steel",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/basin_steel",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBasin / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/basin_titanium.json",
+        "present": true
+      },
+      "meta": 1773,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:titanium/plate",
+          "gt": "plate(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PyP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/basin_titanium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/basin_titanium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBasin / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/basin_tungsten.json",
+        "present": true
+      },
+      "meta": 1774,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:tungsten/plate",
+          "gt": "plate(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PyP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/basin_tungsten",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/basin_tungsten",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBasin / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/stainless_steel/basin.json",
+        "present": true
+      },
+      "meta": 1775,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:stainless_steel/plate",
+          "gt": "plate(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PyP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:stainless_steel/basin",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "stainless_steel/basin",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBasin / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/basin_knightmetal.json",
+        "present": true
+      },
+      "meta": 1777,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:knightmetal/plate",
+          "gt": "plate(MT.Knightmetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PyP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/basin_knightmetal",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/basin_knightmetal",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBasin / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fiery_steel/basin.json",
+        "present": true
+      },
+      "meta": 1778,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:fiery_steel/plate",
+          "gt": "plate(MT.FierySteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PyP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fiery_steel/basin",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fiery_steel/basin",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBasin / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/basin_thaumium.json",
+        "present": true
+      },
+      "meta": 1779,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:thaumium/plate",
+          "gt": "plate(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PyP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/basin_thaumium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/basin_thaumium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBasin / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/void_metal/basin.json",
+        "present": true
+      },
+      "meta": 1780,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:void_metal/plate",
+          "gt": "plate(MT.VoidMetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PyP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:void_metal/basin",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "void_metal/basin",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBasin / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/meteoric_iron/basin.json",
+        "present": true
+      },
+      "meta": 1781,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:meteoric_iron/plate",
+          "gt": "plate(MT.MeteoricIron)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PyP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:meteoric_iron/basin",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "meteoric_iron/basin",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBasin / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/meteoric_steel/basin.json",
+        "present": true
+      },
+      "meta": 1782,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:meteoric_steel/plate",
+          "gt": "plate(MT.MeteoricSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PyP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:meteoric_steel/basin",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "meteoric_steel/basin",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBasin / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/basin_chromium.json",
+        "present": true
+      },
+      "meta": 1783,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:chromium/plate",
+          "gt": "plate(MT.Cr)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PyP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/basin_chromium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/basin_chromium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBasin / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/basin_molybdenum.json",
+        "present": true
+      },
+      "meta": 1784,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:molybdenum/plate",
+          "gt": "plate(MT.Mo)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PyP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/basin_molybdenum",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/basin_molybdenum",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBasin / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/basin_osmium.json",
+        "present": true
+      },
+      "meta": 1787,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:osmium_elemental/plate",
+          "gt": "plate(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PyP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/basin_osmium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/basin_osmium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBasin / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/basin_vanadium.json",
+        "present": true
+      },
+      "meta": 1788,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:vanadium/plate",
+          "gt": "plate(MT.V)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PyP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/basin_vanadium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/basin_vanadium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBasin / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/basin_iridium.json",
+        "present": true
+      },
+      "meta": 1789,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:iridium/plate",
+          "gt": "plate(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PyP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/basin_iridium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/basin_iridium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBasin / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/hslasteel/basin.json",
+        "present": true
+      },
+      "meta": 1791,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:hslasteel/plate",
+          "gt": "plate(MT.HSLA)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PyP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:hslasteel/basin",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "hslasteel/basin",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBasin / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/basin_octine.json",
+        "present": true
+      },
+      "meta": 1792,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:octine/plate",
+          "gt": "plate(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PyP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/basin_octine",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/basin_octine",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBasin / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/basin_netherite.json",
+        "present": true
+      },
+      "meta": 1794,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:netherite/plate",
+          "gt": "plate(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PyP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/basin_netherite",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/basin_netherite",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBasin / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/basin_adamantium.json",
+        "present": true
+      },
+      "meta": 1799,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:adamantium/plate",
+          "gt": "plate(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PhP",
+        "PyP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/basin_adamantium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/basin_adamantium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrossing / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/crucible_crossing_stone.json",
+        "present": true
+      },
+      "meta": 1850,
+      "operands": {
+        "B": {
+          "cc": "minecraft:stone",
+          "gt": "Blocks.stone",
+          "kind": "block",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hBy",
+        "BBB",
+        " B "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/crucible_crossing_stone",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/crucible_crossing_stone",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrossing / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/crucible_crossing_bronze.json",
+        "present": true
+      },
+      "meta": 1870,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:bronze/plate",
+          "gt": "plate(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hPy",
+        "PPP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/crucible_crossing_bronze",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/crucible_crossing_bronze",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrossing / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/crucible_crossing_invar.json",
+        "present": true
+      },
+      "meta": 1871,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:invar/plate",
+          "gt": "plate(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hPy",
+        "PPP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/crucible_crossing_invar",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/crucible_crossing_invar",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrossing / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/crucible_crossing_steel.json",
+        "present": true
+      },
+      "meta": 1872,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:steel/plate",
+          "gt": "plate(MT.Steel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hPy",
+        "PPP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/crucible_crossing_steel",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/crucible_crossing_steel",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrossing / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/crucible_crossing_titanium.json",
+        "present": true
+      },
+      "meta": 1873,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:titanium/plate",
+          "gt": "plate(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hPy",
+        "PPP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/crucible_crossing_titanium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/crucible_crossing_titanium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrossing / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/crucible_crossing_tungsten.json",
+        "present": true
+      },
+      "meta": 1874,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:tungsten/plate",
+          "gt": "plate(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hPy",
+        "PPP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/crucible_crossing_tungsten",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/crucible_crossing_tungsten",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrossing / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/stainless_steel/crucible_crossing.json",
+        "present": true
+      },
+      "meta": 1875,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:stainless_steel/plate",
+          "gt": "plate(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hPy",
+        "PPP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:stainless_steel/crucible_crossing",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "stainless_steel/crucible_crossing",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrossing / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/crucible_crossing_knightmetal.json",
+        "present": true
+      },
+      "meta": 1877,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:knightmetal/plate",
+          "gt": "plate(MT.Knightmetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hPy",
+        "PPP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/crucible_crossing_knightmetal",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/crucible_crossing_knightmetal",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrossing / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fiery_steel/crucible_crossing.json",
+        "present": true
+      },
+      "meta": 1878,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:fiery_steel/plate",
+          "gt": "plate(MT.FierySteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hPy",
+        "PPP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fiery_steel/crucible_crossing",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fiery_steel/crucible_crossing",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrossing / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/crucible_crossing_thaumium.json",
+        "present": true
+      },
+      "meta": 1879,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:thaumium/plate",
+          "gt": "plate(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hPy",
+        "PPP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/crucible_crossing_thaumium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/crucible_crossing_thaumium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrossing / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/void_metal/crucible_crossing.json",
+        "present": true
+      },
+      "meta": 1880,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:void_metal/plate",
+          "gt": "plate(MT.VoidMetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hPy",
+        "PPP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:void_metal/crucible_crossing",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "void_metal/crucible_crossing",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrossing / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/meteoric_iron/crucible_crossing.json",
+        "present": true
+      },
+      "meta": 1881,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:meteoric_iron/plate",
+          "gt": "plate(MT.MeteoricIron)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hPy",
+        "PPP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:meteoric_iron/crucible_crossing",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "meteoric_iron/crucible_crossing",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrossing / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/meteoric_steel/crucible_crossing.json",
+        "present": true
+      },
+      "meta": 1882,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:meteoric_steel/plate",
+          "gt": "plate(MT.MeteoricSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hPy",
+        "PPP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:meteoric_steel/crucible_crossing",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "meteoric_steel/crucible_crossing",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrossing / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/crucible_crossing_chromium.json",
+        "present": true
+      },
+      "meta": 1883,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:chromium/plate",
+          "gt": "plate(MT.Cr)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hPy",
+        "PPP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/crucible_crossing_chromium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/crucible_crossing_chromium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrossing / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/crucible_crossing_molybdenum.json",
+        "present": true
+      },
+      "meta": 1884,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:molybdenum/plate",
+          "gt": "plate(MT.Mo)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hPy",
+        "PPP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/crucible_crossing_molybdenum",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/crucible_crossing_molybdenum",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrossing / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/crucible_crossing_osmium.json",
+        "present": true
+      },
+      "meta": 1887,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:osmium_elemental/plate",
+          "gt": "plate(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hPy",
+        "PPP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/crucible_crossing_osmium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/crucible_crossing_osmium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrossing / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/crucible_crossing_vanadium.json",
+        "present": true
+      },
+      "meta": 1888,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:vanadium/plate",
+          "gt": "plate(MT.V)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hPy",
+        "PPP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/crucible_crossing_vanadium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/crucible_crossing_vanadium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrossing / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/crucible_crossing_iridium.json",
+        "present": true
+      },
+      "meta": 1889,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:iridium/plate",
+          "gt": "plate(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hPy",
+        "PPP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/crucible_crossing_iridium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/crucible_crossing_iridium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrossing / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/hslasteel/crucible_crossing.json",
+        "present": true
+      },
+      "meta": 1891,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:hslasteel/plate",
+          "gt": "plate(MT.HSLA)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hPy",
+        "PPP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:hslasteel/crucible_crossing",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "hslasteel/crucible_crossing",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrossing / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/crucible_crossing_octine.json",
+        "present": true
+      },
+      "meta": 1892,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:octine/plate",
+          "gt": "plate(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hPy",
+        "PPP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/crucible_crossing_octine",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/crucible_crossing_octine",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrossing / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/crucible_crossing_netherite.json",
+        "present": true
+      },
+      "meta": 1894,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:netherite/plate",
+          "gt": "plate(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hPy",
+        "PPP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/crucible_crossing_netherite",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/crucible_crossing_netherite",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrossing / Molds",
+      "kind": "CRUCIBLE_FOUNDRY",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/foundry/crucible_crossing_adamantium.json",
+        "present": true
+      },
+      "meta": 1899,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:adamantium/plate",
+          "gt": "plate(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hPy",
+        "PPP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:foundry/crucible_crossing_adamantium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "foundry/crucible_crossing_adamantium",
+      "status": "source_exact"
+    }
+  ],
+  "runtime_slug": "content/gt6-mte-crucible-foundry-runtime",
+  "schema": "gt6-mte-inplace-d0-obtain-matrix-v1",
+  "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+}

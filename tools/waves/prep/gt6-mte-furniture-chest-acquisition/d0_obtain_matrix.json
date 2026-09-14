@@ -1,0 +1,5937 @@
+{
+  "auto_promote_player_complete": false,
+  "blocker_id": "obtain/mte-inplace-runtime",
+  "capability_slug": "content/gt6-mte-furniture-chest-acquisition",
+  "counts": {
+    "explicitly_blocked": 1,
+    "hosts": 101,
+    "source_exact": 100
+  },
+  "domain": "furniture_chest",
+  "expected": 101,
+  "hosts": [
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/lead/chest.json",
+        "present": true
+      },
+      "meta": 0,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:lead/plate",
+          "gt": "plate(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:lead/ring",
+          "gt": "ring(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:lead/rod",
+          "gt": "stick(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:lead/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "lead/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/aluminium/chest.json",
+        "present": true
+      },
+      "meta": 1,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:aluminium/plate",
+          "gt": "plate(MT.Al)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:aluminium/ring",
+          "gt": "ring(MT.Al)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:aluminium/rod",
+          "gt": "stick(MT.Al)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:aluminium/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "aluminium/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/gold/chest.json",
+        "present": true
+      },
+      "meta": 2,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:gold/plate",
+          "gt": "plate(MT.Au)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:gold/ring",
+          "gt": "ring(MT.Au)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:gold/rod",
+          "gt": "stick(MT.Au)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:gold/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "gold/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/silver/chest.json",
+        "present": true
+      },
+      "meta": 3,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:silver/plate",
+          "gt": "plate(MT.Ag)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:silver/ring",
+          "gt": "ring(MT.Ag)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:silver/rod",
+          "gt": "stick(MT.Ag)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:silver/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "silver/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/platinum/chest.json",
+        "present": true
+      },
+      "meta": 4,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:platinum/plate",
+          "gt": "plate(MT.Pt)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:platinum/ring",
+          "gt": "ring(MT.Pt)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:platinum/rod",
+          "gt": "stick(MT.Pt)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:platinum/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "platinum/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/tin_alloy/chest.json",
+        "present": true
+      },
+      "meta": 5,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:tin_alloy/plate",
+          "gt": "plate(MT.TinAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:tin_alloy/ring",
+          "gt": "ring(MT.TinAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:tin_alloy/rod",
+          "gt": "stick(MT.TinAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:tin_alloy/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "tin_alloy/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/invar/chest.json",
+        "present": true
+      },
+      "meta": 6,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:invar/plate",
+          "gt": "plate(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:invar/ring",
+          "gt": "ring(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:invar/rod",
+          "gt": "stick(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:invar/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "invar/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/electrum/chest.json",
+        "present": true
+      },
+      "meta": 7,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:electrum/plate",
+          "gt": "plate(MT.Electrum)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:electrum/ring",
+          "gt": "ring(MT.Electrum)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:electrum/rod",
+          "gt": "stick(MT.Electrum)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:electrum/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "electrum/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/brass/chest.json",
+        "present": true
+      },
+      "meta": 8,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:brass/plate",
+          "gt": "plate(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:brass/ring",
+          "gt": "ring(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:brass/rod",
+          "gt": "stick(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:brass/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "brass/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/bronze/chest.json",
+        "present": true
+      },
+      "meta": 9,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:bronze/plate",
+          "gt": "plate(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:bronze/ring",
+          "gt": "ring(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:bronze/rod",
+          "gt": "stick(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:bronze/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "bronze/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/steel/chest.json",
+        "present": true
+      },
+      "meta": 10,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:steel/plate",
+          "gt": "plate(MT.Steel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:steel/ring",
+          "gt": "ring(MT.Steel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:steel/rod",
+          "gt": "stick(MT.Steel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:steel/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "steel/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/stainless_steel/chest.json",
+        "present": true
+      },
+      "meta": 11,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:stainless_steel/plate",
+          "gt": "plate(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:stainless_steel/ring",
+          "gt": "ring(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:stainless_steel/rod",
+          "gt": "stick(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:stainless_steel/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "stainless_steel/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/titanium/chest.json",
+        "present": true
+      },
+      "meta": 12,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:titanium/plate",
+          "gt": "plate(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:titanium/ring",
+          "gt": "ring(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:titanium/rod",
+          "gt": "stick(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:titanium/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "titanium/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/chromium/chest.json",
+        "present": true
+      },
+      "meta": 13,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:chromium/plate",
+          "gt": "plate(MT.Cr)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:chromium/ring",
+          "gt": "ring(MT.Cr)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:chromium/rod",
+          "gt": "stick(MT.Cr)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:chromium/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "chromium/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/tungstensteel/chest.json",
+        "present": true
+      },
+      "meta": 14,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:tungstensteel/plate",
+          "gt": "plate(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:tungstensteel/ring",
+          "gt": "ring(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:tungstensteel/rod",
+          "gt": "stick(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:tungstensteel/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "tungstensteel/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/iridium/chest.json",
+        "present": true
+      },
+      "meta": 15,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:iridium/plate",
+          "gt": "plate(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:iridium/ring",
+          "gt": "ring(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:iridium/rod",
+          "gt": "stick(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:iridium/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "iridium/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/bismuth/chest.json",
+        "present": true
+      },
+      "meta": 16,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:bismuth/plate",
+          "gt": "plate(MT.Bi)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:bismuth/ring",
+          "gt": "ring(MT.Bi)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:bismuth/rod",
+          "gt": "stick(MT.Bi)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:bismuth/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "bismuth/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/hslasteel/chest.json",
+        "present": true
+      },
+      "meta": 18,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:hslasteel/plate",
+          "gt": "plate(MT.HSLA)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:hslasteel/ring",
+          "gt": "ring(MT.HSLA)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:hslasteel/rod",
+          "gt": "stick(MT.HSLA)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:hslasteel/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "hslasteel/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/steel_galvanized/chest.json",
+        "present": true
+      },
+      "meta": 19,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:steel_galvanized/plate",
+          "gt": "plate(MT.SteelGalvanized)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:steel_galvanized/ring",
+          "gt": "ring(MT.SteelGalvanized)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:steel_galvanized/rod",
+          "gt": "stick(MT.SteelGalvanized)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:steel_galvanized/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "steel_galvanized/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/gilded_iron/chest.json",
+        "present": true
+      },
+      "meta": 20,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:gilded_iron/plate",
+          "gt": "plate(MT.GildedIron)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:gilded_iron/ring",
+          "gt": "ring(MT.GildedIron)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:gilded_iron/rod",
+          "gt": "stick(MT.GildedIron)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:gilded_iron/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "gilded_iron/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/cobalt/chest.json",
+        "present": true
+      },
+      "meta": 21,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:cobalt/plate",
+          "gt": "plate(MT.Co)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:cobalt/ring",
+          "gt": "ring(MT.Co)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:cobalt/rod",
+          "gt": "stick(MT.Co)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:cobalt/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "cobalt/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/nickel/chest.json",
+        "present": true
+      },
+      "meta": 22,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:nickel/plate",
+          "gt": "plate(MT.Ni)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:nickel/ring",
+          "gt": "ring(MT.Ni)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:nickel/rod",
+          "gt": "stick(MT.Ni)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:nickel/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "nickel/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/germanium/chest.json",
+        "present": true
+      },
+      "meta": 23,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:germanium/plate",
+          "gt": "plate(MT.Ge)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:germanium/ring",
+          "gt": "ring(MT.Ge)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:germanium/rod",
+          "gt": "stick(MT.Ge)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:germanium/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "germanium/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/meteoric_steel/chest.json",
+        "present": true
+      },
+      "meta": 24,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:meteoric_steel/plate",
+          "gt": "plate(MT.MeteoricSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:meteoric_steel/ring",
+          "gt": "ring(MT.MeteoricSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:meteoric_steel/rod",
+          "gt": "stick(MT.MeteoricSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:meteoric_steel/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "meteoric_steel/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/knightmetal/chest.json",
+        "present": true
+      },
+      "meta": 25,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:knightmetal/plate",
+          "gt": "plate(MT.Knightmetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:knightmetal/ring",
+          "gt": "ring(MT.Knightmetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:knightmetal/rod",
+          "gt": "stick(MT.Knightmetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:knightmetal/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "knightmetal/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/tungsten/chest.json",
+        "present": true
+      },
+      "meta": 26,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:tungsten/plate",
+          "gt": "plate(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:tungsten/ring",
+          "gt": "ring(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:tungsten/rod",
+          "gt": "stick(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:tungsten/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "tungsten/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/thaumium/chest.json",
+        "present": true
+      },
+      "meta": 27,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:thaumium/plate",
+          "gt": "plate(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:thaumium/ring",
+          "gt": "ring(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:thaumium/rod",
+          "gt": "stick(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:thaumium/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "thaumium/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/void_metal/chest.json",
+        "present": true
+      },
+      "meta": 28,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:void_metal/plate",
+          "gt": "plate(MT.VoidMetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:void_metal/ring",
+          "gt": "ring(MT.VoidMetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:void_metal/rod",
+          "gt": "stick(MT.VoidMetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:void_metal/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "void_metal/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/osmium_elemental/chest.json",
+        "present": true
+      },
+      "meta": 29,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:osmium_elemental/plate",
+          "gt": "plate(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:osmium_elemental/ring",
+          "gt": "ring(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:osmium_elemental/rod",
+          "gt": "stick(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:osmium_elemental/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "osmium_elemental/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/desh/chest.json",
+        "present": true
+      },
+      "meta": 30,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:desh/plate",
+          "gt": "plate(MT.Desh)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:desh/ring",
+          "gt": "ring(MT.Desh)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:desh/rod",
+          "gt": "stick(MT.Desh)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:desh/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "desh/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/adamantium/chest.json",
+        "present": true
+      },
+      "meta": 33,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:adamantium/plate",
+          "gt": "plate(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:adamantium/ring",
+          "gt": "ring(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:adamantium/rod",
+          "gt": "stick(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:adamantium/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "adamantium/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/draconium/chest.json",
+        "present": true
+      },
+      "meta": 35,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:draconium/plate",
+          "gt": "plate(MT.Draconium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:draconium/ring",
+          "gt": "ring(MT.Draconium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:draconium/rod",
+          "gt": "stick(MT.Draconium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:draconium/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "draconium/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/draconium_awakened/chest.json",
+        "present": true
+      },
+      "meta": 36,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:draconium_awakened/plate",
+          "gt": "plate(MT.DraconiumAwakened)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:draconium_awakened/ring",
+          "gt": "ring(MT.DraconiumAwakened)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:draconium_awakened/rod",
+          "gt": "stick(MT.DraconiumAwakened)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:draconium_awakened/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "draconium_awakened/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/constantan/chest.json",
+        "present": true
+      },
+      "meta": 37,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:constantan/plate",
+          "gt": "plate(MT.Constantan)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:constantan/ring",
+          "gt": "ring(MT.Constantan)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:constantan/rod",
+          "gt": "stick(MT.Constantan)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:constantan/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "constantan/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/ardite/chest.json",
+        "present": true
+      },
+      "meta": 38,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:ardite/plate",
+          "gt": "plate(MT.Ardite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:ardite/ring",
+          "gt": "ring(MT.Ardite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:ardite/rod",
+          "gt": "stick(MT.Ardite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:ardite/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "ardite/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/manyullyn/chest.json",
+        "present": true
+      },
+      "meta": 39,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:manyullyn/plate",
+          "gt": "plate(MT.Manyullyn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:manyullyn/ring",
+          "gt": "ring(MT.Manyullyn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:manyullyn/rod",
+          "gt": "stick(MT.Manyullyn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:manyullyn/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "manyullyn/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/meteorite/chest.json",
+        "present": true
+      },
+      "meta": 43,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:meteorite/plate",
+          "gt": "plate(MT.Meteorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:meteorite/ring",
+          "gt": "ring(MT.Meteorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:meteorite/rod",
+          "gt": "stick(MT.Meteorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:meteorite/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "meteorite/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/syrmorite/chest.json",
+        "present": true
+      },
+      "meta": 44,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:syrmorite/plate",
+          "gt": "plate(MT.Syrmorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:syrmorite/ring",
+          "gt": "ring(MT.Syrmorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:syrmorite/rod",
+          "gt": "stick(MT.Syrmorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:syrmorite/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "syrmorite/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/octine/chest.json",
+        "present": true
+      },
+      "meta": 45,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:octine/plate",
+          "gt": "plate(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:octine/ring",
+          "gt": "ring(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:octine/rod",
+          "gt": "stick(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:octine/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "octine/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/manganese/chest.json",
+        "present": true
+      },
+      "meta": 46,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:manganese/plate",
+          "gt": "plate(MT.Mn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:manganese/ring",
+          "gt": "ring(MT.Mn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:manganese/rod",
+          "gt": "stick(MT.Mn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:manganese/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "manganese/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/antimony/chest.json",
+        "present": true
+      },
+      "meta": 47,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:antimony/plate",
+          "gt": "plate(MT.Sb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:antimony/ring",
+          "gt": "ring(MT.Sb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:antimony/rod",
+          "gt": "stick(MT.Sb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:antimony/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "antimony/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/ultimet/chest.json",
+        "present": true
+      },
+      "meta": 48,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:ultimet/plate",
+          "gt": "plate(MT.Ultimet)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:ultimet/ring",
+          "gt": "ring(MT.Ultimet)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:ultimet/rod",
+          "gt": "stick(MT.Ultimet)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:ultimet/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "ultimet/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/molybdenum/chest.json",
+        "present": true
+      },
+      "meta": 49,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:molybdenum/plate",
+          "gt": "plate(MT.Mo)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:molybdenum/ring",
+          "gt": "ring(MT.Mo)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:molybdenum/rod",
+          "gt": "stick(MT.Mo)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:molybdenum/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "molybdenum/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/netherite/chest.json",
+        "present": true
+      },
+      "meta": 51,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:netherite/plate",
+          "gt": "plate(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:netherite/ring",
+          "gt": "ring(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:netherite/rod",
+          "gt": "stick(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:netherite/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "netherite/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/efrine/chest.json",
+        "present": true
+      },
+      "meta": 53,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:efrine/plate",
+          "gt": "plate(MT.Efrine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:efrine/ring",
+          "gt": "ring(MT.Efrine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:efrine/rod",
+          "gt": "stick(MT.Efrine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:efrine/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "efrine/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/lumium/chest.json",
+        "present": true
+      },
+      "meta": 54,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:lumium/plate",
+          "gt": "plate(MT.Lumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:lumium/ring",
+          "gt": "ring(MT.Lumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:lumium/rod",
+          "gt": "stick(MT.Lumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:lumium/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "lumium/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/workers_alloy/chest.json",
+        "present": true
+      },
+      "meta": 55,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:workers_alloy/plate",
+          "gt": "plate(MT.DeshAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:workers_alloy/ring",
+          "gt": "ring(MT.DeshAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:workers_alloy/rod",
+          "gt": "stick(MT.DeshAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:workers_alloy/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "workers_alloy/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/bismuth_bronze/chest.json",
+        "present": true
+      },
+      "meta": 56,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:bismuth_bronze/plate",
+          "gt": "plate(MT.BismuthBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:bismuth_bronze/ring",
+          "gt": "ring(MT.BismuthBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:bismuth_bronze/rod",
+          "gt": "stick(MT.BismuthBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:bismuth_bronze/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "bismuth_bronze/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/arsenic_copper/chest.json",
+        "present": true
+      },
+      "meta": 57,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:arsenic_copper/plate",
+          "gt": "plate(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:arsenic_copper/ring",
+          "gt": "ring(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:arsenic_copper/rod",
+          "gt": "stick(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:arsenic_copper/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "arsenic_copper/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/arsenic_bronze/chest.json",
+        "present": true
+      },
+      "meta": 58,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:arsenic_bronze/plate",
+          "gt": "plate(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:arsenic_bronze/ring",
+          "gt": "ring(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:arsenic_bronze/rod",
+          "gt": "stick(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sPw",
+        "RSR",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:arsenic_bronze/chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "arsenic_bronze/chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/lead/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 500,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:lead/ring",
+          "gt": "ring(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:lead/rod",
+          "gt": "stick(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:lead/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "lead/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/aluminium/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 501,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:aluminium/ring",
+          "gt": "ring(MT.Al)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:aluminium/rod",
+          "gt": "stick(MT.Al)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:aluminium/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "aluminium/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/gold/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 502,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:gold/ring",
+          "gt": "ring(MT.Au)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:gold/rod",
+          "gt": "stick(MT.Au)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:gold/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "gold/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/silver/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 503,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:silver/ring",
+          "gt": "ring(MT.Ag)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:silver/rod",
+          "gt": "stick(MT.Ag)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:silver/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "silver/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/platinum/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 504,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:platinum/ring",
+          "gt": "ring(MT.Pt)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:platinum/rod",
+          "gt": "stick(MT.Pt)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:platinum/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "platinum/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/tin_alloy/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 505,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:tin_alloy/ring",
+          "gt": "ring(MT.TinAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:tin_alloy/rod",
+          "gt": "stick(MT.TinAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:tin_alloy/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "tin_alloy/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/invar/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 506,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:invar/ring",
+          "gt": "ring(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:invar/rod",
+          "gt": "stick(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:invar/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "invar/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/electrum/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 507,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:electrum/ring",
+          "gt": "ring(MT.Electrum)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:electrum/rod",
+          "gt": "stick(MT.Electrum)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:electrum/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "electrum/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/brass/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 508,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:brass/ring",
+          "gt": "ring(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:brass/rod",
+          "gt": "stick(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:brass/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "brass/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/bronze/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 509,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:bronze/ring",
+          "gt": "ring(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:bronze/rod",
+          "gt": "stick(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:bronze/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "bronze/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/steel/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 510,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:steel/ring",
+          "gt": "ring(MT.Steel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:steel/rod",
+          "gt": "stick(MT.Steel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:steel/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "steel/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/stainless_steel/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 511,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:stainless_steel/ring",
+          "gt": "ring(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:stainless_steel/rod",
+          "gt": "stick(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:stainless_steel/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "stainless_steel/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/titanium/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 512,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:titanium/ring",
+          "gt": "ring(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:titanium/rod",
+          "gt": "stick(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:titanium/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "titanium/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/chromium/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 513,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:chromium/ring",
+          "gt": "ring(MT.Cr)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:chromium/rod",
+          "gt": "stick(MT.Cr)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:chromium/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "chromium/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/tungstensteel/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 514,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:tungstensteel/ring",
+          "gt": "ring(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:tungstensteel/rod",
+          "gt": "stick(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:tungstensteel/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "tungstensteel/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/iridium/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 515,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:iridium/ring",
+          "gt": "ring(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:iridium/rod",
+          "gt": "stick(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:iridium/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "iridium/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/bismuth/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 516,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:bismuth/ring",
+          "gt": "ring(MT.Bi)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:bismuth/rod",
+          "gt": "stick(MT.Bi)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:bismuth/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "bismuth/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/hslasteel/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 518,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:hslasteel/ring",
+          "gt": "ring(MT.HSLA)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:hslasteel/rod",
+          "gt": "stick(MT.HSLA)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:hslasteel/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "hslasteel/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/steel_galvanized/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 519,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:steel_galvanized/ring",
+          "gt": "ring(MT.SteelGalvanized)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:steel_galvanized/rod",
+          "gt": "stick(MT.SteelGalvanized)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:steel_galvanized/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "steel_galvanized/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/gilded_iron/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 520,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:gilded_iron/ring",
+          "gt": "ring(MT.GildedIron)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:gilded_iron/rod",
+          "gt": "stick(MT.GildedIron)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:gilded_iron/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "gilded_iron/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/cobalt/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 521,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:cobalt/ring",
+          "gt": "ring(MT.Co)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:cobalt/rod",
+          "gt": "stick(MT.Co)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:cobalt/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "cobalt/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/nickel/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 522,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:nickel/ring",
+          "gt": "ring(MT.Ni)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:nickel/rod",
+          "gt": "stick(MT.Ni)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:nickel/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "nickel/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/germanium/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 523,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:germanium/ring",
+          "gt": "ring(MT.Ge)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:germanium/rod",
+          "gt": "stick(MT.Ge)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:germanium/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "germanium/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/meteoric_steel/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 524,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:meteoric_steel/ring",
+          "gt": "ring(MT.MeteoricSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:meteoric_steel/rod",
+          "gt": "stick(MT.MeteoricSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:meteoric_steel/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "meteoric_steel/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/knightmetal/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 525,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:knightmetal/ring",
+          "gt": "ring(MT.Knightmetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:knightmetal/rod",
+          "gt": "stick(MT.Knightmetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:knightmetal/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "knightmetal/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/tungsten/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 526,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:tungsten/ring",
+          "gt": "ring(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:tungsten/rod",
+          "gt": "stick(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:tungsten/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "tungsten/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/thaumium/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 527,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:thaumium/ring",
+          "gt": "ring(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:thaumium/rod",
+          "gt": "stick(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:thaumium/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "thaumium/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/void_metal/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 528,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:void_metal/ring",
+          "gt": "ring(MT.VoidMetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:void_metal/rod",
+          "gt": "stick(MT.VoidMetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:void_metal/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "void_metal/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/osmium_elemental/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 529,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:osmium_elemental/ring",
+          "gt": "ring(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:osmium_elemental/rod",
+          "gt": "stick(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:osmium_elemental/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "osmium_elemental/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/desh/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 530,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:desh/ring",
+          "gt": "ring(MT.Desh)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:desh/rod",
+          "gt": "stick(MT.Desh)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:desh/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "desh/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/adamantium/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 533,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:adamantium/ring",
+          "gt": "ring(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:adamantium/rod",
+          "gt": "stick(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:adamantium/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "adamantium/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/draconium/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 535,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:draconium/ring",
+          "gt": "ring(MT.Draconium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:draconium/rod",
+          "gt": "stick(MT.Draconium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:draconium/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "draconium/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/draconium_awakened/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 536,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:draconium_awakened/ring",
+          "gt": "ring(MT.DraconiumAwakened)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:draconium_awakened/rod",
+          "gt": "stick(MT.DraconiumAwakened)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:draconium_awakened/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "draconium_awakened/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/constantan/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 537,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:constantan/ring",
+          "gt": "ring(MT.Constantan)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:constantan/rod",
+          "gt": "stick(MT.Constantan)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:constantan/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "constantan/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/ardite/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 538,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:ardite/ring",
+          "gt": "ring(MT.Ardite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:ardite/rod",
+          "gt": "stick(MT.Ardite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:ardite/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "ardite/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/manyullyn/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 539,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:manyullyn/ring",
+          "gt": "ring(MT.Manyullyn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:manyullyn/rod",
+          "gt": "stick(MT.Manyullyn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:manyullyn/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "manyullyn/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/meteorite/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 543,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:meteorite/ring",
+          "gt": "ring(MT.Meteorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:meteorite/rod",
+          "gt": "stick(MT.Meteorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:meteorite/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "meteorite/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/syrmorite/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 544,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:syrmorite/ring",
+          "gt": "ring(MT.Syrmorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:syrmorite/rod",
+          "gt": "stick(MT.Syrmorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:syrmorite/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "syrmorite/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/octine/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 545,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:octine/ring",
+          "gt": "ring(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:octine/rod",
+          "gt": "stick(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:octine/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "octine/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/manganese/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 546,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:manganese/ring",
+          "gt": "ring(MT.Mn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:manganese/rod",
+          "gt": "stick(MT.Mn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:manganese/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "manganese/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/antimony/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 547,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:antimony/ring",
+          "gt": "ring(MT.Sb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:antimony/rod",
+          "gt": "stick(MT.Sb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:antimony/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "antimony/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/ultimet/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 548,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:ultimet/ring",
+          "gt": "ring(MT.Ultimet)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:ultimet/rod",
+          "gt": "stick(MT.Ultimet)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:ultimet/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "ultimet/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/molybdenum/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 549,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:molybdenum/ring",
+          "gt": "ring(MT.Mo)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:molybdenum/rod",
+          "gt": "stick(MT.Mo)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:molybdenum/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "molybdenum/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/netherite/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 551,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:netherite/ring",
+          "gt": "ring(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:netherite/rod",
+          "gt": "stick(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:netherite/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "netherite/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/efrine/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 553,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:efrine/ring",
+          "gt": "ring(MT.Efrine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:efrine/rod",
+          "gt": "stick(MT.Efrine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:efrine/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "efrine/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/lumium/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 554,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:lumium/ring",
+          "gt": "ring(MT.Lumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:lumium/rod",
+          "gt": "stick(MT.Lumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:lumium/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "lumium/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/workers_alloy/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 555,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:workers_alloy/ring",
+          "gt": "ring(MT.DeshAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:workers_alloy/rod",
+          "gt": "stick(MT.DeshAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:workers_alloy/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "workers_alloy/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/bismuth_bronze/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 556,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:bismuth_bronze/ring",
+          "gt": "ring(MT.BismuthBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:bismuth_bronze/rod",
+          "gt": "stick(MT.BismuthBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:bismuth_bronze/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "bismuth_bronze/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/arsenic_copper/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 557,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:arsenic_copper/ring",
+          "gt": "ring(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:arsenic_copper/rod",
+          "gt": "stick(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:arsenic_copper/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "arsenic_copper/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/arsenic_bronze/reinforced_wooden_chest.json",
+        "present": true
+      },
+      "meta": 558,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:arsenic_bronze/ring",
+          "gt": "ring(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:arsenic_bronze/rod",
+          "gt": "stick(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "sSw",
+        "RCR",
+        "SSS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:arsenic_bronze/reinforced_wooden_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "arsenic_bronze/reinforced_wooden_chest",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityChest / Chests",
+      "kind": "CHEST",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32745,
+      "operands": {},
+      "pattern": [],
+      "recipe_kind": "none",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:wood_mossy/stone_chest",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "wood_mossy/stone_chest",
+      "status": "explicitly_blocked"
+    }
+  ],
+  "runtime_slug": "content/gt6-mte-furniture-chest-runtime",
+  "schema": "gt6-mte-inplace-d0-obtain-matrix-v1",
+  "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+}

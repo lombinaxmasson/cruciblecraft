@@ -1,0 +1,1598 @@
+{
+  "auto_promote_player_complete": false,
+  "blocker_id": "obtain/mte-inplace-runtime",
+  "capability_slug": "content/gt6-mte-fluid-attachments-acquisition",
+  "counts": {
+    "explicitly_blocked": 9,
+    "hosts": 33,
+    "source_exact": 24
+  },
+  "domain": "attachments",
+  "expected": 33,
+  "hosts": [
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFaucet / Crucibles Faucets",
+      "kind": "FAUCET",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/crucible_faucet_stone.json",
+        "present": true
+      },
+      "meta": 1700,
+      "operands": {
+        "B": {
+          "cc": "minecraft:stone",
+          "gt": "Blocks.stone",
+          "kind": "block",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "B B",
+        " B "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fluid_attachment/crucible_faucet_stone",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fluid_attachment/crucible_faucet_stone",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFaucet / Crucibles Faucets",
+      "kind": "FAUCET",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/crucible_faucet_bronze.json",
+        "present": true
+      },
+      "meta": 1720,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:bronze/plate",
+          "gt": "plate(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fluid_attachment/crucible_faucet_bronze",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fluid_attachment/crucible_faucet_bronze",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFaucet / Crucibles Faucets",
+      "kind": "FAUCET",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/crucible_faucet_invar.json",
+        "present": true
+      },
+      "meta": 1721,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:invar/plate",
+          "gt": "plate(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fluid_attachment/crucible_faucet_invar",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fluid_attachment/crucible_faucet_invar",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFaucet / Crucibles Faucets",
+      "kind": "FAUCET",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/crucible_faucet_steel.json",
+        "present": true
+      },
+      "meta": 1722,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:steel/plate",
+          "gt": "plate(MT.Steel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fluid_attachment/crucible_faucet_steel",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fluid_attachment/crucible_faucet_steel",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFaucet / Crucibles Faucets",
+      "kind": "FAUCET",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/crucible_faucet_titanium.json",
+        "present": true
+      },
+      "meta": 1723,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:titanium/plate",
+          "gt": "plate(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fluid_attachment/crucible_faucet_titanium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fluid_attachment/crucible_faucet_titanium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFaucet / Crucibles Faucets",
+      "kind": "FAUCET",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/crucible_faucet_tungsten.json",
+        "present": true
+      },
+      "meta": 1724,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:tungsten/plate",
+          "gt": "plate(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fluid_attachment/crucible_faucet_tungsten",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fluid_attachment/crucible_faucet_tungsten",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFaucet / Crucibles Faucets",
+      "kind": "FAUCET",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/stainless_steel/crucible_faucet.json",
+        "present": true
+      },
+      "meta": 1725,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:stainless_steel/plate",
+          "gt": "plate(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:stainless_steel/crucible_faucet",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "stainless_steel/crucible_faucet",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFaucet / Crucibles Faucets",
+      "kind": "FAUCET",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/crucible_faucet_knightmetal.json",
+        "present": true
+      },
+      "meta": 1727,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:knightmetal/plate",
+          "gt": "plate(MT.Knightmetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fluid_attachment/crucible_faucet_knightmetal",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fluid_attachment/crucible_faucet_knightmetal",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFaucet / Crucibles Faucets",
+      "kind": "FAUCET",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fiery_steel/crucible_faucet.json",
+        "present": true
+      },
+      "meta": 1728,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:fiery_steel/plate",
+          "gt": "plate(MT.FierySteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fiery_steel/crucible_faucet",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fiery_steel/crucible_faucet",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFaucet / Crucibles Faucets",
+      "kind": "FAUCET",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/crucible_faucet_thaumium.json",
+        "present": true
+      },
+      "meta": 1729,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:thaumium/plate",
+          "gt": "plate(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fluid_attachment/crucible_faucet_thaumium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fluid_attachment/crucible_faucet_thaumium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFaucet / Crucibles Faucets",
+      "kind": "FAUCET",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/void_metal/crucible_faucet.json",
+        "present": true
+      },
+      "meta": 1730,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:void_metal/plate",
+          "gt": "plate(MT.VoidMetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:void_metal/crucible_faucet",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "void_metal/crucible_faucet",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFaucet / Crucibles Faucets",
+      "kind": "FAUCET",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/meteoric_iron/crucible_faucet.json",
+        "present": true
+      },
+      "meta": 1731,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:meteoric_iron/plate",
+          "gt": "plate(MT.MeteoricIron)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:meteoric_iron/crucible_faucet",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "meteoric_iron/crucible_faucet",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFaucet / Crucibles Faucets",
+      "kind": "FAUCET",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/meteoric_steel/crucible_faucet.json",
+        "present": true
+      },
+      "meta": 1732,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:meteoric_steel/plate",
+          "gt": "plate(MT.MeteoricSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:meteoric_steel/crucible_faucet",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "meteoric_steel/crucible_faucet",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFaucet / Crucibles Faucets",
+      "kind": "FAUCET",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/crucible_faucet_chromium.json",
+        "present": true
+      },
+      "meta": 1733,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:chromium/plate",
+          "gt": "plate(MT.Cr)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fluid_attachment/crucible_faucet_chromium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fluid_attachment/crucible_faucet_chromium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFaucet / Crucibles Faucets",
+      "kind": "FAUCET",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/crucible_faucet_molybdenum.json",
+        "present": true
+      },
+      "meta": 1734,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:molybdenum/plate",
+          "gt": "plate(MT.Mo)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fluid_attachment/crucible_faucet_molybdenum",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fluid_attachment/crucible_faucet_molybdenum",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFaucet / Crucibles Faucets",
+      "kind": "FAUCET",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/crucible_faucet_osmium.json",
+        "present": true
+      },
+      "meta": 1737,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:osmium_elemental/plate",
+          "gt": "plate(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fluid_attachment/crucible_faucet_osmium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fluid_attachment/crucible_faucet_osmium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFaucet / Crucibles Faucets",
+      "kind": "FAUCET",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/crucible_faucet_vanadium.json",
+        "present": true
+      },
+      "meta": 1738,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:vanadium/plate",
+          "gt": "plate(MT.V)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fluid_attachment/crucible_faucet_vanadium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fluid_attachment/crucible_faucet_vanadium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFaucet / Crucibles Faucets",
+      "kind": "FAUCET",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/crucible_faucet_iridium.json",
+        "present": true
+      },
+      "meta": 1739,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:iridium/plate",
+          "gt": "plate(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fluid_attachment/crucible_faucet_iridium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fluid_attachment/crucible_faucet_iridium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFaucet / Crucibles Faucets",
+      "kind": "FAUCET",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/hslasteel/crucible_faucet.json",
+        "present": true
+      },
+      "meta": 1741,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:hslasteel/plate",
+          "gt": "plate(MT.HSLA)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:hslasteel/crucible_faucet",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "hslasteel/crucible_faucet",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFaucet / Crucibles Faucets",
+      "kind": "FAUCET",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/crucible_faucet_octine.json",
+        "present": true
+      },
+      "meta": 1742,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:octine/plate",
+          "gt": "plate(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fluid_attachment/crucible_faucet_octine",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fluid_attachment/crucible_faucet_octine",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFaucet / Crucibles Faucets",
+      "kind": "FAUCET",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/crucible_faucet_netherite.json",
+        "present": true
+      },
+      "meta": 1744,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:netherite/plate",
+          "gt": "plate(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fluid_attachment/crucible_faucet_netherite",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fluid_attachment/crucible_faucet_netherite",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFaucet / Crucibles Faucets",
+      "kind": "FAUCET",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/crucible_faucet_adamantium.json",
+        "present": true
+      },
+      "meta": 1749,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:adamantium/plate",
+          "gt": "plate(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h y",
+        "P P",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fluid_attachment/crucible_faucet_adamantium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fluid_attachment/crucible_faucet_adamantium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFluidCapNozzle / Misc Tool Blocks",
+      "kind": "CAP_NOZZLE",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32061,
+      "operands": {
+        "B": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "round(ANY.W)",
+          "kind": "prefix_family",
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "N": {
+          "cc": "cruciblecraft:tungsten/nozzle",
+          "gt": "getItem(32749)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:tungsten/ring",
+          "gt": "ring(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:tungsten/screw",
+          "gt": "screw(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "Rw ",
+        "BT ",
+        "Nd "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:tungsten/cap_nozzle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "tungsten/cap_nozzle",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFluidCapNozzle / Misc Tool Blocks",
+      "kind": "CAP_NOZZLE",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32062,
+      "operands": {
+        "B": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:adamantium/round",
+          "gt": "round(MT.Ad)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
+        },
+        "N": {
+          "cc": "cruciblecraft:adamantium/nozzle",
+          "gt": "getItem(32750)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:adamantium/ring",
+          "gt": "ring(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:adamantium/screw",
+          "gt": "screw(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "Rw ",
+        "BT ",
+        "Nd "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:adamantium/cap_nozzle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "adamantium/cap_nozzle",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFluidCapNozzle / Misc Tool Blocks",
+      "kind": "CAP_NOZZLE",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32082,
+      "operands": {
+        "B": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:tantalum_hafnium_carbide/round",
+          "gt": "round(MT.Ta4HfC5)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
+        },
+        "N": {
+          "cc": "cruciblecraft:tungsten/nozzle",
+          "gt": "getItem(32749)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:tantalum_hafnium_carbide/ring",
+          "gt": "ring(MT.Ta4HfC5)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:tantalum_hafnium_carbide/screw",
+          "gt": "screw(MT.Ta4HfC5)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "Rw ",
+        "BT ",
+        "Nd "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:tantalum_hafnium_carbide/cap_nozzle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "tantalum_hafnium_carbide/cap_nozzle",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "o": {
+          "cc": "cruciblecraft:material_bending_cylinder_small",
+          "gt": "craftingTool:o",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFluidFunnel / Misc Tool Blocks",
+      "kind": "FUNNEL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/stainless_funnel.json",
+        "present": true
+      },
+      "meta": 32725,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:stainless_steel/curved_plate",
+          "gt": "plateCurved(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        " h ",
+        "PoP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fluid_attachment/stainless_funnel",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fluid_attachment/stainless_funnel",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "o": {
+          "cc": "cruciblecraft:material_bending_cylinder_small",
+          "gt": "craftingTool:o",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFluidFunnel / Misc Tool Blocks",
+      "kind": "FUNNEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32726,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "plateCurved(ANY.W)",
+          "kind": "prefix_family",
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        }
+      },
+      "pattern": [
+        " h ",
+        "PoP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:tungsten/funnel",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "tungsten/funnel",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "o": {
+          "cc": "cruciblecraft:material_bending_cylinder_small",
+          "gt": "craftingTool:o",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFluidFunnel / Misc Tool Blocks",
+      "kind": "FUNNEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32727,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:adamantium/curved_plate",
+          "gt": "plateCurved(MT.Ad)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
+        }
+      },
+      "pattern": [
+        " h ",
+        "PoP",
+        " P "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:adamantium/funnel",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "adamantium/funnel",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "o": {
+          "cc": "cruciblecraft:material_bending_cylinder_small",
+          "gt": "craftingTool:o",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFluidTap / Misc Tool Blocks",
+      "kind": "TAP",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/stainless_tap.json",
+        "present": true
+      },
+      "meta": 32730,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:stainless_steel/curved_plate",
+          "gt": "plateCurved(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  h",
+        "PP ",
+        "oP "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fluid_attachment/stainless_tap",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fluid_attachment/stainless_tap",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "o": {
+          "cc": "cruciblecraft:material_bending_cylinder_small",
+          "gt": "craftingTool:o",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFluidTap / Misc Tool Blocks",
+      "kind": "TAP",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32731,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "plateCurved(ANY.W)",
+          "kind": "prefix_family",
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        }
+      },
+      "pattern": [
+        "  h",
+        "PP ",
+        "oP "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:tungsten/tap",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "tungsten/tap",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "o": {
+          "cc": "cruciblecraft:material_bending_cylinder_small",
+          "gt": "craftingTool:o",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFluidTap / Misc Tool Blocks",
+      "kind": "TAP",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32732,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:adamantium/curved_plate",
+          "gt": "plateCurved(MT.Ad)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
+        }
+      },
+      "pattern": [
+        "  h",
+        "PP ",
+        "oP "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:adamantium/tap",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "adamantium/tap",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "o": {
+          "cc": "cruciblecraft:material_bending_cylinder_small",
+          "gt": "craftingTool:o",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFluidNozzle / Misc Tool Blocks",
+      "kind": "NOZZLE",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32749,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "plateCurved(ANY.W)",
+          "kind": "prefix_family",
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "R": {
+          "cc": "cruciblecraft:tungsten/ring",
+          "gt": "ring(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  h",
+        "PRP",
+        "o  "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:tungsten/nozzle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "tungsten/nozzle",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "o": {
+          "cc": "cruciblecraft:material_bending_cylinder_small",
+          "gt": "craftingTool:o",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityFluidNozzle / Misc Tool Blocks",
+      "kind": "NOZZLE",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32750,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:adamantium/curved_plate",
+          "gt": "plateCurved(MT.Ad)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
+        },
+        "R": {
+          "cc": "cruciblecraft:adamantium/ring",
+          "gt": "ring(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  h",
+        "PRP",
+        "o  "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:adamantium/nozzle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "adamantium/nozzle",
+      "status": "explicitly_blocked"
+    }
+  ],
+  "runtime_slug": "content/gt6-mte-fluid-attachments-runtime",
+  "schema": "gt6-mte-inplace-d0-obtain-matrix-v1",
+  "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+}

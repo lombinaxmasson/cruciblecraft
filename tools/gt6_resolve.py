@@ -54,6 +54,15 @@ TECH_JAVA = (
     / "items"
     / "MultiItemTechnological.java"
 )
+INPLACE_CATALOG = (
+    ROOT
+    / "src"
+    / "main"
+    / "resources"
+    / "data"
+    / "cruciblecraft"
+    / "mte_inplace_catalog.json"
+)
 GT6_ART = (
     ROOT
     / "gt6_referencable_port_code"
@@ -87,6 +96,56 @@ PREFIX_OVERLAY: dict[str, str | None] = {
     "wireGt15": "pentadecuple_wire",
     "casingMachineQuadruple": "machine_casing_quadruple",
 }
+
+# Vanilla / OreDict tokens that are the GT6 object, not a stand-in.
+OD_ITEMS: dict[str, dict[str, Any]] = {
+    "craftingChest": {
+        "item": "minecraft:chest",
+        "kind": "od_member",
+        "note": "GT6 OD.craftingChest includes vanilla chest; drawers still use aRegistry.getItem.",
+    },
+    "craftingWorkBench": {"item": "minecraft:crafting_table", "kind": "od_member"},
+    "craftingLeather": {"item": "minecraft:leather", "kind": "od_member"},
+    "plankAnyWood": {"tag": "minecraft:planks", "kind": "od_tag"},
+    "craftingFirestarter": {"item": "minecraft:flint_and_steel", "kind": "od_member"},
+    "blockGlassColorless": {"item": "minecraft:glass", "kind": "od_member"},
+}
+BLOCK_ITEMS: dict[str, str] = {
+    "stone": "minecraft:stone",
+    "brick_block": "minecraft:bricks",
+    "vine": "minecraft:vine",
+    "planks": "minecraft:oak_planks",
+}
+VANILLA_ITEMS: dict[str, str] = {
+    "string": "minecraft:string",
+}
+CIRCUITS: dict[int, str] = {
+    1: "cruciblecraft:circuit_basic",
+    2: "cruciblecraft:circuit_good",
+    3: "cruciblecraft:circuit_advanced",
+    4: "cruciblecraft:circuit_elite",
+    5: "cruciblecraft:circuit_master",
+    6: "cruciblecraft:circuit_ultimate",
+    7: "cruciblecraft:circuit_quantum",
+}
+_DATA_ARRAY = re.compile(
+    r"(CABLES_\d+|WIRES_\d+|Kinetic_T|Electric_T|Heat_T|Flux_T)\s*=\s*\{([^;]*?)\}",
+    re.S,
+)
+_INT_EXPR = re.compile(r"^[0-9+\-*]+$")
+_DATA_EMBED = re.compile(r"MT\.DATA\.([A-Za-z][A-Za-z0-9_]*)\[(\d+)\]")
+_OD_CIRCUIT = re.compile(r"^OD_CIRCUITS\[(\d+)\]$")
+_IL_INDEX = re.compile(r"^IL\.([A-Za-z][A-Za-z0-9_]*)\[(\d+)\]$")
+_IL_NAMED = re.compile(r"^IL\.([A-Za-z][A-Za-z0-9_]*)$")
+_DATA_INDEX = re.compile(r"^MT\.DATA\.([A-Za-z][A-Za-z0-9_]*)\[(\d+)\]$")
+_OD_NAME = re.compile(r"^OD\.([A-Za-z][A-Za-z0-9_]*)$")
+_BLOCKS = re.compile(r"^Blocks\.([A-Za-z][A-Za-z0-9_]*)$")
+_ITEMS = re.compile(r"^Items\.([A-Za-z][A-Za-z0-9_]*)$")
+_GET_ITEM = re.compile(r"^(?:aRegistry\.)?getItem\((\d+)\)$")
+_PLANK = re.compile(r"^PlankData\.PLANKS\[(\d+)\]$")
+_OP_DAT = re.compile(
+    r"^(?:OP\.)?([A-Za-z][A-Za-z0-9_]*)\((?:MT|ANY)\.([A-Za-z][A-Za-z0-9_]*)\)$"
+)
 
 _OP_CALL = re.compile(
     r"^(?:OP\.)?([A-Za-z][A-Za-z0-9_]*)\((?:MT|ANY)\.([A-Za-z][A-Za-z0-9_]*)\)$"
@@ -388,8 +447,248 @@ def resolve_form(prefix: dict[str, Any], material: dict[str, Any]) -> dict[str, 
     }
 
 
+def _eval_int_token(expr: str) -> str:
+    compact = expr.replace(" ", "")
+    if not _INT_EXPR.fullmatch(compact):
+        return expr
+    try:
+        return str(int(eval(compact, {"__builtins__": {}}, {})))
+    except Exception:
+        return expr
+
+
+def canonicalize(query: str) -> str:
+    text = query.strip().strip("\"'")
+    text = re.sub(r"\s+", "", text)
+    text = text.replace(".dat(", "(")
+    text = re.sub(
+        r"\[([^\[\]]+)\]",
+        lambda match: "[" + _eval_int_token(match.group(1)) + "]",
+        text,
+    )
+    text = re.sub(
+        r"(?:aRegistry\.)?getItem\(([^)]+)\)",
+        lambda match: "getItem(" + _eval_int_token(match.group(1)) + ")",
+        text,
+    )
+    return text
+
+
+def expand_mt_data_embeds(token: str) -> str:
+    current = token
+    for _ in range(8):
+        def repl(match: re.Match[str]) -> str:
+            name, index = match.group(1), int(match.group(2))
+            members = mt_data_arrays().get(name) or []
+            if index >= len(members):
+                return match.group(0)
+            inner = canonicalize(members[index])
+            if inner.startswith(("OP.", "MT.", "ANY.", "IL.", "OD.")):
+                return inner
+            return _qualify_material(inner)
+
+        updated = _DATA_EMBED.sub(repl, current)
+        if updated == current:
+            break
+        current = updated
+    expanded = _expand_inner_form(current)
+    return expanded or current
+
+
+def _qualify_material(token: str) -> str:
+    if token.startswith(("MT.", "ANY.", "OP.", "IL.", "OD.", "Blocks.", "Items.")):
+        return token
+    if token in mt_fields():
+        return f"MT.{token}"
+    if token in any_families():
+        return f"ANY.{token}"
+    return token
+
+
+def _expand_inner_form(inner: str) -> str | None:
+    match = re.fullmatch(r"(?:OP\.)?([A-Za-z][A-Za-z0-9_]*)\((.+)\)$", inner)
+    if not match:
+        return None
+    prefix, material = match.group(1), match.group(2)
+    if material.startswith("ANY."):
+        return f"{prefix}({material})"
+    if material.startswith("MT."):
+        return f"{prefix}({material})"
+    qualified = _qualify_material(material)
+    if qualified.startswith(("ANY.", "MT.")):
+        return f"{prefix}({qualified})"
+    return None
+
+
+@lru_cache(maxsize=1)
+def mt_data_arrays() -> dict[str, list[str]]:
+    if not MT_JAVA.is_file():
+        return {}
+    text = MT_JAVA.read_text(encoding="utf-8", errors="replace")
+    arrays: dict[str, list[str]] = {}
+    for match in _DATA_ARRAY.finditer(text):
+        name = match.group(1)
+        members = []
+        for raw in match.group(2).split(","):
+            token = canonicalize(raw)
+            if not token:
+                continue
+            members.append(token)
+        arrays[name] = members
+    return arrays
+
+
+@lru_cache(maxsize=1)
+def il_modules() -> dict[str, dict[int, str]]:
+    from tools import technological_parts_foundation as parts
+
+    return {
+        "PISTONS": dict(parts.PISTONS),
+        "CONVEYERS": dict(parts.CONVEYERS),
+        "PUMPS": dict(parts.PUMPS),
+        "ROBOT_ARMS": dict(parts.ROBOT_ARMS),
+        "MOTORS": dict(parts.MOTORS),
+        "FIELD_GENERATORS": dict(parts.FIELD_GENERATORS),
+        "EMITTERS": dict(parts.EMITTERS),
+        "SENSORS": dict(parts.SENSORS),
+    }
+
+
+@lru_cache(maxsize=1)
+def inplace_by_meta() -> dict[int, dict[str, Any]]:
+    if not INPLACE_CATALOG.is_file():
+        return {}
+    document = json.loads(INPLACE_CATALOG.read_text(encoding="utf-8"))
+    rows: dict[int, dict[str, Any]] = {}
+    for row in document.get("identities") or []:
+        try:
+            meta = int(row.get("meta"))
+        except (TypeError, ValueError):
+            continue
+        rows[meta] = row
+    return rows
+
+
+def _item_status(item: str | None, *, kind: str, gt: str, extra: dict[str, Any] | None = None) -> dict[str, Any]:
+    result = {"query": gt, "kind": kind, "gt": gt, "item": item}
+    if extra:
+        result.update(extra)
+    if not item:
+        result["status"] = "unmapped"
+        return result
+    if (
+        item.startswith("minecraft:")
+        or item.startswith("#")
+        or kind in {"circuit", "il_module", "mte_item"}
+    ):
+        result["live"] = True
+        result["status"] = "ok"
+        return result
+    live = item in registered_ids()
+    result["live"] = live
+    result["status"] = "ok" if live else "unmapped"
+    return result
+
+
 def resolve(query: str) -> dict[str, Any]:
     raw = query.strip()
+    token = expand_mt_data_embeds(canonicalize(raw))
+
+    circuit = _OD_CIRCUIT.fullmatch(token)
+    if circuit:
+        item = CIRCUITS.get(int(circuit.group(1)))
+        return _item_status(item, kind="circuit", gt=token)
+
+    il_index = _IL_INDEX.fullmatch(token)
+    if il_index:
+        family, index = il_index.group(1), int(il_index.group(2))
+        item = (il_modules().get(family) or {}).get(index)
+        extra = {"family": family, "index": index}
+        if item is None:
+            return {
+                "query": raw,
+                "kind": "il_module",
+                "gt": token,
+                "status": "unmapped",
+                **extra,
+            }
+        return _item_status(item, kind="il_module", gt=token, extra=extra)
+
+    data = _DATA_INDEX.fullmatch(token)
+    if data:
+        name, index = data.group(1), int(data.group(2))
+        members = mt_data_arrays().get(name) or []
+        if index >= len(members):
+            return {"query": raw, "kind": "mt_data", "gt": token, "status": "unmapped"}
+        inner = members[index]
+        expanded = _expand_inner_form(inner)
+        nested = resolve(expanded or _qualify_material(inner))
+        nested["query"] = raw
+        nested["data_array"] = name
+        nested["data_index"] = index
+        nested["data_token"] = inner
+        return nested
+
+    od_name = _OD_NAME.fullmatch(token)
+    if od_name:
+        row = OD_ITEMS.get(od_name.group(1))
+        if row is None:
+            return {"query": raw, "kind": "od", "gt": token, "status": "unmapped"}
+        item = row.get("item")
+        tag = row.get("tag")
+        if tag and not item:
+            return {
+                "query": raw,
+                "kind": "od_tag",
+                "gt": token,
+                "tag": tag,
+                "status": "ok",
+                "note": row.get("note"),
+            }
+        result = _item_status(item, kind=str(row.get("kind") or "od"), gt=token, extra={"note": row.get("note")})
+        if tag:
+            result["tag"] = tag
+        return result
+
+    block = _BLOCKS.fullmatch(token)
+    if block:
+        item = BLOCK_ITEMS.get(block.group(1))
+        return _item_status(item, kind="block", gt=token)
+
+    vanilla = _ITEMS.fullmatch(token)
+    if vanilla:
+        item = VANILLA_ITEMS.get(vanilla.group(1))
+        return _item_status(item, kind="vanilla_item", gt=token)
+
+    get_item = _GET_ITEM.fullmatch(token)
+    if get_item:
+        meta = int(get_item.group(1))
+        row = inplace_by_meta().get(meta)
+        item = None
+        if row:
+            item = str(row.get("runtime_id") or f"cruciblecraft:{row.get('registry_path')}")
+        extra = {"meta": meta, "self_ref": True}
+        if row:
+            extra["registry_path"] = row.get("registry_path")
+        return _item_status(item, kind="mte_item", gt=token, extra=extra)
+
+    plank = _PLANK.fullmatch(token)
+    if plank:
+        return {
+            "query": raw,
+            "kind": "plank_data",
+            "gt": token,
+            "index": int(plank.group(1)),
+            "status": "unmapped",
+            "note": "PlankData.PLANKS is a 1.7.10 wood table; no proven CC plank identity.",
+        }
+
+    il_named = _IL_NAMED.fullmatch(token)
+    if il_named and not token.startswith("IL.Shape_Extruder_"):
+        return {"query": raw, "kind": "il_named", "gt": token, "status": "unmapped"}
+
+    if raw.startswith("IL.Shape_Extruder_") or raw.startswith("Shape_Extruder_") or token.startswith("IL.Shape_Extruder_") or token.startswith("Shape_Extruder_"):
+        raw = token if token.startswith(("IL.Shape_Extruder_", "Shape_Extruder_")) else raw
     if raw.startswith("IL.Shape_Extruder_") or raw.startswith("Shape_Extruder_"):
         token = raw.removeprefix("IL.")
         row = extruder_shapes().get(token) or extruder_shapes().get(_norm(token))
@@ -401,7 +700,7 @@ def resolve(query: str) -> dict[str, Any]:
         result["status"] = "ok" if row.get("live") else "unmapped"
         return result
 
-    any_match = _ANY_CALL.fullmatch(raw)
+    any_match = _ANY_CALL.fullmatch(token)
     if any_match:
         prefix = resolve_prefix(any_match.group(1))
         material = resolve_material(any_match.group(2), family=True)
@@ -420,7 +719,7 @@ def resolve(query: str) -> dict[str, Any]:
             "status": status,
         }
 
-    op_match = _OP_CALL.fullmatch(raw)
+    op_match = _OP_CALL.fullmatch(token)
     if op_match:
         prefix = resolve_prefix(op_match.group(1))
         material = resolve_material(op_match.group(2))
@@ -439,12 +738,12 @@ def resolve(query: str) -> dict[str, Any]:
             "status": status,
         }
 
-    if raw.startswith("ANY."):
-        return {"query": raw, **resolve_material(raw[4:], family=True)}
-    if raw.startswith("MT.") or _MT_ONLY.fullmatch(raw):
-        token = raw.removeprefix("MT.")
-        return {"query": raw, **resolve_material(token)}
-    prefix = resolve_prefix(raw)
+    if token.startswith("ANY."):
+        return {"query": raw, **resolve_material(token[4:], family=True)}
+    if token.startswith("MT.") or _MT_ONLY.fullmatch(token):
+        field = token.removeprefix("MT.")
+        return {"query": raw, **resolve_material(field)}
+    prefix = resolve_prefix(token)
     if prefix["status"] != "unmapped":
         return {"query": raw, "kind": "prefix", **prefix}
     return {"query": raw, "status": "unmapped"}

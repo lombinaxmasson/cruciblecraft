@@ -12,6 +12,7 @@ import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.energy.EnergyPackets;
 import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.InsertResult;
+import com.masson.cruciblecraft.heat.ItemHeat;
 import com.masson.cruciblecraft.machine.CheckpointDecisions;
 import com.masson.cruciblecraft.machine.component.CheckpointTracker;
 import com.masson.cruciblecraft.machine.component.CrucibleProcessCore;
@@ -29,18 +30,38 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.Containers;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 
 public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
     public static final int MAX_INGOTS = CrucibleProcessCore.SINGLE_BLOCK_MAX_INGOTS;
     public static final float AMBIENT_TEMPERATURE = CrucibleProcessCore.AMBIENT_TEMPERATURE;
     public static final long HEAT_DISPLAY_CAPACITY = CrucibleProcessCore.HEAT_DISPLAY_CAPACITY;
 
+    private static final double SUCK_INSET = 2.0 / 16.0;
+
     private final CrucibleProcessCore process = CrucibleProcessCore.singleBlock();
+    private final ItemStackHandler inputBuffer = new ItemStackHandler(1) {
+        @Override
+        public boolean isItemValid(int slot, ItemStack stack) {
+            return MaterialUnits.resolve(stack).isPresent();
+        }
+
+        @Override
+        protected void onContentsChanged(int slot) {
+            setChanged();
+        }
+    };
+    private final IItemHandler topInsert = new TopInsertHandler();
     private final CheckpointTracker checkpoint = new CheckpointTracker();
     private boolean quarantineWarningLogged;
 
@@ -73,6 +94,8 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
         if (crucible.process.casing().quarantined()) {
             return;
         }
+        crucible.suckDroppedItems(level, pos);
+        crucible.ingestBuffer(level);
         long incomingEnergy = crucible.process.thermal().takePendingHeat();
 
         float previousTemperature = crucible.process.thermal().authoritativeTemperature();
@@ -256,12 +279,74 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
         };
     }
 
+    public CrucibleProcessCore process() {
+        return process;
+    }
+
+    public IItemHandler itemHandler(Direction side) {
+        return side == null || side == Direction.UP ? topInsert : EmptyRejectHandler.INSTANCE;
+    }
+
     public InsertResult insert(MaterialUnits.Entry entry, float inputTemperature) {
         InsertResult result = process.insert(entry, inputTemperature);
         if (result == InsertResult.SUCCESS) {
             markVisibleMutation();
         }
         return result;
+    }
+
+    public void dropBuffer(Level level, BlockPos pos) {
+        ItemStack stack = inputBuffer.getStackInSlot(0);
+        if (!stack.isEmpty()) {
+            Containers.dropItemStack(
+                    level, pos.getX(), pos.getY(), pos.getZ(), stack);
+            inputBuffer.setStackInSlot(0, ItemStack.EMPTY);
+        }
+    }
+
+    private void suckDroppedItems(Level level, BlockPos pos) {
+        if (!inputBuffer.getStackInSlot(0).isEmpty()) {
+            return;
+        }
+        AABB box = new AABB(
+                pos.getX() + SUCK_INSET,
+                pos.getY() + SUCK_INSET,
+                pos.getZ() + SUCK_INSET,
+                pos.getX() + 1.0 - SUCK_INSET,
+                pos.getY() + SUCK_INSET + 1.0,
+                pos.getZ() + 1.0 - SUCK_INSET);
+        for (ItemEntity entity : level.getEntitiesOfClass(ItemEntity.class, box)) {
+            if (!entity.isAlive() || entity.getItem().isEmpty()) {
+                continue;
+            }
+            ItemStack stack = entity.getItem();
+            if (MaterialUnits.resolve(stack).isEmpty()) {
+                continue;
+            }
+            ItemStack leftover = inputBuffer.insertItem(0, stack, false);
+            entity.setItem(leftover);
+            if (leftover.isEmpty()) {
+                entity.discard();
+            }
+            break;
+        }
+    }
+
+    private void ingestBuffer(Level level) {
+        ItemStack stack = inputBuffer.getStackInSlot(0);
+        if (stack.isEmpty()) {
+            return;
+        }
+        Optional<MaterialUnits.Entry> entry = MaterialUnits.resolve(stack);
+        if (entry.isEmpty()) {
+            return;
+        }
+        InsertResult result = insert(
+                entry.get(), ItemHeat.temperature(stack, level.getGameTime()));
+        if (result == InsertResult.SUCCESS) {
+            stack.shrink(1);
+            inputBuffer.setStackInSlot(0, stack);
+        }
     }
 
     public IFluidHandler externalFluids() {
@@ -359,7 +444,7 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
     }
 
     public boolean hasCacheSlot() {
-        return false;
+        return !inputBuffer.getStackInSlot(0).isEmpty();
     }
 
     public boolean processActive() {
@@ -391,6 +476,7 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         restoreState(tag, false);
+        loadBuffer(tag, registries);
     }
 
     @Override
@@ -412,16 +498,24 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
     private void readClientTag(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         restoreState(tag, true);
+        loadBuffer(tag, registries);
     }
 
     private void restoreState(CompoundTag tag, boolean clientUpdate) {
         process.restore(tag, clientUpdate);
     }
 
+    private void loadBuffer(CompoundTag tag, HolderLookup.Provider registries) {
+        if (tag.contains("input_buffer")) {
+            inputBuffer.deserializeNBT(registries, tag.getCompound("input_buffer"));
+        }
+    }
+
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
         process.save(tag);
+        tag.put("input_buffer", inputBuffer.serializeNBT(registries));
     }
 
     @Override
@@ -469,5 +563,74 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
         CONTINUED,
         TOO_COLD,
         INVALID_CHARGE
+    }
+
+    private final class TopInsertHandler implements IItemHandler {
+        @Override
+        public int getSlots() {
+            return 1;
+        }
+
+        @Override
+        public ItemStack getStackInSlot(int slot) {
+            return inputBuffer.getStackInSlot(0);
+        }
+
+        @Override
+        public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+            if (!inputBuffer.getStackInSlot(0).isEmpty()) {
+                return stack;
+            }
+            return inputBuffer.insertItem(0, stack, simulate);
+        }
+
+        @Override
+        public ItemStack extractItem(int slot, int amount, boolean simulate) {
+            return ItemStack.EMPTY;
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            return inputBuffer.getSlotLimit(0);
+        }
+
+        @Override
+        public boolean isItemValid(int slot, ItemStack stack) {
+            return inputBuffer.isItemValid(0, stack);
+        }
+    }
+
+    private static final class EmptyRejectHandler implements IItemHandler {
+        private static final EmptyRejectHandler INSTANCE = new EmptyRejectHandler();
+
+        @Override
+        public int getSlots() {
+            return 0;
+        }
+
+        @Override
+        public ItemStack getStackInSlot(int slot) {
+            return ItemStack.EMPTY;
+        }
+
+        @Override
+        public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+            return stack;
+        }
+
+        @Override
+        public ItemStack extractItem(int slot, int amount, boolean simulate) {
+            return ItemStack.EMPTY;
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            return 0;
+        }
+
+        @Override
+        public boolean isItemValid(int slot, ItemStack stack) {
+            return false;
+        }
     }
 }

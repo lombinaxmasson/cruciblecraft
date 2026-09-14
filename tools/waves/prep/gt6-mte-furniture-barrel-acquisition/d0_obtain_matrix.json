@@ -1,0 +1,746 @@
+{
+  "auto_promote_player_complete": false,
+  "blocker_id": "obtain/mte-inplace-runtime",
+  "capability_slug": "content/gt6-mte-furniture-barrel-acquisition",
+  "counts": {
+    "explicitly_blocked": 8,
+    "hosts": 12,
+    "source_exact": 4
+  },
+  "domain": "furniture_barrel",
+  "expected": 12,
+  "hosts": [
+    {
+      "catalysts": {
+        "r": {
+          "cc": "cruciblecraft:material_soft_hammer",
+          "gt": "craftingTool:r",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMassStorageBarrel / Storage",
+      "kind": "BARREL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 6983,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.plankSkyroot",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "S": {
+          "cc": "cruciblecraft:iron/long_rod",
+          "gt": "stickLong(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "rCs",
+        "PSP",
+        "PSP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:skyroot/item_barrel",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "skyroot/item_barrel",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "r": {
+          "cc": "cruciblecraft:material_soft_hammer",
+          "gt": "craftingTool:r",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMassStorageBarrel / Storage",
+      "kind": "BARREL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 6984,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:silverwood/plate",
+          "gt": "plate(MT.Silverwood)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
+        },
+        "S": {
+          "cc": "cruciblecraft:manasteel/long_rod",
+          "gt": "stickLong(ANY.MagicIron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "rCs",
+        "PSP",
+        "PSP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:silverwood/item_barrel",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "silverwood/item_barrel",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "r": {
+          "cc": "cruciblecraft:material_soft_hammer",
+          "gt": "craftingTool:r",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMassStorageBarrel / Storage",
+      "kind": "BARREL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 6985,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:greatwood/plate",
+          "gt": "plate(MT.Greatwood)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
+        },
+        "S": {
+          "cc": "cruciblecraft:iron/long_rod",
+          "gt": "stickLong(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "rCs",
+        "PSP",
+        "PSP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:greatwood/item_barrel",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "greatwood/item_barrel",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "r": {
+          "cc": "cruciblecraft:material_soft_hammer",
+          "gt": "craftingTool:r",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMassStorageBarrel / Storage",
+      "kind": "BARREL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 6986,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:shimmerwood/plate",
+          "gt": "plate(MT.Shimmerwood)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
+        },
+        "S": {
+          "cc": "cruciblecraft:manasteel/long_rod",
+          "gt": "stickLong(ANY.MagicIron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "rCs",
+        "PSP",
+        "PSP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:shimmerwood/item_barrel",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "shimmerwood/item_barrel",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "r": {
+          "cc": "cruciblecraft:material_soft_hammer",
+          "gt": "craftingTool:r",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMassStorageBarrel / Storage",
+      "kind": "BARREL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 6987,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:dreamwood/plate",
+          "gt": "plate(MT.Dreamwood)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
+        },
+        "S": {
+          "cc": "cruciblecraft:manasteel/long_rod",
+          "gt": "stickLong(ANY.MagicIron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "rCs",
+        "PSP",
+        "PSP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:dreamwood/item_barrel",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "dreamwood/item_barrel",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "r": {
+          "cc": "cruciblecraft:material_soft_hammer",
+          "gt": "craftingTool:r",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMassStorageBarrel / Storage",
+      "kind": "BARREL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 6988,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:livingwood/plate",
+          "gt": "plate(MT.Livingwood)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
+        },
+        "S": {
+          "cc": "cruciblecraft:iron/long_rod",
+          "gt": "stickLong(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "rCs",
+        "PSP",
+        "PSP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:livingwood/item_barrel",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "livingwood/item_barrel",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "r": {
+          "cc": "cruciblecraft:material_soft_hammer",
+          "gt": "craftingTool:r",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMassStorageBarrel / Storage",
+      "kind": "BARREL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 6989,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.plankWeedwood",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "S": {
+          "cc": "cruciblecraft:syrmorite/long_rod",
+          "gt": "stickLong(MT.Syrmorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "rCs",
+        "PSP",
+        "PSP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:weedwood/item_barrel",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "weedwood/item_barrel",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "r": {
+          "cc": "cruciblecraft:material_soft_hammer",
+          "gt": "craftingTool:r",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMassStorageBarrel / Storage",
+      "kind": "BARREL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/wooden_item_barrel_cheap.json",
+        "present": true
+      },
+      "meta": 6990,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "minecraft:planks",
+          "gt": "OD.plankAnyWood",
+          "kind": "od_tag",
+          "resolve_status": "ok",
+          "status": "source_exact",
+          "tag": "minecraft:planks"
+        },
+        "S": {
+          "cc": "cruciblecraft:brass/long_rod",
+          "gt": "stickLong(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "rCs",
+        "PSP",
+        "PSP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/wooden_item_barrel_cheap",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/wooden_item_barrel_cheap",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "r": {
+          "cc": "cruciblecraft:material_soft_hammer",
+          "gt": "craftingTool:r",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMassStorageBarrel / Storage",
+      "kind": "BARREL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/wooden/item_barrel_cheap.json",
+        "present": true
+      },
+      "meta": 6991,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "minecraft:planks",
+          "gt": "OD.plankAnyWood",
+          "kind": "od_tag",
+          "resolve_status": "ok",
+          "status": "source_exact",
+          "tag": "minecraft:planks"
+        },
+        "S": {
+          "cc": "cruciblecraft:bronze/long_rod",
+          "gt": "stickLong(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "rCs",
+        "PSP",
+        "PSP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:wooden/item_barrel_cheap",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "wooden/item_barrel_cheap",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "r": {
+          "cc": "cruciblecraft:material_soft_hammer",
+          "gt": "craftingTool:r",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMassStorageBarrel / Storage",
+      "kind": "BARREL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/wooden_item_barrel_cheap.json",
+        "present": true
+      },
+      "meta": 6992,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "minecraft:planks",
+          "gt": "OD.plankAnyWood",
+          "kind": "od_tag",
+          "resolve_status": "ok",
+          "status": "source_exact",
+          "tag": "minecraft:planks"
+        },
+        "S": {
+          "cc": "cruciblecraft:bismuth/long_rod",
+          "gt": "stickLong(MT.Bi)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "rCs",
+        "PSP",
+        "PSP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:wooden_item_barrel_cheap",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "wooden_item_barrel_cheap",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "r": {
+          "cc": "cruciblecraft:material_soft_hammer",
+          "gt": "craftingTool:r",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMassStorageBarrel / Storage",
+      "kind": "BARREL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/massstoragebarrel/wooden_item_barrel_cheap.json",
+        "present": true
+      },
+      "meta": 6998,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "minecraft:planks",
+          "gt": "OD.plankAnyWood",
+          "kind": "od_tag",
+          "resolve_status": "ok",
+          "status": "source_exact",
+          "tag": "minecraft:planks"
+        },
+        "S": {
+          "cc": "cruciblecraft:lead/long_rod",
+          "gt": "stickLong(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "rCs",
+        "PSP",
+        "PSP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:massstoragebarrel/wooden_item_barrel_cheap",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "massstoragebarrel/wooden_item_barrel_cheap",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "r": {
+          "cc": "cruciblecraft:material_soft_hammer",
+          "gt": "craftingTool:r",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMassStorageBarrel / Storage",
+      "kind": "BARREL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 6999,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:wood_treated/plate",
+          "gt": "plate(MT.WoodTreated)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "python tools/gt6_resolve.py; gated material forms must be on material_registration_gate.json. Circuits and other technological parts come from technological_parts.json, not runtime_registry_gate.json.",
+          "resolve_status": "ok",
+          "status": "explicitly_blocked"
+        },
+        "S": {
+          "cc": "cruciblecraft:iron/long_rod",
+          "gt": "stickLong(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "rCs",
+        "PSP",
+        "PSP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:furniture/wooden_item_barrel",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/wooden_item_barrel",
+      "status": "explicitly_blocked"
+    }
+  ],
+  "runtime_slug": "content/gt6-mte-furniture-barrel-runtime",
+  "schema": "gt6-mte-inplace-d0-obtain-matrix-v1",
+  "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+}

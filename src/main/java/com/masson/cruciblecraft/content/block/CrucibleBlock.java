@@ -14,6 +14,7 @@ import com.masson.cruciblecraft.fluid.CrucibleInteractionMessages;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
@@ -113,6 +114,21 @@ public class CrucibleBlock extends Block implements EntityBlock {
                     true);
         }
         return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    protected void onRemove(
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            BlockState next,
+            boolean moved) {
+        if (state.getBlock() != next.getBlock()
+                && !level.isClientSide
+                && level.getBlockEntity(pos) instanceof CrucibleBlockEntity crucible) {
+            crucible.dropBuffer(level, pos);
+        }
+        super.onRemove(state, level, pos, next, moved);
     }
 
     @Override

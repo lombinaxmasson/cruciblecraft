@@ -20,7 +20,7 @@
 | --- | --- |
 | `frozen` | 分母、来源或可行性已冻结，尚未因此获得 runtime |
 | `runtime_ready` | `src/main` 主机或机制可运行，但内容、配方或玩家路径仍可能 blocked |
-| `player_complete` | 生存可获得、可运行、可存档，并满足对应 production lock / census |
+| `player_complete` | 生存可获得、可运行、可存档，并满足对应 production lock |
 
 当前边界：
 
@@ -46,7 +46,7 @@
 - catalog **1,817 个 MTE 身份**是独立的身份分母，不等于机器 overflow，也不等于
   1,817 个待实现机制；详见第 0.1 节。
 - 实现必须另开 runtime / 内容卡，补齐 Source Pack、production lock、玩家路径、
-  load、census 和 fresh capability profile；不得从冻结卡直接推导 stand-in。
+  load 和 fresh capability profile；不得从冻结卡直接推导 stand-in。
 
 权威入口：
 
@@ -213,8 +213,11 @@ Wooden Panel 23 只计一次，不是 exclusion-reclaim 的 Panels 348。
 - 连接件：配方操作数 mapped **259** / unmapped **61**（mapped 不是 dummy
   删除集合）。restrictive Loader-out 57 行仍冻结。石墨烯 / 超导 EU dummy
   与 HSLA 未开门线规仍 blocked。层压机获得格与 torch/repeater 宿主仍 blocked。
-- in-place 获得格：`obtain/mte-inplace-runtime`（14 张卡）仍 blocked，
-  有 runtime 不等于 source-exact 生存合成。
+- in-place 获得格：`obtain/mte-inplace-runtime` 已由
+  [`MTE In-place 获得格收口`](../history/card-plans/closed/MTE原地获得格详细计划.md)
+  关成 `resolved`。732 条 source-exact 工作台格在 live `RecipeManager`；
+  150 个缺形态 / plank / 润滑剂 / OD 缺口留在各族 `current_gap.json`。
+  14 张 runtime 仍是 `runtime_ready`，不是 `player_complete`。
 - 织机 / 层压机剩余 unmapped 行是缺规格或未注册材料，**不是**
   「1,817 没折完」。注射机 overflow **0** 行是 MTE。
 - `realized_natively` 去重审计入口仍在：connector 46、hopper 101、
@@ -270,7 +273,8 @@ unique-active。
 2. catalog **1,817** 个 MTE 身份仍是 R0 分母快照：1,501 `identity_only`、
    283 `realized_natively`、33 流体附件标签。家族 runtime / 折回 child
    **已经关** `runtime_ready`。12 张 prep + 索引还是历史合同，不是
-   「仍不是 runtime」。剩余是 dummy 余量、未开门规格、in-place 获得格。
+   「仍不是 runtime」。剩余是 dummy 余量、未开门规格，以及 in-place 获得格
+   里仍缺的形态 / OD / plank（clustered blocker 已关）。
 3. 纳米加工机获得格（激光气体 + 蓝宝石处理器）和连接件 61 个未映射
    Loader id 才是还可能排期的高压/连接件活。禁止 `programmed_circuit` 顶格。
 4. Sensors 已关 `runtime_ready`，不宣称 `player_complete`。行星岩 / Center
@@ -305,7 +309,7 @@ PUV / OMEGA 六张是例外：`src/main` **已经有**主机，capability 故意
 | Crops | `worldgen/gt-crops` | `plant.glowtus` / `plant.bush` **2**；dump `gt.recipe.squeezer` 5322 仍是规模上下文、非本卡分母 | 已关 `runtime_ready`；榨汁/Food/Bees 仍 blocked | [GT 作物世界生成详细计划](../history/card-plans/closed/GT作物世界生成详细计划.md)；[`feasibility.json`](../../tools/waves/portfolio/crops-food-bees-r0/feasibility.json) |
 | Food | 同上 | dump juicer 96 + fermenter 6435（规模，非 census） | `requires_new_runtime` | 同上 |
 | Bees | 同上 | `WorldgenHives` 10 + bumblequeen 80 + bumblelyzer 1440（规模，非 census） | `requires_new_runtime` | 同上 |
-| 流体附件（catalog 33） | `content/gt6-mte-fluid-attachments-runtime` | catalog 浇铸口 / 流体龙头 / 喷嘴 / 帽喷嘴 / 流体漏斗 的 in-place runtime | 已关 `runtime_ready`，不是 `player_complete`。R0 `attachment_candidate` 标签未改。获得格仍可 blocked | [GT6流体附件runtime详细计划](../history/card-plans/closed/GT6流体附件runtime详细计划.md) |
+| 流体附件（catalog 33） | `content/gt6-mte-fluid-attachments-runtime` | catalog 浇铸口 / 流体龙头 / 喷嘴 / 帽喷嘴 / 流体漏斗 的 in-place runtime | 已关 `runtime_ready`，不是 `player_complete`。R0 `attachment_candidate` 标签未改。source-exact 获得格已落地；缺 `round` / curved / small_casing 仍 blocked | [GT6流体附件runtime详细计划](../history/card-plans/closed/GT6流体附件runtime详细计划.md) |
 | 大型热交换器 17197 | `energy/large-heat-exchanger` | 3×3×2 HEX，blocker `energy/large-heat-exchanger-17197` 已 `resolved` | `frozen`+`paused`。代码在仓库。不是 `player_complete` | [PUV2+ / OMEGA 科技线](../history/card-plans/prep/PUV2OMEGA科技线详细计划.md) |
 | 蒸汽涡轮 | `energy/steam-turbine` | 15 单机 + 4 大型，STEAM→RU | `frozen`+`paused`。blocker 已 `resolved`。不是 HEX / 冷却器 | 同上 |
 | 聚变 / 量子 | `energy/fusion-quantum`、`energy/quantum-massfab` | 18 源行 + CC 中性物质扩展 | `frozen`+`paused`。`energy/reactor-fusion` 已 `resolved`。`FUELS_PLASMA` 保持空 | 同上 |
