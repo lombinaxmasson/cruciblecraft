@@ -1,0 +1,48 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-fluid-combo-pipe-runtime",
+  "title": "GT6 Fluid Combo Pipe Runtime",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6流体组合管运行时详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/FluidPipeBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalog.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/FluidComboPipeRuntimeGameTests.java",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_fluid_combo_pipe_runtime/**",
+    "tools/capabilities/content/gt6-fluid-combo-pipe-runtime/**",
+    "tools/waves/content/gt6-fluid-combo-pipe-runtime/**",
+    "tools/gt6_fluid_combo_pipe_runtime.py",
+    "tools/build_gt6_fluid_combo_pipe_runtime.py",
+    "tools/tests/test_gt6_fluid_combo_pipe_runtime.py"
+  ],
+  "depends_on": [
+    "registry/catalog-modern-ids",
+    "content/gt6-fluid-pipe-runtime",
+    "content/gt6-connector-art",
+    "content/gt6-connector-alias-repair"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-fluid-combo-pipe-runtime",
+  "required_test_ids": [
+    "comboPipeIndependentTanks",
+    "comboPipeIsNotHugeAlias",
+    "comboPipeDummyFoldsOntoLiveHost"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "connector:fluid-pipe:quadruple-nonuple",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:copper/quadruple_fluid_pipe",
+        "cruciblecraft:copper/nonuple_fluid_pipe",
+        "cruciblecraft:tin_alloy/quadruple_fluid_pipe",
+        "cruciblecraft:hslasteel/quadruple_fluid_pipe"
+      ],
+      "reason": "GT6 pipeQuadruple/pipeNonuple are 4/9 independent tanks copying medium/small capacity. Fold catalog dummies onto live combo BlockItems; do not alias huge pipes."
+    }
+  ],
+  "note": "Combo fluid pipes only. Close at runtime_ready, not player_complete. Boxinator/Unboxinator and survival obtain wait for the acquisition child. Do not edit R0 or the baseline identity ledger."
+}

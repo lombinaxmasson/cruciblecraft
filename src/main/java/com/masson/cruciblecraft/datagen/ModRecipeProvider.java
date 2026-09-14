@@ -2,8 +2,10 @@ package com.masson.cruciblecraft.datagen;
 
 import java.util.Comparator;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 import com.masson.cruciblecraft.CrucibleCraft;
@@ -12,6 +14,7 @@ import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
 import com.masson.cruciblecraft.logistics.pipe.PipeAcquisitionRecipeCatalog;
+import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverComponentTiers;
 import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
@@ -21,6 +24,7 @@ import com.masson.cruciblecraft.content.item.GeigerCounterItem;
 import com.masson.cruciblecraft.content.item.ElectroMeterItem;
 import com.masson.cruciblecraft.content.item.TachoMeterItem;
 import com.masson.cruciblecraft.content.item.ThermometerItem;
+import com.masson.cruciblecraft.content.redstonewire.RedstoneWireKind;
 import com.masson.cruciblecraft.content.sensor.SensorKind;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
@@ -37,6 +41,7 @@ import com.masson.cruciblecraft.recipe.crafting.WorkbenchToolRecipePlan;
 import com.masson.cruciblecraft.fusion.FusionRecipeCatalog;
 import com.masson.cruciblecraft.registry.ModComponents;
 import com.masson.cruciblecraft.energy.battery.EnergyBatteryTierCatalog;
+import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterTierCatalog;
 import com.masson.cruciblecraft.energy.transformer.EnergyTransformerTierCatalog;
 import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerCatalog;
@@ -51,6 +56,7 @@ import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponentPredicate;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -60,6 +66,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -1121,6 +1128,14 @@ public final class ModRecipeProvider extends RecipeProvider {
                 "conversion_processor_unit",
                 Items.GOLD_INGOT);
         addNonmetalPipeAcquisitionRecipes(output);
+        addComboFluidPipeRecipes(output);
+        addMetalFluidPipeTableRecipes(output);
+        addMetalItemPipeTableRecipes(output);
+        addRestrictiveItemPipeRecipes(output);
+        addEuWireTableRecipes(output);
+        addEuCableShapelessRecipes(output);
+        addEuWirePackRecipes(output);
+        addInsulatedRedstoneLaminatorRecipes(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.FLINT_KNIFE.get())
                 .pattern("SF")
                 .define('S', Items.STICK)
@@ -1363,6 +1378,521 @@ public final class ModRecipeProvider extends RecipeProvider {
                             "has_pipe_operand",
                             has(java.util.Objects.requireNonNull(unlock)))
                     .save(output, spec.id());
+        }
+    }
+
+    private static void addComboFluidPipeRecipes(RecipeOutput output) {
+        for (PipeCatalog.Entry pipe : PipeCatalog.fluid()) {
+            if (pipe.form().equals(MaterialPrefixes.QUADRUPLE_FLUID_PIPE)) {
+                Item result = materialItem(
+                        pipe.materialId(), pipe.form());
+                Item medium = materialItem(
+                        pipe.materialId(), MaterialPrefixes.FLUID_PIPE);
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
+                        .pattern("PP")
+                        .pattern("PP")
+                        .define('P', medium)
+                        .unlockedBy("has_medium_pipe", has(medium))
+                        .save(
+                                output,
+                                id("pipe/combo/"
+                                        + pipe.materialId()
+                                        + "/quadruple_fluid_pipe"));
+                ShapelessRecipeBuilder.shapeless(
+                                RecipeCategory.MISC, medium, 4)
+                        .requires(result)
+                        .unlockedBy("has_quadruple_pipe", has(result))
+                        .save(
+                                output,
+                                id("pipe/combo/"
+                                        + pipe.materialId()
+                                        + "/unpack_quadruple_fluid_pipe"));
+            } else if (pipe.form().equals(
+                    MaterialPrefixes.NONUPLE_FLUID_PIPE)) {
+                Item result = materialItem(
+                        pipe.materialId(), pipe.form());
+                Item small = materialItem(
+                        pipe.materialId(), MaterialPrefixes.SMALL_FLUID_PIPE);
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
+                        .pattern("PPP")
+                        .pattern("PPP")
+                        .pattern("PPP")
+                        .define('P', small)
+                        .unlockedBy("has_small_pipe", has(small))
+                        .save(
+                                output,
+                                id("pipe/combo/"
+                                        + pipe.materialId()
+                                        + "/nonuple_fluid_pipe"));
+                ShapelessRecipeBuilder.shapeless(
+                                RecipeCategory.MISC, small, 9)
+                        .requires(result)
+                        .unlockedBy("has_nonuple_pipe", has(result))
+                        .save(
+                                output,
+                                id("pipe/combo/"
+                                        + pipe.materialId()
+                                        + "/unpack_nonuple_fluid_pipe"));
+            }
+        }
+    }
+
+    /**
+     * GT6 five-gauge fluid-pipe table crafts. Operands are
+     * {@code OP.plateCurved} / {@code OP.plateDouble} plus tool catalysts.
+     * Missing curved or double plates stay blocked; flat {@code plate} is
+     * never substituted.
+     */
+    private static void addMetalFluidPipeTableRecipes(RecipeOutput output) {
+        for (PipeCatalog.Entry pipe : PipeCatalog.fluid()) {
+            List<String> pattern = fluidTablePattern(pipe.form());
+            if (pattern == null) {
+                continue;
+            }
+            if (!PipeCatalog.recipeEnabled(
+                    MaterialCatalog.require(pipe.materialId()),
+                    PipeCatalog.Kind.FLUID,
+                    pipe.sourceSpecification())) {
+                continue;
+            }
+            MaterialPrefix plateForm = pipe.form().equals(
+                    MaterialPrefixes.HUGE_FLUID_PIPE)
+                    ? MaterialPrefixes.DOUBLE_PLATE
+                    : MaterialPrefixes.CURVED_PLATE;
+            if (!ModItems.hasMaterialItem(pipe.materialId(), plateForm)
+                    || !ModItems.hasMaterialItem(
+                            pipe.materialId(), pipe.form())) {
+                continue;
+            }
+            Item plate = materialItem(pipe.materialId(), plateForm);
+            Item result = materialItem(pipe.materialId(), pipe.form());
+            Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+            ingredients.put("P", Ingredient.of(plate));
+            Map<String, Ingredient> catalysts = new LinkedHashMap<>();
+            String joined = String.join("", pattern);
+            if (joined.indexOf('s') >= 0) {
+                catalysts.put(
+                        "s", Ingredient.of(ModItems.MATERIAL_SAW.get()));
+            }
+            catalysts.put(
+                    "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()));
+            catalysts.put(
+                    "z", Ingredient.of(ModItems.MATERIAL_FILE.get()));
+            catalysts.put(
+                    "h", Ingredient.of(ModItems.SMITHING_HAMMER.get()));
+            acceptShapedCatalyst(
+                    output,
+                    "pipe/table/"
+                            + pipe.materialId()
+                            + "/"
+                            + pipe.form().serializedName(),
+                    pattern,
+                    ingredients,
+                    catalysts,
+                    new ItemStack(result));
+        }
+    }
+
+    private static List<String> fluidTablePattern(MaterialPrefix form) {
+        if (form.equals(MaterialPrefixes.TINY_FLUID_PIPE)) {
+            return List.of("sP ", "wzh");
+        }
+        if (form.equals(MaterialPrefixes.SMALL_FLUID_PIPE)) {
+            return List.of(" P ", "wzh");
+        }
+        if (form.equals(MaterialPrefixes.FLUID_PIPE)) {
+            return List.of("PPP", "wzh");
+        }
+        if (form.equals(MaterialPrefixes.LARGE_FLUID_PIPE)
+                || form.equals(MaterialPrefixes.HUGE_FLUID_PIPE)) {
+            return List.of("PPP", "wzh", "PPP");
+        }
+        return null;
+    }
+
+    /**
+     * GT6 ordinary item-pipe table crafts. Medium/large use
+     * {@code OP.plateCurved}; huge uses {@code OP.plateDouble}. Flat
+     * {@code plate} is never substituted.
+     */
+    private static void addMetalItemPipeTableRecipes(RecipeOutput output) {
+        for (PipeCatalog.Entry pipe : PipeCatalog.item()) {
+            List<String> pattern = itemTablePattern(pipe.form());
+            if (pattern == null) {
+                continue;
+            }
+            if (pipe.item() == null || !pipe.item().recipe()) {
+                continue;
+            }
+            MaterialPrefix plateForm = pipe.form().equals(
+                    MaterialPrefixes.HUGE_ITEM_PIPE)
+                    ? MaterialPrefixes.DOUBLE_PLATE
+                    : MaterialPrefixes.CURVED_PLATE;
+            if (!ModItems.hasMaterialItem(pipe.materialId(), plateForm)
+                    || !ModItems.hasMaterialItem(
+                            pipe.materialId(), pipe.form())) {
+                continue;
+            }
+            Item plate = materialItem(pipe.materialId(), plateForm);
+            Item result = materialItem(pipe.materialId(), pipe.form());
+            Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+            ingredients.put("P", Ingredient.of(plate));
+            Map<String, Ingredient> catalysts = new LinkedHashMap<>();
+            catalysts.put(
+                    "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()));
+            catalysts.put(
+                    "z", Ingredient.of(ModItems.MATERIAL_FILE.get()));
+            catalysts.put(
+                    "h", Ingredient.of(ModItems.SMITHING_HAMMER.get()));
+            acceptShapedCatalyst(
+                    output,
+                    "pipe/item_table/"
+                            + pipe.materialId()
+                            + "/"
+                            + pipe.form().serializedName(),
+                    pattern,
+                    ingredients,
+                    catalysts,
+                    new ItemStack(result));
+        }
+    }
+
+    private static List<String> itemTablePattern(MaterialPrefix form) {
+        if (form.equals(MaterialPrefixes.ITEM_PIPE)) {
+            return List.of("PPP", "wzh");
+        }
+        if (form.equals(MaterialPrefixes.LARGE_ITEM_PIPE)
+                || form.equals(MaterialPrefixes.HUGE_ITEM_PIPE)) {
+            return List.of("PPP", "wzh", "PPP");
+        }
+        return null;
+    }
+
+    /**
+     * GT6 restrictive item-pipe crafts. {@code P} is the matching ordinary
+     * gauge; {@code R} is {@code OP.ring.dat(ANY.Steel)} which resolves to
+     * live {@code steel/ring}. Do not invent a different ring.
+     */
+    private static void addRestrictiveItemPipeRecipes(RecipeOutput output) {
+        if (!ModItems.hasMaterialItem("steel", MaterialPrefixes.RING)) {
+            return;
+        }
+        Item steelRing = materialItem("steel", MaterialPrefixes.RING);
+        for (PipeCatalog.Entry pipe : PipeCatalog.item()) {
+            List<String> pattern = restrictivePattern(pipe.form());
+            if (pattern == null) {
+                continue;
+            }
+            if (pipe.item() == null || !pipe.item().recipe()) {
+                continue;
+            }
+            MaterialPrefix sourceForm = ordinaryItemForm(pipe.form());
+            if (!ModItems.hasMaterialItem(pipe.materialId(), sourceForm)
+                    || !ModItems.hasMaterialItem(
+                            pipe.materialId(), pipe.form())) {
+                continue;
+            }
+            Item source = materialItem(pipe.materialId(), sourceForm);
+            Item result = materialItem(pipe.materialId(), pipe.form());
+            Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+            ingredients.put("P", Ingredient.of(source));
+            ingredients.put("R", Ingredient.of(steelRing));
+            Map<String, Ingredient> catalysts = new LinkedHashMap<>();
+            catalysts.put(
+                    "h", Ingredient.of(ModItems.SMITHING_HAMMER.get()));
+            acceptShapedCatalyst(
+                    output,
+                    "pipe/restrictive/"
+                            + pipe.materialId()
+                            + "/"
+                            + pipe.form().serializedName(),
+                    pattern,
+                    ingredients,
+                    catalysts,
+                    new ItemStack(result));
+        }
+    }
+
+    private static List<String> restrictivePattern(MaterialPrefix form) {
+        if (form.equals(MaterialPrefixes.RESTRICTIVE_ITEM_PIPE)) {
+            return List.of(" h ", "RPR", " R ");
+        }
+        if (form.equals(MaterialPrefixes.LARGE_RESTRICTIVE_ITEM_PIPE)) {
+            return List.of("hR ", "RPR", " R ");
+        }
+        if (form.equals(MaterialPrefixes.HUGE_RESTRICTIVE_ITEM_PIPE)) {
+            return List.of(" h ", "RPR", "RRR");
+        }
+        return null;
+    }
+
+    private static MaterialPrefix ordinaryItemForm(MaterialPrefix form) {
+        if (form.equals(MaterialPrefixes.RESTRICTIVE_ITEM_PIPE)) {
+            return MaterialPrefixes.ITEM_PIPE;
+        }
+        if (form.equals(MaterialPrefixes.LARGE_RESTRICTIVE_ITEM_PIPE)) {
+            return MaterialPrefixes.LARGE_ITEM_PIPE;
+        }
+        if (form.equals(MaterialPrefixes.HUGE_RESTRICTIVE_ITEM_PIPE)) {
+            return MaterialPrefixes.HUGE_ITEM_PIPE;
+        }
+        return form;
+    }
+
+    /**
+     * GT6 {@code OreProcessing_CraftFrom} plate2wire: {@code "Px"} with
+     * {@code P=plate} and {@code x=wirecutter}. Only live EU
+     * {@code wireGt01} hosts. Red alloy / Signalum / Lumium stay out of
+     * {@link ElectricalConductorCatalog}.
+     */
+    private static void addEuWireTableRecipes(RecipeOutput output) {
+        if (!ElectricalConductorCatalog.isInitialized()) {
+            return;
+        }
+        for (ElectricalConductorCatalog.Entry wire :
+                ElectricalConductorCatalog.wires()) {
+            if (!wire.form().equals(MaterialPrefixes.WIRE)) {
+                continue;
+            }
+            if (!ModItems.hasMaterialItem(
+                    wire.materialId(), MaterialPrefixes.PLATE)
+                    || !ModItems.hasMaterialItem(
+                            wire.materialId(), MaterialPrefixes.WIRE)) {
+                continue;
+            }
+            Item plate = materialItem(
+                    wire.materialId(), MaterialPrefixes.PLATE);
+            Item result = materialItem(
+                    wire.materialId(), MaterialPrefixes.WIRE);
+            Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+            ingredients.put("P", Ingredient.of(plate));
+            Map<String, Ingredient> catalysts = new LinkedHashMap<>();
+            catalysts.put(
+                    "x",
+                    Ingredient.of(ModItems.MATERIAL_WIRE_CUTTER.get()));
+            acceptShapedCatalyst(
+                    output,
+                    "cable/table/"
+                            + wire.materialId()
+                            + "/wire",
+                    List.of("Px ", "   "),
+                    ingredients,
+                    catalysts,
+                    new ItemStack(result));
+        }
+    }
+
+    /**
+     * GT6 shapeless {@code cableGt01/02 = wireGt01/02 + plate.dat(ANY.Rubber)}.
+     * The live CC tag is {@code cruciblecraft:any_rubber_plates}.
+     */
+    private static void addEuCableShapelessRecipes(RecipeOutput output) {
+        if (!ElectricalConductorCatalog.isInitialized()
+                || !ModItems.hasMaterialItem(
+                        "rubber", MaterialPrefixes.PLATE)) {
+            return;
+        }
+        TagKey<Item> rubberPlates = TagKey.create(
+                Registries.ITEM,
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, "any_rubber_plates"));
+        for (ElectricalConductorCatalog.Entry cable :
+                ElectricalConductorCatalog.cables()) {
+            MaterialPrefix wireForm = cableWireForm(cable.form());
+            if (wireForm == null) {
+                continue;
+            }
+            if (!ElectricalConductorCatalog.contains(
+                    cable.materialId(), wireForm)
+                    || !ModItems.hasMaterialItem(
+                            cable.materialId(), wireForm)
+                    || !ModItems.hasMaterialItem(
+                            cable.materialId(), cable.form())) {
+                continue;
+            }
+            Item wire = materialItem(cable.materialId(), wireForm);
+            Item result = materialItem(cable.materialId(), cable.form());
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result)
+                    .requires(wire)
+                    .requires(rubberPlates)
+                    .unlockedBy("has_wire", has(wire))
+                    .save(
+                            output,
+                            id("cable/shapeless/"
+                                    + cable.materialId()
+                                    + "/"
+                                    + cable.form().serializedName()));
+        }
+    }
+
+    /**
+     * GT6 {@code AdvancedCraftingXToY} / {@code AdvancedCrafting1ToY} wire
+     * packing. Pack only when {@code tAmount < 10}; unpack always.
+     */
+    private static void addEuWirePackRecipes(RecipeOutput output) {
+        if (!ElectricalConductorCatalog.isInitialized()) {
+            return;
+        }
+        Set<String> materials = new LinkedHashSet<>();
+        for (ElectricalConductorCatalog.Entry wire :
+                ElectricalConductorCatalog.wires()) {
+            materials.add(wire.materialId());
+        }
+        for (String material : materials) {
+            for (int big = 1; big <= 16; big++) {
+                for (int small = 1; small < big; small++) {
+                    if (big % small != 0) {
+                        continue;
+                    }
+                    MaterialPrefix bigForm = wireGaugeForm(big);
+                    MaterialPrefix smallForm = wireGaugeForm(small);
+                    if (!ElectricalConductorCatalog.contains(material, bigForm)
+                            || !ElectricalConductorCatalog.contains(
+                                    material, smallForm)
+                            || !ModItems.hasMaterialItem(material, bigForm)
+                            || !ModItems.hasMaterialItem(
+                                    material, smallForm)) {
+                        continue;
+                    }
+                    int amount = big / small;
+                    Item bigItem = materialItem(material, bigForm);
+                    Item smallItem = materialItem(material, smallForm);
+                    ShapelessRecipeBuilder.shapeless(
+                                    RecipeCategory.MISC, smallItem, amount)
+                            .requires(bigItem)
+                            .unlockedBy("has_wire", has(bigItem))
+                            .save(
+                                    output,
+                                    id("cable/unpack/"
+                                            + material
+                                            + "/"
+                                            + smallForm.serializedName()
+                                            + "_from_"
+                                            + bigForm.serializedName()));
+                    if (amount >= 10) {
+                        continue;
+                    }
+                    ShapelessRecipeBuilder pack =
+                            ShapelessRecipeBuilder.shapeless(
+                                    RecipeCategory.MISC, bigItem);
+                    for (int index = 0; index < amount; index++) {
+                        pack.requires(smallItem);
+                    }
+                    pack.unlockedBy("has_wire", has(smallItem))
+                            .save(
+                                    output,
+                                    id("cable/pack/"
+                                            + material
+                                            + "/"
+                                            + bigForm.serializedName()
+                                            + "_from_"
+                                            + smallForm.serializedName()));
+                }
+            }
+        }
+    }
+
+    private static MaterialPrefix cableWireForm(MaterialPrefix cableForm) {
+        if (cableForm.equals(MaterialPrefixes.CABLE)) {
+            return MaterialPrefixes.WIRE;
+        }
+        if (cableForm.equals(MaterialPrefixes.DOUBLE_CABLE)) {
+            return MaterialPrefixes.DOUBLE_WIRE;
+        }
+        return null;
+    }
+
+    private static MaterialPrefix wireGaugeForm(int gauge) {
+        return switch (gauge) {
+            case 1 -> MaterialPrefixes.WIRE;
+            case 2 -> MaterialPrefixes.DOUBLE_WIRE;
+            case 3 -> MaterialPrefixes.TRIPLE_WIRE;
+            case 4 -> MaterialPrefixes.QUADRUPLE_WIRE;
+            case 5 -> MaterialPrefixes.QUINTUPLE_WIRE;
+            case 6 -> MaterialPrefixes.SEXTUPLE_WIRE;
+            case 7 -> MaterialPrefixes.SEPTUPLE_WIRE;
+            case 8 -> MaterialPrefixes.OCTUPLE_WIRE;
+            case 9 -> MaterialPrefixes.NONUPLE_WIRE;
+            case 10 -> MaterialPrefixes.DECUPLE_WIRE;
+            case 11 -> MaterialPrefixes.UNDECUPLE_WIRE;
+            case 12 -> MaterialPrefixes.DODECUPLE_WIRE;
+            case 13 -> MaterialPrefixes.TREDECUPLE_WIRE;
+            case 14 -> MaterialPrefixes.TETRADECUPLE_WIRE;
+            case 15 -> MaterialPrefixes.PENTADECUPLE_WIRE;
+            case 16 -> MaterialPrefixes.HEXADECUPLE_WIRE;
+            default -> throw new IllegalArgumentException(
+                    "unsupported wire gauge " + gauge);
+        };
+    }
+
+    /**
+     * GT6 {@code RM.Laminator.addRecipe2} for insulated redstone
+     * 27006/27056/27506. Plate or four foils of {@code ANY.Rubber}
+     * (live member {@code rubber}) plus the matching bare wire. Not EU
+     * and not {@code tin/cable}.
+     */
+    private static void addInsulatedRedstoneLaminatorRecipes(
+            RecipeOutput output) {
+        if (!ModItems.hasMaterialItem("rubber", MaterialPrefixes.PLATE)) {
+            return;
+        }
+        Item rubberPlate = materialItem("rubber", MaterialPrefixes.PLATE);
+        Item rubberFoil = ModItems.hasMaterialItem(
+                "rubber", MaterialPrefixes.FOIL)
+                ? materialItem("rubber", MaterialPrefixes.FOIL)
+                : null;
+        for (RedstoneWireKind cable : RedstoneWireKind.insulatedKinds()) {
+            if (!ModItems.hasMaterialItem(
+                    cable.materialId(), MaterialPrefixes.WIRE)
+                    || !ModItems.hasMaterialItem(
+                            cable.materialId(), MaterialPrefixes.CABLE)) {
+                continue;
+            }
+            Item wire = materialItem(
+                    cable.materialId(), MaterialPrefixes.WIRE);
+            Item result = materialItem(
+                    cable.materialId(), MaterialPrefixes.CABLE);
+            output.accept(
+                    id("redstone/laminator/"
+                            + cable.materialId()
+                            + "/cable_from_plate"),
+                    new GTRecipeEntry(
+                            ModRecipeMaps.LAMINATOR.id(),
+                            new GTRecipe(
+                                    List.of(
+                                            Ingredient.of(rubberPlate),
+                                            Ingredient.of(wire)),
+                                    List.of(1, 1),
+                                    List.of(new ItemStack(result)),
+                                    List.of(),
+                                    List.of(),
+                                    List.of(GTRecipe.GUARANTEED_CHANCE),
+                                    16,
+                                    16L,
+                                    0L)),
+                    null);
+            if (rubberFoil == null) {
+                continue;
+            }
+            output.accept(
+                    id("redstone/laminator/"
+                            + cable.materialId()
+                            + "/cable_from_foil"),
+                    new GTRecipeEntry(
+                            ModRecipeMaps.LAMINATOR.id(),
+                            new GTRecipe(
+                                    List.of(
+                                            Ingredient.of(rubberFoil),
+                                            Ingredient.of(wire)),
+                                    List.of(4, 1),
+                                    List.of(new ItemStack(result)),
+                                    List.of(),
+                                    List.of(),
+                                    List.of(GTRecipe.GUARANTEED_CHANCE),
+                                    16,
+                                    16L,
+                                    0L)),
+                    null);
         }
     }
 

@@ -3,7 +3,7 @@
   "generated_by": "python tools/build_recipe_bulk.py import-source",
   "host": "cruciblecraft:slicer",
   "import_slug": "machines/slicer",
-  "relation_count": 32,
+  "relation_count": 33,
   "relations": [
     {
       "can_be_buffered": true,
@@ -2557,6 +2557,114 @@
         {
           "alias": null,
           "form": null,
+          "mapping": "exact_runtime_id",
+          "material": null,
+          "reachable": false,
+          "runtime_id": "minecraft:paper",
+          "slot_class": "occupied",
+          "source": {
+            "count": 1,
+            "displayName": "Paper",
+            "item": "minecraft:paper",
+            "meta": "*"
+          },
+          "tag": null,
+          "value": "minecraft:paper"
+        },
+        {
+          "alias": null,
+          "form": null,
+          "mapping": "exact_item",
+          "material": null,
+          "reachable": true,
+          "runtime_id": "cruciblecraft:part/slicer_blades_grid",
+          "slot_class": "catalyst",
+          "source": {
+            "count": 0,
+            "displayName": "Slicer Blades (Grid)",
+            "item": "gregtech:gt.multiitem.technological",
+            "meta": 10902
+          },
+          "tag": null,
+          "value": "cruciblecraft:part/slicer_blades_grid"
+        }
+      ],
+      "item_outputs": [
+        {
+          "alias": null,
+          "form": "tiny_plate",
+          "mapping": "registered_material_form",
+          "material": "paper",
+          "reachable": false,
+          "runtime_id": "cruciblecraft:paper/tiny_plate",
+          "slot_class": "occupied",
+          "source": {
+            "count": 9,
+            "displayName": "Tiny piece of Paper",
+            "item": "gregtech:gt.meta.plateTiny",
+            "meta": 8216
+          },
+          "tag": "c:tiny_plates/paper",
+          "value": "paper:tiny_plate"
+        }
+      ],
+      "needs_empty_output": false,
+      "no_nbt_checks": true,
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "fields": {
+          "can_be_buffered": "SOURCE_BACKED",
+          "duration": "SOURCE_BACKED",
+          "eut": "SOURCE_BACKED",
+          "item_input_counts": "SOURCE_BACKED",
+          "item_inputs": "SOURCE_DERIVED",
+          "special_value": "SOURCE_BACKED"
+        },
+        "kinds": [
+          "SOURCE_BACKED",
+          "SOURCE_DERIVED"
+        ]
+      },
+      "shadow_order": 23,
+      "slot_notes": [],
+      "source_map": "gt.recipe.slicer",
+      "source_recipe_index": 23,
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_row_sha256": "ea607ca5122cb2f3a630a40ffb6ed69f15bae8284246ddd33ee69afee0b259eb",
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/65e0fa04387cad69",
+      "target_map": "cruciblecraft:slicer",
+      "template_key": "gt.recipe.slicer#0000",
+      "unsupported_semantics": []
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "family_id": "portfolio:track_a/cruciblecraft:slicer/gt.recipe.slicer#0000",
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "host": "cruciblecraft:slicer",
+      "item_input_actions": [
+        {
+          "damage": 0,
+          "kind": "CONSUME"
+        },
+        {
+          "damage": 0,
+          "kind": "PRESERVE"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "alias": null,
+          "form": null,
           "mapping": "proven_equivalent",
           "material": null,
           "reachable": true,
@@ -2628,7 +2736,7 @@
           "SOURCE_DERIVED"
         ]
       },
-      "shadow_order": 23,
+      "shadow_order": 24,
       "slot_notes": [],
       "source_map": "gt.recipe.slicer",
       "source_recipe_index": 24,
@@ -2737,7 +2845,7 @@
           "SOURCE_DERIVED"
         ]
       },
-      "shadow_order": 24,
+      "shadow_order": 25,
       "slot_notes": [],
       "source_map": "gt.recipe.slicer",
       "source_recipe_index": 25,
@@ -2847,7 +2955,7 @@
           "SOURCE_DERIVED"
         ]
       },
-      "shadow_order": 25,
+      "shadow_order": 26,
       "slot_notes": [],
       "source_map": "gt.recipe.slicer",
       "source_recipe_index": 26,
@@ -2955,7 +3063,7 @@
           "SOURCE_DERIVED"
         ]
       },
-      "shadow_order": 26,
+      "shadow_order": 27,
       "slot_notes": [],
       "source_map": "gt.recipe.slicer",
       "source_recipe_index": 27,
@@ -3064,7 +3172,7 @@
           "SOURCE_DERIVED"
         ]
       },
-      "shadow_order": 27,
+      "shadow_order": 28,
       "slot_notes": [],
       "source_map": "gt.recipe.slicer",
       "source_recipe_index": 28,
@@ -3173,7 +3281,7 @@
           "SOURCE_DERIVED"
         ]
       },
-      "shadow_order": 28,
+      "shadow_order": 29,
       "slot_notes": [],
       "source_map": "gt.recipe.slicer",
       "source_recipe_index": 29,
@@ -3283,7 +3391,7 @@
           "SOURCE_DERIVED"
         ]
       },
-      "shadow_order": 29,
+      "shadow_order": 30,
       "slot_notes": [],
       "source_map": "gt.recipe.slicer",
       "source_recipe_index": 30,
@@ -3393,7 +3501,7 @@
           "SOURCE_DERIVED"
         ]
       },
-      "shadow_order": 30,
+      "shadow_order": 31,
       "slot_notes": [],
       "source_map": "gt.recipe.slicer",
       "source_recipe_index": 31,
@@ -3502,7 +3610,7 @@
           "SOURCE_DERIVED"
         ]
       },
-      "shadow_order": 31,
+      "shadow_order": 32,
       "slot_notes": [],
       "source_map": "gt.recipe.slicer",
       "source_recipe_index": 32,

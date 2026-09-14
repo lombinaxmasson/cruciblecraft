@@ -121,6 +121,21 @@ public final class ModCapabilities {
                 ModBlockEntities.FLUID_PIPE.get(),
                 (blockEntity, side) -> blockEntity.fluidHandler(side));
         event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.MTE_INPLACE.get(),
+                (blockEntity, side) -> blockEntity.fluidHandler(side));
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.MTE_INPLACE.get(),
+                (blockEntity, side) -> blockEntity.itemHandler(side));
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.MTE_INPLACE.get(),
+                (blockEntity, side) -> blockEntity.handles(
+                        blockEntity.spec().kind().energyType(), side)
+                        ? blockEntity
+                        : null);
+        event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
                 ModBlockEntities.ITEM_PIPE.get(),
                 (blockEntity, side) -> blockEntity.itemHandler(side));

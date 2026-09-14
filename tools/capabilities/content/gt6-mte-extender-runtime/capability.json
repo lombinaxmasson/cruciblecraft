@@ -1,0 +1,45 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-mte-extender-runtime",
+  "title": "GT6 Extender Runtime",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6扩展器runtime详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/mte/**",
+    "src/main/java/com/masson/cruciblecraft/gametest/MteExtenderRuntimeGameTests.java",
+    "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_extender_runtime/**",
+    "tools/capabilities/content/gt6-mte-extender-runtime/**",
+    "tools/waves/content/gt6-mte-extender-runtime/**",
+    "tools/gt6_mte_inplace_runtime.py",
+    "tools/build_gt6_mte_inplace_runtime.py",
+    "tools/tests/test_gt6_mte_runtime.py"
+  ],
+  "depends_on": [
+    "registry/catalog-modern-ids",
+    "content/gt6-fluid-pipe-runtime"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-mte-extender-runtime",
+  "required_test_ids": [
+    "tankBridgeIsLiveExtender",
+    "tankExtenderDelegatesFluid"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "mte:extender:in-place",
+      "disposition": "keep_distinct",
+      "runtime_ids": [
+        "cruciblecraft:extender/tank_extender",
+        "cruciblecraft:extender/tank_bridge"
+      ],
+      "reason": "Tank extender and tank bridge keep dummy modern ids as live BlockItems. They are not pipe covers."
+    }
+  ],
+  "note": "In-place extender/bridge runtime. Close at runtime_ready. Obtain stays explicitly_blocked. Do not edit R0."
+}

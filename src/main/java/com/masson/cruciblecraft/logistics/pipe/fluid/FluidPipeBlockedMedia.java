@@ -6,12 +6,10 @@ import com.masson.cruciblecraft.registry.ModFluids;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 /**
- * Plasma / magic fill is fail-closed. GT6 trashes and may damage or replace
- * the pipe; this port refuses the fill instead of mapping those fluids onto
- * gas leak or acid corrosion, and it does not invent destroy/damage.
- *
- * <p>Pipe {@code flammable} and {@code contactDamage} stay blocked as
- * walk-on / set-on-fire contracts. They are not fill filters.
+ * Classifies plasma / magic fluids so {@link FluidPipeDangerousMedia} can
+ * trash them after fill. They are not mapped onto gas leak or acid
+ * corrosion. {@code rejects} remains the classify helper; fill no longer
+ * uses it as a gate.
  */
 public final class FluidPipeBlockedMedia {
     public enum Kind {

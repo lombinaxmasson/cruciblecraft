@@ -1492,6 +1492,42 @@ def write_artifacts() -> dict[str, Any]:
     }
 
 
+def _pin_alias_repair_historical_rows(documents: dict[str, Any]) -> None:
+    """Keep closed baseline rows for later connector folds. Overlays are current."""
+    from tools import gt6_connector_alias_repair as alias_repair
+    from tools import gt6_eu_missing_wire_gauges_runtime as missing_gauges
+    from tools import gt6_fluid_combo_pipe_runtime as combo_pipe
+    from tools import gt6_restrictive_item_pipe_runtime as restrictive_pipe
+
+    repaired = (
+        alias_repair.folded_metas()
+        | combo_pipe.folded_metas()
+        | restrictive_pipe.folded_metas()
+        | missing_gauges.folded_metas()
+    )
+    if not repaired:
+        return
+    committed_path = WAVE / "identity_resolution_ledger.json"
+    if not committed_path.is_file():
+        return
+    committed = {
+        int(row["meta"]): row
+        for row in census.load_json(committed_path).get("rows") or []
+    }
+    ledger = documents["identity_resolution_ledger.json"]
+    rows = []
+    for row in ledger.get("rows") or []:
+        meta = int(row["meta"])
+        if meta in repaired and meta in committed:
+            rows.append(committed[meta])
+        else:
+            rows.append(row)
+    ledger["rows"] = rows
+    counts = Counter(row["disposition"] for row in rows if row.get("in_catalog_1817"))
+    ledger["disposition_counts"] = dict(counts)
+    documents["readiness.json"]["disposition_counts"] = dict(counts)
+
+
 def check_artifacts() -> list[str]:
     errors: list[str] = []
     if CAPABILITY_JSON.is_file():
@@ -1512,6 +1548,7 @@ def check_artifacts() -> list[str]:
     if errors:
         return errors
     expected = build_documents()
+    _pin_alias_repair_historical_rows(expected)
     for name, document in expected.items():
         actual = census.load_json(WAVE / name)
         diff = census.first_json_diff(document, actual)

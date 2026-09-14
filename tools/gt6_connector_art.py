@@ -11,6 +11,10 @@ from pathlib import Path
 from typing import Any
 
 from tools import census_common as census
+from tools import gt6_connector_alias_repair as alias_repair
+from tools import gt6_eu_missing_wire_gauges_runtime as missing_gauges
+from tools import gt6_fluid_combo_pipe_runtime as combo_pipe
+from tools import gt6_restrictive_item_pipe_runtime as restrictive_pipe
 from tools import io_common as io
 
 SLUG = "content/gt6-connector-art"
@@ -290,25 +294,38 @@ def _write_dummy_model(dummy_path: str) -> None:
 
 def _cleanup_folded_models() -> int:
     removed = 0
-    for subset in (FLUID_SUBSET, ITEM_SUBSET, EU_SUBSET):
-        for row in _subset_rows(subset, "fold_live_block"):
-            dummy = str(row.get("dummy_path") or "")
-            if not dummy:
-                continue
-            path = ITEM_MODELS / f"{dummy}.json"
-            if path.is_file():
-                path.unlink()
-                removed += 1
+    dummies = {
+        str(row.get("dummy_path") or "")
+        for subset in (FLUID_SUBSET, ITEM_SUBSET, EU_SUBSET)
+        for row in _subset_rows(subset, "fold_live_block")
+    }
+    dummies.update(alias_repair.folded_dummy_paths())
+    dummies.update(combo_pipe.folded_dummy_paths())
+    dummies.update(restrictive_pipe.folded_dummy_paths())
+    dummies.update(missing_gauges.folded_dummy_paths())
+    for dummy in dummies:
+        if not dummy:
+            continue
+        path = ITEM_MODELS / f"{dummy}.json"
+        if path.is_file():
+            path.unlink()
+            removed += 1
     return removed
 
 
 def _rewrite_keep_models() -> int:
     written = 0
+    repaired = (
+        alias_repair.folded_dummy_paths()
+        | combo_pipe.folded_dummy_paths()
+        | restrictive_pipe.folded_dummy_paths()
+        | missing_gauges.folded_dummy_paths()
+    )
     for subset in (FLUID_SUBSET, ITEM_SUBSET, EU_SUBSET):
         for disposition in ("keep_distinct", "upgrade_live_item"):
             for row in _subset_rows(subset, disposition):
                 dummy = str(row.get("dummy_path") or "")
-                if not dummy:
+                if not dummy or dummy in repaired:
                     continue
                 _write_dummy_model(dummy)
                 written += 1
@@ -550,12 +567,18 @@ def check() -> list[str]:
         dest = str(row.get("destination") or "")
         if dest in {REDSTONE_WIRE, REDSTONE_OVERLAY} and row.get("copied"):
             errors.append("EU recopy of redstone copper wire art")
+    repaired = (
+        alias_repair.folded_dummy_paths()
+        | combo_pipe.folded_dummy_paths()
+        | restrictive_pipe.folded_dummy_paths()
+        | missing_gauges.folded_dummy_paths()
+    )
     for subset in (FLUID_SUBSET, ITEM_SUBSET, EU_SUBSET):
         for row in _subset_rows(subset, "keep_distinct") + _subset_rows(
             subset, "upgrade_live_item"
         ):
             dummy = str(row.get("dummy_path") or "")
-            if not dummy:
+            if not dummy or dummy in repaired:
                 continue
             model = ITEM_MODELS / f"{dummy}.json"
             if not model.is_file():
@@ -571,6 +594,12 @@ def check() -> list[str]:
                 encoding="utf-8"
             ):
                 errors.append(f"folded dummy {dummy} still has an iron_ingot model")
+    for dummy in repaired:
+        model = ITEM_MODELS / f"{dummy}.json"
+        if dummy and model.is_file() and "iron_ingot" in model.read_text(
+            encoding="utf-8"
+        ):
+            errors.append(f"folded dummy {dummy} still has an iron_ingot model")
     java = STATE_JAVA.read_text(encoding="utf-8")
     if "gt6_import/materialicons/copper/pipetiny" not in java:
         errors.append("pipe models are not using GT6 pipetiny")

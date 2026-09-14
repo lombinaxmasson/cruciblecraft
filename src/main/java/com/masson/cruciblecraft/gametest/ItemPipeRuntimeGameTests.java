@@ -183,14 +183,12 @@ public final class ItemPipeRuntimeGameTests {
                                 .stepSize()
                         == 8192L,
                 "ordinary huge brass stepSize drifted");
-        ResourceLocation restrictive = ResourceLocation.fromNamespaceAndPath(
-                "cruciblecraft",
-                "item_pipe_tile/restrictive_elementium_item_pipe");
         helper.assertTrue(
-                BuiltInRegistries.ITEM.containsKey(restrictive)
-                        && !(BuiltInRegistries.ITEM.get(restrictive)
-                                instanceof PipeBlockItem),
-                "restrictive dummy was promoted to a live BlockItem");
+                !BuiltInRegistries.ITEM.containsKey(
+                        ResourceLocation.fromNamespaceAndPath(
+                                "cruciblecraft",
+                                "item_pipe_tile/restrictive_elementium_item_pipe")),
+                "folded restrictive dummy is still registered");
         Item live = ModBlocks.pipeBlock(
                 "brass",
                 MaterialPrefixes.ITEM_PIPE,

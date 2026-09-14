@@ -1,0 +1,54 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-eu-cable-acquisition",
+  "title": "GT6 EU Cable Acquisition",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6EU线缆获得格详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
+    "src/main/java/com/masson/cruciblecraft/recipe/crafting/WorkbenchToolRecipePlan.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/EuCableAcquisitionGameTests.java",
+    "src/generated/resources/data/cruciblecraft/recipe/cable/table/**",
+    "src/generated/resources/data/cruciblecraft/recipe/cable/shapeless/**",
+    "src/generated/resources/data/cruciblecraft/recipe/cable/pack/**",
+    "src/generated/resources/data/cruciblecraft/recipe/cable/unpack/**",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_eu_cable_acquisition/**",
+    "tools/capabilities/content/gt6-eu-cable-acquisition/**",
+    "tools/waves/content/gt6-eu-cable-acquisition/**",
+    "tools/gt6_connector_acquisition.py",
+    "tools/build_gt6_connector_acquisition.py",
+    "tools/tests/test_gt6_connector_acquisition.py"
+  ],
+  "depends_on": [
+    "registry/catalog-modern-ids",
+    "content/gt6-eu-wire-cable-runtime",
+    "content/gt6-eu-missing-wire-gauges-runtime"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-eu-cable-acquisition",
+  "required_test_ids": [
+    "copperCableCraftsFromWireAndRubberPlate",
+    "copperDoubleWirePacksFromTwoSingles",
+    "copperPlateCraftsWireWithCutter",
+    "copperUnpackDoubleReturnsTwoSingles",
+    "plate2wireDoesNotUseProgrammedCircuit",
+    "redAlloyHasNoEuPlate2wire"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "connector:eu-cable:acquisition",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:copper/wire",
+        "cruciblecraft:copper/cable",
+        "cruciblecraft:copper/double_wire",
+        "cruciblecraft:rubber/plate"
+      ],
+      "reason": "GT6 plate2wire, shapeless cableGt01/02 plus wire packing on live EU conductors. Red alloy / Signalum / Lumium stay out of EU. Do not substitute programmed_circuit."
+    }
+  ],
+  "note": "EU-cable obtain only. Close at runtime_ready, not player_complete. Do not edit R0 or the baseline identity ledger."
+}

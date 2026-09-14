@@ -1,0 +1,43 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-mte-misc-tool-runtime",
+  "title": "GT6 Misc Tool Runtime",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6杂项工具runtime详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/mte/**",
+    "src/main/java/com/masson/cruciblecraft/gametest/MteMiscToolRuntimeGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/MteInPlaceGameTestSupport.java",
+    "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_misc_tool_runtime/**",
+    "tools/capabilities/content/gt6-mte-misc-tool-runtime/**",
+    "tools/waves/content/gt6-mte-misc-tool-runtime/**",
+    "tools/gt6_mte_inplace_runtime.py",
+    "tools/build_gt6_mte_inplace_runtime.py",
+    "tools/tests/test_gt6_mte_runtime.py"
+  ],
+  "depends_on": [
+    "registry/catalog-modern-ids"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-mte-misc-tool-runtime",
+  "required_test_ids": [
+    "gt6AnvilIsNotVanillaAnvil"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "mte:misc-tool:in-place",
+      "disposition": "keep_distinct",
+      "runtime_ids": [
+        "cruciblecraft:stone/anvil"
+      ],
+      "reason": "Misc tool MTEs keep dummy modern ids as live BlockItems. They are not vanilla or CC anvils."
+    }
+  ],
+  "note": "In-place misc_tool runtime. Close at runtime_ready. Obtain stays explicitly_blocked. Do not edit R0."
+}

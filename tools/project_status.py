@@ -154,6 +154,7 @@ def render_status(ledger: dict[str, Any] | None = None) -> str:
             "",
             "权威与流程见 [capability-delivery-workflow.md](capability-delivery-workflow.md)",
             "与 [unimplemented-gap.md](unimplemented-gap.md)。",
+            "跨能力 blocked 总账见 [blocked.md](blocked.md)。",
             "关闭一张卡：`python tools/close_capability.py --capability <slug>`。",
             "",
         ]

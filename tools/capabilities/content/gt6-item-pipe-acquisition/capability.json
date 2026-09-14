@@ -1,0 +1,52 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-item-pipe-acquisition",
+  "title": "GT6 Item Pipe Acquisition",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6物品管获得格详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
+    "src/main/java/com/masson/cruciblecraft/recipe/crafting/WorkbenchToolRecipePlan.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/ItemPipeAcquisitionGameTests.java",
+    "src/generated/resources/data/cruciblecraft/recipe/pipe/item_table/**",
+    "src/generated/resources/data/cruciblecraft/recipe/pipe/restrictive/**",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_item_pipe_acquisition/**",
+    "tools/capabilities/content/gt6-item-pipe-acquisition/**",
+    "tools/waves/content/gt6-item-pipe-acquisition/**",
+    "tools/gt6_connector_acquisition.py",
+    "tools/build_gt6_connector_acquisition.py",
+    "tools/tests/test_gt6_connector_acquisition.py"
+  ],
+  "depends_on": [
+    "registry/catalog-modern-ids",
+    "content/gt6-item-pipe-runtime",
+    "content/gt6-restrictive-item-pipe-runtime"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-item-pipe-acquisition",
+  "required_test_ids": [
+    "copperHugeItemTableCraftsFromDoublePlate",
+    "copperMediumTableCraftsFromCurvedPlate",
+    "copperRestrictiveCraftsFromMediumAndSteelRing",
+    "itemTableDoesNotUseFlatPlate",
+    "nonmetalCatalogStaysTwentyFive",
+    "restrictiveUsesSteelRingNotInvented"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "connector:item-pipe:acquisition",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:copper/item_pipe",
+        "cruciblecraft:copper/huge_item_pipe",
+        "cruciblecraft:copper/restrictive_item_pipe",
+        "cruciblecraft:steel/ring"
+      ],
+      "reason": "GT6 medium/large plateCurved and huge plateDouble table crafts on live item pipes. Restrictive uses matching gauge plus steel/ring. Do not substitute plate, a different ring, or programmed_circuit."
+    }
+  ],
+  "note": "Item-pipe obtain only. Close at runtime_ready, not player_complete. Do not edit R0, the baseline identity ledger, or the 25-row nonmetal catalog."
+}

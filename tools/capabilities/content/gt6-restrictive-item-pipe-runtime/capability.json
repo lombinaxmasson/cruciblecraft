@@ -1,0 +1,49 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-restrictive-item-pipe-runtime",
+  "title": "GT6 Restrictive Item Pipe Runtime",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6限制物品管运行时详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalog.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/RestrictiveItemPipeRuntimeGameTests.java",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_restrictive_item_pipe_runtime/**",
+    "tools/capabilities/content/gt6-restrictive-item-pipe-runtime/**",
+    "tools/waves/content/gt6-restrictive-item-pipe-runtime/**",
+    "tools/gt6_restrictive_item_pipe_runtime.py",
+    "tools/build_gt6_restrictive_item_pipe_runtime.py",
+    "tools/tests/test_gt6_restrictive_item_pipe_runtime.py"
+  ],
+  "depends_on": [
+    "registry/catalog-modern-ids",
+    "content/gt6-item-pipe-runtime",
+    "content/gt6-connector-art",
+    "content/gt6-connector-alias-repair"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-restrictive-item-pipe-runtime",
+  "required_test_ids": [
+    "restrictiveCatalogDummiesFoldOntoLiveHost",
+    "restrictiveStepSizeIsTimes100",
+    "restrictiveUsesRestrictorOverlayNotOrdinaryAlias"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "connector:item-pipe:restrictive",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:elven_elementium/restrictive_item_pipe",
+        "cruciblecraft:elven_elementium/large_restrictive_item_pipe",
+        "cruciblecraft:elven_elementium/huge_restrictive_item_pipe",
+        "cruciblecraft:vibranium_silver/restrictive_item_pipe",
+        "cruciblecraft:vibranium_silver/large_restrictive_item_pipe",
+        "cruciblecraft:vibranium_silver/huge_restrictive_item_pipe"
+      ],
+      "reason": "GT6 pipeRestrictive copies the matching ordinary gauge stepSize x100 with a restrictor overlay. Fold the six catalog dummies onto live BlockItems; do not alias ordinary item pipes. Loader-out rows stay a frozen denominator."
+    }
+  ],
+  "note": "Restrictive item pipes only. Close at runtime_ready, not player_complete. Hammer+steel-ring obtain grids wait for the acquisition child. Do not edit R0 or the baseline identity ledger."
+}

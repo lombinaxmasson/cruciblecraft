@@ -55,7 +55,8 @@ public final class RedstoneWireBlock extends Block
     public static final BooleanProperty EAST = BooleanProperty.create("east");
     public static final IntegerProperty POWER = BlockStateProperties.POWER;
     public static final Map<Direction, BooleanProperty> PROPERTY_BY_DIRECTION;
-    private static final VoxelShape[] SHAPES = buildShapes();
+    private static final VoxelShape[] SHAPES_BARE = buildShapes(7.0D, 9.0D);
+    private static final VoxelShape[] SHAPES_INSULATED = buildShapes(6.0D, 10.0D);
 
     static {
         EnumMap<Direction, BooleanProperty> properties =
@@ -293,12 +294,11 @@ public final class RedstoneWireBlock extends Block
                 mask |= 1 << direction.ordinal();
             }
         }
-        return SHAPES[mask];
+        VoxelShape[] shapes = kind.insulated() ? SHAPES_INSULATED : SHAPES_BARE;
+        return shapes[mask];
     }
 
-    private static VoxelShape[] buildShapes() {
-        double minimum = 7.0D;
-        double maximum = 9.0D;
+    private static VoxelShape[] buildShapes(double minimum, double maximum) {
         VoxelShape core = box(
                 minimum, minimum, minimum, maximum, maximum, maximum);
         VoxelShape[] arms = new VoxelShape[Direction.values().length];

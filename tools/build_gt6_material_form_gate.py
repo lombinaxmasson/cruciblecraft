@@ -537,6 +537,41 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
             "T8 pipe registration denominator drifted: "
             f"{actual_pipe_forms} != {expected_pipe_forms}"
         )
+    combo_pipe_forms: dict[str, set[str]] = {}
+    for material_id, forms in pipe_forms.items():
+        extra: set[str] = set()
+        if "fluid_pipe" in forms:
+            extra.add("quadruple_fluid_pipe")
+        if "small_fluid_pipe" in forms:
+            extra.add("nonuple_fluid_pipe")
+        if extra:
+            combo_pipe_forms[material_id] = extra
+    restrictive_pipe_forms: dict[str, set[str]] = {}
+    for material_id, forms in pipe_forms.items():
+        extra: set[str] = set()
+        if "item_pipe" in forms:
+            extra.add("restrictive_item_pipe")
+        if "large_item_pipe" in forms:
+            extra.add("large_restrictive_item_pipe")
+        if "huge_item_pipe" in forms:
+            extra.add("huge_restrictive_item_pipe")
+        if extra:
+            restrictive_pipe_forms[material_id] = extra
+    missing_wire_forms: dict[str, set[str]] = {}
+    missing_gauge_forms = {
+        "septuple_wire",
+        "nonuple_wire",
+        "decuple_wire",
+        "undecuple_wire",
+        "tredecuple_wire",
+        "tetradecuple_wire",
+        "pentadecuple_wire",
+    }
+    redstone_materials = {"red_alloy", "signalum", "lumium"}
+    for material_id in electrical_wire_forms:
+        if material_id in redstone_materials:
+            continue
+        missing_wire_forms[material_id] = set(missing_gauge_forms)
     t10_projection = load(T10_PREFLIGHT)["route_projections"]
     known_ingot_forms: dict[str, set[str]] = defaultdict(set)
     for material_id in t10_projection["multi_ingot"]["materials"]:
@@ -762,6 +797,9 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
             | chemical_required_forms.get(material_id, set())
             | electrical_wire_forms.get(material_id, set())
             | pipe_forms.get(material_id, set())
+            | combo_pipe_forms.get(material_id, set())
+            | restrictive_pipe_forms.get(material_id, set())
+            | missing_wire_forms.get(material_id, set())
             | known_ingot_forms.get(material_id, set())
             | roaster_required_forms.get(material_id, set())
             | worldgen_acquisition_forms.get(material_id, set())
@@ -1002,6 +1040,9 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
                 map(len, electrical_wire_forms.values())
             ),
             "pipe_forms": actual_pipe_forms,
+            "combo_pipe_forms": sum(map(len, combo_pipe_forms.values())),
+            "restrictive_pipe_forms": sum(map(len, restrictive_pipe_forms.values())),
+            "missing_wire_forms": sum(map(len, missing_wire_forms.values())),
             "known_ingot_forms": actual_known_ingot_forms,
             "roaster_required_forms": sum(map(len, roaster_required_forms.values())),
             "worldgen_acquisition_forms": sum(
@@ -1030,6 +1071,18 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
         "pipe_forms": {
             material: sorted(forms)
             for material, forms in sorted(pipe_forms.items())
+        },
+        "combo_pipe_forms": {
+            material: sorted(forms)
+            for material, forms in sorted(combo_pipe_forms.items())
+        },
+        "restrictive_pipe_forms": {
+            material: sorted(forms)
+            for material, forms in sorted(restrictive_pipe_forms.items())
+        },
+        "missing_wire_forms": {
+            material: sorted(forms)
+            for material, forms in sorted(missing_wire_forms.items())
         },
         "known_ingot_forms": {
             material: sorted(forms)

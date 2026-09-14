@@ -1,0 +1,37 @@
+{
+  "schema": "gt6-connector-acquisition-overlay-v1",
+  "capability_slug": "content/gt6-item-pipe-acquisition",
+  "domain": "item",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "item_table_live": 68,
+  "item_table_operands": {
+    "curved_plate": 44,
+    "double_plate": 24
+  },
+  "restrictive_live": 72,
+  "copper_medium_table": true,
+  "copper_huge_table": true,
+  "copper_restrictive": true,
+  "copper_plate_curved": {
+    "status": "missing_form",
+    "item": "cruciblecraft:copper/curved_plate",
+    "table_recipe": true
+  },
+  "copper_plate_double": {
+    "status": "ok",
+    "item": "cruciblecraft:copper/double_plate",
+    "table_recipe": true
+  },
+  "steel_ring": {
+    "status": "ok",
+    "item": "cruciblecraft:steel/ring",
+    "restrictive_recipe": true
+  },
+  "existing_extruder": [
+    "plates_to_item_pipe.json",
+    "plates_to_large_item_pipe.json",
+    "plates_to_huge_item_pipe.json"
+  ],
+  "nonmetal_catalog": 25,
+  "note": "Ordinary medium/large table crafts use live curved_plate; huge uses live double_plate. Restrictive uses matching gauge plus steel/ring. Flat plate and programmed_circuit are never stand-ins."
+}

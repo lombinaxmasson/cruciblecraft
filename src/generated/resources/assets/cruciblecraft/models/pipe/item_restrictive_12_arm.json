@@ -1,0 +1,63 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "north": {
+          "texture": "#end",
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#side",
+          "tintindex": 0
+        }
+      },
+      "from": [
+        2,
+        2,
+        0
+      ],
+      "to": [
+        14,
+        14,
+        2
+      ]
+    },
+    {
+      "faces": {
+        "north": {
+          "texture": "#overlay"
+        }
+      },
+      "from": [
+        1.998,
+        1.998,
+        -0.002
+      ],
+      "to": [
+        14.002,
+        14.002,
+        2.002
+      ]
+    }
+  ],
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "end": "cruciblecraft:block/gt6_import/materialicons/copper/pipelarge",
+    "overlay": "cruciblecraft:block/gt6_import/iconsets/pipe_restrictor",
+    "particle": "cruciblecraft:block/gt6_import/materialicons/copper/pipelarge",
+    "side": "cruciblecraft:block/gt6_import/materialicons/copper/pipelarge"
+  }
+}

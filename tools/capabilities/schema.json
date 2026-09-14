@@ -60,7 +60,11 @@
             "type": "array",
             "items": { "type": "string" }
           },
-          "reason": { "type": "string" }
+          "reason": { "type": "string" },
+          "blocker_ids": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          }
         }
       }
     },

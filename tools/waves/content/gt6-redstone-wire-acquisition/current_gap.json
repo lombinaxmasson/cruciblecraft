@@ -1,0 +1,11 @@
+{
+  "schema": "gt6-redstone-wire-acquisition-gap-v1",
+  "capability_slug": "content/gt6-redstone-wire-acquisition",
+  "overlay": "gt6-connector-acquisition-overlay-v1",
+  "blocked": [
+    "player_complete EMI/reload/player signoff",
+    "torch/repeater host"
+  ],
+  "close_target": "runtime_ready",
+  "note": "Gated laminator insulation is live. Do not substitute programmed_circuit or fold onto tin/cable."
+}

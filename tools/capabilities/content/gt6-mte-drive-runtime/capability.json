@@ -1,0 +1,44 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-mte-drive-runtime",
+  "title": "GT6 Drive Runtime",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6传动件runtime详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/mte/**",
+    "src/main/java/com/masson/cruciblecraft/gametest/MteDriveRuntimeGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/MteInPlaceGameTestSupport.java",
+    "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_drive_runtime/**",
+    "tools/capabilities/content/gt6-mte-drive-runtime/**",
+    "tools/waves/content/gt6-mte-drive-runtime/**",
+    "tools/gt6_mte_inplace_runtime.py",
+    "tools/build_gt6_mte_inplace_runtime.py",
+    "tools/tests/test_gt6_mte_runtime.py"
+  ],
+  "depends_on": [
+    "registry/catalog-modern-ids"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-mte-drive-runtime",
+  "required_test_ids": [
+    "axleIsNotKuRotationalAxle",
+    "drivePushesKineticToAdjacentDrive"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "mte:drive:in-place",
+      "disposition": "keep_distinct",
+      "runtime_ids": [
+        "cruciblecraft:drive/small_brass_axle"
+      ],
+      "reason": "GT6 axles, gearboxes, and rotation engines keep dummy modern ids as live BlockItems. They are not KU rotational_axle."
+    }
+  ],
+  "note": "In-place drive runtime. Close at runtime_ready. Obtain stays explicitly_blocked. Do not edit R0."
+}

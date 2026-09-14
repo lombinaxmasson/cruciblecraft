@@ -39,10 +39,12 @@
     },
     {
       "semantic_key": "recipe:slicer:paper_tiny_plate",
-      "disposition": "blocked",
-      "runtime_ids": [],
-      "reason": "One gt.recipe.slicer dump row needs unmapped paper:tiny_plate. Do not stand in another plate form."
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:paper/tiny_plate"
+      ],
+      "reason": "gt.recipe.slicer paper tiny_plate row maps to content/gt6-paper-tiny-plate live form. Not a stand-in plate."
     }
   ],
-  "note": "32 selected exact rows; 1 unmapped paper:tiny_plate row explicitly_blocked. Thirty-three exact GT6 food operands are runtime-registered from the local source. All five hosts are source-exact via technological-parts-foundation. Close at runtime_ready, not player_complete."
+  "note": "33 selected exact rows; 0 overflow. paper:tiny_plate is owned by content/gt6-paper-tiny-plate. Thirty-three exact GT6 food operands are runtime-registered from the local source. All five hosts are source-exact via technological-parts-foundation. Close at runtime_ready, not player_complete."
 }

@@ -1,0 +1,45 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-mte-converter-remainder-runtime",
+  "title": "GT6 Converter Remainder Runtime",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6能源转换器余量runtime详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/mte/**",
+    "src/main/java/com/masson/cruciblecraft/gametest/MteConverterRemainderRuntimeGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/MteInPlaceGameTestSupport.java",
+    "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_converter_remainder_runtime/**",
+    "tools/capabilities/content/gt6-mte-converter-remainder-runtime/**",
+    "tools/waves/content/gt6-mte-converter-remainder-runtime/**",
+    "tools/gt6_mte_inplace_runtime.py",
+    "tools/build_gt6_mte_inplace_runtime.py",
+    "tools/tests/test_gt6_mte_runtime.py"
+  ],
+  "depends_on": [
+    "registry/catalog-modern-ids"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-mte-converter-remainder-runtime",
+  "required_test_ids": [
+    "luvBatteryBoxIsNotDummy",
+    "steamTurbineConsumesSteam"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "mte:converter-remainder:in-place",
+      "disposition": "keep_distinct",
+      "runtime_ids": [
+        "cruciblecraft:steam/turbine_bronze",
+        "cruciblecraft:boxwood/battery_luv"
+      ],
+      "reason": "6 steam turbines and 2 battery boxes keep dummy modern ids as live BlockItems. They are not folded onto existing converter hosts."
+    }
+  ],
+  "note": "In-place converter_remainder runtime. Close at runtime_ready. Obtain stays explicitly_blocked. Do not edit R0."
+}

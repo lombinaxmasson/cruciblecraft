@@ -27,6 +27,7 @@ import com.masson.cruciblecraft.content.blockentity.BottleCrateBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DrawerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LockerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MassStorageBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.StorageInserterBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DustFunnelBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
@@ -467,6 +468,24 @@ public final class ModBlockEntities {
                             () -> BlockEntityType.Builder.of(
                                     GtTreeHoleBlockEntity::new,
                                     ModBlocks.treeHoleBlockArray())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<com.masson.cruciblecraft.content.blockentity.GtBushBlockEntity>>
+                    GT_BUSH = BLOCK_ENTITIES.register(
+                            "gt_bush",
+                            () -> BlockEntityType.Builder.of(
+                                    com.masson.cruciblecraft.content.blockentity.GtBushBlockEntity::new,
+                                    ModBlocks.GT_BUSH.get())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<MteInPlaceBlockEntity>>
+                    MTE_INPLACE = BLOCK_ENTITIES.register(
+                            "mte_inplace",
+                            () -> BlockEntityType.Builder.of(
+                                    MteInPlaceBlockEntity::new,
+                                    ModBlocks.mteInPlaceBlockArray())
                                     .build(null));
 
     private ModBlockEntities() {}

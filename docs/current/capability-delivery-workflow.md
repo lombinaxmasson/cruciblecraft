@@ -55,6 +55,8 @@
 
 - `src/main` 机制可运行；内容可以尚未导入
 - 全局 registry path 唯一；semantic key 无未声明冲突
+- 本卡每条 `disposition=blocked` 与「Obtain stays explicitly_blocked」
+  必须绑定 [blocked.md](blocked.md) / `tools/blockers/catalog.json` 的 `id`
 - 声明的 JUnit / GameTest / reload / 网络契约通过
 - impact graph 上所有受影响能力的 profile 在本次调用中 fresh PASS
 
@@ -112,6 +114,7 @@
 | 类 | 放哪 | 挡晋级？ |
 | --- | --- | --- |
 | accepted divergence | 能力 `identity_disposition`（如 Low Heat Extruder Shape = `new_distinct`） | 否；必须显式 |
+| blocked claim | [blocked.md](blocked.md)（catalog `id` 绑定 `identity_disposition` / obtain note） | 挡该能力的 `runtime_ready` / `player_complete` 关卡；不同 `unit` 不得相加 |
 | verification debt | `tools/known_issues/verification-debt.json` | 挡**该 profile**；不挡范围外能力的范围内门 |
 | deferred capability | [unimplemented-gap.md](unimplemented-gap.md) 第 1–2 节 | 不是 known-issue；不得写成 READY |
 
@@ -121,6 +124,7 @@ known-issues 不得再充当「未关门但下一张卡照开」的垃圾桶。
 
 ```powershell
 python tools/build_capability_ledger.py --check
+python tools/build_blockers.py --check
 python tools/build_project_status.py --check
 python tools/verify.py integration --profile capability-runtime
 python tools/verify.py promotion

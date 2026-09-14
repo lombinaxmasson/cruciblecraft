@@ -103,26 +103,18 @@ public final class ConnectorArtGameTests {
     public static void inPlaceRowsHaveNoIronIngotModel(
             GameTestHelper helper) {
         ResourceLocation keep = ResourceLocation.fromNamespaceAndPath(
-                "cruciblecraft", "electric_wire/7x_tin_wire");
+                "cruciblecraft", "electric_wire/2x_blue_alloy_wire");
         Item leftover = BuiltInRegistries.ITEM.get(keep);
         helper.assertTrue(
                 BuiltInRegistries.ITEM.containsKey(keep)
                         && leftover instanceof CatalogNamedItem
                         && !(leftover instanceof CableBlockItem),
-                "keep_distinct wireGt07 dummy disappeared or became a CableBlock");
+                "keep_distinct wire dummy disappeared or became a CableBlock");
         String model = resource(
                 "/assets/cruciblecraft/models/item/electric_wire/"
-                        + "7x_tin_wire.json");
-        String restrictive = resource(
-                "/assets/cruciblecraft/models/item/item_pipe_tile/"
-                        + "restrictive_elementium_item_pipe.json");
-        String quadruple = resource(
-                "/assets/cruciblecraft/models/item/fluid_pipe_tile/"
-                        + "quadruple_tin_alloy_fluid_pipe.json");
+                        + "2x_blue_alloy_wire.json");
         helper.assertTrue(
                 !model.contains("iron_ingot")
-                        && !restrictive.contains("iron_ingot")
-                        && !quadruple.contains("iron_ingot")
                         && model.contains("gt6_import/materialicons/copper/wire"),
                 "keep_distinct connector dummies still use the iron ingot model");
         helper.succeed();

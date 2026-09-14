@@ -1,0 +1,51 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-redstone-wire-acquisition",
+  "title": "GT6 Redstone Wire Acquisition",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6绝缘红石获得格详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
+    "src/main/java/com/masson/cruciblecraft/recipe/crafting/WorkbenchToolRecipePlan.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/RedstoneWireAcquisitionGameTests.java",
+    "src/generated/resources/data/cruciblecraft/recipe/redstone/laminator/**",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_redstone_wire_acquisition/**",
+    "tools/capabilities/content/gt6-redstone-wire-acquisition/**",
+    "tools/waves/content/gt6-redstone-wire-acquisition/**",
+    "tools/gt6_connector_acquisition.py",
+    "tools/build_gt6_connector_acquisition.py",
+    "tools/tests/test_gt6_connector_acquisition.py"
+  ],
+  "depends_on": [
+    "registry/catalog-modern-ids",
+    "content/gt6-insulated-redstone-runtime"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-redstone-wire-acquisition",
+  "required_test_ids": [
+    "foilRecipeGatedOnLiveRubberFoil",
+    "insulatedCablesAreNotEuTinOutputs",
+    "lumiumCableLaminatesFromRubberPlate",
+    "noProgrammedCircuitInLaminator",
+    "redAlloyCableLaminatesFromRubberPlate",
+    "signalumCableLaminatesFromRubberPlate"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "connector:redstone-wire:acquisition",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:red_alloy/cable",
+        "cruciblecraft:signalum/cable",
+        "cruciblecraft:lumium/cable",
+        "cruciblecraft:rubber/plate",
+        "cruciblecraft:rubber/foil"
+      ],
+      "reason": "GT6 laminator plate/foil insulation on live redstone cables. Not EU and not tin/cable. Do not substitute programmed_circuit."
+    }
+  ],
+  "note": "Insulated redstone obtain only. Close at runtime_ready, not player_complete. Do not edit R0 or the baseline identity ledger."
+}

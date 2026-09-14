@@ -17,6 +17,7 @@ import com.masson.cruciblecraft.machine.processing.MachineTextureProfiles;
 import com.masson.cruciblecraft.content.block.GtTreeHoleBlock;
 import com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies;
 import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
+import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModMachineVariants;
 
@@ -460,9 +461,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         ModBlocks.pipeBlocks().forEach(holder -> {
             AbstractPipeBlock block = holder.get();
             String modelKey = block.pipe().kind().name().toLowerCase(
-                    java.util.Locale.ROOT) + "_" + block.pipe().width();
-            ResourceLocation side = pipeTexture(block.pipe().width());
-            ResourceLocation overlay = pipeOverlay(block.pipe().width());
+                    java.util.Locale.ROOT) + "_" + block.pipe().textureKey();
+            ResourceLocation side = pipeTexture(block.pipe());
+            ResourceLocation overlay = pipeOverlay(block.pipe());
             ModelFile core = cores.computeIfAbsent(
                     modelKey,
                     ignored -> pipeCube(
@@ -506,33 +507,49 @@ public class ModBlockStateProvider extends BlockStateProvider {
         });
     }
 
-    private ResourceLocation pipeTexture(int width) {
-        return switch (width) {
-            case 4 -> modLoc("block/gt6_import/materialicons/copper/pipetiny");
-            case 6 -> modLoc("block/gt6_import/materialicons/copper/pipesmall");
-            case 8 ->
+    private ResourceLocation pipeTexture(PipeCatalog.Entry pipe) {
+        return switch (pipe.textureKey()) {
+            case "4" -> modLoc("block/gt6_import/materialicons/copper/pipetiny");
+            case "6" -> modLoc("block/gt6_import/materialicons/copper/pipesmall");
+            case "8" ->
                     modLoc("block/gt6_import/materialicons/copper/pipemedium");
-            case 12 -> modLoc("block/gt6_import/materialicons/copper/pipelarge");
-            case 16 -> modLoc("block/gt6_import/materialicons/copper/pipehuge");
+            case "12" -> modLoc("block/gt6_import/materialicons/copper/pipelarge");
+            case "16" -> modLoc("block/gt6_import/materialicons/copper/pipehuge");
+            case "quadruple" ->
+                    modLoc("block/gt6_import/materialicons/copper/pipequadruple");
+            case "nonuple" ->
+                    modLoc("block/gt6_import/materialicons/copper/pipenonuple");
+            case "restrictive_8" ->
+                    modLoc("block/gt6_import/materialicons/copper/pipemedium");
+            case "restrictive_12" ->
+                    modLoc("block/gt6_import/materialicons/copper/pipelarge");
+            case "restrictive_16" ->
+                    modLoc("block/gt6_import/materialicons/copper/pipehuge");
             default -> throw new IllegalArgumentException(
-                    "Unsupported pipe width " + width);
+                    "Unsupported pipe texture " + pipe.textureKey());
         };
     }
 
-    private ResourceLocation pipeOverlay(int width) {
-        return switch (width) {
-            case 4 ->
+    private ResourceLocation pipeOverlay(PipeCatalog.Entry pipe) {
+        return switch (pipe.textureKey()) {
+            case "4" ->
                     modLoc("block/gt6_import/materialicons/copper/pipetiny_overlay");
-            case 6 ->
+            case "6" ->
                     modLoc("block/gt6_import/materialicons/copper/pipesmall_overlay");
-            case 8 ->
+            case "8" ->
                     modLoc("block/gt6_import/materialicons/copper/pipemedium_overlay");
-            case 12 ->
+            case "12" ->
                     modLoc("block/gt6_import/materialicons/copper/pipelarge_overlay");
-            case 16 ->
+            case "16" ->
                     modLoc("block/gt6_import/materialicons/copper/pipehuge_overlay");
+            case "quadruple" ->
+                    modLoc("block/gt6_import/materialicons/copper/pipequadruple_overlay");
+            case "nonuple" ->
+                    modLoc("block/gt6_import/materialicons/copper/pipenonuple_overlay");
+            case "restrictive_8", "restrictive_12", "restrictive_16" ->
+                    modLoc("block/gt6_import/iconsets/pipe_restrictor");
             default -> throw new IllegalArgumentException(
-                    "Unsupported pipe width " + width);
+                    "Unsupported pipe overlay " + pipe.textureKey());
         };
     }
 

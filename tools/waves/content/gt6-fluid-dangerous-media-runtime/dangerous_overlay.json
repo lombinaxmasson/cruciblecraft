@@ -1,0 +1,12 @@
+{
+  "schema": "gt6-fluid-dangerous-media-overlay-v1",
+  "capability_slug": "content/gt6-fluid-dangerous-media-runtime",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "fill_gate": "removed",
+  "tick": "FluidPipeDangerousMedia",
+  "magic_replace": "air (no Thaumcraft flux)",
+  "plasma_fluids": "tick path live; CC may have no PLASMA-tagged fluid",
+  "flammable": "ignitedByLava + getFlammability 150 + adjacent fire on over-temp",
+  "contact_damage": "entityInside hotFloor when tank is not empty",
+  "note": "Closed fluid-pipe runtime_notes stay historical fail-closed. This overlay is the current live projection. No new pipe specs."
+}

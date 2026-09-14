@@ -36,6 +36,33 @@
     },
     {
       "depends_on": [
+        "registry/catalog-modern-ids",
+        "content/gt6-fluid-pipe-runtime",
+        "content/gt6-eu-wire-cable-runtime",
+        "content/gt6-connector-art"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6连接件身份漏匹配详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/gametest/ConnectorAliasRepairGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_connector_alias_repair/**",
+        "tools/capabilities/content/gt6-connector-alias-repair/**",
+        "tools/waves/content/gt6-connector-alias-repair/**",
+        "tools/gt6_connector_alias_repair.py",
+        "tools/build_gt6_connector_alias_repair.py",
+        "tools/tests/test_gt6_connector_alias_repair.py"
+      ],
+      "path": "tools/capabilities/content/gt6-connector-alias-repair/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-connector-alias-repair",
+      "title": "GT6 Connector Alias Repair",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "content/gt6-fluid-pipe-runtime",
         "content/gt6-item-pipe-runtime",
         "content/gt6-eu-wire-cable-runtime"
@@ -72,6 +99,68 @@
     },
     {
       "depends_on": [
+        "registry/catalog-modern-ids",
+        "content/gt6-eu-wire-cable-runtime",
+        "content/gt6-eu-missing-wire-gauges-runtime"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6EU线缆获得格详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/crafting/WorkbenchToolRecipePlan.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/EuCableAcquisitionGameTests.java",
+        "src/generated/resources/data/cruciblecraft/recipe/cable/table/**",
+        "src/generated/resources/data/cruciblecraft/recipe/cable/shapeless/**",
+        "src/generated/resources/data/cruciblecraft/recipe/cable/pack/**",
+        "src/generated/resources/data/cruciblecraft/recipe/cable/unpack/**",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_eu_cable_acquisition/**",
+        "tools/capabilities/content/gt6-eu-cable-acquisition/**",
+        "tools/waves/content/gt6-eu-cable-acquisition/**",
+        "tools/gt6_connector_acquisition.py",
+        "tools/build_gt6_connector_acquisition.py",
+        "tools/tests/test_gt6_connector_acquisition.py"
+      ],
+      "path": "tools/capabilities/content/gt6-eu-cable-acquisition/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-eu-cable-acquisition",
+      "title": "GT6 EU Cable Acquisition",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids",
+        "content/gt6-eu-wire-cable-runtime",
+        "content/gt6-connector-art",
+        "content/gt6-connector-alias-repair"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6缺线规运行时详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/energy/cable/ElectricalConductorCatalog.java",
+        "src/main/java/com/masson/cruciblecraft/api/material/MaterialPrefixes.java",
+        "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/EuMissingWireGaugesRuntimeGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_eu_missing_wire_gauges_runtime/**",
+        "tools/capabilities/content/gt6-eu-missing-wire-gauges-runtime/**",
+        "tools/waves/content/gt6-eu-missing-wire-gauges-runtime/**",
+        "tools/gt6_eu_missing_wire_gauges_runtime.py",
+        "tools/build_gt6_eu_missing_wire_gauges_runtime.py",
+        "tools/tests/test_gt6_eu_missing_wire_gauges_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-eu-missing-wire-gauges-runtime/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-eu-missing-wire-gauges-runtime",
+      "title": "GT6 Missing EU Wire Gauges Runtime",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "content/electric-wire-cable-mte-fold",
         "registry/catalog-modern-ids"
       ],
@@ -98,6 +187,95 @@
       ],
       "slug": "content/gt6-eu-wire-cable-runtime",
       "title": "GT6 EU Wire/Cable Runtime",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids",
+        "content/gt6-fluid-pipe-runtime",
+        "content/gt6-connector-art",
+        "content/gt6-connector-alias-repair"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6流体组合管运行时详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/FluidPipeBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalog.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/FluidComboPipeRuntimeGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_fluid_combo_pipe_runtime/**",
+        "tools/capabilities/content/gt6-fluid-combo-pipe-runtime/**",
+        "tools/waves/content/gt6-fluid-combo-pipe-runtime/**",
+        "tools/gt6_fluid_combo_pipe_runtime.py",
+        "tools/build_gt6_fluid_combo_pipe_runtime.py",
+        "tools/tests/test_gt6_fluid_combo_pipe_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-fluid-combo-pipe-runtime/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-fluid-combo-pipe-runtime",
+      "title": "GT6 Fluid Combo Pipe Runtime",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids",
+        "content/gt6-fluid-pipe-runtime"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6流体危险介质运行时详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/logistics/pipe/fluid/FluidPipeDangerousMedia.java",
+        "src/main/java/com/masson/cruciblecraft/logistics/pipe/fluid/FluidPipeBlockedMedia.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/FluidPipeBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/FluidPipeBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/FluidPipeRuntimeGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/FluidDangerousMediaRuntimeGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_fluid_dangerous_media_runtime/**",
+        "tools/capabilities/content/gt6-fluid-dangerous-media-runtime/**",
+        "tools/waves/content/gt6-fluid-dangerous-media-runtime/**",
+        "tools/gt6_fluid_dangerous_media_runtime.py",
+        "tools/build_gt6_fluid_dangerous_media_runtime.py",
+        "tools/tests/test_gt6_fluid_dangerous_media_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-fluid-dangerous-media-runtime/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-fluid-dangerous-media-runtime",
+      "title": "GT6 Fluid Dangerous Media Runtime",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids",
+        "content/gt6-fluid-pipe-runtime",
+        "content/gt6-fluid-combo-pipe-runtime"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6流体管获得格详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/crafting/WorkbenchToolRecipePlan.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/FluidPipeAcquisitionGameTests.java",
+        "src/generated/resources/data/cruciblecraft/recipe/pipe/combo/**",
+        "src/generated/resources/data/cruciblecraft/recipe/pipe/table/**",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_fluid_pipe_acquisition/**",
+        "tools/capabilities/content/gt6-fluid-pipe-acquisition/**",
+        "tools/waves/content/gt6-fluid-pipe-acquisition/**",
+        "tools/gt6_connector_acquisition.py",
+        "tools/build_gt6_connector_acquisition.py",
+        "tools/tests/test_gt6_connector_acquisition.py"
+      ],
+      "path": "tools/capabilities/content/gt6-fluid-pipe-acquisition/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-fluid-pipe-acquisition",
+      "title": "GT6 Fluid Pipe Acquisition",
       "workflow": "accepted"
     },
     {
@@ -131,6 +309,74 @@
     },
     {
       "depends_on": [
+        "registry/catalog-modern-ids",
+        "content/mte-redstone-wire",
+        "content/gt6-redstone-wire-correction"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6绝缘红石运行时详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/redstonewire/RedstoneWireKind.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/RedstoneWireBlock.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+        "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/InsulatedRedstoneRuntimeGameTests.java",
+        "src/main/resources/assets/cruciblecraft/models/block/redstone_cable/**",
+        "src/main/resources/assets/cruciblecraft/blockstates/red_alloy/cable.json",
+        "src/main/resources/assets/cruciblecraft/blockstates/signalum/cable.json",
+        "src/main/resources/assets/cruciblecraft/blockstates/lumium/cable.json",
+        "src/main/resources/assets/cruciblecraft/models/item/red_alloy/cable.json",
+        "src/main/resources/assets/cruciblecraft/models/item/signalum/cable.json",
+        "src/main/resources/assets/cruciblecraft/models/item/lumium/cable.json",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_insulated_redstone_runtime/**",
+        "tools/capabilities/content/gt6-insulated-redstone-runtime/**",
+        "tools/waves/content/gt6-insulated-redstone-runtime/**",
+        "tools/gt6_insulated_redstone_runtime.py",
+        "tools/build_gt6_insulated_redstone_runtime.py",
+        "tools/tests/test_gt6_insulated_redstone_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-insulated-redstone-runtime/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-insulated-redstone-runtime",
+      "title": "GT6 Insulated Redstone Runtime",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids",
+        "content/gt6-item-pipe-runtime",
+        "content/gt6-restrictive-item-pipe-runtime"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6物品管获得格详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/crafting/WorkbenchToolRecipePlan.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/ItemPipeAcquisitionGameTests.java",
+        "src/generated/resources/data/cruciblecraft/recipe/pipe/item_table/**",
+        "src/generated/resources/data/cruciblecraft/recipe/pipe/restrictive/**",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_item_pipe_acquisition/**",
+        "tools/capabilities/content/gt6-item-pipe-acquisition/**",
+        "tools/waves/content/gt6-item-pipe-acquisition/**",
+        "tools/gt6_connector_acquisition.py",
+        "tools/build_gt6_connector_acquisition.py",
+        "tools/tests/test_gt6_connector_acquisition.py"
+      ],
+      "path": "tools/capabilities/content/gt6-item-pipe-acquisition/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-item-pipe-acquisition",
+      "title": "GT6 Item Pipe Acquisition",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "registry/catalog-modern-ids"
       ],
       "maturity": "runtime_ready",
@@ -158,6 +404,564 @@
     },
     {
       "depends_on": [
+        "registry/catalog-modern-ids"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6能源转换器主机折回详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteConverterHostFoldGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_converter_host_fold/**",
+        "tools/capabilities/content/gt6-mte-converter-host-fold/**",
+        "tools/waves/content/gt6-mte-converter-host-fold/**",
+        "tools/gt6_mte_host_fold.py",
+        "tools/build_gt6_mte_host_fold.py",
+        "tools/tests/test_gt6_mte_host_fold.py"
+      ],
+      "path": "tools/capabilities/content/gt6-mte-converter-host-fold/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-mte-converter-host-fold",
+      "title": "GT6 Converter Host Fold",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6能源转换器余量runtime详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/mte/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteConverterRemainderRuntimeGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteInPlaceGameTestSupport.java",
+        "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_converter_remainder_runtime/**",
+        "tools/capabilities/content/gt6-mte-converter-remainder-runtime/**",
+        "tools/waves/content/gt6-mte-converter-remainder-runtime/**",
+        "tools/gt6_mte_inplace_runtime.py",
+        "tools/build_gt6_mte_inplace_runtime.py",
+        "tools/tests/test_gt6_mte_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-mte-converter-remainder-runtime/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-mte-converter-remainder-runtime",
+      "title": "GT6 Converter Remainder Runtime",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6坩埚铸造runtime详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/mte/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteCrucibleFoundryRuntimeGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteInPlaceGameTestSupport.java",
+        "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_crucible_foundry_runtime/**",
+        "tools/capabilities/content/gt6-mte-crucible-foundry-runtime/**",
+        "tools/waves/content/gt6-mte-crucible-foundry-runtime/**",
+        "tools/gt6_mte_inplace_runtime.py",
+        "tools/build_gt6_mte_inplace_runtime.py",
+        "tools/tests/test_gt6_mte_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-mte-crucible-foundry-runtime/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-mte-crucible-foundry-runtime",
+      "title": "GT6 Crucible Foundry Runtime",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6装饰件runtime详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/mte/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteDecorativeRuntimeGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteInPlaceGameTestSupport.java",
+        "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_decorative_runtime/**",
+        "tools/capabilities/content/gt6-mte-decorative-runtime/**",
+        "tools/waves/content/gt6-mte-decorative-runtime/**",
+        "tools/gt6_mte_inplace_runtime.py",
+        "tools/build_gt6_mte_inplace_runtime.py",
+        "tools/tests/test_gt6_mte_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-mte-decorative-runtime/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-mte-decorative-runtime",
+      "title": "GT6 Decorative Runtime",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6传动件runtime详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/mte/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteDriveRuntimeGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteInPlaceGameTestSupport.java",
+        "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_drive_runtime/**",
+        "tools/capabilities/content/gt6-mte-drive-runtime/**",
+        "tools/waves/content/gt6-mte-drive-runtime/**",
+        "tools/gt6_mte_inplace_runtime.py",
+        "tools/build_gt6_mte_inplace_runtime.py",
+        "tools/tests/test_gt6_mte_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-mte-drive-runtime/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-mte-drive-runtime",
+      "title": "GT6 Drive Runtime",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids",
+        "content/gt6-fluid-pipe-runtime"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6扩展器runtime详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/mte/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteExtenderRuntimeGameTests.java",
+        "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_extender_runtime/**",
+        "tools/capabilities/content/gt6-mte-extender-runtime/**",
+        "tools/waves/content/gt6-mte-extender-runtime/**",
+        "tools/gt6_mte_inplace_runtime.py",
+        "tools/build_gt6_mte_inplace_runtime.py",
+        "tools/tests/test_gt6_mte_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-mte-extender-runtime/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-mte-extender-runtime",
+      "title": "GT6 Extender Runtime",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids",
+        "content/gt6-fluid-pipe-runtime"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6流体附件runtime详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/mte/MteInPlaceCatalog.java",
+        "src/main/java/com/masson/cruciblecraft/content/mte/MteInPlaceKind.java",
+        "src/main/java/com/masson/cruciblecraft/content/mte/MteInPlaceSpec.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteFluidAttachmentsRuntimeGameTests.java",
+        "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_fluid_attachments_runtime/**",
+        "tools/capabilities/content/gt6-mte-fluid-attachments-runtime/**",
+        "tools/waves/content/gt6-mte-fluid-attachments-runtime/**",
+        "tools/gt6_mte_inplace_runtime.py",
+        "tools/build_gt6_mte_inplace_runtime.py",
+        "tools/tests/test_gt6_mte_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-mte-fluid-attachments-runtime/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-mte-fluid-attachments-runtime",
+      "title": "GT6 Fluid Attachments Runtime",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6家具木桶runtime详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/mte/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteFurnitureBarrelRuntimeGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteInPlaceGameTestSupport.java",
+        "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_furniture_barrel_runtime/**",
+        "tools/capabilities/content/gt6-mte-furniture-barrel-runtime/**",
+        "tools/waves/content/gt6-mte-furniture-barrel-runtime/**",
+        "tools/gt6_mte_inplace_runtime.py",
+        "tools/build_gt6_mte_inplace_runtime.py",
+        "tools/tests/test_gt6_mte_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-mte-furniture-barrel-runtime/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-mte-furniture-barrel-runtime",
+      "title": "GT6 Furniture Barrel Runtime",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6家具箱子runtime详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/mte/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteFurnitureChestRuntimeGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteInPlaceGameTestSupport.java",
+        "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_furniture_chest_runtime/**",
+        "tools/capabilities/content/gt6-mte-furniture-chest-runtime/**",
+        "tools/waves/content/gt6-mte-furniture-chest-runtime/**",
+        "tools/gt6_mte_inplace_runtime.py",
+        "tools/build_gt6_mte_inplace_runtime.py",
+        "tools/tests/test_gt6_mte_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-mte-furniture-chest-runtime/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-mte-furniture-chest-runtime",
+      "title": "GT6 Furniture Chest Runtime",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6家具保险箱runtime详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/mte/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteFurnitureSafeRuntimeGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteInPlaceGameTestSupport.java",
+        "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_furniture_safe_runtime/**",
+        "tools/capabilities/content/gt6-mte-furniture-safe-runtime/**",
+        "tools/waves/content/gt6-mte-furniture-safe-runtime/**",
+        "tools/gt6_mte_inplace_runtime.py",
+        "tools/build_gt6_mte_inplace_runtime.py",
+        "tools/tests/test_gt6_mte_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-mte-furniture-safe-runtime/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-mte-furniture-safe-runtime",
+      "title": "GT6 Furniture Safe Runtime",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6家具脚手架runtime详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/mte/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteFurnitureScaffoldRuntimeGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteInPlaceGameTestSupport.java",
+        "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_furniture_scaffold_runtime/**",
+        "tools/capabilities/content/gt6-mte-furniture-scaffold-runtime/**",
+        "tools/waves/content/gt6-mte-furniture-scaffold-runtime/**",
+        "tools/gt6_mte_inplace_runtime.py",
+        "tools/build_gt6_mte_inplace_runtime.py",
+        "tools/tests/test_gt6_mte_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-mte-furniture-scaffold-runtime/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-mte-furniture-scaffold-runtime",
+      "title": "GT6 Furniture Scaffold Runtime",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6家具储物runtime详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/mte/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteFurnitureStorageRuntimeGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteInPlaceGameTestSupport.java",
+        "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_furniture_storage_runtime/**",
+        "tools/capabilities/content/gt6-mte-furniture-storage-runtime/**",
+        "tools/waves/content/gt6-mte-furniture-storage-runtime/**",
+        "tools/gt6_mte_inplace_runtime.py",
+        "tools/build_gt6_mte_inplace_runtime.py",
+        "tools/tests/test_gt6_mte_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-mte-furniture-storage-runtime/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-mte-furniture-storage-runtime",
+      "title": "GT6 Furniture Storage Runtime",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6家具工作台runtime详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/mte/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteFurnitureTableRuntimeGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteInPlaceGameTestSupport.java",
+        "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_furniture_table_runtime/**",
+        "tools/capabilities/content/gt6-mte-furniture-table-runtime/**",
+        "tools/waves/content/gt6-mte-furniture-table-runtime/**",
+        "tools/gt6_mte_inplace_runtime.py",
+        "tools/build_gt6_mte_inplace_runtime.py",
+        "tools/tests/test_gt6_mte_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-mte-furniture-table-runtime/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-mte-furniture-table-runtime",
+      "title": "GT6 Furniture Crafting Table Runtime",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6漏斗主机折回详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteHopperHostFoldGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_hopper_host_fold/**",
+        "tools/capabilities/content/gt6-mte-hopper-host-fold/**",
+        "tools/waves/content/gt6-mte-hopper-host-fold/**",
+        "tools/gt6_mte_host_fold.py",
+        "tools/build_gt6_mte_host_fold.py",
+        "tools/tests/test_gt6_mte_host_fold.py"
+      ],
+      "path": "tools/capabilities/content/gt6-mte-hopper-host-fold/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-mte-hopper-host-fold",
+      "title": "GT6 Hopper Host Fold",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6杂项工具runtime详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/mte/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteMiscToolRuntimeGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteInPlaceGameTestSupport.java",
+        "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_misc_tool_runtime/**",
+        "tools/capabilities/content/gt6-mte-misc-tool-runtime/**",
+        "tools/waves/content/gt6-mte-misc-tool-runtime/**",
+        "tools/gt6_mte_inplace_runtime.py",
+        "tools/build_gt6_mte_inplace_runtime.py",
+        "tools/tests/test_gt6_mte_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-mte-misc-tool-runtime/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-mte-misc-tool-runtime",
+      "title": "GT6 Misc Tool Runtime",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6多方块设备runtime详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/mte/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteMultiblockRuntimeGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteInPlaceGameTestSupport.java",
+        "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_multiblock_runtime/**",
+        "tools/capabilities/content/gt6-mte-multiblock-runtime/**",
+        "tools/waves/content/gt6-mte-multiblock-runtime/**",
+        "tools/gt6_mte_inplace_runtime.py",
+        "tools/build_gt6_mte_inplace_runtime.py",
+        "tools/tests/test_gt6_mte_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-mte-multiblock-runtime/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-mte-multiblock-runtime",
+      "title": "GT6 Multiblock Runtime",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6加工机主机折回详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteProcessingHostFoldGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_processing_host_fold/**",
+        "tools/capabilities/content/gt6-mte-processing-host-fold/**",
+        "tools/waves/content/gt6-mte-processing-host-fold/**",
+        "tools/gt6_mte_host_fold.py",
+        "tools/build_gt6_mte_host_fold.py",
+        "tools/tests/test_gt6_mte_host_fold.py"
+      ],
+      "path": "tools/capabilities/content/gt6-mte-processing-host-fold/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-mte-processing-host-fold",
+      "title": "GT6 Processing Host Fold",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6反应棒主机折回详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteReactorRodHostFoldGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_reactor_rod_host_fold/**",
+        "tools/capabilities/content/gt6-mte-reactor-rod-host-fold/**",
+        "tools/waves/content/gt6-mte-reactor-rod-host-fold/**",
+        "tools/gt6_mte_host_fold.py",
+        "tools/build_gt6_mte_host_fold.py",
+        "tools/tests/test_gt6_mte_host_fold.py"
+      ],
+      "path": "tools/capabilities/content/gt6-mte-reactor-rod-host-fold/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-mte-reactor-rod-host-fold",
+      "title": "GT6 Reactor Rod Host Fold",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "machines/slicer"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6纸微型板详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/gametest/PaperTinyPlateGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_paper_tiny_plate/**",
+        "tools/capabilities/content/gt6-paper-tiny-plate/**",
+        "tools/waves/content/gt6-paper-tiny-plate/**",
+        "tools/gt6_paper_tiny_plate.py",
+        "tools/build_gt6_paper_tiny_plate.py",
+        "tools/tests/test_gt6_paper_tiny_plate.py",
+        "src/main/resources/data/cruciblecraft/material_registration_gate.json",
+        "tools/material_form_authority.json"
+      ],
+      "path": "tools/capabilities/content/gt6-paper-tiny-plate/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-paper-tiny-plate",
+      "title": "GT6 Paper Tiny Plate",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids",
+        "content/gt6-insulated-redstone-runtime"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6绝缘红石获得格详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/crafting/WorkbenchToolRecipePlan.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/RedstoneWireAcquisitionGameTests.java",
+        "src/generated/resources/data/cruciblecraft/recipe/redstone/laminator/**",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_redstone_wire_acquisition/**",
+        "tools/capabilities/content/gt6-redstone-wire-acquisition/**",
+        "tools/waves/content/gt6-redstone-wire-acquisition/**",
+        "tools/gt6_connector_acquisition.py",
+        "tools/build_gt6_connector_acquisition.py",
+        "tools/tests/test_gt6_connector_acquisition.py"
+      ],
+      "path": "tools/capabilities/content/gt6-redstone-wire-acquisition/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-redstone-wire-acquisition",
+      "title": "GT6 Redstone Wire Acquisition",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "content/mte-redstone-wire"
       ],
       "maturity": "runtime_ready",
@@ -178,6 +982,34 @@
       ],
       "slug": "content/gt6-redstone-wire-correction",
       "title": "GT6 Redstone Wire Correction",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids",
+        "content/gt6-item-pipe-runtime",
+        "content/gt6-connector-art",
+        "content/gt6-connector-alias-repair"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6限制物品管运行时详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalog.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/RestrictiveItemPipeRuntimeGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_restrictive_item_pipe_runtime/**",
+        "tools/capabilities/content/gt6-restrictive-item-pipe-runtime/**",
+        "tools/waves/content/gt6-restrictive-item-pipe-runtime/**",
+        "tools/gt6_restrictive_item_pipe_runtime.py",
+        "tools/build_gt6_restrictive_item_pipe_runtime.py",
+        "tools/tests/test_gt6_restrictive_item_pipe_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-restrictive-item-pipe-runtime/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-restrictive-item-pipe-runtime",
+      "title": "GT6 Restrictive Item Pipe Runtime",
       "workflow": "accepted"
     },
     {
@@ -1240,6 +2072,49 @@
     },
     {
       "depends_on": [
+        "worldgen/gt-trees"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT作物世界生成详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/gametest/GtCropsGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/GlowtusBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/GtBushBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/GtBushBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/worldgen/crop/**",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModFeatures.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModCreativeTabs.java",
+        "src/main/resources/assets/cruciblecraft/gt6_gt_crops_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6/iconsets/glowtus_*.png",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/plants/bush/**",
+        "src/main/resources/assets/cruciblecraft/blockstates/plant/**",
+        "src/main/resources/assets/cruciblecraft/models/block/plant/**",
+        "src/main/resources/assets/cruciblecraft/models/item/plant/**",
+        "src/main/resources/data/cruciblecraft/loot_table/blocks/plant/**",
+        "src/main/resources/data/cruciblecraft/worldgen/configured_feature/plant_*.json",
+        "src/main/resources/data/cruciblecraft/worldgen/placed_feature/plant_*.json",
+        "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_plant_*.json",
+        "src/main/resources/data/cruciblecraft_wave_worldgen_gt_crops/**",
+        "tools/capabilities/worldgen/gt-crops/**",
+        "tools/waves/worldgen/gt-crops/**",
+        "tools/gt_crops.py",
+        "tools/build_gt_crops.py",
+        "tools/tests/test_gt_crops.py"
+      ],
+      "path": "tools/capabilities/worldgen/gt-crops/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "worldgen/gt-crops",
+      "title": "GT Crops",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "content/technological-parts-foundation",
         "worldgen/gt-trees"
       ],
@@ -1310,7 +2185,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 39,
+  "capability_count": 69,
   "declared_player_complete": [
     "energy/batteries",
     "energy/converter-catalog",
@@ -1331,28 +2206,167 @@
   "impact": {
     "content/electric-wire-cable-mte-fold": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
-      "content/gt6-eu-wire-cable-runtime"
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
+      "content/gt6-eu-wire-cable-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-pipe-acquisition",
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-restrictive-item-pipe-runtime"
+    ],
+    "content/gt6-connector-alias-repair": [
+      "content/gt6-connector-alias-repair",
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-pipe-acquisition",
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-restrictive-item-pipe-runtime"
     ],
     "content/gt6-connector-art": [
-      "content/gt6-connector-art"
+      "content/gt6-connector-alias-repair",
+      "content/gt6-connector-art",
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-pipe-acquisition",
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-restrictive-item-pipe-runtime"
+    ],
+    "content/gt6-eu-cable-acquisition": [
+      "content/gt6-eu-cable-acquisition"
+    ],
+    "content/gt6-eu-missing-wire-gauges-runtime": [
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime"
     ],
     "content/gt6-eu-wire-cable-runtime": [
+      "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
-      "content/gt6-eu-wire-cable-runtime"
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
+      "content/gt6-eu-wire-cable-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-pipe-acquisition",
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-restrictive-item-pipe-runtime"
+    ],
+    "content/gt6-fluid-combo-pipe-runtime": [
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-pipe-acquisition"
+    ],
+    "content/gt6-fluid-dangerous-media-runtime": [
+      "content/gt6-fluid-dangerous-media-runtime"
+    ],
+    "content/gt6-fluid-pipe-acquisition": [
+      "content/gt6-fluid-pipe-acquisition"
     ],
     "content/gt6-fluid-pipe-runtime": [
+      "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
-      "content/gt6-fluid-pipe-runtime"
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-dangerous-media-runtime",
+      "content/gt6-fluid-pipe-acquisition",
+      "content/gt6-fluid-pipe-runtime",
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-mte-extender-runtime",
+      "content/gt6-mte-fluid-attachments-runtime",
+      "content/gt6-restrictive-item-pipe-runtime"
+    ],
+    "content/gt6-insulated-redstone-runtime": [
+      "content/gt6-insulated-redstone-runtime",
+      "content/gt6-redstone-wire-acquisition"
+    ],
+    "content/gt6-item-pipe-acquisition": [
+      "content/gt6-item-pipe-acquisition"
     ],
     "content/gt6-item-pipe-runtime": [
+      "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
-      "content/gt6-item-pipe-runtime"
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-pipe-acquisition",
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-item-pipe-runtime",
+      "content/gt6-restrictive-item-pipe-runtime"
+    ],
+    "content/gt6-mte-converter-host-fold": [
+      "content/gt6-mte-converter-host-fold"
+    ],
+    "content/gt6-mte-converter-remainder-runtime": [
+      "content/gt6-mte-converter-remainder-runtime"
+    ],
+    "content/gt6-mte-crucible-foundry-runtime": [
+      "content/gt6-mte-crucible-foundry-runtime"
+    ],
+    "content/gt6-mte-decorative-runtime": [
+      "content/gt6-mte-decorative-runtime"
+    ],
+    "content/gt6-mte-drive-runtime": [
+      "content/gt6-mte-drive-runtime"
+    ],
+    "content/gt6-mte-extender-runtime": [
+      "content/gt6-mte-extender-runtime"
+    ],
+    "content/gt6-mte-fluid-attachments-runtime": [
+      "content/gt6-mte-fluid-attachments-runtime"
+    ],
+    "content/gt6-mte-furniture-barrel-runtime": [
+      "content/gt6-mte-furniture-barrel-runtime"
+    ],
+    "content/gt6-mte-furniture-chest-runtime": [
+      "content/gt6-mte-furniture-chest-runtime"
+    ],
+    "content/gt6-mte-furniture-safe-runtime": [
+      "content/gt6-mte-furniture-safe-runtime"
+    ],
+    "content/gt6-mte-furniture-scaffold-runtime": [
+      "content/gt6-mte-furniture-scaffold-runtime"
+    ],
+    "content/gt6-mte-furniture-storage-runtime": [
+      "content/gt6-mte-furniture-storage-runtime"
+    ],
+    "content/gt6-mte-furniture-table-runtime": [
+      "content/gt6-mte-furniture-table-runtime"
+    ],
+    "content/gt6-mte-hopper-host-fold": [
+      "content/gt6-mte-hopper-host-fold"
+    ],
+    "content/gt6-mte-misc-tool-runtime": [
+      "content/gt6-mte-misc-tool-runtime"
+    ],
+    "content/gt6-mte-multiblock-runtime": [
+      "content/gt6-mte-multiblock-runtime"
+    ],
+    "content/gt6-mte-processing-host-fold": [
+      "content/gt6-mte-processing-host-fold"
+    ],
+    "content/gt6-mte-reactor-rod-host-fold": [
+      "content/gt6-mte-reactor-rod-host-fold"
+    ],
+    "content/gt6-paper-tiny-plate": [
+      "content/gt6-paper-tiny-plate"
+    ],
+    "content/gt6-redstone-wire-acquisition": [
+      "content/gt6-redstone-wire-acquisition"
     ],
     "content/gt6-redstone-wire-correction": [
+      "content/gt6-insulated-redstone-runtime",
+      "content/gt6-redstone-wire-acquisition",
       "content/gt6-redstone-wire-correction"
     ],
+    "content/gt6-restrictive-item-pipe-runtime": [
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-restrictive-item-pipe-runtime"
+    ],
     "content/mte-redstone-wire": [
+      "content/gt6-insulated-redstone-runtime",
+      "content/gt6-redstone-wire-acquisition",
       "content/gt6-redstone-wire-correction",
       "content/mte-redstone-wire"
     ],
@@ -1362,13 +2376,22 @@
     "content/technological-parts-foundation": [
       "content/sensors",
       "content/technological-parts-foundation",
+      "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
     "energy/batteries": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-pipe-acquisition",
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-paper-tiny-plate",
+      "content/gt6-restrictive-item-pipe-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
@@ -1388,13 +2411,22 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
     "energy/converter-catalog": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-pipe-acquisition",
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-paper-tiny-plate",
+      "content/gt6-restrictive-item-pipe-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
@@ -1415,13 +2447,22 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
     "energy/heat-exchangers": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-pipe-acquisition",
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-paper-tiny-plate",
+      "content/gt6-restrictive-item-pipe-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/heat-exchangers",
@@ -1436,13 +2477,22 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
     "energy/nuclear-fission-hot-fluids": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-pipe-acquisition",
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-paper-tiny-plate",
+      "content/gt6-restrictive-item-pipe-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/heat-exchangers",
@@ -1459,6 +2509,7 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
@@ -1467,8 +2518,16 @@
     ],
     "energy/nuclear-fission-survival": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-pipe-acquisition",
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-paper-tiny-plate",
+      "content/gt6-restrictive-item-pipe-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/heat-exchangers",
@@ -1486,13 +2545,22 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
     "energy/transformers": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-pipe-acquisition",
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-paper-tiny-plate",
+      "content/gt6-restrictive-item-pipe-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/heat-exchangers",
@@ -1511,13 +2579,22 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
     "logistics/cover-net-r0": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-pipe-acquisition",
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-paper-tiny-plate",
+      "content/gt6-restrictive-item-pipe-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
@@ -1545,6 +2622,7 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
@@ -1553,8 +2631,16 @@
     ],
     "logistics/display-cpu": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-pipe-acquisition",
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-paper-tiny-plate",
+      "content/gt6-restrictive-item-pipe-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
@@ -1576,13 +2662,22 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
     "logistics/fluid-network/basic-transfer": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-pipe-acquisition",
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-paper-tiny-plate",
+      "content/gt6-restrictive-item-pipe-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
@@ -1607,13 +2702,22 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
     "logistics/generic-network/core": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-pipe-acquisition",
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-paper-tiny-plate",
+      "content/gt6-restrictive-item-pipe-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
@@ -1637,13 +2741,22 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
     "logistics/item-network-core": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-pipe-acquisition",
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-paper-tiny-plate",
+      "content/gt6-restrictive-item-pipe-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
@@ -1669,13 +2782,22 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
     "logistics/logistics-core": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-pipe-acquisition",
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-paper-tiny-plate",
+      "content/gt6-restrictive-item-pipe-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
@@ -1698,6 +2820,7 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
@@ -1708,35 +2831,65 @@
       "content/sensors",
       "content/technological-parts-foundation",
       "machines/injector",
+      "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
     "machines/laminator": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-pipe-acquisition",
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-restrictive-item-pipe-runtime",
       "machines/laminator"
     ],
     "machines/loom": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-pipe-acquisition",
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-restrictive-item-pipe-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "machines/loom",
+      "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
     "machines/melter": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-pipe-acquisition",
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-restrictive-item-pipe-runtime",
       "machines/melter"
     ],
     "machines/nanofab": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-pipe-acquisition",
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-restrictive-item-pipe-runtime",
       "machines/nanofab"
     ],
     "machines/oven": [
@@ -1747,8 +2900,16 @@
     ],
     "machines/roll-former": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-pipe-acquisition",
+      "content/gt6-item-pipe-acquisition",
+      "content/gt6-paper-tiny-plate",
+      "content/gt6-restrictive-item-pipe-runtime",
       "content/sensors",
       "content/technological-parts-foundation",
       "machines/cluster-mill",
@@ -1762,6 +2923,7 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
@@ -1769,18 +2931,48 @@
       "machines/sanding"
     ],
     "machines/slicer": [
+      "content/gt6-paper-tiny-plate",
       "content/sensors",
       "content/technological-parts-foundation",
       "machines/slicer",
+      "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
     "registry/catalog-modern-ids": [
+      "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-dangerous-media-runtime",
+      "content/gt6-fluid-pipe-acquisition",
       "content/gt6-fluid-pipe-runtime",
+      "content/gt6-insulated-redstone-runtime",
+      "content/gt6-item-pipe-acquisition",
       "content/gt6-item-pipe-runtime",
+      "content/gt6-mte-converter-host-fold",
+      "content/gt6-mte-converter-remainder-runtime",
+      "content/gt6-mte-crucible-foundry-runtime",
+      "content/gt6-mte-decorative-runtime",
+      "content/gt6-mte-drive-runtime",
+      "content/gt6-mte-extender-runtime",
+      "content/gt6-mte-fluid-attachments-runtime",
+      "content/gt6-mte-furniture-barrel-runtime",
+      "content/gt6-mte-furniture-chest-runtime",
+      "content/gt6-mte-furniture-safe-runtime",
+      "content/gt6-mte-furniture-scaffold-runtime",
+      "content/gt6-mte-furniture-storage-runtime",
+      "content/gt6-mte-furniture-table-runtime",
+      "content/gt6-mte-hopper-host-fold",
+      "content/gt6-mte-misc-tool-runtime",
+      "content/gt6-mte-multiblock-runtime",
+      "content/gt6-mte-processing-host-fold",
+      "content/gt6-mte-reactor-rod-host-fold",
+      "content/gt6-redstone-wire-acquisition",
       "content/gt6-redstone-wire-correction",
+      "content/gt6-restrictive-item-pipe-runtime",
       "content/mte-redstone-wire",
       "registry/catalog-modern-ids"
     ],
@@ -1790,10 +2982,14 @@
     "registry/tool-head-remainder": [
       "registry/tool-head-remainder"
     ],
+    "worldgen/gt-crops": [
+      "worldgen/gt-crops"
+    ],
     "worldgen/gt-dungeon": [
       "worldgen/gt-dungeon"
     ],
     "worldgen/gt-trees": [
+      "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ]
@@ -1801,11 +2997,40 @@
   "profiles": {
     "capability-runtime": [
       "content/electric-wire-cable-mte-fold",
+      "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-eu-cable-acquisition",
+      "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
+      "content/gt6-fluid-combo-pipe-runtime",
+      "content/gt6-fluid-dangerous-media-runtime",
+      "content/gt6-fluid-pipe-acquisition",
       "content/gt6-fluid-pipe-runtime",
+      "content/gt6-insulated-redstone-runtime",
+      "content/gt6-item-pipe-acquisition",
       "content/gt6-item-pipe-runtime",
+      "content/gt6-mte-converter-host-fold",
+      "content/gt6-mte-converter-remainder-runtime",
+      "content/gt6-mte-crucible-foundry-runtime",
+      "content/gt6-mte-decorative-runtime",
+      "content/gt6-mte-drive-runtime",
+      "content/gt6-mte-extender-runtime",
+      "content/gt6-mte-fluid-attachments-runtime",
+      "content/gt6-mte-furniture-barrel-runtime",
+      "content/gt6-mte-furniture-chest-runtime",
+      "content/gt6-mte-furniture-safe-runtime",
+      "content/gt6-mte-furniture-scaffold-runtime",
+      "content/gt6-mte-furniture-storage-runtime",
+      "content/gt6-mte-furniture-table-runtime",
+      "content/gt6-mte-hopper-host-fold",
+      "content/gt6-mte-misc-tool-runtime",
+      "content/gt6-mte-multiblock-runtime",
+      "content/gt6-mte-processing-host-fold",
+      "content/gt6-mte-reactor-rod-host-fold",
+      "content/gt6-paper-tiny-plate",
+      "content/gt6-redstone-wire-acquisition",
       "content/gt6-redstone-wire-correction",
+      "content/gt6-restrictive-item-pipe-runtime",
       "content/mte-redstone-wire",
       "content/sensors",
       "content/technological-parts-foundation",
@@ -1837,6 +3062,7 @@
       "registry/catalog-modern-ids",
       "registry/tool-head-prefix-reclaim",
       "registry/tool-head-remainder",
+      "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],

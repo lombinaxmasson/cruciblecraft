@@ -46,9 +46,19 @@ public final class MaterialPrefixes {
     public static final MaterialPrefix QUADRUPLE_WIRE = builtin("quadruple_wire");
     public static final MaterialPrefix QUINTUPLE_WIRE = builtin("quintuple_wire");
     public static final MaterialPrefix SEXTUPLE_WIRE = builtin("sextuple_wire");
+    public static final MaterialPrefix SEPTUPLE_WIRE = builtin("septuple_wire");
     public static final MaterialPrefix OCTUPLE_WIRE = builtin("octuple_wire");
+    public static final MaterialPrefix NONUPLE_WIRE = builtin("nonuple_wire");
+    public static final MaterialPrefix DECUPLE_WIRE = builtin("decuple_wire");
+    public static final MaterialPrefix UNDECUPLE_WIRE = builtin("undecuple_wire");
     public static final MaterialPrefix DODECUPLE_WIRE = builtin("dodecuple_wire");
-    public static final MaterialPrefix HEXADECUPLE_WIRE = builtin("hexadecuple_wire");
+    public static final MaterialPrefix TREDECUPLE_WIRE = builtin("tredecuple_wire");
+    public static final MaterialPrefix TETRADECUPLE_WIRE =
+            builtin("tetradecuple_wire");
+    public static final MaterialPrefix PENTADECUPLE_WIRE =
+            builtin("pentadecuple_wire");
+    public static final MaterialPrefix HEXADECUPLE_WIRE =
+            builtin("hexadecuple_wire");
     public static final MaterialPrefix CABLE = builtin("cable");
     public static final MaterialPrefix DOUBLE_CABLE = builtin("double_cable");
     public static final MaterialPrefix QUADRUPLE_CABLE = builtin("quadruple_cable");
@@ -63,11 +73,21 @@ public final class MaterialPrefixes {
             builtin("large_fluid_pipe");
     public static final MaterialPrefix HUGE_FLUID_PIPE =
             builtin("huge_fluid_pipe");
+    public static final MaterialPrefix QUADRUPLE_FLUID_PIPE =
+            builtin("quadruple_fluid_pipe");
+    public static final MaterialPrefix NONUPLE_FLUID_PIPE =
+            builtin("nonuple_fluid_pipe");
     public static final MaterialPrefix ITEM_PIPE = builtin("item_pipe");
     public static final MaterialPrefix LARGE_ITEM_PIPE =
             builtin("large_item_pipe");
     public static final MaterialPrefix HUGE_ITEM_PIPE =
             builtin("huge_item_pipe");
+    public static final MaterialPrefix RESTRICTIVE_ITEM_PIPE =
+            builtin("restrictive_item_pipe");
+    public static final MaterialPrefix LARGE_RESTRICTIVE_ITEM_PIPE =
+            builtin("large_restrictive_item_pipe");
+    public static final MaterialPrefix HUGE_RESTRICTIVE_ITEM_PIPE =
+            builtin("huge_restrictive_item_pipe");
     public static final MaterialPrefix NUGGET = builtin("nugget");
     public static final MaterialPrefix GEM = builtin("gem");
     public static final MaterialPrefix GEM_CHIPPED = builtin("gem_chipped");

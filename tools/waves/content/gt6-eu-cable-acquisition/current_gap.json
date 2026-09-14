@@ -1,0 +1,10 @@
+{
+  "schema": "gt6-eu-cable-acquisition-gap-v1",
+  "capability_slug": "content/gt6-eu-cable-acquisition",
+  "overlay": "gt6-connector-acquisition-overlay-v1",
+  "blocked": [
+    "player_complete EMI/reload/player signoff"
+  ],
+  "close_target": "runtime_ready",
+  "note": "Gated EU plate2wire, shapeless rubber insulation, and wire packing are live. Do not substitute programmed_circuit. Red alloy stays out of EU."
+}

@@ -74,7 +74,19 @@ class Gt6FluidPipeRuntimeTest(unittest.TestCase):
         self.assertIn("tickCovers", be)
         self.assertNotIn("8_000", be)
         self.assertIn("INTERVAL = 5", phase)
-        self.assertIn("FluidPipeBlockedMedia.rejects", be)
+        overlay = (
+            ROOT
+            / "tools"
+            / "waves"
+            / "content"
+            / "gt6-fluid-dangerous-media-runtime"
+            / "dangerous_overlay.json"
+        )
+        if overlay.is_file():
+            self.assertIn("FluidPipeDangerousMedia.tick", be)
+            self.assertNotIn("FluidPipeBlockedMedia.rejects(", be)
+        else:
+            self.assertIn("FluidPipeBlockedMedia.rejects", be)
         self.assertIn("FluidPipeCadence.scanOrder", be)
         self.assertNotIn("CableNetworkTraversal", be)
         self.assertNotIn("ModCapabilities.ENERGY", be)

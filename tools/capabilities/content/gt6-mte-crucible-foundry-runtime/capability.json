@@ -1,0 +1,43 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-mte-crucible-foundry-runtime",
+  "title": "GT6 Crucible Foundry Runtime",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6坩埚铸造runtime详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/mte/**",
+    "src/main/java/com/masson/cruciblecraft/gametest/MteCrucibleFoundryRuntimeGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/MteInPlaceGameTestSupport.java",
+    "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_crucible_foundry_runtime/**",
+    "tools/capabilities/content/gt6-mte-crucible-foundry-runtime/**",
+    "tools/waves/content/gt6-mte-crucible-foundry-runtime/**",
+    "tools/gt6_mte_inplace_runtime.py",
+    "tools/build_gt6_mte_inplace_runtime.py",
+    "tools/tests/test_gt6_mte_runtime.py"
+  ],
+  "depends_on": [
+    "registry/catalog-modern-ids"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-mte-crucible-foundry-runtime",
+  "required_test_ids": [
+    "foundryCrucibleIsNotCeramicCrucible"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "mte:crucible-foundry:in-place",
+      "disposition": "keep_distinct",
+      "runtime_ids": [
+        "cruciblecraft:foundry/smelting_crucible_invar"
+      ],
+      "reason": "Foundry MTEs keep dummy modern ids as live BlockItems. They are not the ceramic crucible."
+    }
+  ],
+  "note": "In-place crucible_foundry runtime. Close at runtime_ready. Obtain stays explicitly_blocked. Do not edit R0."
+}

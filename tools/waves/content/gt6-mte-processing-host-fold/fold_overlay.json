@@ -1,0 +1,855 @@
+{
+  "schema_version": 1,
+  "capability_slug": "content/gt6-mte-processing-host-fold",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "generated_by": "content/gt6-mte-processing-host-fold implementation",
+  "family": "processing_machine",
+  "archive_strategy": {
+    "dummy_item": "unregister CatalogNamedItem",
+    "dummy_model": "delete iron_ingot item model",
+    "world_stacks": "unregistered dummy ids become air; no NeoForge alias and no second GT6 art copy",
+    "recipes": "operand remaps dummy path onto the live host id"
+  },
+  "counts": {
+    "fold_live_block": 58,
+    "keep_distinct": 28
+  },
+  "rows": [
+    {
+      "meta": 20004,
+      "dummy_path": "tungsten_carbide/oven",
+      "live_block": "cruciblecraft:tungsten_carbide_oven",
+      "english_name": "Oven (Tungsten Carbide)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20004,
+      "machine_kind": "cruciblecraft:oven",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20051,
+      "dummy_path": "processing/sifter_bronze",
+      "live_block": "cruciblecraft:sifter",
+      "english_name": "Sifter (Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20051,
+      "machine_kind": "cruciblecraft:sifter",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20052,
+      "dummy_path": "processing/sifter_steel",
+      "live_block": "cruciblecraft:steel_sifter",
+      "english_name": "Sifter (Steel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20052,
+      "machine_kind": "cruciblecraft:sifter",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20053,
+      "dummy_path": "processing/sifter_titanium",
+      "live_block": "cruciblecraft:titanium_sifter",
+      "english_name": "Sifter (Titanium)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20053,
+      "machine_kind": "cruciblecraft:sifter",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20054,
+      "dummy_path": "processing/sifter_tungstensteel",
+      "live_block": "cruciblecraft:tungstensteel_sifter",
+      "english_name": "Sifter (Tungstensteel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20054,
+      "machine_kind": "cruciblecraft:sifter",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20081,
+      "dummy_path": "processing/centrifuge_bronze",
+      "live_block": "cruciblecraft:centrifuge",
+      "english_name": "Centrifuge (Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20081,
+      "machine_kind": "cruciblecraft:centrifuge",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20082,
+      "dummy_path": "processing/centrifuge_steel",
+      "live_block": "cruciblecraft:steel_centrifuge",
+      "english_name": "Centrifuge (Steel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20082,
+      "machine_kind": "cruciblecraft:centrifuge",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20083,
+      "dummy_path": "processing/centrifuge_titanium",
+      "live_block": "cruciblecraft:titanium_centrifuge",
+      "english_name": "Centrifuge (Titanium)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20083,
+      "machine_kind": "cruciblecraft:centrifuge",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20084,
+      "dummy_path": "processing/centrifuge_tungstensteel",
+      "live_block": "cruciblecraft:tungstensteel_centrifuge",
+      "english_name": "Centrifuge (Tungstensteel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20084,
+      "machine_kind": "cruciblecraft:centrifuge",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20101,
+      "dummy_path": "processing/compressor_bronze",
+      "live_block": "cruciblecraft:compressor",
+      "english_name": "Compressor (Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20101,
+      "machine_kind": "cruciblecraft:compressor",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20102,
+      "dummy_path": "processing/compressor_steel",
+      "live_block": "cruciblecraft:steel_compressor",
+      "english_name": "Compressor (Steel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20102,
+      "machine_kind": "cruciblecraft:compressor",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20103,
+      "dummy_path": "processing/compressor_titanium",
+      "live_block": "cruciblecraft:titanium_compressor",
+      "english_name": "Compressor (Titanium)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20103,
+      "machine_kind": "cruciblecraft:compressor",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20104,
+      "dummy_path": "processing/compressor_tungstensteel",
+      "live_block": "cruciblecraft:tungstensteel_compressor",
+      "english_name": "Compressor (Tungstensteel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20104,
+      "machine_kind": "cruciblecraft:compressor",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20111,
+      "dummy_path": "processing/rolling_mill_bronze",
+      "live_block": "cruciblecraft:rollingmill",
+      "english_name": "Rolling Mill (Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20111,
+      "machine_kind": "cruciblecraft:rollingmill",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20112,
+      "dummy_path": "processing/rolling_mill_steel",
+      "live_block": "cruciblecraft:steel_rollingmill",
+      "english_name": "Rolling Mill (Steel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20112,
+      "machine_kind": "cruciblecraft:rollingmill",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20113,
+      "dummy_path": "processing/rolling_mill_titanium",
+      "live_block": "cruciblecraft:titanium_rollingmill",
+      "english_name": "Rolling Mill (Titanium)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20113,
+      "machine_kind": "cruciblecraft:rollingmill",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20114,
+      "dummy_path": "processing/rolling_mill_tungstensteel",
+      "live_block": "cruciblecraft:tungstensteel_rollingmill",
+      "english_name": "Rolling Mill (Tungstensteel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20114,
+      "machine_kind": "cruciblecraft:rollingmill",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20121,
+      "dummy_path": "processing/roll_bender_bronze",
+      "live_block": "cruciblecraft:rollbender",
+      "english_name": "Roll Bender (Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20121,
+      "machine_kind": "cruciblecraft:rollbender",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20122,
+      "dummy_path": "processing/roll_bender_steel",
+      "live_block": "cruciblecraft:steel_rollbender",
+      "english_name": "Roll Bender (Steel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20122,
+      "machine_kind": "cruciblecraft:rollbender",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20123,
+      "dummy_path": "processing/roll_bender_titanium",
+      "live_block": "cruciblecraft:titanium_rollbender",
+      "english_name": "Roll Bender (Titanium)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20123,
+      "machine_kind": "cruciblecraft:rollbender",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20124,
+      "dummy_path": "processing/roll_bender_tungstensteel",
+      "live_block": "cruciblecraft:tungstensteel_rollbender",
+      "english_name": "Roll Bender (Tungstensteel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20124,
+      "machine_kind": "cruciblecraft:rollbender",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20131,
+      "dummy_path": "processing/roll_former_bronze",
+      "live_block": "cruciblecraft:rollformer",
+      "english_name": "Roll Former (Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20131,
+      "machine_kind": "cruciblecraft:rollformer",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20132,
+      "dummy_path": "processing/roll_former_steel",
+      "live_block": "cruciblecraft:steel_rollformer",
+      "english_name": "Roll Former (Steel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20132,
+      "machine_kind": "cruciblecraft:rollformer",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20133,
+      "dummy_path": "processing/roll_former_titanium",
+      "live_block": "cruciblecraft:titanium_rollformer",
+      "english_name": "Roll Former (Titanium)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20133,
+      "machine_kind": "cruciblecraft:rollformer",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20134,
+      "dummy_path": "processing/roll_former_tungstensteel",
+      "live_block": "cruciblecraft:tungstensteel_rollformer",
+      "english_name": "Roll Former (Tungstensteel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20134,
+      "machine_kind": "cruciblecraft:rollformer",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20141,
+      "dummy_path": "processing/cluster_mill_bronze",
+      "live_block": "cruciblecraft:clustermill",
+      "english_name": "Cluster Mill (Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20141,
+      "machine_kind": "cruciblecraft:clustermill",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20142,
+      "dummy_path": "processing/cluster_mill_steel",
+      "live_block": "cruciblecraft:steel_clustermill",
+      "english_name": "Cluster Mill (Steel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20142,
+      "machine_kind": "cruciblecraft:clustermill",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20143,
+      "dummy_path": "processing/cluster_mill_titanium",
+      "live_block": "cruciblecraft:titanium_clustermill",
+      "english_name": "Cluster Mill (Titanium)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20143,
+      "machine_kind": "cruciblecraft:clustermill",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20144,
+      "dummy_path": "processing/cluster_mill_tungstensteel",
+      "live_block": "cruciblecraft:tungstensteel_clustermill",
+      "english_name": "Cluster Mill (Tungstensteel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20144,
+      "machine_kind": "cruciblecraft:clustermill",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20151,
+      "dummy_path": "processing/wiremill_bronze",
+      "live_block": "cruciblecraft:wiremill",
+      "english_name": "Wiremill (Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20151,
+      "machine_kind": "cruciblecraft:wiremill",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20152,
+      "dummy_path": "processing/wiremill_steel",
+      "live_block": "cruciblecraft:steel_wiremill",
+      "english_name": "Wiremill (Steel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20152,
+      "machine_kind": "cruciblecraft:wiremill",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20153,
+      "dummy_path": "processing/wiremill_titanium",
+      "live_block": "cruciblecraft:titanium_wiremill",
+      "english_name": "Wiremill (Titanium)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20153,
+      "machine_kind": "cruciblecraft:wiremill",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20154,
+      "dummy_path": "processing/wiremill_tungstensteel",
+      "live_block": "cruciblecraft:tungstensteel_wiremill",
+      "english_name": "Wiremill (Tungstensteel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20154,
+      "machine_kind": "cruciblecraft:wiremill",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20174,
+      "dummy_path": "tungsten_carbide/roasting_oven",
+      "live_block": "cruciblecraft:tungsten_carbide_roaster",
+      "english_name": "Roasting Oven (Tungsten Carbide)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20174,
+      "machine_kind": "cruciblecraft:roaster",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20204,
+      "dummy_path": "tungsten_carbide/extruder",
+      "live_block": "cruciblecraft:tungsten_carbide_extruder",
+      "english_name": "Extruder (Tungsten Carbide)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20204,
+      "machine_kind": "cruciblecraft:extruder",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20211,
+      "dummy_path": "processing/loom_bronze",
+      "live_block": "cruciblecraft:loom",
+      "english_name": "Loom (Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20211,
+      "machine_kind": "cruciblecraft:loom",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20212,
+      "dummy_path": "processing/loom_steel",
+      "live_block": "cruciblecraft:steel_loom",
+      "english_name": "Loom (Steel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20212,
+      "machine_kind": "cruciblecraft:loom",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20213,
+      "dummy_path": "processing/loom_titanium",
+      "live_block": "cruciblecraft:titanium_loom",
+      "english_name": "Loom (Titanium)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20213,
+      "machine_kind": "cruciblecraft:loom",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20214,
+      "dummy_path": "processing/loom_tungstensteel",
+      "live_block": "cruciblecraft:tungstensteel_loom",
+      "english_name": "Loom (Tungstensteel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20214,
+      "machine_kind": "cruciblecraft:loom",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20231,
+      "dummy_path": "processing/press_bronze",
+      "live_block": "cruciblecraft:press",
+      "english_name": "Press (Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20231,
+      "machine_kind": "cruciblecraft:press",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20232,
+      "dummy_path": "processing/press_steel",
+      "live_block": "cruciblecraft:steel_press",
+      "english_name": "Press (Steel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20232,
+      "machine_kind": "cruciblecraft:press",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20233,
+      "dummy_path": "processing/press_titanium",
+      "live_block": "cruciblecraft:titanium_press",
+      "english_name": "Press (Titanium)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20233,
+      "machine_kind": "cruciblecraft:press",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20234,
+      "dummy_path": "processing/press_tungstensteel",
+      "live_block": "cruciblecraft:tungstensteel_press",
+      "english_name": "Press (Tungstensteel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20234,
+      "machine_kind": "cruciblecraft:press",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20244,
+      "dummy_path": "tungsten_carbide/smelter",
+      "live_block": "cruciblecraft:tungsten_carbide_smelter",
+      "english_name": "Smelter (Tungsten Carbide)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20244,
+      "machine_kind": "cruciblecraft:smelter",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20291,
+      "dummy_path": "processing/sluice_bronze",
+      "live_block": "cruciblecraft:sluice",
+      "english_name": "Sluice (Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20291,
+      "machine_kind": "cruciblecraft:sluice",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20292,
+      "dummy_path": "processing/sluice_steel",
+      "live_block": "cruciblecraft:steel_sluice",
+      "english_name": "Sluice (Steel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20292,
+      "machine_kind": "cruciblecraft:sluice",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20293,
+      "dummy_path": "processing/sluice_titanium",
+      "live_block": "cruciblecraft:titanium_sluice",
+      "english_name": "Sluice (Titanium)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20293,
+      "machine_kind": "cruciblecraft:sluice",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20294,
+      "dummy_path": "processing/sluice_tungstensteel",
+      "live_block": "cruciblecraft:tungstensteel_sluice",
+      "english_name": "Sluice (Tungstensteel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20294,
+      "machine_kind": "cruciblecraft:sluice",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20314,
+      "dummy_path": "tungsten_carbide/dryer",
+      "live_block": "cruciblecraft:tungsten_carbide_drying",
+      "english_name": "Dryer (Tungsten Carbide)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20314,
+      "machine_kind": "cruciblecraft:drying",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20394,
+      "dummy_path": "tungsten_carbide/laminator",
+      "live_block": "cruciblecraft:tungsten_carbide_laminator",
+      "english_name": "Laminator (Tungsten Carbide)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20394,
+      "machine_kind": "cruciblecraft:laminator",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20511,
+      "dummy_path": "processing/sanding_machine_bronze",
+      "live_block": "cruciblecraft:sanding",
+      "english_name": "Sanding Machine (Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20511,
+      "machine_kind": "cruciblecraft:sanding",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20512,
+      "dummy_path": "processing/sanding_machine_steel",
+      "live_block": "cruciblecraft:steel_sanding",
+      "english_name": "Sanding Machine (Steel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20512,
+      "machine_kind": "cruciblecraft:sanding",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20513,
+      "dummy_path": "processing/sanding_machine_titanium",
+      "live_block": "cruciblecraft:titanium_sanding",
+      "english_name": "Sanding Machine (Titanium)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20513,
+      "machine_kind": "cruciblecraft:sanding",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 20514,
+      "dummy_path": "processing/sanding_machine_tungstensteel",
+      "live_block": "cruciblecraft:tungstensteel_sanding",
+      "english_name": "Sanding Machine (Tungstensteel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 20514,
+      "machine_kind": "cruciblecraft:sanding",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 22000,
+      "dummy_path": "processing/coagulator",
+      "live_block": "cruciblecraft:coagulator",
+      "english_name": "Coagulator",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 22000,
+      "machine_kind": "cruciblecraft:coagulator",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 22001,
+      "dummy_path": "processing/generifier",
+      "live_block": "cruciblecraft:generifier",
+      "english_name": "Generifier",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 22001,
+      "machine_kind": "cruciblecraft:generifier",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 22002,
+      "dummy_path": "processing/bath",
+      "live_block": "cruciblecraft:bath",
+      "english_name": "Bath",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 22002,
+      "machine_kind": "cruciblecraft:bath",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    },
+    {
+      "meta": 22004,
+      "dummy_path": "processing/autoclave",
+      "live_block": "cruciblecraft:autoclave",
+      "english_name": "Autoclave",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "source_id": 22004,
+      "machine_kind": "cruciblecraft:autoclave",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live processing host"
+    }
+  ],
+  "keep_distinct": [
+    {
+      "meta": 15001,
+      "dummy_path": "processing/automatic_hammer_bronze",
+      "english_name": "Automatic Hammer (Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityAutoToolHammer / Automatic Tools",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 15002,
+      "dummy_path": "processing/automatic_hammer_steel",
+      "english_name": "Automatic Hammer (Steel)",
+      "gt6_class_or_tag": "MultiTileEntityAutoToolHammer / Automatic Tools",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 15003,
+      "dummy_path": "processing/automatic_hammer_titanium",
+      "english_name": "Automatic Hammer (Titanium)",
+      "gt6_class_or_tag": "MultiTileEntityAutoToolHammer / Automatic Tools",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 15004,
+      "dummy_path": "processing/automatic_hammer_tungstensteel",
+      "english_name": "Automatic Hammer (Tungstensteel)",
+      "gt6_class_or_tag": "MultiTileEntityAutoToolHammer / Automatic Tools",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20071,
+      "dummy_path": "processing/squeezer_bronze",
+      "english_name": "Squeezer (Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20072,
+      "dummy_path": "processing/squeezer_steel",
+      "english_name": "Squeezer (Steel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20073,
+      "dummy_path": "processing/squeezer_titanium",
+      "english_name": "Squeezer (Titanium)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20074,
+      "dummy_path": "processing/squeezer_tungstensteel",
+      "english_name": "Squeezer (Tungstensteel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20221,
+      "dummy_path": "steel/polarizer_galvanized",
+      "english_name": "Polarizer (Galvanized Steel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20222,
+      "dummy_path": "processing/polarizer_aluminium",
+      "english_name": "Polarizer (Aluminium)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20223,
+      "dummy_path": "stainless_steel/polarizer",
+      "english_name": "Polarizer (Stainless Steel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20224,
+      "dummy_path": "processing/polarizer_chromium",
+      "english_name": "Polarizer (Chromium)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20225,
+      "dummy_path": "processing/polarizer_titanium",
+      "english_name": "Polarizer (Titanium)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20301,
+      "dummy_path": "steel/magnetic_separator_galvanized",
+      "english_name": "Magnetic Separator (Galvanized Steel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20302,
+      "dummy_path": "processing/magnetic_separator_aluminium",
+      "english_name": "Magnetic Separator (Aluminium)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20303,
+      "dummy_path": "stainless_steel/magnetic_separator",
+      "english_name": "Magnetic Separator (Stainless Steel)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20304,
+      "dummy_path": "processing/magnetic_separator_chromium",
+      "english_name": "Magnetic Separator (Chromium)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20305,
+      "dummy_path": "processing/magnetic_separator_titanium",
+      "english_name": "Magnetic Separator (Titanium)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20321,
+      "dummy_path": "processing/laser_engraver_t1",
+      "english_name": "Laser Engraver (T1)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20322,
+      "dummy_path": "processing/laser_engraver_t2",
+      "english_name": "Laser Engraver (T2)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20323,
+      "dummy_path": "processing/laser_engraver_t3",
+      "english_name": "Laser Engraver (T3)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20324,
+      "dummy_path": "processing/laser_engraver_t4",
+      "english_name": "Laser Engraver (T4)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20325,
+      "dummy_path": "processing/laser_engraver_t5",
+      "english_name": "Laser Engraver (T5)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20331,
+      "dummy_path": "processing/laser_welder_t1",
+      "english_name": "Laser Welder (T1)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20332,
+      "dummy_path": "processing/laser_welder_t2",
+      "english_name": "Laser Welder (T2)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20333,
+      "dummy_path": "processing/laser_welder_t3",
+      "english_name": "Laser Welder (T3)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20334,
+      "dummy_path": "processing/laser_welder_t4",
+      "english_name": "Laser Welder (T4)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 20335,
+      "dummy_path": "processing/laser_welder_t5",
+      "english_name": "Laser Welder (T5)",
+      "gt6_class_or_tag": "MultiTileEntityBasicMachine / Basic Machines",
+      "disposition": "keep_distinct"
+    }
+  ]
+}

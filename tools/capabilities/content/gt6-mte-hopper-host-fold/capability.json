@@ -1,0 +1,41 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-mte-hopper-host-fold",
+  "title": "GT6 Hopper Host Fold",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6漏斗主机折回详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/gametest/MteHopperHostFoldGameTests.java",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_hopper_host_fold/**",
+    "tools/capabilities/content/gt6-mte-hopper-host-fold/**",
+    "tools/waves/content/gt6-mte-hopper-host-fold/**",
+    "tools/gt6_mte_host_fold.py",
+    "tools/build_gt6_mte_host_fold.py",
+    "tools/tests/test_gt6_mte_host_fold.py"
+  ],
+  "depends_on": [
+    "registry/catalog-modern-ids"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-mte-hopper-host-fold",
+  "required_test_ids": [
+    "dustFunnelFoldsOntoSteelDustFunnel",
+    "leadHopperAndQueueFoldOntoLiveHosts"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "mte:hopper:t30-hosts",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:lead_hopper",
+        "cruciblecraft:lead_queue_hopper",
+        "cruciblecraft:steel_dust_funnel"
+      ],
+      "reason": "50 hopper + 50 queue hopper GT6 ids and dust funnel 32704 share live T30 BlockItems."
+    }
+  ],
+  "note": "Pure catalog fold onto existing hopper BlockItems. Close at runtime_ready. Do not edit R0."
+}

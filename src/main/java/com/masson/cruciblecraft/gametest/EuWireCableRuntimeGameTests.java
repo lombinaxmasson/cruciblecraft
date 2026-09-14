@@ -119,7 +119,10 @@ public final class EuWireCableRuntimeGameTests {
         helper.assertTrue(
                 doubleWire instanceof CableBlockItem
                         && hexa instanceof CableBlockItem
-                        && goldDouble instanceof CableBlockItem,
+                        && goldDouble instanceof CableBlockItem
+                        && ModItems.materialItem(
+                                        "tin", MaterialPrefixes.SEPTUPLE_WIRE)
+                                .get() instanceof CableBlockItem,
                 "mapped higher wire gauges were not upgraded in place");
         helper.assertTrue(
                 ElectricalConductorCatalog.require(
@@ -130,26 +133,23 @@ public final class EuWireCableRuntimeGameTests {
                                         "tin", MaterialPrefixes.HEXADECUPLE_WIRE)
                                 .electrical()
                                 .maxAmperage()
-                        == 16L,
+                        == 16L
+                        && ElectricalConductorCatalog.require(
+                                        "tin", MaterialPrefixes.SEPTUPLE_WIRE)
+                                .electrical()
+                                .maxAmperage()
+                        == 7L,
                 "higher-gauge electrical specs drifted");
         ResourceLocation folded = ResourceLocation.fromNamespaceAndPath(
                 "cruciblecraft", "electric_wire/2x_tin_wire");
         helper.assertTrue(
                 !BuiltInRegistries.ITEM.containsKey(folded),
                 "folded tin wireGt02 dummy is still registered");
-        ResourceLocation blocked = ResourceLocation.fromNamespaceAndPath(
-                "cruciblecraft", "electric_wire/7x_tin_wire");
-        Item keep = BuiltInRegistries.ITEM.get(blocked);
         helper.assertTrue(
-                BuiltInRegistries.ITEM.containsKey(blocked)
-                        && !(keep instanceof CableBlockItem),
-                "wireGt07 dummy was promoted to a fake CableBlockItem");
-        ResourceLocation missing = ResourceLocation.fromNamespaceAndPath(
-                "cruciblecraft", "tin/septuple_wire");
-        helper.assertTrue(
-                !BuiltInRegistries.BLOCK.containsKey(missing)
-                        && !BuiltInRegistries.ITEM.containsKey(missing),
-                "invented a septuple wire prefix");
+                !BuiltInRegistries.ITEM.containsKey(
+                        ResourceLocation.fromNamespaceAndPath(
+                                "cruciblecraft", "electric_wire/7x_tin_wire")),
+                "folded tin wireGt07 dummy is still registered");
         ResourceLocation ungated = ResourceLocation.fromNamespaceAndPath(
                 "cruciblecraft", "electric_wire/2x_blue_alloy_wire");
         Item leftover = BuiltInRegistries.ITEM.get(ungated);

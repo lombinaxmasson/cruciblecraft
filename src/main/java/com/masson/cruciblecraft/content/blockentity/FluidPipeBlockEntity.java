@@ -16,6 +16,7 @@ import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverSet;
 import com.masson.cruciblecraft.logistics.pipe.fluid.FluidPipeBlockedMedia;
 import com.masson.cruciblecraft.logistics.pipe.fluid.FluidPipeCadence;
+import com.masson.cruciblecraft.logistics.pipe.fluid.FluidPipeDangerousMedia;
 import com.masson.cruciblecraft.logistics.pipe.fluid.FluidPipeFailureState;
 import com.masson.cruciblecraft.logistics.pipe.fluid.FluidPipeFailureState.Failure;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
@@ -25,6 +26,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.sounds.SoundEvents;
@@ -56,7 +58,7 @@ public final class FluidPipeBlockEntity extends BlockEntity {
             new FluidPipeFailureState();
     private final EnumMap<Direction, IFluidHandler> sidedHandlers =
             new EnumMap<>(Direction.class);
-    private final FluidTank tank;
+    private final FluidTank[] tanks;
     private Direction receivedFrom;
     private long receivedAtTick = Long.MIN_VALUE;
     private long metricTick = Long.MIN_VALUE;
@@ -71,12 +73,17 @@ public final class FluidPipeBlockEntity extends BlockEntity {
 
     public FluidPipeBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.FLUID_PIPE.get(), pos, state);
-        tank = new FluidTank(runtimeCapacity(state)) {
-            @Override
-            protected void onContentsChanged() {
-                FluidPipeBlockEntity.this.contentsChanged();
-            }
-        };
+        int tankCount = Math.max(1, tankCountFor(state));
+        int capacity = runtimeCapacity(state);
+        tanks = new FluidTank[tankCount];
+        for (int index = 0; index < tankCount; index++) {
+            tanks[index] = new FluidTank(capacity) {
+                @Override
+                protected void onContentsChanged() {
+                    FluidPipeBlockEntity.this.contentsChanged();
+                }
+            };
+        }
         for (Direction side : Direction.values()) {
             sidedHandlers.put(side, new SidedHandler(side));
         }
@@ -110,6 +117,9 @@ public final class FluidPipeBlockEntity extends BlockEntity {
             pipe.breakPipe(level, pos, state);
             return;
         }
+        if (FluidPipeDangerousMedia.tick(level, pos, pipe)) {
+            return;
+        }
         pipe.rollMetrics(level.getGameTime());
         pipe.rollMetricWindow(level.getGameTime());
         if (PipeTransferPhase.isDue(level.getGameTime(), pos)) {
@@ -126,24 +136,42 @@ public final class FluidPipeBlockEntity extends BlockEntity {
     }
 
     public FluidStack storedFluid() {
-        return tank.getFluid().copy();
+        return firstStored().copy();
     }
 
     public int fillInternal(
             FluidStack stack, IFluidHandler.FluidAction action) {
-        return tank.fill(stack, action);
+        return fillMatching(stack, action);
     }
 
     public boolean trashContents() {
-        if (tank.isEmpty()) {
+        if (allEmpty()) {
             return false;
         }
-        tank.drain(tank.getCapacity(), IFluidHandler.FluidAction.EXECUTE);
+        for (FluidTank current : tanks) {
+            if (!current.isEmpty()) {
+                current.drain(
+                        current.getCapacity(),
+                        IFluidHandler.FluidAction.EXECUTE);
+            }
+        }
         return true;
     }
 
     public int capacity() {
-        return tank.getCapacity();
+        return tankCapacity();
+    }
+
+    public int tankCount() {
+        return tanks.length;
+    }
+
+    public int totalCapacity() {
+        return tankCapacity() * tanks.length;
+    }
+
+    public FluidStack fluidInTank(int index) {
+        return tanks[index].getFluid().copy();
     }
 
     public long transferredThisTick() {
@@ -306,8 +334,6 @@ public final class FluidPipeBlockEntity extends BlockEntity {
             FluidStack simulated =
                     source.drain(limit, IFluidHandler.FluidAction.SIMULATE);
             if (simulated.isEmpty()
-                    || FluidPipeBlockedMedia.rejects(
-                            simulated, pipe().pipe().fluid())
                     || validateFluid(simulated) != Failure.NONE
                     || !matches(matchId, simulated)
                     || !covers.matches(side, simulated)
@@ -315,7 +341,7 @@ public final class FluidPipeBlockEntity extends BlockEntity {
                             && simulated.getAmount() != limit)) {
                 return 0;
             }
-            int accepted = tank.fill(
+            int accepted = fillMatching(
                     simulated, IFluidHandler.FluidAction.SIMULATE);
             if (accepted <= 0 || accepted > simulated.getAmount()) {
                 if (accepted < 0 || accepted > simulated.getAmount()) {
@@ -342,12 +368,12 @@ public final class FluidPipeBlockEntity extends BlockEntity {
                         "Pump source violated simulated drain");
                 return 0;
             }
-            int stored = tank.fill(
+            int stored = fillMatching(
                     drained, IFluidHandler.FluidAction.EXECUTE);
             if (stored < drained.getAmount()) {
                 PipeTransferDiagnostics.warnOnce(
                         "fluid pump storage",
-                        tank,
+                        fillTarget(drained),
                         "Pipe stored " + stored + " after draining "
                                 + drained.getAmount());
                 FluidStack remainder = drained.copyWithAmount(
@@ -355,7 +381,7 @@ public final class FluidPipeBlockEntity extends BlockEntity {
                 int returned = source.fill(
                         remainder, IFluidHandler.FluidAction.EXECUTE);
                 if (returned < remainder.getAmount()) {
-                    tank.fill(
+                    fillMatching(
                             remainder.copyWithAmount(
                                     remainder.getAmount() - returned),
                             IFluidHandler.FluidAction.EXECUTE);
@@ -378,14 +404,22 @@ public final class FluidPipeBlockEntity extends BlockEntity {
     }
 
     private void distribute(Level level) {
-        if (tank.isEmpty()) {
+        for (FluidTank current : tanks) {
+            if (!current.isEmpty()) {
+                distributeTank(level, current);
+            }
+        }
+    }
+
+    private void distributeTank(Level level, FluidTank current) {
+        if (current.isEmpty()) {
             return;
         }
         Direction[] directions = FluidPipeCadence.scanOrder(worldPosition);
         int start = Math.floorMod(nextOutput++, directions.length);
         int remaining = transferLimit();
         for (int index = 0;
-                index < directions.length && remaining > 0 && !tank.isEmpty();
+                index < directions.length && remaining > 0 && !current.isEmpty();
                 index++) {
             Direction side = directions[(start + index) % directions.length];
             if (!AbstractPipeBlock.isConnected(liveState(), side)
@@ -394,13 +428,13 @@ public final class FluidPipeBlockEntity extends BlockEntity {
                     || covers.hasPump(side)) {
                 continue;
             }
-            FluidStack offered = tank.getFluid().copyWithAmount(
-                    Math.min(remaining, tank.getFluidAmount()));
+            FluidStack offered = current.getFluid().copyWithAmount(
+                    Math.min(remaining, current.getFluidAmount()));
             if (!covers.allowsOutgoing(
                             side,
                             CoverDefinition.Medium.FLUID,
-                            tank.getFluidAmount(),
-                            tank.getCapacity())
+                            storedAmount(),
+                            totalCapacity())
                     || !covers.matches(side, offered)) {
                 continue;
             }
@@ -425,15 +459,16 @@ public final class FluidPipeBlockEntity extends BlockEntity {
             if (endpoint == null) {
                 continue;
             }
-            int moved = sourceFirstTransfer(
-                    endpoint, offered);
+            int moved = sourceFirstTransfer(current, endpoint, offered);
             remaining -= moved;
             recordTransfer(moved);
         }
     }
 
     private int sourceFirstTransfer(
-            IFluidHandler endpoint, FluidStack offered) {
+            FluidTank sourceTank,
+            IFluidHandler endpoint,
+            FluidStack offered) {
         FluidStack drained = FluidStack.EMPTY;
         int executed = 0;
         try {
@@ -448,14 +483,14 @@ public final class FluidPipeBlockEntity extends BlockEntity {
                 }
                 return 0;
             }
-            drained = tank.drain(
+            drained = sourceTank.drain(
                     simulated, IFluidHandler.FluidAction.EXECUTE);
             if (drained.getAmount() != simulated) {
                 PipeTransferDiagnostics.warnOnce(
                         "fluid source execution",
-                        tank,
+                        sourceTank,
                         "Pipe source changed after simulation");
-                restoreToTank(drained);
+                restoreToTank(sourceTank, drained);
                 return 0;
             }
             executed = endpoint.fill(
@@ -465,7 +500,7 @@ public final class FluidPipeBlockEntity extends BlockEntity {
                         "fluid endpoint execution",
                         endpoint,
                         "Endpoint executed invalid amount " + executed);
-                restoreToTank(drained);
+                restoreToTank(sourceTank, drained);
                 return 0;
             }
             if (executed < drained.getAmount()) {
@@ -477,12 +512,12 @@ public final class FluidPipeBlockEntity extends BlockEntity {
                                 + "; difference retained by source");
                 FluidStack retained = drained.copyWithAmount(
                         drained.getAmount() - executed);
-                restoreToTank(retained);
+                restoreToTank(sourceTank, retained);
             }
             return executed;
         } catch (RuntimeException failure) {
             if (!drained.isEmpty() && executed <= 0) {
-                restoreToTank(drained);
+                restoreToTank(sourceTank, drained);
             }
             PipeTransferDiagnostics.warnOnce(
                     "fluid endpoint execution",
@@ -493,11 +528,11 @@ public final class FluidPipeBlockEntity extends BlockEntity {
         }
     }
 
-    private void restoreToTank(FluidStack retained) {
+    private void restoreToTank(FluidTank target, FluidStack retained) {
         if (retained.isEmpty()) {
             return;
         }
-        int restored = tank.fill(
+        int restored = target.fill(
                 retained, IFluidHandler.FluidAction.EXECUTE);
         if (restored != retained.getAmount()) {
             throw new IllegalStateException(
@@ -505,7 +540,23 @@ public final class FluidPipeBlockEntity extends BlockEntity {
         }
     }
 
+    public FluidPipeBlock pipeBlock() {
+        return pipe();
+    }
+
+    public FluidTank[] tanks() {
+        return tanks;
+    }
+
+    public boolean tanksEmpty() {
+        return allEmpty();
+    }
+
     private Failure validateFluid(FluidStack resource) {
+        if (FluidPipeBlockedMedia.kindOf(resource)
+                != FluidPipeBlockedMedia.Kind.NONE) {
+            return Failure.NONE;
+        }
         int temperature = resource.getFluidType().getTemperature(resource);
         if (temperature > pipe().pipe().fluid().maxTemperatureKelvin()) {
             return Failure.OVER_TEMPERATURE;
@@ -544,7 +595,7 @@ public final class FluidPipeBlockEntity extends BlockEntity {
     }
 
     public int transferLimit() {
-        return Math.max(1, tank.getCapacity());
+        return Math.max(1, tankCapacity());
     }
 
     private void recordFailure(Failure failure, long amount) {
@@ -635,7 +686,7 @@ public final class FluidPipeBlockEntity extends BlockEntity {
     protected void saveAdditional(
             CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-        tag.put("tank", tank.writeToNBT(registries, new CompoundTag()));
+        writeTanks(tag, registries);
         covers.save(tag, registries);
         writeFailures(tag, failures.snapshot());
         tag.putInt("next_output", nextOutput);
@@ -645,7 +696,7 @@ public final class FluidPipeBlockEntity extends BlockEntity {
     protected void loadAdditional(
             CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
-        tank.readFromNBT(registries, tag.getCompound("tank"));
+        readTanks(tag, registries);
         int rejectedCovers = covers.load(tag, registries);
         FluidPipeFailureState.DecodeResult decoded =
                 readFailures(tag);
@@ -659,7 +710,7 @@ public final class FluidPipeBlockEntity extends BlockEntity {
     public CompoundTag getUpdateTag(
             HolderLookup.Provider registries) {
         CompoundTag tag = new CompoundTag();
-        tag.put("tank", tank.writeToNBT(registries, new CompoundTag()));
+        writeTanks(tag, registries);
         covers.save(tag, registries);
         writeFailures(tag, failures.snapshot());
         return tag;
@@ -668,7 +719,7 @@ public final class FluidPipeBlockEntity extends BlockEntity {
     @Override
     public void handleUpdateTag(
             CompoundTag tag, HolderLookup.Provider registries) {
-        tank.readFromNBT(registries, tag.getCompound("tank"));
+        readTanks(tag, registries);
         covers.load(tag, registries);
         failures.restore(readFailures(tag).snapshot());
     }
@@ -715,6 +766,152 @@ public final class FluidPipeBlockEntity extends BlockEntity {
                 1L, Math.min(Integer.MAX_VALUE, source));
     }
 
+    private static int tankCountFor(BlockState state) {
+        if (!(state.getBlock() instanceof FluidPipeBlock pipe)) {
+            return 1;
+        }
+        return Math.max(1, pipe.pipe().tankCount());
+    }
+
+    private int tankCapacity() {
+        return tanks[0].getCapacity();
+    }
+
+    private int storedAmount() {
+        int total = 0;
+        for (FluidTank current : tanks) {
+            total += current.getFluidAmount();
+        }
+        return total;
+    }
+
+    private boolean allEmpty() {
+        for (FluidTank current : tanks) {
+            if (!current.isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private FluidStack firstStored() {
+        for (FluidTank current : tanks) {
+            if (!current.isEmpty()) {
+                return current.getFluid();
+            }
+        }
+        return tanks[0].getFluid();
+    }
+
+    private FluidTank fillTarget(FluidStack resource) {
+        if (resource.isEmpty()) {
+            return tanks[0];
+        }
+        for (FluidTank current : tanks) {
+            if (!current.isEmpty()
+                    && FluidStack.isSameFluidSameComponents(
+                            current.getFluid(), resource)
+                    && current.getFluidAmount() < current.getCapacity()) {
+                return current;
+            }
+        }
+        for (FluidTank current : tanks) {
+            if (current.isEmpty()) {
+                return current;
+            }
+        }
+        for (FluidTank current : tanks) {
+            if (current.isEmpty()
+                    || FluidStack.isSameFluidSameComponents(
+                            current.getFluid(), resource)) {
+                return current;
+            }
+        }
+        return tanks[0];
+    }
+
+    private int fillMatching(
+            FluidStack resource, IFluidHandler.FluidAction action) {
+        if (resource.isEmpty()) {
+            return 0;
+        }
+        int remaining = resource.getAmount();
+        int accepted = 0;
+        for (FluidTank current : tanks) {
+            if (remaining <= 0) {
+                break;
+            }
+            if (current.isEmpty()
+                    || !FluidStack.isSameFluidSameComponents(
+                            current.getFluid(), resource)) {
+                continue;
+            }
+            int moved = current.fill(
+                    resource.copyWithAmount(remaining), action);
+            accepted += moved;
+            remaining -= moved;
+        }
+        for (FluidTank current : tanks) {
+            if (remaining <= 0) {
+                break;
+            }
+            if (!current.isEmpty()) {
+                continue;
+            }
+            int moved = current.fill(
+                    resource.copyWithAmount(remaining), action);
+            accepted += moved;
+            remaining -= moved;
+        }
+        return accepted;
+    }
+
+    private FluidTank drainTarget(FluidStack resource) {
+        if (!resource.isEmpty()) {
+            for (FluidTank current : tanks) {
+                if (!current.isEmpty()
+                        && FluidStack.isSameFluidSameComponents(
+                                current.getFluid(), resource)) {
+                    return current;
+                }
+            }
+            return tanks[0];
+        }
+        for (FluidTank current : tanks) {
+            if (!current.isEmpty()) {
+                return current;
+            }
+        }
+        return tanks[0];
+    }
+
+    private void writeTanks(
+            CompoundTag tag, HolderLookup.Provider registries) {
+        tag.put("tank", tanks[0].writeToNBT(registries, new CompoundTag()));
+        if (tanks.length > 1) {
+            net.minecraft.nbt.ListTag list = new net.minecraft.nbt.ListTag();
+            for (FluidTank current : tanks) {
+                list.add(current.writeToNBT(registries, new CompoundTag()));
+            }
+            tag.put("tanks", list);
+            tag.putInt("tank_count", tanks.length);
+        }
+    }
+
+    private void readTanks(
+            CompoundTag tag, HolderLookup.Provider registries) {
+        if (tag.contains("tanks")) {
+            net.minecraft.nbt.ListTag list = tag.getList("tanks", Tag.TAG_COMPOUND);
+            int limit = Math.min(tanks.length, list.size());
+            for (int index = 0; index < limit; index++) {
+                tanks[index].readFromNBT(
+                        registries, list.getCompound(index));
+            }
+            return;
+        }
+        tanks[0].readFromNBT(registries, tag.getCompound("tank"));
+    }
+
     private final class FluidCoverContext
             implements CoverBehavior.TransferContext {
         private final Level world;
@@ -737,12 +934,12 @@ public final class FluidPipeBlockEntity extends BlockEntity {
 
         @Override
         public int storedAmount() {
-            return tank.getFluidAmount();
+            return FluidPipeBlockEntity.this.storedAmount();
         }
 
         @Override
         public int capacity() {
-            return tank.getCapacity();
+            return totalCapacity();
         }
 
         @Override
@@ -827,17 +1024,17 @@ public final class FluidPipeBlockEntity extends BlockEntity {
 
         @Override
         public int getTanks() {
-            return 1;
+            return tanks.length;
         }
 
         @Override
         public FluidStack getFluidInTank(int tankIndex) {
-            return tank.getFluid().copy();
+            return tanks[tankIndex].getFluid().copy();
         }
 
         @Override
         public int getTankCapacity(int tankIndex) {
-            return tank.getCapacity();
+            return tanks[tankIndex].getCapacity();
         }
 
         @Override
@@ -846,11 +1043,9 @@ public final class FluidPipeBlockEntity extends BlockEntity {
             return covers.allowsIncoming(
                             side,
                             CoverDefinition.Medium.FLUID,
-                            tank.getFluidAmount(),
-                            tank.getCapacity())
+                            storedAmount(),
+                            totalCapacity())
                     && covers.matches(side, stack)
-                    && !FluidPipeBlockedMedia.rejects(
-                            stack, pipe().pipe().fluid())
                     && validateFluid(stack) == Failure.NONE;
         }
 
@@ -862,13 +1057,9 @@ public final class FluidPipeBlockEntity extends BlockEntity {
                     || !covers.allowsIncoming(
                             side,
                             CoverDefinition.Medium.FLUID,
-                            tank.getFluidAmount(),
-                            tank.getCapacity())
+                            storedAmount(),
+                            totalCapacity())
                     || !covers.matches(side, resource)) {
-                return 0;
-            }
-            if (FluidPipeBlockedMedia.rejects(
-                    resource, pipe().pipe().fluid())) {
                 return 0;
             }
             Failure failure = validateFluid(resource);
@@ -881,8 +1072,8 @@ public final class FluidPipeBlockEntity extends BlockEntity {
             int coverLimit = covers.limitIncoming(
                     side,
                     CoverDefinition.Medium.FLUID,
-                    tank.getFluidAmount(),
-                    tank.getCapacity(),
+                    storedAmount(),
+                    totalCapacity(),
                     resource.getAmount());
             if (coverLimit <= 0) {
                 return 0;
@@ -890,7 +1081,7 @@ public final class FluidPipeBlockEntity extends BlockEntity {
             FluidStack offered = coverLimit == resource.getAmount()
                     ? resource
                     : resource.copyWithAmount(coverLimit);
-            int accepted = tank.fill(offered, action);
+            int accepted = fillMatching(offered, action);
             if (action.execute()) {
                 if (accepted < resource.getAmount()) {
                     recordFailure(
@@ -911,27 +1102,28 @@ public final class FluidPipeBlockEntity extends BlockEntity {
             if (!covers.allowsOutgoing(
                             side,
                             CoverDefinition.Medium.FLUID,
-                            tank.getFluidAmount(),
-                            tank.getCapacity())
+                            storedAmount(),
+                            totalCapacity())
                     || !covers.matches(side, resource)) {
                 return FluidStack.EMPTY;
             }
-            return tank.drain(resource, action);
+            return drainTarget(resource).drain(resource, action);
         }
 
         @Override
         public FluidStack drain(int maxDrain, FluidAction action) {
-            FluidStack candidate = tank.getFluid().copyWithAmount(
-                    Math.min(maxDrain, tank.getFluidAmount()));
+            FluidTank source = drainTarget(FluidStack.EMPTY);
+            FluidStack candidate = source.getFluid().copyWithAmount(
+                    Math.min(maxDrain, source.getFluidAmount()));
             if (!covers.allowsOutgoing(
                             side,
                             CoverDefinition.Medium.FLUID,
-                            tank.getFluidAmount(),
-                            tank.getCapacity())
+                            storedAmount(),
+                            totalCapacity())
                     || !covers.matches(side, candidate)) {
                 return FluidStack.EMPTY;
             }
-            return tank.drain(maxDrain, action);
+            return source.drain(maxDrain, action);
         }
     }
 }

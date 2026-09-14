@@ -1,0 +1,84 @@
+{
+  "schema_version": 2,
+  "slug": "worldgen/gt-crops",
+  "title": "GT Crops",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT作物世界生成详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/gametest/GtCropsGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/GlowtusBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/GtBushBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/GtBushBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/worldgen/crop/**",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModFeatures.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModCreativeTabs.java",
+    "src/main/resources/assets/cruciblecraft/gt6_gt_crops_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/gt6/iconsets/glowtus_*.png",
+    "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/plants/bush/**",
+    "src/main/resources/assets/cruciblecraft/blockstates/plant/**",
+    "src/main/resources/assets/cruciblecraft/models/block/plant/**",
+    "src/main/resources/assets/cruciblecraft/models/item/plant/**",
+    "src/main/resources/data/cruciblecraft/loot_table/blocks/plant/**",
+    "src/main/resources/data/cruciblecraft/worldgen/configured_feature/plant_*.json",
+    "src/main/resources/data/cruciblecraft/worldgen/placed_feature/plant_*.json",
+    "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_plant_*.json",
+    "src/main/resources/data/cruciblecraft_wave_worldgen_gt_crops/**",
+    "tools/capabilities/worldgen/gt-crops/**",
+    "tools/waves/worldgen/gt-crops/**",
+    "tools/gt_crops.py",
+    "tools/build_gt_crops.py",
+    "tools/tests/test_gt_crops.py"
+  ],
+  "depends_on": [
+    "worldgen/gt-trees"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "worldgen/gt-crops",
+  "required_test_ids": [
+    "playerSurfaceIsRegistered",
+    "biomeFilterMatchesGt6SurfaceSets",
+    "glowtusPlacesOnWater",
+    "bushPlacesSweetBerriesNotString",
+    "bushHarvestAndBerrySet"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "worldgen:plant.glowtus",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:plant/glowtus_black",
+        "cruciblecraft:plant/glowtus_red",
+        "cruciblecraft:plant/glowtus_green",
+        "cruciblecraft:plant/glowtus_brown",
+        "cruciblecraft:plant/glowtus_blue",
+        "cruciblecraft:plant/glowtus_purple",
+        "cruciblecraft:plant/glowtus_cyan",
+        "cruciblecraft:plant/glowtus_light_gray",
+        "cruciblecraft:plant/glowtus_gray",
+        "cruciblecraft:plant/glowtus_pink",
+        "cruciblecraft:plant/glowtus_lime",
+        "cruciblecraft:plant/glowtus_yellow",
+        "cruciblecraft:plant/glowtus_light_blue",
+        "cruciblecraft:plant/glowtus_magenta",
+        "cruciblecraft:plant/glowtus_orange",
+        "cruciblecraft:plant/glowtus_white"
+      ],
+      "reason": "GT6 WorldgenGlowtus / BlockGlowtus 16 dye metas. Not lilypad_glowtus/white_glowtus."
+    },
+    {
+      "semantic_key": "worldgen:plant.bush",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:plant/gt_bush"
+      ],
+      "reason": "GT6 WorldgenBushes / MultiTileEntityBush 32759. Default sweet_berries, never string."
+    }
+  ],
+  "note": "Overworld glowtus and bush worldgen from local GT6. Close at runtime_ready. Do not pull squeezer dump 5322."
+}

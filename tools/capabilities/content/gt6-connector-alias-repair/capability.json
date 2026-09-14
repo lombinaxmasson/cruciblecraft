@@ -1,0 +1,64 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-connector-alias-repair",
+  "title": "GT6 Connector Alias Repair",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6连接件身份漏匹配详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/gametest/ConnectorAliasRepairGameTests.java",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_connector_alias_repair/**",
+    "tools/capabilities/content/gt6-connector-alias-repair/**",
+    "tools/waves/content/gt6-connector-alias-repair/**",
+    "tools/gt6_connector_alias_repair.py",
+    "tools/build_gt6_connector_alias_repair.py",
+    "tools/tests/test_gt6_connector_alias_repair.py"
+  ],
+  "depends_on": [
+    "registry/catalog-modern-ids",
+    "content/gt6-fluid-pipe-runtime",
+    "content/gt6-eu-wire-cable-runtime",
+    "content/gt6-connector-art"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-connector-alias-repair",
+  "required_test_ids": [
+    "hslaSteelFiveGaugePipesFoldOntoLiveHosts",
+    "hslaSteelMappedWiresFoldOntoLiveHosts",
+    "hslaSteelUngatedGaugesStayDummy"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "connector:hsla-steel:five-gauge-live",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:hslasteel/tiny_fluid_pipe",
+        "cruciblecraft:hslasteel/small_fluid_pipe",
+        "cruciblecraft:hslasteel/fluid_pipe",
+        "cruciblecraft:hslasteel/large_fluid_pipe",
+        "cruciblecraft:hslasteel/huge_fluid_pipe"
+      ],
+      "reason": "HSLA five-gauge fluid dummies were keep_distinct only because _cc_material slugified HSLA-Steel to hsla_steel. Fold onto live hslasteel BlockItems."
+    },
+    {
+      "semantic_key": "connector:hsla-steel:mapped-wires",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:hslasteel/wire",
+        "cruciblecraft:hslasteel/triple_wire",
+        "cruciblecraft:hslasteel/quintuple_wire",
+        "cruciblecraft:hslasteel/sextuple_wire"
+      ],
+      "reason": "Gate-placeable HSLA 1x/3x/5x/6x wires already have live CableBlockItems under hslasteel."
+    },
+    {
+      "semantic_key": "connector:hsla-steel:ungated-gauges",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "pipeQuadruple/pipeNonuple and ungated HSLA wire gauges stay dummy. No stand-in BlockItem and no budget bump."
+    }
+  ],
+  "note": "Canonical identity leak repair only. Close at runtime_ready, not player_complete. Do not edit R0 or the baseline identity ledger."
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-eu-missing-wire-gauges-runtime",
+  "title": "GT6 Missing EU Wire Gauges Runtime",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6缺线规运行时详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/energy/cable/ElectricalConductorCatalog.java",
+    "src/main/java/com/masson/cruciblecraft/api/material/MaterialPrefixes.java",
+    "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/EuMissingWireGaugesRuntimeGameTests.java",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_eu_missing_wire_gauges_runtime/**",
+    "tools/capabilities/content/gt6-eu-missing-wire-gauges-runtime/**",
+    "tools/waves/content/gt6-eu-missing-wire-gauges-runtime/**",
+    "tools/gt6_eu_missing_wire_gauges_runtime.py",
+    "tools/build_gt6_eu_missing_wire_gauges_runtime.py",
+    "tools/tests/test_gt6_eu_missing_wire_gauges_runtime.py"
+  ],
+  "depends_on": [
+    "registry/catalog-modern-ids",
+    "content/gt6-eu-wire-cable-runtime",
+    "content/gt6-connector-art",
+    "content/gt6-connector-alias-repair"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-eu-missing-wire-gauges-runtime",
+  "required_test_ids": [
+    "missingGaugeDummiesFoldOntoLiveHost",
+    "missingGaugeWiresAreLiveCableBlocks",
+    "missingGaugesAreNotMappedWireAlias"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "connector:eu-wire:missing-gauges",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:tin/septuple_wire",
+        "cruciblecraft:tin/nonuple_wire",
+        "cruciblecraft:tin/pentadecuple_wire",
+        "cruciblecraft:hslasteel/septuple_wire"
+      ],
+      "reason": "GT6 wireGt07/09/10/11/13/14/15 become live CableBlockItems for gated materials with electrical tables. Fold catalog dummies onto those hosts. Red alloy, Signalum, and Lumium never enter ElectricalConductorCatalog."
+    }
+  ],
+  "note": "Missing EU wire gauges only. Close at runtime_ready, not player_complete. Survival obtain grids wait for the acquisition child. Do not edit R0 or the baseline identity ledger."
+}

@@ -12,6 +12,7 @@ from typing import Any
 
 from tools import catalog_modern_ids as modern
 from tools import census_common as census
+from tools import gt6_restrictive_item_pipe_runtime as restrictive_pipe
 from tools import io_common as io
 
 SLUG = "content/gt6-item-pipe-runtime"
@@ -420,7 +421,10 @@ def check() -> list[str]:
             for row in committed.get("rows") or []
             if row.get("disposition") == "keep_distinct"
         ]
+        repaired = restrictive_pipe.folded_metas()
         for row in keep:
+            if int(row["meta"]) in repaired:
+                continue
             identity = by_meta.get(int(row["meta"]))
             if identity is None:
                 continue
@@ -479,7 +483,7 @@ def check() -> list[str]:
     item_specs = catalog_java.split("ITEM_SPEC_BY_FORM", 1)[-1].split(
         "private static volatile State", 1
     )[0]
-    if "pipeRestrictive" in item_specs:
+    if "pipeRestrictive" in item_specs and not restrictive_pipe.folded_metas():
         errors.append("PipeCatalog registered restrictive item forms")
     tests = GAME_TESTS.read_text(encoding="utf-8")
     for name in EXPECTED_TESTS:

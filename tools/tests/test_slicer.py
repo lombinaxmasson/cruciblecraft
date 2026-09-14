@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Slicer live machine card: 32 selected rows, LV/EV host obtain exact."""
+"""Slicer live machine card: 33 selected rows, LV/EV host obtain exact."""
 from __future__ import annotations
 
 import importlib.util
@@ -95,12 +95,12 @@ class SlicerCardTest(unittest.TestCase):
         lock = census.load_json(WAVE / "production_lock.json")
         accounting = work["accounting"]
         self.assertEqual(33, accounting["source_rows"])
-        self.assertEqual(32, accounting["selected_rows"])
-        self.assertEqual(1, accounting["overflow_rows"])
-        self.assertEqual(1, overflow["blocked_rows"])
-        self.assertEqual(32, lock["production"]["relation_count"])
+        self.assertEqual(33, accounting["selected_rows"])
+        self.assertEqual(0, accounting["overflow_rows"])
+        self.assertEqual(0, overflow["blocked_rows"])
+        self.assertEqual(33, lock["production"]["relation_count"])
         self.assertIn("not player_complete", lock["note"])
-        self.assertIn("tiny_plate", str(overflow))
+        self.assertNotIn("tiny_plate", str(overflow))
         self.assertNotIn("programmed_circuit", str(overflow))
         self.assertNotIn("compact_electric_conveyor", str(overflow))
         generated = builder.live_family_files()
@@ -117,7 +117,7 @@ class SlicerCardTest(unittest.TestCase):
             / "slicer.json"
         )
         self.assertEqual("immediate", policy["policy_type"])
-        self.assertEqual(32, policy["relation_count"])
+        self.assertEqual(33, policy["relation_count"])
         self.assertEqual("cruciblecraft:slicer", policy["target_map"])
         self.assertNotIn("player_complete", str(policy))
 
@@ -171,9 +171,16 @@ class SlicerCardTest(unittest.TestCase):
             for row in capability["identity_disposition"]
             if row["disposition"] == "blocked"
         }
+        self.assertEqual(set(), blocked)
+        folded = next(
+            row
+            for row in capability["identity_disposition"]
+            if row["semantic_key"] == "recipe:slicer:paper_tiny_plate"
+        )
+        self.assertEqual("reuse_canonical", folded["disposition"])
         self.assertEqual(
-            {"recipe:slicer:paper_tiny_plate"},
-            blocked,
+            ["cruciblecraft:paper/tiny_plate"],
+            folded["runtime_ids"],
         )
         owned = next(
             row

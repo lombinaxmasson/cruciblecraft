@@ -1,0 +1,47 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-mte-converter-host-fold",
+  "title": "GT6 Converter Host Fold",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6能源转换器主机折回详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/gametest/MteConverterHostFoldGameTests.java",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_converter_host_fold/**",
+    "tools/capabilities/content/gt6-mte-converter-host-fold/**",
+    "tools/waves/content/gt6-mte-converter-host-fold/**",
+    "tools/gt6_mte_host_fold.py",
+    "tools/build_gt6_mte_host_fold.py",
+    "tools/tests/test_gt6_mte_host_fold.py"
+  ],
+  "depends_on": [
+    "registry/catalog-modern-ids"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-mte-converter-host-fold",
+  "required_test_ids": [
+    "leadBoilerAndTantalumBoxFoldOntoLiveHosts",
+    "luvAndZpmBatteryBoxesStayDummy",
+    "steamTurbinesStayDummy"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "mte:energy-converter:live-hosts",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:lead_boiler",
+        "cruciblecraft:tantalum_hafnium_carbide_burning_box_solid"
+      ],
+      "reason": "71 R0 energy_converter metas share Loader source_id with energy_converter_tiers.json and already have live BlockItems."
+    },
+    {
+      "semantic_key": "mte:energy-converter:turbines-battery-boxes",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "6 steam turbines and 2 LuV/ZPM battery boxes have no converter-catalog host. Keep dummy for a later runtime child."
+    }
+  ],
+  "note": "Pure catalog fold onto existing converter BlockItems. Close at runtime_ready. Do not edit R0. Do not copy a second GT6 art set."
+}

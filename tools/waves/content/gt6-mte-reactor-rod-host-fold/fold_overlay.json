@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "capability_slug": "content/gt6-mte-reactor-rod-host-fold",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "generated_by": "content/gt6-mte-reactor-rod-host-fold implementation",
+  "family": "reactor",
+  "archive_strategy": {
+    "dummy_item": "unregister CatalogNamedItem",
+    "dummy_model": "delete iron_ingot item model",
+    "world_stacks": "unregistered dummy ids become air; no NeoForge alias and no second GT6 art copy",
+    "recipes": "operand remaps dummy path onto the live host id"
+  },
+  "counts": {
+    "fold_live_block": 1,
+    "keep_distinct": 0
+  },
+  "rows": [
+    {
+      "meta": 9203,
+      "dummy_path": "neutron/reflector_rod",
+      "live_block": "cruciblecraft:neutron_reflector_rod",
+      "english_name": "Neutron Reflector Rod",
+      "gt6_class_or_tag": "MultiTileEntityReactorRodReflector / Reactors",
+      "source_id": 9203,
+      "material": "beryllium",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live reactor rod"
+    }
+  ],
+  "keep_distinct": []
+}

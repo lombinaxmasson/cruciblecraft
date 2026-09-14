@@ -62,18 +62,18 @@ public final class SlicerGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
-    public static void liveMapPublishesThirtyTwoSelectedRows(GameTestHelper helper) {
+    public static void liveMapPublishesThirtyThreeSelectedRows(GameTestHelper helper) {
         RecipeMap.RecipeFamily family = ModRecipeMaps.SLICER
                 .family(CompactRecipeFamilyProvider.familyId(
                         ModRecipeMaps.SLICER.id(), PUBLICATION_GROUP))
                 .orElse(null);
         helper.assertTrue(
-                family != null && family.logicalRecipeCount() == 32,
-                "Slicer compact family is not the 32 selected rows: "
+                family != null && family.logicalRecipeCount() == 33,
+                "Slicer compact family is not the 33 selected rows: "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
         helper.assertTrue(
-                ModRecipeMaps.SLICER.entries().size() == 32,
-                "Slicer live map drifted from 32 selected rows: "
+                ModRecipeMaps.SLICER.entries().size() == 33,
+                "Slicer live map drifted from 33 selected rows: "
                         + ModRecipeMaps.SLICER.entries().size());
         helper.succeed();
     }

@@ -22,11 +22,11 @@ import com.masson.cruciblecraft.material.def.MaterialDefinition;
  * semantics and are not a generic network.
  */
 public final class PipeCatalog {
-    public static final int MAX_RUNTIME_BLOCKS = 300;
+    public static final int MAX_RUNTIME_BLOCKS = 500;
 
     /**
-     * Live fluid gauges only. GT6 {@code pipeQuadruple}/{@code pipeNonuple}
-     * stay unregistered and must not raise this budget.
+     * Five live gauges plus GT6 combo pipes. Quadruple/nonuple copy
+     * medium/small capacity with 4/9 tanks; they are not huge aliases.
      */
     private static final Map<MaterialPrefix, String> FLUID_SPEC_BY_FORM =
             Map.of(
@@ -34,16 +34,24 @@ public final class PipeCatalog {
                     MaterialPrefixes.SMALL_FLUID_PIPE, "pipeSmall",
                     MaterialPrefixes.FLUID_PIPE, "pipeMedium",
                     MaterialPrefixes.LARGE_FLUID_PIPE, "pipeLarge",
-                    MaterialPrefixes.HUGE_FLUID_PIPE, "pipeHuge");
+                    MaterialPrefixes.HUGE_FLUID_PIPE, "pipeHuge",
+                    MaterialPrefixes.QUADRUPLE_FLUID_PIPE, "pipeQuadruple",
+                    MaterialPrefixes.NONUPLE_FLUID_PIPE, "pipeNonuple");
     /**
-     * Ordinary medium/large/huge only. Restrictive gauges stay unregistered
-     * until a later in-place BlockItem child; do not raise this budget.
+     * Ordinary medium/large/huge plus GT6 restrictive gauges. Restrictive
+     * copies the matching ordinary stepSize ×100 and is not an ordinary alias.
      */
     private static final Map<MaterialPrefix, String> ITEM_SPEC_BY_FORM =
             Map.of(
                     MaterialPrefixes.ITEM_PIPE, "pipeMedium",
                     MaterialPrefixes.LARGE_ITEM_PIPE, "pipeLarge",
-                    MaterialPrefixes.HUGE_ITEM_PIPE, "pipeHuge");
+                    MaterialPrefixes.HUGE_ITEM_PIPE, "pipeHuge",
+                    MaterialPrefixes.RESTRICTIVE_ITEM_PIPE,
+                    "pipeRestrictiveMedium",
+                    MaterialPrefixes.LARGE_RESTRICTIVE_ITEM_PIPE,
+                    "pipeRestrictiveLarge",
+                    MaterialPrefixes.HUGE_RESTRICTIVE_ITEM_PIPE,
+                    "pipeRestrictiveHuge");
 
     private static volatile State state = State.empty();
 
@@ -148,6 +156,111 @@ public final class PipeCatalog {
                 }
             }
         }
+        registerComboFluid(
+                entries,
+                material,
+                pipeProperties,
+                MaterialPrefixes.FLUID_PIPE,
+                "pipeMedium",
+                MaterialPrefixes.QUADRUPLE_FLUID_PIPE,
+                "pipeQuadruple");
+        registerComboFluid(
+                entries,
+                material,
+                pipeProperties,
+                MaterialPrefixes.SMALL_FLUID_PIPE,
+                "pipeSmall",
+                MaterialPrefixes.NONUPLE_FLUID_PIPE,
+                "pipeNonuple");
+        registerRestrictiveItem(
+                entries,
+                material,
+                pipeProperties,
+                MaterialPrefixes.ITEM_PIPE,
+                "pipeMedium",
+                MaterialPrefixes.RESTRICTIVE_ITEM_PIPE,
+                "pipeRestrictiveMedium");
+        registerRestrictiveItem(
+                entries,
+                material,
+                pipeProperties,
+                MaterialPrefixes.LARGE_ITEM_PIPE,
+                "pipeLarge",
+                MaterialPrefixes.LARGE_RESTRICTIVE_ITEM_PIPE,
+                "pipeRestrictiveLarge");
+        registerRestrictiveItem(
+                entries,
+                material,
+                pipeProperties,
+                MaterialPrefixes.HUGE_ITEM_PIPE,
+                "pipeHuge",
+                MaterialPrefixes.HUGE_RESTRICTIVE_ITEM_PIPE,
+                "pipeRestrictiveHuge");
+    }
+
+    private static void registerComboFluid(
+            Map<Key, Entry> entries,
+            MaterialDefinition material,
+            com.masson.cruciblecraft.material.def.GT6MaterialMetadata.PipeProperties
+                    pipeProperties,
+            MaterialPrefix sourceForm,
+            String sourceSpec,
+            MaterialPrefix comboForm,
+            String comboSpec) {
+        Key sourceKey = new Key(material.id(), sourceForm, Kind.FLUID);
+        Key comboKey = new Key(material.id(), comboForm, Kind.FLUID);
+        if (!entries.containsKey(sourceKey) || entries.containsKey(comboKey)) {
+            return;
+        }
+        FluidPipeProperties properties =
+                pipeProperties.fluidBySpecification().get(sourceSpec);
+        if (properties == null) {
+            return;
+        }
+        put(
+                entries,
+                new Entry(
+                        material.id(),
+                        comboForm,
+                        Kind.FLUID,
+                        comboSpec,
+                        properties,
+                        null));
+    }
+
+    private static void registerRestrictiveItem(
+            Map<Key, Entry> entries,
+            MaterialDefinition material,
+            com.masson.cruciblecraft.material.def.GT6MaterialMetadata.PipeProperties
+                    pipeProperties,
+            MaterialPrefix sourceForm,
+            String sourceSpec,
+            MaterialPrefix restrictiveForm,
+            String restrictiveSpec) {
+        Key sourceKey = new Key(material.id(), sourceForm, Kind.ITEM);
+        Key restrictiveKey = new Key(material.id(), restrictiveForm, Kind.ITEM);
+        if (!entries.containsKey(sourceKey)
+                || entries.containsKey(restrictiveKey)) {
+            return;
+        }
+        ItemPipeProperties source =
+                pipeProperties.itemBySpecification().get(sourceSpec);
+        if (source == null) {
+            return;
+        }
+        put(
+                entries,
+                new Entry(
+                        material.id(),
+                        restrictiveForm,
+                        Kind.ITEM,
+                        restrictiveSpec,
+                        null,
+                        new ItemPipeProperties(
+                                Math.multiplyExact(source.stepSize(), 100L),
+                                source.stacksPerSecond(),
+                                source.recipe(),
+                                source.blocking())));
     }
 
     private static void put(Map<Key, Entry> entries, Entry entry) {
@@ -307,11 +420,36 @@ public final class PipeCatalog {
             return switch (form.serializedName()) {
                 case "tiny_fluid_pipe" -> 4;
                 case "small_fluid_pipe" -> 6;
-                case "fluid_pipe", "item_pipe" -> 8;
-                case "large_fluid_pipe", "large_item_pipe" -> 12;
-                case "huge_fluid_pipe", "huge_item_pipe" -> 16;
+                case "fluid_pipe", "item_pipe", "restrictive_item_pipe" -> 8;
+                case "large_fluid_pipe",
+                        "large_item_pipe",
+                        "large_restrictive_item_pipe" -> 12;
+                case "huge_fluid_pipe",
+                        "huge_item_pipe",
+                        "huge_restrictive_item_pipe",
+                        "quadruple_fluid_pipe",
+                        "nonuple_fluid_pipe" -> 16;
                 default -> throw new IllegalStateException(
                         "Unsupported pipe form " + form.serializedName());
+            };
+        }
+
+        public int tankCount() {
+            return switch (form.serializedName()) {
+                case "quadruple_fluid_pipe" -> 4;
+                case "nonuple_fluid_pipe" -> 9;
+                default -> 1;
+            };
+        }
+
+        public String textureKey() {
+            return switch (form.serializedName()) {
+                case "quadruple_fluid_pipe" -> "quadruple";
+                case "nonuple_fluid_pipe" -> "nonuple";
+                case "restrictive_item_pipe" -> "restrictive_8";
+                case "large_restrictive_item_pipe" -> "restrictive_12";
+                case "huge_restrictive_item_pipe" -> "restrictive_16";
+                default -> Integer.toString(width());
             };
         }
     }

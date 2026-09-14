@@ -1,0 +1,46 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-mte-processing-host-fold",
+  "title": "GT6 Processing Host Fold",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6加工机主机折回详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/gametest/MteProcessingHostFoldGameTests.java",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_processing_host_fold/**",
+    "tools/capabilities/content/gt6-mte-processing-host-fold/**",
+    "tools/waves/content/gt6-mte-processing-host-fold/**",
+    "tools/gt6_mte_host_fold.py",
+    "tools/build_gt6_mte_host_fold.py",
+    "tools/tests/test_gt6_mte_host_fold.py"
+  ],
+  "depends_on": [
+    "registry/catalog-modern-ids"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-mte-processing-host-fold",
+  "required_test_ids": [
+    "automaticHammersStayDummy",
+    "bronzeSifterFoldsOntoLiveHost",
+    "squeezerPolarizerMagSepLaserStayDummy"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "mte:processing:sourceId-hosts",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:sifter"
+      ],
+      "reason": "58 processing metas whose machine_tiers.json sourceId equals R0 meta fold onto live processing BlockItems."
+    },
+    {
+      "semantic_key": "mte:processing:ungated-families",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "Hammer, Squeezer, Polarizer, MagSep and Laser stay dummy; they have no matching sourceId host."
+    }
+  ],
+  "note": "Pure catalog fold. Do not mix Hammer/Squeezer/Polarizer/MagSep/Laser into live hosts. Close at runtime_ready."
+}

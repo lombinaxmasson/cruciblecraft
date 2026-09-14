@@ -1031,7 +1031,7 @@ public class ModLanguageProvider extends LanguageProvider {
     }
 
     private void addRedstoneWireTranslations() {
-        for (RedstoneWireKind kind : RedstoneWireKind.all()) {
+        for (RedstoneWireKind kind : RedstoneWireKind.catalog()) {
             String name = chinese ? kind.langZh() : kind.langEn();
             String key = kind.path().replace('/', '.');
             add("block." + CrucibleCraft.MODID + "." + key, name);

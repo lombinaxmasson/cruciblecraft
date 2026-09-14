@@ -17,6 +17,7 @@ import com.masson.cruciblecraft.logistics.pipe.fluid.FluidPipeCadence;
 import com.masson.cruciblecraft.logistics.pipe.fluid.FluidPipeFailureState.Failure;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModFluids;
+import com.masson.cruciblecraft.registry.ModItems;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -181,8 +182,8 @@ public final class FluidPipeRuntimeGameTests {
             int filled = copperTank.fill(
                     stack, IFluidHandler.FluidAction.EXECUTE);
             helper.assertTrue(
-                    filled == 0,
-                    "plasma/magic fluid was silently accepted: " + entry.id());
+                    filled > 0,
+                    "plasma/magic fill was still rejected: " + entry.id());
             helper.assertTrue(
                     copper.failureSnapshot().gasLeakEvents() == beforeGas
                             && copper.failureSnapshot().corrosionEvents()
@@ -292,14 +293,18 @@ public final class FluidPipeRuntimeGameTests {
         helper.assertTrue(
                 live instanceof PipeBlockItem,
                 "live tiny tin-alloy host is not a PipeBlockItem");
-        ResourceLocation quadruple = ResourceLocation.fromNamespaceAndPath(
-                "cruciblecraft",
-                "fluid_pipe_tile/quadruple_tin_alloy_fluid_pipe");
         helper.assertTrue(
-                BuiltInRegistries.ITEM.containsKey(quadruple)
-                        && !(BuiltInRegistries.ITEM.get(quadruple)
-                                instanceof PipeBlockItem),
-                "quadruple dummy was promoted to a live BlockItem");
+                ModItems.hasMaterialItem(
+                        "tin_alloy", MaterialPrefixes.QUADRUPLE_FLUID_PIPE)
+                        && ModItems.materialItem(
+                                        "tin_alloy",
+                                        MaterialPrefixes.QUADRUPLE_FLUID_PIPE)
+                                .get() instanceof PipeBlockItem
+                        && !BuiltInRegistries.ITEM.containsKey(
+                                ResourceLocation.fromNamespaceAndPath(
+                                        "cruciblecraft",
+                                        "fluid_pipe_tile/quadruple_tin_alloy_fluid_pipe")),
+                "tin-alloy quadruple dummy was not folded onto the live combo host");
         helper.succeed();
     }
 

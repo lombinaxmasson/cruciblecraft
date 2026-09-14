@@ -32,10 +32,28 @@ NANOFAB = "machines/nanofab"
 PRESSURE_WASHER = "machines/pressure-washer"
 WIRE_CABLE_FOLD = "content/electric-wire-cable-mte-fold"
 CONNECTOR_ART = "content/gt6-connector-art"
+ALIAS_REPAIR = "content/gt6-connector-alias-repair"
+FLUID_COMBO = "content/gt6-fluid-combo-pipe-runtime"
+RESTRICTIVE = "content/gt6-restrictive-item-pipe-runtime"
 FLUID_RUNTIME = "content/gt6-fluid-pipe-runtime"
 EU_RUNTIME = "content/gt6-eu-wire-cable-runtime"
+MISSING_GAUGES = "content/gt6-eu-missing-wire-gauges-runtime"
+INSULATED_REDSTONE = "content/gt6-insulated-redstone-runtime"
+DANGEROUS_MEDIA = "content/gt6-fluid-dangerous-media-runtime"
+FLUID_PIPE_ACQUISITION = "content/gt6-fluid-pipe-acquisition"
+ITEM_PIPE_ACQUISITION = "content/gt6-item-pipe-acquisition"
+EU_CABLE_ACQUISITION = "content/gt6-eu-cable-acquisition"
+REDSTONE_WIRE_ACQUISITION = "content/gt6-redstone-wire-acquisition"
+CONVERTER_HOST_FOLD = "content/gt6-mte-converter-host-fold"
+HOPPER_HOST_FOLD = "content/gt6-mte-hopper-host-fold"
+PROCESSING_HOST_FOLD = "content/gt6-mte-processing-host-fold"
+REACTOR_ROD_HOST_FOLD = "content/gt6-mte-reactor-rod-host-fold"
+FLUID_ATTACHMENTS_RUNTIME = "content/gt6-mte-fluid-attachments-runtime"
+EXTENDER_RUNTIME = "content/gt6-mte-extender-runtime"
+PAPER_TINY_PLATE = "content/gt6-paper-tiny-plate"
 FOUNDATION = "content/technological-parts-foundation"
 TREES = "worldgen/gt-trees"
+CROPS = "worldgen/gt-crops"
 DUNGEON = "worldgen/gt-dungeon"
 SANDING = "machines/sanding"
 OVEN = "machines/oven"
@@ -76,6 +94,7 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertIn(WIRE_CABLE_FOLD, slugs)
         self.assertIn(FOUNDATION, slugs)
         self.assertIn(TREES, slugs)
+        self.assertIn(CROPS, slugs)
         self.assertIn(DUNGEON, slugs)
         self.assertIn(SANDING, slugs)
         self.assertIn(OVEN, slugs)
@@ -86,6 +105,27 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertIn(CATALOG_MODERN, slugs)
         self.assertIn(MTE_REDSTONE, slugs)
         self.assertIn(REDSTONE_CORRECTION, slugs)
+        self.assertIn(INSULATED_REDSTONE, slugs)
+        self.assertIn(DANGEROUS_MEDIA, slugs)
+        self.assertIn(FLUID_PIPE_ACQUISITION, slugs)
+        self.assertIn(ITEM_PIPE_ACQUISITION, slugs)
+        self.assertIn(EU_CABLE_ACQUISITION, slugs)
+        self.assertIn(REDSTONE_WIRE_ACQUISITION, slugs)
+        self.assertIn(CONVERTER_HOST_FOLD, slugs)
+        self.assertIn(HOPPER_HOST_FOLD, slugs)
+        self.assertIn(PROCESSING_HOST_FOLD, slugs)
+        self.assertIn(REACTOR_ROD_HOST_FOLD, slugs)
+        from tools import gt6_mte_inplace_runtime as inplace_runtime
+        for spec in inplace_runtime.DOMAINS.values():
+            cap = (
+                ROOT
+                / "tools"
+                / "capabilities"
+                / spec["slug"]
+                / "capability.json"
+            )
+            if cap.is_file():
+                self.assertIn(spec["slug"], slugs)
         converter = next(row for row in documents if row["slug"] == CONVERTER)
         self.assertEqual("player_complete", converter["maturity"])
         self.assertEqual("accepted", converter["workflow"])
@@ -223,6 +263,10 @@ class CapabilityLedgerTest(unittest.TestCase):
             ledger.load_card_plan_index()["closed"],
         )
         self.assertIn(
+            CROPS,
+            ledger.load_card_plan_index()["closed"],
+        )
+        self.assertIn(
             WIRE_CABLE_FOLD,
             ledger.load_card_plan_index()["closed"],
         )
@@ -271,14 +315,23 @@ class CapabilityLedgerTest(unittest.TestCase):
                 NANOFAB,
                 PRESSURE_WASHER,
                 WIRE_CABLE_FOLD,
+                ALIAS_REPAIR,
                 CONNECTOR_ART,
                 EU_RUNTIME,
+                MISSING_GAUGES,
+                FLUID_COMBO,
+                FLUID_PIPE_ACQUISITION,
+                ITEM_PIPE_ACQUISITION,
+                EU_CABLE_ACQUISITION,
+                RESTRICTIVE,
                 FOUNDATION,
                 SENSORS,
                 TREES,
                 DUNGEON,
                 SANDING,
                 OVEN,
+                PAPER_TINY_PLATE,
+                CROPS,
                 "logistics/cover-remainder",
             },
             set(compiled["impact"]["logistics/cover-net-r0"]),
@@ -326,9 +379,20 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertEqual(
             [
                 WIRE_CABLE_FOLD,
+                ALIAS_REPAIR,
                 CONNECTOR_ART,
+                EU_CABLE_ACQUISITION,
+                MISSING_GAUGES,
                 EU_RUNTIME,
+                FLUID_COMBO,
+                DANGEROUS_MEDIA,
+                FLUID_PIPE_ACQUISITION,
                 FLUID_RUNTIME,
+                ITEM_PIPE_ACQUISITION,
+                EXTENDER_RUNTIME,
+                FLUID_ATTACHMENTS_RUNTIME,
+                PAPER_TINY_PLATE,
+                RESTRICTIVE,
                 SENSORS,
                 FOUNDATION,
                 BATTERIES,
@@ -353,6 +417,7 @@ class CapabilityLedgerTest(unittest.TestCase):
                 ROLL_FORMER,
                 SANDING,
                 SLICER,
+                CROPS,
                 DUNGEON,
                 TREES,
             ],
