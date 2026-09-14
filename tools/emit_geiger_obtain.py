@@ -11,7 +11,6 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tools import currentness
 from tools import io_common as io
 from tools.emit_fission_survival_wave import add_include
 
@@ -120,47 +119,11 @@ def write_prefix() -> None:
 
 
 def patch_gate() -> None:
-    path = SRC / "data" / "cruciblecraft" / "material_registration_gate.json"
-    added = insert_after(
-        path,
-        '    "aluminium": [\n      "arrow_gt_wood",\n      "billet",\n      "block",\n      "bolt",\n      "cable",\n',
-        '      "capcellcon",\n',
-    )
-    if added:
-        text = path.read_text(encoding="utf-8")
-        path.write_text(
-            text.replace('"registered_forms": 31929', '"registered_forms": 31930', 1),
-            encoding="utf-8",
-        )
-        currentness.write_sidecar(path)
+    """Aluminium capcellcon is registered through material_form_authority."""
 
 
 def patch_census() -> None:
-    path = SRC / "census" / "runtime_registry_gate.json"
-    added = 0
-    text = path.read_text(encoding="utf-8")
-    if "cruciblecraft:aluminium/capcellcon" not in text:
-        if replace_once(
-            path,
-            '      "cruciblecraft:aluminium/cable",\n      "cruciblecraft:aluminium/dense_plate",',
-            '      "cruciblecraft:aluminium/cable",\n      "cruciblecraft:aluminium/capcellcon",\n      "cruciblecraft:aluminium/dense_plate",',
-        ):
-            added += 1
-    if insert_after(
-        path,
-        '      "cruciblecraft:extruder_shape_bottle",\n',
-        '      "cruciblecraft:extruder_shape_ccc",\n',
-    ):
-        added += 1
-    if added:
-        text = path.read_text(encoding="utf-8")
-        text = text.replace('"items": 17150', f'"items": {17150 + added}', 1)
-        text = text.replace(
-            '"total_expected_ids": 20564',
-            f'"total_expected_ids": {20564 + added}',
-            1,
-        )
-        path.write_text(text, encoding="utf-8")
+    """Registry census is a frozen-subset release probe, not a closeout writer."""
 
 
 def write_art() -> None:

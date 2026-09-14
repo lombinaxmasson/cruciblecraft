@@ -12,13 +12,14 @@
 - mapped tool head 已折回 `材料 × 前缀`（`TOOL_HEAD_PREFIX_READY`；bath identity `71`，semantic `244`；remap `7990/0`）。钥匙 / 电路线 / Low Heat Extruder Shape 仍是 unique identity：meta 对不上 `material_id_to_cc`。Low Heat 是温度档，不能并进 34 件 `ExtruderShapeCatalog`；disposition = `new_distinct`，权威在 `tools/capabilities/registry/tool-head-remainder/capability.json`。不开放「任意油」tag。
 - 电池芯 `battery_part:filled_cell` 已注册 GT6 `IL.Battery_*_Cell_Empty` / `IL.Battery_*_Cell_Filled`（`20000–20009`）。五族空芯、EU 电池 `B`/`C` 槽和 FluidContainerData 灌液是 SOURCE_BACKED（不是 Canner 表）。高氯酸锂尘走电解 ordinary-closure `0051`。Energium 宝石前缀已 `form_items` 并到 LU 晶体 BlockItem（`gemChipped`=ULV … `gemLegendary`=IV），这就是 GT6 `setTarget`，不是欠一张 shaped 表。历史 stand-in 见 [电池详细计划](../history/card-plans/closed/电池详细计划.md)「配方保真债」。GT6 工作台小写工具格不是原版 `crafting_shaped`；走 `shaped_catalyst`（固定 3×3）。工具催化剂按 GT6 `getToolDamagePerContainerCraft() / 100` 扣耐久；电路等非工具催化剂原样返还。电池空芯、不锈钢/钨钢墙、铱线圈、LU 光纤共用此类型。
 - 配方生成器 / 运行时曾把签发卡号当成类型，并在 Bath 上混用青铜化学信封与 GT6 remainder compact。待重构，见 [recipe-wave-workflow §4.3.1](recipe-wave-workflow.md)。现在不要为了改名去动已封板路径。
+- Registry census（`-PrecipeCensus`）是冻结子集探针：允许多出来的 live id，缺项或重复才失败。它不是普通配方卡闭卡门。日常覆盖是 `material_registration_gate` 与手写配方的材料形态测试。完整探针留给 release 或注册表变更。
 
 ## Verification debt
 
 这些行保持 open，不得标 PASS。它们挡所列 profile，不挡范围外能力的范围内门。
 
 - compact family 作者正文已改为 `matrix_v1`（`COMPACT_RECIPE_AUTHORED_MATRIX_READY`），线上 `StreamCodec` v2 编矩阵而不是展开表。修的仍是写法，不是 Holder 粒度。compact snapshot `13845 != 14201` 仍是 scope-external 债（mortar / assembler fingerprints），未 `--update-baseline`。它不挡 `semantic-generators` 的 fresh 结构/字节比较。
-- 隔离 census 的 `cover_behaviors` 冻结表仍是 `registerBuiltin` 那 8 个；物品/流体/通用网行为走 identity gate 精确比对 extras。物流九件盖板物品图标已从本地 `gregtech6_w` 迁入 `gt6_import/`（含 Dump）。传送带 / 检索器 / 机械臂等管网盖板仍用各自现有 item 贴图，未在本卡重核。
+- 隔离 census 的 `cover_behaviors` 冻结表仍是 `registerBuiltin` 那 8 个；物品/流体/通用网行为走 identity gate 精确比对 extras。该探针不再挡普通配方卡闭卡。物流九件盖板物品图标已从本地 `gregtech6_w` 迁入 `gt6_import/`（含 Dump）。传送带 / 检索器 / 机械臂等管网盖板仍用各自现有 item 贴图，未在本卡重核。
 - 化学语义 artifact 与现行生成器存在结构漂移：留给后续配方工作
 - 历史 READY 已退出 active verification；日常门不再消费历史收据
 - 历史 full verification report 已从工作树删除，不是当前执行结果

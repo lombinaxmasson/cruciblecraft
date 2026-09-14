@@ -7085,7 +7085,7 @@
     "ore_source_materials": 137,
     "pipe_forms": 282,
     "recipe_gated_forms": 13338,
-    "registered_forms": 39748,
+    "registered_forms": 39798,
     "restrictive_pipe_forms": 72,
     "roaster_required_forms": 12,
     "tool_head_required_forms": 13938,
@@ -7537,6 +7537,143 @@
       "small_dust"
     ]
   },
+  "fission_observation_safety_required_forms": {
+    "aluminium": [
+      "capcellcon",
+      "foil"
+    ],
+    "copper": [
+      "plate"
+    ],
+    "lead": [
+      "plate"
+    ],
+    "mercury": [
+      "ingot"
+    ]
+  },
+  "fission_survival_required_forms": {
+    "americium": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "americium241": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "beryllium": [
+      "rod"
+    ],
+    "blutonium": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "cd_in_ag_alloy": [
+      "rod"
+    ],
+    "cobalt60": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "cyanite": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "graphite": [
+      "rod"
+    ],
+    "lead": [
+      "dense_plate",
+      "long_rod",
+      "machine_casing_dense"
+    ],
+    "lithium": [
+      "bolt"
+    ],
+    "ludicrite": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "naquadah": [
+      "bolt",
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "naquadah_enriched": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "naquadria": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "plutonium": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "plutonium239": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "plutonium241": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "plutonium243": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "ruby": [
+      "lens"
+    ],
+    "silicon": [
+      "tiny_plate_gem"
+    ],
+    "thorium": [
+      "bolt",
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "uranium": [
+      "bolt",
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "uranium233": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "uranium235": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "yellorium": [
+      "dust_div72",
+      "rod",
+      "tiny_dust"
+    ],
+    "zirconium": [
+      "ingot",
+      "scrap"
+    ]
+  },
   "java_overlay_sections": [
     "worldgen_acquisition_forms",
     "roaster_required_forms",
@@ -7554,7 +7691,9 @@
     "compressor_ordinary_closure_required_forms",
     "machines_cluster_mill_required_forms",
     "technological_parts_foundation_required_forms",
-    "machines_slicer_paper_tiny_plate_required_forms"
+    "machines_slicer_paper_tiny_plate_required_forms",
+    "fission_observation_safety_required_forms",
+    "fission_survival_required_forms"
   ],
   "known_ingot_forms": {
     "abyssalnite": [
@@ -15415,6 +15554,7 @@
       "block",
       "bolt",
       "cable",
+      "capcellcon",
       "chain",
       "chunk",
       "curved_plate",
@@ -36248,6 +36388,7 @@
       "ingot_hot",
       "long_rod",
       "machine_casing",
+      "machine_casing_dense",
       "machine_casing_double",
       "machine_casing_quadruple",
       "minecart_wheels",
@@ -57328,6 +57469,7 @@
       "rod",
       "rotor",
       "round",
+      "scrap",
       "screw",
       "small_dust",
       "small_gear",
@@ -70451,6 +70593,18 @@
       "field": "required_forms",
       "path": "tools/waves/electrolyzer/ordinary-closure/required_forms.json",
       "sha256": "a399583a7d9f5341534d63851927a9e4c2bf435bcf19f2733b2cbb0749298787"
+    },
+    "fission_observation_safety_required_forms": {
+      "classification": "semantic_ordinary_runtime_required",
+      "field": "required_forms",
+      "path": "tools/waves/runtime/fission-observation-safety/required_forms.json",
+      "sha256": "1e7c6240dbf4b298a6ea3d24a353af081d90be684de0ea25e11c1d4b47a92a5a"
+    },
+    "fission_survival_required_forms": {
+      "classification": "semantic_ordinary_runtime_required",
+      "field": "required_forms",
+      "path": "tools/waves/runtime/fission-survival/required_forms.json",
+      "sha256": "de9ccbd8d29ea04c34f368ae2210202a4b6caf61a29085ee3789a0ec1e79d2c8"
     },
     "factual_ore_sources": {
       "field": "resolved factual prefix `ore`",

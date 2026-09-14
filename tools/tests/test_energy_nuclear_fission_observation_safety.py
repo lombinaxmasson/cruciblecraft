@@ -314,3 +314,19 @@ class FissionObservationSafetyCardTest(unittest.TestCase):
             "tool/geiger_counter_empty_fill_with_proper_inert_gas",
             signoff["craftable_items"],
         )
+
+    def test_aluminium_capcellcon_is_a_required_gated_form(self) -> None:
+        required = io.load_json(WAVE / "required_forms.json")
+        self.assertIn("capcellcon", required["required_forms"]["aluminium"])
+        gate = json.loads(
+            (
+                ROOT
+                / "src"
+                / "main"
+                / "resources"
+                / "data"
+                / "cruciblecraft"
+                / "material_registration_gate.json"
+            ).read_text(encoding="utf-8")
+        )
+        self.assertIn("capcellcon", gate["materials"]["aluminium"])
