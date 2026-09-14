@@ -1,0 +1,53 @@
+{
+  "capability_json_on_promote": true,
+  "capability_slug": "localization/language-key-display-name-normalization",
+  "forbidden_until_promote": [
+    "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+    "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+    "src/main/java/com/masson/cruciblecraft/material/MaterialZhNames.java",
+    "src/main/java/com/masson/cruciblecraft/content/item/MaterialFormItem.java",
+    "src/main/resources/data/cruciblecraft/material_zh_cn.json",
+    "src/main/resources/data/cruciblecraft/machine_kinds.json",
+    "src/main/resources/data/cruciblecraft/semantic_object_catalog.json",
+    "src/main/resources/data/cruciblecraft/semantic_fluid_mapping.json",
+    "src/main/resources/data/cruciblecraft/bath_identity_catalog.json",
+    "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json",
+    "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json",
+    "src/main/resources/data/cruciblecraft/gt_block_object_catalog.json",
+    "src/main/resources/data/cruciblecraft/gt_stone_catalog.json",
+    "src/main/resources/data/cruciblecraft/bath_remainder_identity_catalog.json",
+    "src/main/resources/data/cruciblecraft/bath_mte_fluid_mapping.json",
+    "src/main/resources/data/cruciblecraft/bath_remainder_fluid_mapping.json",
+    "src/main/resources/data/cruciblecraft/bath_identity_fluid_mapping.json",
+    "src/main/resources/data/cruciblecraft/slicer_operands.json",
+    "tools/generated_resource_gate.py",
+    "tools/player_complete.py",
+    "tools/catalog_modern_ids.py",
+    "tools/tests/test_generated_resource_gate.py",
+    "tools/tests/test_player_complete.py",
+    "src/test/java/com/masson/cruciblecraft/datagen",
+    "src/generated/resources/assets/cruciblecraft/lang"
+  ],
+  "note": "Prep freezes the language contract only. Do not hand-edit generated lang. Unique-active must be empty before landing.",
+  "prep_complete_when": [
+    "plan file exists in card-plans/prep",
+    "four contracts frozen",
+    "isolated audit tests PASS",
+    "baseline scan written",
+    "landing_owned_paths unchanged"
+  ],
+  "promotion_checklist": [
+    "Move 语言键与显示名规范收口详细计划.md from prep/ to active/",
+    "Create capability.json workflow=active; maturity stays frozen until generators land",
+    "Share translation_key() across datagen, runtime pack, gate, tests",
+    "Share format_english_id() across Java title()/formEnglish and Python resolve_english fallback",
+    "Fix material_zh_cn.json maps and identity catalog chinese_name policy",
+    "Expand generated_resource_gate live inventory to dynamic material blocks, pipes, cables",
+    "Migrate MaterialVisualResourceTest slash keys to dotted keys",
+    "Delete player_complete slash fallback after ownership is complete",
+    "Datagen twice and diff generated lang; collision audit at zero outside allowlist"
+  ],
+  "schema_version": 1,
+  "source_revision_cc": "8ed5e41acc2171873c5bfdc9528e834cd93d91a4",
+  "unique_active_required": true
+}

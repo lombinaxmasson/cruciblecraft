@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
 
 import com.google.gson.JsonParser;
+import com.masson.cruciblecraft.localization.LanguageNames;
 import com.masson.cruciblecraft.machine.processing.MachineTierCatalog;
 import com.masson.cruciblecraft.registry.ModMachineVariants;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
@@ -172,6 +173,11 @@ class ProcessingMachineResourceTest {
         assertTrue(chinese.entrySet().stream()
                 .allMatch(entry -> !entry.getValue().getAsString().isBlank()),
                 "zh_cn must not contain blank translation values");
+        assertTrue(chinese.entrySet().stream().noneMatch(entry ->
+                        LanguageNames.isEnglishCopy(
+                                entry.getValue().getAsString(),
+                                english.get(entry.getKey()).getAsString())),
+                "zh_cn must not copy English as a fake translation");
     }
 
     @Test

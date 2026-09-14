@@ -55,11 +55,11 @@ class MaterialVisualResourceTest {
         assertTrue(serverFiles.containsKey(
                 "data/c/tags/item/storage_blocks/aluminium.json"));
         assertTrue(json(clientFiles.get("assets/cruciblecraft/lang/en_us.json"))
-                .get("block.cruciblecraft.aluminium/block")
+                .get("block.cruciblecraft.aluminium.block")
                 .getAsString()
                 .equals("Aluminium Block"));
         assertTrue(json(clientFiles.get("assets/cruciblecraft/lang/zh_cn.json"))
-                .get("block.cruciblecraft.aluminium/block")
+                .get("block.cruciblecraft.aluminium.block")
                 .getAsString()
                 .equals("铝块"));
 
@@ -109,12 +109,12 @@ class MaterialVisualResourceTest {
         assertEquals(
                 "Aluminium Machine Casing",
                 json(clientFiles.get("assets/cruciblecraft/lang/en_us.json"))
-                        .get("block.cruciblecraft.aluminium/machine_casing")
+                        .get("block.cruciblecraft.aluminium.machine_casing")
                         .getAsString());
         assertEquals(
                 "铝机器外壳",
                 json(clientFiles.get("assets/cruciblecraft/lang/zh_cn.json"))
-                        .get("block.cruciblecraft.aluminium/machine_casing")
+                        .get("block.cruciblecraft.aluminium.machine_casing")
                         .getAsString());
 
         JsonObject steelDouble = json(clientFiles.get(
@@ -130,7 +130,7 @@ class MaterialVisualResourceTest {
         assertEquals(
                 "Steel Double Machine Casing",
                 json(clientFiles.get("assets/cruciblecraft/lang/en_us.json"))
-                        .get("block.cruciblecraft.steel/machine_casing_double")
+                        .get("block.cruciblecraft.steel.machine_casing_double")
                         .getAsString());
     }
 
@@ -203,11 +203,20 @@ class MaterialVisualResourceTest {
                         "item.cruciblecraft.tool.lighter_empty_requires_canning_machine_to_be_filled")
                         .getAsString());
         assertEquals(
-                "%s 斧头",
+                "%s斧头",
                 chinese.get("item.cruciblecraft.material_form.tool_head_axe")
                         .getAsString());
+        assertEquals(
+                "Water Twig",
+                english.get("item.cruciblecraft.water.plant_gt_twig").getAsString());
+        assertEquals(
+                "水枝条",
+                chinese.get("item.cruciblecraft.water.plant_gt_twig").getAsString());
         assertTrue(english.has("block.cruciblecraft.planks2.blue"));
-        assertTrue(chinese.has("block.cruciblecraft.planks2.blue"));
+        assertEquals(
+                "Planks2 Blue",
+                english.get("block.cruciblecraft.planks2.blue").getAsString());
+        assertFalse(chinese.has("block.cruciblecraft.planks2.blue"));
         assertTrue(clientFiles.containsKey(
                 "assets/cruciblecraft/models/item/planks2/blue.json"));
     }

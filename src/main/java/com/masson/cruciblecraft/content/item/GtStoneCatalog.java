@@ -97,8 +97,15 @@ public final class GtStoneCatalog {
                             identity.slabVariant,
                             identity.stone,
                             identity.texture,
-                            englishName(identity, row.meta),
-                            chineseName(identity, row.meta));
+                            com.masson.cruciblecraft.localization.LanguageNames
+                                    .playerEnglish(
+                                            identity.englishName,
+                                            row.registryPath),
+                            com.masson.cruciblecraft.localization.LanguageNames
+                                    .playerChinese(
+                                            identity.chineseName,
+                                            row.registryPath)
+                                    .orElse(""));
                     if (byId.put(id, variant) != null) {
                         throw new IllegalStateException(
                                 "Duplicate GT stone runtime id " + id);
@@ -119,28 +126,6 @@ public final class GtStoneCatalog {
             throw new IllegalStateException(
                     "Failed to read GT stone catalog", failure);
         }
-    }
-
-    private static String englishName(IdentityRow identity, int meta) {
-        if (identity.slabVariant == null) {
-            return identity.englishName + " m" + meta;
-        }
-        return identity.englishName
-                + " Slab "
-                + identity.slabVariant
-                + " m"
-                + meta;
-    }
-
-    private static String chineseName(IdentityRow identity, int meta) {
-        if (identity.slabVariant == null) {
-            return identity.chineseName + " m" + meta;
-        }
-        return identity.chineseName
-                + "台阶"
-                + identity.slabVariant
-                + " m"
-                + meta;
     }
 
     public record Variant(

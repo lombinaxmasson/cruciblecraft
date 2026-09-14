@@ -3,6 +3,7 @@ package com.masson.cruciblecraft.content.item;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
+import com.masson.cruciblecraft.localization.LanguageNames;
 
 import net.minecraft.network.chat.Component;
 
@@ -24,14 +25,11 @@ public interface MaterialFormItem {
         MaterialDefinition material = material();
         Component materialName = material.nameKey()
                 .<Component>map(Component::translatable)
-                .orElseGet(() -> Component.literal(title(material.id())));
+                .orElseGet(() -> Component.literal(
+                        LanguageNames.formatEnglishId(material.id())));
         String formKey = "item.cruciblecraft.material_form." + form().serializedName();
-        String fallback = "%s " + title(form().serializedName());
+        String fallback = LanguageNames.englishFormTemplate(
+                LanguageNames.formatEnglishId(form().serializedName()));
         return Component.translatableWithFallback(formKey, fallback, materialName);
-    }
-
-    private static String title(String id) {
-        String spaced = id.replace('_', ' ');
-        return Character.toUpperCase(spaced.charAt(0)) + spaced.substring(1);
     }
 }

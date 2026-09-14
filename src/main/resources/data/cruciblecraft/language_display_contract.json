@@ -1,0 +1,419 @@
+{
+  "schema_version": 1,
+  "capability_slug": "localization/language-key-display-name-normalization",
+  "namespace": "cruciblecraft",
+  "prefix_exceptions": {
+    "bare_wire": "Bare Wire",
+    "cable": "Cable",
+    "capcellcon": "Capsule Cell Container",
+    "dodecuple_bare_wire": "Dodecuple Bare Wire",
+    "dodecuple_cable": "Dodecuple Cable",
+    "double_bare_wire": "Double Bare Wire",
+    "double_cable": "Double Cable",
+    "fluid_pipe": "Fluid Pipe",
+    "huge_fluid_pipe": "Huge Fluid Pipe",
+    "huge_item_pipe": "Huge Item Pipe",
+    "item_pipe": "Item Pipe",
+    "large_fluid_pipe": "Large Fluid Pipe",
+    "large_item_pipe": "Large Item Pipe",
+    "machine_casing": "Machine Casing",
+    "machine_casing_dense": "Dense Machine Casing",
+    "machine_casing_double": "Double Machine Casing",
+    "machine_casing_quadruple": "Quadruple Machine Casing",
+    "octuple_bare_wire": "Octuple Bare Wire",
+    "octuple_cable": "Octuple Cable",
+    "plant_gt_berry": "Berry",
+    "plant_gt_blossom": "Blossom",
+    "plant_gt_fiber": "Fiber",
+    "plant_gt_twig": "Twig",
+    "plant_gt_wart": "Wart",
+    "quadruple_bare_wire": "Quadruple Bare Wire",
+    "quadruple_cable": "Quadruple Cable",
+    "restrictive_item_pipe": "Restrictive Item Pipe",
+    "small_fluid_pipe": "Small Fluid Pipe",
+    "small_item_pipe": "Small Item Pipe",
+    "tiny_fluid_pipe": "Tiny Fluid Pipe",
+    "tiny_item_pipe": "Tiny Item Pipe"
+  },
+  "token_exceptions": {
+    "eu": "EU",
+    "ev": "EV",
+    "gt6": "GT6",
+    "hsla": "HSLA",
+    "hslaalloy": "HSLA Alloy",
+    "hslasteel": "HSLA Steel",
+    "hslatungsten": "HSLA Tungsten",
+    "hu": "HU",
+    "iv": "IV",
+    "ku": "KU",
+    "luv": "LuV",
+    "lv": "LV",
+    "max": "MAX",
+    "mv": "MV",
+    "omega": "OMEGA",
+    "puv": "PUV",
+    "puv2": "PUV2",
+    "puv3": "PUV3",
+    "puv4": "PUV4",
+    "puv5": "PUV5",
+    "qu": "QU",
+    "ru": "RU",
+    "t1": "T1",
+    "t2": "T2",
+    "t3": "T3",
+    "t4": "T4",
+    "t5": "T5",
+    "uev": "UEV",
+    "uhv": "UHV",
+    "uiv": "UIV",
+    "ulv": "ULV",
+    "umv": "UMV",
+    "uv": "UV",
+    "uxv": "UXV",
+    "zpm": "ZPM"
+  },
+  "dye_colors": [
+    "white",
+    "orange",
+    "magenta",
+    "light_blue",
+    "yellow",
+    "lime",
+    "pink",
+    "gray",
+    "light_gray",
+    "cyan",
+    "purple",
+    "blue",
+    "brown",
+    "green",
+    "red",
+    "black"
+  ],
+  "slab_faces": {
+    "slab_down": "Down Slab",
+    "slab_up": "Up Slab",
+    "slab_north": "North Slab",
+    "slab_south": "South Slab",
+    "slab_west": "West Slab",
+    "slab_east": "East Slab"
+  },
+  "zh_path_tokens": {
+    "black": "黑色",
+    "blue": "蓝色",
+    "bricks": "砖",
+    "brown": "棕色",
+    "chiseled": "錾制",
+    "cobble": "圆石",
+    "cracked_bricks": "裂纹砖",
+    "cyan": "青色",
+    "gray": "灰色",
+    "green": "绿色",
+    "light_blue": "淡蓝色",
+    "light_gray": "淡灰色",
+    "lime": "黄绿色",
+    "magenta": "品红色",
+    "mossy_bricks": "苔砖",
+    "mossy_cobble": "苔石",
+    "orange": "橙色",
+    "pink": "粉红色",
+    "purple": "紫色",
+    "red": "红色",
+    "redstoned_bricks": "红石砖",
+    "reinforced_bricks": "强化砖",
+    "slab_down": "下台阶",
+    "slab_east": "东台阶",
+    "slab_north": "北台阶",
+    "slab_south": "南台阶",
+    "slab_up": "上台阶",
+    "slab_west": "西台阶",
+    "small_bricks": "小砖",
+    "small_tiles": "小砖瓦",
+    "smooth": "平滑",
+    "square_bricks": "方砖",
+    "stone": "石",
+    "tiles": "砖瓦",
+    "white": "白色",
+    "windmill_tiles_a": "风车瓦甲",
+    "windmill_tiles_b": "风车瓦乙",
+    "yellow": "黄色"
+  },
+  "allowlist": [
+    {
+      "display_name": "Wooden Bookshelf",
+      "locale": "en_us",
+      "reason": "GT6 MultiTileEntityBookShelf wood metas share this source-backed English name; plank_index is the identity, not a distinct GT6 title",
+      "source": "src/main/resources/data/cruciblecraft/storage_variants.json"
+    },
+    {
+      "display_name": "木制书架",
+      "locale": "zh_cn",
+      "reason": "Same GT6 bookshelf family as Wooden Bookshelf",
+      "source": "src/main/resources/data/cruciblecraft/storage_variants.json"
+    },
+    {
+      "display_name": "Wooden Bottlecrate",
+      "locale": "en_us",
+      "reason": "GT6 bottlecrate wood metas share this source-backed English name",
+      "source": "src/main/resources/data/cruciblecraft/storage_variants.json"
+    },
+    {
+      "display_name": "木制瓶箱",
+      "locale": "zh_cn",
+      "reason": "Same GT6 bottlecrate family as Wooden Bottlecrate",
+      "source": "src/main/resources/data/cruciblecraft/storage_variants.json"
+    },
+    {
+      "display_name": "Wooden Item Barrel (Cheap)",
+      "locale": "en_us",
+      "reason": "GT6 MultiTileEntityMassStorageBarrel wood metas 6990/6991/6992/6998 share this source-backed English name; stick material is the identity, not a distinct title",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java"
+    },
+    {
+      "display_name": "木制物品桶（廉价）",
+      "locale": "zh_cn",
+      "reason": "Same GT6 cheap wooden mass-storage barrel family as Wooden Item Barrel (Cheap)",
+      "source": "src/main/resources/data/cruciblecraft/storage_variants.json"
+    },
+    {
+      "display_name": "Apple",
+      "locale": "en_us",
+      "reason": "GT6 MultiItemFood metas 210 and 220 share the source-backed English name Apple; CC paths applewood/apple and apple/applewood are collision-avoidance, not distinct GT6 titles",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemFood.java"
+    },
+    {
+      "display_name": "Apple Applewood",
+      "locale": "en_us",
+      "reason": "Same GT6 Apple food metas as Apple; unused applewood path token cannot distinguish the swapped registry paths",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemFood.java"
+    },
+    {
+      "display_name": "Apple Slice",
+      "locale": "en_us",
+      "reason": "GT6 MultiItemFood metas 211/221/231/241 share the source-backed English name Apple Slice",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemFood.java"
+    },
+    {
+      "display_name": "Apple Slice Applewood",
+      "locale": "en_us",
+      "reason": "Same GT6 Apple Slice food metas; unused applewood path token cannot distinguish applewood/slice from slice/applewood",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemFood.java"
+    },
+    {
+      "display_name": "苹果片",
+      "locale": "zh_cn",
+      "reason": "Same GT6 Apple Slice food-meta family",
+      "source": "src/main/resources/data/cruciblecraft/slicer_operands.json"
+    },
+    {
+      "display_name": "Progress Sensor",
+      "locale": "en_us",
+      "reason": "GT6 names both MultiTileEntityProgressmeter 31018 and Cover 1018 Progress Sensor",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java"
+    },
+    {
+      "display_name": "进度传感器",
+      "locale": "zh_cn",
+      "reason": "Same GT6 Progress Sensor pair as the cover and the placeable meter",
+      "source": "src/main/java/com/masson/cruciblecraft/content/sensor/SensorKind.java"
+    },
+    {
+      "display_name": "Rubber Resin",
+      "locale": "en_us",
+      "reason": "GT6 MultiItemFood 12050 Rubber Resin is both the semantic catalog item and the rubber-hole harvest drop",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemFood.java"
+    },
+    {
+      "display_name": "橡胶树脂",
+      "locale": "zh_cn",
+      "reason": "Same GT6 Rubber Resin identity as the harvest drop and catalog item",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java"
+    },
+    {
+      "display_name": "Wooden Bucket",
+      "locale": "en_us",
+      "reason": "GT6 MultiItemRandomTools wooden buckets share this source-backed English name across hoop metals; hoop material is the identity, not a distinct title",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemRandomTools.java"
+    },
+    {
+      "display_name": "Air Vent",
+      "locale": "en_us",
+      "reason": "GT6 Cover 1022 Air Vent is both the machine cover and the semantic catalog row; tooltip text is not a second title",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemTechnological.java"
+    },
+    {
+      "display_name": "Boiled Egg",
+      "locale": "en_us",
+      "reason": "GT6 MultiItemFood metas 1060 and 1061 share the source-backed English name Boiled Egg",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemFood.java"
+    },
+    {
+      "display_name": "Grass",
+      "locale": "en_us",
+      "reason": "GT6 MultiItemFood 12000 Grass is registered twice after catalog collision-avoidance; source title is Grass",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemFood.java"
+    },
+    {
+      "display_name": "Mud",
+      "locale": "en_us",
+      "reason": "GT6 Mud ball and diggable mud share the source-backed English name Mud",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemFood.java"
+    },
+    {
+      "display_name": "Blue Clay",
+      "locale": "en_us",
+      "reason": "GT6 palygorskite clay ball and diggable blue clay share this source-backed English name",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemFood.java"
+    },
+    {
+      "display_name": "Brown Clay",
+      "locale": "en_us",
+      "reason": "GT6 brown clay ball and diggable brown clay share this source-backed English name",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemFood.java"
+    },
+    {
+      "display_name": "Red Clay",
+      "locale": "en_us",
+      "reason": "GT6 red clay ball and diggable red clay share this source-backed English name",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemFood.java"
+    },
+    {
+      "display_name": "White Clay",
+      "locale": "en_us",
+      "reason": "GT6 kaolinite clay ball and diggable white clay share this source-backed English name",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemFood.java"
+    },
+    {
+      "display_name": "Circuit Board (Basic)",
+      "locale": "en_us",
+      "reason": "GT6 MultiItemTechnological circuit board 30201; part/ tooltip path is collision-avoidance, not a second title",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemTechnological.java"
+    },
+    {
+      "display_name": "Circuit Board (Good)",
+      "locale": "en_us",
+      "reason": "Same GT6 circuit-board family as Circuit Board (Basic)",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemTechnological.java"
+    },
+    {
+      "display_name": "Circuit Board (Advanced)",
+      "locale": "en_us",
+      "reason": "Same GT6 circuit-board family as Circuit Board (Basic)",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemTechnological.java"
+    },
+    {
+      "display_name": "Circuit Board (Elite)",
+      "locale": "en_us",
+      "reason": "Same GT6 circuit-board family as Circuit Board (Basic)",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemTechnological.java"
+    },
+    {
+      "display_name": "Circuit Board (Master)",
+      "locale": "en_us",
+      "reason": "Same GT6 circuit-board family as Circuit Board (Basic)",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemTechnological.java"
+    },
+    {
+      "display_name": "Circuit Board (Ultimate)",
+      "locale": "en_us",
+      "reason": "Same GT6 circuit-board family as Circuit Board (Basic)",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemTechnological.java"
+    },
+    {
+      "display_name": "Circuit T1 (Basic)",
+      "locale": "en_us",
+      "reason": "GT6 circuit T1; part/ tooltip path is collision-avoidance, not a second title",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemTechnological.java"
+    },
+    {
+      "display_name": "Circuit T2 (Good)",
+      "locale": "en_us",
+      "reason": "Same GT6 circuit family as Circuit T1 (Basic)",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemTechnological.java"
+    },
+    {
+      "display_name": "Circuit T3 (Advanced)",
+      "locale": "en_us",
+      "reason": "Same GT6 circuit family as Circuit T1 (Basic)",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemTechnological.java"
+    },
+    {
+      "display_name": "Circuit T4 (Elite)",
+      "locale": "en_us",
+      "reason": "Same GT6 circuit family as Circuit T1 (Basic)",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemTechnological.java"
+    },
+    {
+      "display_name": "Circuit T5 (Master)",
+      "locale": "en_us",
+      "reason": "Same GT6 circuit family as Circuit T1 (Basic)",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemTechnological.java"
+    },
+    {
+      "display_name": "Circuit T6 (Ultimate)",
+      "locale": "en_us",
+      "reason": "Same GT6 circuit family as Circuit T1 (Basic)",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemTechnological.java"
+    },
+    {
+      "display_name": "Circuit Wiring (Copper)",
+      "locale": "en_us",
+      "reason": "GT6 circuit wiring; part/ tooltip path is collision-avoidance, not a second title",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemTechnological.java"
+    },
+    {
+      "display_name": "Circuit Wiring (Gold)",
+      "locale": "en_us",
+      "reason": "Same GT6 circuit-wiring family as Circuit Wiring (Copper)",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemTechnological.java"
+    },
+    {
+      "display_name": "Circuit Wiring (Platinum)",
+      "locale": "en_us",
+      "reason": "Same GT6 circuit-wiring family as Circuit Wiring (Copper)",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemTechnological.java"
+    },
+    {
+      "display_name": "Compact Force Field Emitter (PUV1)",
+      "locale": "en_us",
+      "reason": "GT6 compact emitter; part/ path is a duplicate registration of the same source-backed title",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemTechnological.java"
+    },
+    {
+      "display_name": "Compact Force Field Emitter (UV)",
+      "locale": "en_us",
+      "reason": "Same GT6 compact-emitter family as Compact Force Field Emitter (PUV1)",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemTechnological.java"
+    },
+    {
+      "display_name": "Compact Force Field Emitter (ZPM)",
+      "locale": "en_us",
+      "reason": "Same GT6 compact-emitter family as Compact Force Field Emitter (PUV1)",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemTechnological.java"
+    },
+    {
+      "display_name": "Compact Sensor (LuV)",
+      "locale": "en_us",
+      "reason": "GT6 compact sensor; part/ path is a duplicate registration of the same source-backed title",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemTechnological.java"
+    },
+    {
+      "display_name": "Compact Sensor (ZPM)",
+      "locale": "en_us",
+      "reason": "Same GT6 compact-sensor family as Compact Sensor (LuV)",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemTechnological.java"
+    },
+    {
+      "display_name": "Compact Signal Emitter (LuV)",
+      "locale": "en_us",
+      "reason": "GT6 compact signal emitter; part/ path is a duplicate registration of the same source-backed title",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemTechnological.java"
+    },
+    {
+      "display_name": "Compact Signal Emitter (ZPM)",
+      "locale": "en_us",
+      "reason": "Same GT6 compact-signal-emitter family as Compact Signal Emitter (LuV)",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemTechnological.java"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "capability_slug": "localization/language-key-display-name-normalization",
+  "status": "FROZEN_FOR_LANDING",
+  "minecraft_alignment": "net.minecraft.Util.makeDescriptionId(type, ResourceLocation)",
+  "namespace": "cruciblecraft",
+  "registry_object_types": [
+    "block",
+    "item",
+    "fluid",
+    "fluid_type"
+  ],
+  "canonical_function": {
+    "name": "translation_key",
+    "rule": "object_type + '.' + namespace + '.' + registry_path.replace('/', '.')",
+    "examples": {
+      "aluminium/fluid_pipe": "block.cruciblecraft.aluminium.fluid_pipe",
+      "aluminium/block": "block.cruciblecraft.aluminium.block",
+      "water/plant_gt_twig": "item.cruciblecraft.water.plant_gt_twig",
+      "red_alloy/wire": "item.cruciblecraft.red_alloy.wire",
+      "dye_flower_black": "fluid.cruciblecraft.dye_flower_black"
+    }
+  },
+  "block_and_item": {
+    "shared_path_mapping": true,
+    "note": "BlockItem uses the block description id at runtime. Datagen may still emit a matching item.* key with the same dotted path, never a slash twin."
+  },
+  "template_key_prefixes": [
+    "item.cruciblecraft.material_form.",
+    "material.cruciblecraft.",
+    "tooltip.cruciblecraft.",
+    "message.cruciblecraft.",
+    "disconnect.cruciblecraft.",
+    "emi.",
+    "jade.cruciblecraft.",
+    "config.jade.",
+    "container.cruciblecraft.",
+    "itemGroup.cruciblecraft.",
+    "cruciblecraft.configuration."
+  ],
+  "template_keys_are_not_registry_paths": true,
+  "forbidden_after_landing": {
+    "slash_in_registry_backed_keys": true,
+    "dual_slash_and_dot_keys_for_same_object": true,
+    "per_generator_replace_rules": true
+  },
+  "generators_that_must_share_this_function": [
+    "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+    "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+    "tools/generated_resource_gate.py:lang_key",
+    "tools/player_complete.py:item_lang_keys",
+    "src/test/java/com/masson/cruciblecraft/datagen/MaterialVisualResourceTest.java",
+    "src/test/java/com/masson/cruciblecraft/datagen/ProcessingMachineResourceTest.java"
+  ],
+  "player_complete_lookup": {
+    "prep": "dual slash-or-dot lookup is the recorded current behavior",
+    "landing_migration": "keep dual lookup only as a migration guard",
+    "close": "dotted canonical key required; delete the slash branch"
+  },
+  "material_visual_test_migration": {
+    "current": "block.cruciblecraft.aluminium/block",
+    "landing": "block.cruciblecraft.aluminium.block"
+  },
+  "unchanged_by_this_card": [
+    "GT6 registry path",
+    "CrucibleCraft registry id",
+    "ResourceLocation",
+    "model path",
+    "blockstate path",
+    "loot path",
+    "save stack id"
+  ],
+  "live_inventory_must_include": [
+    "static ModBlocks registrations",
+    "catalog machines / storage / energy hosts",
+    "dynamic material storage / casing / rock blocks",
+    "PipeCatalog pipes",
+    "ElectricalConductorCatalog cables and bare wires",
+    "redstone wire / insulated cable forms"
+  ]
+}

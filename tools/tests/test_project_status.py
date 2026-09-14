@@ -32,6 +32,7 @@ class ProjectStatusTest(unittest.TestCase):
         self.assertIn("`logistics/cover-remainder`", text)
         self.assertIn("`worldgen/gt-trees`", text)
         self.assertIn("`worldgen/gt-dungeon`", text)
+        self.assertIn("`localization/language-key-display-name-normalization`", text)
         self.assertIn("`machines/sanding`", text)
         self.assertIn("`machines/oven`", text)
         self.assertIn("`content/sensors`", text)
@@ -42,6 +43,9 @@ class ProjectStatusTest(unittest.TestCase):
         self.assertIn("machines/roll-former", text)
         self.assertIn("## Prep（不占落地锁）", text)
         self.assertIn("## runtime_ready", text)
+        self.assertIn("## frozen", text)
+        self.assertIn("`energy/steam-turbine`", text)
+        self.assertIn("`content/puv-omega-parts`", text)
         self.assertIn("python tools/close_capability.py", text)
         self.assertIn("blocked.md", text)
 
