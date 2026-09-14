@@ -31,6 +31,8 @@ import com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies;
 import com.masson.cruciblecraft.content.item.BathMteIdentityCatalog;
 import com.masson.cruciblecraft.content.item.TechnologicalPartCatalog;
 import com.masson.cruciblecraft.content.item.SmelterMteIdentityCatalog;
+import com.masson.cruciblecraft.content.mte.MteInPlaceCatalog;
+import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.BathIdentityCatalog;
@@ -133,11 +135,18 @@ public final class ModItems {
             new LinkedHashMap<>();
     private static final Map<GtTreeSpecies, DeferredItem<BlockItem>> TREE_LEAVES_ITEMS =
             new LinkedHashMap<>();
+    private static final Map<
+            com.masson.cruciblecraft.worldgen.crop.GlowtusColor,
+            DeferredItem<BlockItem>> GLOWTUS_ITEMS =
+                    new LinkedHashMap<>();
     public static final DeferredItem<Item> RUBBER_RESIN = ITEMS.register(
             "tree/rubber_resin", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<BlockItem> GT_BUSH =
+            ITEMS.registerSimpleBlockItem("plant/gt_bush", ModBlocks.GT_BUSH);
 
     static {
         registerGtTrees();
+        registerGtCrops();
     }
     public static final DeferredItem<LuFiberCableItem> LU_FIBER_CABLE =
             ITEMS.register(
@@ -511,6 +520,10 @@ public final class ModItems {
             net.minecraft.resources.ResourceLocation,
             DeferredItem<HopperBlockItem>> HOPPER_ITEMS =
                     registerHopperItems();
+    private static final Map<
+            net.minecraft.resources.ResourceLocation,
+            DeferredItem<CatalogNamedBlockItem>> MTE_INPLACE_ITEMS =
+                    registerMteInPlaceItems();
     private static final Map<
             net.minecraft.resources.ResourceLocation,
             DeferredItem<BlockItem>> SENSOR_ITEMS =
@@ -893,7 +906,7 @@ public final class ModItems {
                     item = ITEMS.register(
                             registryName,
                             () -> new RedstoneWireBlockItem(
-                                    ModBlocks.redstoneWireBlocksById()
+                                    ModBlocks.redstoneWireCatalogById()
                                             .get(kind.id())
                                             .get(),
                                     kind,
@@ -1406,6 +1419,31 @@ public final class ModItems {
         return HOPPER_ITEMS;
     }
 
+    private static Map<ResourceLocation, DeferredItem<CatalogNamedBlockItem>>
+            registerMteInPlaceItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<CatalogNamedBlockItem>> items =
+                new LinkedHashMap<>();
+        for (MteInPlaceSpec spec : MteInPlaceCatalog.specs()) {
+            DeferredItem<CatalogNamedBlockItem> item = ITEMS.register(
+                    spec.registryPath(),
+                    () -> new CatalogNamedBlockItem(
+                            ModBlocks.mteInPlaceBlocksById().get(spec.id()).get(),
+                            new Item.Properties(),
+                            spec.englishName(),
+                            spec.chineseName()));
+            if (items.put(spec.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate in-place MTE item " + spec.id());
+            }
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    public static Map<ResourceLocation, DeferredItem<CatalogNamedBlockItem>>
+            mteInPlaceItemsById() {
+        return MTE_INPLACE_ITEMS;
+    }
+
     private static Map<ResourceLocation, DeferredItem<BlockItem>>
             registerSensorItems() {
         LinkedHashMap<ResourceLocation, DeferredItem<BlockItem>> items =
@@ -1802,6 +1840,28 @@ public final class ModItems {
 
     private static String key(String materialId, MaterialPrefix form) {
         return materialId + "/" + form.serializedName();
+    }
+
+    private static void registerGtCrops() {
+        for (com.masson.cruciblecraft.worldgen.crop.GlowtusColor color :
+                com.masson.cruciblecraft.worldgen.crop.GlowtusColor.ALL) {
+            GLOWTUS_ITEMS.put(
+                    color,
+                    ITEMS.register(
+                            color.blockPath(),
+                            () -> new net.minecraft.world.item.PlaceOnWaterBlockItem(
+                                    ModBlocks.glowtus(color).get(),
+                                    new Item.Properties())));
+        }
+    }
+
+    public static DeferredItem<BlockItem> glowtusItem(
+            com.masson.cruciblecraft.worldgen.crop.GlowtusColor color) {
+        return GLOWTUS_ITEMS.get(color);
+    }
+
+    public static java.util.Collection<DeferredItem<BlockItem>> glowtusItems() {
+        return GLOWTUS_ITEMS.values();
     }
 
     private static void registerGtTrees() {

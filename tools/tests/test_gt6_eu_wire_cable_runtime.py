@@ -7,6 +7,7 @@ import unittest
 
 from tools import capability_ledger as ledger
 from tools import census_common as census
+from tools import gt6_eu_missing_wire_gauges_runtime as missing_gauges
 from tools import gt6_eu_wire_cable_runtime as runtime
 
 SLUG = "content/gt6-eu-wire-cable-runtime"
@@ -74,13 +75,17 @@ class Gt6EuWireCableRuntimeTest(unittest.TestCase):
         catalog = CATALOG_JAVA.read_text(encoding="utf-8")
         tests = GAME_TESTS.read_text(encoding="utf-8")
         core = CORE_TESTS.read_text(encoding="utf-8")
-        self.assertIn("EXPECTED_WIRE_BLOCKS = 231", catalog)
+        if missing_gauges.folded_metas():
+            self.assertIn("EXPECTED_WIRE_BLOCKS = 434", catalog)
+            self.assertIn("wireGt07", catalog)
+        else:
+            self.assertIn("EXPECTED_WIRE_BLOCKS = 231", catalog)
+            self.assertNotIn("wireGt07", catalog)
         self.assertIn("EXPECTED_CABLE_BLOCKS = 115", catalog)
         self.assertIn("DOUBLE_WIRE", catalog)
         self.assertIn("HEXADECUPLE_WIRE", catalog)
         self.assertIn("red_alloy", catalog)
         self.assertIn('case "cableGt08" -> 12', catalog)
-        self.assertNotIn("wireGt07", catalog)
         notes = census.load_json(WAVE / "runtime_notes.json")
         self.assertEqual(231, notes["expected_wires"])
         self.assertEqual(115, notes["expected_cables"])
@@ -159,15 +164,18 @@ class Gt6EuWireCableRuntimeTest(unittest.TestCase):
             if identity.get("registry_kind") == "item"
         }
         self.assertEqual(set(), bath_items & smelter_items)
-        lead = next(
-            identity
-            for identity in census.load_json(runtime.DATA_CATALOG).get(
-                "identities"
+        identities = census.load_json(runtime.DATA_CATALOG).get("identities") or []
+        if missing_gauges.folded_metas():
+            lead = next(row for row in identities if int(row["meta"]) == 28106)
+            self.assertEqual("existing_item", lead["registry_kind"])
+            self.assertEqual("lead/septuple_wire", lead["registry_path"])
+        else:
+            lead = next(
+                identity
+                for identity in identities
+                if identity.get("registry_path") == "electric_wire/7x_lead_wire"
             )
-            or []
-            if identity.get("registry_path") == "electric_wire/7x_lead_wire"
-        )
-        self.assertEqual("existing_item", lead["registry_kind"])
+            self.assertEqual("existing_item", lead["registry_kind"])
         self.assertEqual(
             hashlib.sha256(R0.read_bytes()).hexdigest(),
             (WAVE / "r0_disposition_sha256.txt").read_text(encoding="utf-8").strip(),

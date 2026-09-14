@@ -1,0 +1,48 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-fluid-dangerous-media-runtime",
+  "title": "GT6 Fluid Dangerous Media Runtime",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6流体危险介质运行时详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/logistics/pipe/fluid/FluidPipeDangerousMedia.java",
+    "src/main/java/com/masson/cruciblecraft/logistics/pipe/fluid/FluidPipeBlockedMedia.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/FluidPipeBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/FluidPipeBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/FluidPipeRuntimeGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/FluidDangerousMediaRuntimeGameTests.java",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_fluid_dangerous_media_runtime/**",
+    "tools/capabilities/content/gt6-fluid-dangerous-media-runtime/**",
+    "tools/waves/content/gt6-fluid-dangerous-media-runtime/**",
+    "tools/gt6_fluid_dangerous_media_runtime.py",
+    "tools/build_gt6_fluid_dangerous_media_runtime.py",
+    "tools/tests/test_gt6_fluid_dangerous_media_runtime.py"
+  ],
+  "depends_on": [
+    "registry/catalog-modern-ids",
+    "content/gt6-fluid-pipe-runtime"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-fluid-dangerous-media-runtime",
+  "required_test_ids": [
+    "contactDamageHurtsLivingEntity",
+    "flammableOverTempLightsAdjacent",
+    "magicFluidFillsThenTrashes",
+    "plasmaMagicNotMappedToGasAcid"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "connector:fluid-pipe:dangerous-media",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:wood_treated/fluid_pipe",
+        "cruciblecraft:copper/fluid_pipe"
+      ],
+      "reason": "Behavior child on existing fluid pipes. Plasma/magic fill then tick; flammable and contactDamage. No new specs and no alias onto gas/acid."
+    }
+  ],
+  "note": "Dangerous media only. Close at runtime_ready, not player_complete. Do not edit R0, the baseline identity ledger, or frozen fluid-pipe runtime_notes."
+}

@@ -61,6 +61,8 @@ import com.masson.cruciblecraft.content.block.GtBlockObjectBarsBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectCFoamFreshBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectLogBlock;
+import com.masson.cruciblecraft.content.block.GlowtusBlock;
+import com.masson.cruciblecraft.content.block.GtBushBlock;
 import com.masson.cruciblecraft.content.block.GtTreeHoleBlock;
 import com.masson.cruciblecraft.content.block.GtTreeLeavesBlock;
 import com.masson.cruciblecraft.content.block.GtTreeLogBlock;
@@ -71,6 +73,9 @@ import com.masson.cruciblecraft.content.block.GtBlockObjectSpikeBlock;
 import com.masson.cruciblecraft.content.block.GtStoneBlock;
 import com.masson.cruciblecraft.content.block.GtStoneSlabBlock;
 import com.masson.cruciblecraft.content.block.DustFunnelBlock;
+import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
+import com.masson.cruciblecraft.content.mte.MteInPlaceCatalog;
+import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.block.RotationalAxleBlock;
 import com.masson.cruciblecraft.content.block.RotationalGearboxBlock;
 import com.masson.cruciblecraft.content.block.SolidBurningBoxBlock;
@@ -151,9 +156,17 @@ public final class ModBlocks {
             new LinkedHashMap<>();
     private static final Map<GtTreeSpecies, DeferredBlock<GtTreeHoleBlock>> TREE_HOLES =
             new LinkedHashMap<>();
+    private static final Map<
+            com.masson.cruciblecraft.worldgen.crop.GlowtusColor,
+            DeferredBlock<GlowtusBlock>> GLOWTUS =
+                    new LinkedHashMap<>();
+    public static final DeferredBlock<GtBushBlock> GT_BUSH = BLOCKS.register(
+            "plant/gt_bush",
+            GtBushBlock::new);
 
     static {
         registerGtTrees();
+        registerGtCrops();
     }
 
     /** M0 placeholder block — later reused as firebox cladding. */
@@ -390,10 +403,14 @@ public final class ModBlocks {
                     registerTieredProcessingBlocks();
     private static final Map<ResourceLocation, DeferredBlock<HopperBlock>>
             HOPPER_BLOCKS = registerHopperBlocks();
+    private static final Map<ResourceLocation, DeferredBlock<MteInPlaceBlock>>
+            MTE_INPLACE_BLOCKS = registerMteInPlaceBlocks();
     private static final Map<ResourceLocation, DeferredBlock<SensorBlock>>
             SENSOR_BLOCKS = registerSensorBlocks();
     private static final Map<ResourceLocation, DeferredBlock<RedstoneWireBlock>>
-            REDSTONE_WIRE_BLOCKS = registerRedstoneWireBlocks();
+            REDSTONE_WIRE_CATALOG = registerRedstoneWireBlocks();
+    private static final Map<ResourceLocation, DeferredBlock<RedstoneWireBlock>>
+            REDSTONE_WIRE_BLOCKS = bareRedstoneWireBlocks();
     private static final Map<ResourceLocation, DeferredBlock<Block>>
             GT_STONE_BLOCKS = registerGtStoneBlocks();
     private static final Map<ResourceLocation, DeferredBlock<Block>>
@@ -1164,6 +1181,35 @@ public final class ModBlocks {
         return HOPPER_BLOCKS.values();
     }
 
+    private static Map<ResourceLocation, DeferredBlock<MteInPlaceBlock>>
+            registerMteInPlaceBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<MteInPlaceBlock>> blocks =
+                new LinkedHashMap<>();
+        for (MteInPlaceSpec spec : MteInPlaceCatalog.specs()) {
+            DeferredBlock<MteInPlaceBlock> block = BLOCKS.register(
+                    spec.registryPath(),
+                    () -> new MteInPlaceBlock(
+                            spec,
+                            machineProperties().noOcclusion()));
+            if (blocks.put(spec.id(), block) != null) {
+                throw new IllegalStateException(
+                        "Duplicate in-place MTE block " + spec.id());
+            }
+        }
+        return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    public static Map<ResourceLocation, DeferredBlock<MteInPlaceBlock>>
+            mteInPlaceBlocksById() {
+        return MTE_INPLACE_BLOCKS;
+    }
+
+    public static Block[] mteInPlaceBlockArray() {
+        return MTE_INPLACE_BLOCKS.values().stream()
+                .map(DeferredBlock::get)
+                .toArray(Block[]::new);
+    }
+
     private static Map<ResourceLocation, DeferredBlock<SensorBlock>>
             registerSensorBlocks() {
         LinkedHashMap<ResourceLocation, DeferredBlock<SensorBlock>> blocks =
@@ -1203,7 +1249,7 @@ public final class ModBlocks {
             registerRedstoneWireBlocks() {
         LinkedHashMap<ResourceLocation, DeferredBlock<RedstoneWireBlock>> blocks =
                 new LinkedHashMap<>();
-        for (RedstoneWireKind kind : RedstoneWireKind.all()) {
+        for (RedstoneWireKind kind : RedstoneWireKind.catalog()) {
             DeferredBlock<RedstoneWireBlock> block = BLOCKS.register(
                     kind.path(),
                     () -> new RedstoneWireBlock(
@@ -1213,11 +1259,32 @@ public final class ModBlocks {
                         "Duplicate redstone wire block " + kind.id());
             }
         }
-        if (blocks.size() != RedstoneWireKind.EXPECTED_SIZE) {
+        if (blocks.size() != RedstoneWireKind.EXPECTED_CATALOG) {
             throw new IllegalStateException(
-                    "Redstone wire registration drifted from 3 GT6 identities");
+                    "Redstone wire registration drifted from 6 GT6 identities");
         }
         return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    private static Map<ResourceLocation, DeferredBlock<RedstoneWireBlock>>
+            bareRedstoneWireBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<RedstoneWireBlock>> bare =
+                new LinkedHashMap<>();
+        for (RedstoneWireKind kind : RedstoneWireKind.all()) {
+            DeferredBlock<RedstoneWireBlock> block =
+                    REDSTONE_WIRE_CATALOG.get(kind.id());
+            if (block == null) {
+                throw new IllegalStateException(
+                        "Bare redstone wire missing from catalog: "
+                                + kind.path());
+            }
+            bare.put(kind.id(), block);
+        }
+        if (bare.size() != RedstoneWireKind.EXPECTED_SIZE) {
+            throw new IllegalStateException(
+                    "Bare redstone wire map drifted from 3 GT6 identities");
+        }
+        return java.util.Collections.unmodifiableMap(bare);
     }
 
     public static Map<ResourceLocation, DeferredBlock<RedstoneWireBlock>>
@@ -1225,13 +1292,23 @@ public final class ModBlocks {
         return REDSTONE_WIRE_BLOCKS;
     }
 
+    public static Map<ResourceLocation, DeferredBlock<RedstoneWireBlock>>
+            redstoneWireCatalogById() {
+        return REDSTONE_WIRE_CATALOG;
+    }
+
     public static Collection<DeferredBlock<RedstoneWireBlock>>
             redstoneWireBlocks() {
         return REDSTONE_WIRE_BLOCKS.values();
     }
 
+    public static Collection<DeferredBlock<RedstoneWireBlock>>
+            redstoneWireCatalog() {
+        return REDSTONE_WIRE_CATALOG.values();
+    }
+
     public static Block[] redstoneWireBlockArray() {
-        return REDSTONE_WIRE_BLOCKS.values().stream()
+        return REDSTONE_WIRE_CATALOG.values().stream()
                 .map(DeferredBlock::get)
                 .toArray(Block[]::new);
     }
@@ -1655,8 +1732,36 @@ public final class ModBlocks {
         return TREE_HOLES.values();
     }
 
+    public static DeferredBlock<GlowtusBlock> glowtus(
+            com.masson.cruciblecraft.worldgen.crop.GlowtusColor color) {
+        DeferredBlock<GlowtusBlock> block = GLOWTUS.get(color);
+        if (block == null) {
+            throw new IllegalArgumentException("No glowtus for " + color.id());
+        }
+        return block;
+    }
+
+    public static java.util.Collection<DeferredBlock<GlowtusBlock>> glowtusBlocks() {
+        return GLOWTUS.values();
+    }
+
+    public static Block[] glowtusBlockArray() {
+        return GLOWTUS.values().stream().map(DeferredBlock::get).toArray(Block[]::new);
+    }
+
     public static Block[] treeHoleBlockArray() {
         return TREE_HOLES.values().stream().map(DeferredBlock::get).toArray(Block[]::new);
+    }
+
+    private static void registerGtCrops() {
+        for (com.masson.cruciblecraft.worldgen.crop.GlowtusColor color :
+                com.masson.cruciblecraft.worldgen.crop.GlowtusColor.ALL) {
+            GLOWTUS.put(
+                    color,
+                    BLOCKS.register(
+                            color.blockPath(),
+                            () -> new GlowtusBlock(color)));
+        }
     }
 
     private static void registerGtTrees() {

@@ -1,0 +1,1869 @@
+{
+  "do_not_add": true,
+  "entries": [
+    {
+      "affected_capabilities": [
+        "machines/loom"
+      ],
+      "authority": [
+        "tools/waves/machines/loom/overflow.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "recipe:loom:overflow",
+          "slug": "machines/loom"
+        }
+      ],
+      "count": 869,
+      "discovered_by": "machines/loom",
+      "id": "recipe/loom-overflow",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "232 unmapped MTE/plant_gt_fiber + 637 shadow. Connector identity work turned 0 rows green.",
+      "resolved_by": null,
+      "root_cause": "unmapped_mte_plant_fiber_or_shadow",
+      "root_cause_class": "unmapped_operand",
+      "status": "open",
+      "title": "织机 overflow 仍 blocked",
+      "unit": "rows"
+    },
+    {
+      "affected_capabilities": [
+        "machines/laminator"
+      ],
+      "authority": [
+        "tools/waves/machines/laminator/overflow.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "recipe:laminator:unmapped_mte_overflow",
+          "slug": "machines/laminator"
+        }
+      ],
+      "count": 60,
+      "discovered_by": "machines/laminator",
+      "id": "recipe/laminator-overflow",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "54 unmapped MTE + 6 gt_block log. Connector identity work turned 0 rows green.",
+      "resolved_by": null,
+      "root_cause": "unmapped_mte_or_gt_block_log",
+      "root_cause_class": "unmapped_operand",
+      "status": "open",
+      "title": "层压机 unmapped MTE overflow",
+      "unit": "rows"
+    },
+    {
+      "affected_capabilities": [
+        "machines/injector"
+      ],
+      "authority": [
+        "tools/waves/machines/injector/overflow.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "recipe:injector:overflow",
+          "slug": "machines/injector"
+        }
+      ],
+      "count": 535,
+      "discovered_by": "machines/injector",
+      "id": "recipe/injector-overflow",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "27 prep overflow + 449 glass/slab + 59 shadow. 0 rows are leftover MTE identity.",
+      "resolved_by": null,
+      "root_cause": "unregistered_glass_slab_fluid_or_shadow",
+      "root_cause_class": "unmapped_operand",
+      "status": "open",
+      "title": "注射机 overflow 仍 blocked",
+      "unit": "rows"
+    },
+    {
+      "affected_capabilities": [
+        "machines/injector"
+      ],
+      "authority": [
+        "tools/capabilities/machines/injector/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "note_marker": "MV/HV/IV stay acquisition-blocked",
+          "slug": "machines/injector"
+        }
+      ],
+      "count": 3,
+      "discovered_by": "machines/injector",
+      "id": "obtain/injector-mv-hv-iv-hosts",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "LV and Chromium EV hosts are source-exact. Do not stand in other motors.",
+      "resolved_by": null,
+      "root_cause": "missing_host_acquisition_parts",
+      "root_cause_class": "missing_form",
+      "status": "open",
+      "title": "注射机 MV/HV/IV 主机获得格仍 blocked",
+      "unit": "hosts"
+    },
+    {
+      "affected_capabilities": [
+        "machines/nanofab"
+      ],
+      "authority": [
+        "tools/waves/machines/nanofab/overflow.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "recipe:nanofab:overflow",
+          "slug": "machines/nanofab"
+        }
+      ],
+      "count": 57,
+      "discovered_by": "machines/nanofab",
+      "id": "recipe/nanofab-overflow",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "12 prep overflow + 45 shadowed programmed_circuit signatures.",
+      "resolved_by": null,
+      "root_cause": "graphene_mte_dolamide_or_shadow_circuit",
+      "root_cause_class": "unmapped_operand",
+      "status": "open",
+      "title": "纳米加工机 overflow 仍 blocked",
+      "unit": "rows"
+    },
+    {
+      "affected_capabilities": [
+        "machines/nanofab"
+      ],
+      "authority": [
+        "tools/capabilities/machines/nanofab/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "machine:nanofab:host_obtain",
+          "slug": "machines/nanofab"
+        }
+      ],
+      "count": 5,
+      "discovered_by": "machines/nanofab",
+      "id": "obtain/nanofab-hosts",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "IL.Comp_Laser_Gas_Ar/Kr/Xe and sapphire crystal processor. Emitters/sensors already exist.",
+      "resolved_by": null,
+      "root_cause": "missing_laser_gas_and_sapphire_processor",
+      "root_cause_class": "missing_form",
+      "status": "open",
+      "title": "纳米加工机五档主机获得格仍 blocked",
+      "unit": "hosts"
+    },
+    {
+      "affected_capabilities": [
+        "machines/pressure-washer"
+      ],
+      "authority": [
+        "tools/waves/machines/pressure-washer/overflow.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "recipe:pressurewasher:stone_overflow",
+          "slug": "machines/pressure-washer"
+        }
+      ],
+      "count": 120,
+      "discovered_by": "machines/pressure-washer",
+      "id": "recipe/pressure-washer-stone",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Do not replace GT6 stone identities with unrelated blocks.",
+      "resolved_by": null,
+      "root_cause": "unmapped_gt_stone",
+      "root_cause_class": "unmapped_operand",
+      "status": "open",
+      "title": "压力清洗机 gt.stone overflow",
+      "unit": "rows"
+    },
+    {
+      "affected_capabilities": [
+        "machines/roll-former"
+      ],
+      "authority": [
+        "tools/waves/machines/roll-former/overflow.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "recipe:rollformer:rail_gt",
+          "slug": "machines/roll-former"
+        }
+      ],
+      "count": 2,
+      "discovered_by": "machines/roll-former",
+      "id": "recipe/roll-former-rail-gt",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Non-blocking tail. Do not stand in tungsten_carbide or obsidian_steel rails.",
+      "resolved_by": null,
+      "root_cause": "unmapped_rail_gt",
+      "root_cause_class": "unmapped_operand",
+      "status": "open",
+      "title": "辊压成型机 rail_gt 两行",
+      "unit": "rows"
+    },
+    {
+      "affected_capabilities": [
+        "machines/melter"
+      ],
+      "authority": [
+        "tools/waves/machines/melter/overflow.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "recipe:melter:overflow",
+          "slug": "machines/melter"
+        }
+      ],
+      "count": 2796,
+      "discovered_by": "machines/melter",
+      "id": "recipe/melter-overflow",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Only a classified subset is verified; the rest is UNVERIFIED_SCALE. Do not copy 2796 into a todo list.",
+      "resolved_by": null,
+      "root_cause": "unmapped_fluids_identities_or_tank_limit",
+      "root_cause_class": "unmapped_operand",
+      "status": "partial",
+      "title": "熔融机 overflow（规模未逐行核实）",
+      "unit": "rows"
+    },
+    {
+      "affected_capabilities": [
+        "machines/oven"
+      ],
+      "authority": [
+        "tools/capabilities/machines/oven/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "recipe:oven:cooking_oil_xp",
+          "slug": "machines/oven"
+        }
+      ],
+      "count": 2,
+      "discovered_by": "machines/oven",
+      "id": "recipe/oven-cooking-oil-xp",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Live oven spec has zero fluid tanks.",
+      "resolved_by": null,
+      "root_cause": "optional_furnace_fluids_out_of_child",
+      "root_cause_class": "missing_fluid",
+      "status": "open",
+      "title": "熔炉烹饪油与 XP 流体",
+      "unit": "fluids"
+    },
+    {
+      "affected_capabilities": [
+        "prep:machines/printer"
+      ],
+      "authority": [
+        "docs/current/unimplemented-gap.md"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [],
+      "count": 22,
+      "discovered_by": "prep:machines/printer",
+      "id": "recipe/printer-dye-fluids",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "gt.recipe.printer dump 22 / selected 0. No live family. Capability does not exist yet.",
+      "resolved_by": null,
+      "root_cause": "missing_dye_chemical_fluids",
+      "root_cause_class": "missing_fluid",
+      "status": "open",
+      "title": "印刷机 22 行染料流体（prep）",
+      "unit": "rows"
+    },
+    {
+      "affected_capabilities": [
+        "energy/converter-catalog"
+      ],
+      "authority": [
+        "tools/blocked_recipe_ledger.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [],
+      "count": 49,
+      "discovered_by": "recipe/blocked-chain-ledger",
+      "id": "recipe/fluidbed-overflow",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Must not be added to bath families or petroleum 702.",
+      "resolved_by": null,
+      "root_cause": "unmapped_storage_dust_or_div72",
+      "root_cause_class": "unmapped_operand",
+      "status": "open",
+      "title": "流化床 49 行 blocked chain",
+      "unit": "rows"
+    },
+    {
+      "affected_capabilities": [],
+      "authority": [
+        "tools/blocked_recipe_ledger.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [],
+      "count": 150,
+      "discovered_by": "recipe/blocked-chain-ledger",
+      "id": "recipe/bath-remainder-families",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Family count, not recipe rows. Do not add to fluidbed 49.",
+      "resolved_by": null,
+      "root_cause": "bath_remainder_unmapped_families",
+      "root_cause_class": "unmapped_operand",
+      "status": "open",
+      "title": "Bath remainder 150 家族",
+      "unit": "families"
+    },
+    {
+      "affected_capabilities": [],
+      "authority": [
+        "tools/blocked_recipe_ledger.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [],
+      "count": 5,
+      "discovered_by": "recipe/blocked-chain-ledger",
+      "id": "recipe/bath-identity-families",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Separate from remainder 150.",
+      "resolved_by": null,
+      "root_cause": "bath_identity_unmapped_families",
+      "root_cause_class": "unmapped_operand",
+      "status": "open",
+      "title": "Bath identity 5 家族",
+      "unit": "families"
+    },
+    {
+      "affected_capabilities": [],
+      "authority": [
+        "tools/blocked_recipe_ledger.json"
+      ],
+      "blocks_maturity": "none",
+      "claimed_by": [],
+      "count": 702,
+      "discovered_by": "recipe/blocked-chain-ledger",
+      "id": "historical/petroleum-sampled-702",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Do not treat the 2026-08-11 702 as a current total.",
+      "resolved_by": null,
+      "root_cause": "historical_optional_petroleum_sample",
+      "root_cause_class": "historical_optional",
+      "status": "out_of_scope",
+      "title": "石油采样 702（历史可选，非当前合计）",
+      "unit": "rows"
+    },
+    {
+      "affected_capabilities": [
+        "content/electric-wire-cable-mte-fold"
+      ],
+      "authority": [
+        "tools/capabilities/content/electric-wire-cable-mte-fold/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "mte:electric-wire-cable:unregistered-gauges",
+          "slug": "content/electric-wire-cable-mte-fold"
+        }
+      ],
+      "count": 61,
+      "discovered_by": "content/electric-wire-cable-mte-fold",
+      "id": "identity/electric-unregistered-gauges",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Mapped 259 is not a dummy-removal set. Graphene wireGt07 is not in the missing-gauge runtime set.",
+      "resolved_by": null,
+      "root_cause": "superconductor_graphene_or_unregistered_gauge",
+      "root_cause_class": "unmapped_identity",
+      "status": "open",
+      "title": "导线电缆 MTE 折回仍有未映射 Loader id",
+      "unit": "loader_ids"
+    },
+    {
+      "affected_capabilities": [
+        "content/gt6-connector-alias-repair"
+      ],
+      "authority": [
+        "tools/capabilities/content/gt6-connector-alias-repair/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "connector:hsla-steel:ungated-gauges",
+          "slug": "content/gt6-connector-alias-repair"
+        }
+      ],
+      "count": null,
+      "discovered_by": "content/gt6-connector-alias-repair",
+      "id": "identity/hsla-ungated-gauges",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Alias repair only. HSLA cableGt12 is not in the landed missing-gauge set.",
+      "resolved_by": null,
+      "root_cause": "ungated_hsla_wire_gauges",
+      "root_cause_class": "unmapped_identity",
+      "status": "open",
+      "title": "HSLA 未开门线规仍 dummy",
+      "unit": ""
+    },
+    {
+      "affected_capabilities": [
+        "content/gt6-connector-art"
+      ],
+      "authority": [
+        "tools/capabilities/content/gt6-connector-art/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "connector:art:keep-distinct-dummies",
+          "slug": "content/gt6-connector-art"
+        }
+      ],
+      "count": null,
+      "discovered_by": "content/gt6-connector-art",
+      "id": "identity/connector-art-keep-distinct-dummies",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Replace iron-ingot models with the shared GT6 iconset; do not invent BlockItems.",
+      "resolved_by": null,
+      "root_cause": "dummy_items_keep_distinct_until_runtime_hosts",
+      "root_cause_class": "unmapped_identity",
+      "status": "open",
+      "title": "连接件美术卡仍保留 dummy 物品",
+      "unit": ""
+    },
+    {
+      "affected_capabilities": [
+        "content/gt6-eu-wire-cable-runtime",
+        "content/gt6-eu-missing-wire-gauges-runtime"
+      ],
+      "authority": [
+        "tools/capabilities/content/gt6-eu-wire-cable-runtime/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "connector:eu-wire-cable:blocked-gauges",
+          "slug": "content/gt6-eu-wire-cable-runtime"
+        }
+      ],
+      "count": null,
+      "discovered_by": "content/gt6-eu-wire-cable-runtime",
+      "id": "identity/eu-blocked-gauges",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "wireGt07/09/10/11/13/14/15 for 24 materials landed on the missing-gauge child. Graphene/superconductor remain dummy. Same semantic_key stays on the parent.",
+      "resolved_by": null,
+      "root_cause": "graphene_superconductor_or_unprefixed_gauges",
+      "root_cause_class": "unmapped_identity",
+      "status": "partial",
+      "title": "EU 导线缺线规（部分已落地）",
+      "unit": ""
+    },
+    {
+      "affected_capabilities": [
+        "content/gt6-fluid-pipe-runtime",
+        "content/gt6-fluid-combo-pipe-runtime"
+      ],
+      "authority": [
+        "tools/capabilities/content/gt6-fluid-pipe-runtime/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "connector:fluid-pipe:quadruple-nonuple",
+          "slug": "content/gt6-fluid-pipe-runtime"
+        }
+      ],
+      "count": 2,
+      "discovered_by": "content/gt6-fluid-pipe-runtime",
+      "id": "identity/fluid-quadruple-nonuple",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Parent identity_disposition still says blocked. Combo runtime owns the live BlockItems.",
+      "resolved_by": "content/gt6-fluid-combo-pipe-runtime",
+      "root_cause": "combo_pipe_was_dummy_on_parent",
+      "root_cause_class": "unmapped_identity",
+      "status": "superseded",
+      "title": "四联/九联流体管（runtime 已另卡落地）",
+      "unit": "forms"
+    },
+    {
+      "affected_capabilities": [
+        "content/gt6-item-pipe-runtime",
+        "content/gt6-restrictive-item-pipe-runtime"
+      ],
+      "authority": [
+        "tools/capabilities/content/gt6-item-pipe-runtime/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "connector:item-pipe:restrictive",
+          "slug": "content/gt6-item-pipe-runtime"
+        }
+      ],
+      "count": 3,
+      "discovered_by": "content/gt6-item-pipe-runtime",
+      "id": "identity/item-restrictive",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Parent identity_disposition still says blocked.",
+      "resolved_by": "content/gt6-restrictive-item-pipe-runtime",
+      "root_cause": "restrictive_pipe_was_dummy_on_parent",
+      "root_cause_class": "unmapped_identity",
+      "status": "superseded",
+      "title": "Restrictive 物品管（runtime 已另卡落地）",
+      "unit": "forms"
+    },
+    {
+      "affected_capabilities": [
+        "content/mte-redstone-wire",
+        "content/gt6-insulated-redstone-runtime"
+      ],
+      "authority": [
+        "tools/capabilities/content/mte-redstone-wire/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "connector:redstone-wire:insulated-extras",
+          "slug": "content/mte-redstone-wire"
+        }
+      ],
+      "count": 3,
+      "discovered_by": "content/mte-redstone-wire",
+      "id": "identity/redstone-insulated-extras",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Parent identity_disposition still says blocked.",
+      "resolved_by": "content/gt6-insulated-redstone-runtime",
+      "root_cause": "laminator_extras_not_in_catalog_1817",
+      "root_cause_class": "unmapped_identity",
+      "status": "superseded",
+      "title": "绝缘红石 27006/27056/27506（runtime 已另卡落地）",
+      "unit": "metas"
+    },
+    {
+      "affected_capabilities": [
+        "content/gt6-redstone-wire-correction"
+      ],
+      "authority": [
+        "tools/capabilities/content/gt6-redstone-wire-correction/capability.json"
+      ],
+      "blocks_maturity": "none",
+      "claimed_by": [
+        {
+          "semantic_key": "connector:redstone-wire:not-eu-or-pipe",
+          "slug": "content/gt6-redstone-wire-correction"
+        }
+      ],
+      "count": null,
+      "discovered_by": "content/gt6-redstone-wire-correction",
+      "id": "identity/redstone-not-eu-or-pipe",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Must not attach ENERGY, CableNetworkTraversal, or PipeTopology.",
+      "resolved_by": null,
+      "root_cause": "redstone_must_not_attach_energy_or_pipe",
+      "root_cause_class": "invariant",
+      "status": "out_of_scope",
+      "title": "红石线不得挂 EU/管网（不变量）",
+      "unit": ""
+    },
+    {
+      "affected_capabilities": [
+        "content/mte-redstone-wire",
+        "logistics/cover-remainder"
+      ],
+      "authority": [
+        "tools/capabilities/content/mte-redstone-wire/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "connector:redstone-wire:covers",
+          "slug": "content/mte-redstone-wire"
+        }
+      ],
+      "count": null,
+      "discovered_by": "content/mte-redstone-wire",
+      "id": "cover/redstone-wire-covers",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "CC EU cables also do not host covers. Separate from torch/repeater.",
+      "resolved_by": null,
+      "root_cause": "connector_covers_not_hosted",
+      "root_cause_class": "missing_cover_host",
+      "status": "open",
+      "title": "红石线 MTE 盖板未接入",
+      "unit": ""
+    },
+    {
+      "affected_capabilities": [
+        "logistics/cover-remainder"
+      ],
+      "authority": [
+        "tools/capabilities/logistics/cover-remainder/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "cover:redstone_torch_repeater:wire_host",
+          "slug": "logistics/cover-remainder"
+        }
+      ],
+      "count": 2,
+      "discovered_by": "logistics/cover-remainder",
+      "id": "cover/torch-repeater-wire-host",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Insulated metas are live; these covers still refuse current hosts.",
+      "resolved_by": null,
+      "root_cause": "cover_only_attaches_to_insulated_redstone_wire",
+      "root_cause_class": "missing_cover_host",
+      "status": "open",
+      "title": "红石火把/中继器盖板仍缺绝缘线宿主",
+      "unit": "covers"
+    },
+    {
+      "affected_capabilities": [
+        "content/gt6-mte-processing-host-fold"
+      ],
+      "authority": [
+        "tools/capabilities/content/gt6-mte-processing-host-fold/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "mte:processing:ungated-families",
+          "slug": "content/gt6-mte-processing-host-fold"
+        }
+      ],
+      "count": 5,
+      "discovered_by": "content/gt6-mte-processing-host-fold",
+      "id": "identity/processing-ungated-families",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Hammer, Squeezer, Polarizer, MagSep and Laser stay dummy.",
+      "resolved_by": null,
+      "root_cause": "no_matching_sourceid_host",
+      "root_cause_class": "unmapped_identity",
+      "status": "open",
+      "title": "加工机折回未开门家族",
+      "unit": "families"
+    },
+    {
+      "affected_capabilities": [
+        "content/gt6-mte-converter-host-fold"
+      ],
+      "authority": [
+        "tools/capabilities/content/gt6-mte-converter-host-fold/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "mte:energy-converter:turbines-battery-boxes",
+          "slug": "content/gt6-mte-converter-host-fold"
+        }
+      ],
+      "count": 8,
+      "discovered_by": "content/gt6-mte-converter-host-fold",
+      "id": "identity/converter-turbines-battery-boxes",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Keep dummy for a later runtime child. Do not edit R0.",
+      "resolved_by": null,
+      "root_cause": "no_converter_catalog_host",
+      "root_cause_class": "unmapped_identity",
+      "status": "open",
+      "title": "转换机折回 6 轮机 + 2 电池箱",
+      "unit": "items"
+    },
+    {
+      "affected_capabilities": [
+        "machines/sanding"
+      ],
+      "authority": [
+        "tools/capabilities/machines/sanding/capability.json"
+      ],
+      "blocks_maturity": "none",
+      "claimed_by": [
+        {
+          "semantic_key": "machine:sanding:grindstone_32703",
+          "slug": "machines/sanding"
+        }
+      ],
+      "count": 1,
+      "discovered_by": "machines/sanding",
+      "id": "identity/sanding-grindstone-32703",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Also binds RM.Sharpening but is MultiTileEntityGrindStone.",
+      "resolved_by": null,
+      "root_cause": "grindstone_is_separate_mte_class",
+      "root_cause_class": "out_of_child",
+      "status": "out_of_scope",
+      "title": "打磨机不包含 Grindstone 32703",
+      "unit": "metas"
+    },
+    {
+      "affected_capabilities": [
+        "content/sensors"
+      ],
+      "authority": [
+        "tools/capabilities/content/sensors/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "peripheral:sensors:computercraft",
+          "slug": "content/sensors"
+        }
+      ],
+      "count": 1,
+      "discovered_by": "content/sensors",
+      "id": "peripheral/sensors-computercraft",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "ITileEntityComputerizable stays blocked. Sensors are not in the cover net.",
+      "resolved_by": null,
+      "root_cause": "computercraft_peripheral_out_of_card",
+      "root_cause_class": "missing_mod_bridge",
+      "status": "open",
+      "title": "Sensors ComputerCraft 外设",
+      "unit": "integrations"
+    },
+    {
+      "affected_capabilities": [
+        "energy/heat-exchangers"
+      ],
+      "authority": [
+        "tools/capabilities/energy/heat-exchangers/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "heat_exchanger:large_17197",
+          "slug": "energy/heat-exchangers"
+        }
+      ],
+      "count": 1,
+      "discovered_by": "energy/heat-exchangers",
+      "id": "energy/large-heat-exchanger-17197",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "First HEX slice is not the large machine.",
+      "resolved_by": null,
+      "root_cause": "large_hex_follow_up_card",
+      "root_cause_class": "missing_runtime",
+      "status": "open",
+      "title": "大型热交换器 17197",
+      "unit": "metas"
+    },
+    {
+      "affected_capabilities": [
+        "energy/heat-exchangers"
+      ],
+      "authority": [
+        "tools/capabilities/energy/heat-exchangers/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "thermal:steam_turbine",
+          "slug": "energy/heat-exchangers"
+        }
+      ],
+      "count": null,
+      "discovered_by": "energy/heat-exchangers",
+      "id": "energy/steam-turbine",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Must not impersonate HEX or electric transformer.",
+      "resolved_by": null,
+      "root_cause": "steam_turbine_later_card",
+      "root_cause_class": "missing_runtime",
+      "status": "open",
+      "title": "蒸汽涡轮 STEAM→RU",
+      "unit": ""
+    },
+    {
+      "affected_capabilities": [
+        "energy/heat-exchangers"
+      ],
+      "authority": [
+        "tools/capabilities/energy/heat-exchangers/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "thermal:cooler",
+          "slug": "energy/heat-exchangers"
+        }
+      ],
+      "count": null,
+      "discovered_by": "energy/heat-exchangers",
+      "id": "energy/cooler",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Independent runtime, recipes and player path.",
+      "resolved_by": null,
+      "root_cause": "cooler_later_card",
+      "root_cause_class": "missing_runtime",
+      "status": "open",
+      "title": "电力/通量冷却器",
+      "unit": ""
+    },
+    {
+      "affected_capabilities": [
+        "energy/transformers"
+      ],
+      "authority": [
+        "tools/capabilities/energy/transformers/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "transformer:long_distance",
+          "slug": "energy/transformers"
+        }
+      ],
+      "count": 5,
+      "discovered_by": "energy/transformers",
+      "id": "energy/transformer-long-distance",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Same-voltage pair scan, not this voltage-step card.",
+      "resolved_by": null,
+      "root_cause": "needs_block_long_dist_wire",
+      "root_cause_class": "missing_runtime",
+      "status": "open",
+      "title": "长距变压器 10064–10068",
+      "unit": "metas"
+    },
+    {
+      "affected_capabilities": [
+        "energy/transformers"
+      ],
+      "authority": [
+        "tools/capabilities/energy/transformers/capability.json"
+      ],
+      "blocks_maturity": "none",
+      "claimed_by": [
+        {
+          "semantic_key": "transformer:rotation_gearbox",
+          "slug": "energy/transformers"
+        }
+      ],
+      "count": 1,
+      "discovered_by": "energy/transformers",
+      "id": "energy/transformer-rotation-gearbox",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "CC rotational_gearbox must not impersonate MultiTileEntityTransformerRotation.",
+      "resolved_by": null,
+      "root_cause": "rotational_gearbox_is_not_transformer_rotation",
+      "root_cause_class": "invariant",
+      "status": "out_of_scope",
+      "title": "旋转齿轮箱不得冒充电变压器",
+      "unit": "identities"
+    },
+    {
+      "affected_capabilities": [
+        "energy/nuclear-fission-observation-safety",
+        "energy/nuclear-fission-hot-fluids"
+      ],
+      "authority": [
+        "tools/capabilities/energy/nuclear-fission-observation-safety/capability.json",
+        "tools/capabilities/energy/nuclear-fission-hot-fluids/capability.json"
+      ],
+      "blocks_maturity": "none",
+      "claimed_by": [
+        {
+          "semantic_key": "reactor:temperature_kelvin",
+          "slug": "energy/nuclear-fission-observation-safety"
+        },
+        {
+          "semantic_key": "reactor:temperature_kelvin",
+          "slug": "energy/nuclear-fission-hot-fluids"
+        }
+      ],
+      "count": null,
+      "discovered_by": "energy/nuclear-fission-observation-safety",
+      "id": "energy/reactor-temperature-kelvin",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Do not invent Kelvin as HU times a constant.",
+      "resolved_by": null,
+      "root_cause": "heat_is_hu_not_kelvin",
+      "root_cause_class": "invariant",
+      "status": "open",
+      "title": "反应堆温度不得用 HU 伪造 Kelvin",
+      "unit": ""
+    },
+    {
+      "affected_capabilities": [
+        "energy/nuclear-fission-observation-safety"
+      ],
+      "authority": [
+        "tools/capabilities/energy/nuclear-fission-observation-safety/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "reactor:world_explode",
+          "slug": "energy/nuclear-fission-observation-safety"
+        }
+      ],
+      "count": 1,
+      "discovered_by": "energy/nuclear-fission-observation-safety",
+      "id": "energy/reactor-world-explode",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "GT6 explode() TODO stays commented.",
+      "resolved_by": null,
+      "root_cause": "gt6_explode_todo_commented",
+      "root_cause_class": "missing_runtime",
+      "status": "open",
+      "title": "反应堆世界爆炸仍是注释掉的 TODO",
+      "unit": "behaviors"
+    },
+    {
+      "affected_capabilities": [
+        "energy/nuclear-fission-observation-safety"
+      ],
+      "authority": [
+        "tools/capabilities/energy/nuclear-fission-observation-safety/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "reactor:backpack_radioactivity",
+          "slug": "energy/nuclear-fission-observation-safety"
+        }
+      ],
+      "count": null,
+      "discovered_by": "energy/nuclear-fission-observation-safety",
+      "id": "energy/reactor-backpack-radioactivity",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Backpack radioactivity stays blocked.",
+      "resolved_by": null,
+      "root_cause": "no_material_radioactivity_table",
+      "root_cause_class": "missing_form",
+      "status": "open",
+      "title": "无 CC 材料放射性等级表",
+      "unit": ""
+    },
+    {
+      "affected_capabilities": [
+        "energy/nuclear-fission-hot-fluids",
+        "machines/injector"
+      ],
+      "authority": [
+        "tools/capabilities/energy/nuclear-fission-hot-fluids/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "reactor:coolant_ic2",
+          "slug": "energy/nuclear-fission-hot-fluids"
+        }
+      ],
+      "count": 1,
+      "discovered_by": "energy/nuclear-fission-hot-fluids",
+      "id": "fluid/ic2-coolant",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Not substituted. Injector overflow also names ic2coolant.",
+      "resolved_by": null,
+      "root_cause": "ic2_coolant_not_cc_owned",
+      "root_cause_class": "missing_fluid",
+      "status": "open",
+      "title": "IC2 工业冷却液不是 CC 流体",
+      "unit": "fluids"
+    },
+    {
+      "affected_capabilities": [
+        "energy/nuclear-fission-hot-fluids",
+        "machines/injector"
+      ],
+      "authority": [
+        "tools/capabilities/energy/nuclear-fission-hot-fluids/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "reactor:thorium_salt",
+          "slug": "energy/nuclear-fission-hot-fluids"
+        }
+      ],
+      "count": 1,
+      "discovered_by": "energy/nuclear-fission-hot-fluids",
+      "id": "fluid/thorium-salt",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Not a hot-fluid output and has no CC-owned input identity.",
+      "resolved_by": null,
+      "root_cause": "thorium_salt_not_hot_fluid_output",
+      "root_cause_class": "missing_fluid",
+      "status": "open",
+      "title": "钍盐到 LiCl 无 CC 身份",
+      "unit": "fluids"
+    },
+    {
+      "affected_capabilities": [
+        "energy/nuclear-fission-survival",
+        "energy/nuclear-fission-hot-fluids",
+        "energy/nuclear-fission-observation-safety"
+      ],
+      "authority": [
+        "tools/capabilities/energy/nuclear-fission-survival/capability.json",
+        "tools/capabilities/energy/nuclear-fission-hot-fluids/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "reactor:observation_safety",
+          "slug": "energy/nuclear-fission-survival"
+        },
+        {
+          "semantic_key": "reactor:observation_safety",
+          "slug": "energy/nuclear-fission-hot-fluids"
+        }
+      ],
+      "count": 2,
+      "discovered_by": "energy/nuclear-fission-survival",
+      "id": "energy/reactor-observation-safety-deferred",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Those rows still say blocked so later close still binds this id.",
+      "resolved_by": "energy/nuclear-fission-observation-safety",
+      "root_cause": "deferred_to_observation_safety_card",
+      "root_cause_class": "deferred_key",
+      "status": "superseded",
+      "title": "热流体/生存卡上的观察安全延期键（已另卡落地）",
+      "unit": "keys"
+    },
+    {
+      "affected_capabilities": [
+        "energy/nuclear-fission-survival",
+        "energy/nuclear-fission-hot-fluids"
+      ],
+      "authority": [
+        "tools/capabilities/energy/nuclear-fission-survival/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "reactor:hot_fluids",
+          "slug": "energy/nuclear-fission-survival"
+        }
+      ],
+      "count": 1,
+      "discovered_by": "energy/nuclear-fission-survival",
+      "id": "energy/reactor-hot-fluids-deferred",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Distilled water to steam stayed on the survival card.",
+      "resolved_by": "energy/nuclear-fission-hot-fluids",
+      "root_cause": "deferred_to_hot_fluids_card",
+      "root_cause_class": "deferred_key",
+      "status": "superseded",
+      "title": "生存卡上的热流体延期键（已另卡落地）",
+      "unit": "keys"
+    },
+    {
+      "affected_capabilities": [
+        "energy/nuclear-fission-survival"
+      ],
+      "authority": [
+        "tools/capabilities/energy/nuclear-fission-survival/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "reactor:fusion",
+          "slug": "energy/nuclear-fission-survival"
+        }
+      ],
+      "count": 18,
+      "discovered_by": "energy/nuclear-fission-survival",
+      "id": "energy/reactor-fusion",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "18 fusion runtime rows stay runtime_ready only. Do not derive from existing fusion rows.",
+      "resolved_by": null,
+      "root_cause": "fusion_waits_on_fission_heat_contracts",
+      "root_cause_class": "missing_runtime",
+      "status": "open",
+      "title": "聚变控制器生存配方与等离子链",
+      "unit": "runtime_rows"
+    },
+    {
+      "affected_capabilities": [
+        "worldgen/gt-trees"
+      ],
+      "authority": [
+        "tools/capabilities/worldgen/gt-trees/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "fluid:FL.Resin_Rubber",
+          "slug": "worldgen/gt-trees"
+        }
+      ],
+      "count": 1,
+      "discovered_by": "worldgen/gt-trees",
+      "id": "fluid/resin-rubber",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Latex is not a stand-in. Rubber hole still harvests rubber_resin.",
+      "resolved_by": null,
+      "root_cause": "missing_resin_rubber_fluid",
+      "root_cause_class": "missing_fluid",
+      "status": "open",
+      "title": "FL.Resin_Rubber 缺失",
+      "unit": "fluids"
+    },
+    {
+      "affected_capabilities": [
+        "worldgen/gt-trees"
+      ],
+      "authority": [
+        "tools/capabilities/worldgen/gt-trees/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "fluid:FL.Sap_Maple",
+          "slug": "worldgen/gt-trees"
+        }
+      ],
+      "count": 1,
+      "discovered_by": "worldgen/gt-trees",
+      "id": "fluid/sap-maple",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Maple hole still freezes and drills.",
+      "resolved_by": null,
+      "root_cause": "missing_maple_sap_fluid",
+      "root_cause_class": "missing_fluid",
+      "status": "open",
+      "title": "FL.Sap_Maple 缺失",
+      "unit": "fluids"
+    },
+    {
+      "affected_capabilities": [
+        "worldgen/gt-dungeon"
+      ],
+      "authority": [
+        "tools/capabilities/worldgen/gt-dungeon/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "worldgen:dungeon.gt6_room_contents",
+          "slug": "worldgen/gt-dungeon"
+        }
+      ],
+      "count": null,
+      "discovered_by": "worldgen/gt-dungeon",
+      "id": "worldgen/dungeon-room-contents",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Paused back to prep. Do not call runtime_ready until carrier and room geometry re-verify together.",
+      "resolved_by": null,
+      "root_cause": "keys_zpm_portals_fixtures_bedrock_ore_missing_forms",
+      "root_cause_class": "missing_worldgen",
+      "status": "open",
+      "title": "地牢房间内容与 GT 石材仍 blocked",
+      "unit": ""
+    },
+    {
+      "affected_capabilities": [
+        "prep:worldgen/gt-planet-rocks"
+      ],
+      "authority": [
+        "docs/history/card-plans/prep/GT行星岩详细计划.md"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [],
+      "count": 3,
+      "discovered_by": "prep:worldgen/gt-planet-rocks",
+      "id": "worldgen/planet-rocks",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "moon/mars/planet rocks. Do not alias surface_rock_scatter.",
+      "resolved_by": null,
+      "root_cause": "requires_extra_dimension",
+      "root_cause_class": "missing_worldgen",
+      "status": "open",
+      "title": "行星岩仍是 prep",
+      "unit": "families"
+    },
+    {
+      "affected_capabilities": [
+        "prep:worldgen/gt-center"
+      ],
+      "authority": [
+        "docs/current/unimplemented-gap.md"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [],
+      "count": null,
+      "discovered_by": "prep:worldgen/gt-center",
+      "id": "worldgen/center",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Not unique-active. See project-status prep list.",
+      "resolved_by": null,
+      "root_cause": "requires_new_dimension_runtime",
+      "root_cause_class": "missing_worldgen",
+      "status": "open",
+      "title": "Center 维度仍是 prep",
+      "unit": ""
+    },
+    {
+      "affected_capabilities": [
+        "worldgen/gt-crops"
+      ],
+      "authority": [
+        "tools/waves/portfolio/crops-food-bees-r0/feasibility.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [],
+      "count": null,
+      "discovered_by": "worldgen/gt-crops",
+      "id": "worldgen/food",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "juicer 96 + fermenter 6435 are scale context, not census.",
+      "resolved_by": null,
+      "root_cause": "juicer_fermenter_requires_new_runtime",
+      "root_cause_class": "missing_runtime",
+      "status": "open",
+      "title": "Food 榨汁/发酵仍缺 runtime",
+      "unit": ""
+    },
+    {
+      "affected_capabilities": [
+        "worldgen/gt-crops"
+      ],
+      "authority": [
+        "tools/waves/portfolio/crops-food-bees-r0/feasibility.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [],
+      "count": null,
+      "discovered_by": "worldgen/gt-crops",
+      "id": "worldgen/bees",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Not in the crops worldgen denominator.",
+      "resolved_by": null,
+      "root_cause": "bumble_requires_new_runtime",
+      "root_cause_class": "missing_runtime",
+      "status": "open",
+      "title": "Bees 仍缺 runtime",
+      "unit": ""
+    },
+    {
+      "affected_capabilities": [
+        "worldgen/gt-crops"
+      ],
+      "authority": [
+        "docs/current/unimplemented-gap.md"
+      ],
+      "blocks_maturity": "none",
+      "claimed_by": [],
+      "count": 5322,
+      "discovered_by": "worldgen/gt-crops",
+      "id": "recipe/squeezer-dump-5322",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Scale context only. No juicer host on the crops card.",
+      "resolved_by": null,
+      "root_cause": "crops_card_does_not_own_squeezer",
+      "root_cause_class": "out_of_child",
+      "status": "out_of_scope",
+      "title": "squeezer dump 5322 不是作物卡分母",
+      "unit": "rows"
+    },
+    {
+      "affected_capabilities": [
+        "content/gt6-fluid-pipe-acquisition",
+        "content/gt6-item-pipe-acquisition"
+      ],
+      "authority": [
+        "tools/capabilities/content/gt6-fluid-pipe-acquisition/capability.json",
+        "tools/capabilities/content/gt6-item-pipe-acquisition/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [],
+      "count": null,
+      "discovered_by": "content/gt6-fluid-pipe-acquisition",
+      "id": "material-form/copper-family-curved-plate",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Combo pack/unpack is live. Five-gauge table crafts stay blocked. Overlay on reuse_canonical rows, not a blocked identity_disposition.",
+      "resolved_by": null,
+      "root_cause": "missing_plate_curved_for_table_crafts",
+      "root_cause_class": "missing_form",
+      "status": "open",
+      "title": "流体/物品管五档工作台缺 live curved_plate/double_plate",
+      "unit": ""
+    },
+    {
+      "affected_capabilities": [
+        "content/technological-parts-foundation"
+      ],
+      "authority": [
+        "docs/current/unimplemented-gap.md"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [],
+      "count": 4,
+      "discovered_by": "content/technological-parts-foundation",
+      "id": "material-form/luv-puv1-parts",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "LuV ≠ wireGt07. Existing covers still use programmed_circuit upgrades. Separate dedicated card.",
+      "resolved_by": null,
+      "root_cause": "missing_high_voltage_technological_parts",
+      "root_cause_class": "missing_form",
+      "status": "open",
+      "title": "LuV–PUV1 紧凑零件网格仍缺",
+      "unit": "tiers"
+    },
+    {
+      "affected_capabilities": [
+        "content/gt6-mte-converter-remainder-runtime",
+        "content/gt6-mte-crucible-foundry-runtime",
+        "content/gt6-mte-decorative-runtime",
+        "content/gt6-mte-drive-runtime",
+        "content/gt6-mte-extender-runtime",
+        "content/gt6-mte-fluid-attachments-runtime",
+        "content/gt6-mte-furniture-barrel-runtime",
+        "content/gt6-mte-furniture-chest-runtime",
+        "content/gt6-mte-furniture-safe-runtime",
+        "content/gt6-mte-furniture-scaffold-runtime",
+        "content/gt6-mte-furniture-storage-runtime",
+        "content/gt6-mte-furniture-table-runtime",
+        "content/gt6-mte-misc-tool-runtime",
+        "content/gt6-mte-multiblock-runtime"
+      ],
+      "authority": [
+        "tools/capabilities/content/gt6-mte-converter-remainder-runtime/capability.json",
+        "tools/capabilities/content/gt6-mte-crucible-foundry-runtime/capability.json",
+        "tools/capabilities/content/gt6-mte-decorative-runtime/capability.json",
+        "tools/capabilities/content/gt6-mte-drive-runtime/capability.json",
+        "tools/capabilities/content/gt6-mte-extender-runtime/capability.json",
+        "tools/capabilities/content/gt6-mte-fluid-attachments-runtime/capability.json",
+        "tools/capabilities/content/gt6-mte-furniture-barrel-runtime/capability.json",
+        "tools/capabilities/content/gt6-mte-furniture-chest-runtime/capability.json",
+        "tools/capabilities/content/gt6-mte-furniture-safe-runtime/capability.json",
+        "tools/capabilities/content/gt6-mte-furniture-scaffold-runtime/capability.json",
+        "tools/capabilities/content/gt6-mte-furniture-storage-runtime/capability.json",
+        "tools/capabilities/content/gt6-mte-furniture-table-runtime/capability.json",
+        "tools/capabilities/content/gt6-mte-misc-tool-runtime/capability.json",
+        "tools/capabilities/content/gt6-mte-multiblock-runtime/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "note_marker": "Obtain stays explicitly_blocked",
+          "slug": "content/gt6-mte-converter-remainder-runtime"
+        },
+        {
+          "note_marker": "Obtain stays explicitly_blocked",
+          "slug": "content/gt6-mte-crucible-foundry-runtime"
+        },
+        {
+          "note_marker": "Obtain stays explicitly_blocked",
+          "slug": "content/gt6-mte-decorative-runtime"
+        },
+        {
+          "note_marker": "Obtain stays explicitly_blocked",
+          "slug": "content/gt6-mte-drive-runtime"
+        },
+        {
+          "note_marker": "Obtain stays explicitly_blocked",
+          "slug": "content/gt6-mte-extender-runtime"
+        },
+        {
+          "note_marker": "Obtain stays explicitly_blocked",
+          "slug": "content/gt6-mte-fluid-attachments-runtime"
+        },
+        {
+          "note_marker": "Obtain stays explicitly_blocked",
+          "slug": "content/gt6-mte-furniture-barrel-runtime"
+        },
+        {
+          "note_marker": "Obtain stays explicitly_blocked",
+          "slug": "content/gt6-mte-furniture-chest-runtime"
+        },
+        {
+          "note_marker": "Obtain stays explicitly_blocked",
+          "slug": "content/gt6-mte-furniture-safe-runtime"
+        },
+        {
+          "note_marker": "Obtain stays explicitly_blocked",
+          "slug": "content/gt6-mte-furniture-scaffold-runtime"
+        },
+        {
+          "note_marker": "Obtain stays explicitly_blocked",
+          "slug": "content/gt6-mte-furniture-storage-runtime"
+        },
+        {
+          "note_marker": "Obtain stays explicitly_blocked",
+          "slug": "content/gt6-mte-furniture-table-runtime"
+        },
+        {
+          "note_marker": "Obtain stays explicitly_blocked",
+          "slug": "content/gt6-mte-misc-tool-runtime"
+        },
+        {
+          "note_marker": "Obtain stays explicitly_blocked",
+          "slug": "content/gt6-mte-multiblock-runtime"
+        }
+      ],
+      "count": 14,
+      "discovered_by": "content/gt6-mte-fluid-attachments-runtime",
+      "id": "obtain/mte-inplace-runtime",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Clustered note_marker bind. Finding the gap is not introducing it.",
+      "resolved_by": null,
+      "root_cause": "runtime_without_source_exact_obtain",
+      "root_cause_class": "missing_obtain",
+      "status": "open",
+      "title": "14 张 in-place MTE runtime 获得格仍 blocked",
+      "unit": "capabilities"
+    },
+    {
+      "affected_capabilities": [
+        "content/mte-redstone-wire",
+        "content/gt6-redstone-wire-acquisition"
+      ],
+      "authority": [
+        "tools/capabilities/content/mte-redstone-wire/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "note_marker": "Obtain stays explicitly_blocked",
+          "slug": "content/mte-redstone-wire"
+        }
+      ],
+      "count": 3,
+      "discovered_by": "content/mte-redstone-wire",
+      "id": "obtain/redstone-wiregt01",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Insulated cable laminator obtain is a different card. This is the bare wireGt01 recipe.",
+      "resolved_by": null,
+      "root_cause": "no_real_wiregt01_recipe",
+      "root_cause_class": "missing_obtain",
+      "status": "open",
+      "title": "红石 wireGt01 获得格仍 blocked",
+      "unit": "items"
+    },
+    {
+      "affected_capabilities": [],
+      "authority": [
+        "docs/current/unimplemented-gap.md"
+      ],
+      "blocks_maturity": "none",
+      "claimed_by": [],
+      "count": null,
+      "discovered_by": "logistics/cover-remainder",
+      "id": "architecture/building-block-identity",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Cannot derive workload from cc_mechanism = none.",
+      "resolved_by": null,
+      "root_cause": "no_current_owner",
+      "root_cause_class": "unclaimed_domain",
+      "status": "open",
+      "title": "建筑方块 identity/behavior 无 owner",
+      "unit": ""
+    },
+    {
+      "affected_capabilities": [],
+      "authority": [
+        "tools/waves/portfolio/source-capability-map-r0/leftover_later.json"
+      ],
+      "blocks_maturity": "none",
+      "claimed_by": [],
+      "count": 4,
+      "discovered_by": "recipe/blocked-chain-ledger",
+      "id": "architecture/combinatorial-leftover",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "later:assembler_combinatorial + later:electrolyzer_combinatorial. started = false.",
+      "resolved_by": null,
+      "root_cause": "post_generator_combinatorial_family_intake_not_started",
+      "root_cause_class": "unclaimed_domain",
+      "status": "open",
+      "title": "组合导入 leftover 4 条仍未开工",
+      "unit": "families"
+    },
+    {
+      "affected_capabilities": [
+        "content/gt6-paper-tiny-plate",
+        "machines/slicer"
+      ],
+      "authority": [
+        "tools/capabilities/content/gt6-paper-tiny-plate/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [],
+      "count": 1,
+      "discovered_by": "machines/slicer",
+      "id": "material-form/paper-tiny-plate",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "GT6 OP.plateTiny.forceItemGeneration(MT.Paper). Not a stand-in plate.",
+      "resolved_by": "content/gt6-paper-tiny-plate",
+      "root_cause": "paper_tiny_plate_was_missing",
+      "root_cause_class": "missing_form",
+      "status": "resolved",
+      "title": "纸微型板已注册，切片机 overflow 为 0",
+      "unit": "forms"
+    },
+    {
+      "affected_capabilities": [
+        "worldgen/gt-crops"
+      ],
+      "authority": [
+        "tools/capabilities/worldgen/gt-crops/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [],
+      "count": 2,
+      "discovered_by": "worldgen/gt-trees",
+      "id": "worldgen/crops-glowtus-bush",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Closed runtime_ready, not player_complete. Squeezer dump stays out of scope.",
+      "resolved_by": "worldgen/gt-crops",
+      "root_cause": "crops_worldgen_was_missing",
+      "root_cause_class": "missing_worldgen",
+      "status": "resolved",
+      "title": "作物世界生成 16 glowtus + 灌木已落地",
+      "unit": "families"
+    },
+    {
+      "affected_capabilities": [],
+      "authority": [
+        "docs/current/unimplemented-gap.md"
+      ],
+      "blocks_maturity": "none",
+      "claimed_by": [],
+      "count": null,
+      "discovered_by": "registry/catalog-modern-ids",
+      "id": "storage/mass-storage-prefix-units",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "GT6 MassStorage merges prefix units; CC MassStorageHandler only accepts isSameItemSameComponents. Hopper dust 1/4/9 is not the barrel converter.",
+      "resolved_by": null,
+      "root_cause": "prefix_unit_conversion_missing",
+      "root_cause_class": "missing_runtime",
+      "status": "open",
+      "title": "仓储桶前缀单位换算仍缺",
+      "unit": ""
+    },
+    {
+      "affected_capabilities": [],
+      "authority": [
+        "docs/current/unimplemented-gap.md"
+      ],
+      "blocks_maturity": "none",
+      "claimed_by": [],
+      "count": null,
+      "discovered_by": "registry/tool-head-remainder",
+      "id": "tools/world-behaviors",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
+      "note": "Pincers, hand drill, softhammer-on-storage, crowbar harvest, magnifier, electric tools. Clustered; not a recipe-row count.",
+      "resolved_by": null,
+      "root_cause": "gt6_tool_world_behaviors_missing",
+      "root_cause_class": "missing_runtime",
+      "status": "open",
+      "title": "手持工具世界行为与缺形态仍缺",
+      "unit": ""
+    }
+  ],
+  "generated_by": "python tools/build_blockers.py --write",
+  "open_amounts": [
+    {
+      "count": 4,
+      "id": "architecture/combinatorial-leftover",
+      "unit": "families"
+    },
+    {
+      "count": 2,
+      "id": "cover/torch-repeater-wire-host",
+      "unit": "covers"
+    },
+    {
+      "count": 1,
+      "id": "energy/large-heat-exchanger-17197",
+      "unit": "metas"
+    },
+    {
+      "count": 18,
+      "id": "energy/reactor-fusion",
+      "unit": "runtime_rows"
+    },
+    {
+      "count": 1,
+      "id": "energy/reactor-world-explode",
+      "unit": "behaviors"
+    },
+    {
+      "count": 5,
+      "id": "energy/transformer-long-distance",
+      "unit": "metas"
+    },
+    {
+      "count": 1,
+      "id": "fluid/ic2-coolant",
+      "unit": "fluids"
+    },
+    {
+      "count": 1,
+      "id": "fluid/resin-rubber",
+      "unit": "fluids"
+    },
+    {
+      "count": 1,
+      "id": "fluid/sap-maple",
+      "unit": "fluids"
+    },
+    {
+      "count": 1,
+      "id": "fluid/thorium-salt",
+      "unit": "fluids"
+    },
+    {
+      "count": 8,
+      "id": "identity/converter-turbines-battery-boxes",
+      "unit": "items"
+    },
+    {
+      "count": 61,
+      "id": "identity/electric-unregistered-gauges",
+      "unit": "loader_ids"
+    },
+    {
+      "count": 5,
+      "id": "identity/processing-ungated-families",
+      "unit": "families"
+    },
+    {
+      "count": 4,
+      "id": "material-form/luv-puv1-parts",
+      "unit": "tiers"
+    },
+    {
+      "count": 3,
+      "id": "obtain/injector-mv-hv-iv-hosts",
+      "unit": "hosts"
+    },
+    {
+      "count": 14,
+      "id": "obtain/mte-inplace-runtime",
+      "unit": "capabilities"
+    },
+    {
+      "count": 5,
+      "id": "obtain/nanofab-hosts",
+      "unit": "hosts"
+    },
+    {
+      "count": 3,
+      "id": "obtain/redstone-wiregt01",
+      "unit": "items"
+    },
+    {
+      "count": 1,
+      "id": "peripheral/sensors-computercraft",
+      "unit": "integrations"
+    },
+    {
+      "count": 5,
+      "id": "recipe/bath-identity-families",
+      "unit": "families"
+    },
+    {
+      "count": 150,
+      "id": "recipe/bath-remainder-families",
+      "unit": "families"
+    },
+    {
+      "count": 49,
+      "id": "recipe/fluidbed-overflow",
+      "unit": "rows"
+    },
+    {
+      "count": 535,
+      "id": "recipe/injector-overflow",
+      "unit": "rows"
+    },
+    {
+      "count": 60,
+      "id": "recipe/laminator-overflow",
+      "unit": "rows"
+    },
+    {
+      "count": 869,
+      "id": "recipe/loom-overflow",
+      "unit": "rows"
+    },
+    {
+      "count": 2796,
+      "id": "recipe/melter-overflow",
+      "unit": "rows"
+    },
+    {
+      "count": 57,
+      "id": "recipe/nanofab-overflow",
+      "unit": "rows"
+    },
+    {
+      "count": 2,
+      "id": "recipe/oven-cooking-oil-xp",
+      "unit": "fluids"
+    },
+    {
+      "count": 120,
+      "id": "recipe/pressure-washer-stone",
+      "unit": "rows"
+    },
+    {
+      "count": 22,
+      "id": "recipe/printer-dye-fluids",
+      "unit": "rows"
+    },
+    {
+      "count": 2,
+      "id": "recipe/roll-former-rail-gt",
+      "unit": "rows"
+    },
+    {
+      "count": 3,
+      "id": "worldgen/planet-rocks",
+      "unit": "families"
+    }
+  ],
+  "open_ids_by_root_cause_class": {
+    "invariant": [
+      "energy/reactor-temperature-kelvin"
+    ],
+    "missing_cover_host": [
+      "cover/redstone-wire-covers",
+      "cover/torch-repeater-wire-host"
+    ],
+    "missing_fluid": [
+      "fluid/ic2-coolant",
+      "fluid/resin-rubber",
+      "fluid/sap-maple",
+      "fluid/thorium-salt",
+      "recipe/oven-cooking-oil-xp",
+      "recipe/printer-dye-fluids"
+    ],
+    "missing_form": [
+      "energy/reactor-backpack-radioactivity",
+      "material-form/copper-family-curved-plate",
+      "material-form/luv-puv1-parts",
+      "obtain/injector-mv-hv-iv-hosts",
+      "obtain/nanofab-hosts"
+    ],
+    "missing_mod_bridge": [
+      "peripheral/sensors-computercraft"
+    ],
+    "missing_obtain": [
+      "obtain/mte-inplace-runtime",
+      "obtain/redstone-wiregt01"
+    ],
+    "missing_runtime": [
+      "energy/cooler",
+      "energy/large-heat-exchanger-17197",
+      "energy/reactor-fusion",
+      "energy/reactor-world-explode",
+      "energy/steam-turbine",
+      "energy/transformer-long-distance",
+      "storage/mass-storage-prefix-units",
+      "tools/world-behaviors",
+      "worldgen/bees",
+      "worldgen/food"
+    ],
+    "missing_worldgen": [
+      "worldgen/center",
+      "worldgen/dungeon-room-contents",
+      "worldgen/planet-rocks"
+    ],
+    "unclaimed_domain": [
+      "architecture/building-block-identity",
+      "architecture/combinatorial-leftover"
+    ],
+    "unmapped_identity": [
+      "identity/connector-art-keep-distinct-dummies",
+      "identity/converter-turbines-battery-boxes",
+      "identity/electric-unregistered-gauges",
+      "identity/eu-blocked-gauges",
+      "identity/hsla-ungated-gauges",
+      "identity/processing-ungated-families"
+    ],
+    "unmapped_operand": [
+      "recipe/bath-identity-families",
+      "recipe/bath-remainder-families",
+      "recipe/fluidbed-overflow",
+      "recipe/injector-overflow",
+      "recipe/laminator-overflow",
+      "recipe/loom-overflow",
+      "recipe/melter-overflow",
+      "recipe/nanofab-overflow",
+      "recipe/pressure-washer-stone",
+      "recipe/roll-former-rail-gt"
+    ]
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "stats": {
+    "open": 46,
+    "out_of_scope": 5,
+    "partial": 2,
+    "resolved": 2,
+    "superseded": 5,
+    "total": 60
+  }
+}

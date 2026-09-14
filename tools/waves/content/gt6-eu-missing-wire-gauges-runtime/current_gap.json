@@ -1,0 +1,23 @@
+{
+  "schema": "gt6-eu-missing-wire-gauges-gap-v1",
+  "capability_slug": "content/gt6-eu-missing-wire-gauges-runtime",
+  "folded": {
+    "fold_live_block": 168,
+    "skipped": 0,
+    "septuple_wire": 24,
+    "nonuple_wire": 24,
+    "decuple_wire": 24,
+    "undecuple_wire": 24,
+    "tredecuple_wire": 24,
+    "tetradecuple_wire": 24,
+    "pentadecuple_wire": 24
+  },
+  "still_dummy": [],
+  "blocked": [
+    "insulated redstone 27006/27056/27506",
+    "plasma/magic destroy/replace, flammable, contactDamage",
+    "connector survival obtain grids"
+  ],
+  "close_target": "runtime_ready",
+  "note": "Closed EU execution subset stays historical keep_distinct. This overlay is the current catalog projection. Redstone materials never enter ElectricalConductorCatalog."
+}

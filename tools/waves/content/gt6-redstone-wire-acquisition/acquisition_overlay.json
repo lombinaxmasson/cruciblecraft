@@ -1,0 +1,30 @@
+{
+  "schema": "gt6-connector-acquisition-overlay-v1",
+  "capability_slug": "content/gt6-redstone-wire-acquisition",
+  "domain": "redstone",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "plate_live": 3,
+  "foil_live": 3,
+  "red_alloy_plate": true,
+  "red_alloy_foil": true,
+  "signalum_plate": true,
+  "lumium_plate": true,
+  "rubber_plate": {
+    "status": "ok",
+    "item": "cruciblecraft:rubber/plate"
+  },
+  "rubber_foil": {
+    "status": "ok",
+    "item": "cruciblecraft:rubber/foil",
+    "recipe": true
+  },
+  "red_alloy_wire": {
+    "status": "ok",
+    "item": "cruciblecraft:red_alloy/wire"
+  },
+  "red_alloy_cable": {
+    "status": "ok",
+    "item": "cruciblecraft:red_alloy/cable"
+  },
+  "note": "Laminator plate/foil insulation on live redstone cables. Not EU and not tin/cable. Foil recipes stay gated on live rubber/foil."
+}

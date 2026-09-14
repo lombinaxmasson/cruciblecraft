@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the live Slicer Source Pack, freeze the lock, and compile 32 rows.
+"""Build the live Slicer Source Pack, freeze the lock, and compile 33 rows.
 
 LV/EV hosts are source-exact via technological-parts-foundation. MV/HV/IV
 stay blocked. This lane does not invent missing parts and does not claim
@@ -51,8 +51,8 @@ FAMILY_ID = (
 )
 TEMPLATE_KEY = "gt.recipe.slicer#0000"
 SOURCE_ROWS = 33
-SELECTED_ROWS = 32
-OVERFLOW_ROWS = 1
+SELECTED_ROWS = 33
+OVERFLOW_ROWS = 0
 LIVE_NEEDLE = "slicer"
 CAPABILITY_PATH = (
     ROOT / "tools" / "capabilities" / "machines" / "slicer" / "capability.json"
@@ -66,8 +66,9 @@ LIVE_GENERATED = (
 POLICY_PATH = LIVE_GENERATED / "publication_policy" / "slicer.json"
 PUBLICATION_GROUP = f"{TARGET_MAP}/pilot/slicer"
 LOCK_NOTE = (
-    "live compile for machines/slicer; 32 selected exact rows; "
-    "1 unmapped paper:tiny_plate row explicitly_blocked; not player_complete"
+    "live compile for machines/slicer; 33 selected exact rows; "
+    "0 overflow; paper:tiny_plate folded by content/gt6-paper-tiny-plate; "
+    "not player_complete"
 )
 ART_MANIFEST = "gt6_slicer_art_manifest.json"
 CIRCUITS = {
@@ -441,7 +442,10 @@ def check() -> list[str]:
         for row in overflow.get("overflow") or []
         if "tiny_plate" in str(row) or "paper" in str(row).lower()
     ]
-    if len(plate) != OVERFLOW_ROWS:
+    if OVERFLOW_ROWS == 0:
+        if plate:
+            errors.append("overflow must not keep the mapped paper:tiny_plate row")
+    elif len(plate) != OVERFLOW_ROWS:
         errors.append("overflow must keep the unmapped paper:tiny_plate row")
 
     try:

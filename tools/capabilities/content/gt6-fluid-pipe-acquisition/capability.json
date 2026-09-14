@@ -1,0 +1,51 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-fluid-pipe-acquisition",
+  "title": "GT6 Fluid Pipe Acquisition",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6流体管获得格详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
+    "src/main/java/com/masson/cruciblecraft/recipe/crafting/WorkbenchToolRecipePlan.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/FluidPipeAcquisitionGameTests.java",
+    "src/generated/resources/data/cruciblecraft/recipe/pipe/combo/**",
+    "src/generated/resources/data/cruciblecraft/recipe/pipe/table/**",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_fluid_pipe_acquisition/**",
+    "tools/capabilities/content/gt6-fluid-pipe-acquisition/**",
+    "tools/waves/content/gt6-fluid-pipe-acquisition/**",
+    "tools/gt6_connector_acquisition.py",
+    "tools/build_gt6_connector_acquisition.py",
+    "tools/tests/test_gt6_connector_acquisition.py"
+  ],
+  "depends_on": [
+    "registry/catalog-modern-ids",
+    "content/gt6-fluid-pipe-runtime",
+    "content/gt6-fluid-combo-pipe-runtime"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-fluid-pipe-acquisition",
+  "required_test_ids": [
+    "comboQuadrupleCraftsFromMedium",
+    "comboUnpackReturnsMedium",
+    "copperHugeTableCraftsFromDoublePlate",
+    "copperTinyTableCraftsFromCurvedPlate",
+    "fiveGaugeTableDoesNotUseFlatPlate",
+    "nonmetalCatalogStaysTwentyFive"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "connector:fluid-pipe:acquisition",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:copper/quadruple_fluid_pipe",
+        "cruciblecraft:copper/nonuple_fluid_pipe",
+        "cruciblecraft:copper/fluid_pipe"
+      ],
+      "reason": "GT6 combo pack/unpack on live pipes. Five-gauge table crafts stay blocked without live curved_plate/double_plate. Do not substitute plate or programmed_circuit."
+    }
+  ],
+  "note": "Fluid-pipe obtain only. Close at runtime_ready, not player_complete. Do not edit R0, the baseline identity ledger, or the 25-row nonmetal catalog."
+}

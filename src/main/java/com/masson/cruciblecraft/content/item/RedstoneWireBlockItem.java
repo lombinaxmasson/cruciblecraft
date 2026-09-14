@@ -17,8 +17,8 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.state.BlockState;
 
 /**
- * GT6 {@code OP.wireGt01} redstone MTE. Same registry id as the material wire
- * form; not an EU {@code CableBlock}.
+ * GT6 {@code OP.wireGt01} / {@code OP.cableGt01} redstone MTE. Same registry
+ * id as the material wire or cable form; not an EU {@code CableBlock}.
  */
 public final class RedstoneWireBlockItem extends BlockItem
         implements MaterialFormItem {

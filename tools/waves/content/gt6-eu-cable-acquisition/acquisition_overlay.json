@@ -1,0 +1,35 @@
+{
+  "schema": "gt6-connector-acquisition-overlay-v1",
+  "capability_slug": "content/gt6-eu-cable-acquisition",
+  "domain": "eu",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "plate2wire_live": 29,
+  "shapeless_cable_live": 46,
+  "pack_live": 687,
+  "unpack_live": 878,
+  "copper_plate2wire": true,
+  "copper_shapeless_cable": true,
+  "copper_pack_double": true,
+  "copper_unpack_double": true,
+  "red_alloy_eu_table": false,
+  "copper_plate": {
+    "status": "ok",
+    "item": "cruciblecraft:copper/plate"
+  },
+  "copper_wire": {
+    "status": "ok",
+    "item": "cruciblecraft:copper/wire"
+  },
+  "copper_cable": {
+    "status": "ok",
+    "item": "cruciblecraft:copper/cable"
+  },
+  "rubber_plate": {
+    "status": "ok",
+    "item": "cruciblecraft:rubber/plate",
+    "tag": "cruciblecraft:any_rubber_plates"
+  },
+  "existing_assembler": "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/wire_and_rubber_to_cable.json",
+  "existing_wiremill": "src/component_rule_generated/resources/data/cruciblecraft/recipe/wiremill/ingot_to_wire.json",
+  "note": "plate2wire uses live plate plus wire cutter. Shapeless cableGt01/02 uses the live any_rubber_plates tag. Packing follows GT6 tAmount<10 / unpack always. Red alloy is not EU."
+}

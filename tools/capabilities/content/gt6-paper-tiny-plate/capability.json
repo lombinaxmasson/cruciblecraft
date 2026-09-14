@@ -1,0 +1,40 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-paper-tiny-plate",
+  "title": "GT6 Paper Tiny Plate",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6纸微型板详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/gametest/PaperTinyPlateGameTests.java",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_paper_tiny_plate/**",
+    "tools/capabilities/content/gt6-paper-tiny-plate/**",
+    "tools/waves/content/gt6-paper-tiny-plate/**",
+    "tools/gt6_paper_tiny_plate.py",
+    "tools/build_gt6_paper_tiny_plate.py",
+    "tools/tests/test_gt6_paper_tiny_plate.py",
+    "src/main/resources/data/cruciblecraft/material_registration_gate.json",
+    "tools/material_form_authority.json"
+  ],
+  "depends_on": [
+    "machines/slicer"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-paper-tiny-plate",
+  "required_test_ids": [
+    "paperTinyPlateItemIsRegistered"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "form:paper:tiny_plate",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:paper/tiny_plate"
+      ],
+      "reason": "GT6 OP.plateTiny.forceItemGeneration(MT.Paper). Not another plate form."
+    }
+  ],
+  "note": "Registers paper:tiny_plate from GT6 forceItemGeneration and recomputes machines/slicer overflow. Close at runtime_ready."
+}

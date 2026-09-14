@@ -20,7 +20,7 @@ import com.masson.cruciblecraft.material.def.MaterialDefinition;
  */
 public final class ElectricalConductorCatalog {
     public static final int EXPECTED_CABLE_BLOCKS = 115;
-    public static final int EXPECTED_WIRE_BLOCKS = 231;
+    public static final int EXPECTED_WIRE_BLOCKS = 434;
     private static final Set<String> REDSTONE_MATERIALS =
             Set.of("red_alloy", "signalum", "lumium");
 
@@ -32,8 +32,15 @@ public final class ElectricalConductorCatalog {
                     Map.entry(MaterialPrefixes.QUADRUPLE_WIRE, "wireGt04"),
                     Map.entry(MaterialPrefixes.QUINTUPLE_WIRE, "wireGt05"),
                     Map.entry(MaterialPrefixes.SEXTUPLE_WIRE, "wireGt06"),
+                    Map.entry(MaterialPrefixes.SEPTUPLE_WIRE, "wireGt07"),
                     Map.entry(MaterialPrefixes.OCTUPLE_WIRE, "wireGt08"),
+                    Map.entry(MaterialPrefixes.NONUPLE_WIRE, "wireGt09"),
+                    Map.entry(MaterialPrefixes.DECUPLE_WIRE, "wireGt10"),
+                    Map.entry(MaterialPrefixes.UNDECUPLE_WIRE, "wireGt11"),
                     Map.entry(MaterialPrefixes.DODECUPLE_WIRE, "wireGt12"),
+                    Map.entry(MaterialPrefixes.TREDECUPLE_WIRE, "wireGt13"),
+                    Map.entry(MaterialPrefixes.TETRADECUPLE_WIRE, "wireGt14"),
+                    Map.entry(MaterialPrefixes.PENTADECUPLE_WIRE, "wireGt15"),
                     Map.entry(MaterialPrefixes.HEXADECUPLE_WIRE, "wireGt16"),
                     Map.entry(MaterialPrefixes.CABLE, "cableGt01"),
                     Map.entry(MaterialPrefixes.DOUBLE_CABLE, "cableGt02"),
@@ -56,8 +63,14 @@ public final class ElectricalConductorCatalog {
             case "wireGt03" -> 4;
             case "wireGt04" -> 6;
             case "wireGt05", "wireGt06" -> 7;
-            case "wireGt08" -> 8;
+            case "wireGt07", "wireGt08" -> 8;
+            case "wireGt09" -> 9;
+            case "wireGt10" -> 10;
+            case "wireGt11" -> 11;
             case "wireGt12" -> 12;
+            case "wireGt13" -> 13;
+            case "wireGt14" -> 14;
+            case "wireGt15" -> 15;
             case "wireGt16" -> 16;
             case "cableGt01" -> 4;
             case "cableGt02" -> 6;

@@ -647,6 +647,48 @@ def live_host_paths() -> set[str]:
                 occupied.add(f"{cc}/{token.removeprefix(prefix)}")
         for item in (row.get("form_items") or {}).values():
             occupied.add(strip_ns(str(item)))
+    occupied.update(_bundled_machine_host_paths())
+    occupied.update(_mte_inplace_host_paths())
+    return {path for path in occupied if path}
+
+
+def _mte_inplace_host_paths() -> set[str]:
+    catalog = DATA / "mte_inplace_catalog.json"
+    if not catalog.is_file():
+        return set()
+    document = census.load_json(catalog)
+    occupied: set[str] = set()
+    for row in document.get("identities") or []:
+        occupied.add(strip_ns(str(row.get("registry_path") or "")))
+    return {path for path in occupied if path}
+
+
+def _bundled_machine_host_paths() -> set[str]:
+    """BlockItems/items already registered from bundled machine catalogs."""
+    occupied: set[str] = set()
+    converter = DATA / "energy_converter_tiers.json"
+    if converter.is_file():
+        document = census.load_json(converter)
+        for row in document.get("tiers") or []:
+            occupied.add(strip_ns(str(row.get("id") or "")))
+    hoppers = DATA / "hopper_variants.json"
+    if hoppers.is_file():
+        document = census.load_json(hoppers)
+        for row in document.get("variants") or []:
+            material = strip_ns(str(row.get("material") or ""))
+            if material:
+                occupied.add(f"{material}_hopper")
+                occupied.add(f"{material}_queue_hopper")
+    machines = DATA / "machine_tiers.json"
+    if machines.is_file():
+        document = census.load_json(machines)
+        for row in document.get("variants") or []:
+            occupied.add(strip_ns(str(row.get("id") or "")))
+    rods = DATA / "nuclear_reactor_rods.json"
+    if rods.is_file():
+        document = census.load_json(rods)
+        for row in document.get("rods") or []:
+            occupied.add(strip_ns(str(row.get("id") or "")))
     return {path for path in occupied if path}
 
 

@@ -1,0 +1,33 @@
+{
+  "schema": "gt6-insulated-redstone-overlay-v1",
+  "capability_slug": "content/gt6-insulated-redstone-runtime",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "counts": {
+    "in_place": 3,
+    "catalog_dummy_folds": 0
+  },
+  "rows": [
+    {
+      "meta": 27006,
+      "live_block": "cruciblecraft:red_alloy/cable",
+      "disposition": "in_place",
+      "not_eu_cable": true,
+      "not_tin_cable_alias": true
+    },
+    {
+      "meta": 27056,
+      "live_block": "cruciblecraft:signalum/cable",
+      "disposition": "in_place",
+      "not_eu_cable": true,
+      "not_tin_cable_alias": true
+    },
+    {
+      "meta": 27506,
+      "live_block": "cruciblecraft:lumium/cable",
+      "disposition": "in_place",
+      "not_eu_cable": true,
+      "not_tin_cable_alias": true
+    }
+  ],
+  "note": "Loader-out 27006/27056/27506 become live RedstoneWireBlockItems at modern */cable ids. Not ElectricalConductorCatalog. Closed mte-redstone-wire identity ledger stays historical out_of_denominator."
+}

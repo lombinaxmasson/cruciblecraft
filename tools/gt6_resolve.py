@@ -73,6 +73,18 @@ PREFIX_OVERLAY: dict[str, str | None] = {
     "pipeMedium": "fluid_pipe",
     "pipeLarge": "large_fluid_pipe",
     "pipeHuge": "huge_fluid_pipe",
+    "pipeQuadruple": "quadruple_fluid_pipe",
+    "pipeNonuple": "nonuple_fluid_pipe",
+    "pipeRestrictiveMedium": "restrictive_item_pipe",
+    "pipeRestrictiveLarge": "large_restrictive_item_pipe",
+    "pipeRestrictiveHuge": "huge_restrictive_item_pipe",
+    "wireGt07": "septuple_wire",
+    "wireGt09": "nonuple_wire",
+    "wireGt10": "decuple_wire",
+    "wireGt11": "undecuple_wire",
+    "wireGt13": "tredecuple_wire",
+    "wireGt14": "tetradecuple_wire",
+    "wireGt15": "pentadecuple_wire",
     "casingMachineQuadruple": "machine_casing_quadruple",
 }
 

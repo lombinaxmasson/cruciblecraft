@@ -1,0 +1,114 @@
+{
+  "schema": "gt6-connector-alias-overlay-v1",
+  "capability_slug": "content/gt6-connector-alias-repair",
+  "note": "Canonical identity leak: baseline _cc_material slugified MT.HSLA source name HSLA-Steel to hsla_steel while the live material id is hslasteel. Overlay folds exact live BlockItems. Do not rewrite the closed baseline ledger or R0.",
+  "canonical": {
+    "hsla_steel": "hslasteel"
+  },
+  "counts": {
+    "fold_live_block": 9,
+    "fluid": 5,
+    "eu": 4
+  },
+  "rows": [
+    {
+      "meta": 26360,
+      "domain": "fluid",
+      "recorded_material": "hsla_steel",
+      "canonical_material": "hslasteel",
+      "cc_form": "tiny_fluid_pipe",
+      "dummy_path": "fluid_pipe_tile/tiny_hsla_steel_fluid_pipe",
+      "live_block": "cruciblecraft:hslasteel/tiny_fluid_pipe",
+      "collision_reason": "folded onto live fluid pipe",
+      "baseline_disposition": "keep_distinct"
+    },
+    {
+      "meta": 26361,
+      "domain": "fluid",
+      "recorded_material": "hsla_steel",
+      "canonical_material": "hslasteel",
+      "cc_form": "small_fluid_pipe",
+      "dummy_path": "fluid_pipe_tile/small_hsla_steel_fluid_pipe",
+      "live_block": "cruciblecraft:hslasteel/small_fluid_pipe",
+      "collision_reason": "folded onto live fluid pipe",
+      "baseline_disposition": "keep_distinct"
+    },
+    {
+      "meta": 26362,
+      "domain": "fluid",
+      "recorded_material": "hsla_steel",
+      "canonical_material": "hslasteel",
+      "cc_form": "fluid_pipe",
+      "dummy_path": "fluid_pipe_tile/hslasteel",
+      "live_block": "cruciblecraft:hslasteel/fluid_pipe",
+      "collision_reason": "folded onto live fluid pipe",
+      "baseline_disposition": "keep_distinct"
+    },
+    {
+      "meta": 26363,
+      "domain": "fluid",
+      "recorded_material": "hsla_steel",
+      "canonical_material": "hslasteel",
+      "cc_form": "large_fluid_pipe",
+      "dummy_path": "fluid_pipe_tile/large_hsla_steel_fluid_pipe",
+      "live_block": "cruciblecraft:hslasteel/large_fluid_pipe",
+      "collision_reason": "folded onto live fluid pipe",
+      "baseline_disposition": "keep_distinct"
+    },
+    {
+      "meta": 26364,
+      "domain": "fluid",
+      "recorded_material": "hsla_steel",
+      "canonical_material": "hslasteel",
+      "cc_form": "huge_fluid_pipe",
+      "dummy_path": "fluid_pipe_tile/huge_hsla_steel_fluid_pipe",
+      "live_block": "cruciblecraft:hslasteel/huge_fluid_pipe",
+      "collision_reason": "folded onto live fluid pipe",
+      "baseline_disposition": "keep_distinct"
+    },
+    {
+      "meta": 28250,
+      "domain": "eu",
+      "recorded_material": "hsla_steel",
+      "canonical_material": "hslasteel",
+      "cc_form": "wire",
+      "dummy_path": "electric_wire/1x_hsla_steel_wire",
+      "live_block": "cruciblecraft:hslasteel/wire",
+      "collision_reason": "folded onto live eu cable",
+      "baseline_disposition": "keep_distinct"
+    },
+    {
+      "meta": 28252,
+      "domain": "eu",
+      "recorded_material": "hsla_steel",
+      "canonical_material": "hslasteel",
+      "cc_form": "triple_wire",
+      "dummy_path": "electric_wire/3x_hsla_steel_wire",
+      "live_block": "cruciblecraft:hslasteel/triple_wire",
+      "collision_reason": "folded onto live eu cable",
+      "baseline_disposition": "keep_distinct"
+    },
+    {
+      "meta": 28254,
+      "domain": "eu",
+      "recorded_material": "hsla_steel",
+      "canonical_material": "hslasteel",
+      "cc_form": "quintuple_wire",
+      "dummy_path": "electric_wire/5x_hsla_steel_wire",
+      "live_block": "cruciblecraft:hslasteel/quintuple_wire",
+      "collision_reason": "folded onto live eu cable",
+      "baseline_disposition": "keep_distinct"
+    },
+    {
+      "meta": 28255,
+      "domain": "eu",
+      "recorded_material": "hsla_steel",
+      "canonical_material": "hslasteel",
+      "cc_form": "sextuple_wire",
+      "dummy_path": "electric_wire/6x_hsla_steel_wire",
+      "live_block": "cruciblecraft:hslasteel/sextuple_wire",
+      "collision_reason": "folded onto live eu cable",
+      "baseline_disposition": "keep_distinct"
+    }
+  ]
+}

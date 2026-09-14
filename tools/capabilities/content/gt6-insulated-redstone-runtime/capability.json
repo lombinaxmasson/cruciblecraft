@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-insulated-redstone-runtime",
+  "title": "GT6 Insulated Redstone Runtime",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6绝缘红石运行时详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/redstonewire/RedstoneWireKind.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/RedstoneWireBlock.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+    "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/InsulatedRedstoneRuntimeGameTests.java",
+    "src/main/resources/assets/cruciblecraft/models/block/redstone_cable/**",
+    "src/main/resources/assets/cruciblecraft/blockstates/red_alloy/cable.json",
+    "src/main/resources/assets/cruciblecraft/blockstates/signalum/cable.json",
+    "src/main/resources/assets/cruciblecraft/blockstates/lumium/cable.json",
+    "src/main/resources/assets/cruciblecraft/models/item/red_alloy/cable.json",
+    "src/main/resources/assets/cruciblecraft/models/item/signalum/cable.json",
+    "src/main/resources/assets/cruciblecraft/models/item/lumium/cable.json",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_insulated_redstone_runtime/**",
+    "tools/capabilities/content/gt6-insulated-redstone-runtime/**",
+    "tools/waves/content/gt6-insulated-redstone-runtime/**",
+    "tools/gt6_insulated_redstone_runtime.py",
+    "tools/build_gt6_insulated_redstone_runtime.py",
+    "tools/tests/test_gt6_insulated_redstone_runtime.py"
+  ],
+  "depends_on": [
+    "registry/catalog-modern-ids",
+    "content/mte-redstone-wire",
+    "content/gt6-redstone-wire-correction"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-insulated-redstone-runtime",
+  "required_test_ids": [
+    "insulatedCablesAreLiveRedstoneBlocks",
+    "insulatedCablesAreNotEuOrTinAlias",
+    "insulatedJoinsBareRedstoneNetwork",
+    "lumiumCableDoesNotGlow"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "connector:redstone-wire:insulated-27006",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:red_alloy/cable",
+        "cruciblecraft:signalum/cable",
+        "cruciblecraft:lumium/cable"
+      ],
+      "reason": "GT6 OP.cableGt01 binds 27006/27056/27506 to WireRedstoneInsulated. In-place at modern */cable. Not EU CableBlock and not tin/cable."
+    }
+  ],
+  "note": "Insulated redstone only. Close at runtime_ready, not player_complete. Laminator obtain grids wait for the acquisition child. Do not edit R0, the baseline identity ledger, or the closed mte-redstone-wire extras list."
+}

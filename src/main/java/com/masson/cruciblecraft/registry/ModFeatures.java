@@ -76,5 +76,13 @@ public final class ModFeatures {
     public static final DeferredHolder<Feature<?>, GtTreeFeature> GT_TREE =
             FEATURES.register("gt_tree", GtTreeFeature::new);
 
+    /** GT6 WorldgenGlowtus / WorldgenBushes. */
+    public static final DeferredHolder<
+            Feature<?>,
+            com.masson.cruciblecraft.worldgen.crop.GtCropFeature> GT_CROP =
+                    FEATURES.register(
+                            "gt_crop",
+                            com.masson.cruciblecraft.worldgen.crop.GtCropFeature::new);
+
     private ModFeatures() {}
 }

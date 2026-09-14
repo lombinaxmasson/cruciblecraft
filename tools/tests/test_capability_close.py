@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import unittest
 
+from tools import blockers
 from tools import capability_ledger
 from tools import close_capability
 from tools import io_common as io
@@ -27,6 +28,25 @@ class CapabilityCloseTest(unittest.TestCase):
         self.assertEqual(
             closed,
             moves["docs/history/card-plans/prep/辊压成型机详细计划.md"],
+        )
+
+    def test_unbound_blocked_row_fails_blocker_bindings(self) -> None:
+        errors = blockers.check_capability_bindings(
+            {
+                "slug": "tests/fake-unbound",
+                "identity_disposition": [
+                    {
+                        "semantic_key": "recipe:fake:overflow",
+                        "disposition": "blocked",
+                        "runtime_ids": [],
+                    }
+                ],
+                "note": "",
+            }
+        )
+        self.assertTrue(
+            any("not on the blocker ledger" in message for message in errors),
+            errors,
         )
 
     def test_lock_note_may_say_not_player_complete(self) -> None:

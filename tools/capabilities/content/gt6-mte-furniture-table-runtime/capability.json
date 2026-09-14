@@ -1,0 +1,43 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-mte-furniture-table-runtime",
+  "title": "GT6 Furniture Crafting Table Runtime",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6家具工作台runtime详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/mte/**",
+    "src/main/java/com/masson/cruciblecraft/gametest/MteFurnitureTableRuntimeGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/MteInPlaceGameTestSupport.java",
+    "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_furniture_table_runtime/**",
+    "tools/capabilities/content/gt6-mte-furniture-table-runtime/**",
+    "tools/waves/content/gt6-mte-furniture-table-runtime/**",
+    "tools/gt6_mte_inplace_runtime.py",
+    "tools/build_gt6_mte_inplace_runtime.py",
+    "tools/tests/test_gt6_mte_runtime.py"
+  ],
+  "depends_on": [
+    "registry/catalog-modern-ids"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-mte-furniture-table-runtime",
+  "required_test_ids": [
+    "leadCraftingTableIsLiveBlock"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "mte:furniture-table:in-place",
+      "disposition": "keep_distinct",
+      "runtime_ids": [
+        "cruciblecraft:furniture/advanced_crafting_table_lead"
+      ],
+      "reason": "Advanced crafting tables keep dummy modern ids as live BlockItems."
+    }
+  ],
+  "note": "In-place furniture_table runtime. Close at runtime_ready. Obtain stays explicitly_blocked. Do not edit R0."
+}

@@ -16,7 +16,8 @@
     "autoclave_ordinary_closure_required_forms",
     "compressor_ordinary_closure_required_forms",
     "machines_cluster_mill_required_forms",
-    "technological_parts_foundation_required_forms"
+    "technological_parts_foundation_required_forms",
+    "machines_slicer_paper_tiny_plate_required_forms"
   ],
   "note": "Single overlay authority. Card builders write required_forms.json only; they do not write material_registration_gate.json.",
   "schema_version": 1,
@@ -519,6 +520,18 @@
       "java_runtime_visible": true,
       "owner": "content/technological-parts-foundation",
       "path": "tools/waves/content/technological-parts-foundation/required_forms.json",
+      "required_factual_prereqs": {}
+    },
+    {
+      "extra_factual_forms": [
+        "tiny_plate"
+      ],
+      "field": "required_forms",
+      "gate_section": "machines_slicer_paper_tiny_plate_required_forms",
+      "id": "machines_slicer_paper_tiny_plate_required_forms",
+      "java_runtime_visible": true,
+      "owner": "content/gt6-paper-tiny-plate",
+      "path": "tools/waves/content/gt6-paper-tiny-plate/required_forms.json",
       "required_factual_prereqs": {}
     }
   ],

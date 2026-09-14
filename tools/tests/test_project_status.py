@@ -43,6 +43,7 @@ class ProjectStatusTest(unittest.TestCase):
         self.assertIn("## Prep（不占落地锁）", text)
         self.assertIn("## runtime_ready", text)
         self.assertIn("python tools/close_capability.py", text)
+        self.assertIn("blocked.md", text)
 
     def test_pointer_files_link_status_and_do_not_recite(self) -> None:
         self.assertEqual([], project_status.pointer_errors())

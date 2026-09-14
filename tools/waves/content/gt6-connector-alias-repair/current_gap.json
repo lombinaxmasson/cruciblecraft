@@ -1,0 +1,134 @@
+{
+  "schema": "gt6-connector-alias-repair-gap-v1",
+  "capability_slug": "content/gt6-connector-alias-repair",
+  "folded": {
+    "fold_live_block": 9,
+    "fluid": 5,
+    "eu": 4
+  },
+  "hsla_steel_still_dummy": [
+    {
+      "meta": 26365,
+      "domain": "fluid",
+      "cc_form": null,
+      "dummy_path": "fluid_pipe_tile/quadruple_hsla_steel_fluid_pipe",
+      "disposition": "keep_distinct",
+      "reason": "No live hslasteel BlockItem for this GT6 gauge. Keep the modern dummy id."
+    },
+    {
+      "meta": 26366,
+      "domain": "fluid",
+      "cc_form": null,
+      "dummy_path": "fluid_pipe_tile/nonuple_hsla_steel_fluid_pipe",
+      "disposition": "keep_distinct",
+      "reason": "No live hslasteel BlockItem for this GT6 gauge. Keep the modern dummy id."
+    },
+    {
+      "meta": 28251,
+      "domain": "eu",
+      "cc_form": "double_wire",
+      "dummy_path": "electric_wire/2x_hsla_steel_wire",
+      "disposition": "keep_distinct",
+      "reason": "No live hslasteel BlockItem for this GT6 gauge. Keep the modern dummy id."
+    },
+    {
+      "meta": 28253,
+      "domain": "eu",
+      "cc_form": "quadruple_wire",
+      "dummy_path": "electric_wire/4x_hsla_steel_wire",
+      "disposition": "keep_distinct",
+      "reason": "No live hslasteel BlockItem for this GT6 gauge. Keep the modern dummy id."
+    },
+    {
+      "meta": 28256,
+      "domain": "eu",
+      "cc_form": null,
+      "dummy_path": "electric_wire/7x_hsla_steel_wire",
+      "disposition": "keep_distinct",
+      "reason": "No live hslasteel BlockItem for this GT6 gauge. Keep the modern dummy id."
+    },
+    {
+      "meta": 28257,
+      "domain": "eu",
+      "cc_form": "octuple_wire",
+      "dummy_path": "electric_wire/8x_hsla_steel_wire",
+      "disposition": "keep_distinct",
+      "reason": "No live hslasteel BlockItem for this GT6 gauge. Keep the modern dummy id."
+    },
+    {
+      "meta": 28258,
+      "domain": "eu",
+      "cc_form": null,
+      "dummy_path": "electric_wire/9x_hsla_steel_wire",
+      "disposition": "keep_distinct",
+      "reason": "No live hslasteel BlockItem for this GT6 gauge. Keep the modern dummy id."
+    },
+    {
+      "meta": 28259,
+      "domain": "eu",
+      "cc_form": null,
+      "dummy_path": "electric_wire/10x_hsla_steel_wire",
+      "disposition": "keep_distinct",
+      "reason": "No live hslasteel BlockItem for this GT6 gauge. Keep the modern dummy id."
+    },
+    {
+      "meta": 28260,
+      "domain": "eu",
+      "cc_form": null,
+      "dummy_path": "electric_wire/11x_hsla_steel_wire",
+      "disposition": "keep_distinct",
+      "reason": "No live hslasteel BlockItem for this GT6 gauge. Keep the modern dummy id."
+    },
+    {
+      "meta": 28261,
+      "domain": "eu",
+      "cc_form": "dodecuple_wire",
+      "dummy_path": "electric_wire/12x_hsla_steel_wire",
+      "disposition": "keep_distinct",
+      "reason": "No live hslasteel BlockItem for this GT6 gauge. Keep the modern dummy id."
+    },
+    {
+      "meta": 28262,
+      "domain": "eu",
+      "cc_form": null,
+      "dummy_path": "electric_wire/13x_hsla_steel_wire",
+      "disposition": "keep_distinct",
+      "reason": "No live hslasteel BlockItem for this GT6 gauge. Keep the modern dummy id."
+    },
+    {
+      "meta": 28263,
+      "domain": "eu",
+      "cc_form": null,
+      "dummy_path": "electric_wire/14x_hsla_steel_wire",
+      "disposition": "keep_distinct",
+      "reason": "No live hslasteel BlockItem for this GT6 gauge. Keep the modern dummy id."
+    },
+    {
+      "meta": 28264,
+      "domain": "eu",
+      "cc_form": null,
+      "dummy_path": "electric_wire/15x_hsla_steel_wire",
+      "disposition": "keep_distinct",
+      "reason": "No live hslasteel BlockItem for this GT6 gauge. Keep the modern dummy id."
+    },
+    {
+      "meta": 28265,
+      "domain": "eu",
+      "cc_form": "hexadecuple_wire",
+      "dummy_path": "electric_wire/16x_hsla_steel_wire",
+      "disposition": "keep_distinct",
+      "reason": "No live hslasteel BlockItem for this GT6 gauge. Keep the modern dummy id."
+    }
+  ],
+  "other_canonical_leaks": [],
+  "blocked": [
+    "pipeQuadruple / pipeNonuple BlockItem",
+    "restrictive item pipes",
+    "wireGt07/09/10/11/13/14/15 prefixes",
+    "insulated redstone 27006/27056/27506",
+    "plasma/magic destroy/replace, flammable, contactDamage",
+    "connector survival obtain grids"
+  ],
+  "close_target": "runtime_ready",
+  "note": "Baseline identity_resolution_ledger and R0 stay frozen. Insulated redstone stays blocked until laminator plate/foil recipes parse. Do not alias insulated redstone onto */cable."
+}

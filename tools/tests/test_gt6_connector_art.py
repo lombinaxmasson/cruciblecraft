@@ -82,12 +82,12 @@ class Gt6ConnectorArtTest(unittest.TestCase):
             self.assertNotIn(f"void {name}", core)
 
     def test_keep_distinct_models_drop_iron_ingot(self) -> None:
-        keep = art._subset_rows(art.EU_SUBSET, "keep_distinct")
-        lead = next(
-            row for row in keep
-            if str(row.get("dummy_path") or "").endswith("7x_lead_wire")
+        upgrades = art._subset_rows(art.EU_SUBSET, "upgrade_live_item")
+        leftover = next(
+            row for row in upgrades
+            if str(row.get("dummy_path") or "").endswith("2x_blue_alloy_wire")
         )
-        model = art.ITEM_MODELS / f"{lead['dummy_path']}.json"
+        model = art.ITEM_MODELS / f"{leftover['dummy_path']}.json"
         text = model.read_text(encoding="utf-8")
         self.assertNotIn("iron_ingot", text)
         self.assertIn("gt6_import/materialicons/copper/wire", text)

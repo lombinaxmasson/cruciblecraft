@@ -326,9 +326,18 @@ public final class GeneratedMaterialPack {
                 }
                 JsonObject model = new JsonObject();
                 if (isRedstoneWire(material, form)) {
+                    boolean insulated = com.masson.cruciblecraft.content
+                            .redstonewire.RedstoneWireKind
+                            .byPath(material.registryName(form))
+                            .map(com.masson.cruciblecraft.content.redstonewire
+                                    .RedstoneWireKind::insulated)
+                            .orElse(false);
                     model.addProperty(
                             "parent",
-                            CrucibleCraft.MODID + ":block/redstone_wire/item");
+                            CrucibleCraft.MODID
+                                    + (insulated
+                                            ? ":block/redstone_cable/item"
+                                            : ":block/redstone_wire/item"));
                     files.put(
                             "assets/" + CrucibleCraft.MODID + "/models/item/"
                                     + material.registryName(form) + ".json",
@@ -959,11 +968,24 @@ public final class GeneratedMaterialPack {
         if (form.equals(MaterialPrefixes.SEXTUPLE_WIRE)) {
             return "item/material/wire_bundle_6";
         }
+        if (form.equals(MaterialPrefixes.SEPTUPLE_WIRE)) {
+            return "item/material/wire_bundle_8";
+        }
         if (form.equals(MaterialPrefixes.OCTUPLE_WIRE)) {
             return "item/material/wire_bundle_8";
         }
+        if (form.equals(MaterialPrefixes.NONUPLE_WIRE)
+                || form.equals(MaterialPrefixes.DECUPLE_WIRE)
+                || form.equals(MaterialPrefixes.UNDECUPLE_WIRE)) {
+            return "item/material/wire_bundle_12";
+        }
         if (form.equals(MaterialPrefixes.DODECUPLE_WIRE)) {
             return "item/material/wire_bundle_12";
+        }
+        if (form.equals(MaterialPrefixes.TREDECUPLE_WIRE)
+                || form.equals(MaterialPrefixes.TETRADECUPLE_WIRE)
+                || form.equals(MaterialPrefixes.PENTADECUPLE_WIRE)) {
+            return "item/material/wire_bundle_16";
         }
         if (form.equals(MaterialPrefixes.HEXADECUPLE_WIRE)) {
             return "item/material/wire_bundle_16";
@@ -988,23 +1010,89 @@ public final class GeneratedMaterialPack {
     private static String pipeModelKey(
             MaterialDefinition material, MaterialPrefix form) {
         record PipeForm(String kind, String specification, int width) {}
-        PipeForm pipeForm = Map.of(
-                MaterialPrefixes.TINY_FLUID_PIPE,
-                        new PipeForm("fluid", "pipeTiny", 4),
-                MaterialPrefixes.SMALL_FLUID_PIPE,
-                        new PipeForm("fluid", "pipeSmall", 6),
-                MaterialPrefixes.FLUID_PIPE,
-                        new PipeForm("fluid", "pipeMedium", 8),
-                MaterialPrefixes.LARGE_FLUID_PIPE,
-                        new PipeForm("fluid", "pipeLarge", 12),
-                MaterialPrefixes.HUGE_FLUID_PIPE,
-                        new PipeForm("fluid", "pipeHuge", 16),
-                MaterialPrefixes.ITEM_PIPE,
-                        new PipeForm("item", "pipeMedium", 8),
-                MaterialPrefixes.LARGE_ITEM_PIPE,
-                        new PipeForm("item", "pipeLarge", 12),
-                MaterialPrefixes.HUGE_ITEM_PIPE,
-                        new PipeForm("item", "pipeHuge", 16)).get(form);
+        PipeForm pipeForm = Map.ofEntries(
+                Map.entry(
+                        MaterialPrefixes.TINY_FLUID_PIPE,
+                        new PipeForm("fluid", "pipeTiny", 4)),
+                Map.entry(
+                        MaterialPrefixes.SMALL_FLUID_PIPE,
+                        new PipeForm("fluid", "pipeSmall", 6)),
+                Map.entry(
+                        MaterialPrefixes.FLUID_PIPE,
+                        new PipeForm("fluid", "pipeMedium", 8)),
+                Map.entry(
+                        MaterialPrefixes.LARGE_FLUID_PIPE,
+                        new PipeForm("fluid", "pipeLarge", 12)),
+                Map.entry(
+                        MaterialPrefixes.HUGE_FLUID_PIPE,
+                        new PipeForm("fluid", "pipeHuge", 16)),
+                Map.entry(
+                        MaterialPrefixes.QUADRUPLE_FLUID_PIPE,
+                        new PipeForm("fluid", "pipeMedium", 16)),
+                Map.entry(
+                        MaterialPrefixes.NONUPLE_FLUID_PIPE,
+                        new PipeForm("fluid", "pipeSmall", 16)),
+                Map.entry(
+                        MaterialPrefixes.ITEM_PIPE,
+                        new PipeForm("item", "pipeMedium", 8)),
+                Map.entry(
+                        MaterialPrefixes.LARGE_ITEM_PIPE,
+                        new PipeForm("item", "pipeLarge", 12)),
+                Map.entry(
+                        MaterialPrefixes.HUGE_ITEM_PIPE,
+                        new PipeForm("item", "pipeHuge", 16)),
+                Map.entry(
+                        MaterialPrefixes.RESTRICTIVE_ITEM_PIPE,
+                        new PipeForm("item", "pipeMedium", 8)),
+                Map.entry(
+                        MaterialPrefixes.LARGE_RESTRICTIVE_ITEM_PIPE,
+                        new PipeForm("item", "pipeLarge", 12)),
+                Map.entry(
+                        MaterialPrefixes.HUGE_RESTRICTIVE_ITEM_PIPE,
+                        new PipeForm("item", "pipeHuge", 16))).get(form);
+        if (pipeForm == null) {
+            return null;
+        }
+        if (form.equals(MaterialPrefixes.QUADRUPLE_FLUID_PIPE)
+                && material.gt6Metadata()
+                        .map(metadata -> metadata.pipeProperties()
+                                .fluidBySpecification()
+                                .containsKey("pipeMedium"))
+                        .orElse(false)) {
+            return "fluid_quadruple";
+        }
+        if (form.equals(MaterialPrefixes.NONUPLE_FLUID_PIPE)
+                && material.gt6Metadata()
+                        .map(metadata -> metadata.pipeProperties()
+                                .fluidBySpecification()
+                                .containsKey("pipeSmall"))
+                        .orElse(false)) {
+            return "fluid_nonuple";
+        }
+        if (form.equals(MaterialPrefixes.RESTRICTIVE_ITEM_PIPE)
+                && material.gt6Metadata()
+                        .map(metadata -> metadata.pipeProperties()
+                                .itemBySpecification()
+                                .containsKey("pipeMedium"))
+                        .orElse(false)) {
+            return "item_restrictive_8";
+        }
+        if (form.equals(MaterialPrefixes.LARGE_RESTRICTIVE_ITEM_PIPE)
+                && material.gt6Metadata()
+                        .map(metadata -> metadata.pipeProperties()
+                                .itemBySpecification()
+                                .containsKey("pipeLarge"))
+                        .orElse(false)) {
+            return "item_restrictive_12";
+        }
+        if (form.equals(MaterialPrefixes.HUGE_RESTRICTIVE_ITEM_PIPE)
+                && material.gt6Metadata()
+                        .map(metadata -> metadata.pipeProperties()
+                                .itemBySpecification()
+                                .containsKey("pipeHuge"))
+                        .orElse(false)) {
+            return "item_restrictive_16";
+        }
         if (pipeForm == null) {
             return null;
         }

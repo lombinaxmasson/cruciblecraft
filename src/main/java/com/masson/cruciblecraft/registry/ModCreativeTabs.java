@@ -90,6 +90,9 @@ public final class ModCreativeTabs {
                             output.accept(ModItems.treeLogItem(species).get());
                             output.accept(ModItems.treeLeavesItem(species).get());
                         });
+                        com.masson.cruciblecraft.worldgen.crop.GlowtusColor.ALL.forEach(color ->
+                                output.accept(ModItems.glowtusItem(color).get()));
+                        output.accept(ModItems.GT_BUSH.get());
                         output.accept(ModItems.PROGRAMMED_CIRCUIT.get());
                         output.accept(ModItems.CREOSOTE_BUCKET.get());
                         output.accept(ModItems.STEAM_BUCKET.get());

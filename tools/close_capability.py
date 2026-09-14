@@ -15,6 +15,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools import atomic_io
+from tools import blockers
 from tools import capability_ledger
 from tools import io_common as io
 from tools import player_complete
@@ -143,6 +144,7 @@ def close_capability(
                 f"{io.relative(lock_path)}: production_lock.note claims "
                 "player_complete"
             )
+    errors.extend(blockers.check_capability_bindings(capability))
     if errors:
         return errors
     document = _load_json(path)

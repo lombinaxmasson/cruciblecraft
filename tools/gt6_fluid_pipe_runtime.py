@@ -12,6 +12,8 @@ from typing import Any
 
 from tools import catalog_modern_ids as modern
 from tools import census_common as census
+from tools import gt6_connector_alias_repair as alias_repair
+from tools import gt6_fluid_combo_pipe_runtime as combo_pipe
 from tools import io_common as io
 
 SLUG = "content/gt6-fluid-pipe-runtime"
@@ -37,6 +39,13 @@ DATA_CATALOG = (
     / "smelter_mte_identity_catalog.json"
 )
 TOOLS_CATALOG = census.TOOLS / "smelter_mte_identity_catalog.json"
+DANGEROUS_OVERLAY = (
+    census.TOOLS
+    / "waves"
+    / "content"
+    / "gt6-fluid-dangerous-media-runtime"
+    / "dangerous_overlay.json"
+)
 BE = (
     census.ROOT
     / "src"
@@ -410,7 +419,10 @@ def check() -> list[str]:
             for row in committed.get("rows") or []
             if row.get("disposition") == "keep_distinct"
         ]
+        repaired = alias_repair.folded_metas() | combo_pipe.folded_metas()
         for row in keep:
+            if int(row["meta"]) in repaired:
+                continue
             identity = by_meta.get(int(row["meta"]))
             if identity is None:
                 continue
@@ -449,19 +461,18 @@ def check() -> list[str]:
         errors.append("FluidPipeBlockEntity lost every-tick distribute")
     if "tickCovers" not in be or "PipeTransferPhase.isDue" not in be:
         errors.append("cover pumps are no longer gated on the 5-tick phase")
-    if "FluidPipeBlockedMedia.rejects" not in be:
+    if DANGEROUS_OVERLAY.is_file():
+        if "FluidPipeDangerousMedia.tick" not in be:
+            errors.append("FluidPipeBlockEntity lost dangerous-media tick")
+        if "FluidPipeBlockedMedia.rejects(" in be:
+            errors.append("plasma/magic is still rejected at fill")
+    elif "FluidPipeBlockedMedia.rejects" not in be:
         errors.append("plasma/magic reject path missing")
     if "CableNetworkTraversal" in be or "ModCapabilities.ENERGY" in be:
         errors.append("fluid pipe attached to ENERGY/cable traversal")
     phase = PHASE.read_text(encoding="utf-8")
     if "INTERVAL = 5" not in phase:
         errors.append("PipeTransferPhase.INTERVAL drifted from 5")
-    catalog_java = CATALOG_JAVA.read_text(encoding="utf-8")
-    if "pipeQuadruple" in catalog_java or "pipeNonuple" in catalog_java:
-        if "pipeQuadruple" in catalog_java.split("FLUID_SPEC_BY_FORM", 1)[-1].split(
-            "ITEM_SPEC_BY_FORM", 1
-        )[0]:
-            errors.append("PipeCatalog registered quadruple/nonuple fluid forms")
     tests = GAME_TESTS.read_text(encoding="utf-8")
     for name in EXPECTED_TESTS:
         if f"void {name}" not in tests:

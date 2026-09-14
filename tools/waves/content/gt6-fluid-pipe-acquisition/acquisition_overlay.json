@@ -1,0 +1,35 @@
+{
+  "schema": "gt6-connector-acquisition-overlay-v1",
+  "capability_slug": "content/gt6-fluid-pipe-acquisition",
+  "domain": "fluid",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "combo_catalog_hosts": 56,
+  "combo_pack_recipes": 84,
+  "combo_unpack_recipes": 84,
+  "five_gauge_table_live": 149,
+  "five_gauge_table_operands": {
+    "curved_plate": 112,
+    "double_plate": 37
+  },
+  "copper_tiny_table": true,
+  "copper_huge_table": true,
+  "copper_plate_curved": {
+    "status": "missing_form",
+    "item": "cruciblecraft:copper/curved_plate",
+    "table_recipe": true
+  },
+  "copper_plate_double": {
+    "status": "ok",
+    "item": "cruciblecraft:copper/double_plate",
+    "table_recipe": true
+  },
+  "existing_extruder": [
+    "plate_to_tiny_fluid_pipe.json",
+    "plate_to_small_fluid_pipe.json",
+    "plates_to_fluid_pipe.json",
+    "plates_to_large_fluid_pipe.json",
+    "plates_to_huge_fluid_pipe.json"
+  ],
+  "nonmetal_catalog": 25,
+  "note": "Combo 2x2 medium / 3x3 small and shapeless unpack are GT6 grids on live pipes. Five-gauge table crafts use live curved_plate / double_plate only. Flat plate is never a stand-in. Existing extruder material_rules stay the machine obtain path."
+}

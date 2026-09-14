@@ -61,6 +61,10 @@ class CatalogModernIdsTest(unittest.TestCase):
         self.assertIn("tin/item_pipe", live)
         self.assertIn("slicer", live)
         self.assertIn("steel_dust_funnel", live)
+        self.assertIn("lead_boiler", live)
+        self.assertIn("lead_hopper", live)
+        self.assertIn("sifter", live)
+        self.assertIn("neutron_reflector_rod", live)
         document = census.load_json(modern.MAP_PATH)
         mapped = {row["registry_path"] for row in document["rows"]}
         folded = modern.folded_existing_item_paths()

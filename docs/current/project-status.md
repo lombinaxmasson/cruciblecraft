@@ -47,16 +47,45 @@
 - `machines/cluster-mill` — Cluster Mill — [集群轧机详细计划](../history/card-plans/closed/集群轧机详细计划.md)
 - `machines/roll-former` — Roll Former — [辊压成型机详细计划](../history/card-plans/closed/辊压成型机详细计划.md)
 
-## runtime_ready（accepted，非玩家完成）（22）
+## runtime_ready（accepted，非玩家完成）（52）
 
 RecipeMap / 主机已挂，获得格或配方仍 blocked。不得宣称 `player_complete`。
 
 - `content/electric-wire-cable-mte-fold` — Electric Wire/Cable MTE Fold — [导线电缆 MTE 折回详细计划](../history/card-plans/closed/导线电缆MTE折回详细计划.md)
+- `content/gt6-connector-alias-repair` — GT6 Connector Alias Repair — [GT6 连接件身份漏匹配详细计划](../history/card-plans/closed/GT6连接件身份漏匹配详细计划.md)
 - `content/gt6-connector-art` — GT6 Connector Art — [GT6 连接件美术详细计划](../history/card-plans/closed/GT6连接件美术详细计划.md)
+- `content/gt6-eu-cable-acquisition` — GT6 EU Cable Acquisition — [GT6 EU 线缆获得格详细计划](../history/card-plans/closed/GT6EU线缆获得格详细计划.md)
+- `content/gt6-eu-missing-wire-gauges-runtime` — GT6 Missing EU Wire Gauges Runtime — [GT6 缺线规运行时详细计划](../history/card-plans/closed/GT6缺线规运行时详细计划.md)
 - `content/gt6-eu-wire-cable-runtime` — GT6 EU Wire/Cable Runtime — [GT6 导线电缆运行时详细计划](../history/card-plans/closed/GT6导线电缆运行时详细计划.md)
+- `content/gt6-fluid-combo-pipe-runtime` — GT6 Fluid Combo Pipe Runtime — [GT6 流体组合管运行时详细计划](../history/card-plans/closed/GT6流体组合管运行时详细计划.md)
+- `content/gt6-fluid-dangerous-media-runtime` — GT6 Fluid Dangerous Media Runtime — [GT6 流体危险介质运行时详细计划](../history/card-plans/closed/GT6流体危险介质运行时详细计划.md)
+- `content/gt6-fluid-pipe-acquisition` — GT6 Fluid Pipe Acquisition — [GT6 流体管获得格详细计划](../history/card-plans/closed/GT6流体管获得格详细计划.md)
 - `content/gt6-fluid-pipe-runtime` — GT6 Fluid Pipe Runtime — [GT6 流体管运行时详细计划](../history/card-plans/closed/GT6流体管运行时详细计划.md)
+- `content/gt6-insulated-redstone-runtime` — GT6 Insulated Redstone Runtime — [GT6 绝缘红石运行时详细计划](../history/card-plans/closed/GT6绝缘红石运行时详细计划.md)
+- `content/gt6-item-pipe-acquisition` — GT6 Item Pipe Acquisition — [GT6 物品管获得格详细计划](../history/card-plans/closed/GT6物品管获得格详细计划.md)
 - `content/gt6-item-pipe-runtime` — GT6 Item Pipe Runtime — [GT6 物品管运行时详细计划](../history/card-plans/closed/GT6物品管运行时详细计划.md)
+- `content/gt6-mte-converter-host-fold` — GT6 Converter Host Fold — [GT6 能源转换器主机折回详细计划](../history/card-plans/closed/GT6能源转换器主机折回详细计划.md)
+- `content/gt6-mte-converter-remainder-runtime` — GT6 Converter Remainder Runtime — [GT6能源转换器余量runtime详细计划](../history/card-plans/closed/GT6能源转换器余量runtime详细计划.md)
+- `content/gt6-mte-crucible-foundry-runtime` — GT6 Crucible Foundry Runtime — [GT6坩埚铸造runtime详细计划](../history/card-plans/closed/GT6坩埚铸造runtime详细计划.md)
+- `content/gt6-mte-decorative-runtime` — GT6 Decorative Runtime — [GT6装饰件runtime详细计划](../history/card-plans/closed/GT6装饰件runtime详细计划.md)
+- `content/gt6-mte-drive-runtime` — GT6 Drive Runtime — [GT6传动件runtime详细计划](../history/card-plans/closed/GT6传动件runtime详细计划.md)
+- `content/gt6-mte-extender-runtime` — GT6 Extender Runtime — [GT6 扩展器 runtime 详细计划](../history/card-plans/closed/GT6扩展器runtime详细计划.md)
+- `content/gt6-mte-fluid-attachments-runtime` — GT6 Fluid Attachments Runtime — [GT6 流体附件 runtime 详细计划](../history/card-plans/closed/GT6流体附件runtime详细计划.md)
+- `content/gt6-mte-furniture-barrel-runtime` — GT6 Furniture Barrel Runtime — [GT6家具木桶runtime详细计划](../history/card-plans/closed/GT6家具木桶runtime详细计划.md)
+- `content/gt6-mte-furniture-chest-runtime` — GT6 Furniture Chest Runtime — [GT6家具箱子runtime详细计划](../history/card-plans/closed/GT6家具箱子runtime详细计划.md)
+- `content/gt6-mte-furniture-safe-runtime` — GT6 Furniture Safe Runtime — [GT6家具保险箱runtime详细计划](../history/card-plans/closed/GT6家具保险箱runtime详细计划.md)
+- `content/gt6-mte-furniture-scaffold-runtime` — GT6 Furniture Scaffold Runtime — [GT6家具脚手架runtime详细计划](../history/card-plans/closed/GT6家具脚手架runtime详细计划.md)
+- `content/gt6-mte-furniture-storage-runtime` — GT6 Furniture Storage Runtime — [GT6家具储物runtime详细计划](../history/card-plans/closed/GT6家具储物runtime详细计划.md)
+- `content/gt6-mte-furniture-table-runtime` — GT6 Furniture Crafting Table Runtime — [GT6家具工作台runtime详细计划](../history/card-plans/closed/GT6家具工作台runtime详细计划.md)
+- `content/gt6-mte-hopper-host-fold` — GT6 Hopper Host Fold — [GT6 漏斗主机折回详细计划](../history/card-plans/closed/GT6漏斗主机折回详细计划.md)
+- `content/gt6-mte-misc-tool-runtime` — GT6 Misc Tool Runtime — [GT6杂项工具runtime详细计划](../history/card-plans/closed/GT6杂项工具runtime详细计划.md)
+- `content/gt6-mte-multiblock-runtime` — GT6 Multiblock Runtime — [GT6多方块设备runtime详细计划](../history/card-plans/closed/GT6多方块设备runtime详细计划.md)
+- `content/gt6-mte-processing-host-fold` — GT6 Processing Host Fold — [GT6 加工机主机折回详细计划](../history/card-plans/closed/GT6加工机主机折回详细计划.md)
+- `content/gt6-mte-reactor-rod-host-fold` — GT6 Reactor Rod Host Fold — [GT6 反应棒主机折回详细计划](../history/card-plans/closed/GT6反应棒主机折回详细计划.md)
+- `content/gt6-paper-tiny-plate` — GT6 Paper Tiny Plate — [GT6 纸微型板](../history/card-plans/closed/GT6纸微型板详细计划.md)
+- `content/gt6-redstone-wire-acquisition` — GT6 Redstone Wire Acquisition — [GT6 绝缘红石获得格详细计划](../history/card-plans/closed/GT6绝缘红石获得格详细计划.md)
 - `content/gt6-redstone-wire-correction` — GT6 Redstone Wire Correction — [GT6 红石线行为校正详细计划](../history/card-plans/closed/GT6红石线行为校正详细计划.md)
+- `content/gt6-restrictive-item-pipe-runtime` — GT6 Restrictive Item Pipe Runtime — [GT6 限制物品管运行时详细计划](../history/card-plans/closed/GT6限制物品管运行时详细计划.md)
 - `content/mte-redstone-wire` — MTE Redstone Wire — [MTE 红石线详细计划](../history/card-plans/closed/MTE红石线详细计划.md)
 - `content/sensors` — Sensors — [Sensors 详细计划](../history/card-plans/closed/Sensors详细计划.md)
 - `content/technological-parts-foundation` — Technological Parts Foundation — [技术中间件基础详细计划](../history/card-plans/closed/技术中间件基础详细计划.md)
@@ -72,6 +101,7 @@ RecipeMap / 主机已挂，获得格或配方仍 blocked。不得宣称 `player_
 - `machines/slicer` — Slicer — [切片机详细计划](../history/card-plans/closed/切片机详细计划.md)
 - `registry/catalog-modern-ids` — Catalog modern IDs — [目录身份现代 id 详细计划](../history/card-plans/closed/目录身份现代id详细计划.md)
 - `registry/tool-head-prefix-reclaim` — Sharpener overflow reclaim — [工具头前缀与打磨机余量回收详细计划](../history/card-plans/closed/工具头前缀与打磨机余量回收详细计划.md)
+- `worldgen/gt-crops` — GT Crops — [GT 作物世界生成](../history/card-plans/closed/GT作物世界生成详细计划.md)
 - `worldgen/gt-trees` — GT Trees — [GT 树详细计划](../history/card-plans/closed/GT树详细计划.md)
 
 ## 关闭计划（有 capability 的 player_complete）
@@ -85,4 +115,5 @@ RecipeMap / 主机已挂，获得格或配方仍 blocked。不得宣称 `player_
 
 权威与流程见 [capability-delivery-workflow.md](capability-delivery-workflow.md)
 与 [unimplemented-gap.md](unimplemented-gap.md)。
+跨能力 blocked 总账见 [blocked.md](blocked.md)。
 关闭一张卡：`python tools/close_capability.py --capability <slug>`。

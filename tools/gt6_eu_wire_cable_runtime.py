@@ -12,6 +12,8 @@ from typing import Any
 
 from tools import catalog_modern_ids as modern
 from tools import census_common as census
+from tools import gt6_connector_alias_repair as alias_repair
+from tools import gt6_eu_missing_wire_gauges_runtime as missing_gauges
 from tools import io_common as io
 
 SLUG = "content/gt6-eu-wire-cable-runtime"
@@ -608,7 +610,10 @@ def check() -> list[str]:
             for row in committed.get("rows") or []
             if row.get("disposition") == "keep_distinct"
         ]
+        repaired = alias_repair.folded_metas() | missing_gauges.folded_metas()
         for row in keep:
+            if int(row["meta"]) in repaired:
+                continue
             identity = by_meta.get(int(row["meta"]))
             if identity is None:
                 continue
@@ -682,10 +687,20 @@ def check() -> list[str]:
                 f"{row.get('collision_reason')}"
             )
     catalog_java = CATALOG_JAVA.read_text(encoding="utf-8")
-    if f"EXPECTED_WIRE_BLOCKS = {EXPECTED_WIRES}" not in catalog_java:
+    expected_wires = (
+        missing_gauges.EXPECTED_WIRES
+        if missing_gauges.folded_metas()
+        else EXPECTED_WIRES
+    )
+    if f"EXPECTED_WIRE_BLOCKS = {expected_wires}" not in catalog_java:
         errors.append("ElectricalConductorCatalog wire census drifted")
     if f"EXPECTED_CABLE_BLOCKS = {EXPECTED_CABLES}" not in catalog_java:
         errors.append("ElectricalConductorCatalog cable census drifted")
+    if missing_gauges.folded_metas():
+        if "wireGt07" not in catalog_java:
+            errors.append("missing-gauge overlay present but catalog lost wireGt07")
+    elif "wireGt07" in catalog_java:
+        errors.append("ElectricalConductorCatalog invented wireGt07")
     if "DOUBLE_WIRE" not in catalog_java or "HEXADECUPLE_WIRE" not in catalog_java:
         errors.append("mapped wire gauges missing from ElectricalConductorCatalog")
     if "red_alloy" not in catalog_java:

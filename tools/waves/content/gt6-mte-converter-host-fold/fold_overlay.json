@@ -1,0 +1,787 @@
+{
+  "schema_version": 1,
+  "capability_slug": "content/gt6-mte-converter-host-fold",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "generated_by": "content/gt6-mte-converter-host-fold implementation",
+  "family": "energy_converter",
+  "archive_strategy": {
+    "dummy_item": "unregister CatalogNamedItem",
+    "dummy_model": "delete iron_ingot item model",
+    "world_stacks": "unregistered dummy ids become air; no NeoForge alias and no second GT6 art copy",
+    "recipes": "operand remaps dummy path onto the live host id"
+  },
+  "counts": {
+    "fold_live_block": 71,
+    "keep_distinct": 8
+  },
+  "rows": [
+    {
+      "meta": 1109,
+      "dummy_path": "tantalum_hafnium_carbide/burning_box_solid",
+      "live_block": "cruciblecraft:tantalum_hafnium_carbide_burning_box_solid",
+      "english_name": "Burning Box (Solid, Tantalum Hafnium Carbide)",
+      "gt6_class_or_tag": "MultiTileEntityGeneratorMetal / Burning Boxes",
+      "source_id": 1109,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1159,
+      "dummy_path": "tantalum_hafnium_carbide/dense_burning_box_solid",
+      "live_block": "cruciblecraft:tantalum_hafnium_carbide_burning_box_solid_dense",
+      "english_name": "Dense Burning Box (Solid, Tantalum Hafnium Carbide)",
+      "gt6_class_or_tag": "MultiTileEntityGeneratorMetal / Burning Boxes",
+      "source_id": 1159,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1200,
+      "dummy_path": "steam/boiler_tank_lead",
+      "live_block": "cruciblecraft:lead_boiler",
+      "english_name": "Steam Boiler Tank (Lead)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1200,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1201,
+      "dummy_path": "steam/boiler_tank_bismuth",
+      "live_block": "cruciblecraft:bismuth_boiler",
+      "english_name": "Steam Boiler Tank (Bismuth)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1201,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1202,
+      "dummy_path": "steam/boiler_tank_bronze",
+      "live_block": "cruciblecraft:bronze_boiler",
+      "english_name": "Steam Boiler Tank (Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1202,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1203,
+      "dummy_path": "steam/boiler_tank_invar",
+      "live_block": "cruciblecraft:invar_boiler",
+      "english_name": "Steam Boiler Tank (Invar)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1203,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1204,
+      "dummy_path": "steam/boiler_tank_steel",
+      "live_block": "cruciblecraft:steel_boiler",
+      "english_name": "Steam Boiler Tank (Steel)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1204,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1205,
+      "dummy_path": "steam/boiler_tank_chromium",
+      "live_block": "cruciblecraft:chromium_boiler",
+      "english_name": "Steam Boiler Tank (Chromium)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1205,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1206,
+      "dummy_path": "steam/boiler_tank_titanium",
+      "live_block": "cruciblecraft:titanium_boiler",
+      "english_name": "Steam Boiler Tank (Titanium)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1206,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1207,
+      "dummy_path": "steam/boiler_tank_tungsten",
+      "live_block": "cruciblecraft:tungsten_boiler",
+      "english_name": "Steam Boiler Tank (Tungsten)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1207,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1208,
+      "dummy_path": "steam/boiler_tank_tungstensteel",
+      "live_block": "cruciblecraft:tungstensteel_boiler",
+      "english_name": "Steam Boiler Tank (Tungstensteel)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1208,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1209,
+      "dummy_path": "steam/boiler_tank_netherite",
+      "live_block": "cruciblecraft:netherite_boiler",
+      "english_name": "Steam Boiler Tank (Netherite)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1209,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1210,
+      "dummy_path": "steam/boiler_tank_arsenic_copper",
+      "live_block": "cruciblecraft:arsenic_copper_boiler",
+      "english_name": "Steam Boiler Tank (Arsenic Copper)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1210,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1211,
+      "dummy_path": "steam/boiler_tank_arsenic_bronze",
+      "live_block": "cruciblecraft:arsenic_bronze_boiler",
+      "english_name": "Steam Boiler Tank (Arsenic Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1211,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1212,
+      "dummy_path": "steam/boiler_tank_ultimet",
+      "live_block": "cruciblecraft:ultimet_boiler",
+      "english_name": "Steam Boiler Tank (Ultimet)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1212,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1250,
+      "dummy_path": "energy/strong_steam_boiler_tank_lead",
+      "live_block": "cruciblecraft:lead_strong_boiler",
+      "english_name": "Strong Steam Boiler Tank (Lead)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1250,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1251,
+      "dummy_path": "energy/strong_steam_boiler_tank_bismuth",
+      "live_block": "cruciblecraft:bismuth_strong_boiler",
+      "english_name": "Strong Steam Boiler Tank (Bismuth)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1251,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1252,
+      "dummy_path": "energy/strong_steam_boiler_tank_bronze",
+      "live_block": "cruciblecraft:bronze_strong_boiler",
+      "english_name": "Strong Steam Boiler Tank (Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1252,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1253,
+      "dummy_path": "energy/strong_steam_boiler_tank_invar",
+      "live_block": "cruciblecraft:invar_strong_boiler",
+      "english_name": "Strong Steam Boiler Tank (Invar)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1253,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1254,
+      "dummy_path": "energy/strong_steam_boiler_tank_steel",
+      "live_block": "cruciblecraft:steel_strong_boiler",
+      "english_name": "Strong Steam Boiler Tank (Steel)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1254,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1255,
+      "dummy_path": "energy/strong_steam_boiler_tank_chromium",
+      "live_block": "cruciblecraft:chromium_strong_boiler",
+      "english_name": "Strong Steam Boiler Tank (Chromium)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1255,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1256,
+      "dummy_path": "energy/strong_steam_boiler_tank_titanium",
+      "live_block": "cruciblecraft:titanium_strong_boiler",
+      "english_name": "Strong Steam Boiler Tank (Titanium)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1256,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1257,
+      "dummy_path": "energy/strong_steam_boiler_tank_tungsten",
+      "live_block": "cruciblecraft:tungsten_strong_boiler",
+      "english_name": "Strong Steam Boiler Tank (Tungsten)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1257,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1258,
+      "dummy_path": "energy/strong_steam_boiler_tank_tungstensteel",
+      "live_block": "cruciblecraft:tungstensteel_strong_boiler",
+      "english_name": "Strong Steam Boiler Tank (Tungstensteel)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1258,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1259,
+      "dummy_path": "energy/strong_steam_boiler_tank_netherite",
+      "live_block": "cruciblecraft:netherite_strong_boiler",
+      "english_name": "Strong Steam Boiler Tank (Netherite)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1259,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1260,
+      "dummy_path": "arsenic_copper/strong_steam_boiler_tank",
+      "live_block": "cruciblecraft:arsenic_copper_strong_boiler",
+      "english_name": "Strong Steam Boiler Tank (Arsenic Copper)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1260,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1261,
+      "dummy_path": "arsenic_bronze/strong_steam_boiler_tank",
+      "live_block": "cruciblecraft:arsenic_bronze_strong_boiler",
+      "english_name": "Strong Steam Boiler Tank (Arsenic Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1261,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1262,
+      "dummy_path": "energy/strong_steam_boiler_tank_ultimet",
+      "live_block": "cruciblecraft:ultimet_strong_boiler",
+      "english_name": "Strong Steam Boiler Tank (Ultimet)",
+      "gt6_class_or_tag": "MultiTileEntityBoilerTank / Steam Boilers",
+      "source_id": 1262,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1300,
+      "dummy_path": "steam/engine_lead",
+      "live_block": "cruciblecraft:lead_steam_engine",
+      "english_name": "Steam Engine (Lead)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1300,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1301,
+      "dummy_path": "steam/engine_tin_alloy",
+      "live_block": "cruciblecraft:tin_alloy_steam_engine",
+      "english_name": "Steam Engine (Tin Alloy)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1301,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1302,
+      "dummy_path": "steam/engine_bronze",
+      "live_block": "cruciblecraft:bronze_steam_engine",
+      "english_name": "Steam Engine (Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1302,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1303,
+      "dummy_path": "steam/engine_invar",
+      "live_block": "cruciblecraft:invar_steam_engine",
+      "english_name": "Steam Engine (Invar)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1303,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1304,
+      "dummy_path": "steam/engine_steel",
+      "live_block": "cruciblecraft:steel_steam_engine",
+      "english_name": "Steam Engine (Steel)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1304,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1305,
+      "dummy_path": "steam/engine_chromium",
+      "live_block": "cruciblecraft:chromium_steam_engine",
+      "english_name": "Steam Engine (Chromium)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1305,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1306,
+      "dummy_path": "steam/engine_titanium",
+      "live_block": "cruciblecraft:titanium_steam_engine",
+      "english_name": "Steam Engine (Titanium)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1306,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1307,
+      "dummy_path": "steam/engine_tungsten",
+      "live_block": "cruciblecraft:tungsten_steam_engine",
+      "english_name": "Steam Engine (Tungsten)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1307,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1308,
+      "dummy_path": "steam/engine_tungstensteel",
+      "live_block": "cruciblecraft:tungstensteel_steam_engine",
+      "english_name": "Steam Engine (Tungstensteel)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1308,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1309,
+      "dummy_path": "steam/engine_brass",
+      "live_block": "cruciblecraft:brass_steam_engine",
+      "english_name": "Steam Engine (Brass)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1309,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1310,
+      "dummy_path": "steam/engine_ironwood",
+      "live_block": "cruciblecraft:ironwood_steam_engine",
+      "english_name": "Steam Engine (Ironwood)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1310,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1311,
+      "dummy_path": "steam/engine_fiery_steel",
+      "live_block": "cruciblecraft:fiery_steel_steam_engine",
+      "english_name": "Steam Engine (Fiery Steel)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1311,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1312,
+      "dummy_path": "steam/engine_arsenic_copper",
+      "live_block": "cruciblecraft:arsenic_copper_steam_engine",
+      "english_name": "Steam Engine (Arsenic Copper)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1312,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1313,
+      "dummy_path": "steam/engine_arsenic_bronze",
+      "live_block": "cruciblecraft:arsenic_bronze_steam_engine",
+      "english_name": "Steam Engine (Arsenic Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1313,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1350,
+      "dummy_path": "energy/strong_steam_engine_lead",
+      "live_block": "cruciblecraft:lead_strong_steam_engine",
+      "english_name": "Strong Steam Engine (Lead)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1350,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1351,
+      "dummy_path": "tin_alloy/strong_steam_engine",
+      "live_block": "cruciblecraft:tin_alloy_strong_steam_engine",
+      "english_name": "Strong Steam Engine (Tin Alloy)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1351,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1352,
+      "dummy_path": "energy/strong_steam_engine_bronze",
+      "live_block": "cruciblecraft:bronze_strong_steam_engine",
+      "english_name": "Strong Steam Engine (Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1352,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1353,
+      "dummy_path": "energy/strong_steam_engine_invar",
+      "live_block": "cruciblecraft:invar_strong_steam_engine",
+      "english_name": "Strong Steam Engine (Invar)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1353,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1354,
+      "dummy_path": "energy/strong_steam_engine_steel",
+      "live_block": "cruciblecraft:steel_strong_steam_engine",
+      "english_name": "Strong Steam Engine (Steel)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1354,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1355,
+      "dummy_path": "energy/strong_steam_engine_chromium",
+      "live_block": "cruciblecraft:chromium_strong_steam_engine",
+      "english_name": "Strong Steam Engine (Chromium)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1355,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1356,
+      "dummy_path": "energy/strong_steam_engine_titanium",
+      "live_block": "cruciblecraft:titanium_strong_steam_engine",
+      "english_name": "Strong Steam Engine (Titanium)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1356,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1357,
+      "dummy_path": "energy/strong_steam_engine_tungsten",
+      "live_block": "cruciblecraft:tungsten_strong_steam_engine",
+      "english_name": "Strong Steam Engine (Tungsten)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1357,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1358,
+      "dummy_path": "energy/strong_steam_engine_tungstensteel",
+      "live_block": "cruciblecraft:tungstensteel_strong_steam_engine",
+      "english_name": "Strong Steam Engine (Tungstensteel)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1358,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1359,
+      "dummy_path": "energy/strong_steam_engine_brass",
+      "live_block": "cruciblecraft:brass_strong_steam_engine",
+      "english_name": "Strong Steam Engine (Brass)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1359,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1360,
+      "dummy_path": "energy/strong_steam_engine_ironwood",
+      "live_block": "cruciblecraft:ironwood_strong_steam_engine",
+      "english_name": "Strong Steam Engine (Ironwood)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1360,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1361,
+      "dummy_path": "fiery_steel/strong_steam_engine",
+      "live_block": "cruciblecraft:fiery_steel_strong_steam_engine",
+      "english_name": "Strong Steam Engine (Fiery Steel)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1361,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1362,
+      "dummy_path": "arsenic_copper/strong_steam_engine",
+      "live_block": "cruciblecraft:arsenic_copper_strong_steam_engine",
+      "english_name": "Strong Steam Engine (Arsenic Copper)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1362,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1363,
+      "dummy_path": "arsenic_bronze/strong_steam_engine",
+      "live_block": "cruciblecraft:arsenic_bronze_strong_steam_engine",
+      "english_name": "Strong Steam Engine (Arsenic Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityEngineSteam / Engines",
+      "source_id": 1363,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1409,
+      "dummy_path": "tantalum_hafnium_carbide/burning_box_liquid",
+      "live_block": "cruciblecraft:tantalum_hafnium_carbide_burning_box_liquid",
+      "english_name": "Burning Box (Liquid, Tantalum Hafnium Carbide)",
+      "gt6_class_or_tag": "MultiTileEntityGeneratorLiquid / Burning Boxes",
+      "source_id": 1409,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1459,
+      "dummy_path": "tantalum_hafnium_carbide/dense_burning_box_liquid",
+      "live_block": "cruciblecraft:tantalum_hafnium_carbide_burning_box_liquid_dense",
+      "english_name": "Dense Burning Box (Liquid, Tantalum Hafnium Carbide)",
+      "gt6_class_or_tag": "MultiTileEntityGeneratorLiquid / Burning Boxes",
+      "source_id": 1459,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1609,
+      "dummy_path": "tantalum_hafnium_carbide/burning_box_gas",
+      "live_block": "cruciblecraft:tantalum_hafnium_carbide_burning_box_gas",
+      "english_name": "Burning Box (Gas, Tantalum Hafnium Carbide)",
+      "gt6_class_or_tag": "MultiTileEntityGeneratorGas / Burning Boxes",
+      "source_id": 1609,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 1659,
+      "dummy_path": "tantalum_hafnium_carbide/dense_burning_box_gas",
+      "live_block": "cruciblecraft:tantalum_hafnium_carbide_burning_box_gas_dense",
+      "english_name": "Dense Burning Box (Gas, Tantalum Hafnium Carbide)",
+      "gt6_class_or_tag": "MultiTileEntityGeneratorGas / Burning Boxes",
+      "source_id": 1659,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 9009,
+      "dummy_path": "tantalum_hafnium_carbide/fluidized_bed_burning_box",
+      "live_block": "cruciblecraft:tantalum_hafnium_carbide_burning_box_fluid_bed",
+      "english_name": "Fluidized Bed Burning Box (Tantalum Hafnium Carbide)",
+      "gt6_class_or_tag": "MultiTileEntityGeneratorFluidBed / Burning Boxes",
+      "source_id": 9009,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 9059,
+      "dummy_path": "tantalum_hafnium_carbide/dense_fluidized_bed_burning_box",
+      "live_block": "cruciblecraft:tantalum_hafnium_carbide_burning_box_fluid_bed_dense",
+      "english_name": "Dense Fluidized Bed Burning Box (Tantalum Hafnium Carbide)",
+      "gt6_class_or_tag": "MultiTileEntityGeneratorFluidBed / Burning Boxes",
+      "source_id": 9059,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 9145,
+      "dummy_path": "diesel/engine_arsenic_bronze",
+      "live_block": "cruciblecraft:arsenic_bronze_fuel_engine",
+      "english_name": "Diesel Engine (Arsenic Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityMotorLiquid / Engines",
+      "source_id": 9145,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 9146,
+      "dummy_path": "diesel/engine_arsenic_copper",
+      "live_block": "cruciblecraft:arsenic_copper_fuel_engine",
+      "english_name": "Diesel Engine (Arsenic Copper)",
+      "gt6_class_or_tag": "MultiTileEntityMotorLiquid / Engines",
+      "source_id": 9146,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 9147,
+      "dummy_path": "diesel/engine_bronze",
+      "live_block": "cruciblecraft:bronze_fuel_engine",
+      "english_name": "Diesel Engine (Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityMotorLiquid / Engines",
+      "source_id": 9147,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 9148,
+      "dummy_path": "diesel/engine_steel",
+      "live_block": "cruciblecraft:steel_fuel_engine",
+      "english_name": "Diesel Engine (Steel)",
+      "gt6_class_or_tag": "MultiTileEntityMotorLiquid / Engines",
+      "source_id": 9148,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 9149,
+      "dummy_path": "diesel/engine_invar",
+      "live_block": "cruciblecraft:invar_fuel_engine",
+      "english_name": "Diesel Engine (Invar)",
+      "gt6_class_or_tag": "MultiTileEntityMotorLiquid / Engines",
+      "source_id": 9149,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 9197,
+      "dummy_path": "diesel/engine_titanium",
+      "live_block": "cruciblecraft:titanium_fuel_engine",
+      "english_name": "Diesel Engine (Titanium)",
+      "gt6_class_or_tag": "MultiTileEntityMotorLiquid / Engines",
+      "source_id": 9197,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 9198,
+      "dummy_path": "diesel/engine_tungstensteel",
+      "live_block": "cruciblecraft:tungstensteel_fuel_engine",
+      "english_name": "Diesel Engine (Tungstensteel)",
+      "gt6_class_or_tag": "MultiTileEntityMotorLiquid / Engines",
+      "source_id": 9198,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 9199,
+      "dummy_path": "diesel/engine_iridium",
+      "live_block": "cruciblecraft:iridium_fuel_engine",
+      "english_name": "Diesel Engine (Iridium)",
+      "gt6_class_or_tag": "MultiTileEntityMotorLiquid / Engines",
+      "source_id": 9199,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    },
+    {
+      "meta": 10005,
+      "dummy_path": "energy/electric_heater_iv",
+      "live_block": "cruciblecraft:titanium_electric_heater",
+      "english_name": "Electric Heater (IV)",
+      "gt6_class_or_tag": "MultiTileEntityHeaterElectric / Heaters",
+      "source_id": 10005,
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live converter host"
+    }
+  ],
+  "keep_distinct": [
+    {
+      "meta": 1512,
+      "dummy_path": "steam/turbine_bronze",
+      "english_name": "Steam Turbine (Bronze)",
+      "gt6_class_or_tag": "MultiTileEntityTurbineSteam / Turbines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 1522,
+      "dummy_path": "steam/turbine_steel",
+      "english_name": "Steam Turbine (Steel)",
+      "gt6_class_or_tag": "MultiTileEntityTurbineSteam / Turbines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 1528,
+      "dummy_path": "steam/turbine_steeleaf",
+      "english_name": "Steam Turbine (Steeleaf)",
+      "gt6_class_or_tag": "MultiTileEntityTurbineSteam / Turbines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 1530,
+      "dummy_path": "steam/turbine_titanium",
+      "english_name": "Steam Turbine (Titanium)",
+      "gt6_class_or_tag": "MultiTileEntityTurbineSteam / Turbines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 1545,
+      "dummy_path": "steam/turbine_trinitanium",
+      "english_name": "Steam Turbine (Trinitanium)",
+      "gt6_class_or_tag": "MultiTileEntityTurbineSteam / Turbines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 1548,
+      "dummy_path": "steam/turbine_graphene",
+      "english_name": "Steam Turbine (Graphene)",
+      "gt6_class_or_tag": "MultiTileEntityTurbineSteam / Turbines",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 10086,
+      "dummy_path": "boxwood/battery_luv",
+      "english_name": "Battery Box (LuV)",
+      "gt6_class_or_tag": "unknown / Battery Boxes",
+      "disposition": "keep_distinct"
+    },
+    {
+      "meta": 10087,
+      "dummy_path": "boxwood/battery_zpm",
+      "english_name": "Battery Box (ZPM)",
+      "gt6_class_or_tag": "unknown / Battery Boxes",
+      "disposition": "keep_distinct"
+    }
+  ]
+}
