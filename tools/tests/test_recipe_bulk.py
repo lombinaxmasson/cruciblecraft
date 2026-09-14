@@ -12,6 +12,13 @@ from tools.recipe_bulk.resolver import ResolutionError, resolve_operand
 from tools.recipe_bulk.templates import expand_family
 from tools.recipe_bulk import compile as compile_mod
 from tools.recipe_bulk import replay as replay_mod
+from tools.recipe_bulk.compile import semantic_family_count
+from tools.recipe_bulk.matrix import authored_relations
+from tools.recipe_bulk.transport import (
+    assemble_semantic_families,
+    reassemble_documents,
+    split_document,
+)
 from tools.recipe_bulk.waves import COMPILE_ORDER, WAVES
 
 
@@ -368,6 +375,200 @@ class RecipeBulkCompilerTest(unittest.TestCase):
                     "generic-import/param-forbidden",
                     spec=spec,
                 )
+
+
+class CompactTransportSplitTest(unittest.TestCase):
+    def test_under_ceiling_stays_unsplit(self) -> None:
+        document = {
+            "family_id": "gt.recipe.bath#tiny",
+            "publication_group": "cruciblecraft:bath/test",
+            "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+            "target_map": "cruciblecraft:bath",
+            "type": "cruciblecraft:compact_gt_recipe_family",
+            "relations": [
+                _matrix_relation("cruciblecraft:bath/first", "minecraft:iron_ingot"),
+                _matrix_relation("cruciblecraft:bath/second", "minecraft:gold_ingot"),
+            ],
+        }
+        planned = split_document(Path("gt_recipe_bath_tiny.json"), document)
+        self.assertEqual(1, len(planned))
+        self.assertEqual("gt_recipe_bath_tiny.json", planned[0][0].name)
+        self.assertNotIn("transport_fragment", planned[0][1])
+
+    def test_over_ceiling_splits_reassembles_and_is_byte_identical(self) -> None:
+        relations = []
+        for index in range(4_097):
+            row = _matrix_relation(
+                f"cruciblecraft:sanding/{index:04x}",
+                "minecraft:iron_ingot",
+            )
+            row["shadow_order"] = index
+            relations.append(row)
+        document = {
+            "family_id": "gt.recipe.sharpener#0000",
+            "publication_group": "cruciblecraft:sanding/pilot/sanding",
+            "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+            "target_map": "cruciblecraft:sanding",
+            "type": "cruciblecraft:compact_gt_recipe_family",
+            "relations": relations,
+        }
+        first = split_document(Path("gt_recipe_sharpener_0000.json"), document)
+        second = split_document(Path("gt_recipe_sharpener_0000.json"), document)
+        self.assertGreaterEqual(len(first), 2)
+        self.assertEqual(
+            [(str(path), doc) for path, doc in first],
+            [(str(path), doc) for path, doc in second],
+        )
+        family_ids = {str(doc.get("family_id")) for _path, doc in first}
+        self.assertEqual({"gt.recipe.sharpener#0000"}, family_ids)
+        assembled = reassemble_documents([doc for _path, doc in first])
+        self.assertNotIn("transport_fragment", assembled)
+        self.assertEqual(4_097, len(authored_relations(assembled)))
+        self.assertEqual(
+            [row["stable_id"] for row in relations],
+            [row["stable_id"] for row in authored_relations(assembled)],
+        )
+        self.assertTrue(
+            all(path.name.startswith("gt_recipe_sharpener_0000_fragment_") for path, _ in first)
+        )
+        self.assertEqual(1, semantic_family_count(first))
+        self.assertEqual(
+            1,
+            len(assemble_semantic_families([doc for _path, doc in first])),
+        )
+
+    def test_missing_fragment_fails_closed(self) -> None:
+        relations = []
+        for index in range(4_097):
+            row = _matrix_relation(
+                f"cruciblecraft:sanding/{index:04x}",
+                "minecraft:iron_ingot",
+            )
+            row["shadow_order"] = index
+            relations.append(row)
+        document = {
+            "family_id": "gt.recipe.sharpener#0000",
+            "publication_group": "cruciblecraft:sanding/pilot/sanding",
+            "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+            "target_map": "cruciblecraft:sanding",
+            "type": "cruciblecraft:compact_gt_recipe_family",
+            "relations": relations,
+        }
+        fragments = [doc for _path, doc in split_document(Path("gt_recipe_sharpener_0000.json"), document)]
+        with self.assertRaisesRegex(
+            ValueError,
+            "missing or duplicate fragment|fragment count .* !=",
+        ):
+            reassemble_documents(fragments[1:])
+
+
+class RecipeRuleIrTest(unittest.TestCase):
+    def test_coverage_mismatch_fails_closed(self) -> None:
+        from tools.recipe_bulk import rule_ir as rule_ir_mod
+        from tools.recipe_bulk.handlers import tool_head_cycle
+
+        rows = [
+            {
+                "duration": 16,
+                "eut": 16,
+                "item_input_actions": [{"kind": "CONSUME"}],
+                "item_inputs": [
+                    {
+                        "form": None,
+                        "material": None,
+                        "runtime_id": "cruciblecraft:iron/tool_head_raw_hoe",
+                        "value": "cruciblecraft:iron/tool_head_raw_hoe",
+                    }
+                ],
+                "item_outputs": [
+                    {
+                        "form": None,
+                        "material": None,
+                        "runtime_id": "cruciblecraft:iron/tool_head_hoe",
+                        "value": "cruciblecraft:iron/tool_head_hoe",
+                    }
+                ],
+                "provenance": {"kinds": ["SOURCE_BACKED"]},
+                "source_row_sha256": "ab" * 32,
+                "stable_id": "cruciblecraft:sanding/one",
+            }
+        ]
+        self.assertTrue(tool_head_cycle.matches(rows[0], {}))
+        document = {
+            "blocked": [],
+            "family_id": "gt.recipe.sharpener#0000",
+            "handlers": [
+                {
+                    "covered_source_row_sha256": ["cd" * 32],
+                    "handler_id": "sanding_exact_remainder",
+                    "kind": "exact_remainder",
+                }
+            ],
+            "schema": "rule_ir_v1",
+            "schema_version": 1,
+            "source_map": "gt.recipe.sharpener",
+            "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+            "target_map": "cruciblecraft:sanding",
+        }
+        with self.assertRaisesRegex(ValueError, "remainder hashes missing|coverage drifted"):
+            rule_ir_mod.prove_coverage(document, rows)
+
+    def test_handler_overlap_fails_closed(self) -> None:
+        from tools.recipe_bulk import rule_ir as rule_ir_mod
+
+        rows = [
+            {
+                "duration": 16,
+                "eut": 16,
+                "item_input_actions": [{"kind": "CONSUME"}],
+                "item_inputs": [
+                    {
+                        "form": None,
+                        "material": None,
+                        "runtime_id": "cruciblecraft:iron/tool_head_raw_hoe",
+                        "value": "cruciblecraft:iron/tool_head_raw_hoe",
+                    }
+                ],
+                "item_outputs": [
+                    {
+                        "form": None,
+                        "material": None,
+                        "runtime_id": "cruciblecraft:iron/tool_head_hoe",
+                        "value": "cruciblecraft:iron/tool_head_hoe",
+                    }
+                ],
+                "provenance": {"kinds": ["SOURCE_BACKED"]},
+                "source_row_sha256": "ab" * 32,
+                "stable_id": "cruciblecraft:sanding/one",
+            }
+        ]
+        document = {
+            "blocked": [],
+            "family_id": "gt.recipe.sharpener#0000",
+            "handlers": [
+                {
+                    "handler_id": "sanding_tool_head_cycle",
+                    "kind": "tool_head_cycle",
+                    "template": {
+                        "item_input_count": 1,
+                        "item_input_prefix": "tool_head_raw_",
+                        "item_output_prefix": "tool_head_",
+                    },
+                },
+                {
+                    "covered_source_row_sha256": ["ab" * 32],
+                    "handler_id": "sanding_exact_remainder",
+                    "kind": "exact_remainder",
+                },
+            ],
+            "schema": "rule_ir_v1",
+            "schema_version": 1,
+            "source_map": "gt.recipe.sharpener",
+            "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+            "target_map": "cruciblecraft:sanding",
+        }
+        with self.assertRaisesRegex(ValueError, "overlap"):
+            rule_ir_mod.prove_coverage(document, rows)
 
 
 def _matrix_relation(stable_id: str, item: str) -> dict:

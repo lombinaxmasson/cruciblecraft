@@ -13,6 +13,7 @@ from tools import io_common as files
 from tools import tool_head_prefix as thp
 from tools.recipe_bulk.emit import emit_wave_document
 from tools.recipe_bulk.matrix import authored_relation_count, authored_relations
+from tools.recipe_bulk.transport import split_document
 from tools.recipe_bulk.identity import index_ledger
 from tools.recipe_bulk.resolver import resolve_relation_operands
 from tools.recipe_bulk.selection import (
@@ -24,6 +25,10 @@ from tools.recipe_bulk.selection import (
 )
 from tools.recipe_bulk.templates import expand_family
 from tools.recipe_bulk.waves import BATH_WAVES, COMPILE_ORDER, recipe_wave
+
+
+def semantic_family_count(planned: list[tuple[Path, dict[str, Any]]]) -> int:
+    return len({str(document.get("family_id") or "") for _path, document in planned})
 
 
 def _load_bath_mte_spec() -> dict[str, Any]:
@@ -170,6 +175,10 @@ def planned_documents_for(
         _load_bath_tiny_purified_spec()
     ledger_index = _ledger_index_for(wave_id, spec)
     relations, lock_rows = select_source_relations(spec)
+    if spec.compile_authority == "rule_ir_v1":
+        from tools.recipe_bulk.rule_ir import prove_and_select
+
+        relations, lock_rows = prove_and_select(spec, relations, lock_rows)
     grouped = group_relations(spec, relations)
     planned: list[tuple[Path, dict[str, Any]]] = []
     seen_consume: dict[str, str] = {}
@@ -223,14 +232,15 @@ def planned_documents_for(
             )
         rel = relative_path(spec, template_key, lock_row)
         path = spec.generated_root / rel
-        planned.append((path, document))
-        if spec.expected_family_count is None:
-            continue
-        _ = expanded
-    if spec.expected_family_count is not None and len(planned) != spec.expected_family_count:
+        planned.extend(split_document(path, document))
+    if (
+        spec.expected_family_count is not None
+        and semantic_family_count(planned) != spec.expected_family_count
+    ):
         if not (spec.dry_run_without_lock and not planned):
             raise ValueError(
-                f"{wave_id} family count {len(planned)} != {spec.expected_family_count}"
+                f"{wave_id} semantic family count "
+                f"{semantic_family_count(planned)} != {spec.expected_family_count}"
             )
     relation_count = sum(authored_relation_count(doc) for _path, doc in planned)
     if (
@@ -350,7 +360,9 @@ def wave_compile_report(
             if spec.lock_path and spec.lock_path.is_file()
             else None
         ),
+        "physical_holder_count": len(planned),
         "relation_count": relation_count,
+        "semantic_family_count": semantic_family_count(planned),
         "source_sha256": (
             hashlib.sha256(spec.source_path.read_bytes()).hexdigest()
             if spec.source_path.is_file()

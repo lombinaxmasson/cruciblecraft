@@ -61,6 +61,7 @@ public final class CompactRecipeFamilyProvider {
             throw new IllegalArgumentException(
                     "Compact family epoch must be positive");
         }
+        sources = CompactTransportFragments.reassemble(sources);
         ResourceLocation publicationGroup = resolvePublicationGroup(
                 map.id(), sources);
         List<IndexedRelation> relations = collectRelations(map.id(), sources);
@@ -90,6 +91,7 @@ public final class CompactRecipeFamilyProvider {
         Objects.requireNonNull(sources, "sources");
         Objects.requireNonNull(knownMaps, "knownMaps");
         Objects.requireNonNull(policies, "policies");
+        sources = CompactTransportFragments.reassemble(sources);
         for (var entry : policies.entrySet()) {
             ResourceLocation target = Objects.requireNonNull(
                     entry.getKey(), "compact policy target map");
@@ -170,6 +172,7 @@ public final class CompactRecipeFamilyProvider {
             throw new IllegalArgumentException(
                     "Compact family epoch must be positive");
         }
+        sources = CompactTransportFragments.reassemble(sources);
         for (var entry : policies.entrySet()) {
             PublicationGroupKey key = Objects.requireNonNull(
                     entry.getKey(), "compact publication group policy key");

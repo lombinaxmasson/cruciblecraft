@@ -101,7 +101,7 @@ def _ledger_coverage() -> bool:
 
 def _no_legacy_emit_delegate() -> bool:
     for spec in WAVES.values():
-        if spec.compile_authority != "recipe_bulk":
+        if spec.compile_authority not in {"recipe_bulk", "rule_ir_v1"}:
             return False
         if getattr(spec, "emit_delegate", None) not in {None, "recipe_bulk"}:
             return False
@@ -163,7 +163,10 @@ def _relation_cardinality_order(
             return False
         if relation_count != int(base.get("stable_id_count") or -1):
             return False
-        if spec.expected_family_count not in {None, len(planned)}:
+        if spec.expected_family_count not in {
+            None,
+            compile_mod.semantic_family_count(planned),
+        }:
             return False
         if spec.expected_relation_count not in {None, relation_count}:
             return False

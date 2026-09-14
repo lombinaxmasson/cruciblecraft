@@ -17,6 +17,7 @@ from tools import smelter_stone_common as smelter_stone
 from tools import block_object_common as block_object
 from tools.recipe_bulk.membership import identity_semantic_root, membership_root
 from tools.recipe_bulk.matrix import authored_relations
+from tools.recipe_bulk.transport import assemble_semantic_families
 from tools.recipe_bulk.waves import SHADOW_ORDER
 from tools.recipe_bulk.write_guard import relative
 
@@ -387,6 +388,7 @@ def grouped_membership(
         grouped[resolved_publication_group(family)].append(family)
     rows: dict[str, dict[str, Any]] = {}
     for group_id, members in grouped.items():
+        members = assemble_semantic_families(members)
         family_ids = [str(family["family_id"]) for family in members]
         stable_ids = [
             stable_id

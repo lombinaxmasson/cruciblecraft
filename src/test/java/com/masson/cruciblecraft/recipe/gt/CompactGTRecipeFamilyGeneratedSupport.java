@@ -335,7 +335,7 @@ final class CompactGTRecipeFamilyGeneratedSupport {
             JsonObject document,
             RegistryAccess registries) {
         ensureGeneratedIngredientSupport();
-        String filename = filename(document);
+        String filename = holderStem(generatedPath, document);
         ResourceLocation authoredId = ResourceLocation.fromNamespaceAndPath(
                 "cruciblecraft",
                 authoredPrefix(generatedPath) + "/" + filename);
@@ -367,7 +367,8 @@ final class CompactGTRecipeFamilyGeneratedSupport {
                         relations,
                         parameterizedFromGenerated(document),
                         publicationGroup,
-                        matrix));
+                        matrix,
+                        transportFragmentFromGenerated(document)));
     }
 
     static List<JsonObject> authoredRelationJsons(JsonObject document) {
@@ -784,6 +785,31 @@ final class CompactGTRecipeFamilyGeneratedSupport {
         List<Integer> values = new ArrayList<>();
         array.forEach(element -> values.add(element.getAsInt()));
         return values;
+    }
+
+    private static Optional<CompactGTRecipeFamilyDefinition.TransportFragment>
+            transportFragmentFromGenerated(JsonObject document) {
+        if (!document.has("transport_fragment")
+                || !document.get("transport_fragment").isJsonObject()) {
+            return Optional.empty();
+        }
+        JsonObject fragment = document.getAsJsonObject("transport_fragment");
+        return Optional.of(new CompactGTRecipeFamilyDefinition.TransportFragment(
+                fragment.get("index").getAsInt(),
+                fragment.get("count").getAsInt(),
+                fragment.get("total_relations").getAsInt(),
+                fragment.get("semantic_digest").getAsString()));
+    }
+
+    private static String holderStem(Path generatedPath, JsonObject document) {
+        if (Files.isRegularFile(generatedPath)) {
+            String name = generatedPath.getFileName().toString();
+            if (name.endsWith(".json")) {
+                return name.substring(0, name.length() - 5);
+            }
+            return name;
+        }
+        return filename(document);
     }
 
     private static String filename(JsonObject document) {

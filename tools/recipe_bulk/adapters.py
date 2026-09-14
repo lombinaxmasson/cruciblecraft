@@ -17,6 +17,7 @@ from tools.recipe_bulk.selection import (
 from tools.recipe_bulk.templates import expand_family
 from tools.recipe_bulk.waves import recipe_wave
 from tools.recipe_bulk.matrix import authored_relation_count, authored_relations
+from tools.recipe_bulk.transport import reassemble_documents
 
 SOURCE_REVISION = census.SOURCE_REVISION
 
@@ -89,9 +90,12 @@ def adapt_wave(spec: WaveSpec | str) -> WaveIR:
     built = compile_wave(spec.wave_id)
     relations, lock_rows = select_source_relations(spec)
     grouped = group_relations(spec, relations)
-    by_template = {
-        str(document["family_id"]): document for _path, document in built["planned"]
-    }
+    by_template: dict[str, dict[str, Any]] = {}
+    grouped_docs: dict[str, list[dict[str, Any]]] = {}
+    for _path, document in built["planned"]:
+        grouped_docs.setdefault(str(document["family_id"]), []).append(document)
+    for family_id, documents in grouped_docs.items():
+        by_template[family_id] = reassemble_documents(documents)
     if set(by_template) != set(grouped):
         raise ValueError(f"{spec.wave_id} emit family set drifted from selected source")
     families: list[ShadowFamily] = []

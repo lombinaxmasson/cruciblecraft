@@ -87,6 +87,8 @@ def derive_wave_spec(slug: str) -> WaveSpec:
     wave_root = source_path.parent
     host = str(document["host"])
     path_prefix = host.split(":", 1)[-1]
+    rule_ir_path = wave_root / "rule_ir.json"
+    compile_authority = "rule_ir_v1" if rule_ir_path.is_file() else "recipe_bulk"
     return WaveSpec(
         wave_id=slug,
         archetype="lock_relation_set",
@@ -99,7 +101,7 @@ def derive_wave_spec(slug: str) -> WaveSpec:
         selection_policy="lock_templates",
         publication_policy="lock",
         path_layout="cohort_nested",
-        compile_authority="recipe_bulk",
+        compile_authority=compile_authority,
         relation_sort="source_recipe_index_then_stable_id",
         stable_id_policy="lock",
         target_map_policy="spec",
@@ -111,6 +113,7 @@ def derive_wave_spec(slug: str) -> WaveSpec:
         representation="exact_or_exact_multi",
         path_prefix=path_prefix,
         dry_run_without_lock=False,
+        rule_ir_path=rule_ir_path if rule_ir_path.is_file() else None,
     )
 
 

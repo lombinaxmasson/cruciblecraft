@@ -119,6 +119,7 @@ final class CompactGTRecipeFamilyStreamCodec {
         buffer.writeBoolean(definition.publicationGroup().isPresent());
         definition.publicationGroup().ifPresent(
                 group -> ResourceLocation.STREAM_CODEC.encode(buffer, group));
+        encodeTransportFragment(buffer, definition.transportFragment());
         encodeParameterized(buffer, definition.parameterized());
         if (definition.matrix().isPresent()) {
             buffer.writeByte(CompactRecipeWireLimits.WIRE_FORM_MATRIX_V1);
@@ -193,6 +194,8 @@ final class CompactGTRecipeFamilyStreamCodec {
             publicationGroup = Optional.of(
                     ResourceLocation.STREAM_CODEC.decode(buffer));
         }
+        Optional<CompactGTRecipeFamilyDefinition.TransportFragment> transportFragment =
+                decodeTransportFragment(buffer);
         Optional<CompactGTRecipeFamilyDefinition.ParameterizedSpec> parameterized =
                 decodeParameterized(buffer);
         int form = buffer.readUnsignedByte();
@@ -206,7 +209,8 @@ final class CompactGTRecipeFamilyStreamCodec {
                     List.of(),
                     parameterized,
                     publicationGroup,
-                    Optional.of(matrix)));
+                    Optional.of(matrix),
+                    transportFragment));
         }
         if (form != CompactRecipeWireLimits.WIRE_FORM_INLINE) {
             throw new DecoderException(
@@ -292,7 +296,8 @@ final class CompactGTRecipeFamilyStreamCodec {
                 relations,
                 parameterized,
                 publicationGroup,
-                Optional.empty()));
+                Optional.empty(),
+                transportFragment));
     }
 
     private static void encodeMatrix(
@@ -709,6 +714,44 @@ final class CompactGTRecipeFamilyStreamCodec {
         }
         return ResourceLocation.fromNamespaceAndPath(
                 prefix.getNamespace(), prefix.getPath() + "/" + hex);
+    }
+
+    private static void encodeTransportFragment(
+            RegistryFriendlyByteBuf buffer,
+            Optional<CompactGTRecipeFamilyDefinition.TransportFragment> fragment) {
+        buffer.writeBoolean(fragment.isPresent());
+        if (fragment.isEmpty()) {
+            return;
+        }
+        CompactGTRecipeFamilyDefinition.TransportFragment value = fragment.get();
+        buffer.writeVarInt(value.index());
+        buffer.writeVarInt(value.count());
+        buffer.writeVarInt(value.totalRelations());
+        writeBounded(
+                buffer,
+                value.semanticDigest(),
+                CompactRecipeWireLimits.MAX_SEMANTIC_DIGEST_LENGTH);
+    }
+
+    private static Optional<CompactGTRecipeFamilyDefinition.TransportFragment>
+            decodeTransportFragment(RegistryFriendlyByteBuf buffer) {
+        if (!buffer.readBoolean()) {
+            return Optional.empty();
+        }
+        int index = buffer.readVarInt();
+        int count = readCount(
+                buffer,
+                CompactRecipeWireLimits.MAX_TRANSPORT_FRAGMENTS,
+                "transport fragments");
+        int totalRelations = buffer.readVarInt();
+        String digest = readBounded(
+                buffer, CompactRecipeWireLimits.MAX_SEMANTIC_DIGEST_LENGTH);
+        try {
+            return Optional.of(new CompactGTRecipeFamilyDefinition.TransportFragment(
+                    index, count, totalRelations, digest));
+        } catch (IllegalArgumentException failure) {
+            throw new DecoderException(failure.getMessage());
+        }
     }
 
     private static void encodeParameterized(
