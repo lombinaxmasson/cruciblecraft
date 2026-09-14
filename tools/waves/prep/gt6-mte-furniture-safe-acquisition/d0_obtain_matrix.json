@@ -1,0 +1,5318 @@
+{
+  "auto_promote_player_complete": false,
+  "blocker_id": "obtain/mte-inplace-runtime",
+  "capability_slug": "content/gt6-mte-furniture-safe-acquisition",
+  "counts": {
+    "explicitly_blocked": 0,
+    "hosts": 100,
+    "source_exact": 100
+  },
+  "domain": "furniture_safe",
+  "expected": 100,
+  "hosts": [
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_lead_safe.json",
+        "present": true
+      },
+      "meta": 2000,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:lead/small_gear",
+          "gt": "gearGtSmall(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:lead/gear",
+          "gt": "gearGt(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:lead/quintuple_plate",
+          "gt": "plateQuintuple(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:lead/rod",
+          "gt": "stick(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_lead_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_lead_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_aluminium_safe.json",
+        "present": true
+      },
+      "meta": 2001,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:aluminium/small_gear",
+          "gt": "gearGtSmall(MT.Al)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:aluminium/gear",
+          "gt": "gearGt(MT.Al)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:aluminium/quintuple_plate",
+          "gt": "plateQuintuple(MT.Al)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:aluminium/rod",
+          "gt": "stick(MT.Al)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_aluminium_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_aluminium_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_gold_safe.json",
+        "present": true
+      },
+      "meta": 2002,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:gold/small_gear",
+          "gt": "gearGtSmall(MT.Au)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:gold/gear",
+          "gt": "gearGt(MT.Au)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:gold/quintuple_plate",
+          "gt": "plateQuintuple(MT.Au)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:gold/rod",
+          "gt": "stick(MT.Au)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_gold_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_gold_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_silver_safe.json",
+        "present": true
+      },
+      "meta": 2003,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:silver/small_gear",
+          "gt": "gearGtSmall(MT.Ag)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:silver/gear",
+          "gt": "gearGt(MT.Ag)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:silver/quintuple_plate",
+          "gt": "plateQuintuple(MT.Ag)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:silver/rod",
+          "gt": "stick(MT.Ag)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_silver_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_silver_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_platinum_safe.json",
+        "present": true
+      },
+      "meta": 2004,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:platinum/small_gear",
+          "gt": "gearGtSmall(MT.Pt)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:platinum/gear",
+          "gt": "gearGt(MT.Pt)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:platinum/quintuple_plate",
+          "gt": "plateQuintuple(MT.Pt)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:platinum/rod",
+          "gt": "stick(MT.Pt)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_platinum_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_platinum_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_tin_alloy_safe.json",
+        "present": true
+      },
+      "meta": 2005,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:tin_alloy/small_gear",
+          "gt": "gearGtSmall(MT.TinAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:tin_alloy/gear",
+          "gt": "gearGt(MT.TinAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:tin_alloy/quintuple_plate",
+          "gt": "plateQuintuple(MT.TinAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:tin_alloy/rod",
+          "gt": "stick(MT.TinAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_tin_alloy_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_tin_alloy_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_invar_safe.json",
+        "present": true
+      },
+      "meta": 2006,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:invar/small_gear",
+          "gt": "gearGtSmall(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:invar/gear",
+          "gt": "gearGt(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:invar/quintuple_plate",
+          "gt": "plateQuintuple(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:invar/rod",
+          "gt": "stick(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_invar_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_invar_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_electrum_safe.json",
+        "present": true
+      },
+      "meta": 2007,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:electrum/small_gear",
+          "gt": "gearGtSmall(MT.Electrum)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:electrum/gear",
+          "gt": "gearGt(MT.Electrum)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:electrum/quintuple_plate",
+          "gt": "plateQuintuple(MT.Electrum)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:electrum/rod",
+          "gt": "stick(MT.Electrum)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_electrum_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_electrum_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_brass_safe.json",
+        "present": true
+      },
+      "meta": 2008,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:brass/small_gear",
+          "gt": "gearGtSmall(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:brass/gear",
+          "gt": "gearGt(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:brass/quintuple_plate",
+          "gt": "plateQuintuple(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:brass/rod",
+          "gt": "stick(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_brass_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_brass_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_bronze_safe.json",
+        "present": true
+      },
+      "meta": 2009,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:bronze/small_gear",
+          "gt": "gearGtSmall(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:bronze/gear",
+          "gt": "gearGt(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:bronze/quintuple_plate",
+          "gt": "plateQuintuple(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:bronze/rod",
+          "gt": "stick(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_bronze_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_bronze_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_steel_safe.json",
+        "present": true
+      },
+      "meta": 2010,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:steel/small_gear",
+          "gt": "gearGtSmall(MT.Steel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:steel/gear",
+          "gt": "gearGt(MT.Steel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:steel/quintuple_plate",
+          "gt": "plateQuintuple(MT.Steel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:steel/rod",
+          "gt": "stick(MT.Steel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_steel_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_steel_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_stainless_steel_safe.json",
+        "present": true
+      },
+      "meta": 2011,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:stainless_steel/small_gear",
+          "gt": "gearGtSmall(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:stainless_steel/gear",
+          "gt": "gearGt(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:stainless_steel/quintuple_plate",
+          "gt": "plateQuintuple(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:stainless_steel/rod",
+          "gt": "stick(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_stainless_steel_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_stainless_steel_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_titanium_safe.json",
+        "present": true
+      },
+      "meta": 2012,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:titanium/small_gear",
+          "gt": "gearGtSmall(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:titanium/gear",
+          "gt": "gearGt(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:titanium/quintuple_plate",
+          "gt": "plateQuintuple(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:titanium/rod",
+          "gt": "stick(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_titanium_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_titanium_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_chromium_safe.json",
+        "present": true
+      },
+      "meta": 2013,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:chromium/small_gear",
+          "gt": "gearGtSmall(MT.Cr)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:chromium/gear",
+          "gt": "gearGt(MT.Cr)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:chromium/quintuple_plate",
+          "gt": "plateQuintuple(MT.Cr)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:chromium/rod",
+          "gt": "stick(MT.Cr)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_chromium_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_chromium_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_tungstensteel_safe.json",
+        "present": true
+      },
+      "meta": 2014,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:tungstensteel/small_gear",
+          "gt": "gearGtSmall(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:tungstensteel/gear",
+          "gt": "gearGt(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:tungstensteel/quintuple_plate",
+          "gt": "plateQuintuple(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:tungstensteel/rod",
+          "gt": "stick(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_tungstensteel_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_tungstensteel_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_iridium_safe.json",
+        "present": true
+      },
+      "meta": 2015,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:iridium/small_gear",
+          "gt": "gearGtSmall(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:iridium/gear",
+          "gt": "gearGt(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:iridium/quintuple_plate",
+          "gt": "plateQuintuple(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:iridium/rod",
+          "gt": "stick(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_iridium_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_iridium_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_bismuth_safe.json",
+        "present": true
+      },
+      "meta": 2016,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:bismuth/small_gear",
+          "gt": "gearGtSmall(MT.Bi)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:bismuth/gear",
+          "gt": "gearGt(MT.Bi)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:bismuth/quintuple_plate",
+          "gt": "plateQuintuple(MT.Bi)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:bismuth/rod",
+          "gt": "stick(MT.Bi)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_bismuth_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_bismuth_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_hsla_steel_safe.json",
+        "present": true
+      },
+      "meta": 2018,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:hslasteel/small_gear",
+          "gt": "gearGtSmall(MT.HSLA)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:hslasteel/gear",
+          "gt": "gearGt(MT.HSLA)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:hslasteel/quintuple_plate",
+          "gt": "plateQuintuple(MT.HSLA)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:hslasteel/rod",
+          "gt": "stick(MT.HSLA)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_hsla_steel_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_hsla_steel_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_steelgalvanized_safe.json",
+        "present": true
+      },
+      "meta": 2019,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:steel_galvanized/small_gear",
+          "gt": "gearGtSmall(MT.SteelGalvanized)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:steel_galvanized/gear",
+          "gt": "gearGt(MT.SteelGalvanized)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:steel_galvanized/quintuple_plate",
+          "gt": "plateQuintuple(MT.SteelGalvanized)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:steel_galvanized/rod",
+          "gt": "stick(MT.SteelGalvanized)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_steelgalvanized_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_steelgalvanized_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_gilded_iron_safe.json",
+        "present": true
+      },
+      "meta": 2020,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:gilded_iron/small_gear",
+          "gt": "gearGtSmall(MT.GildedIron)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:gilded_iron/gear",
+          "gt": "gearGt(MT.GildedIron)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:gilded_iron/quintuple_plate",
+          "gt": "plateQuintuple(MT.GildedIron)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:gilded_iron/rod",
+          "gt": "stick(MT.GildedIron)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_gilded_iron_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_gilded_iron_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_cobalt_safe.json",
+        "present": true
+      },
+      "meta": 2021,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:cobalt/small_gear",
+          "gt": "gearGtSmall(MT.Co)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:cobalt/gear",
+          "gt": "gearGt(MT.Co)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:cobalt/quintuple_plate",
+          "gt": "plateQuintuple(MT.Co)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:cobalt/rod",
+          "gt": "stick(MT.Co)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_cobalt_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_cobalt_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_nickel_safe.json",
+        "present": true
+      },
+      "meta": 2022,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:nickel/small_gear",
+          "gt": "gearGtSmall(MT.Ni)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:nickel/gear",
+          "gt": "gearGt(MT.Ni)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:nickel/quintuple_plate",
+          "gt": "plateQuintuple(MT.Ni)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:nickel/rod",
+          "gt": "stick(MT.Ni)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_nickel_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_nickel_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_germanium_safe.json",
+        "present": true
+      },
+      "meta": 2023,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:germanium/small_gear",
+          "gt": "gearGtSmall(MT.Ge)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:germanium/gear",
+          "gt": "gearGt(MT.Ge)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:germanium/quintuple_plate",
+          "gt": "plateQuintuple(MT.Ge)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:germanium/rod",
+          "gt": "stick(MT.Ge)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_germanium_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_germanium_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_meteoric_steel_safe.json",
+        "present": true
+      },
+      "meta": 2024,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:meteoric_steel/small_gear",
+          "gt": "gearGtSmall(MT.MeteoricSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:meteoric_steel/gear",
+          "gt": "gearGt(MT.MeteoricSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:meteoric_steel/quintuple_plate",
+          "gt": "plateQuintuple(MT.MeteoricSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:meteoric_steel/rod",
+          "gt": "stick(MT.MeteoricSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_meteoric_steel_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_meteoric_steel_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_knightmetal_safe.json",
+        "present": true
+      },
+      "meta": 2025,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:knightmetal/small_gear",
+          "gt": "gearGtSmall(MT.Knightmetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:knightmetal/gear",
+          "gt": "gearGt(MT.Knightmetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:knightmetal/quintuple_plate",
+          "gt": "plateQuintuple(MT.Knightmetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:knightmetal/rod",
+          "gt": "stick(MT.Knightmetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_knightmetal_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_knightmetal_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_tungsten_safe.json",
+        "present": true
+      },
+      "meta": 2026,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:tungsten/small_gear",
+          "gt": "gearGtSmall(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:tungsten/gear",
+          "gt": "gearGt(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:tungsten/quintuple_plate",
+          "gt": "plateQuintuple(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:tungsten/rod",
+          "gt": "stick(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_tungsten_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_tungsten_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_thaumium_safe.json",
+        "present": true
+      },
+      "meta": 2027,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:thaumium/small_gear",
+          "gt": "gearGtSmall(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:thaumium/gear",
+          "gt": "gearGt(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:thaumium/quintuple_plate",
+          "gt": "plateQuintuple(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:thaumium/rod",
+          "gt": "stick(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_thaumium_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_thaumium_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_void_metal_safe.json",
+        "present": true
+      },
+      "meta": 2028,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:void_metal/small_gear",
+          "gt": "gearGtSmall(MT.VoidMetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:void_metal/gear",
+          "gt": "gearGt(MT.VoidMetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:void_metal/quintuple_plate",
+          "gt": "plateQuintuple(MT.VoidMetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:void_metal/rod",
+          "gt": "stick(MT.VoidMetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_void_metal_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_void_metal_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_osmiumelemental_safe.json",
+        "present": true
+      },
+      "meta": 2029,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:osmium_elemental/small_gear",
+          "gt": "gearGtSmall(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:osmium_elemental/gear",
+          "gt": "gearGt(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:osmium_elemental/quintuple_plate",
+          "gt": "plateQuintuple(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:osmium_elemental/rod",
+          "gt": "stick(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_osmiumelemental_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_osmiumelemental_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_desh_safe.json",
+        "present": true
+      },
+      "meta": 2030,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:desh/small_gear",
+          "gt": "gearGtSmall(MT.Desh)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:desh/gear",
+          "gt": "gearGt(MT.Desh)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:desh/quintuple_plate",
+          "gt": "plateQuintuple(MT.Desh)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:desh/rod",
+          "gt": "stick(MT.Desh)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_desh_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_desh_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_adamantium_safe.json",
+        "present": true
+      },
+      "meta": 2033,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:adamantium/small_gear",
+          "gt": "gearGtSmall(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:adamantium/gear",
+          "gt": "gearGt(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:adamantium/quintuple_plate",
+          "gt": "plateQuintuple(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:adamantium/rod",
+          "gt": "stick(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_adamantium_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_adamantium_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_draconium_safe.json",
+        "present": true
+      },
+      "meta": 2035,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:draconium/small_gear",
+          "gt": "gearGtSmall(MT.Draconium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:draconium/gear",
+          "gt": "gearGt(MT.Draconium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:draconium/quintuple_plate",
+          "gt": "plateQuintuple(MT.Draconium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:draconium/rod",
+          "gt": "stick(MT.Draconium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_draconium_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_draconium_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_draconiumawakened_safe.json",
+        "present": true
+      },
+      "meta": 2036,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:draconium_awakened/small_gear",
+          "gt": "gearGtSmall(MT.DraconiumAwakened)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:draconium_awakened/gear",
+          "gt": "gearGt(MT.DraconiumAwakened)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:draconium_awakened/quintuple_plate",
+          "gt": "plateQuintuple(MT.DraconiumAwakened)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:draconium_awakened/rod",
+          "gt": "stick(MT.DraconiumAwakened)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_draconiumawakened_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_draconiumawakened_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_constantan_safe.json",
+        "present": true
+      },
+      "meta": 2037,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:constantan/small_gear",
+          "gt": "gearGtSmall(MT.Constantan)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:constantan/gear",
+          "gt": "gearGt(MT.Constantan)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:constantan/quintuple_plate",
+          "gt": "plateQuintuple(MT.Constantan)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:constantan/rod",
+          "gt": "stick(MT.Constantan)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_constantan_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_constantan_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_ardite_safe.json",
+        "present": true
+      },
+      "meta": 2038,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:ardite/small_gear",
+          "gt": "gearGtSmall(MT.Ardite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:ardite/gear",
+          "gt": "gearGt(MT.Ardite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:ardite/quintuple_plate",
+          "gt": "plateQuintuple(MT.Ardite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:ardite/rod",
+          "gt": "stick(MT.Ardite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_ardite_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_ardite_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_manyullyn_safe.json",
+        "present": true
+      },
+      "meta": 2039,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:manyullyn/small_gear",
+          "gt": "gearGtSmall(MT.Manyullyn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:manyullyn/gear",
+          "gt": "gearGt(MT.Manyullyn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:manyullyn/quintuple_plate",
+          "gt": "plateQuintuple(MT.Manyullyn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:manyullyn/rod",
+          "gt": "stick(MT.Manyullyn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_manyullyn_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_manyullyn_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_meteorite_safe.json",
+        "present": true
+      },
+      "meta": 2043,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:meteorite/small_gear",
+          "gt": "gearGtSmall(MT.Meteorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:meteorite/gear",
+          "gt": "gearGt(MT.Meteorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:meteorite/quintuple_plate",
+          "gt": "plateQuintuple(MT.Meteorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:meteorite/rod",
+          "gt": "stick(MT.Meteorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_meteorite_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_meteorite_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_syrmorite_safe.json",
+        "present": true
+      },
+      "meta": 2044,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:syrmorite/small_gear",
+          "gt": "gearGtSmall(MT.Syrmorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:syrmorite/gear",
+          "gt": "gearGt(MT.Syrmorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:syrmorite/quintuple_plate",
+          "gt": "plateQuintuple(MT.Syrmorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:syrmorite/rod",
+          "gt": "stick(MT.Syrmorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_syrmorite_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_syrmorite_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_octine_safe.json",
+        "present": true
+      },
+      "meta": 2045,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:octine/small_gear",
+          "gt": "gearGtSmall(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:octine/gear",
+          "gt": "gearGt(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:octine/quintuple_plate",
+          "gt": "plateQuintuple(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:octine/rod",
+          "gt": "stick(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_octine_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_octine_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_manganese_safe.json",
+        "present": true
+      },
+      "meta": 2046,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:manganese/small_gear",
+          "gt": "gearGtSmall(MT.Mn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:manganese/gear",
+          "gt": "gearGt(MT.Mn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:manganese/quintuple_plate",
+          "gt": "plateQuintuple(MT.Mn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:manganese/rod",
+          "gt": "stick(MT.Mn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_manganese_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_manganese_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_antimony_safe.json",
+        "present": true
+      },
+      "meta": 2047,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:antimony/small_gear",
+          "gt": "gearGtSmall(MT.Sb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:antimony/gear",
+          "gt": "gearGt(MT.Sb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:antimony/quintuple_plate",
+          "gt": "plateQuintuple(MT.Sb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:antimony/rod",
+          "gt": "stick(MT.Sb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_antimony_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_antimony_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_ultimet_safe.json",
+        "present": true
+      },
+      "meta": 2048,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:ultimet/small_gear",
+          "gt": "gearGtSmall(MT.Ultimet)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:ultimet/gear",
+          "gt": "gearGt(MT.Ultimet)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:ultimet/quintuple_plate",
+          "gt": "plateQuintuple(MT.Ultimet)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:ultimet/rod",
+          "gt": "stick(MT.Ultimet)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_ultimet_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_ultimet_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_molybdenum_safe.json",
+        "present": true
+      },
+      "meta": 2049,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:molybdenum/small_gear",
+          "gt": "gearGtSmall(MT.Mo)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:molybdenum/gear",
+          "gt": "gearGt(MT.Mo)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:molybdenum/quintuple_plate",
+          "gt": "plateQuintuple(MT.Mo)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:molybdenum/rod",
+          "gt": "stick(MT.Mo)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_molybdenum_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_molybdenum_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_netherite_safe.json",
+        "present": true
+      },
+      "meta": 2051,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:netherite/small_gear",
+          "gt": "gearGtSmall(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:netherite/gear",
+          "gt": "gearGt(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:netherite/quintuple_plate",
+          "gt": "plateQuintuple(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:netherite/rod",
+          "gt": "stick(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_netherite_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_netherite_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_efrine_safe.json",
+        "present": true
+      },
+      "meta": 2053,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:efrine/small_gear",
+          "gt": "gearGtSmall(MT.Efrine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:efrine/gear",
+          "gt": "gearGt(MT.Efrine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:efrine/quintuple_plate",
+          "gt": "plateQuintuple(MT.Efrine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:efrine/rod",
+          "gt": "stick(MT.Efrine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_efrine_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_efrine_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_lumium_safe.json",
+        "present": true
+      },
+      "meta": 2054,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:lumium/small_gear",
+          "gt": "gearGtSmall(MT.Lumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:lumium/gear",
+          "gt": "gearGt(MT.Lumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:lumium/quintuple_plate",
+          "gt": "plateQuintuple(MT.Lumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:lumium/rod",
+          "gt": "stick(MT.Lumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_lumium_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_lumium_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_workers_alloy_safe.json",
+        "present": true
+      },
+      "meta": 2055,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:workers_alloy/small_gear",
+          "gt": "gearGtSmall(MT.DeshAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:workers_alloy/gear",
+          "gt": "gearGt(MT.DeshAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:workers_alloy/quintuple_plate",
+          "gt": "plateQuintuple(MT.DeshAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:workers_alloy/rod",
+          "gt": "stick(MT.DeshAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_workers_alloy_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_workers_alloy_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_bismuth_bronze_safe.json",
+        "present": true
+      },
+      "meta": 2056,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:bismuth_bronze/small_gear",
+          "gt": "gearGtSmall(MT.BismuthBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:bismuth_bronze/gear",
+          "gt": "gearGt(MT.BismuthBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:bismuth_bronze/quintuple_plate",
+          "gt": "plateQuintuple(MT.BismuthBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:bismuth_bronze/rod",
+          "gt": "stick(MT.BismuthBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_bismuth_bronze_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_bismuth_bronze_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_arsenic_copper_safe.json",
+        "present": true
+      },
+      "meta": 2057,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:arsenic_copper/small_gear",
+          "gt": "gearGtSmall(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:arsenic_copper/gear",
+          "gt": "gearGt(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:arsenic_copper/quintuple_plate",
+          "gt": "plateQuintuple(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:arsenic_copper/rod",
+          "gt": "stick(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_arsenic_copper_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_arsenic_copper_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeMechanical / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/mechanical_arsenic_bronze_safe.json",
+        "present": true
+      },
+      "meta": 2058,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:arsenic_bronze/small_gear",
+          "gt": "gearGtSmall(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:arsenic_bronze/gear",
+          "gt": "gearGt(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:arsenic_bronze/quintuple_plate",
+          "gt": "plateQuintuple(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:arsenic_bronze/rod",
+          "gt": "stick(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "GOS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/mechanical_arsenic_bronze_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/mechanical_arsenic_bronze_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_lead_safe.json",
+        "present": true
+      },
+      "meta": 3000,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:lead/small_gear",
+          "gt": "gearGtSmall(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:lead/gear",
+          "gt": "gearGt(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:lead/quintuple_plate",
+          "gt": "plateQuintuple(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:lead/rod",
+          "gt": "stick(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_lead_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_lead_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_aluminium_safe.json",
+        "present": true
+      },
+      "meta": 3001,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:aluminium/small_gear",
+          "gt": "gearGtSmall(MT.Al)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:aluminium/gear",
+          "gt": "gearGt(MT.Al)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:aluminium/quintuple_plate",
+          "gt": "plateQuintuple(MT.Al)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:aluminium/rod",
+          "gt": "stick(MT.Al)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_aluminium_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_aluminium_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_gold_safe.json",
+        "present": true
+      },
+      "meta": 3002,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:gold/small_gear",
+          "gt": "gearGtSmall(MT.Au)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:gold/gear",
+          "gt": "gearGt(MT.Au)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:gold/quintuple_plate",
+          "gt": "plateQuintuple(MT.Au)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:gold/rod",
+          "gt": "stick(MT.Au)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_gold_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_gold_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_silver_safe.json",
+        "present": true
+      },
+      "meta": 3003,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:silver/small_gear",
+          "gt": "gearGtSmall(MT.Ag)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:silver/gear",
+          "gt": "gearGt(MT.Ag)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:silver/quintuple_plate",
+          "gt": "plateQuintuple(MT.Ag)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:silver/rod",
+          "gt": "stick(MT.Ag)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_silver_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_silver_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_platinum_safe.json",
+        "present": true
+      },
+      "meta": 3004,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:platinum/small_gear",
+          "gt": "gearGtSmall(MT.Pt)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:platinum/gear",
+          "gt": "gearGt(MT.Pt)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:platinum/quintuple_plate",
+          "gt": "plateQuintuple(MT.Pt)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:platinum/rod",
+          "gt": "stick(MT.Pt)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_platinum_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_platinum_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_tin_alloy_safe.json",
+        "present": true
+      },
+      "meta": 3005,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:tin_alloy/small_gear",
+          "gt": "gearGtSmall(MT.TinAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:tin_alloy/gear",
+          "gt": "gearGt(MT.TinAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:tin_alloy/quintuple_plate",
+          "gt": "plateQuintuple(MT.TinAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:tin_alloy/rod",
+          "gt": "stick(MT.TinAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_tin_alloy_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_tin_alloy_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_invar_safe.json",
+        "present": true
+      },
+      "meta": 3006,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:invar/small_gear",
+          "gt": "gearGtSmall(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:invar/gear",
+          "gt": "gearGt(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:invar/quintuple_plate",
+          "gt": "plateQuintuple(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:invar/rod",
+          "gt": "stick(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_invar_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_invar_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_electrum_safe.json",
+        "present": true
+      },
+      "meta": 3007,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:electrum/small_gear",
+          "gt": "gearGtSmall(MT.Electrum)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:electrum/gear",
+          "gt": "gearGt(MT.Electrum)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:electrum/quintuple_plate",
+          "gt": "plateQuintuple(MT.Electrum)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:electrum/rod",
+          "gt": "stick(MT.Electrum)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_electrum_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_electrum_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_brass_safe.json",
+        "present": true
+      },
+      "meta": 3008,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:brass/small_gear",
+          "gt": "gearGtSmall(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:brass/gear",
+          "gt": "gearGt(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:brass/quintuple_plate",
+          "gt": "plateQuintuple(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:brass/rod",
+          "gt": "stick(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_brass_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_brass_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_bronze_safe.json",
+        "present": true
+      },
+      "meta": 3009,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:bronze/small_gear",
+          "gt": "gearGtSmall(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:bronze/gear",
+          "gt": "gearGt(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:bronze/quintuple_plate",
+          "gt": "plateQuintuple(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:bronze/rod",
+          "gt": "stick(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_bronze_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_bronze_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_steel_safe.json",
+        "present": true
+      },
+      "meta": 3010,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:steel/small_gear",
+          "gt": "gearGtSmall(MT.Steel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:steel/gear",
+          "gt": "gearGt(MT.Steel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:steel/quintuple_plate",
+          "gt": "plateQuintuple(MT.Steel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:steel/rod",
+          "gt": "stick(MT.Steel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_steel_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_steel_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_stainless_steel_safe.json",
+        "present": true
+      },
+      "meta": 3011,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:stainless_steel/small_gear",
+          "gt": "gearGtSmall(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:stainless_steel/gear",
+          "gt": "gearGt(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:stainless_steel/quintuple_plate",
+          "gt": "plateQuintuple(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:stainless_steel/rod",
+          "gt": "stick(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_stainless_steel_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_stainless_steel_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_titanium_safe.json",
+        "present": true
+      },
+      "meta": 3012,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:titanium/small_gear",
+          "gt": "gearGtSmall(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:titanium/gear",
+          "gt": "gearGt(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:titanium/quintuple_plate",
+          "gt": "plateQuintuple(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:titanium/rod",
+          "gt": "stick(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_titanium_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_titanium_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_chromium_safe.json",
+        "present": true
+      },
+      "meta": 3013,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:chromium/small_gear",
+          "gt": "gearGtSmall(MT.Cr)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:chromium/gear",
+          "gt": "gearGt(MT.Cr)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:chromium/quintuple_plate",
+          "gt": "plateQuintuple(MT.Cr)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:chromium/rod",
+          "gt": "stick(MT.Cr)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_chromium_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_chromium_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_tungstensteel_safe.json",
+        "present": true
+      },
+      "meta": 3014,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:tungstensteel/small_gear",
+          "gt": "gearGtSmall(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:tungstensteel/gear",
+          "gt": "gearGt(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:tungstensteel/quintuple_plate",
+          "gt": "plateQuintuple(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:tungstensteel/rod",
+          "gt": "stick(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_tungstensteel_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_tungstensteel_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_iridium_safe.json",
+        "present": true
+      },
+      "meta": 3015,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:iridium/small_gear",
+          "gt": "gearGtSmall(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:iridium/gear",
+          "gt": "gearGt(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:iridium/quintuple_plate",
+          "gt": "plateQuintuple(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:iridium/rod",
+          "gt": "stick(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_iridium_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_iridium_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_bismuth_safe.json",
+        "present": true
+      },
+      "meta": 3016,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:bismuth/small_gear",
+          "gt": "gearGtSmall(MT.Bi)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:bismuth/gear",
+          "gt": "gearGt(MT.Bi)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:bismuth/quintuple_plate",
+          "gt": "plateQuintuple(MT.Bi)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:bismuth/rod",
+          "gt": "stick(MT.Bi)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_bismuth_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_bismuth_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_hsla_steel_safe.json",
+        "present": true
+      },
+      "meta": 3018,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:hslasteel/small_gear",
+          "gt": "gearGtSmall(MT.HSLA)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:hslasteel/gear",
+          "gt": "gearGt(MT.HSLA)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:hslasteel/quintuple_plate",
+          "gt": "plateQuintuple(MT.HSLA)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:hslasteel/rod",
+          "gt": "stick(MT.HSLA)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_hsla_steel_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_hsla_steel_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_steelgalvanized_safe.json",
+        "present": true
+      },
+      "meta": 3019,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:steel_galvanized/small_gear",
+          "gt": "gearGtSmall(MT.SteelGalvanized)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:steel_galvanized/gear",
+          "gt": "gearGt(MT.SteelGalvanized)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:steel_galvanized/quintuple_plate",
+          "gt": "plateQuintuple(MT.SteelGalvanized)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:steel_galvanized/rod",
+          "gt": "stick(MT.SteelGalvanized)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_steelgalvanized_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_steelgalvanized_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_gilded_iron_safe.json",
+        "present": true
+      },
+      "meta": 3020,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:gilded_iron/small_gear",
+          "gt": "gearGtSmall(MT.GildedIron)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:gilded_iron/gear",
+          "gt": "gearGt(MT.GildedIron)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:gilded_iron/quintuple_plate",
+          "gt": "plateQuintuple(MT.GildedIron)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:gilded_iron/rod",
+          "gt": "stick(MT.GildedIron)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_gilded_iron_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_gilded_iron_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_cobalt_safe.json",
+        "present": true
+      },
+      "meta": 3021,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:cobalt/small_gear",
+          "gt": "gearGtSmall(MT.Co)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:cobalt/gear",
+          "gt": "gearGt(MT.Co)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:cobalt/quintuple_plate",
+          "gt": "plateQuintuple(MT.Co)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:cobalt/rod",
+          "gt": "stick(MT.Co)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_cobalt_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_cobalt_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_nickel_safe.json",
+        "present": true
+      },
+      "meta": 3022,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:nickel/small_gear",
+          "gt": "gearGtSmall(MT.Ni)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:nickel/gear",
+          "gt": "gearGt(MT.Ni)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:nickel/quintuple_plate",
+          "gt": "plateQuintuple(MT.Ni)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:nickel/rod",
+          "gt": "stick(MT.Ni)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_nickel_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_nickel_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_germanium_safe.json",
+        "present": true
+      },
+      "meta": 3023,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:germanium/small_gear",
+          "gt": "gearGtSmall(MT.Ge)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:germanium/gear",
+          "gt": "gearGt(MT.Ge)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:germanium/quintuple_plate",
+          "gt": "plateQuintuple(MT.Ge)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:germanium/rod",
+          "gt": "stick(MT.Ge)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_germanium_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_germanium_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_meteoric_steel_safe.json",
+        "present": true
+      },
+      "meta": 3024,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:meteoric_steel/small_gear",
+          "gt": "gearGtSmall(MT.MeteoricSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:meteoric_steel/gear",
+          "gt": "gearGt(MT.MeteoricSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:meteoric_steel/quintuple_plate",
+          "gt": "plateQuintuple(MT.MeteoricSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:meteoric_steel/rod",
+          "gt": "stick(MT.MeteoricSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_meteoric_steel_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_meteoric_steel_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_knightmetal_safe.json",
+        "present": true
+      },
+      "meta": 3025,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:knightmetal/small_gear",
+          "gt": "gearGtSmall(MT.Knightmetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:knightmetal/gear",
+          "gt": "gearGt(MT.Knightmetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:knightmetal/quintuple_plate",
+          "gt": "plateQuintuple(MT.Knightmetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:knightmetal/rod",
+          "gt": "stick(MT.Knightmetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_knightmetal_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_knightmetal_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_tungsten_safe.json",
+        "present": true
+      },
+      "meta": 3026,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:tungsten/small_gear",
+          "gt": "gearGtSmall(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:tungsten/gear",
+          "gt": "gearGt(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:tungsten/quintuple_plate",
+          "gt": "plateQuintuple(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:tungsten/rod",
+          "gt": "stick(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_tungsten_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_tungsten_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_thaumium_safe.json",
+        "present": true
+      },
+      "meta": 3027,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:thaumium/small_gear",
+          "gt": "gearGtSmall(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:thaumium/gear",
+          "gt": "gearGt(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:thaumium/quintuple_plate",
+          "gt": "plateQuintuple(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:thaumium/rod",
+          "gt": "stick(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_thaumium_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_thaumium_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_void_metal_safe.json",
+        "present": true
+      },
+      "meta": 3028,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:void_metal/small_gear",
+          "gt": "gearGtSmall(MT.VoidMetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:void_metal/gear",
+          "gt": "gearGt(MT.VoidMetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:void_metal/quintuple_plate",
+          "gt": "plateQuintuple(MT.VoidMetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:void_metal/rod",
+          "gt": "stick(MT.VoidMetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_void_metal_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_void_metal_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_osmiumelemental_safe.json",
+        "present": true
+      },
+      "meta": 3029,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:osmium_elemental/small_gear",
+          "gt": "gearGtSmall(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:osmium_elemental/gear",
+          "gt": "gearGt(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:osmium_elemental/quintuple_plate",
+          "gt": "plateQuintuple(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:osmium_elemental/rod",
+          "gt": "stick(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_osmiumelemental_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_osmiumelemental_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_desh_safe.json",
+        "present": true
+      },
+      "meta": 3030,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:desh/small_gear",
+          "gt": "gearGtSmall(MT.Desh)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:desh/gear",
+          "gt": "gearGt(MT.Desh)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:desh/quintuple_plate",
+          "gt": "plateQuintuple(MT.Desh)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:desh/rod",
+          "gt": "stick(MT.Desh)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_desh_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_desh_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_adamantium_safe.json",
+        "present": true
+      },
+      "meta": 3033,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:adamantium/small_gear",
+          "gt": "gearGtSmall(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:adamantium/gear",
+          "gt": "gearGt(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:adamantium/quintuple_plate",
+          "gt": "plateQuintuple(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:adamantium/rod",
+          "gt": "stick(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_adamantium_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_adamantium_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_draconium_safe.json",
+        "present": true
+      },
+      "meta": 3035,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:draconium/small_gear",
+          "gt": "gearGtSmall(MT.Draconium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:draconium/gear",
+          "gt": "gearGt(MT.Draconium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:draconium/quintuple_plate",
+          "gt": "plateQuintuple(MT.Draconium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:draconium/rod",
+          "gt": "stick(MT.Draconium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_draconium_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_draconium_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_draconiumawakened_safe.json",
+        "present": true
+      },
+      "meta": 3036,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:draconium_awakened/small_gear",
+          "gt": "gearGtSmall(MT.DraconiumAwakened)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:draconium_awakened/gear",
+          "gt": "gearGt(MT.DraconiumAwakened)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:draconium_awakened/quintuple_plate",
+          "gt": "plateQuintuple(MT.DraconiumAwakened)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:draconium_awakened/rod",
+          "gt": "stick(MT.DraconiumAwakened)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_draconiumawakened_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_draconiumawakened_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_constantan_safe.json",
+        "present": true
+      },
+      "meta": 3037,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:constantan/small_gear",
+          "gt": "gearGtSmall(MT.Constantan)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:constantan/gear",
+          "gt": "gearGt(MT.Constantan)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:constantan/quintuple_plate",
+          "gt": "plateQuintuple(MT.Constantan)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:constantan/rod",
+          "gt": "stick(MT.Constantan)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_constantan_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_constantan_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_ardite_safe.json",
+        "present": true
+      },
+      "meta": 3038,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:ardite/small_gear",
+          "gt": "gearGtSmall(MT.Ardite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:ardite/gear",
+          "gt": "gearGt(MT.Ardite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:ardite/quintuple_plate",
+          "gt": "plateQuintuple(MT.Ardite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:ardite/rod",
+          "gt": "stick(MT.Ardite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_ardite_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_ardite_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_manyullyn_safe.json",
+        "present": true
+      },
+      "meta": 3039,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:manyullyn/small_gear",
+          "gt": "gearGtSmall(MT.Manyullyn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:manyullyn/gear",
+          "gt": "gearGt(MT.Manyullyn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:manyullyn/quintuple_plate",
+          "gt": "plateQuintuple(MT.Manyullyn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:manyullyn/rod",
+          "gt": "stick(MT.Manyullyn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_manyullyn_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_manyullyn_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_meteorite_safe.json",
+        "present": true
+      },
+      "meta": 3043,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:meteorite/small_gear",
+          "gt": "gearGtSmall(MT.Meteorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:meteorite/gear",
+          "gt": "gearGt(MT.Meteorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:meteorite/quintuple_plate",
+          "gt": "plateQuintuple(MT.Meteorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:meteorite/rod",
+          "gt": "stick(MT.Meteorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_meteorite_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_meteorite_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_syrmorite_safe.json",
+        "present": true
+      },
+      "meta": 3044,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:syrmorite/small_gear",
+          "gt": "gearGtSmall(MT.Syrmorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:syrmorite/gear",
+          "gt": "gearGt(MT.Syrmorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:syrmorite/quintuple_plate",
+          "gt": "plateQuintuple(MT.Syrmorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:syrmorite/rod",
+          "gt": "stick(MT.Syrmorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_syrmorite_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_syrmorite_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_octine_safe.json",
+        "present": true
+      },
+      "meta": 3045,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:octine/small_gear",
+          "gt": "gearGtSmall(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:octine/gear",
+          "gt": "gearGt(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:octine/quintuple_plate",
+          "gt": "plateQuintuple(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:octine/rod",
+          "gt": "stick(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_octine_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_octine_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_manganese_safe.json",
+        "present": true
+      },
+      "meta": 3046,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:manganese/small_gear",
+          "gt": "gearGtSmall(MT.Mn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:manganese/gear",
+          "gt": "gearGt(MT.Mn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:manganese/quintuple_plate",
+          "gt": "plateQuintuple(MT.Mn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:manganese/rod",
+          "gt": "stick(MT.Mn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_manganese_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_manganese_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_antimony_safe.json",
+        "present": true
+      },
+      "meta": 3047,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:antimony/small_gear",
+          "gt": "gearGtSmall(MT.Sb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:antimony/gear",
+          "gt": "gearGt(MT.Sb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:antimony/quintuple_plate",
+          "gt": "plateQuintuple(MT.Sb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:antimony/rod",
+          "gt": "stick(MT.Sb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_antimony_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_antimony_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_ultimet_safe.json",
+        "present": true
+      },
+      "meta": 3048,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:ultimet/small_gear",
+          "gt": "gearGtSmall(MT.Ultimet)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:ultimet/gear",
+          "gt": "gearGt(MT.Ultimet)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:ultimet/quintuple_plate",
+          "gt": "plateQuintuple(MT.Ultimet)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:ultimet/rod",
+          "gt": "stick(MT.Ultimet)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_ultimet_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_ultimet_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_molybdenum_safe.json",
+        "present": true
+      },
+      "meta": 3049,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:molybdenum/small_gear",
+          "gt": "gearGtSmall(MT.Mo)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:molybdenum/gear",
+          "gt": "gearGt(MT.Mo)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:molybdenum/quintuple_plate",
+          "gt": "plateQuintuple(MT.Mo)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:molybdenum/rod",
+          "gt": "stick(MT.Mo)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_molybdenum_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_molybdenum_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_netherite_safe.json",
+        "present": true
+      },
+      "meta": 3051,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:netherite/small_gear",
+          "gt": "gearGtSmall(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:netherite/gear",
+          "gt": "gearGt(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:netherite/quintuple_plate",
+          "gt": "plateQuintuple(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:netherite/rod",
+          "gt": "stick(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_netherite_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_netherite_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_efrine_safe.json",
+        "present": true
+      },
+      "meta": 3053,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:efrine/small_gear",
+          "gt": "gearGtSmall(MT.Efrine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:efrine/gear",
+          "gt": "gearGt(MT.Efrine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:efrine/quintuple_plate",
+          "gt": "plateQuintuple(MT.Efrine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:efrine/rod",
+          "gt": "stick(MT.Efrine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_efrine_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_efrine_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_lumium_safe.json",
+        "present": true
+      },
+      "meta": 3054,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:lumium/small_gear",
+          "gt": "gearGtSmall(MT.Lumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:lumium/gear",
+          "gt": "gearGt(MT.Lumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:lumium/quintuple_plate",
+          "gt": "plateQuintuple(MT.Lumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:lumium/rod",
+          "gt": "stick(MT.Lumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_lumium_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_lumium_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_workers_alloy_safe.json",
+        "present": true
+      },
+      "meta": 3055,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:workers_alloy/small_gear",
+          "gt": "gearGtSmall(MT.DeshAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:workers_alloy/gear",
+          "gt": "gearGt(MT.DeshAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:workers_alloy/quintuple_plate",
+          "gt": "plateQuintuple(MT.DeshAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:workers_alloy/rod",
+          "gt": "stick(MT.DeshAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_workers_alloy_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_workers_alloy_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_bismuth_bronze_safe.json",
+        "present": true
+      },
+      "meta": 3056,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:bismuth_bronze/small_gear",
+          "gt": "gearGtSmall(MT.BismuthBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:bismuth_bronze/gear",
+          "gt": "gearGt(MT.BismuthBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:bismuth_bronze/quintuple_plate",
+          "gt": "plateQuintuple(MT.BismuthBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:bismuth_bronze/rod",
+          "gt": "stick(MT.BismuthBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_bismuth_bronze_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_bismuth_bronze_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_arsenic_copper_safe.json",
+        "present": true
+      },
+      "meta": 3057,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:arsenic_copper/small_gear",
+          "gt": "gearGtSmall(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:arsenic_copper/gear",
+          "gt": "gearGt(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:arsenic_copper/quintuple_plate",
+          "gt": "plateQuintuple(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:arsenic_copper/rod",
+          "gt": "stick(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_arsenic_copper_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_arsenic_copper_safe",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntitySafeKeyLocked / Safes",
+      "kind": "SAFE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/safe/key_locked_arsenic_bronze_safe.json",
+        "present": true
+      },
+      "meta": 3058,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:arsenic_bronze/small_gear",
+          "gt": "gearGtSmall(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "O": {
+          "cc": "cruciblecraft:arsenic_bronze/gear",
+          "gt": "gearGt(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:arsenic_bronze/quintuple_plate",
+          "gt": "plateQuintuple(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:arsenic_bronze/rod",
+          "gt": "stick(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PGP",
+        "OGS",
+        "PGP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:safe/key_locked_arsenic_bronze_safe",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "safe/key_locked_arsenic_bronze_safe",
+      "status": "source_exact"
+    }
+  ],
+  "runtime_slug": "content/gt6-mte-furniture-safe-runtime",
+  "schema": "gt6-mte-inplace-d0-obtain-matrix-v1",
+  "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+}

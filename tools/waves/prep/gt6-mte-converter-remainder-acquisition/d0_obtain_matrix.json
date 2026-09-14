@@ -1,0 +1,484 @@
+{
+  "auto_promote_player_complete": false,
+  "blocker_id": "obtain/mte-inplace-runtime",
+  "capability_slug": "content/gt6-mte-converter-remainder-acquisition",
+  "counts": {
+    "explicitly_blocked": 0,
+    "hosts": 8,
+    "source_exact": 8
+  },
+  "domain": "converter_remainder",
+  "expected": 8,
+  "hosts": [
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTurbineSteam / Turbines",
+      "kind": "STEAM_TURBINE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/steam/turbine_bronze.json",
+        "present": true
+      },
+      "meta": 1512,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:bronze/gear",
+          "gt": "gearGt(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "M": {
+          "cc": "cruciblecraft:bronze/machine_casing_double",
+          "gt": "casingMachineDouble(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:bronze/long_rod",
+          "gt": "stickLong(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:bronze/rotor",
+          "gt": "rotor(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TwT",
+        "GSG",
+        "TMT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:steam/turbine_bronze",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "steam/turbine_bronze",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTurbineSteam / Turbines",
+      "kind": "STEAM_TURBINE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/steam/turbine_steel.json",
+        "present": true
+      },
+      "meta": 1522,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:steel/gear",
+          "gt": "gearGt(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "M": {
+          "cc": "cruciblecraft:steel/machine_casing_double",
+          "gt": "casingMachineDouble(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:steel/long_rod",
+          "gt": "stickLong(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:steel/rotor",
+          "gt": "rotor(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TwT",
+        "GSG",
+        "TMT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:steam/turbine_steel",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "steam/turbine_steel",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTurbineSteam / Turbines",
+      "kind": "STEAM_TURBINE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/steam/turbine_steeleaf.json",
+        "present": true
+      },
+      "meta": 1528,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:steel/gear",
+          "gt": "gearGt(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "M": {
+          "cc": "cruciblecraft:steel/machine_casing_double",
+          "gt": "casingMachineDouble(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:steel/long_rod",
+          "gt": "stickLong(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:steeleaf/rotor",
+          "gt": "rotor(MT.Steeleaf)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TwT",
+        "GSG",
+        "TMT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:steam/turbine_steeleaf",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "steam/turbine_steeleaf",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTurbineSteam / Turbines",
+      "kind": "STEAM_TURBINE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/steam/turbine_titanium.json",
+        "present": true
+      },
+      "meta": 1530,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:titanium/gear",
+          "gt": "gearGt(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "M": {
+          "cc": "cruciblecraft:titanium/machine_casing_double",
+          "gt": "casingMachineDouble(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:titanium/long_rod",
+          "gt": "stickLong(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:titanium/rotor",
+          "gt": "rotor(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TwT",
+        "GSG",
+        "TMT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:steam/turbine_titanium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "steam/turbine_titanium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTurbineSteam / Turbines",
+      "kind": "STEAM_TURBINE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/steam/turbine_trinitanium.json",
+        "present": true
+      },
+      "meta": 1545,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:tungstensteel/gear",
+          "gt": "gearGt(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "M": {
+          "cc": "cruciblecraft:tungstensteel/machine_casing_double",
+          "gt": "casingMachineDouble(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:tungstensteel/long_rod",
+          "gt": "stickLong(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:trinitanium/rotor",
+          "gt": "rotor(MT.Trinitanium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TwT",
+        "GSG",
+        "TMT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:steam/turbine_trinitanium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "steam/turbine_trinitanium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTurbineSteam / Turbines",
+      "kind": "STEAM_TURBINE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/steam/turbine_graphene.json",
+        "present": true
+      },
+      "meta": 1548,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:tungstensteel/gear",
+          "gt": "gearGt(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "M": {
+          "cc": "cruciblecraft:tungstensteel/machine_casing_double",
+          "gt": "casingMachineDouble(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:tungstensteel/long_rod",
+          "gt": "stickLong(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:graphene/rotor",
+          "gt": "rotor(MT.Graphene)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TwT",
+        "GSG",
+        "TMT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:steam/turbine_graphene",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "steam/turbine_graphene",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "unknown / Battery Boxes",
+      "kind": "BATTERY_BOX",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/boxwood/battery_luv.json",
+        "present": true
+      },
+      "meta": 10086,
+      "operands": {
+        "C": {
+          "cc": "cruciblecraft:graphene/wire",
+          "gt": "wireGt01(MT.Graphene)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "M": {
+          "cc": "cruciblecraft:iridium/machine_casing",
+          "gt": "casingMachine(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "cruciblecraft:graphene/wire",
+          "gt": "wireGt01(MT.Graphene)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "X": {
+          "cc": "cruciblecraft:circuit_ultimate",
+          "gt": "OD_CIRCUITS[6]",
+          "kind": "circuit",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "WCW",
+        "WCW",
+        "XMX"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:boxwood/battery_luv",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "boxwood/battery_luv",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "unknown / Battery Boxes",
+      "kind": "BATTERY_BOX",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/boxwood/battery_zpm.json",
+        "present": true
+      },
+      "meta": 10087,
+      "operands": {
+        "C": {
+          "cc": "cruciblecraft:graphene/wire",
+          "gt": "wireGt01(MT.Graphene)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "M": {
+          "cc": "cruciblecraft:osmium_elemental/machine_casing",
+          "gt": "casingMachine(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "cruciblecraft:graphene/wire",
+          "gt": "wireGt01(MT.Graphene)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "X": {
+          "cc": "cruciblecraft:circuit_quantum",
+          "gt": "OD_CIRCUITS[7]",
+          "kind": "circuit",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "WCW",
+        "WCW",
+        "XMX"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:boxwood/battery_zpm",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "boxwood/battery_zpm",
+      "status": "source_exact"
+    }
+  ],
+  "runtime_slug": "content/gt6-mte-converter-remainder-runtime",
+  "schema": "gt6-mte-inplace-d0-obtain-matrix-v1",
+  "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+}

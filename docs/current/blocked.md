@@ -9,8 +9,8 @@
 
 ## 统计
 
-- 条目 60：open 39，partial 2，resolved 9，superseded 5，out_of_scope 5
-- 未关闭排期桶：数字是规模，不是待办 5，分母已冻，可当卡排 19，有名字，分母未冻成工作量 14，不是活 3
+- 条目 60：open 38，partial 2，resolved 10，superseded 5，out_of_scope 5
+- 未关闭排期桶：数字是规模，不是待办 5，分母已冻，可当卡排 18，有名字，分母未冻成工作量 14，不是活 3
 
 ## 排期分类（未关闭）
 
@@ -25,7 +25,7 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - `recipe/nanofab-overflow`：57 rows
 - `worldgen/food`：n/a
 
-### B. 分母已冻，可当卡排（19）
+### B. 分母已冻，可当卡排（18）
 
 - `cover/torch-repeater-wire-host`：2 covers
 - `fluid/ic2-coolant`：1 fluids
@@ -37,7 +37,6 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - `identity/processing-ungated-families`：3 families
 - `material-form/copper-family-curved-plate`：n/a
 - `obtain/injector-mv-hv-iv-hosts`：3 hosts
-- `obtain/mte-inplace-runtime`：14 capabilities
 - `obtain/nanofab-hosts`：5 hosts
 - `obtain/redstone-wiregt01`：3 items
 - `recipe/fluidbed-overflow`：49 rows
@@ -77,6 +76,9 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 成员：`recipe/bath-remainder-families`, `recipe/bath-identity-families`
   - 收口：T48 完成 145 个 Bath remainder family；T49 完成最后 5 个 tiny-purified family。当前 Bath ordinary remainder 为 0。
   - 当前权威：`docs/history/card-plans/closed/T48详细计划.md`, `docs/history/card-plans/closed/T49详细计划.md`, `tools/waves/bath/tiny-purified/readiness.json`, `tools/waves/bath/tiny-purified/card_topology.json`
+- 成员：`obtain/mte-inplace-runtime`
+  - 收口：content/gt6-mte-inplace-acquisition 落地 732 条 source-exact shaped_catalyst 格；150 个缺形态/OD/plank 缺口留在各族 current_gap.json。14 个 runtime 仍 runtime_ready。
+  - 当前权威：`tools/capabilities/content/gt6-mte-inplace-acquisition/capability.json`, `tools/waves/prep/gt6-mte-inplace-acquisition/contract.json`, `tools/waves/content/gt6-mte-inplace-acquisition/gametest_receipt.json`
 
 ## 批处理关系（不是分母）
 
@@ -102,33 +104,6 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
   - 石墨烯与超导缺形态继续 blocked。
   - HSLA alias / gauge 是独立子任务。
   - 连接件美术 dummy 不是 runtime identity 工作。
-
-### `batch/obtain-mte-inplace-closure`：In-place MTE source-exact 获得格收口
-
-- 建议排序依据：同一个 root cause 与 obtain marker 绑定 14 个跨 MTE family 的 runtime capability。
-- 类型：`shared_obtain_audit`；成员角色按各 blocker 保留
-- production lock：`separate_per_capability`
-- 成员：
-  - `obtain/mte-inplace-runtime`（`primary`）
-- 已有 lock：
-  - `tools/waves/content/gt6-mte-converter-remainder-runtime/production_lock.json`
-  - `tools/waves/content/gt6-mte-crucible-foundry-runtime/production_lock.json`
-  - `tools/waves/content/gt6-mte-decorative-runtime/production_lock.json`
-  - `tools/waves/content/gt6-mte-drive-runtime/production_lock.json`
-  - `tools/waves/content/gt6-mte-extender-runtime/production_lock.json`
-  - `tools/waves/content/gt6-mte-fluid-attachments-runtime/production_lock.json`
-  - `tools/waves/content/gt6-mte-furniture-barrel-runtime/production_lock.json`
-  - `tools/waves/content/gt6-mte-furniture-chest-runtime/production_lock.json`
-  - `tools/waves/content/gt6-mte-furniture-safe-runtime/production_lock.json`
-  - `tools/waves/content/gt6-mte-furniture-scaffold-runtime/production_lock.json`
-  - `tools/waves/content/gt6-mte-furniture-storage-runtime/production_lock.json`
-  - `tools/waves/content/gt6-mte-furniture-table-runtime/production_lock.json`
-  - `tools/waves/content/gt6-mte-misc-tool-runtime/production_lock.json`
-  - `tools/waves/content/gt6-mte-multiblock-runtime/production_lock.json`
-- 边界：
-  - 共享 root cause 是 runtime_without_source_exact_obtain，所有成员都使用 Obtain stays explicitly_blocked marker。
-  - 每个 family 仍按自己的 GT6 source-exact 格或槽位合同审计。
-  - 关闭此 blocker 不会把 14 个 capability 全部晋级 player_complete。
 
 ### `batch/machines-nanofab-host-closure`：纳米加工机主机获得格收口
 
@@ -231,8 +206,7 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
   - `obtain/nanofab-hosts`
 - `missing_mod_bridge`（1）
   - `peripheral/sensors-computercraft`
-- `missing_obtain`（2）
-  - `obtain/mte-inplace-runtime`
+- `missing_obtain`（1）
   - `obtain/redstone-wiregt01`
 - `missing_runtime`（6）
   - `energy/cooler`
@@ -570,22 +544,6 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 权威：`tools/capabilities/machines/injector/capability.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：LV and Chromium EV hosts are source-exact. Do not stand in other motors.
-
-### `obtain/mte-inplace-runtime`
-
-- 标题：14 张 in-place MTE runtime 获得格仍 blocked
-- 状态：`open`
-- 根因：`missing_obtain` / `runtime_without_source_exact_obtain`
-- 数量：14 capabilities
-- 排期：`schedulable`
-- 挡住：`player_complete`
-- 发现卡：`content/gt6-mte-fluid-attachments-runtime`
-- 由本卡引入：否（发现既有缺口）
-- 解决卡：—
-- 影响：`content/gt6-mte-converter-remainder-runtime`, `content/gt6-mte-crucible-foundry-runtime`, `content/gt6-mte-decorative-runtime`, `content/gt6-mte-drive-runtime`, `content/gt6-mte-extender-runtime`, `content/gt6-mte-fluid-attachments-runtime`, `content/gt6-mte-furniture-barrel-runtime`, `content/gt6-mte-furniture-chest-runtime`, `content/gt6-mte-furniture-safe-runtime`, `content/gt6-mte-furniture-scaffold-runtime`, `content/gt6-mte-furniture-storage-runtime`, `content/gt6-mte-furniture-table-runtime`, `content/gt6-mte-misc-tool-runtime`, `content/gt6-mte-multiblock-runtime`
-- 权威：`tools/capabilities/content/gt6-mte-converter-remainder-runtime/capability.json`, `tools/capabilities/content/gt6-mte-crucible-foundry-runtime/capability.json`, `tools/capabilities/content/gt6-mte-decorative-runtime/capability.json`, `tools/capabilities/content/gt6-mte-drive-runtime/capability.json`, `tools/capabilities/content/gt6-mte-extender-runtime/capability.json`, `tools/capabilities/content/gt6-mte-fluid-attachments-runtime/capability.json`, `tools/capabilities/content/gt6-mte-furniture-barrel-runtime/capability.json`, `tools/capabilities/content/gt6-mte-furniture-chest-runtime/capability.json`, `tools/capabilities/content/gt6-mte-furniture-safe-runtime/capability.json`, `tools/capabilities/content/gt6-mte-furniture-scaffold-runtime/capability.json`, `tools/capabilities/content/gt6-mte-furniture-storage-runtime/capability.json`, `tools/capabilities/content/gt6-mte-furniture-table-runtime/capability.json`, `tools/capabilities/content/gt6-mte-misc-tool-runtime/capability.json`, `tools/capabilities/content/gt6-mte-multiblock-runtime/capability.json`
-- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：Clustered note_marker bind. Finding the gap is not introducing it.
 
 ### `obtain/nanofab-hosts`
 
@@ -1018,6 +976,22 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 权威：`tools/capabilities/content/gt6-paper-tiny-plate/capability.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：GT6 OP.plateTiny.forceItemGeneration(MT.Paper). Not a stand-in plate.
+
+### `obtain/mte-inplace-runtime`
+
+- 标题：14 张 in-place MTE runtime 获得格已按 source-exact 收口
+- 状态：`resolved`
+- 根因：`missing_obtain` / `runtime_without_source_exact_obtain`
+- 数量：14 capabilities
+- 排期：`not_work`
+- 挡住：`player_complete`
+- 发现卡：`content/gt6-mte-fluid-attachments-runtime`
+- 由本卡引入：否（发现既有缺口）
+- 解决卡：content/gt6-mte-inplace-acquisition
+- 影响：`content/gt6-mte-converter-remainder-runtime`, `content/gt6-mte-crucible-foundry-runtime`, `content/gt6-mte-decorative-runtime`, `content/gt6-mte-drive-runtime`, `content/gt6-mte-extender-runtime`, `content/gt6-mte-fluid-attachments-runtime`, `content/gt6-mte-furniture-barrel-runtime`, `content/gt6-mte-furniture-chest-runtime`, `content/gt6-mte-furniture-safe-runtime`, `content/gt6-mte-furniture-scaffold-runtime`, `content/gt6-mte-furniture-storage-runtime`, `content/gt6-mte-furniture-table-runtime`, `content/gt6-mte-misc-tool-runtime`, `content/gt6-mte-multiblock-runtime`
+- 权威：`tools/capabilities/content/gt6-mte-converter-remainder-runtime/capability.json`, `tools/capabilities/content/gt6-mte-crucible-foundry-runtime/capability.json`, `tools/capabilities/content/gt6-mte-decorative-runtime/capability.json`, `tools/capabilities/content/gt6-mte-drive-runtime/capability.json`, `tools/capabilities/content/gt6-mte-extender-runtime/capability.json`, `tools/capabilities/content/gt6-mte-fluid-attachments-runtime/capability.json`, `tools/capabilities/content/gt6-mte-furniture-barrel-runtime/capability.json`, `tools/capabilities/content/gt6-mte-furniture-chest-runtime/capability.json`, `tools/capabilities/content/gt6-mte-furniture-safe-runtime/capability.json`, `tools/capabilities/content/gt6-mte-furniture-scaffold-runtime/capability.json`, `tools/capabilities/content/gt6-mte-furniture-storage-runtime/capability.json`, `tools/capabilities/content/gt6-mte-furniture-table-runtime/capability.json`, `tools/capabilities/content/gt6-mte-misc-tool-runtime/capability.json`, `tools/capabilities/content/gt6-mte-multiblock-runtime/capability.json`
+- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
+- 说明：Audit complete. Source-exact grids live on content/gt6-mte-inplace-acquisition. Remaining D0 gaps stay in per-family current_gap.json, not this clustered blocker. Closing does not promote the 14 runtimes to player_complete.
 
 ### `recipe/bath-identity-families`
 

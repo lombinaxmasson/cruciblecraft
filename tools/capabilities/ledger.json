@@ -806,6 +806,36 @@
       ],
       "maturity": "runtime_ready",
       "owned_paths": [
+        "docs/history/card-plans/closed/MTE原地获得格详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/mte/MteInPlaceAcquisitionCatalog.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteInPlaceAcquisitionGameTests.java",
+        "src/main/resources/data/cruciblecraft/mte_inplace_acquisition.json",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_inplace_acquisition/**",
+        "src/generated/resources/data/cruciblecraft/recipe/extender/**",
+        "tools/capabilities/content/gt6-mte-inplace-acquisition/**",
+        "tools/waves/content/gt6-mte-inplace-acquisition/**",
+        "tools/waves/prep/gt6-mte-inplace-acquisition/**",
+        "tools/waves/prep/gt6-mte-*-acquisition/**",
+        "tools/gt6_mte_inplace_acquisition.py",
+        "tools/build_gt6_mte_inplace_acquisition.py",
+        "tools/tests/test_gt6_mte_acquisition.py"
+      ],
+      "path": "tools/capabilities/content/gt6-mte-inplace-acquisition/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-mte-inplace-acquisition",
+      "title": "GT6 In-place MTE Acquisition",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/catalog-modern-ids"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
         "docs/history/card-plans/closed/GT6杂项工具runtime详细计划.md",
         "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
         "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
@@ -1539,7 +1569,7 @@
       "depends_on": [],
       "maturity": "runtime_ready",
       "owned_paths": [
-        "docs/history/card-plans/active/语言键与显示名规范收口详细计划.md",
+        "docs/history/card-plans/closed/语言键与显示名规范收口详细计划.md",
         "src/main/java/com/masson/cruciblecraft/localization/LanguageNames.java",
         "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
         "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
@@ -1566,7 +1596,7 @@
       ],
       "slug": "localization/language-key-display-name-normalization",
       "title": "Language Key and Display Name Normalization",
-      "workflow": "active"
+      "workflow": "accepted"
     },
     {
       "depends_on": [],
@@ -2347,7 +2377,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 76,
+  "capability_count": 77,
   "declared_player_complete": [
     "energy/batteries",
     "energy/converter-catalog",
@@ -2498,6 +2528,9 @@
     ],
     "content/gt6-mte-hopper-host-fold": [
       "content/gt6-mte-hopper-host-fold"
+    ],
+    "content/gt6-mte-inplace-acquisition": [
+      "content/gt6-mte-inplace-acquisition"
     ],
     "content/gt6-mte-misc-tool-runtime": [
       "content/gt6-mte-misc-tool-runtime"
@@ -3246,6 +3279,7 @@
       "content/gt6-mte-furniture-storage-runtime",
       "content/gt6-mte-furniture-table-runtime",
       "content/gt6-mte-hopper-host-fold",
+      "content/gt6-mte-inplace-acquisition",
       "content/gt6-mte-misc-tool-runtime",
       "content/gt6-mte-multiblock-runtime",
       "content/gt6-mte-processing-host-fold",
@@ -3303,6 +3337,7 @@
       "content/gt6-mte-furniture-storage-runtime",
       "content/gt6-mte-furniture-table-runtime",
       "content/gt6-mte-hopper-host-fold",
+      "content/gt6-mte-inplace-acquisition",
       "content/gt6-mte-misc-tool-runtime",
       "content/gt6-mte-multiblock-runtime",
       "content/gt6-mte-processing-host-fold",
@@ -3372,5 +3407,5 @@
   },
   "progress_rule": "declaration is not proof; player_complete requires fresh GameTestServer execution; runClient is required on promotion",
   "schema_version": 2,
-  "unique_active_slug": "localization/language-key-display-name-normalization"
+  "unique_active_slug": null
 }

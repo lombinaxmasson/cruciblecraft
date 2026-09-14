@@ -40,42 +40,6 @@
       {
         "auto_promote_player_complete": false,
         "boundary_notes": [
-          "共享 root cause 是 runtime_without_source_exact_obtain，所有成员都使用 Obtain stays explicitly_blocked marker。",
-          "每个 family 仍按自己的 GT6 source-exact 格或槽位合同审计。",
-          "关闭此 blocker 不会把 14 个 capability 全部晋级 player_complete。"
-        ],
-        "does_not_merge_counts": true,
-        "excluded_blocker_ids": [],
-        "id": "batch/obtain-mte-inplace-closure",
-        "kind": "shared_obtain_audit",
-        "members": [
-          {
-            "blocker_id": "obtain/mte-inplace-runtime",
-            "role": "primary"
-          }
-        ],
-        "production_lock_policy": "separate_per_capability",
-        "production_locks": [
-          "tools/waves/content/gt6-mte-converter-remainder-runtime/production_lock.json",
-          "tools/waves/content/gt6-mte-crucible-foundry-runtime/production_lock.json",
-          "tools/waves/content/gt6-mte-decorative-runtime/production_lock.json",
-          "tools/waves/content/gt6-mte-drive-runtime/production_lock.json",
-          "tools/waves/content/gt6-mte-extender-runtime/production_lock.json",
-          "tools/waves/content/gt6-mte-fluid-attachments-runtime/production_lock.json",
-          "tools/waves/content/gt6-mte-furniture-barrel-runtime/production_lock.json",
-          "tools/waves/content/gt6-mte-furniture-chest-runtime/production_lock.json",
-          "tools/waves/content/gt6-mte-furniture-safe-runtime/production_lock.json",
-          "tools/waves/content/gt6-mte-furniture-scaffold-runtime/production_lock.json",
-          "tools/waves/content/gt6-mte-furniture-storage-runtime/production_lock.json",
-          "tools/waves/content/gt6-mte-furniture-table-runtime/production_lock.json",
-          "tools/waves/content/gt6-mte-misc-tool-runtime/production_lock.json",
-          "tools/waves/content/gt6-mte-multiblock-runtime/production_lock.json"
-        ],
-        "title": "In-place MTE source-exact 获得格收口"
-      },
-      {
-        "auto_promote_player_complete": false,
-        "boundary_notes": [
           "5 个 host 是实现目标。",
           "57 条 overflow 是重算上下文，不承诺顺便清掉全部行。",
           "不得用 programmed_circuit 或其它零件替代缺失的激光气体 / 蓝宝石形态。"
@@ -224,6 +188,17 @@
           "recipe/bath-identity-families"
         ],
         "resolution": "T48 完成 145 个 Bath remainder family；T49 完成最后 5 个 tiny-purified family。当前 Bath ordinary remainder 为 0。"
+      },
+      {
+        "authority": [
+          "tools/capabilities/content/gt6-mte-inplace-acquisition/capability.json",
+          "tools/waves/prep/gt6-mte-inplace-acquisition/contract.json",
+          "tools/waves/content/gt6-mte-inplace-acquisition/gametest_receipt.json"
+        ],
+        "blocker_ids": [
+          "obtain/mte-inplace-runtime"
+        ],
+        "resolution": "content/gt6-mte-inplace-acquisition 落地 732 条 source-exact shaped_catalyst 格；150 个缺形态/OD/plank 缺口留在各族 current_gap.json。14 个 runtime 仍 runtime_ready。"
       }
     ],
     "ordering_is_not_additive": true,
@@ -232,10 +207,6 @@
       {
         "basis": "61 个 loader_ids 是最大的已冻结 identity 数；EU partial 与 HSLA 线仍需分子任务审计。",
         "batch_id": "batch/identity-eu-gauge-closure"
-      },
-      {
-        "basis": "同一个 root cause 与 obtain marker 绑定 14 个跨 MTE family 的 runtime capability。",
-        "batch_id": "batch/obtain-mte-inplace-closure"
       },
       {
         "basis": "5 个已冻结 host 是有界的机器获得格目标；57 条 overflow 只保留为规模上下文。",
@@ -1714,76 +1685,19 @@
         "tools/capabilities/content/gt6-mte-multiblock-runtime/capability.json"
       ],
       "blocks_maturity": "player_complete",
-      "claimed_by": [
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-converter-remainder-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-crucible-foundry-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-decorative-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-drive-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-extender-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-fluid-attachments-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-furniture-barrel-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-furniture-chest-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-furniture-safe-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-furniture-scaffold-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-furniture-storage-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-furniture-table-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-misc-tool-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-multiblock-runtime"
-        }
-      ],
+      "claimed_by": [],
       "count": 14,
       "discovered_by": "content/gt6-mte-fluid-attachments-runtime",
       "id": "obtain/mte-inplace-runtime",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "Clustered note_marker bind. Finding the gap is not introducing it.",
-      "planning_bucket": "schedulable",
-      "resolved_by": null,
+      "note": "Audit complete. Source-exact grids live on content/gt6-mte-inplace-acquisition. Remaining D0 gaps stay in per-family current_gap.json, not this clustered blocker. Closing does not promote the 14 runtimes to player_complete.",
+      "planning_bucket": "not_work",
+      "resolved_by": "content/gt6-mte-inplace-acquisition",
       "root_cause": "runtime_without_source_exact_obtain",
       "root_cause_class": "missing_obtain",
-      "status": "open",
-      "title": "14 张 in-place MTE runtime 获得格仍 blocked",
+      "status": "resolved",
+      "title": "14 张 in-place MTE runtime 获得格已按 source-exact 收口",
       "unit": "capabilities"
     },
     {
@@ -2016,12 +1930,6 @@
       "unit": "hosts"
     },
     {
-      "count": 14,
-      "id": "obtain/mte-inplace-runtime",
-      "planning_bucket": "schedulable",
-      "unit": "capabilities"
-    },
-    {
       "count": 5,
       "id": "obtain/nanofab-hosts",
       "planning_bucket": "schedulable",
@@ -2132,7 +2040,6 @@
       "peripheral/sensors-computercraft"
     ],
     "missing_obtain": [
-      "obtain/mte-inplace-runtime",
       "obtain/redstone-wiregt01"
     ],
     "missing_runtime": [
@@ -2340,11 +2247,6 @@
         "unit": "hosts"
       },
       {
-        "count": 14,
-        "id": "obtain/mte-inplace-runtime",
-        "unit": "capabilities"
-      },
-      {
         "count": 5,
         "id": "obtain/nanofab-hosts",
         "unit": "hosts"
@@ -2390,15 +2292,15 @@
     "audit_first": 14,
     "not_work": 3,
     "scale_not_todo": 5,
-    "schedulable": 19
+    "schedulable": 18
   },
   "schema_version": 1,
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "stats": {
-    "open": 39,
+    "open": 38,
     "out_of_scope": 5,
     "partial": 2,
-    "resolved": 9,
+    "resolved": 10,
     "superseded": 5,
     "total": 60
   }

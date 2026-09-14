@@ -2,7 +2,8 @@
 """In-place GT6 MTE runtime: dummy modern ids become live BlockItems.
 
 Shared across sequential unique-active family children. Does not rewrite R0
-or the connector baseline ledger. Obtain stays explicitly_blocked.
+or the connector baseline ledger. Source-exact obtain lives on
+content/gt6-mte-inplace-acquisition; remaining D0 gaps stay blocked.
 """
 from __future__ import annotations
 
@@ -1400,8 +1401,9 @@ def issue_active(domain: str) -> dict[str, Any]:
             }
         ],
         "note": (
-            f"In-place {domain} runtime. Close at runtime_ready. Obtain stays "
-            "explicitly_blocked. Do not edit R0."
+            f"In-place {domain} runtime. Close at runtime_ready. Source-exact "
+            "obtain lives on content/gt6-mte-inplace-acquisition; remaining D0 "
+            "gaps stay blocked. Do not edit R0."
         ),
     }
     _write_json(cap_path, document)

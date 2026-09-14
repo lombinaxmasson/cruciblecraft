@@ -1,0 +1,122 @@
+{
+  "auto_promote_player_complete": false,
+  "blocker_id": "obtain/mte-inplace-runtime",
+  "capability_slug": "content/gt6-mte-extender-acquisition",
+  "counts": {
+    "explicitly_blocked": 0,
+    "hosts": 2,
+    "source_exact": 2
+  },
+  "domain": "extender",
+  "expected": 2,
+  "hosts": [
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityExtender / Extenders",
+      "kind": "TANK_EXTENDER",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/extender/tank_extender.json",
+        "present": true
+      },
+      "meta": 30001,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:steel/machine_casing",
+          "gt": "casingMachine(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "X": {
+          "cc": "cruciblecraft:steel/fluid_pipe",
+          "gt": "pipeMedium(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "Xh ",
+        " M ",
+        " wX"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:extender/tank_extender",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "extender/tank_extender",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBridge / Extenders",
+      "kind": "TANK_BRIDGE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/extender/tank_bridge.json",
+        "present": true
+      },
+      "meta": 30501,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:steel/machine_casing",
+          "gt": "casingMachine(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "X": {
+          "cc": "cruciblecraft:steel/fluid_pipe",
+          "gt": "pipeMedium(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "h  ",
+        "XMX",
+        "  w"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:extender/tank_bridge",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "extender/tank_bridge",
+      "status": "source_exact"
+    }
+  ],
+  "runtime_slug": "content/gt6-mte-extender-runtime",
+  "schema": "gt6-mte-inplace-d0-obtain-matrix-v1",
+  "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+}

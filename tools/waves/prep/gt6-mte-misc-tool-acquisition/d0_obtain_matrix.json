@@ -1,0 +1,1678 @@
+{
+  "auto_promote_player_complete": false,
+  "blocker_id": "obtain/mte-inplace-runtime",
+  "capability_slug": "content/gt6-mte-misc-tool-acquisition",
+  "counts": {
+    "explicitly_blocked": 7,
+    "hosts": 39,
+    "source_exact": 32
+  },
+  "domain": "misc_tool",
+  "expected": 39,
+  "hosts": [
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/stone/anvil.json",
+        "present": true
+      },
+      "meta": 32025,
+      "operands": {
+        "R": {
+          "cc": "minecraft:stone",
+          "gt": "Blocks.stone",
+          "kind": "block",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "RRR",
+        "hR ",
+        "RRR"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:stone/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "stone/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/bronze/anvil.json",
+        "present": true
+      },
+      "meta": 32028,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:bronze/ingot",
+          "gt": "ingot(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:bronze/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "bronze/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/syrmorite/anvil.json",
+        "present": true
+      },
+      "meta": 32029,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:syrmorite/ingot",
+          "gt": "ingot(MT.Syrmorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:syrmorite/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "syrmorite/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/ironwood/anvil.json",
+        "present": true
+      },
+      "meta": 32030,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:ironwood/ingot",
+          "gt": "ingot(MT.IronWood)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:ironwood/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "ironwood/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/steel/anvil.json",
+        "present": true
+      },
+      "meta": 32031,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:steel/ingot",
+          "gt": "ingot(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:steel/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "steel/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/thaumium/anvil.json",
+        "present": true
+      },
+      "meta": 32032,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:thaumium/ingot",
+          "gt": "ingot(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:thaumium/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "thaumium/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/black_steel/anvil.json",
+        "present": true
+      },
+      "meta": 32034,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:black_steel/ingot",
+          "gt": "ingot(ANY.BlackSteel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:black_steel/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "black_steel/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/blue_steel/anvil.json",
+        "present": true
+      },
+      "meta": 32035,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:blue_steel/ingot",
+          "gt": "ingot(ANY.BlueSteel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:blue_steel/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "blue_steel/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/red_steel/anvil.json",
+        "present": true
+      },
+      "meta": 32036,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:red_steel/ingot",
+          "gt": "ingot(ANY.RedSteel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:red_steel/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "red_steel/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/vanadium_steel/anvil.json",
+        "present": true
+      },
+      "meta": 32037,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:vanadium_steel/ingot",
+          "gt": "ingot(MT.VanadiumSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:vanadium_steel/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "vanadium_steel/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/octine/anvil.json",
+        "present": true
+      },
+      "meta": 32038,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:octine/ingot",
+          "gt": "ingot(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:octine/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "octine/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fiery_steel/anvil.json",
+        "present": true
+      },
+      "meta": 32039,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:fiery_steel/ingot",
+          "gt": "ingot(MT.FierySteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fiery_steel/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fiery_steel/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/titanium/anvil.json",
+        "present": true
+      },
+      "meta": 32040,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:titanium/ingot",
+          "gt": "ingot(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:titanium/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "titanium/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/void_metal/anvil.json",
+        "present": true
+      },
+      "meta": 32042,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:void_metal/ingot",
+          "gt": "ingot(MT.VoidMetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:void_metal/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "void_metal/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/titanium_gold/anvil.json",
+        "present": true
+      },
+      "meta": 32043,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:titanium_gold/ingot",
+          "gt": "ingot(MT.TitaniumGold)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:titanium_gold/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "titanium_gold/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/tungstensteel/anvil.json",
+        "present": true
+      },
+      "meta": 32044,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:tungstensteel/ingot",
+          "gt": "ingot(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:tungstensteel/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "tungstensteel/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/tungsten/anvil.json",
+        "present": true
+      },
+      "meta": 32045,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:tungsten/ingot",
+          "gt": "ingot(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:tungsten/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "tungsten/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/iridium/anvil.json",
+        "present": true
+      },
+      "meta": 32046,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:iridium/ingot",
+          "gt": "ingot(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:iridium/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "iridium/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/adamantium/anvil.json",
+        "present": true
+      },
+      "meta": 32048,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:adamantium/ingot",
+          "gt": "ingot(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:adamantium/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "adamantium/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/draconium/anvil.json",
+        "present": true
+      },
+      "meta": 32049,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:draconium/ingot",
+          "gt": "ingot(MT.Draconium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:draconium/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "draconium/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/lead/anvil.json",
+        "present": true
+      },
+      "meta": 32050,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:lead/ingot",
+          "gt": "ingot(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:lead/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "lead/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/misc_tool/awakened_draconium_anvil.json",
+        "present": true
+      },
+      "meta": 32068,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:draconium_awakened/ingot",
+          "gt": "ingot(MT.DraconiumAwakened)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:misc_tool/awakened_draconium_anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "misc_tool/awakened_draconium_anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/desh/anvil.json",
+        "present": true
+      },
+      "meta": 32071,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:desh/ingot",
+          "gt": "ingot(MT.Desh)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:desh/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "desh/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityMortar / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32076,
+      "operands": {
+        "B": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "IL.Ceramic_Bowl",
+          "kind": "il_named",
+          "reason": "unmapped_il",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "P": {
+          "cc": "cruciblecraft:diamantine/gem",
+          "gt": "gem(ANY.Diamond)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "P  ",
+        "B  "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:misc_tool/mortar",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "misc_tool/mortar",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/netherite/anvil.json",
+        "present": true
+      },
+      "meta": 32088,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:netherite/ingot",
+          "gt": "ingot(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:netherite/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "netherite/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/efrine/anvil.json",
+        "present": true
+      },
+      "meta": 32092,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:efrine/ingot",
+          "gt": "ingot(MT.Efrine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:efrine/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "efrine/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityMortar / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32094,
+      "operands": {
+        "B": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "IL.Ceramic_Bowl",
+          "kind": "il_named",
+          "reason": "unmapped_il",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "P": {
+          "cc": "cruciblecraft:netherite/ingot",
+          "gt": "ingot(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "P  ",
+        "B  "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:mortar/mortar",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "mortar/mortar",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/arsenic_copper/anvil.json",
+        "present": true
+      },
+      "meta": 32106,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:arsenic_copper/ingot",
+          "gt": "ingot(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:arsenic_copper/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "arsenic_copper/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAnvil / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/arsenic_bronze/anvil.json",
+        "present": true
+      },
+      "meta": 32107,
+      "operands": {
+        "I": {
+          "cc": "cruciblecraft:arsenic_bronze/ingot",
+          "gt": "ingot(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "III",
+        "hI ",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:arsenic_bronze/anvil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "arsenic_bronze/anvil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrank / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/misc_tool/hand_crank.json",
+        "present": true
+      },
+      "meta": 32111,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:iron/gear",
+          "gt": "gearGt(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:iron/long_rod",
+          "gt": "stickLong(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:iron/rod",
+          "gt": "stick(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        " S ",
+        "wGh",
+        " R "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:misc_tool/hand_crank",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "misc_tool/hand_crank",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMoldCoinage / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/misc_tool/coinage_mold.json",
+        "present": true
+      },
+      "meta": 32701,
+      "operands": {
+        "I": {
+          "cc": "minecraft:iron_ingot",
+          "gt": "ingot(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:iron/double_plate",
+          "gt": "plateDouble(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "yhf",
+        "PPP",
+        "III"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:misc_tool/coinage_mold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "misc_tool/coinage_mold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "x": {
+          "cc": "cruciblecraft:material_wire_cutter",
+          "gt": "craftingTool:x",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntitySiftingTable / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/misc_tool/sifting_table.json",
+        "present": true
+      },
+      "meta": 32702,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:iron/double_plate",
+          "gt": "plateDouble(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:iron/long_rod",
+          "gt": "stickLong(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "cruciblecraft:iron/fine_wire",
+          "gt": "wireFine(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TdT",
+        "WxW",
+        "SPS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:misc_tool/sifting_table",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "misc_tool/sifting_table",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityGrindStone / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/misc_tool/grindstone.json",
+        "present": true
+      },
+      "meta": 32703,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:iron/rod",
+          "gt": "stick(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:iron/double_plate",
+          "gt": "plateDouble(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:iron/long_rod",
+          "gt": "stickLong(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "SAS",
+        "SwS",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:misc_tool/grindstone",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "misc_tool/grindstone",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityBathingPotTable / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32707,
+      "operands": {
+        "M": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "aRegistry.getItem()",
+          "kind": null,
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "S": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "ST.make(Blocks.stone_slab,1,4)",
+          "kind": null,
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        }
+      },
+      "pattern": [
+        "M  ",
+        "S  "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:misc_tool/bathing_pot_table",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "misc_tool/bathing_pot_table",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBathingPot / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/misc_tool/bathing_pot.json",
+        "present": true
+      },
+      "meta": 32708,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:stainless_steel/plate",
+          "gt": "plate(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        " f ",
+        "PhP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:misc_tool/bathing_pot",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "misc_tool/bathing_pot",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityBathingPotTableWood / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32720,
+      "operands": {
+        "M": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "aRegistry.getItem()",
+          "kind": null,
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "S": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "ST.make(Blocks.stone_slab,1,4)",
+          "kind": null,
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        }
+      },
+      "pattern": [
+        "M  ",
+        "S  "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:misc_tool/wooden_bathing_pot_table",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "misc_tool/wooden_bathing_pot_table",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBathingPotWood / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32721,
+      "operands": {
+        "G": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemGlue",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "L": {
+          "cc": "cruciblecraft:lead/long_rod",
+          "gt": "stickLong(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "minecraft:planks",
+          "gt": "OD.plankAnyWood",
+          "kind": "od_tag",
+          "resolve_status": "ok",
+          "status": "source_exact",
+          "tag": "minecraft:planks"
+        }
+      },
+      "pattern": [
+        "sGh",
+        "PLP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:misc_tool/wooden_bathing_pot",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "misc_tool/wooden_bathing_pot",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityMortar / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32735,
+      "operands": {
+        "B": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "IL.Ceramic_Bowl",
+          "kind": "il_named",
+          "reason": "unmapped_il",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "P": {
+          "cc": "minecraft:iron_ingot",
+          "gt": "ingot(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "P  ",
+        "B  "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:gt_multitileentity/mortar",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "gt_multitileentity/mortar",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityBumbliary / Misc Tool Blocks",
+      "kind": "MISC_TOOL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32741,
+      "operands": {
+        "B": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "getItem(32755)",
+          "kind": "mte_item",
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:wood_treated/plate",
+          "gt": "plate(MT.WoodTreated)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "python tools/gt6_resolve.py; gated material forms must be on material_registration_gate.json. Circuits and other technological parts come from technological_parts.json, not runtime_registry_gate.json.",
+          "resolve_status": "ok",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PPP",
+        "PBP",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:misc_tool/bumbliary",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "misc_tool/bumbliary",
+      "status": "explicitly_blocked"
+    }
+  ],
+  "runtime_slug": "content/gt6-mte-misc-tool-runtime",
+  "schema": "gt6-mte-inplace-d0-obtain-matrix-v1",
+  "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+}

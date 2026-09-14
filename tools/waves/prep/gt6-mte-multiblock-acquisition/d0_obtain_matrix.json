@@ -1,0 +1,3369 @@
+{
+  "auto_promote_player_complete": false,
+  "blocker_id": "obtain/mte-inplace-runtime",
+  "capability_slug": "content/gt6-mte-multiblock-acquisition",
+  "counts": {
+    "explicitly_blocked": 16,
+    "hosts": 74,
+    "source_exact": 58
+  },
+  "domain": "multiblock",
+  "expected": 74,
+  "hosts": [
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCokeOven / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 17000,
+      "operands": {
+        "M": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "getItem(18000)",
+          "kind": "mte_item",
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "P": {
+          "cc": "cruciblecraft:iron/plate",
+          "gt": "plate(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:iron/rod",
+          "gt": "stick(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hRT",
+        "PMR",
+        "dRT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:coal_coke/oven",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "coal_coke/oven",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "r": {
+          "cc": "cruciblecraft:material_soft_hammer",
+          "gt": "craftingTool:r",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank3x3x3Wood / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/wood/tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17001,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:wood/wall",
+          "gt": "getItem(18001)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:lead/ring",
+          "gt": "ring(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        " R ",
+        "rMs",
+        " R "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:wood/tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "wood/tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank3x3x3Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/small_stainless_steel_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17002,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:stainless_steel/wall",
+          "gt": "getItem(18002)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:stainless_steel/ring",
+          "gt": "ring(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        " R ",
+        "hMs",
+        " R "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/small_stainless_steel_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/small_stainless_steel_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank3x3x3Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/small_tungstensteel_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17003,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:tungstensteel/wall",
+          "gt": "getItem(18003)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:tungstensteel/ring",
+          "gt": "ring(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        " R ",
+        "hMs",
+        " R "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/small_tungstensteel_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/small_tungstensteel_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank3x3x3Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/small_tungsten_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17004,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:tungsten/wall",
+          "gt": "getItem(18004)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:tungsten/ring",
+          "gt": "ring(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        " R ",
+        "hMs",
+        " R "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/small_tungsten_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/small_tungsten_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank3x3x3Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/small_adamantium_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17005,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:adamantium/wall",
+          "gt": "getItem(18005)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:adamantium/ring",
+          "gt": "ring(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        " R ",
+        "hMs",
+        " R "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/small_adamantium_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/small_adamantium_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank3x3x3Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/small_titanium_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17006,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:titanium/wall",
+          "gt": "getItem(18006)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:titanium/ring",
+          "gt": "ring(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        " R ",
+        "hMs",
+        " R "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/small_titanium_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/small_titanium_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank3x3x3Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/small_invar_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17007,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:invar/wall",
+          "gt": "getItem(18007)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:invar/ring",
+          "gt": "ring(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        " R ",
+        "hMs",
+        " R "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/small_invar_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/small_invar_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank3x3x3Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/small_dense_stainless_steel_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17022,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/dense_stainless_steel_wall",
+          "gt": "getItem(18022)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:stainless_steel/ring",
+          "gt": "ring(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        " R ",
+        "hMs",
+        " R "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/small_dense_stainless_steel_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/small_dense_stainless_steel_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank3x3x3Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/small_dense_tungstensteel_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17023,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/dense_tungstensteel_wall",
+          "gt": "getItem(18023)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:tungstensteel/ring",
+          "gt": "ring(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        " R ",
+        "hMs",
+        " R "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/small_dense_tungstensteel_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/small_dense_tungstensteel_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank3x3x3Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/small_dense_tungsten_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17024,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/dense_tungsten_wall",
+          "gt": "getItem(18024)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:tungsten/ring",
+          "gt": "ring(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        " R ",
+        "hMs",
+        " R "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/small_dense_tungsten_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/small_dense_tungsten_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank3x3x3Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/small_dense_adamantium_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17025,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/dense_adamantium_wall",
+          "gt": "getItem(18025)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:adamantium/ring",
+          "gt": "ring(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        " R ",
+        "hMs",
+        " R "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/small_dense_adamantium_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/small_dense_adamantium_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank3x3x3Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/small_dense_titanium_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17026,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/dense_titanium_wall",
+          "gt": "getItem(18026)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:titanium/ring",
+          "gt": "ring(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        " R ",
+        "hMs",
+        " R "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/small_dense_titanium_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/small_dense_titanium_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank3x3x3Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/small_dense_invar_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17027,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/dense_invar_wall",
+          "gt": "getItem(18027)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "R": {
+          "cc": "cruciblecraft:invar/ring",
+          "gt": "ring(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        " R ",
+        "hMs",
+        " R "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/small_dense_invar_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/small_dense_invar_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank5x5x5Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/large_stainless_steel_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17042,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/small_stainless_steel_tank_main_valve",
+          "gt": "getItem(17002)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:stainless_steel/plate",
+          "gt": "plate(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PPP",
+        "hMs",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/large_stainless_steel_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/large_stainless_steel_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank5x5x5Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/large_tungstensteel_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17043,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/small_tungstensteel_tank_main_valve",
+          "gt": "getItem(17003)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:tungstensteel/plate",
+          "gt": "plate(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PPP",
+        "hMs",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/large_tungstensteel_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/large_tungstensteel_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank5x5x5Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/large_tungsten_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17044,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/small_tungsten_tank_main_valve",
+          "gt": "getItem(17004)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:tungsten/plate",
+          "gt": "plate(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PPP",
+        "hMs",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/large_tungsten_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/large_tungsten_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank5x5x5Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/large_adamantium_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17045,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/small_adamantium_tank_main_valve",
+          "gt": "getItem(17005)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:adamantium/plate",
+          "gt": "plate(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PPP",
+        "hMs",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/large_adamantium_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/large_adamantium_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank5x5x5Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/large_titanium_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17046,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/small_titanium_tank_main_valve",
+          "gt": "getItem(17006)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:titanium/plate",
+          "gt": "plate(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PPP",
+        "hMs",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/large_titanium_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/large_titanium_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank5x5x5Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/large_invar_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17047,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/small_invar_tank_main_valve",
+          "gt": "getItem(17007)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:invar/plate",
+          "gt": "plate(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PPP",
+        "hMs",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/large_invar_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/large_invar_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank5x5x5Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/large_dense_stainless_steel_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17062,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/small_dense_stainless_steel_tank_main_valve",
+          "gt": "getItem(17022)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:stainless_steel/dense_plate",
+          "gt": "plateDense(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PPP",
+        "hMs",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/large_dense_stainless_steel_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/large_dense_stainless_steel_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank5x5x5Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/large_dense_tungstensteel_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17063,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/small_dense_tungstensteel_tank_main_valve",
+          "gt": "getItem(17023)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:tungstensteel/dense_plate",
+          "gt": "plateDense(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PPP",
+        "hMs",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/large_dense_tungstensteel_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/large_dense_tungstensteel_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank5x5x5Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/large_dense_tungsten_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17064,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/small_dense_tungsten_tank_main_valve",
+          "gt": "getItem(17024)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:tungsten/dense_plate",
+          "gt": "plateDense(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PPP",
+        "hMs",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/large_dense_tungsten_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/large_dense_tungsten_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank5x5x5Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/large_dense_adamantium_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17065,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/small_dense_adamantium_tank_main_valve",
+          "gt": "getItem(17025)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:adamantium/dense_plate",
+          "gt": "plateDense(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PPP",
+        "hMs",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/large_dense_adamantium_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/large_dense_adamantium_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank5x5x5Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/large_dense_titanium_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17066,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/small_dense_titanium_tank_main_valve",
+          "gt": "getItem(17026)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:titanium/dense_plate",
+          "gt": "plateDense(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PPP",
+        "hMs",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/large_dense_titanium_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/large_dense_titanium_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityTank5x5x5Metal / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/large_dense_invar_tank_main_valve.json",
+        "present": true
+      },
+      "meta": 17067,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/small_dense_invar_tank_main_valve",
+          "gt": "getItem(17027)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:invar/dense_plate",
+          "gt": "plateDense(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PPP",
+        "hMs",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/large_dense_invar_tank_main_valve",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/large_dense_invar_tank_main_valve",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityDistillationTower / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/distillation_tower.json",
+        "present": true
+      },
+      "meta": 17101,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/distillation_tower_part",
+          "gt": "getItem(18102)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:stainless_steel/nonuple_fluid_pipe",
+          "gt": "pipeNonuple(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PPP",
+        "PMP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/distillation_tower",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/distillation_tower",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityLargeBoiler / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/stainless_steel/boiler_main_barometer.json",
+        "present": true
+      },
+      "meta": 17201,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/dense_stainless_steel_wall",
+          "gt": "getItem(18022)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:stainless_steel/dense_plate",
+          "gt": "plateDense(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PPh",
+        "PMP",
+        "wPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:stainless_steel/boiler_main_barometer",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "stainless_steel/boiler_main_barometer",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityLargeBoiler / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/titanium/boiler_main_barometer.json",
+        "present": true
+      },
+      "meta": 17202,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/dense_titanium_wall",
+          "gt": "getItem(18026)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:titanium/dense_plate",
+          "gt": "plateDense(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PPh",
+        "PMP",
+        "wPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:titanium/boiler_main_barometer",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "titanium/boiler_main_barometer",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityLargeBoiler / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/tungstensteel/boiler_main_barometer.json",
+        "present": true
+      },
+      "meta": 17203,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/dense_tungstensteel_wall",
+          "gt": "getItem(18023)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:tungstensteel/dense_plate",
+          "gt": "plateDense(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PPh",
+        "PMP",
+        "wPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:tungstensteel/boiler_main_barometer",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "tungstensteel/boiler_main_barometer",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityLargeBoiler / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/adamantium/boiler_main_barometer.json",
+        "present": true
+      },
+      "meta": 17204,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/dense_adamantium_wall",
+          "gt": "getItem(18025)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:adamantium/dense_plate",
+          "gt": "plateDense(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PPh",
+        "PMP",
+        "wPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:adamantium/boiler_main_barometer",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "adamantium/boiler_main_barometer",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityLargeBoiler / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/invar/boiler_main_barometer.json",
+        "present": true
+      },
+      "meta": 17205,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/dense_invar_wall",
+          "gt": "getItem(18027)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:invar/dense_plate",
+          "gt": "plateDense(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PPh",
+        "PMP",
+        "wPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:invar/boiler_main_barometer",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "invar/boiler_main_barometer",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityLargeTurbineSteam / Multiblock Machines",
+      "kind": "STEAM_TURBINE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/trinitanium/steam_turbine_main_housing.json",
+        "present": true
+      },
+      "meta": 17212,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/dense_titanium_wall",
+          "gt": "getItem(18026)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:trinitanium/block",
+          "gt": "blockPlate(MT.Trinitanium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PPP",
+        "PMP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:trinitanium/steam_turbine_main_housing",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "trinitanium/steam_turbine_main_housing",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityLargeTurbineSteam / Multiblock Machines",
+      "kind": "STEAM_TURBINE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/graphene/steam_turbine_main_housing.json",
+        "present": true
+      },
+      "meta": 17213,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/dense_tungstensteel_wall",
+          "gt": "getItem(18023)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:graphene/block",
+          "gt": "blockPlate(MT.Graphene)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PPP",
+        "PMP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:graphene/steam_turbine_main_housing",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "graphene/steam_turbine_main_housing",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityLargeTurbineSteam / Multiblock Machines",
+      "kind": "STEAM_TURBINE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/vibramantium/steam_turbine_main_housing.json",
+        "present": true
+      },
+      "meta": 17214,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:multiblock/dense_adamantium_wall",
+          "gt": "getItem(18025)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:vibramantium/block",
+          "gt": "blockPlate(MT.Vibramantium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PPP",
+        "PMP",
+        "PPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:vibramantium/steam_turbine_main_housing",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "vibramantium/steam_turbine_main_housing",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityLargeDynamo / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 17221,
+      "operands": {
+        "B": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "gt:re-battery1",
+          "kind": null,
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "C": {
+          "cc": "cruciblecraft:circuit_ultimate",
+          "gt": "OD_CIRCUITS[6]",
+          "kind": "circuit",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "M": {
+          "cc": "cruciblecraft:multiblock/dense_stainless_steel_wall",
+          "gt": "getItem(18022)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:stainless_steel/long_rod",
+          "gt": "stickLong(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "SwS",
+        "CMC",
+        "SBS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:stainless_steel/dynamo_main_housing",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "stainless_steel/dynamo_main_housing",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityLargeDynamo / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 17222,
+      "operands": {
+        "B": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "gt:re-battery1",
+          "kind": null,
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "C": {
+          "cc": "cruciblecraft:circuit_ultimate",
+          "gt": "OD_CIRCUITS[6]",
+          "kind": "circuit",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "M": {
+          "cc": "cruciblecraft:multiblock/dense_titanium_wall",
+          "gt": "getItem(18026)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:titanium/long_rod",
+          "gt": "stickLong(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "SwS",
+        "CMC",
+        "SBS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:titanium/dynamo_main_housing",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "titanium/dynamo_main_housing",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityLargeDynamo / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 17223,
+      "operands": {
+        "B": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "gt:re-battery1",
+          "kind": null,
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "C": {
+          "cc": "cruciblecraft:circuit_ultimate",
+          "gt": "OD_CIRCUITS[6]",
+          "kind": "circuit",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "M": {
+          "cc": "cruciblecraft:multiblock/dense_tungstensteel_wall",
+          "gt": "getItem(18023)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:tungstensteel/long_rod",
+          "gt": "stickLong(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "SwS",
+        "CMC",
+        "SBS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:tungstensteel/dynamo_main_housing",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "tungstensteel/dynamo_main_housing",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityLargeDynamo / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 17224,
+      "operands": {
+        "B": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "gt:re-battery1",
+          "kind": null,
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "C": {
+          "cc": "cruciblecraft:circuit_ultimate",
+          "gt": "OD_CIRCUITS[6]",
+          "kind": "circuit",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "M": {
+          "cc": "cruciblecraft:multiblock/dense_adamantium_wall",
+          "gt": "getItem(18025)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:adamantium/long_rod",
+          "gt": "stickLong(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "SwS",
+        "CMC",
+        "SBS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:adamantium/dynamo_main_housing",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "adamantium/dynamo_main_housing",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrucible / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/large_stainless_steel_crucible.json",
+        "present": true
+      },
+      "meta": 17302,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:stainless_steel/wall",
+          "gt": "getItem(18002)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hMy",
+        "   "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/large_stainless_steel_crucible",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/large_stainless_steel_crucible",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrucible / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/large_tungstensteel_crucible.json",
+        "present": true
+      },
+      "meta": 17303,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:tungstensteel/wall",
+          "gt": "getItem(18003)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hMy",
+        "   "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/large_tungstensteel_crucible",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/large_tungstensteel_crucible",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrucible / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/large_tungsten_crucible.json",
+        "present": true
+      },
+      "meta": 17304,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:tungsten/wall",
+          "gt": "getItem(18004)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hMy",
+        "   "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/large_tungsten_crucible",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/large_tungsten_crucible",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrucible / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/large_adamantium_crucible.json",
+        "present": true
+      },
+      "meta": 17305,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:adamantium/wall",
+          "gt": "getItem(18005)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hMy",
+        "   "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/large_adamantium_crucible",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/large_adamantium_crucible",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrucible / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/large_titanium_crucible.json",
+        "present": true
+      },
+      "meta": 17306,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:titanium/wall",
+          "gt": "getItem(18006)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hMy",
+        "   "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/large_titanium_crucible",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/large_titanium_crucible",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrucible / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/large_invar_crucible.json",
+        "present": true
+      },
+      "meta": 17307,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:invar/wall",
+          "gt": "getItem(18007)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hMy",
+        "   "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/large_invar_crucible",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/large_invar_crucible",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "y": {
+          "cc": "cruciblecraft:material_chisel",
+          "gt": "craftingTool:y",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityCrucible / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/large_steel_crucible.json",
+        "present": true
+      },
+      "meta": 17309,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:steel/wall",
+          "gt": "getItem(18009)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "hMy",
+        "   "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/large_steel_crucible",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/large_steel_crucible",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 18001,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:lead/plate",
+          "gt": "plate(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:wood_treated/plate",
+          "gt": "plate(MT.WoodTreated)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "python tools/gt6_resolve.py; gated material forms must be on material_registration_gate.json. Circuits and other technological parts come from technological_parts.json, not runtime_registry_gate.json.",
+          "resolve_status": "ok",
+          "status": "explicitly_blocked"
+        }
+      },
+      "pattern": [
+        "W W",
+        "sPh",
+        "W W"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:wood/wall",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "wood/wall",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/stainless_steel/wall.json",
+        "present": true
+      },
+      "meta": 18002,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:stainless_steel/plate",
+          "gt": "plate(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "wPP",
+        "hPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:stainless_steel/wall",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "stainless_steel/wall",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/tungstensteel/wall.json",
+        "present": true
+      },
+      "meta": 18003,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:tungstensteel/plate",
+          "gt": "plate(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "wPP",
+        "hPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:tungstensteel/wall",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "tungstensteel/wall",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/tungsten/wall.json",
+        "present": true
+      },
+      "meta": 18004,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:tungsten/plate",
+          "gt": "plate(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "wPP",
+        "hPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:tungsten/wall",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "tungsten/wall",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/adamantium/wall.json",
+        "present": true
+      },
+      "meta": 18005,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:adamantium/plate",
+          "gt": "plate(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "wPP",
+        "hPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:adamantium/wall",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "adamantium/wall",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/titanium/wall.json",
+        "present": true
+      },
+      "meta": 18006,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:titanium/plate",
+          "gt": "plate(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "wPP",
+        "hPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:titanium/wall",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "titanium/wall",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/invar/wall.json",
+        "present": true
+      },
+      "meta": 18007,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:invar/plate",
+          "gt": "plate(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "wPP",
+        "hPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:invar/wall",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "invar/wall",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/galvanized_steel_wall.json",
+        "present": true
+      },
+      "meta": 18008,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:steel_galvanized/plate",
+          "gt": "plate(MT.SteelGalvanized)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "wPP",
+        "hPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/galvanized_steel_wall",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/galvanized_steel_wall",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/steel/wall.json",
+        "present": true
+      },
+      "meta": 18009,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:steel/plate",
+          "gt": "plate(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "wPP",
+        "hPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:steel/wall",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "steel/wall",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/bronze/wall.json",
+        "present": true
+      },
+      "meta": 18010,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:bronze/plate",
+          "gt": "plate(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "wPP",
+        "hPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:bronze/wall",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "bronze/wall",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/lead/wall.json",
+        "present": true
+      },
+      "meta": 18011,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:lead/plate",
+          "gt": "plate(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "wPP",
+        "hPP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:lead/wall",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "lead/wall",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 18022,
+      "operands": {},
+      "pattern": [],
+      "recipe_kind": "none",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:multiblock/dense_stainless_steel_wall",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/dense_stainless_steel_wall",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 18023,
+      "operands": {},
+      "pattern": [],
+      "recipe_kind": "none",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:multiblock/dense_tungstensteel_wall",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/dense_tungstensteel_wall",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 18024,
+      "operands": {},
+      "pattern": [],
+      "recipe_kind": "none",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:multiblock/dense_tungsten_wall",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/dense_tungsten_wall",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 18025,
+      "operands": {},
+      "pattern": [],
+      "recipe_kind": "none",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:multiblock/dense_adamantium_wall",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/dense_adamantium_wall",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 18026,
+      "operands": {},
+      "pattern": [],
+      "recipe_kind": "none",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:multiblock/dense_titanium_wall",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/dense_titanium_wall",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 18027,
+      "operands": {},
+      "pattern": [],
+      "recipe_kind": "none",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:multiblock/dense_invar_wall",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/dense_invar_wall",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 18028,
+      "operands": {},
+      "pattern": [],
+      "recipe_kind": "none",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:multiblock/dense_galvanized_steel_wall",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/dense_galvanized_steel_wall",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 18029,
+      "operands": {},
+      "pattern": [],
+      "recipe_kind": "none",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:multiblock/dense_steel_wall",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/dense_steel_wall",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 18030,
+      "operands": {},
+      "pattern": [],
+      "recipe_kind": "none",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:multiblock/dense_bronze_wall",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/dense_bronze_wall",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 18031,
+      "operands": {},
+      "pattern": [],
+      "recipe_kind": "none",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:multiblock/dense_lead_wall",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/dense_lead_wall",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "x": {
+          "cc": "cruciblecraft:material_wire_cutter",
+          "gt": "craftingTool:x",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/large_copper_coil.json",
+        "present": true
+      },
+      "meta": 18040,
+      "operands": {
+        "W": {
+          "cc": "cruciblecraft:annealed_copper/quadruple_wire",
+          "gt": "wireGt04(MT.AnnealedCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "WWW",
+        "WxW",
+        "WWW"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/large_copper_coil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/large_copper_coil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "x": {
+          "cc": "cruciblecraft:material_wire_cutter",
+          "gt": "craftingTool:x",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/large_nichrome_coil.json",
+        "present": true
+      },
+      "meta": 18042,
+      "operands": {
+        "W": {
+          "cc": "cruciblecraft:nichrome/quadruple_wire",
+          "gt": "wireGt04(MT.Nichrome)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "WWW",
+        "WxW",
+        "WWW"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/large_nichrome_coil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/large_nichrome_coil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "x": {
+          "cc": "cruciblecraft:material_wire_cutter",
+          "gt": "craftingTool:x",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/large_osmium_coil.json",
+        "present": true
+      },
+      "meta": 18044,
+      "operands": {
+        "W": {
+          "cc": "cruciblecraft:osmium_elemental/quadruple_wire",
+          "gt": "wireGt04(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "WWW",
+        "WxW",
+        "WWW"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/large_osmium_coil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/large_osmium_coil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "x": {
+          "cc": "cruciblecraft:material_wire_cutter",
+          "gt": "craftingTool:x",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/large_iridium_coil.json",
+        "present": true
+      },
+      "meta": 18045,
+      "operands": {
+        "W": {
+          "cc": "cruciblecraft:iridium/quadruple_wire",
+          "gt": "wireGt04(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "WWW",
+        "WxW",
+        "WWW"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/large_iridium_coil",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/large_iridium_coil",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/centrifuge_part.json",
+        "present": true
+      },
+      "meta": 18100,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:tungstensteel/gear",
+          "gt": "gearGt(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "M": {
+          "cc": "cruciblecraft:tungstensteel/machine_casing",
+          "gt": "casingMachine(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:tungstensteel/screw",
+          "gt": "screw(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TwT",
+        "GMG",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/centrifuge_part",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/centrifuge_part",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/distillation_tower_part.json",
+        "present": true
+      },
+      "meta": 18102,
+      "operands": {
+        "M": {
+          "cc": "cruciblecraft:stainless_steel/plate",
+          "gt": "plate(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:stainless_steel/small_fluid_pipe",
+          "gt": "pipeSmall(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:stainless_steel/screw",
+          "gt": "screw(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TMT",
+        "hPd",
+        "TMT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/distillation_tower_part",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/distillation_tower_part",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/sluice_part.json",
+        "present": true
+      },
+      "meta": 18106,
+      "operands": {
+        "G": {
+          "cc": "cruciblecraft:titanium/gear",
+          "gt": "gearGt(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "M": {
+          "cc": "cruciblecraft:titanium/machine_casing",
+          "gt": "casingMachine(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:titanium/fluid_pipe",
+          "gt": "pipeMedium(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "GGG",
+        "PMP",
+        "PwP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:multiblock/sluice_part",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "multiblock/sluice_part",
+      "status": "source_exact"
+    }
+  ],
+  "runtime_slug": "content/gt6-mte-multiblock-runtime",
+  "schema": "gt6-mte-inplace-d0-obtain-matrix-v1",
+  "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+}

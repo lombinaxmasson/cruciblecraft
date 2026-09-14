@@ -1,0 +1,2618 @@
+{
+  "auto_promote_player_complete": false,
+  "blocker_id": "obtain/mte-inplace-runtime",
+  "capability_slug": "content/gt6-mte-furniture-scaffold-acquisition",
+  "counts": {
+    "explicitly_blocked": 0,
+    "hosts": 50,
+    "source_exact": 50
+  },
+  "domain": "furniture_scaffold",
+  "expected": 50,
+  "hosts": [
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/lead/scaffold.json",
+        "present": true
+      },
+      "meta": 8400,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:lead/plate",
+          "gt": "plate(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:lead/rod",
+          "gt": "stick(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:lead/screw",
+          "gt": "screw(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:lead/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "lead/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/aluminium/scaffold.json",
+        "present": true
+      },
+      "meta": 8401,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:aluminium/plate",
+          "gt": "plate(MT.Al)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:aluminium/rod",
+          "gt": "stick(MT.Al)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:aluminium/screw",
+          "gt": "screw(MT.Al)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:aluminium/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "aluminium/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/gold/scaffold.json",
+        "present": true
+      },
+      "meta": 8402,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:gold/plate",
+          "gt": "plate(MT.Au)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:gold/rod",
+          "gt": "stick(MT.Au)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:gold/screw",
+          "gt": "screw(MT.Au)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:gold/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "gold/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/silver/scaffold.json",
+        "present": true
+      },
+      "meta": 8403,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:silver/plate",
+          "gt": "plate(MT.Ag)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:silver/rod",
+          "gt": "stick(MT.Ag)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:silver/screw",
+          "gt": "screw(MT.Ag)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:silver/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "silver/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/platinum/scaffold.json",
+        "present": true
+      },
+      "meta": 8404,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:platinum/plate",
+          "gt": "plate(MT.Pt)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:platinum/rod",
+          "gt": "stick(MT.Pt)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:platinum/screw",
+          "gt": "screw(MT.Pt)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:platinum/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "platinum/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/tin_alloy/scaffold.json",
+        "present": true
+      },
+      "meta": 8405,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:tin_alloy/plate",
+          "gt": "plate(MT.TinAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:tin_alloy/rod",
+          "gt": "stick(MT.TinAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:tin_alloy/screw",
+          "gt": "screw(MT.TinAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:tin_alloy/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "tin_alloy/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/invar/scaffold.json",
+        "present": true
+      },
+      "meta": 8406,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:invar/plate",
+          "gt": "plate(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:invar/rod",
+          "gt": "stick(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:invar/screw",
+          "gt": "screw(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:invar/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "invar/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/electrum/scaffold.json",
+        "present": true
+      },
+      "meta": 8407,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:electrum/plate",
+          "gt": "plate(MT.Electrum)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:electrum/rod",
+          "gt": "stick(MT.Electrum)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:electrum/screw",
+          "gt": "screw(MT.Electrum)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:electrum/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "electrum/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/brass/scaffold.json",
+        "present": true
+      },
+      "meta": 8408,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:brass/plate",
+          "gt": "plate(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:brass/rod",
+          "gt": "stick(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:brass/screw",
+          "gt": "screw(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:brass/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "brass/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/bronze/scaffold.json",
+        "present": true
+      },
+      "meta": 8409,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:bronze/plate",
+          "gt": "plate(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:bronze/rod",
+          "gt": "stick(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:bronze/screw",
+          "gt": "screw(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:bronze/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "bronze/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/steel/scaffold.json",
+        "present": true
+      },
+      "meta": 8410,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:steel/plate",
+          "gt": "plate(MT.Steel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:steel/rod",
+          "gt": "stick(MT.Steel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:steel/screw",
+          "gt": "screw(MT.Steel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:steel/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "steel/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/stainless_steel/scaffold.json",
+        "present": true
+      },
+      "meta": 8411,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:stainless_steel/plate",
+          "gt": "plate(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:stainless_steel/rod",
+          "gt": "stick(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:stainless_steel/screw",
+          "gt": "screw(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:stainless_steel/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "stainless_steel/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/titanium/scaffold.json",
+        "present": true
+      },
+      "meta": 8412,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:titanium/plate",
+          "gt": "plate(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:titanium/rod",
+          "gt": "stick(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:titanium/screw",
+          "gt": "screw(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:titanium/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "titanium/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/chromium/scaffold.json",
+        "present": true
+      },
+      "meta": 8413,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:chromium/plate",
+          "gt": "plate(MT.Cr)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:chromium/rod",
+          "gt": "stick(MT.Cr)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:chromium/screw",
+          "gt": "screw(MT.Cr)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:chromium/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "chromium/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/tungstensteel/scaffold.json",
+        "present": true
+      },
+      "meta": 8414,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:tungstensteel/plate",
+          "gt": "plate(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:tungstensteel/rod",
+          "gt": "stick(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:tungstensteel/screw",
+          "gt": "screw(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:tungstensteel/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "tungstensteel/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/iridium/scaffold.json",
+        "present": true
+      },
+      "meta": 8415,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:iridium/plate",
+          "gt": "plate(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:iridium/rod",
+          "gt": "stick(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:iridium/screw",
+          "gt": "screw(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:iridium/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "iridium/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/bismuth/scaffold.json",
+        "present": true
+      },
+      "meta": 8416,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:bismuth/plate",
+          "gt": "plate(MT.Bi)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:bismuth/rod",
+          "gt": "stick(MT.Bi)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:bismuth/screw",
+          "gt": "screw(MT.Bi)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:bismuth/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "bismuth/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/hslasteel/scaffold.json",
+        "present": true
+      },
+      "meta": 8418,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:hslasteel/plate",
+          "gt": "plate(MT.HSLA)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:hslasteel/rod",
+          "gt": "stick(MT.HSLA)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:hslasteel/screw",
+          "gt": "screw(MT.HSLA)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:hslasteel/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "hslasteel/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/steel_galvanized/scaffold.json",
+        "present": true
+      },
+      "meta": 8419,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:steel_galvanized/plate",
+          "gt": "plate(MT.SteelGalvanized)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:steel_galvanized/rod",
+          "gt": "stick(MT.SteelGalvanized)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:steel_galvanized/screw",
+          "gt": "screw(MT.SteelGalvanized)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:steel_galvanized/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "steel_galvanized/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/gilded_iron/scaffold.json",
+        "present": true
+      },
+      "meta": 8420,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:gilded_iron/plate",
+          "gt": "plate(MT.GildedIron)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:gilded_iron/rod",
+          "gt": "stick(MT.GildedIron)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:gilded_iron/screw",
+          "gt": "screw(MT.GildedIron)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:gilded_iron/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "gilded_iron/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/cobalt/scaffold.json",
+        "present": true
+      },
+      "meta": 8421,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:cobalt/plate",
+          "gt": "plate(MT.Co)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:cobalt/rod",
+          "gt": "stick(MT.Co)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:cobalt/screw",
+          "gt": "screw(MT.Co)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:cobalt/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "cobalt/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/nickel/scaffold.json",
+        "present": true
+      },
+      "meta": 8422,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:nickel/plate",
+          "gt": "plate(MT.Ni)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:nickel/rod",
+          "gt": "stick(MT.Ni)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:nickel/screw",
+          "gt": "screw(MT.Ni)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:nickel/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "nickel/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/germanium/scaffold.json",
+        "present": true
+      },
+      "meta": 8423,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:germanium/plate",
+          "gt": "plate(MT.Ge)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:germanium/rod",
+          "gt": "stick(MT.Ge)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:germanium/screw",
+          "gt": "screw(MT.Ge)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:germanium/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "germanium/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/meteoric_steel/scaffold.json",
+        "present": true
+      },
+      "meta": 8424,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:meteoric_steel/plate",
+          "gt": "plate(MT.MeteoricSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:meteoric_steel/rod",
+          "gt": "stick(MT.MeteoricSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:meteoric_steel/screw",
+          "gt": "screw(MT.MeteoricSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:meteoric_steel/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "meteoric_steel/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/knightmetal/scaffold.json",
+        "present": true
+      },
+      "meta": 8425,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:knightmetal/plate",
+          "gt": "plate(MT.Knightmetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:knightmetal/rod",
+          "gt": "stick(MT.Knightmetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:knightmetal/screw",
+          "gt": "screw(MT.Knightmetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:knightmetal/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "knightmetal/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/tungsten/scaffold.json",
+        "present": true
+      },
+      "meta": 8426,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:tungsten/plate",
+          "gt": "plate(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:tungsten/rod",
+          "gt": "stick(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:tungsten/screw",
+          "gt": "screw(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:tungsten/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "tungsten/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/thaumium/scaffold.json",
+        "present": true
+      },
+      "meta": 8427,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:thaumium/plate",
+          "gt": "plate(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:thaumium/rod",
+          "gt": "stick(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:thaumium/screw",
+          "gt": "screw(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:thaumium/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "thaumium/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/void_metal/scaffold.json",
+        "present": true
+      },
+      "meta": 8428,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:void_metal/plate",
+          "gt": "plate(MT.VoidMetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:void_metal/rod",
+          "gt": "stick(MT.VoidMetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:void_metal/screw",
+          "gt": "screw(MT.VoidMetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:void_metal/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "void_metal/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/osmium_elemental/scaffold.json",
+        "present": true
+      },
+      "meta": 8429,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:osmium_elemental/plate",
+          "gt": "plate(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:osmium_elemental/rod",
+          "gt": "stick(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:osmium_elemental/screw",
+          "gt": "screw(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:osmium_elemental/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "osmium_elemental/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/desh/scaffold.json",
+        "present": true
+      },
+      "meta": 8430,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:desh/plate",
+          "gt": "plate(MT.Desh)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:desh/rod",
+          "gt": "stick(MT.Desh)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:desh/screw",
+          "gt": "screw(MT.Desh)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:desh/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "desh/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/adamantium/scaffold.json",
+        "present": true
+      },
+      "meta": 8433,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:adamantium/plate",
+          "gt": "plate(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:adamantium/rod",
+          "gt": "stick(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:adamantium/screw",
+          "gt": "screw(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:adamantium/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "adamantium/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/draconium/scaffold.json",
+        "present": true
+      },
+      "meta": 8435,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:draconium/plate",
+          "gt": "plate(MT.Draconium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:draconium/rod",
+          "gt": "stick(MT.Draconium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:draconium/screw",
+          "gt": "screw(MT.Draconium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:draconium/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "draconium/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/draconium_awakened/scaffold.json",
+        "present": true
+      },
+      "meta": 8436,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:draconium_awakened/plate",
+          "gt": "plate(MT.DraconiumAwakened)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:draconium_awakened/rod",
+          "gt": "stick(MT.DraconiumAwakened)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:draconium_awakened/screw",
+          "gt": "screw(MT.DraconiumAwakened)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:draconium_awakened/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "draconium_awakened/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/constantan/scaffold.json",
+        "present": true
+      },
+      "meta": 8437,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:constantan/plate",
+          "gt": "plate(MT.Constantan)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:constantan/rod",
+          "gt": "stick(MT.Constantan)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:constantan/screw",
+          "gt": "screw(MT.Constantan)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:constantan/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "constantan/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/ardite/scaffold.json",
+        "present": true
+      },
+      "meta": 8438,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:ardite/plate",
+          "gt": "plate(MT.Ardite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:ardite/rod",
+          "gt": "stick(MT.Ardite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:ardite/screw",
+          "gt": "screw(MT.Ardite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:ardite/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "ardite/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/manyullyn/scaffold.json",
+        "present": true
+      },
+      "meta": 8439,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:manyullyn/plate",
+          "gt": "plate(MT.Manyullyn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:manyullyn/rod",
+          "gt": "stick(MT.Manyullyn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:manyullyn/screw",
+          "gt": "screw(MT.Manyullyn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:manyullyn/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "manyullyn/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/meteorite/scaffold.json",
+        "present": true
+      },
+      "meta": 8443,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:meteorite/plate",
+          "gt": "plate(MT.Meteorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:meteorite/rod",
+          "gt": "stick(MT.Meteorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:meteorite/screw",
+          "gt": "screw(MT.Meteorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:meteorite/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "meteorite/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/syrmorite/scaffold.json",
+        "present": true
+      },
+      "meta": 8444,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:syrmorite/plate",
+          "gt": "plate(MT.Syrmorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:syrmorite/rod",
+          "gt": "stick(MT.Syrmorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:syrmorite/screw",
+          "gt": "screw(MT.Syrmorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:syrmorite/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "syrmorite/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/octine/scaffold.json",
+        "present": true
+      },
+      "meta": 8445,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:octine/plate",
+          "gt": "plate(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:octine/rod",
+          "gt": "stick(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:octine/screw",
+          "gt": "screw(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:octine/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "octine/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/manganese/scaffold.json",
+        "present": true
+      },
+      "meta": 8446,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:manganese/plate",
+          "gt": "plate(MT.Mn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:manganese/rod",
+          "gt": "stick(MT.Mn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:manganese/screw",
+          "gt": "screw(MT.Mn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:manganese/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "manganese/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/antimony/scaffold.json",
+        "present": true
+      },
+      "meta": 8447,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:antimony/plate",
+          "gt": "plate(MT.Sb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:antimony/rod",
+          "gt": "stick(MT.Sb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:antimony/screw",
+          "gt": "screw(MT.Sb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:antimony/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "antimony/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/ultimet/scaffold.json",
+        "present": true
+      },
+      "meta": 8448,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:ultimet/plate",
+          "gt": "plate(MT.Ultimet)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:ultimet/rod",
+          "gt": "stick(MT.Ultimet)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:ultimet/screw",
+          "gt": "screw(MT.Ultimet)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:ultimet/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "ultimet/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/molybdenum/scaffold.json",
+        "present": true
+      },
+      "meta": 8449,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:molybdenum/plate",
+          "gt": "plate(MT.Mo)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:molybdenum/rod",
+          "gt": "stick(MT.Mo)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:molybdenum/screw",
+          "gt": "screw(MT.Mo)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:molybdenum/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "molybdenum/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/netherite/scaffold.json",
+        "present": true
+      },
+      "meta": 8451,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:netherite/plate",
+          "gt": "plate(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:netherite/rod",
+          "gt": "stick(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:netherite/screw",
+          "gt": "screw(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:netherite/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "netherite/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/efrine/scaffold.json",
+        "present": true
+      },
+      "meta": 8453,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:efrine/plate",
+          "gt": "plate(MT.Efrine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:efrine/rod",
+          "gt": "stick(MT.Efrine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:efrine/screw",
+          "gt": "screw(MT.Efrine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:efrine/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "efrine/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/lumium/scaffold.json",
+        "present": true
+      },
+      "meta": 8454,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:lumium/plate",
+          "gt": "plate(MT.Lumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:lumium/rod",
+          "gt": "stick(MT.Lumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:lumium/screw",
+          "gt": "screw(MT.Lumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:lumium/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "lumium/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/workers_alloy/scaffold.json",
+        "present": true
+      },
+      "meta": 8455,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:workers_alloy/plate",
+          "gt": "plate(MT.DeshAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:workers_alloy/rod",
+          "gt": "stick(MT.DeshAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:workers_alloy/screw",
+          "gt": "screw(MT.DeshAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:workers_alloy/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "workers_alloy/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/bismuth_bronze/scaffold.json",
+        "present": true
+      },
+      "meta": 8456,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:bismuth_bronze/plate",
+          "gt": "plate(MT.BismuthBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:bismuth_bronze/rod",
+          "gt": "stick(MT.BismuthBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:bismuth_bronze/screw",
+          "gt": "screw(MT.BismuthBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:bismuth_bronze/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "bismuth_bronze/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/arsenic_copper/scaffold.json",
+        "present": true
+      },
+      "meta": 8457,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:arsenic_copper/plate",
+          "gt": "plate(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:arsenic_copper/rod",
+          "gt": "stick(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:arsenic_copper/screw",
+          "gt": "screw(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:arsenic_copper/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "arsenic_copper/scaffold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityScaffold / Scaffolds",
+      "kind": "SCAFFOLD",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/arsenic_bronze/scaffold.json",
+        "present": true
+      },
+      "meta": 8458,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:arsenic_bronze/plate",
+          "gt": "plate(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:arsenic_bronze/rod",
+          "gt": "stick(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:arsenic_bronze/screw",
+          "gt": "screw(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TPT",
+        "SdS"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:arsenic_bronze/scaffold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "arsenic_bronze/scaffold",
+      "status": "source_exact"
+    }
+  ],
+  "runtime_slug": "content/gt6-mte-furniture-scaffold-runtime",
+  "schema": "gt6-mte-inplace-d0-obtain-matrix-v1",
+  "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+}

@@ -1,0 +1,3018 @@
+{
+  "auto_promote_player_complete": false,
+  "blocker_id": "obtain/mte-inplace-runtime",
+  "capability_slug": "content/gt6-mte-furniture-table-acquisition",
+  "counts": {
+    "explicitly_blocked": 0,
+    "hosts": 50,
+    "source_exact": 50
+  },
+  "domain": "furniture_table",
+  "expected": 50,
+  "hosts": [
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_lead.json",
+        "present": true
+      },
+      "meta": 5000,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:lead/plate",
+          "gt": "plate(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:lead/screw",
+          "gt": "screw(MT.Pb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_lead",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_lead",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_aluminium.json",
+        "present": true
+      },
+      "meta": 5001,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:aluminium/plate",
+          "gt": "plate(MT.Al)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:aluminium/screw",
+          "gt": "screw(MT.Al)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_aluminium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_aluminium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_gold.json",
+        "present": true
+      },
+      "meta": 5002,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:gold/plate",
+          "gt": "plate(MT.Au)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:gold/screw",
+          "gt": "screw(MT.Au)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_gold",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_gold",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_silver.json",
+        "present": true
+      },
+      "meta": 5003,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:silver/plate",
+          "gt": "plate(MT.Ag)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:silver/screw",
+          "gt": "screw(MT.Ag)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_silver",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_silver",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_platinum.json",
+        "present": true
+      },
+      "meta": 5004,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:platinum/plate",
+          "gt": "plate(MT.Pt)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:platinum/screw",
+          "gt": "screw(MT.Pt)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_platinum",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_platinum",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/tin_alloy/advanced_crafting_table.json",
+        "present": true
+      },
+      "meta": 5005,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:tin_alloy/plate",
+          "gt": "plate(MT.TinAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:tin_alloy/screw",
+          "gt": "screw(MT.TinAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:tin_alloy/advanced_crafting_table",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "tin_alloy/advanced_crafting_table",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_invar.json",
+        "present": true
+      },
+      "meta": 5006,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:invar/plate",
+          "gt": "plate(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:invar/screw",
+          "gt": "screw(MT.Invar)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_invar",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_invar",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_electrum.json",
+        "present": true
+      },
+      "meta": 5007,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:electrum/plate",
+          "gt": "plate(MT.Electrum)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:electrum/screw",
+          "gt": "screw(MT.Electrum)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_electrum",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_electrum",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_brass.json",
+        "present": true
+      },
+      "meta": 5008,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:brass/plate",
+          "gt": "plate(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:brass/screw",
+          "gt": "screw(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_brass",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_brass",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_bronze.json",
+        "present": true
+      },
+      "meta": 5009,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:bronze/plate",
+          "gt": "plate(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:bronze/screw",
+          "gt": "screw(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_bronze",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_bronze",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_steel.json",
+        "present": true
+      },
+      "meta": 5010,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:steel/plate",
+          "gt": "plate(MT.Steel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:steel/screw",
+          "gt": "screw(MT.Steel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_steel",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_steel",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/stainless_steel/advanced_crafting_table.json",
+        "present": true
+      },
+      "meta": 5011,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:stainless_steel/plate",
+          "gt": "plate(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:stainless_steel/screw",
+          "gt": "screw(MT.StainlessSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:stainless_steel/advanced_crafting_table",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "stainless_steel/advanced_crafting_table",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_titanium.json",
+        "present": true
+      },
+      "meta": 5012,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:titanium/plate",
+          "gt": "plate(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:titanium/screw",
+          "gt": "screw(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_titanium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_titanium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_chromium.json",
+        "present": true
+      },
+      "meta": 5013,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:chromium/plate",
+          "gt": "plate(MT.Cr)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:chromium/screw",
+          "gt": "screw(MT.Cr)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_chromium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_chromium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_tungstensteel.json",
+        "present": true
+      },
+      "meta": 5014,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:tungstensteel/plate",
+          "gt": "plate(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:tungstensteel/screw",
+          "gt": "screw(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_tungstensteel",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_tungstensteel",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_iridium.json",
+        "present": true
+      },
+      "meta": 5015,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:iridium/plate",
+          "gt": "plate(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:iridium/screw",
+          "gt": "screw(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_iridium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_iridium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_bismuth.json",
+        "present": true
+      },
+      "meta": 5016,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:bismuth/plate",
+          "gt": "plate(MT.Bi)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:bismuth/screw",
+          "gt": "screw(MT.Bi)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_bismuth",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_bismuth",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/hslasteel/advanced_crafting_table.json",
+        "present": true
+      },
+      "meta": 5018,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:hslasteel/plate",
+          "gt": "plate(MT.HSLA)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:hslasteel/screw",
+          "gt": "screw(MT.HSLA)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:hslasteel/advanced_crafting_table",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "hslasteel/advanced_crafting_table",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_steelgalvanized.json",
+        "present": true
+      },
+      "meta": 5019,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:steel_galvanized/plate",
+          "gt": "plate(MT.SteelGalvanized)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:steel_galvanized/screw",
+          "gt": "screw(MT.SteelGalvanized)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_steelgalvanized",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_steelgalvanized",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/gilded_iron/advanced_crafting_table.json",
+        "present": true
+      },
+      "meta": 5020,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:gilded_iron/plate",
+          "gt": "plate(MT.GildedIron)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:gilded_iron/screw",
+          "gt": "screw(MT.GildedIron)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:gilded_iron/advanced_crafting_table",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "gilded_iron/advanced_crafting_table",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_cobalt.json",
+        "present": true
+      },
+      "meta": 5021,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:cobalt/plate",
+          "gt": "plate(MT.Co)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:cobalt/screw",
+          "gt": "screw(MT.Co)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_cobalt",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_cobalt",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_nickel.json",
+        "present": true
+      },
+      "meta": 5022,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:nickel/plate",
+          "gt": "plate(MT.Ni)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:nickel/screw",
+          "gt": "screw(MT.Ni)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_nickel",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_nickel",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_germanium.json",
+        "present": true
+      },
+      "meta": 5023,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:germanium/plate",
+          "gt": "plate(MT.Ge)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:germanium/screw",
+          "gt": "screw(MT.Ge)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_germanium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_germanium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/meteoric_steel/advanced_crafting_table.json",
+        "present": true
+      },
+      "meta": 5024,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:meteoric_steel/plate",
+          "gt": "plate(MT.MeteoricSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:meteoric_steel/screw",
+          "gt": "screw(MT.MeteoricSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:meteoric_steel/advanced_crafting_table",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "meteoric_steel/advanced_crafting_table",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_knightmetal.json",
+        "present": true
+      },
+      "meta": 5025,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:knightmetal/plate",
+          "gt": "plate(MT.Knightmetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:knightmetal/screw",
+          "gt": "screw(MT.Knightmetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_knightmetal",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_knightmetal",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_tungsten.json",
+        "present": true
+      },
+      "meta": 5026,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:tungsten/plate",
+          "gt": "plate(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:tungsten/screw",
+          "gt": "screw(ANY.W)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_tungsten",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_tungsten",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_thaumium.json",
+        "present": true
+      },
+      "meta": 5027,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:thaumium/plate",
+          "gt": "plate(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:thaumium/screw",
+          "gt": "screw(MT.Thaumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_thaumium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_thaumium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/void_metal/advanced_crafting_table.json",
+        "present": true
+      },
+      "meta": 5028,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:void_metal/plate",
+          "gt": "plate(MT.VoidMetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:void_metal/screw",
+          "gt": "screw(MT.VoidMetal)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:void_metal/advanced_crafting_table",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "void_metal/advanced_crafting_table",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_osmiumelemental.json",
+        "present": true
+      },
+      "meta": 5029,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:osmium_elemental/plate",
+          "gt": "plate(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:osmium_elemental/screw",
+          "gt": "screw(MT.Os)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_osmiumelemental",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_osmiumelemental",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_desh.json",
+        "present": true
+      },
+      "meta": 5030,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:desh/plate",
+          "gt": "plate(MT.Desh)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:desh/screw",
+          "gt": "screw(MT.Desh)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_desh",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_desh",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_adamantium.json",
+        "present": true
+      },
+      "meta": 5033,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:adamantium/plate",
+          "gt": "plate(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:adamantium/screw",
+          "gt": "screw(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_adamantium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_adamantium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_draconium.json",
+        "present": true
+      },
+      "meta": 5035,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:draconium/plate",
+          "gt": "plate(MT.Draconium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:draconium/screw",
+          "gt": "screw(MT.Draconium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_draconium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_draconium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_draconiumawakened.json",
+        "present": true
+      },
+      "meta": 5036,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:draconium_awakened/plate",
+          "gt": "plate(MT.DraconiumAwakened)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:draconium_awakened/screw",
+          "gt": "screw(MT.DraconiumAwakened)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_draconiumawakened",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_draconiumawakened",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_constantan.json",
+        "present": true
+      },
+      "meta": 5037,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:constantan/plate",
+          "gt": "plate(MT.Constantan)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:constantan/screw",
+          "gt": "screw(MT.Constantan)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_constantan",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_constantan",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_ardite.json",
+        "present": true
+      },
+      "meta": 5038,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:ardite/plate",
+          "gt": "plate(MT.Ardite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:ardite/screw",
+          "gt": "screw(MT.Ardite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_ardite",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_ardite",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_manyullyn.json",
+        "present": true
+      },
+      "meta": 5039,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:manyullyn/plate",
+          "gt": "plate(MT.Manyullyn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:manyullyn/screw",
+          "gt": "screw(MT.Manyullyn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_manyullyn",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_manyullyn",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_meteorite.json",
+        "present": true
+      },
+      "meta": 5043,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:meteorite/plate",
+          "gt": "plate(MT.Meteorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:meteorite/screw",
+          "gt": "screw(MT.Meteorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_meteorite",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_meteorite",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_syrmorite.json",
+        "present": true
+      },
+      "meta": 5044,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:syrmorite/plate",
+          "gt": "plate(MT.Syrmorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:syrmorite/screw",
+          "gt": "screw(MT.Syrmorite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_syrmorite",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_syrmorite",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_octine.json",
+        "present": true
+      },
+      "meta": 5045,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:octine/plate",
+          "gt": "plate(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:octine/screw",
+          "gt": "screw(MT.Octine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_octine",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_octine",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_manganese.json",
+        "present": true
+      },
+      "meta": 5046,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:manganese/plate",
+          "gt": "plate(MT.Mn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:manganese/screw",
+          "gt": "screw(MT.Mn)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_manganese",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_manganese",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_antimony.json",
+        "present": true
+      },
+      "meta": 5047,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:antimony/plate",
+          "gt": "plate(MT.Sb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:antimony/screw",
+          "gt": "screw(MT.Sb)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_antimony",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_antimony",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_ultimet.json",
+        "present": true
+      },
+      "meta": 5048,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:ultimet/plate",
+          "gt": "plate(MT.Ultimet)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:ultimet/screw",
+          "gt": "screw(MT.Ultimet)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_ultimet",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_ultimet",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_molybdenum.json",
+        "present": true
+      },
+      "meta": 5049,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:molybdenum/plate",
+          "gt": "plate(MT.Mo)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:molybdenum/screw",
+          "gt": "screw(MT.Mo)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_molybdenum",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_molybdenum",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_netherite.json",
+        "present": true
+      },
+      "meta": 5051,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:netherite/plate",
+          "gt": "plate(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:netherite/screw",
+          "gt": "screw(MT.Netherite)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_netherite",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_netherite",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_efrine.json",
+        "present": true
+      },
+      "meta": 5053,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:efrine/plate",
+          "gt": "plate(MT.Efrine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:efrine/screw",
+          "gt": "screw(MT.Efrine)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_efrine",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_efrine",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/furniture/advanced_crafting_table_lumium.json",
+        "present": true
+      },
+      "meta": 5054,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:lumium/plate",
+          "gt": "plate(MT.Lumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:lumium/screw",
+          "gt": "screw(MT.Lumium)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:furniture/advanced_crafting_table_lumium",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "furniture/advanced_crafting_table_lumium",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/workers_alloy/advanced_crafting_table.json",
+        "present": true
+      },
+      "meta": 5055,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:workers_alloy/plate",
+          "gt": "plate(MT.DeshAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:workers_alloy/screw",
+          "gt": "screw(MT.DeshAlloy)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:workers_alloy/advanced_crafting_table",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "workers_alloy/advanced_crafting_table",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/bismuth_bronze/advanced_crafting_table.json",
+        "present": true
+      },
+      "meta": 5056,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:bismuth_bronze/plate",
+          "gt": "plate(MT.BismuthBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:bismuth_bronze/screw",
+          "gt": "screw(MT.BismuthBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:bismuth_bronze/advanced_crafting_table",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "bismuth_bronze/advanced_crafting_table",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/arsenic_copper/advanced_crafting_table.json",
+        "present": true
+      },
+      "meta": 5057,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:arsenic_copper/plate",
+          "gt": "plate(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:arsenic_copper/screw",
+          "gt": "screw(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:arsenic_copper/advanced_crafting_table",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "arsenic_copper/advanced_crafting_table",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAdvancedCraftingTable / Crafting Tables",
+      "kind": "CRAFTING_TABLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/arsenic_bronze/advanced_crafting_table.json",
+        "present": true
+      },
+      "meta": 5058,
+      "operands": {
+        "C": {
+          "cc": "minecraft:chest",
+          "gt": "OD.craftingChest",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "P": {
+          "cc": "cruciblecraft:arsenic_bronze/plate",
+          "gt": "plate(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "T": {
+          "cc": "cruciblecraft:arsenic_bronze/screw",
+          "gt": "screw(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "W": {
+          "cc": "minecraft:crafting_table",
+          "gt": "OD.craftingWorkBench",
+          "kind": "od_member",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "PdP",
+        "TWT",
+        "PCP"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:arsenic_bronze/advanced_crafting_table",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "arsenic_bronze/advanced_crafting_table",
+      "status": "source_exact"
+    }
+  ],
+  "runtime_slug": "content/gt6-mte-furniture-table-runtime",
+  "schema": "gt6-mte-inplace-d0-obtain-matrix-v1",
+  "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+}

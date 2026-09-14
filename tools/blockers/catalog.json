@@ -1452,76 +1452,19 @@
         "tools/capabilities/content/gt6-mte-multiblock-runtime/capability.json"
       ],
       "blocks_maturity": "player_complete",
-      "claimed_by": [
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-converter-remainder-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-crucible-foundry-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-decorative-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-drive-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-extender-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-fluid-attachments-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-furniture-barrel-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-furniture-chest-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-furniture-safe-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-furniture-scaffold-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-furniture-storage-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-furniture-table-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-misc-tool-runtime"
-        },
-        {
-          "note_marker": "Obtain stays explicitly_blocked",
-          "slug": "content/gt6-mte-multiblock-runtime"
-        }
-      ],
+      "claimed_by": [],
       "count": 14,
       "discovered_by": "content/gt6-mte-fluid-attachments-runtime",
       "id": "obtain/mte-inplace-runtime",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "Clustered note_marker bind. Finding the gap is not introducing it.",
-      "planning_bucket": "schedulable",
-      "resolved_by": null,
+      "note": "Audit complete. Source-exact grids live on content/gt6-mte-inplace-acquisition. Remaining D0 gaps stay in per-family current_gap.json, not this clustered blocker. Closing does not promote the 14 runtimes to player_complete.",
+      "planning_bucket": "not_work",
+      "resolved_by": "content/gt6-mte-inplace-acquisition",
       "root_cause": "runtime_without_source_exact_obtain",
       "root_cause_class": "missing_obtain",
-      "status": "open",
-      "title": "14 张 in-place MTE runtime 获得格仍 blocked",
+      "status": "resolved",
+      "title": "14 张 in-place MTE runtime 获得格已按 source-exact 收口",
       "unit": "capabilities"
     },
     {

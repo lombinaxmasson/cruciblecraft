@@ -33,7 +33,7 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
  * ports and world effects.
  */
 public final class CrucibleProcessCore {
-    public static final int SINGLE_BLOCK_MAX_INGOTS = 8;
+    public static final int SINGLE_BLOCK_MAX_INGOTS = 16;
     public static final int LARGE_MAX_INGOTS = 432;
     public static final float AMBIENT_TEMPERATURE = 20.0f;
     public static final long HEAT_DISPLAY_CAPACITY = 64L;

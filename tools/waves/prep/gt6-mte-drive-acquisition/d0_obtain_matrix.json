@@ -1,0 +1,3321 @@
+{
+  "auto_promote_player_complete": false,
+  "blocker_id": "obtain/mte-inplace-runtime",
+  "capability_slug": "content/gt6-mte-drive-acquisition",
+  "counts": {
+    "explicitly_blocked": 36,
+    "hosts": 63,
+    "source_exact": 27
+  },
+  "domain": "drive",
+  "expected": 63,
+  "hosts": [
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/small_brass_axle.json",
+        "present": true
+      },
+      "meta": 24770,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:brass/rod",
+          "gt": "stick(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/small_brass_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/small_brass_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/medium_brass_axle.json",
+        "present": true
+      },
+      "meta": 24771,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:brass/long_rod",
+          "gt": "stickLong(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/medium_brass_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/medium_brass_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/large_brass_axle.json",
+        "present": true
+      },
+      "meta": 24772,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:brass/double_ingot",
+          "gt": "ingotDouble(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/large_brass_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/large_brass_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24773,
+      "operands": {
+        "S": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:brass/quadruple_ingot",
+          "gt": "ingotQuadruple(MT.Brass)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:drive/huge_brass_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/huge_brass_axle",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityEngineRotation / Axles and Gearboxes",
+      "kind": "ROTATION_ENGINE",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24777,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_brass_axle",
+          "gt": "getItem(24771)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "G": {
+          "cc": "cruciblecraft:brass/gear",
+          "gt": "gearGt(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricantEarly",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:brass/machine_casing",
+          "gt": "casingMachine(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:brass/small_gear",
+          "gt": "gearGtSmall(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "SAS",
+        "wML",
+        "GAG"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:brass/rotation_engine",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "brass/rotation_engine",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityTransformerRotation / Axles and Gearboxes",
+      "kind": "ROTATION_TRANSFORMER",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24778,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_brass_axle",
+          "gt": "getItem(24771)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "G": {
+          "cc": "cruciblecraft:brass/gear",
+          "gt": "gearGt(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricantEarly",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:brass/machine_casing_double",
+          "gt": "casingMachineDouble(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:brass/small_gear",
+          "gt": "gearGtSmall(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "ASL",
+        "SGS",
+        "MSA"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:brass/transformer_gearbox",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "brass/transformer_gearbox",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityGearBox / Axles and Gearboxes",
+      "kind": "GEARBOX",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24779,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_brass_axle",
+          "gt": "getItem(24771)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricantEarly",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:brass/machine_casing",
+          "gt": "casingMachine(MT.Brass)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "wAL",
+        "AMA"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:drive/custom_brass_gearbox",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/custom_brass_gearbox",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/small_arsenic_copper_axle.json",
+        "present": true
+      },
+      "meta": 24780,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:arsenic_copper/rod",
+          "gt": "stick(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/small_arsenic_copper_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/small_arsenic_copper_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/medium_arsenic_copper_axle.json",
+        "present": true
+      },
+      "meta": 24781,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:arsenic_copper/long_rod",
+          "gt": "stickLong(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/medium_arsenic_copper_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/medium_arsenic_copper_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/large_arsenic_copper_axle.json",
+        "present": true
+      },
+      "meta": 24782,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:arsenic_copper/double_ingot",
+          "gt": "ingotDouble(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/large_arsenic_copper_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/large_arsenic_copper_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24783,
+      "operands": {
+        "S": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:arsenic_copper/quadruple_ingot",
+          "gt": "ingotQuadruple(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:drive/huge_arsenic_copper_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/huge_arsenic_copper_axle",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityEngineRotation / Axles and Gearboxes",
+      "kind": "ROTATION_ENGINE",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24787,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_arsenic_copper_axle",
+          "gt": "getItem(24781)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "G": {
+          "cc": "cruciblecraft:arsenic_copper/gear",
+          "gt": "gearGt(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricantEarly",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:arsenic_copper/machine_casing",
+          "gt": "casingMachine(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:arsenic_copper/small_gear",
+          "gt": "gearGtSmall(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "SAS",
+        "wML",
+        "GAG"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:arsenic_copper/rotation_engine",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "arsenic_copper/rotation_engine",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityTransformerRotation / Axles and Gearboxes",
+      "kind": "ROTATION_TRANSFORMER",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24788,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_arsenic_copper_axle",
+          "gt": "getItem(24781)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "G": {
+          "cc": "cruciblecraft:arsenic_copper/gear",
+          "gt": "gearGt(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricantEarly",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:arsenic_copper/machine_casing_double",
+          "gt": "casingMachineDouble(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:arsenic_copper/small_gear",
+          "gt": "gearGtSmall(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "ASL",
+        "SGS",
+        "MSA"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:arsenic_copper/transformer_gearbox",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "arsenic_copper/transformer_gearbox",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityGearBox / Axles and Gearboxes",
+      "kind": "GEARBOX",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24789,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_arsenic_copper_axle",
+          "gt": "getItem(24781)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricantEarly",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:arsenic_copper/machine_casing",
+          "gt": "casingMachine(MT.ArsenicCopper)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "wAL",
+        "AMA"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:drive/custom_arsenic_copper_gearbox",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/custom_arsenic_copper_gearbox",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/small_arsenic_bronze_axle.json",
+        "present": true
+      },
+      "meta": 24790,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:arsenic_bronze/rod",
+          "gt": "stick(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/small_arsenic_bronze_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/small_arsenic_bronze_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/medium_arsenic_bronze_axle.json",
+        "present": true
+      },
+      "meta": 24791,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:arsenic_bronze/long_rod",
+          "gt": "stickLong(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/medium_arsenic_bronze_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/medium_arsenic_bronze_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/large_arsenic_bronze_axle.json",
+        "present": true
+      },
+      "meta": 24792,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:arsenic_bronze/double_ingot",
+          "gt": "ingotDouble(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/large_arsenic_bronze_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/large_arsenic_bronze_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24793,
+      "operands": {
+        "S": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:arsenic_bronze/quadruple_ingot",
+          "gt": "ingotQuadruple(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:drive/huge_arsenic_bronze_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/huge_arsenic_bronze_axle",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityEngineRotation / Axles and Gearboxes",
+      "kind": "ROTATION_ENGINE",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24797,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_arsenic_bronze_axle",
+          "gt": "getItem(24791)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "G": {
+          "cc": "cruciblecraft:arsenic_bronze/gear",
+          "gt": "gearGt(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricantEarly",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:arsenic_bronze/machine_casing",
+          "gt": "casingMachine(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:arsenic_bronze/small_gear",
+          "gt": "gearGtSmall(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "SAS",
+        "wML",
+        "GAG"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:arsenic_bronze/rotation_engine",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "arsenic_bronze/rotation_engine",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityTransformerRotation / Axles and Gearboxes",
+      "kind": "ROTATION_TRANSFORMER",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24798,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_arsenic_bronze_axle",
+          "gt": "getItem(24791)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "G": {
+          "cc": "cruciblecraft:arsenic_bronze/gear",
+          "gt": "gearGt(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricantEarly",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:arsenic_bronze/machine_casing_double",
+          "gt": "casingMachineDouble(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:arsenic_bronze/small_gear",
+          "gt": "gearGtSmall(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "ASL",
+        "SGS",
+        "MSA"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:arsenic_bronze/transformer_gearbox",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "arsenic_bronze/transformer_gearbox",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityGearBox / Axles and Gearboxes",
+      "kind": "GEARBOX",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24799,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_arsenic_bronze_axle",
+          "gt": "getItem(24791)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricantEarly",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:arsenic_bronze/machine_casing",
+          "gt": "casingMachine(MT.ArsenicBronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "wAL",
+        "AMA"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:drive/custom_arsenic_bronze_gearbox",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/custom_arsenic_bronze_gearbox",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/small_bronze_axle.json",
+        "present": true
+      },
+      "meta": 24810,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:bronze/rod",
+          "gt": "stick(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/small_bronze_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/small_bronze_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/medium_bronze_axle.json",
+        "present": true
+      },
+      "meta": 24811,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:bronze/long_rod",
+          "gt": "stickLong(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/medium_bronze_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/medium_bronze_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/large_bronze_axle.json",
+        "present": true
+      },
+      "meta": 24812,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:bronze/double_ingot",
+          "gt": "ingotDouble(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/large_bronze_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/large_bronze_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24813,
+      "operands": {
+        "S": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:bronze/quadruple_ingot",
+          "gt": "ingotQuadruple(MT.Bronze)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:drive/huge_bronze_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/huge_bronze_axle",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityEngineRotation / Axles and Gearboxes",
+      "kind": "ROTATION_ENGINE",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24817,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_bronze_axle",
+          "gt": "getItem(24811)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "G": {
+          "cc": "cruciblecraft:bronze/gear",
+          "gt": "gearGt(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricantEarly",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:bronze/machine_casing",
+          "gt": "casingMachine(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:bronze/small_gear",
+          "gt": "gearGtSmall(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "SAS",
+        "wML",
+        "GAG"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:bronze/rotation_engine",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "bronze/rotation_engine",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityTransformerRotation / Axles and Gearboxes",
+      "kind": "ROTATION_TRANSFORMER",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24818,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_bronze_axle",
+          "gt": "getItem(24811)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "G": {
+          "cc": "cruciblecraft:bronze/gear",
+          "gt": "gearGt(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricantEarly",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:bronze/machine_casing_double",
+          "gt": "casingMachineDouble(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:bronze/small_gear",
+          "gt": "gearGtSmall(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "ASL",
+        "SGS",
+        "MSA"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:bronze/transformer_gearbox",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "bronze/transformer_gearbox",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityGearBox / Axles and Gearboxes",
+      "kind": "GEARBOX",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24819,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_bronze_axle",
+          "gt": "getItem(24811)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricantEarly",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:bronze/machine_casing",
+          "gt": "casingMachine(MT.Bronze)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "wAL",
+        "AMA"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:drive/custom_bronze_gearbox",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/custom_bronze_gearbox",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/small_steel_axle.json",
+        "present": true
+      },
+      "meta": 24820,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:steel/rod",
+          "gt": "stick(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/small_steel_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/small_steel_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/medium_steel_axle.json",
+        "present": true
+      },
+      "meta": 24821,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:steel/long_rod",
+          "gt": "stickLong(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/medium_steel_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/medium_steel_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/large_steel_axle.json",
+        "present": true
+      },
+      "meta": 24822,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:steel/double_ingot",
+          "gt": "ingotDouble(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/large_steel_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/large_steel_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24823,
+      "operands": {
+        "S": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "ingotQuadruple(ANY.Steel)",
+          "kind": "prefix_family",
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:drive/huge_steel_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/huge_steel_axle",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityEngineRotation / Axles and Gearboxes",
+      "kind": "ROTATION_ENGINE",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24827,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_steel_axle",
+          "gt": "getItem(24821)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "G": {
+          "cc": "cruciblecraft:steel/gear",
+          "gt": "gearGt(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricant",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:steel/machine_casing",
+          "gt": "casingMachine(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:steel/small_gear",
+          "gt": "gearGtSmall(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "SAS",
+        "wML",
+        "GAG"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:steel/rotation_engine",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "steel/rotation_engine",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityTransformerRotation / Axles and Gearboxes",
+      "kind": "ROTATION_TRANSFORMER",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24828,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_steel_axle",
+          "gt": "getItem(24821)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "G": {
+          "cc": "cruciblecraft:steel/gear",
+          "gt": "gearGt(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricant",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:steel/machine_casing_double",
+          "gt": "casingMachineDouble(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:steel/small_gear",
+          "gt": "gearGtSmall(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "ASL",
+        "SGS",
+        "MSA"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:steel/transformer_gearbox",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "steel/transformer_gearbox",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityGearBox / Axles and Gearboxes",
+      "kind": "GEARBOX",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24829,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_steel_axle",
+          "gt": "getItem(24821)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricant",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:steel/machine_casing",
+          "gt": "casingMachine(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "wAL",
+        "AMA"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:drive/custom_steel_gearbox",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/custom_steel_gearbox",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/small_titanium_axle.json",
+        "present": true
+      },
+      "meta": 24830,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:titanium/rod",
+          "gt": "stick(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/small_titanium_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/small_titanium_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/medium_titanium_axle.json",
+        "present": true
+      },
+      "meta": 24831,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:titanium/long_rod",
+          "gt": "stickLong(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/medium_titanium_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/medium_titanium_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/large_titanium_axle.json",
+        "present": true
+      },
+      "meta": 24832,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:titanium/double_ingot",
+          "gt": "ingotDouble(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/large_titanium_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/large_titanium_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24833,
+      "operands": {
+        "S": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:titanium/quadruple_ingot",
+          "gt": "ingotQuadruple(MT.Ti)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:drive/huge_titanium_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/huge_titanium_axle",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityEngineRotation / Axles and Gearboxes",
+      "kind": "ROTATION_ENGINE",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24837,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_titanium_axle",
+          "gt": "getItem(24831)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "G": {
+          "cc": "cruciblecraft:titanium/gear",
+          "gt": "gearGt(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricant",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:titanium/machine_casing",
+          "gt": "casingMachine(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:titanium/small_gear",
+          "gt": "gearGtSmall(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "SAS",
+        "wML",
+        "GAG"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:titanium/rotation_engine",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "titanium/rotation_engine",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityTransformerRotation / Axles and Gearboxes",
+      "kind": "ROTATION_TRANSFORMER",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24838,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_titanium_axle",
+          "gt": "getItem(24831)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "G": {
+          "cc": "cruciblecraft:titanium/gear",
+          "gt": "gearGt(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricant",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:titanium/machine_casing_double",
+          "gt": "casingMachineDouble(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:titanium/small_gear",
+          "gt": "gearGtSmall(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "ASL",
+        "SGS",
+        "MSA"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:titanium/transformer_gearbox",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "titanium/transformer_gearbox",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityGearBox / Axles and Gearboxes",
+      "kind": "GEARBOX",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24839,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_titanium_axle",
+          "gt": "getItem(24831)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricant",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:titanium/machine_casing",
+          "gt": "casingMachine(MT.Ti)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "wAL",
+        "AMA"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:drive/custom_titanium_gearbox",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/custom_titanium_gearbox",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/small_tungstensteel_axle.json",
+        "present": true
+      },
+      "meta": 24840,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:tungstensteel/rod",
+          "gt": "stick(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/small_tungstensteel_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/small_tungstensteel_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/medium_tungstensteel_axle.json",
+        "present": true
+      },
+      "meta": 24841,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:tungstensteel/long_rod",
+          "gt": "stickLong(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/medium_tungstensteel_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/medium_tungstensteel_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/large_tungstensteel_axle.json",
+        "present": true
+      },
+      "meta": 24842,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:tungstensteel/double_ingot",
+          "gt": "ingotDouble(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/large_tungstensteel_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/large_tungstensteel_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24843,
+      "operands": {
+        "S": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:tungstensteel/quadruple_ingot",
+          "gt": "ingotQuadruple(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:drive/huge_tungstensteel_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/huge_tungstensteel_axle",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityEngineRotation / Axles and Gearboxes",
+      "kind": "ROTATION_ENGINE",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24847,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_tungstensteel_axle",
+          "gt": "getItem(24841)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "G": {
+          "cc": "cruciblecraft:tungstensteel/gear",
+          "gt": "gearGt(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricant",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:tungstensteel/machine_casing",
+          "gt": "casingMachine(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:tungstensteel/small_gear",
+          "gt": "gearGtSmall(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "SAS",
+        "wML",
+        "GAG"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:tungstensteel/rotation_engine",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "tungstensteel/rotation_engine",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityTransformerRotation / Axles and Gearboxes",
+      "kind": "ROTATION_TRANSFORMER",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24848,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_tungstensteel_axle",
+          "gt": "getItem(24841)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "G": {
+          "cc": "cruciblecraft:tungstensteel/gear",
+          "gt": "gearGt(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricant",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:tungstensteel/machine_casing_double",
+          "gt": "casingMachineDouble(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:tungstensteel/small_gear",
+          "gt": "gearGtSmall(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "ASL",
+        "SGS",
+        "MSA"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:tungstensteel/transformer_gearbox",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "tungstensteel/transformer_gearbox",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityGearBox / Axles and Gearboxes",
+      "kind": "GEARBOX",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24849,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_tungstensteel_axle",
+          "gt": "getItem(24841)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricant",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:tungstensteel/machine_casing",
+          "gt": "casingMachine(MT.TungstenSteel)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "wAL",
+        "AMA"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:drive/custom_tungstensteel_gearbox",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/custom_tungstensteel_gearbox",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/small_iridium_axle.json",
+        "present": true
+      },
+      "meta": 24850,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:iridium/rod",
+          "gt": "stick(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/small_iridium_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/small_iridium_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/medium_iridium_axle.json",
+        "present": true
+      },
+      "meta": 24851,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:iridium/long_rod",
+          "gt": "stickLong(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/medium_iridium_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/medium_iridium_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/large_iridium_axle.json",
+        "present": true
+      },
+      "meta": 24852,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:iridium/double_ingot",
+          "gt": "ingotDouble(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/large_iridium_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/large_iridium_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24853,
+      "operands": {
+        "S": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:iridium/quadruple_ingot",
+          "gt": "ingotQuadruple(MT.Ir)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:drive/huge_iridium_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/huge_iridium_axle",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityEngineRotation / Axles and Gearboxes",
+      "kind": "ROTATION_ENGINE",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24857,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_iridium_axle",
+          "gt": "getItem(24851)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "G": {
+          "cc": "cruciblecraft:iridium/gear",
+          "gt": "gearGt(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricant",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:iridium/machine_casing",
+          "gt": "casingMachine(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:iridium/small_gear",
+          "gt": "gearGtSmall(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "SAS",
+        "wML",
+        "GAG"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:iridium/rotation_engine",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "iridium/rotation_engine",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityTransformerRotation / Axles and Gearboxes",
+      "kind": "ROTATION_TRANSFORMER",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24858,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_iridium_axle",
+          "gt": "getItem(24851)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "G": {
+          "cc": "cruciblecraft:iridium/gear",
+          "gt": "gearGt(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricant",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:iridium/machine_casing_double",
+          "gt": "casingMachineDouble(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:iridium/small_gear",
+          "gt": "gearGtSmall(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "ASL",
+        "SGS",
+        "MSA"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:iridium/transformer_gearbox",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "iridium/transformer_gearbox",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityGearBox / Axles and Gearboxes",
+      "kind": "GEARBOX",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24859,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_iridium_axle",
+          "gt": "getItem(24851)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricant",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:iridium/machine_casing",
+          "gt": "casingMachine(MT.Ir)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "wAL",
+        "AMA"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:drive/custom_iridium_gearbox",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/custom_iridium_gearbox",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/small_adamantium_axle.json",
+        "present": true
+      },
+      "meta": 24890,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:adamantium/rod",
+          "gt": "stick(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/small_adamantium_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/small_adamantium_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/medium_adamantium_axle.json",
+        "present": true
+      },
+      "meta": 24891,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:adamantium/long_rod",
+          "gt": "stickLong(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/medium_adamantium_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/medium_adamantium_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/drive/large_adamantium_axle.json",
+        "present": true
+      },
+      "meta": 24892,
+      "operands": {
+        "S": {
+          "cc": "cruciblecraft:adamantium/double_ingot",
+          "gt": "ingotDouble(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:drive/large_adamantium_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/large_adamantium_axle",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "f": {
+          "cc": "cruciblecraft:material_file",
+          "gt": "craftingTool:f",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "h": {
+          "cc": "cruciblecraft:smithing_hammer",
+          "gt": "craftingTool:h",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityAxle / Axles and Gearboxes",
+      "kind": "AXLE",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24893,
+      "operands": {
+        "S": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": "cruciblecraft:adamantium/quadruple_ingot",
+          "gt": "ingotQuadruple(MT.Ad)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
+        }
+      },
+      "pattern": [
+        "  S",
+        " h ",
+        "S f"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:drive/huge_adamantium_axle",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/huge_adamantium_axle",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityEngineRotation / Axles and Gearboxes",
+      "kind": "ROTATION_ENGINE",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24897,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_adamantium_axle",
+          "gt": "getItem(24891)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "G": {
+          "cc": "cruciblecraft:adamantium/gear",
+          "gt": "gearGt(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricant",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:adamantium/machine_casing",
+          "gt": "casingMachine(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:adamantium/small_gear",
+          "gt": "gearGtSmall(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "SAS",
+        "wML",
+        "GAG"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:adamantium/rotation_engine",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "adamantium/rotation_engine",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityTransformerRotation / Axles and Gearboxes",
+      "kind": "ROTATION_TRANSFORMER",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24898,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_adamantium_axle",
+          "gt": "getItem(24891)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "G": {
+          "cc": "cruciblecraft:adamantium/gear",
+          "gt": "gearGt(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricant",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:adamantium/machine_casing_double",
+          "gt": "casingMachineDouble(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "S": {
+          "cc": "cruciblecraft:adamantium/small_gear",
+          "gt": "gearGtSmall(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "ASL",
+        "SGS",
+        "MSA"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:adamantium/transformer_gearbox",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "adamantium/transformer_gearbox",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "w": {
+          "cc": "cruciblecraft:material_wrench",
+          "gt": "craftingTool:w",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityGearBox / Axles and Gearboxes",
+      "kind": "GEARBOX",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 24899,
+      "operands": {
+        "A": {
+          "cc": "cruciblecraft:drive/medium_adamantium_axle",
+          "gt": "getItem(24891)",
+          "kind": "mte_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        },
+        "L": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "OD.itemLubricant",
+          "kind": "od",
+          "reason": "unmapped_od",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "M": {
+          "cc": "cruciblecraft:adamantium/machine_casing",
+          "gt": "casingMachine(MT.Ad)",
+          "kind": "prefix_material",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "wAL",
+        "AMA"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:drive/custom_adamantium_gearbox",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "drive/custom_adamantium_gearbox",
+      "status": "explicitly_blocked"
+    }
+  ],
+  "runtime_slug": "content/gt6-mte-drive-runtime",
+  "schema": "gt6-mte-inplace-d0-obtain-matrix-v1",
+  "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+}

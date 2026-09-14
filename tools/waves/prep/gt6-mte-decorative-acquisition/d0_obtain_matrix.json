@@ -1,0 +1,1299 @@
+{
+  "auto_promote_player_complete": false,
+  "blocker_id": "obtain/mte-inplace-runtime",
+  "capability_slug": "content/gt6-mte-decorative-acquisition",
+  "counts": {
+    "explicitly_blocked": 23,
+    "hosts": 24,
+    "source_exact": 1
+  },
+  "domain": "decorative",
+  "expected": 24,
+  "hosts": [
+    {
+      "catalysts": {
+        "x": {
+          "cc": "cruciblecraft:material_wire_cutter",
+          "gt": "craftingTool:x",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 1,
+      "gt6_class": "MultiTileEntityRope / Ropes",
+      "kind": "ROPE",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/steel/rope.json",
+        "present": true
+      },
+      "meta": 32112,
+      "operands": {
+        "P": {
+          "cc": "cruciblecraft:steel/fine_wire",
+          "gt": "wireFine(ANY.Steel)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        " P ",
+        "PP ",
+        "Px "
+      ],
+      "recipe_kind": "shaped",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:steel/rope",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "steel/rope",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 6,
+      "gt6_class": "MultiTileEntityPanelWood / Panels",
+      "kind": "WOOD_PANEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32291,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "PlankData.PLANKS[239]",
+          "kind": "plank_data",
+          "reason": "missing_plank_identity",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TsT",
+        "TPT",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:panel/wood_239",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "panel/wood_239",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 6,
+      "gt6_class": "MultiTileEntityPanelWood / Panels",
+      "kind": "WOOD_PANEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32352,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "PlankData.PLANKS[100]",
+          "kind": "plank_data",
+          "reason": "missing_plank_identity",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TsT",
+        "TPT",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:panel/wood_100",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "panel/wood_100",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 6,
+      "gt6_class": "MultiTileEntityPanelWood / Panels",
+      "kind": "WOOD_PANEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32353,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "PlankData.PLANKS[101]",
+          "kind": "plank_data",
+          "reason": "missing_plank_identity",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TsT",
+        "TPT",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:panel/wood_101",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "panel/wood_101",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 6,
+      "gt6_class": "MultiTileEntityPanelWood / Panels",
+      "kind": "WOOD_PANEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32354,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "PlankData.PLANKS[102]",
+          "kind": "plank_data",
+          "reason": "missing_plank_identity",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TsT",
+        "TPT",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:panel/wood_102",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "panel/wood_102",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 6,
+      "gt6_class": "MultiTileEntityPanelWood / Panels",
+      "kind": "WOOD_PANEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32355,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "PlankData.PLANKS[103]",
+          "kind": "plank_data",
+          "reason": "missing_plank_identity",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TsT",
+        "TPT",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:panel/wood_103",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "panel/wood_103",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 6,
+      "gt6_class": "MultiTileEntityPanelWood / Panels",
+      "kind": "WOOD_PANEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32500,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "PlankData.PLANKS[0]",
+          "kind": "plank_data",
+          "reason": "missing_plank_identity",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TsT",
+        "TPT",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:panel/wood_0",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "panel/wood_0",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 6,
+      "gt6_class": "MultiTileEntityPanelWood / Panels",
+      "kind": "WOOD_PANEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32501,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "PlankData.PLANKS[1]",
+          "kind": "plank_data",
+          "reason": "missing_plank_identity",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TsT",
+        "TPT",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:panel/wood_1",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "panel/wood_1",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 6,
+      "gt6_class": "MultiTileEntityPanelWood / Panels",
+      "kind": "WOOD_PANEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32502,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "PlankData.PLANKS[2]",
+          "kind": "plank_data",
+          "reason": "missing_plank_identity",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TsT",
+        "TPT",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:panel/wood_2",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "panel/wood_2",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 6,
+      "gt6_class": "MultiTileEntityPanelWood / Panels",
+      "kind": "WOOD_PANEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32503,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "PlankData.PLANKS[3]",
+          "kind": "plank_data",
+          "reason": "missing_plank_identity",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TsT",
+        "TPT",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:panel/wood_3",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "panel/wood_3",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 6,
+      "gt6_class": "MultiTileEntityPanelWood / Panels",
+      "kind": "WOOD_PANEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32504,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "PlankData.PLANKS[4]",
+          "kind": "plank_data",
+          "reason": "missing_plank_identity",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TsT",
+        "TPT",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:panel/wood_4",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "panel/wood_4",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 6,
+      "gt6_class": "MultiTileEntityPanelWood / Panels",
+      "kind": "WOOD_PANEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32505,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "PlankData.PLANKS[5]",
+          "kind": "plank_data",
+          "reason": "missing_plank_identity",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TsT",
+        "TPT",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:panel/wood_5",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "panel/wood_5",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 6,
+      "gt6_class": "MultiTileEntityPanelWood / Panels",
+      "kind": "WOOD_PANEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32506,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "PlankData.PLANKS[6]",
+          "kind": "plank_data",
+          "reason": "missing_plank_identity",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TsT",
+        "TPT",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:panel/wood_6",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "panel/wood_6",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 6,
+      "gt6_class": "MultiTileEntityPanelWood / Panels",
+      "kind": "WOOD_PANEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32507,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "PlankData.PLANKS[7]",
+          "kind": "plank_data",
+          "reason": "missing_plank_identity",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TsT",
+        "TPT",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:panel/wood_7",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "panel/wood_7",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 6,
+      "gt6_class": "MultiTileEntityPanelWood / Panels",
+      "kind": "WOOD_PANEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32537,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "PlankData.PLANKS[37]",
+          "kind": "plank_data",
+          "reason": "missing_plank_identity",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TsT",
+        "TPT",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:panel/wood_37",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "panel/wood_37",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 6,
+      "gt6_class": "MultiTileEntityPanelWood / Panels",
+      "kind": "WOOD_PANEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32538,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "PlankData.PLANKS[38]",
+          "kind": "plank_data",
+          "reason": "missing_plank_identity",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TsT",
+        "TPT",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:panel/wood_38",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "panel/wood_38",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 6,
+      "gt6_class": "MultiTileEntityPanelWood / Panels",
+      "kind": "WOOD_PANEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32539,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "PlankData.PLANKS[39]",
+          "kind": "plank_data",
+          "reason": "missing_plank_identity",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TsT",
+        "TPT",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:panel/wood_39",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "panel/wood_39",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 6,
+      "gt6_class": "MultiTileEntityPanelWood / Panels",
+      "kind": "WOOD_PANEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32554,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "PlankData.PLANKS[54]",
+          "kind": "plank_data",
+          "reason": "missing_plank_identity",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TsT",
+        "TPT",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:panel/wood_54",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "panel/wood_54",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 6,
+      "gt6_class": "MultiTileEntityPanelWood / Panels",
+      "kind": "WOOD_PANEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32555,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "PlankData.PLANKS[55]",
+          "kind": "plank_data",
+          "reason": "missing_plank_identity",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TsT",
+        "TPT",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:panel/wood_55",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "panel/wood_55",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 6,
+      "gt6_class": "MultiTileEntityPanelWood / Panels",
+      "kind": "WOOD_PANEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32562,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "PlankData.PLANKS[62]",
+          "kind": "plank_data",
+          "reason": "missing_plank_identity",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TsT",
+        "TPT",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:panel/wood_62",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "panel/wood_62",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 6,
+      "gt6_class": "MultiTileEntityPanelWood / Panels",
+      "kind": "WOOD_PANEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32563,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "PlankData.PLANKS[63]",
+          "kind": "plank_data",
+          "reason": "missing_plank_identity",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TsT",
+        "TPT",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:panel/wood_63",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "panel/wood_63",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 6,
+      "gt6_class": "MultiTileEntityPanelWood / Panels",
+      "kind": "WOOD_PANEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32597,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "PlankData.PLANKS[97]",
+          "kind": "plank_data",
+          "reason": "missing_plank_identity",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TsT",
+        "TPT",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:panel/wood_97",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "panel/wood_97",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 6,
+      "gt6_class": "MultiTileEntityPanelWood / Panels",
+      "kind": "WOOD_PANEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32598,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "PlankData.PLANKS[98]",
+          "kind": "plank_data",
+          "reason": "missing_plank_identity",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TsT",
+        "TPT",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:panel/wood_98",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "panel/wood_98",
+      "status": "explicitly_blocked"
+    },
+    {
+      "catalysts": {
+        "d": {
+          "cc": "cruciblecraft:material_screwdriver",
+          "gt": "craftingTool:d",
+          "kind": "catalyst",
+          "status": "source_exact"
+        },
+        "s": {
+          "cc": "cruciblecraft:material_saw",
+          "gt": "craftingTool:s",
+          "kind": "catalyst",
+          "status": "source_exact"
+        }
+      },
+      "count": 6,
+      "gt6_class": "MultiTileEntityPanelWood / Panels",
+      "kind": "WOOD_PANEL",
+      "live_recipe": {
+        "matches_source": false,
+        "present": false
+      },
+      "meta": 32599,
+      "operands": {
+        "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
+          "gt": "PlankData.PLANKS[99]",
+          "kind": "plank_data",
+          "reason": "missing_plank_identity",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
+        },
+        "T": {
+          "cc": "cruciblecraft:iron/screw",
+          "gt": "screw(ANY.Iron)",
+          "kind": "prefix_family",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [
+        "TsT",
+        "TPT",
+        "TdT"
+      ],
+      "recipe_kind": "shaped",
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "runtime_id": "cruciblecraft:panel/wood_99",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "panel/wood_99",
+      "status": "explicitly_blocked"
+    }
+  ],
+  "runtime_slug": "content/gt6-mte-decorative-runtime",
+  "schema": "gt6-mte-inplace-d0-obtain-matrix-v1",
+  "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+}
