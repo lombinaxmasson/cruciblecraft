@@ -37,8 +37,15 @@ CROSS_REF = io.TOOLS / "gt6_oredict_cross_reference.json"
 MATERIALS = (
     ROOT / "src" / "main" / "resources" / "data" / "cruciblecraft" / "materials"
 )
-BATH_REMAINDER = io.TOOLS / "bath_remainder_candidate_selection.json"
-BATH_IDENTITY = io.TOOLS / "bath_identity_candidate_selection.json"
+# The old root selections remain historical inputs. The current selection below
+# is the only source used for the current blocked ledger.
+BATH_CURRENT = (
+    io.TOOLS
+    / "waves"
+    / "bath"
+    / "tiny-purified"
+    / "bath_candidate_selection.json"
+)
 PETROLEUM = io.TOOLS / "petroleum_b4_operand_proof.json"
 CAPABILITIES = io.TOOLS / "capabilities"
 ORDINARY_SELECTIONS = (
@@ -414,15 +421,11 @@ def capability_out_of_band() -> list[dict[str, Any]]:
 def compile_ledger() -> dict[str, Any]:
     emitted, fluidbed_blocked = fluidbed_entries()
     bath_remainder = bath_entries(
-        BATH_REMAINDER,
+        BATH_CURRENT,
         "bath/remainder",
         "identity_or_form_or_object",
     )
-    bath_identity = bath_entries(
-        BATH_IDENTITY,
-        "bath/identity",
-        "recycling_candidate_unproven",
-    )
+    bath_identity: list[dict[str, Any]] = []
     petroleum = petroleum_entries()
     ordinary = ordinary_blocked_count()
     if any(ordinary.values()):
@@ -481,9 +484,9 @@ def compile_ledger() -> dict[str, Any]:
         },
         {
             "chain": CHAIN_BATH,
-            "decision": "deferred_next_card",
+            "decision": "resolved",
             "freshness": "current",
-            "next_card": True,
+            "next_card": False,
             "player_path": "bath remainder / identity",
             "rank": 2,
             "single_root_closable": False,

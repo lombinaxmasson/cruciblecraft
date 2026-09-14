@@ -338,13 +338,13 @@
       "id": "recipe/bath-remainder-families",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "Family count, not recipe rows. Do not add to fluidbed 49.",
-      "planning_bucket": "schedulable",
-      "resolved_by": null,
+      "note": "T48 完成 145 个 family，T49 完成最后 5 个。Bath ordinary remainder 已为 0；不要把历史 family 分母加入 fluidbed 49。",
+      "planning_bucket": "not_work",
+      "resolved_by": "T49详细计划",
       "root_cause": "bath_remainder_unmapped_families",
       "root_cause_class": "unmapped_operand",
-      "status": "open",
-      "title": "Bath remainder 150 家族",
+      "status": "resolved",
+      "title": "Bath remainder 150 家族（T48/T49 已完成）",
       "unit": "families"
     },
     {
@@ -359,13 +359,13 @@
       "id": "recipe/bath-identity-families",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "Separate from remainder 150.",
-      "planning_bucket": "schedulable",
-      "resolved_by": null,
+      "note": "T49 tiny-purified cohort 已关闭这 5 个 family。Bath identity 与 ordinary remainder 已完成。",
+      "planning_bucket": "not_work",
+      "resolved_by": "T49详细计划",
       "root_cause": "bath_identity_unmapped_families",
       "root_cause_class": "unmapped_operand",
-      "status": "open",
-      "title": "Bath identity 5 家族",
+      "status": "resolved",
+      "title": "Bath identity 5 家族（T49 已完成）",
       "unit": "families"
     },
     {
@@ -688,12 +688,12 @@
           "slug": "content/gt6-mte-processing-host-fold"
         }
       ],
-      "count": 5,
+      "count": 3,
       "discovered_by": "content/gt6-mte-processing-host-fold",
       "id": "identity/processing-ungated-families",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "Hammer, Squeezer, Polarizer, MagSep and Laser stay dummy.",
+      "note": "Hammer, Squeezer and Laser stay dummy (18 metas). Polarizer 20221-20225 and MagSep 20301-20305 fold onto live sourceId hosts.",
       "planning_bucket": "schedulable",
       "resolved_by": null,
       "root_cause": "no_matching_sourceid_host",
@@ -1415,7 +1415,7 @@
       "root_cause": "missing_high_voltage_technological_parts",
       "root_cause_class": "missing_form",
       "status": "resolved",
-      "title": "LuV–PUV1 紧凑零件网格仍缺",
+      "title": "LuV–OMEGA 紧凑零件已落地（CC 扩展，非原版 PUV2+）",
       "unit": "tiers"
     },
     {

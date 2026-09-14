@@ -1,10 +1,14 @@
 # 未实现与尾账索引
 
-> 这是当前缺口的人读索引，不是 production authority。
-> unique-active、prep 与 `player_complete` 以
-> [project-status.md](project-status.md) 为准；机器分母以各波
-> `readiness.json` / `overflow.json` 和 capability JSON 为准。
+> **人读权威缺口页。** 本页必须与磁盘对齐；过期即错。
+> 机器主键仍是 `tools/capabilities/**/capability.json` 与
+> `tools/blockers/catalog.json`。[project-status.md](project-status.md)
+> 与 [blocked.md](blocked.md) 是它们的投影，不要手改。
+> unique-active、prep 文件列表与 `player_complete` 以状态页为准；
+> blocker 排期以 catalog / blocked 为准。本页解释那些投影该怎么读，
+> 并列出投影里容易漏掉的当前缺口。
 > `*_READY` 只表示分母、来源或可行性已经冻结，不表示对应内容已经进游戏。
+> Prep 计划文件存在 ≠ runtime 没做。R0 disposition 标签 ≠ 剩余 dummy。
 
 本页只保留：当前未实现、仍 blocked 的余量、非阻塞但容易误读的残余分母，
 以及选择后续内容时必须知道的依赖。已经完整交付的能力不在这里展开；已关闭卡只
@@ -20,17 +24,24 @@
 
 当前边界：
 
-- unique-active 以 [project-status.md](project-status.md) 为准，本页不复述；
-  prep 是 `machines/printer`、
-  `worldgen/gt-dungeon`、`worldgen/gt-planet-rocks`、`worldgen/gt-center`，
-  以及 `content/mte-prep-index` 下 12 张 MTE 家族 prep 卡。
-  地牢已退回 prep，结构载体仍在仓库里，但房间几何与 GT 石材形态未完成，
-  不得宣称 `runtime_ready`。
-  具体状态见 [project-status.md](project-status.md)。
+- unique-active 以 [project-status.md](project-status.md) 为准，本页不复述。
+  状态页 Prep 里仍列着 `machines/printer`、地牢 / 行星岩 / Center，以及
+  `content/mte-prep-index` 下 12 张 MTE 家族 prep **计划文件**。
+  那些 prep 文件是 2026-09-11 的冻结合同，**不是**「家族 runtime 还没做」。
+  对应 `content/gt6-mte-*-runtime` / `*-host-fold` 已关 `runtime_ready`。
+  地牢退回 prep：结构载体在仓库里，房间几何与 GT 石材形态未完成，
+  不得宣称 `runtime_ready`。PUV 六张 capability 是 `frozen` + `paused` 的
+  CC 扩展，计划文件也还在 Prep；不要读成原版 PUV2+ 科技线或
+  `player_complete`。语言键与显示名规范收口
+  （`localization/language-key-display-name-normalization`）是现行 unique-active，
+  已关 `runtime_ready`：点号 translation key 与显示名规范已进生成器；
+  关闭 `player_complete` 时才删 dual slash/dot lookup。不改 registry / 模型 /
+  loot / 存档 ID，不得把手改 generated lang 当成实现。
 - 跨域审计 [GT6 管道与线缆语义重基线](../history/card-plans/closed/GT6管道与线缆语义重基线详细计划.md)
   已关闭（无 capability）。它冻结了 GTCEu 不得覆盖 GT6、四套网络隔离、
-  以及 catalog 666 行 live/dummy 处置；流体/物品/EU/红石 runtime 仍须
-  按该卡 envelope 另开 child，不得再把 GTCEu 合同当成 GT6。
+  以及 catalog 666 行 live/dummy 处置。流体 / 物品 / EU / 红石 runtime 与
+  获得格 child **已经按该 envelope 落地并关** `runtime_ready`，不是
+  `player_complete`。不得再把 GTCEu 合同当成 GT6。
 - `player_complete` 清单只看 [project-status.md](project-status.md)，不在本页复制。
 - catalog **1,817 个 MTE 身份**是独立的身份分母，不等于机器 overflow，也不等于
   1,817 个待实现机制；详见第 0.1 节。
@@ -43,15 +54,16 @@
 | --- | --- |
 | 当前 active / prep / `player_complete` | [project-status.md](project-status.md) |
 | 跨能力 blocked 总账 | [blocked.md](blocked.md)（排期桶 A–D） / [`catalog.json`](../../tools/blockers/catalog.json) / [`ledger.json`](../../tools/blockers/ledger.json) |
+| 批处理关系 | [`batches.json`](../../tools/blockers/batches.json)；只登记当前 open scope，已关闭条目先在 `closed_before_batch_selection` 对账 |
 | 状态与交付流程 | [capability-delivery-workflow.md](capability-delivery-workflow.md) |
 | MTE 身份分母 | [`disposition_ledger.json`](../../tools/waves/portfolio/mte-identity-disposition-r0/disposition_ledger.json) / [`family_map.json`](../../tools/waves/portfolio/mte-identity-disposition-r0/family_map.json) |
 | 机器尾账 | 各 `tools/waves/machines/**/readiness.json`、`overflow.json` |
 | GT6 语义与形态 | 本地 `gt6_code/gregtech6` 与对应 source-backed artifact |
 | GT6 贴图迁移 | [gt6-art-policy.md](gt6-art-policy.md) 与本地 `gt6_referencable_port_code/gregtech6_w` |
 
-## 0.1 分类总览（2026-09-12）
+## 0.1 分类总览（2026-09-14）
 
-人读索引，不是 production authority。当前 blocker 权威是
+人读分类必须跟 blocker catalog 与 capability JSON 一致。blocker 机器权威是
 [blocked.md](blocked.md) 与 `tools/blockers/ledger.json`（源是
 `tools/blockers/catalog.json`）。排期看 `planning_bucket`（A 规模不是待办，
 B 可抽 unique-active，C 先审计分母，D 不是活），不要按 `count` 选最大的卡。
@@ -61,13 +73,45 @@ B 可抽 unique-active，C 先审计分母，D 不是活），不要按 `count` 
 [`disposition_ledger.json`](../../tools/waves/portfolio/mte-identity-disposition-r0/disposition_ledger.json)
 为准。本节只分类，不关卡、不改分母、不把 overflow 行数写成新机制数量。
 
-四块：**机器配方尾账**、**MTE catalog 分母 1,817**、**LuV–PUV1 零件**、
-**下一阶段内容切片**。1,817 是 `gt_mte` catalog 行，不是织机/层压机 overflow。
+四块：**机器配方尾账**、**MTE catalog 分母 1,817（runtime 波次已过）**、
+**高压零件与 CC 扩展（frozen，不晋级）**、**下一阶段内容切片**。
+1,817 是 `gt_mte` catalog 行，不是织机/层压机 overflow。
 
-现行 unique-active 见 [project-status.md](project-status.md)。盖板余量已关闭 `runtime_ready`。Sensors 已关闭 `runtime_ready`。熔炉已关闭 `runtime_ready`。打磨机已关闭 `runtime_ready`。`worldgen/gt-trees` 与 `worldgen/gt-crops` 已关闭
-`runtime_ready`。地牢退回 prep，上一轮的 `runtime_ready` 声明仍撤回。技术中间件
-基础已关闭 `runtime_ready`。印刷机与两张非矿 worldgen（行星岩 / Center）
-仍是 prep。LuV–PUV1 不在本卡分母内。
+现行 unique-active 见 [project-status.md](project-status.md)。盖板余量、Sensors、
+熔炉、打磨机、技术中间件基础、树与作物已关 `runtime_ready`。
+连接件与 MTE 家族 runtime child 同样已关 `runtime_ready`（清单见状态页）。
+地牢退回 prep。印刷机与行星岩 / Center 仍是 prep。
+高压零件与 HEX/蒸汽/聚变/量子物质是 `frozen`+`paused` 的 CC 扩展，
+不是下一张 unique-active。
+
+### 历史 candidate 与 current closeout 的读法
+
+正常排期不需要人工回查 T48/T49。当前 blocker 的状态应由 current
+`tools/blocked_recipe_ledger.json`、`tools/blockers/catalog.json` 和
+`tools/blockers/batches.json` 自洽给出；历史 candidate / lock 只用于追溯，不是
+当前排期输入。若这些 current projection 互相矛盾，应当让校验失败并修复生成链，
+而不是让每个排期者自行翻历史卡。
+
+Bath 只是这条数据链的回归样例：旧的 150 / 5 数字仍可在历史 candidate 中找到，
+但 current recipe ledger 的 `bath_remainder` / `bath_identity` blocked 计数都是 0，
+所以它们只能作为 resolved 历史范围，不能进入新的 blocker 批次。
+
+#### 2026-09-14 这次误判的原因与修正
+
+这次的主要故障是**收口后的投影没有同步**，不是流程要求排期者回查历史：
+
+- `tools/blocked_recipe_ledger.py` 仍读取旧的根级 candidate selection，把历史
+  R0 分母当成 current blocked 输入；T49 之后的 current selection 没有接管它。
+- recipe ledger 更新后，`tools/blockers/catalog.json` 没有被同一条校验链检查，
+  因而 catalog、recipe ledger、batch index 可以同时保持“各自格式正确”但语义
+  不一致。
+- 我在这个 stale catalog 上继续做了数量排序，放大了投影同步故障；这属于错误
+  地信任 stale current projection，而不是应该由人工补做 T48/T49 审计。
+
+修正现在落在生成链上：recipe ledger 改读 current selection；blocker 校验增加
+recipe-ledger ↔ catalog 一致性门；resolved blocker 不能进入 `batches.json`；
+旧 candidate 只保留为历史解释。相关代码是 `tools/blocked_recipe_ledger.py`、
+`tools/blockers/__init__.py`，current 规则见 `recipe-wave-workflow.md`。
 
 ### 当前机器配方尾账
 
@@ -102,139 +146,107 @@ B 可抽 unique-active，C 先审计分母，D 不是活），不要按 `count` 
 HSLA `cableGt12` 不在已落地的缺线规集合里。注射机 overflow 仍是玻璃 /
 `ic2coolant` / soda / thoriumsalt / shadow，**0** 行是 MTE。
 
-### MTE catalog 分母（1,817；不是 1,817 个待实现机制）
+### MTE catalog 分母（1,817；runtime 波次已过，不是 1,817 个待办）
 
-权威：[`disposition_ledger.json`](../../tools/waves/portfolio/mte-identity-disposition-r0/disposition_ledger.json)
+权威分母仍是 [`disposition_ledger.json`](../../tools/waves/portfolio/mte-identity-disposition-r0/disposition_ledger.json)
 与 [`family_map.json`](../../tools/waves/portfolio/mte-identity-disposition-r0/family_map.json)。
 R0 计划 [MTE 身份分母处置 R0](../history/card-plans/closed/MTE身份分母处置R0详细计划.md)。
 这是原 `gt_mte/mte_*`、现由 `catalog_modern_id_map.json` 定址的 catalog
-**holdable 身份**，不是加工机 overflow 行数。
-其中 `identity_only` 是没有行为的散落 / 展示身份，`attachment_candidate` 是仍缺
-runtime 的附件行为；`realized_natively` 只说明 CC 在该领域有具名机制，
-不等于该 meta 已与 live item / block 合并。
-因此不得把 1,817 写成 1,817 个已实现机制，也不得把它们全部当成同一种待办。
-现已新增 [MTE 全量 Prep 总索引](../history/card-plans/prep/MTE全量Prep总索引.md)
-与 12 张家族 prep 卡；索引引用当前 ledger 的逐行事实，其中 1,534 行进入
-后续规划，283 行保留为 `realized_natively` 审计项。prep 卡只冻结来源、
-所有权、依赖、blocked 边界和 **物品重复/贴图终态（索引 §0.1）**，不创建
-capability 或 runtime，也不复制 png。
+**holdable 身份**，不是加工机 overflow 行数。不得把 1,817 写成 1,817 个
+待实现机制，也不得整表开工。
 
-`registry/catalog-modern-ids` 改名时不合并活主机，所以现在会同时存在活形态
-（`{材料}/fluid_pipe` 等）与 dummy（`fluid_pipe_tile/…` 等，铁锭模型）。
-这不是产品终态。JEI 双物品是债。runtime child 必须逐 meta 比较 Loader
-注册、材料/class/spec、live item 与 live block。精确 live BlockItem 才完整
-折回；配方只能映射到普通 item 时，仍须解决可放置身份；像但不是或没有宿主
-则在现代 dummy id 上原地实现并迁 `gregtech6_w`。铁锭不是可发行美术。
-`registry/catalog-modern-ids` 已关 `runtime_ready`。24 个 Bath 重叠
-`existing_item` 指向 Bath 已注册 dummy；meta 25302 Osmium 现为
-`item_pipe_tile/osmium_elemental`。
+R0 标签是 2026-09-11 快照，runtime 卡写明 **Do not edit R0**，所以个数
+不会跟着折回变绿：
 
-`content/gt6-pipe-cable-baseline` 已关闭 prep 审计（无 capability）。
-权威在 [GT6 管道与线缆语义重基线](../history/card-plans/closed/GT6管道与线缆语义重基线详细计划.md)
-与 `tools/waves/content/gt6-pipe-cable-baseline/`。它冻结了 GTCEu 不得覆盖
-GT6、四套网络隔离、以及 catalog 666 行的 live/dummy 处置；**没有**把流体管、
-物品管、EU 线或红石线晋级为新的 `player_complete`。后续 child 必须按该卡
-envelope 分开落地，禁止 stand-in。
-
-| disposition | 个数 | 含义 |
+| disposition | 个数 | 现在怎么读 |
 | --- | --- | --- |
-| `identity_only` | **1,501** | 已注册散落物 / 展示身份（多数仍是铁锭模型）。这不是“永不折回”：管/线、能源转换机、部分加工机和储物仍须逐 meta 对 live host |
-| `realized_natively` | **283** | CC 在该领域已有机制，但可能是 already_shared、精确重复或仅相似机制；不能整类自动折回 |
-| `attachment_candidate` | **33** | R0 标签未改。流体附件 runtime 已由 `content/gt6-mte-fluid-attachments-runtime` 关 `runtime_ready`；不得把 R0 33 再写成「游戏里没有龙头」 |
+| `identity_only` | **1,501** | 当时的散落 / 展示身份标签。其中能对上 live BlockItem 的已经折回或原地做成活方块；剩下才是 dummy / 未开门规格。**不是**「还有 1,501 个铁锭」 |
+| `realized_natively` | **283** | CC 在该领域已有机制。不能整类自动折回（坩埚不能吞进陶瓷、错误 kind 不能按名合并） |
+| `attachment_candidate` | **33** | 标签未改。流体附件 runtime 已由 `content/gt6-mte-fluid-attachments-runtime` 关 `runtime_ready`；不得写成「游戏里没有龙头」 |
 | `deferred` | 0 | — |
 | **合计** | **1,817** | `unmatched = 0` |
 
-家族（`family_map.json`，合计 1,817）：
+[MTE 全量 Prep 总索引](../history/card-plans/prep/MTE全量Prep总索引.md) 与 12 张
+家族 prep **计划**仍冻着 2026-09-11 的合同（1,534 行规划 + 283 行
+`realized_natively` 审计）。那些文件当时规定不创建 capability、不改
+`src/main`。那是 prep 车道的历史合同，**不要**拿来当 9 月 14 日之后的
+剩余清单。
 
-| 家族 | 个数 | GT6 tag |
-| --- | --- | --- |
-| connector | 663 | Electric Wires / Fluid Pipes / Item Pipes |
-| furniture_storage | 563 | Chests / Crafting Tables / Safes / Scaffolds / Storage |
-| hopper | 101 | Hoppers / Misc Tool Blocks |
-| processing_machine | 86 | Automatic Tools / Basic Machines |
-| crucible_foundry | 85 | Molds / Smelting Crucibles |
-| energy_converter | 79 | Battery Boxes / Burning Boxes / Engines / Heaters / Steam Boilers / Turbines |
-| multiblock | 74 | Multiblock Machines |
-| drive | 63 | Axles and Gearboxes（活目录 63；轴 36 + 齿轮箱 9 + 旋转引擎 9 + 旋转变压器 9。CC 旋转能是另一套对象） |
-| misc_tool | 39 | Misc Tool Blocks |
-| fluid_attachment | 33 | Crucibles Faucets / Misc Tool Blocks |
-| decorative | 24 | Panels / Ropes（Wooden Panel 23 只计一次；不是 exclusion-reclaim 的 Panels 348） |
-| redstone_wire | 3 | Redstone Wires |
-| extender | 2 | Extenders |
-| reactor | 1 | Reactors |
-| untyped | 1 | Untyped |
+`registry/catalog-modern-ids` 已关 `runtime_ready`。改名时不合并活主机，
+所以仍可能同时存在活形态（`{材料}/fluid_pipe` 等）与未折完的 dummy
+（`fluid_pipe_tile/…` 等）。JEI 双物品只算还没 `fold_live_block` /
+`in_place` 的债。铁锭不是可发行美术。24 个 Bath 重叠 `existing_item`
+指向 Bath 已注册 dummy；meta 25302 Osmium 现为
+`item_pipe_tile/osmium_elemental`。
 
-导线电缆折回卡只处理 **配方操作数** 里已有 CC conductor 的 Loader id
-（mapped **259** / unmapped **61**），**没有**撤掉对应散落 dummy。
-mapped 还包含 catalog 外 id 和只有普通 item、没有 BlockItem 的规格，不能
-机械当 dummy 删除集合。连接件 runtime 只折回精确 live BlockItem；item-only
-规格必须先解决 canonical item 的 BlockItem 升级。流体管、物品管同样按
-meta/material/kind/size 对 PipeCatalog；未注册规格保持 dummy + 迁图。
-`content/gt6-connector-alias-repair` 修正 HSLA `_cc_material` 漏匹配：五规格
-流体管与门控 1x/3x/5x/6x 线规折到活 `hslasteel/*` BlockItem。
-`content/gt6-fluid-combo-pipe-runtime` 落地 quadruple/nonuple 独立 4/9 罐。
-`content/gt6-restrictive-item-pipe-runtime` 把 catalog 内 6 行 restrictive
-折到活 BlockItem（`stepSize ×100` + restrictor 层）；Loader-out 57 行仍冻结。
-`content/gt6-eu-missing-wire-gauges-runtime` 把 gated `wireGt07/09/10/11/13/14/15`
-折到活 CableBlockItem（168 catalog dummy）；红合金/Signalum/Lumium 仍排除 EU。
-`content/gt6-insulated-redstone-runtime` 把 27006/27056/27506 原地做成
-`RedstoneWireBlockItem`（4px，非 EU）。层压机获得格与 torch/repeater 宿主仍 blocked。
-`content/gt6-fluid-dangerous-media-runtime` 把 plasma/magic 做成 fill-then-tick
-trash（magic 1% 无 TC 时变空气），并落地 flammable / contactDamage。
-`content/gt6-fluid-pipe-acquisition` 落地组合管 pack/unpack，以及 gated
-`curved_plate` / `double_plate` 五规格工作台；不以平板顶格。已有
-extruder `material_rule` 仍是机器获得路径。
-`content/gt6-item-pipe-acquisition` 落地普通物品管 `plateCurved` /
-`plateDouble` 工作台，以及 restrictive 的 matching gauge + `steel/ring`。
-EU / 绝缘红石获得格仍另开 child。轴/齿轮箱与红石线对 KU / 原版红石是「像但不是」，keep-both + 迁 GT6 图。
-家具中的 Chest/Safe/Table/Scaffold 无宿主；Bookshelf/Crate/Locker/Drawer/
-Mass Storage 先对 `storage_variants.source_legacy_id`。织机 / 层压机剩余
-unmapped MTE 行是缺规格或未注册材料，不是这 1,817 里「已经折完」的证明。
+家族个数（`family_map.json`，合计 1,817）没变：connector 663、
+furniture_storage 563、hopper 101、processing_machine 86、
+crucible_foundry 85、energy_converter 79、multiblock 74、drive 63、
+misc_tool 39、fluid_attachment 33、decorative 24、redstone_wire 3、
+extender 2、reactor 1、untyped 1。drive 活目录是轴 36 + 齿轮箱 9 +
+旋转引擎 9 + 旋转变压器 9；CC 旋转能是另一套对象。decorative 的
+Wooden Panel 23 只计一次，不是 exclusion-reclaim 的 Panels 348。
 
-283 个 `realized_natively` 的去重审计仍有明确入口：connector 46、hopper 101、
-crucible_foundry 85、processing_machine 50、reactor 1。特别是
-`realized_natively` 不能把材料化 Smeltery/Mold 折进单一陶瓷坩埚，也不能把
-错误 kind 的加工机按名称吞掉。
+#### 已关 `runtime_ready` 的 child（不是 `player_complete`）
 
-### LuV–PUV1 技术零件（延期，另立专卡）
+清单以 [project-status.md](project-status.md) 为准。按家族：
 
-GT6 紧凑零件循环是 `VN[0..9]`：ULV, LV, MV, HV, EV, IV, **LuV, ZPM, UV, PUV1**。
-盖板 `CoverComponentTiers` 同样十档。本卡冻结并落地的是 `Electric_T[0..5]`。
-**LuV ≠ `wireGt07`**：LuV 是电压档 `VN[6]` / `Electric_T[6]=Ir`；`wireGt07` 是
-七线规，从 **ZPM 电机** `MOTORS[7]` 才开始。
+- **连接件**：流体管 / 物品管 / EU 线 / 裸红石线 runtime、combo 4/9 罐、
+  catalog 内 6 行 restrictive、gated 缺线规、HSLA 漏匹配、绝缘红石
+  27006/27056/27506、危险介质、流体/物品管获得格、EU 电缆获得格、
+  绝缘红石获得格、连接件美术。轴/齿轮箱与红石线对 KU / 原版红石是
+  「像但不是」，keep-both + 迁 GT6 图。
+- **折回**：漏斗 101、转换器 71 活主机、反应棒、加工机 `sourceId` 对齐的
+  68 个 meta（含 Polarizer 20221–20225、MagSep 20301–20305）。
+- **原地 in-place**：流体附件、家具箱/柜/台/架/桶/储物、装饰、传动、
+  扩展器、多方块、坩埚铸造、杂项工具、转换器余量。Chest/Safe/Table/Scaffold
+  **已有**活 BlockItem，不是「无宿主」。
 
-| i | VN | EU | `Electric_T` | CC 材料 | 零件身份 | 真源网格 |
-| --- | --- | --- | --- | --- | --- | --- |
-| 6 | LuV | 32768 | Ir | `iridium.json` 有 | 传送带/泵/机械臂盖板有；电机/活塞/力场/发射器/传感器 **无** | 盖板是历史 `programmed_circuit` 升级，不是 `MultiItemTechnological` 网格 |
-| 7 | ZPM | 131072 | Os | `osmium_elemental.json` 有 | 同上 | 同上 |
-| 8 | UV | 524288 | Trinitanium | `trinitanium.json` 有 | 同上 | 同上 |
-| 9 | PUV1 | 2097152 | Trinaquadalloy | `trinaquadalloy.json` 有 | 同上 | 同上 |
+`content/gt6-pipe-cable-baseline` 仍是已关闭的 prep 审计（无 capability），
+没有把管/线晋级为 `player_complete`。
 
-`Electric_T[10+]` 才是 Neutronium。CC 没有 `neutronium.json`。那一截不在十档紧凑
-零件循环里；不要把计划里的「LuV–OMEGA」读成 VN[9] 叫 OMEGA。OMEGA / PUV2+ 是
-更后面的材料档，尚未冻结为实现卡分母。
+#### 现在还剩的 MTE 余量
 
-**已具备（不够做真网格）**
+- 加工机未开门家族（`identity/processing-ungated-families`）：Hammer /
+  Squeezer / Laser 共 18 个 dummy meta。Polarizer / MagSep **已经折到**
+  活主机。
+- 连接件：配方操作数 mapped **259** / unmapped **61**（mapped 不是 dummy
+  删除集合）。restrictive Loader-out 57 行仍冻结。石墨烯 / 超导 EU dummy
+  与 HSLA 未开门线规仍 blocked。层压机获得格与 torch/repeater 宿主仍 blocked。
+- in-place 获得格：`obtain/mte-inplace-runtime`（14 张卡）仍 blocked，
+  有 runtime 不等于 source-exact 生存合成。
+- 织机 / 层压机剩余 unmapped 行是缺规格或未注册材料，**不是**
+  「1,817 没折完」。注射机 overflow **0** 行是 MTE。
+- `realized_natively` 去重审计入口仍在：connector 46、hopper 101、
+  crucible_foundry 85、processing_machine 50、reactor 1。
 
-- 铱 / 锇 / 三钛 / 三硅合金材料文件 live
-- `circuit_ultimate`（`OD_CIRCUITS[6]`，LuV 机械臂 / 力场 / 发射器 / 传感器）
-- 退火铜 `sextuple_wire`（LuV 电机 `wireGt06`）与 `octuple_wire`（`wireGt08`）
-- 铱 / 锇 / 钕磁在 `material_registration_gate.json` 的 `materials` 里已有 `curved_plate`、`rod`、`long_rod`、`screw`、`rotor`、`small_gear`
-- 石墨烯 live 有 `wire`（LuV 起 `CABLES_01` 改成石墨烯单线，不是普通电缆）
-- 电变压器 `10045–10048` 已覆盖 IV–LuV … UV–PUV1，**不用**紧凑电机
+### 高压零件与 CC 扩展（已落地，frozen，不是原版 PUV2+）
 
-**缺失（禁止 stand-in）**
+**LuV ≠ `wireGt07`**：LuV 是电压档 `VN[6]` / `Electric_T[6]=Ir`；`wireGt07`
+是七线规。盖板 `CoverComponentTiers` 仍是十档（ULV–PUV1）。GT6 原版没有
+PUV2+ 科技线，只有 `VN[14]=XV` 这种枚举位。
 
-- 三钛 / 三硅合金 live 没有 `curved_plate`（UV / PUV1 壳体）。电机、泵、发射器、传感器都要 `OP.plateCurved`
-- 石墨烯 live 没有 `quadruple_wire`（LuV 发射器 `WIRES_04`）
-- `gt6_prefix_mapping.json` 没有 `wireGt07` / `wireGt09` / `wireGt10` / `wireGt14`（有 01–06、08、12、16）。ZPM 电机要七线规；LuV 力场要锇 `wireGt10`；UV 力场要锇 `wireGt14`；PUV1 电机要 `wireGt09`
-- `OD_CIRCUITS[7+]` 指向 Quantum；目录没有 `circuit_quantum`，也没有 `quantum` 材料
-- 现有 LuV–PUV1 盖板获得式仍是上一档 + `programmed_circuit`，收回真网格必须另开卡
+`content/technological-parts-foundation` 已关 `runtime_ready`：ULV–IV
+紧凑零件。`content/puv-omega-parts` 把紧凑电零件做到 **index 14（OMEGA）**，
+并注册 `circuit_quantum`。`neutronium.json` 已在材料树里。石墨烯有
+`generates_quadruple_wire` 等线规，**没有** `generates_ingot`。
+`gt6_prefix_mapping.json` 已含 `wireGt07` / `09` / `10` 等。
 
-**当前加工主机用不到这一档。** 切片机 / 注射机 / 织机 / 印刷机 / 纳米加工机源注册都是
-`Electric_T[1..5]`（最高 IV / 8192）。先做高压零件不会把机器配方尾账的 overflow 转绿，
-也不会解开纳米加工机的激光气体与蓝宝石处理器。真正吃 `FIELD_GENERATORS[6–9]` 的是
-晶体充电器一类能源主机，不在当前 unique-active 加工账本里。
+同一次 closeout 还把大型热交换器 17197、蒸汽涡轮、聚变 18 行 + CC 中性物质
+扩展、QUANTUM / 物质制造放进仓库。对应六张 capability 是 **`frozen` +
+`paused`**，当时 unique-active 为空，**不是** `player_complete`，也不得当成
+原版 GT6 高压线已完成。计划文件仍在 Prep：
+[PUV2+ / OMEGA 科技线](../history/card-plans/prep/PUV2OMEGA科技线详细计划.md)。
+主机 ID 带 81000+ 的是 `CC_EXTENSION`。
+
+切片机 / 注射机 / 织机 / 印刷机 / 纳米加工机源注册仍是 `Electric_T[1..5]`
+（最高 IV）。高压零件**不会**把那些 overflow 转绿，也解不开纳米加工机的
+`IL.Comp_Laser_Gas_Ar/Kr/Xe` 与蓝宝石晶体处理器。不要把 PUV 再拉进下一张
+unique-active。
+
+仍 blocked、且与高压相关的余量见 [blocked.md](blocked.md)：
+`identity/eu-blocked-gauges`（石墨烯/超导 dummy）、
+`identity/electric-unregistered-gauges`（61）、`obtain/nanofab-hosts`。
 
 ### 下一阶段内容切片
 
@@ -252,17 +264,21 @@ GT6 紧凑零件循环是 `VN[0..9]`：ULV, LV, MV, HV, EV, IV, **LuV, ZPM, UV, 
 
 ### 路线结论
 
-1. 树与作物已关 `runtime_ready`，不宣称 `player_complete`，不把 LuV–PUV1 拉进下一张卡。
-2. catalog **1,817** 个 MTE 身份已登记：1,501 个 `identity_only`、283 个
-   `realized_natively`、33 个流体附件。R0 disposition 与物品去重是两条轴；
-   全部 1,817 行都要逐 meta 的 live item/live block、迁图和存档处置。
-   12 张 prep + 索引已冻结合同，仍不是 runtime 实现。
-3. 有对应高压主机（LuV 加工机、晶体充电器等）和能源路线之前，高压零件另立专卡；
-   不得用 `programmed_circuit` 或错误线规顶缺格。
-4. Sensors 已关 `runtime_ready`，不宣称 `player_complete`。行星岩 / Center 已签发 prep，排队不占落地锁。
-5. 同一时刻仍只允许一条 unique-active。印刷机继续留 prep，直到染料流体身份存在。
-   地牢仍是 prep / `frozen`：结构载体在仓库里，GT 石材、房间几何与 `IL.KEYS` 仍 blocked；
-   加工机身份折回 **不是** 地牢完成。行星岩还要额外维度 runtime。Center 保持后置。
+1. 树与作物已关 `runtime_ready`，不宣称 `player_complete`。PUV / OMEGA 已作为
+   CC 扩展挂在树上（`frozen`+`paused`），不要再当下一张 unique-active，
+   也不要宣称原版高压线完成。
+2. catalog **1,817** 个 MTE 身份仍是 R0 分母快照：1,501 `identity_only`、
+   283 `realized_natively`、33 流体附件标签。家族 runtime / 折回 child
+   **已经关** `runtime_ready`。12 张 prep + 索引还是历史合同，不是
+   「仍不是 runtime」。剩余是 dummy 余量、未开门规格、in-place 获得格。
+3. 纳米加工机获得格（激光气体 + 蓝宝石处理器）和连接件 61 个未映射
+   Loader id 才是还可能排期的高压/连接件活。禁止 `programmed_circuit` 顶格。
+4. Sensors 已关 `runtime_ready`，不宣称 `player_complete`。行星岩 / Center
+   仍是 prep，排队不占落地锁。
+5. 同一时刻仍只允许一条 unique-active。印刷机继续留 prep，直到染料流体
+   身份存在。地牢仍是 prep / `frozen`：结构载体在仓库里，GT 石材、房间
+   几何与 `IL.KEYS` 仍 blocked。加工机身份折回 **不是** 地牢完成。
+   行星岩还要额外维度 runtime。Center 保持后置。
 
 ---
 
@@ -270,6 +286,10 @@ GT6 紧凑零件循环是 `VN[0..9]`：ULV, LV, MV, HV, EV, IV, **LuV, ZPM, UV, 
 
 这些条目已经冻结分母，但仍有明确的 runtime、内容或玩家路径缺口。实现要另开
 runtime / 内容卡，不把关闭冻结卡当成实现证明。
+
+PUV / OMEGA 六张是例外：`src/main` **已经有**主机，capability 故意停在
+`frozen`+`paused`（CC 扩展，不是原版 GT6 高压线）。它们不属于第 2 节
+「尚未签发」。不要 unique-active 它们，也不要宣称 `player_complete`。
 
 | 人类名 | slug / `--check` | 冻了什么 | 判定 | 可行性文件 |
 | --- | --- | --- | --- | --- |
@@ -286,6 +306,10 @@ runtime / 内容卡，不把关闭冻结卡当成实现证明。
 | Food | 同上 | dump juicer 96 + fermenter 6435（规模，非 census） | `requires_new_runtime` | 同上 |
 | Bees | 同上 | `WorldgenHives` 10 + bumblequeen 80 + bumblelyzer 1440（规模，非 census） | `requires_new_runtime` | 同上 |
 | 流体附件（catalog 33） | `content/gt6-mte-fluid-attachments-runtime` | catalog 浇铸口 / 流体龙头 / 喷嘴 / 帽喷嘴 / 流体漏斗 的 in-place runtime | 已关 `runtime_ready`，不是 `player_complete`。R0 `attachment_candidate` 标签未改。获得格仍可 blocked | [GT6流体附件runtime详细计划](../history/card-plans/closed/GT6流体附件runtime详细计划.md) |
+| 大型热交换器 17197 | `energy/large-heat-exchanger` | 3×3×2 HEX，blocker `energy/large-heat-exchanger-17197` 已 `resolved` | `frozen`+`paused`。代码在仓库。不是 `player_complete` | [PUV2+ / OMEGA 科技线](../history/card-plans/prep/PUV2OMEGA科技线详细计划.md) |
+| 蒸汽涡轮 | `energy/steam-turbine` | 15 单机 + 4 大型，STEAM→RU | `frozen`+`paused`。blocker 已 `resolved`。不是 HEX / 冷却器 | 同上 |
+| 聚变 / 量子 | `energy/fusion-quantum`、`energy/quantum-massfab` | 18 源行 + CC 中性物质扩展 | `frozen`+`paused`。`energy/reactor-fusion` 已 `resolved`。`FUELS_PLASMA` 保持空 | 同上 |
+| 高压零件 / 矩阵 | `content/puv-omega-parts`、`machines/puv-omega-matrix` | 紧凑零件 0–14、`circuit_quantum`、长距变压器 | `frozen`+`paused`。`material-form/luv-puv1-parts` 已 `resolved`。盖板仍十档 ULV–PUV1 | 同上 |
 
 `GENERIC_RECIPE_IMPORT_READY` 只表示已有 host 时可以 `import-source`，不创建新的
 RecipeMap，也不实现封面网或世界内容。Prep 与已完成 capability 的状态只看
@@ -303,19 +327,17 @@ GT6 里传送带零件就是盖板 `compact_electric_conveyor_*`，不再另开 
 在真实染料流体身份进入后续内容卡前，不生成空 live family，也不使用
 其它流体替代。见第 0.1 节。
 
-打磨机是 MTE 加工机身份卡的第一张 runtime child，已关闭 `runtime_ready`：
-`gt.recipe.sharpener` 7637 行，selected 7637 / overflow 0，四台 Kinetic 主机 20511–20514 获得格
-source-exact。工具头 remap、sharpener 材质形态和 14502/14512 MTE overlay 已补齐，overflow 为 0。
-Grindstone `32703` 不在本卡。关闭目标不是 `player_complete`。
-计划 [打磨机详细计划](../history/card-plans/closed/打磨机详细计划.md)。
-余量回收记录见
-[工具头前缀与打磨机余量回收详细计划](../history/card-plans/closed/工具头前缀与打磨机余量回收详细计划.md)。
-现行 unique-active 见 [project-status.md](project-status.md)。盖板余量、Sensors 与熔炉已关闭
-`runtime_ready`。
+打磨机、盖板余量、Sensors 与熔炉已关闭 `runtime_ready`（打磨机曾是 MTE
+加工机身份卡的第一张 runtime child；后续家族 child 见第 0.1 节）。
+Grindstone `32703` 不在打磨机卡。关闭目标不是 `player_complete`。
+计划见 [打磨机详细计划](../history/card-plans/closed/打磨机详细计划.md)
+与 [工具头前缀与打磨机余量回收详细计划](../history/card-plans/closed/工具头前缀与打磨机余量回收详细计划.md)。
+现行 unique-active 见 [project-status.md](project-status.md)。
 
 剩余的 `controller_*`、`detector_*`、redstone 盖板已由 `logistics/cover-remainder`
-关闭为 `runtime_ready`；绝缘红石线宿主仍 blocked。建筑方块 identity / behavior
-仍没有 owner，不能从 `cc_mechanism = none` 直接推导工作量。盖板分母与合同见
+关闭为 `runtime_ready`；绝缘红石线 27006/27056/27506 也已关
+`runtime_ready`。仍 blocked 的是 torch/repeater 宿主。建筑方块 identity /
+behavior 仍没有 owner，不能从 `cc_mechanism = none` 直接推导工作量。盖板分母与合同见
 [盖板余量详细计划](../history/card-plans/closed/盖板余量详细计划.md)。
 
 ---
@@ -323,14 +345,15 @@ Grindstone `32703` 不在本卡。关闭目标不是 `player_complete`。
 ## 2. 尚未冻结的领域
 
 这些领域已经被对照图点名，但还没有可直接执行的实现分母；它们不是自动下一张卡。
+蒸汽涡轮、大型热交换器 17197、聚变 / 量子物质 **已经**冻结并落地，见第 1 节，
+不要再写进本表。
 
 | 项 | 在哪 | 现状 |
 | --- | --- | --- |
 | 物流余量 | `redstone_torch` / `redstone_repeater` 绝缘红石线宿主 | 已关 `runtime_ready` `logistics/cover-remainder`；裸红石线 MTE 已关 `runtime_ready`。绝缘 27006/27056/27506 已关 `runtime_ready` `content/gt6-insulated-redstone-runtime`。torch/repeater 宿主仍 blocked。见[盖板余量详细计划](../history/card-plans/closed/盖板余量详细计划.md) |
 | 配方引擎 | `ShapedCatalystRecipe` 占用包围盒 vs 玩家 2×2 | 1.21 `CraftingInput.of` 去空边后两列网格仍能 `matches()`；`canCraftInDimensions` 已要求 3×3。不是下一张卡。 |
 | 计数上限与 kind envelope | capability map 的 report-only / count-ceiling 行 | 新 RecipeMap 前要先明确处理方式 |
-| 蒸汽涡轮 / 冷却器 | 热交换器第一切片不等于这两类主机 | 仍需独立 runtime、配方和玩家路径 |
-| 聚变 / 等离子 | 控制器获得格、等离子流体身份、输入/输出链 | 18 `RM.Fusion` 行已发布，不是剩余工作量。排期见 [blocked.md](blocked.md) C 桶 `energy/reactor-fusion`。不从已有 fusion 行推导 stand-in |
+| 冷却器 | `energy/cooler` | 仍缺独立 runtime。排期 [blocked.md](blocked.md) C 桶。热交换器第一切片 ≠ 冷却器；蒸汽涡轮已落地也 ≠ 冷却器 |
 | 建筑方块 identity / behavior | identity、hardness、multiblock parts、decorative behavior | 仍没有当前 owner |
 
 ---
@@ -439,11 +462,23 @@ T30 `steel_dust_funnel` 只做 dust / small_dust / tiny_dust 的 1/4/9，计划�
 
 ## 6. 本页怎么更新
 
-- 分类总览（第 0.1 节）过期时按 readiness / overflow / capability JSON 以及
-  `tools/waves/portfolio/mte-identity-disposition-r0/` 的 ledger / family_map 改总览，
-  不要改 sealed R0 正文去「对齐观感」。1,817 必须作为独立分类出现，不得只写在流体附件一行。
+- 本页是人读权威。capability / catalog 变了，当天改本页。不要让状态页 Prep
+  列表或 sealed R0 标签把读者带回过期结论。
+- 分类总览（第 0.1 节）过期时按 readiness / overflow / capability JSON、
+  [blocked.md](blocked.md) 以及
+  `tools/waves/portfolio/mte-identity-disposition-r0/` 的 ledger / family_map
+  改总览。不要改 sealed R0 正文去「对齐观感」。1,817 必须作为独立分类出现，
+  不得只写在流体附件一行。R0 个数变绿靠 runtime child 与 blocker 说明，
+  不靠改 disposition 标签。
+- 12 张 MTE prep 计划是历史冻结合同；家族已经有 runtime child 之后，本页
+  写「child 已关、prep 文件仍在」，不要把 prep 列表抄成待办，也不要回改
+  prep 正文假装它交付了 runtime。
+- `frozen`+`paused` 且代码已进 `src/main` 的卡（PUV 六张）写在第 1 节，
+  不要写回第 2 节「尚未签发」。
 - 新关一张冻结 R0：把类别从第 2 节搬到第 1 节，链到新的 `feasibility.json`。关闭说明第一句必须写清「游戏里仍然没有 X」，不得只写 `_READY`。
-- 真做进游戏：从第 1 节删掉或改成「已由 `<slug>` 实现」，并指向那张内容卡的 production lock / census。同时改第 0.1 节对应行。
+- 真做进游戏并关 `runtime_ready` / `player_complete`：从第 1 节删掉或改成
+  「已由 `<slug>` 实现」。`frozen`+`paused` 关卡（PUV 六张）留在第 1 节。
+  同时改第 0.1 节对应行。
 - 正式不要：在 realization 卡写 `out_of_scope`，本页改成不要，不要假装 R0 没点过名。
 - 不要为了「好看」重写 sealed `growth_order.json` 或已关 R0 artifact。
 - 不要再把冻结卡当成默认下一张工作。默认下一张若用户要的是进游戏的东西，开 runtime / 内容卡，或先问清楚，不要再盖一张 READY 冻结收据。

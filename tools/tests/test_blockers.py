@@ -34,8 +34,8 @@ class BlockerLedgerTest(unittest.TestCase):
         self.assertEqual("rows", amounts["recipe/loom-overflow"]["unit"])
         self.assertEqual("scale_not_todo", amounts["recipe/loom-overflow"]["planning_bucket"])
         self.assertEqual(49, amounts["recipe/fluidbed-overflow"]["count"])
-        self.assertEqual(150, amounts["recipe/bath-remainder-families"]["count"])
-        self.assertEqual("families", amounts["recipe/bath-remainder-families"]["unit"])
+        self.assertNotIn("recipe/bath-remainder-families", amounts)
+        self.assertNotIn("recipe/bath-identity-families", amounts)
         self.assertNotIn("historical/petroleum-sampled-702", amounts)
         self.assertNotIn("energy/reactor-fusion", amounts)
         self.assertNotEqual(
@@ -72,6 +72,58 @@ class BlockerLedgerTest(unittest.TestCase):
         self.assertIn("B. 分母已冻，可当卡排", markdown)
         self.assertIn("C. 有名字，分母未冻成工作量", markdown)
         self.assertIn("D. 不是活", markdown)
+
+    def test_batch_index_keeps_scopes_and_boundaries_separate(self) -> None:
+        self.assertEqual([], blockers.batch_errors())
+        batches = blockers.load_batches()
+        by_id = {row["id"]: row for row in batches["batches"]}
+        self.assertNotIn("batch/recipe-bath-wave", by_id)
+        catalog = {
+            row["id"]: row for row in blockers.load_catalog()["entries"]
+        }
+        self.assertEqual("resolved", catalog["recipe/bath-remainder-families"]["status"])
+        self.assertEqual("resolved", catalog["recipe/bath-identity-families"]["status"])
+        self.assertEqual(
+            "T49详细计划",
+            catalog["recipe/bath-remainder-families"]["resolved_by"],
+        )
+        for batch_id in (
+            "batch/machines-injector-host-closure",
+            "batch/machines-nanofab-host-closure",
+        ):
+            scale_members = [
+                row
+                for row in by_id[batch_id]["members"]
+                if row["role"] == "scale_context"
+            ]
+            self.assertEqual(1, len(scale_members))
+            blocker = next(
+                row
+                for row in blockers.load_catalog()["entries"]
+                if row["id"] == scale_members[0]["blocker_id"]
+            )
+            self.assertEqual("scale_not_todo", blocker["planning_bucket"])
+        self.assertTrue(batches["ordering_is_not_additive"])
+
+    def test_recipe_ledger_rejects_stale_open_bath_projection(self) -> None:
+        catalog = copy.deepcopy(blockers.load_catalog())
+        by_id = {row["id"]: row for row in catalog["entries"]}
+        by_id["recipe/bath-remainder-families"].update(
+            {
+                "planning_bucket": "schedulable",
+                "resolved_by": None,
+                "status": "open",
+            }
+        )
+        errors = blockers.recipe_ledger_errors(catalog)
+        self.assertTrue(
+            any(
+                "recipe/bath-remainder-families: catalog is open but current "
+                "recipe ledger is closed" in message
+                for message in errors
+            ),
+            errors,
+        )
 
     def test_unbound_blocked_capability_fails_close_gate(self) -> None:
         capability = {

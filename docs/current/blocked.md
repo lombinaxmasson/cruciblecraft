@@ -1,15 +1,16 @@
 # Blocker 总账
 
 > 本页由 `python tools/build_blockers.py --write` 从
-> `tools/blockers/catalog.json` 生成，不要手改。
-> 权威是 catalog；本页和 `tools/blockers/ledger.json` 都是投影。
+> `tools/blockers/catalog.json` 与 `tools/blockers/batches.json` 生成，不要手改。
+> 条目权威是 catalog，批处理关系权威是 batches；本页和 `tools/blockers/ledger.json` 都是投影。
 > 不同条目、不同 `unit` **不得相加**。发现旧缺口不是任务制造了缺口。
 > `count` 不是剩余工作量。排期看 `planning_bucket`，不要按数字选最大的卡。
+> 选批只读 current recipe ledger / catalog / batches；一致性失败时先停排期，历史 candidate selection 不能重新打开已关闭条目。
 
 ## 统计
 
-- 条目 60：open 41，partial 2，resolved 7，superseded 5，out_of_scope 5
-- 未关闭排期桶：数字是规模，不是待办 5，分母已冻，可当卡排 21，有名字，分母未冻成工作量 14，不是活 3
+- 条目 60：open 39，partial 2，resolved 9，superseded 5，out_of_scope 5
+- 未关闭排期桶：数字是规模，不是待办 5，分母已冻，可当卡排 19，有名字，分母未冻成工作量 14，不是活 3
 
 ## 排期分类（未关闭）
 
@@ -24,7 +25,7 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - `recipe/nanofab-overflow`：57 rows
 - `worldgen/food`：n/a
 
-### B. 分母已冻，可当卡排（21）
+### B. 分母已冻，可当卡排（19）
 
 - `cover/torch-repeater-wire-host`：2 covers
 - `fluid/ic2-coolant`：1 fluids
@@ -33,14 +34,12 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - `fluid/thorium-salt`：1 fluids
 - `identity/converter-turbines-battery-boxes`：8 items
 - `identity/electric-unregistered-gauges`：61 loader_ids
-- `identity/processing-ungated-families`：5 families
+- `identity/processing-ungated-families`：3 families
 - `material-form/copper-family-curved-plate`：n/a
 - `obtain/injector-mv-hv-iv-hosts`：3 hosts
 - `obtain/mte-inplace-runtime`：14 capabilities
 - `obtain/nanofab-hosts`：5 hosts
 - `obtain/redstone-wiregt01`：3 items
-- `recipe/bath-identity-families`：5 families
-- `recipe/bath-remainder-families`：150 families
 - `recipe/fluidbed-overflow`：49 rows
 - `recipe/laminator-overflow`：60 rows
 - `recipe/oven-cooking-oil-xp`：2 fluids
@@ -70,6 +69,146 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - `architecture/combinatorial-leftover`：4 families
 - `energy/reactor-temperature-kelvin`：n/a
 - `peripheral/sensors-computercraft`：1 integrations
+
+## 批处理前已关闭的条目
+
+这些条目保留在 catalog 作为历史结算，但不进入未关闭批次；candidate selection 的旧 blocked 数不能覆盖后继卡的 current closeout。
+
+- 成员：`recipe/bath-remainder-families`, `recipe/bath-identity-families`
+  - 收口：T48 完成 145 个 Bath remainder family；T49 完成最后 5 个 tiny-purified family。当前 Bath ordinary remainder 为 0。
+  - 当前权威：`docs/history/card-plans/closed/T48详细计划.md`, `docs/history/card-plans/closed/T49详细计划.md`, `tools/waves/bath/tiny-purified/readiness.json`, `tools/waves/bath/tiny-purified/card_topology.json`
+
+## 批处理关系（不是分母）
+
+以下只登记共享审计、Source Pack 或验收流程；不同 `unit`、不同 production lock 仍分别核算，批次不会自动晋级 `player_complete`。
+
+### `batch/identity-eu-gauge-closure`：EU / 线规身份收口
+
+- 建议排序依据：61 个 loader_ids 是最大的已冻结 identity 数；EU partial 与 HSLA 线仍需分子任务审计。
+- 类型：`shared_identity_audit`；成员角色按各 blocker 保留
+- production lock：`separate_subtask_validation`
+- 成员：
+  - `identity/electric-unregistered-gauges`（`primary`）
+  - `identity/eu-blocked-gauges`（`audit_only`）
+  - `identity/hsla-ungated-gauges`（`audit_only`）
+- 已有 lock：
+  - `tools/waves/content/gt6-eu-wire-cable-runtime/production_lock.json`
+  - `tools/waves/content/gt6-eu-missing-wire-gauges-runtime/production_lock.json`
+  - `tools/waves/content/gt6-connector-alias-repair/production_lock.json`
+- 明确排除：
+  - `identity/connector-art-keep-distinct-dummies`
+- 边界：
+  - 已有真实对象必须 exact mapping；不能把 61 个 loader_ids 当成 61 个必然可解条目。
+  - 石墨烯与超导缺形态继续 blocked。
+  - HSLA alias / gauge 是独立子任务。
+  - 连接件美术 dummy 不是 runtime identity 工作。
+
+### `batch/obtain-mte-inplace-closure`：In-place MTE source-exact 获得格收口
+
+- 建议排序依据：同一个 root cause 与 obtain marker 绑定 14 个跨 MTE family 的 runtime capability。
+- 类型：`shared_obtain_audit`；成员角色按各 blocker 保留
+- production lock：`separate_per_capability`
+- 成员：
+  - `obtain/mte-inplace-runtime`（`primary`）
+- 已有 lock：
+  - `tools/waves/content/gt6-mte-converter-remainder-runtime/production_lock.json`
+  - `tools/waves/content/gt6-mte-crucible-foundry-runtime/production_lock.json`
+  - `tools/waves/content/gt6-mte-decorative-runtime/production_lock.json`
+  - `tools/waves/content/gt6-mte-drive-runtime/production_lock.json`
+  - `tools/waves/content/gt6-mte-extender-runtime/production_lock.json`
+  - `tools/waves/content/gt6-mte-fluid-attachments-runtime/production_lock.json`
+  - `tools/waves/content/gt6-mte-furniture-barrel-runtime/production_lock.json`
+  - `tools/waves/content/gt6-mte-furniture-chest-runtime/production_lock.json`
+  - `tools/waves/content/gt6-mte-furniture-safe-runtime/production_lock.json`
+  - `tools/waves/content/gt6-mte-furniture-scaffold-runtime/production_lock.json`
+  - `tools/waves/content/gt6-mte-furniture-storage-runtime/production_lock.json`
+  - `tools/waves/content/gt6-mte-furniture-table-runtime/production_lock.json`
+  - `tools/waves/content/gt6-mte-misc-tool-runtime/production_lock.json`
+  - `tools/waves/content/gt6-mte-multiblock-runtime/production_lock.json`
+- 边界：
+  - 共享 root cause 是 runtime_without_source_exact_obtain，所有成员都使用 Obtain stays explicitly_blocked marker。
+  - 每个 family 仍按自己的 GT6 source-exact 格或槽位合同审计。
+  - 关闭此 blocker 不会把 14 个 capability 全部晋级 player_complete。
+
+### `batch/machines-nanofab-host-closure`：纳米加工机主机获得格收口
+
+- 建议排序依据：5 个已冻结 host 是有界的机器获得格目标；57 条 overflow 只保留为规模上下文。
+- 类型：`machine_closure`；成员角色按各 blocker 保留
+- production lock：`host_lock_then_overflow_recompute`
+- 成员：
+  - `obtain/nanofab-hosts`（`primary`）
+  - `recipe/nanofab-overflow`（`scale_context`）
+- 已有 lock：
+  - `tools/waves/machines/nanofab/production_lock.json`
+- 边界：
+  - 5 个 host 是实现目标。
+  - 57 条 overflow 是重算上下文，不承诺顺便清掉全部行。
+  - 不得用 programmed_circuit 或其它零件替代缺失的激光气体 / 蓝宝石形态。
+
+### `batch/machines-injector-host-closure`：注射机主机获得格收口
+
+- 建议排序依据：3 个已冻结 host 是有界的机器获得格目标；535 条 overflow 只保留为规模上下文。
+- 类型：`machine_closure`；成员角色按各 blocker 保留
+- production lock：`host_lock_then_overflow_recompute`
+- 成员：
+  - `obtain/injector-mv-hv-iv-hosts`（`primary`）
+  - `recipe/injector-overflow`（`scale_context`）
+- 已有 lock：
+  - `tools/waves/machines/injector/production_lock.json`
+- 边界：
+  - 3 个 MV/HV/IV host 是实现目标。
+  - 535 条 overflow 是重算上下文，不承诺顺便清掉全部行。
+  - source-exact LV 与 Chromium EV host 不授权为其余 host 使用 stand-in。
+
+### `batch/fluid-fission-identity`：裂变流体身份收口
+
+- 建议排序依据：2 个相关裂变流体 identity 共享热流体与注射机影响面。
+- 类型：`domain_fluid_closure`；成员角色按各 blocker 保留
+- production lock：`separate_fluid_identity_validation`
+- 成员：
+  - `fluid/ic2-coolant`（`primary`）
+  - `fluid/thorium-salt`（`primary`）
+- 已有 lock：无（按能力/流体身份分别验收）
+- 明确排除：
+  - `recipe/printer-dye-fluids`
+  - `recipe/oven-cooking-oil-xp`
+- 边界：
+  - 两个 identity 都影响 energy/nuclear-fission-hot-fluids 与注射机 source review。
+  - 不能因为 root cause class 都是 missing_fluid，就并入印刷机染料或熔炉油 / XP 流体。
+  - 解决这些 identity 不会重开或自动重关已经完成的 hot-fluid capability。
+
+### `batch/fluid-gt-tree-identity`：GT 树流体身份收口
+
+- 建议排序依据：2 个缺失流体共享 GT 树 worldgen owner 与验收面。
+- 类型：`domain_fluid_closure`；成员角色按各 blocker 保留
+- production lock：`separate_fluid_identity_validation`
+- 成员：
+  - `fluid/resin-rubber`（`primary`）
+  - `fluid/sap-maple`（`primary`）
+- 已有 lock：无（按能力/流体身份分别验收）
+- 明确排除：
+  - `recipe/printer-dye-fluids`
+  - `recipe/oven-cooking-oil-xp`
+- 边界：
+  - 两个 identity 都属于 worldgen/gt-trees owner 及其 freeze / drill source path。
+  - Latex 不是 Resin_Rubber 的 stand-in，另一种树液也不是 Sap_Maple 的 stand-in。
+  - 印刷机染料与熔炉油 / XP 保持在 GT 树批次之外。
+
+### `batch/cover-redstone-host-audit`：红石盖板宿主审计
+
+- 建议排序依据：2 个 cover host 共享红石宿主审计；无数量的 policy 轨道保持独立。
+- 类型：`shared_cover_host_audit`；成员角色按各 blocker 保留
+- production lock：`separate_host_policy_validation`
+- 成员：
+  - `cover/torch-repeater-wire-host`（`primary`）
+  - `cover/redstone-wire-covers`（`audit_only`）
+- 已有 lock：无（按能力/流体身份分别验收）
+- 明确排除：
+  - `identity/redstone-not-eu-or-pipe`
+- 边界：
+  - 普通 redstone-wire 与 EU-cable cover policy 要与两个 torch/repeater host 分开审计。
+  - redstone-not-eu-or-pipe 是 out_of_scope 不变量，不是 missing host 任务。
+  - 不得从已落地的 insulated-redstone identity extras 推导 cover hosting。
 
 ## 按根因（未关闭）
 
@@ -116,9 +255,7 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
   - `identity/eu-blocked-gauges`
   - `identity/hsla-ungated-gauges`
   - `identity/processing-ungated-families`
-- `unmapped_operand`（10）
-  - `recipe/bath-identity-families`
-  - `recipe/bath-remainder-families`
+- `unmapped_operand`（8）
   - `recipe/fluidbed-overflow`
   - `recipe/injector-overflow`
   - `recipe/laminator-overflow`
@@ -391,7 +528,7 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 标题：加工机折回未开门家族
 - 状态：`open`
 - 根因：`unmapped_identity` / `no_matching_sourceid_host`
-- 数量：5 families
+- 数量：3 families
 - 排期：`schedulable`
 - 挡住：`player_complete`
 - 发现卡：`content/gt6-mte-processing-host-fold`
@@ -400,7 +537,7 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 影响：`content/gt6-mte-processing-host-fold`
 - 权威：`tools/capabilities/content/gt6-mte-processing-host-fold/capability.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：Hammer, Squeezer, Polarizer, MagSep and Laser stay dummy.
+- 说明：Hammer, Squeezer and Laser stay dummy (18 metas). Polarizer 20221-20225 and MagSep 20301-20305 fold onto live sourceId hosts.
 
 ### `material-form/copper-family-curved-plate`
 
@@ -497,38 +634,6 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 权威：`tools/capabilities/content/sensors/capability.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：ITileEntityComputerizable stays blocked. Sensors are not in the cover net.
-
-### `recipe/bath-identity-families`
-
-- 标题：Bath identity 5 家族
-- 状态：`open`
-- 根因：`unmapped_operand` / `bath_identity_unmapped_families`
-- 数量：5 families
-- 排期：`schedulable`
-- 挡住：`player_complete`
-- 发现卡：`recipe/blocked-chain-ledger`
-- 由本卡引入：否（发现既有缺口）
-- 解决卡：—
-- 影响：—
-- 权威：`tools/blocked_recipe_ledger.json`
-- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：Separate from remainder 150.
-
-### `recipe/bath-remainder-families`
-
-- 标题：Bath remainder 150 家族
-- 状态：`open`
-- 根因：`unmapped_operand` / `bath_remainder_unmapped_families`
-- 数量：150 families
-- 排期：`schedulable`
-- 挡住：`player_complete`
-- 发现卡：`recipe/blocked-chain-ledger`
-- 由本卡引入：否（发现既有缺口）
-- 解决卡：—
-- 影响：—
-- 权威：`tools/blocked_recipe_ledger.json`
-- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：Family count, not recipe rows. Do not add to fluidbed 49.
 
 ### `recipe/fluidbed-overflow`
 
@@ -884,7 +989,7 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 
 ### `material-form/luv-puv1-parts`
 
-- 标题：LuV–PUV1 紧凑零件网格仍缺
+- 标题：LuV–OMEGA 紧凑零件已落地（CC 扩展，非原版 PUV2+）
 - 状态：`resolved`
 - 根因：`missing_form` / `missing_high_voltage_technological_parts`
 - 数量：4 tiers
@@ -913,6 +1018,38 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 权威：`tools/capabilities/content/gt6-paper-tiny-plate/capability.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：GT6 OP.plateTiny.forceItemGeneration(MT.Paper). Not a stand-in plate.
+
+### `recipe/bath-identity-families`
+
+- 标题：Bath identity 5 家族（T49 已完成）
+- 状态：`resolved`
+- 根因：`unmapped_operand` / `bath_identity_unmapped_families`
+- 数量：5 families
+- 排期：`not_work`
+- 挡住：`player_complete`
+- 发现卡：`recipe/blocked-chain-ledger`
+- 由本卡引入：否（发现既有缺口）
+- 解决卡：T49详细计划
+- 影响：—
+- 权威：`tools/blocked_recipe_ledger.json`
+- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
+- 说明：T49 tiny-purified cohort 已关闭这 5 个 family。Bath identity 与 ordinary remainder 已完成。
+
+### `recipe/bath-remainder-families`
+
+- 标题：Bath remainder 150 家族（T48/T49 已完成）
+- 状态：`resolved`
+- 根因：`unmapped_operand` / `bath_remainder_unmapped_families`
+- 数量：150 families
+- 排期：`not_work`
+- 挡住：`player_complete`
+- 发现卡：`recipe/blocked-chain-ledger`
+- 由本卡引入：否（发现既有缺口）
+- 解决卡：T49详细计划
+- 影响：—
+- 权威：`tools/blocked_recipe_ledger.json`
+- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
+- 说明：T48 完成 145 个 family，T49 完成最后 5 个。Bath ordinary remainder 已为 0；不要把历史 family 分母加入 fluidbed 49。
 
 ### `worldgen/crops-glowtus-bush`
 

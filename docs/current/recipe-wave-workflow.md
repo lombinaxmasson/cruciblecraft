@@ -147,6 +147,19 @@ candidate。容量门约束 query 实际候选区间和 integrated load，不把
 `tools/legacy_verification_index.json`。Active policy 不 import、调度、重签或重建它们。
 核心 runtime ABI 变化由当前 compatibility profile 回归，而不是批量刷新历史 seals。
 
+历史 candidate / lock 与当前 blocker 不是同一层：
+
+- `candidate_selection.json` 是某个 wave 的候选快照；它可以保留当时的
+  `blocked` 数，即使后继 wave 已经消费了这些 family。
+- 正常排期只读 current recipe ledger、blocker catalog 与 batch index；不要求
+  排期者人工回查每一张历史 closeout。
+- 生成链必须把后继 wave 的 current selection 投影到 recipe ledger，再由一致性
+  校验把 recipe ledger 与 blocker catalog 对齐。若两者不一致，检查应 fail closed，
+  先修复投影，不能用历史文件手工“猜”出当前分母。
+- 后继 wave 已消费 family 时，旧 candidate 不得重新打开 blocker，也不得把旧
+  分母加入新的批处理卡。Bath T48/T49 的旧 150 / 5 正是历史快照，不是当前
+  recipe wave。
+
 历史流程、分母、compact 波与关闭记录见 [docs/history](../history/INDEX.md)。冻结但未进入
 游戏的能力见 [unimplemented-gap.md](unimplemented-gap.md)；不得根据历史 `_READY`
 反推玩家完成。

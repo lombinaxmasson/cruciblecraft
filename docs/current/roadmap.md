@@ -8,8 +8,9 @@
 > [project-status.md](project-status.md)，不要在本页手抄。
 >
 > 关闭档案与机制卡 `*_READY` 见 [docs/history](../history/INDEX.md)。
-> `*_READY` 不是游戏里已有这些内容。缺口总账是
-> [unimplemented-gap.md](unimplemented-gap.md)，不要从阶段档案倒推。
+> `*_READY` 不是游戏里已有这些内容。人读权威缺口页是
+> [unimplemented-gap.md](unimplemented-gap.md)，不要从阶段档案或 Prep
+> 计划文件倒推剩余工作。
 
 ## 1. 项目目标
 
@@ -62,15 +63,22 @@ semantic wave，不是下一张里程碑编号。
 [project-status.md](project-status.md)。同一时刻只允许一张内容工作处于
 active 状态；prep 不占落地锁，规则见
 [能力交付流程 §8](capability-delivery-workflow.md)。
-第 1–8 项第一张已关。蒸汽涡轮、冷却器与聚变仍未签发。
-Bath identity / form / object 是账本次序里的下一条链，尚未签发。不要从只读
+第 1–8 项第一张已关。冷却器仍未签发（[blocked.md](blocked.md) C 桶
+`energy/cooler`）。蒸汽涡轮、大型热交换器 17197、聚变 / 量子物质已作为
+CC 扩展落地，capability `frozen`+`paused`，不是 `player_complete`，
+也不要当下一张 unique-active。读法见
+[unimplemented-gap.md](unimplemented-gap.md) 第 0.1 / 第 1 节。
+Bath remainder / identity 已由 T48/T49 关完，不是下一张 unique-active。后续排期
+读 [blocked.md](blocked.md) 与 `tools/blockers/batches.json`，不要从只读
 growth-order 档案倒推。
 
-电能转换 / LU / 聚变控制器配方仍是 `runtime_ready` 或 blocked，见已关闭的
-[能源后续卡收口](../history/card-plans/closed/能源后续卡收口详细计划.md)
-与缺口账本第 2 节。Dump 的来源执行器是 Core，不是 Generic 管网；
-`dump_policy` 见已关闭的
+电能转换已 `player_complete`。聚变 18 源行是 `frozen`+`paused` 的 CC 扩展，
+不是缺口第 2 节「尚未签发」。冷却器仍 blocked。Dump 的来源执行器是 Core，
+不是 Generic 管网；`dump_policy` 见已关闭的
 [物流封面网余量](../history/card-plans/closed/物流封面网余量详细计划.md)。
+后继能源卡见已关闭的
+[能源后续卡收口](../history/card-plans/closed/能源后续卡收口详细计划.md)
+与 [unimplemented-gap.md](unimplemented-gap.md) 第 1–2 节。
 
 已认领的 1.x / R0 / 导入器 / 对照图工作仍然有效；对照图不把它写成 GT6
 全量完成。`portfolio/count-ceiling-kind-envelope` 仍是 telemetry /
@@ -201,7 +209,9 @@ Recipe gap 清零后，deferred ordinary ledger 也已关闭或独立 scope。st
 
 裂变堆芯 / 棒 / Canner 生存配方已由 `energy/nuclear-fission-survival` 关闭。
 热流体与热量合同已由 `energy/nuclear-fission-hot-fluids` 关闭。
-聚变控制器配方与等离子流体仍 blocked。体积与后继候选见
+聚变 18 源行已由 `energy/fusion-quantum` 落地（`frozen`+`paused`，
+`energy/reactor-fusion` 已 `resolved`）。`FUELS_PLASMA` 保持空。
+冷却器仍 blocked。体积与后继候选见
 [冻结与未实现账本](unimplemented-gap.md)。
 
 ## 8. 日常开发与留档纪律

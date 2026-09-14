@@ -49,7 +49,12 @@
 
 - 分母、来源、所有权、依赖完整
 - 每条新身份有 disposition：`reuse_canonical` / `new_distinct` / `bridge` / `blocked`
-- 不得叫 READY，不得扣 recipe gap，不得从缺口第 1 节删行
+- 不得叫 READY，不得扣 recipe gap
+- 默认：还没有把机制做成可宣称的 `runtime_ready`。缺口第 2 节的「尚未签发」
+  只适用于这种卡
+- 例外：PUV / OMEGA 六张选择 `frozen`+`paused` 关卡——`src/main` 已有代码，
+  但是 CC 扩展，不是原版 GT6 高压线。它们写在缺口第 1 节，禁止写回第 2 节
+  「尚未签发」，也禁止晋级 `player_complete`
 
 ### runtime_ready
 

@@ -6,6 +6,7 @@ import argparse
 import json
 import sys
 from collections import Counter
+from pathlib import Path
 from typing import Any
 
 from tools import atomic_io
@@ -14,7 +15,10 @@ from tools import io_common as io
 
 CATALOG = io.TOOLS / "blockers" / "catalog.json"
 LEDGER = io.TOOLS / "blockers" / "ledger.json"
+RECIPE_LEDGER = io.TOOLS / "blocked_recipe_ledger.json"
+BATCHES = io.TOOLS / "blockers" / "batches.json"
 MARKDOWN = io.ROOT / "docs" / "current" / "blocked.md"
+CLOSED_PLANS = io.ROOT / "docs" / "history" / "card-plans" / "closed"
 STATUSES = ("open", "partial", "resolved", "superseded", "out_of_scope")
 MATURITY = ("player_complete", "runtime_ready", "none")
 OPEN_STATUSES = frozenset({"open", "partial"})
@@ -64,6 +68,17 @@ ID_PREFIX = (
     "architecture/",
     "historical/",
 )
+BATCH_KINDS = frozenset(
+    {
+        "domain_fluid_closure",
+        "machine_closure",
+        "recipe_wave",
+        "shared_cover_host_audit",
+        "shared_identity_audit",
+        "shared_obtain_audit",
+    }
+)
+BATCH_ROLES = frozenset({"primary", "audit_only", "scale_context"})
 
 
 def dumps(document: Any) -> bytes:
@@ -76,6 +91,188 @@ def load_catalog() -> dict[str, Any]:
     if not CATALOG.is_file():
         raise ValueError("missing tools/blockers/catalog.json")
     return io.load_json(CATALOG)
+
+
+def load_batches() -> dict[str, Any]:
+    if not BATCHES.is_file():
+        raise ValueError("missing tools/blockers/batches.json")
+    return io.load_json(BATCHES)
+
+
+def recipe_ledger_errors(catalog: dict[str, Any] | None = None) -> list[str]:
+    if not RECIPE_LEDGER.is_file():
+        return ["missing tools/blocked_recipe_ledger.json"]
+    document = io.load_json(RECIPE_LEDGER)
+    entries = {
+        str(row.get("id") or ""): row
+        for row in list((catalog if catalog is not None else load_catalog()).get("entries") or [])
+    }
+    counts = document.get("counts", {}).get("blocked_families", {})
+    errors: list[str] = []
+    for count_key, blocker_id in {
+        "bath_remainder": "recipe/bath-remainder-families",
+        "bath_identity": "recipe/bath-identity-families",
+    }.items():
+        row = entries.get(blocker_id)
+        if row is None:
+            errors.append(f"{blocker_id}: missing from blocker catalog")
+            continue
+        count = int(counts.get(count_key, -1))
+        if count < 0:
+            errors.append(
+                f"{blocker_id}: recipe ledger is missing blocked_families.{count_key}"
+            )
+        elif count == 0 and row["status"] in OPEN_STATUSES:
+            errors.append(
+                f"{blocker_id}: catalog is open but current recipe ledger is closed"
+            )
+        elif count > 0 and row["status"] not in OPEN_STATUSES:
+            errors.append(
+                f"{blocker_id}: catalog is closed but current recipe ledger is open"
+            )
+    return errors
+
+
+def _closed_plan_ids() -> set[str]:
+    if not CLOSED_PLANS.is_dir():
+        return set()
+    return {path.stem for path in CLOSED_PLANS.glob("*.md")}
+
+
+def batch_errors(
+    *,
+    catalog: dict[str, Any] | None = None,
+    batches: dict[str, Any] | None = None,
+) -> list[str]:
+    catalog_document = catalog if catalog is not None else load_catalog()
+    batch_document = batches if batches is not None else load_batches()
+    errors: list[str] = []
+    if batch_document.get("schema_version") != 1:
+        errors.append("blocker batches schema_version must be 1")
+    if batch_document.get("ordering_is_not_additive") is not True:
+        errors.append("blocker batches must declare ordering_is_not_additive")
+    entries = list(catalog_document.get("entries") or [])
+    by_id = {str(row.get("id") or ""): row for row in entries}
+    batch_rows = list(batch_document.get("batches") or [])
+    batch_ids = [str(row.get("id") or "") for row in batch_rows]
+    if len(batch_ids) != len(set(batch_ids)):
+        errors.append("duplicate blocker batch id")
+    known_batch_ids = set(batch_ids)
+    closed_ids: set[str] = set()
+    for record in batch_document.get("closed_before_batch_selection") or []:
+        blocker_ids = list(record.get("blocker_ids") or [])
+        if not blocker_ids:
+            errors.append("closed_before_batch_selection record needs blocker_ids")
+        for blocker_id in blocker_ids:
+            if blocker_id in closed_ids:
+                errors.append(
+                    f"closed_before_batch_selection duplicates {blocker_id}"
+                )
+            closed_ids.add(blocker_id)
+            if blocker_id not in by_id:
+                errors.append(
+                    f"closed_before_batch_selection unknown blocker {blocker_id}"
+                )
+            elif by_id[blocker_id]["status"] in OPEN_STATUSES:
+                errors.append(
+                    f"closed_before_batch_selection still open: {blocker_id}"
+                )
+        if not str(record.get("resolution") or "").strip():
+            errors.append("closed_before_batch_selection record needs resolution")
+        authorities = list(record.get("authority") or [])
+        if not authorities:
+            errors.append("closed_before_batch_selection record needs authority")
+        for path in authorities:
+            if not isinstance(path, str) or not path.strip():
+                errors.append("closed_before_batch_selection authority needs paths")
+            elif Path(path).is_absolute() or path.startswith("../"):
+                errors.append(
+                    "closed_before_batch_selection authority must be repo-relative"
+                )
+            elif not (io.ROOT / path).is_file():
+                errors.append(
+                    f"closed_before_batch_selection authority is missing: {path}"
+                )
+    seen_members: dict[str, str] = {}
+    for batch in batch_rows:
+        batch_id = str(batch.get("id") or "")
+        if not batch_id.startswith("batch/"):
+            errors.append(f"{batch_id}: batch id must start with batch/")
+        if not str(batch.get("title") or "").strip():
+            errors.append(f"{batch_id}: batch title is required")
+        if batch.get("kind") not in BATCH_KINDS:
+            errors.append(f"{batch_id}: bad batch kind {batch.get('kind')!r}")
+        if batch.get("does_not_merge_counts") is not True:
+            errors.append(f"{batch_id}: does_not_merge_counts must be true")
+        if batch.get("auto_promote_player_complete") is not False:
+            errors.append(f"{batch_id}: auto_promote_player_complete must be false")
+        if not str(batch.get("production_lock_policy") or "").strip():
+            errors.append(f"{batch_id}: production_lock_policy is required")
+        for path in batch.get("production_locks") or []:
+            if not isinstance(path, str) or not path.strip():
+                errors.append(f"{batch_id}: production_locks must contain paths")
+            elif Path(path).is_absolute() or path.startswith("../"):
+                errors.append(f"{batch_id}: production lock path must be repo-relative")
+            elif not (io.ROOT / path).is_file():
+                errors.append(f"{batch_id}: production lock is missing: {path}")
+        members = list(batch.get("members") or [])
+        if not members:
+            errors.append(f"{batch_id}: members are required")
+        member_ids: set[str] = set()
+        for member in members:
+            blocker_id = str(member.get("blocker_id") or "")
+            role = member.get("role")
+            if blocker_id in member_ids:
+                errors.append(f"{batch_id}: duplicate member {blocker_id}")
+            member_ids.add(blocker_id)
+            if blocker_id not in by_id:
+                errors.append(f"{batch_id}: unknown member {blocker_id}")
+                continue
+            if role not in BATCH_ROLES:
+                errors.append(f"{batch_id} {blocker_id}: bad member role {role!r}")
+            if by_id[blocker_id]["status"] not in OPEN_STATUSES:
+                errors.append(
+                    f"{batch_id} {blocker_id}: batch members must be open or partial"
+                )
+            if blocker_id in seen_members:
+                errors.append(
+                    f"{blocker_id}: appears in batches "
+                    f"{seen_members[blocker_id]} and {batch_id}"
+                )
+            else:
+                seen_members[blocker_id] = batch_id
+            if role == "scale_context" and by_id[blocker_id].get(
+                "planning_bucket"
+            ) != "scale_not_todo":
+                errors.append(
+                    f"{batch_id} {blocker_id}: scale_context must remain "
+                    "planning_bucket scale_not_todo"
+                )
+        excluded = list(batch.get("excluded_blocker_ids") or [])
+        if len(excluded) != len(set(excluded)):
+            errors.append(f"{batch_id}: duplicate excluded blocker id")
+        for blocker_id in excluded:
+            if blocker_id not in by_id:
+                errors.append(f"{batch_id}: unknown excluded blocker {blocker_id}")
+            elif blocker_id in member_ids:
+                errors.append(
+                    f"{batch_id}: blocker cannot be both member and excluded: {blocker_id}"
+                )
+        if not list(batch.get("boundary_notes") or []):
+            errors.append(f"{batch_id}: boundary_notes are required")
+    recommendations = list(batch_document.get("recommended_order") or [])
+    recommendation_ids = [
+        str(row.get("batch_id") or "") for row in recommendations
+    ]
+    if recommendation_ids != list(dict.fromkeys(recommendation_ids)):
+        errors.append("recommended_order contains duplicate batch ids")
+    if set(recommendation_ids) != known_batch_ids:
+        errors.append("recommended_order must contain every blocker batch exactly once")
+    for row in recommendations:
+        batch_id = str(row.get("batch_id") or "")
+        if not str(row.get("basis") or "").strip():
+            errors.append(f"{batch_id}: recommended order basis is required")
+    return errors
 
 
 def _entry_errors(entry: dict[str, Any], known_slugs: set[str]) -> list[str]:
@@ -108,7 +305,7 @@ def _entry_errors(entry: dict[str, Any], known_slugs: set[str]) -> list[str]:
     elif entry.get("resolved_by"):
         errors.append(f"{ident}: open/partial/out_of_scope cannot set resolved_by")
     resolved = entry.get("resolved_by")
-    if resolved and resolved not in known_slugs:
+    if resolved and resolved not in known_slugs and resolved not in _closed_plan_ids():
         errors.append(f"{ident}: unknown resolved_by {resolved}")
     if not str(entry["no_stand_in"] or "").strip():
         errors.append(f"{ident}: no_stand_in is required")
@@ -148,6 +345,7 @@ def catalog_errors(catalog: dict[str, Any] | None = None) -> list[str]:
     known = {row["slug"] for row in _capability_documents()}
     for entry in entries:
         errors.extend(_entry_errors(entry, known))
+    errors.extend(recipe_ledger_errors(document))
     return errors
 
 
@@ -245,6 +443,7 @@ def check_capability_bindings(capability: dict[str, Any]) -> list[str]:
 
 def compile_ledger(catalog: dict[str, Any] | None = None) -> dict[str, Any]:
     document = catalog if catalog is not None else load_catalog()
+    batch_document = load_batches()
     entries = list(document.get("entries") or [])
     status_counts = Counter(str(row["status"]) for row in entries)
     classes: dict[str, list[str]] = {}
@@ -277,6 +476,7 @@ def compile_ledger(catalog: dict[str, Any] | None = None) -> dict[str, Any]:
     for bucket in PLANNING_BUCKETS:
         planning[bucket] = sorted(planning[bucket], key=lambda row: row["id"])
     return {
+        "batch_relations": batch_document,
         "do_not_add": True,
         "entries": entries,
         "generated_by": "python tools/build_blockers.py --write",
@@ -306,10 +506,11 @@ def render_markdown(ledger: dict[str, Any] | None = None) -> str:
         "# Blocker 总账",
         "",
         "> 本页由 `python tools/build_blockers.py --write` 从",
-        "> `tools/blockers/catalog.json` 生成，不要手改。",
-        "> 权威是 catalog；本页和 `tools/blockers/ledger.json` 都是投影。",
+        "> `tools/blockers/catalog.json` 与 `tools/blockers/batches.json` 生成，不要手改。",
+        "> 条目权威是 catalog，批处理关系权威是 batches；本页和 `tools/blockers/ledger.json` 都是投影。",
         "> 不同条目、不同 `unit` **不得相加**。发现旧缺口不是任务制造了缺口。",
         "> `count` 不是剩余工作量。排期看 `planning_bucket`，不要按数字选最大的卡。",
+        "> 选批只读 current recipe ledger / catalog / batches；一致性失败时先停排期，历史 candidate selection 不能重新打开已关闭条目。",
         "",
         "## 统计",
         "",
@@ -348,6 +549,70 @@ def render_markdown(ledger: dict[str, Any] | None = None) -> str:
             count = row["count"]
             amount = "n/a" if count is None else f"{count} {row['unit']}"
             lines.append(f"- `{row['id']}`：{amount}")
+        lines.append("")
+    batch_document = document.get("batch_relations") or {}
+    batches_by_id = {
+        str(row["id"]): row for row in batch_document.get("batches") or []
+    }
+    closed_records = batch_document.get("closed_before_batch_selection") or []
+    lines.extend(
+        [
+            "## 批处理前已关闭的条目",
+            "",
+            "这些条目保留在 catalog 作为历史结算，但不进入未关闭批次；"
+            "candidate selection 的旧 blocked 数不能覆盖后继卡的 current closeout。",
+            "",
+        ]
+    )
+    for record in closed_records:
+        members = ", ".join(
+            f"`{blocker_id}`" for blocker_id in record["blocker_ids"]
+        )
+        lines.append(f"- 成员：{members}")
+        lines.append(f"  - 收口：{record['resolution']}")
+        lines.append(
+            "  - 当前权威："
+            + ", ".join(f"`{path}`" for path in record["authority"])
+        )
+    lines.append("")
+    lines.extend(
+        [
+            "## 批处理关系（不是分母）",
+            "",
+            "以下只登记共享审计、Source Pack 或验收流程；不同 `unit`、不同 production lock "
+            "仍分别核算，批次不会自动晋级 `player_complete`。",
+            "",
+        ]
+    )
+    for recommendation in batch_document.get("recommended_order") or []:
+        batch_id = str(recommendation["batch_id"])
+        batch = batches_by_id[batch_id]
+        lines.extend(
+            [
+                f"### `{batch_id}`：{batch['title']}",
+                "",
+                f"- 建议排序依据：{recommendation['basis']}",
+                f"- 类型：`{batch['kind']}`；成员角色按各 blocker 保留",
+                f"- production lock：`{batch['production_lock_policy']}`",
+                "- 成员："
+            ]
+        )
+        for member in batch.get("members") or []:
+            lines.append(
+                f"  - `{member['blocker_id']}`（`{member['role']}`）"
+            )
+        locks = batch.get("production_locks") or []
+        if locks:
+            lines.append("- 已有 lock：")
+            lines.extend(f"  - `{path}`" for path in locks)
+        else:
+            lines.append("- 已有 lock：无（按能力/流体身份分别验收）")
+        excluded = batch.get("excluded_blocker_ids") or []
+        if excluded:
+            lines.append("- 明确排除：")
+            lines.extend(f"  - `{blocker_id}`" for blocker_id in excluded)
+        lines.append("- 边界：")
+        lines.extend(f"  - {note}" for note in batch.get("boundary_notes") or [])
         lines.append("")
     lines.extend(["## 按根因（未关闭）", ""])
     classes = document.get("open_ids_by_root_cause_class") or {}
@@ -407,6 +672,7 @@ def render_markdown(ledger: dict[str, Any] | None = None) -> str:
 
 def check() -> list[str]:
     errors = catalog_errors()
+    errors.extend(batch_errors())
     if errors:
         return errors
     compiled = compile_ledger()
@@ -424,6 +690,7 @@ def check() -> list[str]:
 
 def write() -> dict[str, Any]:
     errors = catalog_errors()
+    errors.extend(batch_errors())
     if errors:
         raise ValueError("; ".join(errors))
     compiled = compile_ledger()

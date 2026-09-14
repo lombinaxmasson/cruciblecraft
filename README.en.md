@@ -26,9 +26,10 @@ continuing to expand toward the full GT6 target:
 - A material, prefix, and ore-processing system with large source-generated
   recipe sets
 - Multi-stage energy chains spanning fire, heat, steam, kinetic, rotational,
-  and electrical power; electric heaters/engines, LU fiber, fission cores,
-  and a fusion controller are in runtime (survival recipes incomplete, not
-  `player_complete`)
+  and electrical power; electric heaters/engines, LU fiber, and fission
+  cores are `player_complete`. Large heat exchangers, steam turbines, and
+  fusion are in runtime as a CrucibleCraft extension (`frozen`, not
+  `player_complete`). Coolers are still unopened.
 - Processing-machine families from early industry onward, plus multiblocks
   such as distillation towers, large boilers, and tanks
 - World generation for large ore veins, underground oil and gas, and surface
