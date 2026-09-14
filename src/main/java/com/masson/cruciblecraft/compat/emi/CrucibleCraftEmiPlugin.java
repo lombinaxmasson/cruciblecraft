@@ -261,6 +261,9 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         for (var entry : ModRecipeMaps.FUSION.entries()) {
             registry.addRecipe(new FusionEmiRecipe(entry.id(), entry.recipe()));
         }
+        for (var entry : ModRecipeMaps.FUSION_EXTENSION.entries()) {
+            registry.addRecipe(new FusionEmiRecipe(entry.id(), entry.recipe()));
+        }
     }
 
     private static void registerFuelMaps(EmiRegistry registry) {

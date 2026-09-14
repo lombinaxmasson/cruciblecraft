@@ -4,43 +4,72 @@
 > `tools/blockers/catalog.json` 生成，不要手改。
 > 权威是 catalog；本页和 `tools/blockers/ledger.json` 都是投影。
 > 不同条目、不同 `unit` **不得相加**。发现旧缺口不是任务制造了缺口。
+> `count` 不是剩余工作量。排期看 `planning_bucket`，不要按数字选最大的卡。
 
 ## 统计
 
-- 条目 60：open 46，partial 2，resolved 2，superseded 5，out_of_scope 5
-- 未关闭数量按条目列出（不得相加）：
-  - `architecture/combinatorial-leftover`：4 families
-  - `cover/torch-repeater-wire-host`：2 covers
-  - `energy/large-heat-exchanger-17197`：1 metas
-  - `energy/reactor-fusion`：18 runtime_rows
-  - `energy/reactor-world-explode`：1 behaviors
-  - `energy/transformer-long-distance`：5 metas
-  - `fluid/ic2-coolant`：1 fluids
-  - `fluid/resin-rubber`：1 fluids
-  - `fluid/sap-maple`：1 fluids
-  - `fluid/thorium-salt`：1 fluids
-  - `identity/converter-turbines-battery-boxes`：8 items
-  - `identity/electric-unregistered-gauges`：61 loader_ids
-  - `identity/processing-ungated-families`：5 families
-  - `material-form/luv-puv1-parts`：4 tiers
-  - `obtain/injector-mv-hv-iv-hosts`：3 hosts
-  - `obtain/mte-inplace-runtime`：14 capabilities
-  - `obtain/nanofab-hosts`：5 hosts
-  - `obtain/redstone-wiregt01`：3 items
-  - `peripheral/sensors-computercraft`：1 integrations
-  - `recipe/bath-identity-families`：5 families
-  - `recipe/bath-remainder-families`：150 families
-  - `recipe/fluidbed-overflow`：49 rows
-  - `recipe/injector-overflow`：535 rows
-  - `recipe/laminator-overflow`：60 rows
-  - `recipe/loom-overflow`：869 rows
-  - `recipe/melter-overflow`：2796 rows
-  - `recipe/nanofab-overflow`：57 rows
-  - `recipe/oven-cooking-oil-xp`：2 fluids
-  - `recipe/pressure-washer-stone`：120 rows
-  - `recipe/printer-dye-fluids`：22 rows
-  - `recipe/roll-former-rail-gt`：2 rows
-  - `worldgen/planet-rocks`：3 families
+- 条目 60：open 41，partial 2，resolved 7，superseded 5，out_of_scope 5
+- 未关闭排期桶：数字是规模，不是待办 5，分母已冻，可当卡排 21，有名字，分母未冻成工作量 14，不是活 3
+
+## 排期分类（未关闭）
+
+A 的整数是 dump/shadow/未核实规模。B 才是可以抽 unique-active 的冻结核。
+C 先审计分母。D 不是任务。同类条目仍不得相加。
+
+### A. 数字是规模，不是待办（5）
+
+- `recipe/injector-overflow`：535 rows
+- `recipe/loom-overflow`：869 rows
+- `recipe/melter-overflow`：2796 rows
+- `recipe/nanofab-overflow`：57 rows
+- `worldgen/food`：n/a
+
+### B. 分母已冻，可当卡排（21）
+
+- `cover/torch-repeater-wire-host`：2 covers
+- `fluid/ic2-coolant`：1 fluids
+- `fluid/resin-rubber`：1 fluids
+- `fluid/sap-maple`：1 fluids
+- `fluid/thorium-salt`：1 fluids
+- `identity/converter-turbines-battery-boxes`：8 items
+- `identity/electric-unregistered-gauges`：61 loader_ids
+- `identity/processing-ungated-families`：5 families
+- `material-form/copper-family-curved-plate`：n/a
+- `obtain/injector-mv-hv-iv-hosts`：3 hosts
+- `obtain/mte-inplace-runtime`：14 capabilities
+- `obtain/nanofab-hosts`：5 hosts
+- `obtain/redstone-wiregt01`：3 items
+- `recipe/bath-identity-families`：5 families
+- `recipe/bath-remainder-families`：150 families
+- `recipe/fluidbed-overflow`：49 rows
+- `recipe/laminator-overflow`：60 rows
+- `recipe/oven-cooking-oil-xp`：2 fluids
+- `recipe/pressure-washer-stone`：120 rows
+- `recipe/printer-dye-fluids`：22 rows
+- `recipe/roll-former-rail-gt`：2 rows
+
+### C. 有名字，分母未冻成工作量（14）
+
+- `architecture/building-block-identity`：n/a
+- `cover/redstone-wire-covers`：n/a
+- `energy/cooler`：n/a
+- `energy/reactor-backpack-radioactivity`：n/a
+- `energy/reactor-world-explode`：1 behaviors
+- `identity/connector-art-keep-distinct-dummies`：n/a
+- `identity/eu-blocked-gauges`：n/a
+- `identity/hsla-ungated-gauges`：n/a
+- `storage/mass-storage-prefix-units`：n/a
+- `tools/world-behaviors`：n/a
+- `worldgen/bees`：n/a
+- `worldgen/center`：n/a
+- `worldgen/dungeon-room-contents`：n/a
+- `worldgen/planet-rocks`：3 families
+
+### D. 不是活（3）
+
+- `architecture/combinatorial-leftover`：4 families
+- `energy/reactor-temperature-kelvin`：n/a
+- `peripheral/sensors-computercraft`：1 integrations
 
 ## 按根因（未关闭）
 
@@ -56,10 +85,9 @@
   - `fluid/thorium-salt`
   - `recipe/oven-cooking-oil-xp`
   - `recipe/printer-dye-fluids`
-- `missing_form`（5）
+- `missing_form`（4）
   - `energy/reactor-backpack-radioactivity`
   - `material-form/copper-family-curved-plate`
-  - `material-form/luv-puv1-parts`
   - `obtain/injector-mv-hv-iv-hosts`
   - `obtain/nanofab-hosts`
 - `missing_mod_bridge`（1）
@@ -67,13 +95,9 @@
 - `missing_obtain`（2）
   - `obtain/mte-inplace-runtime`
   - `obtain/redstone-wiregt01`
-- `missing_runtime`（10）
+- `missing_runtime`（6）
   - `energy/cooler`
-  - `energy/large-heat-exchanger-17197`
-  - `energy/reactor-fusion`
   - `energy/reactor-world-explode`
-  - `energy/steam-turbine`
-  - `energy/transformer-long-distance`
   - `storage/mass-storage-prefix-units`
   - `tools/world-behaviors`
   - `worldgen/bees`
@@ -112,6 +136,7 @@
 - 状态：`open`
 - 根因：`unclaimed_domain` / `no_current_owner`
 - 数量：n/a
+- 排期：`audit_first`
 - 挡住：`none`
 - 发现卡：`logistics/cover-remainder`
 - 由本卡引入：否（发现既有缺口）
@@ -127,6 +152,7 @@
 - 状态：`open`
 - 根因：`unclaimed_domain` / `post_generator_combinatorial_family_intake_not_started`
 - 数量：4 families
+- 排期：`not_work`
 - 挡住：`none`
 - 发现卡：`recipe/blocked-chain-ledger`
 - 由本卡引入：否（发现既有缺口）
@@ -142,6 +168,7 @@
 - 状态：`open`
 - 根因：`missing_cover_host` / `connector_covers_not_hosted`
 - 数量：n/a
+- 排期：`audit_first`
 - 挡住：`player_complete`
 - 发现卡：`content/mte-redstone-wire`
 - 由本卡引入：否（发现既有缺口）
@@ -157,6 +184,7 @@
 - 状态：`open`
 - 根因：`missing_cover_host` / `cover_only_attaches_to_insulated_redstone_wire`
 - 数量：2 covers
+- 排期：`schedulable`
 - 挡住：`player_complete`
 - 发现卡：`logistics/cover-remainder`
 - 由本卡引入：否（发现既有缺口）
@@ -172,6 +200,7 @@
 - 状态：`open`
 - 根因：`missing_runtime` / `cooler_later_card`
 - 数量：n/a
+- 排期：`audit_first`
 - 挡住：`player_complete`
 - 发现卡：`energy/heat-exchangers`
 - 由本卡引入：否（发现既有缺口）
@@ -181,27 +210,13 @@
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：Independent runtime, recipes and player path.
 
-### `energy/large-heat-exchanger-17197`
-
-- 标题：大型热交换器 17197
-- 状态：`open`
-- 根因：`missing_runtime` / `large_hex_follow_up_card`
-- 数量：1 metas
-- 挡住：`player_complete`
-- 发现卡：`energy/heat-exchangers`
-- 由本卡引入：否（发现既有缺口）
-- 解决卡：—
-- 影响：`energy/heat-exchangers`
-- 权威：`tools/capabilities/energy/heat-exchangers/capability.json`
-- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：First HEX slice is not the large machine.
-
 ### `energy/reactor-backpack-radioactivity`
 
 - 标题：无 CC 材料放射性等级表
 - 状态：`open`
 - 根因：`missing_form` / `no_material_radioactivity_table`
 - 数量：n/a
+- 排期：`audit_first`
 - 挡住：`player_complete`
 - 发现卡：`energy/nuclear-fission-observation-safety`
 - 由本卡引入：否（发现既有缺口）
@@ -211,27 +226,13 @@
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：Backpack radioactivity stays blocked.
 
-### `energy/reactor-fusion`
-
-- 标题：聚变控制器生存配方与等离子链
-- 状态：`open`
-- 根因：`missing_runtime` / `fusion_waits_on_fission_heat_contracts`
-- 数量：18 runtime_rows
-- 挡住：`player_complete`
-- 发现卡：`energy/nuclear-fission-survival`
-- 由本卡引入：否（发现既有缺口）
-- 解决卡：—
-- 影响：`energy/nuclear-fission-survival`
-- 权威：`tools/capabilities/energy/nuclear-fission-survival/capability.json`
-- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：18 fusion runtime rows stay runtime_ready only. Do not derive from existing fusion rows.
-
 ### `energy/reactor-temperature-kelvin`
 
 - 标题：反应堆温度不得用 HU 伪造 Kelvin
 - 状态：`open`
 - 根因：`invariant` / `heat_is_hu_not_kelvin`
 - 数量：n/a
+- 排期：`not_work`
 - 挡住：`none`
 - 发现卡：`energy/nuclear-fission-observation-safety`
 - 由本卡引入：否（发现既有缺口）
@@ -247,6 +248,7 @@
 - 状态：`open`
 - 根因：`missing_runtime` / `gt6_explode_todo_commented`
 - 数量：1 behaviors
+- 排期：`audit_first`
 - 挡住：`player_complete`
 - 发现卡：`energy/nuclear-fission-observation-safety`
 - 由本卡引入：否（发现既有缺口）
@@ -256,42 +258,13 @@
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：GT6 explode() TODO stays commented.
 
-### `energy/steam-turbine`
-
-- 标题：蒸汽涡轮 STEAM→RU
-- 状态：`open`
-- 根因：`missing_runtime` / `steam_turbine_later_card`
-- 数量：n/a
-- 挡住：`player_complete`
-- 发现卡：`energy/heat-exchangers`
-- 由本卡引入：否（发现既有缺口）
-- 解决卡：—
-- 影响：`energy/heat-exchangers`
-- 权威：`tools/capabilities/energy/heat-exchangers/capability.json`
-- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：Must not impersonate HEX or electric transformer.
-
-### `energy/transformer-long-distance`
-
-- 标题：长距变压器 10064–10068
-- 状态：`open`
-- 根因：`missing_runtime` / `needs_block_long_dist_wire`
-- 数量：5 metas
-- 挡住：`player_complete`
-- 发现卡：`energy/transformers`
-- 由本卡引入：否（发现既有缺口）
-- 解决卡：—
-- 影响：`energy/transformers`
-- 权威：`tools/capabilities/energy/transformers/capability.json`
-- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：Same-voltage pair scan, not this voltage-step card.
-
 ### `fluid/ic2-coolant`
 
 - 标题：IC2 工业冷却液不是 CC 流体
 - 状态：`open`
 - 根因：`missing_fluid` / `ic2_coolant_not_cc_owned`
 - 数量：1 fluids
+- 排期：`schedulable`
 - 挡住：`player_complete`
 - 发现卡：`energy/nuclear-fission-hot-fluids`
 - 由本卡引入：否（发现既有缺口）
@@ -307,6 +280,7 @@
 - 状态：`open`
 - 根因：`missing_fluid` / `missing_resin_rubber_fluid`
 - 数量：1 fluids
+- 排期：`schedulable`
 - 挡住：`player_complete`
 - 发现卡：`worldgen/gt-trees`
 - 由本卡引入：否（发现既有缺口）
@@ -322,6 +296,7 @@
 - 状态：`open`
 - 根因：`missing_fluid` / `missing_maple_sap_fluid`
 - 数量：1 fluids
+- 排期：`schedulable`
 - 挡住：`player_complete`
 - 发现卡：`worldgen/gt-trees`
 - 由本卡引入：否（发现既有缺口）
@@ -337,6 +312,7 @@
 - 状态：`open`
 - 根因：`missing_fluid` / `thorium_salt_not_hot_fluid_output`
 - 数量：1 fluids
+- 排期：`schedulable`
 - 挡住：`player_complete`
 - 发现卡：`energy/nuclear-fission-hot-fluids`
 - 由本卡引入：否（发现既有缺口）
@@ -352,6 +328,7 @@
 - 状态：`open`
 - 根因：`unmapped_identity` / `dummy_items_keep_distinct_until_runtime_hosts`
 - 数量：n/a
+- 排期：`audit_first`
 - 挡住：`player_complete`
 - 发现卡：`content/gt6-connector-art`
 - 由本卡引入：否（发现既有缺口）
@@ -367,6 +344,7 @@
 - 状态：`open`
 - 根因：`unmapped_identity` / `no_converter_catalog_host`
 - 数量：8 items
+- 排期：`schedulable`
 - 挡住：`player_complete`
 - 发现卡：`content/gt6-mte-converter-host-fold`
 - 由本卡引入：否（发现既有缺口）
@@ -382,6 +360,7 @@
 - 状态：`open`
 - 根因：`unmapped_identity` / `superconductor_graphene_or_unregistered_gauge`
 - 数量：61 loader_ids
+- 排期：`schedulable`
 - 挡住：`player_complete`
 - 发现卡：`content/electric-wire-cable-mte-fold`
 - 由本卡引入：否（发现既有缺口）
@@ -397,6 +376,7 @@
 - 状态：`open`
 - 根因：`unmapped_identity` / `ungated_hsla_wire_gauges`
 - 数量：n/a
+- 排期：`audit_first`
 - 挡住：`player_complete`
 - 发现卡：`content/gt6-connector-alias-repair`
 - 由本卡引入：否（发现既有缺口）
@@ -412,6 +392,7 @@
 - 状态：`open`
 - 根因：`unmapped_identity` / `no_matching_sourceid_host`
 - 数量：5 families
+- 排期：`schedulable`
 - 挡住：`player_complete`
 - 发现卡：`content/gt6-mte-processing-host-fold`
 - 由本卡引入：否（发现既有缺口）
@@ -427,6 +408,7 @@
 - 状态：`open`
 - 根因：`missing_form` / `missing_plate_curved_for_table_crafts`
 - 数量：n/a
+- 排期：`schedulable`
 - 挡住：`player_complete`
 - 发现卡：`content/gt6-fluid-pipe-acquisition`
 - 由本卡引入：否（发现既有缺口）
@@ -436,27 +418,13 @@
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：Combo pack/unpack is live. Five-gauge table crafts stay blocked. Overlay on reuse_canonical rows, not a blocked identity_disposition.
 
-### `material-form/luv-puv1-parts`
-
-- 标题：LuV–PUV1 紧凑零件网格仍缺
-- 状态：`open`
-- 根因：`missing_form` / `missing_high_voltage_technological_parts`
-- 数量：4 tiers
-- 挡住：`player_complete`
-- 发现卡：`content/technological-parts-foundation`
-- 由本卡引入：否（发现既有缺口）
-- 解决卡：—
-- 影响：`content/technological-parts-foundation`
-- 权威：`docs/current/unimplemented-gap.md`
-- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：LuV ≠ wireGt07. Existing covers still use programmed_circuit upgrades. Separate dedicated card.
-
 ### `obtain/injector-mv-hv-iv-hosts`
 
 - 标题：注射机 MV/HV/IV 主机获得格仍 blocked
 - 状态：`open`
 - 根因：`missing_form` / `missing_host_acquisition_parts`
 - 数量：3 hosts
+- 排期：`schedulable`
 - 挡住：`player_complete`
 - 发现卡：`machines/injector`
 - 由本卡引入：否（发现既有缺口）
@@ -472,6 +440,7 @@
 - 状态：`open`
 - 根因：`missing_obtain` / `runtime_without_source_exact_obtain`
 - 数量：14 capabilities
+- 排期：`schedulable`
 - 挡住：`player_complete`
 - 发现卡：`content/gt6-mte-fluid-attachments-runtime`
 - 由本卡引入：否（发现既有缺口）
@@ -487,6 +456,7 @@
 - 状态：`open`
 - 根因：`missing_form` / `missing_laser_gas_and_sapphire_processor`
 - 数量：5 hosts
+- 排期：`schedulable`
 - 挡住：`player_complete`
 - 发现卡：`machines/nanofab`
 - 由本卡引入：否（发现既有缺口）
@@ -502,6 +472,7 @@
 - 状态：`open`
 - 根因：`missing_obtain` / `no_real_wiregt01_recipe`
 - 数量：3 items
+- 排期：`schedulable`
 - 挡住：`player_complete`
 - 发现卡：`content/mte-redstone-wire`
 - 由本卡引入：否（发现既有缺口）
@@ -517,6 +488,7 @@
 - 状态：`open`
 - 根因：`missing_mod_bridge` / `computercraft_peripheral_out_of_card`
 - 数量：1 integrations
+- 排期：`not_work`
 - 挡住：`player_complete`
 - 发现卡：`content/sensors`
 - 由本卡引入：否（发现既有缺口）
@@ -532,6 +504,7 @@
 - 状态：`open`
 - 根因：`unmapped_operand` / `bath_identity_unmapped_families`
 - 数量：5 families
+- 排期：`schedulable`
 - 挡住：`player_complete`
 - 发现卡：`recipe/blocked-chain-ledger`
 - 由本卡引入：否（发现既有缺口）
@@ -547,6 +520,7 @@
 - 状态：`open`
 - 根因：`unmapped_operand` / `bath_remainder_unmapped_families`
 - 数量：150 families
+- 排期：`schedulable`
 - 挡住：`player_complete`
 - 发现卡：`recipe/blocked-chain-ledger`
 - 由本卡引入：否（发现既有缺口）
@@ -562,6 +536,7 @@
 - 状态：`open`
 - 根因：`unmapped_operand` / `unmapped_storage_dust_or_div72`
 - 数量：49 rows
+- 排期：`schedulable`
 - 挡住：`player_complete`
 - 发现卡：`recipe/blocked-chain-ledger`
 - 由本卡引入：否（发现既有缺口）
@@ -577,6 +552,7 @@
 - 状态：`open`
 - 根因：`unmapped_operand` / `unregistered_glass_slab_fluid_or_shadow`
 - 数量：535 rows
+- 排期：`scale_not_todo`
 - 挡住：`player_complete`
 - 发现卡：`machines/injector`
 - 由本卡引入：否（发现既有缺口）
@@ -592,6 +568,7 @@
 - 状态：`open`
 - 根因：`unmapped_operand` / `unmapped_mte_or_gt_block_log`
 - 数量：60 rows
+- 排期：`schedulable`
 - 挡住：`player_complete`
 - 发现卡：`machines/laminator`
 - 由本卡引入：否（发现既有缺口）
@@ -607,6 +584,7 @@
 - 状态：`open`
 - 根因：`unmapped_operand` / `unmapped_mte_plant_fiber_or_shadow`
 - 数量：869 rows
+- 排期：`scale_not_todo`
 - 挡住：`player_complete`
 - 发现卡：`machines/loom`
 - 由本卡引入：否（发现既有缺口）
@@ -622,6 +600,7 @@
 - 状态：`open`
 - 根因：`unmapped_operand` / `graphene_mte_dolamide_or_shadow_circuit`
 - 数量：57 rows
+- 排期：`scale_not_todo`
 - 挡住：`player_complete`
 - 发现卡：`machines/nanofab`
 - 由本卡引入：否（发现既有缺口）
@@ -637,6 +616,7 @@
 - 状态：`open`
 - 根因：`missing_fluid` / `optional_furnace_fluids_out_of_child`
 - 数量：2 fluids
+- 排期：`schedulable`
 - 挡住：`player_complete`
 - 发现卡：`machines/oven`
 - 由本卡引入：否（发现既有缺口）
@@ -652,6 +632,7 @@
 - 状态：`open`
 - 根因：`unmapped_operand` / `unmapped_gt_stone`
 - 数量：120 rows
+- 排期：`schedulable`
 - 挡住：`player_complete`
 - 发现卡：`machines/pressure-washer`
 - 由本卡引入：否（发现既有缺口）
@@ -667,6 +648,7 @@
 - 状态：`open`
 - 根因：`missing_fluid` / `missing_dye_chemical_fluids`
 - 数量：22 rows
+- 排期：`schedulable`
 - 挡住：`player_complete`
 - 发现卡：`prep:machines/printer`
 - 由本卡引入：否（发现既有缺口）
@@ -682,6 +664,7 @@
 - 状态：`open`
 - 根因：`unmapped_operand` / `unmapped_rail_gt`
 - 数量：2 rows
+- 排期：`schedulable`
 - 挡住：`player_complete`
 - 发现卡：`machines/roll-former`
 - 由本卡引入：否（发现既有缺口）
@@ -697,6 +680,7 @@
 - 状态：`open`
 - 根因：`missing_runtime` / `prefix_unit_conversion_missing`
 - 数量：n/a
+- 排期：`audit_first`
 - 挡住：`none`
 - 发现卡：`registry/catalog-modern-ids`
 - 由本卡引入：否（发现既有缺口）
@@ -712,6 +696,7 @@
 - 状态：`open`
 - 根因：`missing_runtime` / `gt6_tool_world_behaviors_missing`
 - 数量：n/a
+- 排期：`audit_first`
 - 挡住：`none`
 - 发现卡：`registry/tool-head-remainder`
 - 由本卡引入：否（发现既有缺口）
@@ -719,7 +704,7 @@
 - 影响：—
 - 权威：`docs/current/unimplemented-gap.md`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：Pincers, hand drill, softhammer-on-storage, crowbar harvest, magnifier, electric tools. Clustered; not a recipe-row count.
+- 说明：Pincers, hand drill, softhammer-on-storage, crowbar harvest, magnifier, electric tools. Clustered in unimplemented-gap.md §5 (click/mine/missing forms/unwired ToolActions). Not a recipe-row count. Do not bundle electric tools with builder wand.
 
 ### `worldgen/bees`
 
@@ -727,6 +712,7 @@
 - 状态：`open`
 - 根因：`missing_runtime` / `bumble_requires_new_runtime`
 - 数量：n/a
+- 排期：`audit_first`
 - 挡住：`player_complete`
 - 发现卡：`worldgen/gt-crops`
 - 由本卡引入：否（发现既有缺口）
@@ -742,6 +728,7 @@
 - 状态：`open`
 - 根因：`missing_worldgen` / `requires_new_dimension_runtime`
 - 数量：n/a
+- 排期：`audit_first`
 - 挡住：`player_complete`
 - 发现卡：`prep:worldgen/gt-center`
 - 由本卡引入：否（发现既有缺口）
@@ -757,6 +744,7 @@
 - 状态：`open`
 - 根因：`missing_worldgen` / `keys_zpm_portals_fixtures_bedrock_ore_missing_forms`
 - 数量：n/a
+- 排期：`audit_first`
 - 挡住：`player_complete`
 - 发现卡：`worldgen/gt-dungeon`
 - 由本卡引入：否（发现既有缺口）
@@ -772,6 +760,7 @@
 - 状态：`open`
 - 根因：`missing_runtime` / `juicer_fermenter_requires_new_runtime`
 - 数量：n/a
+- 排期：`scale_not_todo`
 - 挡住：`player_complete`
 - 发现卡：`worldgen/gt-crops`
 - 由本卡引入：否（发现既有缺口）
@@ -787,6 +776,7 @@
 - 状态：`open`
 - 根因：`missing_worldgen` / `requires_extra_dimension`
 - 数量：3 families
+- 排期：`audit_first`
 - 挡住：`player_complete`
 - 发现卡：`prep:worldgen/gt-planet-rocks`
 - 由本卡引入：否（发现既有缺口）
@@ -802,6 +792,7 @@
 - 状态：`partial`
 - 根因：`unmapped_identity` / `graphene_superconductor_or_unprefixed_gauges`
 - 数量：n/a
+- 排期：`audit_first`
 - 挡住：`player_complete`
 - 发现卡：`content/gt6-eu-wire-cable-runtime`
 - 由本卡引入：否（发现既有缺口）
@@ -817,6 +808,7 @@
 - 状态：`partial`
 - 根因：`unmapped_operand` / `unmapped_fluids_identities_or_tank_limit`
 - 数量：2796 rows
+- 排期：`scale_not_todo`
 - 挡住：`player_complete`
 - 发现卡：`machines/melter`
 - 由本卡引入：否（发现既有缺口）
@@ -826,12 +818,93 @@
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：Only a classified subset is verified; the rest is UNVERIFIED_SCALE. Do not copy 2796 into a todo list.
 
+### `energy/large-heat-exchanger-17197`
+
+- 标题：大型热交换器 17197
+- 状态：`resolved`
+- 根因：`missing_runtime` / `large_hex_follow_up_card`
+- 数量：1 metas
+- 排期：`not_work`
+- 挡住：`player_complete`
+- 发现卡：`energy/heat-exchangers`
+- 由本卡引入：否（发现既有缺口）
+- 解决卡：energy/large-heat-exchanger
+- 影响：`energy/heat-exchangers`, `energy/large-heat-exchanger`
+- 权威：`tools/capabilities/energy/large-heat-exchanger/capability.json`
+- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
+- 说明：17197 3x3x2 HEX, HU from transmitters, FM.Hot execution, survival obtain grid, and GameTests landed on energy/large-heat-exchanger.
+
+### `energy/reactor-fusion`
+
+- 标题：聚变控制器获得格与等离子链（18 行已发布）
+- 状态：`resolved`
+- 根因：`missing_runtime` / `fusion_waits_on_fission_heat_contracts`
+- 数量：n/a
+- 排期：`not_work`
+- 挡住：`player_complete`
+- 发现卡：`energy/nuclear-fission-survival`
+- 由本卡引入：否（发现既有缺口）
+- 解决卡：energy/fusion-quantum
+- 影响：`energy/nuclear-fission-survival`, `energy/fusion-quantum`
+- 权威：`tools/capabilities/energy/fusion-quantum/capability.json`
+- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
+- 说明：18 source-backed Fusion rows execute. Controller obtain grid uses IV field emitters. FUELS_PLASMA stays empty. Neutral-matter bootstrap is CC_EXTENSION on FUSION_EXTENSION.
+
+### `energy/steam-turbine`
+
+- 标题：蒸汽涡轮 STEAM→RU
+- 状态：`resolved`
+- 根因：`missing_runtime` / `steam_turbine_later_card`
+- 数量：n/a
+- 排期：`not_work`
+- 挡住：`player_complete`
+- 发现卡：`energy/heat-exchangers`
+- 由本卡引入：否（发现既有缺口）
+- 解决卡：energy/steam-turbine
+- 影响：`energy/heat-exchangers`, `energy/steam-turbine`
+- 权威：`tools/capabilities/energy/steam-turbine/capability.json`
+- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
+- 说明：15 singles plus 4 large housings convert STEAM to RU with distilled-water recovery. Dedicated MTE hosts, not HEX or transformers.
+
+### `energy/transformer-long-distance`
+
+- 标题：长距变压器 10064–10068
+- 状态：`resolved`
+- 根因：`missing_runtime` / `needs_block_long_dist_wire`
+- 数量：5 metas
+- 排期：`not_work`
+- 挡住：`player_complete`
+- 发现卡：`energy/transformers`
+- 由本卡引入：否（发现既有缺口）
+- 解决卡：content/puv-omega-parts
+- 影响：`energy/transformers`, `content/puv-omega-parts`
+- 权威：`tools/capabilities/content/puv-omega-parts/capability.json`
+- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
+- 说明：Dedicated 10064-10068 endpoints plus five LongDistWire voltage hosts. Same-voltage EU with max(64, distance/8) loss. Not in the voltage-step transformer catalog.
+
+### `material-form/luv-puv1-parts`
+
+- 标题：LuV–PUV1 紧凑零件网格仍缺
+- 状态：`resolved`
+- 根因：`missing_form` / `missing_high_voltage_technological_parts`
+- 数量：4 tiers
+- 排期：`not_work`
+- 挡住：`player_complete`
+- 发现卡：`content/technological-parts-foundation`
+- 由本卡引入：否（发现既有缺口）
+- 解决卡：content/puv-omega-parts
+- 影响：`content/technological-parts-foundation`, `content/puv-omega-parts`
+- 权威：`tools/capabilities/content/puv-omega-parts/capability.json`
+- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
+- 说明：Compact electric parts 0-14 including LuV-OMEGA, Quantum circuit canonical item, and long-voltage transformers through OMEGA. VN[15] is not registered.
+
 ### `material-form/paper-tiny-plate`
 
 - 标题：纸微型板已注册，切片机 overflow 为 0
 - 状态：`resolved`
 - 根因：`missing_form` / `paper_tiny_plate_was_missing`
 - 数量：1 forms
+- 排期：`not_work`
 - 挡住：`player_complete`
 - 发现卡：`machines/slicer`
 - 由本卡引入：否（发现既有缺口）
@@ -847,6 +920,7 @@
 - 状态：`resolved`
 - 根因：`missing_worldgen` / `crops_worldgen_was_missing`
 - 数量：2 families
+- 排期：`not_work`
 - 挡住：`player_complete`
 - 发现卡：`worldgen/gt-trees`
 - 由本卡引入：否（发现既有缺口）
@@ -862,6 +936,7 @@
 - 状态：`superseded`
 - 根因：`deferred_key` / `deferred_to_hot_fluids_card`
 - 数量：1 keys
+- 排期：`not_work`
 - 挡住：`player_complete`
 - 发现卡：`energy/nuclear-fission-survival`
 - 由本卡引入：否（发现既有缺口）
@@ -877,6 +952,7 @@
 - 状态：`superseded`
 - 根因：`deferred_key` / `deferred_to_observation_safety_card`
 - 数量：2 keys
+- 排期：`not_work`
 - 挡住：`player_complete`
 - 发现卡：`energy/nuclear-fission-survival`
 - 由本卡引入：否（发现既有缺口）
@@ -892,6 +968,7 @@
 - 状态：`superseded`
 - 根因：`unmapped_identity` / `combo_pipe_was_dummy_on_parent`
 - 数量：2 forms
+- 排期：`not_work`
 - 挡住：`player_complete`
 - 发现卡：`content/gt6-fluid-pipe-runtime`
 - 由本卡引入：否（发现既有缺口）
@@ -907,6 +984,7 @@
 - 状态：`superseded`
 - 根因：`unmapped_identity` / `restrictive_pipe_was_dummy_on_parent`
 - 数量：3 forms
+- 排期：`not_work`
 - 挡住：`player_complete`
 - 发现卡：`content/gt6-item-pipe-runtime`
 - 由本卡引入：否（发现既有缺口）
@@ -922,6 +1000,7 @@
 - 状态：`superseded`
 - 根因：`unmapped_identity` / `laminator_extras_not_in_catalog_1817`
 - 数量：3 metas
+- 排期：`not_work`
 - 挡住：`player_complete`
 - 发现卡：`content/mte-redstone-wire`
 - 由本卡引入：否（发现既有缺口）
@@ -937,6 +1016,7 @@
 - 状态：`out_of_scope`
 - 根因：`invariant` / `rotational_gearbox_is_not_transformer_rotation`
 - 数量：1 identities
+- 排期：`not_work`
 - 挡住：`none`
 - 发现卡：`energy/transformers`
 - 由本卡引入：否（发现既有缺口）
@@ -952,6 +1032,7 @@
 - 状态：`out_of_scope`
 - 根因：`historical_optional` / `historical_optional_petroleum_sample`
 - 数量：702 rows
+- 排期：`not_work`
 - 挡住：`none`
 - 发现卡：`recipe/blocked-chain-ledger`
 - 由本卡引入：否（发现既有缺口）
@@ -967,6 +1048,7 @@
 - 状态：`out_of_scope`
 - 根因：`invariant` / `redstone_must_not_attach_energy_or_pipe`
 - 数量：n/a
+- 排期：`not_work`
 - 挡住：`none`
 - 发现卡：`content/gt6-redstone-wire-correction`
 - 由本卡引入：否（发现既有缺口）
@@ -982,6 +1064,7 @@
 - 状态：`out_of_scope`
 - 根因：`out_of_child` / `grindstone_is_separate_mte_class`
 - 数量：1 metas
+- 排期：`not_work`
 - 挡住：`none`
 - 发现卡：`machines/sanding`
 - 由本卡引入：否（发现既有缺口）
@@ -997,6 +1080,7 @@
 - 状态：`out_of_scope`
 - 根因：`out_of_child` / `crops_card_does_not_own_squeezer`
 - 数量：5322 rows
+- 排期：`not_work`
 - 挡住：`none`
 - 发现卡：`worldgen/gt-crops`
 - 由本卡引入：否（发现既有缺口）
@@ -1010,5 +1094,5 @@
 
 关 `runtime_ready` / `player_complete` 时，能力上每一条
 `disposition=blocked` 或「Obtain stays explicitly_blocked」必须绑定本账的 `id`。
-新缺口写进 `tools/blockers/catalog.json` 再 `--write`。
-修根因时按 `root_cause_class` 集中收口，不要把 overflow 行数抄成待办。
+新缺口写进 `tools/blockers/catalog.json` 再 `--write`，并填 `planning_bucket`。
+修根因时按 `root_cause_class` 集中收口。从 B 抽卡；A 按根因切片，不要按行数选最大。

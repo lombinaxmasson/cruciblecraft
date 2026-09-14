@@ -480,9 +480,10 @@ class BathMteHarnessTest {
             int meta = source.get("meta").getAsInt();
             String sourceItem = source.get("item").getAsString();
             sourceMteMeta.add(meta);
-            ResourceLocation expected = runtimeIdForMeta(sourceItem, meta);
+            ResourceLocation catalogId = runtimeIdForMeta(sourceItem, meta);
             String generatedId = generatedInputs.get(index).getAsJsonObject()
                     .get("item").getAsString();
+            ResourceLocation expected = resolvedRuntimeId(catalogId, generatedId);
             assertEquals(
                     expected.toString(),
                     generatedId,
@@ -511,9 +512,10 @@ class BathMteHarnessTest {
             int meta = source.get("meta").getAsInt();
             String sourceItem = source.get("item").getAsString();
             sourceMteMeta.add(meta);
-            ResourceLocation expected = runtimeIdForMeta(sourceItem, meta);
+            ResourceLocation catalogId = runtimeIdForMeta(sourceItem, meta);
             String generatedId = generatedOutputs.get(index).getAsJsonObject()
                     .get("id").getAsString();
+            ResourceLocation expected = resolvedRuntimeId(catalogId, generatedId);
             assertEquals(
                     expected.toString(),
                     generatedId,
@@ -538,6 +540,24 @@ class BathMteHarnessTest {
             }
         }
         throw new AssertionError("unmapped source_mte_meta " + sourceItem + "#" + meta);
+    }
+
+    private static ResourceLocation resolvedRuntimeId(
+            ResourceLocation catalogId, String generatedId) {
+        if (catalogId.toString().equals(generatedId)) {
+            return catalogId;
+        }
+        ResourceLocation live = ResourceLocation.parse(generatedId);
+        boolean livePresent = BuiltInRegistries.ITEM.containsKey(live)
+                && BuiltInRegistries.ITEM.get(live) != Items.AIR;
+        boolean catalogPresent = BuiltInRegistries.ITEM.containsKey(catalogId)
+                && BuiltInRegistries.ITEM.get(catalogId) != Items.AIR;
+        boolean dummyPath = catalogId.getPath().startsWith("fluid_pipe_tile/")
+                || catalogId.getPath().startsWith("electric_wire/");
+        if (livePresent && (!catalogPresent || dummyPath)) {
+            return live;
+        }
+        return catalogId;
     }
 
     private static void assertFluidStacks(

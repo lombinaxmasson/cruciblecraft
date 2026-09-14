@@ -9,11 +9,11 @@ import com.google.gson.annotations.SerializedName;
 
 import net.minecraft.resources.ResourceLocation;
 
-/** Source-backed transformer variants: 9 Loader_MultiTileEntities rows. */
+/** Source-backed ULV–PUV1 plus CC_EXTENSION PUV2–OMEGA transformer pairs. */
 public final class EnergyTransformerTierCatalog {
     private static final String RESOURCE =
             "/data/cruciblecraft/energy_transformer_tiers.json";
-    public static final int EXPECTED_SIZE = 9;
+    public static final int EXPECTED_SIZE = 14;
     private static final EnergyTransformerTierCatalog BUNDLED = loadBundled();
 
     private final List<Entry> entries;
@@ -94,7 +94,7 @@ public final class EnergyTransformerTierCatalog {
             Objects.requireNonNull(gt6Class, "gt6Class");
             Objects.requireNonNull(recipe, "recipe");
             if (sourceId <= 0
-                    || sourceLine <= 0
+                    || sourceLine < 0
                     || inputSize <= 0L
                     || outputSize <= 0L
                     || multiplier <= 0L

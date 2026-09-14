@@ -213,6 +213,10 @@ public class ModLanguageProvider extends LanguageProvider {
             addBlock(ModBlocks.LU_FIBER_CABLE, "LU 光纤线缆");
             addBlock(ModBlocks.LASER_ENGRAVER, "激光雕刻机");
             addBlock(ModBlocks.FUSION_REACTOR, "聚变反应堆");
+            addBlock(ModBlocks.LARGE_HEAT_EXCHANGER, "大型热交换器");
+            addBlock(ModBlocks.BEDROCK_DRILL, "基岩采矿钻机控制器");
+            addBlock(ModBlocks.BEDROCK_DRILL_HEAD, "基岩采矿钻头");
+            addBlock(ModBlocks.GT_BUSH, "浆果灌木");
             addBlock(ModBlocks.REACTOR_CORE_1X1, "反应堆芯 1×1");
             add("item.cruciblecraft.reactor_core_1x1", "反应堆芯 1×1");
             addBlock(ModBlocks.REACTOR_CORE_2X2, "反应堆芯 2×2");
@@ -530,6 +534,10 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.LU_FIBER_CABLE, "LU Fiber Cable");
         addBlock(ModBlocks.LASER_ENGRAVER, "Laser Engraver");
         addBlock(ModBlocks.FUSION_REACTOR, "Fusion Reactor");
+        addBlock(ModBlocks.LARGE_HEAT_EXCHANGER, "Large Heat Exchanger");
+        addBlock(ModBlocks.BEDROCK_DRILL, "Bedrock Mining Drill Controller");
+        addBlock(ModBlocks.BEDROCK_DRILL_HEAD, "Bedrock Mining Drill Head");
+        addBlock(ModBlocks.GT_BUSH, "Berry Bush");
         addBlock(ModBlocks.REACTOR_CORE_1X1, "Reactor Core 1x1");
         add("item.cruciblecraft.reactor_core_1x1", "Reactor Core 1x1");
         addBlock(ModBlocks.REACTOR_CORE_2X2, "Reactor Core 2x2");
@@ -1278,6 +1286,8 @@ public class ModLanguageProvider extends LanguageProvider {
         addBatteryCatalogNames();
         addTransformerCatalogNames();
         addHeatExchangerCatalogNames();
+        addQuantumEnergizerCatalogNames();
+        addLongDistanceCatalogNames();
         BathMteIdentityCatalog.newItems().forEach(identity ->
                 add(
                         "item." + CrucibleCraft.MODID + "."
@@ -1423,6 +1433,35 @@ public class ModLanguageProvider extends LanguageProvider {
             add("block." + CrucibleCraft.MODID + "." + path, name);
             add("item." + CrucibleCraft.MODID + "." + path, name);
         });
+    }
+
+    private void addQuantumEnergizerCatalogNames() {
+        com.masson.cruciblecraft.energy.quantum.QuantumEnergizerCatalog.profiles()
+                .forEach(profile -> {
+                    String path = profile.id().getPath();
+                    String name = chinese ? profile.langZh() : profile.langEn();
+                    add("block." + CrucibleCraft.MODID + "." + path, name);
+                    add("item." + CrucibleCraft.MODID + "." + path, name);
+                });
+    }
+
+    private void addLongDistanceCatalogNames() {
+        com.masson.cruciblecraft.energy.longdistance.LongDistanceTransformerCatalog
+                .endpoints()
+                .forEach(profile -> {
+                    String path = profile.id().getPath();
+                    String name = chinese ? profile.langZh() : profile.langEn();
+                    add("block." + CrucibleCraft.MODID + "." + path, name);
+                    add("item." + CrucibleCraft.MODID + "." + path, name);
+                });
+        com.masson.cruciblecraft.energy.longdistance.LongDistanceTransformerCatalog
+                .wires()
+                .forEach(profile -> {
+                    String path = profile.id().getPath();
+                    String name = chinese ? profile.langZh() : profile.langEn();
+                    add("block." + CrucibleCraft.MODID + "." + path, name);
+                    add("item." + CrucibleCraft.MODID + "." + path, name);
+                });
     }
 
     private String transformerDisplayName(

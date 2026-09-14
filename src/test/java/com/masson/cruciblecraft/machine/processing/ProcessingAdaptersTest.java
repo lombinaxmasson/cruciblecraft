@@ -538,9 +538,14 @@ class ProcessingAdaptersTest {
 
     @Test
     void everyT2MachineSpecFitsWorstRuleAndExposesConfiguredCapabilities() {
-        assertEquals(7, ModProcessingMachines.PRIMARY_MACHINES.size());
+        assertEquals(8, ModProcessingMachines.PRIMARY_MACHINES.size());
         for (ProcessingMachineSpec spec : ModProcessingMachines.PRIMARY_MACHINES) {
             assertEquals(spec.recipeMapId(), spec.requireRecipeMap().id());
+            if (spec == ModProcessingMachines.MELTER) {
+                assertEquals(1, spec.items().inputs().size());
+                assertEquals(1, spec.items().outputs().size());
+                continue;
+            }
             assertEquals(1, spec.items().inputs().size());
             assertTrue(spec.items().outputs().size() >= 3);
             assertEquals(

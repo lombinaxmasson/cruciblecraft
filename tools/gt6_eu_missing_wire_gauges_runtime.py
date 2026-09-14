@@ -170,8 +170,8 @@ EXPECTED_TESTS = [
     "missingGaugesAreNotMappedWireAlias",
 ]
 EXPECTED_FOLDS = 168
-EXPECTED_WIRES = 434
-EXPECTED_CABLES = 115
+EXPECTED_WIRES = 445
+EXPECTED_CABLES = 116
 
 
 def _write_json(path: Path, document: Any) -> None:

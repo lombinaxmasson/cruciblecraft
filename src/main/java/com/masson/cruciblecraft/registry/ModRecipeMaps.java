@@ -69,8 +69,22 @@ public final class ModRecipeMaps {
     public static final RecipeMap FUELS_GAS = create("fuels_gas");
     public static final RecipeMap FUELS_FLUIDBED = create("fuels_fluidbed");
     public static final RecipeMap FUSION = create("fusion");
+    public static final RecipeMap FUSION_EXTENSION = create("fusion_extension");
     public static final RecipeMap FUELS_PLASMA = create("fuels_plasma");
     public static final RecipeMap FUELS_HOT = create("fuels_hot");
+    public static final RecipeMap PRINTER = create("printer");
+    public static final RecipeMap SCANNER = create("scanner");
+    public static final RecipeMap AUTOCRAFTER = create("autocrafter");
+    public static final RecipeMap BOXINATOR = create("boxinator");
+    public static final RecipeMap LIGHTNING = create("lightning");
+    public static final RecipeMap PLANTALYZER = create("plantalyzer");
+    public static final RecipeMap BUMBLELYZER = create("bumblelyzer");
+    public static final RecipeMap MASSFAB = create("massfab");
+    public static final RecipeMap REPLICATOR = create("replicator");
+    public static final RecipeMap FREEZER = create("freezer");
+    public static final RecipeMap CRYO_MIXER = create("cryo_mixer");
+    public static final RecipeMap POLARIZER = create("polarizer");
+    public static final RecipeMap MAGNETIC_SEPARATOR = create("magnetic_separator");
 
     public static final List<RecipeMap> ALL = List.of(
             COKE_OVEN,
@@ -122,8 +136,22 @@ public final class ModRecipeMaps {
             FUELS_GAS,
             FUELS_FLUIDBED,
             FUSION,
+            FUSION_EXTENSION,
             FUELS_PLASMA,
-            FUELS_HOT);
+            FUELS_HOT,
+            PRINTER,
+            SCANNER,
+            AUTOCRAFTER,
+            BOXINATOR,
+            LIGHTNING,
+            PLANTALYZER,
+            BUMBLELYZER,
+            MASSFAB,
+            REPLICATOR,
+            FREEZER,
+            CRYO_MIXER,
+            POLARIZER,
+            MAGNETIC_SEPARATOR);
 
     private ModRecipeMaps() {}
 

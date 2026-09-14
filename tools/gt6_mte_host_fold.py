@@ -145,18 +145,19 @@ DOMAINS: dict[str, dict[str, Any]] = {
         "family": "processing_machine",
         "title": "GT6 Processing Host Fold",
         "collision_reason": "folded onto live processing host",
-        "expected_folds": 58,
-        "expected_keep": 28,
+        "expected_folds": 68,
+        "expected_keep": 18,
         "tests": [
             "automaticHammersStayDummy",
             "bronzeSifterFoldsOntoLiveHost",
-            "squeezerPolarizerMagSepLaserStayDummy",
+            "polarizerMagSepFoldOntoLiveHosts",
+            "squeezerLaserStayDummy",
         ],
         "plan_stem": "GT6加工机主机折回详细计划.md",
         "lock_note": (
-            "58 processing metas whose machine_tiers sourceId matches were "
-            "folded; Hammer/Squeezer/Polarizer/MagSep/Laser stay dummy; "
-            "not player_complete"
+            "68 processing metas whose machine_tiers sourceId matches were "
+            "folded; Hammer/Squeezer/Laser stay dummy; Polarizer/MagSep "
+            "fold onto live hosts; not player_complete"
         ),
     },
     "reactor": {

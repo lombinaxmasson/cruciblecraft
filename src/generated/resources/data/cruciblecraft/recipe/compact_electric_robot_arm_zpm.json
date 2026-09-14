@@ -1,13 +1,26 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "misc",
-  "ingredients": [
-    {
-      "item": "cruciblecraft:compact_electric_robot_arm_luv"
+  "type": "cruciblecraft:shaped_catalyst",
+  "ingredients": {
+    "C": {
+      "item": "cruciblecraft:graphene/wire"
     },
-    {
-      "item": "cruciblecraft:programmed_circuit"
+    "E": {
+      "item": "cruciblecraft:circuit_quantum"
+    },
+    "M": {
+      "item": "cruciblecraft:compact_electric_motor_zpm"
+    },
+    "P": {
+      "item": "cruciblecraft:compact_electric_piston_zpm"
+    },
+    "S": {
+      "item": "cruciblecraft:osmium_elemental/rod"
     }
+  },
+  "pattern": [
+    "CCC",
+    "MSM",
+    "PES"
   ],
   "result": {
     "count": 1,

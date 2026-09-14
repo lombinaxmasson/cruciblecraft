@@ -130,7 +130,7 @@ class EnergyTransformersCardTest(unittest.TestCase):
         kinds = io.load_json(KINDS)
         tiers = io.load_json(TIERS)
         self.assertEqual(1, len(kinds["kinds"]))
-        self.assertEqual(9, len(tiers["tiers"]))
+        self.assertEqual(14, len(tiers["tiers"]))
         self.assertEqual(
             "EU",
             kinds["kinds"][0]["energy"],
@@ -142,8 +142,9 @@ class EnergyTransformersCardTest(unittest.TestCase):
         ids = {row["id"] for row in tiers["tiers"]}
         self.assertIn("cruciblecraft:electric_transformer_ulv_lv", ids)
         self.assertIn("cruciblecraft:electric_transformer_uv_puv1", ids)
+        self.assertIn("cruciblecraft:electric_transformer_puv5_omega", ids)
         source_ids = {row["source_id"] for row in tiers["tiers"]}
-        self.assertEqual(set(range(10040, 10049)), source_ids)
+        self.assertEqual(set(range(10040, 10049)) | set(range(81049, 81054)), source_ids)
         self.assertNotIn(10064, source_ids)
         materials = [row["material"] for row in tiers["tiers"]]
         self.assertEqual(
@@ -157,6 +158,11 @@ class EnergyTransformersCardTest(unittest.TestCase):
                 "iridium",
                 "osmium_elemental",
                 "trinitanium",
+                "trinaquadalloy",
+                "neutronium",
+                "neutronium",
+                "neutronium",
+                "neutronium",
             ],
             materials,
         )

@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "slug": "machines/puv-omega-matrix",
+  "title": "All machine variants through OMEGA",
+  "maturity": "frozen",
+  "workflow": "paused",
+  "owned_paths": [
+    "src/main/resources/data/cruciblecraft/machine_tiers.json",
+    "src/main/resources/data/cruciblecraft/machine_kinds.json",
+    "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/PuvOmegaMatrixGameTests.java",
+    "tools/capabilities/machines/puv-omega-matrix/**"
+  ],
+  "depends_on": [
+    "content/puv-omega-parts"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/puv-omega-matrix",
+  "legacy_readiness": "tools/waves/content/puv-omega-tech-line/readiness.json",
+  "player_signoff": null,
+  "required_test_ids": [
+    "nativeEuGapsRegistered",
+    "puv2OmegaRowsAreExtensions",
+    "noAutomaticKindTierCompletion"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machines:puv2_omega_matrix",
+      "disposition": "new_distinct",
+      "runtime_ids": [],
+      "reason": "Explicit variant rows only. PUV2+ uses CC ID band 81000+. Native missing LV-IV EU rows stay source-backed."
+    }
+  ],
+  "note": "automaticKindTierCompletion stays false."
+}

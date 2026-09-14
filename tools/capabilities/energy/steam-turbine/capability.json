@@ -1,0 +1,39 @@
+{
+  "schema_version": 2,
+  "slug": "energy/steam-turbine",
+  "title": "Steam Turbines STEAM to RU",
+  "maturity": "frozen",
+  "workflow": "paused",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/energy/steamturbine/**",
+    "src/main/resources/data/cruciblecraft/steam_turbines.json",
+    "src/main/java/com/masson/cruciblecraft/gametest/SteamTurbineGameTests.java",
+    "tools/capabilities/energy/steam-turbine/**"
+  ],
+  "depends_on": [
+    "energy/large-heat-exchanger"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "energy/steam-turbine",
+  "legacy_readiness": "tools/waves/content/puv-omega-tech-line/readiness.json",
+  "player_signoff": null,
+  "required_test_ids": [
+    "fifteenSinglesConvertSteamToRu",
+    "largeHousingsRequireStructure",
+    "distilledWaterRecovery"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "thermal:steam_turbine",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:steam/turbine_bronze",
+        "cruciblecraft:magnalium/steam_turbine_main_housing"
+      ],
+      "reason": "GT6 MultiTileEntityTurbineSteam 15 rows plus LargeTurbineSteam 17211-17214. Not HEX, KU steam engine, or dummy consumeSteam."
+    }
+  ],
+  "note": "STEAM_PER_EU=2. Singles 200 steam/water, large 170."
+}

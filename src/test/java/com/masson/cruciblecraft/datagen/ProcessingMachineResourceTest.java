@@ -39,12 +39,19 @@ class ProcessingMachineResourceTest {
             String id = "cruciblecraft:" + machine;
             assertTrue(pickaxe.contains(id), id + " must be pickaxe-mineable");
             assertTrue(stone.contains(id), id + " must require a stone-tier tool");
-            assertTrue(Files.isRegularFile(GENERATED.resolve(
-                    "data/cruciblecraft/loot_table/blocks/" + machine + ".json")));
+            assertTrue(
+                    Files.isRegularFile(GENERATED.resolve(
+                            "data/cruciblecraft/loot_table/blocks/" + machine + ".json"))
+                            || Files.isRegularFile(MAIN.resolve(
+                                    "data/cruciblecraft/loot_table/blocks/"
+                                            + machine + ".json")),
+                    machine + " missing loot table");
             if (!MachineTierCatalog.acquisitionBlocked(
                     ResourceLocation.fromNamespaceAndPath("cruciblecraft", machine))) {
-                assertTrue(Files.isRegularFile(GENERATED.resolve(
-                        "data/cruciblecraft/recipe/machines/" + machine + ".json")));
+                assertTrue(
+                        Files.isRegularFile(GENERATED.resolve(
+                                "data/cruciblecraft/recipe/machines/" + machine + ".json")),
+                        machine + " missing generated acquisition recipe");
             }
             assertTrue(Files.isRegularFile(GENERATED.resolve(
                     "assets/cruciblecraft/blockstates/" + machine + ".json")));

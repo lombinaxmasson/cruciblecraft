@@ -69,6 +69,15 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.LASER_ENGRAVER.get());
                         output.accept(ModItems.LU_FIBER_CABLE.get());
                         output.accept(ModItems.FUSION_REACTOR.get());
+                        output.accept(ModItems.LARGE_HEAT_EXCHANGER.get());
+                        output.accept(ModItems.BEDROCK_DRILL.get());
+                        output.accept(ModItems.BEDROCK_DRILL_HEAD.get());
+                        ModItems.quantumEnergizerItemsById().values()
+                                .forEach(item -> output.accept(item.get()));
+                        ModItems.longDistanceTransformerItemsById().values()
+                                .forEach(item -> output.accept(item.get()));
+                        ModItems.longDistanceWireItemsById().values()
+                                .forEach(item -> output.accept(item.get()));
                         output.accept(ModItems.REACTOR_CORE_1X1.get());
                         output.accept(ModItems.REACTOR_CORE_2X2.get());
                         ModItems.reactorRods().forEach(rod -> output.accept(rod.get()));

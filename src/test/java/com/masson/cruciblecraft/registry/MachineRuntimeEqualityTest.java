@@ -38,8 +38,8 @@ class MachineRuntimeEqualityTest {
         JsonObject document = loadCatalog();
         Set<String> catalog = ids(document, false);
         Set<String> generic = ids(document, true);
-        assertEquals(127, catalog.size());
-        assertEquals(126, generic.size());
+        assertEquals(285, catalog.size());
+        assertEquals(284, generic.size());
         assertTrue(catalog.contains("cruciblecraft:bronze_crusher"));
         assertTrue(catalog.contains("cruciblecraft:steel_roaster"));
         assertTrue(catalog.contains("cruciblecraft:coagulator"));

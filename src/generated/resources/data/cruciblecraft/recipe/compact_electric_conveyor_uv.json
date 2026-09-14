@@ -1,13 +1,20 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "misc",
-  "ingredients": [
-    {
-      "item": "cruciblecraft:compact_electric_conveyor_zpm"
+  "type": "cruciblecraft:shaped_catalyst",
+  "ingredients": {
+    "C": {
+      "item": "cruciblecraft:graphene/wire"
     },
-    {
-      "item": "cruciblecraft:programmed_circuit"
+    "M": {
+      "item": "cruciblecraft:compact_electric_motor_uv"
+    },
+    "R": {
+      "item": "cruciblecraft:rubber/plate"
     }
+  },
+  "pattern": [
+    "RRR",
+    "MCM",
+    "RRR"
   ],
   "result": {
     "count": 1,

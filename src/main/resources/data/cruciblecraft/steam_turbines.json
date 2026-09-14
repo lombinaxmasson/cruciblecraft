@@ -1,0 +1,826 @@
+{
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+  "steam_per_eu": 2,
+  "expected_singles": 15,
+  "expected_larges": 4,
+  "machines": [
+    {
+      "id": "cruciblecraft:steam/turbine_bronze",
+      "source_id": 1512,
+      "source_line": 794,
+      "gt6_class": "MultiTileEntityTurbineSteam",
+      "kind": "single",
+      "source_policy": "source_backed",
+      "rotor_material": "bronze",
+      "casing_material": "bronze",
+      "steam_input_max": 48,
+      "ru_output": 16,
+      "steam_per_eu": 2,
+      "steam_per_water": 200,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Steam Turbine (Bronze)",
+      "lang_zh": "蒸汽涡轮（bronze）",
+      "recipe": {
+        "pattern": [
+          "TwT",
+          "GSG",
+          "TMT"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "long_rod",
+            "material": "bronze"
+          },
+          "M": {
+            "prefix": "machine_casing_double",
+            "material": "bronze"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "bronze"
+          },
+          "T": {
+            "prefix": "rotor",
+            "material": "bronze"
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:steam/turbine_brass",
+      "source_id": 1515,
+      "source_line": 795,
+      "gt6_class": "MultiTileEntityTurbineSteam",
+      "kind": "single",
+      "source_policy": "source_backed",
+      "rotor_material": "brass",
+      "casing_material": "bronze",
+      "steam_input_max": 72,
+      "ru_output": 24,
+      "steam_per_eu": 2,
+      "steam_per_water": 200,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Steam Turbine (Brass)",
+      "lang_zh": "蒸汽涡轮（brass）",
+      "recipe": {
+        "pattern": [
+          "TwT",
+          "GSG",
+          "TMT"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "long_rod",
+            "material": "bronze"
+          },
+          "M": {
+            "prefix": "machine_casing_double",
+            "material": "bronze"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "bronze"
+          },
+          "T": {
+            "prefix": "rotor",
+            "material": "brass"
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:steam/turbine_invar",
+      "source_id": 1518,
+      "source_line": 796,
+      "gt6_class": "MultiTileEntityTurbineSteam",
+      "kind": "single",
+      "source_policy": "source_backed",
+      "rotor_material": "invar",
+      "casing_material": "bronze",
+      "steam_input_max": 96,
+      "ru_output": 32,
+      "steam_per_eu": 2,
+      "steam_per_water": 200,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Steam Turbine (Invar)",
+      "lang_zh": "蒸汽涡轮（invar）",
+      "recipe": {
+        "pattern": [
+          "TwT",
+          "GSG",
+          "TMT"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "long_rod",
+            "material": "bronze"
+          },
+          "M": {
+            "prefix": "machine_casing_double",
+            "material": "bronze"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "bronze"
+          },
+          "T": {
+            "prefix": "rotor",
+            "material": "invar"
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:steam/turbine_steel",
+      "source_id": 1522,
+      "source_line": 798,
+      "gt6_class": "MultiTileEntityTurbineSteam",
+      "kind": "single",
+      "source_policy": "source_backed",
+      "rotor_material": "steel",
+      "casing_material": "steel",
+      "steam_input_max": 192,
+      "ru_output": 64,
+      "steam_per_eu": 2,
+      "steam_per_water": 200,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Steam Turbine (Steel)",
+      "lang_zh": "蒸汽涡轮（steel）",
+      "recipe": {
+        "pattern": [
+          "TwT",
+          "GSG",
+          "TMT"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "long_rod",
+            "material": "steel"
+          },
+          "M": {
+            "prefix": "machine_casing_double",
+            "material": "steel"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "steel"
+          },
+          "T": {
+            "prefix": "rotor",
+            "material": "steel"
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:steam/turbine_chromium",
+      "source_id": 1525,
+      "source_line": 799,
+      "gt6_class": "MultiTileEntityTurbineSteam",
+      "kind": "single",
+      "source_policy": "source_backed",
+      "rotor_material": "chromium",
+      "casing_material": "steel",
+      "steam_input_max": 288,
+      "ru_output": 96,
+      "steam_per_eu": 2,
+      "steam_per_water": 200,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Steam Turbine (Chromium)",
+      "lang_zh": "蒸汽涡轮（chromium）",
+      "recipe": {
+        "pattern": [
+          "TwT",
+          "GSG",
+          "TMT"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "long_rod",
+            "material": "steel"
+          },
+          "M": {
+            "prefix": "machine_casing_double",
+            "material": "steel"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "steel"
+          },
+          "T": {
+            "prefix": "rotor",
+            "material": "chromium"
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:steam/turbine_ironwood",
+      "source_id": 1527,
+      "source_line": 800,
+      "gt6_class": "MultiTileEntityTurbineSteam",
+      "kind": "single",
+      "source_policy": "source_backed",
+      "rotor_material": "ironwood",
+      "casing_material": "steel",
+      "steam_input_max": 384,
+      "ru_output": 128,
+      "steam_per_eu": 2,
+      "steam_per_water": 200,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Steam Turbine (Ironwood)",
+      "lang_zh": "蒸汽涡轮（ironwood）",
+      "recipe": {
+        "pattern": [
+          "TwT",
+          "GSG",
+          "TMT"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "long_rod",
+            "material": "steel"
+          },
+          "M": {
+            "prefix": "machine_casing_double",
+            "material": "steel"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "steel"
+          },
+          "T": {
+            "prefix": "rotor",
+            "material": "ironwood"
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:steam/turbine_steeleaf",
+      "source_id": 1528,
+      "source_line": 801,
+      "gt6_class": "MultiTileEntityTurbineSteam",
+      "kind": "single",
+      "source_policy": "source_backed",
+      "rotor_material": "steeleaf",
+      "casing_material": "steel",
+      "steam_input_max": 384,
+      "ru_output": 128,
+      "steam_per_eu": 2,
+      "steam_per_water": 200,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Steam Turbine (Steeleaf)",
+      "lang_zh": "蒸汽涡轮（steeleaf）",
+      "recipe": {
+        "pattern": [
+          "TwT",
+          "GSG",
+          "TMT"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "long_rod",
+            "material": "steel"
+          },
+          "M": {
+            "prefix": "machine_casing_double",
+            "material": "steel"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "steel"
+          },
+          "T": {
+            "prefix": "rotor",
+            "material": "steeleaf"
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:steam/turbine_thaumium",
+      "source_id": 1529,
+      "source_line": 802,
+      "gt6_class": "MultiTileEntityTurbineSteam",
+      "kind": "single",
+      "source_policy": "source_backed",
+      "rotor_material": "thaumium",
+      "casing_material": "steel",
+      "steam_input_max": 384,
+      "ru_output": 128,
+      "steam_per_eu": 2,
+      "steam_per_water": 200,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Steam Turbine (Thaumium)",
+      "lang_zh": "蒸汽涡轮（thaumium）",
+      "recipe": {
+        "pattern": [
+          "TwT",
+          "GSG",
+          "TMT"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "long_rod",
+            "material": "steel"
+          },
+          "M": {
+            "prefix": "machine_casing_double",
+            "material": "steel"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "steel"
+          },
+          "T": {
+            "prefix": "rotor",
+            "material": "thaumium"
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:steam/turbine_titanium",
+      "source_id": 1530,
+      "source_line": 804,
+      "gt6_class": "MultiTileEntityTurbineSteam",
+      "kind": "single",
+      "source_policy": "source_backed",
+      "rotor_material": "titanium",
+      "casing_material": "titanium",
+      "steam_input_max": 768,
+      "ru_output": 256,
+      "steam_per_eu": 2,
+      "steam_per_water": 200,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Steam Turbine (Titanium)",
+      "lang_zh": "蒸汽涡轮（titanium）",
+      "recipe": {
+        "pattern": [
+          "TwT",
+          "GSG",
+          "TMT"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "long_rod",
+            "material": "titanium"
+          },
+          "M": {
+            "prefix": "machine_casing_double",
+            "material": "titanium"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "titanium"
+          },
+          "T": {
+            "prefix": "rotor",
+            "material": "titanium"
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:steam/turbine_fiery_steel",
+      "source_id": 1531,
+      "source_line": 805,
+      "gt6_class": "MultiTileEntityTurbineSteam",
+      "kind": "single",
+      "source_policy": "source_backed",
+      "rotor_material": "fiery_steel",
+      "casing_material": "titanium",
+      "steam_input_max": 768,
+      "ru_output": 256,
+      "steam_per_eu": 2,
+      "steam_per_water": 200,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Steam Turbine (Fiery Steel)",
+      "lang_zh": "蒸汽涡轮（fiery_steel）",
+      "recipe": {
+        "pattern": [
+          "TwT",
+          "GSG",
+          "TMT"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "long_rod",
+            "material": "titanium"
+          },
+          "M": {
+            "prefix": "machine_casing_double",
+            "material": "titanium"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "titanium"
+          },
+          "T": {
+            "prefix": "rotor",
+            "material": "fiery_steel"
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:steam/turbine_aluminium",
+      "source_id": 1535,
+      "source_line": 806,
+      "gt6_class": "MultiTileEntityTurbineSteam",
+      "kind": "single",
+      "source_policy": "source_backed",
+      "rotor_material": "aluminium",
+      "casing_material": "titanium",
+      "steam_input_max": 1152,
+      "ru_output": 384,
+      "steam_per_eu": 2,
+      "steam_per_water": 200,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Steam Turbine (Aluminium)",
+      "lang_zh": "蒸汽涡轮（aluminium）",
+      "recipe": {
+        "pattern": [
+          "TwT",
+          "GSG",
+          "TMT"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "long_rod",
+            "material": "titanium"
+          },
+          "M": {
+            "prefix": "machine_casing_double",
+            "material": "titanium"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "titanium"
+          },
+          "T": {
+            "prefix": "rotor",
+            "material": "aluminium"
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:steam/turbine_magnalium",
+      "source_id": 1538,
+      "source_line": 807,
+      "gt6_class": "MultiTileEntityTurbineSteam",
+      "kind": "single",
+      "source_policy": "source_backed",
+      "rotor_material": "magnalium",
+      "casing_material": "titanium",
+      "steam_input_max": 1536,
+      "ru_output": 512,
+      "steam_per_eu": 2,
+      "steam_per_water": 200,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Steam Turbine (Magnalium)",
+      "lang_zh": "蒸汽涡轮（magnalium）",
+      "recipe": {
+        "pattern": [
+          "TwT",
+          "GSG",
+          "TMT"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "long_rod",
+            "material": "titanium"
+          },
+          "M": {
+            "prefix": "machine_casing_double",
+            "material": "titanium"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "titanium"
+          },
+          "T": {
+            "prefix": "rotor",
+            "material": "magnalium"
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:steam/turbine_void_metal",
+      "source_id": 1540,
+      "source_line": 809,
+      "gt6_class": "MultiTileEntityTurbineSteam",
+      "kind": "single",
+      "source_policy": "source_backed",
+      "rotor_material": "void_metal",
+      "casing_material": "tungstensteel",
+      "steam_input_max": 2304,
+      "ru_output": 768,
+      "steam_per_eu": 2,
+      "steam_per_water": 200,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Steam Turbine (Void Metal)",
+      "lang_zh": "蒸汽涡轮（void_metal）",
+      "recipe": {
+        "pattern": [
+          "TwT",
+          "GSG",
+          "TMT"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "long_rod",
+            "material": "tungstensteel"
+          },
+          "M": {
+            "prefix": "machine_casing_double",
+            "material": "tungstensteel"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "tungstensteel"
+          },
+          "T": {
+            "prefix": "rotor",
+            "material": "void_metal"
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:steam/turbine_trinitanium",
+      "source_id": 1545,
+      "source_line": 810,
+      "gt6_class": "MultiTileEntityTurbineSteam",
+      "kind": "single",
+      "source_policy": "source_backed",
+      "rotor_material": "trinitanium",
+      "casing_material": "tungstensteel",
+      "steam_input_max": 3072,
+      "ru_output": 1024,
+      "steam_per_eu": 2,
+      "steam_per_water": 200,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Steam Turbine (Trinitanium)",
+      "lang_zh": "蒸汽涡轮（trinitanium）",
+      "recipe": {
+        "pattern": [
+          "TwT",
+          "GSG",
+          "TMT"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "long_rod",
+            "material": "tungstensteel"
+          },
+          "M": {
+            "prefix": "machine_casing_double",
+            "material": "tungstensteel"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "tungstensteel"
+          },
+          "T": {
+            "prefix": "rotor",
+            "material": "trinitanium"
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:steam/turbine_graphene",
+      "source_id": 1548,
+      "source_line": 811,
+      "gt6_class": "MultiTileEntityTurbineSteam",
+      "kind": "single",
+      "source_policy": "source_backed",
+      "rotor_material": "graphene",
+      "casing_material": "tungstensteel",
+      "steam_input_max": 6144,
+      "ru_output": 2048,
+      "steam_per_eu": 2,
+      "steam_per_water": 200,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Steam Turbine (Graphene)",
+      "lang_zh": "蒸汽涡轮（graphene）",
+      "recipe": {
+        "pattern": [
+          "TwT",
+          "GSG",
+          "TMT"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "long_rod",
+            "material": "tungstensteel"
+          },
+          "M": {
+            "prefix": "machine_casing_double",
+            "material": "tungstensteel"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "tungstensteel"
+          },
+          "T": {
+            "prefix": "rotor",
+            "material": "graphene"
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:magnalium/steam_turbine_main_housing",
+      "source_id": 17211,
+      "source_line": 1254,
+      "gt6_class": "MultiTileEntityLargeTurbineSteam",
+      "kind": "large",
+      "source_policy": "source_backed",
+      "housing_material": "stainless_steel",
+      "plate_material": "magnalium",
+      "wall_source_id": 18022,
+      "wall_id": "cruciblecraft:multiblock/dense_stainless_steel_wall",
+      "steam_input_max": 12288,
+      "ru_output": 4096,
+      "steam_per_eu": 2,
+      "steam_per_water": 170,
+      "structure": "3x3x4",
+      "wall_count": 35,
+      "hardness": 6.0,
+      "resistance": 6.0,
+      "lang_en": "Magnalium Steam Turbine Main Housing",
+      "lang_zh": "magnalium蒸汽涡轮主机壳",
+      "recipe": {
+        "pattern": [
+          "PPP",
+          "PMP",
+          "PPP"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:multiblock/dense_stainless_steel_wall"
+          },
+          "P": {
+            "prefix": "block",
+            "material": "magnalium"
+          }
+        },
+        "catalyst": null
+      }
+    },
+    {
+      "id": "cruciblecraft:trinitanium/steam_turbine_main_housing",
+      "source_id": 17212,
+      "source_line": 1255,
+      "gt6_class": "MultiTileEntityLargeTurbineSteam",
+      "kind": "large",
+      "source_policy": "source_backed",
+      "housing_material": "titanium",
+      "plate_material": "trinitanium",
+      "wall_source_id": 18026,
+      "wall_id": "cruciblecraft:multiblock/dense_titanium_wall",
+      "steam_input_max": 24576,
+      "ru_output": 8192,
+      "steam_per_eu": 2,
+      "steam_per_water": 170,
+      "structure": "3x3x4",
+      "wall_count": 35,
+      "hardness": 9.0,
+      "resistance": 9.0,
+      "lang_en": "Trinitanium Steam Turbine Main Housing",
+      "lang_zh": "trinitanium蒸汽涡轮主机壳",
+      "recipe": {
+        "pattern": [
+          "PPP",
+          "PMP",
+          "PPP"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:multiblock/dense_titanium_wall"
+          },
+          "P": {
+            "prefix": "block",
+            "material": "trinitanium"
+          }
+        },
+        "catalyst": null
+      }
+    },
+    {
+      "id": "cruciblecraft:graphene/steam_turbine_main_housing",
+      "source_id": 17213,
+      "source_line": 1256,
+      "gt6_class": "MultiTileEntityLargeTurbineSteam",
+      "kind": "large",
+      "source_policy": "source_backed",
+      "housing_material": "tungstensteel",
+      "plate_material": "graphene",
+      "wall_source_id": 18023,
+      "wall_id": "cruciblecraft:multiblock/dense_tungstensteel_wall",
+      "steam_input_max": 49152,
+      "ru_output": 16384,
+      "steam_per_eu": 2,
+      "steam_per_water": 170,
+      "structure": "3x3x4",
+      "wall_count": 35,
+      "hardness": 12.5,
+      "resistance": 12.5,
+      "lang_en": "Graphene Steam Turbine Main Housing",
+      "lang_zh": "graphene蒸汽涡轮主机壳",
+      "recipe": {
+        "pattern": [
+          "PPP",
+          "PMP",
+          "PPP"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:multiblock/dense_tungstensteel_wall"
+          },
+          "P": {
+            "prefix": "block",
+            "material": "graphene"
+          }
+        },
+        "catalyst": null
+      }
+    },
+    {
+      "id": "cruciblecraft:vibramantium/steam_turbine_main_housing",
+      "source_id": 17214,
+      "source_line": 1257,
+      "gt6_class": "MultiTileEntityLargeTurbineSteam",
+      "kind": "large",
+      "source_policy": "source_backed",
+      "housing_material": "adamantium",
+      "plate_material": "vibramantium",
+      "wall_source_id": 18025,
+      "wall_id": "cruciblecraft:multiblock/dense_adamantium_wall",
+      "steam_input_max": 393216,
+      "ru_output": 131072,
+      "steam_per_eu": 2,
+      "steam_per_water": 170,
+      "structure": "3x3x4",
+      "wall_count": 35,
+      "hardness": 100.0,
+      "resistance": 100.0,
+      "lang_en": "Vibramantium Steam Turbine Main Housing",
+      "lang_zh": "vibramantium蒸汽涡轮主机壳",
+      "recipe": {
+        "pattern": [
+          "PPP",
+          "PMP",
+          "PPP"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:multiblock/dense_adamantium_wall"
+          },
+          "P": {
+            "prefix": "block",
+            "material": "vibramantium"
+          }
+        },
+        "catalyst": null
+      }
+    }
+  ]
+}

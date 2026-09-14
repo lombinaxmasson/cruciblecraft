@@ -106,6 +106,9 @@ public record ProcessingEmiRecipeData(
             case KINETIC_ROTATION -> "RU/t";
             case ELECTRIC -> "EU/t";
             case LU -> "LU/t";
+            case QUANTUM -> "QU/t";
+            case CU -> "CU/t";
+            case MU -> "MU/t";
             case HEAT -> "HEAT/t";
             default -> energyType.name() + "/t";
         };

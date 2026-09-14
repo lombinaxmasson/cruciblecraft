@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "expected_size": 5,
+  "endpoints": [
+    {
+      "id": "cruciblecraft:long_distance_transformer_ev",
+      "source_id": 10064,
+      "source_line": 909,
+      "voltage_index": 4,
+      "voltage": 2048,
+      "material": "chromium",
+      "host_transformer": "cruciblecraft:electric_transformer_ev_iv",
+      "lang_en": "Long Distance Transformer Endpoint (EV)",
+      "lang_zh": "长距变压器端点（超高压）"
+    },
+    {
+      "id": "cruciblecraft:long_distance_transformer_iv",
+      "source_id": 10065,
+      "source_line": 910,
+      "voltage_index": 5,
+      "voltage": 8192,
+      "material": "titanium",
+      "host_transformer": "cruciblecraft:electric_transformer_iv_luv",
+      "lang_en": "Long Distance Transformer Endpoint (IV)",
+      "lang_zh": "长距变压器端点（极高压）"
+    },
+    {
+      "id": "cruciblecraft:long_distance_transformer_luv",
+      "source_id": 10066,
+      "source_line": 911,
+      "voltage_index": 6,
+      "voltage": 32768,
+      "material": "iridium",
+      "host_transformer": "cruciblecraft:electric_transformer_luv_zpm",
+      "lang_en": "Long Distance Transformer Endpoint (LuV)",
+      "lang_zh": "长距变压器端点（LuV）"
+    },
+    {
+      "id": "cruciblecraft:long_distance_transformer_zpm",
+      "source_id": 10067,
+      "source_line": 912,
+      "voltage_index": 7,
+      "voltage": 131072,
+      "material": "osmium_elemental",
+      "host_transformer": "cruciblecraft:electric_transformer_zpm_uv",
+      "lang_en": "Long Distance Transformer Endpoint (ZPM)",
+      "lang_zh": "长距变压器端点（ZPM）"
+    },
+    {
+      "id": "cruciblecraft:long_distance_transformer_uv",
+      "source_id": 10068,
+      "source_line": 913,
+      "voltage_index": 8,
+      "voltage": 524288,
+      "material": "trinitanium",
+      "host_transformer": "cruciblecraft:electric_transformer_uv_puv1",
+      "lang_en": "Long Distance Transformer Endpoint (UV)",
+      "lang_zh": "长距变压器端点（UV）"
+    }
+  ],
+  "wires": [
+    {
+      "id": "cruciblecraft:long_distance_wire_ev",
+      "voltage_index": 4,
+      "voltage": 2048,
+      "core": "tin",
+      "lang_en": "Long Distance Wire (EV)",
+      "lang_zh": "长距导线（超高压）"
+    },
+    {
+      "id": "cruciblecraft:long_distance_wire_iv",
+      "voltage_index": 5,
+      "voltage": 8192,
+      "core": "copper",
+      "lang_en": "Long Distance Wire (IV)",
+      "lang_zh": "长距导线（极高压）"
+    },
+    {
+      "id": "cruciblecraft:long_distance_wire_luv",
+      "voltage_index": 6,
+      "voltage": 32768,
+      "core": "gold",
+      "lang_en": "Long Distance Wire (LuV)",
+      "lang_zh": "长距导线（LuV）"
+    },
+    {
+      "id": "cruciblecraft:long_distance_wire_zpm",
+      "voltage_index": 7,
+      "voltage": 131072,
+      "core": "aluminium",
+      "lang_en": "Long Distance Wire (ZPM)",
+      "lang_zh": "长距导线（ZPM）"
+    },
+    {
+      "id": "cruciblecraft:long_distance_wire_uv",
+      "voltage_index": 8,
+      "voltage": 524288,
+      "core": "graphene",
+      "lang_en": "Long Distance Wire (UV)",
+      "lang_zh": "长距导线（UV）"
+    }
+  ]
+}

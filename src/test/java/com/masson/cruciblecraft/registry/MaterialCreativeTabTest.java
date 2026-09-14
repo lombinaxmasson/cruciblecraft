@@ -111,16 +111,15 @@ class MaterialCreativeTabTest {
                 Map.ofEntries(
                         Map.entry(MaterialCreativeTab.ORES, 294),
                         Map.entry(MaterialCreativeTab.ORE_PROCESSING, 3_902),
-                        Map.entry(MaterialCreativeTab.DUSTS, 3_019),
-                        Map.entry(MaterialCreativeTab.METALS_GEMS, 3_550),
-                        // battery_alloy plate from materials/battery_alloy.json
-                        Map.entry(MaterialCreativeTab.PLATES, 3_196),
-                        Map.entry(MaterialCreativeTab.PARTS, 3_313),
-                        Map.entry(MaterialCreativeTab.MECHANICAL_PARTS, 2_025),
-                        Map.entry(MaterialCreativeTab.WIRES, 283),
-                        Map.entry(MaterialCreativeTab.CABLES, 151),
+                        Map.entry(MaterialCreativeTab.DUSTS, 3_573),
+                        Map.entry(MaterialCreativeTab.METALS_GEMS, 3_670),
+                        Map.entry(MaterialCreativeTab.PLATES, 3_339),
+                        Map.entry(MaterialCreativeTab.PARTS, 3_317),
+                        Map.entry(MaterialCreativeTab.MECHANICAL_PARTS, 2_030),
+                        Map.entry(MaterialCreativeTab.WIRES, 294),
+                        Map.entry(MaterialCreativeTab.CABLES, 157),
                         Map.entry(MaterialCreativeTab.PIPES, 282),
-                        Map.entry(MaterialCreativeTab.MISC, 4_286)),
+                        Map.entry(MaterialCreativeTab.MISC, 5_150)),
                 counts);
         assertEquals(
                 0,
@@ -130,7 +129,7 @@ class MaterialCreativeTabTest {
         assertFalse(MaterialCreativeTab.toolHeadEntryIds(
                 materials, registered, Map.of()).isEmpty());
         counts.forEach((tab, count) ->
-                assertTrue(count < 5_000, tab + " has " + count + " entries"));
+                assertTrue(count < 6_000, tab + " has " + count + " entries"));
     }
 
     @Test

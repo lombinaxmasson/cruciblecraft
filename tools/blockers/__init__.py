@@ -18,6 +18,18 @@ MARKDOWN = io.ROOT / "docs" / "current" / "blocked.md"
 STATUSES = ("open", "partial", "resolved", "superseded", "out_of_scope")
 MATURITY = ("player_complete", "runtime_ready", "none")
 OPEN_STATUSES = frozenset({"open", "partial"})
+PLANNING_BUCKETS = (
+    "scale_not_todo",
+    "schedulable",
+    "audit_first",
+    "not_work",
+)
+PLANNING_LABELS = {
+    "scale_not_todo": "A. 数字是规模，不是待办",
+    "schedulable": "B. 分母已冻，可当卡排",
+    "audit_first": "C. 有名字，分母未冻成工作量",
+    "not_work": "D. 不是活",
+}
 OBTAIN_MARKER = "Obtain stays explicitly_blocked"
 REQUIRED = (
     "id",
@@ -35,6 +47,7 @@ REQUIRED = (
     "claimed_by",
     "authority",
     "no_stand_in",
+    "planning_bucket",
 )
 ID_PREFIX = (
     "recipe/",
@@ -79,6 +92,11 @@ def _entry_errors(entry: dict[str, Any], known_slugs: set[str]) -> list[str]:
         errors.append(f"{ident}: bad status {entry['status']!r}")
     if entry["blocks_maturity"] not in MATURITY:
         errors.append(f"{ident}: bad blocks_maturity {entry['blocks_maturity']!r}")
+    bucket = str(entry.get("planning_bucket") or "")
+    if bucket not in PLANNING_BUCKETS:
+        errors.append(f"{ident}: bad planning_bucket {bucket!r}")
+    if entry["status"] not in OPEN_STATUSES and bucket != "not_work":
+        errors.append(f"{ident}: closed/out_of_scope rows must use planning_bucket not_work")
     count = entry["count"]
     if count is not None and (not isinstance(count, int) or count < 0):
         errors.append(f"{ident}: count must be null or a non-negative int")
@@ -231,19 +249,33 @@ def compile_ledger(catalog: dict[str, Any] | None = None) -> dict[str, Any]:
     status_counts = Counter(str(row["status"]) for row in entries)
     classes: dict[str, list[str]] = {}
     open_amounts: list[dict[str, Any]] = []
+    planning: dict[str, list[dict[str, Any]]] = {name: [] for name in PLANNING_BUCKETS}
+    planning_counts: dict[str, int] = {name: 0 for name in PLANNING_BUCKETS}
     for row in entries:
         if row["status"] not in OPEN_STATUSES:
             continue
+        bucket = str(row["planning_bucket"])
+        planning_counts[bucket] = planning_counts.get(bucket, 0) + 1
         classes.setdefault(str(row["root_cause_class"]), []).append(str(row["id"]))
+        planning.setdefault(bucket, []).append(
+            {
+                "count": row["count"],
+                "id": str(row["id"]),
+                "unit": str(row["unit"] or ""),
+            }
+        )
         if row["count"] is None:
             continue
         open_amounts.append(
             {
                 "count": int(row["count"]),
                 "id": str(row["id"]),
+                "planning_bucket": bucket,
                 "unit": str(row["unit"]),
             }
         )
+    for bucket in PLANNING_BUCKETS:
+        planning[bucket] = sorted(planning[bucket], key=lambda row: row["id"])
     return {
         "do_not_add": True,
         "entries": entries,
@@ -252,6 +284,8 @@ def compile_ledger(catalog: dict[str, Any] | None = None) -> dict[str, Any]:
         "open_ids_by_root_cause_class": {
             key: sorted(value) for key, value in sorted(classes.items())
         },
+        "planning": planning,
+        "planning_counts": planning_counts,
         "schema_version": 1,
         "source_revision": io.SOURCE_REVISION,
         "stats": {
@@ -275,21 +309,47 @@ def render_markdown(ledger: dict[str, Any] | None = None) -> str:
         "> `tools/blockers/catalog.json` 生成，不要手改。",
         "> 权威是 catalog；本页和 `tools/blockers/ledger.json` 都是投影。",
         "> 不同条目、不同 `unit` **不得相加**。发现旧缺口不是任务制造了缺口。",
+        "> `count` 不是剩余工作量。排期看 `planning_bucket`，不要按数字选最大的卡。",
         "",
         "## 统计",
         "",
         f"- 条目 {stats['total']}：open {stats['open']}，partial {stats['partial']}，"
         f"resolved {stats['resolved']}，superseded {stats['superseded']}，"
         f"out_of_scope {stats['out_of_scope']}",
-        "- 未关闭数量按条目列出（不得相加）：",
     ]
-    amounts = document.get("open_amounts") or []
-    if amounts:
-        for row in amounts:
-            lines.append(f"  - `{row['id']}`：{row['count']} {row['unit']}")
-    else:
-        lines.append("  - 无")
-    lines.extend(["", "## 按根因（未关闭）", ""])
+    planning_counts = document.get("planning_counts") or {}
+    lines.append(
+        "- 未关闭排期桶："
+        + "，".join(
+            f"{PLANNING_LABELS[name].split('. ', 1)[1]} {planning_counts.get(name, 0)}"
+            for name in PLANNING_BUCKETS
+        )
+    )
+    lines.extend(
+        [
+            "",
+            "## 排期分类（未关闭）",
+            "",
+            "A 的整数是 dump/shadow/未核实规模。B 才是可以抽 unique-active 的冻结核。",
+            "C 先审计分母。D 不是任务。同类条目仍不得相加。",
+            "",
+        ]
+    )
+    planning = document.get("planning") or {}
+    for name in PLANNING_BUCKETS:
+        rows = list(planning.get(name) or [])
+        lines.append(f"### {PLANNING_LABELS[name]}（{len(rows)}）")
+        lines.append("")
+        if not rows:
+            lines.append("无。")
+            lines.append("")
+            continue
+        for row in rows:
+            count = row["count"]
+            amount = "n/a" if count is None else f"{count} {row['unit']}"
+            lines.append(f"- `{row['id']}`：{amount}")
+        lines.append("")
+    lines.extend(["## 按根因（未关闭）", ""])
     classes = document.get("open_ids_by_root_cause_class") or {}
     if classes:
         for klass, idents in classes.items():
@@ -318,6 +378,7 @@ def render_markdown(ledger: dict[str, Any] | None = None) -> str:
                 f"- 状态：`{row['status']}`",
                 f"- 根因：`{row['root_cause_class']}` / `{row['root_cause']}`",
                 f"- 数量：{amount}",
+                f"- 排期：`{row['planning_bucket']}`",
                 f"- 挡住：`{row['blocks_maturity']}`",
                 f"- 发现卡：`{row['discovered_by']}`",
                 f"- 由本卡引入：{introduced}",
@@ -336,8 +397,8 @@ def render_markdown(ledger: dict[str, Any] | None = None) -> str:
             "",
             "关 `runtime_ready` / `player_complete` 时，能力上每一条",
             "`disposition=blocked` 或「Obtain stays explicitly_blocked」必须绑定本账的 `id`。",
-            "新缺口写进 `tools/blockers/catalog.json` 再 `--write`。",
-            "修根因时按 `root_cause_class` 集中收口，不要把 overflow 行数抄成待办。",
+            "新缺口写进 `tools/blockers/catalog.json` 再 `--write`，并填 `planning_bucket`。",
+            "修根因时按 `root_cause_class` 集中收口。从 B 抽卡；A 按根因切片，不要按行数选最大。",
             "",
         ]
     )

@@ -11,6 +11,11 @@ import com.masson.cruciblecraft.energy.battery.EnergyBatteryCatalog;
 import com.masson.cruciblecraft.energy.transformer.EnergyTransformerCatalog;
 import com.masson.cruciblecraft.energy.transformer.TransformerBlockItem;
 import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerBlockItem;
+import com.masson.cruciblecraft.energy.largeheatexchanger.LargeHeatExchangerBlockItem;
+import com.masson.cruciblecraft.energy.quantum.QuantumEnergizerBlockItem;
+import com.masson.cruciblecraft.energy.quantum.QuantumEnergizerCatalog;
+import com.masson.cruciblecraft.energy.longdistance.LongDistanceTransformerBlockItem;
+import com.masson.cruciblecraft.energy.longdistance.LongDistanceTransformerCatalog;
 import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
@@ -162,6 +167,20 @@ public final class ModItems {
             ITEMS.registerSimpleBlockItem(
                     "fusion_reactor",
                     ModBlocks.FUSION_REACTOR);
+    public static final DeferredItem<LargeHeatExchangerBlockItem> LARGE_HEAT_EXCHANGER =
+            ITEMS.register(
+                    "large_heat_exchanger",
+                    () -> new LargeHeatExchangerBlockItem(
+                            ModBlocks.LARGE_HEAT_EXCHANGER.get(),
+                            new Item.Properties()));
+    public static final DeferredItem<BlockItem> BEDROCK_DRILL =
+            ITEMS.registerSimpleBlockItem(
+                    "bedrock_drill",
+                    ModBlocks.BEDROCK_DRILL);
+    public static final DeferredItem<BlockItem> BEDROCK_DRILL_HEAD =
+            ITEMS.registerSimpleBlockItem(
+                    "bedrock_drill_head",
+                    ModBlocks.BEDROCK_DRILL_HEAD);
     public static final DeferredItem<BlockItem> REACTOR_CORE_1X1 =
             ITEMS.registerSimpleBlockItem(
                     "reactor_core_1x1",
@@ -482,6 +501,16 @@ public final class ModItems {
     private static final Map<
             ResourceLocation, DeferredItem<TransformerBlockItem>> TRANSFORMER_ITEMS =
                     registerTransformerItems();
+    private static final Map<
+            ResourceLocation, DeferredItem<QuantumEnergizerBlockItem>>
+                    QUANTUM_ENERGIZER_ITEMS = registerQuantumEnergizerItems();
+    private static final Map<
+            ResourceLocation, DeferredItem<LongDistanceTransformerBlockItem>>
+                    LONG_DISTANCE_TRANSFORMER_ITEMS =
+                            registerLongDistanceTransformerItems();
+    private static final Map<
+            ResourceLocation, DeferredItem<BlockItem>> LONG_DISTANCE_WIRE_ITEMS =
+                    registerLongDistanceWireItems();
     private static final Map<
             ResourceLocation, DeferredItem<HeatExchangerBlockItem>>
                     HEAT_EXCHANGER_ITEMS = registerHeatExchangerItems();
@@ -1339,6 +1368,83 @@ public final class ModItems {
     public static Map<ResourceLocation, DeferredItem<TransformerBlockItem>>
             transformerItemsById() {
         return TRANSFORMER_ITEMS;
+    }
+
+    private static Map<ResourceLocation, DeferredItem<QuantumEnergizerBlockItem>>
+            registerQuantumEnergizerItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<QuantumEnergizerBlockItem>> items =
+                new LinkedHashMap<>();
+        for (var profile : QuantumEnergizerCatalog.profiles()) {
+            DeferredItem<QuantumEnergizerBlockItem> item = ITEMS.register(
+                    profile.id().getPath(),
+                    () -> new QuantumEnergizerBlockItem(
+                            ModBlocks.quantumEnergizerBlocksById()
+                                    .get(profile.id())
+                                    .get(),
+                            new Item.Properties()));
+            if (items.put(profile.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate quantum energizer item " + profile.id());
+            }
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    public static Map<ResourceLocation, DeferredItem<QuantumEnergizerBlockItem>>
+            quantumEnergizerItemsById() {
+        return QUANTUM_ENERGIZER_ITEMS;
+    }
+
+    private static Map<ResourceLocation, DeferredItem<LongDistanceTransformerBlockItem>>
+            registerLongDistanceTransformerItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<LongDistanceTransformerBlockItem>>
+                items = new LinkedHashMap<>();
+        for (var profile : LongDistanceTransformerCatalog.endpoints()) {
+            DeferredItem<LongDistanceTransformerBlockItem> item = ITEMS.register(
+                    profile.id().getPath(),
+                    () -> new LongDistanceTransformerBlockItem(
+                            ModBlocks.longDistanceTransformerBlocksById()
+                                    .get(profile.id())
+                                    .get(),
+                            new Item.Properties()));
+            if (items.put(profile.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate long-distance transformer item " + profile.id());
+            }
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    public static Map<ResourceLocation, DeferredItem<LongDistanceTransformerBlockItem>>
+            longDistanceTransformerItemsById() {
+        return LONG_DISTANCE_TRANSFORMER_ITEMS;
+    }
+
+    private static Map<ResourceLocation, DeferredItem<BlockItem>>
+            registerLongDistanceWireItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<BlockItem>> items =
+                new LinkedHashMap<>();
+        for (var profile : LongDistanceTransformerCatalog.wires()) {
+            DeferredItem<BlockItem> item = ITEMS.register(
+                    profile.id().getPath(),
+                    () -> new CatalogNamedBlockItem(
+                            ModBlocks.longDistanceWireBlocksById()
+                                    .get(profile.id())
+                                    .get(),
+                            new Item.Properties(),
+                            profile.langEn(),
+                            profile.langZh()));
+            if (items.put(profile.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate long-distance wire item " + profile.id());
+            }
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    public static Map<ResourceLocation, DeferredItem<BlockItem>>
+            longDistanceWireItemsById() {
+        return LONG_DISTANCE_WIRE_ITEMS;
     }
 
     private static Map<ResourceLocation, DeferredItem<HeatExchangerBlockItem>>

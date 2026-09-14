@@ -46,6 +46,9 @@ import com.masson.cruciblecraft.energy.converter.EnergyConverterTierCatalog;
 import com.masson.cruciblecraft.energy.transformer.EnergyTransformerTierCatalog;
 import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerCatalog;
 import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerProfile;
+import com.masson.cruciblecraft.energy.largeheatexchanger.LargeHeatExchangerCatalog;
+import com.masson.cruciblecraft.energy.largeheatexchanger.LargeHeatExchangerProfile;
+import com.masson.cruciblecraft.energy.steam.SteamTurbineCatalog;
 import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.registry.ModItems;
@@ -102,36 +105,8 @@ public final class ModRecipeProvider extends RecipeProvider {
     }
 
     private static void compactElectricCoverRecipes(RecipeOutput output) {
-        Item circuit = ModItems.PROGRAMMED_CIRCUIT.get();
-        for (CoverComponentTiers.Family family
-                : CoverComponentTiers.Family.values()) {
-            for (int tier = 6;
-                    tier < CoverComponentTiers.TIER_COUNT;
-                    tier++) {
-                CoverComponentTiers.Entry previous =
-                        CoverComponentTiers.entries().get(
-                                family.ordinal()
-                                        * CoverComponentTiers.TIER_COUNT
-                                        + tier
-                                        - 1);
-                CoverComponentTiers.Entry next =
-                        CoverComponentTiers.entries().get(
-                                family.ordinal()
-                                        * CoverComponentTiers.TIER_COUNT
-                                        + tier);
-                ShapelessRecipeBuilder.shapeless(
-                                RecipeCategory.MISC,
-                                ModItems.compactElectricCover(
-                                        next.itemPath()).get())
-                        .requires(ModItems.compactElectricCover(
-                                previous.itemPath()).get())
-                        .requires(circuit)
-                        .unlockedBy(
-                                "has_programmed_circuit",
-                                has(circuit))
-                        .save(output, id(next.itemPath()));
-            }
-        }
+        // Cover TIER_COUNT stays 10. Compact part recipes are GT6 grids;
+        // programmed_circuit upgrades are not emitted.
     }
 
     private static void machineCoverRecipes(RecipeOutput output) {
@@ -797,10 +772,14 @@ public final class ModRecipeProvider extends RecipeProvider {
         addLuFiberRecipe(output);
         addFusionPartRecipes(output);
         addFusionRecipes(output);
+        addFusionExtensionRecipe(output);
+        PuvOmegaRecipes.addAll(output);
+        addLargeHeatExchangerRecipes(output);
         addBatteryCellRecipes(output);
         addBatteryRecipes(output);
         addTransformerRecipes(output);
         addHeatExchangerRecipes(output);
+        addSteamTurbineRecipes(output);
         for (MachineVariant variant
                 : com.masson.cruciblecraft.registry.ModMachineVariants.ALL) {
             emitAcquisition(output, variant);
@@ -1075,16 +1054,11 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_hopper", has(Items.HOPPER))
                 .save(output, id("logistics_generic_dump_cover"));
         addDisplayCpuRecipes(output);
-        Item galvanizedPlate = materialItem(
-                "steel_galvanized", MaterialPrefixes.PLATE);
-        ShapedRecipeBuilder.shaped(
-                        RecipeCategory.MISC,
-                        ModItems.GALVANIZED_STEEL_WALL.get())
-                .pattern("PP")
-                .pattern("PP")
-                .define('P', galvanizedPlate)
-                .unlockedBy("has_plate", has(galvanizedPlate))
-                .save(output, id("galvanized_steel_wall"));
+        addFusionWallRecipe(
+                output,
+                "steel_galvanized",
+                ModItems.GALVANIZED_STEEL_WALL.get(),
+                "galvanized_steel_wall");
         ShapedRecipeBuilder.shaped(
                         RecipeCategory.MISC, ModItems.LOGISTICS_CORE.get())
                 .pattern("CCC")
@@ -1097,36 +1071,6 @@ public final class ModRecipeProvider extends RecipeProvider {
                         "has_casing",
                         has(ModItems.STEEL_GALVANIZED_MACHINE_CASING.get()))
                 .save(output, id("logistics_core"));
-        addProcessorUnitRecipe(
-                output,
-                ModItems.VENTILATION_UNIT.get(),
-                "ventilation_unit",
-                Items.IRON_BARS);
-        addProcessorUnitRecipe(
-                output,
-                ModItems.VERSATILE_PROCESSOR_UNIT.get(),
-                "versatile_processor_unit",
-                Items.EMERALD);
-        addProcessorUnitRecipe(
-                output,
-                ModItems.LOGIC_PROCESSOR_UNIT.get(),
-                "logic_processor_unit",
-                Items.LAPIS_LAZULI);
-        addProcessorUnitRecipe(
-                output,
-                ModItems.CONTROL_PROCESSOR_UNIT.get(),
-                "control_processor_unit",
-                Items.REDSTONE);
-        addProcessorUnitRecipe(
-                output,
-                ModItems.STORAGE_PROCESSOR_UNIT.get(),
-                "storage_processor_unit",
-                Items.CHEST);
-        addProcessorUnitRecipe(
-                output,
-                ModItems.CONVERSION_PROCESSOR_UNIT.get(),
-                "conversion_processor_unit",
-                Items.GOLD_INGOT);
         addNonmetalPipeAcquisitionRecipes(output);
         addComboFluidPipeRecipes(output);
         addMetalFluidPipeTableRecipes(output);
@@ -1211,17 +1155,52 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .acquisitionBlocked(variant.id())) {
             return;
         }
+        String path = variant.id().getPath();
+        try {
+            emitAcquisitionResolved(output, variant, path);
+        } catch (RuntimeException exception) {
+            if (compactIndexFromVariant(path) >= 0
+                    && isSkippablePuvAcquisition(exception)) {
+                return;
+            }
+            throw exception;
+        }
+    }
+
+    private static boolean isSkippablePuvAcquisition(RuntimeException exception) {
+        String message = exception.getMessage();
+        if (message == null) {
+            return false;
+        }
+        return message.startsWith("Missing source machine component")
+                || message.startsWith("No electrolyzer cable")
+                || message.startsWith("No distillery wire")
+                || message.startsWith("Missing electrolyzer conductor")
+                || message.startsWith("No kinetic/heat casing")
+                || message.startsWith("Missing registered item")
+                || message.startsWith("Unknown technological part")
+                || message.startsWith("Unknown compact-tier variant");
+    }
+
+    private static void emitAcquisitionResolved(
+            RecipeOutput output,
+            MachineVariant variant,
+            String path) {
         var resolved = com.masson.cruciblecraft.machine.processing.MachineAcquisition.resolve(variant);
         Item result = ModItems.tieredProcessingItemsById()
                 .get(variant.id())
                 .get();
-        String path = variant.id().getPath();
         String material = resolved.materialPath();
         Item casing = resolved.casingItem() == null
                 ? null
                 : resolveRegisteredItem(resolved.casingItem());
         switch (resolved.template()) {
-            case "machine_generic" -> machineCrafting(output, result, path);
+            case "machine_generic" -> {
+                if (isExplicitProcessingKind(variant.kind().id().getPath())) {
+                    return;
+                }
+                machineCrafting(output, result, path);
+            }
             case "centrifuge" -> centrifugeCrafting(
                     output, result, casing, material, path);
             case "sifter" -> sifterCrafting(
@@ -1258,8 +1237,9 @@ public final class ModRecipeProvider extends RecipeProvider {
             case "slicer" -> slicerCrafting(
                     output, result, casing, material, path);
             case "nanofab" -> {
-                throw new IllegalStateException(
-                        "Blocked nanofab variant reached crafting: " + path);
+                // Native rows are acquisition-blocked. PUV2+/OMEGA rows keep
+                // the GT6 nanofab grid, which needs Ar/Kr/Xe laser cells.
+                return;
             }
             case "electrolyzer" -> electrolyzerCrafting(
                     output,
@@ -1967,8 +1947,11 @@ public final class ModRecipeProvider extends RecipeProvider {
             String id) {
         Item platinumWire = materialItem(
                 "platinum", MaterialPrefixes.WIRE);
-        Item cable = materialItem(
-                cableMaterial, MaterialPrefixes.CABLE);
+        Item cable = MaterialLookup.item(cableMaterial, MaterialPrefixes.CABLE)
+                .or(() -> MaterialLookup.item(cableMaterial, MaterialPrefixes.WIRE))
+                .orElseThrow(() -> new IllegalStateException(
+                        "Missing electrolyzer conductor "
+                                + cableMaterial));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
                 .pattern("SMS")
                 .pattern("W W")
@@ -2268,8 +2251,9 @@ public final class ModRecipeProvider extends RecipeProvider {
             case "titanium_pressurewasher" -> MaterialPrefixes.LARGE_FLUID_PIPE;
             case "tungstensteel_pressurewasher" ->
                     MaterialPrefixes.HUGE_FLUID_PIPE;
-            default -> throw new IllegalArgumentException(
-                    "Unknown pressure washer variant " + id);
+            default -> compactIndexOrThrow(id) >= 0
+                    ? MaterialPrefixes.HUGE_FLUID_PIPE
+                    : MaterialPrefixes.SMALL_FLUID_PIPE;
         };
         Map<String, Ingredient> ingredients = new LinkedHashMap<>();
         ingredients.put(
@@ -2329,8 +2313,7 @@ public final class ModRecipeProvider extends RecipeProvider {
             case "stainless_steel_electricloom" -> "compact_electric_motor_hv";
             case "chromium_electricloom" -> "compact_electric_motor_ev";
             case "titanium_electricloom" -> "compact_electric_motor_iv";
-            default -> throw new IllegalStateException(
-                    "Blocked electric loom variant reached crafting: " + id);
+            default -> compactPartOrThrow(id, "compact_electric_motor");
         };
         Map<String, Ingredient> ingredients = new LinkedHashMap<>();
         ingredients.put("S", Ingredient.of(materialItem(
@@ -2362,36 +2345,29 @@ public final class ModRecipeProvider extends RecipeProvider {
             case "stainless_steel_injector" -> 3;
             case "chromium_injector" -> 4;
             case "titanium_injector" -> 5;
-            default -> throw new IllegalArgumentException(
-                    "Unknown injector variant " + id);
+            default -> compactIndexOrThrow(id);
         };
-        String pipe = switch (tier) {
+        String pipe = switch (Math.min(tier, 5)) {
             case 1 -> "tiny_fluid_pipe";
             case 2 -> "small_fluid_pipe";
             case 3 -> "fluid_pipe";
             case 4 -> "large_fluid_pipe";
-            case 5 -> "huge_fluid_pipe";
-            default -> throw new AssertionError(tier);
+            default -> "huge_fluid_pipe";
         };
+        MaterialPrefix cablePrefix = tier <= 5
+                ? MaterialPrefixes.CABLE
+                : MaterialPrefixes.WIRE;
         String cable = switch (tier) {
             case 1 -> "tin";
             case 2 -> "copper";
             case 3 -> "gold";
             case 4 -> "aluminium";
             case 5 -> "platinum";
-            default -> throw new AssertionError(tier);
+            default -> tier <= 10 ? "graphene" : "superconductor";
         };
-        Item piston = switch (tier) {
-            case 1 -> ModItems.technologicalPart("compact_electric_piston_lv").get();
-            case 2 -> ModItems.technologicalPart("compact_electric_piston_mv").get();
-            case 3 -> ModItems.technologicalPart("compact_electric_piston_hv").get();
-            case 4 -> ModItems.technologicalPart("compact_electric_piston_ev").get();
-            case 5 -> ModItems.technologicalPart("compact_electric_piston_iv").get();
-            default -> null;
-        };
+        Item piston = technologicalCompact("compact_electric_piston", tier);
         if (piston == null) {
-            throw new IllegalStateException(
-                    "Blocked injector variant reached crafting: " + id);
+            return;
         }
         Map<String, Ingredient> ingredients = new LinkedHashMap<>();
         ingredients.put("X", Ingredient.of(piston));
@@ -2399,17 +2375,9 @@ public final class ModRecipeProvider extends RecipeProvider {
                 "stainless_steel",
                 MaterialPrefixCatalog.require(pipe))));
         ingredients.put("C", Ingredient.of(ModItems.technologicalPart(
-                switch (tier) {
-                    case 1 -> "circuit_basic";
-                    case 2 -> "circuit_good";
-                    case 3 -> "circuit_advanced";
-                    case 4 -> "circuit_elite";
-                    case 5 -> "circuit_master";
-                    default -> throw new AssertionError(tier);
-                }).get()));
+                circuitPath(tier)).get()));
         ingredients.put("M", Ingredient.of(casing));
-        ingredients.put("W", Ingredient.of(materialItem(
-                cable, MaterialPrefixes.CABLE)));
+        ingredients.put("W", Ingredient.of(materialItem(cable, cablePrefix)));
         // GT6 Loader_MultiTileEntities.java:1443-1447 {"XPw","CMW"}.
         acceptShapedCatalyst(
                 output,
@@ -2432,33 +2400,12 @@ public final class ModRecipeProvider extends RecipeProvider {
             case "stainless_steel_slicer" -> 3;
             case "chromium_slicer" -> 4;
             case "titanium_slicer" -> 5;
-            default -> throw new IllegalArgumentException(
-                    "Unknown slicer variant " + id);
+            default -> compactIndexOrThrow(id);
         };
-        Item piston = switch (tier) {
-            case 1 -> ModItems.technologicalPart("compact_electric_piston_lv").get();
-            case 2 -> ModItems.technologicalPart("compact_electric_piston_mv").get();
-            case 3 -> ModItems.technologicalPart("compact_electric_piston_hv").get();
-            case 4 -> ModItems.technologicalPart("compact_electric_piston_ev").get();
-            case 5 -> ModItems.technologicalPart("compact_electric_piston_iv").get();
-            default -> null;
-        };
-        Item conveyor = switch (tier) {
-            case 1 -> ModItems.technologicalPart(
-                    "compact_electric_conveyor_lv").get();
-            case 2 -> ModItems.technologicalPart(
-                    "compact_electric_conveyor_mv").get();
-            case 3 -> ModItems.technologicalPart(
-                    "compact_electric_conveyor_hv").get();
-            case 4 -> ModItems.technologicalPart(
-                    "compact_electric_conveyor_ev").get();
-            case 5 -> ModItems.technologicalPart(
-                    "compact_electric_conveyor_iv").get();
-            default -> null;
-        };
+        Item piston = technologicalCompact("compact_electric_piston", tier);
+        Item conveyor = technologicalCompact("compact_electric_conveyor", tier);
         if (piston == null || conveyor == null) {
-            throw new IllegalStateException(
-                    "Blocked slicer variant reached crafting: " + id);
+            return;
         }
         Map<String, Ingredient> ingredients = new LinkedHashMap<>();
         ingredients.put("P", Ingredient.of(piston));
@@ -2467,14 +2414,7 @@ public final class ModRecipeProvider extends RecipeProvider {
         ingredients.put("Y", Ingredient.of(conveyor));
         ingredients.put("M", Ingredient.of(casing));
         ingredients.put("C", Ingredient.of(ModItems.technologicalPart(
-                switch (tier) {
-                    case 1 -> "circuit_basic";
-                    case 2 -> "circuit_good";
-                    case 3 -> "circuit_advanced";
-                    case 4 -> "circuit_elite";
-                    case 5 -> "circuit_master";
-                    default -> throw new AssertionError(tier);
-                }).get()));
+                circuitPath(tier)).get()));
         // GT6 Loader_MultiTileEntities.java:1525-1529 {"PRw","YMC"}.
         acceptShapedCatalyst(
                 output,
@@ -2622,21 +2562,6 @@ public final class ModRecipeProvider extends RecipeProvider {
         return item;
     }
 
-    private static void addProcessorUnitRecipe(
-            RecipeOutput output, Item result, String path, Item gem) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
-                .pattern(" C ")
-                .pattern("GPG")
-                .pattern(" C ")
-                .define('C', ModItems.STEEL_GALVANIZED_MACHINE_CASING.get())
-                .define('G', gem)
-                .define('P', ModItems.PROGRAMMED_CIRCUIT.get())
-                .unlockedBy(
-                        "has_casing",
-                        has(ModItems.STEEL_GALVANIZED_MACHINE_CASING.get()))
-                .save(output, id(path));
-    }
-
     private static Item materialItem(
             String material, MaterialPrefix prefix) {
         return MaterialLookup.item(material, prefix)
@@ -2771,6 +2696,17 @@ public final class ModRecipeProvider extends RecipeProvider {
                                         ModItems.MATERIAL_WIRE_CUTTER.get())),
                         new ItemStack(ModItems.LARGE_IRIDIUM_COIL.get())),
                 null);
+        Item emitter = ModItems.technologicalPart("compact_force_field_emitter_iv").get();
+        output.accept(
+                id("machines/fusion_reactor"),
+                new ShapedCatalystRecipe(
+                        List.of("FFF", "FMF", "FFF"),
+                        Map.of(
+                                "F", Ingredient.of(emitter),
+                                "M", Ingredient.of(ModItems.TUNGSTENSTEEL_WALL.get())),
+                        Map.of(),
+                        new ItemStack(ModItems.FUSION_REACTOR.get())),
+                null);
     }
 
     private static void addFusionWallRecipe(
@@ -2814,6 +2750,35 @@ public final class ModRecipeProvider extends RecipeProvider {
                                     entry.luStart())),
                     null);
         }
+    }
+
+    private static void addFusionExtensionRecipe(RecipeOutput output) {
+        var deuterium = ModFluids.chemical("deuterium")
+                .map(entry -> entry.source().get());
+        var tritium = ModFluids.chemical("tritium")
+                .map(entry -> entry.source().get());
+        var matter = ModFluids.chemical("matter_neutral")
+                .map(entry -> entry.source().get());
+        if (deuterium.isEmpty() || tritium.isEmpty() || matter.isEmpty()) {
+            return;
+        }
+        output.accept(
+                id("fusion_extension/neutral_matter_bootstrap"),
+                new GTRecipeEntry(
+                        ModRecipeMaps.FUSION_EXTENSION.id(),
+                        new GTRecipe(
+                                List.of(fusionCircuit(3)),
+                                List.of(0),
+                                List.of(),
+                                List.of(
+                                        new FluidStack(deuterium.orElseThrow(), 1_000),
+                                        new FluidStack(tritium.orElseThrow(), 1_000)),
+                                List.of(new FluidStack(matter.orElseThrow(), 144)),
+                                List.of(),
+                                1_760,
+                                -8_192L,
+                                1_760L * 8_192L * 16L)),
+                null);
     }
 
     private static Ingredient fusionCircuit(int config) {
@@ -3135,6 +3100,125 @@ public final class ModRecipeProvider extends RecipeProvider {
         return MaterialLookup.item(ingredient.material(), prefix).orElse(null);
     }
 
+    private static void addLargeHeatExchangerRecipes(RecipeOutput output) {
+        LargeHeatExchangerProfile profile = LargeHeatExchangerCatalog.profile();
+        emitCatalogShaped(
+                output,
+                profile.id().getPath(),
+                profile.recipe(),
+                new ItemStack(ModItems.LARGE_HEAT_EXCHANGER.get()));
+        var transmitter = ModItems.mteInPlaceItemsById().get(profile.transmitterId());
+        if (transmitter != null) {
+            emitCatalogShaped(
+                    output,
+                    "multiblock/heat_transmitter",
+                    profile.transmitterRecipe(),
+                    new ItemStack(transmitter.get()));
+        }
+    }
+
+    private static void addSteamTurbineRecipes(RecipeOutput output) {
+        for (SteamTurbineCatalog.Profile profile : SteamTurbineCatalog.profiles()) {
+            var item = ModItems.mteInPlaceItemsById().get(profile.id());
+            if (item == null) {
+                continue;
+            }
+            emitSteamShaped(
+                    output,
+                    profile.id().getPath(),
+                    profile.recipe(),
+                    new ItemStack(item.get()));
+        }
+    }
+
+    private static void emitCatalogShaped(
+            RecipeOutput output,
+            String path,
+            LargeHeatExchangerProfile.Recipe recipe,
+            ItemStack result) {
+        LinkedHashMap<String, Ingredient> ingredients = new LinkedHashMap<>();
+        for (var entry : recipe.keys().entrySet()) {
+            Item item = resolveFlexibleIngredient(
+                    entry.getValue().item(),
+                    entry.getValue().prefix(),
+                    entry.getValue().material());
+            if (item == null) {
+                return;
+            }
+            ingredients.put(entry.getKey(), Ingredient.of(item));
+        }
+        LinkedHashMap<String, Ingredient> catalysts = new LinkedHashMap<>();
+        for (String tool : recipe.catalysts()) {
+            Item catalyst = catalystItem(tool);
+            if (catalyst == null) {
+                return;
+            }
+            catalysts.put(tool, Ingredient.of(catalyst));
+        }
+        acceptShapedCatalyst(output, path, recipe.pattern(), ingredients, catalysts, result);
+    }
+
+    private static void emitSteamShaped(
+            RecipeOutput output,
+            String path,
+            SteamTurbineCatalog.Recipe recipe,
+            ItemStack result) {
+        if (recipe.pattern().isEmpty()) {
+            return;
+        }
+        LinkedHashMap<String, Ingredient> ingredients = new LinkedHashMap<>();
+        for (var entry : recipe.keys().entrySet()) {
+            Item item = resolveFlexibleIngredient(
+                    entry.getValue().item(),
+                    entry.getValue().prefix(),
+                    entry.getValue().material());
+            if (item == null) {
+                return;
+            }
+            ingredients.put(entry.getKey(), Ingredient.of(item));
+        }
+        LinkedHashMap<String, Ingredient> catalysts = new LinkedHashMap<>();
+        for (String tool : recipe.catalysts()) {
+            Item catalyst = catalystItem(tool);
+            if (catalyst == null) {
+                return;
+            }
+            catalysts.put(tool, Ingredient.of(catalyst));
+        }
+        acceptShapedCatalyst(output, path, recipe.pattern(), ingredients, catalysts, result);
+    }
+
+    private static Item resolveFlexibleIngredient(
+            String itemId, String prefix, String material) {
+        if (itemId != null && !itemId.isBlank()) {
+            ResourceLocation loc = ResourceLocation.tryParse(itemId);
+            if (loc == null || !BuiltInRegistries.ITEM.containsKey(loc)) {
+                return null;
+            }
+            Item item = BuiltInRegistries.ITEM.get(loc);
+            return item == Items.AIR ? null : item;
+        }
+        if (prefix == null || material == null) {
+            return null;
+        }
+        MaterialPrefix parsed;
+        try {
+            parsed = new MaterialPrefix("cruciblecraft:" + prefix);
+        } catch (IllegalArgumentException ignored) {
+            return null;
+        }
+        return MaterialLookup.item(material, parsed).orElse(null);
+    }
+
+    private static Item catalystItem(String key) {
+        return switch (key) {
+            case "w" -> ModItems.MATERIAL_WRENCH.get();
+            case "h" -> ModItems.SMITHING_HAMMER.get();
+            case "x" -> ModItems.MATERIAL_WIRE_CUTTER.get();
+            default -> null;
+        };
+    }
+
     private static Item resolveTransformerIngredient(
             EnergyTransformerTierCatalog.Ingredient ingredient) {
         if (ingredient.item() != null) {
@@ -3194,6 +3278,85 @@ public final class ModRecipeProvider extends RecipeProvider {
             return null;
         }
         return MaterialLookup.item(material, prefix).orElse(null);
+    }
+
+    private static final String[] COMPACT_TIER_NAMES = {
+            "ulv", "lv", "mv", "hv", "ev", "iv", "luv", "zpm", "uv", "puv1",
+            "puv2", "puv3", "puv4", "puv5", "omega"
+    };
+
+    private static int compactIndexFromVariant(String id) {
+        if (id.endsWith("_puv2")) {
+            return 10;
+        }
+        if (id.endsWith("_puv3")) {
+            return 11;
+        }
+        if (id.endsWith("_puv4")) {
+            return 12;
+        }
+        if (id.endsWith("_puv5")) {
+            return 13;
+        }
+        if (id.endsWith("_omega")) {
+            return 14;
+        }
+        return -1;
+    }
+
+    private static int compactIndexOrThrow(String id) {
+        int index = compactIndexFromVariant(id);
+        if (index < 0) {
+            throw new IllegalStateException("Unknown compact-tier variant: " + id);
+        }
+        return index;
+    }
+
+    private static String compactPartOrThrow(String id, String family) {
+        return family + "_" + COMPACT_TIER_NAMES[compactIndexOrThrow(id)];
+    }
+
+    private static Item technologicalCompact(String family, int tier) {
+        if (tier < 1 || tier >= COMPACT_TIER_NAMES.length) {
+            return null;
+        }
+        try {
+            return ModItems.technologicalPart(
+                    family + "_" + COMPACT_TIER_NAMES[tier]).get();
+        } catch (RuntimeException ignored) {
+            return null;
+        }
+    }
+
+    private static String circuitPath(int tier) {
+        return switch (tier) {
+            case 1 -> "circuit_basic";
+            case 2 -> "circuit_good";
+            case 3 -> "circuit_advanced";
+            case 4 -> "circuit_elite";
+            case 5 -> "circuit_master";
+            default -> "circuit_quantum";
+        };
+    }
+
+    private static boolean isExplicitProcessingKind(String kindPath) {
+        return switch (kindPath) {
+            case "printer",
+                    "scanner",
+                    "autocrafter",
+                    "electric_mixer",
+                    "boxinator",
+                    "lightning",
+                    "plantalyzer",
+                    "bumblelyzer",
+                    "massfab",
+                    "replicator",
+                    "freezer",
+                    "cryo_mixer",
+                    "polarizer",
+                    "magnetic_separator" -> true;
+            default -> false;
+        };
     }
 
     private static void machineCrafting(RecipeOutput output, Item result, String id) {

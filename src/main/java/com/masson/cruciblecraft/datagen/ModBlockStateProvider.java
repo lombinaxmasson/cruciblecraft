@@ -16,6 +16,7 @@ import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
 import com.masson.cruciblecraft.machine.processing.MachineTextureProfiles;
 import com.masson.cruciblecraft.content.block.GtTreeHoleBlock;
 import com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies;
+import com.masson.cruciblecraft.energy.bedrockdrill.BedrockDrillBlock;
 import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
 import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
@@ -129,6 +130,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
         registerBatteries();
         registerTransformers();
         registerHeatExchangers();
+        registerLargeHeatExchanger();
+        registerBedrockDrill();
+        registerQuantumEnergizers();
+        registerLongDistanceTransformers();
         simpleBlockWithItem(
                 ModBlocks.ROTATIONAL_AXLE.get(),
                 models().cubeAll(
@@ -774,6 +779,260 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 };
             });
             simpleBlockItem(block, idle);
+        }
+    }
+
+    private void registerLargeHeatExchanger() {
+        String base = "block/machine/large_heat_exchanger";
+        ModelFile idle = models()
+                .withExistingParent(
+                        "large_heat_exchanger/overlay",
+                        modLoc("block/machine_cube_2_layer"))
+                .texture("particle", modLoc(base + "/colored/front"))
+                .texture("bot_down", modLoc(base + "/colored/bottom"))
+                .texture("bot_up", modLoc(base + "/colored/top"))
+                .texture("bot_north", modLoc(base + "/colored/front"))
+                .texture("bot_south", modLoc(base + "/colored/back"))
+                .texture("bot_west", modLoc(base + "/colored/left"))
+                .texture("bot_east", modLoc(base + "/colored/right"))
+                .texture("top_down", modLoc(base + "/overlay/bottom"))
+                .texture("top_up", modLoc(base + "/overlay/top"))
+                .texture("top_north", modLoc(base + "/overlay/front"))
+                .texture("top_south", modLoc(base + "/overlay/back"))
+                .texture("top_west", modLoc(base + "/overlay/left"))
+                .texture("top_east", modLoc(base + "/overlay/right"));
+        ModelFile active = models()
+                .withExistingParent(
+                        "large_heat_exchanger/overlay_active",
+                        modLoc("block/machine_cube_2_layer"))
+                .texture("particle", modLoc(base + "/colored/front"))
+                .texture("bot_down", modLoc(base + "/colored/bottom"))
+                .texture("bot_up", modLoc(base + "/colored/top"))
+                .texture("bot_north", modLoc(base + "/colored/front"))
+                .texture("bot_south", modLoc(base + "/colored/back"))
+                .texture("bot_west", modLoc(base + "/colored/left"))
+                .texture("bot_east", modLoc(base + "/colored/right"))
+                .texture("top_down", modLoc(base + "/overlay_active/bottom"))
+                .texture("top_up", modLoc(base + "/overlay_active/top"))
+                .texture("top_north", modLoc(base + "/overlay_active/front"))
+                .texture("top_south", modLoc(base + "/overlay_active/back"))
+                .texture("top_west", modLoc(base + "/overlay_active/left"))
+                .texture("top_east", modLoc(base + "/overlay_active/right"));
+        var block = ModBlocks.LARGE_HEAT_EXCHANGER.get();
+        getVariantBuilder(block).forAllStates(state -> {
+            Direction facing = state.getValue(
+                    com.masson.cruciblecraft.energy.largeheatexchanger
+                            .LargeHeatExchangerBlock.FACING);
+            boolean lit = state.getValue(
+                    com.masson.cruciblecraft.energy.largeheatexchanger
+                            .LargeHeatExchangerBlock.LIT);
+            var builder = ConfiguredModel.builder()
+                    .modelFile(lit ? active : idle);
+            return switch (facing) {
+                case SOUTH -> builder.rotationY(180).build();
+                case WEST -> builder.rotationY(270).build();
+                case EAST -> builder.rotationY(90).build();
+                default -> builder.build();
+            };
+        });
+        simpleBlockItem(block, idle);
+    }
+
+    private void registerBedrockDrill() {
+        String base = "block/machine/bedrock_drill";
+        ModelFile idle = models()
+                .withExistingParent(
+                        "bedrock_drill/overlay",
+                        modLoc("block/machine_cube_2_layer"))
+                .texture("particle", modLoc(base + "/colored/front"))
+                .texture("bot_down", modLoc(base + "/colored/bottom"))
+                .texture("bot_up", modLoc(base + "/colored/top"))
+                .texture("bot_north", modLoc(base + "/colored/front"))
+                .texture("bot_south", modLoc(base + "/colored/back"))
+                .texture("bot_west", modLoc(base + "/colored/left"))
+                .texture("bot_east", modLoc(base + "/colored/right"))
+                .texture("top_down", modLoc(base + "/overlay/bottom"))
+                .texture("top_up", modLoc(base + "/overlay/top"))
+                .texture("top_north", modLoc(base + "/overlay/front"))
+                .texture("top_south", modLoc(base + "/overlay/back"))
+                .texture("top_west", modLoc(base + "/overlay/left"))
+                .texture("top_east", modLoc(base + "/overlay/right"));
+        ModelFile active = models()
+                .withExistingParent(
+                        "bedrock_drill/overlay_active",
+                        modLoc("block/machine_cube_2_layer"))
+                .texture("particle", modLoc(base + "/colored/front"))
+                .texture("bot_down", modLoc(base + "/colored/bottom"))
+                .texture("bot_up", modLoc(base + "/colored/top"))
+                .texture("bot_north", modLoc(base + "/colored/front"))
+                .texture("bot_south", modLoc(base + "/colored/back"))
+                .texture("bot_west", modLoc(base + "/colored/left"))
+                .texture("bot_east", modLoc(base + "/colored/right"))
+                .texture("top_down", modLoc(base + "/overlay_active/bottom"))
+                .texture("top_up", modLoc(base + "/overlay_active/top"))
+                .texture("top_north", modLoc(base + "/overlay_active/front"))
+                .texture("top_south", modLoc(base + "/overlay_active/back"))
+                .texture("top_west", modLoc(base + "/overlay_active/left"))
+                .texture("top_east", modLoc(base + "/overlay_active/right"));
+        var block = ModBlocks.BEDROCK_DRILL.get();
+        getVariantBuilder(block).forAllStates(state -> {
+            Direction facing = state.getValue(BedrockDrillBlock.FACING);
+            boolean lit = state.getValue(BedrockDrillBlock.LIT);
+            var builder = ConfiguredModel.builder()
+                    .modelFile(lit ? active : idle);
+            return switch (facing) {
+                case SOUTH -> builder.rotationY(180).build();
+                case WEST -> builder.rotationY(270).build();
+                case EAST -> builder.rotationY(90).build();
+                case DOWN -> builder.rotationX(90).build();
+                case UP -> builder.rotationX(270).build();
+                default -> builder.build();
+            };
+        });
+        simpleBlockItem(block, idle);
+        simpleBlockWithItem(
+                ModBlocks.BEDROCK_DRILL_HEAD.get(),
+                models().cubeAll(
+                        "bedrock_drill_head",
+                        modLoc(base + "/colored/front")));
+    }
+
+    private void registerQuantumEnergizers() {
+        String base = "block/machine/quantum_energizer";
+        ModelFile idle = models()
+                .withExistingParent(
+                        "quantum_energizer/overlay",
+                        modLoc("block/machine_cube_2_layer"))
+                .texture("particle", modLoc(base + "/colored/front"))
+                .texture("bot_down", modLoc(base + "/colored/bottom"))
+                .texture("bot_up", modLoc(base + "/colored/top"))
+                .texture("bot_north", modLoc(base + "/colored/front"))
+                .texture("bot_south", modLoc(base + "/colored/back"))
+                .texture("bot_west", modLoc(base + "/colored/left"))
+                .texture("bot_east", modLoc(base + "/colored/right"))
+                .texture("top_down", modLoc(base + "/overlay/bottom"))
+                .texture("top_up", modLoc(base + "/overlay/top"))
+                .texture("top_north", modLoc(base + "/overlay/front"))
+                .texture("top_south", modLoc(base + "/overlay/back"))
+                .texture("top_west", modLoc(base + "/overlay/left"))
+                .texture("top_east", modLoc(base + "/overlay/right"));
+        ModelFile active = models()
+                .withExistingParent(
+                        "quantum_energizer/overlay_active",
+                        modLoc("block/machine_cube_2_layer"))
+                .texture("particle", modLoc(base + "/colored/front"))
+                .texture("bot_down", modLoc(base + "/colored/bottom"))
+                .texture("bot_up", modLoc(base + "/colored/top"))
+                .texture("bot_north", modLoc(base + "/colored/front"))
+                .texture("bot_south", modLoc(base + "/colored/back"))
+                .texture("bot_west", modLoc(base + "/colored/left"))
+                .texture("bot_east", modLoc(base + "/colored/right"))
+                .texture("top_down", modLoc(base + "/overlay_active/bottom"))
+                .texture("top_up", modLoc(base + "/overlay_active/top"))
+                .texture("top_north", modLoc(base + "/overlay_active/front"))
+                .texture("top_south", modLoc(base + "/overlay_active/back"))
+                .texture("top_west", modLoc(base + "/overlay_active/left"))
+                .texture("top_east", modLoc(base + "/overlay_active/right"));
+        for (var profile : com.masson.cruciblecraft.energy.quantum
+                .QuantumEnergizerCatalog.profiles()) {
+            var block = ModBlocks.quantumEnergizerBlocksById()
+                    .get(profile.id())
+                    .get();
+            getVariantBuilder(block).forAllStates(state -> {
+                Direction facing = state.getValue(
+                        com.masson.cruciblecraft.energy.quantum
+                                .QuantumEnergizerBlock.FACING);
+                boolean lit = state.getValue(
+                        com.masson.cruciblecraft.energy.quantum
+                                .QuantumEnergizerBlock.LIT);
+                var builder = ConfiguredModel.builder()
+                        .modelFile(lit ? active : idle);
+                return switch (facing) {
+                    case DOWN -> builder.rotationX(90).build();
+                    case UP -> builder.rotationX(270).build();
+                    case SOUTH -> builder.rotationY(180).build();
+                    case WEST -> builder.rotationY(270).build();
+                    case EAST -> builder.rotationY(90).build();
+                    default -> builder.build();
+                };
+            });
+            simpleBlockItem(block, idle);
+        }
+    }
+
+    private void registerLongDistanceTransformers() {
+        String base = "block/machine/long_distance_transformer";
+        ModelFile idle = models()
+                .withExistingParent(
+                        "long_distance_transformer/overlay",
+                        modLoc("block/machine_cube_2_layer"))
+                .texture("particle", modLoc(base + "/colored/front"))
+                .texture("bot_down", modLoc(base + "/colored/bottom"))
+                .texture("bot_up", modLoc(base + "/colored/top"))
+                .texture("bot_north", modLoc(base + "/colored/front"))
+                .texture("bot_south", modLoc(base + "/colored/back"))
+                .texture("bot_west", modLoc(base + "/colored/left"))
+                .texture("bot_east", modLoc(base + "/colored/right"))
+                .texture("top_down", modLoc(base + "/overlay/bottom"))
+                .texture("top_up", modLoc(base + "/overlay/top"))
+                .texture("top_north", modLoc(base + "/overlay/front"))
+                .texture("top_south", modLoc(base + "/overlay/back"))
+                .texture("top_west", modLoc(base + "/overlay/left"))
+                .texture("top_east", modLoc(base + "/overlay/right"));
+        ModelFile active = models()
+                .withExistingParent(
+                        "long_distance_transformer/overlay_active",
+                        modLoc("block/machine_cube_2_layer"))
+                .texture("particle", modLoc(base + "/colored/front"))
+                .texture("bot_down", modLoc(base + "/colored/bottom"))
+                .texture("bot_up", modLoc(base + "/colored/top"))
+                .texture("bot_north", modLoc(base + "/colored/front"))
+                .texture("bot_south", modLoc(base + "/colored/back"))
+                .texture("bot_west", modLoc(base + "/colored/left"))
+                .texture("bot_east", modLoc(base + "/colored/right"))
+                .texture("top_down", modLoc(base + "/overlay_active/bottom"))
+                .texture("top_up", modLoc(base + "/overlay_active/top"))
+                .texture("top_north", modLoc(base + "/overlay_active/front"))
+                .texture("top_south", modLoc(base + "/overlay_active/back"))
+                .texture("top_west", modLoc(base + "/overlay_active/left"))
+                .texture("top_east", modLoc(base + "/overlay_active/right"));
+        for (var profile : com.masson.cruciblecraft.energy.longdistance
+                .LongDistanceTransformerCatalog.endpoints()) {
+            var block = ModBlocks.longDistanceTransformerBlocksById()
+                    .get(profile.id())
+                    .get();
+            getVariantBuilder(block).forAllStates(state -> {
+                Direction facing = state.getValue(
+                        com.masson.cruciblecraft.energy.longdistance
+                                .LongDistanceTransformerBlock.FACING);
+                boolean lit = state.getValue(
+                        com.masson.cruciblecraft.energy.longdistance
+                                .LongDistanceTransformerBlock.LIT);
+                var builder = ConfiguredModel.builder()
+                        .modelFile(lit ? active : idle);
+                return switch (facing) {
+                    case DOWN -> builder.rotationX(90).build();
+                    case UP -> builder.rotationX(270).build();
+                    case SOUTH -> builder.rotationY(180).build();
+                    case WEST -> builder.rotationY(270).build();
+                    case EAST -> builder.rotationY(90).build();
+                    default -> builder.build();
+                };
+            });
+            simpleBlockItem(block, idle);
+        }
+        for (var profile : com.masson.cruciblecraft.energy.longdistance
+                .LongDistanceTransformerCatalog.wires()) {
+            var block = ModBlocks.longDistanceWireBlocksById()
+                    .get(profile.id())
+                    .get();
+            String path = profile.id().getPath();
+            String voltage = path.substring("long_distance_wire_".length());
+            simpleBlockWithItem(
+                    block,
+                    models().cubeAll(
+                            path,
+                            modLoc("block/long_distance_wire/" + voltage)));
         }
     }
 

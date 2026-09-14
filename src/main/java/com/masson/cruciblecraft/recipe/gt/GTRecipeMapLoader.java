@@ -1375,11 +1375,29 @@ public final class GTRecipeMapLoader {
             int familyRows = families.getOrDefault(map, List.of()).stream()
                     .mapToInt(RecipeMap.RecipeFamily::logicalRecipeCount)
                     .sum();
-            if (entries.isEmpty() && familyRows == 0 && !provisionedChemicalMap) {
+            if (entries.isEmpty() && familyRows == 0 && !provisionedChemicalMap
+                    && !isFakeOrCraftingOnlyHostMap(map)) {
                 throw new IllegalArgumentException(
                         "Required playable map " + map.id() + " loaded zero recipes");
             }
         }
+    }
+
+    /**
+     * GT6 leaves these maps without concrete datapack rows: printer/scanner/
+     * plantalyzer/bumblelyzer are {@code addFakeRecipe} NBT scans, Autocrafter
+     * runs vanilla crafting, Boxinator crateGt packing is unemitted until the
+     * crate prefixes exist, and Replicator needs {@code FL.Ender} which CC does
+     * not register as a chemical fluid.
+     */
+    private static boolean isFakeOrCraftingOnlyHostMap(RecipeMap map) {
+        return map == ModRecipeMaps.PRINTER
+                || map == ModRecipeMaps.SCANNER
+                || map == ModRecipeMaps.AUTOCRAFTER
+                || map == ModRecipeMaps.PLANTALYZER
+                || map == ModRecipeMaps.BUMBLELYZER
+                || map == ModRecipeMaps.BOXINATOR
+                || map == ModRecipeMaps.REPLICATOR;
     }
 
     /**

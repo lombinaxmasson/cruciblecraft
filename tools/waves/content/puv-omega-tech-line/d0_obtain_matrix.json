@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "rows": [
+    {
+      "id": "cruciblecraft:large_heat_exchanger",
+      "source_id": 17197,
+      "grid": "DDD/PMP/DDD",
+      "policy": "source_backed"
+    },
+    {
+      "id": "cruciblecraft:multiblock/heat_transmitter",
+      "source_id": 18101,
+      "grid": "MPM/hRw/MPM",
+      "policy": "source_backed"
+    },
+    {
+      "id": "steam_turbine_singles",
+      "grid": "TwT/GSG/TMT",
+      "count": 15,
+      "policy": "source_backed"
+    },
+    {
+      "id": "large_steam_turbine_housings",
+      "grid": "PPP/PMP/PPP",
+      "count": 4,
+      "policy": "source_backed"
+    },
+    {
+      "id": "cruciblecraft:fusion_reactor",
+      "source_id": 17198,
+      "grid": "FFF/FMF/FFF",
+      "policy": "source_backed"
+    },
+    {
+      "id": "neutral_matter_bootstrap",
+      "policy": "CC_EXTENSION",
+      "note": "Not one of the 18 Fusion rows"
+    },
+    {
+      "id": "neutronium_ingot_massfab",
+      "policy": "CC_EXTENSION",
+      "input": "144 mB matter_neutral + 524288 QU",
+      "output": "cruciblecraft:neutronium/ingot"
+    }
+  ]
+}

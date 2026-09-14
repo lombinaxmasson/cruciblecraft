@@ -1067,6 +1067,31 @@
     },
     {
       "depends_on": [
+        "energy/quantum-massfab",
+        "content/technological-parts-foundation"
+      ],
+      "maturity": "frozen",
+      "owned_paths": [
+        "src/main/resources/data/cruciblecraft/technological_parts.json",
+        "src/main/resources/data/cruciblecraft/energy_transformer_tiers.json",
+        "src/main/resources/data/cruciblecraft/long_distance_transformers.json",
+        "src/main/java/com/masson/cruciblecraft/content/item/TechnologicalPartCatalog.java",
+        "src/main/java/com/masson/cruciblecraft/energy/transformer/EnergyTransformerTierCatalog.java",
+        "src/main/java/com/masson/cruciblecraft/energy/longdistance/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/PuvOmegaPartsGameTests.java",
+        "tools/capabilities/content/puv-omega-parts/**"
+      ],
+      "path": "tools/capabilities/content/puv-omega-parts/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/puv-omega-parts",
+      "title": "Compact parts, Quantum circuit, wires and transformers to OMEGA",
+      "workflow": "paused"
+    },
+    {
+      "depends_on": [
         "content/technological-parts-foundation"
       ],
       "maturity": "runtime_ready",
@@ -1266,6 +1291,27 @@
     },
     {
       "depends_on": [
+        "energy/steam-turbine"
+      ],
+      "maturity": "frozen",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/FusionReactorBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/fusion/**",
+        "src/main/java/com/masson/cruciblecraft/energy/quantum/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/FusionPlasmaGameTests.java",
+        "tools/capabilities/energy/fusion-quantum/**"
+      ],
+      "path": "tools/capabilities/energy/fusion-quantum/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "energy/fusion-quantum",
+      "title": "Fusion execution, QUANTUM, and LU to QU",
+      "workflow": "paused"
+    },
+    {
+      "depends_on": [
         "energy/nuclear-fission-hot-fluids"
       ],
       "maturity": "player_complete",
@@ -1294,6 +1340,28 @@
       "slug": "energy/heat-exchangers",
       "title": "Heat Exchangers",
       "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "energy/heat-exchangers",
+        "energy/nuclear-fission-hot-fluids"
+      ],
+      "maturity": "frozen",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/energy/largeheatexchanger/**",
+        "src/main/resources/data/cruciblecraft/large_heat_exchanger.json",
+        "src/main/java/com/masson/cruciblecraft/gametest/LargeHeatExchangerGameTests.java",
+        "tools/capabilities/energy/large-heat-exchanger/**",
+        "tools/waves/content/puv-omega-tech-line/**"
+      ],
+      "path": "tools/capabilities/energy/large-heat-exchanger/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "energy/large-heat-exchanger",
+      "title": "Large Heat Exchanger 17197",
+      "workflow": "paused"
     },
     {
       "depends_on": [
@@ -1398,6 +1466,46 @@
       "slug": "energy/nuclear-fission-survival",
       "title": "Nuclear Fission Survival",
       "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "energy/fusion-quantum"
+      ],
+      "maturity": "frozen",
+      "owned_paths": [
+        "src/main/resources/data/cruciblecraft/materials/neutronium.json",
+        "src/main/resources/data/cruciblecraft/materials/superconductor.json",
+        "src/main/java/com/masson/cruciblecraft/gametest/QuantumMassfabGameTests.java",
+        "tools/capabilities/energy/quantum-massfab/**"
+      ],
+      "path": "tools/capabilities/energy/quantum-massfab/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "energy/quantum-massfab",
+      "title": "Matter Fabricator and Neutronium bootstrap",
+      "workflow": "paused"
+    },
+    {
+      "depends_on": [
+        "energy/large-heat-exchanger"
+      ],
+      "maturity": "frozen",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/energy/steamturbine/**",
+        "src/main/resources/data/cruciblecraft/steam_turbines.json",
+        "src/main/java/com/masson/cruciblecraft/gametest/SteamTurbineGameTests.java",
+        "tools/capabilities/energy/steam-turbine/**"
+      ],
+      "path": "tools/capabilities/energy/steam-turbine/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "energy/steam-turbine",
+      "title": "Steam Turbines STEAM to RU",
+      "workflow": "paused"
     },
     {
       "depends_on": [
@@ -1917,6 +2025,27 @@
     },
     {
       "depends_on": [
+        "content/puv-omega-parts"
+      ],
+      "maturity": "frozen",
+      "owned_paths": [
+        "src/main/resources/data/cruciblecraft/machine_tiers.json",
+        "src/main/resources/data/cruciblecraft/machine_kinds.json",
+        "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/PuvOmegaMatrixGameTests.java",
+        "tools/capabilities/machines/puv-omega-matrix/**"
+      ],
+      "path": "tools/capabilities/machines/puv-omega-matrix/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/puv-omega-matrix",
+      "title": "All machine variants through OMEGA",
+      "workflow": "paused"
+    },
+    {
+      "depends_on": [
         "energy/heat-exchangers"
       ],
       "maturity": "player_complete",
@@ -2185,7 +2314,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 69,
+  "capability_count": 75,
   "declared_player_complete": [
     "energy/batteries",
     "energy/converter-catalog",
@@ -2370,12 +2499,18 @@
       "content/gt6-redstone-wire-correction",
       "content/mte-redstone-wire"
     ],
+    "content/puv-omega-parts": [
+      "content/puv-omega-parts",
+      "machines/puv-omega-matrix"
+    ],
     "content/sensors": [
       "content/sensors"
     ],
     "content/technological-parts-foundation": [
+      "content/puv-omega-parts",
       "content/sensors",
       "content/technological-parts-foundation",
+      "machines/puv-omega-matrix",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -2392,13 +2527,18 @@
       "content/gt6-item-pipe-acquisition",
       "content/gt6-paper-tiny-plate",
       "content/gt6-restrictive-item-pipe-runtime",
+      "content/puv-omega-parts",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
+      "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
+      "energy/quantum-massfab",
+      "energy/steam-turbine",
       "energy/transformers",
       "machines/cluster-mill",
       "machines/injector",
@@ -2408,6 +2548,7 @@
       "machines/nanofab",
       "machines/oven",
       "machines/pressure-washer",
+      "machines/puv-omega-matrix",
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
@@ -2427,14 +2568,19 @@
       "content/gt6-item-pipe-acquisition",
       "content/gt6-paper-tiny-plate",
       "content/gt6-restrictive-item-pipe-runtime",
+      "content/puv-omega-parts",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
+      "energy/quantum-massfab",
+      "energy/steam-turbine",
       "energy/transformers",
       "machines/cluster-mill",
       "machines/injector",
@@ -2444,12 +2590,19 @@
       "machines/nanofab",
       "machines/oven",
       "machines/pressure-washer",
+      "machines/puv-omega-matrix",
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
+    ],
+    "energy/fusion-quantum": [
+      "content/puv-omega-parts",
+      "energy/fusion-quantum",
+      "energy/quantum-massfab",
+      "machines/puv-omega-matrix"
     ],
     "energy/heat-exchangers": [
       "content/electric-wire-cable-mte-fold",
@@ -2463,9 +2616,14 @@
       "content/gt6-item-pipe-acquisition",
       "content/gt6-paper-tiny-plate",
       "content/gt6-restrictive-item-pipe-runtime",
+      "content/puv-omega-parts",
       "content/sensors",
       "content/technological-parts-foundation",
+      "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-heat-exchanger",
+      "energy/quantum-massfab",
+      "energy/steam-turbine",
       "machines/cluster-mill",
       "machines/injector",
       "machines/laminator",
@@ -2474,12 +2632,21 @@
       "machines/nanofab",
       "machines/oven",
       "machines/pressure-washer",
+      "machines/puv-omega-matrix",
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
+    ],
+    "energy/large-heat-exchanger": [
+      "content/puv-omega-parts",
+      "energy/fusion-quantum",
+      "energy/large-heat-exchanger",
+      "energy/quantum-massfab",
+      "energy/steam-turbine",
+      "machines/puv-omega-matrix"
     ],
     "energy/nuclear-fission-hot-fluids": [
       "content/electric-wire-cable-mte-fold",
@@ -2493,11 +2660,16 @@
       "content/gt6-item-pipe-acquisition",
       "content/gt6-paper-tiny-plate",
       "content/gt6-restrictive-item-pipe-runtime",
+      "content/puv-omega-parts",
       "content/sensors",
       "content/technological-parts-foundation",
+      "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
+      "energy/quantum-massfab",
+      "energy/steam-turbine",
       "machines/cluster-mill",
       "machines/injector",
       "machines/laminator",
@@ -2506,6 +2678,7 @@
       "machines/nanofab",
       "machines/oven",
       "machines/pressure-washer",
+      "machines/puv-omega-matrix",
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
@@ -2528,12 +2701,17 @@
       "content/gt6-item-pipe-acquisition",
       "content/gt6-paper-tiny-plate",
       "content/gt6-restrictive-item-pipe-runtime",
+      "content/puv-omega-parts",
       "content/sensors",
       "content/technological-parts-foundation",
+      "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
+      "energy/quantum-massfab",
+      "energy/steam-turbine",
       "machines/cluster-mill",
       "machines/injector",
       "machines/laminator",
@@ -2542,12 +2720,25 @@
       "machines/nanofab",
       "machines/oven",
       "machines/pressure-washer",
+      "machines/puv-omega-matrix",
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
+    ],
+    "energy/quantum-massfab": [
+      "content/puv-omega-parts",
+      "energy/quantum-massfab",
+      "machines/puv-omega-matrix"
+    ],
+    "energy/steam-turbine": [
+      "content/puv-omega-parts",
+      "energy/fusion-quantum",
+      "energy/quantum-massfab",
+      "energy/steam-turbine",
+      "machines/puv-omega-matrix"
     ],
     "energy/transformers": [
       "content/electric-wire-cable-mte-fold",
@@ -2561,12 +2752,17 @@
       "content/gt6-item-pipe-acquisition",
       "content/gt6-paper-tiny-plate",
       "content/gt6-restrictive-item-pipe-runtime",
+      "content/puv-omega-parts",
       "content/sensors",
       "content/technological-parts-foundation",
+      "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
+      "energy/quantum-massfab",
+      "energy/steam-turbine",
       "energy/transformers",
       "machines/cluster-mill",
       "machines/injector",
@@ -2576,6 +2772,7 @@
       "machines/nanofab",
       "machines/oven",
       "machines/pressure-washer",
+      "machines/puv-omega-matrix",
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
@@ -2595,14 +2792,19 @@
       "content/gt6-item-pipe-acquisition",
       "content/gt6-paper-tiny-plate",
       "content/gt6-restrictive-item-pipe-runtime",
+      "content/puv-omega-parts",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
+      "energy/quantum-massfab",
+      "energy/steam-turbine",
       "energy/transformers",
       "logistics/cover-net-r0",
       "logistics/cover-remainder",
@@ -2619,6 +2821,7 @@
       "machines/nanofab",
       "machines/oven",
       "machines/pressure-washer",
+      "machines/puv-omega-matrix",
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
@@ -2641,14 +2844,19 @@
       "content/gt6-item-pipe-acquisition",
       "content/gt6-paper-tiny-plate",
       "content/gt6-restrictive-item-pipe-runtime",
+      "content/puv-omega-parts",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
+      "energy/quantum-massfab",
+      "energy/steam-turbine",
       "energy/transformers",
       "logistics/display-cpu",
       "machines/cluster-mill",
@@ -2659,6 +2867,7 @@
       "machines/nanofab",
       "machines/oven",
       "machines/pressure-washer",
+      "machines/puv-omega-matrix",
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
@@ -2678,14 +2887,19 @@
       "content/gt6-item-pipe-acquisition",
       "content/gt6-paper-tiny-plate",
       "content/gt6-restrictive-item-pipe-runtime",
+      "content/puv-omega-parts",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
+      "energy/quantum-massfab",
+      "energy/steam-turbine",
       "energy/transformers",
       "logistics/display-cpu",
       "logistics/fluid-network/basic-transfer",
@@ -2699,6 +2913,7 @@
       "machines/nanofab",
       "machines/oven",
       "machines/pressure-washer",
+      "machines/puv-omega-matrix",
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
@@ -2718,14 +2933,19 @@
       "content/gt6-item-pipe-acquisition",
       "content/gt6-paper-tiny-plate",
       "content/gt6-restrictive-item-pipe-runtime",
+      "content/puv-omega-parts",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
+      "energy/quantum-massfab",
+      "energy/steam-turbine",
       "energy/transformers",
       "logistics/display-cpu",
       "logistics/generic-network/core",
@@ -2738,6 +2958,7 @@
       "machines/nanofab",
       "machines/oven",
       "machines/pressure-washer",
+      "machines/puv-omega-matrix",
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
@@ -2757,14 +2978,19 @@
       "content/gt6-item-pipe-acquisition",
       "content/gt6-paper-tiny-plate",
       "content/gt6-restrictive-item-pipe-runtime",
+      "content/puv-omega-parts",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
+      "energy/quantum-massfab",
+      "energy/steam-turbine",
       "energy/transformers",
       "logistics/display-cpu",
       "logistics/fluid-network/basic-transfer",
@@ -2779,6 +3005,7 @@
       "machines/nanofab",
       "machines/oven",
       "machines/pressure-washer",
+      "machines/puv-omega-matrix",
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
@@ -2798,14 +3025,19 @@
       "content/gt6-item-pipe-acquisition",
       "content/gt6-paper-tiny-plate",
       "content/gt6-restrictive-item-pipe-runtime",
+      "content/puv-omega-parts",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
+      "energy/quantum-massfab",
+      "energy/steam-turbine",
       "energy/transformers",
       "logistics/display-cpu",
       "logistics/logistics-core",
@@ -2817,6 +3049,7 @@
       "machines/nanofab",
       "machines/oven",
       "machines/pressure-washer",
+      "machines/puv-omega-matrix",
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
@@ -2828,9 +3061,11 @@
       "machines/cluster-mill"
     ],
     "machines/injector": [
+      "content/puv-omega-parts",
       "content/sensors",
       "content/technological-parts-foundation",
       "machines/injector",
+      "machines/puv-omega-matrix",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -2859,9 +3094,11 @@
       "content/gt6-fluid-pipe-acquisition",
       "content/gt6-item-pipe-acquisition",
       "content/gt6-restrictive-item-pipe-runtime",
+      "content/puv-omega-parts",
       "content/sensors",
       "content/technological-parts-foundation",
       "machines/loom",
+      "machines/puv-omega-matrix",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -2898,6 +3135,9 @@
     "machines/pressure-washer": [
       "machines/pressure-washer"
     ],
+    "machines/puv-omega-matrix": [
+      "machines/puv-omega-matrix"
+    ],
     "machines/roll-former": [
       "content/electric-wire-cable-mte-fold",
       "content/gt6-connector-alias-repair",
@@ -2910,6 +3150,7 @@
       "content/gt6-item-pipe-acquisition",
       "content/gt6-paper-tiny-plate",
       "content/gt6-restrictive-item-pipe-runtime",
+      "content/puv-omega-parts",
       "content/sensors",
       "content/technological-parts-foundation",
       "machines/cluster-mill",
@@ -2920,6 +3161,7 @@
       "machines/nanofab",
       "machines/oven",
       "machines/pressure-washer",
+      "machines/puv-omega-matrix",
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
@@ -2932,8 +3174,10 @@
     ],
     "machines/slicer": [
       "content/gt6-paper-tiny-plate",
+      "content/puv-omega-parts",
       "content/sensors",
       "content/technological-parts-foundation",
+      "machines/puv-omega-matrix",
       "machines/slicer",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
@@ -3032,14 +3276,19 @@
       "content/gt6-redstone-wire-correction",
       "content/gt6-restrictive-item-pipe-runtime",
       "content/mte-redstone-wire",
+      "content/puv-omega-parts",
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
+      "energy/quantum-massfab",
+      "energy/steam-turbine",
       "energy/transformers",
       "logistics/cover-net-r0",
       "logistics/cover-remainder",
@@ -3056,6 +3305,7 @@
       "machines/nanofab",
       "machines/oven",
       "machines/pressure-washer",
+      "machines/puv-omega-matrix",
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",

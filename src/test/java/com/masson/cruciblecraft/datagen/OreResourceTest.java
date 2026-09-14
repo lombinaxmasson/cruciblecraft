@@ -249,11 +249,38 @@ class OreResourceTest {
                                         "minecraft/tags/block/mineable/"
                                                 + "axe.json"),
                                 generatedData.resolve(
+                                        "minecraft/tags/block/mineable/"
+                                                + "hoe.json"),
+                                generatedData.resolve(
                                         "minecraft/tags/block/"
                                                 + "needs_stone_tool.json"),
                                 generatedData.resolve(
                                         "minecraft/tags/block/"
-                                                + "rails.json")),
+                                                + "rails.json"),
+                                generatedData.resolve(
+                                        "minecraft/tags/block/"
+                                                + "logs.json"),
+                                generatedData.resolve(
+                                        "minecraft/tags/block/"
+                                                + "logs_that_burn.json"),
+                                generatedData.resolve(
+                                        "minecraft/tags/block/"
+                                                + "leaves.json"),
+                                generatedData.resolve(
+                                        "minecraft/tags/block/"
+                                                + "saplings.json"),
+                                generatedData.resolve(
+                                        "minecraft/tags/item/"
+                                                + "logs.json"),
+                                generatedData.resolve(
+                                        "minecraft/tags/item/"
+                                                + "logs_that_burn.json"),
+                                generatedData.resolve(
+                                        "minecraft/tags/item/"
+                                                + "leaves.json"),
+                                generatedData.resolve(
+                                        "minecraft/tags/item/"
+                                                + "saplings.json")),
                         Set.copyOf(snapshots),
                         "only catalog-driven static item/block tags may ship "
                                 + "in generated data");
@@ -433,7 +460,7 @@ class OreResourceTest {
         assertEquals(
                 expectedGenerated + preStorageRecipeSet.size(),
                 generatedRecipeSet.size());
-        assertEquals(48, countRegularFiles(COMPONENT_RULE_RESOURCES.resolve(
+        assertEquals(51, countRegularFiles(COMPONENT_RULE_RESOURCES.resolve(
                 "data/cruciblecraft/recipe")));
         assertEquals(0, countRegularFiles(generatedAdvancements));
         try (var paths = Files.walk(generatedRecipes)) {

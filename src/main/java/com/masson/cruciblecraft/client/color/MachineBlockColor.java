@@ -45,6 +45,13 @@ public final class MachineBlockColor {
         blocks.add(ModBlocks.MORTAR.get());
         blocks.add(ModBlocks.LASER_ENGRAVER.get());
         blocks.add(ModBlocks.FUSION_REACTOR.get());
+        blocks.add(ModBlocks.LARGE_HEAT_EXCHANGER.get());
+        blocks.add(ModBlocks.BEDROCK_DRILL.get());
+        blocks.add(ModBlocks.BEDROCK_DRILL_HEAD.get());
+        ModBlocks.quantumEnergizerBlocksById().values()
+                .forEach(block -> blocks.add(block.get()));
+        ModBlocks.longDistanceTransformerBlocksById().values()
+                .forEach(block -> blocks.add(block.get()));
         blocks.add(ModBlocks.REACTOR_CORE_1X1.get());
         blocks.add(ModBlocks.REACTOR_CORE_2X2.get());
         java.util.ArrayList<Block> tinted = new java.util.ArrayList<>(
@@ -101,9 +108,23 @@ public final class MachineBlockColor {
         }
         return switch (path) {
             case "fusion_reactor" -> "steel_galvanized";
+            case "large_heat_exchanger" -> "tungsten";
+            case "bedrock_drill", "bedrock_drill_head" -> "titanium";
             case "reactor_core_1x1", "reactor_core_2x2" -> "lead";
             case "laser_engraver" -> "iron";
-            default -> "bronze";
+            default -> {
+                for (var profile : com.masson.cruciblecraft.energy.longdistance
+                        .LongDistanceTransformerCatalog.endpoints()) {
+                    if (path.equals(profile.id().getPath())) {
+                        yield profile.material();
+                    }
+                }
+                yield path.startsWith("quantum_energizer_omega")
+                        ? "neutronium"
+                        : path.startsWith("quantum_energizer")
+                                ? "osmiridium"
+                                : "bronze";
+            }
         };
     }
 

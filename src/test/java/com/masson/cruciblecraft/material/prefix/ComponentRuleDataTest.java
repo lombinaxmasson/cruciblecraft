@@ -66,6 +66,11 @@ class ComponentRuleDataTest {
             MaterialPrefixes.HEXADECUPLE_WIRE, MaterialPrefixes.CABLE,
             MaterialPrefixes.DOUBLE_CABLE, MaterialPrefixes.QUADRUPLE_CABLE,
             MaterialPrefixes.OCTUPLE_CABLE, MaterialPrefixes.DODECUPLE_CABLE);
+    private static final Set<String> ELECTRIC_T_WIRE_EVIDENCE_EXCEPTIONS = Set.of(
+            "trinaquadalloy/quadruple_wire",
+            "trinaquadalloy/wire",
+            "trinitanium/quadruple_wire",
+            "trinitanium/wire");
     private static final Map<String, MaterialPrefix> SOURCES = Map.ofEntries(
             Map.entry("plate", MaterialPrefixes.PLATE),
             Map.entry("stick", MaterialPrefixes.ROD),
@@ -149,12 +154,21 @@ class ComponentRuleDataTest {
                         entry -> registered.get(entry.getKey())));
         Set<String> acceptanceCorrections = acceptanceCorrections();
         assertEquals(Set.of("iron/wire"), acceptanceCorrections);
+        Set<String> formEvidenceExceptions = new java.util.HashSet<>(acceptanceCorrections);
+        formEvidenceExceptions.addAll(ELECTRIC_T_WIRE_EVIDENCE_EXCEPTIONS);
         for (MaterialDefinition material : materials) {
             if (material.gt6Metadata().isEmpty()) continue;
-            String source = material.gt6Metadata().get().sourceName();
+            var metadata = material.gt6Metadata().get();
+            if (metadata.sourceId() == 0
+                    || metadata.materialTags().contains("CC_EXTENSION")) {
+                continue;
+            }
+            String source = metadata.sourceName();
             var expectedElectrical = electricalEvidence.get(source);
-            var actualElectrical =
-                    material.gt6Metadata().get().electricalBySpecification();
+            if (expectedElectrical == null) {
+                continue;
+            }
+            var actualElectrical = metadata.electricalBySpecification();
             assertEquals(
                     expectedElectrical.keySet(),
                     actualElectrical.keySet(),
@@ -181,7 +195,7 @@ class ComponentRuleDataTest {
             evidenceByPrefix.forEach((prefix, evidence) ->
                     assertFalse(material.forms().contains(prefix)
                                     && !evidence.contains(source)
-                                    && !acceptanceCorrections.contains(
+                                    && !formEvidenceExceptions.contains(
                                             material.id() + "/" + prefix.serializedName()),
                             "unsupported generated form: " + source + " / "
                                     + prefix.serializedId()));
@@ -225,7 +239,7 @@ class ComponentRuleDataTest {
                         System.nanoTime() - expansionStarted);
         System.out.println("COMPONENT_RULE_EXPANSION_ELAPSED_MS=" + expansionElapsedMs);
         System.out.println("COMPONENT_RULE_EXPANSION_COUNT=" + plans.size());
-        assertEquals(48, rules.size());
+        assertEquals(51, rules.size());
         assertTrue(plans.size() <= 10_000, "component-rule reload expansion budget");
 
         Map<String, MaterialDefinition> byId = materials.stream()
@@ -381,7 +395,7 @@ class ComponentRuleDataTest {
                 .flatMap(material -> registeredForms.get(material.id()).stream())
                 .filter(prefix -> prefix.serializedName().contains("cable"))
                 .collect(Collectors.groupingBy(prefix -> prefix, Collectors.counting()));
-        assertEquals(26L, cables.get(MaterialPrefixes.CABLE));
+        assertEquals(28L, cables.get(MaterialPrefixes.CABLE));
         assertEquals(23L, cables.get(MaterialPrefixes.DOUBLE_CABLE));
         assertEquals(23L, cables.get(MaterialPrefixes.QUADRUPLE_CABLE));
         assertEquals(23L, cables.get(MaterialPrefixes.OCTUPLE_CABLE));

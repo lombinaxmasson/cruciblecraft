@@ -109,6 +109,22 @@ public final class ModCapabilities {
                 ModBlockEntities.FUSION_REACTOR.get(),
                 (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.FUSION_REACTOR.get(),
+                (blockEntity, side) -> blockEntity.fluids(side));
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.FUSION_REACTOR.get(),
+                (blockEntity, side) -> blockEntity.items(side));
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.QUANTUM_ENERGIZER.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.LONG_DISTANCE_TRANSFORMER.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
                 ModBlockEntities.REACTOR_CORE.get(),
                 (blockEntity, side) -> blockEntity.items());
@@ -254,6 +270,26 @@ public final class ModCapabilities {
                 Capabilities.FluidHandler.BLOCK,
                 ModBlockEntities.HEAT_EXCHANGER.get(),
                 (blockEntity, side) -> blockEntity.fluids(side));
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.LARGE_HEAT_EXCHANGER.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.LARGE_HEAT_EXCHANGER.get(),
+                (blockEntity, side) -> blockEntity.fluids(side));
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.BEDROCK_DRILL.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.BEDROCK_DRILL.get(),
+                (blockEntity, side) -> blockEntity.fluids(side));
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.BEDROCK_DRILL.get(),
+                (blockEntity, side) -> blockEntity.items(side));
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
                 ModBlockEntities.FLUID_BED_BURNING_BOX.get(),

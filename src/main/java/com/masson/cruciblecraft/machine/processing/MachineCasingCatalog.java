@@ -41,7 +41,11 @@ public final class MachineCasingCatalog {
 
     public static String energyFamily(EnergyType energy) {
         Objects.requireNonNull(energy, "energy");
-        if (energy == EnergyType.ELECTRIC) {
+        if (energy == EnergyType.ELECTRIC
+                || energy == EnergyType.LU
+                || energy == EnergyType.CU
+                || energy == EnergyType.MU
+                || energy == EnergyType.QUANTUM) {
             return "eu_single";
         }
         if (energy == EnergyType.TIME) {

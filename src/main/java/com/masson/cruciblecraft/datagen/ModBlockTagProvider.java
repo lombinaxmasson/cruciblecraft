@@ -60,11 +60,15 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
                 ModBlocks.LU_FIBER_CABLE.getKey(),
                 ModBlocks.LASER_ENGRAVER.getKey(),
                 ModBlocks.FUSION_REACTOR.getKey(),
+                ModBlocks.LARGE_HEAT_EXCHANGER.getKey(),
+                ModBlocks.BEDROCK_DRILL.getKey(),
+                ModBlocks.BEDROCK_DRILL_HEAD.getKey(),
                 ModBlocks.REACTOR_CORE_1X1.getKey(),
                 ModBlocks.REACTOR_CORE_2X2.getKey(),
                 ModBlocks.TUNGSTENSTEEL_WALL.getKey(),
                 ModBlocks.STAINLESS_STEEL_WALL.getKey(),
                 ModBlocks.LARGE_IRIDIUM_COIL.getKey());
+        stone.add(ModBlocks.BRONZE_CRUSHER.getKey());
         ModBlocks.converterBlocksById().values().stream()
                 .sorted(Comparator.comparing(block -> block.getId().toString()))
                 .forEach(block -> pickaxe.add(block.getKey()));
@@ -72,6 +76,15 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
                 .sorted(Comparator.comparing(block -> block.getId().toString()))
                 .forEach(block -> pickaxe.add(block.getKey()));
         ModBlocks.transformerBlocksById().values().stream()
+                .sorted(Comparator.comparing(block -> block.getId().toString()))
+                .forEach(block -> pickaxe.add(block.getKey()));
+        ModBlocks.quantumEnergizerBlocksById().values().stream()
+                .sorted(Comparator.comparing(block -> block.getId().toString()))
+                .forEach(block -> pickaxe.add(block.getKey()));
+        ModBlocks.longDistanceTransformerBlocksById().values().stream()
+                .sorted(Comparator.comparing(block -> block.getId().toString()))
+                .forEach(block -> pickaxe.add(block.getKey()));
+        ModBlocks.longDistanceWireBlocksById().values().stream()
                 .sorted(Comparator.comparing(block -> block.getId().toString()))
                 .forEach(block -> pickaxe.add(block.getKey()));
         ModBlocks.configuredProcessingBlockEntries().stream()
@@ -142,6 +155,7 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
             hoe.add(holder.getKey());
         });
         ModBlocks.treeSaplings().forEach(holder -> saplings.add(holder.getKey()));
+        hoe.add(ModBlocks.GT_BUSH.getKey());
     }
 
     private void addGtBlockObjectTags(

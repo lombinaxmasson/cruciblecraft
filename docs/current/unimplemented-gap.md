@@ -42,7 +42,7 @@
 | 用途 | 权威 |
 | --- | --- |
 | 当前 active / prep / `player_complete` | [project-status.md](project-status.md) |
-| 跨能力 blocked 总账 | [blocked.md](blocked.md) / [`catalog.json`](../../tools/blockers/catalog.json) / [`ledger.json`](../../tools/blockers/ledger.json) |
+| 跨能力 blocked 总账 | [blocked.md](blocked.md)（排期桶 A–D） / [`catalog.json`](../../tools/blockers/catalog.json) / [`ledger.json`](../../tools/blockers/ledger.json) |
 | 状态与交付流程 | [capability-delivery-workflow.md](capability-delivery-workflow.md) |
 | MTE 身份分母 | [`disposition_ledger.json`](../../tools/waves/portfolio/mte-identity-disposition-r0/disposition_ledger.json) / [`family_map.json`](../../tools/waves/portfolio/mte-identity-disposition-r0/family_map.json) |
 | 机器尾账 | 各 `tools/waves/machines/**/readiness.json`、`overflow.json` |
@@ -53,7 +53,9 @@
 
 人读索引，不是 production authority。当前 blocker 权威是
 [blocked.md](blocked.md) 与 `tools/blockers/ledger.json`（源是
-`tools/blockers/catalog.json`）。本页不再复述那份总账。数字以各波
+`tools/blockers/catalog.json`）。排期看 `planning_bucket`（A 规模不是待办，
+B 可抽 unique-active，C 先审计分母，D 不是活），不要按 `count` 选最大的卡。
+本页不再复述那份总账。数字以各波
 `readiness.json` / `overflow.json`、[project-status.md](project-status.md)、
 `tools/capabilities/**/capability.json` 以及
 [`disposition_ledger.json`](../../tools/waves/portfolio/mte-identity-disposition-r0/disposition_ledger.json)
@@ -328,7 +330,7 @@ Grindstone `32703` 不在本卡。关闭目标不是 `player_complete`。
 | 配方引擎 | `ShapedCatalystRecipe` 占用包围盒 vs 玩家 2×2 | 1.21 `CraftingInput.of` 去空边后两列网格仍能 `matches()`；`canCraftInDimensions` 已要求 3×3。不是下一张卡。 |
 | 计数上限与 kind envelope | capability map 的 report-only / count-ceiling 行 | 新 RecipeMap 前要先明确处理方式 |
 | 蒸汽涡轮 / 冷却器 | 热交换器第一切片不等于这两类主机 | 仍需独立 runtime、配方和玩家路径 |
-| 聚变 / 等离子 | 控制器生存配方、独立等离子流体和燃料 / 输出链 | 仍 blocked；不从已有 fusion 行推导 |
+| 聚变 / 等离子 | 控制器获得格、等离子流体身份、输入/输出链 | 18 `RM.Fusion` 行已发布，不是剩余工作量。排期见 [blocked.md](blocked.md) C 桶 `energy/reactor-fusion`。不从已有 fusion 行推导 stand-in |
 | 建筑方块 identity / behavior | identity、hardness、multiblock parts、decorative behavior | 仍没有当前 owner |
 
 ---

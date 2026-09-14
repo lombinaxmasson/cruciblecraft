@@ -154,6 +154,35 @@ public final class ModMenus {
             CANNER = processing("canner", ModProcessingMachines.CANNER);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
             LASER_ENGRAVER = processing("laser_engraver", ModProcessingMachines.LASER_ENGRAVER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            PRINTER = processing("printer", ModProcessingMachines.PRINTER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            SCANNER = processing("scanner", ModProcessingMachines.SCANNER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            AUTOCRAFTER = processing("autocrafter", ModProcessingMachines.AUTOCRAFTER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            ELECTRIC_MIXER = processing("electric_mixer", ModProcessingMachines.ELECTRIC_MIXER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            BOXINATOR = processing("boxinator", ModProcessingMachines.BOXINATOR);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            LIGHTNING = processing("lightning", ModProcessingMachines.LIGHTNING);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            PLANTALYZER = processing("plantalyzer", ModProcessingMachines.PLANTALYZER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            BUMBLELYZER = processing("bumblelyzer", ModProcessingMachines.BUMBLELYZER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            MASSFAB = processing("massfab", ModProcessingMachines.MASSFAB);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            REPLICATOR = processing("replicator", ModProcessingMachines.REPLICATOR);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            FREEZER = processing("freezer", ModProcessingMachines.FREEZER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            CRYO_MIXER = processing("cryo_mixer", ModProcessingMachines.CRYO_MIXER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            POLARIZER = processing("polarizer", ModProcessingMachines.POLARIZER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            MAGNETIC_SEPARATOR = processing(
+                    "magnetic_separator", ModProcessingMachines.MAGNETIC_SEPARATOR);
 
     static {
         validateProcessingMenuMapping(
