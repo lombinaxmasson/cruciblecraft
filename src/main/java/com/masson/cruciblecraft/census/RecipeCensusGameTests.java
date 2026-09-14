@@ -8,9 +8,10 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * Isolated runtime registry equality gate. The holder namespace keeps the
- * daily {@code cruciblecraft} GameTest grid separate from this census probe.
- * Run with {@code -PrecipeCensus} so only this namespace loads.
+ * Isolated frozen-subset registry probe for release or special runs.
+ * Ordinary recipe-card closeout does not run this GameTest. Daily coverage
+ * is the authored-recipe material-form registration test. Run with
+ * {@code -PrecipeCensus} so only this namespace loads.
  */
 @GameTestHolder(RecipeCensusGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)

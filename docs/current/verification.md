@@ -49,6 +49,9 @@ python tools/verify.py release
   `runClient`（`--client`）。已接受卡的日常 `player-complete` profile 只跑
   GameTest。普通 PR 和低风险改动不会自动启动客户端。
 - `release` 对当前 checkout fresh 执行 release profiles。它不读取历史报告来代替运行。
+- Registry census 不是 active profile。日常由材料闸门与手写配方形态测试覆盖
+  缺失形态；完整 registry 冻结子集探针用
+  `.\gradlew.bat runGameTestServer -PrecipeCensus`，在 release 或改注册表后跑。
 - 每次结果写到被 Git 忽略的 `build/verification/latest.json`。报告只包含 revision、
   dirty paths、命令、测试计数、环境和 PASS/FAIL，不包含文件摘要。
 

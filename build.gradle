@@ -164,7 +164,7 @@ neoForge {
                 systemProperty 'neoforge.enabledGameTestNamespaces', 'cruciblecraft_scale'
                 gameDirectory = project.file('run-scale')
             } else if (providers.gradleProperty('recipeCensus').isPresent()) {
-                // Isolate the runtime registry census gate from the daily grid.
+                // Release/special frozen-subset registry probe, not recipe-card closeout.
                 systemProperty 'neoforge.enabledGameTestNamespaces', 'cruciblecraft_census'
                 gameDirectory = project.file('run-recipe-census')
             } else if (providers.gradleProperty('waveRecipes').isPresent()) {

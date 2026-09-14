@@ -1,15 +1,125 @@
 """Tests for the single material-form authority."""
 from __future__ import annotations
 
+import json
 import sys
 import unittest
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from tools import material_form_authority as authority
 from tools import verification_runtime as vr
+
+MATERIALS = ROOT / "src" / "main" / "resources" / "data" / "cruciblecraft" / "materials"
+PREFIX_INDEX = (
+    ROOT
+    / "src"
+    / "main"
+    / "resources"
+    / "data"
+    / "cruciblecraft"
+    / "material_prefixes"
+    / "index.json"
+)
+AUTHORED_RECIPES = (
+    ROOT / "src" / "main" / "resources" / "data" / "cruciblecraft" / "recipe"
+)
+CENSUS = ROOT / "src" / "main" / "resources" / "census" / "runtime_registry_gate.json"
+GATE = (
+    ROOT
+    / "src"
+    / "main"
+    / "resources"
+    / "data"
+    / "cruciblecraft"
+    / "material_registration_gate.json"
+)
+
+
+def _load_json(path: Path) -> Any:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _prefix_names() -> set[str]:
+    return {Path(name).stem for name in _load_json(PREFIX_INDEX)}
+
+
+def _material_docs() -> dict[str, dict[str, Any]]:
+    documents: dict[str, dict[str, Any]] = {}
+    for path in MATERIALS.glob("*.json"):
+        if path.name == "index.json":
+            continue
+        document = _load_json(path)
+        material_id = str(document.get("id") or path.stem)
+        documents[material_id] = document
+    return documents
+
+
+def _walk_item_ids(value: Any) -> list[str]:
+    found: list[str] = []
+    if isinstance(value, dict):
+        item = value.get("item")
+        if isinstance(item, str):
+            found.append(item)
+        identity = value.get("id")
+        if isinstance(identity, str) and ":" in identity:
+            found.append(identity)
+        for child in value.values():
+            found.extend(_walk_item_ids(child))
+    elif isinstance(value, list):
+        for child in value:
+            found.extend(_walk_item_ids(child))
+    return found
+
+
+def _ungated_authored_material_forms() -> list[str]:
+    prefixes = _prefix_names()
+    materials = _material_docs()
+    gated = {
+        material_id: set(forms)
+        for material_id, forms in (_load_json(GATE).get("materials") or {}).items()
+    }
+    missing: list[str] = []
+    for path in sorted(AUTHORED_RECIPES.rglob("*.json")):
+        relative = path.relative_to(ROOT).as_posix()
+        for item_id in _walk_item_ids(_load_json(path)):
+            if not item_id.startswith("cruciblecraft:"):
+                continue
+            registry_path = item_id.split(":", 1)[1]
+            if registry_path.count("/") != 1:
+                continue
+            material_id, form = registry_path.split("/", 1)
+            if material_id not in materials or form not in prefixes:
+                continue
+            mapped = (materials[material_id].get("form_items") or {}).get(form)
+            if mapped:
+                if item_id == mapped:
+                    continue
+                missing.append(f"{relative}: {item_id} aliases to {mapped}")
+                continue
+            if form not in gated.get(material_id, set()):
+                missing.append(f"{relative}: {item_id}")
+    return sorted(set(missing))
+
+
+def _census_form_item_aliases() -> list[str]:
+    materials = _material_docs()
+    fixture = _load_json(CENSUS)
+    aliases: list[str] = []
+    for item_id in fixture.get("categories", {}).get("items") or []:
+        if not str(item_id).startswith("cruciblecraft:"):
+            continue
+        registry_path = str(item_id).split(":", 1)[1]
+        if registry_path.count("/") != 1:
+            continue
+        material_id, form = registry_path.split("/", 1)
+        mapped = (materials.get(material_id) or {}).get("form_items", {}).get(form)
+        if mapped and mapped != item_id:
+            aliases.append(f"{item_id} -> {mapped}")
+    return sorted(aliases)
 
 
 class MaterialFormAuthorityTest(unittest.TestCase):
@@ -46,6 +156,60 @@ class MaterialFormAuthorityTest(unittest.TestCase):
         before = authority.OUTPUT.read_bytes()
         self.assertEqual([], authority.check())
         self.assertEqual(before, authority.OUTPUT.read_bytes())
+
+    def test_aluminium_capcellcon_is_authority_gated(self) -> None:
+        self.assertIn(
+            "fission_observation_safety_required_forms",
+            self.document["java_overlay_sections"],
+        )
+        source = authority.source_by_id(
+            "fission_observation_safety_required_forms",
+            document=self.document,
+        )
+        self.assertEqual(
+            "energy/nuclear-fission-observation-safety",
+            source["owner"],
+        )
+        gate = vr.gate_document()
+        self.assertIn("capcellcon", gate["materials"]["aluminium"])
+        self.assertIn(
+            "fission_observation_safety_required_forms",
+            gate["java_overlay_sections"],
+        )
+        self.assertIn(
+            "capcellcon",
+            gate["fission_observation_safety_required_forms"]["aluminium"],
+        )
+
+    def test_fission_survival_required_forms_are_authority_gated(self) -> None:
+        self.assertIn(
+            "fission_survival_required_forms",
+            self.document["java_overlay_sections"],
+        )
+        source = authority.source_by_id(
+            "fission_survival_required_forms",
+            document=self.document,
+        )
+        self.assertEqual("energy/nuclear-fission-survival", source["owner"])
+        gate = vr.gate_document()
+        self.assertIn("scrap", gate["materials"]["zirconium"])
+        self.assertIn("machine_casing_dense", gate["materials"]["lead"])
+        self.assertIn(
+            "fission_survival_required_forms",
+            gate["java_overlay_sections"],
+        )
+        self.assertIn("scrap", gate["fission_survival_required_forms"]["zirconium"])
+        self.assertIn(
+            "machine_casing_dense",
+            gate["fission_survival_required_forms"]["lead"],
+        )
+
+    def test_authored_recipe_material_forms_are_gated_or_aliased(self) -> None:
+        missing = _ungated_authored_material_forms()
+        self.assertEqual([], missing)
+
+    def test_census_fixture_omits_form_item_aliases(self) -> None:
+        self.assertEqual([], _census_form_item_aliases())
 
 
 if __name__ == "__main__":

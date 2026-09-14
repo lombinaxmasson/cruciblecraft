@@ -6,9 +6,9 @@ import java.util.List;
 import net.minecraft.server.level.ServerLevel;
 
 /**
- * Bidirectional runtime registry equality gate for recipe census. Uses the
- * committed classpath fixture derived from the tooling runtime-registry artifact.
- * Test evidence only; not part of player runtime.
+ * Frozen-subset runtime registry probe. Extra live ids are allowed; missing
+ * or duplicate ids fail. This is a release/special check, not ordinary
+ * recipe-card closeout. Test evidence only; not part of player runtime.
  */
 public final class RecipeCensusRuntimeRegistryGate {
     private RecipeCensusRuntimeRegistryGate() {}

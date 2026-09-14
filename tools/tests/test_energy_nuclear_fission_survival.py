@@ -147,6 +147,27 @@ class FissionSurvivalCardTest(unittest.TestCase):
         self.assertTrue((ns / "structure" / "empty.nbt").is_file())
         self.assertTrue((ns / "gametest" / "structure" / "empty.nbt").is_file())
 
+    def test_survival_required_forms_are_gated(self) -> None:
+        required = io.load_json(WAVE / "required_forms.json")
+        self.assertIn("scrap", required["required_forms"]["zirconium"])
+        self.assertIn(
+            "machine_casing_dense",
+            required["required_forms"]["lead"],
+        )
+        gate = json.loads(
+            (
+                ROOT
+                / "src"
+                / "main"
+                / "resources"
+                / "data"
+                / "cruciblecraft"
+                / "material_registration_gate.json"
+            ).read_text(encoding="utf-8")
+        )
+        self.assertIn("scrap", gate["materials"]["zirconium"])
+        self.assertIn("machine_casing_dense", gate["materials"]["lead"])
+
 
 if __name__ == "__main__":
     unittest.main()

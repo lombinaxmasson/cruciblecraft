@@ -27,7 +27,7 @@ Source Pack
   -> recipe_bulk compile
   -> generated/runtime equivalence
   -> player path + machine execution
-  -> load + census
+  -> load
   -> capability profile PASS
 ```
 
@@ -119,8 +119,14 @@ python tools/verify.py integration --profile recipes --if-changed
 `exact` / `exact_multi` / `matrix_v1`；没有 source-row 等价证明和 Java runtime
 支持时禁止 parameterized。
 
-GameTest、load 与 census 的历史 JSON/日志只用于调查当时发生过什么。当前能力晋级必须在
-同一次 verification 调用中重新执行所需 runtime 测试。
+GameTest 与 load 的历史 JSON/日志只用于调查当时发生过什么。当前能力晋级必须在
+同一次 verification 调用中重新执行所需 runtime 测试。Registry census
+（`-PrecipeCensus`）是冻结子集的物品/方块 registry 探针，不是普通配方卡闭卡门；
+日常门是材料闸门与手写配方的材料形态测试。release 或改注册表后再跑：
+
+```powershell
+.\gradlew.bat runGameTestServer -PrecipeCensus
+```
 
 ## 5. 玩家路径与等价
 

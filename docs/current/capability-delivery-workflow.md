@@ -2,7 +2,7 @@
 
 > 适用范围：对照图之后的机制、runtime 与内容工作。
 > 现行流程。工作包可以更严，不得弱化本文件的底线。
-> 配方域的 Source Pack / production lock / GameTest / load / census 仍遵守
+> 配方域的 Source Pack / production lock / GameTest / load 仍遵守
 > [recipe-wave-workflow.md](recipe-wave-workflow.md)；那是本流程的领域插件，不是全项目进度单位。
 
 ## 1. 进度单位
