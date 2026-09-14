@@ -39,7 +39,7 @@ class GtStoneRegistrationTest {
                     ModItems.gtStoneItemsById().get(variant.id()).getId());
             if (variant.slab()) {
                 slabs++;
-                assertTrue(variant.registryPath().contains("_slab_"));
+                assertTrue(variant.registryPath().contains("slab"));
             }
         }
         assertEquals(406, ids.size());

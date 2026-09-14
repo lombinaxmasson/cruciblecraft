@@ -31,7 +31,7 @@ class MaterialVisualResourceTest {
                 .filter(material ->
                         !material.formItems().containsKey(MaterialPrefixes.BLOCK))
                 .count();
-        assertEquals(483, storage);
+        assertEquals(486, storage);
 
         assertTrue(clientFiles.containsKey(
                 "assets/cruciblecraft/blockstates/aluminium/block.json"));
@@ -83,7 +83,7 @@ class MaterialVisualResourceTest {
                 .filter(material -> !material.formItems().containsKey(
                         MaterialPrefixes.MACHINE_CASING))
                 .count();
-        assertEquals(210, casings);
+        assertEquals(212, casings);
 
         assertTrue(clientFiles.containsKey(
                 "assets/cruciblecraft/blockstates/aluminium/machine_casing.json"));
@@ -170,34 +170,18 @@ class MaterialVisualResourceTest {
 
         var expected = java.util.Map.of(
                 "wire", "cruciblecraft:conductor/wiregt01_item",
-                "double_wire", "cruciblecraft:item/material/wire_bundle_2",
-                "triple_wire", "cruciblecraft:item/material/wire_bundle_3",
-                "quadruple_wire", "cruciblecraft:item/material/wire_bundle_4",
-                "quintuple_wire", "cruciblecraft:item/material/wire_bundle_5",
-                "sextuple_wire", "cruciblecraft:item/material/wire_bundle_6",
-                "octuple_wire", "cruciblecraft:item/material/wire_bundle_8",
-                "dodecuple_wire", "cruciblecraft:item/material/wire_bundle_12",
-                "hexadecuple_wire", "cruciblecraft:item/material/wire_bundle_16");
+                "double_wire", "cruciblecraft:conductor/wiregt02_item",
+                "triple_wire", "cruciblecraft:conductor/wiregt03_item",
+                "quadruple_wire", "cruciblecraft:conductor/wiregt04_item",
+                "quintuple_wire", "cruciblecraft:conductor/wiregt05_item",
+                "sextuple_wire", "cruciblecraft:conductor/wiregt06_item",
+                "octuple_wire", "cruciblecraft:conductor/wiregt08_item",
+                "dodecuple_wire", "cruciblecraft:conductor/wiregt12_item",
+                "hexadecuple_wire", "cruciblecraft:conductor/wiregt16_item");
         expected.forEach((form, parent) -> {
             JsonObject model = json(clientFiles.get(
                     "assets/cruciblecraft/models/item/copper/" + form + ".json"));
             assertEquals(parent, model.get("parent").getAsString(), form);
-            if (!form.equals("wire")) {
-                assertFalse(
-                        serverFiles.containsKey(
-                                "data/c/tags/block/" + form + "s/copper.json"),
-                        form);
-                assertFalse(
-                        serverFiles.containsKey(
-                                "data/cruciblecraft/tags/block/"
-                                        + form + "s/copper.json"),
-                        form);
-                assertFalse(
-                        serverFiles.containsKey(
-                                "data/cruciblecraft/loot_table/blocks/copper/"
-                                        + form + ".json"),
-                        form);
-            }
         });
         assertTrue(serverFiles.containsKey(
                 "data/c/tags/block/wires/copper.json"));

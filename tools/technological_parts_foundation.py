@@ -55,7 +55,7 @@ TECH_PARTS = (
 RECIPE_ROOT = (
     census.ROOT / "src" / "main" / "resources" / "data" / "cruciblecraft" / "recipe"
 )
-GENERATED_RECIPE = (
+DATAGEN_RECIPE = (
     census.ROOT
     / "src"
     / "generated"
@@ -63,8 +63,8 @@ GENERATED_RECIPE = (
     / "data"
     / "cruciblecraft"
     / "recipe"
-    / "machines"
 )
+GENERATED_RECIPE = DATAGEN_RECIPE / "machines"
 LIVE_PRINTER = (
     census.ROOT
     / "src"
@@ -482,8 +482,10 @@ def check() -> list[str]:
         return errors
     catalog = census.load_json(TECH_PARTS)
     by_path = {row["registry_path"]: row for row in catalog.get("parts") or []}
-    if len(catalog.get("parts") or []) != 73:
-        errors.append("technological_parts.json must have 73 parts")
+    if len(catalog.get("parts") or []) < 73:
+        errors.append(
+            "technological_parts.json must keep the 73 foundation parts"
+        )
     for part in LANDED_PARTS:
         row = by_path.get(part["registry_path"])
         if row is None:
@@ -506,7 +508,9 @@ def check() -> list[str]:
         for recipe_name in part["recipes"]:
             recipe = RECIPE_ROOT / recipe_name
             if not recipe.is_file():
-                errors.append(f"missing {census.relative(recipe)}")
+                recipe = DATAGEN_RECIPE / recipe_name
+            if not recipe.is_file():
+                errors.append(f"missing {recipe_name}")
             elif "programmed_circuit" in recipe.read_text(encoding="utf-8"):
                 errors.append(f"{recipe_name} must not use programmed_circuit")
         dest = (

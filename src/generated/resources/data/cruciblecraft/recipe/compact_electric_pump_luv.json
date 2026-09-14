@@ -1,13 +1,34 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "misc",
-  "ingredients": [
-    {
-      "item": "cruciblecraft:compact_electric_pump_iv"
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "d": {
+      "item": "cruciblecraft:material_screwdriver"
     },
-    {
-      "item": "cruciblecraft:programmed_circuit"
+    "w": {
+      "item": "cruciblecraft:material_wrench"
     }
+  },
+  "ingredients": {
+    "M": {
+      "item": "cruciblecraft:compact_electric_motor_luv"
+    },
+    "O": {
+      "item": "cruciblecraft:rubber/ring"
+    },
+    "P": {
+      "item": "cruciblecraft:iridium/curved_plate"
+    },
+    "T": {
+      "item": "cruciblecraft:iridium/screw"
+    },
+    "X": {
+      "item": "cruciblecraft:iridium/rotor"
+    }
+  },
+  "pattern": [
+    "TXO",
+    "dPw",
+    "OMT"
   ],
   "result": {
     "count": 1,

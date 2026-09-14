@@ -115,15 +115,22 @@ class Gt6MteHostFoldTest(unittest.TestCase):
             self.skipTest("processing overlay not issued yet")
         overlay = census.load_json(wave / "fold_overlay.json")
         self.assertEqual(PROCESSING_SLUG, overlay["capability_slug"])
-        self.assertEqual(58, int(overlay["counts"]["fold_live_block"]))
-        self.assertEqual(28, int(overlay["counts"]["keep_distinct"]))
+        self.assertEqual(68, int(overlay["counts"]["fold_live_block"]))
+        self.assertEqual(18, int(overlay["counts"]["keep_distinct"]))
         by_meta = {int(row["meta"]): row for row in overlay["rows"]}
         self.assertEqual("cruciblecraft:sifter", by_meta[20051]["live_block"])
+        self.assertEqual(
+            "cruciblecraft:steel_galvanized_polarizer", by_meta[20221]["live_block"]
+        )
+        self.assertEqual(
+            "cruciblecraft:steel_galvanized_magnetic_separator",
+            by_meta[20301]["live_block"],
+        )
         keep = {int(row["meta"]) for row in overlay["keep_distinct"]}
         self.assertIn(15001, keep)
         self.assertIn(20071, keep)
-        self.assertIn(20221, keep)
-        self.assertIn(20301, keep)
+        self.assertNotIn(20221, keep)
+        self.assertNotIn(20301, keep)
         self.assertIn(20321, keep)
 
     def test_reactor_overlay_folds_meta_9203_only(self) -> None:

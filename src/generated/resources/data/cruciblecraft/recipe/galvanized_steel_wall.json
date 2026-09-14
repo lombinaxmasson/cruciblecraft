@@ -1,14 +1,22 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "h": {
+      "item": "cruciblecraft:smithing_hammer"
+    },
+    "w": {
+      "item": "cruciblecraft:material_wrench"
+    }
+  },
+  "ingredients": {
     "P": {
       "item": "cruciblecraft:steel_galvanized/plate"
     }
   },
   "pattern": [
-    "PP",
-    "PP"
+    "wPP",
+    "hPP",
+    "   "
   ],
   "result": {
     "count": 1,

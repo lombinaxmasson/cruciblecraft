@@ -10,7 +10,7 @@ import com.masson.cruciblecraft.api.energy.EnergyType;
 
 import net.minecraft.resources.ResourceLocation;
 
-/** Validated bundled catalog of 9 GT6 electric transformers. */
+/** Validated bundled catalog of 9 GT6 plus 5 CC_EXTENSION electric transformers. */
 public final class EnergyTransformerCatalog {
     private static final Map<ResourceLocation, EnergyTransformerProfile> PROFILES =
             loadBundled();

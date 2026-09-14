@@ -1,0 +1,48 @@
+{
+  "type": "cruciblecraft:gt_recipe",
+  "duration": 32,
+  "eut": 16,
+  "fluid_inputs": [
+    {
+      "amount": 250,
+      "id": "minecraft:water"
+    }
+  ],
+  "item_input_actions": [
+    {
+      "kind": "consume"
+    },
+    {
+      "kind": "consume"
+    },
+    {
+      "kind": "consume"
+    }
+  ],
+  "item_input_counts": [
+    1,
+    1,
+    1
+  ],
+  "item_inputs": [
+    {
+      "item": "cruciblecraft:redstone/dust"
+    },
+    {
+      "item": "cruciblecraft:blizz/tiny_dust"
+    },
+    {
+      "item": "cruciblecraft:sodium_nitrate/dust"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": 2,
+      "id": "cruciblecraft:cryotheum/dust"
+    }
+  ],
+  "map": "cruciblecraft:cryo_mixer",
+  "output_chances": [
+    10000
+  ]
+}

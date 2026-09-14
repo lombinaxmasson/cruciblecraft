@@ -55,8 +55,8 @@ public final class EnergyTransformersGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void playerSurfaceIsRegistered(GameTestHelper helper) {
         helper.assertTrue(
-                EnergyTransformerCatalog.profiles().size() == 9,
-                "Transformer catalog drifted from 9 loader rows");
+                EnergyTransformerCatalog.profiles().size() == 14,
+                "Transformer catalog drifted from 14 long-voltage pairs");
         helper.assertTrue(
                 ModItems.transformerItemsById()
                         .get(id("electric_transformer_ulv_lv"))

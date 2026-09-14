@@ -1,0 +1,38 @@
+{
+  "type": "cruciblecraft:gt_recipe",
+  "duration": 32,
+  "eut": 16,
+  "fluid_inputs": [
+    {
+      "amount": 500,
+      "id": "minecraft:water"
+    }
+  ],
+  "item_input_actions": [
+    {
+      "kind": "preserve"
+    }
+  ],
+  "item_input_counts": [
+    0
+  ],
+  "item_inputs": [
+    {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:circuit_config": 2
+      },
+      "items": "cruciblecraft:programmed_circuit"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": 1,
+      "id": "minecraft:snow"
+    }
+  ],
+  "map": "cruciblecraft:freezer",
+  "output_chances": [
+    10000
+  ]
+}

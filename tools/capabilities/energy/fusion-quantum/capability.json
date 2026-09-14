@@ -1,0 +1,44 @@
+{
+  "schema_version": 2,
+  "slug": "energy/fusion-quantum",
+  "title": "Fusion execution, QUANTUM, and LU to QU",
+  "maturity": "frozen",
+  "workflow": "paused",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/FusionReactorBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/fusion/**",
+    "src/main/java/com/masson/cruciblecraft/energy/quantum/**",
+    "src/main/java/com/masson/cruciblecraft/gametest/FusionPlasmaGameTests.java",
+    "tools/capabilities/energy/fusion-quantum/**"
+  ],
+  "depends_on": [
+    "energy/steam-turbine"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "energy/fusion-quantum",
+  "legacy_readiness": "tools/waves/content/puv-omega-tech-line/readiness.json",
+  "player_signoff": null,
+  "required_test_ids": [
+    "eighteenFusionRowsExecute",
+    "hullCraftsAreSourceExact",
+    "plasmaMapStaysEmpty",
+    "neutralMatterBootstrapIsExtension",
+    "quantumEnergizerConvertsLuToQu",
+    "circuitSelectorIsPreserved",
+    "octagonPartCountsMatchTooltip",
+    "energyRejectedUntilStructureForms"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "energy:fusion_reactor",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:fusion_reactor"
+      ],
+      "reason": "18 source-backed Fusion rows plus CC_EXTENSION neutral matter bootstrap. FUELS_PLASMA stays empty."
+    }
+  ],
+  "note": "QUANTUM is not folded into EU or LU."
+}

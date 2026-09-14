@@ -32,15 +32,46 @@ class BlockerLedgerTest(unittest.TestCase):
         amounts = {row["id"]: row for row in ledger["open_amounts"]}
         self.assertEqual(869, amounts["recipe/loom-overflow"]["count"])
         self.assertEqual("rows", amounts["recipe/loom-overflow"]["unit"])
+        self.assertEqual("scale_not_todo", amounts["recipe/loom-overflow"]["planning_bucket"])
         self.assertEqual(49, amounts["recipe/fluidbed-overflow"]["count"])
         self.assertEqual(150, amounts["recipe/bath-remainder-families"]["count"])
         self.assertEqual("families", amounts["recipe/bath-remainder-families"]["unit"])
         self.assertNotIn("historical/petroleum-sampled-702", amounts)
+        self.assertNotIn("energy/reactor-fusion", amounts)
         self.assertNotEqual(
             amounts["recipe/loom-overflow"]["count"]
             + amounts["recipe/fluidbed-overflow"]["count"],
             702,
         )
+
+    def test_planning_buckets_classify_inventory(self) -> None:
+        catalog = blockers.load_catalog()
+        by_id = {str(row["id"]): row for row in catalog["entries"]}
+        for row in catalog["entries"]:
+            self.assertIn(row["planning_bucket"], blockers.PLANNING_BUCKETS)
+            if row["status"] not in blockers.OPEN_STATUSES:
+                self.assertEqual("not_work", row["planning_bucket"], row["id"])
+        fusion = by_id["energy/reactor-fusion"]
+        self.assertIsNone(fusion["count"])
+        self.assertEqual("not_work", fusion["planning_bucket"])
+        self.assertEqual("scale_not_todo", by_id["recipe/loom-overflow"]["planning_bucket"])
+        self.assertEqual("schedulable", by_id["recipe/laminator-overflow"]["planning_bucket"])
+        self.assertEqual("audit_first", by_id["tools/world-behaviors"]["planning_bucket"])
+        self.assertEqual(
+            "not_work",
+            by_id["energy/reactor-temperature-kelvin"]["planning_bucket"],
+        )
+        ledger = blockers.compile_ledger()
+        self.assertIsNone(by_id["energy/reactor-fusion"]["count"])
+        planning = {row["id"] for row in ledger["planning"]["audit_first"]}
+        self.assertNotIn("energy/reactor-fusion", planning)
+        self.assertIn("tools/world-behaviors", planning)
+        markdown = blockers.render_markdown(ledger)
+        self.assertIn("排期分类", markdown)
+        self.assertIn("A. 数字是规模，不是待办", markdown)
+        self.assertIn("B. 分母已冻，可当卡排", markdown)
+        self.assertIn("C. 有名字，分母未冻成工作量", markdown)
+        self.assertIn("D. 不是活", markdown)
 
     def test_unbound_blocked_capability_fails_close_gate(self) -> None:
         capability = {

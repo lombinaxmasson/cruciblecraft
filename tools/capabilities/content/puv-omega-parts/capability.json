@@ -1,0 +1,46 @@
+{
+  "schema_version": 2,
+  "slug": "content/puv-omega-parts",
+  "title": "Compact parts, Quantum circuit, wires and transformers to OMEGA",
+  "maturity": "frozen",
+  "workflow": "paused",
+  "owned_paths": [
+    "src/main/resources/data/cruciblecraft/technological_parts.json",
+    "src/main/resources/data/cruciblecraft/energy_transformer_tiers.json",
+    "src/main/resources/data/cruciblecraft/long_distance_transformers.json",
+    "src/main/java/com/masson/cruciblecraft/content/item/TechnologicalPartCatalog.java",
+    "src/main/java/com/masson/cruciblecraft/energy/transformer/EnergyTransformerTierCatalog.java",
+    "src/main/java/com/masson/cruciblecraft/energy/longdistance/**",
+    "src/main/java/com/masson/cruciblecraft/gametest/PuvOmegaPartsGameTests.java",
+    "tools/capabilities/content/puv-omega-parts/**"
+  ],
+  "depends_on": [
+    "energy/quantum-massfab",
+    "content/technological-parts-foundation"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/puv-omega-parts",
+  "legacy_readiness": "tools/waves/content/puv-omega-tech-line/readiness.json",
+  "player_signoff": null,
+  "required_test_ids": [
+    "compactPartsThroughOmega",
+    "omegaIsIndex14",
+    "noVn15Parts",
+    "transformerLongVoltage",
+    "longDistanceHostsAreDedicated"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "parts:compact_electric_omega",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:compact_electric_motor_omega",
+        "cruciblecraft:circuit_quantum"
+      ],
+      "reason": "ULV-PUV1 source-backed. PUV2-OMEGA CC_EXTENSION. Index 15 is not registered."
+    }
+  ],
+  "note": "OMEGA compact index 14. Pump rates and voltages use long."
+}

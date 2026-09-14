@@ -1,21 +1,29 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
+  "type": "cruciblecraft:shaped_catalyst",
+  "ingredients": {
     "C": {
+      "item": "cruciblecraft:circuit_ultimate"
+    },
+    "D": {
+      "item": "cruciblecraft:processor_crystal_diamond"
+    },
+    "E": {
+      "item": "cruciblecraft:processor_crystal_emerald"
+    },
+    "M": {
       "item": "cruciblecraft:steel_galvanized/machine_casing"
     },
-    "G": {
-      "item": "minecraft:emerald"
+    "R": {
+      "item": "cruciblecraft:processor_crystal_ruby"
     },
-    "P": {
-      "item": "cruciblecraft:programmed_circuit"
+    "S": {
+      "item": "cruciblecraft:processor_crystal_sapphire"
     }
   },
   "pattern": [
-    " C ",
-    "GPG",
-    " C "
+    "DCS",
+    "CMC",
+    "RCE"
   ],
   "result": {
     "count": 1,

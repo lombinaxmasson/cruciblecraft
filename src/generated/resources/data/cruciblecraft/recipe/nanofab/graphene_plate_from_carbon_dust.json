@@ -1,0 +1,39 @@
+{
+  "type": "cruciblecraft:gt_recipe",
+  "duration": 256,
+  "eut": 16,
+  "item_input_actions": [
+    {
+      "kind": "preserve"
+    },
+    {
+      "kind": "consume"
+    }
+  ],
+  "item_input_counts": [
+    0,
+    1
+  ],
+  "item_inputs": [
+    {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:circuit_config": 1
+      },
+      "items": "cruciblecraft:programmed_circuit"
+    },
+    {
+      "item": "cruciblecraft:carbon/dust"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": 1,
+      "id": "cruciblecraft:graphene/plate"
+    }
+  ],
+  "map": "cruciblecraft:nanofab",
+  "output_chances": [
+    10000
+  ]
+}

@@ -22,6 +22,7 @@
 - `content/mte-prep-index` — [MTE 全量 Prep 总索引](../history/card-plans/prep/MTE全量Prep总索引.md)
 - `content/mte-processing-machine` — [MTE 加工机身份详细计划](../history/card-plans/prep/MTE加工机身份详细计划.md)
 - `content/mte-untyped` — [MTE 未分类余量详细计划](../history/card-plans/prep/MTE未分类余量详细计划.md)
+- `content/puv-omega-tech-line` — [PUV2+ / OMEGA 科技线](../history/card-plans/prep/PUV2OMEGA科技线详细计划.md)
 - `machines/printer` — [印刷机详细计划](../history/card-plans/prep/印刷机详细计划.md)
 - `worldgen/gt-center` — [GT Center 详细计划](../history/card-plans/prep/GT中枢详细计划.md)
 - `worldgen/gt-dungeon` — [GT 地牢详细计划](../history/card-plans/prep/GT地牢详细计划.md)

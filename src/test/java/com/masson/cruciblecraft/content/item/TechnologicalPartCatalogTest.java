@@ -14,7 +14,7 @@ class TechnologicalPartCatalogTest {
         Set<String> paths = TechnologicalPartCatalog.parts().stream()
                 .map(TechnologicalPartCatalog.Part::registryPath)
                 .collect(Collectors.toUnmodifiableSet());
-        assertEquals(73, paths.size());
+        assertEquals(157, paths.size());
         assertTrue(paths.containsAll(Set.of(
                 "compact_electric_motor_ulv",
                 "compact_electric_motor_mv",
@@ -69,6 +69,12 @@ class TechnologicalPartCatalogTest {
                 "circuit_part_good",
                 "circuit_part_advanced",
                 "circuit_part_elite",
-                "circuit_part_ultimate")));
+                "circuit_part_ultimate",
+                "circuit_quantum",
+                "compact_electric_motor_omega",
+                "laser_gas_empty",
+                "laser_gas_hene",
+                "processor_crystal_empty",
+                "processor_crystal_sapphire")));
     }
 }

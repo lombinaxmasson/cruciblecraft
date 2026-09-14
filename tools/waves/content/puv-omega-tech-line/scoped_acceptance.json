@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "wave_slug": "content/puv-omega-tech-line",
+  "player_complete_gate": "capability_slug_and_dependency_closure",
+  "global_open_blocker_count_is_not_the_target": true,
+  "d0_slots_must_be_exact": true,
+  "explicitly_blocked_keeps_runtime_ready": true,
+  "required_hosts": [
+    "cruciblecraft:large_heat_exchanger",
+    "steam_turbine_singles_15",
+    "large_steam_turbines_4",
+    "cruciblecraft:fusion_reactor",
+    "quantum_energizer_t1_t5_omega",
+    "matter_fabricator_t1_t5_omega"
+  ],
+  "acceptance_order": [
+    "directed_junit",
+    "python tools/verify.py dev",
+    "python tools/verify.py integration --profile runtime-java",
+    "python tools/verify.py integration --profile semantic-generators",
+    "python tools/verify.py integration --profile recipe-generators",
+    "python tools/verify.py integration --profile capability-runtime",
+    "datagen twice byte-stable",
+    "build_player_complete --run scoped",
+    "GameTestServer"
+  ]
+}

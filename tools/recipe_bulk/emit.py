@@ -17,11 +17,16 @@ _ASPHALT_OBJECT = re.compile(
 
 
 def rewrite_published_block_runtime(runtime: str) -> str:
-    """Published asphalt cubes live under gt_block/, not gt_object/."""
+    """Published asphalt cubes use the modern catalog id, not gt_block/asphalt_mN."""
     match = _ASPHALT_OBJECT.fullmatch(runtime)
-    if match:
-        return f"cruciblecraft:gt_block/asphalt_{match.group(1)}"
-    return runtime
+    if not match:
+        return runtime
+    numbered = f"gt_block/asphalt_{match.group(1)}"
+    from tools import catalog_modern_ids as modern
+    row = modern.by_old_path().get(numbered)
+    if row:
+        return str(row["runtime_id"])
+    return f"cruciblecraft:{numbered}"
 
 
 def family_filename(template_key: str) -> str:

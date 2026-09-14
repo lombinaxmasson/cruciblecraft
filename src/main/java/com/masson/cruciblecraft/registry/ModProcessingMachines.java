@@ -302,10 +302,124 @@ public final class ModProcessingMachines {
                     EnergyType.TIME);
     public static final ProcessingMachineSpec CANNER =
             chemicalSpec("canner", () -> ModRecipeMaps.CANNER,
-                    2, 1, 0, 1, 128_000, 128_000,
-                    2, 1, 0, 1,
+                    2, 1, 1, 1, 128_000, 128_000,
+                    2, 1, 1, 1,
                     EnergyType.ELECTRIC);
     public static final ProcessingMachineSpec LASER_ENGRAVER = laserSpec();
+    public static final ProcessingMachineSpec PRINTER =
+            chemicalSpec("printer", id("printer"), () -> ModRecipeMaps.PRINTER,
+                    2, 1, 1, 0, 32_000, 32_000, 2, 1, 1, 0,
+                    EnergyType.ELECTRIC, 1_024L);
+    public static final ProcessingMachineSpec SCANNER =
+            chemicalSpec("scanner", id("scanner"), () -> ModRecipeMaps.SCANNER,
+                    1, 1, 0, 0, 32_000, 32_000, 1, 1, 0, 0,
+                    EnergyType.ELECTRIC, 1_024L);
+    public static final ProcessingMachineSpec AUTOCRAFTER =
+            chemicalSpec(
+                    "autocrafter",
+                    id("autocrafter"),
+                    () -> ModRecipeMaps.AUTOCRAFTER,
+                    1, 1, 0, 0, 32_000, 32_000, 1, 1, 0, 0,
+                    EnergyType.ELECTRIC, 1_024L);
+    public static final ProcessingMachineSpec ELECTRIC_MIXER =
+            chemicalSpec(
+                    "electric_mixer",
+                    id("mixer"),
+                    () -> ModRecipeMaps.MIXER,
+                    6, 1, 6, 2,
+                    CompactPublicationGroups.GT6_PANEL_TANK_CAPACITY,
+                    CompactPublicationGroups.GT6_PANEL_TANK_CAPACITY,
+                    6, 1, 6, 2,
+                    EnergyType.ELECTRIC, 1_024L);
+    public static final ProcessingMachineSpec BOXINATOR =
+            chemicalSpec(
+                    "boxinator",
+                    id("boxinator"),
+                    () -> ModRecipeMaps.BOXINATOR,
+                    1, 1, 0, 0, 32_000, 32_000, 1, 1, 0, 0,
+                    EnergyType.ELECTRIC, 1_024L);
+    public static final ProcessingMachineSpec LIGHTNING =
+            chemicalSpec(
+                    "lightning",
+                    id("lightning"),
+                    () -> ModRecipeMaps.LIGHTNING,
+                    2, 1, 1, 1, 32_000, 32_000, 2, 1, 1, 1,
+                    EnergyType.ELECTRIC, 8_192L);
+    public static final ProcessingMachineSpec PLANTALYZER =
+            chemicalSpec(
+                    "plantalyzer",
+                    id("plantalyzer"),
+                    () -> ModRecipeMaps.PLANTALYZER,
+                    1, 1, 1, 0, 32_000, 32_000, 1, 1, 1, 0,
+                    EnergyType.ELECTRIC, 1_024L);
+    public static final ProcessingMachineSpec BUMBLELYZER =
+            chemicalSpec(
+                    "bumblelyzer",
+                    id("bumblelyzer"),
+                    () -> ModRecipeMaps.BUMBLELYZER,
+                    1, 1, 1, 0, 32_000, 32_000, 1, 1, 1, 0,
+                    EnergyType.ELECTRIC, 1_024L);
+    public static final ProcessingMachineSpec MASSFAB =
+            chemicalSpec(
+                    "massfab",
+                    id("massfab"),
+                    () -> ModRecipeMaps.MASSFAB,
+                    1, 1, 1, 1, 32_000, 32_000, 1, 1, 1, 1,
+                    EnergyType.QUANTUM, 8_192L);
+    public static final ProcessingMachineSpec REPLICATOR =
+            chemicalSpec(
+                    "replicator",
+                    id("replicator"),
+                    () -> ModRecipeMaps.REPLICATOR,
+                    1, 1, 1, 1, 32_000, 32_000, 1, 1, 1, 1,
+                    EnergyType.QUANTUM, 8_192L);
+    public static final ProcessingMachineSpec FREEZER =
+            chemicalSpec(
+                    "freezer",
+                    id("freezer"),
+                    () -> ModRecipeMaps.FREEZER,
+                    1, 1, 1, 1, 32_000, 32_000, 1, 1, 1, 1,
+                    EnergyType.CU, 1_024L);
+    public static final ProcessingMachineSpec CRYO_MIXER =
+            chemicalSpec(
+                    "cryo_mixer",
+                    id("cryo_mixer"),
+                    () -> ModRecipeMaps.CRYO_MIXER,
+                    6, 1, 6, 2,
+                    CompactPublicationGroups.GT6_PANEL_TANK_CAPACITY,
+                    CompactPublicationGroups.GT6_PANEL_TANK_CAPACITY,
+                    6, 1, 6, 2,
+                    EnergyType.CU, 1_024L);
+    public static final ProcessingMachineSpec POLARIZER =
+            chemicalSpec(
+                    "polarizer",
+                    id("polarizer"),
+                    () -> ModRecipeMaps.POLARIZER,
+                    1, 1, 0, 0, 32_000, 32_000, 1, 1, 0, 0,
+                    EnergyType.MU, 1_024L);
+    public static final ProcessingMachineSpec MAGNETIC_SEPARATOR =
+            chemicalSpec(
+                    "magnetic_separator",
+                    id("magnetic_separator"),
+                    () -> ModRecipeMaps.MAGNETIC_SEPARATOR,
+                    1, 6, 1, 1, 32_000, 32_000, 1, 6, 1, 1,
+                    EnergyType.MU, 1_024L);
+    public static final List<ProcessingMachineSpec> PUV_OMEGA_HOST_MACHINES =
+            List.of(
+                    PRINTER,
+                    SCANNER,
+                    AUTOCRAFTER,
+                    ELECTRIC_MIXER,
+                    BOXINATOR,
+                    LIGHTNING,
+                    PLANTALYZER,
+                    BUMBLELYZER,
+                    MASSFAB,
+                    REPLICATOR,
+                    FREEZER,
+                    CRYO_MIXER,
+                    POLARIZER,
+                    MAGNETIC_SEPARATOR);
     public static final List<ProcessingMachineSpec> HYDROCARBON_PROCESSING_MACHINES =
             List.of(GENERIFIER);
     /** Chemical recipes can publish into reused maps as well as dedicated maps. */
@@ -440,19 +554,21 @@ public final class ModProcessingMachines {
                                             CHEMICAL_HOST_MACHINES,
                                             HYDROCARBON_PROCESSING_MACHINES)
                                     .flatMap(List::stream),
-                            java.util.stream.Stream.of(
-                                    LASER_ENGRAVER,
-                                    ROLLFORMER,
-                                    SANDING,
-                                    OVEN,
-                                    CLUSTERMILL,
-                                    SLICER,
-                                    LAMINATOR,
-                                    PRESSUREWASHER,
-                                    LOOM,
-                                    ELECTRICLOOM,
-                                    INJECTOR,
-                                    NANOFAB))
+                            java.util.stream.Stream.concat(
+                                    java.util.stream.Stream.of(
+                                            LASER_ENGRAVER,
+                                            ROLLFORMER,
+                                            SANDING,
+                                            OVEN,
+                                            CLUSTERMILL,
+                                            SLICER,
+                                            LAMINATOR,
+                                            PRESSUREWASHER,
+                                            LOOM,
+                                            ELECTRICLOOM,
+                                            INJECTOR,
+                                            NANOFAB),
+                                    PUV_OMEGA_HOST_MACHINES.stream()))
                     .distinct()
                     .toList();
     private static final Map<ResourceLocation, ProcessingMachineSpec> BY_ID =
@@ -906,8 +1022,16 @@ public final class ModProcessingMachines {
 
     private static boolean chemicalAllowsPreserveCatalyst(String path) {
         return "mixer".equals(path)
+                || "electric_mixer".equals(path)
+                || "cryo_mixer".equals(path)
                 || "electrolyzer".equals(path)
-                || "autoclave".equals(path);
+                || "autoclave".equals(path)
+                || "lightning".equals(path)
+                || "nanofab".equals(path)
+                || "canner".equals(path)
+                || "press".equals(path)
+                || "freezer".equals(path)
+                || "replicator".equals(path);
     }
 
     private static ProcessingMachineSpec chemicalSpec(
@@ -924,6 +1048,40 @@ public final class ModProcessingMachines {
             int gt6InFluids,
             int gt6OutFluids,
             EnergyType energyType) {
+        return chemicalSpec(
+                path,
+                id(path),
+                map,
+                itemInputs,
+                itemOutputs,
+                fluidInputs,
+                fluidOutputs,
+                fluidInputCapacity,
+                fluidOutputCapacity,
+                gt6InItems,
+                gt6OutItems,
+                gt6InFluids,
+                gt6OutFluids,
+                energyType,
+                1_024L);
+    }
+
+    private static ProcessingMachineSpec chemicalSpec(
+            String path,
+            ResourceLocation recipeMapId,
+            Supplier<RecipeMap> map,
+            int itemInputs,
+            int itemOutputs,
+            int fluidInputs,
+            int fluidOutputs,
+            int fluidInputCapacity,
+            int fluidOutputCapacity,
+            int gt6InItems,
+            int gt6OutItems,
+            int gt6InFluids,
+            int gt6OutFluids,
+            EnergyType energyType,
+            long energyMax) {
         int layoutItemOutputs = "bath".equals(path) ? gt6OutItems : itemOutputs;
         int layoutFluidOutputs = "bath".equals(path) ? gt6OutFluids : fluidOutputs;
         List<Integer> inputSlots =
@@ -944,7 +1102,7 @@ public final class ModProcessingMachines {
                 .toList();
         return new ProcessingMachineSpec(
                 id(path),
-                id(path),
+                recipeMapId,
                 map,
                 new ProcessingMachineSpec.SlotLayout(
                         itemInputs + layoutItemOutputs, inputSlots, outputSlots),
@@ -952,8 +1110,8 @@ public final class ModProcessingMachines {
                 new ProcessingMachineSpec.EnergySpec(
                         energyType,
                         ProcessingMachineSpec.EnergyMode.BUFFERED,
-                        65_536L,
-                        1_024L),
+                        "massfab".equals(path) ? 1_048_576L : 65_536L,
+                        Math.max(1_024L, energyMax)),
                 new ProcessingMachineSpec.SidedIoPolicy(
                         (front, side) -> side == null
                                 ? ProcessingMachineSpec.CapabilityAccess.NONE
@@ -979,7 +1137,7 @@ public final class ModProcessingMachines {
                         fluidInputCapacity,
                         fluidOutputCapacity,
                         chemicalAllowsPreserveCatalyst(path),
-                        1_024L),
+                        energyMax),
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
                         gt6InItems,
@@ -1675,8 +1833,8 @@ public final class ModProcessingMachines {
                 new ProcessingMachineSpec.EnergySpec(
                         EnergyType.LU,
                         ProcessingMachineSpec.EnergyMode.BUFFERED,
-                        2_048L,
-                        64L),
+                        32_768L,
+                        256L),
                 new ProcessingMachineSpec.SidedIoPolicy(
                         (front, side) -> side == null
                                 ? ProcessingMachineSpec.CapabilityAccess.NONE
@@ -1697,7 +1855,7 @@ public final class ModProcessingMachines {
                 || recipe.itemOutputs().size() != 1
                 || !recipe.fluidInputs().isEmpty()
                 || !recipe.fluidOutputs().isEmpty()
-                || recipe.eut() != 16L
+                || (recipe.eut() != 16L && recipe.eut() != 256L)
                 || recipe.duration() != 64) {
             return Optional.of("laser_recipe_shape");
         }

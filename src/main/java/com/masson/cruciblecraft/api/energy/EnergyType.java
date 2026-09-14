@@ -29,5 +29,17 @@ public enum EnergyType {
      * GT6 TIME / TU identity used by Autoclave, Bath, Coagulator and
      * Generifier. This is not a material-tier matrix.
      */
-    TIME
+    TIME,
+    /**
+     * GT6 QU / Quantum identity. Never folded into EU or LU cables.
+     */
+    QUANTUM,
+    /**
+     * GT6 CU / Cryo identity used by Freezer and Cryo Mixer.
+     */
+    CU,
+    /**
+     * GT6 MU / Magnetic identity used by Polarizer and Magnetic Separator.
+     */
+    MU
 }

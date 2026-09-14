@@ -50,6 +50,10 @@ import com.masson.cruciblecraft.content.blockentity.SubsurfaceFluidDepositBlockE
 import com.masson.cruciblecraft.energy.battery.BatteryBlockEntity;
 import com.masson.cruciblecraft.energy.transformer.TransformerBlockEntity;
 import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerBlockEntity;
+import com.masson.cruciblecraft.energy.bedrockdrill.BedrockDrillBlockEntity;
+import com.masson.cruciblecraft.energy.largeheatexchanger.LargeHeatExchangerBlockEntity;
+import com.masson.cruciblecraft.energy.quantum.QuantumEnergizerBlockEntity;
+import com.masson.cruciblecraft.energy.longdistance.LongDistanceTransformerBlockEntity;
 
 import com.masson.cruciblecraft.content.storage.StorageBehaviorProfile;
 
@@ -435,6 +439,24 @@ public final class ModBlockEntities {
                                     .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,
+            BlockEntityType<QuantumEnergizerBlockEntity>>
+                    QUANTUM_ENERGIZER = BLOCK_ENTITIES.register(
+                            "quantum_energizer",
+                            () -> BlockEntityType.Builder.of(
+                                    QuantumEnergizerBlockEntity::new,
+                                    ModBlocks.quantumEnergizerBlockArray())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<LongDistanceTransformerBlockEntity>>
+                    LONG_DISTANCE_TRANSFORMER = BLOCK_ENTITIES.register(
+                            "long_distance_transformer",
+                            () -> BlockEntityType.Builder.of(
+                                    LongDistanceTransformerBlockEntity::new,
+                                    ModBlocks.longDistanceTransformerBlockArray())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
             BlockEntityType<SensorBlockEntity>>
                     SENSOR = BLOCK_ENTITIES.register(
                             "sensor",
@@ -460,6 +482,24 @@ public final class ModBlockEntities {
                             HeatExchangerBlockEntity::new,
                             ModBlocks.heatExchangerBlockArray())
                             .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<LargeHeatExchangerBlockEntity>>
+                    LARGE_HEAT_EXCHANGER = BLOCK_ENTITIES.register(
+                            "large_heat_exchanger",
+                            () -> BlockEntityType.Builder.of(
+                                    LargeHeatExchangerBlockEntity::new,
+                                    ModBlocks.LARGE_HEAT_EXCHANGER.get())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<BedrockDrillBlockEntity>>
+                    BEDROCK_DRILL = BLOCK_ENTITIES.register(
+                            "bedrock_drill",
+                            () -> BlockEntityType.Builder.of(
+                                    BedrockDrillBlockEntity::new,
+                                    ModBlocks.BEDROCK_DRILL.get())
+                                    .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,
             BlockEntityType<GtTreeHoleBlockEntity>>

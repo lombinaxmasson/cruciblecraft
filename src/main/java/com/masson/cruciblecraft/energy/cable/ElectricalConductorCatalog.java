@@ -19,8 +19,8 @@ import com.masson.cruciblecraft.material.def.MaterialDefinition;
  * electrical specifications.
  */
 public final class ElectricalConductorCatalog {
-    public static final int EXPECTED_CABLE_BLOCKS = 115;
-    public static final int EXPECTED_WIRE_BLOCKS = 434;
+    public static final int EXPECTED_CABLE_BLOCKS = 116;
+    public static final int EXPECTED_WIRE_BLOCKS = 445;
     private static final Set<String> REDSTONE_MATERIALS =
             Set.of("red_alloy", "signalum", "lumium");
 

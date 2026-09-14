@@ -21,7 +21,7 @@ class EnergyTransformerCatalogTest {
                         .collect(Collectors.toMap(
                                 profile -> profile.id().toString(),
                                 profile -> profile));
-        assertEquals(9, profiles.size());
+        assertEquals(14, profiles.size());
         EnergyTransformerProfile ulv = profiles.get(
                 "cruciblecraft:electric_transformer_ulv_lv");
         EnergyTransformerProfile puv = profiles.get(
@@ -51,6 +51,12 @@ class EnergyTransformerCatalogTest {
                 "cruciblecraft:electric_transformer_lv_mv");
         assertNotNull(lv);
         assertEquals(16L, lv.acceptMin(true));
+        EnergyTransformerProfile omega = profiles.get(
+                "cruciblecraft:electric_transformer_puv5_omega");
+        assertNotNull(omega);
+        assertEquals(81053, omega.sourceId());
+        assertEquals(2_147_483_648L, omega.inputSize());
+        assertEquals("omega", omega.highVoltage());
         assertTrue(profiles.values().stream().allMatch(
                 profile -> profile.energyType() == EnergyType.ELECTRIC
                         && profile.multiplier() == 4L));

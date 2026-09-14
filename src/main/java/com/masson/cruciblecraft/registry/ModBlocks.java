@@ -37,6 +37,9 @@ import com.masson.cruciblecraft.content.block.LargeBoilerBlock;
 import com.masson.cruciblecraft.content.block.LargeCrucibleBlock;
 import com.masson.cruciblecraft.content.block.LaserEngraverBlock;
 import com.masson.cruciblecraft.content.block.FusionReactorBlock;
+import com.masson.cruciblecraft.energy.bedrockdrill.BedrockDrillBlock;
+import com.masson.cruciblecraft.energy.bedrockdrill.BedrockDrillHeadBlock;
+import com.masson.cruciblecraft.energy.largeheatexchanger.LargeHeatExchangerBlock;
 import com.masson.cruciblecraft.content.block.ReactorCoreBlock;
 import com.masson.cruciblecraft.content.block.LogisticsCoreBlock;
 import com.masson.cruciblecraft.content.block.LogisticsCorePartBlock;
@@ -93,6 +96,14 @@ import com.masson.cruciblecraft.energy.battery.EnergyBatteryProfile;
 import com.masson.cruciblecraft.energy.transformer.EnergyTransformerCatalog;
 import com.masson.cruciblecraft.energy.transformer.EnergyTransformerProfile;
 import com.masson.cruciblecraft.energy.transformer.TransformerBlock;
+import com.masson.cruciblecraft.energy.quantum.QuantumEnergizerBlock;
+import com.masson.cruciblecraft.energy.quantum.QuantumEnergizerCatalog;
+import com.masson.cruciblecraft.energy.quantum.QuantumEnergizerProfile;
+import com.masson.cruciblecraft.energy.longdistance.LongDistanceTransformerBlock;
+import com.masson.cruciblecraft.energy.longdistance.LongDistanceTransformerCatalog;
+import com.masson.cruciblecraft.energy.longdistance.LongDistanceTransformerProfile;
+import com.masson.cruciblecraft.energy.longdistance.LongDistanceWireBlock;
+import com.masson.cruciblecraft.energy.longdistance.LongDistanceWireProfile;
 import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerBlock;
 import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerCatalog;
 import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerProfile;
@@ -187,6 +198,21 @@ public final class ModBlocks {
             BLOCKS.register(
                     "fusion_reactor",
                     () -> new FusionReactorBlock(
+                            machineProperties().strength(12.5F, 12.5F)));
+    public static final DeferredBlock<LargeHeatExchangerBlock> LARGE_HEAT_EXCHANGER =
+            BLOCKS.register(
+                    "large_heat_exchanger",
+                    () -> new LargeHeatExchangerBlock(
+                            machineProperties().strength(12.5F, 12.5F)));
+    public static final DeferredBlock<BedrockDrillBlock> BEDROCK_DRILL =
+            BLOCKS.register(
+                    "bedrock_drill",
+                    () -> new BedrockDrillBlock(
+                            machineProperties().strength(9.0F, 9.0F)));
+    public static final DeferredBlock<BedrockDrillHeadBlock> BEDROCK_DRILL_HEAD =
+            BLOCKS.register(
+                    "bedrock_drill_head",
+                    () -> new BedrockDrillHeadBlock(
                             machineProperties().strength(12.5F, 12.5F)));
     public static final DeferredBlock<ReactorCoreBlock> REACTOR_CORE_1X1 =
             BLOCKS.register(
@@ -1075,8 +1101,101 @@ public final class ModBlocks {
         return TRANSFORMER_BLOCKS;
     }
 
+    private static final Map<
+            ResourceLocation,
+            DeferredBlock<QuantumEnergizerBlock>> QUANTUM_ENERGIZER_BLOCKS =
+                    registerQuantumEnergizerBlocks();
+
+    private static Map<ResourceLocation, DeferredBlock<QuantumEnergizerBlock>>
+            registerQuantumEnergizerBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<QuantumEnergizerBlock>> blocks =
+                new LinkedHashMap<>();
+        for (QuantumEnergizerProfile profile
+                : QuantumEnergizerCatalog.profiles()) {
+            DeferredBlock<QuantumEnergizerBlock> block = BLOCKS.register(
+                    profile.id().getPath(),
+                    () -> new QuantumEnergizerBlock(profile, transformerProperties()));
+            if (blocks.put(profile.id(), block) != null) {
+                throw new IllegalStateException(
+                        "Duplicate quantum energizer " + profile.id());
+            }
+        }
+        return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    public static Map<ResourceLocation, DeferredBlock<QuantumEnergizerBlock>>
+            quantumEnergizerBlocksById() {
+        return QUANTUM_ENERGIZER_BLOCKS;
+    }
+
+    public static Block[] quantumEnergizerBlockArray() {
+        return QUANTUM_ENERGIZER_BLOCKS.values().stream()
+                .map(DeferredBlock::get)
+                .toArray(Block[]::new);
+    }
+
     public static Block[] transformerBlockArray() {
         return TRANSFORMER_BLOCKS.values().stream()
+                .map(DeferredBlock::get)
+                .toArray(Block[]::new);
+    }
+
+    private static final Map<
+            ResourceLocation,
+            DeferredBlock<LongDistanceTransformerBlock>>
+                    LONG_DISTANCE_TRANSFORMER_BLOCKS =
+                            registerLongDistanceTransformerBlocks();
+    private static final Map<
+            ResourceLocation,
+            DeferredBlock<LongDistanceWireBlock>> LONG_DISTANCE_WIRE_BLOCKS =
+                    registerLongDistanceWireBlocks();
+
+    private static Map<ResourceLocation, DeferredBlock<LongDistanceTransformerBlock>>
+            registerLongDistanceTransformerBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<LongDistanceTransformerBlock>>
+                blocks = new LinkedHashMap<>();
+        for (LongDistanceTransformerProfile profile
+                : LongDistanceTransformerCatalog.endpoints()) {
+            DeferredBlock<LongDistanceTransformerBlock> block = BLOCKS.register(
+                    profile.id().getPath(),
+                    () -> new LongDistanceTransformerBlock(
+                            profile, transformerProperties()));
+            if (blocks.put(profile.id(), block) != null) {
+                throw new IllegalStateException(
+                        "Duplicate long-distance transformer " + profile.id());
+            }
+        }
+        return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    private static Map<ResourceLocation, DeferredBlock<LongDistanceWireBlock>>
+            registerLongDistanceWireBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<LongDistanceWireBlock>>
+                blocks = new LinkedHashMap<>();
+        for (LongDistanceWireProfile profile : LongDistanceTransformerCatalog.wires()) {
+            DeferredBlock<LongDistanceWireBlock> block = BLOCKS.register(
+                    profile.id().getPath(),
+                    () -> new LongDistanceWireBlock(profile, transformerProperties()));
+            if (blocks.put(profile.id(), block) != null) {
+                throw new IllegalStateException(
+                        "Duplicate long-distance wire " + profile.id());
+            }
+        }
+        return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    public static Map<ResourceLocation, DeferredBlock<LongDistanceTransformerBlock>>
+            longDistanceTransformerBlocksById() {
+        return LONG_DISTANCE_TRANSFORMER_BLOCKS;
+    }
+
+    public static Map<ResourceLocation, DeferredBlock<LongDistanceWireBlock>>
+            longDistanceWireBlocksById() {
+        return LONG_DISTANCE_WIRE_BLOCKS;
+    }
+
+    public static Block[] longDistanceTransformerBlockArray() {
+        return LONG_DISTANCE_TRANSFORMER_BLOCKS.values().stream()
                 .map(DeferredBlock::get)
                 .toArray(Block[]::new);
     }

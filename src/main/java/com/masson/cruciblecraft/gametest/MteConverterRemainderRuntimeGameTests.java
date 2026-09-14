@@ -65,7 +65,7 @@ public final class MteConverterRemainderRuntimeGameTests {
         helper.setBlock(
                 turbinePos,
                 turbine.defaultBlockState().setValue(
-                        MteInPlaceBlock.FACING, Direction.WEST));
+                        MteInPlaceBlock.FACING, Direction.EAST));
         helper.assertTrue(
                 source.fillInternal(
                         new FluidStack(ModFluids.STEAM_SOURCE.get(), 200),

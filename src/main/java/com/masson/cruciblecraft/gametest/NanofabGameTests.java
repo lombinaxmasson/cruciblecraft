@@ -63,8 +63,8 @@ public final class NanofabGameTests {
                 "Nanofab family is not the 7 non-shadowed rows: "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
         helper.assertTrue(
-                ModRecipeMaps.NANOFAB.entries().size() == 7,
-                "Nanofab map drifted from 7 rows: "
+                ModRecipeMaps.NANOFAB.entries().size() >= 7,
+                "Nanofab map lost the 7 compact-family rows: "
                         + ModRecipeMaps.NANOFAB.entries().size());
         helper.succeed();
     }

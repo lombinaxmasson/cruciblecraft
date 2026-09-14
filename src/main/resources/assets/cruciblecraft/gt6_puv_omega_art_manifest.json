@@ -1,0 +1,1453 @@
+{
+  "source": "gt6_referencable_port_code/gregtech6_w",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_present": true,
+  "imports": [
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/generators/hot_fluid/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/large_heat_exchanger/colored/back.png",
+      "note": "Large HEX 17197 reuses GeneratorHotFluid sheet until largeheatexchanger folder exists."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/generators/hot_fluid/colored/bottom.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/large_heat_exchanger/colored/bottom.png",
+      "note": "Large HEX 17197 reuses GeneratorHotFluid sheet until largeheatexchanger folder exists."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/generators/hot_fluid/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/large_heat_exchanger/colored/front.png",
+      "note": "Large HEX 17197 reuses GeneratorHotFluid sheet until largeheatexchanger folder exists."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/generators/hot_fluid/colored/left.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/large_heat_exchanger/colored/left.png",
+      "note": "Large HEX 17197 reuses GeneratorHotFluid sheet until largeheatexchanger folder exists."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/generators/hot_fluid/colored/right.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/large_heat_exchanger/colored/right.png",
+      "note": "Large HEX 17197 reuses GeneratorHotFluid sheet until largeheatexchanger folder exists."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/generators/hot_fluid/colored/top.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/large_heat_exchanger/colored/top.png",
+      "note": "Large HEX 17197 reuses GeneratorHotFluid sheet until largeheatexchanger folder exists."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/generators/hot_fluid/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/large_heat_exchanger/overlay/back.png",
+      "note": "Large HEX 17197 reuses GeneratorHotFluid sheet until largeheatexchanger folder exists."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/generators/hot_fluid/overlay/bottom.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/large_heat_exchanger/overlay/bottom.png",
+      "note": "Large HEX 17197 reuses GeneratorHotFluid sheet until largeheatexchanger folder exists."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/generators/hot_fluid/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/large_heat_exchanger/overlay/front.png",
+      "note": "Large HEX 17197 reuses GeneratorHotFluid sheet until largeheatexchanger folder exists."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/generators/hot_fluid/overlay/left.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/large_heat_exchanger/overlay/left.png",
+      "note": "Large HEX 17197 reuses GeneratorHotFluid sheet until largeheatexchanger folder exists."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/generators/hot_fluid/overlay/right.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/large_heat_exchanger/overlay/right.png",
+      "note": "Large HEX 17197 reuses GeneratorHotFluid sheet until largeheatexchanger folder exists."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/generators/hot_fluid/overlay/top.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/large_heat_exchanger/overlay/top.png",
+      "note": "Large HEX 17197 reuses GeneratorHotFluid sheet until largeheatexchanger folder exists."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/generators/hot_fluid/overlay_active/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/large_heat_exchanger/overlay_active/back.png",
+      "note": "Large HEX 17197 reuses GeneratorHotFluid sheet until largeheatexchanger folder exists."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/generators/hot_fluid/overlay_active/bottom.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/large_heat_exchanger/overlay_active/bottom.png",
+      "note": "Large HEX 17197 reuses GeneratorHotFluid sheet until largeheatexchanger folder exists."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/generators/hot_fluid/overlay_active/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/large_heat_exchanger/overlay_active/front.png",
+      "note": "Large HEX 17197 reuses GeneratorHotFluid sheet until largeheatexchanger folder exists."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/generators/hot_fluid/overlay_active/left.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/large_heat_exchanger/overlay_active/left.png",
+      "note": "Large HEX 17197 reuses GeneratorHotFluid sheet until largeheatexchanger folder exists."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/generators/hot_fluid/overlay_active/right.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/large_heat_exchanger/overlay_active/right.png",
+      "note": "Large HEX 17197 reuses GeneratorHotFluid sheet until largeheatexchanger folder exists."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/generators/hot_fluid/overlay_active/top.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/large_heat_exchanger/overlay_active/top.png",
+      "note": "Large HEX 17197 reuses GeneratorHotFluid sheet until largeheatexchanger folder exists."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/turbines/rotation_steam/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/steam_turbine/colored/back.png",
+      "note": "MultiTileEntityTurbineSteam rotation_steam sheet."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/turbines/rotation_steam/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/steam_turbine/colored/front.png",
+      "note": "MultiTileEntityTurbineSteam rotation_steam sheet."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/turbines/rotation_steam/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/steam_turbine/colored/side.png",
+      "note": "MultiTileEntityTurbineSteam rotation_steam sheet."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/turbines/rotation_steam/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/steam_turbine/overlay/back.png",
+      "note": "MultiTileEntityTurbineSteam rotation_steam sheet."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/turbines/rotation_steam/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/steam_turbine/overlay/front.png",
+      "note": "MultiTileEntityTurbineSteam rotation_steam sheet."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/turbines/rotation_steam/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/steam_turbine/overlay/side.png",
+      "note": "MultiTileEntityTurbineSteam rotation_steam sheet."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/turbines/rotation_steam/overlay_active_lf/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/steam_turbine/overlay_active_lf/back.png",
+      "note": "MultiTileEntityTurbineSteam rotation_steam sheet."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/turbines/rotation_steam/overlay_active_lf/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/steam_turbine/overlay_active_lf/front.png",
+      "note": "MultiTileEntityTurbineSteam rotation_steam sheet."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/turbines/rotation_steam/overlay_active_lf/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/steam_turbine/overlay_active_lf/side.png",
+      "note": "MultiTileEntityTurbineSteam rotation_steam sheet."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/turbines/rotation_steam/overlay_active_ls/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/steam_turbine/overlay_active_ls/back.png",
+      "note": "MultiTileEntityTurbineSteam rotation_steam sheet."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/turbines/rotation_steam/overlay_active_ls/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/steam_turbine/overlay_active_ls/front.png",
+      "note": "MultiTileEntityTurbineSteam rotation_steam sheet."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/turbines/rotation_steam/overlay_active_ls/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/steam_turbine/overlay_active_ls/side.png",
+      "note": "MultiTileEntityTurbineSteam rotation_steam sheet."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/turbines/rotation_steam/overlay_active_rf/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/steam_turbine/overlay_active_rf/back.png",
+      "note": "MultiTileEntityTurbineSteam rotation_steam sheet."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/turbines/rotation_steam/overlay_active_rf/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/steam_turbine/overlay_active_rf/front.png",
+      "note": "MultiTileEntityTurbineSteam rotation_steam sheet."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/turbines/rotation_steam/overlay_active_rf/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/steam_turbine/overlay_active_rf/side.png",
+      "note": "MultiTileEntityTurbineSteam rotation_steam sheet."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/turbines/rotation_steam/overlay_active_rs/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/steam_turbine/overlay_active_rs/back.png",
+      "note": "MultiTileEntityTurbineSteam rotation_steam sheet."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/turbines/rotation_steam/overlay_active_rs/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/steam_turbine/overlay_active_rs/front.png",
+      "note": "MultiTileEntityTurbineSteam rotation_steam sheet."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/turbines/rotation_steam/overlay_active_rs/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/steam_turbine/overlay_active_rs/side.png",
+      "note": "MultiTileEntityTurbineSteam rotation_steam sheet."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/quantumenergizer/quantum_laser/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/quantum_energizer/quantum_laser/colored/back.png",
+      "note": "Quantum Energizer T1-T5."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/quantumenergizer/quantum_laser/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/quantum_energizer/quantum_laser/colored/front.png",
+      "note": "Quantum Energizer T1-T5."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/quantumenergizer/quantum_laser/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/quantum_energizer/quantum_laser/colored/side.png",
+      "note": "Quantum Energizer T1-T5."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/quantumenergizer/quantum_laser/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/quantum_energizer/quantum_laser/overlay/back.png",
+      "note": "Quantum Energizer T1-T5."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/quantumenergizer/quantum_laser/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/quantum_energizer/quantum_laser/overlay/front.png",
+      "note": "Quantum Energizer T1-T5."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/quantumenergizer/quantum_laser/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/quantum_energizer/quantum_laser/overlay/side.png",
+      "note": "Quantum Energizer T1-T5."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/quantumenergizer/quantum_laser/overlay_active/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/quantum_energizer/quantum_laser/overlay_active/back.png",
+      "note": "Quantum Energizer T1-T5."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/quantumenergizer/quantum_laser/overlay_active/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/quantum_energizer/quantum_laser/overlay_active/front.png",
+      "note": "Quantum Energizer T1-T5."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/quantumenergizer/quantum_laser/overlay_active/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/quantum_energizer/quantum_laser/overlay_active/side.png",
+      "note": "Quantum Energizer T1-T5."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12000.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_motor_ulv.png",
+      "note": "compact_electric_motor ULV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12001.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_motor_lv.png",
+      "note": "compact_electric_motor LV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12002.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_motor_mv.png",
+      "note": "compact_electric_motor MV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12003.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_motor_hv.png",
+      "note": "compact_electric_motor HV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12004.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_motor_ev.png",
+      "note": "compact_electric_motor EV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12005.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_motor_iv.png",
+      "note": "compact_electric_motor IV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12006.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_motor_luv.png",
+      "note": "compact_electric_motor LuV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12007.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_motor_zpm.png",
+      "note": "compact_electric_motor ZPM"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12008.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_motor_uv.png",
+      "note": "compact_electric_motor UV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12009.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_motor_puv1.png",
+      "note": "compact_electric_motor PUV1"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12009.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_motor_puv2.png",
+      "note": "compact_electric_motor PUV2 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12009.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_motor_puv3.png",
+      "note": "compact_electric_motor PUV3 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12009.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_motor_puv4.png",
+      "note": "compact_electric_motor PUV4 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12009.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_motor_puv5.png",
+      "note": "compact_electric_motor PUV5 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12009.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_motor_omega.png",
+      "note": "compact_electric_motor OMEGA CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12020.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_pump_ulv.png",
+      "note": "compact_electric_pump ULV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12021.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_pump_lv.png",
+      "note": "compact_electric_pump LV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12022.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_pump_mv.png",
+      "note": "compact_electric_pump MV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12023.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_pump_hv.png",
+      "note": "compact_electric_pump HV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12024.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_pump_ev.png",
+      "note": "compact_electric_pump EV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12025.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_pump_iv.png",
+      "note": "compact_electric_pump IV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12026.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_pump_luv.png",
+      "note": "compact_electric_pump LuV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12027.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_pump_zpm.png",
+      "note": "compact_electric_pump ZPM"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12028.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_pump_uv.png",
+      "note": "compact_electric_pump UV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12029.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_pump_puv1.png",
+      "note": "compact_electric_pump PUV1"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12029.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_pump_puv2.png",
+      "note": "compact_electric_pump PUV2 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12029.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_pump_puv3.png",
+      "note": "compact_electric_pump PUV3 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12029.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_pump_puv4.png",
+      "note": "compact_electric_pump PUV4 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12029.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_pump_puv5.png",
+      "note": "compact_electric_pump PUV5 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12029.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_pump_omega.png",
+      "note": "compact_electric_pump OMEGA CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12040.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_conveyor_ulv.png",
+      "note": "compact_electric_conveyor ULV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12041.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_conveyor_lv.png",
+      "note": "compact_electric_conveyor LV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12042.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_conveyor_mv.png",
+      "note": "compact_electric_conveyor MV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12043.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_conveyor_hv.png",
+      "note": "compact_electric_conveyor HV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12044.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_conveyor_ev.png",
+      "note": "compact_electric_conveyor EV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12045.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_conveyor_iv.png",
+      "note": "compact_electric_conveyor IV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12046.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_conveyor_luv.png",
+      "note": "compact_electric_conveyor LuV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12047.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_conveyor_zpm.png",
+      "note": "compact_electric_conveyor ZPM"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12048.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_conveyor_uv.png",
+      "note": "compact_electric_conveyor UV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12049.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_conveyor_puv1.png",
+      "note": "compact_electric_conveyor PUV1"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12049.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_conveyor_puv2.png",
+      "note": "compact_electric_conveyor PUV2 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12049.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_conveyor_puv3.png",
+      "note": "compact_electric_conveyor PUV3 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12049.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_conveyor_puv4.png",
+      "note": "compact_electric_conveyor PUV4 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12049.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_conveyor_puv5.png",
+      "note": "compact_electric_conveyor PUV5 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12049.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_conveyor_omega.png",
+      "note": "compact_electric_conveyor OMEGA CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12060.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_piston_ulv.png",
+      "note": "compact_electric_piston ULV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12061.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_piston_lv.png",
+      "note": "compact_electric_piston LV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12062.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_piston_mv.png",
+      "note": "compact_electric_piston MV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12063.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_piston_hv.png",
+      "note": "compact_electric_piston HV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12064.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_piston_ev.png",
+      "note": "compact_electric_piston EV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12065.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_piston_iv.png",
+      "note": "compact_electric_piston IV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12066.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_piston_luv.png",
+      "note": "compact_electric_piston LuV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12067.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_piston_zpm.png",
+      "note": "compact_electric_piston ZPM"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12068.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_piston_uv.png",
+      "note": "compact_electric_piston UV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12069.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_piston_puv1.png",
+      "note": "compact_electric_piston PUV1"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12069.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_piston_puv2.png",
+      "note": "compact_electric_piston PUV2 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12069.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_piston_puv3.png",
+      "note": "compact_electric_piston PUV3 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12069.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_piston_puv4.png",
+      "note": "compact_electric_piston PUV4 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12069.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_piston_puv5.png",
+      "note": "compact_electric_piston PUV5 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12069.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_piston_omega.png",
+      "note": "compact_electric_piston OMEGA CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12080.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_robot_arm_ulv.png",
+      "note": "compact_electric_robot_arm ULV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12081.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_robot_arm_lv.png",
+      "note": "compact_electric_robot_arm LV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12082.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_robot_arm_mv.png",
+      "note": "compact_electric_robot_arm MV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12083.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_robot_arm_hv.png",
+      "note": "compact_electric_robot_arm HV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12084.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_robot_arm_ev.png",
+      "note": "compact_electric_robot_arm EV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12085.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_robot_arm_iv.png",
+      "note": "compact_electric_robot_arm IV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12086.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_robot_arm_luv.png",
+      "note": "compact_electric_robot_arm LuV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12087.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_robot_arm_zpm.png",
+      "note": "compact_electric_robot_arm ZPM"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12088.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_robot_arm_uv.png",
+      "note": "compact_electric_robot_arm UV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12089.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_robot_arm_puv1.png",
+      "note": "compact_electric_robot_arm PUV1"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12089.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_robot_arm_puv2.png",
+      "note": "compact_electric_robot_arm PUV2 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12089.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_robot_arm_puv3.png",
+      "note": "compact_electric_robot_arm PUV3 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12089.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_robot_arm_puv4.png",
+      "note": "compact_electric_robot_arm PUV4 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12089.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_robot_arm_puv5.png",
+      "note": "compact_electric_robot_arm PUV5 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12089.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_electric_robot_arm_omega.png",
+      "note": "compact_electric_robot_arm OMEGA CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12100.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_force_field_emitter_ulv.png",
+      "note": "compact_force_field_emitter ULV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12101.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_force_field_emitter_lv.png",
+      "note": "compact_force_field_emitter LV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12102.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_force_field_emitter_mv.png",
+      "note": "compact_force_field_emitter MV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12103.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_force_field_emitter_hv.png",
+      "note": "compact_force_field_emitter HV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12104.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_force_field_emitter_ev.png",
+      "note": "compact_force_field_emitter EV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12105.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_force_field_emitter_iv.png",
+      "note": "compact_force_field_emitter IV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12106.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_force_field_emitter_luv.png",
+      "note": "compact_force_field_emitter LuV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12107.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_force_field_emitter_zpm.png",
+      "note": "compact_force_field_emitter ZPM"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12108.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_force_field_emitter_uv.png",
+      "note": "compact_force_field_emitter UV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12109.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_force_field_emitter_puv1.png",
+      "note": "compact_force_field_emitter PUV1"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12109.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_force_field_emitter_puv2.png",
+      "note": "compact_force_field_emitter PUV2 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12109.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_force_field_emitter_puv3.png",
+      "note": "compact_force_field_emitter PUV3 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12109.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_force_field_emitter_puv4.png",
+      "note": "compact_force_field_emitter PUV4 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12109.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_force_field_emitter_puv5.png",
+      "note": "compact_force_field_emitter PUV5 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12109.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_force_field_emitter_omega.png",
+      "note": "compact_force_field_emitter OMEGA CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12120.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_signal_emitter_ulv.png",
+      "note": "compact_signal_emitter ULV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12121.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_signal_emitter_lv.png",
+      "note": "compact_signal_emitter LV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12122.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_signal_emitter_mv.png",
+      "note": "compact_signal_emitter MV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12123.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_signal_emitter_hv.png",
+      "note": "compact_signal_emitter HV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12124.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_signal_emitter_ev.png",
+      "note": "compact_signal_emitter EV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12125.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_signal_emitter_iv.png",
+      "note": "compact_signal_emitter IV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12126.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_signal_emitter_luv.png",
+      "note": "compact_signal_emitter LuV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12127.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_signal_emitter_zpm.png",
+      "note": "compact_signal_emitter ZPM"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12128.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_signal_emitter_uv.png",
+      "note": "compact_signal_emitter UV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12129.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_signal_emitter_puv1.png",
+      "note": "compact_signal_emitter PUV1"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12129.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_signal_emitter_puv2.png",
+      "note": "compact_signal_emitter PUV2 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12129.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_signal_emitter_puv3.png",
+      "note": "compact_signal_emitter PUV3 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12129.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_signal_emitter_puv4.png",
+      "note": "compact_signal_emitter PUV4 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12129.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_signal_emitter_puv5.png",
+      "note": "compact_signal_emitter PUV5 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12129.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_signal_emitter_omega.png",
+      "note": "compact_signal_emitter OMEGA CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12140.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_sensor_ulv.png",
+      "note": "compact_sensor ULV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12141.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_sensor_lv.png",
+      "note": "compact_sensor LV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12142.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_sensor_mv.png",
+      "note": "compact_sensor MV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12143.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_sensor_hv.png",
+      "note": "compact_sensor HV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12144.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_sensor_ev.png",
+      "note": "compact_sensor EV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12145.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_sensor_iv.png",
+      "note": "compact_sensor IV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12146.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_sensor_luv.png",
+      "note": "compact_sensor LuV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12147.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_sensor_zpm.png",
+      "note": "compact_sensor ZPM"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12148.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_sensor_uv.png",
+      "note": "compact_sensor UV"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12149.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_sensor_puv1.png",
+      "note": "compact_sensor PUV1"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12149.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_sensor_puv2.png",
+      "note": "compact_sensor PUV2 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12149.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_sensor_puv3.png",
+      "note": "compact_sensor PUV3 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12149.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_sensor_puv4.png",
+      "note": "compact_sensor PUV4 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12149.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_sensor_puv5.png",
+      "note": "compact_sensor PUV5 CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12149.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/compact_sensor_omega.png",
+      "note": "compact_sensor OMEGA CC_EXTENSION reuses native PUV1 sheet"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/items/gt.multiitem.technological/12140.png",
+      "destination": "assets/cruciblecraft/textures/item/gt6_import/circuit_quantum.png",
+      "note": "Quantum circuit texture; OD_CIRCUITS[7-9] has no single MultiItem png."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/transformers/longdistancetransformer_electric/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/long_distance_transformer/colored/front.png",
+      "note": "Long-distance transformer 10064-10068; side atlas mapped onto cube faces."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/transformers/longdistancetransformer_electric/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/long_distance_transformer/colored/back.png",
+      "note": "Long-distance transformer 10064-10068; side atlas mapped onto cube faces."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/transformers/longdistancetransformer_electric/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/long_distance_transformer/colored/left.png",
+      "note": "Long-distance transformer 10064-10068; side atlas mapped onto cube faces."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/transformers/longdistancetransformer_electric/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/long_distance_transformer/colored/right.png",
+      "note": "Long-distance transformer 10064-10068; side atlas mapped onto cube faces."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/transformers/longdistancetransformer_electric/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/long_distance_transformer/colored/top.png",
+      "note": "Long-distance transformer 10064-10068; side atlas mapped onto cube faces."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/transformers/longdistancetransformer_electric/colored/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/long_distance_transformer/colored/bottom.png",
+      "note": "Long-distance transformer 10064-10068; side atlas mapped onto cube faces."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/transformers/longdistancetransformer_electric/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/long_distance_transformer/overlay/front.png",
+      "note": "Long-distance transformer 10064-10068; side atlas mapped onto cube faces."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/transformers/longdistancetransformer_electric/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/long_distance_transformer/overlay/back.png",
+      "note": "Long-distance transformer 10064-10068; side atlas mapped onto cube faces."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/transformers/longdistancetransformer_electric/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/long_distance_transformer/overlay/left.png",
+      "note": "Long-distance transformer 10064-10068; side atlas mapped onto cube faces."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/transformers/longdistancetransformer_electric/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/long_distance_transformer/overlay/right.png",
+      "note": "Long-distance transformer 10064-10068; side atlas mapped onto cube faces."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/transformers/longdistancetransformer_electric/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/long_distance_transformer/overlay/top.png",
+      "note": "Long-distance transformer 10064-10068; side atlas mapped onto cube faces."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/transformers/longdistancetransformer_electric/overlay/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/long_distance_transformer/overlay/bottom.png",
+      "note": "Long-distance transformer 10064-10068; side atlas mapped onto cube faces."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/transformers/longdistancetransformer_electric/overlay_active/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/long_distance_transformer/overlay_active/front.png",
+      "note": "Long-distance transformer 10064-10068; side atlas mapped onto cube faces."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/transformers/longdistancetransformer_electric/overlay_active/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/long_distance_transformer/overlay_active/back.png",
+      "note": "Long-distance transformer 10064-10068; side atlas mapped onto cube faces."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/transformers/longdistancetransformer_electric/overlay_active/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/long_distance_transformer/overlay_active/left.png",
+      "note": "Long-distance transformer 10064-10068; side atlas mapped onto cube faces."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/transformers/longdistancetransformer_electric/overlay_active/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/long_distance_transformer/overlay_active/right.png",
+      "note": "Long-distance transformer 10064-10068; side atlas mapped onto cube faces."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/transformers/longdistancetransformer_electric/overlay_active/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/long_distance_transformer/overlay_active/top.png",
+      "note": "Long-distance transformer 10064-10068; side atlas mapped onto cube faces."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/transformers/longdistancetransformer_electric/overlay_active/side.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/long_distance_transformer/overlay_active/bottom.png",
+      "note": "Long-distance transformer 10064-10068; side atlas mapped onto cube faces."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/iconsets/long_dist_wire_ev.png",
+      "destination": "assets/cruciblecraft/textures/block/long_distance_wire/ev.png",
+      "note": "LongDistWire01 EV voltage host."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/iconsets/long_dist_wire_iv.png",
+      "destination": "assets/cruciblecraft/textures/block/long_distance_wire/iv.png",
+      "note": "LongDistWire01 IV voltage host."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/iconsets/long_dist_wire_luv.png",
+      "destination": "assets/cruciblecraft/textures/block/long_distance_wire/luv.png",
+      "note": "LongDistWire01 LUV voltage host."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/iconsets/long_dist_wire_zpm.png",
+      "destination": "assets/cruciblecraft/textures/block/long_distance_wire/zpm.png",
+      "note": "LongDistWire01 ZPM voltage host."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/iconsets/long_dist_wire_uv.png",
+      "destination": "assets/cruciblecraft/textures/block/long_distance_wire/uv.png",
+      "note": "LongDistWire01 UV voltage host."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/colored/back.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/colored/bottom.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/colored/bottom.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/colored/front.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/colored/left.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/colored/left.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/colored/right.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/colored/right.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/colored/top.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/colored/top.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/overlay/back.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/overlay/bottom.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/overlay/bottom.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/overlay/front.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/overlay/left.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/overlay/left.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/overlay/right.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/overlay/right.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/overlay/top.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/overlay/top.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/overlay_active/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/overlay_active/back.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/overlay_active/back.png.mcmeta",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/overlay_active/back.png.mcmeta",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/overlay_active/bottom.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/overlay_active/bottom.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/overlay_active/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/overlay_active/front.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/overlay_active/front.png.mcmeta",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/overlay_active/front.png.mcmeta",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/overlay_active/left.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/overlay_active/left.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/overlay_active/right.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/overlay_active/right.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/overlay_active/top.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/overlay_active/top.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/overlay_running/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/overlay_running/back.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/overlay_running/bottom.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/overlay_running/bottom.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/overlay_running/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/overlay_running/front.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/overlay_running/left.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/overlay_running/left.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/overlay_running/right.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/overlay_running/right.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/polarizer/overlay_running/top.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/polarizer/overlay_running/top.png",
+      "note": "GT6 polarizer machine sheet for live polarizer hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/colored/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/colored/back.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/colored/bottom.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/colored/bottom.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/colored/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/colored/front.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/colored/left.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/colored/left.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/colored/right.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/colored/right.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/colored/top.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/colored/top.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/overlay/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/overlay/back.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/overlay/bottom.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/overlay/bottom.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/overlay/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/overlay/front.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/overlay/left.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/overlay/left.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/overlay/right.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/overlay/right.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/overlay/top.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/overlay/top.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/overlay_active/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/overlay_active/back.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/overlay_active/back.png.mcmeta",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/overlay_active/back.png.mcmeta",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/overlay_active/bottom.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/overlay_active/bottom.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/overlay_active/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/overlay_active/front.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/overlay_active/front.png.mcmeta",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/overlay_active/front.png.mcmeta",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/overlay_active/left.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/overlay_active/left.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/overlay_active/right.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/overlay_active/right.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/overlay_active/top.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/overlay_active/top.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/overlay_running/back.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/overlay_running/back.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/overlay_running/bottom.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/overlay_running/bottom.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/overlay_running/front.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/overlay_running/front.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/overlay_running/left.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/overlay_running/left.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/overlay_running/right.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/overlay_running/right.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "assets/gregtech/textures/blocks/machines/basicmachines/magneticseparator/overlay_running/top.png",
+      "destination": "assets/cruciblecraft/textures/block/machine/magnetic_separator/overlay_running/top.png",
+      "note": "GT6 magneticseparator machine sheet for live magnetic_separator hosts."
+    }
+  ]
+}

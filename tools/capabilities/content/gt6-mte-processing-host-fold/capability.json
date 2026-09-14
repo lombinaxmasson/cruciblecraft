@@ -24,7 +24,8 @@
   "required_test_ids": [
     "automaticHammersStayDummy",
     "bronzeSifterFoldsOntoLiveHost",
-    "squeezerPolarizerMagSepLaserStayDummy"
+    "polarizerMagSepFoldOntoLiveHosts",
+    "squeezerLaserStayDummy"
   ],
   "identity_disposition": [
     {
@@ -33,14 +34,14 @@
       "runtime_ids": [
         "cruciblecraft:sifter"
       ],
-      "reason": "58 processing metas whose machine_tiers.json sourceId equals R0 meta fold onto live processing BlockItems."
+      "reason": "68 processing metas whose machine_tiers.json sourceId equals R0 meta fold onto live processing BlockItems."
     },
     {
       "semantic_key": "mte:processing:ungated-families",
       "disposition": "blocked",
       "runtime_ids": [],
-      "reason": "Hammer, Squeezer, Polarizer, MagSep and Laser stay dummy; they have no matching sourceId host."
+      "reason": "Hammer, Squeezer and Laser stay dummy; they have no matching sourceId host."
     }
   ],
-  "note": "Pure catalog fold. Do not mix Hammer/Squeezer/Polarizer/MagSep/Laser into live hosts. Close at runtime_ready."
+  "note": "Pure catalog fold. Polarizer/MagSep fold onto live sourceId hosts. Hammer/Squeezer/Laser stay dummy. Close at runtime_ready."
 }

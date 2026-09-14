@@ -24,11 +24,11 @@ class GtStoneCatalogTest {
         int slabs = 0;
         for (GtStoneCatalog.Variant variant : GtStoneCatalog.variants()) {
             assertTrue(ids.add(variant.id().toString()), variant.id()::toString);
-            assertTrue(variant.registryPath().startsWith("gt_stone/"));
-            assertTrue(variant.registryPath().contains("_m"));
+            assertFalse(variant.registryPath().isBlank());
+            assertFalse(variant.registryPath().startsWith("gt_stone/"));
             if (variant.slab()) {
                 slabs++;
-                assertTrue(variant.registryPath().contains("_slab_"));
+                assertTrue(variant.registryPath().contains("slab"));
             }
         }
         assertEquals(406, ids.size());

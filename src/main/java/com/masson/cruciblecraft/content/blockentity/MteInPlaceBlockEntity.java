@@ -5,6 +5,8 @@ import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
+import com.masson.cruciblecraft.energy.steam.SteamTurbineCatalog;
+import com.masson.cruciblecraft.energy.steam.SteamTurbineStructure;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModFluids;
 
@@ -33,7 +35,10 @@ public final class MteInPlaceBlockEntity extends BlockEntity
 
     private final ItemStackHandler items;
     private final FluidTank tank;
+    private final FluidTank distilled;
+    private final long energyCapacity;
     private long storedEnergy;
+    private long steamCounter;
     private boolean formed;
 
     public MteInPlaceBlockEntity(BlockPos pos, BlockState state) {
@@ -46,12 +51,28 @@ public final class MteInPlaceBlockEntity extends BlockEntity
                 MteInPlaceBlockEntity.this.setChanged();
             }
         };
-        this.tank = new FluidTank(spec.kind().foundryTank() ? 8_000 : 1) {
+        SteamTurbineCatalog.Profile turbine =
+                spec.kind() == MteInPlaceKind.STEAM_TURBINE
+                        ? SteamTurbineCatalog.find(spec.id()).orElse(null)
+                        : null;
+        int tankCap = spec.kind().foundryTank()
+                ? 8_000
+                : turbine != null ? turbine.tankCapacityMb() : 1;
+        this.tank = new FluidTank(tankCap) {
             @Override
             protected void onContentsChanged() {
                 MteInPlaceBlockEntity.this.setChanged();
             }
         };
+        this.distilled = new FluidTank(Math.max(1, tankCap)) {
+            @Override
+            protected void onContentsChanged() {
+                MteInPlaceBlockEntity.this.setChanged();
+            }
+        };
+        this.energyCapacity = turbine != null
+                ? turbine.energyCapacity()
+                : ENERGY_CAPACITY;
     }
 
     public MteInPlaceSpec spec() {
@@ -83,6 +104,7 @@ public final class MteInPlaceBlockEntity extends BlockEntity
             host.pushExtender();
         }
         if (host.spec().kind() == MteInPlaceKind.STEAM_TURBINE) {
+            host.updateSteamFormed();
             host.consumeSteam();
         }
         if (host.spec().kind().drive()) {
@@ -109,6 +131,9 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         }
         if (spec().kind().foundryTank()) {
             return tank;
+        }
+        if (spec().kind() == MteInPlaceKind.STEAM_TURBINE) {
+            return new SteamHandler(side);
         }
         return null;
     }
@@ -143,7 +168,7 @@ public final class MteInPlaceBlockEntity extends BlockEntity
 
     @Override
     public long capacity(EnergyType type) {
-        return handles(type, Direction.NORTH) ? ENERGY_CAPACITY : 0L;
+        return handles(type, Direction.NORTH) ? energyCapacity : 0L;
     }
 
     @Override
@@ -156,7 +181,7 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         if (!handles(type, side) || amount <= 0L) {
             return 0L;
         }
-        long room = Math.max(0L, ENERGY_CAPACITY - storedEnergy);
+        long room = Math.max(0L, energyCapacity - storedEnergy);
         long accepted = Math.min(amount, room);
         if (!simulate) {
             storedEnergy += accepted;
@@ -189,7 +214,9 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         tag.put("inventory", items.serializeNBT(registries));
         tag.put("tank", tank.writeToNBT(registries, new CompoundTag()));
         tag.putLong("StoredEnergy", storedEnergy);
+        tag.putLong("SteamCounter", steamCounter);
         tag.putBoolean("Formed", formed);
+        tag.put("distilled", distilled.writeToNBT(registries, new CompoundTag()));
     }
 
     @Override
@@ -202,7 +229,11 @@ public final class MteInPlaceBlockEntity extends BlockEntity
             tank.readFromNBT(registries, tag.getCompound("tank"));
         }
         storedEnergy = tag.getLong("StoredEnergy");
+        steamCounter = tag.getLong("SteamCounter");
         formed = tag.getBoolean("Formed");
+        if (tag.contains("distilled")) {
+            distilled.readFromNBT(registries, tag.getCompound("distilled"));
+        }
     }
 
     private void pourDown(Direction facing) {
@@ -234,21 +265,59 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         }
     }
 
-    private void consumeSteam() {
-        Direction facing = getBlockState().getValue(MteInPlaceBlock.FACING);
-        IFluidHandler source = neighborFluid(facing, facing.getOpposite());
-        if (source == null || storedEnergy >= ENERGY_CAPACITY) {
+    private void updateSteamFormed() {
+        SteamTurbineCatalog.Profile profile =
+                SteamTurbineCatalog.find(spec().id()).orElse(null);
+        if (profile == null || !profile.large()) {
+            formed = true;
             return;
         }
-        FluidStack drained = source.drain(
-                new FluidStack(ModFluids.STEAM_SOURCE.get(), TRANSFER_MB),
-                IFluidHandler.FluidAction.EXECUTE);
-        if (!drained.isEmpty()) {
-            storedEnergy = Math.min(
-                    ENERGY_CAPACITY,
-                    storedEnergy + drained.getAmount());
-            setChanged();
+        Direction facing = getBlockState().getValue(MteInPlaceBlock.FACING);
+        formed = SteamTurbineStructure.check(
+                level, worldPosition, facing, profile.wallId());
+    }
+
+    private void consumeSteam() {
+        SteamTurbineCatalog.Profile profile =
+                SteamTurbineCatalog.find(spec().id()).orElse(null);
+        if (profile == null || (profile.large() && !formed)) {
+            return;
         }
+        Direction facing = getBlockState().getValue(MteInPlaceBlock.FACING);
+        Direction inputSide = facing.getOpposite();
+        IFluidHandler source = neighborFluid(inputSide, facing);
+        if (source != null && tank.getSpace() > 0) {
+            FluidStack pulled = source.drain(
+                    new FluidStack(
+                            ModFluids.STEAM_SOURCE.get(),
+                            Math.min(profile.steamInputMax(), tank.getSpace())),
+                    IFluidHandler.FluidAction.EXECUTE);
+            if (!pulled.isEmpty()) {
+                tank.fill(pulled, IFluidHandler.FluidAction.EXECUTE);
+            }
+        }
+        int available = tank.getFluidAmount();
+        if (available < profile.steamPerEu() * 2
+                || storedEnergy >= energyCapacity) {
+            return;
+        }
+        FluidStack drained = tank.drain(
+                available, IFluidHandler.FluidAction.EXECUTE);
+        if (drained.isEmpty()) {
+            return;
+        }
+        long ru = drained.getAmount() / (long) profile.steamPerEu();
+        storedEnergy = Math.min(energyCapacity, storedEnergy + ru);
+        steamCounter += drained.getAmount();
+        if (steamCounter >= profile.steamPerWater()) {
+            int water = (int) (steamCounter / profile.steamPerWater());
+            steamCounter %= profile.steamPerWater();
+            ModFluids.chemical("water_distilled").ifPresent(entry ->
+                    distilled.fill(
+                            new FluidStack(entry.source().get(), water),
+                            IFluidHandler.FluidAction.EXECUTE));
+        }
+        setChanged();
     }
 
     private void pushDrive() {
@@ -361,6 +430,57 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         public FluidStack drain(int maxDrain, FluidAction action) {
             IFluidHandler target = target();
             return target == null ? FluidStack.EMPTY : target.drain(maxDrain, action);
+        }
+    }
+
+    private final class SteamHandler implements IFluidHandler {
+        private SteamHandler(Direction side) {
+        }
+
+        @Override
+        public int getTanks() {
+            return 2;
+        }
+
+        @Override
+        public FluidStack getFluidInTank(int index) {
+            if (index == 0) {
+                return tank.getFluid();
+            }
+            return index == 1 ? distilled.getFluid() : FluidStack.EMPTY;
+        }
+
+        @Override
+        public int getTankCapacity(int index) {
+            if (index == 0) {
+                return tank.getCapacity();
+            }
+            return index == 1 ? distilled.getCapacity() : 0;
+        }
+
+        @Override
+        public boolean isFluidValid(int index, FluidStack stack) {
+            return index == 0
+                    && !stack.isEmpty()
+                    && stack.is(ModFluids.STEAM_SOURCE.get());
+        }
+
+        @Override
+        public int fill(FluidStack resource, FluidAction action) {
+            if (resource.isEmpty() || !resource.is(ModFluids.STEAM_SOURCE.get())) {
+                return 0;
+            }
+            return tank.fill(resource, action);
+        }
+
+        @Override
+        public FluidStack drain(FluidStack resource, FluidAction action) {
+            return distilled.drain(resource, action);
+        }
+
+        @Override
+        public FluidStack drain(int maxDrain, FluidAction action) {
+            return distilled.drain(maxDrain, action);
         }
     }
 }

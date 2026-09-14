@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "slug": "energy/quantum-massfab",
+  "title": "Matter Fabricator and Neutronium bootstrap",
+  "maturity": "frozen",
+  "workflow": "paused",
+  "owned_paths": [
+    "src/main/resources/data/cruciblecraft/materials/neutronium.json",
+    "src/main/resources/data/cruciblecraft/materials/superconductor.json",
+    "src/main/java/com/masson/cruciblecraft/gametest/QuantumMassfabGameTests.java",
+    "tools/capabilities/energy/quantum-massfab/**"
+  ],
+  "depends_on": [
+    "energy/fusion-quantum"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "energy/quantum-massfab",
+  "legacy_readiness": "tools/waves/content/puv-omega-tech-line/readiness.json",
+  "player_signoff": null,
+  "required_test_ids": [
+    "neutroniumIsNotCosmicNeutronium",
+    "massfabCompactsNeutralMatter",
+    "noCircularNeutroniumDependency"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "material:neutronium",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:neutronium"
+      ],
+      "reason": "GT6 MT.Neutronium is unused. CC_EXTENSION survival chain via QU Massfab. cosmic_neutronium is not an alias."
+    }
+  ],
+  "note": "144 mB matter_neutral + 524288 QU -> neutronium ingot."
+}

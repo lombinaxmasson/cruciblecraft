@@ -48,12 +48,22 @@ public final class MteProcessingHostFoldGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
-    public static void squeezerPolarizerMagSepLaserStayDummy(
-            GameTestHelper helper) {
+    public static void polarizerMagSepFoldOntoLiveHosts(GameTestHelper helper) {
+        helper.assertTrue(
+                liveMachine("steel_galvanized_polarizer")
+                        && liveMachine("steel_galvanized_magnetic_separator"),
+                "polarizer/magsep lost their live processing BlockItems");
+        helper.assertTrue(
+                withdrawn("steel/polarizer_galvanized")
+                        && withdrawn("steel/magnetic_separator_galvanized"),
+                "polarizer/magsep dummies are still registered");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void squeezerLaserStayDummy(GameTestHelper helper) {
         helper.assertTrue(
                 dummy("processing/squeezer_bronze")
-                        && dummy("steel/polarizer_galvanized")
-                        && dummy("steel/magnetic_separator_galvanized")
                         && dummy("processing/laser_engraver_t1")
                         && dummy("processing/laser_welder_t1"),
                 "ungated processing identities were folded without sourceId hosts");

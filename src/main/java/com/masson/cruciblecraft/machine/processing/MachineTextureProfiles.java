@@ -25,6 +25,15 @@ public final class MachineTextureProfiles {
             return EnergyConverterKindCatalog.require(converter.kindId())
                     .textureProfile();
         }
+        if (blockPath.startsWith("quantum_energizer")) {
+            return "quantum_energizer";
+        }
+        if (blockPath.startsWith("long_distance_transformer")) {
+            return "long_distance_transformer";
+        }
+        if (blockPath.startsWith("bedrock_drill")) {
+            return "bedrock_drill";
+        }
         String catalogProfile = MachineTierCatalog.textureProfile(blockPath);
         if (!catalogProfile.equals(blockPath)) {
             return catalogProfile;

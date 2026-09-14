@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_path": "Loader_MultiTileEntities.java:1245",
+  "machine": {
+    "id": "cruciblecraft:large_heat_exchanger",
+    "source_id": 17197,
+    "source_line": 1245,
+    "gt6_class": "MultiTileEntityLargeHeatExchanger",
+    "source_policy": "source_backed",
+    "hu_rate": 16384,
+    "efficiency_bps": 10000,
+    "packet_size": 1,
+    "wall_source_id": 18024,
+    "wall_id": "cruciblecraft:multiblock/dense_tungsten_wall",
+    "transmitter_source_id": 18101,
+    "transmitter_id": "cruciblecraft:multiblock/heat_transmitter",
+    "structure": "3x3x2",
+    "lang_en": "Large Heat Exchanger",
+    "lang_zh": "大型热交换器",
+    "recipe": {
+      "pattern": [
+        "DDD",
+        "PMP",
+        "DDD"
+      ],
+      "keys": {
+        "M": {
+          "item": "cruciblecraft:multiblock/dense_tungsten_wall"
+        },
+        "D": {
+          "prefix": "dense_plate",
+          "material": "annealed_copper"
+        },
+        "P": {
+          "prefix": "huge_fluid_pipe",
+          "material": "copper",
+          "family": "ANY.Cu"
+        }
+      },
+      "catalyst": null
+    }
+  },
+  "transmitter": {
+    "id": "cruciblecraft:multiblock/heat_transmitter",
+    "source_id": 18101,
+    "source_line": 1176,
+    "gt6_class": "MultiTileEntityMultiBlockPart",
+    "source_policy": "source_backed",
+    "lang_en": "Heat Transmitter",
+    "lang_zh": "热传递器",
+    "recipe": {
+      "pattern": [
+        "MPM",
+        "hRw",
+        "MPM"
+      ],
+      "keys": {
+        "M": {
+          "prefix": "plate",
+          "material": "invar"
+        },
+        "P": {
+          "prefix": "triple_plate",
+          "material": "copper",
+          "family": "ANY.Cu"
+        },
+        "R": {
+          "prefix": "long_rod",
+          "material": "copper",
+          "family": "ANY.Cu"
+        }
+      },
+      "catalysts": [
+        "h",
+        "w"
+      ]
+    }
+  }
+}

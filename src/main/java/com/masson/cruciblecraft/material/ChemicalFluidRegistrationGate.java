@@ -25,7 +25,8 @@ public final class ChemicalFluidRegistrationGate {
     private static final List<String> RESOURCES = List.of(
             "/data/cruciblecraft/chemical_fluid_gate.json",
             "/data/cruciblecraft/container_fluid_gate.json",
-            "/data/cruciblecraft/hydrocarbon_fluid_gate.json");
+            "/data/cruciblecraft/hydrocarbon_fluid_gate.json",
+            "/data/cruciblecraft/puv_omega_fluid_gate.json");
 
     private ChemicalFluidRegistrationGate() {}
 

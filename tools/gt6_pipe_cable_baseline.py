@@ -1505,8 +1505,6 @@ def _pin_alias_repair_historical_rows(documents: dict[str, Any]) -> None:
         | restrictive_pipe.folded_metas()
         | missing_gauges.folded_metas()
     )
-    if not repaired:
-        return
     committed_path = WAVE / "identity_resolution_ledger.json"
     if not committed_path.is_file():
         return
@@ -1514,6 +1512,15 @@ def _pin_alias_repair_historical_rows(documents: dict[str, Any]) -> None:
         int(row["meta"]): row
         for row in census.load_json(committed_path).get("rows") or []
     }
+    # Later overlays may gate extra graphene/superconductor gauges as live
+    # material items. The closed baseline still records upgrade_live_item.
+    repaired |= {
+        meta
+        for meta, row in committed.items()
+        if row.get("disposition") == "upgrade_live_item"
+    }
+    if not repaired:
+        return
     ledger = documents["identity_resolution_ledger.json"]
     rows = []
     for row in ledger.get("rows") or []:

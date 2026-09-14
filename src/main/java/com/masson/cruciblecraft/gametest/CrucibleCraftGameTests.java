@@ -7510,7 +7510,7 @@ public final class CrucibleCraftGameTests {
                     map.unindexedRecipeCount() == 0,
                     map.id() + " contains unindexed chemical recipes");
         }
-        helper.assertTrue(chemicalTotal == 152, "Live chemical recipe total is not 152: " + chemicalTotal);
+        helper.assertTrue(chemicalTotal == 156, "Live chemical recipe total is not 156: " + chemicalTotal);
         ProcessingEmiRegistrationPlan emiPlan = ProcessingEmiRegistrationPlan.create(
                 ModProcessingMachines.CONFIGURED_MACHINES);
         int expectedEmiRecipes = ModProcessingMachines.CONFIGURED_MACHINES.stream()

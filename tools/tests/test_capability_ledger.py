@@ -64,6 +64,12 @@ REDSTONE_CORRECTION = "content/gt6-redstone-wire-correction"
 NUCLEAR = "energy/nuclear-fission-survival"
 HOT_FLUIDS = "energy/nuclear-fission-hot-fluids"
 OBSERVATION = "energy/nuclear-fission-observation-safety"
+LARGE_HEX = "energy/large-heat-exchanger"
+STEAM_TURBINE = "energy/steam-turbine"
+FUSION_QUANTUM = "energy/fusion-quantum"
+QUANTUM_MASSFAB = "energy/quantum-massfab"
+PUV_OMEGA_PARTS = "content/puv-omega-parts"
+PUV_OMEGA_MATRIX = "machines/puv-omega-matrix"
 
 
 class CapabilityLedgerTest(unittest.TestCase):
@@ -333,6 +339,12 @@ class CapabilityLedgerTest(unittest.TestCase):
                 PAPER_TINY_PLATE,
                 CROPS,
                 "logistics/cover-remainder",
+                LARGE_HEX,
+                STEAM_TURBINE,
+                FUSION_QUANTUM,
+                QUANTUM_MASSFAB,
+                PUV_OMEGA_PARTS,
+                PUV_OMEGA_MATRIX,
             },
             set(compiled["impact"]["logistics/cover-net-r0"]),
         )
@@ -393,14 +405,19 @@ class CapabilityLedgerTest(unittest.TestCase):
                 FLUID_ATTACHMENTS_RUNTIME,
                 PAPER_TINY_PLATE,
                 RESTRICTIVE,
+                PUV_OMEGA_PARTS,
                 SENSORS,
                 FOUNDATION,
                 BATTERIES,
                 CONVERTER,
+                FUSION_QUANTUM,
                 HEAT_EXCHANGERS,
+                LARGE_HEX,
                 HOT_FLUIDS,
                 OBSERVATION,
                 NUCLEAR,
+                QUANTUM_MASSFAB,
+                STEAM_TURBINE,
                 TRANSFORMERS,
                 DISPLAY,
                 FLUID,
@@ -414,6 +431,7 @@ class CapabilityLedgerTest(unittest.TestCase):
                 NANOFAB,
                 OVEN,
                 PRESSURE_WASHER,
+                PUV_OMEGA_MATRIX,
                 ROLL_FORMER,
                 SANDING,
                 SLICER,

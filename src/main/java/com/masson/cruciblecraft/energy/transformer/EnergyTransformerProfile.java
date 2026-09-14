@@ -43,7 +43,7 @@ public record EnergyTransformerProfile(
                 || capacity <= 0L
                 || voltageIndex < 0
                 || sourceId <= 0
-                || sourceLine <= 0
+                || sourceLine < 0
                 || energyType != EnergyType.ELECTRIC) {
             throw new IllegalArgumentException(
                     "Transformer profile window and source must be valid");

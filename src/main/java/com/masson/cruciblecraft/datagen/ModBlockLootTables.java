@@ -63,6 +63,12 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 (id, block) -> dropSelf(block.get()));
         ModBlocks.transformerBlocksById().forEach(
                 (id, block) -> dropSelf(block.get()));
+        ModBlocks.quantumEnergizerBlocksById().forEach(
+                (id, block) -> dropSelf(block.get()));
+        ModBlocks.longDistanceTransformerBlocksById().forEach(
+                (id, block) -> dropSelf(block.get()));
+        ModBlocks.longDistanceWireBlocksById().forEach(
+                (id, block) -> dropSelf(block.get()));
         ModBlocks.heatExchangerBlocksById().forEach(
                 (id, block) -> dropSelf(block.get()));
         ModBlocks.electricalConductorBlocks().forEach(
@@ -77,6 +83,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.LU_FIBER_CABLE.get());
         dropSelf(ModBlocks.LASER_ENGRAVER.get());
         dropSelf(ModBlocks.FUSION_REACTOR.get());
+        dropSelf(ModBlocks.LARGE_HEAT_EXCHANGER.get());
+        dropSelf(ModBlocks.BEDROCK_DRILL.get());
+        dropSelf(ModBlocks.BEDROCK_DRILL_HEAD.get());
         dropSelf(ModBlocks.REACTOR_CORE_1X1.get());
         dropSelf(ModBlocks.REACTOR_CORE_2X2.get());
         dropSelf(ModBlocks.TUNGSTENSTEEL_WALL.get());
@@ -167,6 +176,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 ModBlocks.LU_FIBER_CABLE.get(),
                 ModBlocks.LASER_ENGRAVER.get(),
                 ModBlocks.FUSION_REACTOR.get(),
+                ModBlocks.LARGE_HEAT_EXCHANGER.get(),
+                ModBlocks.BEDROCK_DRILL.get(),
+                ModBlocks.BEDROCK_DRILL_HEAD.get(),
                 ModBlocks.REACTOR_CORE_1X1.get(),
                 ModBlocks.REACTOR_CORE_2X2.get(),
                 ModBlocks.TUNGSTENSTEEL_WALL.get(),
@@ -180,6 +192,12 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         ModBlocks.batteryBlocksById().forEach(
                 (id, holder) -> blocks.add(holder.get()));
         ModBlocks.transformerBlocksById().forEach(
+                (id, holder) -> blocks.add(holder.get()));
+        ModBlocks.quantumEnergizerBlocksById().forEach(
+                (id, holder) -> blocks.add(holder.get()));
+        ModBlocks.longDistanceTransformerBlocksById().forEach(
+                (id, holder) -> blocks.add(holder.get()));
+        ModBlocks.longDistanceWireBlocksById().forEach(
                 (id, holder) -> blocks.add(holder.get()));
         ModBlocks.heatExchangerBlocksById().forEach(
                 (id, holder) -> blocks.add(holder.get()));

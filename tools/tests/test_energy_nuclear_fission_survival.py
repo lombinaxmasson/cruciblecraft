@@ -80,20 +80,26 @@ class FissionSurvivalCardTest(unittest.TestCase):
         self.assertEqual(48, len({row["recipe_id"] for row in relations}))
         self.assertTrue(all(row["status"] == "ready" for row in relations))
 
-    def test_canner_is_lv_only(self) -> None:
+    def test_canner_lv_host_remains(self) -> None:
         tiers = io.load_json(MACHINE_TIERS)
         canners = [
             row
             for row in tiers["variants"]
             if row["kind"] == "cruciblecraft:canner"
         ]
-        self.assertEqual(1, len(canners))
-        self.assertEqual("cruciblecraft:canner", canners[0]["id"])
-        self.assertEqual(20161, canners[0]["sourceId"])
-        self.assertEqual("ELECTRIC", canners[0]["energy"])
+        by_id = {row["id"]: row for row in canners}
+        self.assertEqual(10, len(canners))
+        lv = by_id["cruciblecraft:canner"]
+        self.assertEqual(20161, lv["sourceId"])
+        self.assertEqual("ELECTRIC", lv["energy"])
         self.assertEqual(
             "Loader_MultiTileEntities.java:1379",
             tiers["source"]["variant_rows"]["cruciblecraft:canner"],
+        )
+        self.assertEqual(20162, by_id["cruciblecraft:aluminium_canner"]["sourceId"])
+        self.assertEqual(20165, by_id["cruciblecraft:titanium_canner"]["sourceId"])
+        self.assertEqual(
+            81014, by_id["cruciblecraft:neutronium_canner_omega"]["sourceId"]
         )
 
     def test_track_c_started_and_sealed_growth_order_stays_false(self) -> None:
