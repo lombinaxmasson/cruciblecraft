@@ -21,6 +21,7 @@ if str(ROOT) not in sys.path:
 from tools import census_common as census
 from tools import gt6_resolve
 from tools import io_common as io
+from tools import language_names
 from tools import tool_head_prefix as thp
 
 MAP_PATH = io.TOOLS / "catalog_modern_id_map.json"
@@ -488,7 +489,7 @@ def multiitem_java_names() -> dict[tuple[str, int], str]:
                     or field
                 )
                 names[(source_item, 2000 + index * 100)] = (
-                    f"{local.replace('_', ' ').title()} Wooden Bucket"
+                    f"{language_names.format_english_id(local)} Wooden Bucket"
                 )
     return names
 
@@ -725,43 +726,66 @@ def resolve_english(
             slab_kind = str(row.get("slab_kind") or "full")
             if slab_kind == "slab":
                 face = SLAB_FACE[int(row.get("slab_variant") or 0) % 6]
-                return f"{stone.replace('_', ' ').title()} {variant.replace('_', ' ').title()} Slab {face}"
-            return f"{stone.replace('_', ' ').title()} {variant.replace('_', ' ').title()}"
+                return (
+                    f"{language_names.format_english_id(stone)} "
+                    f"{language_names.format_english_id(variant)} Slab {face}"
+                )
+            return (
+                f"{language_names.format_english_id(stone)} "
+                f"{language_names.format_english_id(variant)}"
+            )
     if source == "gregtech:gt.block.bale.crop":
         crop = BALE_CROP[meta % 4]
         axis = BALE_AXIS[meta // 4]
-        return " ".join(part for part in (crop.title(), "Bale", axis.replace("_", " ")) if part)
+        return " ".join(
+            part
+            for part in (
+                language_names.format_english_id(crop),
+                "Bale",
+                axis.replace("_", " "),
+            )
+            if part
+        )
     if source == "gregtech:gt.block.bale.grass":
         grass = BALE_GRASS[meta % 4]
         axis = BALE_AXIS[meta // 4]
         return " ".join(
-            part for part in (grass.replace("_", " ").title(), "Bale", axis.replace("_", " ")) if part
+            part
+            for part in (
+                language_names.format_english_id(grass),
+                "Bale",
+                axis.replace("_", " "),
+            )
+            if part
         )
     if "asphalt" in source or "cfoam" in source:
         color = DYE_COLORS[meta % 16]
         kind = "cfoam" if "cfoam" in source else "asphalt"
         fresh = "fresh_" if "fresh" in source else ""
-        return f"{fresh}{kind} {color}".replace("_", " ").title()
+        return language_names.format_english_id(f"{fresh}{kind}_{color}")
     if source.startswith("gregtech:gt.block."):
         tail = source.removeprefix("gregtech:gt.block.")
         slab = ""
         if ".slab." in tail:
             tail, slab_s = tail.rsplit(".slab.", 1)
             slab = f" {SLAB_FACE[int(slab_s) % 6].title()} Slab"
-        parts = [part.replace("_", " ") for part in tail.split(".") if part]
+        parts = [part for part in tail.split(".") if part]
         if len(parts) >= 2:
-            return f"{parts[-1].title()} {parts[0].title()}{slab}".strip()
-        return f"{tail.replace('.', ' ').replace('_', ' ').title()}{slab}".strip()
+            return (
+                f"{language_names.format_english_id(parts[-1])} "
+                f"{language_names.format_english_id(parts[0])}{slab}"
+            ).strip()
+        return f"{language_names.format_english_id(tail.replace('.', '_'))}{slab}".strip()
     if source.startswith("gregtech:gt.multiitem."):
-        family = source.rsplit(".", 1)[-1].replace("_", " ").title()
+        family = language_names.format_english_id(source.rsplit(".", 1)[-1])
         return f"{family} {meta}"
     if source == "gregtech:gt.multitileentity":
         r0 = r0_by_meta().get(meta) or {}
         tag = str(r0.get("gt6_class_or_tag") or "").replace(" / ", " ").replace("MultiTileEntity", "")
         if tag.strip():
             return tag.strip()
-    tail = source.split(":", 1)[-1].replace(".", " ").replace("_", " ")
-    return tail.title()
+    tail = source.split(":", 1)[-1].replace(".", "_").replace(" ", "_")
+    return language_names.format_english_id(tail)
 
 
 def _panel_path(meta: int) -> str | None:

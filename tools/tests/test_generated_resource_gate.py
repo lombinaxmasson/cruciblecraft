@@ -29,6 +29,40 @@ class GeneratedResourceGateTest(unittest.TestCase):
         self.assertEqual([], manifest["errors"][:40], manifest["errors"][:40])
         self.assertGreater(manifest["live_block_count"], 1000)
 
+    def test_generated_lang_has_dotted_keys_and_no_unallowlisted_collisions(self) -> None:
+        from tools import language_names as names
+
+        manifest = gate.compile_manifest()
+        self.assertEqual("PASS", manifest["status"], manifest["errors"][:40])
+        self.assertGreater(manifest["lang_blockstate_count"], manifest["live_block_count"])
+        english = gate.load_json(
+            gate.GENERATED / "assets/cruciblecraft/lang/en_us.json"
+        )
+        chinese = gate.load_json(
+            gate.GENERATED / "assets/cruciblecraft/lang/zh_cn.json"
+        )
+        self.assertFalse(
+            any(names.is_illegal_slash_key(key) for key in english)
+        )
+        self.assertFalse(
+            any(names.is_illegal_slash_key(key) for key in chinese)
+        )
+        self.assertIn("block.cruciblecraft.aluminium.fluid_pipe", english)
+        self.assertNotIn("block.cruciblecraft.aluminium/fluid_pipe", english)
+        self.assertEqual([], names.grouped_collisions(english, locale="en_us"))
+        self.assertEqual([], names.grouped_collisions(chinese, locale="zh_cn"))
+        copies = [
+            key
+            for key, zh in chinese.items()
+            if isinstance(zh, str)
+            and names.registry_backed_match(key) is not None
+            and not names.is_template_key(key)
+            and names.is_english_copy(
+                zh, english.get(key) if isinstance(english.get(key), str) else None
+            )
+        ]
+        self.assertEqual([], copies[:20], copies[:20])
+
 
 if __name__ == "__main__":
     unittest.main()

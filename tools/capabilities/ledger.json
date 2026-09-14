@@ -1537,6 +1537,39 @@
     },
     {
       "depends_on": [],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/active/语言键与显示名规范收口详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/localization/LanguageNames.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+        "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+        "src/main/java/com/masson/cruciblecraft/material/MaterialZhNames.java",
+        "src/main/java/com/masson/cruciblecraft/content/item/MaterialFormItem.java",
+        "src/main/java/com/masson/cruciblecraft/content/item/GtStoneCatalog.java",
+        "src/main/resources/data/cruciblecraft/language_display_contract.json",
+        "src/main/resources/data/cruciblecraft/material_zh_cn.json",
+        "src/generated/resources/assets/cruciblecraft/lang/**",
+        "src/test/java/com/masson/cruciblecraft/datagen/**",
+        "tools/language_names.py",
+        "tools/generated_resource_gate.py",
+        "tools/player_complete.py",
+        "tools/catalog_modern_ids.py",
+        "tools/tests/test_generated_resource_gate.py",
+        "tools/tests/test_player_complete.py",
+        "tools/capabilities/localization/language-key-display-name-normalization/**",
+        "tools/waves/prep/localization-language-key-display-name-normalization/**"
+      ],
+      "path": "tools/capabilities/localization/language-key-display-name-normalization/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "localization/language-key-display-name-normalization",
+      "title": "Language Key and Display Name Normalization",
+      "workflow": "active"
+    },
+    {
+      "depends_on": [],
       "maturity": "frozen",
       "owned_paths": [
         "src/main/resources/data/cruciblecraft/cover_definitions.json",
@@ -2314,7 +2347,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 75,
+  "capability_count": 76,
   "declared_player_complete": [
     "energy/batteries",
     "energy/converter-catalog",
@@ -2779,6 +2812,9 @@
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
+    ],
+    "localization/language-key-display-name-normalization": [
+      "localization/language-key-display-name-normalization"
     ],
     "logistics/cover-net-r0": [
       "content/electric-wire-cable-mte-fold",
@@ -3290,6 +3326,7 @@
       "energy/quantum-massfab",
       "energy/steam-turbine",
       "energy/transformers",
+      "localization/language-key-display-name-normalization",
       "logistics/cover-net-r0",
       "logistics/cover-remainder",
       "logistics/display-cpu",
@@ -3335,5 +3372,5 @@
   },
   "progress_rule": "declaration is not proof; player_complete requires fresh GameTestServer execution; runClient is required on promotion",
   "schema_version": 2,
-  "unique_active_slug": null
+  "unique_active_slug": "localization/language-key-display-name-normalization"
 }

@@ -15,6 +15,7 @@ if str(ROOT) not in sys.path:
 
 from tools import atomic_io
 from tools import io_common as io
+from tools import language_names as names
 from tools import registry_identity
 from tools import tree_compare
 
@@ -235,7 +236,51 @@ def texture_manifested(texture: str, manifested: set[str]) -> bool:
 
 
 def lang_key(registry_path: str) -> str:
-    return "block.cruciblecraft." + registry_path.replace("/", ".")
+    return names.translation_key("block", registry_path)
+
+
+def generated_blockstate_paths() -> list[str]:
+    root = GENERATED / "assets/cruciblecraft/blockstates"
+    if not root.is_dir():
+        return []
+    paths: list[str] = []
+    for path in sorted(root.rglob("*.json")):
+        rel = path.relative_to(root).as_posix()
+        if rel.endswith(".json"):
+            paths.append(rel[:-5])
+    return paths
+
+
+def slash_key_errors(lang: dict[str, Any], locale: str) -> list[str]:
+    return [
+        f"{locale} slash translation key {key}"
+        for key in lang
+        if isinstance(key, str) and names.is_illegal_slash_key(key)
+    ]
+
+
+def collision_errors(table: dict[str, Any], locale: str) -> list[str]:
+    return [
+        f"{locale} display-name collision {row['display_name']}"
+        for row in names.grouped_collisions(table, locale=locale)
+    ]
+
+
+def english_copy_errors(
+    english: dict[str, Any], chinese: dict[str, Any]
+) -> list[str]:
+    errors: list[str] = []
+    for key, zh in chinese.items():
+        if not isinstance(zh, str):
+            continue
+        if names.is_template_key(key):
+            continue
+        if names.registry_backed_match(key) is None:
+            continue
+        en = english.get(key) if isinstance(english.get(key), str) else None
+        if names.is_english_copy(zh, en):
+            errors.append(f"zh_cn English copy {key}={zh}")
+    return errors
 
 
 def mineable_ids() -> set[str]:
@@ -326,16 +371,32 @@ def check_block(
 
 def compile_manifest() -> dict[str, Any]:
     lang_path = GENERATED / "assets/cruciblecraft/lang/en_us.json"
+    zh_path = GENERATED / "assets/cruciblecraft/lang/zh_cn.json"
     lang = load_json(lang_path) if lang_path.is_file() else {}
+    chinese = load_json(zh_path) if zh_path.is_file() else {}
     manifested, prefixes = manifested_textures()
     mineable = mineable_ids()
     blocks = live_block_paths()
     errors: list[str] = []
     for row in blocks:
         errors.extend(check_block(row, lang, manifested, prefixes, mineable))
+    live_set = {row["registry_path"] for row in blocks}
+    lang_blockstates = generated_blockstate_paths()
+    for registry in lang_blockstates:
+        if registry in live_set:
+            continue
+        key = lang_key(registry)
+        if key not in lang:
+            errors.append(f"cruciblecraft:{registry} missing language owner {key}")
+    errors.extend(slash_key_errors(lang, "en_us"))
+    errors.extend(slash_key_errors(chinese, "zh_cn"))
+    errors.extend(collision_errors(lang, "en_us"))
+    errors.extend(collision_errors(chinese, "zh_cn"))
+    errors.extend(english_copy_errors(lang, chinese))
     return {
         "errors": errors,
         "generated_by": "tools/build_generated_resource_gate.py",
+        "lang_blockstate_count": len(lang_blockstates),
         "live_block_count": len(blocks),
         "schema_version": 1,
         "status": "FAIL" if errors else "PASS",

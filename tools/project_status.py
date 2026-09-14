@@ -96,6 +96,11 @@ def render_status(ledger: dict[str, Any] | None = None) -> str:
     lines.extend(["", "## Prep（不占落地锁）", ""])
     prep = plans["prep"]
     if prep:
+        lines.append(
+            "计划文件存在就会列在这里。MTE 家族 prep 的 runtime child 已关时，"
+            "不要把本表当剩余待办。读法见 [unimplemented-gap.md](unimplemented-gap.md)。"
+        )
+        lines.append("")
         for slug, path in sorted(prep.items()):
             lines.append(f"- `{slug}` — {_plan_md(path)}")
     else:
@@ -105,6 +110,11 @@ def render_status(ledger: dict[str, Any] | None = None) -> str:
         row["slug"]
         for row in compiled["capabilities"]
         if row["maturity"] == "runtime_ready" and row["workflow"] == "accepted"
+    ]
+    frozen = [
+        row["slug"]
+        for row in compiled["capabilities"]
+        if row["maturity"] == "frozen"
     ]
     lines.extend(
         [
@@ -136,6 +146,30 @@ def render_status(ledger: dict[str, Any] | None = None) -> str:
             plan = plans["closed"].get(slug)
             plan_bit = f" — {_plan_md(plan)}" if plan is not None else ""
             lines.append(f"- `{slug}` — {row['title']}{plan_bit}")
+    else:
+        lines.append("无。")
+    lines.extend(
+        [
+            "",
+            f"## frozen（非 runtime_ready / player_complete）（{len(frozen)}）",
+            "",
+            "分母已冻。`paused` 的 PUV/OMEGA 六张代码已在 `src/main`，是 CC 扩展，"
+            "不是原版高压线，也不是 `player_complete`。地牢是结构载体，房间内容仍 blocked。",
+            "",
+        ]
+    )
+    if frozen:
+        for slug in frozen:
+            row = by_slug[slug]
+            plan = (
+                plans["closed"].get(slug)
+                or plans["prep"].get(slug)
+                or plans["active"].get(slug)
+            )
+            plan_bit = f" — {_plan_md(plan)}" if plan is not None else ""
+            lines.append(
+                f"- `{slug}` — {row['title']}（`workflow={row['workflow']}`）{plan_bit}"
+            )
     else:
         lines.append("无。")
     closed_complete = [

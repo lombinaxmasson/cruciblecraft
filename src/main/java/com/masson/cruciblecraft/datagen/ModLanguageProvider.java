@@ -23,6 +23,7 @@ import com.masson.cruciblecraft.logistics.pipe.cover.CoverComponentTiers;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.MaterialZhNames;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
+import com.masson.cruciblecraft.localization.LanguageNames;
 import com.masson.cruciblecraft.energy.battery.EnergyBatteryCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterKindCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterTierCatalog;
@@ -55,24 +56,39 @@ public class ModLanguageProvider extends LanguageProvider {
     protected void addTranslations() {
         if (chinese) {
             ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
-                    addItem(ModItems.extruderShape(shape.id()), shape.chineseName()));
+                    LanguageNames.chineseOrEmpty(shape.chineseName(), shape.englishName())
+                            .ifPresent(name -> addItem(
+                                    ModItems.extruderShape(shape.id()), name)));
             GtWoodCatalog.DEFINITIONS.forEach(wood ->
-                    addItem(ModItems.gtWood(wood.id()), wood.chineseName()));
-            GtStoneCatalog.variants().forEach(stone ->
-                    addBlock(
-                            ModBlocks.gtStoneBlocksById().get(stone.id()),
-                            stone.chineseName()));
-            GtBlockObjectCatalog.variants().forEach(block ->
-                    addBlock(
-                            ModBlocks.gtBlockObjectBlocksById().get(block.id()),
-                            block.chineseName()));
-            com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog.variants().forEach(block ->
-                    addBlock(
-                            ModBlocks.bathRemainderBlockObjectBlocksById().get(block.id()),
-                            block.chineseName()));
+                    LanguageNames.chineseOrEmpty(wood.chineseName(), wood.englishName())
+                            .ifPresent(name -> addItem(
+                                    ModItems.gtWood(wood.id()), name)));
+            GtStoneCatalog.variants().forEach(stone -> {
+                var holder = ModBlocks.gtStoneBlocksById().get(stone.id());
+                if (holder != null && !stone.chineseName().isBlank()) {
+                    addBlock(holder, stone.chineseName());
+                }
+            });
+            GtBlockObjectCatalog.variants().forEach(block -> {
+                var holder = ModBlocks.gtBlockObjectBlocksById().get(block.id());
+                LanguageNames.playerChinese(block.chineseName(), block.registryPath())
+                        .or(() -> LanguageNames.chineseOrEmpty(
+                                block.chineseName(), block.englishName()))
+                        .ifPresent(name -> addBlock(holder, name));
+            });
+            com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog.variants().forEach(block -> {
+                var holder = ModBlocks.bathRemainderBlockObjectBlocksById().get(block.id());
+                LanguageNames.playerChinese(block.chineseName(), block.registryPath())
+                        .or(() -> LanguageNames.chineseOrEmpty(
+                                block.chineseName(), block.englishName()))
+                        .ifPresent(name -> addBlock(holder, name));
+            });
             add("tooltip.cruciblecraft.fireproof", "防火");
             ToolPatternCatalog.DEFINITIONS.forEach(pattern ->
-                    addItem(ModItems.toolPattern(pattern.id()), pattern.chineseName()));
+                    LanguageNames.chineseOrEmpty(
+                                    pattern.chineseName(), pattern.englishName())
+                            .ifPresent(name -> addItem(
+                                    ModItems.toolPattern(pattern.id()), name)));
             addItem(ModItems.FLINT_KNIFE, "燧石刀");
             addItem(ModItems.PROGRAMMED_CIRCUIT, "编程电路");
             add("tooltip.cruciblecraft.circuit_config", "配置：%s");
@@ -452,7 +468,7 @@ public class ModLanguageProvider extends LanguageProvider {
                         add(
                                 "item.cruciblecraft.material_form."
                                         + form.serializedName(),
-                                "%s " + name));
+                                LanguageNames.chineseFormTemplate(name)));
             }
             ModBlocks.oreBlockPaths().keySet().forEach(key ->
                     MaterialZhNames.material(key.materialId())
@@ -466,10 +482,7 @@ public class ModLanguageProvider extends LanguageProvider {
                 var pipe = holder.get().pipe();
                 MaterialZhNames.material(pipe.materialId()).ifPresent(mat ->
                         MaterialZhNames.pipe(pipe.form().serializedName())
-                                .ifPresent(name -> add(
-                                        "block." + CrucibleCraft.MODID
-                                                + "." + pipe.registryName(),
-                                        mat + name)));
+                                .ifPresent(name -> addBlock(holder, mat + name)));
             });
             ModBlocks.electricalConductorBlocks().forEach(holder -> {
                 var conductor = holder.get().conductor();
@@ -478,12 +491,8 @@ public class ModLanguageProvider extends LanguageProvider {
                                 MaterialZhNames.conductor(
                                                 conductor.form()
                                                         .serializedName())
-                                        .ifPresent(name -> add(
-                                                "block." + CrucibleCraft.MODID
-                                                        + "."
-                                                        + conductor
-                                                                .registryName(),
-                                                mat + name)));
+                                        .ifPresent(name -> addBlock(
+                                                holder, mat + name)));
             });
             ModFluids.moltenFluids().forEach(entry ->
                     MaterialZhNames.material(entry.materialId())
@@ -587,18 +596,22 @@ public class ModLanguageProvider extends LanguageProvider {
                 "Neutrons other %s / self %s / max %s / div %s");
         GtWoodCatalog.DEFINITIONS.forEach(wood ->
                 addItem(ModItems.gtWood(wood.id()), wood.englishName()));
-        GtStoneCatalog.variants().forEach(stone ->
-                addBlock(
-                        ModBlocks.gtStoneBlocksById().get(stone.id()),
-                        stone.englishName()));
+        GtStoneCatalog.variants().forEach(stone -> {
+            var holder = ModBlocks.gtStoneBlocksById().get(stone.id());
+            if (holder != null) {
+                addBlock(holder, stone.englishName());
+            }
+        });
         GtBlockObjectCatalog.variants().forEach(block ->
                 addBlock(
                         ModBlocks.gtBlockObjectBlocksById().get(block.id()),
-                        block.englishName()));
+                        LanguageNames.playerEnglish(
+                                block.englishName(), block.registryPath())));
         com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog.variants().forEach(block ->
                 addBlock(
                         ModBlocks.bathRemainderBlockObjectBlocksById().get(block.id()),
-                        block.englishName()));
+                        LanguageNames.playerEnglish(
+                                block.englishName(), block.registryPath())));
         add("tooltip.cruciblecraft.fireproof", "Fireproof");
         addItem(ModItems.CREOSOTE_BUCKET, "Creosote Bucket");
         add("fluid_type.cruciblecraft.creosote", "Creosote");
@@ -789,22 +802,22 @@ public class ModLanguageProvider extends LanguageProvider {
         ModBlocks.oreBlockPaths().keySet().forEach(key -> addBlock(
                 ModBlocks.oreBlock(key.materialId(), key.host()),
                 (key.host() == Host.DEEPSLATE ? "Deepslate " : "")
-                        + title(key.materialId()) + " Ore"));
+                        + LanguageNames.formatEnglishId(key.materialId()) + " Ore"));
         ModBlocks.electricalConductorBlocks().forEach(holder -> {
             var conductor = holder.get().conductor();
-            add(
-                    "block." + CrucibleCraft.MODID + "."
-                            + conductor.registryName(),
-                    title(conductor.materialId()) + " "
-                            + title(conductor.form().serializedName()));
+            addBlock(
+                    holder,
+                    LanguageNames.composeEnglish(
+                            conductor.materialId(),
+                            conductor.form().serializedName()));
         });
         ModBlocks.pipeBlocks().forEach(holder -> {
             var pipe = holder.get().pipe();
-            add(
-                    "block." + CrucibleCraft.MODID + "."
-                            + pipe.registryName(),
-                    title(pipe.materialId()) + " "
-                            + title(pipe.form().serializedName()));
+            addBlock(
+                    holder,
+                    LanguageNames.composeEnglish(
+                            pipe.materialId(),
+                            pipe.form().serializedName()));
         });
         add("tooltip.cruciblecraft.unknown_material", "Missing material: %s (%s)");
         add("tooltip.cruciblecraft.machine_material", "Casing: %s (material tier %s)");
@@ -828,7 +841,8 @@ public class ModLanguageProvider extends LanguageProvider {
         for (var form : MaterialPrefixCatalog.values()) {
             add(
                     "item.cruciblecraft.material_form." + form.serializedName(),
-                    "%s " + formEnglish(form.serializedName()));
+                    LanguageNames.englishFormTemplate(
+                            LanguageNames.formatEnglishId(form.serializedName())));
         }
         MaterialCatalog.startupValues().forEach(material ->
                 add(material.translationKey(), title(material.id())));
@@ -949,8 +963,15 @@ public class ModLanguageProvider extends LanguageProvider {
 
     private void addStorageTranslations(boolean chinese) {
         StorageVariantCatalog.variants().forEach(variant -> {
-            String key = "block." + CrucibleCraft.MODID + "." + variant.path();
-            add(key, chinese ? variant.chinese() : variant.english());
+            String key = LanguageNames.translationKey("block", variant.path());
+            if (!chinese) {
+                add(key, LanguageNames.playerEnglish(variant.english(), variant.path()));
+                return;
+            }
+            LanguageNames.playerChinese(variant.chinese(), variant.path())
+                    .or(() -> LanguageNames.chineseOrEmpty(
+                            variant.chinese(), variant.english()))
+                    .ifPresent(name -> add(key, name));
         });
         if (chinese) {
             add("container.cruciblecraft.bookshelf", "书架");
@@ -965,8 +986,8 @@ public class ModLanguageProvider extends LanguageProvider {
 
     private void addHopperTranslations(boolean chinese) {
         HopperVariantCatalog.variants().forEach(variant -> {
-            String key = "block." + CrucibleCraft.MODID + "."
-                    + variant.id().getPath();
+            String key = LanguageNames.translationKey(
+                    "block", variant.id().getPath());
             if (chinese) {
                 MaterialZhNames.material(variant.materialPath()).ifPresent(zh ->
                         add(key, zh + (variant.kind().isQueue()
@@ -1009,8 +1030,8 @@ public class ModLanguageProvider extends LanguageProvider {
     private void addSensorTranslations() {
         for (SensorKind kind : SensorKind.all()) {
             String name = chinese ? kind.langZh() : kind.langEn();
-            add("block." + CrucibleCraft.MODID + "." + kind.path(), name);
-            add("item." + CrucibleCraft.MODID + "." + kind.path(), name);
+            add(LanguageNames.translationKey("block", kind.path()), name);
+            add(LanguageNames.translationKey("item", kind.path()), name);
         }
         add(
                 "message.cruciblecraft.sensor.mode.display",
@@ -1041,9 +1062,8 @@ public class ModLanguageProvider extends LanguageProvider {
     private void addRedstoneWireTranslations() {
         for (RedstoneWireKind kind : RedstoneWireKind.catalog()) {
             String name = chinese ? kind.langZh() : kind.langEn();
-            String key = kind.path().replace('/', '.');
-            add("block." + CrucibleCraft.MODID + "." + key, name);
-            add("item." + CrucibleCraft.MODID + "." + key, name);
+            add(LanguageNames.translationKey("block", kind.path()), name);
+            add(LanguageNames.translationKey("item", kind.path()), name);
         }
         add(
                 "tooltip.cruciblecraft.redstone_wire.range",
@@ -1193,14 +1213,7 @@ public class ModLanguageProvider extends LanguageProvider {
     }
 
     private static String formEnglish(String serializedName) {
-        return switch (serializedName) {
-            case "machine_casing" -> "Machine Casing";
-            case "machine_casing_double" -> "Double Machine Casing";
-            case "machine_casing_quadruple" -> "Quadruple Machine Casing";
-            case "machine_casing_dense" -> "Dense Machine Casing";
-            case "capcellcon" -> "Capsule Cell Container";
-            default -> title(serializedName);
-        };
+        return LanguageNames.formatEnglishId(serializedName);
     }
 
     private void addReactorRodNames() {
@@ -1215,9 +1228,16 @@ public class ModLanguageProvider extends LanguageProvider {
             if (CoverComponentTiers.findByItemPath(part.registryPath()).isPresent()) {
                 return;
             }
-            addItem(
-                    ModItems.technologicalPart(part.registryPath()),
-                    chinese ? part.chineseName() : part.englishName());
+            if (!chinese) {
+                addItem(
+                        ModItems.technologicalPart(part.registryPath()),
+                        part.englishName());
+                return;
+            }
+            LanguageNames.chineseOrEmpty(part.chineseName(), part.englishName())
+                    .ifPresent(name -> addItem(
+                            ModItems.technologicalPart(part.registryPath()),
+                            name));
         });
     }
 
@@ -1271,16 +1291,29 @@ public class ModLanguageProvider extends LanguageProvider {
     }
 
     private static String title(String value) {
-        String spaced = value.replace('_', ' ');
-        return spaced.substring(0, 1).toUpperCase(Locale.ROOT) + spaced.substring(1);
+        return LanguageNames.formatEnglishId(value);
     }
 
     private void addCatalogMachineNames() {
         ModMachineVariants.ALL.forEach(variant -> {
             String path = variant.id().getPath();
-            String name = catalogMachineName(variant);
-            add("block." + CrucibleCraft.MODID + "." + path, name);
-            add("item." + CrucibleCraft.MODID + "." + path, name);
+            String englishRaw = catalogMachineName(variant, false);
+            String english = LanguageNames.playerEnglish(englishRaw, path);
+            if (!chinese) {
+                add(LanguageNames.translationKey("block", path), english);
+                add(LanguageNames.translationKey("item", path), english);
+                return;
+            }
+            if (!english.equals(englishRaw)) {
+                return;
+            }
+            String rawZh = catalogMachineName(variant, true);
+            LanguageNames.playerChinese(rawZh, path)
+                    .or(() -> LanguageNames.chineseOrEmpty(rawZh, englishRaw))
+                    .ifPresent(name -> {
+                        add(LanguageNames.translationKey("block", path), name);
+                        add(LanguageNames.translationKey("item", path), name);
+                    });
         });
         addConverterCatalogNames();
         addBatteryCatalogNames();
@@ -1289,60 +1322,76 @@ public class ModLanguageProvider extends LanguageProvider {
         addQuantumEnergizerCatalogNames();
         addLongDistanceCatalogNames();
         BathMteIdentityCatalog.newItems().forEach(identity ->
-                add(
-                        "item." + CrucibleCraft.MODID + "."
-                                + identity.registryPath().replace('/', '.'),
-                        chinese ? identity.chineseName() : identity.englishName()));
+                addIdentityItemName(
+                        identity.registryPath(),
+                        identity.englishName(),
+                        identity.chineseName()));
         SmelterMteIdentityCatalog.newItems().forEach(identity ->
-                add(
-                        "item." + CrucibleCraft.MODID + "."
-                                + identity.registryPath().replace('/', '.'),
-                        chinese ? identity.chineseName() : identity.englishName()));
+                addIdentityItemName(
+                        identity.registryPath(),
+                        identity.englishName(),
+                        identity.chineseName()));
         com.masson.cruciblecraft.content.item.BathIdentityCatalog.identities().forEach(identity ->
-                add(
-                        "item." + CrucibleCraft.MODID + "."
-                                + identity.registryPath().replace('/', '.'),
-                        chinese ? identity.chineseName() : identity.englishName()));
+                addIdentityItemName(
+                        identity.registryPath(),
+                        identity.englishName(),
+                        identity.chineseName()));
         com.masson.cruciblecraft.content.item.SemanticObjectCatalog.identities().forEach(identity ->
-                add(
-                        "item." + CrucibleCraft.MODID + "."
-                                + identity.registryPath().replace('/', '.'),
-                        chinese ? identity.chineseName() : identity.englishName()));
+                addIdentityItemName(
+                        identity.registryPath(),
+                        identity.englishName(),
+                        identity.chineseName()));
         com.masson.cruciblecraft.content.item.SlicerOperandCatalog.operands().forEach(operand ->
-                add(
-                        "item." + CrucibleCraft.MODID + "."
-                                + operand.registryPath().replace('/', '.'),
-                        chinese ? operand.chineseName() : operand.englishName()));
+                addIdentityItemName(
+                        operand.registryPath(),
+                        operand.englishName(),
+                        operand.chineseName()));
         com.masson.cruciblecraft.content.item.PressureWasherOperandCatalog
                 .operands().forEach(operand ->
-                        add(
-                                "item." + CrucibleCraft.MODID + "."
-                                        + operand.registryPath().replace('/', '.'),
-                                chinese
-                                        ? operand.chineseName()
-                                        : operand.englishName()));
-        BathMteFluidCatalog.fluids().forEach(fluid -> {
-            String path = fluid.id().getPath().replace('/', '.');
-            add("fluid." + CrucibleCraft.MODID + "." + path, fluid.englishName());
-            add("fluid_type." + CrucibleCraft.MODID + "." + path, fluid.englishName());
-        });
-        com.masson.cruciblecraft.content.item.BathRemainderFluidCatalog.fluids().forEach(fluid -> {
-            String path = fluid.id().getPath().replace('/', '.');
-            add("fluid." + CrucibleCraft.MODID + "." + path, fluid.englishName());
-            add("fluid_type." + CrucibleCraft.MODID + "." + path, fluid.englishName());
-        });
-        com.masson.cruciblecraft.content.item.SemanticFluidCatalog.fluids().forEach(fluid -> {
-            String path = fluid.id().getPath().replace('/', '.');
-            add("fluid." + CrucibleCraft.MODID + "." + path, fluid.englishName());
-            add("fluid_type." + CrucibleCraft.MODID + "." + path, fluid.englishName());
-        });
+                        addIdentityItemName(
+                                operand.registryPath(),
+                                operand.englishName(),
+                                operand.chineseName()));
+        BathMteFluidCatalog.fluids().forEach(fluid ->
+                addFluidEnglishOnly(fluid.id().getPath(), fluid.englishName()));
+        com.masson.cruciblecraft.content.item.BathRemainderFluidCatalog.fluids().forEach(fluid ->
+                addFluidEnglishOnly(fluid.id().getPath(), fluid.englishName()));
+        com.masson.cruciblecraft.content.item.SemanticFluidCatalog.fluids().forEach(fluid ->
+                addFluidEnglishOnly(fluid.id().getPath(), fluid.englishName()));
+    }
+
+    private void addIdentityItemName(
+            String registryPath, String english, String chineseName) {
+        String key = LanguageNames.translationKey("item", registryPath);
+        if (!chinese) {
+            add(key, LanguageNames.playerEnglish(english, registryPath));
+            return;
+        }
+        LanguageNames.playerChinese(chineseName, registryPath)
+                .or(() -> LanguageNames.chineseOrEmpty(chineseName, english))
+                .or(() -> LanguageNames.composeMaterialFormZh(registryPath))
+                .ifPresent(name -> add(key, name));
+    }
+
+    private void addFluidEnglishOnly(String registryPath, String english) {
+        if (chinese) {
+            return;
+        }
+        add(LanguageNames.translationKey("fluid", registryPath), english);
+        add(LanguageNames.translationKey("fluid_type", registryPath), english);
     }
 
     private String catalogMachineName(
             com.masson.cruciblecraft.machine.processing.MachineVariant variant) {
+        return catalogMachineName(variant, chinese);
+    }
+
+    private String catalogMachineName(
+            com.masson.cruciblecraft.machine.processing.MachineVariant variant,
+            boolean chineseLocale) {
         MachineKindCatalog.Kind kind = MachineKindCatalog.require(
                 variant.kind().id());
-        String kindName = chinese ? kind.langZh() : kind.langEn();
+        String kindName = chineseLocale ? kind.langZh() : kind.langEn();
         boolean bareOpening = variant.id().getPath().equals(kind.id().getPath())
                 && !"kinetic".equals(kind.displayGroup())
                 && !"heat".equals(kind.displayGroup());
@@ -1351,7 +1400,7 @@ public class ModLanguageProvider extends LanguageProvider {
         }
         MachineKindCatalog.MaterialLang material = MachineKindCatalog.materialLang(
                 variant.tierBand().materialId());
-        if (chinese) {
+        if (chineseLocale) {
             return material.zh() + kindName;
         }
         return material.en() + " " + kindName;
@@ -1361,8 +1410,8 @@ public class ModLanguageProvider extends LanguageProvider {
         EnergyConverterTierCatalog.entries().forEach(entry -> {
             String path = entry.id().getPath();
             String name = converterDisplayName(entry);
-            add("block." + CrucibleCraft.MODID + "." + path, name);
-            add("item." + CrucibleCraft.MODID + "." + path, name);
+            add(LanguageNames.translationKey("block", path), name);
+            add(LanguageNames.translationKey("item", path), name);
         });
     }
 
@@ -1393,8 +1442,8 @@ public class ModLanguageProvider extends LanguageProvider {
         EnergyBatteryCatalog.profiles().forEach(profile -> {
             String path = profile.id().getPath();
             String name = batteryDisplayName(profile);
-            add("block." + CrucibleCraft.MODID + "." + path, name);
-            add("item." + CrucibleCraft.MODID + "." + path, name);
+            add(LanguageNames.translationKey("block", path), name);
+            add(LanguageNames.translationKey("item", path), name);
         });
     }
 
@@ -1415,8 +1464,8 @@ public class ModLanguageProvider extends LanguageProvider {
         EnergyTransformerCatalog.profiles().forEach(profile -> {
             String path = profile.id().getPath();
             String name = transformerDisplayName(profile);
-            add("block." + CrucibleCraft.MODID + "." + path, name);
-            add("item." + CrucibleCraft.MODID + "." + path, name);
+            add(LanguageNames.translationKey("block", path), name);
+            add(LanguageNames.translationKey("item", path), name);
         });
     }
 
@@ -1430,8 +1479,8 @@ public class ModLanguageProvider extends LanguageProvider {
         HeatExchangerCatalog.profiles().forEach(profile -> {
             String path = profile.id().getPath();
             String name = chinese ? profile.langZh() : profile.langEn();
-            add("block." + CrucibleCraft.MODID + "." + path, name);
-            add("item." + CrucibleCraft.MODID + "." + path, name);
+            add(LanguageNames.translationKey("block", path), name);
+            add(LanguageNames.translationKey("item", path), name);
         });
     }
 
@@ -1440,8 +1489,8 @@ public class ModLanguageProvider extends LanguageProvider {
                 .forEach(profile -> {
                     String path = profile.id().getPath();
                     String name = chinese ? profile.langZh() : profile.langEn();
-                    add("block." + CrucibleCraft.MODID + "." + path, name);
-                    add("item." + CrucibleCraft.MODID + "." + path, name);
+                    add(LanguageNames.translationKey("block", path), name);
+                    add(LanguageNames.translationKey("item", path), name);
                 });
     }
 
@@ -1451,16 +1500,16 @@ public class ModLanguageProvider extends LanguageProvider {
                 .forEach(profile -> {
                     String path = profile.id().getPath();
                     String name = chinese ? profile.langZh() : profile.langEn();
-                    add("block." + CrucibleCraft.MODID + "." + path, name);
-                    add("item." + CrucibleCraft.MODID + "." + path, name);
+                    add(LanguageNames.translationKey("block", path), name);
+                    add(LanguageNames.translationKey("item", path), name);
                 });
         com.masson.cruciblecraft.energy.longdistance.LongDistanceTransformerCatalog
                 .wires()
                 .forEach(profile -> {
                     String path = profile.id().getPath();
                     String name = chinese ? profile.langZh() : profile.langEn();
-                    add("block." + CrucibleCraft.MODID + "." + path, name);
-                    add("item." + CrucibleCraft.MODID + "." + path, name);
+                    add(LanguageNames.translationKey("block", path), name);
+                    add(LanguageNames.translationKey("item", path), name);
                 });
     }
 

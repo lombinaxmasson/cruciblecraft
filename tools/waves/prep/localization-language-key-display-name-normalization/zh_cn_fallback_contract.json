@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "capability_slug": "localization/language-key-display-name-normalization",
+  "status": "FROZEN_FOR_LANDING",
+  "policy": "zh_cn values must be real Chinese. Missing translation omits the key so the client falls back to en_us. English-copy fake translations are forbidden.",
+  "baseline": "MaterialZhNames no-English-copy policy",
+  "legal_fallback": {
+    "omit_zh_key": true,
+    "client_shows": "en_us",
+    "ledger": "record the omission as coverage debt, not as a translation"
+  },
+  "illegal": {
+    "copy_english_into_zh_cn": true,
+    "write_englishName_on_chinese_branch": true,
+    "blank_zh_value": true,
+    "invent_chinese_for_post_1_0_materials": true
+  },
+  "english_copy_detector": {
+    "has_cjk": "U+4E00..U+9FFF",
+    "copy_if": "zh has Latin letters and no CJK, or zh equals en for the same key"
+  },
+  "material_zh_cn_table": {
+    "loaded_maps": [
+      "materials",
+      "prefixes",
+      "pipes",
+      "conductors"
+    ],
+    "current_bugs": {
+      "root_keys_not_loaded": [
+        "neutronium",
+        "superconductor"
+      ],
+      "pipe_prefix_mismatch": {
+        "json": [
+          "normal_fluid_pipe",
+          "normal_item_pipe"
+        ],
+        "java_canonical": [
+          "fluid_pipe",
+          "item_pipe"
+        ]
+      }
+    },
+    "landing_fixes": {
+      "move_into_materials": {
+        "neutronium": "中子素",
+        "superconductor": "超导体"
+      },
+      "rename_pipe_keys": {
+        "normal_fluid_pipe": "fluid_pipe",
+        "normal_item_pipe": "item_pipe"
+      }
+    }
+  },
+  "identity_catalogs": {
+    "rule": "chinese_name must be actual Chinese. If missing, omit the field or use null; generators must skip the zh key. Do not require chinese_name == english_name.",
+    "files": [
+      "src/main/resources/data/cruciblecraft/semantic_object_catalog.json",
+      "src/main/resources/data/cruciblecraft/semantic_fluid_mapping.json",
+      "src/main/resources/data/cruciblecraft/bath_identity_catalog.json",
+      "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json",
+      "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json",
+      "src/main/resources/data/cruciblecraft/gt_block_object_catalog.json",
+      "src/main/resources/data/cruciblecraft/gt_stone_catalog.json",
+      "src/main/resources/data/cruciblecraft/bath_remainder_identity_catalog.json",
+      "src/main/resources/data/cruciblecraft/bath_mte_fluid_mapping.json",
+      "src/main/resources/data/cruciblecraft/bath_remainder_fluid_mapping.json",
+      "src/main/resources/data/cruciblecraft/bath_identity_fluid_mapping.json",
+      "src/main/resources/data/cruciblecraft/slicer_operands.json"
+    ],
+    "fluid_catalog_bug": "addCatalogMachineNames writes fluid.englishName() on both en_us and zh_cn. Flower Black dye and cactuswater are not legal fallback."
+  },
+  "spacing": {
+    "english_template": "%s {form}",
+    "chinese_template": "{material}{form} with no ASCII space",
+    "examples": {
+      "en": "Aluminium Block",
+      "zh_block": "铝块",
+      "zh_not": "铝 块"
+    }
+  },
+  "plant_gt_coverage": {
+    "materials_already_in_table": [
+      "water",
+      "lava",
+      "heavy_water",
+      "semiheavy_water",
+      "tritiated_water",
+      "water_distilled"
+    ],
+    "missing_prefixes": [
+      "plant_gt_twig",
+      "plant_gt_fiber",
+      "plant_gt_berry",
+      "plant_gt_blossom",
+      "plant_gt_wart"
+    ],
+    "english_source_backed": {
+      "water/plant_gt_twig": "Water Twig",
+      "lava/plant_gt_twig": "Lava Twig"
+    },
+    "landing": "Supply real Chinese for these prefixes, or omit zh keys. Do not copy 'Water Twig' into zh_cn. Do not rename the English identity."
+  },
+  "post_1_0": {
+    "policy": "Materials absent from material_zh_cn.materials stay omitted from zh_cn. Do not invent Chinese to close coverage.",
+    "ledger": "isolated audit coverage list; not a player_complete claim"
+  }
+}

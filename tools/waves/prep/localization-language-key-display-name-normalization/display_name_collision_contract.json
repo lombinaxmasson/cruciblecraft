@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "capability_slug": "localization/language-key-display-name-normalization",
+  "status": "FROZEN_FOR_LANDING",
+  "rule": "Distinct registry identities must have distinct player-visible display names in en_us and in zh_cn, unless the pair is on an explicit allowlist with source and reason.",
+  "identity_grouping": {
+    "block_item": "block.{ns}.{path} and item.{ns}.{path} are one identity",
+    "fluid_pair": "fluid.{ns}.{path} and fluid_type.{ns}.{path} are one identity",
+    "templates_are_separate": "item.cruciblecraft.material_form.block is a template, not the aluminium block identity"
+  },
+  "not_a_fix": [
+    "delete a key to hide a collision",
+    "give two identities one generic name",
+    "copy English into zh_cn so two rows look translated"
+  ],
+  "allowlist": [],
+  "required_disambiguation": {
+    "asphalt_block_vs_slab": {
+      "current": "block.cruciblecraft.asphalt.black and asphalt.black.slab_down both 'Asphalt Black'",
+      "landing": "slab names include Slab (and face when the face is a real identity)"
+    },
+    "colored_beams": {
+      "current": "beam_1.light_blue / magenta / orange all '1 Beam'",
+      "landing": "include the color word"
+    },
+    "andesite_meta": {
+      "current": "andesite.reinforced_bricks is 'Andesite m8'",
+      "landing": "Andesite Reinforced Bricks; never leak m8/m9 unless that meta is the formal player identity"
+    },
+    "bookshelf_family": {
+      "current": "bookshelf_7000.. share 'Wooden Bookshelf'",
+      "landing": "each identity uses its GT6 source-backed English name; same GT6 name may enter allowlist only with source citation"
+    },
+    "aluminium_block_vs_form_template": {
+      "current": "storage block '铝块' vs material_form.block template '%s 块' → '铝 块'",
+      "landing": "Chinese concatenates without ASCII space; English keeps a space. Template and block identity remain different keys."
+    }
+  },
+  "focus_families": [
+    "concrete",
+    "cfoam",
+    "beam",
+    "slab",
+    "redstone/insulated wire",
+    "MTE identity",
+    "material form"
+  ],
+  "gates_after_landing": {
+    "language_key_uniqueness": "no two registry-backed keys differ only by slash vs dot",
+    "key_ownership": "every live block/item/fluid in the expanded inventory owns its canonical key in en_us",
+    "zh_ownership": "zh_cn either has real Chinese or omits the key; never English copy",
+    "display_collision": "ungrouped collisions == 0 outside allowlist",
+    "datagen_stability": "run datagen twice and diff src/generated/resources",
+    "slash_to_dot_regression": "fail any registry-backed key whose path still contains '/'"
+  }
+}

@@ -18,6 +18,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools import capability_ledger
+from tools import language_names as names
 from tools import registry_identity
 from tools import io_common as io
 
@@ -164,11 +165,12 @@ def form_item_ids() -> set[str]:
 
 
 def item_lang_keys(item_id: str) -> tuple[str, ...]:
-    base = f"item.cruciblecraft.{item_id}"
-    dotted = f"item.cruciblecraft.{item_id.replace('/', '.')}"
-    if base == dotted:
-        return (base,)
-    return (base, dotted)
+    # Dual slash/dot lookup is a migration guard. Delete the slash branch at close.
+    dotted = names.translation_key("item", item_id)
+    slash = f"item.cruciblecraft.{item_id}"
+    if slash == dotted:
+        return (dotted,)
+    return (dotted, slash)
 
 
 def lookup_lang(table: dict[str, Any], item_id: str) -> str:
@@ -248,11 +250,8 @@ def check_static_player_surface(slug: str, item_ids: list[str]) -> list[str]:
                 f"{slug}: missing en_us {' or '.join(item_lang_keys(item))}"
             )
         zh = lookup_lang(chinese, item)
-        if not zh:
-            errors.append(
-                f"{slug}: missing zh_cn {' or '.join(item_lang_keys(item))}"
-            )
-        elif "Cover" in zh:
+        en = lookup_lang(english, item)
+        if zh and (names.is_english_copy(zh, en) or "Cover" in zh):
             errors.append(f"{slug}: zh_cn for {item} is not a player-facing name")
     emi = (
         ROOT

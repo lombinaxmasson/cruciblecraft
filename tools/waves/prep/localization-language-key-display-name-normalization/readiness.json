@@ -1,0 +1,14 @@
+{
+  "capability_slug": "localization/language-key-display-name-normalization",
+  "contracts": [
+    "language_key_contract.json",
+    "english_display_name_contract.json",
+    "zh_cn_fallback_contract.json",
+    "display_name_collision_contract.json"
+  ],
+  "feature_count": 1,
+  "isolated_audit": "python tools/waves/prep/localization-language-key-display-name-normalization/test_isolated_audit.py",
+  "runtime": "not implemented by this prep card",
+  "schema_version": 1,
+  "status": "FROZEN_CONTRACT_WITH_ISOLATED_AUDIT"
+}

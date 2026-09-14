@@ -36,6 +36,7 @@ import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.SemanticObjectCatalog;
 import com.masson.cruciblecraft.content.item.SmelterMteIdentityCatalog;
+import com.masson.cruciblecraft.localization.LanguageNames;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -287,14 +288,16 @@ public final class GeneratedMaterialPack {
             for (MaterialPrefix form : requireRegisteredForms(material, registeredForms)) {
                 if (form.equals(MaterialPrefixes.ORE)) {
                     addOreClientFiles(files, material.id());
-                    String materialName = title(material.id());
-                    oreTranslations.addProperty(
-                            "block." + CrucibleCraft.MODID + "." + material.id() + "_ore",
-                            materialName + " Ore");
-                    oreTranslations.addProperty(
-                            "block." + CrucibleCraft.MODID + ".deepslate_"
-                                    + material.id() + "_ore",
-                            "Deepslate " + materialName + " Ore");
+                    putBlockEnglish(
+                            oreTranslations,
+                            material.id() + "_ore",
+                            LanguageNames.composeEnglish(material.id(), "ore"));
+                    putBlockEnglish(
+                            oreTranslations,
+                            "deepslate_" + material.id() + "_ore",
+                            "Deepslate "
+                                    + LanguageNames.formatEnglishId(material.id())
+                                    + " Ore");
                     continue;
                 }
                 if (material.formItems().containsKey(form)) {
@@ -302,26 +305,29 @@ public final class GeneratedMaterialPack {
                 }
                 if (isPlaceableStorage(material, form)) {
                     addStorageClientFiles(files, material);
-                    oreTranslations.addProperty(
-                            "block." + CrucibleCraft.MODID + "."
-                                    + material.registryName(form),
-                            title(material.id()) + " Block");
+                    putBlockEnglish(
+                            oreTranslations,
+                            material.registryName(form),
+                            LanguageNames.composeEnglish(
+                                    material.id(), form.serializedName()));
                     continue;
                 }
                 if (isPlaceableCasing(material, form)) {
                     addCasingClientFiles(files, material, form);
-                    oreTranslations.addProperty(
-                            "block." + CrucibleCraft.MODID + "."
-                                    + material.registryName(form),
-                            title(material.id()) + " " + casingEnglish(form));
+                    putBlockEnglish(
+                            oreTranslations,
+                            material.registryName(form),
+                            LanguageNames.composeEnglish(
+                                    material.id(), form.serializedName()));
                     continue;
                 }
                 if (isRockForm(form)) {
                     addRockClientFiles(files, material);
-                    oreTranslations.addProperty(
-                            "block." + CrucibleCraft.MODID + "."
-                                    + material.registryName(form),
-                            title(material.id()) + " Rock");
+                    putBlockEnglish(
+                            oreTranslations,
+                            material.registryName(form),
+                            LanguageNames.composeEnglish(
+                                    material.id(), form.serializedName()));
                     continue;
                 }
                 JsonObject model = new JsonObject();
@@ -354,10 +360,10 @@ public final class GeneratedMaterialPack {
                                             java.util.Locale.ROOT)
                                     + "_item");
                     oreTranslations.addProperty(
-                            "block." + CrucibleCraft.MODID + "."
-                                    + material.registryName(form),
-                            title(material.id()) + " "
-                                    + title(form.serializedName()));
+                            LanguageNames.translationKey(
+                                    "block", material.registryName(form)),
+                            LanguageNames.composeEnglish(
+                                    material.id(), form.serializedName()));
                     files.put(
                             "assets/" + CrucibleCraft.MODID + "/models/item/"
                                     + material.registryName(form) + ".json",
@@ -371,10 +377,10 @@ public final class GeneratedMaterialPack {
                             CrucibleCraft.MODID + ":pipe/"
                                     + pipeModelKey + "_item");
                     oreTranslations.addProperty(
-                            "block." + CrucibleCraft.MODID + "."
-                                    + material.registryName(form),
-                            title(material.id()) + " "
-                                    + title(form.serializedName()));
+                            LanguageNames.translationKey(
+                                    "block", material.registryName(form)),
+                            LanguageNames.composeEnglish(
+                                    material.id(), form.serializedName()));
                     files.put(
                             "assets/" + CrucibleCraft.MODID + "/models/item/"
                                     + material.registryName(form) + ".json",
@@ -413,32 +419,31 @@ public final class GeneratedMaterialPack {
                 for (MaterialPrefix form : requireRegisteredForms(
                         material, registeredForms)) {
                     MaterialZhNames.pipe(form.serializedName())
-                            .ifPresent(name -> zhTranslations.addProperty(
-                                    "block." + CrucibleCraft.MODID + "."
-                                            + material.registryName(form),
+                            .ifPresent(name -> putBlockChinese(
+                                    zhTranslations,
+                                    material.registryName(form),
                                     mat + name));
                     MaterialZhNames.conductor(form.serializedName())
-                            .ifPresent(name -> zhTranslations.addProperty(
-                                    "block." + CrucibleCraft.MODID + "."
-                                            + material.registryName(form),
+                            .ifPresent(name -> putBlockChinese(
+                                    zhTranslations,
+                                    material.registryName(form),
                                     mat + name));
                     if (isPlaceableStorage(material, form)
                             || isPlaceableCasing(material, form)) {
                         MaterialZhNames.prefix(form.serializedName())
-                                .ifPresent(name -> zhTranslations.addProperty(
-                                        "block." + CrucibleCraft.MODID + "."
-                                                + material.registryName(form),
+                                .ifPresent(name -> putBlockChinese(
+                                        zhTranslations,
+                                        material.registryName(form),
                                         mat + name));
                     }
                     if (form.equals(MaterialPrefixes.ORE)) {
-                        zhTranslations.addProperty(
-                                "block." + CrucibleCraft.MODID + "."
-                                        + material.id() + "_ore",
+                        putBlockChinese(
+                                zhTranslations,
+                                material.id() + "_ore",
                                 mat + "矿石");
-                        zhTranslations.addProperty(
-                                "block." + CrucibleCraft.MODID
-                                        + ".deepslate_" + material.id()
-                                        + "_ore",
+                        putBlockChinese(
+                                zhTranslations,
+                                "deepslate_" + material.id() + "_ore",
                                 "深板岩" + mat + "矿石");
                     }
                 }
@@ -461,9 +466,13 @@ public final class GeneratedMaterialPack {
         if (MaterialPrefixCatalog.isBootstrapped()) {
             for (MaterialPrefix form : MaterialPrefixCatalog.values()) {
                 String key = "item.cruciblecraft.material_form." + form.serializedName();
-                english.addProperty(key, "%s " + formEnglish(form.serializedName()));
+                english.addProperty(
+                        key,
+                        LanguageNames.englishFormTemplate(
+                                LanguageNames.formatEnglishId(form.serializedName())));
                 MaterialZhNames.prefix(form.serializedName()).ifPresent(name ->
-                        chinese.addProperty(key, "%s " + name));
+                        chinese.addProperty(
+                                key, LanguageNames.chineseFormTemplate(name)));
             }
         }
         addIdentityLang(english, chinese, BathIdentityCatalog.identities(), identity ->
@@ -502,14 +511,29 @@ public final class GeneratedMaterialPack {
             java.util.function.Function<T, CatalogLang> view) {
         for (T identity : identities) {
             CatalogLang lang = view.apply(identity);
-            String dotted = lang.registryPath().replace('/', '.');
-            String itemKey = "item." + CrucibleCraft.MODID + "." + dotted;
-            english.addProperty(itemKey, lang.englishName());
-            chinese.addProperty(itemKey, lang.chineseName());
+            String itemKey = LanguageNames.translationKey("item", lang.registryPath());
+            english.addProperty(
+                    itemKey,
+                    LanguageNames.playerEnglish(
+                            lang.englishName(), lang.registryPath()));
+            LanguageNames.playerChinese(lang.chineseName(), lang.registryPath())
+                    .or(() -> LanguageNames.chineseOrEmpty(
+                            lang.chineseName(), lang.englishName()))
+                    .or(() -> LanguageNames.composeMaterialFormZh(lang.registryPath()))
+                    .ifPresent(name -> chinese.addProperty(itemKey, name));
             if (lang.block()) {
-                String blockKey = "block." + CrucibleCraft.MODID + "." + dotted;
-                english.addProperty(blockKey, lang.englishName());
-                chinese.addProperty(blockKey, lang.chineseName());
+                String blockKey = LanguageNames.translationKey(
+                        "block", lang.registryPath());
+                english.addProperty(
+                        blockKey,
+                        LanguageNames.playerEnglish(
+                                lang.englishName(), lang.registryPath()));
+                LanguageNames.playerChinese(lang.chineseName(), lang.registryPath())
+                        .or(() -> LanguageNames.chineseOrEmpty(
+                                lang.chineseName(), lang.englishName()))
+                        .or(() -> LanguageNames.composeMaterialFormZh(
+                                lang.registryPath()))
+                        .ifPresent(name -> chinese.addProperty(blockKey, name));
             }
         }
     }
@@ -561,6 +585,19 @@ public final class GeneratedMaterialPack {
             String englishName,
             String chineseName,
             boolean block) {}
+
+    private static void putBlockEnglish(
+            JsonObject english, String registryPath, String name) {
+        english.addProperty(LanguageNames.translationKey("block", registryPath), name);
+    }
+
+    private static void putBlockChinese(
+            JsonObject chinese, String registryPath, String name) {
+        if (name == null || name.isBlank() || LanguageNames.isEnglishCopy(name)) {
+            return;
+        }
+        chinese.addProperty(LanguageNames.translationKey("block", registryPath), name);
+    }
 
     private static Map<String, List<MaterialPrefix>> registeredForms(
             Collection<MaterialDefinition> materials) {
@@ -701,22 +738,6 @@ public final class GeneratedMaterialPack {
         return List.of(
                 CrucibleCraft.MODID + ":" + materialId + "_ore",
                 CrucibleCraft.MODID + ":deepslate_" + materialId + "_ore");
-    }
-
-    private static String title(String id) {
-        String spaced = id.replace('_', ' ');
-        return Character.toUpperCase(spaced.charAt(0)) + spaced.substring(1);
-    }
-
-    private static String formEnglish(String serializedName) {
-        return switch (serializedName) {
-            case "machine_casing" -> "Machine Casing";
-            case "machine_casing_double" -> "Double Machine Casing";
-            case "machine_casing_quadruple" -> "Quadruple Machine Casing";
-            case "machine_casing_dense" -> "Dense Machine Casing";
-            case "capcellcon" -> "Capsule Cell Container";
-            default -> title(serializedName);
-        };
     }
 
     private static boolean isRockForm(MaterialPrefix form) {
@@ -918,18 +939,6 @@ public final class GeneratedMaterialPack {
                 || form.equals(MaterialPrefixes.MACHINE_CASING_QUADRUPLE)
                 || form.equals(MaterialPrefixes.MACHINE_CASING_DENSE))
                 && !material.formItems().containsKey(form);
-    }
-
-    private static String casingEnglish(MaterialPrefix form) {
-        if (form.equals(MaterialPrefixes.MACHINE_CASING_DENSE)) {
-            return "Dense Machine Casing";
-        }
-        if (form.equals(MaterialPrefixes.MACHINE_CASING_QUADRUPLE)) {
-            return "Quadruple Machine Casing";
-        }
-        return form.equals(MaterialPrefixes.MACHINE_CASING_DOUBLE)
-                ? "Double Machine Casing"
-                : "Machine Casing";
     }
 
     private static String overlayLayer(String modelTexture) {

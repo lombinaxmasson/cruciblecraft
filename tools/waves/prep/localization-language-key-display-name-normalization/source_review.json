@@ -1,0 +1,18 @@
+{
+  "capability_slug": "localization/language-key-display-name-normalization",
+  "current_split": {
+    "ModLanguageProvider.title": "capitalizes only the first character after replacing underscores",
+    "GeneratedMaterialPack.title": "same first-character rule; formEnglish has a few casing exceptions",
+    "MaterialFormItem.title": "same first-character rule for fallback names",
+    "catalog_modern_ids": "title-cases every word for generated fallbacks",
+    "pipe_cable_datagen_keys": "keep registry path slash: block.cruciblecraft.aluminium/fluid_pipe",
+    "identity_catalog_keys": "replace slash with dot: item.cruciblecraft.water.plant_gt_twig",
+    "GeneratedMaterialPack.material_blocks": "keep slash: block.cruciblecraft.aluminium/block (runtime pack only; not in src/generated datagen lang)",
+    "generated_resource_gate.lang_key": "replace slash with dot, so it cannot see slash keys",
+    "MaterialVisualResourceTest": "asserts slash keys against the runtime pack plan",
+    "player_complete.item_lang_keys": "accepts slash or dotted during migration"
+  },
+  "observed_at_source_revision_cc": "8ed5e41acc2171873c5bfdc9528e834cd93d91a4",
+  "schema_version": 1,
+  "status": "SOURCE_REVIEW_FROZEN"
+}

@@ -55,6 +55,7 @@ FOUNDATION = "content/technological-parts-foundation"
 TREES = "worldgen/gt-trees"
 CROPS = "worldgen/gt-crops"
 DUNGEON = "worldgen/gt-dungeon"
+LANGUAGE = "localization/language-key-display-name-normalization"
 SANDING = "machines/sanding"
 OVEN = "machines/oven"
 SENSORS = "content/sensors"
@@ -109,6 +110,7 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertIn(OBSERVATION, slugs)
         self.assertIn("registry/tool-head-remainder", slugs)
         self.assertIn(CATALOG_MODERN, slugs)
+        self.assertIn(LANGUAGE, slugs)
         self.assertIn(MTE_REDSTONE, slugs)
         self.assertIn(REDSTONE_CORRECTION, slugs)
         self.assertIn(INSULATED_REDSTONE, slugs)
@@ -281,6 +283,8 @@ class CapabilityLedgerTest(unittest.TestCase):
             ledger.load_card_plan_index()["prep"],
         )
         self.assertIn(DUNGEON, ledger.load_card_plan_index()["prep"])
+        self.assertNotIn(LANGUAGE, ledger.load_card_plan_index()["prep"])
+        self.assertIn(LANGUAGE, ledger.load_card_plan_index()["active"])
         self.assertNotIn(SANDING, ledger.load_card_plan_index()["prep"])
         self.assertIn(SANDING, ledger.load_card_plan_index()["closed"])
         self.assertIn(OVEN, ledger.load_card_plan_index()["closed"])

@@ -6,9 +6,11 @@
 
 ## Unique active
 
-无。`capability.json` 里没有 `workflow=active`。
+`localization/language-key-display-name-normalization`（Language Key and Display Name Normalization，`workflow=active`，`maturity=runtime_ready`）；计划 [语言键与显示名规范收口详细计划](../history/card-plans/active/语言键与显示名规范收口详细计划.md)。
 
 ## Prep（不占落地锁）
+
+计划文件存在就会列在这里。MTE 家族 prep 的 runtime child 已关时，不要把本表当剩余待办。读法见 [unimplemented-gap.md](unimplemented-gap.md)。
 
 - `content/mte-connector` — [MTE 连接件详细计划](../history/card-plans/prep/MTE连接件详细计划.md)
 - `content/mte-decorative` — [MTE 装饰件详细计划](../history/card-plans/prep/MTE装饰件详细计划.md)
@@ -104,6 +106,20 @@ RecipeMap / 主机已挂，获得格或配方仍 blocked。不得宣称 `player_
 - `registry/tool-head-prefix-reclaim` — Sharpener overflow reclaim — [工具头前缀与打磨机余量回收详细计划](../history/card-plans/closed/工具头前缀与打磨机余量回收详细计划.md)
 - `worldgen/gt-crops` — GT Crops — [GT 作物世界生成](../history/card-plans/closed/GT作物世界生成详细计划.md)
 - `worldgen/gt-trees` — GT Trees — [GT 树详细计划](../history/card-plans/closed/GT树详细计划.md)
+
+## frozen（非 runtime_ready / player_complete）（9）
+
+分母已冻。`paused` 的 PUV/OMEGA 六张代码已在 `src/main`，是 CC 扩展，不是原版高压线，也不是 `player_complete`。地牢是结构载体，房间内容仍 blocked。
+
+- `content/puv-omega-parts` — Compact parts, Quantum circuit, wires and transformers to OMEGA（`workflow=paused`）
+- `energy/fusion-quantum` — Fusion execution, QUANTUM, and LU to QU（`workflow=paused`）
+- `energy/large-heat-exchanger` — Large Heat Exchanger 17197（`workflow=paused`）
+- `energy/quantum-massfab` — Matter Fabricator and Neutronium bootstrap（`workflow=paused`）
+- `energy/steam-turbine` — Steam Turbines STEAM to RU（`workflow=paused`）
+- `logistics/cover-net-r0` — Logistics cover network R0（`workflow=accepted`）
+- `machines/puv-omega-matrix` — All machine variants through OMEGA（`workflow=paused`）
+- `registry/tool-head-remainder` — Tool-head remainder identities（`workflow=accepted`）
+- `worldgen/gt-dungeon` — GT Dungeon（`workflow=paused`） — [GT 地牢详细计划](../history/card-plans/prep/GT地牢详细计划.md)
 
 ## 关闭计划（有 capability 的 player_complete）
 
