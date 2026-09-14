@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -32,7 +33,8 @@ public record CompactGTRecipeFamilyDefinition(
         List<Relation> relations,
         Optional<ParameterizedSpec> parameterized,
         Optional<ResourceLocation> publicationGroup,
-        Optional<AuthoredMatrixV1> matrix) {
+        Optional<AuthoredMatrixV1> matrix,
+        Optional<TransportFragment> transportFragment) {
 
     private static final ResourceLocation ASSEMBLER_TARGET =
             ResourceLocation.fromNamespaceAndPath("cruciblecraft", "assembler");
@@ -62,7 +64,9 @@ public record CompactGTRecipeFamilyDefinition(
                                     ? Optional.of(CompactAuthoredMatrix.AUTHORED_FORM_MATRIX_V1)
                                     : Optional.empty()),
                     AuthoredMatrixV1.CODEC.optionalFieldOf("matrix")
-                            .forGetter(CompactGTRecipeFamilyDefinition::matrix)
+                            .forGetter(CompactGTRecipeFamilyDefinition::matrix),
+                    TransportFragment.CODEC.optionalFieldOf("transport_fragment")
+                            .forGetter(CompactGTRecipeFamilyDefinition::transportFragment)
             ).apply(instance, CompactGTRecipeFamilyDefinition::create));
     public static final Codec<CompactGTRecipeFamilyDefinition> CODEC = MAP_CODEC.codec();
 
@@ -77,6 +81,8 @@ public record CompactGTRecipeFamilyDefinition(
         Optional<AuthoredMatrixV1> resolvedMatrix =
                 Objects.requireNonNull(matrix, "matrix");
         matrix = resolvedMatrix;
+        transportFragment = Objects.requireNonNull(
+                transportFragment, "transportFragment");
         if (familyId.isBlank()) {
             throw new IllegalArgumentException("Compact family_id must not be blank");
         }
@@ -104,6 +110,29 @@ public record CompactGTRecipeFamilyDefinition(
                                 + " requires matrix");
             }
         });
+        int authoredCount = resolvedMatrix.isPresent()
+                ? resolvedMatrix.get().rows().size()
+                : relations.size();
+        transportFragment.ifPresent(fragment -> {
+            if (authoredCount <= 0) {
+                throw new IllegalArgumentException(
+                        "Compact family " + familyId
+                                + " transport fragment has no authored relations");
+            }
+            if (authoredCount > CompactRecipeWireLimits.DECODE_RELATIONS_CEILING) {
+                throw new IllegalArgumentException(
+                        "Compact family " + familyId
+                                + " transport fragment relation count "
+                                + authoredCount
+                                + " exceeds "
+                                + CompactRecipeWireLimits.DECODE_RELATIONS_CEILING);
+            }
+            if (fragment.totalRelations() < authoredCount) {
+                throw new IllegalArgumentException(
+                        "Compact family " + familyId
+                                + " transport fragment total_relations is smaller than authored rows");
+            }
+        });
     }
 
     private static CompactGTRecipeFamilyDefinition create(
@@ -114,7 +143,8 @@ public record CompactGTRecipeFamilyDefinition(
             Optional<ParameterizedSpec> parameterized,
             Optional<ResourceLocation> publicationGroup,
             Optional<String> authoredForm,
-            Optional<AuthoredMatrixV1> matrix) {
+            Optional<AuthoredMatrixV1> matrix,
+            Optional<TransportFragment> transportFragment) {
         authoredForm.ifPresent(form -> {
             if (CompactAuthoredMatrix.AUTHORED_FORM_MATRIX_V1.equals(form)) {
                 if (matrix.isEmpty()) {
@@ -137,7 +167,8 @@ public record CompactGTRecipeFamilyDefinition(
                 relations,
                 parameterized,
                 publicationGroup,
-                matrix);
+                matrix,
+                transportFragment);
     }
 
     public CompactGTRecipeFamilyDefinition(
@@ -150,6 +181,7 @@ public record CompactGTRecipeFamilyDefinition(
                 targetMap,
                 sourceRevision,
                 relations,
+                Optional.empty(),
                 Optional.empty(),
                 Optional.empty(),
                 Optional.empty());
@@ -185,6 +217,25 @@ public record CompactGTRecipeFamilyDefinition(
                 relations,
                 parameterized,
                 publicationGroup,
+                Optional.empty());
+    }
+
+    public CompactGTRecipeFamilyDefinition(
+            String familyId,
+            ResourceLocation targetMap,
+            String sourceRevision,
+            List<Relation> relations,
+            Optional<ParameterizedSpec> parameterized,
+            Optional<ResourceLocation> publicationGroup,
+            Optional<AuthoredMatrixV1> matrix) {
+        this(
+                familyId,
+                targetMap,
+                sourceRevision,
+                relations,
+                parameterized,
+                publicationGroup,
+                matrix,
                 Optional.empty());
     }
 
@@ -344,6 +395,55 @@ public record CompactGTRecipeFamilyDefinition(
                     specialValue,
                     canBeBuffered,
                     Optional.of(provenance));
+        }
+    }
+
+    /**
+     * Optional datapack/wire envelope for one physical RecipeHolder that
+     * carries a bounded slice of a larger semantic family. Semantic
+     * {@code family_id} stays unchanged.
+     */
+    public record TransportFragment(
+            int index,
+            int count,
+            int totalRelations,
+            String semanticDigest) {
+
+        private static final Pattern DIGEST = Pattern.compile("[0-9a-f]{64}");
+
+        public static final Codec<TransportFragment> CODEC =
+                RecordCodecBuilder.create(instance -> instance.group(
+                        Codec.INT.fieldOf("index")
+                                .forGetter(TransportFragment::index),
+                        Codec.INT.fieldOf("count")
+                                .forGetter(TransportFragment::count),
+                        Codec.INT.fieldOf("total_relations")
+                                .forGetter(TransportFragment::totalRelations),
+                        Codec.STRING.fieldOf("semantic_digest")
+                                .forGetter(TransportFragment::semanticDigest)
+                ).apply(instance, TransportFragment::new));
+
+        public TransportFragment {
+            Objects.requireNonNull(semanticDigest, "semanticDigest");
+            if (count < 2 || count > CompactRecipeWireLimits.MAX_TRANSPORT_FRAGMENTS) {
+                throw new IllegalArgumentException(
+                        "Compact transport fragment count " + count
+                                + " is outside 2.."
+                                + CompactRecipeWireLimits.MAX_TRANSPORT_FRAGMENTS);
+            }
+            if (index < 0 || index >= count) {
+                throw new IllegalArgumentException(
+                        "Compact transport fragment index " + index
+                                + " is outside 0.." + (count - 1));
+            }
+            if (totalRelations <= 0) {
+                throw new IllegalArgumentException(
+                        "Compact transport fragment total_relations must be positive");
+            }
+            if (!DIGEST.matcher(semanticDigest).matches()) {
+                throw new IllegalArgumentException(
+                        "Compact transport fragment semantic_digest must be 64 lowercase hex chars");
+            }
         }
     }
 

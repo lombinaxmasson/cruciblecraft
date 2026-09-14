@@ -9,6 +9,7 @@ from pathlib import Path
 from tools.recipe_bulk import runtime as runtime_mod
 from tools.recipe_bulk.membership import membership_root
 from tools.recipe_bulk.matrix import authored_relations
+from tools.recipe_bulk.transport import assemble_semantic_families
 
 ROOT = Path(__file__).resolve().parents[2]
 FIXTURES = ROOT / "src/test/resources/compact_recipe_runtime_fixtures"
@@ -152,6 +153,7 @@ class CompactRecipeRuntimeManifestTest(unittest.TestCase):
             if document.get("type") != "cruciblecraft:compact_gt_recipe_family":
                 continue
             families.append(document)
+        families = assemble_semantic_families(families)
         authored_counts: dict[str, int] = {}
         compact: list[dict] = []
         wood: list[dict] = []

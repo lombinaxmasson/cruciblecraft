@@ -23,7 +23,7 @@ PublicationPolicy = Literal[
     "relation",
 ]
 PathLayout = Literal["flat", "host_nested", "cohort_nested"]
-CompileAuthority = Literal["recipe_bulk"]
+CompileAuthority = Literal["recipe_bulk", "rule_ir_v1"]
 RelationSort = Literal["template_key", "source_recipe_index_then_stable_id"]
 StableIdPolicy = Literal["source", "hex_suffix", "lock"]
 TargetMapPolicy = Literal["spec", "relation", "lock_host"]
@@ -69,6 +69,7 @@ class WaveSpec:
     path_prefix: str | None = None
     dry_run_without_lock: bool = False
     tree_prefixes: tuple[str, ...] = ()
+    rule_ir_path: Path | None = None
 
 
 @dataclass

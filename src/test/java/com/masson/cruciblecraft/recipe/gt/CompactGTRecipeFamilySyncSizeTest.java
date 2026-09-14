@@ -47,8 +47,10 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class CompactGTRecipeFamilySyncSizeTest {
     /** Committed compact RecipeHolders under recipe_generated, excluding off-tree bath waves. */
-    private static final int EXPECTED_COMMITTED_COMPACT_ENTRIES = 2496;
-    private static final int EXPECTED_LARGE_JSON_ENTRIES = 2;
+    private static final int EXPECTED_COMMITTED_COMPACT_ENTRIES = 2504;
+    private static final int EXPECTED_LARGE_JSON_ENTRIES = 1;
+    private static final int EXPECTED_SANDING_FRAGMENTS = 9;
+    private static final int EXPECTED_SANDING_RELATIONS = 7_637;
     private static final long ONE_MIB = 1024L * 1024L;
     private static final String BATH_0025_FAMILY_ID = "gt.recipe.bath#0025";
 
@@ -89,14 +91,6 @@ class CompactGTRecipeFamilySyncSizeTest {
             if (jsonBytes > ONE_MIB) {
                 largeJson++;
             }
-            String normalized = path.toString().replace('\\', '/');
-            if (normalized.endsWith(
-                    "/recipe/sanding/sanding/gt_recipe_sharpener_0000.json")) {
-                assertTrue(
-                        jsonBytes > ONE_MIB,
-                        "sharpener family must remain the known oversize dump");
-                continue;
-            }
             CompactRecipeFamilySource source =
                     CompactGTRecipeFamilyGeneratedSupport.sourceFromGenerated(
                             path, readJson(path), registries);
@@ -134,6 +128,61 @@ class CompactGTRecipeFamilySyncSizeTest {
         assertTrue(
                 maxBytes > 0,
                 "encoded compact families; max " + maxBytes + " bytes at " + maxFamily);
+    }
+
+    @Test
+    @Timeout(value = 15, unit = TimeUnit.MINUTES)
+    void sandingFragmentsEncodeAndReassembleOnDedicatedClientPath() throws IOException {
+        List<Path> fragments = listCompactFamilyFiles().stream()
+                .filter(path -> path.getFileName().toString().startsWith(
+                        "gt_recipe_sharpener_0000_fragment_"))
+                .toList();
+        assertEquals(EXPECTED_SANDING_FRAGMENTS, fragments.size());
+        List<CompactRecipeFamilySource> sources = new ArrayList<>();
+        for (Path path : fragments) {
+            CompactRecipeFamilySource source =
+                    CompactGTRecipeFamilyGeneratedSupport.sourceFromGenerated(
+                            path, readJson(path), registries);
+            assertEquals("gt.recipe.sharpener#0000", source.definition().familyId());
+            assertTrue(source.definition().transportFragment().isPresent());
+            CompactGTRecipeFamilyEntry original =
+                    new CompactGTRecipeFamilyEntry(source.definition());
+            RegistryFriendlyByteBuf buffer = buffer();
+            serializer.streamCodec().encode(buffer, original);
+            int wireBytes = buffer.writerIndex();
+            assertTrue(
+                    wireBytes <= CompactRecipeWireLimits.MAX_RECIPE_ENTRY_WIRE_BYTES,
+                    () -> source.id() + " wire size " + wireBytes);
+            CompactGTRecipeFamilyEntry decoded = serializer.streamCodec().decode(buffer);
+            assertEquals(0, buffer.readableBytes(), source.id().toString());
+            assertSameFamily(original.definition(), decoded.definition());
+            sources.add(new CompactRecipeFamilySource(source.id(), decoded.definition()));
+        }
+        java.util.Collections.reverse(sources);
+        List<CompactRecipeFamilySource> assembled =
+                CompactTransportFragments.reassemble(sources);
+        assertEquals(1, assembled.size());
+        assertEquals(
+                EXPECTED_SANDING_RELATIONS,
+                assembled.getFirst().authoredRelations().size());
+        assertTrue(assembled.getFirst().definition().transportFragment().isEmpty());
+        var server = CompactRecipeFamilyProvider.prepare(
+                ModRecipeMaps.SANDING,
+                assembled,
+                1L,
+                CompactRecipeFamilyProvider.RuntimeSide.SERVER,
+                CompactRecipeFamilyProvider.MaterializationPolicy.immediate());
+        var dedicated = CompactRecipeFamilyProvider.prepare(
+                ModRecipeMaps.SANDING,
+                assembled,
+                1L,
+                CompactRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT,
+                CompactRecipeFamilyProvider.MaterializationPolicy.immediate());
+        assertEquals(EXPECTED_SANDING_RELATIONS, server.logicalRecipeCount());
+        assertEquals(server.stableFingerprint(), dedicated.stableFingerprint());
+        assertEquals(
+                server.recipeIds(),
+                dedicated.recipeIds());
     }
 
     @Test
@@ -207,6 +256,7 @@ class CompactGTRecipeFamilySyncSizeTest {
         payload.writeUtf("rev", CompactRecipeWireLimits.MAX_SOURCE_REVISION_LENGTH);
         payload.writeBoolean(false);
         payload.writeBoolean(false);
+        payload.writeBoolean(false);
         payload.writeByte(CompactRecipeWireLimits.WIRE_FORM_INLINE);
         for (int index = 0; index < 6; index++) {
             payload.writeVarInt(0);
@@ -237,6 +287,7 @@ class CompactGTRecipeFamilySyncSizeTest {
         payload.writeUtf("rev", CompactRecipeWireLimits.MAX_SOURCE_REVISION_LENGTH);
         payload.writeBoolean(false);
         payload.writeBoolean(false);
+        payload.writeBoolean(false);
         payload.writeByte(CompactRecipeWireLimits.WIRE_FORM_INLINE);
         for (int index = 0; index < 6; index++) {
             payload.writeVarInt(0);
@@ -256,6 +307,7 @@ class CompactGTRecipeFamilySyncSizeTest {
         ResourceLocation.STREAM_CODEC.encode(
                 payload, ResourceLocation.fromNamespaceAndPath("cruciblecraft", "bath"));
         payload.writeUtf("rev", CompactRecipeWireLimits.MAX_SOURCE_REVISION_LENGTH);
+        payload.writeBoolean(false);
         payload.writeBoolean(false);
         payload.writeBoolean(false);
         payload.writeByte(99);
@@ -359,6 +411,7 @@ class CompactGTRecipeFamilySyncSizeTest {
         assertEquals(expected.targetMap(), actual.targetMap());
         assertEquals(expected.sourceRevision(), actual.sourceRevision());
         assertEquals(expected.publicationGroup(), actual.publicationGroup());
+        assertEquals(expected.transportFragment(), actual.transportFragment());
         assertEquals(expected.parameterized(), actual.parameterized());
         assertEquals(expected.matrix().isPresent(), actual.matrix().isPresent());
         assertEquals(expected.relations().size(), actual.relations().size());

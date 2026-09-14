@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/recipe_rule_ir.schema.json",
+  "title": "Dump-proven recipe Rule IR v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "schema_version",
+    "family_id",
+    "source_map",
+    "target_map",
+    "source_revision",
+    "handlers",
+    "blocked"
+  ],
+  "properties": {
+    "schema": { "const": "rule_ir_v1" },
+    "schema_version": { "const": 1 },
+    "family_id": { "type": "string", "minLength": 1 },
+    "source_map": { "type": "string", "minLength": 1 },
+    "target_map": { "type": "string", "minLength": 1 },
+    "source_revision": { "type": "string", "minLength": 1 },
+    "blocked": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+    },
+    "handlers": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/handler" }
+    }
+  },
+  "$defs": {
+    "handler": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["handler_id", "kind"],
+      "properties": {
+        "handler_id": { "type": "string", "minLength": 1 },
+        "kind": {
+          "enum": ["prefix_transform", "tool_head_cycle", "exact_remainder"]
+        },
+        "template": { "type": "object" },
+        "covered_source_row_sha256": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+        }
+      }
+    }
+  }
+}

@@ -9,7 +9,9 @@ from tools import capability_ledger as ledger
 from tools import census_common as census
 from tools import io_common as io
 from tools.build_recipe_bulk import WAVE_CHOICES
+from tools.recipe_bulk.matrix import authored_relations
 from tools.recipe_bulk.slugs import KNOWN_SEMANTIC_SLUGS
+from tools.recipe_bulk.transport import reassemble_documents
 from tools.recipe_bulk.waves import SEMANTIC_COMPILE_ORDER, recipe_wave
 
 SLUG = "machines/sanding"
@@ -51,6 +53,7 @@ class SandingCardTest(unittest.TestCase):
         self.assertEqual("sanding", spec.path_prefix)
         self.assertEqual("cruciblecraft:sanding", spec.host)
         self.assertEqual("lock", spec.publication_policy)
+        self.assertEqual("rule_ir_v1", spec.compile_authority)
 
     def test_builder_check_passes(self) -> None:
         self.assertEqual([], builder.check())
@@ -73,7 +76,17 @@ class SandingCardTest(unittest.TestCase):
         )
         self.assertNotIn("unregistered runtime item", str(overflow))
         generated = builder.live_family_files()
-        self.assertEqual(1, len(generated))
+        self.assertGreaterEqual(len(generated), 2)
+        documents = [census.load_json(path) for path in generated]
+        self.assertEqual(
+            {builder.TEMPLATE_KEY},
+            {str(document.get("family_id") or "") for document in documents},
+        )
+        assembled = reassemble_documents(documents)
+        self.assertEqual(7_637, len(authored_relations(assembled)))
+        self.assertTrue(
+            all(document.get("transport_fragment") for document in documents)
+        )
         policy = census.load_json(
             ROOT
             / "src"
@@ -86,6 +99,7 @@ class SandingCardTest(unittest.TestCase):
             / "sanding.json"
         )
         self.assertEqual("immediate", policy["policy_type"])
+        self.assertEqual(1, policy["family_count"])
         self.assertEqual(7_637, policy["relation_count"])
         self.assertEqual("cruciblecraft:sanding", policy["target_map"])
         self.assertNotIn("player_complete", str(policy))
@@ -247,6 +261,19 @@ class SandingCardTest(unittest.TestCase):
         notes = census.load_json(WAVE / "runtime_notes.json")
         self.assertEqual("UP", notes["energy_accepted_sides"])
         self.assertIn("grindstone_32703", notes["out_of_scope"])
+
+    def test_rule_ir_covers_dump_rows(self) -> None:
+        from tools.recipe_bulk import rule_ir as rule_ir_mod
+
+        source = census.load_json(WAVE / "source.json")
+        document = census.load_json(WAVE / "rule_ir.json")
+        proof = rule_ir_mod.prove_coverage(document, source["relations"])
+        self.assertTrue(proof["ok"])
+        self.assertEqual(7_637, proof["dump_row_count"])
+        self.assertEqual(6_139, proof["handlers"]["sanding_tool_head_cycle"])
+        self.assertEqual(323, proof["handlers"]["sanding_prefix_transform"])
+        self.assertEqual(1_175, proof["handlers"]["sanding_exact_remainder"])
+        self.assertEqual(document, builder.expected_rule_ir())
 
 
 if __name__ == "__main__":

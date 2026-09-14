@@ -91,6 +91,28 @@ compact publication、recipe identity 与 shard membership 摘要属于运行时
 
 这些摘要不能被复用为开发流程的“已验证”凭据。
 
+## 3.1 Transport fragments
+
+物理 RecipeHolder 必须满足 `relations<=4096`、dictionary `<=8192`、wire `<=512KiB`。
+超过产品门时，编译器按 shared shape 切成 `_fragment_NNNN` 文件；JSON 内 semantic
+`family_id` 不变，不得把分片后缀冒充新的 GT6 family。`CompactRecipeShardRouter`
+继续只负责运行时查询路由。加载时 fail-closed 重组：缺片、重片、digest/header
+漂移全部拒绝。publication policy 看到的仍是重组后的 1 个 semantic family。
+dedicated client 的 `update_recipes` 必须能编码每一个物理 holder；integrated
+singleplayer 不能替代该门。
+
+## 3.2 Dump-proven Rule IR
+
+权威合同是固定 GT6 dump + Rule IR + explicit exact remainder + blocked ledger。
+生成的 compact / material-rule JSON 仍提交为快照，不引入运行时动态数据包。Rule IR
+只生成已注册且 dump-proven 的精确 operand；例外逐条保留，禁止模糊 tag 匹配和占位
+配方。编译器必须证明
+`rule expansion ∪ exact remainder ∪ blocked = selected dump rows`，并逐条比较
+stable ID、输入输出、时长、EU/t、action 与 provenance。family 单独迁移、单独关闭：
+sanding 是首个 dump-backed pilot（tool-head cycle、nugget→round prefix
+transform、其余 exact remainder）。之后只迁移 press/lathe/bender/wiremill/cutter
+等 prefix-regular family；化学、MTE identity 和一次性 DESIGN_POLICY 继续 exact。
+
 ## 4. Fresh 验证
 
 active `recipes` profile 每次 fresh 执行：
@@ -102,8 +124,11 @@ active `recipes` profile 每次 fresh 执行：
    publication groups/shards、overflow；reload/sync 指标在 isolated compile 中
    标 `not_executed`，不得用旧 receipt 填 PASS
 5. Java/JUnit 的真实 provider、codec、router 与 RecipeManager 测试由
-   `runtime-java` 承担
-6. 内容卡需要 isolated GameTest 时，用 Gradle 属性隔离，不把
+   `runtime-java` 承担。物理 RecipeHolder 与 semantic family 分开记账；
+   publication policy 的 `family_count` 是重组后的 semantic family 数
+6. Rule IR 波必须在 emit 前证明
+   `rule expansion ∪ exact remainder ∪ blocked = selected dump rows`
+7. 内容卡需要 isolated GameTest 时，用 Gradle 属性隔离，不把
    `gametest_receipt.json` / `readiness.json` / closeout seal 当当前 PASS
 
 ```powershell

@@ -23,7 +23,9 @@ if str(TOOLS) not in sys.path:
 from tools import census_common as census
 from tools.recipe_bulk import compile as compile_mod
 from tools.recipe_bulk import source_import
+from tools.recipe_bulk.matrix import authored_relations
 from tools.recipe_bulk.membership import membership_root
+from tools.recipe_bulk.transport import reassemble_documents
 from tools.recipe_bulk.waves import recipe_wave
 
 COMMON_PATH = ROOT / "tools" / "waves" / "prep" / "machine_prep_common.py"
@@ -103,16 +105,17 @@ def unique_active_wave() -> str | None:
 
 def expected_publication_policy() -> dict[str, Any]:
     families = live_family_files()
-    if len(families) != 1:
-        raise ValueError(
-            "need one live compact family to bind publication policy, "
-            f"got {len(families)}"
-        )
-    document = census.load_json(families[0])
-    relations = list(document.get("relations") or [])
-    family_id = str(document.get("family_id") or "")
+    if not families:
+        raise ValueError("need live compact families to bind publication policy")
+    documents = [census.load_json(path) for path in sorted(families)]
+    family_ids = {str(document.get("family_id") or "") for document in documents}
+    if family_ids != {TEMPLATE_KEY}:
+        raise ValueError(f"live sanding semantic family drifted: {family_ids}")
+    assembled = reassemble_documents(documents)
+    relations = authored_relations(assembled)
+    family_id = str(assembled.get("family_id") or "")
     stable_ids = [str(row.get("stable_id") or "") for row in relations]
-    if not family_id or not all(stable_ids) or len(relations) != SELECTED_ROWS:
+    if family_id != TEMPLATE_KEY or not all(stable_ids) or len(relations) != SELECTED_ROWS:
         raise ValueError("live sanding family cannot bind publication policy")
     return {
         "cache_ceiling": 0,
@@ -126,6 +129,19 @@ def expected_publication_policy() -> dict[str, Any]:
         "target_map": TARGET_MAP,
         "type": "cruciblecraft:compact_publication_policy",
     }
+
+
+def expected_rule_ir() -> dict[str, Any]:
+    from tools.recipe_bulk import rule_ir as rule_ir_mod
+
+    source = census.load_json(WAVE / "source.json")
+    return rule_ir_mod.build_sanding_rule_ir(
+        list(source.get("relations") or []),
+        family_id=TEMPLATE_KEY,
+        source_map=SOURCE_MAP,
+        target_map=TARGET_MAP,
+        source_revision=SOURCE_REVISION,
+    )
 
 
 def write_sidecars() -> None:
@@ -234,6 +250,7 @@ def write() -> dict[str, Any]:
     isolated = common.isolated_compile(WAVE, LIVE_NEEDLE)
     live = live_compile()
     _write(POLICY_PATH, expected_publication_policy())
+    _write(WAVE / "rule_ir.json", expected_rule_ir())
     return {"isolated": isolated, "live": live, "source": counts}
 
 
@@ -254,6 +271,7 @@ def check() -> list[str]:
         WAVE / "topology.json",
         WAVE / "readiness.json",
         WAVE / "runtime_notes.json",
+        WAVE / "rule_ir.json",
     )
     for path in required:
         if not path.is_file():
@@ -339,11 +357,25 @@ def check() -> list[str]:
         spec = recipe_wave(IMPORT_SLUG)
         if spec.path_prefix != "sanding":
             errors.append(f"derived path_prefix {spec.path_prefix!r} != sanding")
+        if spec.compile_authority != "rule_ir_v1":
+            errors.append("sanding compile_authority must be rule_ir_v1")
+        if census.load_json(WAVE / "rule_ir.json") != expected_rule_ir():
+            errors.append("sanding rule_ir drifted from dump-proven classifier")
         built = compile_mod.compile_wave(IMPORT_SLUG)
         if int(built["report"].get("relation_count") or 0) != SELECTED_ROWS:
             errors.append("live compile relation_count drifted")
-        if len(live_family_files()) != 1:
-            errors.append("live sanding tree must contain one compact family")
+        if int(built["report"].get("semantic_family_count") or 0) != 1:
+            errors.append("live compile semantic_family_count drifted")
+        if not live_family_files():
+            errors.append("live sanding tree is missing compact family fragments")
+        else:
+            assembled = reassemble_documents(
+                [census.load_json(path) for path in live_family_files()]
+            )
+            if str(assembled.get("family_id")) != TEMPLATE_KEY:
+                errors.append("live sanding semantic family_id drifted")
+            if len(authored_relations(assembled)) != SELECTED_ROWS:
+                errors.append("live sanding reassembled relation_count drifted")
         if not POLICY_PATH.is_file():
             errors.append("missing sanding publication policy")
         elif census.load_json(POLICY_PATH) != expected_publication_policy():

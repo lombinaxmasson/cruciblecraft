@@ -134,6 +134,7 @@ public final class GTRecipeMapLoader {
             compactSources.add(new CompactRecipeFamilySource(holder.id(), definition));
         }
         compactSources.sort(Comparator.comparing(source -> source.id().toString()));
+        compactSources = CompactTransportFragments.reassemble(compactSources);
         long sourceCollectionMillis = elapsedMs(phaseMark);
         phaseMark = System.nanoTime();
         List<CompactDedupRuleDefinition> compactDedupRules =
