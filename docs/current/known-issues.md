@@ -33,8 +33,8 @@
 游戏里还没有、以后另开能力，不要写进 known-issues 当「已关卡的尾巴」。总账：[unimplemented-gap.md](unimplemented-gap.md)。
 
 - Display CPU 四件物流监视器已由 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md) `player_complete`（`logistics/display-cpu`）。Dump 封面与 Logistics Core 已 [物流核心](../history/card-plans/closed/物流核心详细计划.md) `player_complete`。`dump_policy` 见已关闭的 [物流封面网余量](../history/card-plans/closed/物流封面网余量详细计划.md)。
-- 加工机与能量现行 unique-active / 完成集合见 [project-status.md](project-status.md)。涡轮、冷却器和聚变仍未开。长距变压器与齿轮箱不在变压器卡。手持工具余量见 [unimplemented-gap.md §5](unimplemented-gap.md)，不要写进已关工具卡的尾巴。
-- 作物 / 树 / 原版熔炉替换余量仍 `frozen`
+- 加工机与能量现行 unique-active / 完成集合见 [project-status.md](project-status.md)。蒸汽涡轮、大型热交换器 17197、聚变 / 量子物质与长距变压器已作为 CC 扩展落地（`frozen`+`paused`），不是 `player_complete`。冷却器仍未开。齿轮箱不在变压器卡。手持工具余量见 [unimplemented-gap.md §5](unimplemented-gap.md)，不要写进已关工具卡的尾巴。当前缺口以缺口页为准，不要把 Prep 计划列表抄成待办。
+- 作物与树已关 `runtime_ready`，不是 `player_complete`（树脂橡胶 / 枫糖浆流体仍 blocked）。原版熔炉替换余量仍 `frozen`
 - 原版替换 MVP 只覆盖了纸 3→1；熔炉仍是原版 8 圆石
 - 首小时 mortar / sifter / smelter / bath 已脱离 `metal_surface`。`smelter` 现为 `basicmachines/smelter` 立方机；工作态 `overlay_active` 未接 `LIT`
 

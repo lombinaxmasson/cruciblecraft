@@ -36,8 +36,9 @@
 - 中期：燃油引擎（1 单位燃油 → 512 RU）经轴/齿轮箱 → 发电机
   （32 RU → 22 EU + 10 损耗）→ 电缆（逐块精确损耗）驱动 EU 机器
   （电解机等）。电加热器把 EU 转 HU，电引擎把 EU 转 KU。
-- 后期切片（工作树，非 RC1 发行承诺）：LU 光纤只传 LU；裂变堆芯与聚变
-  控制器可放置，但堆芯 / 棒 / 聚变控制器配方仍 blocked。
+- 后期切片（工作树，非 RC1 发行承诺）：LU 光纤只传 LU。裂变堆芯 / 棒 /
+  LV Canner 已 `player_complete`。大型热交换器、蒸汽涡轮与聚变 18 行已在
+  工作树作为 CC 扩展落地（`frozen`，不是生存终局）。冷却器仍未开。
 
 ### 节点 3 · 三种下游产品
 
@@ -87,8 +88,9 @@ stress 1000 管）；当时的历史 SKIP 仍保留，不伪写成当时已测�
 60 个 Queue Hopper、一个 `steel_dust_funnel`（dust / small_dust / tiny_dust
 的 1 / 4 / 9 有界换算）。无新机器、方块、物品、材料或 RecipeMap。source-derived
 GT 配方与 bounded dust 保真度不变。
-工作树（2026-09-06）已超出该 RC 冻结（电转换、LU、裂变、聚变、电池芯），
-见 [冻结与未实现账本](unimplemented-gap.md)；RC 发行范围仍以上面为准。
+工作树（2026-09-14）已超出该 RC 冻结（电转换、LU、裂变、电池芯、连接件 /
+MTE 家族 runtime、PUV/OMEGA CC 扩展），见
+[冻结与未实现账本](unimplemented-gap.md)；RC 发行范围仍以上面为准。
 
 - 支持：1.21.1 + NeoForge ≥ 21.1.243 + Java 21；单机与 dedicated server；
 - 可选依赖：缺 EMI / Jade / KubeJS 可启动；存在时客户端加载 EMI / Jade；
@@ -99,7 +101,9 @@ GT 配方与 bounded dust 保真度不变。
   盖革行为，以及 37 电池 / 179 转换机 Jade 已
   `player_complete`（[裂变观测安全与能源 Jade](../history/card-plans/closed/裂变观测安全与能源Jade详细计划.md)）。
   空盖革可用铝胶囊单元容器 + 氦/氖/氩灌装获得。8 个单体热交换器已
-  `player_complete`（`FM.Hot` → HU；钨钢效率 90%）。蒸汽涡轮、冷却器与聚变生存配方仍未开，不当成可玩终局；
+  `player_complete`（`FM.Hot` → HU；钨钢效率 90%）。大型热交换器 17197、
+  蒸汽涡轮与聚变 18 行已在工作树落地，但 capability 停在 `frozen`+`paused`
+  （CC 扩展，不是 `player_complete`）。冷却器仍未开。不当成可玩终局；
 - 本包是 RC，不是正式 GA，也不是 `1.0.0`；soak 只接 release blocker；
 - 反馈：https://github.com/icodestuljh/cruciblecraft/issues（附上
   版本号 + 复现步骤 + 存档/日志）。

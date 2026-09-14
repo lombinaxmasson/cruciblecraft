@@ -11,7 +11,7 @@
 | 历史入口 | 当前文件 | 状态 |
 | --- | --- | --- |
 | `CrucibleCraft-总体规划.md` | [docs/current/roadmap.md](../current/roadmap.md) | 现行 |
-| （无历史入口；现行缺口总账） | [docs/current/unimplemented-gap.md](../current/unimplemented-gap.md) | 现行；机制卡 READY ≠ 已实现 |
+| （无历史入口；现行缺口总账） | [docs/current/unimplemented-gap.md](../current/unimplemented-gap.md) | 人读权威；机制卡 READY ≠ 已实现；Prep 文件 ≠ 待办 |
 | `docs/CrucibleCraft-玩家指南.md` | [docs/current/player-guide.md](../current/player-guide.md) | 现行 |
 | `.plans/` | [card-plans/active](card-plans/active/) | unique-active 计划 |
 | （无历史入口） | [card-plans/prep](card-plans/prep/) | 已签发、不占落地锁的 prep 计划 |

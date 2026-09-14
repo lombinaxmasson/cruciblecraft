@@ -64,8 +64,8 @@ class BlockedRecipeLedgerCardTest(unittest.TestCase):
         self.assertTrue(counts["do_not_add"])
         families = counts["blocked_families"]
         rows = counts["blocked_relations_or_rows"]
-        self.assertEqual(150, families["bath_remainder"])
-        self.assertEqual(5, families["bath_identity"])
+        self.assertEqual(0, families["bath_remainder"])
+        self.assertEqual(0, families["bath_identity"])
         self.assertEqual(0, families["ordinary_closure"])
         self.assertEqual(49, rows["fluidbed_rows"])
         self.assertEqual(702, rows["petroleum_sampled_blocked_rows"])
@@ -133,7 +133,8 @@ class BlockedRecipeLedgerCardTest(unittest.TestCase):
             ],
             [row["chain"] for row in self.document["chains"]],
         )
-        self.assertTrue(self.document["chains"][1]["next_card"])
+        self.assertEqual("resolved", self.document["chains"][1]["decision"])
+        self.assertFalse(self.document["chains"][1]["next_card"])
         self.assertEqual("historical_optional", self.document["chains"][2]["freshness"])
 
     def test_petroleum_and_bath_stay_out_of_fluidbed_denominator(self) -> None:
@@ -154,7 +155,7 @@ class BlockedRecipeLedgerCardTest(unittest.TestCase):
         ]
         self.assertEqual(49, len(fluidbed))
         self.assertEqual(1, len(petroleum))
-        self.assertEqual(155, len(bath))
+        self.assertEqual(0, len(bath))
         self.assertEqual(702, petroleum[0]["relation_count"])
         self.assertTrue(
             all(row["host"] == "cruciblecraft:fuels_fluidbed" for row in fluidbed)
