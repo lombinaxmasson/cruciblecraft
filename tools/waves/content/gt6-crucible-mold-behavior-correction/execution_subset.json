@@ -1,0 +1,19 @@
+{
+  "schema": "gt6-crucible-mold-behavior-correction-subset-v1",
+  "capability_slug": "content/gt6-crucible-mold-behavior-correction",
+  "note": "Ceramic host correction plus foundry dummy tank millibuckets. Do not rewrite the foundry identity ledger or faucet IFluidHandler contract.",
+  "rows": [
+    {
+      "live_block": "cruciblecraft:crucible",
+      "disposition": "reuse_canonical",
+      "identity_owner": "content/gt6-mte-crucible-foundry-runtime",
+      "child_owner": "content/gt6-crucible-mold-behavior-correction"
+    },
+    {
+      "live_block": "cruciblecraft:ceramic_mold",
+      "disposition": "reuse_canonical",
+      "identity_owner": "content/gt6-mte-crucible-foundry-runtime",
+      "child_owner": "content/gt6-crucible-mold-behavior-correction"
+    }
+  ]
+}

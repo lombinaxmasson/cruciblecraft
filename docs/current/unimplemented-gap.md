@@ -4,7 +4,7 @@
 > 机器主键仍是 `tools/capabilities/**/capability.json` 与
 > `tools/blockers/catalog.json`。[project-status.md](project-status.md)
 > 与 [blocked.md](blocked.md) 是它们的投影，不要手改。
-> unique-active、prep 文件列表与 `player_complete` 以状态页为准；
+> unique-active、prep 文件列表与试玩 cycle 以状态页为准；
 > blocker 排期以 catalog / blocked 为准。本页解释那些投影该怎么读，
 > 并列出投影里容易漏掉的当前缺口。
 > `*_READY` 只表示分母、来源或可行性已经冻结，不表示对应内容已经进游戏。
@@ -19,8 +19,8 @@
 | 状态 | 含义 |
 | --- | --- |
 | `frozen` | 分母、来源或可行性已冻结，尚未因此获得 runtime |
-| `runtime_ready` | `src/main` 主机或机制可运行，但内容、配方或玩家路径仍可能 blocked |
-| `player_complete` | 生存可获得、可运行、可存档，并满足对应 production lock |
+| `runtime_ready` | `src/main` 主机或机制可运行，但内容、配方或获得路径仍可能 blocked |
+| `survival_access` | 独立获得性；不挡 runtime 关闭。无 `player_complete` 成熟度 |
 
 当前边界：
 
@@ -42,17 +42,21 @@
   以及 catalog 666 行 live/dummy 处置。流体 / 物品 / EU / 红石 runtime 与
   获得格 child **已经按该 envelope 落地并关** `runtime_ready`，不是
   `player_complete`。不得再把 GTCEu 合同当成 GT6。
-- `player_complete` 清单只看 [project-status.md](project-status.md)，不在本页复制。
+- `runtime_ready` 与试玩 cycle 只看 [project-status.md](project-status.md)，不在本页复制。
 - catalog **1,817 个 MTE 身份**是独立的身份分母，不等于机器 overflow，也不等于
   1,817 个待实现机制；详见第 0.1 节。
 - 实现必须另开 runtime / 内容卡，补齐 Source Pack、production lock、玩家路径、
   load 和 fresh capability profile；不得从冻结卡直接推导 stand-in。
+- 目录 `ItemEntity` 世界生成（closed remainder / MTE catalog scatter）是
+  **严禁获得替身**，不是 GT6，也不是待办模板。八条假 scatter 已删除，
+  注册数必须为 0。不得再当完成档。合同见
+  [gt6-no-item-entity-worldgen.md](gt6-no-item-entity-worldgen.md)。
 
 权威入口：
 
 | 用途 | 权威 |
 | --- | --- |
-| 当前 active / prep / `player_complete` | [project-status.md](project-status.md) |
+| 当前 active / prep / 试玩 cycle | [project-status.md](project-status.md) |
 | 跨能力 blocked 总账 | [blocked.md](blocked.md)（排期桶 A–D） / [`catalog.json`](../../tools/blockers/catalog.json) / [`ledger.json`](../../tools/blockers/ledger.json) |
 | 批处理关系 | [`batches.json`](../../tools/blockers/batches.json)；只登记当前 open scope，已关闭条目先在 `closed_before_batch_selection` 对账 |
 | 状态与交付流程 | [capability-delivery-workflow.md](capability-delivery-workflow.md) |
@@ -60,6 +64,7 @@
 | 机器尾账 | 各 `tools/waves/machines/**/readiness.json`、`overflow.json` |
 | GT6 语义与形态 | 本地 `gt6_code/gregtech6` 与对应 source-backed artifact |
 | GT6 贴图迁移 | [gt6-art-policy.md](gt6-art-policy.md) 与本地 `gt6_referencable_port_code/gregtech6_w` |
+| 严禁目录掉落物世界生成 | [gt6-no-item-entity-worldgen.md](gt6-no-item-entity-worldgen.md) |
 
 ## 0.1 分类总览（2026-09-14）
 
@@ -359,6 +364,8 @@ behavior 仍没有 owner，不能从 `cc_mechanism = none` 直接推导工作量
 | 计数上限与 kind envelope | capability map 的 report-only / count-ceiling 行 | 新 RecipeMap 前要先明确处理方式 |
 | 冷却器 | `energy/cooler` | 仍缺独立 runtime。排期 [blocked.md](blocked.md) C 桶。热交换器第一切片 ≠ 冷却器；蒸汽涡轮已落地也 ≠ 冷却器 |
 | 建筑方块 identity / behavior | identity、hardness、multiblock parts、decorative behavior | 仍没有当前 owner |
+| 材质铸造坩埚 / 模具 / 盆 / 交叉 | `content/gt6-mte-crucible-foundry-runtime` 的 85 个 live BlockItem | dummy 罐已按 GT6 `U` 对齐为熔炼 2304 / 模具 144 / 盆 1296 / 交叉 0 mB（`content/gt6-crucible-mold-behavior-correction`），仍不是 `MultiTileEntitySmeltery` / `ITileEntityMold`。陶瓷主机的 16 锭、掉落吸入、模具自动抽、`fillMold` / 凿子 / 钳子已关。体素模型与共享 iconset 由 `content/gt6-foundry-art` 落地。不要重开身份卡 |
+| 浇铸口熔体浇模具 | `content/gt6-mte-fluid-attachments-runtime` | 面对陶瓷坩埚时走 `fillMold`（`content/gt6-crucible-mold-interaction`）。面对普通流体罐仍倒 NeoForge 流体。85 个材质模具不是 `ITileEntityMold`。不要改陶瓷校正卡的 `required_test_ids` |
 
 ---
 
@@ -486,7 +493,7 @@ T30 `steel_dust_funnel` 只做 dust / small_dust / tiny_dust 的 1/4/9，计划�
 - 正式不要：在 realization 卡写 `out_of_scope`，本页改成不要，不要假装 R0 没点过名。
 - 不要为了「好看」重写 sealed `growth_order.json` 或已关 R0 artifact。
 - 不要再把冻结卡当成默认下一张工作。默认下一张若用户要的是进游戏的东西，开 runtime / 内容卡，或先问清楚，不要再盖一张 READY 冻结收据。
-- 本页不维护已关闭计划的明细；关闭状态、`player_complete` 和 active/prep 只看
+- 本页不维护已关闭计划的明细；关闭状态、试玩 cycle 和 active/prep 只看
   [project-status.md](project-status.md)，实现细节回看对应 `card-plans/closed/`。
 - `known-issues.md` 只记录 unload / reload / load 等关卡证明债；不要从 `*_READY`
   反推已经完成真卸 chunk。

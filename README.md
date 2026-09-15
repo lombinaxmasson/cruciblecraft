@@ -23,8 +23,8 @@ CrucibleCraft 是一个面向 Minecraft 1.21.1 / NeoForge 的非官方 GregTech 
 
 - 材料、前缀与矿物处理体系，以及由来源数据生成的大规模配方集合；
 - 火、热、蒸汽、动能、旋转能与电力组成的多阶段能源链；电加热器 / 电引擎、
-  LU 光纤与裂变堆芯已 `player_complete`。大型热交换器、蒸汽涡轮与聚变
-  已作为 CC 扩展进运行时（`frozen`，不是 `player_complete`）。冷却器仍未开；
+  LU 光纤与裂变堆芯已 `runtime_ready`。大型热交换器、蒸汽涡轮与聚变
+  已作为 CC 扩展进运行时（`frozen`，不是生存完成档）。冷却器仍未开；
 - 从早期加工到高阶处理的机器族，以及蒸馏塔、大型锅炉和储罐等多方块；
 - 大型矿脉、地下油气与地表资源等世界生成；
 - 物品、流体和电力传输，以及管道、线缆、封面与自动化组件；
@@ -91,13 +91,16 @@ Source Pack（GT6 来源或明确的项目设计）
 
 ### 能力状态
 
-项目用 capability 跟踪“规格是否明确、机制是否可运行、玩家是否能够完整使用”：
+项目用 capability 跟踪规格是否明确、机制是否可运行。玩家获得性是独立字段，
+试玩是项目级 cycle：
 
 - `frozen`：范围、来源和依赖已经确定；
-- `runtime_ready`：运行时机制已经可用，但内容或玩家路径可能尚未补齐；
-- `player_complete`：生存获取、运行、界面、翻译、存档和验证路径均已闭合。
+- `runtime_ready`：运行时机制已经可用，可以关卡；内容或获得路径可能尚未补齐；
+- `survival_access`：独立获得性（`unreviewed` / `blocked` / `partial` /
+  `complete` / `not_applicable`），不挡 runtime 关闭。
 
-路线图只把 `player_complete` 计为玩家层面的实现进度。现行完成集合见
+路线图把 accepted `runtime_ready` 计为机制进度。试玩签收只来自人跑的
+`runClient`。现行集合见
 [项目状态](docs/current/project-status.md)。完整定义见
 [能力交付流程](docs/current/capability-delivery-workflow.md)。
 
@@ -112,14 +115,12 @@ python tools/verify.py integration --profile runtime-java
 python tools/verify.py integration --profile semantic-generators
 python tools/verify.py integration --profile recipe-generators
 python tools/verify.py integration --profile capability-runtime
-python tools/verify.py integration --profile player-complete
-python tools/verify.py promotion
+python tools/playtest.py check
 ```
 
 `dev` 会根据工作区改动选择相关检查：普通 runtime Java 跑 JUnit，不跑 datagen；
-datagen provider 或生成树才会跑两次 `runData`。`promotion` 只在能力晋级到
-`player_complete` 时跑完整 GameTestServer 与客户端。需要运行哪些 profile、测试结果写到哪里，以及
-`player_complete` 如何启动 GameTestServer 和客户端，见
+datagen provider 或生成树才会跑两次 `runData`。试玩签收是人跑 `runClient`
+之后的 `python tools/playtest.py record-accept`，CI 不自动 `runClient`。需要运行哪些 profile、测试结果写到哪里，见
 [开发与验证指南](docs/current/verification.md)和
 [工具链说明](tools/README.md)。
 

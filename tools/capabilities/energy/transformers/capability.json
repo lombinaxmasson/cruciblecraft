@@ -2,7 +2,7 @@
   "schema_version": 2,
   "slug": "energy/transformers",
   "title": "Energy Transformers",
-  "maturity": "player_complete",
+  "maturity": "runtime_ready",
   "workflow": "accepted",
   "owned_paths": [
     "src/main/java/com/masson/cruciblecraft/energy/transformer/**",
@@ -21,12 +21,11 @@
     "energy/batteries"
   ],
   "profiles": [
-    "capability-runtime",
-    "player-complete"
+    "capability-runtime"
   ],
   "wave_slug": "runtime/transformers",
   "legacy_readiness": "tools/waves/runtime/transformers/readiness.json",
-  "player_signoff": "tools/capabilities/energy/transformers/player_signoff.json",
+  "player_signoff": null,
   "required_test_ids": [
     "playerSurfaceIsRegistered",
     "rejectsNonEu",
@@ -66,5 +65,6 @@
       "reason": "CC rotational_gearbox is not GT6 MultiTileEntityTransformerRotation. Must not impersonate an electric transformer."
     }
   ],
-  "note": "Nine electric transformers 10040-10048. unique_active_wave stays null. Source is local gt6_code. Recipes match GT6 keys after prefix/material name translation; no stand-in ingredients. missing parts block player_complete."
+  "note": "Nine electric transformers 10040-10048. unique_active_wave stays null. Source is local gt6_code. Recipes match GT6 keys after prefix/material name translation; no stand-in ingredients. missing parts block player_complete. Former player_complete claim is withdrawn; historical signoff does not count. survival_access is unreviewed.",
+  "survival_access": "unreviewed"
 }

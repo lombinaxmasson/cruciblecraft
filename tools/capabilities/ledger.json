@@ -31,6 +31,7 @@
         "capability-runtime"
       ],
       "slug": "content/electric-wire-cable-mte-fold",
+      "survival_access": "unreviewed",
       "title": "Electric Wire/Cable MTE Fold",
       "workflow": "accepted"
     },
@@ -58,6 +59,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-connector-alias-repair",
+      "survival_access": "unreviewed",
       "title": "GT6 Connector Alias Repair",
       "workflow": "accepted"
     },
@@ -94,7 +96,78 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-connector-art",
+      "survival_access": "unreviewed",
       "title": "GT6 Connector Art",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "content/gt6-mte-crucible-foundry-runtime"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6坩埚模具行为校正详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/CeramicMoldBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/CrucibleBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/CeramicMoldBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/CrucibleBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/mte/MteFoundryTanks.java",
+        "src/main/java/com/masson/cruciblecraft/machine/component/CrucibleProcessCore.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/CrucibleMoldBehaviorCorrectionGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteCrucibleFoundryRuntimeGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_crucible_mold_behavior_correction/**",
+        "tools/capabilities/content/gt6-crucible-mold-behavior-correction/**",
+        "tools/gt6_mte_inplace_runtime.py",
+        "tools/waves/content/gt6-crucible-mold-behavior-correction/**",
+        "tools/tests/test_gt6_crucible_mold_behavior_correction.py"
+      ],
+      "path": "tools/capabilities/content/gt6-crucible-mold-behavior-correction/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-crucible-mold-behavior-correction",
+      "survival_access": "unreviewed",
+      "title": "GT6 Crucible Mold Behavior Correction",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "content/gt6-crucible-mold-behavior-correction"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/active/GT6坩埚模具交互详细计划.md",
+        "docs/history/card-plans/closed/GT6坩埚模具交互详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/CeramicMoldBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/CrucibleBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/CeramicMoldBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/CrucibleBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/item/ThermometerItem.java",
+        "src/main/java/com/masson/cruciblecraft/content/mold/CruciblePour.java",
+        "src/main/java/com/masson/cruciblecraft/content/mold/MoldHost.java",
+        "src/main/java/com/masson/cruciblecraft/content/mold/MoldRecipes.java",
+        "src/main/java/com/masson/cruciblecraft/content/mold/MoldShape.java",
+        "src/main/java/com/masson/cruciblecraft/heat/TemperatureDamage.java",
+        "src/main/java/com/masson/cruciblecraft/machine/component/CrucibleProcessCore.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModCapabilities.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/CrucibleMoldInteractionGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/content/mold/MoldRecipesTest.java",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_crucible_mold_interaction/**",
+        "tools/capabilities/content/gt6-crucible-mold-interaction/**",
+        "tools/waves/content/gt6-crucible-mold-interaction/**",
+        "tools/tests/test_gt6_crucible_mold_interaction.py"
+      ],
+      "path": "tools/capabilities/content/gt6-crucible-mold-interaction/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-crucible-mold-interaction",
+      "survival_access": "unreviewed",
+      "title": "GT6 Crucible Mold Interaction",
       "workflow": "accepted"
     },
     {
@@ -126,6 +199,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-eu-cable-acquisition",
+      "survival_access": "unreviewed",
       "title": "GT6 EU Cable Acquisition",
       "workflow": "accepted"
     },
@@ -156,6 +230,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-eu-missing-wire-gauges-runtime",
+      "survival_access": "unreviewed",
       "title": "GT6 Missing EU Wire Gauges Runtime",
       "workflow": "accepted"
     },
@@ -186,6 +261,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-eu-wire-cable-runtime",
+      "survival_access": "unreviewed",
       "title": "GT6 EU Wire/Cable Runtime",
       "workflow": "accepted"
     },
@@ -215,6 +291,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-fluid-combo-pipe-runtime",
+      "survival_access": "unreviewed",
       "title": "GT6 Fluid Combo Pipe Runtime",
       "workflow": "accepted"
     },
@@ -245,6 +322,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-fluid-dangerous-media-runtime",
+      "survival_access": "unreviewed",
       "title": "GT6 Fluid Dangerous Media Runtime",
       "workflow": "accepted"
     },
@@ -275,6 +353,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-fluid-pipe-acquisition",
+      "survival_access": "unreviewed",
       "title": "GT6 Fluid Pipe Acquisition",
       "workflow": "accepted"
     },
@@ -304,8 +383,67 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-fluid-pipe-runtime",
+      "survival_access": "unreviewed",
       "title": "GT6 Fluid Pipe Runtime",
       "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "content/gt6-mte-crucible-foundry-runtime",
+        "content/gt6-crucible-mold-interaction"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/active/GT6铸造美术详细计划.md",
+        "docs/history/card-plans/closed/GT6铸造美术详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/client/color/FoundryBlockColor.java",
+        "src/main/java/com/masson/cruciblecraft/client/ClientSetup.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/FoundryArtGameTests.java",
+        "src/main/resources/assets/cruciblecraft/gt6_foundry_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/models/block/mte_foundry_smeltery.json",
+        "src/main/resources/assets/cruciblecraft/models/block/mte_foundry_mold.json",
+        "src/main/resources/assets/cruciblecraft/models/block/mte_foundry_basin.json",
+        "src/main/resources/assets/cruciblecraft/models/block/mte_foundry_crossing.json",
+        "src/main/resources/assets/cruciblecraft/models/block/foundry/**",
+        "src/main/resources/assets/cruciblecraft/models/item/foundry/**",
+        "src/main/resources/assets/cruciblecraft/blockstates/foundry/**",
+        "src/main/resources/assets/cruciblecraft/models/block/stainless_steel/**",
+        "src/main/resources/assets/cruciblecraft/models/item/stainless_steel/**",
+        "src/main/resources/assets/cruciblecraft/blockstates/stainless_steel/**",
+        "src/main/resources/assets/cruciblecraft/models/block/fiery_steel/**",
+        "src/main/resources/assets/cruciblecraft/models/item/fiery_steel/**",
+        "src/main/resources/assets/cruciblecraft/blockstates/fiery_steel/**",
+        "src/main/resources/assets/cruciblecraft/models/block/meteoric_iron/**",
+        "src/main/resources/assets/cruciblecraft/models/item/meteoric_iron/**",
+        "src/main/resources/assets/cruciblecraft/blockstates/meteoric_iron/**",
+        "src/main/resources/assets/cruciblecraft/models/block/meteoric_steel/**",
+        "src/main/resources/assets/cruciblecraft/models/item/meteoric_steel/**",
+        "src/main/resources/assets/cruciblecraft/blockstates/meteoric_steel/**",
+        "src/main/resources/assets/cruciblecraft/models/block/void_metal/**",
+        "src/main/resources/assets/cruciblecraft/models/item/void_metal/**",
+        "src/main/resources/assets/cruciblecraft/blockstates/void_metal/**",
+        "src/main/resources/assets/cruciblecraft/models/block/hslasteel/**",
+        "src/main/resources/assets/cruciblecraft/models/item/hslasteel/**",
+        "src/main/resources/assets/cruciblecraft/blockstates/hslasteel/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/materialicons/stone/**",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_foundry_art/**",
+        "tools/capabilities/content/gt6-foundry-art/**",
+        "tools/waves/content/gt6-foundry-art/**",
+        "tools/gt6_foundry_art.py",
+        "tools/build_gt6_foundry_art.py",
+        "tools/tests/test_gt6_foundry_art.py",
+        "tools/gt6_mte_inplace_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-foundry-art/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-foundry-art",
+      "survival_access": "unreviewed",
+      "title": "GT6 Foundry Art",
+      "workflow": "active"
     },
     {
       "depends_on": [
@@ -342,6 +480,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-insulated-redstone-runtime",
+      "survival_access": "unreviewed",
       "title": "GT6 Insulated Redstone Runtime",
       "workflow": "accepted"
     },
@@ -372,6 +511,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-item-pipe-acquisition",
+      "survival_access": "unreviewed",
       "title": "GT6 Item Pipe Acquisition",
       "workflow": "accepted"
     },
@@ -399,6 +539,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-item-pipe-runtime",
+      "survival_access": "unreviewed",
       "title": "GT6 Item Pipe Runtime",
       "workflow": "accepted"
     },
@@ -423,6 +564,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-mte-converter-host-fold",
+      "survival_access": "unreviewed",
       "title": "GT6 Converter Host Fold",
       "workflow": "accepted"
     },
@@ -452,6 +594,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-mte-converter-remainder-runtime",
+      "survival_access": "unreviewed",
       "title": "GT6 Converter Remainder Runtime",
       "workflow": "accepted"
     },
@@ -481,6 +624,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-mte-crucible-foundry-runtime",
+      "survival_access": "unreviewed",
       "title": "GT6 Crucible Foundry Runtime",
       "workflow": "accepted"
     },
@@ -510,6 +654,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-mte-decorative-runtime",
+      "survival_access": "unreviewed",
       "title": "GT6 Decorative Runtime",
       "workflow": "accepted"
     },
@@ -539,6 +684,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-mte-drive-runtime",
+      "survival_access": "unreviewed",
       "title": "GT6 Drive Runtime",
       "workflow": "accepted"
     },
@@ -568,6 +714,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-mte-extender-runtime",
+      "survival_access": "unreviewed",
       "title": "GT6 Extender Runtime",
       "workflow": "accepted"
     },
@@ -599,6 +746,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-mte-fluid-attachments-runtime",
+      "survival_access": "unreviewed",
       "title": "GT6 Fluid Attachments Runtime",
       "workflow": "accepted"
     },
@@ -628,6 +776,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-mte-furniture-barrel-runtime",
+      "survival_access": "unreviewed",
       "title": "GT6 Furniture Barrel Runtime",
       "workflow": "accepted"
     },
@@ -657,6 +806,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-mte-furniture-chest-runtime",
+      "survival_access": "unreviewed",
       "title": "GT6 Furniture Chest Runtime",
       "workflow": "accepted"
     },
@@ -686,6 +836,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-mte-furniture-safe-runtime",
+      "survival_access": "unreviewed",
       "title": "GT6 Furniture Safe Runtime",
       "workflow": "accepted"
     },
@@ -715,6 +866,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-mte-furniture-scaffold-runtime",
+      "survival_access": "unreviewed",
       "title": "GT6 Furniture Scaffold Runtime",
       "workflow": "accepted"
     },
@@ -744,6 +896,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-mte-furniture-storage-runtime",
+      "survival_access": "unreviewed",
       "title": "GT6 Furniture Storage Runtime",
       "workflow": "accepted"
     },
@@ -773,6 +926,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-mte-furniture-table-runtime",
+      "survival_access": "unreviewed",
       "title": "GT6 Furniture Crafting Table Runtime",
       "workflow": "accepted"
     },
@@ -797,6 +951,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-mte-hopper-host-fold",
+      "survival_access": "unreviewed",
       "title": "GT6 Hopper Host Fold",
       "workflow": "accepted"
     },
@@ -827,6 +982,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-mte-inplace-acquisition",
+      "survival_access": "unreviewed",
       "title": "GT6 In-place MTE Acquisition",
       "workflow": "accepted"
     },
@@ -856,6 +1012,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-mte-misc-tool-runtime",
+      "survival_access": "unreviewed",
       "title": "GT6 Misc Tool Runtime",
       "workflow": "accepted"
     },
@@ -885,6 +1042,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-mte-multiblock-runtime",
+      "survival_access": "unreviewed",
       "title": "GT6 Multiblock Runtime",
       "workflow": "accepted"
     },
@@ -909,6 +1067,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-mte-processing-host-fold",
+      "survival_access": "unreviewed",
       "title": "GT6 Processing Host Fold",
       "workflow": "accepted"
     },
@@ -933,6 +1092,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-mte-reactor-rod-host-fold",
+      "survival_access": "unreviewed",
       "title": "GT6 Reactor Rod Host Fold",
       "workflow": "accepted"
     },
@@ -959,6 +1119,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-paper-tiny-plate",
+      "survival_access": "unreviewed",
       "title": "GT6 Paper Tiny Plate",
       "workflow": "accepted"
     },
@@ -987,6 +1148,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-redstone-wire-acquisition",
+      "survival_access": "unreviewed",
       "title": "GT6 Redstone Wire Acquisition",
       "workflow": "accepted"
     },
@@ -1011,6 +1173,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-redstone-wire-correction",
+      "survival_access": "unreviewed",
       "title": "GT6 Redstone Wire Correction",
       "workflow": "accepted"
     },
@@ -1039,6 +1202,7 @@
         "capability-runtime"
       ],
       "slug": "content/gt6-restrictive-item-pipe-runtime",
+      "survival_access": "unreviewed",
       "title": "GT6 Restrictive Item Pipe Runtime",
       "workflow": "accepted"
     },
@@ -1092,6 +1256,7 @@
         "capability-runtime"
       ],
       "slug": "content/mte-redstone-wire",
+      "survival_access": "unreviewed",
       "title": "MTE Redstone Wire",
       "workflow": "accepted"
     },
@@ -1117,6 +1282,7 @@
         "capability-runtime"
       ],
       "slug": "content/puv-omega-parts",
+      "survival_access": "unreviewed",
       "title": "Compact parts, Quantum circuit, wires and transformers to OMEGA",
       "workflow": "paused"
     },
@@ -1148,6 +1314,7 @@
         "capability-runtime"
       ],
       "slug": "content/sensors",
+      "survival_access": "unreviewed",
       "title": "Sensors",
       "workflow": "accepted"
     },
@@ -1248,6 +1415,7 @@
         "capability-runtime"
       ],
       "slug": "content/technological-parts-foundation",
+      "survival_access": "unreviewed",
       "title": "Technological Parts Foundation",
       "workflow": "accepted"
     },
@@ -1255,7 +1423,7 @@
       "depends_on": [
         "energy/converter-catalog"
       ],
-      "maturity": "player_complete",
+      "maturity": "runtime_ready",
       "owned_paths": [
         "src/main/java/com/masson/cruciblecraft/energy/battery/**",
         "src/main/java/com/masson/cruciblecraft/gametest/EnergyBatteriesGameTests.java",
@@ -1270,12 +1438,12 @@
         "tools/tests/test_energy_batteries.py"
       ],
       "path": "tools/capabilities/energy/batteries/capability.json",
-      "player_signoff": "tools/capabilities/energy/batteries/player_signoff.json",
+      "player_signoff": null,
       "profiles": [
-        "capability-runtime",
-        "player-complete"
+        "capability-runtime"
       ],
       "slug": "energy/batteries",
+      "survival_access": "unreviewed",
       "title": "Energy Batteries",
       "workflow": "accepted"
     },
@@ -1283,7 +1451,7 @@
       "depends_on": [
         "logistics/display-cpu"
       ],
-      "maturity": "player_complete",
+      "maturity": "runtime_ready",
       "owned_paths": [
         "src/main/java/com/masson/cruciblecraft/energy/converter/**",
         "src/main/java/com/masson/cruciblecraft/content/block/SolidBurningBoxBlock.java",
@@ -1310,12 +1478,12 @@
         "tools/tests/test_player_complete.py"
       ],
       "path": "tools/capabilities/energy/converter-catalog/capability.json",
-      "player_signoff": "tools/capabilities/energy/converter-catalog/player_signoff.json",
+      "player_signoff": null,
       "profiles": [
-        "capability-runtime",
-        "player-complete"
+        "capability-runtime"
       ],
       "slug": "energy/converter-catalog",
+      "survival_access": "unreviewed",
       "title": "Energy Converter Catalog",
       "workflow": "accepted"
     },
@@ -1337,6 +1505,7 @@
         "capability-runtime"
       ],
       "slug": "energy/fusion-quantum",
+      "survival_access": "unreviewed",
       "title": "Fusion execution, QUANTUM, and LU to QU",
       "workflow": "paused"
     },
@@ -1344,7 +1513,7 @@
       "depends_on": [
         "energy/nuclear-fission-hot-fluids"
       ],
-      "maturity": "player_complete",
+      "maturity": "runtime_ready",
       "owned_paths": [
         "src/main/java/com/masson/cruciblecraft/energy/heatexchanger/**",
         "src/main/java/com/masson/cruciblecraft/gametest/EnergyHeatExchangersGameTests.java",
@@ -1362,12 +1531,12 @@
         "tools/emit_heat_exchangers.py"
       ],
       "path": "tools/capabilities/energy/heat-exchangers/capability.json",
-      "player_signoff": "tools/capabilities/energy/heat-exchangers/player_signoff.json",
+      "player_signoff": null,
       "profiles": [
-        "capability-runtime",
-        "player-complete"
+        "capability-runtime"
       ],
       "slug": "energy/heat-exchangers",
+      "survival_access": "unreviewed",
       "title": "Heat Exchangers",
       "workflow": "accepted"
     },
@@ -1390,6 +1559,7 @@
         "capability-runtime"
       ],
       "slug": "energy/large-heat-exchanger",
+      "survival_access": "unreviewed",
       "title": "Large Heat Exchanger 17197",
       "workflow": "paused"
     },
@@ -1397,7 +1567,7 @@
       "depends_on": [
         "energy/nuclear-fission-survival"
       ],
-      "maturity": "player_complete",
+      "maturity": "runtime_ready",
       "owned_paths": [
         "src/main/java/com/masson/cruciblecraft/content/blockentity/ReactorCoreBlockEntity.java",
         "src/main/java/com/masson/cruciblecraft/nuclear/**",
@@ -1413,12 +1583,12 @@
         "tools/tests/test_energy_nuclear_fission_hot_fluids.py"
       ],
       "path": "tools/capabilities/energy/nuclear-fission-hot-fluids/capability.json",
-      "player_signoff": "tools/capabilities/energy/nuclear-fission-hot-fluids/player_signoff.json",
+      "player_signoff": null,
       "profiles": [
-        "capability-runtime",
-        "player-complete"
+        "capability-runtime"
       ],
       "slug": "energy/nuclear-fission-hot-fluids",
+      "survival_access": "unreviewed",
       "title": "Nuclear Fission Hot Fluids",
       "workflow": "accepted"
     },
@@ -1426,7 +1596,7 @@
       "depends_on": [
         "energy/nuclear-fission-hot-fluids"
       ],
-      "maturity": "player_complete",
+      "maturity": "runtime_ready",
       "owned_paths": [
         "src/main/java/com/masson/cruciblecraft/compat/jade/**",
         "src/main/java/com/masson/cruciblecraft/content/block/ReactorCoreBlock.java",
@@ -1459,12 +1629,12 @@
         "tools/tests/test_energy_nuclear_fission_observation_safety.py"
       ],
       "path": "tools/capabilities/energy/nuclear-fission-observation-safety/capability.json",
-      "player_signoff": "tools/capabilities/energy/nuclear-fission-observation-safety/player_signoff.json",
+      "player_signoff": null,
       "profiles": [
-        "capability-runtime",
-        "player-complete"
+        "capability-runtime"
       ],
       "slug": "energy/nuclear-fission-observation-safety",
+      "survival_access": "unreviewed",
       "title": "Nuclear Fission Observation Safety",
       "workflow": "accepted"
     },
@@ -1472,7 +1642,7 @@
       "depends_on": [
         "energy/transformers"
       ],
-      "maturity": "player_complete",
+      "maturity": "runtime_ready",
       "owned_paths": [
         "src/main/java/com/masson/cruciblecraft/nuclear/**",
         "src/main/java/com/masson/cruciblecraft/gametest/NuclearFissionGameTests.java",
@@ -1488,12 +1658,12 @@
         "tools/tests/test_energy_nuclear_fission_survival.py"
       ],
       "path": "tools/capabilities/energy/nuclear-fission-survival/capability.json",
-      "player_signoff": "tools/capabilities/energy/nuclear-fission-survival/player_signoff.json",
+      "player_signoff": null,
       "profiles": [
-        "capability-runtime",
-        "player-complete"
+        "capability-runtime"
       ],
       "slug": "energy/nuclear-fission-survival",
+      "survival_access": "unreviewed",
       "title": "Nuclear Fission Survival",
       "workflow": "accepted"
     },
@@ -1514,6 +1684,7 @@
         "capability-runtime"
       ],
       "slug": "energy/quantum-massfab",
+      "survival_access": "unreviewed",
       "title": "Matter Fabricator and Neutronium bootstrap",
       "workflow": "paused"
     },
@@ -1534,6 +1705,7 @@
         "capability-runtime"
       ],
       "slug": "energy/steam-turbine",
+      "survival_access": "unreviewed",
       "title": "Steam Turbines STEAM to RU",
       "workflow": "paused"
     },
@@ -1541,7 +1713,7 @@
       "depends_on": [
         "energy/batteries"
       ],
-      "maturity": "player_complete",
+      "maturity": "runtime_ready",
       "owned_paths": [
         "src/main/java/com/masson/cruciblecraft/energy/transformer/**",
         "src/main/java/com/masson/cruciblecraft/gametest/EnergyTransformersGameTests.java",
@@ -1556,12 +1728,12 @@
         "tools/tests/test_energy_transformers.py"
       ],
       "path": "tools/capabilities/energy/transformers/capability.json",
-      "player_signoff": "tools/capabilities/energy/transformers/player_signoff.json",
+      "player_signoff": null,
       "profiles": [
-        "capability-runtime",
-        "player-complete"
+        "capability-runtime"
       ],
       "slug": "energy/transformers",
+      "survival_access": "unreviewed",
       "title": "Energy Transformers",
       "workflow": "accepted"
     },
@@ -1595,6 +1767,7 @@
         "capability-runtime"
       ],
       "slug": "localization/language-key-display-name-normalization",
+      "survival_access": "unreviewed",
       "title": "Language Key and Display Name Normalization",
       "workflow": "accepted"
     },
@@ -1614,6 +1787,7 @@
         "capability-runtime"
       ],
       "slug": "logistics/cover-net-r0",
+      "survival_access": "unreviewed",
       "title": "Logistics cover network R0",
       "workflow": "accepted"
     },
@@ -1648,6 +1822,7 @@
         "capability-runtime"
       ],
       "slug": "logistics/cover-remainder",
+      "survival_access": "unreviewed",
       "title": "Cover remainder",
       "workflow": "accepted"
     },
@@ -1656,7 +1831,7 @@
         "logistics/cover-net-r0",
         "logistics/logistics-core"
       ],
-      "maturity": "player_complete",
+      "maturity": "runtime_ready",
       "owned_paths": [
         "src/main/java/com/masson/cruciblecraft/logistics/displaycpu/**",
         "src/main/java/com/masson/cruciblecraft/gametest/DisplayCpuGameTests.java",
@@ -1680,12 +1855,12 @@
         "tools/tests/test_player_complete.py"
       ],
       "path": "tools/capabilities/logistics/display-cpu/capability.json",
-      "player_signoff": "tools/capabilities/logistics/display-cpu/player_signoff.json",
+      "player_signoff": null,
       "profiles": [
-        "capability-runtime",
-        "player-complete"
+        "capability-runtime"
       ],
       "slug": "logistics/display-cpu",
+      "survival_access": "unreviewed",
       "title": "Logistics Display CPU",
       "workflow": "accepted"
     },
@@ -1694,7 +1869,7 @@
         "logistics/cover-net-r0",
         "logistics/item-network-core"
       ],
-      "maturity": "player_complete",
+      "maturity": "runtime_ready",
       "owned_paths": [
         "src/main/java/com/masson/cruciblecraft/logistics/fluidnet/**",
         "src/main/java/com/masson/cruciblecraft/content/blockentity/FluidPipeBlockEntity.java",
@@ -1712,12 +1887,12 @@
         "tools/build_player_complete.py"
       ],
       "path": "tools/capabilities/logistics/fluid-network/basic-transfer/capability.json",
-      "player_signoff": "tools/capabilities/logistics/fluid-network/basic-transfer/player_signoff.json",
+      "player_signoff": null,
       "profiles": [
-        "capability-runtime",
-        "player-complete"
+        "capability-runtime"
       ],
       "slug": "logistics/fluid-network/basic-transfer",
+      "survival_access": "unreviewed",
       "title": "Fluid network basic transfer",
       "workflow": "accepted"
     },
@@ -1727,7 +1902,7 @@
         "logistics/item-network-core",
         "logistics/fluid-network/basic-transfer"
       ],
-      "maturity": "player_complete",
+      "maturity": "runtime_ready",
       "owned_paths": [
         "src/main/java/com/masson/cruciblecraft/logistics/genericnet/**",
         "src/main/java/com/masson/cruciblecraft/gametest/GenericNetworkCoreGameTests.java",
@@ -1751,12 +1926,12 @@
         "tools/tests/test_player_complete.py"
       ],
       "path": "tools/capabilities/logistics/generic-network/core/capability.json",
-      "player_signoff": "tools/capabilities/logistics/generic-network/core/player_signoff.json",
+      "player_signoff": null,
       "profiles": [
-        "capability-runtime",
-        "player-complete"
+        "capability-runtime"
       ],
       "slug": "logistics/generic-network/core",
+      "survival_access": "unreviewed",
       "title": "Generic network core",
       "workflow": "accepted"
     },
@@ -1764,7 +1939,7 @@
       "depends_on": [
         "logistics/cover-net-r0"
       ],
-      "maturity": "player_complete",
+      "maturity": "runtime_ready",
       "owned_paths": [
         "src/main/java/com/masson/cruciblecraft/logistics/itemnet/**",
         "src/main/java/com/masson/cruciblecraft/content/blockentity/ItemPipeBlockEntity.java",
@@ -1788,12 +1963,12 @@
         "tools/tests/test_player_complete.py"
       ],
       "path": "tools/capabilities/logistics/item-network-core/capability.json",
-      "player_signoff": "tools/capabilities/logistics/item-network-core/player_signoff.json",
+      "player_signoff": null,
       "profiles": [
-        "capability-runtime",
-        "player-complete"
+        "capability-runtime"
       ],
       "slug": "logistics/item-network-core",
+      "survival_access": "unreviewed",
       "title": "Item network core",
       "workflow": "accepted"
     },
@@ -1804,7 +1979,7 @@
         "logistics/fluid-network/basic-transfer",
         "logistics/generic-network/core"
       ],
-      "maturity": "player_complete",
+      "maturity": "runtime_ready",
       "owned_paths": [
         "src/main/java/com/masson/cruciblecraft/logistics/core/**",
         "src/main/java/com/masson/cruciblecraft/content/block/LogisticsCoreBlock.java",
@@ -1854,12 +2029,12 @@
         "tools/tests/test_player_complete.py"
       ],
       "path": "tools/capabilities/logistics/logistics-core/capability.json",
-      "player_signoff": "tools/capabilities/logistics/logistics-core/player_signoff.json",
+      "player_signoff": null,
       "profiles": [
-        "capability-runtime",
-        "player-complete"
+        "capability-runtime"
       ],
       "slug": "logistics/logistics-core",
+      "survival_access": "unreviewed",
       "title": "Logistics Core",
       "workflow": "accepted"
     },
@@ -1867,7 +2042,7 @@
       "depends_on": [
         "machines/roll-former"
       ],
-      "maturity": "player_complete",
+      "maturity": "runtime_ready",
       "owned_paths": [
         "src/main/java/com/masson/cruciblecraft/gametest/ClusterMillGameTests.java",
         "src/main/java/com/masson/cruciblecraft/machine/processing/prep/ClusterMillPrepSpec.java",
@@ -1880,12 +2055,12 @@
         "tools/tests/test_cluster_mill.py"
       ],
       "path": "tools/capabilities/machines/cluster-mill/capability.json",
-      "player_signoff": "tools/capabilities/machines/cluster-mill/player_signoff.json",
+      "player_signoff": null,
       "profiles": [
-        "capability-runtime",
-        "player-complete"
+        "capability-runtime"
       ],
       "slug": "machines/cluster-mill",
+      "survival_access": "unreviewed",
       "title": "Cluster Mill",
       "workflow": "accepted"
     },
@@ -1914,6 +2089,7 @@
         "capability-runtime"
       ],
       "slug": "machines/injector",
+      "survival_access": "unreviewed",
       "title": "Injector",
       "workflow": "accepted"
     },
@@ -1942,6 +2118,7 @@
         "capability-runtime"
       ],
       "slug": "machines/laminator",
+      "survival_access": "unreviewed",
       "title": "Laminator",
       "workflow": "accepted"
     },
@@ -1974,6 +2151,7 @@
         "capability-runtime"
       ],
       "slug": "machines/loom",
+      "survival_access": "unreviewed",
       "title": "Loom",
       "workflow": "accepted"
     },
@@ -2000,6 +2178,7 @@
         "capability-runtime"
       ],
       "slug": "machines/melter",
+      "survival_access": "unreviewed",
       "title": "Melter",
       "workflow": "accepted"
     },
@@ -2028,6 +2207,7 @@
         "capability-runtime"
       ],
       "slug": "machines/nanofab",
+      "survival_access": "unreviewed",
       "title": "Nanoscale Fabricator",
       "workflow": "accepted"
     },
@@ -2053,6 +2233,7 @@
         "capability-runtime"
       ],
       "slug": "machines/oven",
+      "survival_access": "unreviewed",
       "title": "Oven",
       "workflow": "accepted"
     },
@@ -2083,6 +2264,7 @@
         "capability-runtime"
       ],
       "slug": "machines/pressure-washer",
+      "survival_access": "unreviewed",
       "title": "Pressure Washer",
       "workflow": "accepted"
     },
@@ -2104,6 +2286,7 @@
         "capability-runtime"
       ],
       "slug": "machines/puv-omega-matrix",
+      "survival_access": "unreviewed",
       "title": "All machine variants through OMEGA",
       "workflow": "paused"
     },
@@ -2111,7 +2294,7 @@
       "depends_on": [
         "energy/heat-exchangers"
       ],
-      "maturity": "player_complete",
+      "maturity": "runtime_ready",
       "owned_paths": [
         "src/main/java/com/masson/cruciblecraft/gametest/RollFormerGameTests.java",
         "src/main/java/com/masson/cruciblecraft/machine/processing/prep/RollFormerPrepSpec.java",
@@ -2124,12 +2307,12 @@
         "tools/tests/test_roll_former.py"
       ],
       "path": "tools/capabilities/machines/roll-former/capability.json",
-      "player_signoff": "tools/capabilities/machines/roll-former/player_signoff.json",
+      "player_signoff": null,
       "profiles": [
-        "capability-runtime",
-        "player-complete"
+        "capability-runtime"
       ],
       "slug": "machines/roll-former",
+      "survival_access": "unreviewed",
       "title": "Roll Former",
       "workflow": "accepted"
     },
@@ -2157,6 +2340,7 @@
         "capability-runtime"
       ],
       "slug": "machines/sanding",
+      "survival_access": "unreviewed",
       "title": "Sanding Machine",
       "workflow": "accepted"
     },
@@ -2184,6 +2368,7 @@
         "capability-runtime"
       ],
       "slug": "machines/slicer",
+      "survival_access": "unreviewed",
       "title": "Slicer",
       "workflow": "accepted"
     },
@@ -2213,6 +2398,7 @@
         "capability-runtime"
       ],
       "slug": "registry/catalog-modern-ids",
+      "survival_access": "unreviewed",
       "title": "Catalog modern IDs",
       "workflow": "accepted"
     },
@@ -2242,6 +2428,7 @@
         "capability-runtime"
       ],
       "slug": "registry/tool-head-prefix-reclaim",
+      "survival_access": "unreviewed",
       "title": "Sharpener overflow reclaim",
       "workflow": "accepted"
     },
@@ -2259,6 +2446,7 @@
         "capability-runtime"
       ],
       "slug": "registry/tool-head-remainder",
+      "survival_access": "unreviewed",
       "title": "Tool-head remainder identities",
       "workflow": "accepted"
     },
@@ -2302,6 +2490,7 @@
         "capability-runtime"
       ],
       "slug": "worldgen/gt-crops",
+      "survival_access": "unreviewed",
       "title": "GT Crops",
       "workflow": "accepted"
     },
@@ -2330,6 +2519,7 @@
         "capability-runtime"
       ],
       "slug": "worldgen/gt-dungeon",
+      "survival_access": "unreviewed",
       "title": "GT Dungeon",
       "workflow": "paused"
     },
@@ -2373,27 +2563,13 @@
         "capability-runtime"
       ],
       "slug": "worldgen/gt-trees",
+      "survival_access": "unreviewed",
       "title": "GT Trees",
       "workflow": "accepted"
     }
   ],
-  "capability_count": 77,
-  "declared_player_complete": [
-    "energy/batteries",
-    "energy/converter-catalog",
-    "energy/heat-exchangers",
-    "energy/nuclear-fission-hot-fluids",
-    "energy/nuclear-fission-observation-safety",
-    "energy/nuclear-fission-survival",
-    "energy/transformers",
-    "logistics/display-cpu",
-    "logistics/fluid-network/basic-transfer",
-    "logistics/generic-network/core",
-    "logistics/item-network-core",
-    "logistics/logistics-core",
-    "machines/cluster-mill",
-    "machines/roll-former"
-  ],
+  "capability_count": 80,
+  "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
     "content/electric-wire-cable-mte-fold": [
@@ -2426,6 +2602,15 @@
       "content/gt6-fluid-pipe-acquisition",
       "content/gt6-item-pipe-acquisition",
       "content/gt6-restrictive-item-pipe-runtime"
+    ],
+    "content/gt6-crucible-mold-behavior-correction": [
+      "content/gt6-crucible-mold-behavior-correction",
+      "content/gt6-crucible-mold-interaction",
+      "content/gt6-foundry-art"
+    ],
+    "content/gt6-crucible-mold-interaction": [
+      "content/gt6-crucible-mold-interaction",
+      "content/gt6-foundry-art"
     ],
     "content/gt6-eu-cable-acquisition": [
       "content/gt6-eu-cable-acquisition"
@@ -2469,6 +2654,9 @@
       "content/gt6-mte-fluid-attachments-runtime",
       "content/gt6-restrictive-item-pipe-runtime"
     ],
+    "content/gt6-foundry-art": [
+      "content/gt6-foundry-art"
+    ],
     "content/gt6-insulated-redstone-runtime": [
       "content/gt6-insulated-redstone-runtime",
       "content/gt6-redstone-wire-acquisition"
@@ -2494,6 +2682,9 @@
       "content/gt6-mte-converter-remainder-runtime"
     ],
     "content/gt6-mte-crucible-foundry-runtime": [
+      "content/gt6-crucible-mold-behavior-correction",
+      "content/gt6-crucible-mold-interaction",
+      "content/gt6-foundry-art",
       "content/gt6-mte-crucible-foundry-runtime"
     ],
     "content/gt6-mte-decorative-runtime": [
@@ -3255,6 +3446,8 @@
     "registry/catalog-modern-ids": [
       "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-crucible-mold-behavior-correction",
+      "content/gt6-crucible-mold-interaction",
       "content/gt6-eu-cable-acquisition",
       "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
@@ -3262,6 +3455,7 @@
       "content/gt6-fluid-dangerous-media-runtime",
       "content/gt6-fluid-pipe-acquisition",
       "content/gt6-fluid-pipe-runtime",
+      "content/gt6-foundry-art",
       "content/gt6-insulated-redstone-runtime",
       "content/gt6-item-pipe-acquisition",
       "content/gt6-item-pipe-runtime",
@@ -3313,6 +3507,8 @@
       "content/electric-wire-cable-mte-fold",
       "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-crucible-mold-behavior-correction",
+      "content/gt6-crucible-mold-interaction",
       "content/gt6-eu-cable-acquisition",
       "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
@@ -3320,6 +3516,7 @@
       "content/gt6-fluid-dangerous-media-runtime",
       "content/gt6-fluid-pipe-acquisition",
       "content/gt6-fluid-pipe-runtime",
+      "content/gt6-foundry-art",
       "content/gt6-insulated-redstone-runtime",
       "content/gt6-item-pipe-acquisition",
       "content/gt6-item-pipe-runtime",
@@ -3387,25 +3584,9 @@
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
-    ],
-    "player-complete": [
-      "energy/batteries",
-      "energy/converter-catalog",
-      "energy/heat-exchangers",
-      "energy/nuclear-fission-hot-fluids",
-      "energy/nuclear-fission-observation-safety",
-      "energy/nuclear-fission-survival",
-      "energy/transformers",
-      "logistics/display-cpu",
-      "logistics/fluid-network/basic-transfer",
-      "logistics/generic-network/core",
-      "logistics/item-network-core",
-      "logistics/logistics-core",
-      "machines/cluster-mill",
-      "machines/roll-former"
     ]
   },
-  "progress_rule": "declaration is not proof; player_complete requires fresh GameTestServer execution; runClient is required on promotion",
+  "progress_rule": "runtime_ready is the close maturity; survival_access is independent and does not gate close; playtest is a project-level human cycle",
   "schema_version": 2,
-  "unique_active_slug": null
+  "unique_active_slug": "content/gt6-foundry-art"
 }

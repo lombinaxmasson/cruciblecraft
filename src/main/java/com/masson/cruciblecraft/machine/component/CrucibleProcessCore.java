@@ -1,5 +1,7 @@
 package com.masson.cruciblecraft.machine.component;
 
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -8,6 +10,7 @@ import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.content.mold.MoldCastingRules;
+import com.masson.cruciblecraft.content.mold.MoldHost;
 import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator;
 import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.FillPlan;
 import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.InsertResult;
@@ -22,6 +25,7 @@ import com.masson.cruciblecraft.recipe.SteelmakingProcess;
 import com.masson.cruciblecraft.recipe.SteelmakingProcess.Batch;
 import com.masson.cruciblecraft.registry.ModFluids;
 
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -166,6 +170,41 @@ public final class CrucibleProcessCore {
                 form,
                 candidate.get().outputCount(),
                 thermal.authoritativeTemperature()));
+    }
+
+    /**
+     * GT6 {@code ITileEntityCrucible.fillMoldAtSide}: first molten catalog
+     * stack the mold accepts, or an exact-ratio alloy product.
+     */
+    public boolean fillMoldAtSide(MoldHost mold, Direction moldSide) {
+        if (frozen() || mold == null) {
+            return false;
+        }
+        float temperature = authoritativeTemperature();
+        if (pourAlloy(mold, moldSide, temperature)) {
+            return true;
+        }
+        for (var entry : List.copyOf(contents.composition().entrySet())) {
+            if (!MaterialCatalog.contains(entry.getKey()) || entry.getValue() <= 0) {
+                continue;
+            }
+            MaterialDefinition material = MaterialCatalog.require(entry.getKey());
+            if (temperature < material.thermal().meltingPoint()) {
+                continue;
+            }
+            int consumed = mold.fillMold(
+                    material.id(),
+                    entry.getValue(),
+                    temperature,
+                    moldSide);
+            if (consumed <= 0) {
+                continue;
+            }
+            contents.setUnits(material.id(), entry.getValue() - consumed);
+            onMutation.run();
+            return true;
+        }
+        return false;
     }
 
     public Optional<CastTransfer> previewCast(MaterialPrefix form) {
@@ -334,6 +373,50 @@ public final class CrucibleProcessCore {
 
     private Optional<Batch> currentSteelmakingBatch() {
         return steelmaking.currentBatch(contents.composition());
+    }
+
+    private boolean pourAlloy(MoldHost mold, Direction moldSide, float temperature) {
+        Optional<AlloyMatch> alloy = contents.alloy();
+        if (alloy.isEmpty()) {
+            return false;
+        }
+        MaterialDefinition result = alloy.get().result();
+        if (temperature < result.thermal().meltingPoint()) {
+            return false;
+        }
+        int required = mold.moldRequiredMaterialUnits();
+        Map<String, Integer> cost = scaleAlloyCost(alloy.get().costPerIngot(), required);
+        if (cost == null || !contents.containsAtLeast(cost)) {
+            return false;
+        }
+        int consumed = mold.fillMold(result.id(), required, temperature, moldSide);
+        if (consumed <= 0) {
+            return false;
+        }
+        contents.removeAll(cost);
+        onMutation.run();
+        return true;
+    }
+
+    private static Map<String, Integer> scaleAlloyCost(
+            Map<String, Integer> costPerIngot, int requiredUnits) {
+        if (requiredUnits <= 0) {
+            return null;
+        }
+        int ingot = MaterialPrefixes.INGOT.units();
+        Map<String, Integer> scaled = new LinkedHashMap<>();
+        for (var component : costPerIngot.entrySet()) {
+            long numerator = (long) component.getValue() * requiredUnits;
+            if (numerator % ingot != 0L) {
+                return null;
+            }
+            int units = Math.toIntExact(numerator / ingot);
+            if (units <= 0) {
+                return null;
+            }
+            scaled.put(component.getKey(), units);
+        }
+        return scaled;
     }
 
     private Optional<CastCandidate> castCandidate(MaterialPrefix form) {

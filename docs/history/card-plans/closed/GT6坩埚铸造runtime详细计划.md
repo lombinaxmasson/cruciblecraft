@@ -28,6 +28,7 @@ close_target                 = runtime_ready
 - 覆盖 R0 `crucible_foundry` 本 child 的 85 行。
 - dummy 现代 id 原地升级为 `MteInPlaceBlock` + `CatalogNamedBlockItem`。禁止再注册 `*_real`，禁止 alias 已有主机。
 - 获得格保持 `explicitly_blocked`。不造 stand-in 配方。
+- dummy 罐 millibucket 后来由 `content/gt6-crucible-mold-behavior-correction` 按 GT6 `U` 对齐（熔炼 2304 / 模具 144 / 盆 1296 / 交叉 0）。仍不是 `MultiTileEntitySmeltery` / `ITileEntityMold`。
 - 贴图从本地 `gregtech6_w` 迁入 `textures/block/gt6_import/mte/`，写 art manifest。
 - 存档：同一 registry path 变成 BlockItem；无 NeoForge alias。
 

@@ -160,6 +160,22 @@ public final class ShapedCatalystRecipe implements CraftingRecipe {
     }
 
     @Override
+    public NonNullList<Ingredient> getIngredients() {
+        NonNullList<Ingredient> list = NonNullList.withSize(9, Ingredient.EMPTY);
+        for (int row = 0; row < pattern.size(); row++) {
+            String line = pattern.get(row);
+            for (int column = 0; column < 3; column++) {
+                String symbol = String.valueOf(line.charAt(column));
+                Ingredient ingredient = ingredientFor(symbol);
+                list.set(
+                        row * 3 + column,
+                        ingredient == null ? Ingredient.EMPTY : ingredient);
+            }
+        }
+        return list;
+    }
+
+    @Override
     public RecipeSerializer<?> getSerializer() {
         return ModRecipes.SHAPED_CATALYST_SERIALIZER.get();
     }

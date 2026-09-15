@@ -103,10 +103,10 @@ class RollFormerCardTest(unittest.TestCase):
     def test_capability_is_player_complete(self) -> None:
         capability = census.load_json(CAPABILITY)
         self.assertEqual(CAPABILITY_SLUG, capability["slug"])
-        self.assertEqual("player_complete", capability["maturity"])
+        self.assertEqual("runtime_ready", capability["maturity"])
         self.assertEqual("accepted", capability["workflow"])
         self.assertEqual(
-            ["capability-runtime", "player-complete"],
+            ["capability-runtime"],
             capability["profiles"],
         )
         self.assertEqual(
@@ -119,11 +119,11 @@ class RollFormerCardTest(unittest.TestCase):
             capability["required_test_ids"],
         )
         self.assertEqual(
-            "tools/capabilities/machines/roll-former/player_signoff.json",
+            None,
             capability["player_signoff"],
         )
         compiled = ledger.compile_ledger()
-        self.assertIn(CAPABILITY_SLUG, compiled["declared_player_complete"])
+        self.assertNotIn(CAPABILITY_SLUG, compiled["declared_player_complete"])
         blocked = {
             row["semantic_key"]
             for row in capability["identity_disposition"]

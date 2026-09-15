@@ -421,24 +421,14 @@ def support_recipe_files() -> list[Path]:
 
 
 def locked_support_tree_sha256() -> str:
-    if not scatter_datapack_present():
+    if not LOCKED_SUPPORT_RECIPE_ROOT.is_dir() or not support_recipe_files():
         return EMPTY_TREE_SHA256
-    hasher = hashlib.sha256()
-    for path in (
-        SCATTER_CONFIGURED,
-        SCATTER_PLACED,
-        SCATTER_BIOME_MODIFIER,
-        SCATTER_CATALOG,
-        SCATTER_ITEM_TAG,
-    ):
-        hasher.update(path.read_bytes())
-    if LOCKED_SUPPORT_RECIPE_ROOT.is_dir():
-        hasher.update(tree_sha256(LOCKED_SUPPORT_RECIPE_ROOT).encode("utf-8"))
-    return hasher.hexdigest()
+    return tree_sha256(LOCKED_SUPPORT_RECIPE_ROOT)
 
 
 def locked_support_tree_current() -> bool:
-    return scatter_datapack_present()
+    digest = locked_support_tree_sha256()
+    return digest != EMPTY_TREE_SHA256 and bool(support_recipe_files())
 
 
 def b0_identities() -> set[str]:
@@ -464,24 +454,23 @@ def scatter_datapack_present() -> bool:
 
 
 def player_path_real() -> bool:
-    if not PLAYER_PATH_SUPPORT.is_file() or not scatter_datapack_present():
+    if scatter_datapack_present():
+        return False
+    if not PLAYER_PATH_SUPPORT.is_file():
         return False
     support = load_json(PLAYER_PATH_SUPPORT)
     if support.get("kind") != PLAYER_PATH_REAL_KIND:
         return False
     routes = list(support.get("routes") or [])
-    if not routes:
+    if any(str(row.get("kind")) == "worldgen_drop" for row in routes):
         return False
     recipes = support_recipe_files()
     bath_routes = [row for row in routes if str(row.get("kind")) == "bath_gt_recipe"]
-    item_routes = [row for row in routes if str(row.get("kind")) == "worldgen_drop"]
-    if len(recipes) != len(bath_routes) or not item_routes:
+    if not recipes or len(recipes) != len(bath_routes):
         return False
     for row in routes:
         inputs = [str(value) for value in (row.get("input_identities") or [])]
         if any(value.endswith(":iron_ingot") for value in inputs):
-            return False
-        if str(row.get("kind")) == "worldgen_drop" and inputs:
             return False
         if str(row.get("kind")) in {"b1_declaration", "b1_support", "declared_support"}:
             return False
@@ -609,7 +598,7 @@ def bound_gametest_artifacts() -> dict[str, str | None]:
         "production_lock": _file_sha256(PRODUCTION_LOCK),
         "bath_tiny_purified_generated_recipes": tree_sha256(GENERATED_ROOT) if GENERATED_ROOT.exists() else None,
         "bath_tiny_purified_locked_support": locked_support_tree_sha256()
-        if scatter_datapack_present()
+        if support_recipe_files()
         else None,
         "runtime_dependency_manifest": _file_sha256(RUNTIME_DEPENDENCY_MANIFEST),
         "publication_group_manifest": _file_sha256(PUBLICATION_GROUP_MANIFEST),

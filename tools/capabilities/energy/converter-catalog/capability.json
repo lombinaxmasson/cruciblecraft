@@ -2,7 +2,7 @@
   "schema_version": 2,
   "slug": "energy/converter-catalog",
   "title": "Energy Converter Catalog",
-  "maturity": "player_complete",
+  "maturity": "runtime_ready",
   "workflow": "accepted",
   "owned_paths": [
     "src/main/java/com/masson/cruciblecraft/energy/converter/**",
@@ -32,10 +32,12 @@
   "depends_on": [
     "logistics/display-cpu"
   ],
-  "profiles": ["capability-runtime", "player-complete"],
+  "profiles": [
+    "capability-runtime"
+  ],
   "wave_slug": "runtime/converter-catalog",
   "legacy_readiness": "tools/waves/runtime/converter-catalog/readiness.json",
-  "player_signoff": "tools/capabilities/energy/converter-catalog/player_signoff.json",
+  "player_signoff": null,
   "required_test_ids": [
     "gasBurningBoxFeedsAdjacentHu",
     "playerSurfaceIsRegistered",
@@ -46,21 +48,28 @@
     {
       "semantic_key": "machine:bronze_burning_box_gas",
       "disposition": "new_distinct",
-      "runtime_ids": ["cruciblecraft:bronze_burning_box_gas"],
+      "runtime_ids": [
+        "cruciblecraft:bronze_burning_box_gas"
+      ],
       "reason": "GT6 GeneratorGas 1602 catalog id; replaces live burning_gas_generator placeholder."
     },
     {
       "semantic_key": "machine:bronze_fuel_engine",
       "disposition": "new_distinct",
-      "runtime_ids": ["cruciblecraft:bronze_fuel_engine"],
+      "runtime_ids": [
+        "cruciblecraft:bronze_fuel_engine"
+      ],
       "reason": "GT6 MotorLiquid 9147 catalog id; replaces un-tiered fuel_engine."
     },
     {
       "semantic_key": "machine:steel_galvanized_electric_motor",
       "disposition": "new_distinct",
-      "runtime_ids": ["cruciblecraft:steel_galvanized_electric_motor"],
+      "runtime_ids": [
+        "cruciblecraft:steel_galvanized_electric_motor"
+      ],
       "reason": "GT6 MotorElectric 10021 Electric_T[1]; replaces un-tiered electric_motor."
     }
   ],
-  "note": "169 Loader_MultiTileEntities converter rows as kind × material. Shared runtimes, not 169 classes. Historical energy_converters.json stays byte-stable. Batteries are owned by energy/batteries. Source is local gt6_code. Current MTE energy_converter catalog has 71 metas matching these source_id values; their scatter dummies must later fold to these live BlockItems with no second art set."
+  "note": "169 Loader_MultiTileEntities converter rows as kind × material. Shared runtimes, not 169 classes. Historical energy_converters.json stays byte-stable. Batteries are owned by energy/batteries. Source is local gt6_code. Current MTE energy_converter catalog has 71 metas matching these source_id values; their scatter dummies must later fold to these live BlockItems with no second art set. Former player_complete claim is withdrawn; historical signoff does not count. survival_access is unreviewed.",
+  "survival_access": "unreviewed"
 }

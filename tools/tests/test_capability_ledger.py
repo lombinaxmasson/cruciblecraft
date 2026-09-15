@@ -62,6 +62,7 @@ SENSORS = "content/sensors"
 CATALOG_MODERN = "registry/catalog-modern-ids"
 MTE_REDSTONE = "content/mte-redstone-wire"
 REDSTONE_CORRECTION = "content/gt6-redstone-wire-correction"
+CRUCIBLE_MOLD_CORRECTION = "content/gt6-crucible-mold-behavior-correction"
 NUCLEAR = "energy/nuclear-fission-survival"
 HOT_FLUIDS = "energy/nuclear-fission-hot-fluids"
 OBSERVATION = "energy/nuclear-fission-observation-safety"
@@ -114,6 +115,7 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertIn("content/gt6-mte-inplace-acquisition", slugs)
         self.assertIn(MTE_REDSTONE, slugs)
         self.assertIn(REDSTONE_CORRECTION, slugs)
+        self.assertIn(CRUCIBLE_MOLD_CORRECTION, slugs)
         self.assertIn(INSULATED_REDSTONE, slugs)
         self.assertIn(DANGEROUS_MEDIA, slugs)
         self.assertIn(FLUID_PIPE_ACQUISITION, slugs)
@@ -136,64 +138,64 @@ class CapabilityLedgerTest(unittest.TestCase):
             if cap.is_file():
                 self.assertIn(spec["slug"], slugs)
         converter = next(row for row in documents if row["slug"] == CONVERTER)
-        self.assertEqual("player_complete", converter["maturity"])
+        self.assertEqual("runtime_ready", converter["maturity"])
         self.assertEqual("accepted", converter["workflow"])
         batteries = next(row for row in documents if row["slug"] == BATTERIES)
-        self.assertEqual("player_complete", batteries["maturity"])
+        self.assertEqual("runtime_ready", batteries["maturity"])
         self.assertEqual("accepted", batteries["workflow"])
         transformers = next(
             row for row in documents if row["slug"] == TRANSFORMERS
         )
-        self.assertEqual("player_complete", transformers["maturity"])
+        self.assertEqual("runtime_ready", transformers["maturity"])
         self.assertEqual("accepted", transformers["workflow"])
         nuclear = next(row for row in documents if row["slug"] == NUCLEAR)
-        self.assertEqual("player_complete", nuclear["maturity"])
+        self.assertEqual("runtime_ready", nuclear["maturity"])
         self.assertEqual("accepted", nuclear["workflow"])
         hot_fluids = next(row for row in documents if row["slug"] == HOT_FLUIDS)
-        self.assertEqual("player_complete", hot_fluids["maturity"])
+        self.assertEqual("runtime_ready", hot_fluids["maturity"])
         self.assertEqual("accepted", hot_fluids["workflow"])
         observation = next(row for row in documents if row["slug"] == OBSERVATION)
-        self.assertEqual("player_complete", observation["maturity"])
+        self.assertEqual("runtime_ready", observation["maturity"])
         self.assertEqual("accepted", observation["workflow"])
         heat = next(row for row in documents if row["slug"] == HEAT_EXCHANGERS)
-        self.assertEqual("player_complete", heat["maturity"])
+        self.assertEqual("runtime_ready", heat["maturity"])
         self.assertEqual("accepted", heat["workflow"])
         self.assertEqual(
-            ["capability-runtime", "player-complete"],
+            ["capability-runtime"],
             heat["profiles"],
         )
         roll_former = next(row for row in documents if row["slug"] == ROLL_FORMER)
-        self.assertEqual("player_complete", roll_former["maturity"])
+        self.assertEqual("runtime_ready", roll_former["maturity"])
         self.assertEqual("accepted", roll_former["workflow"])
         self.assertEqual(
-            ["capability-runtime", "player-complete"],
+            ["capability-runtime"],
             roll_former["profiles"],
         )
         cluster_mill = next(row for row in documents if row["slug"] == CLUSTER_MILL)
-        self.assertEqual("player_complete", cluster_mill["maturity"])
+        self.assertEqual("runtime_ready", cluster_mill["maturity"])
         self.assertEqual("accepted", cluster_mill["workflow"])
         self.assertEqual(
-            ["capability-runtime", "player-complete"],
+            ["capability-runtime"],
             cluster_mill["profiles"],
         )
         fluid = next(row for row in documents if row["slug"] == FLUID)
-        self.assertEqual("player_complete", fluid["maturity"])
+        self.assertEqual("runtime_ready", fluid["maturity"])
         self.assertEqual("accepted", fluid["workflow"])
         cover = next(
             row for row in documents if row["slug"] == "logistics/cover-net-r0"
         )
         self.assertEqual("frozen", cover["maturity"])
         item = next(row for row in documents if row["slug"] == ITEM)
-        self.assertEqual("player_complete", item["maturity"])
+        self.assertEqual("runtime_ready", item["maturity"])
         self.assertEqual("accepted", item["workflow"])
         generic = next(row for row in documents if row["slug"] == GENERIC)
-        self.assertEqual("player_complete", generic["maturity"])
+        self.assertEqual("runtime_ready", generic["maturity"])
         self.assertEqual("accepted", generic["workflow"])
         core = next(row for row in documents if row["slug"] == CORE)
-        self.assertEqual("player_complete", core["maturity"])
+        self.assertEqual("runtime_ready", core["maturity"])
         self.assertEqual("accepted", core["workflow"])
         display = next(row for row in documents if row["slug"] == DISPLAY)
-        self.assertEqual("player_complete", display["maturity"])
+        self.assertEqual("runtime_ready", display["maturity"])
         self.assertEqual("accepted", display["workflow"])
         self.assertEqual(
             [
@@ -217,10 +219,11 @@ class CapabilityLedgerTest(unittest.TestCase):
             self.assertNotIn("legacy_readiness", row)
             self.assertNotIn("wave_slug", row)
         complete = compiled["declared_player_complete"]
-        self.assertEqual(complete, compiled["profiles"]["player-complete"])
-        self.assertIn(CLUSTER_MILL, complete)
-        self.assertIn(ROLL_FORMER, complete)
-        self.assertIn(HEAT_EXCHANGERS, complete)
+        self.assertEqual([], complete)
+        self.assertNotIn("player-complete", compiled["profiles"])
+        self.assertNotIn(CLUSTER_MILL, complete)
+        self.assertNotIn(ROLL_FORMER, complete)
+        self.assertNotIn(HEAT_EXCHANGERS, complete)
         active = [
             row["slug"]
             for row in compiled["capabilities"]
@@ -232,8 +235,8 @@ class CapabilityLedgerTest(unittest.TestCase):
             active[0] if active else None,
         )
         self.assertEqual(
-            "declaration is not proof; player_complete requires fresh "
-            "GameTestServer execution; runClient is required on promotion",
+            "runtime_ready is the close maturity; survival_access is independent "
+            "and does not gate close; playtest is a project-level human cycle",
             compiled["progress_rule"],
         )
 
@@ -301,11 +304,9 @@ class CapabilityLedgerTest(unittest.TestCase):
 
     def test_ledger_contains_profiles_and_impact_without_proof_fields(self) -> None:
         compiled = ledger.compile_ledger()
-        self.assertEqual(
-            set(compiled["declared_player_complete"]),
-            set(compiled["profiles"]["player-complete"]),
-        )
-        self.assertIn(CLUSTER_MILL, compiled["profiles"]["player-complete"])
+        self.assertEqual([], compiled["declared_player_complete"])
+        self.assertNotIn("player-complete", compiled["profiles"])
+        self.assertIn(CLUSTER_MILL, compiled["profiles"]["capability-runtime"])
         self.assertEqual(
             {
                 BATTERIES,
@@ -464,7 +465,7 @@ class CapabilityLedgerTest(unittest.TestCase):
             ),
         ):
             self.assertEqual(
-                [FLUID],
+                [],
                 ledger.player_complete_promotions("origin/main"),
             )
 

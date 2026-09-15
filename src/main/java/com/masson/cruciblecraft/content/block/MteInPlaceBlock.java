@@ -28,6 +28,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 /**
@@ -44,6 +45,20 @@ public final class MteInPlaceBlock extends Block implements EntityBlock {
     private static final VoxelShape EAST = Block.box(8.0, 4.0, 4.0, 16.0, 12.0, 12.0);
     private static final VoxelShape PANEL = Block.box(0.0, 0.0, 7.0, 16.0, 16.0, 9.0);
     private static final VoxelShape ROPE = Block.box(6.0, 0.0, 6.0, 10.0, 16.0, 10.0);
+    private static final VoxelShape FOUNDRY_SMELTERY = Shapes.or(
+            Block.box(0.0, 0.0, 0.0, 16.0, 2.0, 16.0),
+            Block.box(0.0, 0.0, 0.0, 2.0, 16.0, 16.0),
+            Block.box(14.0, 0.0, 0.0, 16.0, 16.0, 16.0),
+            Block.box(0.0, 0.0, 0.0, 16.0, 16.0, 2.0),
+            Block.box(0.0, 0.0, 14.0, 16.0, 16.0, 16.0));
+    private static final VoxelShape FOUNDRY_BASIN = Shapes.or(
+            Block.box(0.0, 0.0, 0.0, 16.0, 1.0, 16.0),
+            Block.box(0.0, 0.0, 0.0, 1.0, 16.0, 16.0),
+            Block.box(15.0, 0.0, 0.0, 16.0, 16.0, 16.0),
+            Block.box(0.0, 0.0, 0.0, 16.0, 16.0, 1.0),
+            Block.box(0.0, 0.0, 15.0, 16.0, 16.0, 16.0));
+    private static final VoxelShape FOUNDRY_MOLD = Block.box(0.0, 0.0, 0.0, 16.0, 7.0, 16.0);
+    private static final VoxelShape FOUNDRY_CROSSING = Block.box(0.0, 0.0, 0.0, 16.0, 6.0, 16.0);
 
     private final MteInPlaceSpec spec;
 
@@ -98,6 +113,9 @@ public final class MteInPlaceBlock extends Block implements EntityBlock {
         if (kind == MteInPlaceKind.WOOD_PANEL) {
             return PANEL;
         }
+        if (kind == MteInPlaceKind.CRUCIBLE_FOUNDRY) {
+            return foundryShape();
+        }
         if (!kind.attachment()) {
             return super.getShape(state, level, pos, context);
         }
@@ -109,6 +127,20 @@ public final class MteInPlaceBlock extends Block implements EntityBlock {
             case WEST -> WEST;
             case EAST -> EAST;
         };
+    }
+
+    private VoxelShape foundryShape() {
+        String gt6Class = spec.gt6Class();
+        if (gt6Class.contains("Crossing")) {
+            return FOUNDRY_CROSSING;
+        }
+        if (gt6Class.contains("Smeltery")) {
+            return FOUNDRY_SMELTERY;
+        }
+        if (gt6Class.contains("Basin")) {
+            return FOUNDRY_BASIN;
+        }
+        return FOUNDRY_MOLD;
     }
 
     @Override

@@ -3,10 +3,15 @@ package com.masson.cruciblecraft.content.blockentity;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
+import com.masson.cruciblecraft.content.mold.CruciblePour;
+import com.masson.cruciblecraft.content.mold.MoldCastingRules;
+import com.masson.cruciblecraft.content.mold.MoldHost;
+import com.masson.cruciblecraft.content.mte.MteFoundryTanks;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.energy.steam.SteamTurbineCatalog;
 import com.masson.cruciblecraft.energy.steam.SteamTurbineStructure;
+import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModFluids;
 
@@ -15,7 +20,11 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.Containers;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -29,7 +38,7 @@ import net.neoforged.neoforge.items.ItemStackHandler;
  * pipe cover, KU axle, vanilla tool, or the ceramic crucible.
  */
 public final class MteInPlaceBlockEntity extends BlockEntity
-        implements IEnergyHandler {
+        implements IEnergyHandler, MoldHost {
     public static final int TRANSFER_MB = 1000;
     public static final long ENERGY_CAPACITY = 16_384L;
 
@@ -56,7 +65,7 @@ public final class MteInPlaceBlockEntity extends BlockEntity
                         ? SteamTurbineCatalog.find(spec.id()).orElse(null)
                         : null;
         int tankCap = spec.kind().foundryTank()
-                ? 8_000
+                ? MteFoundryTanks.capacityMb(spec)
                 : turbine != null ? turbine.tankCapacityMb() : 1;
         this.tank = new FluidTank(tankCap) {
             @Override
@@ -118,7 +127,8 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         }
         Direction facing = getBlockState().getValue(MteInPlaceBlock.FACING);
         switch (spec().kind()) {
-            case FAUCET, TAP, NOZZLE -> pourDown(facing);
+            case FAUCET -> pourFaucet(facing);
+            case TAP, NOZZLE -> pourDown(facing);
             case FUNNEL, CAP_NOZZLE -> fillAttached(facing);
             default -> {
             }
@@ -234,6 +244,91 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         if (tag.contains("distilled")) {
             distilled.readFromNBT(registries, tag.getCompound("distilled"));
         }
+    }
+
+    @Override
+    public boolean isMoldInputSide(Direction side) {
+        return spec().kind() == MteInPlaceKind.FAUCET
+                && side == getBlockState().getValue(MteInPlaceBlock.FACING);
+    }
+
+    @Override
+    public float moldMaxTemperatureCelsius() {
+        String materialId = faucetMaterialId();
+        float melting = MaterialCatalog.contains(materialId)
+                ? (float) MaterialCatalog.require(materialId).thermal().meltingPoint()
+                : (float) MaterialCatalog.require("stone").thermal().meltingPoint();
+        return MoldCastingRules.maximumTemperature(melting);
+    }
+
+    @Override
+    public int moldRequiredMaterialUnits() {
+        if (level == null) {
+            return 0;
+        }
+        BlockPos dest = faucetDestination();
+        if (level.getBlockEntity(dest) instanceof MoldHost mold) {
+            return mold.moldRequiredMaterialUnits();
+        }
+        return 0;
+    }
+
+    @Override
+    public int fillMold(
+            String materialId,
+            int availableUnits,
+            float temperature,
+            Direction side) {
+        if (spec().kind() != MteInPlaceKind.FAUCET
+                || !isMoldInputSide(side)
+                || materialId == null
+                || materialId.isEmpty()
+                || availableUnits <= 0
+                || level == null) {
+            return 0;
+        }
+        if (temperature > moldMaxTemperatureCelsius()) {
+            level.setBlock(worldPosition, Blocks.LAVA.defaultBlockState(), Block.UPDATE_ALL);
+            return 0;
+        }
+        BlockPos dest = faucetDestination();
+        if (level.getBlockEntity(dest) instanceof MoldHost mold) {
+            return mold.fillMold(materialId, availableUnits, temperature, Direction.UP);
+        }
+        return 0;
+    }
+
+    @Override
+    public ItemStack takeOutput(Player player, boolean causeDamage) {
+        return ItemStack.EMPTY;
+    }
+
+    private void pourFaucet(Direction facing) {
+        if (level.getBlockEntity(worldPosition.relative(facing)) instanceof CruciblePour crucible) {
+            crucible.fillMoldAtSide(this, facing.getOpposite(), facing);
+            return;
+        }
+        pourDown(facing);
+    }
+
+    private BlockPos faucetDestination() {
+        BlockPos dest = worldPosition.below();
+        while (level != null
+                && dest.getY() > level.getMinBuildHeight()
+                && level.getBlockEntity(dest) instanceof MteInPlaceBlockEntity other
+                && other.spec().kind() == MteInPlaceKind.FAUCET) {
+            dest = dest.below();
+        }
+        return dest;
+    }
+
+    private String faucetMaterialId() {
+        String path = spec().registryPath();
+        int slash = path.lastIndexOf('/');
+        String name = slash >= 0 ? path.substring(slash + 1) : path;
+        int under = name.lastIndexOf('_');
+        String candidate = under >= 0 ? name.substring(under + 1) : name;
+        return MaterialCatalog.contains(candidate) ? candidate : "stone";
     }
 
     private void pourDown(Direction facing) {

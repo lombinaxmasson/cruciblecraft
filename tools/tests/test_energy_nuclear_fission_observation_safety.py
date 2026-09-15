@@ -76,7 +76,7 @@ class FissionObservationSafetyCardTest(unittest.TestCase):
         self.assertEqual(179, readiness["evidence"]["converter_live_rows"])
         self.assertEqual(8, readiness["evidence"]["hazmat_piece_count"])
         self.assertEqual(
-            "player_complete",
+            "runtime_ready",
             readiness["evidence"]["observation_safety_status"],
         )
 
@@ -101,7 +101,7 @@ class FissionObservationSafetyCardTest(unittest.TestCase):
 
     def test_capability_is_player_complete(self) -> None:
         capability = ledger.load_capability(CAPABILITY)
-        self.assertEqual("player_complete", capability["maturity"])
+        self.assertEqual("runtime_ready", capability["maturity"])
         self.assertEqual("accepted", capability["workflow"])
         self.assertEqual(CAPABILITY_SLUG, capability["slug"])
         self.assertEqual(SLUG, capability["wave_slug"])

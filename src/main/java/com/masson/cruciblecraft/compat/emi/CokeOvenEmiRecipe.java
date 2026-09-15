@@ -18,23 +18,26 @@ final class CokeOvenEmiRecipe implements EmiRecipe {
     private final List<EmiStack> outputs;
 
     CokeOvenEmiRecipe(ResourceLocation id, GTRecipe recipe) {
-        this.id = id;
+        this.id = EmiIds.synthetic(id);
         inputs = java.util.stream.IntStream.range(0, recipe.itemInputs().size())
                 .mapToObj(index -> EmiIngredient.of(
                         recipe.itemInputs().get(index),
                         recipe.itemInputCounts().get(index)))
                 .toList();
         var displayedOutputs = new java.util.ArrayList<EmiStack>();
-        recipe.itemOutputs().forEach(stack -> displayedOutputs.add(EmiStack.of(stack)));
-        recipe.fluidOutputs().forEach(stack -> displayedOutputs.add(EmiStack.of(
-                stack.getFluid(),
-                stack.getAmount())));
+        recipe.itemOutputs().forEach(stack -> displayedOutputs.add(EmiStacks.ofItem(stack)));
+        recipe.fluidOutputs().forEach(stack -> displayedOutputs.add(EmiStacks.ofFluid(stack)));
         outputs = List.copyOf(displayedOutputs);
     }
 
     @Override
     public EmiRecipeCategory getCategory() {
         return CrucibleCraftEmiPlugin.COKE_OVEN;
+    }
+
+    @Override
+    public boolean hideCraftable() {
+        return true;
     }
 
     @Override

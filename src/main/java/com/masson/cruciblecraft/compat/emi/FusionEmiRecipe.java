@@ -21,7 +21,7 @@ final class FusionEmiRecipe implements EmiRecipe {
     private final List<EmiStack> outputs;
 
     FusionEmiRecipe(ResourceLocation id, GTRecipe recipe) {
-        this.id = id;
+        this.id = EmiIds.synthetic(id);
         List<EmiIngredient> displayedInputs = new ArrayList<>();
         List<EmiIngredient> displayedCatalysts = new ArrayList<>();
         for (int index = 0; index < recipe.itemInputs().size(); index++) {
@@ -35,22 +35,25 @@ final class FusionEmiRecipe implements EmiRecipe {
             }
         }
         recipe.fluidInputs().forEach(stack ->
-                displayedInputs.add(EmiStack.of(
-                        stack.getFluid(), stack.getAmount())));
+                displayedInputs.add(EmiStacks.ofFluid(stack)));
         inputs = List.copyOf(displayedInputs);
         catalysts = List.copyOf(displayedCatalysts);
         List<EmiStack> displayedOutputs = new ArrayList<>();
         recipe.itemOutputs().forEach(stack ->
-                displayedOutputs.add(EmiStack.of(stack)));
+                displayedOutputs.add(EmiStacks.ofItem(stack)));
         recipe.fluidOutputs().forEach(stack ->
-                displayedOutputs.add(EmiStack.of(
-                        stack.getFluid(), stack.getAmount())));
+                displayedOutputs.add(EmiStacks.ofFluid(stack)));
         outputs = List.copyOf(displayedOutputs);
     }
 
     @Override
     public EmiRecipeCategory getCategory() {
         return CrucibleCraftEmiPlugin.FUSION;
+    }
+
+    @Override
+    public boolean hideCraftable() {
+        return true;
     }
 
     @Override

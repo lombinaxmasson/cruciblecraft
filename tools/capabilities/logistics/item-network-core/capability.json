@@ -2,7 +2,7 @@
   "schema_version": 2,
   "slug": "logistics/item-network-core",
   "title": "Item network core",
-  "maturity": "player_complete",
+  "maturity": "runtime_ready",
   "workflow": "accepted",
   "owned_paths": [
     "src/main/java/com/masson/cruciblecraft/logistics/itemnet/**",
@@ -29,10 +29,12 @@
   "depends_on": [
     "logistics/cover-net-r0"
   ],
-  "profiles": ["capability-runtime", "player-complete"],
+  "profiles": [
+    "capability-runtime"
+  ],
   "wave_slug": "runtime/item-network-core",
   "legacy_readiness": "tools/waves/runtime/item-network-core/readiness.json",
-  "player_signoff": "tools/capabilities/logistics/item-network-core/player_signoff.json",
+  "player_signoff": null,
   "required_test_ids": [
     "chunkUnloadHidesEndpointThenRejoins",
     "coverIdentitySurvivesBlockEntityReload",
@@ -48,5 +50,6 @@
     "sameIdentityConnectedExportsIntoStorage"
   ],
   "identity_disposition": [],
-  "note": "Survival craftable storage/import/export covers. Generic and Dump remain frozen."
+  "note": "Survival craftable storage/import/export covers. Generic and Dump remain frozen. Former player_complete claim is withdrawn; historical signoff does not count. survival_access is unreviewed.",
+  "survival_access": "unreviewed"
 }

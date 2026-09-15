@@ -34,7 +34,7 @@ class LargeCrucibleBlockEntityTest {
 
     @Test
     void capacityStaysDistinctFromSingleBlock() {
-        assertEquals(8, CrucibleBlockEntity.MAX_INGOTS);
+        assertEquals(16, CrucibleBlockEntity.MAX_INGOTS);
         assertEquals(432, CrucibleProcessCore.LARGE_MAX_INGOTS);
         assertEquals(
                 CrucibleProcessCore.SINGLE_BLOCK_MAX_INGOTS,

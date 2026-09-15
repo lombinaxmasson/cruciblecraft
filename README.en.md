@@ -27,9 +27,9 @@ continuing to expand toward the full GT6 target:
   recipe sets
 - Multi-stage energy chains spanning fire, heat, steam, kinetic, rotational,
   and electrical power; electric heaters/engines, LU fiber, and fission
-  cores are `player_complete`. Large heat exchangers, steam turbines, and
-  fusion are in runtime as a CrucibleCraft extension (`frozen`, not
-  `player_complete`). Coolers are still unopened.
+  cores are `runtime_ready`. Large heat exchangers, steam turbines, and
+  fusion are in runtime as a CrucibleCraft extension (`frozen`, not a
+  survival completion bar). Coolers are still unopened.
 - Processing-machine families from early industry onward, plus multiblocks
   such as distillation towers, large boilers, and tanks
 - World generation for large ore veins, underground oil and gas, and surface
@@ -109,18 +109,19 @@ test paths use semantic names.
 
 ### Capability states
 
-Capabilities track whether a specification is defined, its runtime works, and
-players can use it end to end:
+Capabilities track whether a specification is defined and whether the runtime
+works. Player obtainability is a separate `survival_access` field. Playtest is
+a project-level cycle:
 
 - `frozen`: scope, sources, and dependencies are defined
-- `runtime_ready`: the runtime mechanism works, while content or player paths
-  may still be incomplete
-- `player_complete`: survival acquisition, runtime behavior, UI, translation,
-  persistence, and verification paths are complete
+- `runtime_ready`: the runtime mechanism works and can close; content or
+  obtain paths may still be incomplete
+- `survival_access`: independent obtainability (`unreviewed` / `blocked` /
+  `partial` / `complete` / `not_applicable`); does not block runtime close
 
-The roadmap counts only `player_complete` capabilities as player-facing
-implementation progress. The generated completion set is
-[project status](docs/current/project-status.md).
+The roadmap counts accepted `runtime_ready` capabilities as mechanism
+progress. Playtest accept comes only from a human `runClient`. The generated
+set is [project status](docs/current/project-status.md).
 See the [capability delivery workflow](docs/current/capability-delivery-workflow.md)
 for the complete contract.
 
@@ -135,18 +136,15 @@ python tools/verify.py integration --profile runtime-java
 python tools/verify.py integration --profile semantic-generators
 python tools/verify.py integration --profile recipe-generators
 python tools/verify.py integration --profile capability-runtime
-python tools/verify.py integration --profile player-complete
-python tools/verify.py promotion
+python tools/playtest.py check
 ```
 
 `dev` selects relevant checks from the working-tree changes: ordinary runtime
 Java runs JUnit without datagen; datagen providers and generated trees run the
-double `runData` profile. `promotion` runs
-the full GameTestServer and client only when a capability is raised to
-`player_complete`. The
+double `runData` profile. Playtest accept is a human `runClient` followed by
+`python tools/playtest.py record-accept`. CI never auto-runs `runClient`. The
 [verification guide](docs/current/verification.md) and
-[tooling guide](tools/README.md) explain profile selection, result locations,
-and the GameTestServer and client checks used for `player_complete`.
+[tooling guide](tools/README.md) explain profile selection and result locations.
 
 ## Code layout
 

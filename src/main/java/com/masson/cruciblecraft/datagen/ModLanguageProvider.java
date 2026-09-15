@@ -268,6 +268,7 @@ public class ModLanguageProvider extends LanguageProvider {
             add("emi.category.cruciblecraft.fuels_engine", "燃油发电");
             add("emi.category.cruciblecraft.fuels_gas", "燃气燃烧室");
             add("emi.category.cruciblecraft.fuels_fluidbed", "流化床燃烧室");
+            add("emi.category.cruciblecraft.fuels_hot", "热交换燃料");
             add("emi.category.cruciblecraft.fusion", "聚变反应堆");
             add("emi.cruciblecraft.processing.preserved", "保留，不消耗");
             add("emi.cruciblecraft.anvil.hits", "%s · %s 次击打");
@@ -447,6 +448,16 @@ public class ModLanguageProvider extends LanguageProvider {
             add("message.cruciblecraft.mold_filled", "熔融材料已浇入模具");
             add("message.cruciblecraft.mold_no_molten_material",
                     "相邻的坩埚没有合适的熔融材料");
+            add("message.cruciblecraft.mold_auto_input_on", "坩埚自动输入：开");
+            add("message.cruciblecraft.mold_auto_input_off", "坩埚自动输入：关");
+            add("message.cruciblecraft.mold_auto_input_redstone", "坩埚自动输入：红石");
+            add("message.cruciblecraft.mold_auto_input_no_redstone",
+                    "坩埚自动输入：不用红石");
+            add("message.cruciblecraft.mold_auto_input_cleared",
+                    "坩埚自动输入：关且不用红石");
+            add("message.cruciblecraft.thermometer_kelvin", "温度：%s K");
+            add("message.cruciblecraft.thermometer_kelvin_too_hot",
+                    "温度：%s K（太烫，现在拿不起来！）");
             add("message.cruciblecraft.not_ready",
                     "成分不可浇铸或低于熔化温度");
             add("emi.category.cruciblecraft.anvil", "砧加工");
@@ -868,6 +879,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("emi.category.cruciblecraft.fuels_engine", "Fuel Engine");
         add("emi.category.cruciblecraft.fuels_gas", "Gas Burning Box");
         add("emi.category.cruciblecraft.fuels_fluidbed", "Fluid-Bed Burning Box");
+        add("emi.category.cruciblecraft.fuels_hot", "Heat Exchanger Fuel");
         add("emi.category.cruciblecraft.fusion", "Fusion Reactor");
         add("emi.cruciblecraft.processing.preserved", "Preserved, not consumed");
         add("emi.cruciblecraft.anvil.hits", "%s · %s hits");
@@ -914,6 +926,15 @@ public class ModLanguageProvider extends LanguageProvider {
         add("message.cruciblecraft.mold_filled", "Molten material poured into the mold");
         add("message.cruciblecraft.mold_cooling", "Mold is cooling: %s °C");
         add("message.cruciblecraft.mold_no_molten_material", "No adjacent crucible has suitable molten material");
+        add("message.cruciblecraft.mold_auto_input_on", "Crucible Auto-Input: ON");
+        add("message.cruciblecraft.mold_auto_input_off", "Crucible Auto-Input: OFF");
+        add("message.cruciblecraft.mold_auto_input_redstone", "Crucible Auto-Input: REDSTONE");
+        add("message.cruciblecraft.mold_auto_input_no_redstone", "Crucible Auto-Input: NO REDSTONE");
+        add("message.cruciblecraft.mold_auto_input_cleared", "Crucible Auto-Input: OFF & NO REDSTONE");
+        add("message.cruciblecraft.thermometer_kelvin", "Temperature: %s K");
+        add(
+                "message.cruciblecraft.thermometer_kelvin_too_hot",
+                "Temperature: %s K (too hot to pick it up right now!)");
         add(
                 "message.cruciblecraft.crucible_status",
                 "Temperature: %s °C | %s");

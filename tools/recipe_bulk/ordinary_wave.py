@@ -1742,59 +1742,19 @@ def write_item_models(catalog: dict[str, Any]) -> None:
 
 
 def write_b1_scatter(catalog: dict[str, Any]) -> None:
-    """Worldgen scatter for object identities that are not already in B0."""
-    tag_ids = sorted(
-        str(identity["runtime_id"])
-        for identity in catalog.get("identities") or []
-        if identity.get("runtime_id")
-    )
+    """Forbidden obtain path. Delete leftover catalog ItemEntity packs."""
+    del catalog
     resources = ROOT / "src/main/resources/data/cruciblecraft"
-    census.write_stable(
+    leftovers = (
         resources / "tags/item/semantic_ordinary_b1_items.json",
-        {"replace": False, "values": tag_ids},
-    )
-    census.write_stable(
         resources / "worldgen/configured_feature/semantic_object_scatter.json",
-        {
-            "config": {
-                "item_tag": "cruciblecraft:semantic_ordinary_b1_items",
-                "rarity": 128,
-            },
-            "type": "cruciblecraft:semantic_object_scatter",
-        },
-    )
-    census.write_stable(
         resources / "worldgen/placed_feature/semantic_object_scatter.json",
-        {"feature": "cruciblecraft:semantic_object_scatter", "placement": []},
-    )
-    census.write_stable(
         resources / "neoforge/biome_modifier/add_semantic_object_scatter.json",
-        {
-            "biomes": "#minecraft:is_overworld",
-            "features": ["cruciblecraft:semantic_object_scatter"],
-            "step": "top_layer_modification",
-            "type": "neoforge:add_features",
-        },
-    )
-    census.write_stable(
         resources / "worldgen_catalog/semantic_object_scatter.json",
-        {
-            "biome_modifier": {
-                "biomes": "#minecraft:is_overworld",
-                "features": ["cruciblecraft:semantic_object_scatter"],
-                "id": "add_semantic_object_scatter",
-                "step": "top_layer_modification",
-            },
-            "config": {
-                "item_tag": "cruciblecraft:semantic_ordinary_b1_items",
-                "rarity": 128,
-            },
-            "feature_type": "cruciblecraft:semantic_object_scatter",
-            "id": "semantic_object_scatter",
-            "kind": "scatter",
-            "placed_feature": "cruciblecraft:semantic_object_scatter",
-        },
     )
+    for path in leftovers:
+        if path.is_file():
+            path.unlink()
 
 
 def _already_registered_item_ids() -> set[str]:

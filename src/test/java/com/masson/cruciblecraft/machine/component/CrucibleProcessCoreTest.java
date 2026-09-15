@@ -33,13 +33,13 @@ class CrucibleProcessCoreTest {
     }
 
     @Test
-    void singleBlockCapacityStaysEightIngots() {
+    void singleBlockCapacityStaysSixteenIngots() {
         CrucibleProcessCore core = CrucibleProcessCore.singleBlock();
         assertEquals(CrucibleProcessCore.SINGLE_BLOCK_MAX_INGOTS, core.maxIngots());
         assertEquals(
-                MaterialPrefixes.INGOT.units() * 8,
+                MaterialPrefixes.INGOT.units() * 16,
                 core.maxUnits());
-        assertEquals(InsertResult.SUCCESS, fillIngots(core, 8));
+        assertEquals(InsertResult.SUCCESS, fillIngots(core, 16));
         assertEquals(InsertResult.FULL, fillIngots(core, 1));
         assertEquals(core.maxUnits(), core.totalUnits());
     }

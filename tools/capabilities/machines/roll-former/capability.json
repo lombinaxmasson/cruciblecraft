@@ -2,7 +2,7 @@
   "schema_version": 2,
   "slug": "machines/roll-former",
   "title": "Roll Former",
-  "maturity": "player_complete",
+  "maturity": "runtime_ready",
   "workflow": "accepted",
   "owned_paths": [
     "src/main/java/com/masson/cruciblecraft/gametest/RollFormerGameTests.java",
@@ -19,11 +19,10 @@
     "energy/heat-exchangers"
   ],
   "profiles": [
-    "capability-runtime",
-    "player-complete"
+    "capability-runtime"
   ],
   "wave_slug": "machines/roll-former",
-  "player_signoff": "tools/capabilities/machines/roll-former/player_signoff.json",
+  "player_signoff": null,
   "required_test_ids": [
     "bronzeHostRunsFirstLiveRecipe",
     "fourHostsAreSurvivalCraftable",
@@ -49,5 +48,6 @@
       "reason": "Two gt.recipe.rollformer dump rows need unmapped rail_gt forms. Do not stand in tungsten_carbide or obsidian_steel rails."
     }
   ],
-  "note": "26 selected exact rows; 2 unmapped rail_gt rows explicitly_blocked. Opening-15 kinetic set stays frozen."
+  "note": "26 selected exact rows; 2 unmapped rail_gt rows explicitly_blocked. Opening-15 kinetic set stays frozen. Former player_complete claim is withdrawn; historical signoff does not count. survival_access is unreviewed.",
+  "survival_access": "unreviewed"
 }

@@ -2,7 +2,7 @@
   "schema_version": 2,
   "slug": "energy/batteries",
   "title": "Energy Batteries",
-  "maturity": "player_complete",
+  "maturity": "runtime_ready",
   "workflow": "accepted",
   "owned_paths": [
     "src/main/java/com/masson/cruciblecraft/energy/battery/**",
@@ -21,12 +21,11 @@
     "energy/converter-catalog"
   ],
   "profiles": [
-    "capability-runtime",
-    "player-complete"
+    "capability-runtime"
   ],
   "wave_slug": "runtime/batteries",
   "legacy_readiness": "tools/waves/runtime/batteries/readiness.json",
-  "player_signoff": "tools/capabilities/energy/batteries/player_signoff.json",
+  "player_signoff": null,
   "required_test_ids": [
     "chargeStoresEu",
     "dischargeExtractsEu",
@@ -161,5 +160,6 @@
       "reason": "GT6 IL.Battery_*_Cell_Empty/Filled 20000-20009. Five empty-cell recipes and EU B/C slots are SOURCE_BACKED. Fill is FluidContainerData (not Canner). LiClO4 dust is electrolyzer ordinary-closure 0051."
     }
   ],
-  "note": "37 census Batteries: loader 14000-14044 and 14500-14515. Not fusion 14600/14601, not battery boxes, not transformers. unique_active_wave stays null. Source is local gt6_code. EU cells, FluidContainerData fill, and B/C slots are SOURCE_BACKED. LU obtain is form_items on the crystal identities (GT6 setTarget), not a shaped grid."
+  "note": "37 census Batteries: loader 14000-14044 and 14500-14515. Not fusion 14600/14601, not battery boxes, not transformers. unique_active_wave stays null. Source is local gt6_code. EU cells, FluidContainerData fill, and B/C slots are SOURCE_BACKED. LU obtain is form_items on the crystal identities (GT6 setTarget), not a shaped grid. Former player_complete claim is withdrawn; historical signoff does not count. survival_access is unreviewed.",
+  "survival_access": "unreviewed"
 }

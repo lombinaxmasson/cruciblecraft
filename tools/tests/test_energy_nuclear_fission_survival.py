@@ -65,7 +65,7 @@ class FissionSurvivalCardTest(unittest.TestCase):
         self.assertEqual(48, readiness["evidence"]["nuclear_source_relations"])
         self.assertEqual(1, readiness["evidence"]["canner_machine_tiers"])
         self.assertEqual(
-            "player_complete",
+            "runtime_ready",
             readiness["evidence"]["fission_survival_status"],
         )
 
@@ -110,12 +110,12 @@ class FissionSurvivalCardTest(unittest.TestCase):
 
     def test_capability_is_player_complete(self) -> None:
         capability = ledger.load_capability(CAPABILITY)
-        self.assertEqual("player_complete", capability["maturity"])
+        self.assertEqual("runtime_ready", capability["maturity"])
         self.assertEqual("accepted", capability["workflow"])
         self.assertEqual(CAPABILITY_SLUG, capability["slug"])
         self.assertEqual(SLUG, capability["wave_slug"])
         self.assertEqual(
-            "tools/capabilities/energy/nuclear-fission-survival/player_signoff.json",
+            None,
             capability["player_signoff"],
         )
         self.assertEqual(["energy/transformers"], capability["depends_on"])

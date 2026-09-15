@@ -259,7 +259,7 @@ def write_wave_sidecars() -> None:
                 "hosts": 4,
                 "owns_families": 1,
                 "selected_rows": SELECTED_ROWS,
-                "status": "player_complete",
+                "status": "runtime_ready",
             },
             "generated_by": "machines/roll-former implementation",
             "generated_recipe_count": SELECTED_ROWS,

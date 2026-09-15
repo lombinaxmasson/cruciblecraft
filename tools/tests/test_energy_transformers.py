@@ -233,17 +233,17 @@ class EnergyTransformersCardTest(unittest.TestCase):
 
     def test_capability_is_player_complete(self) -> None:
         capability = ledger.load_capability(CAPABILITY)
-        self.assertEqual("player_complete", capability["maturity"])
+        self.assertEqual("runtime_ready", capability["maturity"])
         self.assertEqual("accepted", capability["workflow"])
         self.assertEqual(CAPABILITY_SLUG, capability["slug"])
         self.assertEqual(SLUG, capability["wave_slug"])
         self.assertEqual(
-            "tools/capabilities/energy/transformers/player_signoff.json",
+            None,
             capability["player_signoff"],
         )
         self.assertEqual(["energy/batteries"], capability["depends_on"])
         self.assertEqual(
-            ["capability-runtime", "player-complete"],
+            ["capability-runtime"],
             capability["profiles"],
         )
         keys = {

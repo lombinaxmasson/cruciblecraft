@@ -18,6 +18,7 @@ from tools import atomic_io
 from tools import blockers
 from tools import capability_ledger
 from tools import io_common as io
+from tools import playtest
 from tools import player_complete
 from tools import project_status
 
@@ -108,10 +109,13 @@ def close_capability(
     slug: str,
     *,
     verify: bool = False,
-    maturity: str = "player_complete",
+    maturity: str = "runtime_ready",
+    change_class: str = "major",
 ) -> list[str]:
-    if maturity not in ("player_complete", "runtime_ready"):
+    if maturity != "runtime_ready":
         raise ValueError(f"unsupported close maturity {maturity!r}")
+    if change_class not in playtest.CHANGE_CLASSES:
+        raise ValueError(f"unsupported change class {change_class!r}")
     compiled = capability_ledger.compile_ledger()
     unique = compiled.get("unique_active_slug")
     if unique != slug:
@@ -121,22 +125,18 @@ def close_capability(
     path = capability_ledger.CAP_ROOT / slug / "capability.json"
     capability = capability_ledger.load_capability(path)
     errors: list[str] = []
-    if maturity == "player_complete":
-        errors.extend(player_complete.check_declared_test_ids(capability))
-        signoff = player_complete.load_signoff(capability)
-        errors.extend(player_complete.check_signoff(capability, signoff))
-        items = list(signoff.get("craftable_items") or [])
-        errors.extend(player_complete.check_static_player_surface(slug, items))
-        errors.extend(player_complete.check_surface_catalog(slug, items))
-    else:
-        if "player-complete" in list(capability.get("profiles") or []):
-            errors.append(
-                f"{slug}: runtime_ready close cannot keep a player-complete profile"
-            )
-        if capability.get("player_signoff"):
-            errors.append(
-                f"{slug}: runtime_ready close cannot keep player_signoff"
-            )
+    if "player-complete" in list(capability.get("profiles") or []):
+        errors.append(
+            f"{slug}: close cannot keep a player-complete profile"
+        )
+    if capability.get("player_signoff"):
+        errors.append(
+            f"{slug}: close cannot keep player_signoff as a completion gate"
+        )
+    if playtest.survival_access_blocks_runtime_close(
+        capability.get("survival_access")
+    ):
+        errors.append(f"{slug}: survival_access must not block runtime close")
     for lock_path in _owned_wave_files(capability, "production_lock.json"):
         note = str(_load_json(lock_path).get("note") or "")
         if _lock_claims_player_complete(note):
@@ -150,7 +150,14 @@ def close_capability(
     document = _load_json(path)
     document["maturity"] = maturity
     document["workflow"] = "accepted"
+    if not document.get("survival_access"):
+        document["survival_access"] = "unreviewed"
     _write_json(path, document)
+    playtest.record_change(
+        change_class,
+        f"closed {slug}",
+        f"capability close {slug} ({change_class})",
+    )
     for filename in ("topology.json", "readiness.json"):
         for wave_path in _owned_wave_files(capability, filename):
             _null_unique_active_wave(wave_path)
@@ -166,12 +173,7 @@ def close_capability(
     _append_path_map(active_plan.name)
     errors = _rebuild_projections()
     if verify:
-        if maturity != "player_complete":
-            errors.append(
-                f"{slug}: --verify is only for player_complete close"
-            )
-        else:
-            errors.extend(player_complete.run_fresh_capability(slug, client=True))
+        errors.extend(player_complete.run_fresh_capability(slug, client=False))
     return errors
 
 
@@ -180,14 +182,20 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--capability", required=True)
     parser.add_argument(
         "--maturity",
-        default="player_complete",
-        choices=("player_complete", "runtime_ready"),
-        help="close maturity; runtime_ready skips player signoff and craftability",
+        default="runtime_ready",
+        choices=("runtime_ready",),
+        help="close maturity; player_complete is abolished",
+    )
+    parser.add_argument(
+        "--change-class",
+        default="major",
+        choices=playtest.CHANGE_CLASSES,
+        help="major opens/extends the project playtest cycle; minor/none do not",
     )
     parser.add_argument(
         "--verify",
         action="store_true",
-        help="also run a fresh GameTest plus runClient after the close writes",
+        help="also run declared GameTests after the close writes; never runClient",
     )
     args = parser.parse_args(argv)
     try:
@@ -195,6 +203,7 @@ def main(argv: list[str] | None = None) -> int:
             args.capability,
             verify=args.verify,
             maturity=args.maturity,
+            change_class=args.change_class,
         )
     except ValueError as error:
         print(str(error), file=sys.stderr)
@@ -204,8 +213,8 @@ def main(argv: list[str] | None = None) -> int:
         return 1
     print(f"closed {args.capability}")
     print(
-        "Confirm production lock, identity reasons, non-scope, "
-        "and player signoff before committing. Do not commit receipts."
+        "Confirm production lock, identity reasons, and non-scope before committing. "
+        "Do not commit receipts. Playtest accept is a separate human report."
     )
     return 0
 

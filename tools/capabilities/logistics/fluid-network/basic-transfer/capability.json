@@ -2,7 +2,7 @@
   "schema_version": 2,
   "slug": "logistics/fluid-network/basic-transfer",
   "title": "Fluid network basic transfer",
-  "maturity": "player_complete",
+  "maturity": "runtime_ready",
   "workflow": "accepted",
   "owned_paths": [
     "src/main/java/com/masson/cruciblecraft/logistics/fluidnet/**",
@@ -24,10 +24,12 @@
     "logistics/cover-net-r0",
     "logistics/item-network-core"
   ],
-  "profiles": ["capability-runtime", "player-complete"],
+  "profiles": [
+    "capability-runtime"
+  ],
   "wave_slug": "runtime/fluid-network-basic-transfer",
   "legacy_readiness": null,
-  "player_signoff": "tools/capabilities/logistics/fluid-network/basic-transfer/player_signoff.json",
+  "player_signoff": null,
   "required_test_ids": [
     "coverIdentitySurvivesBlockEntityReload",
     "coversAreSurvivalCraftable",
@@ -65,5 +67,6 @@
       "reason": "Fluid export cover is a distinct medium from item export."
     }
   ],
-  "note": "Survival craftable storage/import/export covers. Not Generic or Dump."
+  "note": "Survival craftable storage/import/export covers. Not Generic or Dump. Former player_complete claim is withdrawn; historical signoff does not count. survival_access is unreviewed.",
+  "survival_access": "unreviewed"
 }

@@ -592,6 +592,28 @@ def _write_json(path: Path, document: Any) -> None:
     path.write_text(payload, encoding="utf-8")
 
 
+def _write_loot(path: str) -> None:
+    _write_json(
+        LOOT / f"{path}.json",
+        {
+            "type": "minecraft:block",
+            "pools": [
+                {
+                    "bonus_rolls": 0.0,
+                    "conditions": [{"condition": "minecraft:survives_explosion"}],
+                    "entries": [
+                        {
+                            "type": "minecraft:item",
+                            "name": f"cruciblecraft:{path}",
+                        }
+                    ],
+                    "rolls": 1.0,
+                }
+            ],
+        },
+    )
+
+
 def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -798,8 +820,17 @@ def _texture_name(kind: str) -> str:
 
 
 def _write_models(rows: list[dict[str, Any]]) -> None:
+    foundry = [row for row in rows if str(row["kind"]) == "CRUCIBLE_FOUNDRY"]
+    if foundry:
+        from tools import gt6_foundry_art as foundry_art
+
+        foundry_art.write_models(foundry)
+        for row in foundry:
+            _write_loot(str(row["dummy_path"]))
     for row in rows:
         kind = str(row["kind"])
+        if kind == "CRUCIBLE_FOUNDRY":
+            continue
         path = str(row["dummy_path"])
         texture = f"cruciblecraft:block/gt6_import/mte/{_texture_name(kind)}"
         model_name = f"mte_inplace_{kind.lower()}"
@@ -836,25 +867,7 @@ def _write_models(rows: list[dict[str, Any]]) -> None:
             ITEM_MODELS / f"{path}.json",
             {"parent": f"cruciblecraft:block/{model_name}"},
         )
-        _write_json(
-            LOOT / f"{path}.json",
-            {
-                "type": "minecraft:block",
-                "pools": [
-                    {
-                        "bonus_rolls": 0.0,
-                        "conditions": [{"condition": "minecraft:survives_explosion"}],
-                        "entries": [
-                            {
-                                "type": "minecraft:item",
-                                "name": f"cruciblecraft:{path}",
-                            }
-                        ],
-                        "rolls": 1.0,
-                    }
-                ],
-            },
-        )
+        _write_loot(path)
 
 
 def _merge_inplace_catalog(rows: list[dict[str, Any]]) -> None:
@@ -1211,6 +1224,13 @@ def _render_game_test(domain: str) -> str:
         imports.append("import net.minecraft.world.item.ItemStack;")
     if "anvil" in forbids:
         imports.append("import net.minecraft.world.level.block.Blocks;")
+    if "crucible" in forbids:
+        kind_import = "import com.masson.cruciblecraft.content.mte.MteInPlaceKind;"
+        if kind_import in imports:
+            imports.insert(
+                imports.index(kind_import) + 1,
+                "import com.masson.cruciblecraft.content.mte.MteFoundryTanks;",
+            )
     methods = []
     for row in issue.get("checks") or []:
         forbid = row.get("forbid")
@@ -1290,8 +1310,8 @@ def _render_game_test(domain: str) -> str:
                 "                        .defaultBlockState());",
                 "        MteInPlaceBlockEntity be = helper.getBlockEntity(pos);",
                 "        helper.assertTrue(",
-                "                be.tank().getCapacity() == 8000,",
-                "                \"foundry tank missing\");",
+                "                be.tank().getCapacity() == MteFoundryTanks.SMELTERY_MB,",
+                "                \"foundry smeltery tank is not 16 ingots\");",
             ]
         elif forbid == "drive_push":
             body += [

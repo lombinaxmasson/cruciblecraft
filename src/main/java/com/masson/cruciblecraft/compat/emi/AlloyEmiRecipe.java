@@ -18,9 +18,9 @@ final class AlloyEmiRecipe implements EmiRecipe {
     private final List<EmiStack> outputs;
 
     AlloyEmiRecipe(String materialId, List<EmiIngredient> inputs, EmiStack output) {
-        id = ResourceLocation.fromNamespaceAndPath(
+        id = EmiIds.synthetic(ResourceLocation.fromNamespaceAndPath(
                 CrucibleCraft.MODID,
-                "/alloy/" + materialId);
+                "alloy/" + materialId));
         this.inputs = List.copyOf(inputs);
         outputs = List.of(output);
     }
@@ -28,6 +28,11 @@ final class AlloyEmiRecipe implements EmiRecipe {
     @Override
     public EmiRecipeCategory getCategory() {
         return CrucibleCraftEmiPlugin.CRUCIBLE;
+    }
+
+    @Override
+    public boolean hideCraftable() {
+        return true;
     }
 
     @Override

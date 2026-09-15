@@ -192,60 +192,16 @@ def _write_models(catalog: dict[str, Any]) -> None:
 
 
 def _write_acquisition(catalog: dict[str, Any]) -> None:
-    new_ids = [
-        identity["runtime_id"]
-        for identity in catalog["identities"]
-        if identity["registry_kind"] == "item"
-    ]
-    TAG_PATH.parent.mkdir(parents=True, exist_ok=True)
-    census.write_stable(TAG_PATH, {"replace": False, "values": new_ids})
-    configured = DATA_ROOT / "worldgen" / "configured_feature" / "smelter_mte_scatter.json"
-    placed = DATA_ROOT / "worldgen" / "placed_feature" / "smelter_mte_scatter.json"
-    biome = DATA_ROOT / "neoforge" / "biome_modifier" / "add_smelter_mte_scatter.json"
-    catalog_row = DATA_ROOT / "worldgen_catalog" / "smelter_mte_scatter.json"
-    configured.parent.mkdir(parents=True, exist_ok=True)
-    placed.parent.mkdir(parents=True, exist_ok=True)
-    biome.parent.mkdir(parents=True, exist_ok=True)
-    catalog_row.parent.mkdir(parents=True, exist_ok=True)
-    census.write_stable(
-        configured,
-        {
-            "type": "cruciblecraft:smelter_mte_scatter",
-            "config": {
-                "item_tag": "cruciblecraft:smelter_mte_items",
-                "rarity": 128,
-            },
-        },
-    )
-    census.write_stable(placed, {"feature": "cruciblecraft:smelter_mte_scatter", "placement": []})
-    census.write_stable(
-        biome,
-        {
-            "biomes": "#minecraft:is_overworld",
-            "features": ["cruciblecraft:smelter_mte_scatter"],
-            "step": "top_layer_modification",
-            "type": "neoforge:add_features",
-        },
-    )
-    census.write_stable(
-        catalog_row,
-        {
-            "biome_modifier": {
-                "biomes": "#minecraft:is_overworld",
-                "features": ["cruciblecraft:smelter_mte_scatter"],
-                "id": "add_smelter_mte_scatter",
-                "step": "top_layer_modification",
-            },
-            "config": {
-                "item_tag": "cruciblecraft:smelter_mte_items",
-                "rarity": 128,
-            },
-            "feature_type": "cruciblecraft:smelter_mte_scatter",
-            "id": "smelter_mte_scatter",
-            "kind": "scatter",
-            "placed_feature": "cruciblecraft:smelter_mte_scatter",
-        },
-    )
+    del catalog
+    for rel in (
+        TAG_PATH,
+        DATA_ROOT / "worldgen" / "configured_feature" / "smelter_mte_scatter.json",
+        DATA_ROOT / "worldgen" / "placed_feature" / "smelter_mte_scatter.json",
+        DATA_ROOT / "neoforge" / "biome_modifier" / "add_smelter_mte_scatter.json",
+        DATA_ROOT / "worldgen_catalog" / "smelter_mte_scatter.json",
+    ):
+        if rel.is_file():
+            rel.unlink()
 
 
 def _identity_delta(catalog: dict[str, Any]) -> dict[str, Any]:

@@ -31,8 +31,15 @@ CAPABILITY_SLUG_LINE = re.compile(
     re.MULTILINE,
 )
 PLAN_SLUG_LINE = re.compile(r"计划 slug：`([^`]+)`")
-MATURITY = ("frozen", "runtime_ready", "player_complete")
+MATURITY = ("frozen", "runtime_ready")
 WORKFLOW = ("active", "paused", "accepted")
+SURVIVAL_ACCESS = (
+    "unreviewed",
+    "blocked",
+    "partial",
+    "complete",
+    "not_applicable",
+)
 
 
 def dumps(document: Any) -> bytes:
@@ -69,10 +76,15 @@ def load_capability(path: Path) -> dict[str, Any]:
         raise ValueError(
             f"{io.relative(path)}: slug {slug!r} != directory {expected!r}"
         )
+    if document.get("maturity") == "player_complete":
+        raise ValueError(f"{slug}: player_complete maturity is abolished")
     if document.get("maturity") not in MATURITY:
         raise ValueError(f"{slug}: invalid maturity")
     if document.get("workflow") not in WORKFLOW:
         raise ValueError(f"{slug}: invalid workflow")
+    survival = document.get("survival_access")
+    if survival is not None and survival not in SURVIVAL_ACCESS:
+        raise ValueError(f"{slug}: invalid survival_access")
     owned = document.get("owned_paths")
     if (
         not isinstance(owned, list)
@@ -87,23 +99,6 @@ def load_capability(path: Path) -> dict[str, Any]:
         or not all(isinstance(value, str) and value for value in profiles)
     ):
         raise ValueError(f"{slug}: profiles required")
-    if document.get("maturity") == "player_complete":
-        if document.get("workflow") != "accepted":
-            raise ValueError(
-                f"{slug}: player_complete requires workflow=accepted"
-            )
-        if not document.get("player_signoff"):
-            raise ValueError(f"{slug}: player_complete requires player_signoff")
-        required_ids = document.get("required_test_ids")
-        if (
-            not isinstance(required_ids, list)
-            or not required_ids
-            or not all(isinstance(value, str) and value for value in required_ids)
-            or len(required_ids) != len(set(required_ids))
-        ):
-            raise ValueError(
-                f"{slug}: player_complete requires unique required_test_ids"
-            )
     return document
 
 
@@ -227,13 +222,6 @@ def _validate_unique_active_plans(
             raise ValueError(
                 f"{slug}: workflow=active requires docs/history/card-plans/active/"
             )
-        if (
-            row["maturity"] == "player_complete"
-            and (slug in active_plans or slug in prep_plans)
-        ):
-            raise ValueError(
-                f"{slug}: player_complete plan must live in card-plans/closed/"
-            )
 
 
 def match_owned(owned_paths: list[str], rel: str) -> bool:
@@ -277,6 +265,7 @@ def compile_ledger() -> dict[str, Any]:
             "player_signoff": document.get("player_signoff"),
             "profiles": list(document.get("profiles") or []),
             "slug": document["slug"],
+            "survival_access": document.get("survival_access") or "unreviewed",
             "title": document["title"],
             "workflow": document["workflow"],
         }
@@ -296,11 +285,6 @@ def compile_ledger() -> dict[str, Any]:
             raise ValueError(
                 f"{row['slug']} names inactive profiles {unknown_profiles}"
             )
-    declared_player_complete = sorted(
-        row["slug"]
-        for row in capabilities
-        if row["maturity"] == "player_complete" and row["workflow"] == "accepted"
-    )
     active_workflows = [
         row["slug"] for row in capabilities if row["workflow"] == "active"
     ]
@@ -322,25 +306,22 @@ def compile_ledger() -> dict[str, Any]:
         profile: sorted(profile_slugs)
         for profile, profile_slugs in sorted(profiles.items())
     }
-    profiled_complete = set(compiled_profiles.get("player-complete") or [])
-    declared_complete = set(declared_player_complete)
-    if profiled_complete != declared_complete:
-        missing = sorted(declared_complete - profiled_complete)
-        extra = sorted(profiled_complete - declared_complete)
+    profiled_complete = compiled_profiles.get("player-complete") or []
+    if profiled_complete:
         raise ValueError(
-            "player_complete declarations must join the player-complete profile; "
-            f"missing={missing}, extra={extra}"
+            "player-complete profile is abolished; still joined by "
+            + ", ".join(profiled_complete)
         )
     return {
         "capability_count": len(capabilities),
         "capabilities": capabilities,
-        "declared_player_complete": declared_player_complete,
+        "declared_player_complete": [],
         "generated_by": "tools/build_capability_ledger.py",
         "impact": dependency_impact(capabilities),
         "profiles": compiled_profiles,
         "progress_rule": (
-            "declaration is not proof; player_complete requires fresh "
-            "GameTestServer execution; runClient is required on promotion"
+            "runtime_ready is the close maturity; survival_access is independent "
+            "and does not gate close; playtest is a project-level human cycle"
         ),
         "schema_version": 2,
         "unique_active_slug": unique_active_slug,
@@ -381,33 +362,9 @@ def _git_show(revision: str, relative: str) -> str | None:
 
 
 def player_complete_promotions(base_revision: str) -> list[str]:
-    """Return slugs whose working-tree maturity newly became player_complete."""
-    if not str(base_revision or "").strip():
-        raise ValueError("player_complete promotions require a git base revision")
-    promoted: list[str] = []
-    for path in capability_files():
-        current = load_capability(path)
-        relative = io.relative(path)
-        previous_text = _git_show(base_revision, relative)
-        previous_maturity = None
-        if previous_text is not None:
-            try:
-                previous = json.loads(previous_text)
-            except json.JSONDecodeError as error:
-                raise ValueError(
-                    f"{relative} at {base_revision} is not JSON: {error}"
-                ) from error
-            if not isinstance(previous, dict):
-                raise ValueError(
-                    f"{relative} at {base_revision} is not a JSON object"
-                )
-            previous_maturity = previous.get("maturity")
-        if (
-            current.get("maturity") == "player_complete"
-            and previous_maturity != "player_complete"
-        ):
-            promoted.append(current["slug"])
-    return promoted
+    """Abolished. CI must not auto-run runClient for a maturity promotion."""
+    del base_revision
+    return []
 
 
 def main(argv: list[str] | None = None) -> int:

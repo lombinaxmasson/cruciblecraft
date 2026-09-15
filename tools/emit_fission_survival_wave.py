@@ -69,7 +69,7 @@ def write_waves() -> None:
                 "acquisition": "survival_recipes",
                 "canner_machine_tiers": 1,
                 "core_identity_count": 2,
-                "fission_survival_status": "player_complete",
+                "fission_survival_status": "runtime_ready",
                 "nuclear_source_relations": 48,
                 "rod_identity_count": 46,
                 "rod_kind_count": 8,

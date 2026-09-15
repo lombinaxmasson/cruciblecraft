@@ -18,8 +18,6 @@ python tools/verify.py integration --profile semantic-generators
 python tools/verify.py integration --profile recipe-generators
 python tools/verify.py integration --profile recipes
 python tools/verify.py integration --profile capability-runtime
-python tools/verify.py integration --profile player-complete
-python tools/verify.py promotion
 python tools/verify.py release
 ```
 
@@ -45,9 +43,9 @@ python tools/verify.py release
   release profiles。
 - 新增方块或物品但只改 registry、不改 `datagen/` 时，这次 PR 不会跑 `runData`。
   `*ResourceTest` 与 `release` 仍覆盖生成树。
-- `promotion` 只在 capability 从非 `player_complete` 晋级时运行 GameTestServer 与
-  `runClient`（`--client`）。已接受卡的日常 `player-complete` profile 只跑
-  GameTest。普通 PR 和低风险改动不会自动启动客户端。
+- `capability-runtime` 跑机制卡的 GameTest / JUnit 合同。试玩是项目级
+  `tools/playtest/current_cycle.json`，由人跑 `runClient` 签收。CI 不自动
+  `runClient`。
 - `release` 对当前 checkout fresh 执行 release profiles。它不读取历史报告来代替运行。
 - Registry census 不是 active profile。日常由材料闸门与手写配方形态测试覆盖
   缺失形态；完整 registry 冻结子集探针用
@@ -73,14 +71,12 @@ Python 模块。没有 `docs` profile，也不跑 markdown 链接检查。
 
 ## 即时证据
 
-`player-complete` 日常只跑 isolated GameTestServer。晋级
-（`runtime_ready → player_complete`）或显式 `--client` 才再跑真实 `runClient`。
-收据只写到 `build/verification/receipts/`；消费者验证 capability、runtime、状态
-和测试计数后即可删除。提交旧 receipt、复制旧日志或刷新时间戳均不能通过。
+启动 smoke（可选 `--client`）只证明客户端第一 tick 没炸，**不是**试玩签收。
+收据只写到 `build/verification/receipts/`。
 
 ```powershell
-python tools/build_player_complete.py --run `
-  --capability logistics/fluid-network/basic-transfer
+python tools/playtest.py check
+.\gradlew.bat runClient
 ```
 
 人工 `player_signoff.json` 是受版本控制的评审声明，不是机器执行收据。
@@ -128,9 +124,9 @@ active verification 单位。
 1. **VD-2026-09-001 capability affected_rule 一锅炖。** `tools/python_test_policy.json` 里那条
    `tools/capabilities/**` 规则会一次选出物流 / 能量 / Jade 全部卡测试。改一张
    capability 就会重跑一串已接受卡。
-2. **VD-2026-09-002 `player-complete` 共享脚本。** 改 `tools/player_complete.py` 或共享 owned
-   path 仍可能启动多张已接受卡的 GameTest。card-fast / 晋级只跑被 promotion
-   的卡，还没做。
+2. **VD-2026-09-002 已废的晋级 `runClient`。** `player-complete` profile 的
+   `--run --all` 现在是空操作。试玩签收只来自人跑的 `runClient` 与
+   `python tools/playtest.py record-accept`。CI `promotion` 不得再启动客户端。
 3. **VD-2026-09-003 Java 投影整数锁。** hopper 60/120、storage 625、EMI 28 台等
    `assertEquals(N, catalog.size())` 仍在。来源分母（核能 11/9/8、电池 37）要留；
    全仓库投影计数不要。

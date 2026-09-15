@@ -2,7 +2,7 @@
   "schema_version": 2,
   "slug": "machines/cluster-mill",
   "title": "Cluster Mill",
-  "maturity": "player_complete",
+  "maturity": "runtime_ready",
   "workflow": "accepted",
   "owned_paths": [
     "src/main/java/com/masson/cruciblecraft/gametest/ClusterMillGameTests.java",
@@ -19,11 +19,10 @@
     "machines/roll-former"
   ],
   "profiles": [
-    "capability-runtime",
-    "player-complete"
+    "capability-runtime"
   ],
   "wave_slug": "machines/cluster-mill",
-  "player_signoff": "tools/capabilities/machines/cluster-mill/player_signoff.json",
+  "player_signoff": null,
   "required_test_ids": [
     "bronzeHostRunsFirstLiveRecipe",
     "fourHostsAreSurvivalCraftable",
@@ -43,5 +42,6 @@
       "reason": "GT6 MultiTileEntityBasicMachine 20141-20144. RM.ClusterMill, RU, left in / right out / back energy. Quadruple casing is the real prefix, not double/dense stand-in. Not rolling mill 20111-20114 or roll former 20131-20134."
     }
   ],
-  "note": "307 selected exact rows; foil prefix gated as the real GT6 form. Netherized diamond also gates factual plate, not plate_gem. Opening-15 kinetic set stays frozen."
+  "note": "307 selected exact rows; foil prefix gated as the real GT6 form. Netherized diamond also gates factual plate, not plate_gem. Opening-15 kinetic set stays frozen. Former player_complete claim is withdrawn; historical signoff does not count. survival_access is unreviewed.",
+  "survival_access": "unreviewed"
 }

@@ -2,7 +2,7 @@
   "schema_version": 2,
   "slug": "energy/heat-exchangers",
   "title": "Heat Exchangers",
-  "maturity": "player_complete",
+  "maturity": "runtime_ready",
   "workflow": "accepted",
   "owned_paths": [
     "src/main/java/com/masson/cruciblecraft/energy/heatexchanger/**",
@@ -24,12 +24,11 @@
     "energy/nuclear-fission-hot-fluids"
   ],
   "profiles": [
-    "capability-runtime",
-    "player-complete"
+    "capability-runtime"
   ],
   "wave_slug": "runtime/heat-exchangers",
   "legacy_readiness": "tools/waves/runtime/heat-exchangers/readiness.json",
-  "player_signoff": "tools/capabilities/energy/heat-exchangers/player_signoff.json",
+  "player_signoff": null,
   "required_test_ids": [
     "playerSurfaceIsRegistered",
     "invarConsumesHotTinAndBuffersHu",
@@ -72,5 +71,6 @@
       "reason": "Electric/flux coolers stay on a later card."
     }
   ],
-  "note": "Eight single-block heat exchangers. unique_active_wave stays null. Quadruple casing is in-scope only for Invar, tungsten, tungstensteel, and tantalum_hafnium_carbide. Extra FM.Hot rows (lava, blaze, IC2 coolant) stay out."
+  "note": "Eight single-block heat exchangers. unique_active_wave stays null. Quadruple casing is in-scope only for Invar, tungsten, tungstensteel, and tantalum_hafnium_carbide. Extra FM.Hot rows (lava, blaze, IC2 coolant) stay out. Former player_complete claim is withdrawn; historical signoff does not count. survival_access is unreviewed.",
+  "survival_access": "unreviewed"
 }

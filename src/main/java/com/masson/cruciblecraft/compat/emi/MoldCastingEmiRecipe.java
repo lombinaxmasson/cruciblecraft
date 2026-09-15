@@ -20,9 +20,9 @@ final class MoldCastingEmiRecipe implements EmiRecipe {
     private final List<EmiStack> outputs;
 
     MoldCastingEmiRecipe(String materialId, String form, Item input, Item mold, Item output, int count) {
-        id = ResourceLocation.fromNamespaceAndPath(
+        id = EmiIds.synthetic(ResourceLocation.fromNamespaceAndPath(
                 CrucibleCraft.MODID,
-                "/mold_casting/" + materialId + "/" + form);
+                "mold_casting/" + materialId + "/" + form));
         inputs = List.of(EmiStack.of(input));
         catalysts = List.of(EmiStack.of(mold));
         outputs = List.of(EmiStack.of(output, count));
@@ -31,6 +31,11 @@ final class MoldCastingEmiRecipe implements EmiRecipe {
     @Override
     public EmiRecipeCategory getCategory() {
         return CrucibleCraftEmiPlugin.MOLD_CASTING;
+    }
+
+    @Override
+    public boolean hideCraftable() {
+        return true;
     }
 
     @Override

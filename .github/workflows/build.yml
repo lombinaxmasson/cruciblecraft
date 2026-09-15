@@ -56,6 +56,3 @@ jobs:
 
       - name: Verify capability runtime
         run: python3 tools/verify.py integration --profile capability-runtime
-
-      - name: Verify player-complete on maturity promotion
-        run: xvfb-run -a python3 tools/verify.py promotion

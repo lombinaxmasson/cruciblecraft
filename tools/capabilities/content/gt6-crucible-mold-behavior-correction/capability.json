@@ -1,0 +1,53 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-crucible-mold-behavior-correction",
+  "title": "GT6 Crucible Mold Behavior Correction",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6坩埚模具行为校正详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/block/CeramicMoldBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/CrucibleBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/CeramicMoldBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/CrucibleBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/mte/MteFoundryTanks.java",
+    "src/main/java/com/masson/cruciblecraft/machine/component/CrucibleProcessCore.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/CrucibleMoldBehaviorCorrectionGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/MteCrucibleFoundryRuntimeGameTests.java",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_crucible_mold_behavior_correction/**",
+    "tools/capabilities/content/gt6-crucible-mold-behavior-correction/**",
+    "tools/gt6_mte_inplace_runtime.py",
+    "tools/waves/content/gt6-crucible-mold-behavior-correction/**",
+    "tools/tests/test_gt6_crucible_mold_behavior_correction.py"
+  ],
+  "depends_on": [
+    "content/gt6-mte-crucible-foundry-runtime"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-crucible-mold-behavior-correction",
+  "required_test_ids": [
+    "crucibleAcceptsSixteenIngots",
+    "crucibleHopperInsertsFromTop",
+    "crucibleSucksDroppedIngot",
+    "foundryTankCapacitiesMatchGt6Units",
+    "moldAutoPullsWhenSideEnabled",
+    "moldDoesNotAutoPullByDefault",
+    "moldHopperExtractsWhenCool",
+    "moldRedstoneGatesAutoPull"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "ceramic:crucible-mold:behavior-correction",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:crucible",
+        "cruciblecraft:ceramic_mold"
+      ],
+      "reason": "Identity stays on the live ceramic hosts. This child only corrects 16U melt capacity, drop suck, top hopper insert, and mold auto-pull / redstone / cool extract. Foundry dummy tanks now use GT6 unit millibuckets (2304/144/1296/0) without reopening the foundry identity card. Faucet fillMold stays on its closed card."
+    }
+  ],
+  "note": "Behavior correction on the live ceramic crucible and mold, plus GT6-unit dummy tank millibuckets on the 85 foundry hosts. Close at runtime_ready, not player_complete. Do not reopen the foundry identity card or invent recipes."
+}

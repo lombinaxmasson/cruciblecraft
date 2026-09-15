@@ -2,7 +2,7 @@
   "schema_version": 2,
   "slug": "logistics/display-cpu",
   "title": "Logistics Display CPU",
-  "maturity": "player_complete",
+  "maturity": "runtime_ready",
   "workflow": "accepted",
   "owned_paths": [
     "src/main/java/com/masson/cruciblecraft/logistics/displaycpu/**",
@@ -30,10 +30,12 @@
     "logistics/cover-net-r0",
     "logistics/logistics-core"
   ],
-  "profiles": ["capability-runtime", "player-complete"],
+  "profiles": [
+    "capability-runtime"
+  ],
   "wave_slug": "runtime/display-cpu",
   "legacy_readiness": "tools/waves/runtime/display-cpu/readiness.json",
-  "player_signoff": "tools/capabilities/logistics/display-cpu/player_signoff.json",
+  "player_signoff": null,
   "required_test_ids": [
     "displayCoverIsSurvivalCraftable",
     "formedCoreWritesDisplayLoad",
@@ -45,27 +47,36 @@
     {
       "semantic_key": "cover:logistics_display_cpu_logic",
       "disposition": "new_distinct",
-      "runtime_ids": ["cruciblecraft:logistics_display_cpu_logic"],
+      "runtime_ids": [
+        "cruciblecraft:logistics_display_cpu_logic"
+      ],
       "reason": "GT6 CoverLogisticsDisplayCPULogic status cover, not a processor unit block."
     },
     {
       "semantic_key": "cover:logistics_display_cpu_control",
       "disposition": "new_distinct",
-      "runtime_ids": ["cruciblecraft:logistics_display_cpu_control"],
+      "runtime_ids": [
+        "cruciblecraft:logistics_display_cpu_control"
+      ],
       "reason": "GT6 CoverLogisticsDisplayCPUControl status cover."
     },
     {
       "semantic_key": "cover:logistics_display_cpu_storage",
       "disposition": "new_distinct",
-      "runtime_ids": ["cruciblecraft:logistics_display_cpu_storage"],
+      "runtime_ids": [
+        "cruciblecraft:logistics_display_cpu_storage"
+      ],
       "reason": "GT6 CoverLogisticsDisplayCPUStorage status cover."
     },
     {
       "semantic_key": "cover:logistics_display_cpu_conversion",
       "disposition": "new_distinct",
-      "runtime_ids": ["cruciblecraft:logistics_display_cpu_conversion"],
+      "runtime_ids": [
+        "cruciblecraft:logistics_display_cpu_conversion"
+      ],
       "reason": "GT6 CoverLogisticsDisplayCPUConversion status cover."
     }
   ],
-  "note": "Four Display CPU status covers on pipes scanned by Logistics Core. Player names 物流监视器(逻辑/控制/存储/转换处理器). Not processor unit blocks, not crystal processors, not Batteries. Source is local gt6_code."
+  "note": "Four Display CPU status covers on pipes scanned by Logistics Core. Player names 物流监视器(逻辑/控制/存储/转换处理器). Not processor unit blocks, not crystal processors, not Batteries. Source is local gt6_code. Former player_complete claim is withdrawn; historical signoff does not count. survival_access is unreviewed.",
+  "survival_access": "unreviewed"
 }

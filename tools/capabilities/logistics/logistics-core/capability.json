@@ -2,7 +2,7 @@
   "schema_version": 2,
   "slug": "logistics/logistics-core",
   "title": "Logistics Core",
-  "maturity": "player_complete",
+  "maturity": "runtime_ready",
   "workflow": "accepted",
   "owned_paths": [
     "src/main/java/com/masson/cruciblecraft/logistics/core/**",
@@ -58,10 +58,12 @@
     "logistics/fluid-network/basic-transfer",
     "logistics/generic-network/core"
   ],
-  "profiles": ["capability-runtime", "player-complete"],
+  "profiles": [
+    "capability-runtime"
+  ],
   "wave_slug": "runtime/logistics-core",
   "legacy_readiness": "tools/waves/runtime/logistics-core/readiness.json",
-  "player_signoff": "tools/capabilities/logistics/logistics-core/player_signoff.json",
+  "player_signoff": null,
   "required_test_ids": [
     "dumpCoverIsSurvivalCraftable",
     "formedCoreDumpsLeftoverItems",
@@ -73,15 +75,20 @@
     {
       "semantic_key": "cover:logistics_generic_dump",
       "disposition": "new_distinct",
-      "runtime_ids": ["cruciblecraft:logistics_generic_dump"],
+      "runtime_ids": [
+        "cruciblecraft:logistics_generic_dump"
+      ],
       "reason": "Dump is a Core overflow marker, not a generic transfer/storage cover."
     },
     {
       "semantic_key": "multiblock:logistics_core",
       "disposition": "new_distinct",
-      "runtime_ids": ["cruciblecraft:logistics_core"],
+      "runtime_ids": [
+        "cruciblecraft:logistics_core"
+      ],
       "reason": "GT6 MultiTileEntityLogisticsCore controller."
     }
   ],
-  "note": "Survival craftable Dump cover plus 5x5x5 Core. Display CPUs are logistics/display-cpu. Does not redo item/fluid/generic transfer. Source is local gt6_code."
+  "note": "Survival craftable Dump cover plus 5x5x5 Core. Display CPUs are logistics/display-cpu. Does not redo item/fluid/generic transfer. Source is local gt6_code. Former player_complete claim is withdrawn; historical signoff does not count. survival_access is unreviewed.",
+  "survival_access": "unreviewed"
 }

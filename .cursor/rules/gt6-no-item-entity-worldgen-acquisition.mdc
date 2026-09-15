@@ -1,0 +1,31 @@
+---
+description: Never dump catalog items as worldgen ItemEntities to fake player acquisition.
+alwaysApply: true
+---
+
+# GT6 obtain: no catalog ItemEntity worldgen
+
+Do not sprinkle catalog items onto the overworld as `ItemEntity` so a card
+can claim empty-input survival obtain. That is how T33/T45/T48 remainder /
+MTE / food / machine tags were faked. It is not GT6.
+
+GT6 overworld scatter is **rock blocks** (`WorldgenRocks` →
+`SurfaceRockFeature`), plus real trees, ores, dungeons, loot. Translate
+those. Do not invent dirt/sand rarity dumps of tagged catalogs.
+
+**Forbidden** (do not write this in a new/active plan, GameTest, or
+`player_path_support`):
+
+- `GtItemScatterFeature`, `GtStoneScatterFeature`,
+  `GtBlockObjectScatterFeature`, `ItemScatterConfiguration`, new `*_scatter`
+  holders, or biome modifiers that spawn `ItemEntity` or dump a catalog
+  onto dirt/sand during chunk gen
+- Re-registering any of the eight retired fake scatters
+- 「empty-input overworld item scatter」or「用主世界掉落物顶 player_complete」
+- Recording `kind: worldgen_drop` of a remainder catalog as obtain
+
+Creative tabs and GameTest inject are still not acquisition. If GT6 has no
+recipe and no real worldgen: keep `runtime_ready` / `blocked`. Live count of
+those fake feature registrations must stay **0**.
+
+Human contract: `docs/current/gt6-no-item-entity-worldgen.md`.

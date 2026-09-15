@@ -1,0 +1,25 @@
+{
+  "schema": "gt6-crucible-mold-interaction-subset-v1",
+  "capability_slug": "content/gt6-crucible-mold-interaction",
+  "note": "Ceramic fillMold / chisel / heat / faucet-to-ceramic-mold. Do not rewrite foundry identities or the previous correction card's required_test_ids.",
+  "rows": [
+    {
+      "live_block": "cruciblecraft:crucible",
+      "disposition": "reuse_canonical",
+      "identity_owner": "content/gt6-mte-crucible-foundry-runtime",
+      "child_owner": "content/gt6-crucible-mold-interaction"
+    },
+    {
+      "live_block": "cruciblecraft:ceramic_mold",
+      "disposition": "reuse_canonical",
+      "identity_owner": "content/gt6-mte-crucible-foundry-runtime",
+      "child_owner": "content/gt6-crucible-mold-interaction"
+    },
+    {
+      "live_block": "cruciblecraft:fluid_attachment/crucible_faucet_stone",
+      "disposition": "reuse_canonical",
+      "identity_owner": "content/gt6-mte-fluid-attachments-runtime",
+      "child_owner": "content/gt6-crucible-mold-interaction"
+    }
+  ]
+}

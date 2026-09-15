@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.content.mold;
 
 import java.util.Locale;
+import java.util.Optional;
 
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
@@ -33,5 +34,14 @@ public enum MoldShape {
 
     public static MoldShape parse(String value) {
         return valueOf(value.toUpperCase(Locale.ROOT));
+    }
+
+    public static Optional<MoldShape> fromMask(int mask) {
+        for (MoldShape shape : values()) {
+            if (shape.mask == mask) {
+                return Optional.of(shape);
+            }
+        }
+        return Optional.empty();
     }
 }
