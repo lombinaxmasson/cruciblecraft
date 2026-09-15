@@ -52,6 +52,11 @@ python tools/verify.py release
 - Registry census 不是 active profile。日常由材料闸门与手写配方形态测试覆盖
   缺失形态；完整 registry 冻结子集探针用
   `.\gradlew.bat runGameTestServer -PrecipeCensus`，在 release 或改注册表后跑。
+- 裸 `.\gradlew.bat runGameTestServer` 只跑 `cruciblecraft` 命名空间里的占位测试
+  （NeoForge 在已启用命名空间为零测试时会崩溃）。`CrucibleCraftGameTests` 与
+  `CircuitTierGameTests` 在 `cruciblecraft_default_grid`，需
+  `-PgameTestNamespaces=cruciblecraft_default_grid`。内容/机制闭门仍用
+  `-PwaveRecipes=<slug>`。
 - 每次结果写到被 Git 忽略的 `build/verification/latest.json`。报告只包含 revision、
   dirty paths、命令、测试计数、环境和 PASS/FAIL，不包含文件摘要。
 

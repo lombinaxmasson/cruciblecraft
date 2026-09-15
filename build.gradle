@@ -181,6 +181,9 @@ neoForge {
                         providers.gradleProperty('gameTestNamespaces').get()
                 gameDirectory = project.file('run-game-test-filtered')
             } else {
+                // Mod-id namespace is a one-test stub. The kitchen-sink grid is
+                // opt-in: -PgameTestNamespaces=cruciblecraft_default_grid
+                // Closeout gates stay on -PwaveRecipes / -PrecipeCensus / -Pscale.
                 systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
             }
             if (providers.gradleProperty('clientSmoke').isPresent()) {

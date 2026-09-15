@@ -844,6 +844,9 @@ python tools/build_t13_prefix_domain_denominators.py --check --reference-only
 ./gradlew runData
 ./gradlew test
 ./gradlew runGameTestServer
+# Bare runGameTestServer loads the mod-id stub only. Closeout uses
+# -PwaveRecipes=<slug>. Retired kitchen sink:
+# -PgameTestNamespaces=cruciblecraft_default_grid
 python tools/run_python_tests.py --suite closure
 python tools/verify_full_verification_report.py --check
 ```
@@ -966,8 +969,8 @@ does not shrink existing history.
 `MaterialChainIntegrationTest` expands the production `MaterialChainRules` against the
 imported runtime material index and verifies every configured map, water input,
 ordered byproducts, the 6×16-unit anvil yield, and raw-ore-to-ingot
-reachability. `CrucibleCraftGameTests` runs the production block-world suite on
-the dedicated NeoForge GameTest server. It covers live concrete recipes,
+reachability. `CrucibleCraftGameTests` is the retired kitchen-sink block-world
+suite on `cruciblecraft_default_grid` (not the bare GameTest server). It covers live concrete recipes,
 Crusher pause/rollback/resume and declared-duration completion, water capability
 policy, Firebox-to-Smelter HEAT, placed copper/tin/iron/gold chains, real
 tungsten configured-feature placement and loot through its full machine chain,
