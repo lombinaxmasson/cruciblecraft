@@ -171,12 +171,16 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 import net.neoforged.neoforge.items.IItemHandler;
 
 /**
- * Final-gate block-world coverage. Recipes are those loaded by the production
- * reload listener; no test-only RecipeMaps or processing hosts are used.
+ * Retired kitchen-sink block-world coverage. Isolated {@code -PwaveRecipes}
+ * namespaces remain the closeout gates. Re-enable with
+ * {@code -PgameTestNamespaces=cruciblecraft_default_grid}. Recipes are those
+ * loaded by the production reload listener; no test-only RecipeMaps or
+ * processing hosts are used.
  */
-@GameTestHolder(CrucibleCraft.MODID)
+@GameTestHolder(CrucibleCraftGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class CrucibleCraftGameTests {
+    public static final String NAMESPACE = "cruciblecraft_default_grid";
     private static final String TEMPLATE = "empty";
 
     private CrucibleCraftGameTests() {

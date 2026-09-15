@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Run a dedicated T31 scale GameTest measurement.
 
-Ordinary runGameTestServer does not register these tests. This runner
+Bare runGameTestServer does not register these tests. This runner
 requires physical RAM >= 16 GiB and -Pscale=<small|target|stress>.
 """
 from __future__ import annotations

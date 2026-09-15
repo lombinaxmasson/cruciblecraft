@@ -2,7 +2,6 @@ package com.masson.cruciblecraft.gametest;
 
 import java.util.List;
 
-import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.item.TechnologicalPartCatalog;
@@ -17,8 +16,11 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
-/** Remaining GT6 T2–T6 circuit identities and the Redstone Alloy boule cut chain. */
-@GameTestHolder(CrucibleCraft.MODID)
+/**
+ * Remaining GT6 T2–T6 circuit identities and the Redstone Alloy boule cut chain.
+ * Lives on the opt-in default grid ({@link CrucibleCraftGameTests#NAMESPACE}).
+ */
+@GameTestHolder(CrucibleCraftGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class CircuitTierGameTests {
     private static final String TEMPLATE = "empty";

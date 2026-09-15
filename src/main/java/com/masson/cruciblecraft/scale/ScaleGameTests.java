@@ -6,10 +6,10 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * Dedicated scale GameTests. The holder namespace is not the mod id, so
- * ordinary {@code neoforge.enabledGameTestNamespaces=cruciblecraft} keeps the
- * daily grid log. Measurement runs set that property to
- * {@link #NAMESPACE} and register this single test.
+ * Dedicated scale GameTests. The holder namespace is not the mod id.
+ * Bare {@code runGameTestServer} only loads the {@code cruciblecraft} stub;
+ * the retired kitchen sink is {@code cruciblecraft_default_grid}. Measurement
+ * runs set the property to {@link #NAMESPACE} and register this single test.
  */
 @GameTestHolder(ScaleGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
