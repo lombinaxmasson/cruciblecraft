@@ -5,7 +5,6 @@ import java.util.List;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.energy.EnergyEmitter;
-import com.masson.cruciblecraft.energy.PerTickEnergyBudget;
 import com.masson.cruciblecraft.machine.generation.FuelGeneratorEnergy;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
@@ -43,12 +42,10 @@ public final class LargeHeatExchangerBlockEntity extends BlockEntity
     private final FluidTank output;
     private final IFluidHandler inputView = new InputHandler();
     private final IFluidHandler outputView = new OutputHandler();
-    private final PerTickEnergyBudget outputBudget = new PerTickEnergyBudget();
     private String status = "idle";
     private boolean formed;
     private boolean clientSyncPending;
     private long lastClientSyncGameTime = Long.MIN_VALUE;
-    private long emitQuota;
 
     public LargeHeatExchangerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.LARGE_HEAT_EXCHANGER.get(), pos, state);
@@ -101,15 +98,16 @@ public final class LargeHeatExchangerBlockEntity extends BlockEntity
             return;
         }
         for (Vec3i offset : LargeHeatExchangerStructure.transmitters()) {
-            emitQuota = per;
-            EnergyEmitter.emit(
+            EnergyEmitter.pushToSide(
                     level,
                     worldPosition.offset(offset),
-                    this,
                     EnergyType.HEAT,
+                    1L,
+                    per,
                     Direction.UP);
+            energy.discardUnits(per);
         }
-        emitQuota = 0L;
+        markPersistentMutation();
     }
 
     private void consumeHotFluid() {
@@ -239,11 +237,7 @@ public final class LargeHeatExchangerBlockEntity extends BlockEntity
 
     @Override
     public long outputSize(EnergyType type, Direction side) {
-        return handles(type, side)
-                        && energy.stored() >= profile.packetSizeLong()
-                        && emitQuota > 0L
-                ? profile.packetSizeLong()
-                : 0L;
+        return 0L;
     }
 
     @Override
@@ -253,43 +247,7 @@ public final class LargeHeatExchangerBlockEntity extends BlockEntity
             long maximum,
             Direction side,
             boolean simulate) {
-        if (!handles(type, side)
-                || size != profile.packetSizeLong()
-                || maximum <= 0L
-                || emitQuota <= 0L
-                || energy.stored() < profile.packetSizeLong()
-                || outputBudget.claim(
-                                gameTime(),
-                                maximum,
-                                profile.maximumOutputPacketsPerTick(),
-                                true)
-                        <= 0L) {
-            return 0L;
-        }
-        long allowed = Math.min(maximum, emitQuota);
-        long available = energy.extract(
-                size,
-                outputBudget.claim(
-                        gameTime(),
-                        allowed,
-                        profile.maximumOutputPacketsPerTick(),
-                        true),
-                true);
-        if (!simulate && level != null && !level.isClientSide) {
-            long claimed = outputBudget.claim(
-                    gameTime(),
-                    available,
-                    profile.maximumOutputPacketsPerTick(),
-                    false);
-            if (claimed != available
-                    || energy.extract(size, available, false) != available) {
-                throw new IllegalStateException(
-                        "Large heat-exchanger output changed after simulation");
-            }
-            emitQuota -= available;
-            markPersistentMutation();
-        }
-        return available;
+        return 0L;
     }
 
     @Override
@@ -307,14 +265,6 @@ public final class LargeHeatExchangerBlockEntity extends BlockEntity
             return false;
         }
         return ModRecipeMaps.FUELS_HOT.hasFluidCandidate(stack.getFluid());
-    }
-
-    private long gameTime() {
-        if (level == null) {
-            outputBudget.reset();
-            return 0L;
-        }
-        return level.getGameTime();
     }
 
     private void setStatus(String nextStatus) {

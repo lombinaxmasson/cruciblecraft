@@ -78,13 +78,7 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, SteamEngineBlockEntity engine) {
         engine.convertOneBatch();
-        Direction output = state.getValue(SteamEngineBlock.FACING);
-        EnergyEmitter.emit(
-                level,
-                pos,
-                engine,
-                EnergyType.KINETIC_PUSH,
-                output);
+        engine.emitKinetic(level, pos, state);
         long phaseKey = CheckpointDecisions.phaseKey(pos.getX(), pos.getY(), pos.getZ());
         if (engine.checkpoint.shouldSync(false, level.getGameTime(), phaseKey, 20)) {
             engine.syncToClient();
@@ -145,6 +139,31 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
                     "Steam engine execute differed from simulation");
         }
         setStatus("running");
+        markMutation();
+    }
+
+    /**
+     * GT6 {@code MultiTileEntityEngineSteam}: emit one signed KU packet, then
+     * always {@code mEnergy -= tOutput} even when the neighbor took nothing.
+     */
+    private void emitKinetic(Level level, BlockPos pos, BlockState state) {
+        long rate = outputRate();
+        if (kinetic.stored() <= rate) {
+            return;
+        }
+        Direction output = state.getValue(SteamEngineBlock.FACING);
+        EnergyEmitter.pushToSide(
+                level,
+                pos,
+                EnergyType.KINETIC_PUSH,
+                kinetic.strokeSign() * rate,
+                1L,
+                output);
+        long removed = kinetic.extract(rate, false);
+        if (removed != rate) {
+            throw new IllegalStateException(
+                    "Steam engine KU discard changed after the emit check");
+        }
         markMutation();
     }
 

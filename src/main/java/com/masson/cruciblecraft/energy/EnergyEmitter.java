@@ -12,9 +12,58 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
 
-/** Pushes one source's packet budget to adjacent consumers in stable side order. */
+/**
+ * Packet emission.
+ *
+ * <p>{@link #emit} is the extract-then-insert path used by EU/LU networks.
+ * {@link #pushToSide} is GT6 {@code ITileEntityEnergy.Util.emitEnergyToSide}:
+ * the emitter injects into the neighbor and manages its own buffer.
+ */
 public final class EnergyEmitter {
     private EnergyEmitter() {}
+
+    /**
+     * GT6 {@code emitEnergyToSide}: insert {@code amount} packets of
+     * {@code size} into the adjacent handler. Does not extract from a source.
+     *
+     * @return packets the neighbor accepted
+     */
+    public static long pushToSide(
+            Level level,
+            BlockPos position,
+            EnergyType type,
+            long size,
+            long amount,
+            Direction sideOutOf) {
+        Objects.requireNonNull(level, "level");
+        Objects.requireNonNull(position, "position");
+        Objects.requireNonNull(type, "type");
+        if (level.isClientSide
+                || sideOutOf == null
+                || size == 0L
+                || amount <= 0L) {
+            return 0L;
+        }
+        Direction consumerSide = sideOutOf.getOpposite();
+        BlockPos targetPosition = position.relative(sideOutOf);
+        if (!level.hasChunkAt(targetPosition)) {
+            return 0L;
+        }
+        IEnergyHandler target = level.getCapability(
+                ModCapabilities.ENERGY, targetPosition, consumerSide);
+        if (target == null || !target.handles(type, consumerSide)) {
+            return 0L;
+        }
+        return safeInsert(
+                target,
+                type,
+                size,
+                amount,
+                consumerSide,
+                false,
+                "gt6 push",
+                targetPosition);
+    }
 
     public static long emit(
             Level level,

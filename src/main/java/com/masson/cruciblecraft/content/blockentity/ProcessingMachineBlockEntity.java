@@ -25,6 +25,7 @@ import com.masson.cruciblecraft.machine.processing.MachineEnergyBuffer;
 import com.masson.cruciblecraft.machine.processing.MachineTransaction;
 import com.masson.cruciblecraft.machine.processing.ParallelRecipeOperations;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineDisplayData;
+import com.masson.cruciblecraft.machine.processing.ProcessingMachineEnergyPlacement;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineState;
 import com.masson.cruciblecraft.machine.processing.ProcessingRuntime;
@@ -138,9 +139,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         this.variant = variant;
         this.spec = variant.runtimeSpec();
         this.recipeCache = new GTRecipeCache(spec.requireRecipeMap());
-        this.energy = spec.energy().mode() == ProcessingMachineSpec.EnergyMode.BUFFERED
-                ? new MachineEnergyBuffer(spec.energy().capacity(), spec.energy().maxPacket())
-                : null;
+        this.energy = energyBufferFor(spec);
         this.inventory = new LayoutAwareItemStackHandler(
                 spec.items().slotCount(),
                 spec.items()::accepts,
@@ -559,7 +558,24 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         long maximum = legacy
                 ? plan.nominalPower()
                 : plan.maximumPower();
+        if (spec.energy().mode() == ProcessingMachineSpec.EnergyMode.ADJACENT
+                && spec.energy().type() == EnergyType.HEAT
+                && energy != null
+                && energy.stored() >= minimum) {
+            long actual = Math.min(maximum, energy.stored());
+            if (actual < minimum) {
+                return Optional.empty();
+            }
+            long step = Math.min(actual, minimum);
+            return Optional.of(new PowerPlan(
+                    step,
+                    step,
+                    () -> energy.consume(step)));
+        }
         if (spec.energy().mode() == ProcessingMachineSpec.EnergyMode.BUFFERED) {
+            if (energy == null) {
+                return Optional.empty();
+            }
             long actual = Math.min(maximum, energy.stored());
             return actual >= minimum
                     ? Optional.of(new PowerPlan(
@@ -699,10 +715,19 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     }
 
     @Override public boolean handles(EnergyType type, Direction side) {
-        return spec.energy().mode() == ProcessingMachineSpec.EnergyMode.BUFFERED
-                && type == spec.energy().type()
-                && spec.sidedIo().energy().resolve(machineFront(), side)
-                == ProcessingMachineSpec.CapabilityAccess.INPUT;
+        if (type != spec.energy().type() || side == null) {
+            return false;
+        }
+        if (spec.energy().mode() == ProcessingMachineSpec.EnergyMode.BUFFERED) {
+            return spec.sidedIo().energy().resolve(machineFront(), side)
+                    == ProcessingMachineSpec.CapabilityAccess.INPUT;
+        }
+        return spec.energy().mode() == ProcessingMachineSpec.EnergyMode.ADJACENT
+                && type == EnergyType.HEAT
+                && energy != null
+                && side == ProcessingMachineEnergyPlacement
+                        .connection(spec, machineFront())
+                        .providerOffset();
     }
 
     @Override public long insert(
@@ -1387,6 +1412,22 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     @Override public FluidStack fluid(int tank) { return tanks.get(tank).getFluid().copy(); }
     @Override public void setFluid(int tank, FluidStack stack) {
         tanks.get(tank).setFluid(stack);
+    }
+
+    private static MachineEnergyBuffer energyBufferFor(ProcessingMachineSpec spec) {
+        if (spec.energy().mode() == ProcessingMachineSpec.EnergyMode.BUFFERED) {
+            return new MachineEnergyBuffer(
+                    spec.energy().capacity(), spec.energy().maxPacket());
+        }
+        if (spec.energy().mode() == ProcessingMachineSpec.EnergyMode.ADJACENT
+                && spec.energy().type() == EnergyType.HEAT) {
+            long packet = Math.max(1L, spec.energy().maxPacket());
+            long capacity = spec.energy().capacity() > 0L
+                    ? Math.max(spec.energy().capacity(), packet)
+                    : Math.multiplyExact(packet, 32L);
+            return new MachineEnergyBuffer(capacity, packet);
+        }
+        return null;
     }
 
     private record PowerPlan(

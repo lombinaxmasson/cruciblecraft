@@ -52,6 +52,20 @@ public final class FuelGeneratorEnergy {
         return packets;
     }
 
+    /**
+     * GT6 burning-box / hot-fluid emit: subtract offered units even when the
+     * neighbor accepted fewer packets (heat dumped into air or overheat).
+     */
+    public long discardUnits(long units) {
+        if (units <= 0L || stored <= 0L) {
+            return 0L;
+        }
+        long removed = Math.min(stored, units);
+        stored -= removed;
+        extracted = EnergyPackets.add(extracted, removed);
+        return removed;
+    }
+
     public void restore(State state) {
         if (state == null) {
             throw new NullPointerException("state");

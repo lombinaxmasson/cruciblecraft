@@ -61,4 +61,15 @@ class FuelGeneratorEnergyTest {
         assertEquals(96L, restored.generated());
         assertEquals(32L, restored.extracted());
     }
+
+    @Test
+    void discardUnitsCountsAsExtractedEvenWhenNothingWasInserted() {
+        FuelGeneratorEnergy energy = new FuelGeneratorEnergy(1L, 64L);
+        energy.generate(24L);
+
+        assertEquals(24L, energy.discardUnits(24L));
+        assertEquals(0L, energy.stored());
+        assertEquals(24L, energy.extracted());
+        assertEquals(24L, energy.generated());
+    }
 }

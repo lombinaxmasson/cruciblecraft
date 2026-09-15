@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
+import com.masson.cruciblecraft.machine.generation.FuelGeneratorEnergy;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -251,6 +252,21 @@ class EnergyEmitterTest {
 
         assertEquals(0L, delivered);
         assertEquals(6L, source.packets);
+    }
+
+    @Test
+    void heatPushDiscardsSourceUnitsEvenWhenTheConsumerTakesNothing() {
+        FuelGeneratorEnergy source = new FuelGeneratorEnergy(1L, 64L);
+        source.generate(24L);
+        BufferHandler air = BufferHandler.consumer(0L);
+
+        long accepted = air.insert(
+                EnergyType.HEAT, 1L, 24L, Direction.DOWN, false);
+        source.discardUnits(24L);
+
+        assertEquals(0L, accepted);
+        assertEquals(0L, source.stored());
+        assertEquals(24L, source.extracted());
     }
 
     private static final class BufferHandler implements IEnergyHandler {
