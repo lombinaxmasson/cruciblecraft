@@ -65,15 +65,17 @@ public final class ElectricEngineBlockEntity extends BlockEntity
         engine.prepareCycle();
         long delivered = 0L;
         if (engine.active) {
-            delivered = EnergyEmitter.emit(
+            delivered = EnergyEmitter.pushToSide(
                     level,
                     pos,
-                    engine,
                     EnergyType.KINETIC_PUSH,
+                    engine.cycleOutputSigned,
+                    1L,
                     blockState.getValue(ElectricEngineBlock.FACING));
             if (!engine.cycleConsumed) {
                 engine.consumeCycle();
             }
+            engine.emitsEnergy = delivered > 0L;
             engine.status = delivered > 0L ? "running" : "blocked";
         } else {
             engine.status = engine.stopped

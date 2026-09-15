@@ -62,15 +62,17 @@ public final class ElectricHeaterBlockEntity extends BlockEntity
         heater.prepareCycle();
         long delivered = 0L;
         if (heater.active) {
-            delivered = EnergyEmitter.emit(
+            delivered = EnergyEmitter.pushToSide(
                     level,
                     pos,
-                    heater,
                     EnergyType.HEAT,
+                    1L,
+                    heater.cycleOutput,
                     state.getValue(ElectricHeaterBlock.FACING));
             if (!heater.cycleConsumed) {
                 heater.consumeCycle();
             }
+            heater.emitsEnergy = delivered > 0L;
             heater.status = delivered > 0L ? "running" : "blocked";
         } else if (heater.cycleInput > 0L) {
             // GT6 marks WASTE_ENERGY on this family: input is discarded even

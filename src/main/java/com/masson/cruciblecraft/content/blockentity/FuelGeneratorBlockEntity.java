@@ -46,6 +46,8 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
     private static final String ENERGY_IDENTITY_KEY = "energy_identity";
     private static final String QUARANTINE_KEY =
             "fuel_generator_quarantine";
+    /** GT6 {@code MultiTileEntityGeneratorLiquid} {@code mCooldown = 100}. */
+    private static final int HEAT_EMIT_COOLDOWN_TICKS = 100;
     private final FuelGeneratorSpec spec;
     private final FuelGeneratorEnergy energy;
     private final FluidTank input;
@@ -63,6 +65,7 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
     private FuelGeneratorIdentityPolicy.Identity persistedIdentity;
     private String identityQuarantine = "";
     private boolean quarantineWarningLogged;
+    private int heatEmitCooldown;
 
     public FuelGeneratorBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.FUEL_GENERATOR.get(), pos, state);
@@ -121,19 +124,53 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
             BlockState state,
             FuelGeneratorBlockEntity generator) {
         generator.tickGeneration();
-        long delivered = EnergyEmitter.emit(
-                level,
-                pos,
-                generator,
-                generator.spec.outputEnergyType(),
-                generator.energyOutputSide());
-        if (delivered == 0L
-                && generator.energy.stored()
-                        >= generator.spec.outputPacketSize()) {
-            generator.setStatus("energy_output_blocked");
-        }
+        emitOutput(level, pos, generator);
         generator.updateLitState();
         generator.flushClientSync(level.getGameTime());
+    }
+
+    private static void emitOutput(
+            Level level, BlockPos pos, FuelGeneratorBlockEntity generator) {
+        EnergyType type = generator.spec.outputEnergyType();
+        Direction side = generator.energyOutputSide();
+        if (!generator.identityQuarantine.isBlank()) {
+            return;
+        }
+        if (type.sizeIrrelevant()) {
+            boolean live = generator.activeRecipe != null
+                    || generator.heatEmitCooldown > 0;
+            if (generator.heatEmitCooldown > 0) {
+                generator.heatEmitCooldown--;
+            }
+            long rate = generator.spec.maximumOutputPacketsPerTick();
+            if (!live || generator.energy.stored() < rate) {
+                return;
+            }
+            long offered = Math.min(rate, generator.energy.stored());
+            EnergyEmitter.pushToSide(
+                    level,
+                    pos,
+                    type,
+                    type.emitPacketSize(generator.spec.outputPacketSize()),
+                    offered,
+                    side);
+            generator.energy.discardUnits(rate);
+            generator.markPersistentMutation();
+            return;
+        }
+        long packet = generator.spec.outputPacketSize();
+        if (generator.energy.stored() < packet) {
+            return;
+        }
+        EnergyEmitter.pushToSide(
+                level,
+                pos,
+                type,
+                packet,
+                1L,
+                side);
+        generator.energy.discardUnits(packet);
+        generator.markPersistentMutation();
     }
 
     private void tickGeneration() {
@@ -240,6 +277,9 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
                         drained, required)) {
             throw new IllegalStateException(
                     "Fuel changed after generator simulation");
+        }
+        if (spec.outputEnergyType().sizeIrrelevant()) {
+            heatEmitCooldown = HEAT_EMIT_COOLDOWN_TICKS;
         }
     }
 
@@ -524,6 +564,7 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
         if (!identityQuarantine.isBlank()) {
             tag.putString(QUARANTINE_KEY, identityQuarantine);
         }
+        tag.putInt("heat_emit_cooldown", heatEmitCooldown);
     }
 
     @Override
@@ -572,6 +613,7 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
         if (!identityQuarantine.isBlank()) {
             status = "identity_quarantined";
         }
+        heatEmitCooldown = Math.max(0, tag.getInt("heat_emit_cooldown"));
     }
 
     @Override

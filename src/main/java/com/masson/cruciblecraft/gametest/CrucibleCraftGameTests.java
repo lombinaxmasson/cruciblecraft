@@ -106,6 +106,7 @@ import com.masson.cruciblecraft.registry.ModMachineIdentities;
 import com.masson.cruciblecraft.registry.ModMultiblockControllers;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
+import com.masson.cruciblecraft.steam.SteamConversion;
 import com.masson.cruciblecraft.worldgen.LargeVeinConfiguration;
 import com.masson.cruciblecraft.worldgen.LargeVeinLayout;
 import com.masson.cruciblecraft.worldgen.OreHostVariantCatalog.Host;
@@ -718,13 +719,12 @@ public final class CrucibleCraftGameTests {
                             "Exhaust blockage consumed fuel, produced RU or "
                                     + "voided CO2");
                     helper.assertTrue(
-                            outputFull.status().equals(
-                                            "energy_output_blocked")
-                                    && outputFull.inputAmount()
-                                            == required.getAmount()
-                                    && outputFull.progress() == 0
-                                    && outputFull.energyStored() == 65_536L,
-                            "Full RU output did not stop atomically");
+                            outputFull.energyExtracted() > 0L
+                                    && outputFull.energyStored() < 65_536L
+                                    && outputFull.energyGenerated()
+                                            == outputFull.energyStored()
+                                                    + outputFull.energyExtracted(),
+                            "Full RU output did not waste unused packets");
                     helper.assertTrue(
                             blockedDynamo.stored(
                                             EnergyType.KINETIC_ROTATION)
@@ -1347,7 +1347,7 @@ public final class CrucibleCraftGameTests {
         BlockPos boilerPos = fireboxPos.above();
         BlockPos enginePos = boilerPos.above();
         BlockPos pressPos = enginePos.east();
-        GameTestHeatSources.placeHuSource(helper, fireboxPos);
+        GameTestHeatSources.placeHuSourceBlock(helper, fireboxPos);
         helper.setBlock(boilerPos, ModBlocks.BRONZE_BOILER.get());
         helper.setBlock(
                 enginePos,
@@ -1392,6 +1392,7 @@ public final class CrucibleCraftGameTests {
                         == 1_000
                         && boiler.waterAmount() == 1_000,
                 "Boiler water execute did not commit the simulated amount");
+        primeBoilerOperatingPressure(helper, boiler);
 
         helper.startSequence()
                 .thenIdle(2)
@@ -1403,6 +1404,8 @@ public final class CrucibleCraftGameTests {
                     helper.assertTrue(
                             firebox.seedStoredEnergy(energyCapacity()),
                             "Could not fuel the source firebox");
+                    GameTestHeatSources.keepHeatEmissionLive(
+                            helper, firebox, 200);
                 })
                 .thenIdle(100)
                 .thenExecute(() -> {
@@ -1501,17 +1504,17 @@ public final class CrucibleCraftGameTests {
                             boiler.status().equals("no_heat"),
                             "Watered boiler did not diagnose no_heat");
                     var registries = helper.getLevel().registryAccess();
-                    FluidTank fullSteam =
+                    FluidTank highSteam =
                             new FluidTank(
                                     BoilerBlockEntity.STEAM_CAPACITY);
-                    fullSteam.setFluid(new FluidStack(
+                    highSteam.setFluid(new FluidStack(
                             ModFluids.STEAM_SOURCE.get(),
-                            BoilerBlockEntity.STEAM_CAPACITY));
+                            (BoilerBlockEntity.STEAM_CAPACITY * 3) / 4));
                     CompoundTag boilerTag =
                             boiler.saveWithoutMetadata(registries);
                     boilerTag.put(
                             "steam",
-                            fullSteam.writeToNBT(
+                            highSteam.writeToNBT(
                                     registries, new CompoundTag()));
                     boiler.loadWithComponents(boilerTag, registries);
 
@@ -1543,8 +1546,13 @@ public final class CrucibleCraftGameTests {
                 .thenIdle(2)
                 .thenExecute(() -> {
                     helper.assertTrue(
-                            boiler.status().equals("steam_full"),
-                            "Full boiler did not diagnose steam_full: "
+                            boiler.status().equals("no_heat")
+                                    && boiler.steamAmount()
+                                            == (BoilerBlockEntity.STEAM_CAPACITY
+                                                    * 3)
+                                                    / 4,
+                            "High-pressure boiler without HU did not keep steam "
+                                    + "and stay idle: "
                                     + boiler.status());
                     helper.assertTrue(
                             engine.status().equals("kinetic_full"),
@@ -4143,9 +4151,13 @@ public final class CrucibleCraftGameTests {
                 .thenIdle(50)
                 .thenExecute(() -> helper.assertTrue(
                         boiler.waterTank().getFluidAmount() > 0
-                                && boiler.stored(EnergyType.HEAT) == 0L,
+                                && boiler.stored(EnergyType.HEAT)
+                                        < SteamConversion.HU_PER_BATCH,
                         "Boiler heat-loss path lost water instead of pausing: "
-                                + boiler.waterTank().getFluidAmount()))
+                                + boiler.waterTank().getFluidAmount()
+                                + " water, "
+                                + boiler.stored(EnergyType.HEAT)
+                                + " HU"))
                 .thenSucceed();
     }
 
@@ -4766,7 +4778,7 @@ public final class CrucibleCraftGameTests {
                     helper.assertTrue(
                             crucible.process().totalUnits()
                                     == MaterialPrefixes.INGOT.units() * 432
-                                    && CrucibleBlockEntity.MAX_INGOTS == 8,
+                                    && CrucibleBlockEntity.MAX_INGOTS == 16,
                             "Capacity split between large and single-block drifted");
                 })
                 .thenSucceed();
@@ -5670,10 +5682,10 @@ public final class CrucibleCraftGameTests {
                     machine.insert(
                                     EnergyType.HEAT,
                                     512L,
-                                    2L,
+                                    16L,
                                     Direction.DOWN,
                                     false)
-                            == 2L,
+                            == 16L,
                     "Could not inject controlled tier-3 HU " + index);
             machines.add(machine);
         }
@@ -6220,10 +6232,14 @@ public final class CrucibleCraftGameTests {
         loadRecipeInputs(electrolyzer, electrolysis);
         helper.assertTrue(
                 boiler.fluids(Direction.WEST).fill(
-                                new FluidStack(Fluids.WATER, 20),
+                                new FluidStack(
+                                        ModFluids.materialFluid(
+                                                        "water_distilled")
+                                                .orElseThrow(),
+                                        20),
                                 IFluidHandler.FluidAction.EXECUTE)
                         == 20,
-                "Could not fill the HU consumer with water");
+                "Could not fill the HU consumer with distilled water");
 
         helper.startSequence()
                 .thenIdle(5)
@@ -6372,22 +6388,28 @@ public final class CrucibleCraftGameTests {
         helper.startSequence()
                 .thenIdle(30)
                 .thenExecute(() -> {
+                    BoilerBlockEntity emptyBoiler =
+                            helper.getBlockEntity(consumerBlockedPos.above());
                     helper.assertTrue(
                             consumerBlocked.inputAmount() == 0
                                     && consumerBlocked.energyGenerated()
                                             == 1_152L
-                                    && consumerBlocked.energyStored()
-                                            == 1_152L
-                                    && consumerBlocked.energyExtracted() == 0L
+                                    && consumerBlocked.energyGenerated()
+                                            == consumerBlocked.energyStored()
+                                                    + consumerBlocked
+                                                            .energyExtracted()
+                                    && consumerBlocked.energyExtracted() > 0L
+                                    && emptyBoiler.accumulatedHu()
+                                            == consumerBlocked.energyExtracted()
+                                    && !consumerBlocked.status().equals(
+                                            "energy_output_blocked")
                                     && consumerBlocked.outputAmount(0)
                                             == fuel.fluidOutputs()
                                                     .getFirst().getAmount()
                                     && consumerBlocked.outputAmount(1)
                                             == fuel.fluidOutputs()
-                                                    .get(1).getAmount()
-                                    && consumerBlocked.status().equals(
-                                            "energy_output_blocked"),
-                            "Blocked HU consumer voided fuel, heat, or exhaust");
+                                                    .get(1).getAmount(),
+                            "Empty-boiler HU push voided fuel, heat, or exhaust");
                     helper.assertTrue(
                             exhaustFull.inputAmount() == methane.getAmount()
                                     && exhaustFull.energyGenerated() == 0L
@@ -10000,13 +10022,18 @@ public final class CrucibleCraftGameTests {
                             Math.abs(fuelCombustion.eut()),
                             (long) fuelCombustion.duration());
                     helper.assertTrue(
-                            engine.energyGenerated() >= expectedKu,
-                            "Fuel engine did not generate expected KU: "
+                            engine.energyGenerated() >= expectedKu
+                                    && engine.energyGenerated()
+                                            == engine.energyStored()
+                                                    + engine.energyExtracted()
+                                    && engine.energyExtracted() > 0L,
+                            "Fuel engine did not generate and waste unused RU: "
+                                    + "generated="
                                     + engine.energyGenerated()
-                                    + " < " + expectedKu);
-                    helper.assertTrue(
-                            engine.energyStored() > 0,
-                            "Fuel engine has no stored KU after combustion");
+                                    + " stored="
+                                    + engine.energyStored()
+                                    + " extracted="
+                                    + engine.energyExtracted());
                 })
                 .thenSucceed();
     }
@@ -11217,6 +11244,18 @@ public final class CrucibleCraftGameTests {
         return true;
     }
 
+    private static void primeBoilerOperatingPressure(
+            GameTestHelper helper, BoilerBlockEntity boiler) {
+        int amount = BoilerBlockEntity.STEAM_CAPACITY / 2
+                + SteamConversion.STEAM_PER_BATCH;
+        var registries = helper.getLevel().registryAccess();
+        CompoundTag tag = boiler.saveWithoutMetadata(registries);
+        FluidTank steam = new FluidTank(BoilerBlockEntity.STEAM_CAPACITY);
+        steam.setFluid(new FluidStack(ModFluids.STEAM_SOURCE.get(), amount));
+        tag.put("steam", steam.writeToNBT(registries, new CompoundTag()));
+        boiler.loadWithComponents(tag, registries);
+    }
+
     private static void fuelSmallWorkloadScenario(GameTestHelper helper) {
         FuelGeneratorBlockEntity firebox = helper.getBlockEntity(SMALL_WORKLOAD_FIREBOX);
         BoilerBlockEntity boiler = helper.getBlockEntity(SMALL_WORKLOAD_BOILER);
@@ -11252,6 +11291,7 @@ public final class CrucibleCraftGameTests {
         helper.assertTrue(
                 firebox.seedStoredEnergy(energyCapacity()),
                 "Could not fuel the small-workload firebox");
+        GameTestHeatSources.keepHeatEmissionLive(helper, firebox, 2_000);
         IFluidHandler water = boiler.fluids(Direction.NORTH);
         helper.assertTrue(
                 water != null
@@ -11260,6 +11300,7 @@ public final class CrucibleCraftGameTests {
                                 IFluidHandler.FluidAction.EXECUTE)
                                 == 10_000,
                 "Could not water the small-workload boiler");
+        primeBoilerOperatingPressure(helper, boiler);
         FluidStack fuelInput = fuel.fluidInputs().getFirst();
         helper.assertTrue(
                 fuelEngine.fluids(Direction.WEST) != null

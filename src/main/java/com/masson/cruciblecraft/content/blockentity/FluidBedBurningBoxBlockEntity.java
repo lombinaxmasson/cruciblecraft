@@ -85,9 +85,21 @@ public final class FluidBedBurningBoxBlockEntity extends BlockEntity
             BlockState state,
             FluidBedBurningBoxBlockEntity box) {
         box.tickGeneration();
-        EnergyEmitter.emit(
-                level, pos, box, EnergyType.HEAT, Direction.UP);
+        emitHeat(level, pos, box);
         box.updateLitState();
+    }
+
+    private static void emitHeat(
+            Level level, BlockPos pos, FluidBedBurningBoxBlockEntity box) {
+        long rate = box.rate();
+        if (box.energy.stored() < rate) {
+            return;
+        }
+        long offered = Math.min(rate, box.energy.stored());
+        EnergyEmitter.pushToSide(
+                level, pos, EnergyType.HEAT, 1L, offered, Direction.UP);
+        box.energy.discardUnits(rate);
+        box.setChanged();
     }
 
     private void tickGeneration() {

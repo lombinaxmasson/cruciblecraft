@@ -33,7 +33,8 @@ import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 /**
  * GT6 hot-fluid generator: emit HU (packet size 1, up to {@code mRate}
  * packets) from the top, then consume {@code FM.Hot} into the buffer, then
- * push exhaust out the front. Unused HU stays in the buffer.
+ * push exhaust out the front. Unused HU is discarded from the buffer
+ * ({@code mEnergy -= min(mRate, mEnergy)}).
  */
 public final class HeatExchangerBlockEntity extends BlockEntity
         implements IEnergyHandler {
@@ -82,12 +83,13 @@ public final class HeatExchangerBlockEntity extends BlockEntity
             BlockState state,
             HeatExchangerBlockEntity exchanger) {
         if (exchanger.energy.stored() > 0L) {
-            EnergyEmitter.emit(
-                    level,
-                    pos,
-                    exchanger,
-                    EnergyType.HEAT,
-                    Direction.UP);
+            long offered = Math.min(
+                    exchanger.profile.maximumOutputPacketsPerTick(),
+                    exchanger.energy.stored());
+            EnergyEmitter.pushToSide(
+                    level, pos, EnergyType.HEAT, 1L, offered, Direction.UP);
+            exchanger.energy.discardUnits(offered);
+            exchanger.markPersistentMutation();
         }
         exchanger.consumeHotFluid();
         exchanger.pushExhaust();
