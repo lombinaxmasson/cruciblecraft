@@ -19,18 +19,19 @@
 持久主键是 **capability slug**，例如 `logistics/fluid-network/basic-transfer`。
 工作包可以归档，**不生成** `*_READY`。
 
-路线图与缺口账本只把下列两项计为完成进度：
+路线图与缺口账本把 **accepted `runtime_ready`** 当机制进度。玩家获得性是独立字段
+`survival_access`（`unreviewed` / `blocked` / `partial` / `complete` /
+`not_applicable`），**不挡** runtime 关闭，也不再有 `player_complete` 成熟度。
+试玩是项目级 cycle：大改（新能力，或世界生成 / 玩法主循环 / 获得 / GUI /
+存档 / 网络语义）打开或延长 pending；小改不作废已接受的 cycle。
+签收只能来自人跑的 `runClient` 报告。CI 不得自动 `runClient` 当试玩。
 
-1. 能力声明 `maturity = player_complete`，且当前 Git revision 上刚完成一次
-   `player-complete` fresh PASS
-2. 与工作包解耦的 `release` checkpoint
-
-`frozen` 与 `runtime_ready` 是阶段，不是完成。
+`frozen` 是规格阶段。`runtime_ready` 是可关闭档。
 
 `capability.json` 不保存 `evidence=current`。运行结果只写到被 Git 忽略的
 `build/verification/latest.json`；删除该文件不会改变能力声明，下一次验证仍会完整重跑。
 
-## 2. 两个声明字段
+## 2. 声明字段
 
 权威：`tools/capabilities/<slug>/capability.json`，由
 `python tools/build_capability_ledger.py --check` 汇总。
@@ -38,10 +39,13 @@
 
 | 字段 | 取值 | 含义 |
 | --- | --- | --- |
-| `maturity` | `frozen` / `runtime_ready` / `player_complete` | 规格 / 机制可跑 / 玩家可完成 |
+| `maturity` | `frozen` / `runtime_ready` | 规格 / 机制可跑并可关卡 |
 | `workflow` | `active` / `paused` / `accepted` | 这条 lane 是否还开着 |
+| `survival_access` | `unreviewed` / `blocked` / `partial` / `complete` / `not_applicable` | 机制入口获得性；独立、非关卡门 |
 
 禁止用一个 `*_READY` 同时表示声明状态和本次执行结果。
+禁止 `maturity = player_complete`。历史 14 张已降为 `runtime_ready`，旧
+`player_signoff.json` 布尔签收作废。
 
 ## 3. 分层硬门
 
@@ -54,7 +58,7 @@
   只适用于这种卡
 - 例外：PUV / OMEGA 六张选择 `frozen`+`paused` 关卡——`src/main` 已有代码，
   但是 CC 扩展，不是原版 GT6 高压线。它们写在缺口第 1 节，禁止写回第 2 节
-  「尚未签发」，也禁止晋级 `player_complete`
+  「尚未签发」
 
 ### runtime_ready
 
@@ -64,41 +68,28 @@
   必须绑定 [blocked.md](blocked.md) / `tools/blockers/catalog.json` 的 `id`
 - 声明的 JUnit / GameTest / reload / 网络契约通过
 - impact graph 上所有受影响能力的 profile 在本次调用中 fresh PASS
+- `survival_access` 为 `blocked` / `partial` / `unreviewed` **不挡**关闭
+- 新能力默认 `change-class=major`，打开或延长项目试玩 cycle
 
-### player_complete
+配方仍必须按 GT6 源逐格翻译，禁止 stand-in 配料。缺格就保持缺口，不要用
+别的材料、原版零件或 `programmed_circuit` 顶。
+**严禁**把 catalog 物品以 `ItemEntity` 撒在主世界，或把 stone / block-object
+目录倒在 dirt/sand 上，当成生存获得。不要写「用主世界掉落物顶 player_complete」。合同见
+[gt6-no-item-entity-worldgen.md](gt6-no-item-entity-worldgen.md)。
 
-必须同时具备：
+### survival_access 与试玩 cycle
 
-- 生存获得路径（真实 RecipeManager，不是 GameTest 注入冒充）。
-  **配方必须按 GT6 源逐格合成 / 制造才算过。** 允许把 `OP.wireGt01` /
-  `MT.Os` 这类前缀与材料名翻译成 CC 里**已经存在的同一对象**
-  （`wire`、`osmium_elemental`）。禁止用别的材料、别的形态、原版零件或
-  单一 `programmed_circuit` 顶缺失格，来假装「能合成」。缺任何一格真实
-  配料：该配方不算过，本能力不得晋级 `player_complete`；要么把缺件纳入
-  本卡做出真物，要么保持 `runtime_ready` 并写明配方未完成。
-  「创造栏能拿到」或「用已有材料 DESIGN_POLICY 生存获得」不能当完成。
-  闭卡替身配方不是稳定面：真 GT6 零件一旦存在，下次碰到该格就换成真物，
-  不必另开回收卡；不得再发明新替身去保住闭卡 `player_complete`。
-  电池 `B`/`C` 槽与空芯灌液：铅酸 / 碱性 / 镍镉 / 锂钴 / 锂锰已是 filled
-  cell + `OD_CIRCUITS[档]` + FluidContainerData。energium 获得路径是
-  `form_items` 并到 LU 晶体（GT6 `setTarget`），不是 shaped 表；不得用板、
-  尘、杆或单个电路伪造一张。
-- EMI 注册与可见性（本仓库配方 UI 是 EMI，不是 JEI）
-- 创造栏归属与 `en_us` / `zh_cn` 翻译
-- 同一次 `player-complete` 调用实际运行隔离 GameTestServer。
-  `runClient` 只在晋级（`runtime_ready → player_complete`）或显式
-  `--client` 时强制。临时 receipt 位于 `build/verification/receipts/`，
-  只供该次调用消费，不提交
-- `required_test_ids` 固定本能力必须出现的 GameTest 方法名；receipt 的测试 ID
-  集合必须与声明精确相等，删除或改名任一要求测试都会失败
-- 本能力声明不触及客户端时可由
-  `player-complete` profile 豁免 GUI 项（流体/物品盖板触及客户端，不豁免）
-- 存档 / 重载
-- `player_signoff.json` 人工签收：命名、排序、玩家能否看懂
+`survival_access` 只描述机制入口，不按 catalog 行关账。
+`complete` 需要真实 RecipeManager 或 GT6 世界生成（石块/树/矿/地牢/作物），
+不是创造栏、不是 GameTest 注入。
 
-只有这一档可写入路线图「已实现」。PR CI 只在 `runtime_ready → player_complete`
-晋级时运行完整 player-complete；普通低风险改动不自动跑客户端。`release` 仍跑
-全部 release profiles。
+试玩权威是 `tools/playtest/current_cycle.json`：
+
+- `major`：新能力，或大改世界生成 / 玩法主循环 / 获得 / GUI / 存档 / 网络
+- `minor` / `none`：不使已接受的 cycle 作废
+- 接受：人跑 `.\gradlew.bat runClient` 之后
+  `python tools/playtest.py record-accept --id … --signer … --i-playtested`
+- CI 与代理不得把 startup smoke / `--client` 当成试玩签收
 
 ### release checkpoint
 
@@ -119,7 +110,7 @@
 | 类 | 放哪 | 挡晋级？ |
 | --- | --- | --- |
 | accepted divergence | 能力 `identity_disposition`（如 Low Heat Extruder Shape = `new_distinct`） | 否；必须显式 |
-| blocked claim | [blocked.md](blocked.md)（catalog `id` 绑定 `identity_disposition` / obtain note） | 挡该能力的 `runtime_ready` / `player_complete` 关卡；不同 `unit` 不得相加 |
+| blocked claim | [blocked.md](blocked.md)（catalog `id` 绑定 `identity_disposition` / obtain note） | 挡该能力的 `runtime_ready` 关卡；不同 `unit` 不得相加 |
 | verification debt | `tools/known_issues/verification-debt.json` | 挡**该 profile**；不挡范围外能力的范围内门 |
 | deferred capability | [unimplemented-gap.md](unimplemented-gap.md) 第 1–2 节 | 不是 known-issue；不得写成 READY |
 
@@ -131,20 +122,17 @@ known-issues 不得再充当「未关门但下一张卡照开」的垃圾桶。
 python tools/build_capability_ledger.py --check
 python tools/build_blockers.py --check
 python tools/build_project_status.py --check
+python tools/playtest.py check
 python tools/verify.py integration --profile capability-runtime
-python tools/verify.py promotion
-python tools/build_player_complete.py --run --all
-python tools/build_player_complete.py --run --client --capability <slug>
-python tools/close_capability.py --capability <slug>
-python tools/verify.py integration --profile player-complete
+python tools/close_capability.py --capability <slug> --change-class major
+.\gradlew.bat runClient
 ```
 
 `--run` 创建临时 receipt、运行 isolated GameTestServer、校验结构化结果，然后写
-本地 latest report。`--run --client` 再加真实 `runClient`，只给晋级用。
-单独的 `--check` 只做静态声明检查；它不能把提交库中的旧 receipt 当成玩家完成证明。
-日常 `--check` 只要 `--gametest-receipt`；`--client-receipt` 可选。
+本地 latest report。`--run --client` 只是启动 smoke，**不是**试玩签收。
+单独的 `--check` 只做静态声明检查。
 
-`python tools/build_<slug>.py --check` 与机制卡 `*_READY` **不是** player_complete。
+`python tools/build_<slug>.py --check` 与机制卡 `*_READY` **不是**玩家试玩。
 
 ## 7. 贴图
 
@@ -155,7 +143,7 @@ python tools/verify.py integration --profile player-complete
 ## 8. Prep 车道
 
 Prep 拆开原先捆在「一条 lane」里的三件事：人读 WIP、共享文件落地锁、
-`player_complete` 晋级门。只降低第一项。晋级门与无 stand-in 获得格不降。
+runtime 关闭与试玩 cycle。只降低第一项。无 stand-in 获得格不降。
 
 | 步 | 进 master？ | `unique_active_wave` | `capability.json` |
 | --- | --- | --- | --- |

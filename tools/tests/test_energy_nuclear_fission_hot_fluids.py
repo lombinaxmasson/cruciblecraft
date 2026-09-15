@@ -74,7 +74,7 @@ class FissionHotFluidsCardTest(unittest.TestCase):
         self.assertEqual(8, readiness["evidence"]["hot_output_identity_rows"])
         self.assertEqual(2, readiness["evidence"]["core_identity_count"])
         self.assertEqual(
-            "player_complete",
+            "runtime_ready",
             readiness["evidence"]["hot_fluids_status"],
         )
 
@@ -111,12 +111,12 @@ class FissionHotFluidsCardTest(unittest.TestCase):
 
     def test_capability_is_player_complete(self) -> None:
         capability = ledger.load_capability(CAPABILITY)
-        self.assertEqual("player_complete", capability["maturity"])
+        self.assertEqual("runtime_ready", capability["maturity"])
         self.assertEqual("accepted", capability["workflow"])
         self.assertEqual(CAPABILITY_SLUG, capability["slug"])
         self.assertEqual(SLUG, capability["wave_slug"])
         self.assertEqual(
-            "tools/capabilities/energy/nuclear-fission-hot-fluids/player_signoff.json",
+            None,
             capability["player_signoff"],
         )
         self.assertEqual([SURVIVAL], capability["depends_on"])

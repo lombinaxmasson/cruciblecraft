@@ -519,32 +519,16 @@ class VerificationProfileTest(unittest.TestCase):
         self.assertEqual([], modules)
         self.assertNotIn("docs", self.profiles["profiles"])
 
-    def test_promotion_runs_player_complete_only_for_promoted_slugs(self) -> None:
+    def test_promotion_does_not_launch_run_client(self) -> None:
         receipt = {"profiles": [], "commands": [], "results": []}
-        calls: list[list[str]] = []
-
-        def record(name: str, command: list[str], _receipt: dict[str, object]) -> int:
-            calls.append(command)
-            return 0
-
-        with mock.patch.object(
-            verify_entry.capability_ledger,
-            "player_complete_promotions",
-            return_value=["logistics/fluid-network/basic-transfer"],
-        ), mock.patch.object(verify_entry, "run_command", side_effect=record):
+        with mock.patch.object(verify_entry, "run_command") as runner:
             code = verify_entry.cmd_promotion(
                 argparse.Namespace(base="origin/main"),
                 receipt,
             )
         self.assertEqual(0, code)
-        self.assertEqual(
-            ["logistics/fluid-network/basic-transfer"],
-            receipt["promotion"]["slugs"],
-        )
-        self.assertEqual(1, len(calls))
-        self.assertIn("tools/build_player_complete.py", calls[0])
-        self.assertIn("--run", calls[0])
-        self.assertIn("--client", calls[0])
+        self.assertEqual([], receipt["promotion"]["slugs"])
+        runner.assert_not_called()
 
     def test_promotion_skips_when_maturity_did_not_change(self) -> None:
         receipt = {"profiles": [], "commands": [], "results": []}

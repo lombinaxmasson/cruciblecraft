@@ -105,7 +105,6 @@ def render_status(ledger: dict[str, Any] | None = None) -> str:
             lines.append(f"- `{slug}` — {_plan_md(path)}")
     else:
         lines.append("无已签发 prep 计划。")
-    complete = list(compiled["declared_player_complete"])
     runtime_ready = [
         row["slug"]
         for row in compiled["capabilities"]
@@ -119,24 +118,32 @@ def render_status(ledger: dict[str, Any] | None = None) -> str:
     lines.extend(
         [
             "",
-            f"## player_complete（{len(complete)}）",
-            "",
-            "只计 `maturity=player_complete` 且 `workflow=accepted`。",
-            "声明不是证明；晋级仍要 fresh GameTest，`runClient` 只在晋级时强制。",
+            "## Playtest cycle",
             "",
         ]
     )
-    for slug in complete:
-        row = by_slug[slug]
-        plan = plans["closed"].get(slug)
-        plan_bit = f" — {_plan_md(plan)}" if plan is not None else ""
-        lines.append(f"- `{slug}` — {row['title']}{plan_bit}")
+    try:
+        from tools import playtest as playtest_cycle
+
+        cycle = playtest_cycle.load_cycle()
+        lines.append(
+            f"`{cycle['id']}` **{cycle['status']}**. "
+            "Major worldgen / gameplay / obtain / GUI / save / network changes "
+            "open or extend this cycle. Ordinary bugfix does not invalidate it. "
+            "Accept only after a human `runClient`; CI never auto-signs."
+        )
+        if cycle.get("reason"):
+            lines.append("")
+            lines.append(str(cycle["reason"]))
+    except Exception:
+        lines.append("missing `tools/playtest/current_cycle.json`.")
     lines.extend(
         [
             "",
-            f"## runtime_ready（accepted，非玩家完成）（{len(runtime_ready)}）",
+            f"## runtime_ready accepted（{len(runtime_ready)}）",
             "",
-            "RecipeMap / 主机已挂，获得格或配方仍 blocked。不得宣称 `player_complete`。",
+            "机制可跑。`survival_access` 独立、不挡关闭。"
+            "不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。",
             "",
         ]
     )
@@ -151,10 +158,10 @@ def render_status(ledger: dict[str, Any] | None = None) -> str:
     lines.extend(
         [
             "",
-            f"## frozen（非 runtime_ready / player_complete）（{len(frozen)}）",
+            f"## frozen（{len(frozen)}）",
             "",
             "分母已冻。`paused` 的 PUV/OMEGA 六张代码已在 `src/main`，是 CC 扩展，"
-            "不是原版高压线，也不是 `player_complete`。地牢是结构载体，房间内容仍 blocked。",
+            "不是原版高压线。地牢是结构载体，房间内容仍 blocked。",
             "",
         ]
     )
@@ -172,24 +179,19 @@ def render_status(ledger: dict[str, Any] | None = None) -> str:
             )
     else:
         lines.append("无。")
-    closed_complete = [
-        (slug, path)
-        for slug, path in sorted(plans["closed"].items())
-        if slug in set(complete)
-    ]
-    lines.extend(["", "## 关闭计划（有 capability 的 player_complete）", ""])
-    if closed_complete:
-        for slug, path in closed_complete:
-            lines.append(f"- {_plan_md(path)}（`{slug}`）")
-    else:
-        lines.append("无。")
     lines.extend(
         [
+            "",
+            "## 关闭计划",
+            "",
+            "已关卡的计划在 `docs/history/card-plans/closed/`。"
+            "完成档不再使用 `player_complete`；runtime_ready 见上表。",
             "",
             "权威与流程见 [capability-delivery-workflow.md](capability-delivery-workflow.md)",
             "与 [unimplemented-gap.md](unimplemented-gap.md)。",
             "跨能力 blocked 总账见 [blocked.md](blocked.md)。",
-            "关闭一张卡：`python tools/close_capability.py --capability <slug>`。",
+            "关闭一张卡：`python tools/close_capability.py --capability <slug> --change-class major`。",
+            "试玩签收：`python tools/playtest.py record-accept --id <cycle> --signer <name> --i-playtested`。",
             "",
         ]
     )

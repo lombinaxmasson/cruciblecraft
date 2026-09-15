@@ -133,10 +133,10 @@ class LogisticsCoreCapabilityTest(unittest.TestCase):
             ledger.load_capability(path) for path in ledger.capability_files()
         ]
         core = next(row for row in documents if row["slug"] == CAPABILITY)
-        self.assertEqual("player_complete", core["maturity"])
+        self.assertEqual("runtime_ready", core["maturity"])
         self.assertEqual("accepted", core["workflow"])
         self.assertEqual(
-            "tools/capabilities/logistics/logistics-core/player_signoff.json",
+            None,
             core.get("player_signoff"),
         )
         self.assertEqual(
@@ -150,7 +150,7 @@ class LogisticsCoreCapabilityTest(unittest.TestCase):
             core["required_test_ids"],
         )
         compiled = ledger.compile_ledger()
-        self.assertIn(CAPABILITY, compiled["declared_player_complete"])
+        self.assertNotIn(CAPABILITY, compiled["declared_player_complete"])
 
 
 if __name__ == "__main__":

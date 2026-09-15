@@ -24,8 +24,7 @@
           "id": "on_demand",
           "publication_group": "cruciblecraft:drying/block",
           "reason": "Derived by tools/build_t45_recipe_load_benchmark.py",
-          "status": "derived",
-          "verdict": null
+          "status": "derived"
         }
       },
       "smelter": {
@@ -41,8 +40,7 @@
           "id": "hybrid",
           "publication_group": "cruciblecraft:smelter/block",
           "reason": "Derived by tools/build_t45_recipe_load_benchmark.py",
-          "status": "derived",
-          "verdict": null
+          "status": "derived"
         }
       }
     },
@@ -5002,11 +5000,12 @@
   "support_recipes": {
     "authored": 0,
     "eager": 0,
-    "kind": "worldgen_drop",
-    "lock_route_count": 365,
-    "note": "B1 acquisition is catalog-backed worldgen scatter, not vanilla or GT support recipes. Worldgen JSON lives in main resources and is not copied into T14 authored recipe counts.",
-    "route_count": 365,
-    "source_map": "cruciblecraft:gt_block_object_scatter"
+    "kind": "withdrawn",
+    "lock_route_count": 0,
+    "note": "Catalog ItemEntity / block scatter is not GT6 obtain.",
+    "route_count": 0,
+    "source_map": "cruciblecraft:gt_block_object_scatter",
+    "routes": []
   },
   "validators": {
     "authored_matches_lock": 0,

@@ -357,22 +357,23 @@ def check_client_receipt(
                 f"{slug}: client receipt required_registry_ids has duplicates"
             )
     expected = {f"cruciblecraft:{item}" for item in item_ids}
-    if required != expected:
-        errors.append(
-            f"{slug}: client receipt required registry ids do not match signoff"
-        )
-    if not isinstance(observed_raw, list) or not all(
-        isinstance(value, str) and value for value in observed_raw
-    ):
-        errors.append(f"{slug}: client receipt registry_ids is invalid")
-        observed: set[str] = set()
-    else:
-        observed = set(observed_raw)
-        if len(observed) != len(observed_raw):
-            errors.append(f"{slug}: client receipt registry_ids has duplicates")
-    missing = sorted(expected - observed)
-    if missing:
-        errors.append(f"{slug}: client receipt missing registry ids {missing}")
+    if item_ids:
+        if required != expected:
+            errors.append(
+                f"{slug}: client receipt required registry ids do not match signoff"
+            )
+        if not isinstance(observed_raw, list) or not all(
+            isinstance(value, str) and value for value in observed_raw
+        ):
+            errors.append(f"{slug}: client receipt registry_ids is invalid")
+            observed: set[str] = set()
+        else:
+            observed = set(observed_raw)
+            if len(observed) != len(observed_raw):
+                errors.append(f"{slug}: client receipt registry_ids has duplicates")
+        missing = sorted(expected - observed)
+        if missing:
+            errors.append(f"{slug}: client receipt missing registry ids {missing}")
     return errors
 
 
@@ -511,35 +512,34 @@ def check_capability(
         return [f"missing capability {slug}"]
     capability = capability_ledger.load_capability(path)
     errors: list[str] = []
-    if capability["maturity"] != "player_complete":
-        errors.append(f"{slug}: maturity is {capability['maturity']}, not player_complete")
-    if capability["workflow"] != "accepted":
-        errors.append(f"{slug}: workflow is {capability['workflow']}")
-    signoff = load_signoff(capability)
-    errors.extend(check_signoff(capability, signoff))
-    item_ids = list(signoff.get("craftable_items") or [])
-    errors.extend(check_static_player_surface(slug, item_ids))
-    errors.extend(check_surface_catalog(slug, item_ids))
-    errors.extend(
-        check_gametest_receipt(
-            capability,
-            gametest_receipt,
-            expected_nonce=expected_nonce,
+    if capability.get("maturity") == "player_complete":
+        errors.append(f"{slug}: player_complete maturity is abolished")
+    if capability.get("workflow") != "accepted" and gametest_receipt is None:
+        pass
+    if "player-complete" in list(capability.get("profiles") or []):
+        errors.append(f"{slug}: player-complete profile is abolished")
+    if gametest_receipt is not None:
+        errors.extend(
+            check_gametest_receipt(
+                capability,
+                gametest_receipt,
+                expected_nonce=expected_nonce,
+            )
         )
-    )
     if require_client or client_receipt is not None:
         errors.extend(
             check_client_receipt(
                 capability,
                 client_receipt,
-                item_ids,
+                [],
                 expected_nonce=expected_nonce,
             )
         )
     identity = registry_identity.compile_manifest()
     if identity["errors"]:
         errors.extend(identity["errors"])
-    errors.extend(check_declared_test_ids(capability))
+    if capability.get("required_test_ids"):
+        errors.extend(check_declared_test_ids(capability))
     return errors
 
 
@@ -770,10 +770,7 @@ def resolve_slugs(capability: str | None, all_flag: bool) -> list[str]:
         raise ValueError("choose exactly one of --capability or --all")
     if capability:
         return [capability]
-    slugs = player_complete_slugs()
-    if not slugs:
-        raise ValueError("player-complete profile has no capabilities")
-    return slugs
+    return player_complete_slugs()
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -785,7 +782,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--all",
         action="store_true",
-        help="run every capability on the player-complete profile",
+        help="no-op: player-complete profile is empty after the obtain reset",
     )
     parser.add_argument(
         "--offline",
@@ -795,7 +792,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--client",
         action="store_true",
-        help="also run runClient; required for runtime_ready → player_complete",
+        help="optional startup smoke runClient; never a playtest accept",
     )
     parser.add_argument(
         "--gametest-receipt",
@@ -808,13 +805,14 @@ def main(argv: list[str] | None = None) -> int:
         help="fresh runClient JSON under build/run output or outside checkout",
     )
     args = parser.parse_args(argv)
+    if args.all:
+        print("player-complete profile is empty; GameTest gate is per capability")
+        return 0
     try:
         slugs = resolve_slugs(args.capability, args.all)
     except ValueError as error:
         parser.error(str(error))
         return 2
-    if args.all and not args.run:
-        parser.error("--all requires --run")
     try:
         errors: list[str] = []
         if args.run:

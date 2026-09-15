@@ -2,7 +2,7 @@
   "schema_version": 2,
   "slug": "energy/nuclear-fission-hot-fluids",
   "title": "Nuclear Fission Hot Fluids",
-  "maturity": "player_complete",
+  "maturity": "runtime_ready",
   "workflow": "accepted",
   "owned_paths": [
     "src/main/java/com/masson/cruciblecraft/content/blockentity/ReactorCoreBlockEntity.java",
@@ -22,12 +22,11 @@
     "energy/nuclear-fission-survival"
   ],
   "profiles": [
-    "capability-runtime",
-    "player-complete"
+    "capability-runtime"
   ],
   "wave_slug": "runtime/fission-hot-fluids",
   "legacy_readiness": "tools/waves/runtime/fission-hot-fluids/readiness.json",
-  "player_signoff": "tools/capabilities/energy/nuclear-fission-hot-fluids/player_signoff.json",
+  "player_signoff": null,
   "required_test_ids": [
     "carbonDioxideProducesHotCarbonDioxide",
     "distilledWaterProducesSteam",
@@ -87,5 +86,6 @@
       "reason": "Thorium_Salt to LiCl is not a hot-fluid output and has no CC-owned input identity. Not substituted."
     }
   ],
-  "note": "11 GT6 source branches / 9 CC-owned conversions / 8 hot identities / 2 cores. unique_active_wave stays null. Source is local gt6_code. No stand-in fluids. Coolant_IC2 and Thorium_Salt stay blocked. Observation/safety, heat exchangers, turbines and coolers stay later."
+  "note": "11 GT6 source branches / 9 CC-owned conversions / 8 hot identities / 2 cores. unique_active_wave stays null. Source is local gt6_code. No stand-in fluids. Coolant_IC2 and Thorium_Salt stay blocked. Observation/safety, heat exchangers, turbines and coolers stay later. Former player_complete claim is withdrawn; historical signoff does not count. survival_access is unreviewed.",
+  "survival_access": "unreviewed"
 }

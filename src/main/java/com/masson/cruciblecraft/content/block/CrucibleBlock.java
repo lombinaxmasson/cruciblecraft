@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
 import com.masson.cruciblecraft.heat.ItemHeat;
+import com.masson.cruciblecraft.heat.TemperatureDamage;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModComponents;
 import com.masson.cruciblecraft.registry.ModItems;
@@ -18,8 +19,10 @@ import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -30,11 +33,25 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.fluids.FluidUtil;
 
 import org.jetbrains.annotations.Nullable;
 
 public class CrucibleBlock extends Block implements EntityBlock {
+    /**
+     * GT6 smeltery walls: 1-pixel shells at 1/16 with a 1-pixel floor,
+     * so entities can occupy the hollow interior.
+     */
+    private static final VoxelShape COLLISION = Shapes.or(
+            Block.box(1.0, 1.0, 1.0, 15.0, 2.0, 15.0),
+            Block.box(1.0, 1.0, 1.0, 2.0, 15.0, 15.0),
+            Block.box(14.0, 1.0, 1.0, 15.0, 15.0, 15.0),
+            Block.box(1.0, 1.0, 1.0, 15.0, 15.0, 2.0),
+            Block.box(1.0, 1.0, 14.0, 15.0, 15.0, 15.0));
+
     public CrucibleBlock(Properties properties) {
         super(properties);
     }
@@ -114,6 +131,23 @@ public class CrucibleBlock extends Block implements EntityBlock {
                     true);
         }
         return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    protected VoxelShape getCollisionShape(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            CollisionContext context) {
+        return COLLISION;
+    }
+
+    @Override
+    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+        if (!level.isClientSide
+                && level.getBlockEntity(pos) instanceof CrucibleBlockEntity crucible) {
+            TemperatureDamage.apply(entity, crucible.temperature(), 1.0F, 10.0F);
+        }
     }
 
     @Override

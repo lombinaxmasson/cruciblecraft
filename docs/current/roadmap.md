@@ -1,10 +1,10 @@
 # CrucibleCraft 总体规划
 
 > 唯一总体规划与项目导航。
-> 进度只计 `player_complete` 声明，加上当前 revision 的 fresh GameTest
-> PASS。`runClient` 只在晋级（`runtime_ready → player_complete`）时强制。
+> 进度计 accepted `runtime_ready` 与 `release` checkpoint。
+> 玩家获得性是独立 `survival_access`，试玩是项目级 cycle。
 > 合同见 [capability-delivery-workflow.md](capability-delivery-workflow.md)。
-> 现行 unique-active、prep 与完成集合只写在
+> 现行 unique-active、prep 与试玩 cycle 只写在
 > [project-status.md](project-status.md)，不要在本页手抄。
 >
 > 关闭档案与机制卡 `*_READY` 见 [docs/history](../history/INDEX.md)。
@@ -59,7 +59,7 @@ GitHub push 承担，不创建 GitHub Release、不上传 jar、不累计 RC soa
 同一时刻只允许一张内容工作处于 active 状态。编号卡时代已经结束；现行顺序是
 semantic wave，不是下一张里程碑编号。
 
-现行 unique-active、prep 与 `player_complete` 只写在
+现行 unique-active、prep 与试玩 cycle 只写在
 [project-status.md](project-status.md)。同一时刻只允许一张内容工作处于
 active 状态；prep 不占落地锁，规则见
 [能力交付流程 §8](capability-delivery-workflow.md)。
@@ -72,7 +72,7 @@ Bath remainder / identity 已由 T48/T49 关完，不是下一张 unique-active�
 读 [blocked.md](blocked.md) 与 `tools/blockers/batches.json`，不要从只读
 growth-order 档案倒推。
 
-电能转换已 `player_complete`。聚变 18 源行是 `frozen`+`paused` 的 CC 扩展，
+电能转换已关 `runtime_ready`。聚变 18 源行是 `frozen`+`paused` 的 CC 扩展，
 不是缺口第 2 节「尚未签发」。冷却器仍 blocked。Dump 的来源执行器是 Core，
 不是 Generic 管网；`dump_policy` 见已关闭的
 [物流封面网余量](../history/card-plans/closed/物流封面网余量详细计划.md)。
@@ -219,8 +219,8 @@ Recipe gap 清零后，deferred ordinary ledger 也已关闭或独立 scope。st
 - 日常改动运行 `python tools/verify.py dev`；
 - 修改 datagen 时必须连续双跑并比较生成树；
 - 内容卡闭合运行 `python tools/verify.py integration --profile <name>`；
-- 已接受能力的日常 `player-complete` 只跑隔离 GameTest；
-  `python tools/verify.py promotion` 才加 `runClient`；
+- 试玩是项目级 cycle：`python tools/playtest.py check`。人跑 `runClient`
+  后才能 `record-accept`；CI 不自动签收；
 - 只有未来玩家发行卡才运行 `python tools/verify.py release` 或历史 `--record`；
 - `4.5Fix/`、本地参考 dump、`build/`、`run*/` 与 `src/src/` 重复树不是 canonical
   主树，不得纳入主分支提交；

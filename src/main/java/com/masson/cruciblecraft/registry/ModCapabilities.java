@@ -207,6 +207,18 @@ public final class ModCapabilities {
                 ModBlockEntities.CRUCIBLE.get(),
                 (blockEntity, side) -> blockEntity.externalFluids());
         event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.CRUCIBLE.get(),
+                (blockEntity, side) -> blockEntity.itemHandler(side));
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.CERAMIC_MOLD.get(),
+                (blockEntity, side) -> blockEntity.itemHandler(side));
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.CERAMIC_MOLD.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
                 Capabilities.FluidHandler.BLOCK,
                 ModBlockEntities.BOILER.get(),
                 (blockEntity, side) -> blockEntity.fluids(side));

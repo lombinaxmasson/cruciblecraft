@@ -11,6 +11,7 @@ from pathlib import Path
 from unittest import mock
 
 from tools import capability_ledger
+from tools import playtest
 from tools import player_complete
 from tools import io_common as files
 
@@ -33,14 +34,14 @@ class PlayerCompleteTest(unittest.TestCase):
     def setUp(self) -> None:
         path = capability_ledger.CAP_ROOT / SLUG / "capability.json"
         self.capability = capability_ledger.load_capability(path)
-        signoff = player_complete.load_signoff(self.capability)
-        self.item_ids = list(signoff["craftable_items"])
+        signoff_path = capability_ledger.CAP_ROOT / SLUG / "player_signoff.json"
+        self.item_ids = list(files.load_json(signoff_path)["craftable_items"])
 
     def assert_declared_game_tests(self, slug: str) -> None:
         capability = capability_ledger.load_capability(
             capability_ledger.CAP_ROOT / slug / "capability.json"
         )
-        self.assertEqual("player_complete", capability["maturity"])
+        self.assertEqual("runtime_ready", capability["maturity"])
         self.assertEqual("accepted", capability["workflow"])
         self.assertEqual(
             [],
@@ -85,21 +86,16 @@ class PlayerCompleteTest(unittest.TestCase):
             )
         )
 
-    def test_declared_player_complete_capabilities_have_tests_and_surfaces(self) -> None:
-        slugs = player_complete.player_complete_slugs()
-        self.assertIn(CLUSTER_MILL_SLUG, slugs)
-        self.assertIn(SLUG, slugs)
-        for slug in slugs:
+    def test_player_complete_maturity_is_abolished(self) -> None:
+        self.assertEqual([], player_complete.player_complete_slugs())
+        for slug in (CLUSTER_MILL_SLUG, SLUG, BATTERIES_SLUG):
             capability = capability_ledger.load_capability(
                 capability_ledger.CAP_ROOT / slug / "capability.json"
             )
             self.assert_declared_game_tests(slug)
-            signoff = player_complete.load_signoff(capability)
-            items = list(signoff["craftable_items"])
-            self.assertEqual(
-                [],
-                player_complete.check_static_player_surface(slug, items),
-            )
+            self.assertEqual("unreviewed", capability.get("survival_access"))
+            self.assertIsNone(capability.get("player_signoff"))
+            self.assertNotIn("player-complete", capability.get("profiles") or [])
 
     def gametest_receipt(self) -> dict[str, object]:
         wave = self.capability["wave_slug"]
@@ -271,14 +267,14 @@ class PlayerCompleteTest(unittest.TestCase):
             )
         self.assertTrue(any("is not runClient" in row for row in errors))
 
-    def test_all_discovers_the_player_complete_profile(self) -> None:
-        slugs = player_complete.player_complete_slugs()
-        self.assertEqual(slugs, player_complete.resolve_slugs(None, True))
-        self.assertIn(CLUSTER_MILL_SLUG, slugs)
-        stderr = io.StringIO()
-        with contextlib.redirect_stderr(stderr):
-            with self.assertRaises(SystemExit):
-                player_complete.main(["--check", "--all"])
+    def test_all_is_a_noop_after_obtain_reset(self) -> None:
+        self.assertEqual([], player_complete.player_complete_slugs())
+        self.assertEqual([], player_complete.resolve_slugs(None, True))
+        stdout = io.StringIO()
+        with contextlib.redirect_stdout(stdout):
+            result = player_complete.main(["--check", "--all"])
+        self.assertEqual(0, result)
+        self.assertIn("empty", stdout.getvalue())
 
     def test_run_mode_uses_game_test_only_by_default(self) -> None:
         calls: list[list[str]] = []
@@ -390,6 +386,152 @@ class PlayerCompleteTest(unittest.TestCase):
             {SLUG},
             {property_value(command, "playerCapability") for command in calls},
         )
+
+    def test_catalog_item_entity_worldgen_is_forbidden_obtain(self) -> None:
+        root = files.ROOT
+        rule = (
+            root
+            / ".cursor"
+            / "rules"
+            / "gt6-no-item-entity-worldgen-acquisition.mdc"
+        ).read_text(encoding="utf-8")
+        self.assertIn("alwaysApply: true", rule)
+        self.assertIn("ItemEntity", rule)
+        self.assertIn("WorldgenRocks", rule)
+        self.assertIn("empty-input overworld item scatter", rule)
+        self.assertIn("用主世界掉落物顶 player_complete", rule)
+        workflow = (
+            root / "docs" / "current" / "capability-delivery-workflow.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("用主世界掉落物顶 player_complete", workflow)
+        self.assertIn("gt6-no-item-entity-worldgen.md", workflow)
+        contract = (
+            root / "docs" / "current" / "gt6-no-item-entity-worldgen.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("严禁", contract)
+        self.assertIn("ItemEntity", contract)
+        worldgen = (
+            root
+            / "src"
+            / "main"
+            / "java"
+            / "com"
+            / "masson"
+            / "cruciblecraft"
+            / "worldgen"
+        )
+        banned = {
+            "GtItemScatterFeature.java",
+            "GtBlockObjectScatterFeature.java",
+            "GtStoneScatterFeature.java",
+            "ItemScatterConfiguration.java",
+        }
+        present = {path.name for path in worldgen.glob("*.java")}
+        self.assertEqual(set(), present & banned)
+        item_entity_files = [
+            path.name
+            for path in worldgen.glob("*.java")
+            if "new ItemEntity" in path.read_text(encoding="utf-8")
+        ]
+        self.assertEqual([], item_entity_files)
+        features = (
+            root
+            / "src"
+            / "main"
+            / "java"
+            / "com"
+            / "masson"
+            / "cruciblecraft"
+            / "registry"
+            / "ModFeatures.java"
+        ).read_text(encoding="utf-8")
+        self.assertEqual(0, features.count("GtItemScatterFeature::new"))
+        self.assertEqual(0, features.count("GtStoneScatterFeature::new"))
+        self.assertEqual(0, features.count("GtBlockObjectScatterFeature::new"))
+        self.assertIn("SURFACE_ROCK_SCATTER", features)
+        self.assertNotIn("do not register another", features)
+
+
+class PlaytestCycleTest(unittest.TestCase):
+    def test_committed_cycle_is_pending_obtain_reset(self) -> None:
+        cycle = playtest.load_cycle()
+        self.assertEqual("2026-09-15-obtain-reset", cycle["id"])
+        self.assertEqual("pending", cycle["status"])
+        self.assertIn(cycle.get("accepted"), (None, {}))
+
+    def test_record_accept_requires_human_flag(self) -> None:
+        stderr = io.StringIO()
+        with contextlib.redirect_stderr(stderr):
+            code = playtest.main(
+                ["record-accept", "--id", "x", "--signer", "agent"]
+            )
+        self.assertEqual(1, code)
+        self.assertIn("--i-playtested", stderr.getvalue())
+
+    def test_minor_does_not_invalidate_accepted_cycle(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "current_cycle.json"
+            path.write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "id": "cycle-1",
+                        "status": "accepted",
+                        "opened_at": "2026-09-01",
+                        "reason": "batch",
+                        "scope": ["gui"],
+                        "accepted": {
+                            "at": "2026-09-01",
+                            "notes": "",
+                            "signer": "human",
+                            "source": "human_report",
+                        },
+                    },
+                    indent=2,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            with mock.patch.object(playtest, "CYCLE_PATH", path):
+                minor = playtest.record_change("minor", "typo", "docs/foo.md")
+                self.assertEqual("accepted", minor["status"])
+                self.assertEqual("cycle-1", minor["id"])
+                major = playtest.record_change("major", "worldgen", "worldgen")
+                self.assertEqual("pending", major["status"])
+                self.assertNotEqual("cycle-1", major["id"])
+
+    def test_accept_requires_matching_id_and_human_source(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "current_cycle.json"
+            path.write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "id": "cycle-1",
+                        "status": "pending",
+                        "opened_at": "2026-09-01",
+                        "reason": "batch",
+                        "scope": ["gui"],
+                        "accepted": None,
+                    },
+                    indent=2,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            with mock.patch.object(playtest, "CYCLE_PATH", path):
+                with self.assertRaisesRegex(ValueError, "does not match"):
+                    playtest.record_accept(cycle_id="wrong", signer="human")
+                accepted = playtest.record_accept(
+                    cycle_id="cycle-1",
+                    signer="human",
+                )
+                self.assertEqual("accepted", accepted["status"])
+                self.assertEqual("human_report", accepted["accepted"]["source"])
+
+    def test_survival_access_does_not_block_runtime_close(self) -> None:
+        for value in playtest.SURVIVAL_ACCESS:
+            self.assertFalse(playtest.survival_access_blocks_runtime_close(value))
 
 
 if __name__ == "__main__":

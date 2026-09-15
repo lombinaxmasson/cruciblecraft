@@ -82,7 +82,7 @@ class EnergyHeatExchangersCardTest(unittest.TestCase):
         self.assertIsNone(topology["unique_active_wave"])
         readiness = io.load_json(WAVE / "readiness.json")
         self.assertIsNone(readiness["unique_active_wave"])
-        self.assertEqual("player_complete", readiness["evidence"]["heat_exchangers_status"])
+        self.assertEqual("runtime_ready", readiness["evidence"]["heat_exchangers_status"])
         self.assertTrue(topology["next_unassigned"])
         census = io.load_json(WAVE / "census_delta.json")
         self.assertEqual(8, census["work_set"]["source_rows"])
@@ -169,15 +169,15 @@ class EnergyHeatExchangersCardTest(unittest.TestCase):
     def test_capability_blocks_follow_up_machines(self) -> None:
         capability = io.load_json(CAPABILITY)
         self.assertEqual(CAPABILITY_SLUG, capability["slug"])
-        self.assertEqual("player_complete", capability["maturity"])
+        self.assertEqual("runtime_ready", capability["maturity"])
         self.assertEqual("accepted", capability["workflow"])
         self.assertEqual(
-            ["capability-runtime", "player-complete"],
+            ["capability-runtime"],
             capability["profiles"],
         )
-        self.assertIn("player-complete", capability["profiles"])
+        self.assertNotIn("player-complete", capability["profiles"])
         compiled = ledger.compile_ledger()
-        self.assertIn(CAPABILITY_SLUG, compiled["declared_player_complete"])
+        self.assertNotIn(CAPABILITY_SLUG, compiled["declared_player_complete"])
         blocked = {
             row["semantic_key"]
             for row in capability["identity_disposition"]

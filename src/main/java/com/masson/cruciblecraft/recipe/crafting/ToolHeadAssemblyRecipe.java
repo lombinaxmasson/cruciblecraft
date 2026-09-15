@@ -21,6 +21,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.CraftingRecipe;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
@@ -90,6 +91,20 @@ public final class ToolHeadAssemblyRecipe implements CraftingRecipe {
         ItemStack stack = new ItemStack(resultItem);
         stack.set(ModComponents.TOOL_MATERIAL.get(), "iron");
         return stack;
+    }
+
+    @Override
+    public NonNullList<Ingredient> getIngredients() {
+        NonNullList<Ingredient> ingredients = NonNullList.create();
+        Item[] heads = BuiltInRegistries.ITEM.stream()
+                .filter(item -> item instanceof MaterialFormItem form
+                        && form.form().equals(headPrefix))
+                .toArray(Item[]::new);
+        if (heads.length > 0) {
+            ingredients.add(Ingredient.of(heads));
+        }
+        ingredients.add(Ingredient.of(Items.STICK));
+        return ingredients;
     }
 
     @Override

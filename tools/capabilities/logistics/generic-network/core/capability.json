@@ -2,7 +2,7 @@
   "schema_version": 2,
   "slug": "logistics/generic-network/core",
   "title": "Generic network core",
-  "maturity": "player_complete",
+  "maturity": "runtime_ready",
   "workflow": "accepted",
   "owned_paths": [
     "src/main/java/com/masson/cruciblecraft/logistics/genericnet/**",
@@ -31,10 +31,12 @@
     "logistics/item-network-core",
     "logistics/fluid-network/basic-transfer"
   ],
-  "profiles": ["capability-runtime", "player-complete"],
+  "profiles": [
+    "capability-runtime"
+  ],
   "wave_slug": "runtime/generic-network-core",
   "legacy_readiness": "tools/waves/runtime/generic-network-core/readiness.json",
-  "player_signoff": "tools/capabilities/logistics/generic-network/core/player_signoff.json",
+  "player_signoff": null,
   "required_test_ids": [
     "coverIdentitySurvivesBlockEntityReload",
     "coversAreSurvivalCraftable",
@@ -73,5 +75,6 @@
       "reason": "Generic export cover is a dual-medium kind, distinct from item and fluid export."
     }
   ],
-  "note": "Survival craftable storage/import/export covers on item or fluid pipes. Dump belongs to logistics/logistics-core, not this sidecar."
+  "note": "Survival craftable storage/import/export covers on item or fluid pipes. Dump belongs to logistics/logistics-core, not this sidecar. Former player_complete claim is withdrawn; historical signoff does not count. survival_access is unreviewed.",
+  "survival_access": "unreviewed"
 }

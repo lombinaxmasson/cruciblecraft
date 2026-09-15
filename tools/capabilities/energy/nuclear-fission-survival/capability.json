@@ -2,7 +2,7 @@
   "schema_version": 2,
   "slug": "energy/nuclear-fission-survival",
   "title": "Nuclear Fission Survival",
-  "maturity": "player_complete",
+  "maturity": "runtime_ready",
   "workflow": "accepted",
   "owned_paths": [
     "src/main/java/com/masson/cruciblecraft/nuclear/**",
@@ -22,12 +22,11 @@
     "energy/transformers"
   ],
   "profiles": [
-    "capability-runtime",
-    "player-complete"
+    "capability-runtime"
   ],
   "wave_slug": "runtime/fission-survival",
   "legacy_readiness": "tools/waves/runtime/fission-survival/readiness.json",
-  "player_signoff": "tools/capabilities/energy/nuclear-fission-survival/player_signoff.json",
+  "player_signoff": null,
   "required_test_ids": [
     "breederProductTransformUsesExactTarget",
     "cannerFillsUranium238FuelRod",
@@ -95,5 +94,6 @@
       "reason": "Fusion controller survival recipes, plasma fluids and fuel chains wait until fission heat contracts stabilize. 18 fusion runtime rows stay runtime_ready only."
     }
   ],
-  "note": "46 rods / 8 kinds / 2 cores / 48 source relations. unique_active_wave stays null. Source is local gt6_code. Recipes match GT6 after prefix/material name translation; no stand-in ingredients. MTE catalog meta 9203 scatter dummy must later fold to live neutron_reflector_rod with no second art set. Hot fluids, observation/safety, heat exchangers, turbines, coolers and fusion stay later."
+  "note": "46 rods / 8 kinds / 2 cores / 48 source relations. unique_active_wave stays null. Source is local gt6_code. Recipes match GT6 after prefix/material name translation; no stand-in ingredients. MTE catalog meta 9203 scatter dummy must later fold to live neutron_reflector_rod with no second art set. Hot fluids, observation/safety, heat exchangers, turbines, coolers and fusion stay later. Former player_complete claim is withdrawn; historical signoff does not count. survival_access is unreviewed.",
+  "survival_access": "unreviewed"
 }

@@ -169,10 +169,10 @@ class DisplayCpuCapabilityTest(unittest.TestCase):
             ledger.load_capability(path) for path in ledger.capability_files()
         ]
         row = next(item for item in documents if item["slug"] == CAPABILITY)
-        self.assertEqual("player_complete", row["maturity"])
+        self.assertEqual("runtime_ready", row["maturity"])
         self.assertEqual("accepted", row["workflow"])
         self.assertEqual(
-            "tools/capabilities/logistics/display-cpu/player_signoff.json",
+            None,
             row.get("player_signoff"),
         )
         self.assertEqual(
@@ -186,8 +186,8 @@ class DisplayCpuCapabilityTest(unittest.TestCase):
             row["required_test_ids"],
         )
         compiled = ledger.compile_ledger()
-        self.assertIn(CAPABILITY, compiled["declared_player_complete"])
-        self.assertIn("logistics/logistics-core", compiled["declared_player_complete"])
+        self.assertNotIn(CAPABILITY, compiled["declared_player_complete"])
+        self.assertNotIn("logistics/logistics-core", compiled["declared_player_complete"])
 
 
 if __name__ == "__main__":

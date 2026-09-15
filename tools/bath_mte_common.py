@@ -573,7 +573,7 @@ def scatter_datapack_present() -> bool:
 def player_path_real() -> bool:
     if not locked_support_tree_current():
         return False
-    if not PLAYER_PATH_SUPPORT.is_file() or not scatter_datapack_present():
+    if not PLAYER_PATH_SUPPORT.is_file():
         return False
     support = load_json(PLAYER_PATH_SUPPORT)
     if support.get("kind") != PLAYER_PATH_REAL_KIND:
@@ -581,16 +581,15 @@ def player_path_real() -> bool:
     routes = list(support.get("routes") or [])
     if not routes:
         return False
+    if any(str(row.get("kind")) == "worldgen_drop" for row in routes):
+        return False
     recipes = support_recipe_files()
     fluid_routes = [row for row in routes if str(row.get("kind")) == "mixer_gt_recipe"]
-    item_routes = [row for row in routes if str(row.get("kind")) == "worldgen_drop"]
-    if len(recipes) != len(fluid_routes) or not item_routes:
+    if len(recipes) != len(fluid_routes) or not fluid_routes:
         return False
     for row in routes:
         inputs = [str(value) for value in (row.get("input_identities") or [])]
         if any(value.endswith(":iron_ingot") for value in inputs):
-            return False
-        if str(row.get("kind")) == "worldgen_drop" and inputs:
             return False
         if str(row.get("kind")) == "mixer_gt_recipe":
             if not any(value.startswith("item:") for value in inputs):

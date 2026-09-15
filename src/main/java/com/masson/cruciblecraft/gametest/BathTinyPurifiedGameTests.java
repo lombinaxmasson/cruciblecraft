@@ -19,31 +19,19 @@ import com.masson.cruciblecraft.recipe.gt.GTRecipeQuery;
 import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 import com.masson.cruciblecraft.registry.ModBlocks;
-import com.masson.cruciblecraft.registry.ModFeatures;
 import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
-import com.masson.cruciblecraft.worldgen.ItemScatterConfiguration;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.TagKey;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
@@ -79,13 +67,6 @@ public final class BathTinyPurifiedGameTests {
             CompactPublicationGroups.BATH_IDENTITY_TOOL_HEAD;
     private static final ResourceLocation EXACT_MULTI_GROUP =
             CompactPublicationGroups.BATH_TINY_PURIFIED_EXACT_MULTI;
-    private static final ResourceLocation SCATTER_FEATURE =
-            ResourceLocation.fromNamespaceAndPath(
-                    "cruciblecraft", "bath_tiny_washed_scatter");
-    private static final TagKey<Item> SCATTER_ITEMS = TagKey.create(
-            Registries.ITEM,
-            ResourceLocation.fromNamespaceAndPath(
-                    "cruciblecraft", "bath_tiny_washed_items"));
 
     private BathTinyPurifiedGameTests() {}
 
@@ -222,28 +203,6 @@ public final class BathTinyPurifiedGameTests {
         helper.assertTrue(
                 gtSupport == FLUID_SUPPORT_RECIPES,
                 "tiny-purified fluid support recipes drifted: " + gtSupport);
-        helper.succeed();
-    }
-
-    @GameTest(template = TEMPLATE, timeoutTicks = 120)
-    public static void itemScatterPlacesFromRuntimeTag(GameTestHelper helper) {
-        ServerLevel level = helper.getLevel();
-        var registry = level.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE);
-        ConfiguredFeature<?, ?> configured = registry.get(
-                ResourceKey.create(Registries.CONFIGURED_FEATURE, SCATTER_FEATURE));
-        helper.assertTrue(
-                configured != null
-                        && configured.config() instanceof ItemScatterConfiguration,
-                "Runtime registry lacks decoded bath_tiny_washed_scatter");
-        ItemScatterConfiguration config = (ItemScatterConfiguration) configured.config();
-        helper.assertTrue(config.rarity() == 128, "tiny-purified item scatter rarity drifted");
-        helper.assertTrue(
-                config.itemTag().equals(SCATTER_ITEMS),
-                "tiny-purified item scatter tag drifted");
-        ItemStack acquired = scatterOneTaggedItem(helper);
-        helper.assertTrue(
-                acquired.is(SCATTER_ITEMS),
-                "Scatter placed an item outside cruciblecraft:bath_tiny_washed_items");
         helper.succeed();
     }
 
@@ -406,7 +365,7 @@ public final class BathTinyPurifiedGameTests {
                         && bath.spec().energy().mode()
                                 == ProcessingMachineSpec.EnergyMode.BUFFERED,
                 "Bath is not a buffered TIME host");
-        loadRecipeInputs(bath, recipe, ItemStack.EMPTY);
+        loadRecipeInputs(bath, recipe);
         helper.startSequence()
                 .thenIdle(3)
                 .thenExecute(() -> {
@@ -453,15 +412,9 @@ public final class BathTinyPurifiedGameTests {
 
     private static void loadRecipeInputs(
             ConfiguredProcessingMachineBlockEntity machine,
-            GTRecipe recipe,
-            ItemStack acquiredItem) {
+            GTRecipe recipe) {
         for (int i = 0; i < recipe.itemInputs().size(); i++) {
-            ItemStack sample;
-            if (i == 0 && !acquiredItem.isEmpty()) {
-                sample = acquiredItem.copy();
-            } else {
-                sample = recipe.itemInputs().get(i).getItems()[0].copy();
-            }
+            ItemStack sample = recipe.itemInputs().get(i).getItems()[0].copy();
             sample.setCount(Math.max(1, recipe.itemInputCounts().get(i)));
             machine.inventory().setStackInSlot(
                     machine.spec().items().inputs().get(i), sample);
@@ -485,67 +438,6 @@ public final class BathTinyPurifiedGameTests {
                 recipe.fluidInputs().stream()
                         .map(FluidStack::copy)
                         .toList());
-    }
-
-    private static ItemStack scatterOneTaggedItem(GameTestHelper helper) {
-        ServerLevel level = helper.getLevel();
-        BlockPos chunkOrigin = chunkAlignedOrigin(helper);
-        int surfaceY = 64;
-        prepareItemScatterPad(level, chunkOrigin, surfaceY);
-        ConfiguredFeature<ItemScatterConfiguration, ?> forced =
-                new ConfiguredFeature<>(
-                        ModFeatures.BATH_TINY_WASHED_SCATTER.get(),
-                        new ItemScatterConfiguration(1, SCATTER_ITEMS));
-        helper.assertTrue(
-                forced.place(
-                        level,
-                        level.getChunkSource().getGenerator(),
-                        RandomSource.create(1L),
-                        chunkOrigin),
-                "tiny-purified item scatter did not place any item entity");
-        AABB box = new AABB(
-                chunkOrigin.getX(),
-                surfaceY,
-                chunkOrigin.getZ(),
-                chunkOrigin.getX() + 16,
-                surfaceY + 4,
-                chunkOrigin.getZ() + 16);
-        List<ItemEntity> entities = level.getEntitiesOfClass(ItemEntity.class, box);
-        helper.assertTrue(
-                !entities.isEmpty(),
-                "tiny-purified item scatter placed no ItemEntity");
-        return entities.getFirst().getItem().copy();
-    }
-
-    private static BlockPos chunkAlignedOrigin(GameTestHelper helper) {
-        BlockPos anchor = helper.absolutePos(BlockPos.ZERO);
-        return new BlockPos(
-                (anchor.getX() >> 4) << 4,
-                0,
-                (anchor.getZ() >> 4) << 4);
-    }
-
-    private static void prepareItemScatterPad(
-            ServerLevel level,
-            BlockPos chunkOrigin,
-            int surfaceY) {
-        for (int dx = 0; dx < 16; dx++) {
-            for (int dz = 0; dz < 16; dz++) {
-                BlockPos surface = chunkOrigin.offset(dx, surfaceY, dz);
-                level.setBlock(
-                        surface.below(),
-                        Blocks.STONE.defaultBlockState(),
-                        Block.UPDATE_ALL);
-                level.setBlock(
-                        surface,
-                        Blocks.DIRT.defaultBlockState(),
-                        Block.UPDATE_ALL);
-                level.setBlock(
-                        surface.above(),
-                        Blocks.AIR.defaultBlockState(),
-                        Block.UPDATE_ALL);
-            }
-        }
     }
 
     private static void forceLastTick(

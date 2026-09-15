@@ -181,14 +181,14 @@ class BlockedRecipeLedgerCardTest(unittest.TestCase):
         capability = caps.load_capability(
             caps.CAP_ROOT / "energy" / "converter-catalog" / "capability.json"
         )
-        self.assertEqual("player_complete", capability["maturity"])
+        self.assertEqual("runtime_ready", capability["maturity"])
         self.assertEqual("accepted", capability["workflow"])
         hot = io.load_json(
             io.TOOLS / "waves" / "runtime" / "fission-hot-fluids" / "readiness.json"
         )
         self.assertTrue(hot["nuclear_started"])
         self.assertIsNone(hot["unique_active_wave"])
-        self.assertEqual("player_complete", hot["evidence"]["hot_fluids_status"])
+        self.assertEqual("runtime_ready", hot["evidence"]["hot_fluids_status"])
 
 
 if __name__ == "__main__":

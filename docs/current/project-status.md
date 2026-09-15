@@ -6,7 +6,7 @@
 
 ## Unique active
 
-无。`capability.json` 里没有 `workflow=active`。
+`content/gt6-foundry-art`（GT6 Foundry Art，`workflow=active`，`maturity=runtime_ready`）；计划 [GT6 铸造美术详细计划](../history/card-plans/active/GT6铸造美术详细计划.md)。
 
 ## Prep（不占落地锁）
 
@@ -30,33 +30,21 @@
 - `worldgen/gt-dungeon` — [GT 地牢详细计划](../history/card-plans/prep/GT地牢详细计划.md)
 - `worldgen/gt-planet-rocks` — [GT 行星岩详细计划](../history/card-plans/prep/GT行星岩详细计划.md)
 
-## player_complete（14）
+## Playtest cycle
 
-只计 `maturity=player_complete` 且 `workflow=accepted`。
-声明不是证明；晋级仍要 fresh GameTest，`runClient` 只在晋级时强制。
+`2026-09-15-obtain-reset` **pending**. Major worldgen / gameplay / obtain / GUI / save / network changes open or extend this cycle. Ordinary bugfix does not invalidate it. Accept only after a human `runClient`; CI never auto-signs.
 
-- `energy/batteries` — Energy Batteries
-- `energy/converter-catalog` — Energy Converter Catalog
-- `energy/heat-exchangers` — Heat Exchangers — [热交换器第一切片详细计划](../history/card-plans/closed/热交换器第一切片详细计划.md)
-- `energy/nuclear-fission-hot-fluids` — Nuclear Fission Hot Fluids — [裂变热流体与热量合同详细计划](../history/card-plans/closed/裂变热流体与热量合同详细计划.md)
-- `energy/nuclear-fission-observation-safety` — Nuclear Fission Observation Safety — [裂变观测安全与能源 Jade 详细计划](../history/card-plans/closed/裂变观测安全与能源Jade详细计划.md)
-- `energy/nuclear-fission-survival` — Nuclear Fission Survival — [裂变生存闭环与全量棒堆芯详细计划](../history/card-plans/closed/裂变生存闭环与全量棒堆芯详细计划.md)
-- `energy/transformers` — Energy Transformers
-- `logistics/display-cpu` — Logistics Display CPU
-- `logistics/fluid-network/basic-transfer` — Fluid network basic transfer
-- `logistics/generic-network/core` — Generic network core
-- `logistics/item-network-core` — Item network core
-- `logistics/logistics-core` — Logistics Core
-- `machines/cluster-mill` — Cluster Mill — [集群轧机详细计划](../history/card-plans/closed/集群轧机详细计划.md)
-- `machines/roll-former` — Roll Former — [辊压成型机详细计划](../history/card-plans/closed/辊压成型机详细计划.md)
+Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction
 
-## runtime_ready（accepted，非玩家完成）（54）
+## runtime_ready accepted（70）
 
-RecipeMap / 主机已挂，获得格或配方仍 blocked。不得宣称 `player_complete`。
+机制可跑。`survival_access` 独立、不挡关闭。不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。
 
 - `content/electric-wire-cable-mte-fold` — Electric Wire/Cable MTE Fold — [导线电缆 MTE 折回详细计划](../history/card-plans/closed/导线电缆MTE折回详细计划.md)
 - `content/gt6-connector-alias-repair` — GT6 Connector Alias Repair — [GT6 连接件身份漏匹配详细计划](../history/card-plans/closed/GT6连接件身份漏匹配详细计划.md)
 - `content/gt6-connector-art` — GT6 Connector Art — [GT6 连接件美术详细计划](../history/card-plans/closed/GT6连接件美术详细计划.md)
+- `content/gt6-crucible-mold-behavior-correction` — GT6 Crucible Mold Behavior Correction — [GT6 坩埚模具行为校正详细计划](../history/card-plans/closed/GT6坩埚模具行为校正详细计划.md)
+- `content/gt6-crucible-mold-interaction` — GT6 Crucible Mold Interaction — [GT6 坩埚模具交互详细计划](../history/card-plans/closed/GT6坩埚模具交互详细计划.md)
 - `content/gt6-eu-cable-acquisition` — GT6 EU Cable Acquisition — [GT6 EU 线缆获得格详细计划](../history/card-plans/closed/GT6EU线缆获得格详细计划.md)
 - `content/gt6-eu-missing-wire-gauges-runtime` — GT6 Missing EU Wire Gauges Runtime — [GT6 缺线规运行时详细计划](../history/card-plans/closed/GT6缺线规运行时详细计划.md)
 - `content/gt6-eu-wire-cable-runtime` — GT6 EU Wire/Cable Runtime — [GT6 导线电缆运行时详细计划](../history/card-plans/closed/GT6导线电缆运行时详细计划.md)
@@ -93,8 +81,21 @@ RecipeMap / 主机已挂，获得格或配方仍 blocked。不得宣称 `player_
 - `content/mte-redstone-wire` — MTE Redstone Wire — [MTE 红石线详细计划](../history/card-plans/closed/MTE红石线详细计划.md)
 - `content/sensors` — Sensors — [Sensors 详细计划](../history/card-plans/closed/Sensors详细计划.md)
 - `content/technological-parts-foundation` — Technological Parts Foundation — [技术中间件基础详细计划](../history/card-plans/closed/技术中间件基础详细计划.md)
+- `energy/batteries` — Energy Batteries
+- `energy/converter-catalog` — Energy Converter Catalog
+- `energy/heat-exchangers` — Heat Exchangers — [热交换器第一切片详细计划](../history/card-plans/closed/热交换器第一切片详细计划.md)
+- `energy/nuclear-fission-hot-fluids` — Nuclear Fission Hot Fluids — [裂变热流体与热量合同详细计划](../history/card-plans/closed/裂变热流体与热量合同详细计划.md)
+- `energy/nuclear-fission-observation-safety` — Nuclear Fission Observation Safety — [裂变观测安全与能源 Jade 详细计划](../history/card-plans/closed/裂变观测安全与能源Jade详细计划.md)
+- `energy/nuclear-fission-survival` — Nuclear Fission Survival — [裂变生存闭环与全量棒堆芯详细计划](../history/card-plans/closed/裂变生存闭环与全量棒堆芯详细计划.md)
+- `energy/transformers` — Energy Transformers
 - `localization/language-key-display-name-normalization` — Language Key and Display Name Normalization — [语言键与显示名规范收口详细计划](../history/card-plans/closed/语言键与显示名规范收口详细计划.md)
 - `logistics/cover-remainder` — Cover remainder — [盖板余量详细计划](../history/card-plans/closed/盖板余量详细计划.md)
+- `logistics/display-cpu` — Logistics Display CPU
+- `logistics/fluid-network/basic-transfer` — Fluid network basic transfer
+- `logistics/generic-network/core` — Generic network core
+- `logistics/item-network-core` — Item network core
+- `logistics/logistics-core` — Logistics Core
+- `machines/cluster-mill` — Cluster Mill — [集群轧机详细计划](../history/card-plans/closed/集群轧机详细计划.md)
 - `machines/injector` — Injector — [注射机详细计划](../history/card-plans/closed/注射机详细计划.md)
 - `machines/laminator` — Laminator — [层压机详细计划](../history/card-plans/closed/层压机详细计划.md)
 - `machines/loom` — Loom — [织机详细计划](../history/card-plans/closed/织机详细计划.md)
@@ -102,6 +103,7 @@ RecipeMap / 主机已挂，获得格或配方仍 blocked。不得宣称 `player_
 - `machines/nanofab` — Nanoscale Fabricator — [纳米加工机详细计划](../history/card-plans/closed/纳米加工机详细计划.md)
 - `machines/oven` — Oven — [熔炉详细计划](../history/card-plans/closed/熔炉详细计划.md)
 - `machines/pressure-washer` — Pressure Washer — [压力清洗机详细计划](../history/card-plans/closed/压力清洗机详细计划.md)
+- `machines/roll-former` — Roll Former — [辊压成型机详细计划](../history/card-plans/closed/辊压成型机详细计划.md)
 - `machines/sanding` — Sanding Machine — [打磨机详细计划](../history/card-plans/closed/打磨机详细计划.md)
 - `machines/slicer` — Slicer — [切片机详细计划](../history/card-plans/closed/切片机详细计划.md)
 - `registry/catalog-modern-ids` — Catalog modern IDs — [目录身份现代 id 详细计划](../history/card-plans/closed/目录身份现代id详细计划.md)
@@ -109,9 +111,9 @@ RecipeMap / 主机已挂，获得格或配方仍 blocked。不得宣称 `player_
 - `worldgen/gt-crops` — GT Crops — [GT 作物世界生成](../history/card-plans/closed/GT作物世界生成详细计划.md)
 - `worldgen/gt-trees` — GT Trees — [GT 树详细计划](../history/card-plans/closed/GT树详细计划.md)
 
-## frozen（非 runtime_ready / player_complete）（9）
+## frozen（9）
 
-分母已冻。`paused` 的 PUV/OMEGA 六张代码已在 `src/main`，是 CC 扩展，不是原版高压线，也不是 `player_complete`。地牢是结构载体，房间内容仍 blocked。
+分母已冻。`paused` 的 PUV/OMEGA 六张代码已在 `src/main`，是 CC 扩展，不是原版高压线。地牢是结构载体，房间内容仍 blocked。
 
 - `content/puv-omega-parts` — Compact parts, Quantum circuit, wires and transformers to OMEGA（`workflow=paused`）
 - `energy/fusion-quantum` — Fusion execution, QUANTUM, and LU to QU（`workflow=paused`）
@@ -123,16 +125,12 @@ RecipeMap / 主机已挂，获得格或配方仍 blocked。不得宣称 `player_
 - `registry/tool-head-remainder` — Tool-head remainder identities（`workflow=accepted`）
 - `worldgen/gt-dungeon` — GT Dungeon（`workflow=paused`） — [GT 地牢详细计划](../history/card-plans/prep/GT地牢详细计划.md)
 
-## 关闭计划（有 capability 的 player_complete）
+## 关闭计划
 
-- [热交换器第一切片详细计划](../history/card-plans/closed/热交换器第一切片详细计划.md)（`energy/heat-exchangers`）
-- [裂变热流体与热量合同详细计划](../history/card-plans/closed/裂变热流体与热量合同详细计划.md)（`energy/nuclear-fission-hot-fluids`）
-- [裂变观测安全与能源 Jade 详细计划](../history/card-plans/closed/裂变观测安全与能源Jade详细计划.md)（`energy/nuclear-fission-observation-safety`）
-- [裂变生存闭环与全量棒堆芯详细计划](../history/card-plans/closed/裂变生存闭环与全量棒堆芯详细计划.md)（`energy/nuclear-fission-survival`）
-- [集群轧机详细计划](../history/card-plans/closed/集群轧机详细计划.md)（`machines/cluster-mill`）
-- [辊压成型机详细计划](../history/card-plans/closed/辊压成型机详细计划.md)（`machines/roll-former`）
+已关卡的计划在 `docs/history/card-plans/closed/`。完成档不再使用 `player_complete`；runtime_ready 见上表。
 
 权威与流程见 [capability-delivery-workflow.md](capability-delivery-workflow.md)
 与 [unimplemented-gap.md](unimplemented-gap.md)。
 跨能力 blocked 总账见 [blocked.md](blocked.md)。
-关闭一张卡：`python tools/close_capability.py --capability <slug>`。
+关闭一张卡：`python tools/close_capability.py --capability <slug> --change-class major`。
+试玩签收：`python tools/playtest.py record-accept --id <cycle> --signer <name> --i-playtested`。

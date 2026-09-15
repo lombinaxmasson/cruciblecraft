@@ -174,12 +174,12 @@ class EnergyBatteriesCardTest(unittest.TestCase):
         capability = ledger.load_capability(
             ledger.CAP_ROOT / "energy" / "batteries" / "capability.json"
         )
-        self.assertEqual("player_complete", capability["maturity"])
+        self.assertEqual("runtime_ready", capability["maturity"])
         self.assertEqual("accepted", capability["workflow"])
         self.assertEqual(CAPABILITY, capability["slug"])
         self.assertEqual(SLUG, capability["wave_slug"])
         self.assertEqual(
-            "tools/capabilities/energy/batteries/player_signoff.json",
+            None,
             capability["player_signoff"],
         )
         self.assertEqual(["energy/converter-catalog"], capability["depends_on"])

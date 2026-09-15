@@ -61,6 +61,20 @@ class CapabilityCloseTest(unittest.TestCase):
             )
         )
 
+    def test_close_rejects_player_complete_maturity(self) -> None:
+        with self.assertRaisesRegex(ValueError, "unsupported close maturity"):
+            close_capability.close_capability(
+                "logistics/fluid-network/basic-transfer",
+                maturity="player_complete",
+            )
+
+    def test_close_defaults_to_runtime_ready_major(self) -> None:
+        import inspect
+
+        defaults = inspect.signature(close_capability.close_capability).parameters
+        self.assertEqual("runtime_ready", defaults["maturity"].default)
+        self.assertEqual("major", defaults["change_class"].default)
+
 
 if __name__ == "__main__":
     unittest.main()

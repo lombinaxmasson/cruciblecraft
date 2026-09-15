@@ -2,7 +2,7 @@
   "schema_version": 2,
   "slug": "energy/nuclear-fission-observation-safety",
   "title": "Nuclear Fission Observation Safety",
-  "maturity": "player_complete",
+  "maturity": "runtime_ready",
   "workflow": "accepted",
   "owned_paths": [
     "src/main/java/com/masson/cruciblecraft/compat/jade/**",
@@ -39,12 +39,11 @@
     "energy/nuclear-fission-hot-fluids"
   ],
   "profiles": [
-    "capability-runtime",
-    "player-complete"
+    "capability-runtime"
   ],
   "wave_slug": "runtime/fission-observation-safety",
   "legacy_readiness": "tools/waves/runtime/fission-observation-safety/readiness.json",
-  "player_signoff": "tools/capabilities/energy/nuclear-fission-observation-safety/player_signoff.json",
+  "player_signoff": null,
   "required_test_ids": [
     "areaRadiationUsesNeutronOver256",
     "contactAppliesHeatAndRadiation",
@@ -141,5 +140,6 @@
       "reason": "No CC material radioactivity level table."
     }
   ],
-  "note": "Fission wrap plus energy Jade second slice. Geiger obtain is source-exact aluminium capcellcon. unique_active_wave stays null. No heat exchangers, turbines, coolers, or Kelvin."
+  "note": "Fission wrap plus energy Jade second slice. Geiger obtain is source-exact aluminium capcellcon. unique_active_wave stays null. No heat exchangers, turbines, coolers, or Kelvin. Former player_complete claim is withdrawn; historical signoff does not count. survival_access is unreviewed.",
+  "survival_access": "unreviewed"
 }

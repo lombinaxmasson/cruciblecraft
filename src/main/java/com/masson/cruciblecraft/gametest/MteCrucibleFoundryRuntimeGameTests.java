@@ -3,6 +3,7 @@ package com.masson.cruciblecraft.gametest;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.item.CatalogNamedBlockItem;
+import com.masson.cruciblecraft.content.mte.MteFoundryTanks;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import net.minecraft.core.BlockPos;
@@ -40,8 +41,8 @@ public final class MteCrucibleFoundryRuntimeGameTests {
                         .defaultBlockState());
         MteInPlaceBlockEntity be = helper.getBlockEntity(pos);
         helper.assertTrue(
-                be.tank().getCapacity() == 8000,
-                "foundry tank missing");
+                be.tank().getCapacity() == MteFoundryTanks.SMELTERY_MB,
+                "foundry smeltery tank is not 16 ingots");
         helper.succeed();
     }
 }

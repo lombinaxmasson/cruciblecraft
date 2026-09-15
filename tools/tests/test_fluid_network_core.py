@@ -119,7 +119,7 @@ class FluidNetworkCoreArtifactsTest(unittest.TestCase):
         readiness = io.load_json(WAVE / "readiness.json")
         self.assertEqual("runtime_ready", readiness["evidence"]["item_kinds_status"])
         self.assertEqual(
-            "player_complete", readiness["evidence"]["fluid_basic_transfer_status"]
+            "runtime_ready", readiness["evidence"]["fluid_basic_transfer_status"]
         )
         self.assertEqual("frozen", readiness["evidence"]["fluid_generic_dump_status"])
         receipt = io.load_json(WAVE / "gametest_receipt.json")

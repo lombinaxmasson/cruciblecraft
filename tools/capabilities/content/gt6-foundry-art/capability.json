@@ -1,0 +1,77 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-foundry-art",
+  "title": "GT6 Foundry Art",
+  "maturity": "runtime_ready",
+  "workflow": "active",
+  "survival_access": "unreviewed",
+  "owned_paths": [
+    "docs/history/card-plans/active/GT6铸造美术详细计划.md",
+    "docs/history/card-plans/closed/GT6铸造美术详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/client/color/FoundryBlockColor.java",
+    "src/main/java/com/masson/cruciblecraft/client/ClientSetup.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/FoundryArtGameTests.java",
+    "src/main/resources/assets/cruciblecraft/gt6_foundry_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/models/block/mte_foundry_smeltery.json",
+    "src/main/resources/assets/cruciblecraft/models/block/mte_foundry_mold.json",
+    "src/main/resources/assets/cruciblecraft/models/block/mte_foundry_basin.json",
+    "src/main/resources/assets/cruciblecraft/models/block/mte_foundry_crossing.json",
+    "src/main/resources/assets/cruciblecraft/models/block/foundry/**",
+    "src/main/resources/assets/cruciblecraft/models/item/foundry/**",
+    "src/main/resources/assets/cruciblecraft/blockstates/foundry/**",
+    "src/main/resources/assets/cruciblecraft/models/block/stainless_steel/**",
+    "src/main/resources/assets/cruciblecraft/models/item/stainless_steel/**",
+    "src/main/resources/assets/cruciblecraft/blockstates/stainless_steel/**",
+    "src/main/resources/assets/cruciblecraft/models/block/fiery_steel/**",
+    "src/main/resources/assets/cruciblecraft/models/item/fiery_steel/**",
+    "src/main/resources/assets/cruciblecraft/blockstates/fiery_steel/**",
+    "src/main/resources/assets/cruciblecraft/models/block/meteoric_iron/**",
+    "src/main/resources/assets/cruciblecraft/models/item/meteoric_iron/**",
+    "src/main/resources/assets/cruciblecraft/blockstates/meteoric_iron/**",
+    "src/main/resources/assets/cruciblecraft/models/block/meteoric_steel/**",
+    "src/main/resources/assets/cruciblecraft/models/item/meteoric_steel/**",
+    "src/main/resources/assets/cruciblecraft/blockstates/meteoric_steel/**",
+    "src/main/resources/assets/cruciblecraft/models/block/void_metal/**",
+    "src/main/resources/assets/cruciblecraft/models/item/void_metal/**",
+    "src/main/resources/assets/cruciblecraft/blockstates/void_metal/**",
+    "src/main/resources/assets/cruciblecraft/models/block/hslasteel/**",
+    "src/main/resources/assets/cruciblecraft/models/item/hslasteel/**",
+    "src/main/resources/assets/cruciblecraft/blockstates/hslasteel/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/materialicons/stone/**",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_foundry_art/**",
+    "tools/capabilities/content/gt6-foundry-art/**",
+    "tools/waves/content/gt6-foundry-art/**",
+    "tools/gt6_foundry_art.py",
+    "tools/build_gt6_foundry_art.py",
+    "tools/tests/test_gt6_foundry_art.py",
+    "tools/gt6_mte_inplace_runtime.py"
+  ],
+  "depends_on": [
+    "content/gt6-mte-crucible-foundry-runtime",
+    "content/gt6-crucible-mold-interaction"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-foundry-art",
+  "required_test_ids": [
+    "foundryArtManifestResolvesLocalGt6",
+    "foundryArtNotLargeCrucibleCube",
+    "foundryArtSharedParentsNotPerMaterialPng"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "foundry:art:shared-iconset",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:foundry/smelting_crucible_invar",
+        "cruciblecraft:foundry/mold_stone",
+        "cruciblecraft:foundry/basin_bronze",
+        "cruciblecraft:foundry/crucible_crossing_steel"
+      ],
+      "reason": "The 85 foundry BlockItems reuse GT6 materialicons blocksolid. Metals reuse the already-copied metallic faucet PNG. Stone is the only new PNG. Overlay icons are empty in GT6 and omitted. Do not copy the large 3x3 crucible side, and do not recopy copper/shiny/fiery (identical to metallic)."
+    }
+  ],
+  "note": "Port GT6 foundry voxels and shared iconsets onto the live 85. Close at runtime_ready, not player_complete. Do not invent recipes or ItemEntity worldgen. Do not change content/gt6-mte-crucible-foundry-runtime required_test_ids. Dummy tanks stay dummy."
+}

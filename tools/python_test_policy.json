@@ -46,10 +46,10 @@
     "test_laminator",
     "test_loom",
     "test_nanofab",
-        "test_melter",
-        "test_sanding",
-        "test_oven",
-        "test_electric_wire_cable_mte_fold",
+    "test_melter",
+    "test_sanding",
+    "test_oven",
+    "test_electric_wire_cable_mte_fold",
     "test_gt6_pipe_cable_baseline",
     "test_technological_parts_foundation",
     "test_capability_ledger",
@@ -58,6 +58,9 @@
     "test_catalog_modern_ids",
     "test_mte_redstone_wire",
     "test_gt6_redstone_wire_correction",
+    "test_gt6_crucible_mold_behavior_correction",
+    "test_gt6_crucible_mold_interaction",
+    "test_gt6_foundry_art",
     "test_gt6_fluid_pipe_runtime",
     "test_gt6_item_pipe_runtime",
     "test_gt6_eu_wire_cable_runtime",
@@ -433,6 +436,79 @@
         "test_gt6_redstone_wire_correction",
         "test_mte_redstone_wire",
         "test_gt6_pipe_cable_baseline"
+      ]
+    },
+    {
+      "paths": [
+        "tools/tests/test_gt6_crucible_mold_behavior_correction.py",
+        "tools/capabilities/content/gt6-crucible-mold-behavior-correction/**",
+        "tools/waves/content/gt6-crucible-mold-behavior-correction/**",
+        "src/main/java/com/masson/cruciblecraft/content/block/CeramicMoldBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/CrucibleBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/CeramicMoldBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/CrucibleBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/mte/MteFoundryTanks.java",
+        "src/main/java/com/masson/cruciblecraft/machine/component/CrucibleProcessCore.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/CrucibleMoldBehaviorCorrectionGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/MteCrucibleFoundryRuntimeGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_crucible_mold_behavior_correction/**",
+        "tools/gt6_mte_inplace_runtime.py",
+        "docs/history/card-plans/closed/GT6坩埚模具行为校正详细计划.md"
+      ],
+      "test_modules": [
+        "test_gt6_crucible_mold_behavior_correction",
+        "test_gt6_mte_runtime",
+        "test_capability_ledger"
+      ]
+    },
+    {
+      "paths": [
+        "tools/tests/test_gt6_crucible_mold_interaction.py",
+        "tools/capabilities/content/gt6-crucible-mold-interaction/**",
+        "tools/waves/content/gt6-crucible-mold-interaction/**",
+        "src/main/java/com/masson/cruciblecraft/content/block/CeramicMoldBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/CrucibleBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/CeramicMoldBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/CrucibleBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/item/ThermometerItem.java",
+        "src/main/java/com/masson/cruciblecraft/content/mold/**",
+        "src/main/java/com/masson/cruciblecraft/heat/TemperatureDamage.java",
+        "src/main/java/com/masson/cruciblecraft/machine/component/CrucibleProcessCore.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModCapabilities.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/CrucibleMoldInteractionGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/content/mold/MoldRecipesTest.java",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_crucible_mold_interaction/**",
+        "docs/history/card-plans/active/GT6坩埚模具交互详细计划.md",
+        "docs/history/card-plans/closed/GT6坩埚模具交互详细计划.md"
+      ],
+      "test_modules": [
+        "test_gt6_crucible_mold_interaction",
+        "test_gt6_crucible_mold_behavior_correction",
+        "test_capability_ledger"
+      ]
+    },
+    {
+      "paths": [
+        "tools/gt6_foundry_art.py",
+        "tools/build_gt6_foundry_art.py",
+        "tools/tests/test_gt6_foundry_art.py",
+        "tools/capabilities/content/gt6-foundry-art/**",
+        "tools/waves/content/gt6-foundry-art/**",
+        "src/main/java/com/masson/cruciblecraft/client/color/FoundryBlockColor.java",
+        "src/main/java/com/masson/cruciblecraft/client/ClientSetup.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/FoundryArtGameTests.java",
+        "src/main/resources/assets/cruciblecraft/gt6_foundry_art_manifest.json",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_foundry_art/**",
+        "docs/history/card-plans/active/GT6铸造美术详细计划.md",
+        "docs/history/card-plans/closed/GT6铸造美术详细计划.md"
+      ],
+      "test_modules": [
+        "test_gt6_foundry_art",
+        "test_gt6_mte_runtime",
+        "test_capability_ledger"
       ]
     },
     {
@@ -930,6 +1006,9 @@
         "tools/tests/test_catalog_modern_ids.py",
         "tools/tests/test_mte_redstone_wire.py",
         "tools/tests/test_gt6_redstone_wire_correction.py",
+        "tools/tests/test_gt6_crucible_mold_behavior_correction.py",
+        "tools/tests/test_gt6_crucible_mold_interaction.py",
+        "tools/tests/test_gt6_foundry_art.py",
         "tools/tests/test_gt6_fluid_pipe_runtime.py",
         "tools/tests/test_gt6_item_pipe_runtime.py",
         "tools/tests/test_gt6_eu_wire_cable_runtime.py",
@@ -1047,6 +1126,9 @@
         "test_catalog_modern_ids",
         "test_mte_redstone_wire",
         "test_gt6_redstone_wire_correction",
+        "test_gt6_crucible_mold_behavior_correction",
+        "test_gt6_crucible_mold_interaction",
+        "test_gt6_foundry_art",
         "test_gt6_insulated_redstone_runtime",
         "test_gt6_fluid_dangerous_media_runtime",
         "test_gt6_connector_acquisition",
@@ -1084,11 +1166,18 @@
         "tools/build_player_complete.py",
         "tools/tests/test_player_complete.py",
         "tools/capabilities/**",
+        ".cursor/rules/gt6-no-item-entity-worldgen-acquisition.mdc",
+        "docs/current/gt6-no-item-entity-worldgen.md",
+        "docs/current/capability-delivery-workflow.md",
+        "src/main/java/com/masson/cruciblecraft/registry/ModFeatures.java",
         "src/main/java/com/masson/cruciblecraft/verification/PlayerCompleteSmoke.java",
         "src/main/resources/cruciblecraft/player_complete_surfaces.json",
         "src/main/java/com/masson/cruciblecraft/client/ClientSmoke.java",
         "src/main/java/com/masson/cruciblecraft/compat/emi/CrucibleCraftEmiPlugin.java",
-        "src/main/java/com/masson/cruciblecraft/compat/emi/ProcessingEmiRegistrationPlan.java"
+        "src/main/java/com/masson/cruciblecraft/compat/emi/ProcessingEmiRegistrationPlan.java",
+        "tools/playtest.py",
+        "tools/playtest/**",
+        "src/main/java/com/masson/cruciblecraft/worldgen/**"
       ],
       "test_modules": [
         "test_player_complete"

@@ -10,6 +10,8 @@ import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
+import com.masson.cruciblecraft.content.mold.CruciblePour;
+import com.masson.cruciblecraft.content.mold.MoldHost;
 import com.masson.cruciblecraft.energy.EnergyPackets;
 import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.InsertResult;
 import com.masson.cruciblecraft.heat.ItemHeat;
@@ -35,6 +37,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -42,7 +45,7 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
-public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
+public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler, CruciblePour {
     public static final int MAX_INGOTS = CrucibleProcessCore.SINGLE_BLOCK_MAX_INGOTS;
     public static final float AMBIENT_TEMPERATURE = CrucibleProcessCore.AMBIENT_TEMPERATURE;
     public static final long HEAT_DISPLAY_CAPACITY = CrucibleProcessCore.HEAT_DISPLAY_CAPACITY;
@@ -107,7 +110,7 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
                 ? false
                 : crucible.advance(incomingEnergy, true);
         if (meltedDown) {
-            level.destroyBlock(pos, false);
+            level.setBlock(pos, Blocks.LAVA.defaultBlockState(), Block.UPDATE_ALL);
             return;
         }
         boolean processChanged = Float.compare(
@@ -305,9 +308,6 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
     }
 
     private void suckDroppedItems(Level level, BlockPos pos) {
-        if (!inputBuffer.getStackInSlot(0).isEmpty()) {
-            return;
-        }
         AABB box = new AABB(
                 pos.getX() + SUCK_INSET,
                 pos.getY() + SUCK_INSET,
@@ -324,6 +324,9 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
                 continue;
             }
             ItemStack leftover = inputBuffer.insertItem(0, stack, false);
+            if (leftover.getCount() == stack.getCount()) {
+                continue;
+            }
             entity.setItem(leftover);
             if (leftover.isEmpty()) {
                 entity.discard();
@@ -371,6 +374,15 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
                 transfer.form(),
                 transfer.count(),
                 transfer.temperature()));
+    }
+
+    @Override
+    public boolean fillMoldAtSide(MoldHost mold, Direction crucibleSide, Direction moldSide) {
+        if (process.fillMoldAtSide(mold, moldSide)) {
+            markVisibleMutation();
+            return true;
+        }
+        return false;
     }
 
     public float temperature() {

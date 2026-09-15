@@ -43,6 +43,7 @@ class ProjectStatusTest(unittest.TestCase):
         self.assertIn("machines/roll-former", text)
         self.assertIn("## Prep（不占落地锁）", text)
         self.assertIn("## runtime_ready", text)
+        self.assertIn("## Playtest cycle", text)
         self.assertIn("## frozen", text)
         self.assertIn("`energy/steam-turbine`", text)
         self.assertIn("`content/puv-omega-parts`", text)

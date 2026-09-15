@@ -39,7 +39,7 @@ final class ProcessingEmiRecipe implements EmiRecipe {
             EmiRecipeCategory category,
             ProcessingMachineSpec spec,
             GTRecipe recipe) {
-        this.id = Objects.requireNonNull(id, "id");
+        this.id = EmiIds.synthetic(id);
         this.category = Objects.requireNonNull(category, "category");
         data = ProcessingEmiRecipeData.from(spec, recipe);
         layout = ProcessingEmiLayout.create(spec, data);
@@ -54,7 +54,7 @@ final class ProcessingEmiRecipe implements EmiRecipe {
         itemOutputs = new HashMap<>();
         data.itemOutputs().forEach(output -> itemOutputs.put(
                 output.recipeIndex(),
-                EmiStack.of(output.stack()).setChance(output.chanceFraction())));
+                EmiStacks.ofItem(output.stack()).setChance(output.chanceFraction())));
         fluidInputs = new HashMap<>();
         data.fluidInputs().forEach(input ->
                 fluidInputs.put(input.recipeIndex(), fluidStack(input.stack())));
@@ -102,6 +102,11 @@ final class ProcessingEmiRecipe implements EmiRecipe {
     @Override
     public List<EmiStack> getOutputs() {
         return outputs;
+    }
+
+    @Override
+    public boolean hideCraftable() {
+        return true;
     }
 
     @Override
@@ -224,9 +229,6 @@ final class ProcessingEmiRecipe implements EmiRecipe {
     }
 
     private static EmiStack fluidStack(FluidStack stack) {
-        return EmiStack.of(
-                stack.getFluid(),
-                stack.getComponentsPatch(),
-                stack.getAmount());
+        return EmiStacks.ofFluid(stack);
     }
 }

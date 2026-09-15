@@ -29,7 +29,7 @@ final class AnvilEmiRecipe implements EmiRecipe {
             GTRecipe recipe,
             ItemStack hammer,
             ItemStack anvil) {
-        this.id = id;
+        this.id = EmiIds.synthetic(id);
         this.mode = mode;
         this.recipe = recipe;
         inputs = java.util.stream.IntStream.range(0, recipe.itemInputs().size())
@@ -37,13 +37,18 @@ final class AnvilEmiRecipe implements EmiRecipe {
                         recipe.itemInputs().get(index),
                         recipe.itemInputCounts().get(index)))
                 .toList();
-        catalysts = List.of(EmiStack.of(hammer), EmiStack.of(anvil));
-        outputs = recipe.itemOutputs().stream().map(EmiStack::of).toList();
+        catalysts = List.of(EmiStacks.ofItem(hammer), EmiStacks.ofItem(anvil));
+        outputs = recipe.itemOutputs().stream().map(EmiStacks::ofItem).toList();
     }
 
     @Override
     public EmiRecipeCategory getCategory() {
         return CrucibleCraftEmiPlugin.ANVIL;
+    }
+
+    @Override
+    public boolean hideCraftable() {
+        return true;
     }
 
     @Override

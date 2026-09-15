@@ -1,0 +1,63 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-crucible-mold-interaction",
+  "title": "GT6 Crucible Mold Interaction",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "unreviewed",
+  "owned_paths": [
+    "docs/history/card-plans/active/GT6坩埚模具交互详细计划.md",
+    "docs/history/card-plans/closed/GT6坩埚模具交互详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/block/CeramicMoldBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/CrucibleBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/CeramicMoldBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/CrucibleBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/item/ThermometerItem.java",
+    "src/main/java/com/masson/cruciblecraft/content/mold/CruciblePour.java",
+    "src/main/java/com/masson/cruciblecraft/content/mold/MoldHost.java",
+    "src/main/java/com/masson/cruciblecraft/content/mold/MoldRecipes.java",
+    "src/main/java/com/masson/cruciblecraft/content/mold/MoldShape.java",
+    "src/main/java/com/masson/cruciblecraft/heat/TemperatureDamage.java",
+    "src/main/java/com/masson/cruciblecraft/machine/component/CrucibleProcessCore.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModCapabilities.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/CrucibleMoldInteractionGameTests.java",
+    "src/test/java/com/masson/cruciblecraft/content/mold/MoldRecipesTest.java",
+    "src/main/resources/data/cruciblecraft_wave_content_gt6_crucible_mold_interaction/**",
+    "tools/capabilities/content/gt6-crucible-mold-interaction/**",
+    "tools/waves/content/gt6-crucible-mold-interaction/**",
+    "tools/tests/test_gt6_crucible_mold_interaction.py"
+  ],
+  "depends_on": [
+    "content/gt6-crucible-mold-behavior-correction"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-crucible-mold-interaction",
+  "required_test_ids": [
+    "crucibleMeltdownBecomesLava",
+    "emptyHandPickupCanBurn",
+    "faucetPoursCeramicCrucibleIntoMold",
+    "fillMoldConsumesOneIngot",
+    "moldChiselORsBitAndCastsNuggets",
+    "moldContactBurns",
+    "moldCuCoolsTemperature",
+    "moldTopEdgePoursOnlyThatNeighbor",
+    "pincersPickupSkipsHeatDamage",
+    "wrenchRotatesIngotRecipe"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "ceramic:crucible-mold:interaction",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:crucible",
+        "cruciblecraft:ceramic_mold",
+        "cruciblecraft:fluid_attachment/crucible_faucet_stone"
+      ],
+      "reason": "Identity stays on the live ceramic hosts and the already-live stone faucet. This child adds GT6 fillMold, chisel bits, wrench rotate, pincers, contact heat, lava meltdown, CU cool, thermometer Kelvin, and faucet-to-ceramic-mold. Do not reopen the foundry identity card or the previous correction card's required_test_ids. Foundry dummy tanks stay dummy."
+    }
+  ],
+  "note": "GT6 fillMold / chisel / heat / faucet-to-ceramic-mold on the live ceramic hosts. Close at runtime_ready, not player_complete. Do not invent recipes or ItemEntity worldgen. Do not change content/gt6-crucible-mold-behavior-correction required_test_ids."
+}

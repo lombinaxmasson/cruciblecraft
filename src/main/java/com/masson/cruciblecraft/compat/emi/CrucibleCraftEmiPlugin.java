@@ -1,11 +1,13 @@
 package com.masson.cruciblecraft.compat.emi;
 
 import java.util.ArrayList;
-import java.util.IdentityHashMap;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
@@ -15,7 +17,6 @@ import com.masson.cruciblecraft.content.mold.MoldCastingRules;
 import com.masson.cruciblecraft.content.mold.MoldShape;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
-import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.AnvilMode;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
@@ -32,6 +33,7 @@ import dev.emi.emi.api.EmiEntrypoint;
 import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
+import dev.emi.emi.api.render.EmiRenderable;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import net.minecraft.resources.ResourceLocation;
@@ -41,36 +43,40 @@ import net.minecraft.world.level.block.Block;
 
 @EmiEntrypoint
 public final class CrucibleCraftEmiPlugin implements EmiPlugin {
-    public static final EmiRecipeCategory CRUCIBLE = new EmiRecipeCategory(
+    private static final Map<ResourceLocation, EmiRecipeCategory> INTERNED_CATEGORIES =
+            new HashMap<>();
+
+    public static final EmiRecipeCategory CRUCIBLE = internCategory(
             id("crucible"),
             EmiStack.of(ModBlocks.CRUCIBLE.get()));
-    public static final EmiRecipeCategory ANVIL = new EmiRecipeCategory(
+    public static final EmiRecipeCategory ANVIL = internCategory(
             id("anvil"),
             EmiStack.of(ModBlocks.ANVIL.get()));
-    public static final EmiRecipeCategory COKE_OVEN = new EmiRecipeCategory(
+    public static final EmiRecipeCategory COKE_OVEN = internCategory(
             id("coke_oven"),
             EmiStack.of(ModBlocks.COKE_OVEN.get()));
-    public static final EmiRecipeCategory MOLD_CASTING = new EmiRecipeCategory(
+    public static final EmiRecipeCategory MOLD_CASTING = internCategory(
             id("mold_casting"),
             EmiStack.of(ModItems.INGOT_MOLD.get()));
-    public static final EmiRecipeCategory CRUSHER = new EmiRecipeCategory(
+    public static final EmiRecipeCategory CRUSHER = internCategory(
             id("crusher"),
             EmiStack.of(ModBlocks.BRONZE_CRUSHER.get()));
-    public static final EmiRecipeCategory FUSION = new EmiRecipeCategory(
+    public static final EmiRecipeCategory FUSION = internCategory(
             id("fusion"),
             EmiStack.of(ModBlocks.FUSION_REACTOR.get()));
 
     @Override
     public void register(EmiRegistry registry) {
-        registry.addCategory(CRUCIBLE);
-        registry.addCategory(ANVIL);
-        registry.addCategory(COKE_OVEN);
-        registry.addCategory(MOLD_CASTING);
-        registry.addCategory(CRUSHER);
-        registry.addCategory(FUSION);
+        Set<ResourceLocation> addedCategories = new HashSet<>();
+        addCategory(registry, CRUCIBLE, addedCategories);
+        addCategory(registry, ANVIL, addedCategories);
+        addCategory(registry, COKE_OVEN, addedCategories);
+        addCategory(registry, MOLD_CASTING, addedCategories);
+        addCategory(registry, CRUSHER, addedCategories);
+        addCategory(registry, FUSION, addedCategories);
         registry.addWorkstation(CRUCIBLE, EmiStack.of(ModBlocks.CRUCIBLE.get()));
         for (String material : List.of("stone", "iron", "bronze", "steel")) {
-            registry.addWorkstation(ANVIL, EmiStack.of(anvilVariant(material)));
+            registry.addWorkstation(ANVIL, EmiStacks.ofItem(anvilVariant(material)));
         }
         registry.addWorkstation(COKE_OVEN, EmiStack.of(ModBlocks.COKE_OVEN.get()));
         registry.addWorkstation(CRUSHER, EmiStack.of(ModBlocks.BRONZE_CRUSHER.get()));
@@ -85,9 +91,9 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         registerMoldCasting(registry);
         registerCrusherRecipes(registry);
         registerFusionRecipes(registry);
-        registerProcessingMachines(registry);
-        registerFuelMaps(registry);
-        registerHeatExchangerFuels(registry);
+        registerProcessingMachines(registry, addedCategories);
+        registerFuelMaps(registry, addedCategories);
+        registerHeatExchangerFuels(registry, addedCategories);
         registerDisplayStacks(registry);
         for (var cover : List.of(
                 ModItems.LOGISTICS_ITEM_STORAGE_COVER,
@@ -117,7 +123,7 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
     private static void registerDisplayStacks(EmiRegistry registry) {
         com.masson.cruciblecraft.content.item.ToolDisplayPlan
                 .routedVariantStacks()
-                .forEach(stack -> registry.addEmiStack(EmiStack.of(stack)));
+                .forEach(stack -> registry.addEmiStack(EmiStacks.ofItem(stack)));
 
         var materials = MaterialCatalog.startupValues();
         Map<String, List<com.masson.cruciblecraft.api.material.MaterialPrefix>> forms =
@@ -266,19 +272,23 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         }
     }
 
-    private static void registerFuelMaps(EmiRegistry registry) {
+    private static void registerFuelMaps(
+            EmiRegistry registry, Set<ResourceLocation> addedCategories) {
         registerFuelMap(
                 registry,
+                addedCategories,
                 ModRecipeMaps.FUELS_ENGINE,
                 "fuels_engine",
                 "fuel_engine");
         registerFuelMap(
                 registry,
+                addedCategories,
                 ModRecipeMaps.FUELS_GAS,
                 "fuels_gas",
                 "fluid_burning_box");
         registerFuelMap(
                 registry,
+                addedCategories,
                 ModRecipeMaps.FUELS_FLUIDBED,
                 "fuels_fluidbed",
                 "fluid_bed_burning_box");
@@ -286,6 +296,7 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
 
     private static void registerFuelMap(
             EmiRegistry registry,
+            Set<ResourceLocation> addedCategories,
             RecipeMap map,
             String categoryPath,
             String runtime) {
@@ -293,10 +304,10 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         if (workstations.length == 0) {
             return;
         }
-        EmiRecipeCategory category = new EmiRecipeCategory(
+        EmiRecipeCategory category = internCategory(
                 id(categoryPath),
                 EmiStack.of(workstations[0]));
-        registry.addCategory(category);
+        addCategory(registry, category, addedCategories);
         for (Block block : workstations) {
             registry.addWorkstation(category, EmiStack.of(block));
         }
@@ -312,15 +323,16 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                                 .get())));
     }
 
-    private static void registerHeatExchangerFuels(EmiRegistry registry) {
+    private static void registerHeatExchangerFuels(
+            EmiRegistry registry, Set<ResourceLocation> addedCategories) {
         Block[] workstations = ModBlocks.heatExchangerBlockArray();
         if (workstations.length == 0) {
             return;
         }
-        EmiRecipeCategory category = new EmiRecipeCategory(
+        EmiRecipeCategory category = internCategory(
                 id("fuels_hot"),
                 EmiStack.of(workstations[0]));
-        registry.addCategory(category);
+        addCategory(registry, category, addedCategories);
         for (Block block : workstations) {
             registry.addWorkstation(category, EmiStack.of(block));
         }
@@ -330,19 +342,19 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         }
     }
 
-    private static void registerProcessingMachines(EmiRegistry registry) {
+    private static void registerProcessingMachines(
+            EmiRegistry registry, Set<ResourceLocation> addedCategories) {
         ProcessingEmiRegistrationPlan plan = ProcessingEmiProjectionCache.planFor(
                 ModProcessingMachines.CONFIGURED_MACHINES);
-        Map<ProcessingMachineSpec, EmiRecipeCategory> categories =
-                new IdentityHashMap<>();
+        Map<ResourceLocation, EmiRecipeCategory> categories = new HashMap<>();
         for (ProcessingEmiRegistrationPlan.MachineRegistration machine
                 : plan.machines()) {
             EmiStack workstation = EmiStack.of(
                     ModBlocks.configuredProcessingBlock(machine.spec()));
-            EmiRecipeCategory category = new EmiRecipeCategory(
+            EmiRecipeCategory category = internCategory(
                     machine.categoryId(), workstation);
-            categories.put(machine.spec(), category);
-            registry.addCategory(category);
+            categories.put(machine.spec().id(), category);
+            addCategory(registry, category, addedCategories);
             registry.addWorkstation(category, workstation);
             if (machine.spec() == ModProcessingMachines.CENTRIFUGE) {
                 registry.addWorkstation(
@@ -362,7 +374,7 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         for (ProcessingEmiRegistrationPlan.RecipeRegistration recipe
                 : plan.recipes()) {
             EmiRecipeCategory category = Objects.requireNonNull(
-                    categories.get(recipe.machine().spec()),
+                    categories.get(recipe.machine().spec().id()),
                     "Missing processing EMI category");
             registry.addRecipe(new ProcessingEmiRecipe(
                     recipe.id(),
@@ -374,6 +386,21 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
 
     private static ResourceLocation id(String path) {
         return ResourceLocation.fromNamespaceAndPath(CrucibleCraft.MODID, path);
+    }
+
+    static EmiRecipeCategory internCategory(
+            ResourceLocation id, EmiRenderable icon) {
+        return INTERNED_CATEGORIES.computeIfAbsent(
+                id, key -> new CanonicalEmiRecipeCategory(key, icon));
+    }
+
+    private static void addCategory(
+            EmiRegistry registry,
+            EmiRecipeCategory category,
+            Set<ResourceLocation> added) {
+        if (added.add(category.getId())) {
+            registry.addCategory(category);
+        }
     }
 
     private static ItemStack anvilVariant(String material) {

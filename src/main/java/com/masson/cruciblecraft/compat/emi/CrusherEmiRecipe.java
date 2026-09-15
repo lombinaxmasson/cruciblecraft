@@ -18,16 +18,17 @@ final class CrusherEmiRecipe implements EmiRecipe {
     private final List<EmiStack> outputs;
 
     CrusherEmiRecipe(ResourceLocation id, GTRecipe recipe) {
-        this.id = id;
+        this.id = EmiIds.synthetic(id);
         inputs = java.util.stream.IntStream.range(0, recipe.itemInputs().size())
                 .mapToObj(index -> EmiIngredient.of(
                         recipe.itemInputs().get(index),
                         recipe.itemInputCounts().get(index)))
                 .toList();
-        outputs = recipe.itemOutputs().stream().map(EmiStack::of).toList();
+        outputs = recipe.itemOutputs().stream().map(EmiStacks::ofItem).toList();
     }
 
     @Override public EmiRecipeCategory getCategory() { return CrucibleCraftEmiPlugin.CRUSHER; }
+    @Override public boolean hideCraftable() { return true; }
     @Override public ResourceLocation getId() {
         return id;
     }

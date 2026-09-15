@@ -609,28 +609,13 @@ def cmd_release(_args: argparse.Namespace, receipt: dict[str, Any]) -> int:
 
 
 def cmd_promotion(args: argparse.Namespace, receipt: dict[str, Any]) -> int:
-    _configuration()
-    base = str(args.base or promotion_diff_base())
-    slugs = capability_ledger.player_complete_promotions(base)
-    receipt["promotion"] = {"base": base, "slugs": slugs}
-    if not slugs:
-        print(f"no player_complete promotions versus {base}")
-        return 0
-    for slug in slugs:
-        code = run_command(
-            f"player-complete:{slug}",
-            [
-                sys.executable,
-                "tools/build_player_complete.py",
-                "--run",
-                "--client",
-                "--capability",
-                slug,
-            ],
-            receipt,
-        )
-        if code:
-            return code
+    del args
+    receipt["promotion"] = {
+        "base": None,
+        "slugs": [],
+        "note": "player_complete promotions abolished; CI does not auto-run runClient",
+    }
+    print("player_complete promotions abolished; CI does not auto-run runClient")
     return 0
 
 
@@ -662,7 +647,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     promotion = sub.add_parser(
         "promotion",
-        help="Fresh player-complete for runtime_ready → player_complete",
+        help="No-op: player_complete promotions are abolished",
     )
     promotion.add_argument(
         "--base",

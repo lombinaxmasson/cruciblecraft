@@ -260,7 +260,7 @@ def write_wave_sidecars() -> None:
                 "owns_families": 1,
                 "overflow_rows": OVERFLOW_ROWS,
                 "selected_rows": SELECTED_ROWS,
-                "status": "player_complete",
+                "status": "runtime_ready",
             },
             "generated_by": "machines/cluster-mill implementation",
             "generated_recipe_count": SELECTED_ROWS,

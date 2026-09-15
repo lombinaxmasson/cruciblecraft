@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.client.color.FoundryBlockColor;
 import com.masson.cruciblecraft.client.color.Gt6OpeningBlockColor;
 import com.masson.cruciblecraft.client.color.GtBlockDyeColor;
 import com.masson.cruciblecraft.client.color.HopperBlockColor;
@@ -157,6 +158,12 @@ public class ClientSetup {
                 java.util.Arrays.stream(tintedHoppers)
                         .map(net.minecraft.world.level.block.Block::asItem)
                         .toArray(Item[]::new));
+        Block[] tintedFoundry = FoundryBlockColor.tintedBlocks();
+        event.register(
+                FoundryBlockColor::itemColor,
+                java.util.Arrays.stream(tintedFoundry)
+                        .map(net.minecraft.world.level.block.Block::asItem)
+                        .toArray(Item[]::new));
         Block[] tintedLogisticsCore = LogisticsCoreBlockColor.tintedBlocks();
         event.register(
                 LogisticsCoreBlockColor::itemColor,
@@ -243,6 +250,7 @@ public class ClientSetup {
                 Gt6OpeningBlockColor::blockColor,
                 Gt6OpeningBlockColor.tintedBlocks());
         event.register(HopperBlockColor::blockColor, HopperBlockColor.tintedBlocks());
+        event.register(FoundryBlockColor::blockColor, FoundryBlockColor.tintedBlocks());
         event.register(
                 LogisticsCoreBlockColor::blockColor,
                 LogisticsCoreBlockColor.tintedBlocks());

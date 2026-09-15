@@ -18,7 +18,7 @@
     "slug": { "type": "string", "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*(?:/[a-z][a-z0-9]*(?:-[a-z0-9]+)*)+$" },
     "title": { "type": "string", "minLength": 1 },
     "maturity": {
-      "enum": ["frozen", "runtime_ready", "player_complete"]
+      "enum": ["frozen", "runtime_ready"]
     },
     "workflow": { "enum": ["active", "paused", "accepted"] },
     "owned_paths": {
@@ -39,6 +39,15 @@
     "wave_slug": { "type": ["string", "null"] },
     "legacy_readiness": { "type": ["string", "null"] },
     "player_signoff": { "type": ["string", "null"] },
+    "survival_access": {
+      "enum": [
+        "unreviewed",
+        "blocked",
+        "partial",
+        "complete",
+        "not_applicable"
+      ]
+    },
     "required_test_ids": {
       "type": "array",
       "minItems": 1,

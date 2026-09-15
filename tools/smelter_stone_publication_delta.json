@@ -24,8 +24,7 @@
           "id": "hybrid",
           "publication_group": "cruciblecraft:smelter/stone",
           "reason": "Derived by tools/build_t43_recipe_load_benchmark.py",
-          "status": "derived",
-          "verdict": null
+          "status": "derived"
         }
       }
     },
@@ -5347,11 +5346,12 @@
   "support_recipes": {
     "authored": 0,
     "eager": 0,
-    "kind": "worldgen_drop",
-    "lock_route_count": 406,
-    "note": "B1 acquisition is catalog-backed worldgen scatter, not vanilla or GT support recipes. Worldgen JSON lives in main resources and is not copied into T14 authored recipe counts.",
-    "route_count": 406,
-    "source_map": "cruciblecraft:gt_stone_scatter"
+    "kind": "withdrawn",
+    "lock_route_count": 0,
+    "note": "Catalog ItemEntity / block scatter is not GT6 obtain.",
+    "route_count": 0,
+    "source_map": "cruciblecraft:gt_stone_scatter",
+    "routes": []
   },
   "validators": {
     "authored_matches_lock": 0,

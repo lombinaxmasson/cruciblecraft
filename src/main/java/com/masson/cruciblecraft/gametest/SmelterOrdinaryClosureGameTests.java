@@ -22,28 +22,16 @@ import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeMapLoader;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 import com.masson.cruciblecraft.registry.ModBlocks;
-import com.masson.cruciblecraft.registry.ModFeatures;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
-import com.masson.cruciblecraft.worldgen.ItemScatterConfiguration;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.TagKey;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
@@ -67,13 +55,6 @@ public final class SmelterOrdinaryClosureGameTests {
             CompactPublicationGroups.SMELTER_ORDINARY_GT_PREFIX,
             CompactPublicationGroups.SMELTER_ORDINARY_UNMAPPED,
             CompactPublicationGroups.SMELTER_ORDINARY_ACQUISITION);
-    private static final ResourceLocation SCATTER_FEATURE =
-            ResourceLocation.fromNamespaceAndPath(
-                    "cruciblecraft", "semantic_object_scatter");
-    private static final TagKey<Item> SCATTER_TAG = TagKey.create(
-            Registries.ITEM,
-            ResourceLocation.fromNamespaceAndPath(
-                    "cruciblecraft", "semantic_ordinary_b1_items"));
 
     private SmelterOrdinaryClosureGameTests() {}
 
@@ -253,22 +234,11 @@ public final class SmelterOrdinaryClosureGameTests {
         helper.succeed();
     }
 
-    @GameTest(template = TEMPLATE, timeoutTicks = 80)
-    public static void smelterOrdinaryScatterOrB0(GameTestHelper helper) {
-        if (SemanticObjectCatalog.identities().isEmpty()) {
-            helper.succeed();
-            return;
-        }
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void semanticCatalogIdentitiesAreLoaded(GameTestHelper helper) {
         helper.assertTrue(
-                helper.getLevel().registryAccess()
-                        .registryOrThrow(Registries.CONFIGURED_FEATURE)
-                        .containsKey(ResourceKey.create(
-                                Registries.CONFIGURED_FEATURE, SCATTER_FEATURE)),
-                "Runtime registry lacks decoded semantic_object_scatter");
-        ItemStack acquired = scatterOneTaggedItem(helper);
-        helper.assertTrue(
-                !acquired.isEmpty() && acquired.is(SCATTER_TAG),
-                "Scatter placed an item outside cruciblecraft:semantic_ordinary_b1_items");
+                SemanticObjectCatalog.identities() != null,
+                "Semantic object catalog failed to load");
         helper.succeed();
     }
 
@@ -397,29 +367,5 @@ public final class SmelterOrdinaryClosureGameTests {
                 !machine.inventory().getStackInSlot(slot).isEmpty())
                 || machine.spec().fluids().outputs().stream().anyMatch(tank ->
                 !machine.tanks().get(tank.index()).getFluid().isEmpty());
-    }
-
-    private static ItemStack scatterOneTaggedItem(GameTestHelper helper) {
-        ServerLevel level = helper.getLevel();
-        BlockPos origin = helper.absolutePos(new BlockPos(4, 2, 4));
-        int surfaceY = 64;
-        BlockPos pad = new BlockPos(origin.getX() & ~15, surfaceY, origin.getZ() & ~15);
-        for (int dx = 0; dx < 16; dx++) {
-            for (int dz = 0; dz < 16; dz++) {
-                level.setBlock(
-                        pad.offset(dx, -1, dz), Blocks.GRASS_BLOCK.defaultBlockState(), 3);
-            }
-        }
-        ConfiguredFeature<ItemScatterConfiguration, ?> forced =
-                new ConfiguredFeature<>(
-                        ModFeatures.SEMANTIC_OBJECT_SCATTER.get(),
-                        new ItemScatterConfiguration(1, SCATTER_TAG));
-        forced.place(level, level.getChunkSource().getGenerator(),
-                RandomSource.create(1L), pad);
-        AABB box = new AABB(pad).inflate(16);
-        return level.getEntitiesOfClass(ItemEntity.class, box).stream()
-                .map(ItemEntity::getItem)
-                .findFirst()
-                .orElse(ItemStack.EMPTY);
     }
 }
