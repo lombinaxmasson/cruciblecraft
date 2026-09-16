@@ -7,6 +7,8 @@ import com.masson.cruciblecraft.content.block.AnvilBlock;
 import com.masson.cruciblecraft.content.block.CokeOvenBlock;
 import com.masson.cruciblecraft.content.block.CrucibleBlock;
 import com.masson.cruciblecraft.content.block.CeramicMoldBlock;
+import com.masson.cruciblecraft.content.block.GtSurfaceRockBlock;
+import com.masson.cruciblecraft.content.block.RockBlock;
 import com.masson.cruciblecraft.content.block.BoilerBlock;
 import com.masson.cruciblecraft.content.block.SteamEngineBlock;
 import com.masson.cruciblecraft.content.block.CrusherBlock;
@@ -24,6 +26,7 @@ import com.masson.cruciblecraft.content.block.ElectricMotorBlock;
 import com.masson.cruciblecraft.content.block.FluidBedBurningBoxBlock;
 import com.masson.cruciblecraft.content.block.FuelGeneratorBlock;
 import com.masson.cruciblecraft.content.block.ReactorCoreBlock;
+import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.content.block.SolidBurningBoxBlock;
 import com.masson.cruciblecraft.content.blockentity.DynamoBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ElectricEngineBlockEntity;
@@ -162,6 +165,11 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                 ConverterComponentProvider.INSTANCE, FluidBedBurningBoxBlock.class);
         registration.registerBlockComponent(
                 ConverterComponentProvider.INSTANCE, ElectricMotorBlock.class);
+        registration.registerBlockComponent(
+                SurfaceRockComponentProvider.INSTANCE, GtSurfaceRockBlock.class);
+        registration.registerBlockComponent(
+                RockBlockComponentProvider.INSTANCE, RockBlock.class);
+        registration.usePickedResult(ModBlocks.GT_SURFACE_ROCK.get());
     }
 
     private enum FluidPipeComponentProvider
@@ -896,6 +904,55 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
 
         private static String title(String value) {
             return value.substring(0, 1).toUpperCase(Locale.ROOT) + value.substring(1);
+        }
+    }
+
+    private enum SurfaceRockComponentProvider implements IBlockComponentProvider {
+        INSTANCE;
+
+        private static final ResourceLocation UID =
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, "surface_rock");
+
+        @Override
+        public void appendTooltip(
+                ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
+            if (!(accessor.getBlock() instanceof GtSurfaceRockBlock)) {
+                return;
+            }
+            tooltip.add(Component.translatable(
+                    "tooltip.cruciblecraft.surface_rock.material",
+                    GtSurfaceRockBlock.materialName(accessor.getBlockState())));
+        }
+
+        @Override
+        public ResourceLocation getUid() {
+            return UID;
+        }
+    }
+
+    private enum RockBlockComponentProvider implements IBlockComponentProvider {
+        INSTANCE;
+
+        private static final ResourceLocation UID =
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, "rock_block");
+
+        @Override
+        public void appendTooltip(
+                ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
+            if (!(accessor.getBlock() instanceof RockBlock rock)) {
+                return;
+            }
+            tooltip.add(Component.translatable(
+                    "tooltip.cruciblecraft.surface_rock.material",
+                    Component.translatable(
+                            "material.cruciblecraft." + rock.materialId())));
+        }
+
+        @Override
+        public ResourceLocation getUid() {
+            return UID;
         }
     }
 }

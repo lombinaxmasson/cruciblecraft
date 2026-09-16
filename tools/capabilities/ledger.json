@@ -443,7 +443,7 @@
       "slug": "content/gt6-foundry-art",
       "survival_access": "unreviewed",
       "title": "GT6 Foundry Art",
-      "workflow": "active"
+      "workflow": "accepted"
     },
     {
       "depends_on": [
@@ -2524,6 +2524,60 @@
       "workflow": "paused"
     },
     {
+      "depends_on": [],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6地表石子保真详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/gametest/GtSurfaceRocksGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/GtSurfaceRockBlock.java",
+        "src/main/java/com/masson/cruciblecraft/worldgen/SurfaceRockAppearance.java",
+        "src/main/java/com/masson/cruciblecraft/worldgen/SurfaceRockContents.java",
+        "src/main/java/com/masson/cruciblecraft/worldgen/SurfaceRockPlacement.java",
+        "src/main/java/com/masson/cruciblecraft/worldgen/SurfaceRockFeature.java",
+        "src/main/java/com/masson/cruciblecraft/worldgen/SurfaceRockConfiguration.java",
+        "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModFeatures.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModCreativeTabs.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+        "src/main/resources/assets/cruciblecraft/gt6_gt_surface_rocks_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/item/material/rock.png",
+        "src/main/resources/assets/cruciblecraft/textures/item/material/rock_overlay.png",
+        "src/main/resources/assets/cruciblecraft/models/block/material_rock.json",
+        "src/main/resources/assets/cruciblecraft/models/block/gt_surface_rock_*.json",
+        "src/main/resources/assets/cruciblecraft/models/item/gt_surface_rock.json",
+        "src/main/resources/assets/cruciblecraft/blockstates/gt_surface_rock.json",
+        "src/main/resources/data/cruciblecraft/loot_table/blocks/gt_surface_rock.json",
+        "src/main/resources/data/cruciblecraft/worldgen_catalog/surface_scatter.json",
+        "src/main/resources/data/cruciblecraft/worldgen/configured_feature/surface_rock_scatter.json",
+        "src/main/resources/data/cruciblecraft/worldgen/placed_feature/surface_rock_scatter.json",
+        "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_surface_rocks.json",
+        "src/main/resources/data/cruciblecraft_wave_worldgen_gt_surface_rocks/**",
+        "tools/capabilities/worldgen/gt-surface-rocks/**",
+        "tools/waves/worldgen/gt-surface-rocks/**",
+        "tools/gt_surface_rocks.py",
+        "tools/build_gt_surface_rocks.py",
+        "tools/tests/test_gt_surface_rocks.py",
+        "tools/build_worldgen_catalog.py",
+        "tools/operand_reachability.py",
+        "tools/tests/test_build_worldgen_catalog.py",
+        "src/test/java/com/masson/cruciblecraft/worldgen/WorldgenCatalogResourceTest.java",
+        "src/test/java/com/masson/cruciblecraft/worldgen/SurfaceRockFeatureConfigTest.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+        "docs/current/player-guide.md"
+      ],
+      "path": "tools/capabilities/worldgen/gt-surface-rocks/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "worldgen/gt-surface-rocks",
+      "survival_access": "partial",
+      "title": "GT Surface Rocks",
+      "workflow": "accepted"
+    },
+    {
       "depends_on": [
         "content/technological-parts-foundation"
       ],
@@ -2568,7 +2622,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 80,
+  "capability_count": 81,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -3496,6 +3550,9 @@
     "worldgen/gt-dungeon": [
       "worldgen/gt-dungeon"
     ],
+    "worldgen/gt-surface-rocks": [
+      "worldgen/gt-surface-rocks"
+    ],
     "worldgen/gt-trees": [
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
@@ -3583,10 +3640,11 @@
       "registry/tool-head-remainder",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
+      "worldgen/gt-surface-rocks",
       "worldgen/gt-trees"
     ]
   },
   "progress_rule": "runtime_ready is the close maturity; survival_access is independent and does not gate close; playtest is a project-level human cycle",
   "schema_version": 2,
-  "unique_active_slug": "content/gt6-foundry-art"
+  "unique_active_slug": null
 }

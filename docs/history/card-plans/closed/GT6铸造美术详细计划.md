@@ -1,7 +1,8 @@
 # GT6 铸造美术详细计划
 
 > 计划 slug：`content/gt6-foundry-art`
-> 本文件位于 `card-plans/active/`。
+> 状态：已关闭 `runtime_ready` / `workflow=accepted`。
+> 本文件位于 `card-plans/closed/`。
 > 正式名称：GT6 铸造美术
 > 性质：从本地 `gregtech6_w` 把材质坩埚 / 模具 / 盆 / 交叉的体素模型与共享 iconset 接到已 live 的 85 个 BlockItem 上。
 >
@@ -11,9 +12,9 @@
 > 不重开身份卡。不做 `fillMold` tick。
 
 ```text
-lane                         = active
+lane                         = closed
 capability_slug              = content/gt6-foundry-art
-unique_active_wave           = content/gt6-foundry-art
+unique_active_wave           = null
 depends_on                   = content/gt6-mte-crucible-foundry-runtime, content/gt6-crucible-mold-interaction
 close_target                 = runtime_ready
 ```
@@ -64,4 +65,4 @@ close_target                 = runtime_ready
 
 - [x] 上表 3 个 GameTest
 - [x] `python tools/build_gt6_foundry_art.py --check`
-- [ ] 关闭目标 `runtime_ready`
+- [x] 关闭目标 `runtime_ready`

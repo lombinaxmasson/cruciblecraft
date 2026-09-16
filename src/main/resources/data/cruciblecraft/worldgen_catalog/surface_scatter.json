@@ -3,20 +3,56 @@
   "id": "surface_rock_scatter",
   "feature_type": "cruciblecraft:surface_rock_scatter",
   "config": {
-    "rarity": 128,
-    "rock_tag": "c:rocks"
+    "amount": 2,
+    "probability": 3
   },
   "placed_feature": "cruciblecraft:surface_rock_scatter",
+  "placer": "cruciblecraft:gt_surface_rock",
+  "worldgen_loot": [
+    "item:cruciblecraft:stone/rock",
+    "item:minecraft:flint",
+    "item:cruciblecraft:meteoric_iron/rock",
+    "item:cruciblecraft:meteoric_iron/raw_ore"
+  ],
   "biome_modifier": {
     "id": "add_surface_rocks",
     "type": "neoforge:add_features",
-    "biomes": "#minecraft:is_overworld",
+    "biomes": [
+      "minecraft:desert",
+      "minecraft:badlands",
+      "minecraft:wooded_badlands",
+      "minecraft:eroded_badlands",
+      "minecraft:savanna",
+      "minecraft:savanna_plateau",
+      "minecraft:windswept_savanna",
+      "minecraft:swamp",
+      "minecraft:mangrove_swamp",
+      "minecraft:taiga",
+      "minecraft:snowy_taiga",
+      "minecraft:old_growth_pine_taiga",
+      "minecraft:old_growth_spruce_taiga",
+      "minecraft:plains",
+      "minecraft:sunflower_plains",
+      "minecraft:meadow",
+      "minecraft:forest",
+      "minecraft:flower_forest",
+      "minecraft:birch_forest",
+      "minecraft:old_growth_birch_forest",
+      "minecraft:dark_forest",
+      "minecraft:windswept_hills",
+      "minecraft:windswept_forest",
+      "minecraft:windswept_gravelly_hills",
+      "minecraft:stony_peaks",
+      "minecraft:jagged_peaks",
+      "minecraft:frozen_peaks",
+      "minecraft:stony_shore"
+    ],
     "features": [
       "cruciblecraft:surface_rock_scatter"
     ],
     "step": "top_layer_modification"
   },
-  "provenance": "CrucibleCraft T33 GT6 WorldgenRocks surface scatter design policy",
+  "provenance": "GT6 WorldgenRocks overworld.rocks amount=2 probability=3; MTE 32757 loot; DESIGN_POLICY 1.21 biome mapping of GT6 vanilla cores",
   "design_policy": "DESIGN_POLICY",
   "rock_tag_source": {
     "material_gate": "src/main/resources/data/cruciblecraft/material_registration_gate.json",
@@ -25,6 +61,7 @@
     "generation_flag": "cruciblecraft:generates_rock",
     "tag_namespace": "c",
     "tag_directory": "rocks",
-    "runtime_pack": "GeneratedMaterialPack"
+    "runtime_pack": "GeneratedMaterialPack",
+    "note": "c:rocks is the placeable OP.rockGt material form tag. Worldgen samples gt_surface_rock, not this tag."
   }
 }

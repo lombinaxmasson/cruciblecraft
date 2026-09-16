@@ -66,6 +66,7 @@ import com.masson.cruciblecraft.content.block.GtBlockObjectCFoamFreshBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectLogBlock;
 import com.masson.cruciblecraft.content.block.GlowtusBlock;
 import com.masson.cruciblecraft.content.block.GtBushBlock;
+import com.masson.cruciblecraft.content.block.GtSurfaceRockBlock;
 import com.masson.cruciblecraft.content.block.GtTreeHoleBlock;
 import com.masson.cruciblecraft.content.block.GtTreeLeavesBlock;
 import com.masson.cruciblecraft.content.block.GtTreeLogBlock;
@@ -174,6 +175,8 @@ public final class ModBlocks {
     public static final DeferredBlock<GtBushBlock> GT_BUSH = BLOCKS.register(
             "plant/gt_bush",
             GtBushBlock::new);
+    public static final DeferredBlock<GtSurfaceRockBlock> GT_SURFACE_ROCK =
+            BLOCKS.register("gt_surface_rock", GtSurfaceRockBlock::new);
 
     static {
         registerGtTrees();

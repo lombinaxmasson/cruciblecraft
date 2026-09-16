@@ -233,6 +233,8 @@ public class ModLanguageProvider extends LanguageProvider {
             addBlock(ModBlocks.BEDROCK_DRILL, "基岩采矿钻机控制器");
             addBlock(ModBlocks.BEDROCK_DRILL_HEAD, "基岩采矿钻头");
             addBlock(ModBlocks.GT_BUSH, "浆果灌木");
+            addBlock(ModBlocks.GT_SURFACE_ROCK, "地表石子");
+            add("tooltip.cruciblecraft.surface_rock.material", "材质：%s");
             addBlock(ModBlocks.REACTOR_CORE_1X1, "反应堆芯 1×1");
             add("item.cruciblecraft.reactor_core_1x1", "反应堆芯 1×1");
             addBlock(ModBlocks.REACTOR_CORE_2X2, "反应堆芯 2×2");
@@ -558,6 +560,8 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.BEDROCK_DRILL, "Bedrock Mining Drill Controller");
         addBlock(ModBlocks.BEDROCK_DRILL_HEAD, "Bedrock Mining Drill Head");
         addBlock(ModBlocks.GT_BUSH, "Berry Bush");
+        addBlock(ModBlocks.GT_SURFACE_ROCK, "Surface Rock");
+        add("tooltip.cruciblecraft.surface_rock.material", "Material: %s");
         addBlock(ModBlocks.REACTOR_CORE_1X1, "Reactor Core 1x1");
         add("item.cruciblecraft.reactor_core_1x1", "Reactor Core 1x1");
         addBlock(ModBlocks.REACTOR_CORE_2X2, "Reactor Core 2x2");
@@ -1127,6 +1131,10 @@ public class ModLanguageProvider extends LanguageProvider {
                 chinese ? "电池" : "Battery");
         add("config.jade.plugin_cruciblecraft.converter_dynamo",
                 chinese ? "转换机" : "Converter");
+        add("config.jade.plugin_cruciblecraft.surface_rock",
+                chinese ? "地表石子" : "Surface Rock");
+        add("config.jade.plugin_cruciblecraft.rock_block",
+                chinese ? "石子" : "Rock");
     }
 
     private void addJadeObservation() {

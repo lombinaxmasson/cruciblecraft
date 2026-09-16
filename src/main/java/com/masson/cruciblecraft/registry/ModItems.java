@@ -41,6 +41,8 @@ import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.BathIdentityCatalog;
+import com.masson.cruciblecraft.content.item.GtSurfaceRockItem;
+import com.masson.cruciblecraft.content.item.PebbleBlockItem;
 import com.masson.cruciblecraft.content.item.SemanticObjectCatalog;
 import com.masson.cruciblecraft.content.item.SlicerOperandCatalog;
 import com.masson.cruciblecraft.content.item.PressureWasherOperandCatalog;
@@ -148,6 +150,12 @@ public final class ModItems {
             "tree/rubber_resin", () -> new Item(new Item.Properties()));
     public static final DeferredItem<BlockItem> GT_BUSH =
             ITEMS.registerSimpleBlockItem("plant/gt_bush", ModBlocks.GT_BUSH);
+    public static final DeferredItem<GtSurfaceRockItem> GT_SURFACE_ROCK =
+            ITEMS.register(
+                    "gt_surface_rock",
+                    () -> new GtSurfaceRockItem(
+                            ModBlocks.GT_SURFACE_ROCK.get(),
+                            new Item.Properties()));
 
     static {
         registerGtTrees();
@@ -973,7 +981,7 @@ public final class ModItems {
                                 .MaterialPrefixCatalog.require("rock"))) {
                     item = ITEMS.register(
                             registryName,
-                            () -> new net.minecraft.world.item.BlockItem(
+                            () -> new PebbleBlockItem(
                                     ModBlocks.rockBlock(material.id()).get(),
                                     new Item.Properties()));
                 } else {

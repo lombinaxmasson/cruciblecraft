@@ -1,0 +1,80 @@
+{
+  "schema_version": 2,
+  "slug": "worldgen/gt-surface-rocks",
+  "title": "GT Surface Rocks",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "partial",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6地表石子保真详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/gametest/GtSurfaceRocksGameTests.java",
+    "src/main/java/com/masson/cruciblecraft/content/item/GtSurfaceRockItem.java",
+    "src/main/java/com/masson/cruciblecraft/content/item/PebbleBlockItem.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/GtSurfaceRockBlock.java",
+    "src/main/java/com/masson/cruciblecraft/worldgen/SurfaceRockAppearance.java",
+    "src/main/java/com/masson/cruciblecraft/worldgen/SurfaceRockContents.java",
+    "src/main/java/com/masson/cruciblecraft/worldgen/SurfaceRockPlacement.java",
+    "src/main/java/com/masson/cruciblecraft/worldgen/SurfaceRockFeature.java",
+    "src/main/java/com/masson/cruciblecraft/worldgen/SurfaceRockConfiguration.java",
+    "src/main/java/com/masson/cruciblecraft/worldgen/PebbleShape.java",
+    "src/main/java/com/masson/cruciblecraft/client/model/PositionalPebbleGeometry.java",
+    "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModFeatures.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModCreativeTabs.java",
+    "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+    "src/main/resources/assets/cruciblecraft/gt6_gt_surface_rocks_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/item/material/rock.png",
+    "src/main/resources/assets/cruciblecraft/textures/item/material/rock_overlay.png",
+    "src/main/resources/assets/cruciblecraft/models/block/material_rock.json",
+    "src/main/resources/assets/cruciblecraft/models/block/gt_surface_rock_*.json",
+    "src/main/resources/assets/cruciblecraft/models/item/gt_surface_rock.json",
+    "src/main/resources/assets/cruciblecraft/blockstates/gt_surface_rock.json",
+    "src/main/resources/data/cruciblecraft/loot_table/blocks/gt_surface_rock.json",
+    "src/main/resources/data/cruciblecraft/worldgen_catalog/surface_scatter.json",
+    "src/main/resources/data/cruciblecraft/worldgen/configured_feature/surface_rock_scatter.json",
+    "src/main/resources/data/cruciblecraft/worldgen/placed_feature/surface_rock_scatter.json",
+    "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_surface_rocks.json",
+    "src/main/resources/data/cruciblecraft_wave_worldgen_gt_surface_rocks/**",
+    "tools/capabilities/worldgen/gt-surface-rocks/**",
+    "tools/waves/worldgen/gt-surface-rocks/**",
+    "tools/gt_surface_rocks.py",
+    "tools/build_gt_surface_rocks.py",
+    "tools/tests/test_gt_surface_rocks.py",
+    "tools/build_worldgen_catalog.py",
+    "tools/operand_reachability.py",
+    "tools/tests/test_build_worldgen_catalog.py",
+    "src/test/java/com/masson/cruciblecraft/worldgen/WorldgenCatalogResourceTest.java",
+    "src/test/java/com/masson/cruciblecraft/worldgen/SurfaceRockFeatureConfigTest.java",
+    "src/test/java/com/masson/cruciblecraft/worldgen/PebbleShapeTest.java",
+    "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+    "docs/current/player-guide.md"
+  ],
+  "depends_on": [],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "worldgen/gt-surface-rocks",
+  "required_test_ids": [
+    "surfaceRockManifestResolvesLocalGt6",
+    "surfaceRockPlaces32757NotCatalogTag",
+    "surfaceRockLootMatchesWorldgenRocks",
+    "biomeFilterMatchesGt6OverworldSets",
+    "surfaceRockOutlineMatchesPositionalAabb",
+    "surfaceRockPlacesOnlyWhenSneaking",
+    "stoneToolHarvestFollowsGt6Quality"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "worldgen:overworld.rocks",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:gt_surface_rock",
+        "cruciblecraft:surface_rock_scatter"
+      ],
+      "reason": "GT6 WorldgenRocks / MultiTileEntityRock 32757 overworld placer. Not c:rocks catalog dump. Not moon/mars/planet rocks."
+    }
+  ],
+  "note": "Overworld WorldgenRocks amount=2 probability=3. Close at runtime_ready. Do not scatter catalog ItemEntity. Do not land worldgen/gt-planet-rocks."
+}
