@@ -50,7 +50,7 @@ def gradle_env() -> dict[str, str]:
 
 
 def required_game_test_count() -> int:
-    directory = ROOT / "src/main/java/com/masson/cruciblecraft/gametest"
+    directory = ROOT / "src/test/java/com/masson/cruciblecraft/gametest"
     return sum(
         path.read_text(encoding="utf-8").count("@GameTest(")
         for path in directory.glob("*.java")

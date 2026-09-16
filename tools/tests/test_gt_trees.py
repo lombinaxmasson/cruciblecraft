@@ -12,6 +12,7 @@ from tools.recipe_bulk.waves import SEMANTIC_COMPILE_ORDER, recipe_wave
 
 ROOT = census.ROOT
 JAVA = ROOT / "src" / "main" / "java" / "com" / "masson" / "cruciblecraft"
+TEST_JAVA = ROOT / "src" / "test" / "java" / "com" / "masson" / "cruciblecraft"
 LEDGER = ROOT / "tools" / "blocked_recipe_ledger.json"
 
 
@@ -134,7 +135,7 @@ class GtTreesPrepTest(unittest.TestCase):
             (ROOT / "src" / "test" / "java" / "com" / "masson" / "cruciblecraft" / "worldgen" / "tree" / "prep" / "GtTreeGrowerTest.java").is_file()
         )
         self.assertTrue(
-            (JAVA / "gametest" / "GtTreesGameTests.java").is_file()
+            (TEST_JAVA / "gametest" / "GtTreesGameTests.java").is_file()
         )
 
 

@@ -101,7 +101,7 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             support_root=support / host / "ordinary_closure",
             gametest_java=(
                 io.ROOT
-                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "src/test/java/com/masson/cruciblecraft/gametest"
                 / f"{host.title()}OrdinaryClosureGameTests.java"
             ),
             gametest_log=root / "gametest.log",
@@ -164,7 +164,7 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             support_root=support / "smelter" / "ordinary_closure",
             gametest_java=(
                 io.ROOT
-                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "src/test/java/com/masson/cruciblecraft/gametest"
                 / "SmelterOrdinaryClosureGameTests.java"
             ),
             gametest_log=smelter / "gametest.log",
@@ -187,7 +187,7 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             support_root=support / "mixer" / "ordinary_closure",
             gametest_java=(
                 io.ROOT
-                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "src/test/java/com/masson/cruciblecraft/gametest"
                 / "MixerOrdinaryClosureGameTests.java"
             ),
             gametest_log=mixer / "gametest.log",
@@ -286,7 +286,7 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             support_root=None,
             gametest_java=(
                 io.ROOT
-                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "src/test/java/com/masson/cruciblecraft/gametest"
                 / "SmelterDeferredRecyclingGameTests.java"
             ),
             gametest_log=smelter_deferred / "gametest.log",
@@ -487,7 +487,7 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             support_root=None,
             gametest_java=(
                 io.ROOT
-                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "src/test/java/com/masson/cruciblecraft/gametest"
                 / "ItemNetworkCoreGameTests.java"
             ),
             gametest_log=(
@@ -512,7 +512,7 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             support_root=None,
             gametest_java=(
                 io.ROOT
-                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "src/test/java/com/masson/cruciblecraft/gametest"
                 / "FluidNetworkCoreGameTests.java"
             ),
             gametest_log=(
@@ -537,7 +537,7 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             support_root=None,
             gametest_java=(
                 io.ROOT
-                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "src/test/java/com/masson/cruciblecraft/gametest"
                 / "GenericNetworkCoreGameTests.java"
             ),
             gametest_log=(
@@ -562,7 +562,7 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             support_root=None,
             gametest_java=(
                 io.ROOT
-                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "src/test/java/com/masson/cruciblecraft/gametest"
                 / "LogisticsCoreGameTests.java"
             ),
             gametest_log=(
@@ -587,7 +587,7 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             support_root=None,
             gametest_java=(
                 io.ROOT
-                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "src/test/java/com/masson/cruciblecraft/gametest"
                 / "DisplayCpuGameTests.java"
             ),
             gametest_log=(
@@ -612,7 +612,7 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             support_root=None,
             gametest_java=(
                 io.ROOT
-                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "src/test/java/com/masson/cruciblecraft/gametest"
                 / "CoverRemainderGameTests.java"
             ),
             gametest_log=(
@@ -637,7 +637,7 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             support_root=None,
             gametest_java=(
                 io.ROOT
-                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "src/test/java/com/masson/cruciblecraft/gametest"
                 / "EnergyConverterCatalogGameTests.java"
             ),
             gametest_log=(
@@ -662,7 +662,7 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             support_root=None,
             gametest_java=(
                 io.ROOT
-                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "src/test/java/com/masson/cruciblecraft/gametest"
                 / "EnergyBatteriesGameTests.java"
             ),
             gametest_log=(
@@ -687,7 +687,7 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             support_root=None,
             gametest_java=(
                 io.ROOT
-                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "src/test/java/com/masson/cruciblecraft/gametest"
                 / "EnergyTransformersGameTests.java"
             ),
             gametest_log=(
@@ -712,7 +712,7 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             support_root=None,
             gametest_java=(
                 io.ROOT
-                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "src/test/java/com/masson/cruciblecraft/gametest"
                 / "EnergyHeatExchangersGameTests.java"
             ),
             gametest_log=(
@@ -737,7 +737,7 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             support_root=None,
             gametest_java=(
                 io.ROOT
-                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "src/test/java/com/masson/cruciblecraft/gametest"
                 / "NuclearFissionObservationSafetyGameTests.java"
             ),
             gametest_log=(
@@ -762,7 +762,7 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             support_root=None,
             gametest_java=(
                 io.ROOT
-                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "src/test/java/com/masson/cruciblecraft/gametest"
                 / "NuclearFissionHotFluidsGameTests.java"
             ),
             gametest_log=(
@@ -787,7 +787,7 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             support_root=None,
             gametest_java=(
                 io.ROOT
-                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "src/test/java/com/masson/cruciblecraft/gametest"
                 / "NuclearFissionGameTests.java"
             ),
             gametest_log=(

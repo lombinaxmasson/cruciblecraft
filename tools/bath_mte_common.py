@@ -217,7 +217,7 @@ PLAYER_PATH_REAL_KIND = "layered_b1"
 INTEGRATED_MEASUREMENT_SCENARIO = "integrated"
 GAME_TEST_JAVA = (
     ROOT
-    / "src/main/java/com/masson/cruciblecraft/gametest/BathMteGameTests.java"
+    / "src/test/java/com/masson/cruciblecraft/gametest/BathMteGameTests.java"
 )
 GAME_TEST_NAMESPACE = "cruciblecraft_wave_bath_mte"
 GAME_TEST_COMMAND = ".\\gradlew.bat runGameTestServer -PwaveRecipes=bath/mte --no-daemon"

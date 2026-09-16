@@ -662,7 +662,7 @@ def write_capability() -> None:
             "workflow": "accepted",
             "owned_paths": [
                 "src/main/java/com/masson/cruciblecraft/energy/heatexchanger/**",
-                "src/main/java/com/masson/cruciblecraft/gametest/EnergyHeatExchangersGameTests.java",
+                "src/test/java/com/masson/cruciblecraft/gametest/EnergyHeatExchangersGameTests.java",
                 "src/main/resources/data/cruciblecraft_wave_runtime_heat_exchangers/**",
                 "src/main/resources/data/cruciblecraft/heat_exchangers.json",
                 "src/main/resources/data/cruciblecraft/recipe/energy/fuels_hot/**",

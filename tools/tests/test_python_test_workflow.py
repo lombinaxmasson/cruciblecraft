@@ -293,6 +293,36 @@ class PythonTestWorkflowTest(unittest.TestCase):
         for ledger in UNIQUE_ACTIVE_WAVE_LEDGERS:
             self.assertIn(ledger, tracked)
 
+    def test_game_test_java_lives_in_the_test_source_set(self) -> None:
+        main = ROOT / "src/main/java/com/masson/cruciblecraft/gametest"
+        test_holder = (
+            ROOT
+            / "src/test/java/com/masson/cruciblecraft/gametest"
+            / "ModIdNamespaceGameTests.java"
+        )
+        runs = (ROOT / "gradle" / "scripts" / "runs.gradle").read_text(
+            encoding="utf-8"
+        )
+        self.assertFalse(main.exists())
+        self.assertTrue(test_holder.is_file())
+        self.assertTrue(
+            (
+                ROOT
+                / "src/test/java/com/masson/cruciblecraft/scale"
+                / "ScaleGameTests.java"
+            ).is_file()
+        )
+        self.assertTrue(
+            (
+                ROOT
+                / "src/test/java/com/masson/cruciblecraft/census"
+                / "RecipeCensusGameTests.java"
+            ).is_file()
+        )
+        self.assertIn("addModdingDependenciesTo sourceSets.test", runs)
+        self.assertIn("sourceSet = sourceSets.test", runs)
+        self.assertIn("sourceSet(sourceSets.test)", runs)
+
 
 if __name__ == "__main__":
     unittest.main()

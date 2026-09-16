@@ -180,7 +180,7 @@ RECIPE_PROVIDER = (
 GAME_TESTS = (
     census.ROOT
     / "src"
-    / "main"
+    / "test"
     / "java"
     / "com"
     / "masson"
@@ -191,7 +191,7 @@ GAME_TESTS = (
 ITEM_GAME_TESTS = (
     census.ROOT
     / "src"
-    / "main"
+    / "test"
     / "java"
     / "com"
     / "masson"
@@ -202,7 +202,7 @@ ITEM_GAME_TESTS = (
 EU_GAME_TESTS = (
     census.ROOT
     / "src"
-    / "main"
+    / "test"
     / "java"
     / "com"
     / "masson"
@@ -213,7 +213,7 @@ EU_GAME_TESTS = (
 REDSTONE_GAME_TESTS = (
     census.ROOT
     / "src"
-    / "main"
+    / "test"
     / "java"
     / "com"
     / "masson"
@@ -224,7 +224,7 @@ REDSTONE_GAME_TESTS = (
 CORE_TESTS = (
     census.ROOT
     / "src"
-    / "main"
+    / "test"
     / "java"
     / "com"
     / "masson"

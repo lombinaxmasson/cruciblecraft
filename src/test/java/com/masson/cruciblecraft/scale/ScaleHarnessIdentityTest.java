@@ -164,11 +164,11 @@ class ScaleHarnessIdentityTest {
     @Test
     void scaleGameTestsAreNotInTheRequiredGametestPackage() throws Exception {
         String gametest = Files.readString(Path.of(
-                "src/main/java/com/masson/cruciblecraft/gametest/"
+                "src/test/java/com/masson/cruciblecraft/gametest/"
                         + "CrucibleCraftGameTests.java"));
         assertFalse(gametest.contains("scaleMeasurement"));
         String holder = Files.readString(Path.of(
-                "src/main/java/com/masson/cruciblecraft/scale/"
+                "src/test/java/com/masson/cruciblecraft/scale/"
                         + "ScaleGameTests.java"));
         assertTrue(holder.contains("@GameTestHolder"));
         assertTrue(holder.contains("cruciblecraft_scale"));

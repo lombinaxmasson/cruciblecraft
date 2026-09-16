@@ -85,27 +85,15 @@ Gradle 脚本按职责拆在 `gradle/scripts/`：`repositories`、`source-sets`�
 `runs`、`dependencies`、`verification`、`publishing`。拆分是等价搬迁，不要顺便
 改运行行为。
 
-## GameTest 迁到测试 source set（独立卡）
+## GameTest source set
 
-现状：约 105 个 GameTest 类在
-`src/main/java/com/masson/cruciblecraft/gametest/`，会打进发布 JAR。
-`ModIdNamespaceGameTests` 挂在 `cruciblecraft` 命名空间，给裸
-`runGameTestServer` 垫一场测试，避免零测试崩溃。
+GameTest Java 在 `src/test/java/com/masson/cruciblecraft/gametest/`
+（`ScaleGameTests` / `RecipeCensusGameTests` 仍用原来的包名，只是文件在
+`src/test`）。`gameTestServer`、`client`、`server` 的 run 使用
+`sourceSets.test`，并把 test 绑进 mod；发布 `jar` 只有 `main`。
+`ModIdNamespaceGameTests` 仍给裸 `runGameTestServer` 垫一场测试。
 
-目标（GTCEu 形状，NeoForge 1.21.1 实现）：
-
-1. 把 GameTest Java 迁到 `src/test/java/.../gametest/`。
-2. 给 `gameTestServer`（以及需要 `/test` 的 client/server）把 `sourceSets.test`
-   绑到 mod classpath；发布 `jar` 只含 `main`。
-3. 用 `jar tf build/libs/*.jar` 确认没有 `gametest` 类。
-4. 结构模板：每个 `@GameTestHolder` 命名空间仍需要自己的 `empty.nbt`。
-   仓库里 `structure/empty.nbt` 与 `gametest/structure/empty.nbt` 成对出现；
-   去重要先确认 NeoForge 1.21.1 实际加载哪条路径。跨命名空间合并只能在
-   `@GameTest` 支持稳定的 `templateNamespace` / 绝对模板 ID 之后做。
-5. 若干关闭波次的 `runtime_dependency_manifest.json` 仍哈希
-   `src/main/java/.../gametest/*.java`。迁路径时要改这些历史清单，或明确它们
-   不再被 active policy 读取。
-6. 不要和内容卡、Python 工具搬家、生成根合并绑在同一提交。
-
-在那张卡完成前，继续把新 GameTest 放在现有 `src/main/.../gametest` 包，避免
-一半 main、一半 test。
+结构模板继续放在 `src/main/resources/data/<namespace>/structure/empty.nbt`
+和 `gametest/structure/empty.nbt`。关闭波次收据里的旧
+`src/main/.../gametest` 路径是历史记录，不改。新 GameTest 只加到
+`src/test`，不要再写进 `src/main`。

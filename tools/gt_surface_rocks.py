@@ -113,7 +113,7 @@ def _owned_paths(*, closed: bool) -> list[str]:
     lane = "closed" if closed else "active"
     return [
         f"docs/history/card-plans/{lane}/{PLAN_STEM}",
-        f"src/main/java/com/masson/cruciblecraft/gametest/{GAME_TESTS}",
+        f"src/test/java/com/masson/cruciblecraft/gametest/{GAME_TESTS}",
         "src/main/java/com/masson/cruciblecraft/content/block/GtSurfaceRockBlock.java",
         "src/main/java/com/masson/cruciblecraft/content/item/GtSurfaceRockItem.java",
         "src/main/java/com/masson/cruciblecraft/content/item/PebbleBlockItem.java",
@@ -154,7 +154,7 @@ def _owned_paths(*, closed: bool) -> list[str]:
         "src/test/java/com/masson/cruciblecraft/worldgen/WorldgenCatalogResourceTest.java",
         "src/test/java/com/masson/cruciblecraft/worldgen/SurfaceRockFeatureConfigTest.java",
         "src/test/java/com/masson/cruciblecraft/worldgen/PebbleShapeTest.java",
-        "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
         "docs/current/player-guide.md",
     ]
 
@@ -618,7 +618,17 @@ def check() -> list[str]:
         errors.append("SurfaceRockFeature must not sample RockBlock / c:rocks")
     if "nextInt(mAmount)" not in feature and "config.amount()" not in feature:
         errors.append("SurfaceRockFeature must keep WorldgenRocks amount roll")
-    tests = (java_root / "gametest" / GAME_TESTS).read_text(encoding="utf-8")
+    tests = (
+        census.ROOT
+        / "src"
+        / "test"
+        / "java"
+        / "com"
+        / "masson"
+        / "cruciblecraft"
+        / "gametest"
+        / GAME_TESTS
+    ).read_text(encoding="utf-8")
     if "cruciblecraft_wave_worldgen_gt_surface_rocks" not in tests:
         errors.append("GameTest namespace drifted")
     if "must not place RockBlock" not in tests:

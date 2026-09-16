@@ -119,7 +119,7 @@ THERMOMETER = (
 GAME_TESTS = (
     ROOT
     / "src"
-    / "main"
+    / "test"
     / "java"
     / "com"
     / "masson"
@@ -130,7 +130,7 @@ GAME_TESTS = (
 CORRECTION_TESTS = (
     ROOT
     / "src"
-    / "main"
+    / "test"
     / "java"
     / "com"
     / "masson"

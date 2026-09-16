@@ -103,7 +103,7 @@ BUDGET_REFERENCES = (
         "role": "publication capacity telemetry; count overage is UNVERIFIED_SCALE",
     },
     {
-        "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+        "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
         "role": "historical GameTest still asserts the 21000 constant",
     },
     {

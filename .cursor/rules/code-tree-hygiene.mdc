@@ -31,5 +31,6 @@ reference trees or generated datapacks as a cleanup.
 - Scratch extractors stay gitignored until a card promotes them
 - New Python tests must be listed in `python_test_policy.json` as `active`,
   `manual_replay`, or `historical`
-- GameTests stay in `src/main/.../gametest` until the dedicated source-set
-  migration; do not split the package across source sets
+- New GameTests go in `src/test/java/.../gametest` (or the existing test
+  package for scale/census holders). Do not put GameTest classes back in
+  `src/main` or split one holder package across source sets

@@ -1,5 +1,6 @@
 neoForge {
     version = project.neo_version
+    addModdingDependenciesTo sourceSets.test
 
     parchment {
         mappingsVersion = project.parchment_mappings_version
@@ -9,6 +10,7 @@ neoForge {
     runs {
         client {
             client()
+            sourceSet = sourceSets.test
 
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
             if (providers.gradleProperty('optionalCompat').orNull == 'ccOnly') {
@@ -37,6 +39,7 @@ neoForge {
 
         server {
             server()
+            sourceSet = sourceSets.test
             programArgument '--nogui'
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
             if (providers.gradleProperty('optionalCompat').orNull == 'ccOnly') {
@@ -50,6 +53,7 @@ neoForge {
 
         gameTestServer {
             type = "gameTestServer"
+            sourceSet = sourceSets.test
             jvmArgument '-Xmx4G'
             if (providers.gradleProperty('scale').isPresent()) {
                 systemProperty 'neoforge.enabledGameTestNamespaces', 'cruciblecraft_scale'
@@ -121,6 +125,7 @@ neoForge {
     mods {
         "${mod_id}" {
             sourceSet(sourceSets.main)
+            sourceSet(sourceSets.test)
         }
     }
 }

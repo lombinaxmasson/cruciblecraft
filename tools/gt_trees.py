@@ -50,7 +50,7 @@ GAMETEST = ROOT / "src" / "main" / "resources" / "data" / "cruciblecraft_wave_wo
 GAME_TESTS = (
     ROOT
     / "src"
-    / "main"
+    / "test"
     / "java"
     / "com"
     / "masson"

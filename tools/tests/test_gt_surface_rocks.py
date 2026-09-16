@@ -9,6 +9,7 @@ from tools import gt_surface_rocks as rocks
 
 ROOT = census.ROOT
 JAVA = ROOT / "src" / "main" / "java" / "com" / "masson" / "cruciblecraft"
+TEST_JAVA = ROOT / "src" / "test" / "java" / "com" / "masson" / "cruciblecraft"
 
 
 class GtSurfaceRocksTest(unittest.TestCase):
@@ -59,7 +60,9 @@ class GtSurfaceRocksTest(unittest.TestCase):
         self.assertNotIn("c:rocks", feature)
         self.assertIn("GT_SURFACE_ROCK", feature)
         self.assertIn("tryPlace", feature)
-        tests = (JAVA / "gametest" / rocks.GAME_TESTS).read_text(encoding="utf-8")
+        tests = (TEST_JAVA / "gametest" / rocks.GAME_TESTS).read_text(
+            encoding="utf-8"
+        )
         self.assertIn("cruciblecraft_wave_worldgen_gt_surface_rocks", tests)
         self.assertIn("must not place RockBlock", tests)
 

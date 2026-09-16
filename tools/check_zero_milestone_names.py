@@ -321,7 +321,7 @@ QUICK_PREFIXES = (
 
 QUICK_FILES = {
     "src/main/java/com/masson/cruciblecraft/client/ClientSmoke.java",
-    "src/main/java/com/masson/cruciblecraft/gametest/FluidNetworkCoreGameTests.java",
+    "src/test/java/com/masson/cruciblecraft/gametest/FluidNetworkCoreGameTests.java",
     "src/main/java/com/masson/cruciblecraft/content/blockentity/FluidPipeBlockEntity.java",
     "src/main/java/com/masson/cruciblecraft/compat/emi/CrucibleCraftEmiPlugin.java",
 }

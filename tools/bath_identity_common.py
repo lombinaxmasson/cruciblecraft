@@ -255,7 +255,7 @@ SCATTER_ITEM_TAG = (
 )
 GAME_TEST_JAVA = (
     ROOT
-    / "src/main/java/com/masson/cruciblecraft/gametest/BathIdentityGameTests.java"
+    / "src/test/java/com/masson/cruciblecraft/gametest/BathIdentityGameTests.java"
 )
 GAME_TEST_NAMESPACE = "cruciblecraft_wave_bath_identity"
 GAME_TEST_COMMAND = ".\\gradlew.bat runGameTestServer -PwaveRecipes=bath/identity --no-daemon"

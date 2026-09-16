@@ -58,14 +58,14 @@ class MachineRuntimeEqualityTest {
     @Test
     void machineGameTestsAreIsolatedFromDailyGrid() throws Exception {
         String daily = Files.readString(Path.of(
-                "src/main/java/com/masson/cruciblecraft/gametest/"
+                "src/test/java/com/masson/cruciblecraft/gametest/"
                         + "CrucibleCraftGameTests.java"));
         assertTrue(
                 !daily.contains("MachineRuntimeGameTests")
                         && !daily.contains("cruciblecraft_wave_machines"),
                 "daily GameTest grid must not own the machine runtime namespace");
         String holder = Files.readString(Path.of(
-                "src/main/java/com/masson/cruciblecraft/gametest/"
+                "src/test/java/com/masson/cruciblecraft/gametest/"
                         + "MachineRuntimeGameTests.java"));
         assertTrue(holder.contains("@GameTestHolder"));
         assertTrue(holder.contains("cruciblecraft_wave_machines"));

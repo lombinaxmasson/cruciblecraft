@@ -59,7 +59,7 @@ PACK = (
 GAME_TESTS = (
     census.ROOT
     / "src"
-    / "main"
+    / "test"
     / "java"
     / "com"
     / "masson"
@@ -70,7 +70,7 @@ GAME_TESTS = (
 CORE_TESTS = (
     census.ROOT
     / "src"
-    / "main"
+    / "test"
     / "java"
     / "com"
     / "masson"
@@ -81,7 +81,7 @@ CORE_TESTS = (
 FOUNDRY_TESTS = (
     census.ROOT
     / "src"
-    / "main"
+    / "test"
     / "java"
     / "com"
     / "masson"

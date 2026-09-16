@@ -3,6 +3,9 @@ tasks.named('test', Test).configure {
     maxHeapSize = '6g'
     filter {
         excludeTestsMatching 'com.masson.cruciblecraft.recipe.gt.OrdinaryCloseoutIntegratedMeasurementHarness'
+        excludeTestsMatching 'com.masson.cruciblecraft.gametest.*GameTests'
+        excludeTestsMatching 'com.masson.cruciblecraft.scale.ScaleGameTests'
+        excludeTestsMatching 'com.masson.cruciblecraft.census.RecipeCensusGameTests'
     }
 }
 

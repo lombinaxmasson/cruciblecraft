@@ -9,6 +9,7 @@ from tools import gt_crops as crops
 
 ROOT = census.ROOT
 JAVA = ROOT / "src" / "main" / "java" / "com" / "masson" / "cruciblecraft"
+TEST_JAVA = ROOT / "src" / "test" / "java" / "com" / "masson" / "cruciblecraft"
 
 
 class GtCropsTest(unittest.TestCase):
@@ -79,7 +80,9 @@ class GtCropsTest(unittest.TestCase):
             encoding="utf-8"
         )
         self.assertNotIn("lilypad_glowtus", feature)
-        tests = (JAVA / "gametest" / "GtCropsGameTests.java").read_text(encoding="utf-8")
+        tests = (TEST_JAVA / "gametest" / "GtCropsGameTests.java").read_text(
+            encoding="utf-8"
+        )
         self.assertIn("must not reuse lilypad_glowtus/white_glowtus", tests)
         self.assertIn("cruciblecraft_wave_worldgen_gt_crops", tests)
 

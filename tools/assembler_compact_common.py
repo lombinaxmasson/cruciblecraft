@@ -96,7 +96,7 @@ JAVA_CODEC_TESTS = (
     / "src/test/java/com/masson/cruciblecraft/recipe/gt"
     / "CompactRecipeFamilyProviderTest.java",
 )
-GAME_TEST_ROOT = ROOT / "src/main/java/com/masson/cruciblecraft/gametest"
+GAME_TEST_ROOT = ROOT / "src/test/java/com/masson/cruciblecraft/gametest"
 
 OPENING_DISPOSITION = "planned"
 OPENING_CLOSURE = "incomplete"

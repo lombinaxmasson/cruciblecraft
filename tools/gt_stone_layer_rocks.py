@@ -271,7 +271,7 @@ def _owned_paths(*, closed: bool) -> list[str]:
     lane = "closed" if closed else "active"
     return [
         f"docs/history/card-plans/{lane}/{PLAN_STEM}",
-        f"src/main/java/com/masson/cruciblecraft/gametest/{GAME_TESTS}",
+        f"src/test/java/com/masson/cruciblecraft/gametest/{GAME_TESTS}",
         "src/main/java/com/masson/cruciblecraft/content/block/GtSurfaceRockBlock.java",
         "src/main/java/com/masson/cruciblecraft/content/blockentity/GtSurfaceRockBlockEntity.java",
         "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerNoise.java",
@@ -863,7 +863,17 @@ def check() -> list[str]:
     cube = java_root / "content" / "block" / "StoneLayerStoneBlock.java"
     if not cube.is_file():
         errors.append("missing StoneLayerStoneBlock.java")
-    tests = java_root / "gametest" / GAME_TESTS
+    tests = (
+        census.ROOT
+        / "src"
+        / "test"
+        / "java"
+        / "com"
+        / "masson"
+        / "cruciblecraft"
+        / "gametest"
+        / GAME_TESTS
+    )
     if not tests.is_file():
         errors.append(f"missing {GAME_TESTS}")
     else:

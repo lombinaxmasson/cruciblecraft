@@ -83,7 +83,7 @@ MOLD_BLOCK = (
 GAME_TESTS = (
     ROOT
     / "src"
-    / "main"
+    / "test"
     / "java"
     / "com"
     / "masson"
@@ -94,7 +94,7 @@ GAME_TESTS = (
 FOUNDRY_TESTS = (
     ROOT
     / "src"
-    / "main"
+    / "test"
     / "java"
     / "com"
     / "masson"

@@ -59,7 +59,7 @@ DEST_ROOT = "assets/cruciblecraft/textures/block/gt6_import/mte"
 CORE_TESTS = (
     census.ROOT
     / "src"
-    / "main"
+    / "test"
     / "java"
     / "com"
     / "masson"
@@ -642,7 +642,7 @@ def _game_tests(domain: str) -> Path:
     return (
         census.ROOT
         / "src"
-        / "main"
+        / "test"
         / "java"
         / "com"
         / "masson"
@@ -1113,8 +1113,8 @@ def _owned_paths(domain: str, *, closed: bool) -> list[str]:
         "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
         "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
         "src/main/java/com/masson/cruciblecraft/content/mte/**",
-        f"src/main/java/com/masson/cruciblecraft/gametest/{spec['game_tests']}",
-        "src/main/java/com/masson/cruciblecraft/gametest/MteInPlaceGameTestSupport.java",
+        f"src/test/java/com/masson/cruciblecraft/gametest/{spec['game_tests']}",
+        "src/test/java/com/masson/cruciblecraft/gametest/MteInPlaceGameTestSupport.java",
         "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
         f"src/main/resources/data/{_pack_namespace(spec['slug'])}/**",
         f"tools/capabilities/{spec['slug']}/**",

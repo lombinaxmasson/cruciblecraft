@@ -57,7 +57,7 @@ SINKS = (
 GAME_TESTS = (
     ROOT
     / "src"
-    / "main"
+    / "test"
     / "java"
     / "com"
     / "masson"
@@ -68,7 +68,7 @@ GAME_TESTS = (
 IDENTITY_GAME_TESTS = (
     ROOT
     / "src"
-    / "main"
+    / "test"
     / "java"
     / "com"
     / "masson"

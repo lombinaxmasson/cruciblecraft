@@ -9,6 +9,7 @@ from tools import gt_stone_layer_rocks as rocks
 
 ROOT = census.ROOT
 JAVA = ROOT / "src" / "main" / "java" / "com" / "masson" / "cruciblecraft"
+TEST_JAVA = ROOT / "src" / "test" / "java" / "com" / "masson" / "cruciblecraft"
 
 
 class GtStoneLayerRocksTest(unittest.TestCase):
@@ -66,7 +67,9 @@ class GtStoneLayerRocksTest(unittest.TestCase):
             encoding="utf-8"
         )
         self.assertIn("canEntityDestroy", cube)
-        tests = (JAVA / "gametest" / rocks.GAME_TESTS).read_text(encoding="utf-8")
+        tests = (TEST_JAVA / "gametest" / rocks.GAME_TESTS).read_text(
+            encoding="utf-8"
+        )
         self.assertIn("cruciblecraft_wave_worldgen_gt_stone_layer_rocks", tests)
         self.assertIn("granite_black", tests)
         self.assertIn("stoneLayerReplacesVanillaStone", tests)

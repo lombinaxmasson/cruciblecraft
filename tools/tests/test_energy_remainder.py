@@ -61,7 +61,7 @@ FEASIBILITY = (
 HEAT_SOURCES = (
     ROOT
     / "src"
-    / "main"
+    / "test"
     / "java"
     / "com"
     / "masson"

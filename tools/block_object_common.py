@@ -127,7 +127,7 @@ LOCKED_SUPPORT_ROOT = (
 )
 GAME_TEST_JAVA = (
     ROOT
-    / "src/main/java/com/masson/cruciblecraft/gametest/BlockObjectGameTests.java"
+    / "src/test/java/com/masson/cruciblecraft/gametest/BlockObjectGameTests.java"
 )
 GAME_TEST_NAMESPACE = "cruciblecraft_wave_block_object"
 GAME_TEST_COMMAND = ".\\gradlew.bat runGameTestServer -PwaveRecipes=block/object --no-daemon"

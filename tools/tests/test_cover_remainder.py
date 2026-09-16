@@ -72,7 +72,7 @@ class CoverRemainderCardTest(unittest.TestCase):
         self.assertEqual(WAVE / "readiness.json", spec.readiness)
         self.assertTrue(spec.next_unassigned)
         self.assertEqual(
-            Path("src/main/java/com/masson/cruciblecraft/gametest/")
+            Path("src/test/java/com/masson/cruciblecraft/gametest/")
             / "CoverRemainderGameTests.java",
             spec.gametest_java.relative_to(ROOT),
         )

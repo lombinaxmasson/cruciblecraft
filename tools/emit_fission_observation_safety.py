@@ -867,7 +867,7 @@ def write_capability() -> None:
                 "src/main/java/com/masson/cruciblecraft/content/item/GeigerCounterItem.java",
                 "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
                 "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
-                "src/main/java/com/masson/cruciblecraft/gametest/NuclearFissionObservationSafetyGameTests.java",
+                "src/test/java/com/masson/cruciblecraft/gametest/NuclearFissionObservationSafetyGameTests.java",
                 "src/main/resources/data/cruciblecraft_wave_runtime_fission_observation_safety/**",
                 "src/main/resources/assets/cruciblecraft/gt6_fission_observation_art_manifest.json",
                 "src/main/resources/assets/cruciblecraft/gt6_geiger_obtain_art_manifest.json",

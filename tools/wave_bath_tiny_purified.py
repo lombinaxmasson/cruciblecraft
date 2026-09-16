@@ -231,7 +231,7 @@ SCATTER_ITEM_TAG = (
 )
 GAME_TEST_JAVA = (
     ROOT
-    / "src/main/java/com/masson/cruciblecraft/gametest/BathTinyPurifiedGameTests.java"
+    / "src/test/java/com/masson/cruciblecraft/gametest/BathTinyPurifiedGameTests.java"
 )
 GAME_TEST_NAMESPACE = "cruciblecraft_wave_bath_tiny_purified"
 GAME_TEST_COMMAND = (

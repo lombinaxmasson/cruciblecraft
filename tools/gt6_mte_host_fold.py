@@ -57,7 +57,7 @@ ITEM_MODELS = (
 CORE_TESTS = (
     census.ROOT
     / "src"
-    / "main"
+    / "test"
     / "java"
     / "com"
     / "masson"
@@ -221,7 +221,7 @@ def _game_tests(domain: str) -> Path:
     return (
         census.ROOT
         / "src"
-        / "main"
+        / "test"
         / "java"
         / "com"
         / "masson"

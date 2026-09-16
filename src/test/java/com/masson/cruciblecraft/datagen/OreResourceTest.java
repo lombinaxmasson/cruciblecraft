@@ -256,6 +256,12 @@ class OreResourceTest {
                                                 + "needs_stone_tool.json"),
                                 generatedData.resolve(
                                         "minecraft/tags/block/"
+                                                + "needs_diamond_tool.json"),
+                                generatedData.resolve(
+                                        "minecraft/tags/block/"
+                                                + "base_stone_overworld.json"),
+                                generatedData.resolve(
+                                        "minecraft/tags/block/"
                                                 + "rails.json"),
                                 generatedData.resolve(
                                         "minecraft/tags/block/"

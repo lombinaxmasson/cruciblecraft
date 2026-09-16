@@ -73,7 +73,7 @@ def _owned_paths(*, closed: bool) -> list[str]:
     lane = "closed" if closed else "active"
     return [
         f"docs/history/card-plans/{lane}/{PLAN_STEM}",
-        f"src/main/java/com/masson/cruciblecraft/gametest/{GAME_TESTS}",
+        f"src/test/java/com/masson/cruciblecraft/gametest/{GAME_TESTS}",
         f"src/main/resources/data/{_pack_namespace()}/**",
         f"tools/capabilities/{SLUG}/**",
         "tools/waves/content/gt6-paper-tiny-plate/**",
@@ -428,7 +428,7 @@ def check() -> list[str]:
     java = (
         census.ROOT
         / "src"
-        / "main"
+        / "test"
         / "java"
         / "com"
         / "masson"

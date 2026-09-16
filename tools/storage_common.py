@@ -56,7 +56,7 @@ GAMETEST_LOG = TOOLS / "storage_gametest.log"
 GAME_TEST_JAVA = (
     ROOT
     / "src"
-    / "main"
+    / "test"
     / "java"
     / "com"
     / "masson"
