@@ -76,5 +76,24 @@ tools/t48_bath_source.json
 tools/owner_family_operand_snapshot.json
 tools/bath_remainder_source.json
 tools/bath_identity_source.json
+
+# Closed-card wave evidence stays on disk for local replay. Do not git add.
+# Unique-active tools/waves/worldgen/gt-stone-layer-rocks/ is re-included below.
+tools/**/*.log
+tools/waves/**/source.json
+tools/waves/**/dump_slice.json
+tools/waves/**/identity_ledger_delta.json
+tools/waves/**/equivalence.json
+tools/waves/**/player_path.json
+tools/waves/**/player_path_support.json
+tools/waves/**/layered_player_path.json
+tools/waves/**/shard_manifest.json
+tools/waves/**/census_delta.json
+tools/waves/**/load_projection.json
+tools/waves/**/load_projection_input.json
+tools/waves/**/compile_report.json
+!tools/waves/worldgen/gt-stone-layer-rocks/
+!tools/waves/worldgen/gt-stone-layer-rocks/**
+
 __pycache__/
 *.pyc

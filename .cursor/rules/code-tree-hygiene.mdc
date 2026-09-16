@@ -20,6 +20,10 @@ reference trees or generated datapacks as a cleanup.
   `tools/scratch/` or `tools/_tmp_*.py` (gitignored)
 - Delete Java, Python, or GameTest tests to look more like GT6
 - Move hashed `tools/*.json` or GameTest classes without a dedicated card
+- `git add` closed-card `tools/**/*.log` or closed-wave `source.json` /
+  `dump_slice.json` / player-path / census-delta dumps. Those stay on disk
+  for local replay; `.gitignore` keeps them out of git. Do not untrack the
+  current unique-active wave under `tools/waves/worldgen/gt-stone-layer-rocks/`
 
 ## Do
 

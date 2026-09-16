@@ -3,6 +3,7 @@ from __future__ import annotations
 import copy
 import json
 import re
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -11,6 +12,29 @@ from unittest import mock
 from tools import run_python_tests as workflow
 
 ROOT = Path(__file__).resolve().parents[2]
+UNIQUE_ACTIVE_WAVE = "tools/waves/worldgen/gt-stone-layer-rocks/"
+UNIQUE_ACTIVE_WAVE_LEDGERS = (
+    "tools/waves/worldgen/gt-stone-layer-rocks/denominator.json",
+    "tools/waves/worldgen/gt-stone-layer-rocks/topology.json",
+    "tools/waves/worldgen/gt-stone-layer-rocks/readiness.json",
+    "tools/waves/worldgen/gt-stone-layer-rocks/production_lock.json",
+)
+CLOSED_WAVE_EVIDENCE_NAMES = frozenset(
+    {
+        "source.json",
+        "dump_slice.json",
+        "identity_ledger_delta.json",
+        "equivalence.json",
+        "player_path.json",
+        "player_path_support.json",
+        "layered_player_path.json",
+        "shard_manifest.json",
+        "census_delta.json",
+        "load_projection.json",
+        "load_projection_input.json",
+        "compile_report.json",
+    }
+)
 
 
 class PythonTestWorkflowTest(unittest.TestCase):
@@ -247,6 +271,27 @@ class PythonTestWorkflowTest(unittest.TestCase):
             if path.is_dir()
         )
         self.assertEqual(sorted(python_declared), on_disk)
+
+    def test_closed_wave_evidence_stays_untracked(self) -> None:
+        tracked = subprocess.check_output(
+            ["git", "ls-files", "-z", "tools"],
+            cwd=ROOT,
+            text=True,
+            encoding="utf-8",
+        ).split("\0")
+        tracked = [path.replace("\\", "/") for path in tracked if path]
+        leaked = []
+        for path in tracked:
+            if path.startswith(UNIQUE_ACTIVE_WAVE):
+                continue
+            name = path.rsplit("/", 1)[-1]
+            if path.startswith("tools/") and path.endswith(".log"):
+                leaked.append(path)
+            elif path.startswith("tools/waves/") and name in CLOSED_WAVE_EVIDENCE_NAMES:
+                leaked.append(path)
+        self.assertEqual([], leaked)
+        for ledger in UNIQUE_ACTIVE_WAVE_LEDGERS:
+            self.assertIn(ledger, tracked)
 
 
 if __name__ == "__main__":

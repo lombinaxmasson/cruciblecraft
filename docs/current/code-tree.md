@@ -64,6 +64,16 @@ Cursor 的 `.vscode/settings.json` 会把运行目录和缓存从资源管理器
 
 未分层的新 `test_*.py` 会让 `test_python_test_workflow` 失败。
 
+### 关卡证据不进 git
+
+已关闭波次的 GameTest 日志和巨型输入（`tools/waves/**/source.json`、
+`dump_slice.json`、player-path / census-delta / load-projection 等）写在
+`.gitignore` 里。本机回放可以继续读磁盘上的文件；新克隆没有它们。
+`gametest_receipt.json`、`production_lock.json`、`topology.json`、
+`readiness.json`、`denominator.json` 仍跟踪。现行 unique-active
+`tools/waves/worldgen/gt-stone-layer-rocks/` 全部仍跟踪。不要把这些
+gitignore 模式套到 `tools/` 根上那摊仍被 `--check` 对着比的 JSON。
+
 ## 冻结的生成资源根
 
 权威清单是 [`tools/generated_resource_roots.json`](../../tools/generated_resource_roots.json)，

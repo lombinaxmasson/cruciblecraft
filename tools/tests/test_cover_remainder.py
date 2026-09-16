@@ -113,7 +113,6 @@ class CoverRemainderCardTest(unittest.TestCase):
         self.assertEqual(0, int(receipt["failed"]))
         self.assertGreaterEqual(int(receipt["passed"]), int(receipt["required_tests"]))
         self.assertIn("-PwaveRecipes=runtime/cover-remainder", receipt["command"])
-        self.assertTrue((WAVE / "gametest.log").is_file())
         self.assertEqual(
             capability["required_test_ids"],
             receipt["test_ids"],
