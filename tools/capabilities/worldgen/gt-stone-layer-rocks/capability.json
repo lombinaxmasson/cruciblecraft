@@ -14,7 +14,9 @@
     "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerCatalog.java",
     "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerStones.java",
     "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerRockFeature.java",
+    "src/main/java/com/masson/cruciblecraft/worldgen/NetherQuartzLayerFeature.java",
     "src/main/java/com/masson/cruciblecraft/content/block/StoneLayerStoneBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/StoneLayerRockOreBlock.java",
     "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerRockConfiguration.java",
     "src/main/java/com/masson/cruciblecraft/registry/ModFeatures.java",
     "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
@@ -23,12 +25,18 @@
     "src/main/resources/data/cruciblecraft/worldgen/configured_feature/stone_layer_rocks.json",
     "src/main/resources/data/cruciblecraft/worldgen/placed_feature/stone_layer_rocks.json",
     "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_stone_layer_rocks.json",
+    "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/remove_overworld_large_veins.json",
+    "src/main/resources/data/cruciblecraft/worldgen/configured_feature/nether_netherquartz.json",
+    "src/main/resources/data/cruciblecraft/worldgen/placed_feature/nether_netherquartz.json",
+    "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_nether_netherquartz.json",
+    "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/remove_vanilla_nether_quartz.json",
     "src/main/resources/data/minecraft/tags/block/needs_iron_tool.json",
     "src/main/resources/data/cruciblecraft_wave_worldgen_gt_stone_layer_rocks/**",
     "src/main/resources/assets/cruciblecraft/gt6_gt_stone_layer_rocks_art_manifest.json",
     "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/stone.png",
     "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/cobble.png",
     "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/cobble_mossy.png",
+    "src/main/resources/assets/cruciblecraft/textures/block/gt6/rock_ores/**",
     "tools/capabilities/worldgen/gt-stone-layer-rocks/**",
     "tools/waves/worldgen/gt-stone-layer-rocks/**",
     "tools/gt_stone_layer_rocks.py",
@@ -46,6 +54,9 @@
     "stoneLayerCatalogMatchesLoaderWorldgen",
     "stoneLayerPlaces32757WithLayerLoot",
     "stoneLayerReplacesVanillaStone",
+    "stoneLayerPlacesLayerOres",
+    "stoneLayerPlacesDenseRockOres",
+    "stoneLayerPlacesNetherQuartz",
     "stoneLayerOneIn128AndNoDeep",
     "stoneLayerDoesNotDumpCatalog",
     "stoneLayerManifestResolvesLocalGt6"
@@ -57,10 +68,13 @@
       "runtime_ids": [
         "cruciblecraft:gt_surface_rock",
         "cruciblecraft:stone_layer_rocks",
-        "cruciblecraft:granite_black/stone"
+        "cruciblecraft:granite_black/stone",
+        "cruciblecraft:coal/dense_ore",
+        "cruciblecraft:nether_quartz/dense_ore",
+        "cruciblecraft:nether_netherquartz"
       ],
-      "reason": "GT6 WorldgenStoneLayers 32757 tLastRock pebbles and stone-cube replace on overworld stone/cobble/deepslate. Not WorldgenRocks grass scatter, not catalog dump, not moon/mars/planet rocks, not StoneLayerOres."
+      "reason": "GT6 WorldgenStoneLayers cubes, 32757 tLastRock pebbles, BlockRockOres dense layers, WorldgenNetherQuartz, and no-mod StoneLayerOres. Not WorldgenRocks grass scatter, not catalog dump, not moon/mars/planet rocks."
     }
   ],
-  "note": "Overworld WorldgenStoneLayers cubes plus pebbles. Close at runtime_ready. Do not scatter catalog ItemEntity. Do not land worldgen/gt-planet-rocks. Do not emit StoneLayerOres or eat vanilla ore cells."
+  "note": "Overworld WorldgenStoneLayers cubes, pebbles, BlockRockOres, WorldgenNetherQuartz, and StoneLayerOres. Close at runtime_ready. Do not scatter catalog ItemEntity. Do not land worldgen/gt-planet-rocks. Per-stone oreSmall hosts stay out. Bedrock veins stay out."
 }

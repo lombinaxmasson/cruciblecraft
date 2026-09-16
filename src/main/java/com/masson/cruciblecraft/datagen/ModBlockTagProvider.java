@@ -128,8 +128,9 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
             gtStones.add(block.getKey());
         });
         var baseStone = tag(BlockTags.BASE_STONE_OVERWORLD);
+        var iron = tag(BlockTags.NEEDS_IRON_TOOL);
         var diamond = tag(BlockTags.NEEDS_DIAMOND_TOOL);
-        for (var cube : com.masson.cruciblecraft.worldgen.StoneLayerStones.cubes()) {
+        for (var cube : com.masson.cruciblecraft.worldgen.StoneLayerStones.registeredCubes()) {
             if (!ModBlocks.hasLayerStone(cube.registryPath())) {
                 continue;
             }
@@ -137,11 +138,14 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
             pickaxe.add(holder.getKey());
             if (cube.harvestLevel() >= 3) {
                 diamond.add(holder.getKey());
+            } else if (cube.harvestLevel() == 2) {
+                iron.add(holder.getKey());
             } else if (cube.harvestLevel() == 1) {
                 stone.add(holder.getKey());
             }
             if (cube.role()
-                    == com.masson.cruciblecraft.worldgen.StoneLayerStones.Role.STONE) {
+                    == com.masson.cruciblecraft.worldgen.StoneLayerStones.Role.STONE
+                    && !cube.denseOre()) {
                 baseStone.add(holder.getKey());
             }
         }

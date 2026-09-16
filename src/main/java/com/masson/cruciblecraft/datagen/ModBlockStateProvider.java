@@ -175,15 +175,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     private void registerLayerStones() {
-        for (StoneLayerStones.Cube cube : StoneLayerStones.cubes()) {
+        for (StoneLayerStones.Cube cube : StoneLayerStones.registeredCubes()) {
             if (!ModBlocks.hasLayerStone(cube.registryPath())) {
                 continue;
             }
             var block = ModBlocks.layerStone(cube.registryPath()).get();
             ResourceLocation texture = ResourceLocation.parse(cube.texture());
             ModelFile cubeModel = models().cubeAll(cube.registryPath(), texture);
-            simpleBlock(block, cubeModel);
-            itemModels().getBuilder("item/" + cube.registryPath()).parent(cubeModel);
+            simpleBlockWithItem(block, cubeModel);
         }
     }
 

@@ -10,502 +10,2561 @@
   "mte": 32757,
   "probability": 128,
   "no_deep_y": 24,
-  "deepslate": "deepslate",
-  "layer_count": 123,
+  "no_deep_offset": 24,
+  "deepslate_material": "deepslate",
+  "layer_count": 131,
+  "loader_layer_count": 123,
+  "rock_ore_count": 8,
   "stone_block_count": 45,
+  "unit": 648648000,
   "layers": [
     {
-      "material": "stone",
-      "no_deep": false
+      "material": "coal",
+      "layer_material": "coal",
+      "no_deep": true,
+      "ores": [],
+      "dense_ore": true
+    },
+    {
+      "material": "lignite",
+      "layer_material": "lignite",
+      "no_deep": true,
+      "ores": [],
+      "dense_ore": true
+    },
+    {
+      "material": "salt",
+      "layer_material": "salt",
+      "no_deep": true,
+      "ores": [],
+      "dense_ore": true
+    },
+    {
+      "material": "sylvite",
+      "layer_material": "sylvite",
+      "no_deep": true,
+      "ores": [],
+      "dense_ore": true
+    },
+    {
+      "material": "bauxite",
+      "layer_material": "bauxite",
+      "no_deep": true,
+      "ores": [],
+      "dense_ore": true
+    },
+    {
+      "material": "oil_shale",
+      "layer_material": "oil_shale",
+      "no_deep": true,
+      "ores": [],
+      "dense_ore": true
+    },
+    {
+      "material": "gypsum",
+      "layer_material": "gypsum",
+      "no_deep": true,
+      "ores": [],
+      "dense_ore": true
+    },
+    {
+      "material": "milky_quartz",
+      "layer_material": "milky_quartz",
+      "no_deep": true,
+      "ores": [],
+      "dense_ore": true
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "stone",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "stone",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "stone",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "stone",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "stone",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "stone",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "stone",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "stone",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "stone",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "stone",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "chert",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "chert",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "chert",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "pumice",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "eclogite",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "greywacke",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "migmatite",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "stone",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "peridot",
+          "chance": 10135125,
+          "min_y": 32,
+          "max_y": 64
+        }
+      ]
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "dacite",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "dacite",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "nikolite",
+          "chance": 20270250,
+          "min_y": 0,
+          "max_y": 20
+        }
+      ]
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "stone",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "stone",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "stone",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "emerald",
+          "chance": 13513500,
+          "min_y": 16,
+          "max_y": 60,
+          "indicators": false,
+          "vanilla_block": "minecraft:emerald_ore",
+          "biomes": [
+            "#c:is_mountain"
+          ]
+        },
+        {
+          "material": "diamond",
+          "chance": 5067562,
+          "min_y": 8,
+          "max_y": 24,
+          "indicators": false,
+          "vanilla_block": "minecraft:diamond_ore"
+        },
+        {
+          "material": "lapis",
+          "chance": 13513500,
+          "min_y": 16,
+          "max_y": 48,
+          "indicators": false,
+          "vanilla_block": "minecraft:lapis_ore"
+        },
+        {
+          "material": "redstone",
+          "chance": 20270250,
+          "min_y": 8,
+          "max_y": 24,
+          "indicators": false,
+          "vanilla_block": "minecraft:redstone_ore"
+        },
+        {
+          "material": "cinnabar",
+          "chance": 5067562,
+          "min_y": 8,
+          "max_y": 24,
+          "indicators": false
+        },
+        {
+          "material": "gold",
+          "chance": 10135125,
+          "min_y": 8,
+          "max_y": 32,
+          "indicators": false,
+          "vanilla_block": "minecraft:gold_ore"
+        },
+        {
+          "material": "gold",
+          "chance": 20270250,
+          "min_y": 33,
+          "max_y": 64,
+          "indicators": false,
+          "vanilla_block": "minecraft:gold_ore",
+          "biomes": [
+            "#c:is_badlands"
+          ]
+        },
+        {
+          "material": "copper",
+          "chance": 40540500,
+          "min_y": 20,
+          "max_y": 50,
+          "indicators": false,
+          "biomes": [
+            "#c:is_badlands",
+            "#c:is_desert",
+            "#c:is_savanna"
+          ]
+        },
+        {
+          "material": "iron",
+          "chance": 40540500,
+          "min_y": 40,
+          "max_y": 80,
+          "indicators": false,
+          "vanilla_block": "minecraft:iron_ore"
+        },
+        {
+          "material": "coal",
+          "chance": 81081000,
+          "min_y": 60,
+          "max_y": 100,
+          "indicators": false,
+          "vanilla_block": "minecraft:coal_ore"
+        },
+        {
+          "material": "stone",
+          "chance": 13513500,
+          "min_y": 0,
+          "max_y": 255,
+          "indicators": false,
+          "vanilla_block": "minecraft:infested_stone"
+        },
+        {
+          "material": "salt",
+          "chance": 20270250,
+          "min_y": 50,
+          "max_y": 80,
+          "indicators": false
+        }
+      ]
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "stone",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "hematite",
+          "chance": 108108000,
+          "min_y": 30,
+          "max_y": 70
+        },
+        {
+          "material": "red_jasper",
+          "chance": 10135125,
+          "min_y": 32,
+          "max_y": 64,
+          "biomes": [
+            "#c:is_mountain"
+          ]
+        },
+        {
+          "material": "blue_jasper",
+          "chance": 10135125,
+          "min_y": 32,
+          "max_y": 64,
+          "biomes": [
+            "#c:is_snowy"
+          ]
+        },
+        {
+          "material": "green_jasper",
+          "chance": 10135125,
+          "min_y": 32,
+          "max_y": 64,
+          "biomes": [
+            "#c:is_desert"
+          ]
+        },
+        {
+          "material": "yellow_jasper",
+          "chance": 10135125,
+          "min_y": 32,
+          "max_y": 64,
+          "biomes": [
+            "#c:is_savanna"
+          ]
+        },
+        {
+          "material": "rainforest_jasper",
+          "chance": 10135125,
+          "min_y": 32,
+          "max_y": 64,
+          "biomes": [
+            "#c:is_jungle"
+          ]
+        },
+        {
+          "material": "ocean_jasper",
+          "chance": 10135125,
+          "min_y": 32,
+          "max_y": 64,
+          "biomes": [
+            "#c:is_ocean",
+            "#c:is_beach"
+          ]
+        },
+        {
+          "material": "tiger_eye",
+          "chance": 10135125,
+          "min_y": 32,
+          "max_y": 64,
+          "biomes": [
+            "#c:is_taiga"
+          ]
+        },
+        {
+          "material": "cats_eye",
+          "chance": 10135125,
+          "min_y": 32,
+          "max_y": 64,
+          "biomes": [
+            "#c:is_swamp"
+          ]
+        },
+        {
+          "material": "dragon_eye",
+          "chance": 10135125,
+          "min_y": 32,
+          "max_y": 64,
+          "biomes": [
+            "#c:is_plains"
+          ]
+        },
+        {
+          "material": "hawks_eye",
+          "chance": 10135125,
+          "min_y": 32,
+          "max_y": 64,
+          "biomes": [
+            "#c:is_river"
+          ]
+        },
+        {
+          "material": "black_eye",
+          "chance": 10135125,
+          "min_y": 32,
+          "max_y": 64,
+          "biomes": [
+            "#c:is_badlands"
+          ]
+        },
+        {
+          "material": "tiger_iron",
+          "chance": 10135125,
+          "min_y": 32,
+          "max_y": 64,
+          "biomes": [
+            "#c:is_mushroom"
+          ]
+        }
+      ]
+    },
+    {
+      "material": "stone",
+      "layer_material": "stone",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "komatiite",
-      "no_deep": false
+      "layer_material": "gabbro",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "komatiite",
-      "no_deep": false
+      "layer_material": "gabbro",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "komatiite",
-      "no_deep": false
+      "layer_material": "gabbro",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "komatiite",
-      "no_deep": false
+      "layer_material": "komatiite",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "komatiite",
-      "no_deep": false
+      "layer_material": "komatiite",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "magnesium_carbonate",
+          "chance": 40540500,
+          "min_y": 20,
+          "max_y": 50
+        },
+        {
+          "material": "cinnabar",
+          "chance": 54054000,
+          "min_y": 0,
+          "max_y": 32
+        },
+        {
+          "material": "redstone",
+          "chance": 81081000,
+          "min_y": 0,
+          "max_y": 30
+        },
+        {
+          "material": "pyrite",
+          "chance": 54054000,
+          "min_y": 0,
+          "max_y": 30
+        }
+      ]
     },
     {
       "material": "kimberlite",
-      "no_deep": false
+      "layer_material": "kimberlite",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "kimberlite",
-      "no_deep": false
+      "layer_material": "kimberlite",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "diamond",
+          "chance": 13513500,
+          "min_y": 0,
+          "max_y": 12
+        },
+        {
+          "material": "spinel",
+          "chance": 13513500,
+          "min_y": 24,
+          "max_y": 48,
+          "biomes": [
+            "#c:is_mountain"
+          ]
+        },
+        {
+          "material": "balas_ruby",
+          "chance": 13513500,
+          "min_y": 24,
+          "max_y": 48,
+          "biomes": [
+            "#c:is_jungle"
+          ]
+        }
+      ]
     },
     {
       "material": "basalt",
-      "no_deep": false
+      "layer_material": "basalt",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "basalt",
-      "no_deep": false
+      "layer_material": "basalt",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "basalt",
-      "no_deep": false
+      "layer_material": "basalt",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "basalt",
-      "no_deep": false
+      "layer_material": "basalt",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "basalt",
-      "no_deep": false
+      "layer_material": "basalt",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "basalt",
-      "no_deep": false
+      "layer_material": "basalt",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "basalt",
-      "no_deep": false
+      "layer_material": "basalt",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "asbestos",
+          "chance": 40540500,
+          "min_y": 16,
+          "max_y": 48
+        },
+        {
+          "material": "white_fluorite",
+          "chance": 40540500,
+          "min_y": 0,
+          "max_y": 48
+        },
+        {
+          "material": "sulfur",
+          "chance": 81081000,
+          "min_y": 0,
+          "max_y": 32
+        }
+      ]
     },
     {
       "material": "basalt",
-      "no_deep": false
+      "layer_material": "basalt",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "bastnasite",
+          "chance": 27027000,
+          "min_y": 24,
+          "max_y": 32
+        },
+        {
+          "material": "monazite",
+          "chance": 20270250,
+          "min_y": 24,
+          "max_y": 32
+        },
+        {
+          "material": "pyrolusite",
+          "chance": 81081000,
+          "min_y": 16,
+          "max_y": 48
+        }
+      ]
     },
     {
       "material": "basalt",
-      "no_deep": false
+      "layer_material": "basalt",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "peridot",
+          "chance": 20270250,
+          "min_y": 0,
+          "max_y": 32
+        },
+        {
+          "material": "uvarovite",
+          "chance": 20270250,
+          "min_y": 8,
+          "max_y": 40
+        },
+        {
+          "material": "grossular",
+          "chance": 20270250,
+          "min_y": 16,
+          "max_y": 48
+        },
+        {
+          "material": "chromite",
+          "chance": 81081000,
+          "min_y": 32,
+          "max_y": 64
+        }
+      ]
     },
     {
       "material": "andesite",
-      "no_deep": false
+      "layer_material": "rhyolite",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "andesite",
-      "no_deep": false
+      "layer_material": "rhyolite",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "andesite",
-      "no_deep": false
+      "layer_material": "rhyolite",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "andesite",
-      "no_deep": false
+      "layer_material": "rhyolite",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "andesite",
-      "no_deep": false
+      "layer_material": "andesite",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "andesite",
-      "no_deep": false
+      "layer_material": "andesite",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "andesite",
-      "no_deep": false
+      "layer_material": "andesite",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "bromargyrite",
+          "chance": 81081000,
+          "min_y": 0,
+          "max_y": 32
+        }
+      ]
     },
     {
       "material": "andesite",
-      "no_deep": false
+      "layer_material": "andesite",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "gold",
+          "chance": 54054000,
+          "min_y": 0,
+          "max_y": 32
+        },
+        {
+          "material": "gold",
+          "chance": 81081000,
+          "min_y": 33,
+          "max_y": 64,
+          "biomes": [
+            "#c:is_badlands"
+          ]
+        }
+      ]
     },
     {
       "material": "marble",
-      "no_deep": false
+      "layer_material": "talc",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "marble",
-      "no_deep": false
+      "layer_material": "chalk",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "marble",
-      "no_deep": false
+      "layer_material": "chalk",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "marble",
-      "no_deep": false
+      "layer_material": "marble",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "marble",
-      "no_deep": false
+      "layer_material": "marble",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "marble",
-      "no_deep": false
+      "layer_material": "marble",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "marble",
-      "no_deep": false
+      "layer_material": "marble",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "marble",
-      "no_deep": false
+      "layer_material": "marble",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "marble",
-      "no_deep": false
+      "layer_material": "marble",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "marble",
-      "no_deep": false
+      "layer_material": "marble",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "cassiterite",
+          "chance": 40540500,
+          "min_y": 20,
+          "max_y": 80
+        },
+        {
+          "material": "dioptase",
+          "chance": 10135125,
+          "min_y": 24,
+          "max_y": 48,
+          "biomes": [
+            "#c:is_mountain"
+          ]
+        }
+      ]
     },
     {
       "material": "marble",
-      "no_deep": false
+      "layer_material": "marble",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "cassiterite",
+          "chance": 40540500,
+          "min_y": 20,
+          "max_y": 80
+        },
+        {
+          "material": "stannite",
+          "chance": 40540500,
+          "min_y": 38,
+          "max_y": 82
+        },
+        {
+          "material": "kesterite",
+          "chance": 40540500,
+          "min_y": 38,
+          "max_y": 82
+        },
+        {
+          "material": "sphalerite",
+          "chance": 81081000,
+          "min_y": 10,
+          "max_y": 30
+        },
+        {
+          "material": "chalcopyrite",
+          "chance": 81081000,
+          "min_y": 0,
+          "max_y": 20
+        },
+        {
+          "material": "pyrite",
+          "chance": 54054000,
+          "min_y": 0,
+          "max_y": 30
+        }
+      ]
     },
     {
       "material": "limestone",
-      "no_deep": false
+      "layer_material": "dolomite",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "limestone",
-      "no_deep": false
+      "layer_material": "dolomite",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "limestone",
-      "no_deep": false
+      "layer_material": "dolomite",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "bone",
+          "chance": 81081000,
+          "min_y": 30,
+          "max_y": 60
+        }
+      ]
     },
     {
       "material": "limestone",
-      "no_deep": false
+      "layer_material": "limestone",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "limestone",
-      "no_deep": false
+      "layer_material": "limestone",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "limestone",
-      "no_deep": false
+      "layer_material": "limestone",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "limestone",
-      "no_deep": false
+      "layer_material": "limestone",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "limestone",
-      "no_deep": false
+      "layer_material": "limestone",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "salt",
+          "chance": 81081000,
+          "min_y": 40,
+          "max_y": 80
+        }
+      ]
     },
     {
       "material": "limestone",
-      "no_deep": false
+      "layer_material": "limestone",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "stibnite",
+          "chance": 27027000,
+          "min_y": 10,
+          "max_y": 30
+        },
+        {
+          "material": "galena",
+          "chance": 81081000,
+          "min_y": 30,
+          "max_y": 120
+        },
+        {
+          "material": "lead",
+          "chance": 40540500,
+          "min_y": 50,
+          "max_y": 70
+        }
+      ]
     },
     {
       "material": "limestone",
-      "no_deep": false
+      "layer_material": "limestone",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "pyrite",
+          "chance": 40540500,
+          "min_y": 0,
+          "max_y": 30
+        },
+        {
+          "material": "arsenopyrite",
+          "chance": 40540500,
+          "min_y": 0,
+          "max_y": 20
+        },
+        {
+          "material": "galena",
+          "chance": 81081000,
+          "min_y": 5,
+          "max_y": 25
+        },
+        {
+          "material": "galena",
+          "chance": 81081000,
+          "min_y": 80,
+          "max_y": 120
+        },
+        {
+          "material": "wulfenite",
+          "chance": 20270250,
+          "min_y": 30,
+          "max_y": 45
+        },
+        {
+          "material": "powellite",
+          "chance": 20270250,
+          "min_y": 35,
+          "max_y": 50
+        },
+        {
+          "material": "molybdenite",
+          "chance": 5067562,
+          "min_y": 30,
+          "max_y": 50
+        },
+        {
+          "material": "tetrahedrite",
+          "chance": 81081000,
+          "min_y": 40,
+          "max_y": 80
+        },
+        {
+          "material": "copper",
+          "chance": 40540500,
+          "min_y": 40,
+          "max_y": 80
+        }
+      ]
     },
     {
       "material": "limestone",
-      "no_deep": false
+      "layer_material": "limestone",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "scheelite",
+          "chance": 10135125,
+          "min_y": 0,
+          "max_y": 16
+        },
+        {
+          "material": "wolframite",
+          "chance": 10135125,
+          "min_y": 0,
+          "max_y": 16
+        },
+        {
+          "material": "ferberite",
+          "chance": 10135125,
+          "min_y": 0,
+          "max_y": 16
+        },
+        {
+          "material": "huebnerite",
+          "chance": 10135125,
+          "min_y": 0,
+          "max_y": 16
+        },
+        {
+          "material": "tungstate",
+          "chance": 10135125,
+          "min_y": 0,
+          "max_y": 16
+        },
+        {
+          "material": "yellow_limonite",
+          "chance": 81081000,
+          "min_y": 16,
+          "max_y": 48
+        },
+        {
+          "material": "brown_limonite",
+          "chance": 81081000,
+          "min_y": 32,
+          "max_y": 64
+        },
+        {
+          "material": "malachite",
+          "chance": 54054000,
+          "min_y": 16,
+          "max_y": 64
+        },
+        {
+          "material": "azurite",
+          "chance": 27027000,
+          "min_y": 16,
+          "max_y": 64
+        }
+      ]
     },
     {
       "material": "granite_black",
-      "no_deep": false
+      "layer_material": "granite_black",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "granite_black",
-      "no_deep": false
+      "layer_material": "granite_black",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "granite_black",
-      "no_deep": false
+      "layer_material": "granite_black",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "cooperite",
+          "chance": 20270250,
+          "min_y": 0,
+          "max_y": 16
+        },
+        {
+          "material": "sperrylite",
+          "chance": 20270250,
+          "min_y": 0,
+          "max_y": 16
+        },
+        {
+          "material": "iridium",
+          "chance": 10135125,
+          "min_y": 0,
+          "max_y": 8
+        },
+        {
+          "material": "emerald",
+          "chance": 10135125,
+          "min_y": 24,
+          "max_y": 48,
+          "biomes": [
+            "#c:is_mountain"
+          ]
+        },
+        {
+          "material": "aquamarine",
+          "chance": 10135125,
+          "min_y": 8,
+          "max_y": 32,
+          "biomes": [
+            "#c:is_ocean",
+            "#c:is_beach"
+          ]
+        },
+        {
+          "material": "morganite",
+          "chance": 10135125,
+          "min_y": 24,
+          "max_y": 48,
+          "biomes": [
+            "#c:is_jungle"
+          ]
+        },
+        {
+          "material": "heliodor",
+          "chance": 10135125,
+          "min_y": 24,
+          "max_y": 48,
+          "biomes": [
+            "#c:is_desert"
+          ]
+        },
+        {
+          "material": "goshenite",
+          "chance": 10135125,
+          "min_y": 24,
+          "max_y": 48,
+          "biomes": [
+            "#c:is_snowy"
+          ]
+        },
+        {
+          "material": "bixbite",
+          "chance": 10135125,
+          "min_y": 24,
+          "max_y": 48,
+          "biomes": [
+            "#c:is_savanna"
+          ]
+        },
+        {
+          "material": "maxixe",
+          "chance": 10135125,
+          "min_y": 24,
+          "max_y": 48,
+          "biomes": [
+            "#c:is_taiga"
+          ]
+        }
+      ]
     },
     {
       "material": "granite_red",
-      "no_deep": false
+      "layer_material": "granite_red",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "granite_red",
-      "no_deep": false
+      "layer_material": "granite_red",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "granite_red",
-      "no_deep": false
+      "layer_material": "granite_red",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "pitchblende",
+          "chance": 20270250,
+          "min_y": 0,
+          "max_y": 18
+        },
+        {
+          "material": "uraninite",
+          "chance": 20270250,
+          "min_y": 0,
+          "max_y": 16
+        },
+        {
+          "material": "tantalite",
+          "chance": 10135125,
+          "min_y": 30,
+          "max_y": 40
+        },
+        {
+          "material": "columbite",
+          "chance": 10135125,
+          "min_y": 30,
+          "max_y": 40
+        },
+        {
+          "material": "coltan",
+          "chance": 40540500,
+          "min_y": 20,
+          "max_y": 50
+        }
+      ]
     },
     {
       "material": "granite",
-      "no_deep": true
+      "layer_material": "sulfur",
+      "no_deep": true,
+      "ores": []
     },
     {
       "material": "granite",
-      "no_deep": true
+      "layer_material": "potassium_nitrate",
+      "no_deep": true,
+      "ores": []
     },
     {
       "material": "granite",
-      "no_deep": true
+      "layer_material": "lignite",
+      "no_deep": true,
+      "ores": []
     },
     {
       "material": "granite",
-      "no_deep": false
+      "layer_material": "granite",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "blue_topaz",
+          "chance": 10135125,
+          "min_y": 8,
+          "max_y": 32,
+          "biomes": [
+            "#c:is_ocean",
+            "#c:is_beach"
+          ]
+        },
+        {
+          "material": "topaz",
+          "chance": 10135125,
+          "min_y": 24,
+          "max_y": 48,
+          "biomes": [
+            "#c:is_snowy"
+          ]
+        }
+      ]
     },
     {
       "material": "granite",
-      "no_deep": false
+      "layer_material": "granite",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "apatite",
+          "chance": 81081000,
+          "min_y": 32,
+          "max_y": 64
+        },
+        {
+          "material": "phosphate",
+          "chance": 27027000,
+          "min_y": 36,
+          "max_y": 60
+        },
+        {
+          "material": "phosphorite",
+          "chance": 27027000,
+          "min_y": 40,
+          "max_y": 56
+        },
+        {
+          "material": "red_phosphorus",
+          "chance": 27027000,
+          "min_y": 44,
+          "max_y": 52
+        }
+      ]
     },
     {
       "material": "diorite",
-      "no_deep": false
+      "layer_material": "diorite",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "diorite",
-      "no_deep": false
+      "layer_material": "diorite",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "diorite",
-      "no_deep": false
+      "layer_material": "diorite",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "diorite",
-      "no_deep": false
+      "layer_material": "diorite",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "sapphire",
+          "chance": 10135125,
+          "min_y": 24,
+          "max_y": 48,
+          "biomes": [
+            "#c:is_snowy"
+          ]
+        },
+        {
+          "material": "green_sapphire",
+          "chance": 10135125,
+          "min_y": 24,
+          "max_y": 48,
+          "biomes": [
+            "#c:is_jungle"
+          ]
+        },
+        {
+          "material": "yellow_sapphire",
+          "chance": 10135125,
+          "min_y": 24,
+          "max_y": 48,
+          "biomes": [
+            "#c:is_mountain"
+          ]
+        },
+        {
+          "material": "orange_sapphire",
+          "chance": 10135125,
+          "min_y": 24,
+          "max_y": 48,
+          "biomes": [
+            "#c:is_savanna"
+          ]
+        },
+        {
+          "material": "blue_sapphire",
+          "chance": 10135125,
+          "min_y": 8,
+          "max_y": 32,
+          "biomes": [
+            "#c:is_ocean",
+            "#c:is_beach"
+          ]
+        },
+        {
+          "material": "purple_sapphire",
+          "chance": 10135125,
+          "min_y": 24,
+          "max_y": 48,
+          "biomes": [
+            "#c:is_taiga"
+          ]
+        },
+        {
+          "material": "ruby",
+          "chance": 10135125,
+          "min_y": 24,
+          "max_y": 48,
+          "biomes": [
+            "#c:is_desert"
+          ]
+        }
+      ]
     },
     {
       "material": "diorite",
-      "no_deep": false
+      "layer_material": "diorite",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "garnierite",
+          "chance": 81081000,
+          "min_y": 16,
+          "max_y": 48
+        },
+        {
+          "material": "pentlandite",
+          "chance": 81081000,
+          "min_y": 24,
+          "max_y": 56
+        },
+        {
+          "material": "cobaltite",
+          "chance": 81081000,
+          "min_y": 32,
+          "max_y": 64
+        },
+        {
+          "material": "craponite",
+          "chance": 10135125,
+          "min_y": 24,
+          "max_y": 48,
+          "biomes": [
+            "#c:is_jungle"
+          ]
+        },
+        {
+          "material": "amethyst",
+          "chance": 10135125,
+          "min_y": 24,
+          "max_y": 48,
+          "biomes": [
+            "#c:is_taiga"
+          ]
+        },
+        {
+          "material": "alexandrite",
+          "chance": 10135125,
+          "min_y": 24,
+          "max_y": 48,
+          "biomes": [
+            "#c:is_jungle"
+          ]
+        }
+      ]
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "gneiss",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "gneiss",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "gneiss",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "gneiss",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "graphite",
+          "chance": 81081000,
+          "min_y": 0,
+          "max_y": 64
+        },
+        {
+          "material": "asbestos",
+          "chance": 81081000,
+          "min_y": 0,
+          "max_y": 48
+        }
+      ]
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "pinkschist",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "stone",
-      "no_deep": false
+      "layer_material": "grayschist",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "greenschist",
-      "no_deep": false
+      "layer_material": "greenschist",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "greenschist",
-      "no_deep": false
+      "layer_material": "greenschist",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "greenschist",
-      "no_deep": false
+      "layer_material": "greenschist",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "andradite",
+          "chance": 20270250,
+          "min_y": 8,
+          "max_y": 40
+        },
+        {
+          "material": "almandine",
+          "chance": 20270250,
+          "min_y": 16,
+          "max_y": 48
+        }
+      ]
     },
     {
       "material": "blueschist",
-      "no_deep": false
+      "layer_material": "blueschist",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "blueschist",
-      "no_deep": false
+      "layer_material": "blueschist",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "blueschist",
-      "no_deep": false
+      "layer_material": "blueschist",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "spessartine",
+          "chance": 20270250,
+          "min_y": 8,
+          "max_y": 40
+        },
+        {
+          "material": "pyrope",
+          "chance": 20270250,
+          "min_y": 16,
+          "max_y": 48
+        }
+      ]
     },
     {
       "material": "shale",
-      "no_deep": false
+      "layer_material": "shale",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "shale",
-      "no_deep": false
+      "layer_material": "shale",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "shale",
-      "no_deep": false
+      "layer_material": "shale",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "shale",
-      "no_deep": false
+      "layer_material": "shale",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "shale",
-      "no_deep": false
+      "layer_material": "shale",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "shale",
-      "no_deep": false
+      "layer_material": "shale",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "slate",
-      "no_deep": false
+      "layer_material": "slate",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "slate",
-      "no_deep": false
+      "layer_material": "slate",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "slate",
-      "no_deep": false
+      "layer_material": "slate",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "slate",
-      "no_deep": false
+      "layer_material": "slate",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "slate",
-      "no_deep": false
+      "layer_material": "slate",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "slate",
-      "no_deep": false
+      "layer_material": "slate",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "slate",
-      "no_deep": false
+      "layer_material": "slate",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "slate",
-      "no_deep": false
+      "layer_material": "slate",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "slate",
-      "no_deep": false
+      "layer_material": "slate",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "slate",
-      "no_deep": false
+      "layer_material": "slate",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "quartzite",
-      "no_deep": false
+      "layer_material": "red_sand",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "niter",
+          "chance": 108108000,
+          "min_y": 40,
+          "max_y": 70,
+          "biomes": [
+            "#c:is_desert"
+          ]
+        }
+      ]
     },
     {
       "material": "quartzite",
-      "no_deep": false
+      "layer_material": "sand",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "niter",
+          "chance": 108108000,
+          "min_y": 40,
+          "max_y": 70,
+          "biomes": [
+            "#c:is_desert"
+          ]
+        }
+      ]
     },
     {
       "material": "quartzite",
-      "no_deep": false
+      "layer_material": "sand",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "niter",
+          "chance": 108108000,
+          "min_y": 40,
+          "max_y": 70,
+          "biomes": [
+            "#c:is_desert"
+          ]
+        }
+      ]
     },
     {
       "material": "quartzite",
-      "no_deep": false
+      "layer_material": "siltstone",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "quartzite",
-      "no_deep": false
+      "layer_material": "siltstone",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "quartzite",
-      "no_deep": false
+      "layer_material": "quartzite",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "quartzite",
-      "no_deep": false
+      "layer_material": "quartzite",
+      "no_deep": false,
+      "ores": []
     },
     {
       "material": "quartzite",
-      "no_deep": false
+      "layer_material": "quartzite",
+      "no_deep": false,
+      "ores": [
+        {
+          "material": "certus_quartz",
+          "chance": 40540500,
+          "min_y": 16,
+          "max_y": 48
+        },
+        {
+          "material": "barite",
+          "chance": 20270250,
+          "min_y": 0,
+          "max_y": 32
+        }
+      ]
     }
+  ],
+  "deepslate_layer": {
+    "material": "deepslate",
+    "layer_material": "deepslate",
+    "ores": [
+      {
+        "material": "emerald",
+        "chance": 10135125,
+        "min_y": 0,
+        "max_y": 32,
+        "indicators": false,
+        "biomes": [
+          "#c:is_mountain"
+        ]
+      },
+      {
+        "material": "diamond",
+        "chance": 10135125,
+        "min_y": 0,
+        "max_y": 12,
+        "indicators": false,
+        "biomes": [
+          "#c:is_jungle"
+        ],
+        "never_biome": true
+      },
+      {
+        "material": "lapis",
+        "chance": 54054000,
+        "min_y": 16,
+        "max_y": 24,
+        "indicators": false,
+        "biomes": [
+          "#c:is_snowy",
+          "#c:is_taiga"
+        ]
+      },
+      {
+        "material": "amethyst",
+        "chance": 10135125,
+        "min_y": 0,
+        "max_y": 32,
+        "indicators": false,
+        "biomes": [
+          "#c:is_snowy"
+        ]
+      },
+      {
+        "material": "ruby",
+        "chance": 10135125,
+        "min_y": 0,
+        "max_y": 32,
+        "indicators": false,
+        "biomes": [
+          "#c:is_desert"
+        ]
+      },
+      {
+        "material": "peridot",
+        "chance": 10135125,
+        "min_y": 0,
+        "max_y": 32,
+        "indicators": false,
+        "biomes": [
+          "#c:is_plains"
+        ]
+      },
+      {
+        "material": "topaz",
+        "chance": 10135125,
+        "min_y": 0,
+        "max_y": 32,
+        "indicators": false,
+        "biomes": [
+          "#c:is_jungle"
+        ]
+      },
+      {
+        "material": "tanzanite",
+        "chance": 10135125,
+        "min_y": 0,
+        "max_y": 32,
+        "indicators": false,
+        "biomes": [
+          "#c:is_taiga"
+        ]
+      },
+      {
+        "material": "malachite",
+        "chance": 10135125,
+        "min_y": 0,
+        "max_y": 32,
+        "indicators": false,
+        "biomes": [
+          "#c:is_swamp"
+        ]
+      },
+      {
+        "material": "blue_sapphire",
+        "chance": 10135125,
+        "min_y": 0,
+        "max_y": 32,
+        "indicators": false,
+        "biomes": [
+          "#c:is_ocean",
+          "#c:is_beach"
+        ]
+      },
+      {
+        "material": "amber",
+        "chance": 20270250,
+        "min_y": 16,
+        "max_y": 24,
+        "indicators": false,
+        "biomes": [
+          "#c:is_forest"
+        ]
+      },
+      {
+        "material": "amber",
+        "chance": 20270250,
+        "min_y": 16,
+        "max_y": 24,
+        "indicators": false,
+        "biomes": [
+          "#c:is_ocean",
+          "#c:is_beach"
+        ]
+      },
+      {
+        "material": "blue_topaz",
+        "chance": 10135125,
+        "min_y": 0,
+        "max_y": 32,
+        "indicators": false,
+        "biomes": [
+          "minecraft:dark_forest"
+        ]
+      },
+      {
+        "material": "redstone",
+        "chance": 40540500,
+        "min_y": 0,
+        "max_y": 20,
+        "indicators": false
+      },
+      {
+        "material": "cinnabar",
+        "chance": 10135125,
+        "min_y": 0,
+        "max_y": 20,
+        "indicators": false,
+        "biomes": [
+          "#c:is_badlands",
+          "#c:is_taiga"
+        ],
+        "never_biome": true
+      },
+      {
+        "material": "cooperite",
+        "chance": 10135125,
+        "min_y": 0,
+        "max_y": 12,
+        "indicators": false,
+        "never_biome": true
+      },
+      {
+        "material": "mithril",
+        "chance": 10135125,
+        "min_y": 0,
+        "max_y": 12,
+        "indicators": false,
+        "never_biome": true
+      },
+      {
+        "material": "uraninite",
+        "chance": 10135125,
+        "min_y": 0,
+        "max_y": 12,
+        "indicators": false,
+        "biomes": [
+          "#c:is_jungle"
+        ],
+        "never_biome": true
+      },
+      {
+        "material": "thorium",
+        "chance": 10135125,
+        "min_y": 10,
+        "max_y": 20,
+        "indicators": false,
+        "biomes": [
+          "#c:is_jungle"
+        ],
+        "never_biome": true
+      },
+      {
+        "material": "scheelite",
+        "chance": 10135125,
+        "min_y": 0,
+        "max_y": 12,
+        "indicators": false,
+        "biomes": [
+          "#c:is_snowy"
+        ]
+      },
+      {
+        "material": "rutile",
+        "chance": 10135125,
+        "min_y": 0,
+        "max_y": 12,
+        "indicators": false,
+        "biomes": [
+          "#c:is_desert"
+        ]
+      },
+      {
+        "material": "gold",
+        "chance": 20270250,
+        "min_y": 0,
+        "max_y": 16,
+        "indicators": false,
+        "biomes": [
+          "#c:is_badlands"
+        ]
+      },
+      {
+        "material": "bauxite",
+        "chance": 20270250,
+        "min_y": 16,
+        "max_y": 32,
+        "indicators": false,
+        "biomes": [
+          "#c:is_plains"
+        ]
+      },
+      {
+        "material": "magnesium_carbonate",
+        "chance": 20270250,
+        "min_y": 10,
+        "max_y": 20,
+        "indicators": false,
+        "biomes": [
+          "#c:is_desert"
+        ],
+        "never_biome": true
+      },
+      {
+        "material": "borax",
+        "chance": 20270250,
+        "min_y": 10,
+        "max_y": 20,
+        "indicators": false,
+        "biomes": [
+          "#c:is_ocean",
+          "#c:is_river"
+        ]
+      },
+      {
+        "material": "galena",
+        "chance": 20270250,
+        "min_y": 0,
+        "max_y": 16,
+        "indicators": false,
+        "biomes": [
+          "#c:is_mountain"
+        ]
+      },
+      {
+        "material": "lead",
+        "chance": 40540500,
+        "min_y": 0,
+        "max_y": 32,
+        "indicators": false,
+        "biomes": [
+          "#c:is_mountain",
+          "#c:is_forest"
+        ]
+      },
+      {
+        "material": "copper",
+        "chance": 40540500,
+        "min_y": 0,
+        "max_y": 32,
+        "indicators": false,
+        "biomes": [
+          "#c:is_desert",
+          "#c:is_savanna"
+        ]
+      },
+      {
+        "material": "cassiterite",
+        "chance": 40540500,
+        "min_y": 0,
+        "max_y": 32,
+        "indicators": false,
+        "biomes": [
+          "#c:is_snowy",
+          "#c:is_jungle"
+        ]
+      },
+      {
+        "material": "sphalerite",
+        "chance": 40540500,
+        "min_y": 0,
+        "max_y": 32,
+        "indicators": false,
+        "biomes": [
+          "#c:is_savanna",
+          "#c:is_swamp"
+        ]
+      },
+      {
+        "material": "brown_limonite",
+        "chance": 40540500,
+        "min_y": 0,
+        "max_y": 32,
+        "indicators": false,
+        "biomes": [
+          "#c:is_mushroom"
+        ]
+      },
+      {
+        "material": "yellow_limonite",
+        "chance": 40540500,
+        "min_y": 0,
+        "max_y": 32,
+        "indicators": false,
+        "biomes": [
+          "#c:is_swamp"
+        ]
+      },
+      {
+        "material": "hematite",
+        "chance": 40540500,
+        "min_y": 0,
+        "max_y": 32,
+        "indicators": false,
+        "biomes": [
+          "#c:is_forest"
+        ]
+      },
+      {
+        "material": "garnierite",
+        "chance": 40540500,
+        "min_y": 0,
+        "max_y": 32,
+        "indicators": false,
+        "biomes": [
+          "#c:is_mushroom"
+        ]
+      },
+      {
+        "material": "pentlandite",
+        "chance": 40540500,
+        "min_y": 0,
+        "max_y": 32,
+        "indicators": false,
+        "biomes": [
+          "#c:is_swamp"
+        ]
+      },
+      {
+        "material": "coal",
+        "chance": 40540500,
+        "min_y": 0,
+        "max_y": 32,
+        "indicators": false,
+        "biomes": [
+          "#c:is_plains",
+          "#c:is_mushroom"
+        ]
+      },
+      {
+        "material": "nikolite",
+        "chance": 20270250,
+        "min_y": 0,
+        "max_y": 20,
+        "indicators": false
+      }
+    ]
+  },
+  "boundaries": [
+    {
+      "kind": "bothsides",
+      "top": "coal",
+      "bottom": "stone",
+      "ores": [
+        {
+          "material": "amber",
+          "chance": 162162000,
+          "min_y": 30,
+          "max_y": 70,
+          "biomes": [
+            "#c:is_ocean",
+            "#c:is_beach"
+          ]
+        },
+        {
+          "material": "amber",
+          "chance": 81081000,
+          "min_y": 30,
+          "max_y": 70,
+          "biomes": [
+            "#c:is_river"
+          ]
+        },
+        {
+          "material": "dominican_amber",
+          "chance": 81081000,
+          "min_y": 30,
+          "max_y": 70,
+          "biomes": [
+            "#c:is_mushroom"
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "bothsides",
+      "top": "lignite",
+      "bottom": "stone",
+      "ores": [
+        {
+          "material": "amber",
+          "chance": 162162000,
+          "min_y": 30,
+          "max_y": 70,
+          "biomes": [
+            "#c:is_ocean",
+            "#c:is_beach"
+          ]
+        },
+        {
+          "material": "amber",
+          "chance": 81081000,
+          "min_y": 30,
+          "max_y": 70,
+          "biomes": [
+            "#c:is_river"
+          ]
+        },
+        {
+          "material": "dominican_amber",
+          "chance": 81081000,
+          "min_y": 30,
+          "max_y": 70,
+          "biomes": [
+            "#c:is_mushroom"
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "bothsides",
+      "top": "oil_shale",
+      "bottom": "stone",
+      "ores": [
+        {
+          "material": "amber",
+          "chance": 162162000,
+          "min_y": 30,
+          "max_y": 70,
+          "biomes": [
+            "#c:is_ocean",
+            "#c:is_beach"
+          ]
+        },
+        {
+          "material": "amber",
+          "chance": 81081000,
+          "min_y": 30,
+          "max_y": 70,
+          "biomes": [
+            "#c:is_river"
+          ]
+        },
+        {
+          "material": "dominican_amber",
+          "chance": 81081000,
+          "min_y": 30,
+          "max_y": 70,
+          "biomes": [
+            "#c:is_mushroom"
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "bothsides",
+      "top": "komatiite",
+      "bottom": "basalt",
+      "ores": [
+        {
+          "material": "perlite",
+          "chance": 162162000,
+          "min_y": 0,
+          "max_y": 16
+        }
+      ]
+    },
+    {
+      "kind": "bothsides",
+      "top": "gabbro",
+      "bottom": "basalt",
+      "ores": [
+        {
+          "material": "perlite",
+          "chance": 162162000,
+          "min_y": 0,
+          "max_y": 16
+        }
+      ]
+    },
+    {
+      "kind": "bothsides",
+      "top": "limestone",
+      "bottom": "basalt",
+      "ores": [
+        {
+          "material": "ilmenite",
+          "chance": 81081000,
+          "min_y": 0,
+          "max_y": 32
+        },
+        {
+          "material": "rutile",
+          "chance": 54054000,
+          "min_y": 0,
+          "max_y": 32
+        }
+      ]
+    },
+    {
+      "kind": "bothsides",
+      "top": "dolomite",
+      "bottom": "sylvite",
+      "ores": [
+        {
+          "material": "iodine_salt",
+          "chance": 54054000,
+          "min_y": 32,
+          "max_y": 64
+        }
+      ]
+    },
+    {
+      "kind": "bothsides",
+      "top": "dolomite",
+      "bottom": "quartzite",
+      "ores": [
+        {
+          "material": "kyanite",
+          "chance": 40540500,
+          "min_y": 32,
+          "max_y": 72
+        },
+        {
+          "material": "lepidolite",
+          "chance": 20270250,
+          "min_y": 16,
+          "max_y": 48
+        },
+        {
+          "material": "spodumene",
+          "chance": 20270250,
+          "min_y": 32,
+          "max_y": 64
+        },
+        {
+          "material": "tantalite",
+          "chance": 5067562,
+          "min_y": 16,
+          "max_y": 48
+        },
+        {
+          "material": "columbite",
+          "chance": 5067562,
+          "min_y": 16,
+          "max_y": 48
+        },
+        {
+          "material": "coltan",
+          "chance": 20270250,
+          "min_y": 8,
+          "max_y": 56
+        }
+      ]
+    },
+    {
+      "kind": "bothsides",
+      "top": "talc",
+      "bottom": "salt",
+      "ores": [
+        {
+          "material": "borax",
+          "chance": 81081000,
+          "min_y": 16,
+          "max_y": 48
+        }
+      ]
+    },
+    {
+      "kind": "bothsides",
+      "top": "chalk",
+      "bottom": "quartzite",
+      "ores": [
+        {
+          "material": "asbestos",
+          "chance": 162162000,
+          "min_y": 0,
+          "max_y": 48
+        },
+        {
+          "material": "talc",
+          "chance": 162162000,
+          "min_y": 0,
+          "max_y": 80
+        },
+        {
+          "material": "glauconite",
+          "chance": 162162000,
+          "min_y": 32,
+          "max_y": 80
+        }
+      ]
+    },
+    {
+      "kind": "bothsides",
+      "top": "rhyolite",
+      "bottom": "quartzite",
+      "ores": [
+        {
+          "material": "alunite",
+          "chance": 162162000,
+          "min_y": 32,
+          "max_y": 80
+        }
+      ]
+    },
+    {
+      "kind": "bothsides",
+      "top": "gneiss",
+      "bottom": "gypsum",
+      "ores": [
+        {
+          "material": "mirabilite",
+          "chance": 81081000,
+          "min_y": 16,
+          "max_y": 64
+        },
+        {
+          "material": "trona",
+          "chance": 81081000,
+          "min_y": 16,
+          "max_y": 64
+        }
+      ]
+    },
+    {
+      "kind": "bothsides",
+      "top": "granite",
+      "bottom": "salt",
+      "ores": [
+        {
+          "material": "zeolite",
+          "chance": 81081000,
+          "min_y": 16,
+          "max_y": 48
+        }
+      ]
+    },
+    {
+      "kind": "bothsides",
+      "top": "granite",
+      "bottom": "sylvite",
+      "ores": [
+        {
+          "material": "pollucite",
+          "chance": 81081000,
+          "min_y": 16,
+          "max_y": 48
+        }
+      ]
+    },
+    {
+      "kind": "bothsides",
+      "top": "granite_red",
+      "bottom": "gneiss",
+      "ores": [
+        {
+          "material": "vermiculite",
+          "chance": 81081000,
+          "min_y": 48,
+          "max_y": 80
+        },
+        {
+          "material": "asbestos",
+          "chance": 10135125,
+          "min_y": 16,
+          "max_y": 48
+        }
+      ]
+    },
+    {
+      "kind": "bothsides",
+      "top": "granite_black",
+      "bottom": "gneiss",
+      "ores": [
+        {
+          "material": "mica",
+          "chance": 81081000,
+          "min_y": 16,
+          "max_y": 48
+        },
+        {
+          "material": "biotite",
+          "chance": 40540500,
+          "min_y": 16,
+          "max_y": 48
+        }
+      ]
+    },
+    {
+      "kind": "bothsides",
+      "top": "granite_black",
+      "bottom": "marble",
+      "ores": [
+        {
+          "material": "lapis",
+          "chance": 81081000,
+          "min_y": 0,
+          "max_y": 48
+        },
+        {
+          "material": "sodalite",
+          "chance": 40540500,
+          "min_y": 0,
+          "max_y": 48
+        },
+        {
+          "material": "lazurite",
+          "chance": 40540500,
+          "min_y": 0,
+          "max_y": 48
+        },
+        {
+          "material": "pyrite",
+          "chance": 40540500,
+          "min_y": 0,
+          "max_y": 48
+        }
+      ]
+    },
+    {
+      "kind": "bothsides",
+      "top": "granite_black",
+      "bottom": "granite",
+      "ores": [
+        {
+          "material": "zircon",
+          "chance": 27027000,
+          "min_y": 0,
+          "max_y": 32
+        }
+      ]
+    },
+    {
+      "kind": "bothsides",
+      "top": "granite_black",
+      "bottom": "granite_red",
+      "ores": [
+        {
+          "material": "zircon",
+          "chance": 27027000,
+          "min_y": 0,
+          "max_y": 32
+        }
+      ]
+    },
+    {
+      "kind": "topbottom",
+      "top": "dolomite",
+      "bottom": "diorite",
+      "ores": [
+        {
+          "material": "opal",
+          "chance": 10135125,
+          "min_y": 48,
+          "max_y": 64
+        },
+        {
+          "material": "diatomite",
+          "chance": 40540500,
+          "min_y": 16,
+          "max_y": 64
+        }
+      ]
+    },
+    {
+      "kind": "topbottom",
+      "top": "granite_black",
+      "bottom": "basalt",
+      "ores": [
+        {
+          "material": "diamond",
+          "chance": 10135125,
+          "min_y": 0,
+          "max_y": 32
+        },
+        {
+          "material": "pink_diamond",
+          "chance": 20270250,
+          "min_y": 0,
+          "max_y": 32,
+          "biomes": [
+            "#c:is_jungle"
+          ]
+        },
+        {
+          "material": "graphite",
+          "chance": 81081000,
+          "min_y": 0,
+          "max_y": 32
+        }
+      ]
+    }
+  ],
+  "random_small_gems": [
+    "emerald",
+    "topaz",
+    "blue_topaz",
+    "peridot",
+    "amethyst"
   ],
   "stone_blocks": [
     {
@@ -1094,6 +3153,153 @@
       "chinese": "苔石页岩圆石"
     }
   ],
+  "rock_ores": [
+    {
+      "material": "coal",
+      "role": "stone",
+      "dense_ore": true,
+      "registry_path": "coal/dense_ore",
+      "texture": "cruciblecraft:block/gt6/rock_ores/ore_anthracite",
+      "gt_file": "ore_anthracite.png",
+      "harvest_level": 0,
+      "hardness": 0.75,
+      "resistance": 6.0,
+      "flammability": 30,
+      "english": "Anthracite Coal",
+      "chinese": "无烟煤"
+    },
+    {
+      "material": "lignite",
+      "role": "stone",
+      "dense_ore": true,
+      "registry_path": "lignite/dense_ore",
+      "texture": "cruciblecraft:block/gt6/rock_ores/ore_lignite",
+      "gt_file": "ore_lignite.png",
+      "harvest_level": 0,
+      "hardness": 0.75,
+      "resistance": 6.0,
+      "flammability": 30,
+      "english": "Lignite Coal",
+      "chinese": "褐煤"
+    },
+    {
+      "material": "salt",
+      "role": "stone",
+      "dense_ore": true,
+      "registry_path": "salt/dense_ore",
+      "texture": "cruciblecraft:block/gt6/rock_ores/ore_salt",
+      "gt_file": "ore_salt.png",
+      "harvest_level": 1,
+      "hardness": 1.5,
+      "resistance": 6.0,
+      "flammability": 0,
+      "english": "Salt",
+      "chinese": "盐"
+    },
+    {
+      "material": "sylvite",
+      "role": "stone",
+      "dense_ore": true,
+      "registry_path": "sylvite/dense_ore",
+      "texture": "cruciblecraft:block/gt6/rock_ores/ore_rocksalt",
+      "gt_file": "ore_rocksalt.png",
+      "harvest_level": 1,
+      "hardness": 1.5,
+      "resistance": 6.0,
+      "flammability": 0,
+      "english": "Sylvite",
+      "chinese": "钾盐"
+    },
+    {
+      "material": "bauxite",
+      "role": "stone",
+      "dense_ore": true,
+      "registry_path": "bauxite/dense_ore",
+      "texture": "cruciblecraft:block/gt6/rock_ores/ore_bauxite",
+      "gt_file": "ore_bauxite.png",
+      "harvest_level": 2,
+      "hardness": 3.0,
+      "resistance": 6.0,
+      "flammability": 0,
+      "english": "Bauxite",
+      "chinese": "铝土矿"
+    },
+    {
+      "material": "oil_shale",
+      "role": "stone",
+      "dense_ore": true,
+      "registry_path": "oil_shale/dense_ore",
+      "texture": "cruciblecraft:block/gt6/rock_ores/ore_oil",
+      "gt_file": "ore_oil.png",
+      "harvest_level": 1,
+      "hardness": 0.75,
+      "resistance": 6.0,
+      "flammability": 30,
+      "english": "Oil Shale",
+      "chinese": "油页岩"
+    },
+    {
+      "material": "gypsum",
+      "role": "stone",
+      "dense_ore": true,
+      "registry_path": "gypsum/dense_ore",
+      "texture": "cruciblecraft:block/gt6/rock_ores/ore_gypsum",
+      "gt_file": "ore_gypsum.png",
+      "harvest_level": 0,
+      "hardness": 0.75,
+      "resistance": 6.0,
+      "flammability": 0,
+      "english": "Gypsum",
+      "chinese": "石膏"
+    },
+    {
+      "material": "milky_quartz",
+      "role": "stone",
+      "dense_ore": true,
+      "registry_path": "milky_quartz/dense_ore",
+      "texture": "cruciblecraft:block/gt6/rock_ores/ore_milkyquartz",
+      "gt_file": "ore_milkyquartz.png",
+      "harvest_level": 1,
+      "hardness": 1.5,
+      "resistance": 6.0,
+      "flammability": 0,
+      "english": "Milky Quartz",
+      "chinese": "乳白石英"
+    },
+    {
+      "material": "nether_quartz",
+      "role": "stone",
+      "dense_ore": true,
+      "registry_path": "nether_quartz/dense_ore",
+      "texture": "cruciblecraft:block/gt6/rock_ores/ore_netherquartz",
+      "gt_file": "ore_netherquartz.png",
+      "harvest_level": 1,
+      "hardness": 1.5,
+      "resistance": 6.0,
+      "flammability": 0,
+      "english": "Nether Quartz",
+      "chinese": "下界石英"
+    }
+  ],
+  "nether_rock_ore_count": 1,
+  "nether_quartz": {
+    "feature_type": "cruciblecraft:nether_netherquartz",
+    "placed_feature": "cruciblecraft:nether_netherquartz",
+    "material": "nether_quartz",
+    "meta": 8,
+    "base_y": 40,
+    "span": 200,
+    "sample_ys": [
+      0,
+      64
+    ],
+    "noise_offset": -512,
+    "host": "minecraft:netherrack",
+    "vanilla_remove": [
+      "minecraft:ore_quartz_nether",
+      "minecraft:ore_quartz_deltas"
+    ]
+  },
   "biome_modifier": {
     "id": "add_stone_layer_rocks",
     "type": "neoforge:add_features",
@@ -1103,6 +3309,21 @@
     ],
     "step": "underground_decoration"
   },
-  "provenance": "GT6 WorldgenStoneLayers overworld cube replace plus 32757 tLastRock pebbles; no-mod LAYERS weights; no StoneLayerOres",
+  "remove_overworld_large_veins": {
+    "id": "remove_overworld_large_veins",
+    "type": "neoforge:remove_features",
+    "biomes": "#minecraft:is_overworld",
+    "features": [
+      "cruciblecraft:large_copper_vein",
+      "cruciblecraft:large_gold_vein",
+      "cruciblecraft:large_iron_vein",
+      "cruciblecraft:large_tin_vein",
+      "cruciblecraft:large_tungsten_vein"
+    ],
+    "steps": [
+      "underground_ores"
+    ]
+  },
+  "provenance": "GT6 WorldgenStoneLayers overworld cube replace, 32757 tLastRock pebbles, BlockRockOres dense layers, WorldgenNetherQuartz, and no-mod StoneLayerOres / double-layer MAP",
   "design_policy": "DESIGN_POLICY"
 }

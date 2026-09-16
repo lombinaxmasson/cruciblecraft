@@ -77,6 +77,7 @@ import com.masson.cruciblecraft.content.block.GtBlockObjectSpikeBlock;
 import com.masson.cruciblecraft.content.block.GtStoneBlock;
 import com.masson.cruciblecraft.content.block.GtStoneSlabBlock;
 import com.masson.cruciblecraft.content.block.StoneLayerStoneBlock;
+import com.masson.cruciblecraft.content.block.StoneLayerRockOreBlock;
 import com.masson.cruciblecraft.content.block.DustFunnelBlock;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.mte.MteInPlaceCatalog;
@@ -1489,21 +1490,24 @@ public final class ModBlocks {
         LinkedHashMap<ResourceLocation, DeferredBlock<Block>> blocks =
                 new LinkedHashMap<>();
         int reused = 0;
-        for (StoneLayerStones.Cube cube : StoneLayerStones.cubes()) {
+        for (StoneLayerStones.Cube cube : StoneLayerStones.registeredCubes()) {
             if (GT_STONE_BLOCKS.containsKey(cube.id())) {
                 reused++;
                 continue;
             }
             DeferredBlock<Block> block = BLOCKS.register(
                     cube.registryPath(),
-                    () -> new StoneLayerStoneBlock(
-                            cube, layerStoneProperties(cube)));
+                    () -> cube.denseOre()
+                            ? new StoneLayerRockOreBlock(
+                                    cube, layerStoneProperties(cube))
+                            : new StoneLayerStoneBlock(
+                                    cube, layerStoneProperties(cube)));
             if (blocks.put(cube.id(), block) != null) {
                 throw new IllegalStateException(
                         "Duplicate stone-layer cube " + cube.id());
             }
         }
-        if (blocks.size() + reused != StoneLayerStones.cubes().size()) {
+        if (blocks.size() + reused != StoneLayerStones.registeredCubes().size()) {
             throw new IllegalStateException(
                     "stone-layer cube registration drifted");
         }
@@ -1553,11 +1557,15 @@ public final class ModBlocks {
 
     private static BlockBehaviour.Properties layerStoneProperties(
             StoneLayerStones.Cube cube) {
-        return BlockBehaviour.Properties.of()
-                .mapColor(MapColor.STONE)
+        BlockBehaviour.Properties properties = BlockBehaviour.Properties.of()
+                .mapColor(cube.denseOre() ? MapColor.COLOR_BLACK : MapColor.STONE)
                 .strength(cube.hardness(), cube.resistance())
                 .requiresCorrectToolForDrops()
                 .sound(SoundType.STONE);
+        if (cube.flammability() > 0) {
+            properties = properties.ignitedByLava();
+        }
+        return properties;
     }
 
     public static Map<ResourceLocation, DeferredBlock<Block>>

@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.registry;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.worldgen.LargeVeinFeature;
+import com.masson.cruciblecraft.worldgen.NetherQuartzLayerFeature;
 import com.masson.cruciblecraft.worldgen.StoneLayerRockFeature;
 import com.masson.cruciblecraft.worldgen.SubsurfaceFluidDepositFeature;
 import com.masson.cruciblecraft.worldgen.SurfaceRockFeature;
@@ -34,6 +35,11 @@ public final class ModFeatures {
                     FEATURES.register(
                             "stone_layer_rocks",
                             StoneLayerRockFeature::new);
+    public static final DeferredHolder<Feature<?>, NetherQuartzLayerFeature>
+            NETHER_NETHERQUARTZ =
+                    FEATURES.register(
+                            "nether_netherquartz",
+                            NetherQuartzLayerFeature::new);
 
     /** GT6 WorldgenTree* via com.masson.cruciblecraft.worldgen.tree.prep GtTreeGrower / GtTreeSpecies / GtTreePlacement. */
     public static final DeferredHolder<Feature<?>, GtTreeFeature> GT_TREE =

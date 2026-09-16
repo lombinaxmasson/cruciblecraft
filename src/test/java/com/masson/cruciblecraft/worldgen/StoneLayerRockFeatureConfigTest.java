@@ -64,8 +64,42 @@ class StoneLayerRockFeatureConfigTest {
         assertEquals(
                 "cruciblecraft:gt_surface_rock",
                 declaration.get("placer").getAsString());
-        assertEquals(123, declaration.get("layer_count").getAsInt());
+        assertEquals(131, declaration.get("layer_count").getAsInt());
+        assertEquals(8, declaration.get("rock_ore_count").getAsInt());
+        assertEquals(1, declaration.get("nether_rock_ore_count").getAsInt());
+        assertEquals(
+                "cruciblecraft:nether_netherquartz",
+                declaration.getAsJsonObject("nether_quartz")
+                        .get("feature_type")
+                        .getAsString());
+        boolean hasNetherQuartz = false;
+        boolean netherInLayers = false;
+        var dense = declaration.getAsJsonArray("rock_ores");
+        for (int i = 0; i < dense.size(); i++) {
+            if ("nether_quartz/dense_ore".equals(
+                    dense.get(i).getAsJsonObject().get("registry_path").getAsString())) {
+                hasNetherQuartz = true;
+                break;
+            }
+        }
+        var layers = declaration.getAsJsonArray("layers");
+        for (int i = 0; i < layers.size(); i++) {
+            if ("nether_quartz".equals(
+                    layers.get(i).getAsJsonObject().get("material").getAsString())) {
+                netherInLayers = true;
+                break;
+            }
+        }
+        assertEquals(true, hasNetherQuartz);
+        assertEquals(false, netherInLayers);
         assertEquals(45, declaration.get("stone_block_count").getAsInt());
+        assertEquals(648648000, declaration.get("unit").getAsInt());
+        assertEquals(
+                true,
+                declaration.getAsJsonObject("deepslate_layer")
+                        .getAsJsonArray("ores")
+                        .size()
+                        > 0);
         boolean hasBlackGranite = false;
         var cubes = declaration.getAsJsonArray("stone_blocks");
         for (int i = 0; i < cubes.size(); i++) {

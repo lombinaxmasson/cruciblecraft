@@ -69,7 +69,7 @@ public class ModLanguageProvider extends LanguageProvider {
                     addBlock(holder, stone.chineseName());
                 }
             });
-            com.masson.cruciblecraft.worldgen.StoneLayerStones.cubes().forEach(cube -> {
+            com.masson.cruciblecraft.worldgen.StoneLayerStones.registeredCubes().forEach(cube -> {
                 if (ModBlocks.hasLayerStone(cube.registryPath())) {
                     addBlock(
                             ModBlocks.layerStone(cube.registryPath()),
@@ -625,7 +625,7 @@ public class ModLanguageProvider extends LanguageProvider {
                 addBlock(holder, stone.englishName());
             }
         });
-        com.masson.cruciblecraft.worldgen.StoneLayerStones.cubes().forEach(cube -> {
+        com.masson.cruciblecraft.worldgen.StoneLayerStones.registeredCubes().forEach(cube -> {
             if (ModBlocks.hasLayerStone(cube.registryPath())) {
                 addBlock(
                         ModBlocks.layerStone(cube.registryPath()),

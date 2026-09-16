@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.block.GtSurfaceRockBlock;
 import com.masson.cruciblecraft.content.block.RockBlock;
 import com.masson.cruciblecraft.content.blockentity.GtSurfaceRockBlockEntity;
@@ -12,6 +13,8 @@ import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModFeatures;
 import com.masson.cruciblecraft.registry.ModItems;
+import com.masson.cruciblecraft.worldgen.NetherQuartzLayerFeature;
+import com.masson.cruciblecraft.worldgen.OreHostVariantCatalog.Host;
 import com.masson.cruciblecraft.worldgen.StoneLayerCatalog;
 import com.masson.cruciblecraft.worldgen.StoneLayerNoise;
 import com.masson.cruciblecraft.worldgen.StoneLayerRockFeature;
@@ -22,7 +25,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -30,7 +32,7 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * Isolated GT6 WorldgenStoneLayers cubes and pebbles. Run with
+ * Isolated GT6 WorldgenStoneLayers cubes, pebbles, and StoneLayerOres. Run with
  * {@code -PwaveRecipes=worldgen/gt-stone-layer-rocks}.
  */
 @GameTestHolder(GtStoneLayerRocksGameTests.NAMESPACE)
@@ -46,26 +48,50 @@ public final class GtStoneLayerRocksGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void stoneLayerCatalogMatchesLoaderWorldgen(GameTestHelper helper) {
         helper.assertTrue(
-                StoneLayerCatalog.layers().size() == 123,
+                StoneLayerCatalog.layers().size() == 131,
                 "no-mod GT6 LAYERS weight drifted");
+        helper.assertTrue(
+                StoneLayerCatalog.UNIT == 648648000,
+                "GT6 CS.U chance unit drifted");
+        helper.assertTrue(
+                !StoneLayerCatalog.DEEPSLATE_LAYER.ores().isEmpty(),
+                "DEEPSLATE must keep no-mod layer ores");
+        helper.assertTrue(
+                StoneLayerCatalog.layers().stream()
+                        .anyMatch(layer -> !layer.ores().isEmpty()),
+                "no-mod LAYERS must keep StoneLayerOres");
         helper.assertTrue(
                 StoneLayerCatalog.layers().stream()
                         .anyMatch(layer -> "granite_black".equals(layer.material())),
                 "granite_black must be a layer surface material");
         helper.assertTrue(
+                "coal".equals(StoneLayerCatalog.layers().getFirst().material())
+                        && StoneLayerStones.isDenseOre("coal"),
+                "BlockRockOres anthracite/coal must prepend LAYERS");
+        helper.assertTrue(
                 StoneLayerCatalog.layers().stream()
                         .filter(StoneLayerCatalog.Layer::noDeep)
                         .count()
-                        == 3,
-                "setNoDeep granite layers drifted");
+                        == 11,
+                "setNoDeep granite + BlockRockOres layers drifted");
         helper.assertTrue(
                 StoneLayerStones.cubes().size() == 45,
                 "BlocksGT native stone/cobble/mossy cubes drifted");
         helper.assertTrue(
+                StoneLayerStones.rockOres().size() == 9,
+                "BlockRockOres 8 overworld cubes plus nether quartz drifted");
+        helper.assertTrue(
+                StoneLayerCatalog.layers().stream()
+                        .noneMatch(layer ->
+                                "nether_quartz".equals(layer.material())),
+                "Nether Quartz must stay out of overworld LAYERS");
+        helper.assertTrue(
                 ModBlocks.hasLayerStone("granite_black/stone")
                         && ModBlocks.hasLayerStone("granite_black/cobble")
+                        && ModBlocks.hasLayerStone("coal/dense_ore")
+                        && ModBlocks.hasLayerStone("nether_quartz/dense_ore")
                         && !ModBlocks.hasLayerStone("marble/stone"),
-                "granite_black cubes register; marble/stone reuses gt_stone_catalog");
+                "granite_black cubes register; coal/dense_ore registers; marble/stone reuses gt_stone_catalog");
         helper.assertTrue(
                 ModFeatures.STONE_LAYER_ROCKS.get() != null
                         && ModBlocks.GT_SURFACE_ROCK.get() != null,
@@ -191,20 +217,201 @@ public final class GtStoneLayerRocksGameTests {
                         ModBlocks.layerStone("basalt/stone").get()),
                 "tuff replace drifted");
         helper.setBlock(POS, Blocks.IRON_ORE);
-        helper.setBlock(POS.above(), Blocks.AIR);
-        BlockPos ore = helper.absolutePos(POS);
-        StoneLayerRockFeature.decorateColumn(
-                helper.getLevel(),
-                ore.getX(),
-                ore.getZ(),
-                ore.getY(),
-                ore.getY() + 2,
-                new StoneLayerNoise(1L),
-                RandomSource.create(1L),
-                1);
+        helper.assertTrue(
+                StoneLayerRockFeature.tryReplace(
+                        helper.getLevel(),
+                        helper.absolutePos(POS),
+                        "granite_black",
+                        StoneLayerStones.Role.STONE),
+                "vanilla ore cells must be replaceable like GT6 REPLACEABLE_BLOCKS");
+        helper.assertTrue(
+                helper.getBlockState(POS).is(
+                        ModBlocks.layerStone("granite_black/stone").get()),
+                "vanilla iron ore must become the layer cube");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void stoneLayerPlacesLayerOres(GameTestHelper helper) {
+        helper.setBlock(POS, Blocks.STONE);
+        StoneLayerCatalog.Ore diamond = new StoneLayerCatalog.Ore(
+                "diamond",
+                StoneLayerCatalog.UNIT,
+                0,
+                255,
+                false,
+                null,
+                java.util.List.of(),
+                false);
+        helper.assertTrue(
+                StoneLayerRockFeature.tryPlaceOre(
+                        helper.getLevel(),
+                        helper.absolutePos(POS),
+                        diamond,
+                        StoneLayerCatalog.layers().getFirst()),
+                "StoneLayerOres must place a live ore block");
+        helper.assertTrue(
+                helper.getBlockState(POS).is(
+                        ModBlocks.oreBlock("diamond", Host.STONE).get()),
+                "in-layer diamond must be the stone-host ore block");
+        helper.setBlock(POS, Blocks.STONE);
+        StoneLayerCatalog.Ore vanillaIron = new StoneLayerCatalog.Ore(
+                "iron",
+                StoneLayerCatalog.UNIT,
+                40,
+                80,
+                false,
+                "minecraft:iron_ore",
+                java.util.List.of(),
+                false);
+        helper.assertTrue(
+                StoneLayerRockFeature.tryPlaceOre(
+                        helper.getLevel(),
+                        helper.absolutePos(POS),
+                        vanillaIron,
+                        StoneLayerCatalog.layers().getFirst()),
+                "vanilla-specified StoneLayerOres must place Blocks.iron_ore");
         helper.assertTrue(
                 helper.getBlockState(POS).is(Blocks.IRON_ORE),
-                "vanilla ore cells must stay");
+                "vanilla iron layer ore drifted");
+        helper.setBlock(POS, Blocks.STONE);
+        helper.assertTrue(
+                StoneLayerRockFeature.tryPlaceOre(
+                        helper.getLevel(),
+                        helper.absolutePos(POS),
+                        diamond,
+                        StoneLayerCatalog.layers().getFirst(),
+                        false),
+                "small-ore branch must still place a live ore block");
+        helper.assertTrue(
+                helper.getBlockState(POS).is(
+                        ModBlocks.oreBlock("diamond", Host.STONE).get()),
+                "CC small vs normal share the stone-host ore block");
+        helper.assertTrue(
+                StoneLayerRockFeature.isVanillaOre(
+                        Blocks.IRON_ORE.defaultBlockState()),
+                "iron ore must stay on the replaceable list");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void stoneLayerPlacesDenseRockOres(GameTestHelper helper) {
+        helper.setBlock(POS, Blocks.STONE);
+        helper.assertTrue(
+                StoneLayerRockFeature.tryReplace(
+                        helper.getLevel(),
+                        helper.absolutePos(POS),
+                        "coal",
+                        StoneLayerStones.Role.STONE),
+                "vanilla stone must become coal/dense_ore");
+        helper.assertTrue(
+                helper.getBlockState(POS).is(
+                        ModBlocks.layerStone("coal/dense_ore").get()),
+                "BlockRockOres coal cube drifted");
+        helper.setBlock(POS, Blocks.COBBLESTONE);
+        helper.assertTrue(
+                !StoneLayerRockFeature.tryReplace(
+                        helper.getLevel(),
+                        helper.absolutePos(POS),
+                        "coal",
+                        StoneLayerStones.Role.COBBLE),
+                "dense layers keep vanilla cobble like GT6 mCobble");
+        helper.assertTrue(
+                helper.getBlockState(POS).is(Blocks.COBBLESTONE),
+                "coal-layer cobble must stay Blocks.cobblestone");
+        helper.assertTrue(
+                StoneLayerCatalog.noDeepCutoff(-64) == -40,
+                "setNoDeep cutoff is minBuildHeight+24");
+        for (StoneLayerStones.Cube cube : StoneLayerStones.rockOres()) {
+            helper.assertTrue(
+                    ModItems.hasMaterialItem(
+                            cube.material(), MaterialPrefixes.RAW_ORE),
+                    cube.material() + " must keep oreRaw for BlockRockOres drops");
+        }
+        helper.setBlock(POS, ModBlocks.layerStone("coal/dense_ore").get());
+        List<ItemStack> denseDrops = net.minecraft.world.level.block.Block.getDrops(
+                helper.getBlockState(POS),
+                helper.getLevel(),
+                helper.absolutePos(POS),
+                null);
+        ItemStack expectedRaw = new ItemStack(
+                ModItems.materialItem("coal", MaterialPrefixes.RAW_ORE).get(),
+                2);
+        helper.assertTrue(
+                denseDrops.size() == 1
+                        && ItemStack.isSameItemSameComponents(
+                                denseDrops.get(0), expectedRaw),
+                "BlockRockOres coal must drop 2 coal/raw_ore without fortune");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void stoneLayerPlacesNetherQuartz(GameTestHelper helper) {
+        helper.setBlock(POS, Blocks.NETHERRACK);
+        helper.assertTrue(
+                NetherQuartzLayerFeature.tryPlace(
+                        helper.getLevel(),
+                        helper.absolutePos(POS)),
+                "WorldgenNetherQuartz must replace netherrack");
+        helper.assertTrue(
+                helper.getBlockState(POS).is(
+                        ModBlocks.layerStone("nether_quartz/dense_ore").get()),
+                "BlockRockOres meta 8 must be nether_quartz/dense_ore");
+        helper.setBlock(POS, Blocks.STONE);
+        helper.assertTrue(
+                !NetherQuartzLayerFeature.tryPlace(
+                        helper.getLevel(),
+                        helper.absolutePos(POS)),
+                "Nether Quartz must not replace overworld stone");
+        helper.assertTrue(
+                helper.getBlockState(POS).is(Blocks.STONE),
+                "overworld stone must stay stone when nether quartz samples it");
+        helper.setBlock(POS, Blocks.BLACKSTONE);
+        helper.assertTrue(
+                !NetherQuartzLayerFeature.tryPlace(
+                        helper.getLevel(),
+                        helper.absolutePos(POS)),
+                "GT6 only writes netherrack, not blackstone");
+        StoneLayerNoise noise = new StoneLayerNoise(
+                1,
+                NetherQuartzLayerFeature.NETHER_NOISE_OFFSET);
+        int low = NetherQuartzLayerFeature.sampleY(
+                noise, 0, NetherQuartzLayerFeature.SAMPLE_Y_LOW, 0);
+        int high = NetherQuartzLayerFeature.sampleY(
+                noise, 0, NetherQuartzLayerFeature.SAMPLE_Y_HIGH, 0);
+        helper.assertTrue(
+                low >= NetherQuartzLayerFeature.BASE_Y
+                        && low < NetherQuartzLayerFeature.BASE_Y
+                                + NetherQuartzLayerFeature.SPAN
+                        && high >= NetherQuartzLayerFeature.BASE_Y
+                        && high < NetherQuartzLayerFeature.BASE_Y
+                                + NetherQuartzLayerFeature.SPAN,
+                "nether quartz Y is 40 + noise 0..199");
+        helper.assertTrue(
+                NetherQuartzLayerFeature.NETHER_NOISE_OFFSET == -512,
+                "GT6 nether NoiseGenerator offset is 512 * dimensionId -1");
+        helper.assertTrue(
+                ModItems.hasMaterialItem(
+                        "nether_quartz", MaterialPrefixes.RAW_ORE),
+                "nether quartz must keep oreRaw for BlockRockOres drops");
+        helper.setBlock(
+                POS,
+                ModBlocks.layerStone("nether_quartz/dense_ore").get());
+        List<ItemStack> quartzDrops =
+                net.minecraft.world.level.block.Block.getDrops(
+                        helper.getBlockState(POS),
+                        helper.getLevel(),
+                        helper.absolutePos(POS),
+                        null);
+        ItemStack expectedQuartz = new ItemStack(
+                ModItems.materialItem(
+                        "nether_quartz", MaterialPrefixes.RAW_ORE).get(),
+                2);
+        helper.assertTrue(
+                quartzDrops.size() == 1
+                        && ItemStack.isSameItemSameComponents(
+                                quartzDrops.get(0), expectedQuartz),
+                "nether quartz dense cube must drop 2 nether_quartz/raw_ore");
         helper.succeed();
     }
 
@@ -215,14 +422,14 @@ public final class GtStoneLayerRocksGameTests {
                 "WorldgenStoneLayers pebble chance is 1/128");
         helper.assertTrue(
                 StoneLayerCatalog.NO_DEEP_Y == 24,
-                "setNoDeep cutoff is y<24");
+                "setNoDeep offset is 24 from minBuildHeight");
         StoneLayerCatalog.Layer noDeep = StoneLayerCatalog.layers().stream()
-                .filter(StoneLayerCatalog.Layer::noDeep)
+                .filter(layer -> layer.noDeep() && "granite".equals(layer.material()))
                 .findFirst()
                 .orElseThrow();
         helper.assertTrue(
                 "granite".equals(noDeep.material()),
-                "no-mod setNoDeep layers are BlocksGT.Granite");
+                "no-mod setNoDeep granite layers stay BlocksGT.Granite");
         helper.assertTrue(
                 StoneLayerCatalog.DEEPSLATE.equals(
                         StoneLayerCatalog.surfaceMaterial(noDeep, 10)),
@@ -246,6 +453,37 @@ public final class GtStoneLayerRocksGameTests {
                         net.minecraft.resources.ResourceLocation.parse(
                                 "cruciblecraft:gt_item_scatter")),
                 "retired catalog scatter must stay unregistered");
+        String removeVeins = resource(
+                "/data/cruciblecraft/neoforge/biome_modifier/"
+                        + "remove_overworld_large_veins.json");
+        helper.assertTrue(
+                removeVeins.contains("neoforge:remove_features")
+                        && removeVeins.contains("cruciblecraft:large_iron_vein")
+                        && removeVeins.contains("underground_ores"),
+                "GENERATE_STONE must remove overworld large veins");
+        helper.assertTrue(
+                BuiltInRegistries.FEATURE.getKey(
+                                ModFeatures.NETHER_NETHERQUARTZ.get())
+                        .toString()
+                        .equals("cruciblecraft:nether_netherquartz"),
+                "nether.netherquartz feature id drifted");
+        String addNether = resource(
+                "/data/cruciblecraft/neoforge/biome_modifier/"
+                        + "add_nether_netherquartz.json");
+        helper.assertTrue(
+                addNether.contains("#minecraft:is_nether")
+                        && addNether.contains("cruciblecraft:nether_netherquartz")
+                        && addNether.contains("underground_decoration"),
+                "WorldgenNetherQuartz must hang on nether biomes");
+        String removeQuartz = resource(
+                "/data/cruciblecraft/neoforge/biome_modifier/"
+                        + "remove_vanilla_nether_quartz.json");
+        helper.assertTrue(
+                removeQuartz.contains("neoforge:remove_features")
+                        && removeQuartz.contains("minecraft:ore_quartz_nether")
+                        && removeQuartz.contains("minecraft:ore_quartz_deltas")
+                        && removeQuartz.contains("#minecraft:is_nether"),
+                "GT6 PREVENTED_ORES QUARTZ must remove vanilla nether quartz");
         helper.succeed();
     }
 
@@ -257,17 +495,25 @@ public final class GtStoneLayerRocksGameTests {
                 manifest.contains("gt.stone.granite.black/stone.png")
                         && manifest.contains("gt.stone.granite.black/cobble.png")
                         && manifest.contains("gt.stone.granite.black/cobble_mossy.png")
+                        && manifest.contains("iconsets/ore_anthracite.png")
+                        && manifest.contains("iconsets/ore_netherquartz.png")
                         && !manifest.contains("multiblock_casing")
                         && !manifest.contains("conveyor_cover"),
-                "stone-layer art manifest drifted from local GT6 stones");
+                "stone-layer art manifest drifted from local GT6 stones/iconsets");
         helper.assertTrue(
                 classpathExists(
                         "/assets/cruciblecraft/textures/block/gt6/stones/"
                                 + "gt.stone.granite.black/stone.png")
                         && classpathExists(
                                 "/assets/cruciblecraft/textures/block/gt6/stones/"
-                                        + "gt.stone.granite.black/cobble.png"),
-                "GT6 stone cubes were not imported");
+                                        + "gt.stone.granite.black/cobble.png")
+                        && classpathExists(
+                                "/assets/cruciblecraft/textures/block/gt6/rock_ores/"
+                                        + "ore_anthracite.png")
+                        && classpathExists(
+                                "/assets/cruciblecraft/textures/block/gt6/rock_ores/"
+                                        + "ore_netherquartz.png"),
+                "GT6 stone cubes and BlockRockOres were not imported");
         helper.succeed();
     }
 

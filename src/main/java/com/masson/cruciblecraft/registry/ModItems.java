@@ -1652,7 +1652,7 @@ public final class ModItems {
         LinkedHashMap<ResourceLocation, DeferredItem<BlockItem>> items =
                 new LinkedHashMap<>();
         int reused = 0;
-        for (StoneLayerStones.Cube cube : StoneLayerStones.cubes()) {
+        for (StoneLayerStones.Cube cube : StoneLayerStones.registeredCubes()) {
             if (GT_STONE_ITEMS.containsKey(cube.id())) {
                 reused++;
                 continue;
@@ -1669,7 +1669,7 @@ public final class ModItems {
                         "Duplicate stone-layer cube item " + cube.id());
             }
         }
-        if (items.size() + reused != StoneLayerStones.cubes().size()) {
+        if (items.size() + reused != StoneLayerStones.registeredCubes().size()) {
             throw new IllegalStateException(
                     "stone-layer cube item registration drifted");
         }

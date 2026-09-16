@@ -2,9 +2,11 @@ package com.masson.cruciblecraft.datagen;
 
 import java.util.Set;
 
+import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
+import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.registry.ModMachineVariants;
 
 import net.minecraft.core.HolderLookup;
@@ -15,7 +17,10 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
 public class ModBlockLootTables extends BlockLootSubProvider {
     private static final Set<String> HANDWRITTEN_CONVERTER_LOOT = Set.of(
@@ -144,6 +149,14 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 dropSelf(block);
             }
         }
+        for (com.masson.cruciblecraft.worldgen.StoneLayerStones.Cube cube :
+                com.masson.cruciblecraft.worldgen.StoneLayerStones.rockOres()) {
+            if (!ModBlocks.hasLayerStone(cube.registryPath())) {
+                continue;
+            }
+            Block block = ModBlocks.layerStone(cube.registryPath()).get();
+            add(block, denseRockOreLoot(block, cube.material()));
+        }
         for (GtBlockObjectCatalog.Variant variant : GtBlockObjectCatalog.variants()) {
             Block block = ModBlocks.gtBlockObjectBlocksById().get(variant.id()).get();
             if (variant.slab()) {
@@ -160,6 +173,26 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 dropSelf(block);
             }
         }
+    }
+
+    private net.minecraft.world.level.storage.loot.LootTable.Builder denseRockOreLoot(
+            Block block, String material) {
+        return createSilkTouchDispatchTable(
+                block,
+                applyExplosionDecay(
+                        block,
+                        LootItem.lootTableItem(
+                                        ModItems.materialItem(
+                                                        material,
+                                                        MaterialPrefixes.RAW_ORE)
+                                                .get())
+                                .apply(SetItemCountFunction.setCount(
+                                        ConstantValue.exactly(2)))
+                                .apply(ApplyBonusCount.addUniformBonusCount(
+                                        this.registries
+                                                .lookupOrThrow(Registries.ENCHANTMENT)
+                                                .getOrThrow(Enchantments.FORTUNE),
+                                        2))));
     }
 
     @Override

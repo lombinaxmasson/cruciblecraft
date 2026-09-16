@@ -205,7 +205,7 @@ public final class ModCreativeTabs {
                                 output.accept(ModItems.gtStoneItemsById()
                                         .get(stone.id())
                                         .get()));
-                        StoneLayerStones.cubes().forEach(cube -> {
+                        StoneLayerStones.registeredCubes().forEach(cube -> {
                             var item = ModItems.layerStoneItemsById()
                                     .get(cube.id());
                             if (item != null) {
