@@ -1,0 +1,212 @@
+tasks.named('test', Test).configure {
+    useJUnitPlatform()
+    maxHeapSize = '6g'
+    filter {
+        excludeTestsMatching 'com.masson.cruciblecraft.recipe.gt.OrdinaryCloseoutIntegratedMeasurementHarness'
+    }
+}
+
+tasks.register('materialRegistryStress', JavaExec) {
+    group = 'verification'
+    description = 'Runs one manual 20k material registry stress scenario.'
+    dependsOn tasks.named('testClasses')
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'com.masson.cruciblecraft.material.MaterialRegistryStressHarness'
+    args providers.gradleProperty('stressScenario').getOrElse('metadata_only')
+    jvmArgs '-Xmx4G'
+}
+
+tasks.register('capacityMatcherBenchmark', JavaExec) {
+    group = 'verification'
+    description = 'Refreshes the repeatable CapacityMatcher benchmark artifact.'
+    dependsOn tasks.named('testClasses')
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'com.masson.cruciblecraft.recipe.gt.CapacityMatcherBenchmarkHarness'
+    args file('tools/capacity_matcher_benchmark.json').absolutePath
+}
+
+tasks.register('recipeLoadContractTest', JavaExec) {
+    group = 'verification'
+    description = 'Runs isolated recipe-load materialization candidate contract tests.'
+    dependsOn tasks.named('recipeLoadBenchmarkClasses')
+    classpath = sourceSets.recipeLoadBenchmark.runtimeClasspath
+    mainClass = 'com.masson.cruciblecraft.benchmark.recipe.RecipeFamilyProviderContractTest'
+}
+
+def recipeLoadBenchmarkRaw = tasks.register(
+        'recipeLoadBenchmarkRaw', JavaExec) {
+    group = 'verification'
+    description = 'Collects recipe-load measurements from actual compact relations.'
+    dependsOn tasks.named('recipeLoadBenchmarkClasses')
+    classpath = sourceSets.recipeLoadBenchmark.runtimeClasspath
+    mainClass = 'com.masson.cruciblecraft.benchmark.recipe.RecipeLoadBenchmarkHarness'
+    args file('build/recipe-load-benchmark/raw_measurements.json').absolutePath,
+            file('tools/recipe_load_materialization_policy.json').absolutePath,
+            projectDir.absolutePath,
+            file('build/recipe-load-benchmark/jfr').absolutePath
+    jvmArgs '-Xms256m', '-Xmx2G', '-XX:+UseG1GC'
+    inputs.files file('tools/recipe_load_materialization_policy.json'),
+            file('tools/extruder_compact.json')
+    outputs.file file('build/recipe-load-benchmark/raw_measurements.json')
+}
+
+def materializationMeasurement = { String taskName, String harness, String writeProperty, String description, boolean largeHeap = false ->
+    tasks.register(taskName, Test) {
+        group = 'verification'
+        it.description = description
+        dependsOn tasks.named('testClasses')
+        testClassesDirs = sourceSets.test.output.classesDirs
+        classpath = sourceSets.test.runtimeClasspath
+        useJUnitPlatform()
+        if (largeHeap) {
+            maxHeapSize = '6g'
+        }
+        systemProperty "cruciblecraft.${writeProperty}", 'true'
+        filter {
+            includeTestsMatching harness
+        }
+    }
+}
+
+materializationMeasurement('assemblerCompactMaterializationMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.AssemblerCompactMeasurementHarness',
+        'writeAssemblerCompactMeasurements',
+        'Writes assembler compact materialization measurements.')
+materializationMeasurement('roasterCompactMaterializationMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.RoasterCompactMeasurementHarness',
+        'writeRoasterCompactMeasurements',
+        'Writes roaster compact materialization measurements.')
+materializationMeasurement('centrifugeCompactMaterializationMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.CentrifugeCompactMeasurementHarness',
+        'writeCentrifugeCompactMeasurements',
+        'Writes centrifuge compact materialization measurements.')
+materializationMeasurement('electrolyzerCompactMaterializationMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.ElectrolyzerCompactMeasurementHarness',
+        'writeElectrolyzerCompactMeasurements',
+        'Writes electrolyzer compact materialization measurements.')
+materializationMeasurement('assemblerWoodMaterializationMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.AssemblerWoodMeasurementHarness',
+        'writeAssemblerWoodMeasurements',
+        'Writes assembler wood materialization measurements.')
+materializationMeasurement('smelterStoneMaterializationMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.SmelterStoneMeasurementHarness',
+        'writeSmelterStoneMeasurements',
+        'Writes smelter stone materialization measurements.')
+materializationMeasurement('blockObjectMaterializationMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.BlockObjectMeasurementHarness',
+        'writeBlockObjectMeasurements',
+        'Writes block-object materialization measurements.')
+materializationMeasurement('bathMteMaterializationMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.BathMteMeasurementHarness',
+        'writeBathMteMeasurements',
+        'Writes bath MTE materialization measurements.')
+materializationMeasurement('bathMteIntegratedMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.BathMteIntegratedMeasurementHarness',
+        'writeBathMteMeasurements',
+        'Writes bath MTE integrated measurements.')
+materializationMeasurement('bathRemainderMaterializationMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.BathRemainderMeasurementHarness',
+        'writeBathRemainderMeasurements',
+        'Writes bath remainder materialization measurements.')
+materializationMeasurement('bathRemainderIntegratedMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.BathRemainderIntegratedMeasurementHarness',
+        'writeBathRemainderMeasurements',
+        'Writes bath remainder integrated measurements.')
+materializationMeasurement('bathIdentityMaterializationMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.BathIdentityMeasurementHarness',
+        'writeBathIdentityMeasurements',
+        'Writes bath identity materialization measurements.',
+        true)
+materializationMeasurement('bathIdentityIntegratedMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.BathIdentityIntegratedMeasurementHarness',
+        'writeBathIdentityMeasurements',
+        'Writes bath identity integrated measurements.',
+        true)
+materializationMeasurement('bathTinyPurifiedMaterializationMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.BathTinyPurifiedMeasurementHarness',
+        'writeBathTinyPurifiedMeasurements',
+        'Writes bath tiny-purified materialization measurements.')
+materializationMeasurement('bathTinyPurifiedIntegratedMeasurements',
+        'com.masson.cruciblecraft.recipe.gt.BathTinyPurifiedIntegratedMeasurementHarness',
+        'writeBathTinyPurifiedMeasurements',
+        'Writes bath tiny-purified integrated measurements.',
+        true)
+
+tasks.register('ordinaryCloseoutSmelterIntegratedMeasurements', Test) {
+    group = 'verification'
+    description = 'Writes Smelter closeout-integrity integrated measurements (compact + Smelter).'
+    dependsOn tasks.named('testClasses')
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    maxHeapSize = '6g'
+    jvmArgs '-XX:+UseG1GC'
+    systemProperty 'cruciblecraft.writeOrdinaryCloseoutMeasurements', 'true'
+    systemProperty 'cruciblecraft.ordinaryCloseoutMix', 'smelter'
+    filter {
+        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.OrdinaryCloseoutIntegratedMeasurementHarness'
+    }
+}
+
+tasks.register('ordinaryCloseoutMixerIntegratedMeasurements', Test) {
+    group = 'verification'
+    description = 'Writes Mixer closeout-integrity integrated measurements (compact + Smelter + Mixer).'
+    dependsOn tasks.named('testClasses')
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    maxHeapSize = '6g'
+    jvmArgs '-XX:+UseG1GC'
+    systemProperty 'cruciblecraft.writeOrdinaryCloseoutMeasurements', 'true'
+    systemProperty 'cruciblecraft.ordinaryCloseoutMix', 'mixer'
+    filter {
+        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.OrdinaryCloseoutIntegratedMeasurementHarness'
+    }
+}
+
+['drying', 'electrolyzer', 'centrifuge', 'autoclave', 'compressor'].each { host ->
+    tasks.register("ordinaryCloseout${host.capitalize()}IntegratedMeasurements", Test) {
+        group = 'verification'
+        description = "Writes ${host} ordinary-closure full-mix integrated measurements."
+        dependsOn tasks.named('testClasses')
+        testClassesDirs = sourceSets.test.output.classesDirs
+        classpath = sourceSets.test.runtimeClasspath
+        useJUnitPlatform()
+        maxHeapSize = '6g'
+        jvmArgs '-XX:+UseG1GC'
+        systemProperty 'cruciblecraft.writeOrdinaryCloseoutMeasurements', 'true'
+        systemProperty 'cruciblecraft.ordinaryCloseoutMix', host
+        filter {
+            includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.OrdinaryCloseoutIntegratedMeasurementHarness'
+        }
+    }
+}
+
+tasks.register('ordinaryCloseoutDeferredRecyclingIntegratedMeasurements', Test) {
+    group = 'verification'
+    description = 'Writes Smelter deferred-recycling full-mix integrated measurements.'
+    dependsOn tasks.named('testClasses')
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    maxHeapSize = '6g'
+    jvmArgs '-XX:+UseG1GC'
+    systemProperty 'cruciblecraft.writeOrdinaryCloseoutMeasurements', 'true'
+    systemProperty 'cruciblecraft.ordinaryCloseoutMix', 'deferred_recycling'
+    filter {
+        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.OrdinaryCloseoutIntegratedMeasurementHarness'
+    }
+}
+
+tasks.register('ordinaryCloseoutIntegratedMeasurements') {
+    group = 'verification'
+    description = 'Writes both closeout-integrity integrated measurement artifacts.'
+    dependsOn tasks.named('ordinaryCloseoutSmelterIntegratedMeasurements'),
+            tasks.named('ordinaryCloseoutMixerIntegratedMeasurements')
+}
+
+tasks.register('recipeLoadBenchmark') {
+    group = 'verification'
+    description = 'Refreshes actual compact recipe-load materialization measurements.'
+    dependsOn recipeLoadBenchmarkRaw
+}

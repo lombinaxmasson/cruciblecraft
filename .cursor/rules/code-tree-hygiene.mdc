@@ -1,0 +1,31 @@
+---
+description: Keep the working tree shaped like a single Gradle mod; do not dump scratch, new generated roots, or tools-root one-offs.
+alwaysApply: true
+---
+
+# Code-tree hygiene
+
+Daily layout is a single NeoForge module. Hide local junk; do not rearrange
+reference trees or generated datapacks as a cleanup.
+
+## Never
+
+- `git clean -fdx`, delete, junction, or symlink `gt6_code/`,
+  `gtceu_code/`, `gt6u_code/`, `gt6_dump/`, or `gt6_referencable_port_code/`
+- Add a new `src/<name>_generated` sibling. Frozen roots live in
+  `tools/generated_resource_roots.json` and
+  `gradle/scripts/source-sets.gradle`
+- Drop a new tracked file at `tools/` root. Put wave ledgers under
+  `tools/waves/<slug>/`, builders next to their package, scratch in
+  `tools/scratch/` or `tools/_tmp_*.py` (gitignored)
+- Delete Java, Python, or GameTest tests to look more like GT6
+- Move hashed `tools/*.json` or GameTest classes without a dedicated card
+
+## Do
+
+- Local Minecraft instances belong in `run/` or `run-*/` (gitignored)
+- Scratch extractors stay gitignored until a card promotes them
+- New Python tests must be listed in `python_test_policy.json` as `active`,
+  `manual_replay`, or `historical`
+- GameTests stay in `src/main/.../gametest` until the dedicated source-set
+  migration; do not split the package across source sets

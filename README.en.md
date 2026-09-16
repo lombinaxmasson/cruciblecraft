@@ -148,6 +148,11 @@ double `runData` profile. Playtest accept is a human `runClient` followed by
 
 ## Code layout
 
+Daily work lives in `src/main`, `src/test`, `tools/waves/`, `tools/tests/`,
+and `docs/current/`. Local `run*/` folders, reference source trees, and caches
+are not part of the tracked layout; see
+[code tree and working copy](docs/current/code-tree.md).
+
 The main runtime code is under
 `src/main/java/com/masson/cruciblecraft/`:
 
@@ -179,6 +184,7 @@ For players and project status:
 For development and contributions:
 
 - [Verification guide](docs/current/verification.md)
+- [Code tree and working copy](docs/current/code-tree.md)
 - [Capability delivery workflow](docs/current/capability-delivery-workflow.md)
 - [Recipe-wave workflow](docs/current/recipe-wave-workflow.md)
 - [Semantic naming rules](docs/current/semantic-naming.md)

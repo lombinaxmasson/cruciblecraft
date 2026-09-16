@@ -53,6 +53,8 @@
         "tools/verification_profiles.schema.json",
         "tools/verification_builder_policy.json",
         "tools/python_test_policy.json",
+        "tools/generated_resource_roots.json",
+        "gradle/scripts/source-sets.gradle",
         "tools/check_no_workflow_hashes.py",
         "tools/check_zero_milestone_names.py",
         "tools/workflow_hash_policy.json",
@@ -178,7 +180,7 @@
       "owned_paths": [
         "tools/recipe_bulk/**",
         "tools/build_recipe_bulk.py",
-        "tools/build_recipe_fresh.py",
+        "tools/recipe_bulk/build_recipe_fresh.py",
         "tools/machine_delivery.py",
         "tools/tests/test_recipe_bulk.py",
         "tools/tests/test_generic_recipe_import.py",

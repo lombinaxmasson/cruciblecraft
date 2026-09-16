@@ -126,6 +126,10 @@ datagen provider 或生成树才会跑两次 `runData`。试玩签收是人跑 `
 
 ## 代码结构
 
+日常只打开 `src/main`、`src/test`、`tools/waves/`、`tools/tests/` 和
+`docs/current/`。本地 `run*/`、参考源码树和缓存不是仓库结构；完整地图见
+[代码树与工作副本](docs/current/code-tree.md)。
+
 主要运行时代码位于 `src/main/java/com/masson/cruciblecraft/`：
 
 - `registry`、`content`、`machine`：方块、物品、处理机与内容目录；
@@ -152,6 +156,7 @@ datagen provider 或生成树才会跑两次 `runData`。试玩签收是人跑 `
 开发与贡献：
 
 - [开发与验证指南](docs/current/verification.md)
+- [代码树与工作副本](docs/current/code-tree.md)
 - [能力交付流程](docs/current/capability-delivery-workflow.md)
 - [配方波次规范](docs/current/recipe-wave-workflow.md)
 - [语义命名规范](docs/current/semantic-naming.md)

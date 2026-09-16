@@ -45,6 +45,7 @@ SCAN_ROOTS = (
     "docs/history",
     "docs/decisions",
     "src/recipeLoadBenchmark",
+    "gradle",
 )
 
 SCAN_FILES = (

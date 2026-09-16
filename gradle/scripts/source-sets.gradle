@@ -1,0 +1,31 @@
+// Frozen generated resource roots. Keep this list identical to
+// tools/generated_resource_roots.json. Do not add src/<name>_generated siblings.
+sourceSets.main.resources {
+    srcDir('src/generated/resources')
+    srcDir('src/ore_chain_generated/resources')
+    srcDir('src/worldgen_generated/resources')
+    srcDir('src/worldgen_catalog_generated/resources')
+    srcDir('src/component_rule_generated/resources')
+    srcDir('src/chemical_recipe_generated/resources')
+    srcDir('src/hydrocarbon_recipe_generated/resources')
+    srcDir('src/petroleum_recipe_generated/resources')
+    srcDir('src/compact_recipe_policy_generated/resources')
+    srcDir('src/recipe_generated/resources')
+    srcDir('src/recipe_support_generated/resources')
+
+    exclude("**/*.bbmodel")
+    exclude("data/cruciblecraft/recipe/player_path_recovery/roaster/**")
+    exclude("**/.cache")
+    exclude("**/.cache/**")
+    exclude("**/.gitkeep")
+}
+
+tasks.withType(ProcessResources).configureEach {
+    includeEmptyDirs = false
+}
+
+sourceSets {
+    recipeLoadBenchmark {
+        java.srcDir('src/recipeLoadBenchmark/java')
+    }
+}
