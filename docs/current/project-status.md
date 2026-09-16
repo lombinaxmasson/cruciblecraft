@@ -6,7 +6,7 @@
 
 ## Unique active
 
-无。`capability.json` 里没有 `workflow=active`。
+`worldgen/gt-stone-layer-rocks`（GT Stone Layer Rocks，`workflow=active`，`maturity=runtime_ready`）；计划 [GT6 石层石子](../history/card-plans/active/GT6石层石子详细计划.md)。
 
 ## Prep（不占落地锁）
 

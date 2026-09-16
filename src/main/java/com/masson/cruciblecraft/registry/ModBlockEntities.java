@@ -18,6 +18,7 @@ import com.masson.cruciblecraft.content.blockentity.FluidDepositExtractorBlockEn
 import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidBedBurningBoxBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.GasCloudBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.GtSurfaceRockBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.GtTreeHoleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.HopperBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SensorBlockEntity;
@@ -526,6 +527,15 @@ public final class ModBlockEntities {
                             () -> BlockEntityType.Builder.of(
                                     MteInPlaceBlockEntity::new,
                                     ModBlocks.mteInPlaceBlockArray())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<GtSurfaceRockBlockEntity>>
+                    GT_SURFACE_ROCK = BLOCK_ENTITIES.register(
+                            "gt_surface_rock",
+                            () -> BlockEntityType.Builder.of(
+                                    GtSurfaceRockBlockEntity::new,
+                                    ModBlocks.GT_SURFACE_ROCK.get())
                                     .build(null));
 
     private ModBlockEntities() {}

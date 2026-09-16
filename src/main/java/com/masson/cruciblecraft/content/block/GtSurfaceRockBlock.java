@@ -2,7 +2,10 @@ package com.masson.cruciblecraft.content.block;
 
 import java.util.List;
 
+import org.jetbrains.annotations.Nullable;
+
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
+import com.masson.cruciblecraft.content.blockentity.GtSurfaceRockBlockEntity;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.worldgen.PebbleShape;
@@ -22,13 +25,16 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -36,9 +42,10 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 /**
  * GT6 {@code MultiTileEntityRock} 32757 overworld placer: copied terrain look,
- * positional AABB, no collision, empty / flint / meteoric loot.
+ * positional AABB, no collision. WorldgenRocks uses contents; stone-layer
+ * pebbles store {@code tLastRock} on the block entity.
  */
-public final class GtSurfaceRockBlock extends Block {
+public final class GtSurfaceRockBlock extends Block implements EntityBlock {
     public GtSurfaceRockBlock() {
         super(BlockBehaviour.Properties.of()
                 .mapColor(MapColor.STONE)
@@ -118,7 +125,7 @@ public final class GtSurfaceRockBlock extends Block {
             return;
         }
         if (!state.canSurvive(level, pos) || adjacentLiquid(level, pos)) {
-            Block.popResource(level, pos, loot(state));
+            Block.popResource(level, pos, loot(state, level.getBlockEntity(pos)));
             level.removeBlock(pos, false);
         }
     }
@@ -131,7 +138,7 @@ public final class GtSurfaceRockBlock extends Block {
             Player player,
             BlockHitResult hit) {
         if (!level.isClientSide) {
-            ItemStack drop = loot(state);
+            ItemStack drop = loot(state, level.getBlockEntity(pos));
             if (!player.addItem(drop)) {
                 Block.popResource(level, pos, drop);
             }
@@ -142,7 +149,9 @@ public final class GtSurfaceRockBlock extends Block {
 
     @Override
     protected List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
-        return List.of(loot(state));
+        return List.of(loot(
+                state,
+                params.getOptionalParameter(LootContextParams.BLOCK_ENTITY)));
     }
 
     @Override
@@ -150,10 +159,19 @@ public final class GtSurfaceRockBlock extends Block {
             LevelReader level,
             BlockPos pos,
             BlockState state) {
-        return loot(state);
+        return loot(state, level.getBlockEntity(pos));
+    }
+
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new GtSurfaceRockBlockEntity(pos, state);
     }
 
     public static ItemStack loot(BlockState state) {
+        return loot(state, null);
+    }
+
+    public static ItemStack loot(BlockState state, @Nullable BlockEntity blockEntity) {
         return switch (state.getValue(SurfaceRockContents.PROPERTY)) {
             case FLINT -> new ItemStack(Items.FLINT);
             case METEORIC_ROCK -> new ItemStack(
@@ -162,15 +180,29 @@ public final class GtSurfaceRockBlock extends Block {
                             MaterialPrefixCatalog.require("rock")).get());
             case METEORIC_RAW -> new ItemStack(
                     ModItems.materialItem("meteoric_iron", MaterialPrefixes.RAW_ORE).get());
-            case EMPTY -> new ItemStack(
-                    ModItems.materialItem(
-                            "stone",
-                            MaterialPrefixCatalog.require("rock")).get());
+            case EMPTY -> layerOrStone(blockEntity);
         };
     }
 
     public static Component materialName(BlockState state) {
-        return loot(state).getHoverName();
+        return materialName(state, null);
+    }
+
+    public static Component materialName(
+            BlockState state, @Nullable BlockEntity blockEntity) {
+        return loot(state, blockEntity).getHoverName();
+    }
+
+    private static ItemStack layerOrStone(@Nullable BlockEntity blockEntity) {
+        if (blockEntity instanceof GtSurfaceRockBlockEntity rock
+                && rock.hasMaterial()) {
+            return new ItemStack(ModItems.materialItem(
+                    rock.materialId(),
+                    MaterialPrefixCatalog.require("rock")).get());
+        }
+        return new ItemStack(ModItems.materialItem(
+                "stone",
+                MaterialPrefixCatalog.require("rock")).get());
     }
 
     private static boolean adjacentLiquid(Level level, BlockPos pos) {

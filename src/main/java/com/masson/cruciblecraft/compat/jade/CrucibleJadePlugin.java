@@ -922,7 +922,9 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
             }
             tooltip.add(Component.translatable(
                     "tooltip.cruciblecraft.surface_rock.material",
-                    GtSurfaceRockBlock.materialName(accessor.getBlockState())));
+                    GtSurfaceRockBlock.materialName(
+                            accessor.getBlockState(),
+                            accessor.getBlockEntity())));
         }
 
         @Override
