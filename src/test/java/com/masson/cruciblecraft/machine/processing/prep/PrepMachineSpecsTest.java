@@ -128,7 +128,7 @@ class PrepMachineSpecsTest {
         assertTrue(MelterPrepSpec.CHEAP_OVERCLOCKING);
         Direction front = Direction.NORTH;
         assertEquals(
-                ProcessingMachineSpec.CapabilityAccess.NONE,
+                ProcessingMachineSpec.CapabilityAccess.INPUT,
                 MelterPrepSpec.SPEC.sidedIo().energy().resolve(front, Direction.DOWN));
         assertEquals(
                 ProcessingMachineSpec.CapabilityAccess.INPUT,
@@ -136,7 +136,7 @@ class PrepMachineSpecsTest {
         assertEquals(
                 ProcessingMachineSpec.CapabilityAccess.OUTPUT,
                 MelterPrepSpec.SPEC.sidedIo().items().resolve(
-                        front, front.getCounterClockWise()));
+                        front, Direction.EAST));
     }
 
     private static GTRecipe itemRecipe(int inputs, int outputs, long eut) {

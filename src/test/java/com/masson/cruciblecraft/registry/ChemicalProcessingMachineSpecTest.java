@@ -12,6 +12,7 @@ import java.util.Optional;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.content.menu.ConfiguredProcessingMachineMenu;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineEnergyPlacement;
+import com.masson.cruciblecraft.machine.processing.ProcessingMachineIoAssertions;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.gt.CompactPublicationGroups;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
@@ -149,31 +150,12 @@ class ChemicalProcessingMachineSpecTest {
             } else {
                 assertEquals(EnergyType.ELECTRIC, expectedEnergy);
             }
-            boolean adjacent = spec.energy().mode()
-                    == ProcessingMachineSpec.EnergyMode.ADJACENT;
             assertEquals(spec.fluids().tankCount(), spec.ui().tanks().size());
             assertEquals(
                     ConfiguredProcessingMachineMenu.DATA_COUNT,
                     ConfiguredProcessingMachineMenu.dataCount());
             assertEquals(1_024L, spec.energy().maxPacket());
-            assertEquals(
-                    ProcessingMachineSpec.CapabilityAccess.OUTPUT,
-                    spec.sidedIo().items().resolve(Direction.NORTH, Direction.NORTH));
-            assertEquals(
-                    spec.fluids().inputs().isEmpty()
-                            ? ProcessingMachineSpec.CapabilityAccess.NONE
-                            : ProcessingMachineSpec.CapabilityAccess.INPUT,
-                    spec.sidedIo().fluids().resolve(Direction.NORTH, Direction.WEST));
-            assertEquals(
-                    spec.fluids().outputs().isEmpty()
-                            ? ProcessingMachineSpec.CapabilityAccess.NONE
-                            : ProcessingMachineSpec.CapabilityAccess.OUTPUT,
-                    spec.sidedIo().fluids().resolve(Direction.NORTH, Direction.NORTH));
-            assertEquals(
-                    adjacent
-                            ? ProcessingMachineSpec.CapabilityAccess.NONE
-                            : ProcessingMachineSpec.CapabilityAccess.INPUT,
-                    spec.sidedIo().energy().resolve(Direction.NORTH, Direction.SOUTH));
+            ProcessingMachineIoAssertions.assertMatchesProfile(spec);
             assertTrue(spec.validator().validate(maxLayoutRecipe(spec)).isEmpty());
         }
     }
@@ -254,11 +236,7 @@ class ChemicalProcessingMachineSpecTest {
                 ModProcessingMachines.BATH,
                 ModProcessingMachines.CENTRIFUGE,
                 ModProcessingMachines.SMELTER)) {
-            assertEquals(
-                    ProcessingMachineSpec.CapabilityAccess.OUTPUT,
-                    spec.sidedIo().fluids().resolve(
-                            Direction.NORTH,
-                            Direction.NORTH));
+            ProcessingMachineIoAssertions.assertMatchesProfile(spec);
         }
     }
 

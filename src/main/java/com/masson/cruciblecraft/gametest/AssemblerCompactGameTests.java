@@ -8,6 +8,7 @@ import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.compat.emi.ProcessingEmiRegistrationPlan;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
+import com.masson.cruciblecraft.machine.processing.ProcessingMachineIoFaces;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
@@ -35,7 +36,6 @@ public final class AssemblerCompactGameTests {
     public static final String NAMESPACE = "cruciblecraft_wave_assembler_compact";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.EAST;
-    private static final Direction ENERGY_SIDE = Direction.WEST;
 
     private AssemblerCompactGameTests() {}
 
@@ -76,7 +76,7 @@ public final class AssemblerCompactGameTests {
                         EnergyType.KINETIC,
                         assembler.variant().tierBand().inputNominal(),
                         4L,
-                        ENERGY_SIDE,
+                        energySide(assembler),
                         false) > 0L,
                 "Assembler rejected KU");
         helper.startSequence()
@@ -93,7 +93,7 @@ public final class AssemblerCompactGameTests {
                             EnergyType.KINETIC,
                             assembler.variant().tierBand().inputNominal(),
                             4L,
-                            ENERGY_SIDE,
+                            energySide(assembler),
                             false);
                 })
                 .thenIdle(2)
@@ -167,6 +167,11 @@ public final class AssemblerCompactGameTests {
                         || machine.variant().kind().behavior() == spec,
                 "Placed block resolved wrong machine kind");
         return machine;
+    }
+
+    private static Direction energySide(
+            ConfiguredProcessingMachineBlockEntity machine) {
+        return ProcessingMachineIoFaces.energy(machine.spec(), machine.facing());
     }
 
     private static void loadRecipeInputs(

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.machine.processing.Gt6BasicMachineGui;
+import com.masson.cruciblecraft.machine.processing.Gt6SidedIo;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
@@ -50,23 +51,7 @@ public final class RollFormerPrepSpec {
                     ProcessingMachineSpec.EnergyMode.BUFFERED,
                     4_096L,
                     256L),
-            new ProcessingMachineSpec.SidedIoPolicy(
-                    (front, side) -> {
-                        if (side == null) {
-                            return ProcessingMachineSpec.CapabilityAccess.NONE;
-                        }
-                        if (side == front.getCounterClockWise()) {
-                            return ProcessingMachineSpec.CapabilityAccess.INPUT;
-                        }
-                        if (side == front.getClockWise()) {
-                            return ProcessingMachineSpec.CapabilityAccess.OUTPUT;
-                        }
-                        return ProcessingMachineSpec.CapabilityAccess.NONE;
-                    },
-                    (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE,
-                    (front, side) -> side != null && side == front.getOpposite()
-                            ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                            : ProcessingMachineSpec.CapabilityAccess.NONE),
+            Gt6SidedIo.policy("rollformer"),
             RollFormerPrepSpec::validate,
             ProcessingMachineSpec.BufferPolicy.PAUSE,
             Gt6BasicMachineGui.ui(

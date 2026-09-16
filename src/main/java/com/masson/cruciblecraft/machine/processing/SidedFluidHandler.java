@@ -1,7 +1,9 @@
 package com.masson.cruciblecraft.machine.processing;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -12,6 +14,8 @@ import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 public final class SidedFluidHandler implements IFluidHandler {
     private final List<FluidTank> tanks;
     private final List<Integer> exposed;
+    private final Set<Integer> fillable;
+    private final Set<Integer> drainable;
     private final ProcessingMachineSpec.CapabilityAccess access;
     private final Runnable mutation;
 
@@ -27,24 +31,45 @@ public final class SidedFluidHandler implements IFluidHandler {
             List<Integer> exposed,
             ProcessingMachineSpec.CapabilityAccess access,
             Runnable mutation) {
+        this(
+                tanks,
+                access == ProcessingMachineSpec.CapabilityAccess.OUTPUT
+                        ? List.of() : exposed,
+                access == ProcessingMachineSpec.CapabilityAccess.INPUT
+                        ? List.of() : exposed,
+                access,
+                mutation);
+    }
+
+    public SidedFluidHandler(
+            List<FluidTank> tanks,
+            List<Integer> fillable,
+            List<Integer> drainable,
+            ProcessingMachineSpec.CapabilityAccess access,
+            Runnable mutation) {
         this.tanks = List.copyOf(tanks);
-        this.exposed = List.copyOf(exposed);
         this.access = access;
         this.mutation = mutation;
         if (access == ProcessingMachineSpec.CapabilityAccess.NONE) {
             throw new IllegalArgumentException("Do not expose a NONE capability adapter");
         }
-        boolean[] seen = new boolean[this.tanks.size()];
-        for (int index : this.exposed) {
-            if (index < 0 || index >= this.tanks.size()) {
-                throw new IndexOutOfBoundsException("Exposed fluid tank " + index);
+        this.fillable = uniqueExposed(fillable);
+        this.drainable = uniqueExposed(drainable);
+        List<Integer> combined = new ArrayList<>();
+        Set<Integer> seen = new HashSet<>();
+        for (int index : fillable) {
+            requireTank(index);
+            if (seen.add(index)) {
+                combined.add(index);
             }
-            if (seen[index]) {
-                throw new IllegalArgumentException(
-                        "Fluid tank " + index + " is exposed more than once");
-            }
-            seen[index] = true;
         }
+        for (int index : drainable) {
+            requireTank(index);
+            if (seen.add(index)) {
+                combined.add(index);
+            }
+        }
+        this.exposed = List.copyOf(combined);
     }
 
     @Override public int getTanks() { return exposed.size(); }
@@ -55,12 +80,11 @@ public final class SidedFluidHandler implements IFluidHandler {
         return actual(tank).getCapacity();
     }
     @Override public boolean isFluidValid(int tank, FluidStack stack) {
-        return access == ProcessingMachineSpec.CapabilityAccess.INPUT
+        return fillable.contains(exposed.get(tank))
                 && actual(tank).isFluidValid(stack);
     }
     @Override public int fill(FluidStack resource, FluidAction action) {
-        if (access != ProcessingMachineSpec.CapabilityAccess.INPUT
-                || resource.isEmpty()) {
+        if (fillable.isEmpty() || resource.isEmpty()) {
             return 0;
         }
 
@@ -92,7 +116,7 @@ public final class SidedFluidHandler implements IFluidHandler {
         return filled;
     }
     @Override public FluidStack drain(FluidStack resource, FluidAction action) {
-        if (access != ProcessingMachineSpec.CapabilityAccess.OUTPUT || resource.isEmpty()) {
+        if (drainable.isEmpty() || resource.isEmpty()) {
             return FluidStack.EMPTY;
         }
 
@@ -125,10 +149,13 @@ public final class SidedFluidHandler implements IFluidHandler {
         return result;
     }
     @Override public FluidStack drain(int maxDrain, FluidAction action) {
-        if (access != ProcessingMachineSpec.CapabilityAccess.OUTPUT || maxDrain <= 0) {
+        if (drainable.isEmpty() || maxDrain <= 0) {
             return FluidStack.EMPTY;
         }
         for (int index : exposed) {
+            if (!drainable.contains(index)) {
+                continue;
+            }
             FluidStack stored = tanks.get(index).getFluid();
             if (!stored.isEmpty()) {
                 return drain(stored.copyWithAmount(maxDrain), action);
@@ -144,12 +171,32 @@ public final class SidedFluidHandler implements IFluidHandler {
         return tanks.get(exposed.get(tank));
     }
 
+    private void requireTank(int index) {
+        if (index < 0 || index >= tanks.size()) {
+            throw new IndexOutOfBoundsException("Exposed fluid tank " + index);
+        }
+    }
+
+    private static Set<Integer> uniqueExposed(List<Integer> indices) {
+        Set<Integer> unique = new HashSet<>();
+        for (int index : indices) {
+            if (!unique.add(index)) {
+                throw new IllegalArgumentException(
+                        "Exposed fluid tank " + index + " exposed more than once");
+            }
+        }
+        return Set.copyOf(unique);
+    }
+
     private FillPlan planFill(FluidStack resource) {
         List<FillStep> steps = new ArrayList<>();
         int remaining = resource.getAmount();
         for (int index : exposed) {
             if (remaining == 0) {
                 break;
+            }
+            if (!fillable.contains(index)) {
+                continue;
             }
             int accepted = tanks.get(index).fill(
                     resource.copyWithAmount(remaining),
@@ -175,6 +222,9 @@ public final class SidedFluidHandler implements IFluidHandler {
             int remaining = resource.getAmount() - drainedAmount;
             if (remaining == 0) {
                 break;
+            }
+            if (!drainable.contains(index)) {
+                continue;
             }
             FluidStack drained = tanks.get(index).drain(
                     resource.copyWithAmount(remaining),

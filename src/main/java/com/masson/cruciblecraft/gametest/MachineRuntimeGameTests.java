@@ -8,6 +8,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
+import com.masson.cruciblecraft.machine.processing.ProcessingMachineIoFaces;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
@@ -39,7 +40,6 @@ public final class MachineRuntimeGameTests {
     public static final String NAMESPACE = "cruciblecraft_wave_machines";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.EAST;
-    private static final Direction ENERGY_SIDE = Direction.WEST;
 
     private MachineRuntimeGameTests() {}
 
@@ -102,7 +102,7 @@ public final class MachineRuntimeGameTests {
                         EnergyType.KINETIC_ROTATION,
                         lathe.variant().tierBand().inputNominal(),
                         4L,
-                        ENERGY_SIDE,
+                        energySide(lathe),
                         false) > 0L,
                 "Steel lathe rejected RU");
         helper.startSequence()
@@ -136,7 +136,7 @@ public final class MachineRuntimeGameTests {
         loadRecipeInputs(overcharged, salt);
         helper.assertTrue(
                 underpowered.insert(
-                        EnergyType.ELECTRIC, 8L, 1L, ENERGY_SIDE, false)
+                        EnergyType.ELECTRIC, 8L, 1L, energySide(underpowered), false)
                         == 1L,
                 "Opening electrolyzer rejected undersize EU packet");
         helper.assertTrue(
@@ -144,12 +144,12 @@ public final class MachineRuntimeGameTests {
                         EnergyType.ELECTRIC,
                         salt.eut(),
                         8L,
-                        ENERGY_SIDE,
+                        energySide(ok),
                         false) > 0L,
                 "Opening electrolyzer rejected in-window EU");
         helper.assertTrue(
                 overcharged.insert(
-                        EnergyType.ELECTRIC, 512L, 1L, ENERGY_SIDE, false)
+                        EnergyType.ELECTRIC, 512L, 1L, energySide(overcharged), false)
                         == 1L
                         && overcharged.runtime().status().equals("overcharged"),
                 "Oversized EU was not observed as overcharge: "
@@ -291,6 +291,11 @@ public final class MachineRuntimeGameTests {
                         || machine.variant().kind().behavior() == spec,
                 "Placed block resolved wrong machine kind");
         return machine;
+    }
+
+    private static Direction energySide(
+            ConfiguredProcessingMachineBlockEntity machine) {
+        return ProcessingMachineIoFaces.energy(machine.spec(), machine.facing());
     }
 
     private static void loadRecipeInputs(

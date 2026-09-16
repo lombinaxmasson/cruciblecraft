@@ -23,6 +23,7 @@ import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.InsertResult;
 import com.masson.cruciblecraft.content.blockentity.CokeOvenBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.ProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CeramicMoldBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.AnvilBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.BoilerBlockEntity;
@@ -88,6 +89,7 @@ import com.masson.cruciblecraft.logistics.pipe.fluid
 import com.masson.cruciblecraft.machine.processing.MachineExecutionPlan;
 import com.masson.cruciblecraft.machine.processing.MachineIdentityPolicy;
 import com.masson.cruciblecraft.machine.processing.MachineTransaction;
+import com.masson.cruciblecraft.machine.processing.ProcessingMachineIoFaces;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineState;
 import com.masson.cruciblecraft.recipe.AnvilMode;
@@ -1943,7 +1945,7 @@ public final class CrucibleCraftGameTests {
                 .thenExecute(() -> {
                     drainMachineIntoItem(
                             helper,
-                            drying.playerDrainFluids(Direction.NORTH),
+                            drying.playerDrainFluids(fluidOut(drying)),
                             tankHandler);
                     loadRecipeInputs(drying, recipe);
                 })
@@ -1953,7 +1955,7 @@ public final class CrucibleCraftGameTests {
                 .thenExecute(() -> {
                     drainMachineIntoItem(
                             helper,
-                            drying.playerDrainFluids(Direction.NORTH),
+                            drying.playerDrainFluids(fluidOut(drying)),
                             tankHandler);
                     FluidStack stored = tankHandler.getFluidInTank(0);
                     helper.assertTrue(
@@ -2009,7 +2011,7 @@ public final class CrucibleCraftGameTests {
                 .thenExecute(() -> {
                     drainMachineIntoItem(
                             helper,
-                            distillery.playerDrainFluids(Direction.NORTH),
+                            distillery.playerDrainFluids(fluidOut(distillery)),
                             tankHandler);
                     loadRecipeInputs(distillery, recipe);
                 })
@@ -2019,7 +2021,7 @@ public final class CrucibleCraftGameTests {
                 .thenExecute(() -> {
                     drainMachineIntoItem(
                             helper,
-                            distillery.playerDrainFluids(Direction.NORTH),
+                            distillery.playerDrainFluids(fluidOut(distillery)),
                             tankHandler);
                     FluidStack stored = tankHandler.getFluidInTank(0);
                     helper.assertTrue(
@@ -2153,7 +2155,7 @@ public final class CrucibleCraftGameTests {
                                             EnergyType.ELECTRIC));
                     drainMachineIntoItem(
                             helper,
-                            electrolyzer.playerDrainFluids(Direction.NORTH),
+                            electrolyzer.playerDrainFluids(fluidOut(electrolyzer)),
                             portableHandler);
                     FluidStack chlorine = portableHandler.getFluidInTank(0);
                     helper.assertTrue(
@@ -2167,8 +2169,8 @@ public final class CrucibleCraftGameTests {
                     helper.assertTrue(
                             ProcessingMachineInteractions.fluidTransfer(
                                     mixer.spec(),
-                                    Direction.NORTH,
-                                    Direction.WEST,
+                                    mixer.facing(),
+                                    fluidIn(mixer),
                                     false,
                                     true,
                                     true,
@@ -2178,16 +2180,16 @@ public final class CrucibleCraftGameTests {
                     fillMachineFromItem(
                             helper,
                             portableHandler,
-                            mixer.fluids(Direction.WEST));
+                            mixer.fluids(fluidIn(mixer)));
                     helper.assertTrue(
                             portableHandler.getFluidInTank(0).isEmpty(),
                             "Portable tank retained chlorine after machine fill");
                     helper.assertTrue(
                             mixer.insert(
-                                    EnergyType.ELECTRIC,
+                                    mixer.spec().energy().type(),
                                     hydrochloricAcid.eut(),
                                     64L,
-                                    Direction.SOUTH,
+                                    energyFace(mixer),
                                     false) > 0,
                             "Could not power hydrochloric-acid mixer");
                 })
@@ -2345,16 +2347,16 @@ public final class CrucibleCraftGameTests {
         fillMachineFromItem(
                 helper,
                 gasHandler,
-                mixer.fluids(Direction.WEST));
+                mixer.fluids(fluidIn(mixer)));
         helper.assertTrue(
                 gasHandler.getFluidInTank(0).isEmpty(),
                 "Gas cell retained fluid after machine transfer");
         helper.assertTrue(
                 mixer.insert(
-                        EnergyType.ELECTRIC,
+                        mixer.spec().energy().type(),
                         hydrogenFluoride.eut(),
                         64L,
-                        Direction.SOUTH,
+                        energyFace(mixer),
                         false) > 0,
                 "Could not power gas-cell mixer route");
 
@@ -2559,10 +2561,10 @@ public final class CrucibleCraftGameTests {
             loadRecipeInputs(mixer, recipe);
             helper.assertTrue(
                     mixer.insert(
-                            EnergyType.ELECTRIC,
+                            mixer.spec().energy().type(),
                             recipe.eut(),
                             64L,
-                            Direction.SOUTH,
+                            energyFace(mixer),
                             false) > 0L,
                     "Could not power gunpowder Mixer for " + material);
             mixers.add(mixer);
@@ -6260,12 +6262,12 @@ public final class CrucibleCraftGameTests {
                 .thenExecute(() -> transferFluid(
                         helper,
                         extractor.externalFluid(),
-                        generifier.fluids(Direction.WEST),
+                        generifier.fluids(fluidIn(generifier)),
                         5))
                 .thenIdle(7)
                 .thenExecute(() -> transferFluid(
                         helper,
-                        generifier.fluids(Direction.EAST),
+                        generifier.fluids(fluidOut(generifier)),
                         generator.fluids(Direction.WEST),
                         5))
                 .thenIdle(65)
@@ -9186,7 +9188,7 @@ public final class CrucibleCraftGameTests {
             int inputSlot,
             ItemStack input,
             String label) {
-        IItemHandler automation = machine.items(Direction.WEST);
+        IItemHandler automation = machine.items(itemIn(machine));
         helper.assertTrue(automation != null, label + " input capability missing");
         ItemStack remainder = automation.insertItem(inputSlot, input, false);
         helper.assertTrue(remainder.isEmpty(), label + " rejected real input transfer");
@@ -9248,7 +9250,7 @@ public final class CrucibleCraftGameTests {
                         && observed.getCount() >= expectedCount,
                 stage.label() + " did not expose its real target output; observed "
                         + observed + ", expected " + expected.copyWithCount(expectedCount));
-        IItemHandler automation = stage.machine().items(Direction.NORTH);
+        IItemHandler automation = stage.machine().items(itemOut(stage.machine()));
         helper.assertTrue(automation != null, stage.label() + " output capability missing");
         ItemStack extracted = automation.extractItem(0, expectedCount, false);
         helper.assertTrue(
@@ -9295,13 +9297,13 @@ public final class CrucibleCraftGameTests {
                 ModBlocks.DISTILLERY.get().defaultBlockState()
                         .setValue(
                                 ProcessingMachineBlock.FACING,
-                                Direction.EAST));
+                                Direction.WEST));
         helper.setBlock(
                 mixerPos,
                 ModBlocks.MIXER.get().defaultBlockState()
                         .setValue(
                                 ProcessingMachineBlock.FACING,
-                                Direction.EAST));
+                                Direction.SOUTH));
         FluidPipeBlock block = (FluidPipeBlock) ModBlocks.pipeBlock(
                 "copper",
                 MaterialPrefixes.TINY_FLUID_PIPE,
@@ -10246,7 +10248,7 @@ public final class CrucibleCraftGameTests {
 
     private static void assertWaterPolicy(
             GameTestHelper helper, ConfiguredProcessingMachineBlockEntity machine) {
-        IFluidHandler external = machine.fluids(Direction.WEST);
+        IFluidHandler external = machine.fluids(fluidIn(machine));
         helper.assertTrue(external != null, "Water input capability missing");
         helper.assertTrue(external.fill(
                 new FluidStack(Fluids.LAVA, 1000), IFluidHandler.FluidAction.SIMULATE) == 0,
@@ -10273,7 +10275,7 @@ public final class CrucibleCraftGameTests {
     }
 
     private static void fillWater(ConfiguredProcessingMachineBlockEntity machine) {
-        IFluidHandler handler = machine.fluids(Direction.WEST);
+        IFluidHandler handler = machine.fluids(fluidIn(machine));
         if (handler != null) {
             handler.fill(new FluidStack(Fluids.WATER, 1000), IFluidHandler.FluidAction.EXECUTE);
         }
@@ -10289,27 +10291,67 @@ public final class CrucibleCraftGameTests {
         fillKuCapability(helper, machine.getBlockPos(), machine.spec().id().toString());
     }
 
+    private static Direction itemIn(ProcessingMachineBlockEntity machine) {
+        return ProcessingMachineIoFaces.itemInput(machine.spec(), machine.facing());
+    }
+
+    private static Direction itemOut(ProcessingMachineBlockEntity machine) {
+        return ProcessingMachineIoFaces.itemOutput(machine.spec(), machine.facing());
+    }
+
+    private static Direction fluidIn(ProcessingMachineBlockEntity machine) {
+        return ProcessingMachineIoFaces.fluidInput(machine.spec(), machine.facing());
+    }
+
+    private static Direction fluidOut(ProcessingMachineBlockEntity machine) {
+        return ProcessingMachineIoFaces.fluidOutput(machine.spec(), machine.facing());
+    }
+
+    private static Direction energyFace(ProcessingMachineBlockEntity machine) {
+        return ProcessingMachineIoFaces.energy(machine.spec(), machine.facing());
+    }
+
     private static void fillKuCapability(
             GameTestHelper helper, BlockPos worldPos, String label) {
-        IEnergyHandler energy = helper.getLevel().getCapability(
-                ModCapabilities.ENERGY, worldPos, Direction.SOUTH);
-        helper.assertTrue(
-                energy != null,
-                "Back energy capability missing at " + label);
-        EnergyType type = List.of(
-                        EnergyType.KINETIC_PUSH,
-                        EnergyType.KINETIC_ROTATION,
-                        EnergyType.KINETIC,
-                        EnergyType.ELECTRIC,
-                        EnergyType.HEAT)
-                .stream()
-                .filter(candidate ->
-                        energy.handles(candidate, Direction.SOUTH))
-                .findFirst()
-                .orElseThrow(() -> new IllegalStateException(
-                        "No accepted energy identity at " + label));
-        long accepted = energy.insert(
-                type, 32L, 16L, Direction.SOUTH, false);
+        net.minecraft.world.level.block.entity.BlockEntity be =
+                helper.getLevel().getBlockEntity(worldPos);
+        List<Direction> sides = new ArrayList<>();
+        if (be instanceof ProcessingMachineBlockEntity machine) {
+            sides.add(energyFace(machine));
+        }
+        for (Direction side : Direction.values()) {
+            if (!sides.contains(side)) {
+                sides.add(side);
+            }
+        }
+        List<EnergyType> types = List.of(
+                EnergyType.KINETIC_PUSH,
+                EnergyType.KINETIC_ROTATION,
+                EnergyType.KINETIC,
+                EnergyType.ELECTRIC,
+                EnergyType.HEAT);
+        IEnergyHandler energy = null;
+        Direction used = null;
+        EnergyType type = null;
+        for (Direction side : sides) {
+            IEnergyHandler candidate = helper.getLevel().getCapability(
+                    ModCapabilities.ENERGY, worldPos, side);
+            if (candidate == null) {
+                continue;
+            }
+            EnergyType match = types.stream()
+                    .filter(candidateType -> candidate.handles(candidateType, side))
+                    .findFirst()
+                    .orElse(null);
+            if (match != null) {
+                energy = candidate;
+                used = side;
+                type = match;
+                break;
+            }
+        }
+        helper.assertTrue(energy != null, "Energy capability missing at " + label);
+        long accepted = energy.insert(type, 32L, 16L, used, false);
         helper.assertTrue(
                 accepted > 0L || energy.stored(type) > 0L,
                 "Energy capability accepted no "
@@ -10321,8 +10363,8 @@ public final class CrucibleCraftGameTests {
     private static void fillKu(
             GameTestHelper helper, ConfiguredProcessingMachineBlockEntity machine) {
         EnergyType type = machine.spec().energy().type();
-        long accepted = machine.insert(
-                type, 32L, 16L, Direction.SOUTH, false);
+        Direction side = energyFace(machine);
+        long accepted = machine.insert(type, 32L, 16L, side, false);
         helper.assertTrue(
                 accepted > 0L || machine.stored(type) > 0L,
                 "Placed machine accepted no "

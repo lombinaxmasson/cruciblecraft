@@ -9,6 +9,7 @@ import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.machine.processing.CraftingCatalystPolicy;
+import com.masson.cruciblecraft.machine.processing.Gt6SidedIo;
 import com.masson.cruciblecraft.machine.processing.Gt6BasicMachineGui;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.gt.CompactPublicationGroups;
@@ -16,7 +17,6 @@ import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 
-import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 
 /** Registry-safe processing specifications for currently implemented machines. */
@@ -45,14 +45,7 @@ public final class ModProcessingMachines {
                     ProcessingMachineSpec.EnergyMode.BUFFERED,
                     1_024L,
                     1_024L),
-            new ProcessingMachineSpec.SidedIoPolicy(
-                    (front, side) -> front != null && side == front
-                            ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
-                            : ProcessingMachineSpec.CapabilityAccess.INPUT,
-                    (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE,
-                    (front, side) -> front != null && side == front.getOpposite()
-                            ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                            : ProcessingMachineSpec.CapabilityAccess.NONE),
+            Gt6SidedIo.policy("crusher"),
             ModProcessingMachines::validateCrusher,
             ProcessingMachineSpec.BufferPolicy.PAUSE,
             Gt6BasicMachineGui.ui(
@@ -264,18 +257,7 @@ public final class ModProcessingMachines {
                             ProcessingMachineSpec.EnergyMode.ADJACENT,
                             0L,
                             1L),
-                    new ProcessingMachineSpec.SidedIoPolicy(
-                            (front, side) ->
-                                    ProcessingMachineSpec.CapabilityAccess.NONE,
-                            (front, side) -> side == null
-                                    ? ProcessingMachineSpec.CapabilityAccess.NONE
-                                    : side == front
-                                            ? ProcessingMachineSpec
-                                                    .CapabilityAccess.OUTPUT
-                                            : ProcessingMachineSpec
-                                                    .CapabilityAccess.INPUT,
-                            (front, side) ->
-                                    ProcessingMachineSpec.CapabilityAccess.NONE),
+                    Gt6SidedIo.policy("generifier"),
                     recipe -> recipe.itemInputs().isEmpty()
                                     && recipe.itemOutputs().isEmpty()
                                     && recipe.fluidInputs().size() == 1
@@ -660,19 +642,7 @@ public final class ModProcessingMachines {
                         energyMode,
                         energyMode == ProcessingMachineSpec.EnergyMode.BUFFERED ? 4_096L : 0L,
                         1_024L),
-                new ProcessingMachineSpec.SidedIoPolicy(
-                        (front, side) -> side == null
-                                ? ProcessingMachineSpec.CapabilityAccess.NONE
-                                : side == front
-                                        ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
-                                        : ProcessingMachineSpec.CapabilityAccess.INPUT,
-                        (front, side) -> waterInput && side != null && side != front
-                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                : ProcessingMachineSpec.CapabilityAccess.NONE,
-                        (front, side) -> energyMode == ProcessingMachineSpec.EnergyMode.BUFFERED
-                                && side != null && side == front.getOpposite()
-                                        ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                        : ProcessingMachineSpec.CapabilityAccess.NONE),
+                Gt6SidedIo.policy(path),
                 recipe -> validateConfigured(recipe, waterInput),
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
@@ -758,18 +728,7 @@ public final class ModProcessingMachines {
                         ProcessingMachineSpec.EnergyMode.BUFFERED,
                         4_096L,
                         256L),
-                new ProcessingMachineSpec.SidedIoPolicy(
-                        (front, side) -> side == null
-                                ? ProcessingMachineSpec.CapabilityAccess.NONE
-                                : side == front
-                                        ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
-                                        : ProcessingMachineSpec.CapabilityAccess.INPUT,
-                        (front, side) -> futureFluidInput && side != null && side != front
-                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                : ProcessingMachineSpec.CapabilityAccess.NONE,
-                        (front, side) -> side != null && side == front.getOpposite()
-                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                : ProcessingMachineSpec.CapabilityAccess.NONE),
+                Gt6SidedIo.policy(path),
                 recipe -> validateComponentRecipe(
                         recipe,
                         itemInputs,
@@ -908,15 +867,7 @@ public final class ModProcessingMachines {
                                 ? 4_096L
                                 : 0L,
                         1_024L),
-                new ProcessingMachineSpec.SidedIoPolicy(
-                        layout.sidedIo().items(),
-                        layout.sidedIo().fluids(),
-                        (front, side) -> energyMode
-                                        == ProcessingMachineSpec.EnergyMode.BUFFERED
-                                && side != null
-                                && side == front.getOpposite()
-                                        ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                        : ProcessingMachineSpec.CapabilityAccess.NONE),
+                layout.sidedIo(),
                 recipe -> {
                     Optional<String> invalid = validateChemicalRecipe(
                             recipe,
@@ -1112,22 +1063,7 @@ public final class ModProcessingMachines {
                         ProcessingMachineSpec.EnergyMode.BUFFERED,
                         "massfab".equals(path) ? 1_048_576L : 65_536L,
                         Math.max(1_024L, energyMax)),
-                new ProcessingMachineSpec.SidedIoPolicy(
-                        (front, side) -> side == null
-                                ? ProcessingMachineSpec.CapabilityAccess.NONE
-                                : side == front
-                                        ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
-                                        : ProcessingMachineSpec.CapabilityAccess.INPUT,
-                        (front, side) -> side == null
-                                ? ProcessingMachineSpec.CapabilityAccess.NONE
-                                : side == front && layoutFluidOutputs > 0
-                                        ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
-                                        : side != front && fluidInputs > 0
-                                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                                : ProcessingMachineSpec.CapabilityAccess.NONE,
-                        (front, side) -> side != null && side == front.getOpposite()
-                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                : ProcessingMachineSpec.CapabilityAccess.NONE),
+                Gt6SidedIo.policy(path),
                 recipe -> validateChemicalRecipe(
                         recipe,
                         itemInputs,
@@ -1252,23 +1188,7 @@ public final class ModProcessingMachines {
                         ProcessingMachineSpec.EnergyMode.BUFFERED,
                         4_096L,
                         256L),
-                new ProcessingMachineSpec.SidedIoPolicy(
-                        (front, side) -> {
-                            if (side == null) {
-                                return ProcessingMachineSpec.CapabilityAccess.NONE;
-                            }
-                            if (side == front.getCounterClockWise()) {
-                                return ProcessingMachineSpec.CapabilityAccess.INPUT;
-                            }
-                            if (side == front.getClockWise()) {
-                                return ProcessingMachineSpec.CapabilityAccess.OUTPUT;
-                            }
-                            return ProcessingMachineSpec.CapabilityAccess.NONE;
-                        },
-                        (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE,
-                        (front, side) -> side != null && side == front.getOpposite()
-                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                : ProcessingMachineSpec.CapabilityAccess.NONE),
+                Gt6SidedIo.policy("rollformer"),
                 recipe -> validateComponentRecipe(
                         recipe, 1, false, false, false),
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
@@ -1290,21 +1210,7 @@ public final class ModProcessingMachines {
                         ProcessingMachineSpec.EnergyMode.ADJACENT,
                         0L,
                         8_192L),
-                new ProcessingMachineSpec.SidedIoPolicy(
-                        (front, side) -> {
-                            if (side == null) {
-                                return ProcessingMachineSpec.CapabilityAccess.NONE;
-                            }
-                            if (side == front.getCounterClockWise()) {
-                                return ProcessingMachineSpec.CapabilityAccess.INPUT;
-                            }
-                            if (side == front.getClockWise()) {
-                                return ProcessingMachineSpec.CapabilityAccess.OUTPUT;
-                            }
-                            return ProcessingMachineSpec.CapabilityAccess.NONE;
-                        },
-                        (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE,
-                        (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE),
+                Gt6SidedIo.policy("oven"),
                 ModProcessingMachines::validateOvenRecipe,
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
@@ -1343,23 +1249,7 @@ public final class ModProcessingMachines {
                         ProcessingMachineSpec.EnergyMode.BUFFERED,
                         4_096L,
                         256L),
-                new ProcessingMachineSpec.SidedIoPolicy(
-                        (front, side) -> {
-                            if (side == null) {
-                                return ProcessingMachineSpec.CapabilityAccess.NONE;
-                            }
-                            if (side == front.getCounterClockWise()) {
-                                return ProcessingMachineSpec.CapabilityAccess.INPUT;
-                            }
-                            if (side == front.getClockWise()) {
-                                return ProcessingMachineSpec.CapabilityAccess.OUTPUT;
-                            }
-                            return ProcessingMachineSpec.CapabilityAccess.NONE;
-                        },
-                        (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE,
-                        (front, side) -> side == Direction.UP
-                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                : ProcessingMachineSpec.CapabilityAccess.NONE),
+                Gt6SidedIo.policy("sanding"),
                 ModProcessingMachines::validateSandingRecipe,
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
@@ -1398,23 +1288,7 @@ public final class ModProcessingMachines {
                         ProcessingMachineSpec.EnergyMode.BUFFERED,
                         4_096L,
                         256L),
-                new ProcessingMachineSpec.SidedIoPolicy(
-                        (front, side) -> {
-                            if (side == null) {
-                                return ProcessingMachineSpec.CapabilityAccess.NONE;
-                            }
-                            if (side == front.getCounterClockWise()) {
-                                return ProcessingMachineSpec.CapabilityAccess.INPUT;
-                            }
-                            if (side == front.getClockWise()) {
-                                return ProcessingMachineSpec.CapabilityAccess.OUTPUT;
-                            }
-                            return ProcessingMachineSpec.CapabilityAccess.NONE;
-                        },
-                        (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE,
-                        (front, side) -> side != null && side == front.getOpposite()
-                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                : ProcessingMachineSpec.CapabilityAccess.NONE),
+                Gt6SidedIo.policy("clustermill"),
                 recipe -> validateComponentRecipe(
                         recipe, 1, false, false, false),
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
@@ -1436,23 +1310,7 @@ public final class ModProcessingMachines {
                         ProcessingMachineSpec.EnergyMode.ADJACENT,
                         0L,
                         8_192L),
-                new ProcessingMachineSpec.SidedIoPolicy(
-                        (front, side) -> {
-                            if (side == null) {
-                                return ProcessingMachineSpec.CapabilityAccess.NONE;
-                            }
-                            if (side == Direction.UP
-                                    || side == front.getCounterClockWise()) {
-                                return ProcessingMachineSpec.CapabilityAccess.INPUT;
-                            }
-                            if (side == Direction.DOWN
-                                    || side == front.getClockWise()) {
-                                return ProcessingMachineSpec.CapabilityAccess.OUTPUT;
-                            }
-                            return ProcessingMachineSpec.CapabilityAccess.NONE;
-                        },
-                        (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE,
-                        (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE),
+                Gt6SidedIo.policy("laminator"),
                 ModProcessingMachines::validateLaminatorRecipe,
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
@@ -1487,18 +1345,7 @@ public final class ModProcessingMachines {
                         ProcessingMachineSpec.EnergyMode.ADJACENT,
                         0L,
                         1_024L),
-                new ProcessingMachineSpec.SidedIoPolicy(
-                        (front, side) -> side == Direction.UP
-                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                : side != null && side == front.getCounterClockWise()
-                                        ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
-                                        : ProcessingMachineSpec.CapabilityAccess.NONE,
-                        (front, side) -> side == Direction.UP
-                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                : side != null && side == front.getClockWise()
-                                        ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
-                                        : ProcessingMachineSpec.CapabilityAccess.NONE,
-                        (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE),
+                Gt6SidedIo.policy("melter"),
                 ModProcessingMachines::validateMelterRecipe,
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
@@ -1541,21 +1388,7 @@ public final class ModProcessingMachines {
                         ProcessingMachineSpec.EnergyMode.BUFFERED,
                         4_096L,
                         256L),
-                new ProcessingMachineSpec.SidedIoPolicy(
-                        (front, side) -> side == null
-                                ? ProcessingMachineSpec.CapabilityAccess.NONE
-                                : side == front.getCounterClockWise()
-                                        ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                        : side == front.getClockWise()
-                                                ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
-                                                : ProcessingMachineSpec.CapabilityAccess.NONE,
-                        (front, side) -> side == Direction.UP
-                                || side == Direction.DOWN
-                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                : ProcessingMachineSpec.CapabilityAccess.NONE,
-                        (front, side) -> side != null && side == front.getOpposite()
-                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                : ProcessingMachineSpec.CapabilityAccess.NONE),
+                Gt6SidedIo.policy("pressurewasher"),
                 ModProcessingMachines::validatePressureWasherRecipe,
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
@@ -1613,17 +1446,7 @@ public final class ModProcessingMachines {
                 new ProcessingMachineSpec.TankLayout(List.of(), List.of()),
                 new ProcessingMachineSpec.EnergySpec(
                         energyType, energyMode, capacity, maxPacket),
-                new ProcessingMachineSpec.SidedIoPolicy(
-                        (front, side) -> side == Direction.UP
-                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                : side == Direction.DOWN
-                                        ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
-                                        : ProcessingMachineSpec.CapabilityAccess.NONE,
-                        (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE,
-                        (front, side) -> side == front.getCounterClockWise()
-                                || side == front.getClockWise()
-                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                : ProcessingMachineSpec.CapabilityAccess.NONE),
+                Gt6SidedIo.policy(id),
                 ModProcessingMachines::validateLoomRecipe,
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
@@ -1661,28 +1484,7 @@ public final class ModProcessingMachines {
                         ProcessingMachineSpec.EnergyMode.BUFFERED,
                         65_536L,
                         8_192L),
-                new ProcessingMachineSpec.SidedIoPolicy(
-                        (front, side) -> side == null
-                                ? ProcessingMachineSpec.CapabilityAccess.NONE
-                                : side == Direction.UP
-                                        || side == front.getCounterClockWise()
-                                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                                : side == Direction.DOWN
-                                                        || side == front.getClockWise()
-                                                                ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
-                                                                : ProcessingMachineSpec.CapabilityAccess.NONE,
-                        (front, side) -> side == null
-                                ? ProcessingMachineSpec.CapabilityAccess.NONE
-                                : side == Direction.UP
-                                        || side == front.getCounterClockWise()
-                                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                                : side == Direction.DOWN
-                                                        || side == front.getClockWise()
-                                                                ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
-                                                                : ProcessingMachineSpec.CapabilityAccess.NONE,
-                        (front, side) -> side != null && side == front.getOpposite()
-                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                : ProcessingMachineSpec.CapabilityAccess.NONE),
+                Gt6SidedIo.policy("injector"),
                 ModProcessingMachines::validateInjectorRecipe,
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
@@ -1725,28 +1527,7 @@ public final class ModProcessingMachines {
                         ProcessingMachineSpec.EnergyMode.BUFFERED,
                         65_536L,
                         8_192L),
-                new ProcessingMachineSpec.SidedIoPolicy(
-                        (front, side) -> side == null
-                                ? ProcessingMachineSpec.CapabilityAccess.NONE
-                                : side == Direction.UP
-                                        || side == front.getCounterClockWise()
-                                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                                : side == Direction.DOWN
-                                                        || side == front.getClockWise()
-                                                                ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
-                                                                : ProcessingMachineSpec.CapabilityAccess.NONE,
-                        (front, side) -> side == null
-                                ? ProcessingMachineSpec.CapabilityAccess.NONE
-                                : side == Direction.UP
-                                        || side == front.getCounterClockWise()
-                                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                                : side == Direction.DOWN
-                                                        || side == front.getClockWise()
-                                                                ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
-                                                                : ProcessingMachineSpec.CapabilityAccess.NONE,
-                        (front, side) -> side != null && side == front.getOpposite()
-                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                : ProcessingMachineSpec.CapabilityAccess.NONE),
+                Gt6SidedIo.policy("nanofab"),
                 ModProcessingMachines::validateNanofabRecipe,
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
@@ -1785,23 +1566,7 @@ public final class ModProcessingMachines {
                         ProcessingMachineSpec.EnergyMode.BUFFERED,
                         65_536L,
                         8_192L),
-                new ProcessingMachineSpec.SidedIoPolicy(
-                        (front, side) -> {
-                            if (side == null) {
-                                return ProcessingMachineSpec.CapabilityAccess.NONE;
-                            }
-                            if (side == Direction.UP || side == front.getCounterClockWise()) {
-                                return ProcessingMachineSpec.CapabilityAccess.INPUT;
-                            }
-                            if (side == Direction.DOWN || side == front.getClockWise()) {
-                                return ProcessingMachineSpec.CapabilityAccess.OUTPUT;
-                            }
-                            return ProcessingMachineSpec.CapabilityAccess.NONE;
-                        },
-                        (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE,
-                        (front, side) -> side != null && side == front.getOpposite()
-                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                : ProcessingMachineSpec.CapabilityAccess.NONE),
+                Gt6SidedIo.policy("slicer"),
                 ModProcessingMachines::validateSlicerRecipe,
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
@@ -1835,16 +1600,7 @@ public final class ModProcessingMachines {
                         ProcessingMachineSpec.EnergyMode.BUFFERED,
                         32_768L,
                         256L),
-                new ProcessingMachineSpec.SidedIoPolicy(
-                        (front, side) -> side == null
-                                ? ProcessingMachineSpec.CapabilityAccess.NONE
-                                : side == front
-                                        ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
-                                        : ProcessingMachineSpec.CapabilityAccess.INPUT,
-                        (front, side) -> ProcessingMachineSpec.CapabilityAccess.NONE,
-                        (front, side) -> side == net.minecraft.core.Direction.UP
-                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
-                                : ProcessingMachineSpec.CapabilityAccess.NONE),
+                Gt6SidedIo.policy("laser_engraver"),
                 ModProcessingMachines::validateLaserRecipe,
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(2, 1, 0, 0, 2, 1, 0, 0, PROCESSING_STATUSES));

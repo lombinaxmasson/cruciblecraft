@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.machine.processing.Gt6BasicMachineGui;
+import com.masson.cruciblecraft.machine.processing.Gt6SidedIo;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
@@ -31,10 +32,7 @@ public final class LaminatorPrepSpec {
                     ProcessingMachineSpec.EnergyMode.ADJACENT,
                     0L,
                     PrepMachineCommon.HU_MAX_PACKET),
-            new ProcessingMachineSpec.SidedIoPolicy(
-                    PrepSidedIo.leftOrUpInRightOut(),
-                    PrepSidedIo.none(),
-                    PrepSidedIo.none()),
+            Gt6SidedIo.policy("laminator"),
             LaminatorPrepSpec::validate,
             ProcessingMachineSpec.BufferPolicy.PAUSE,
             Gt6BasicMachineGui.ui(

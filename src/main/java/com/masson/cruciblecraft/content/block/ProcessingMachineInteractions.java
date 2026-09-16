@@ -47,17 +47,19 @@ public final class ProcessingMachineInteractions {
         ProcessingMachineSpec.CapabilityAccess access =
                 spec.sidedIo().fluids().resolve(front, clickedSide);
         if (access == ProcessingMachineSpec.CapabilityAccess.INPUT
-                && !spec.fluids().inputs().isEmpty()) {
-            if (containerHasFluid) {
+                || access == ProcessingMachineSpec.CapabilityAccess.BOTH) {
+            if (!spec.fluids().inputs().isEmpty() && containerHasFluid) {
                 return FluidTransfer.FILL_INPUT;
             }
-            if (containerCanAcceptFluid) {
+            if (access == ProcessingMachineSpec.CapabilityAccess.INPUT
+                    && containerCanAcceptFluid
+                    && !spec.fluids().inputs().isEmpty()) {
                 return FluidTransfer.DRAIN_INPUT;
             }
-            return FluidTransfer.NONE;
         }
         return containerCanAcceptFluid
-                && access == ProcessingMachineSpec.CapabilityAccess.OUTPUT
+                && (access == ProcessingMachineSpec.CapabilityAccess.OUTPUT
+                        || access == ProcessingMachineSpec.CapabilityAccess.BOTH)
                 && !spec.fluids().outputs().isEmpty()
                 ? FluidTransfer.DRAIN_OUTPUT
                 : FluidTransfer.NONE;

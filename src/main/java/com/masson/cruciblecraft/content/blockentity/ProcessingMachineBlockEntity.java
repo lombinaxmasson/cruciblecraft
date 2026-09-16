@@ -29,6 +29,9 @@ import com.masson.cruciblecraft.machine.processing.ProcessingMachineEnergyPlacem
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineState;
 import com.masson.cruciblecraft.machine.processing.ProcessingRuntime;
+import com.masson.cruciblecraft.api.tool.ToolAction;
+import com.masson.cruciblecraft.machine.processing.IoChannel;
+import com.masson.cruciblecraft.machine.processing.ProcessingMachineAutoIo;
 import com.masson.cruciblecraft.machine.processing.SidedFluidHandler;
 import com.masson.cruciblecraft.machine.processing.SidedItemHandler;
 import com.masson.cruciblecraft.material.MaterialCatalog;
@@ -53,6 +56,8 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -114,6 +119,12 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     private boolean coverEnabled = true;
     private boolean coversStopped;
     private int selectorMode;
+    private boolean disabledItemInput;
+    private boolean disabledItemOutput;
+    private boolean disabledFluidInput;
+    private boolean disabledFluidOutput;
+    private int screwdriverMode;
+    private boolean inventoryChangedForAutoIo;
     private long lastSuccessfulGameTime = Long.MIN_VALUE;
     private long coverRecipeCacheTick = Long.MIN_VALUE;
     private Optional<RecipeMap.Match> coverRecipeCache;
@@ -142,7 +153,8 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         this.energy = energyBufferFor(spec);
         this.inventory = new LayoutAwareItemStackHandler(
                 spec.items().slotCount(),
-                spec.items()::accepts,
+                (slot, stack) -> spec.items().accepts(slot, stack)
+                        && automationAllowsInsert(slot),
                 slot -> {
                     resourcesChanged();
                     onItemSlotChanged(slot);
@@ -211,7 +223,24 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         coverRecipeCacheTick = level.getGameTime();
         coverRecipeCache = null;
         tickCoversServer();
+        if (unsupportedProcessingVersion.isPresent()
+                || unsupportedInventorySlots.isPresent()
+                || materialQuarantine.isPresent()) {
+            return;
+        }
+        boolean inventoryPulse = inventoryChangedForAutoIo;
+        inventoryChangedForAutoIo = false;
+        if (!disabledFluidOutput) {
+            autoOutputFluids();
+        }
+        if (!disabledItemInput) {
+            autoInputItems();
+        }
+        if (!disabledFluidInput) {
+            autoInputFluids();
+        }
         if (!processingAllowed()) {
+            autoOutputItems(inventoryPulse);
             return;
         }
         invalidateRevisions();
@@ -225,6 +254,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                 markMutation();
             }
             checkpoint();
+            autoOutputItems(inventoryPulse);
             return;
         }
 
@@ -248,6 +278,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                     match.id().toString(), recipe.duration());
             markMutation();
             checkpoint();
+            autoOutputItems(inventoryPulse);
             return;
         }
         Optional<PlannedExecution> planned = invalid.isEmpty()
@@ -275,6 +306,11 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                                 recipe, operations))
                 : Optional.empty();
         boolean capacity = transaction.isPresent();
+        if ((screwdriverMode & 1) != 0
+                && workProgress == 0L
+                && !outputsCompletelyEmpty()) {
+            capacity = false;
+        }
         long remainingWork = Math.max(
                 0L, plan.totalWork() - workProgress);
         Optional<PowerPlan> powerPlan =
@@ -341,6 +377,9 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
             markMutation();
         }
         checkpoint();
+        autoOutputItems(
+                inventoryPulse
+                        || result == ProcessingRuntime.Result.COMPLETE);
     }
 
     private Optional<RecipeMap.Match> findRecipe() {
@@ -652,6 +691,205 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
 
     protected abstract Direction machineFront();
 
+    public final Direction facing() {
+        return machineFront();
+    }
+
+    public boolean handleIoTool(ToolAction action, Direction side, Player player) {
+        boolean server = level != null && !level.isClientSide;
+        if (action == ToolAction.SCREWDRIVER) {
+            if (server) {
+                screwdriverMode = (screwdriverMode + 1) % 4;
+                if (player != null) {
+                    player.displayClientMessage(
+                            Component.translatable(
+                                    (screwdriverMode & 1) != 0
+                                            ? "message.cruciblecraft.machine.mode.output_empty"
+                                            : "message.cruciblecraft.machine.mode.output_space"),
+                            false);
+                    player.displayClientMessage(
+                            Component.translatable(
+                                    (screwdriverMode & 2) != 0
+                                            ? "message.cruciblecraft.machine.mode.input_empty"
+                                            : "message.cruciblecraft.machine.mode.input_all"),
+                            false);
+                }
+                markMutation();
+            }
+            return true;
+        }
+        if (action != ToolAction.MONKEY_WRENCH || side == null) {
+            return false;
+        }
+        Direction front = machineFront();
+        IoChannel items = spec.sidedIo().itemsChannel();
+        IoChannel fluids = spec.sidedIo().fluidsChannel();
+        boolean changed = false;
+        if (items.autoInputWorld(front).orElse(null) == side) {
+            if (server) {
+                disabledItemInput = !disabledItemInput;
+                tellAuto(player, "item_in", disabledItemInput);
+            }
+            changed = true;
+        }
+        if (items.autoOutputWorld(front).orElse(null) == side) {
+            if (server) {
+                disabledItemOutput = !disabledItemOutput;
+                tellAuto(player, "item_out", disabledItemOutput);
+            }
+            changed = true;
+        }
+        if (fluids.autoInputWorld(front).orElse(null) == side) {
+            if (server) {
+                disabledFluidInput = !disabledFluidInput;
+                tellAuto(player, "fluid_in", disabledFluidInput);
+            }
+            changed = true;
+        }
+        if (fluids.autoOutputWorld(front).orElse(null) == side) {
+            if (server) {
+                disabledFluidOutput = !disabledFluidOutput;
+                tellAuto(player, "fluid_out", disabledFluidOutput);
+            }
+            changed = true;
+        }
+        if (changed && server) {
+            markMutation();
+        }
+        return changed;
+    }
+
+    private static void tellAuto(Player player, String channel, boolean disabled) {
+        if (player == null) {
+            return;
+        }
+        player.displayClientMessage(
+                Component.translatable(
+                        "message.cruciblecraft.machine.auto."
+                                + channel
+                                +                 (disabled ? ".disabled" : ".enabled")),
+                false);
+    }
+
+    private boolean automationAllowsInsert(int slot) {
+        return (screwdriverMode & 2) == 0
+                || inventory.getStackInSlot(slot).isEmpty();
+    }
+
+    private boolean outputsCompletelyEmpty() {
+        for (int slot : spec.items().outputs()) {
+            if (!inventory.getStackInSlot(slot).isEmpty()) {
+                return false;
+            }
+        }
+        for (ProcessingMachineSpec.TankSpec tank : spec.fluids().outputs()) {
+            if (!tanks.get(tank.index()).getFluid().isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean hasOutputItems() {
+        for (int slot : spec.items().outputs()) {
+            if (!inventory.getStackInSlot(slot).isEmpty()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private IItemHandler internalItemView(ProcessingMachineSpec.CapabilityAccess access) {
+        return itemViews.computeIfAbsent(access, key -> new SidedItemHandler(
+                inventory,
+                key == ProcessingMachineSpec.CapabilityAccess.OUTPUT
+                        ? List.of() : spec.items().inputs(),
+                key == ProcessingMachineSpec.CapabilityAccess.INPUT
+                        ? List.of() : spec.items().outputs(),
+                key,
+                this::markMutation,
+                this::automationAllowsInsert));
+    }
+
+    private IFluidHandler internalFluidView(ProcessingMachineSpec.CapabilityAccess access) {
+        if (access == ProcessingMachineSpec.CapabilityAccess.INPUT
+                && spec.fluids().inputs().isEmpty()) {
+            return null;
+        }
+        if (access == ProcessingMachineSpec.CapabilityAccess.OUTPUT
+                && spec.fluids().outputs().isEmpty()) {
+            return null;
+        }
+        return fluidViews.computeIfAbsent(access, key -> new SidedFluidHandler(
+                tanks,
+                key == ProcessingMachineSpec.CapabilityAccess.OUTPUT
+                        ? List.of()
+                        : spec.fluids().inputs().stream()
+                                .map(ProcessingMachineSpec.TankSpec::index)
+                                .toList(),
+                key == ProcessingMachineSpec.CapabilityAccess.INPUT
+                        ? List.of()
+                        : spec.fluids().outputs().stream()
+                                .map(ProcessingMachineSpec.TankSpec::index)
+                                .toList(),
+                key,
+                this::markMutation));
+    }
+
+    private void autoInputItems() {
+        Direction side = spec.sidedIo().itemsChannel()
+                .autoInputWorld(machineFront())
+                .orElse(null);
+        if (side == null) {
+            return;
+        }
+        ProcessingMachineAutoIo.moveItems(
+                ProcessingMachineAutoIo.neighborItems(level, worldPosition, side),
+                internalItemView(ProcessingMachineSpec.CapabilityAccess.INPUT));
+    }
+
+    private void autoOutputItems(boolean pulse) {
+        if (disabledItemOutput || !hasOutputItems()) {
+            return;
+        }
+        Direction side = spec.sidedIo().itemsChannel()
+                .autoOutputWorld(machineFront())
+                .orElse(null);
+        if (side == null) {
+            return;
+        }
+        if (!pulse && level.getGameTime() % 200L != 5L) {
+            return;
+        }
+        ProcessingMachineAutoIo.moveItems(
+                internalItemView(ProcessingMachineSpec.CapabilityAccess.OUTPUT),
+                ProcessingMachineAutoIo.neighborItems(level, worldPosition, side));
+    }
+
+    private void autoInputFluids() {
+        Direction side = spec.sidedIo().fluidsChannel()
+                .autoInputWorld(machineFront())
+                .orElse(null);
+        if (side == null) {
+            return;
+        }
+        ProcessingMachineAutoIo.moveFluids(
+                ProcessingMachineAutoIo.neighborFluids(level, worldPosition, side),
+                internalFluidView(ProcessingMachineSpec.CapabilityAccess.INPUT));
+    }
+
+    private void autoOutputFluids() {
+        Direction side = spec.sidedIo().fluidsChannel()
+                .autoOutputWorld(machineFront())
+                .orElse(null);
+        if (side == null) {
+            return;
+        }
+        ProcessingMachineAutoIo.moveFluids(
+                internalFluidView(ProcessingMachineSpec.CapabilityAccess.OUTPUT),
+                ProcessingMachineAutoIo.neighborFluids(level, worldPosition, side));
+    }
+
     public final IItemHandler items(Direction side) {
         ProcessingMachineSpec.CapabilityAccess access =
                 spec.sidedIo().items().resolve(machineFront(), side);
@@ -660,23 +898,39 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         }
         return itemViews.computeIfAbsent(access, key -> new SidedItemHandler(
                 inventory,
+                key == ProcessingMachineSpec.CapabilityAccess.OUTPUT
+                        ? List.of() : spec.items().inputs(),
                 key == ProcessingMachineSpec.CapabilityAccess.INPUT
-                        ? spec.items().inputs() : spec.items().outputs(),
+                        ? List.of() : spec.items().outputs(),
                 key,
-                this::markMutation));
+                this::markMutation,
+                this::automationAllowsInsert));
     }
 
     public final IFluidHandler fluids(Direction side) {
         ProcessingMachineSpec.CapabilityAccess access =
-                spec.sidedIo().fluids().resolve(machineFront(), side);
+                ProcessingMachineAutoIo.overlayFluidAccess(
+                        spec.sidedIo().fluids().resolve(machineFront(), side),
+                        side,
+                        spec.sidedIo().fluidsChannel()
+                                .autoOutputWorld(machineFront())
+                                .orElse(null),
+                        disabledFluidOutput);
         if (access == ProcessingMachineSpec.CapabilityAccess.NONE) {
             return null;
         }
         return fluidViews.computeIfAbsent(access, key -> new SidedFluidHandler(
                 tanks,
-                (key == ProcessingMachineSpec.CapabilityAccess.INPUT
-                        ? spec.fluids().inputs() : spec.fluids().outputs())
-                        .stream().map(ProcessingMachineSpec.TankSpec::index).toList(),
+                key == ProcessingMachineSpec.CapabilityAccess.OUTPUT
+                        ? List.of()
+                        : spec.fluids().inputs().stream()
+                                .map(ProcessingMachineSpec.TankSpec::index)
+                                .toList(),
+                key == ProcessingMachineSpec.CapabilityAccess.INPUT
+                        ? List.of()
+                        : spec.fluids().outputs().stream()
+                                .map(ProcessingMachineSpec.TankSpec::index)
+                                .toList(),
                 key,
                 this::markMutation));
     }
@@ -690,7 +944,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                 spec.sidedIo().fluids().resolve(machineFront(), side);
         return switch (access) {
             case INPUT -> maintenanceFluids();
-            case OUTPUT -> fluids(side);
+            case OUTPUT, BOTH -> fluids(side);
             case NONE -> null;
         };
     }
@@ -1110,6 +1364,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         recipeCache.invalidate();
         coverRecipeCache = null;
         coverRecipeCacheTick = Long.MIN_VALUE;
+        inventoryChangedForAutoIo = true;
         markMutation();
     }
 
@@ -1231,6 +1486,11 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         tag.putBoolean("machine_cover_enabled", coverEnabled);
         tag.putBoolean("machine_covers_stopped", coversStopped);
         tag.putInt("machine_selector_mode", selectorMode);
+        tag.putBoolean("gt6_disabled_item_in", disabledItemInput);
+        tag.putBoolean("gt6_disabled_item_out", disabledItemOutput);
+        tag.putBoolean("gt6_disabled_fluid_in", disabledFluidInput);
+        tag.putBoolean("gt6_disabled_fluid_out", disabledFluidOutput);
+        tag.putInt("gt6_screwdriver_mode", screwdriverMode);
         CompoundTag coverTag = new CompoundTag();
         covers.save(coverTag, registries);
         tag.put("machine_covers", coverTag);
@@ -1284,6 +1544,11 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         selectorMode = Math.max(
                 0,
                 Math.min(15, tag.getInt("machine_selector_mode")));
+        disabledItemInput = tag.getBoolean("gt6_disabled_item_in");
+        disabledItemOutput = tag.getBoolean("gt6_disabled_item_out");
+        disabledFluidInput = tag.getBoolean("gt6_disabled_fluid_in");
+        disabledFluidOutput = tag.getBoolean("gt6_disabled_fluid_out");
+        screwdriverMode = Math.max(0, Math.min(3, tag.getInt("gt6_screwdriver_mode")));
         if (tag.contains("machine_covers")) {
             covers.load(
                     tag.getCompound("machine_covers"),
