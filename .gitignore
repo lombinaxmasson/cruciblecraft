@@ -95,5 +95,29 @@ tools/waves/**/compile_report.json
 !tools/waves/worldgen/gt-stone-layer-rocks/
 !tools/waves/worldgen/gt-stone-layer-rocks/**
 
+# Closed-card tools-root dump evidence. Same names as waves, plus source
+# siblings and currentness sidecars. Leave on disk for local replay.
+# Policy-owned keepers (gt6_pipe_source.json, --check manifests) stay tracked.
+tools/*_source.json
+!tools/gt6_pipe_source.json
+tools/*_dump_slice.json
+tools/*_identity_ledger_delta.json
+tools/*_equivalence.json
+tools/*_player_path.json
+tools/*_player_path_support.json
+tools/*_layered_player_path.json
+tools/*_shard_manifest.json
+tools/*_census_delta.json
+tools/*_load_projection.json
+tools/*_load_projection_input.json
+tools/*_compile_report.json
+tools/*_source_receipt.json
+tools/*_source_review.json
+tools/*_source_pack_manifest.json
+tools/*_publication_delta.json
+tools/*_operand_runtime_map.json
+tools/*.currentness.json
+tools/census.json
+
 __pycache__/
 *.pyc

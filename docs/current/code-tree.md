@@ -68,11 +68,14 @@ Cursor 的 `.vscode/settings.json` 会把运行目录和缓存从资源管理器
 
 已关闭波次的 GameTest 日志和巨型输入（`tools/waves/**/source.json`、
 `dump_slice.json`、player-path / census-delta / load-projection 等）写在
-`.gitignore` 里。本机回放可以继续读磁盘上的文件；新克隆没有它们。
+`.gitignore` 里。同样的证据文件名在 `tools/` 根上也忽略（`*_source.json`、
+`census.json`、`*.currentness.json` 以及 publication-delta / shard-manifest
+等同名 dump），本机回放仍可读盘；新克隆没有它们。
 `gametest_receipt.json`、`production_lock.json`、`topology.json`、
 `readiness.json`、`denominator.json` 仍跟踪。现行 unique-active
-`tools/waves/worldgen/gt-stone-layer-rocks/` 全部仍跟踪。不要把这些
-gitignore 模式套到 `tools/` 根上那摊仍被 `--check` 对着比的 JSON。
+`tools/waves/worldgen/gt-stone-layer-rocks/` 全部仍跟踪。不要忽略
+`--check` 对着比的清单（`python_test_policy.json`、art / registry
+manifests、`gt6_pipe_source.json`、`hopper_hopper_source_evidence.json` 等）。
 
 ## 冻结的生成资源根
 

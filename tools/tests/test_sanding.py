@@ -105,9 +105,10 @@ class SandingCardTest(unittest.TestCase):
         self.assertNotIn("player_complete", str(policy))
 
     def test_reclaim_sources_are_source_backed(self) -> None:
-        reclaim_source = census.load_json(
-            ROOT / "tools" / "tool_head_prefix_reclaim_source.json"
-        )
+        reclaim_path = ROOT / "tools" / "tool_head_prefix_reclaim_source.json"
+        if not reclaim_path.is_file():
+            self.skipTest("closed-card reclaim source is local evidence, not cloned")
+        reclaim_source = census.load_json(reclaim_path)
         self.assertEqual(12_278, reclaim_source["counts"]["identity_count"])
         remap = census.load_json(ROOT / "tools" / "tool_head_prefix_remap.json")
         self.assertEqual(13_938, remap["counts"]["mapped"])

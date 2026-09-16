@@ -35,6 +35,42 @@ CLOSED_WAVE_EVIDENCE_NAMES = frozenset(
         "compile_report.json",
     }
 )
+CLOSED_ROOT_EVIDENCE_KEEP = frozenset(
+    {
+        "gt6_pipe_source.json",
+        "hopper_hopper_source_evidence.json",
+    }
+)
+CLOSED_ROOT_EVIDENCE_EXACT = CLOSED_WAVE_EVIDENCE_NAMES | {"census.json"}
+CLOSED_ROOT_EVIDENCE_SUFFIXES = (
+    "_source.json",
+    "_dump_slice.json",
+    "_identity_ledger_delta.json",
+    "_equivalence.json",
+    "_player_path.json",
+    "_player_path_support.json",
+    "_layered_player_path.json",
+    "_shard_manifest.json",
+    "_census_delta.json",
+    "_load_projection.json",
+    "_load_projection_input.json",
+    "_compile_report.json",
+    "_source_receipt.json",
+    "_source_review.json",
+    "_source_pack_manifest.json",
+    "_publication_delta.json",
+    "_operand_runtime_map.json",
+)
+
+
+def is_closed_root_dump_evidence(name: str) -> bool:
+    if name in CLOSED_ROOT_EVIDENCE_KEEP:
+        return False
+    if name in CLOSED_ROOT_EVIDENCE_EXACT:
+        return True
+    if name.endswith(".currentness.json"):
+        return True
+    return any(name.endswith(suffix) for suffix in CLOSED_ROOT_EVIDENCE_SUFFIXES)
 
 
 class PythonTestWorkflowTest(unittest.TestCase):
@@ -289,9 +325,18 @@ class PythonTestWorkflowTest(unittest.TestCase):
                 leaked.append(path)
             elif path.startswith("tools/waves/") and name in CLOSED_WAVE_EVIDENCE_NAMES:
                 leaked.append(path)
+            elif (
+                path.startswith("tools/")
+                and path.count("/") == 1
+                and is_closed_root_dump_evidence(name)
+            ):
+                leaked.append(path)
         self.assertEqual([], leaked)
         for ledger in UNIQUE_ACTIVE_WAVE_LEDGERS:
             self.assertIn(ledger, tracked)
+        self.assertIn("tools/gt6_pipe_source.json", tracked)
+        self.assertIn("tools/hopper_hopper_source_evidence.json", tracked)
+        self.assertIn("tools/python_test_policy.json", tracked)
 
     def test_game_test_java_lives_in_the_test_source_set(self) -> None:
         main = ROOT / "src/main/java/com/masson/cruciblecraft/gametest"
