@@ -84,6 +84,12 @@ class ProcessingMachineResourceTest {
                 assertTrue(
                         textures.has("bot_north") && textures.has("top_north"),
                         machine + " needs colored and overlay front textures");
+                assertTrue(
+                        textures.get("bot_east").getAsString().endsWith("/left"),
+                        machine + " east must be GT6 left");
+                assertTrue(
+                        textures.get("bot_west").getAsString().endsWith("/right"),
+                        machine + " west must be GT6 right");
                 assertNotEquals(
                         textures.get("bot_north").getAsString(),
                         textures.get("bot_east").getAsString());
