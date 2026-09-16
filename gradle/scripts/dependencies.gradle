@@ -1,0 +1,22 @@
+configurations {
+    localRuntime
+    if (providers.gradleProperty('optionalCompat').orNull != 'ccOnly') {
+        runtimeClasspath.extendsFrom localRuntime
+    }
+}
+
+dependencies {
+    compileOnly 'maven.modrinth:jade:15.10.0+neoforge'
+    compileOnly 'maven.modrinth:emi:1.1.24+1.21.1+neoforge'
+    compileOnly 'dev.latvian.mods:kubejs-neoforge:2101.7.2-build.368'
+    localRuntime 'maven.modrinth:jade:15.10.0+neoforge'
+    localRuntime 'maven.modrinth:emi:1.1.24+1.21.1+neoforge'
+
+    testImplementation platform('org.junit:junit-bom:5.11.4')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'com.mojang:datafixerupper:8.0.16'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+sourceSets.test.compileClasspath += sourceSets.main.compileClasspath
+sourceSets.test.runtimeClasspath += sourceSets.main.runtimeClasspath

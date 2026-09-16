@@ -38,7 +38,12 @@ def load_policy(path: Path = POLICY) -> dict[str, Any]:
     document = json.loads(path.read_text(encoding="utf-8"))
     if document.get("schema_version") != 2:
         raise PolicyError("unsupported Python test policy schema")
-    required = {"default_suite", "active_test_modules", "affected_rules"}
+    required = {
+        "default_suite",
+        "active_test_modules",
+        "affected_rules",
+        "test_tiers",
+    }
     missing = sorted(required - set(document))
     if missing:
         raise PolicyError(f"Python test policy omits {missing}")
@@ -100,6 +105,25 @@ def validate_policy(policy: dict[str, Any]) -> None:
     if len(modules) != len(policy["active_test_modules"]):
         raise PolicyError("active_test_modules must be unique module stems")
     allowed = set(modules)
+    tiers = policy.get("test_tiers")
+    if not isinstance(tiers, dict):
+        raise PolicyError("test_tiers must be an object")
+    for key in ("manual_replay", "historical"):
+        if key not in tiers:
+            raise PolicyError(f"test_tiers omits {key}")
+        names = normalize_module_names(tiers.get(key) or [])
+        if len(names) != len(tiers[key]):
+            raise PolicyError(f"test_tiers.{key} must be unique module stems")
+        overlap = sorted(set(names) & allowed)
+        if overlap:
+            raise PolicyError(f"test_tiers.{key} overlaps active modules: {overlap}")
+    manual = set(normalize_module_names(tiers["manual_replay"]))
+    historical = set(normalize_module_names(tiers["historical"]))
+    overlap = sorted(manual & historical)
+    if overlap:
+        raise PolicyError(
+            f"test_tiers overlap between replay and historical: {overlap}"
+        )
     for rule in policy.get("affected_rules") or []:
         if not rule.get("paths") or not rule.get("test_modules"):
             raise PolicyError("every affected rule needs paths and test_modules")

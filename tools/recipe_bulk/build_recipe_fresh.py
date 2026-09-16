@@ -8,7 +8,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
@@ -24,7 +24,7 @@ MIXER = (
     ROOT
     / "src/test/resources/generic_recipe_import/mixer_exact_multi/recipe_import.json"
 )
-BUILD_GRADLE = ROOT / "build.gradle"
+GRADLE_SCRIPTS = ROOT / "gradle" / "scripts"
 RECEIPT_NAMES = (
     "gametest_receipt.json",
     "readiness.json",
@@ -36,6 +36,14 @@ def _import_errors(path: Path) -> list[str]:
     return source_import.check_import(path)
 
 
+def _gradle_text() -> str:
+    chunks = [(ROOT / "build.gradle").read_text(encoding="utf-8")]
+    if GRADLE_SCRIPTS.is_dir():
+        for path in sorted(GRADLE_SCRIPTS.glob("*.gradle")):
+            chunks.append(path.read_text(encoding="utf-8"))
+    return "\n".join(chunks)
+
+
 def check() -> list[str]:
     errors: list[str] = []
     errors.extend(machine_delivery.check())
@@ -44,11 +52,11 @@ def check() -> list[str]:
         return errors
     errors.extend(_import_errors(SMELTER))
     errors.extend(_import_errors(MIXER))
-    gradle = BUILD_GRADLE.read_text(encoding="utf-8")
+    gradle = _gradle_text()
     if "waveRecipes" not in gradle:
-        errors.append("build.gradle is missing the -PwaveRecipes GameTest gate")
+        errors.append("Gradle scripts are missing the -PwaveRecipes GameTest gate")
     if "neoforge.enabledGameTestNamespaces" not in gradle:
-        errors.append("build.gradle is missing GameTest namespace isolation")
+        errors.append("Gradle scripts are missing GameTest namespace isolation")
     with tempfile.TemporaryDirectory(prefix="recipe-fresh-") as tmp:
         root = Path(tmp)
         try:

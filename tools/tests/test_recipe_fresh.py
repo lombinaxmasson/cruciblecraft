@@ -7,7 +7,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools import build_recipe_fresh
+from tools.recipe_bulk import build_recipe_fresh
 from tools import census_common as census
 from tools.recipe_bulk import source_import
 from tools.recipe_bulk.pilot import reviewed_lock

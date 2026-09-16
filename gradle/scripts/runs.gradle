@@ -1,0 +1,172 @@
+neoForge {
+    version = project.neo_version
+
+    parchment {
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.parchment_minecraft_version
+    }
+
+    runs {
+        client {
+            client()
+
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+            if (providers.gradleProperty('optionalCompat').orNull == 'ccOnly') {
+                gameDirectory = project.file('run-optional-compat-client')
+            } else if (providers.gradleProperty('optionalCompat').orNull == 'optional') {
+                gameDirectory = project.file('run-optional-compat-client-optional')
+            } else if (providers.gradleProperty('wireCodecSmoke').orNull == 'dedicated') {
+                gameDirectory = project.file('run-wire-codec-client')
+                programArgument '--quickPlayMultiplayer'
+                programArgument '127.0.0.1:25566'
+            } else if (providers.gradleProperty('clientSmoke').isPresent()) {
+                systemProperty 'cruciblecraft.clientSmoke',
+                        providers.gradleProperty('clientSmoke').get()
+                systemProperty 'cruciblecraft.clientSmokeExit', 'true'
+                systemProperty 'cruciblecraft.smokeReceipt',
+                        providers.gradleProperty('smokeReceipt')
+                                .getOrElse(file('build/verification/receipts/client-smoke.json')
+                                        .absolutePath)
+                systemProperty 'cruciblecraft.smokeNonce',
+                        providers.gradleProperty('smokeNonce').getOrElse('')
+                systemProperty 'cruciblecraft.playerCapability',
+                        providers.gradleProperty('playerCapability').getOrElse('')
+                gameDirectory = project.file('run-client-smoke')
+            }
+        }
+
+        server {
+            server()
+            programArgument '--nogui'
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+            if (providers.gradleProperty('optionalCompat').orNull == 'ccOnly') {
+                gameDirectory = project.file('run-optional-compat-server')
+            } else if (providers.gradleProperty('optionalCompat').orNull == 'optional') {
+                gameDirectory = project.file('run-optional-compat-optional')
+            } else if (providers.gradleProperty('wireCodecSmoke').orNull == 'dedicated') {
+                gameDirectory = project.file('run-wire-codec-server')
+            }
+        }
+
+        gameTestServer {
+            type = "gameTestServer"
+            jvmArgument '-Xmx4G'
+            if (providers.gradleProperty('scale').isPresent()) {
+                systemProperty 'neoforge.enabledGameTestNamespaces', 'cruciblecraft_scale'
+                gameDirectory = project.file('run-scale')
+            } else if (providers.gradleProperty('recipeCensus').isPresent()) {
+                systemProperty 'neoforge.enabledGameTestNamespaces', 'cruciblecraft_census'
+                gameDirectory = project.file('run-recipe-census')
+            } else if (providers.gradleProperty('waveRecipes').isPresent()) {
+                def waveSlug = providers.gradleProperty('waveRecipes').get()
+                if (waveSlug ==~ /(?i)t\d{1,2}.*/) {
+                    throw new GradleException(
+                            "semantic -PwaveRecipes rejects milestone token ${waveSlug}")
+                }
+                def waveNs = 'cruciblecraft_wave_' + waveSlug.replace('/', '_').replace('-', '_')
+                systemProperty 'neoforge.enabledGameTestNamespaces', waveNs
+                gameDirectory = project.file('run-wave-' + waveSlug.replace('/', '-'))
+            } else if (providers.gradleProperty('gameTestNamespaces').isPresent()) {
+                systemProperty 'neoforge.enabledGameTestNamespaces',
+                        providers.gradleProperty('gameTestNamespaces').get()
+                gameDirectory = project.file('run-game-test-filtered')
+            } else {
+                systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+            }
+            if (providers.gradleProperty('clientSmoke').isPresent()) {
+                systemProperty 'cruciblecraft.clientSmoke',
+                        providers.gradleProperty('clientSmoke').get()
+                systemProperty 'cruciblecraft.smokeReceipt',
+                        providers.gradleProperty('smokeReceipt')
+                                .getOrElse(file('build/verification/receipts/gametest-smoke.json')
+                                        .absolutePath)
+                systemProperty 'cruciblecraft.smokeNonce',
+                        providers.gradleProperty('smokeNonce').getOrElse('')
+                systemProperty 'cruciblecraft.playerCapability',
+                        providers.gradleProperty('playerCapability').getOrElse('')
+            }
+        }
+
+        data {
+            data()
+
+            def datagenOutput = providers.gradleProperty('datagenOutput')
+                    .map { file(it) }
+                    .getOrElse(file('src/generated/resources/'))
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output',
+                    datagenOutput.getAbsolutePath(), '--existing',
+                    file('src/main/resources/').getAbsolutePath(),
+                    '--existing',
+                    file('src/generated/resources/').getAbsolutePath()
+        }
+
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            logLevel = org.slf4j.event.Level.DEBUG
+            if (providers.gradleProperty('materialStressScenario').isPresent()) {
+                systemProperty 'cruciblecraft.materialStressScenario',
+                        providers.gradleProperty('materialStressScenario').get()
+                systemProperty 'cruciblecraft.materialStressCount',
+                        providers.gradleProperty('materialStressCount').getOrElse('20000')
+            }
+            if (providers.gradleProperty('scale').isPresent()) {
+                systemProperty 'cruciblecraft.scale',
+                        providers.gradleProperty('scale').get()
+                systemProperty 'cruciblecraft.scale.output',
+                        project.file('tools/scale_samples').absolutePath
+            }
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+    }
+}
+
+def normalizeResourceJsonNewlines = tasks.register(
+        'normalizeResourceJsonNewlines') {
+    group = 'verification'
+    description = 'Normalizes resource JSON files to repository LF endings.'
+    doLast {
+        fileTree('src') {
+            include '**/*.json'
+        }.files.each { generated ->
+            String original = generated.getText('UTF-8')
+            String normalized = original
+                    .replace('\r\n', '\n')
+                    .replace('\r', '\n')
+            if (normalized != original) {
+                generated.write(normalized, 'UTF-8')
+            }
+        }
+    }
+}
+
+def restorePythonBlockArt = tasks.register('restorePythonBlockArt', Exec) {
+    group = 'verification'
+    description = 'Restores Python-owned gt_block/gt_stone models after runData HashCache.'
+    commandLine 'python', 'tools/build_block_art.py', '--write'
+    workingDir rootDir
+    onlyIf {
+        def isolated = providers.gradleProperty('datagenOutput')
+        !isolated.isPresent() ||
+                file(isolated.get()).canonicalFile ==
+                file('src/generated/resources').canonicalFile
+    }
+}
+
+tasks.named('runData').configure {
+    doFirst {
+        def isolated = providers.gradleProperty('datagenOutput')
+        if (isolated.isPresent()) {
+            def output = file(isolated.get())
+            def committed = file('src/generated/resources')
+            if (output.canonicalFile != committed.canonicalFile) {
+                delete output
+            }
+        }
+    }
+    finalizedBy restorePythonBlockArt, normalizeResourceJsonNewlines
+}

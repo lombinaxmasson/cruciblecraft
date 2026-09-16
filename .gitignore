@@ -38,36 +38,14 @@ bin/
 
 ### Minecraft Modding ###
 run/
-run-client-smoke/
-run-game-test-filtered/
-run-wire-codec-*/
-run-t31-scale/
-run-t31-compat-server/
-run-t31-compat-optional/
-run-t31-compat-client/
-run-t31-compat-client-optional/
-run-t35-census/
-run-t36-machines/
-run-t37-recipes/
-run-t38-recipes/
-run-t39-recipes/
-run-t40-recipes/
-run-t41-recipes/
-run-t43-recipes/
-run-t44-storage/
-run-t45-recipes/
-run-t46-recipes/
-run-t47-recipes/
-run-t48-recipes/
-run-t49-recipes/
-run-wave-*/
-tools/t31_compat_samples/
+run-*/
 !**/src/**/run/
 **/src/generated/**/.cache/
 repo/
 !**/src/**/repo/
 src/src/
 4.5Fix/
+tools/t31_compat_samples/
 
 ### Local reference source ###
 gt6_code/
@@ -83,7 +61,9 @@ replay_pid*.log
 *.rar
 *.7z
 
-### Local regression reports / Python caches ###
+### Local scratch / Python caches ###
+tools/scratch/
+tools/_tmp_*.py
 tools/gt6_recipe_compare_report.json
 tools/gt6_recipe_normalized_reference.json
 tools/gt6_extruder_templates_v5.json

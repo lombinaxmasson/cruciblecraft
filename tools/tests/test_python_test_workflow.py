@@ -1,12 +1,16 @@
 from __future__ import annotations
 
 import copy
+import json
+import re
 import tempfile
 import unittest
 from pathlib import Path
 from unittest import mock
 
 from tools import run_python_tests as workflow
+
+ROOT = Path(__file__).resolve().parents[2]
 
 
 class PythonTestWorkflowTest(unittest.TestCase):
@@ -206,6 +210,43 @@ class PythonTestWorkflowTest(unittest.TestCase):
             "inactive test modules",
         ):
             workflow.validate_policy(changed)
+
+    def test_every_python_test_module_is_tiered(self) -> None:
+        disk = {
+            path.stem
+            for path in (ROOT / "tools" / "tests").glob("test_*.py")
+        }
+        active = set(self.policy["active_test_modules"])
+        tiers = self.policy["test_tiers"]
+        manual = set(tiers["manual_replay"])
+        historical = set(tiers["historical"])
+        self.assertEqual(set(), (manual | historical) & active)
+        self.assertEqual(set(), manual & historical)
+        self.assertEqual(disk, active | manual | historical)
+
+    def test_generated_resource_roots_match_gradle_source_sets(self) -> None:
+        document = json.loads(
+            (ROOT / "tools" / "generated_resource_roots.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        gradle = (
+            ROOT / "gradle" / "scripts" / "source-sets.gradle"
+        ).read_text(encoding="utf-8")
+        declared = [row["path"] for row in document["roots"]]
+        wired = re.findall(r"^\s*srcDir\('([^']+)'\)", gradle, re.M)
+        self.assertEqual(declared, wired)
+        python_declared = [
+            row["path"]
+            for row in document["roots"]
+            if row["owner"] == "python"
+        ]
+        on_disk = sorted(
+            f"src/{path.name}/resources"
+            for path in (ROOT / "src").glob("*_generated")
+            if path.is_dir()
+        )
+        self.assertEqual(sorted(python_declared), on_disk)
 
 
 if __name__ == "__main__":

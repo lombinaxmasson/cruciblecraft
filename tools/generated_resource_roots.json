@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "policy": "Do not add a new src/<name>_generated sibling. New compilers write under an existing frozen root, or under src/generated/resources after an ownership lock that separates Java HashCache from Python artifacts.",
+  "gradle_source_sets": "gradle/scripts/source-sets.gradle",
+  "roots": [
+    {
+      "path": "src/generated/resources",
+      "owner": "java_datagen",
+      "builder": "runData",
+      "notes": "NeoForge HashCache output. Python block/stone models are restored afterwards by tools/build_block_art.py."
+    },
+    {
+      "path": "src/ore_chain_generated/resources",
+      "owner": "python",
+      "builder": "tools/build_gt6_ore_chain.py",
+      "notes": "Offline ore-chain recipes."
+    },
+    {
+      "path": "src/worldgen_generated/resources",
+      "owner": "python",
+      "builder": "tools/build_gt6_veins.py",
+      "notes": "Semantic vein sources compiled to runtime worldgen."
+    },
+    {
+      "path": "src/worldgen_catalog_generated/resources",
+      "owner": "python",
+      "builder": "tools/build_worldgen_catalog.py",
+      "notes": "Ledger-backed ore veins and finite fluid deposits."
+    },
+    {
+      "path": "src/component_rule_generated/resources",
+      "owner": "python",
+      "builder": "tools/build_component_rules.py",
+      "notes": "Compact component sources compiled to material_rule recipes."
+    },
+    {
+      "path": "src/chemical_recipe_generated/resources",
+      "owner": "python",
+      "builder": "frozen historical compiler",
+      "notes": "Audited chemical fluids and recipes from pinned GT6 data. Numbered builder was deleted; do not add a sibling root."
+    },
+    {
+      "path": "src/hydrocarbon_recipe_generated/resources",
+      "owner": "python",
+      "builder": "frozen historical compiler",
+      "notes": "Hydrocarbon processing and fuel rows. Numbered builder was deleted; do not add a sibling root."
+    },
+    {
+      "path": "src/petroleum_recipe_generated/resources",
+      "owner": "python",
+      "builder": "frozen historical compiler",
+      "notes": "Petroleum processing rows. Numbered builder was deleted; do not add a sibling root."
+    },
+    {
+      "path": "src/compact_recipe_policy_generated/resources",
+      "owner": "python",
+      "builder": "tools/recipe_bulk",
+      "notes": "Shared compact publication and dedup datapack resources."
+    },
+    {
+      "path": "src/recipe_generated/resources",
+      "owner": "python",
+      "builder": "tools/recipe_bulk",
+      "notes": "Semantic-wave compact families."
+    },
+    {
+      "path": "src/recipe_support_generated/resources",
+      "owner": "python",
+      "builder": "tools/recipe_bulk",
+      "notes": "Player-path support shards for compact families."
+    }
+  ]
+}

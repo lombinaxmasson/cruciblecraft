@@ -59,7 +59,8 @@ python tools/verify.py release
   dirty paths、命令、测试计数、环境和 PASS/FAIL，不包含文件摘要。
 
 无法映射的代码路径只报告、不失败。`docs/**`、`*.md`、LICENSE / NOTICE 与
-验证隔开：改文档不选任何 profile，fork 也可以不带文档树。
+验证隔开：改文档不选任何 profile，fork 也可以不带文档树。工作副本噪音、
+生成根冻结和 GameTest 迁移边界见 [代码树与工作副本](code-tree.md)。
 
 Gradle 验证任务使用 `--rerun`，只强制命令行上的目标任务执行；未变化的
 `compileJava` / `processResources` 可以 UP-TO-DATE。本地和同一 CI job 复用

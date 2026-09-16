@@ -78,6 +78,7 @@ class ZeroMilestoneNameScannerTest(unittest.TestCase):
         self.assertIn("src/recipeLoadBenchmark", {root.replace("\\", "/") for root in scanner.SCAN_ROOTS})
         self.assertIn("docs/history", scanner.SCAN_ROOTS)
         self.assertIn("docs/decisions", scanner.SCAN_ROOTS)
+        self.assertIn("gradle", scanner.SCAN_ROOTS)
         self.assertIn("README.md", scanner.SCAN_FILES)
 
     def test_only_closed_card_plans_are_exempt(self) -> None:

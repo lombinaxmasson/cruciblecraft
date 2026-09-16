@@ -1,0 +1,32 @@
+repositories {
+    maven {
+        name = 'NeoForgedCdn'
+        url = 'https://neoforged.forgecdn.net/releases'
+        content {
+            includeGroupByRegex 'net\\.neoforged(\\..*)?'
+        }
+    }
+    mavenCentral()
+    maven {
+        name = 'Modrinth'
+        url = 'https://api.modrinth.com/maven'
+        content {
+            includeGroup 'maven.modrinth'
+        }
+    }
+    maven {
+        name = 'LatvianMods'
+        url = 'https://maven.latvian.dev/releases'
+        content {
+            includeGroup 'dev.latvian.mods'
+            includeGroup 'dev.latvian.apps'
+        }
+    }
+    maven {
+        name = 'JitPack'
+        url = 'https://jitpack.io'
+        content {
+            includeGroup 'com.github.rtyley'
+        }
+    }
+}

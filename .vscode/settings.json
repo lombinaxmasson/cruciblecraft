@@ -1,3 +1,47 @@
 {
-  "cursor.general.indexRepositoriesForInstantGrep": false
+  "cursor.general.indexRepositoriesForInstantGrep": false,
+  "files.exclude": {
+    "**/.gradle": true,
+    "**/__pycache__": true,
+    "bin": true,
+    "build": true,
+    "hs_err_pid*.log": true,
+    "logs": true,
+    "replay_pid*.log": true,
+    "run": true,
+    "run-*": true,
+    "src.7z": true,
+    "src/src": true,
+    "tmp-baked_textures": true,
+    "tools/scratch": true
+  },
+  "search.exclude": {
+    "**/.gradle": true,
+    "**/__pycache__": true,
+    "bin": true,
+    "build": true,
+    "logs": true,
+    "run": true,
+    "run-*": true,
+    "src/src": true,
+    "tmp-baked_textures": true,
+    "tools/scratch": true
+  },
+  "files.watcherExclude": {
+    "**/.gradle/**": true,
+    "**/__pycache__/**": true,
+    "bin/**": true,
+    "build/**": true,
+    "gt6_code/**": true,
+    "gt6_dump/**": true,
+    "gt6_referencable_port_code/**": true,
+    "gt6u_code/**": true,
+    "gtceu_code/**": true,
+    "logs/**": true,
+    "run-*/**": true,
+    "run/**": true,
+    "src/src/**": true,
+    "tmp-baked_textures/**": true,
+    "tools/scratch/**": true
+  }
 }

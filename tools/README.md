@@ -2,9 +2,10 @@
 
 Live content uses semantic paths (`tool/assembler/`, `mortar/`, `pipe/`,
 `ingot_form/`, wave slugs such as `assembler/compact` and `bath/identity`).
-Daily verification is `python tools/verify.py`. Compact / Bath /
-ordinary-closure live ledgers, receipts, and currentness sidecars already use
-those slugs.
+Compact / Bath / ordinary-closure live ledgers, receipts, and currentness
+sidecars already use those slugs. Daily verification is
+`python tools/verify.py`. Layout, generated-resource freeze, and local
+working-copy noise are documented in `docs/current/code-tree.md`.
 
 `build_t*.py` builders were deleted. Numbered JSON that remains is either an
 earlier independent stage, a frozen v2 snapshot, or the translation map
@@ -50,19 +51,31 @@ python tools/verify.py release
 The standard-library runner still owns Python test selection:
 
 ```text
-python tools/run_python_tests.py --suite fast
+python tools/run_python_tests.py --suite active
 python tools/run_python_tests.py --suite affected --path <changed-path>
-python tools/run_python_tests.py --suite closure
-python tools/run_python_tests.py --suite source-replay
+python tools/run_python_tests.py --suite modules --module <name>
 ```
 
-- `fast` excludes repository currentness and raw/cache replay tests.
+- `active` is the default. It loads only modules listed in
+  `python_test_policy.json` `active_test_modules`. Directory discovery is
+  forbidden.
 - `affected` uses `python_test_policy.json`; unmatched code paths are reported
-  instead of escalating to `closure`. Documentation paths select the docs
+  instead of selecting extra modules. Documentation paths select no Python
   modules.
-- `closure` must equal unittest discovery exactly once and reports slow tests.
-- `source-replay` is explicit and reports unavailable raw/cache inputs as
-  `SKIP`.
+- `modules` runs an explicit `--module` list, still restricted to active
+  modules.
+
+Inactive `tools/tests/test_*.py` files are classified as `manual_replay` or
+`historical` in `test_tiers`. They are not imported by `verify.py`. Do not
+delete them to “clean up” the tree.
+
+`fast`, `closure`, and `source-replay` suites were removed from the runner.
+Replay of a gitignored dump is a manual `--module` invocation of a
+`manual_replay` test, not a verify suite.
+
+The rest of this verification section is a historical GT6 regression runbook
+(`source-replay`, numbered builders, old CI counts). It is not the current
+`verify.py` contract.
 
 The historical phase-closing runner (`run_full_verification.py`) was deleted.
 Daily gates are `python tools/verify.py` and the semantic recipe compiler.
