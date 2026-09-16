@@ -1,5 +1,7 @@
 package com.masson.cruciblecraft.content.block;
 
+import com.masson.cruciblecraft.worldgen.PebbleShape;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
@@ -9,13 +11,10 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 /**
  * GT6-style small surface rock for one material's {@code rock} form
- * (OP.rockGt). An 8x3x8 pebble that breaks without tools — the early-game
- * cobblestone source — and is tinted per material on the client.
+ * ({@code OP.rockGt}). Positional AABB matching {@code MultiTileEntityRock},
+ * tinted per material on the client.
  */
 public final class RockBlock extends Block {
-    private static final VoxelShape SHAPE =
-            Block.box(4.0, 0.0, 4.0, 12.0, 3.0, 12.0);
-
     private final String materialId;
 
     public RockBlock(String materialId, Properties properties) {
@@ -28,11 +27,16 @@ public final class RockBlock extends Block {
     }
 
     @Override
+    protected long getSeed(BlockState state, BlockPos pos) {
+        return PebbleShape.seed(pos);
+    }
+
+    @Override
     protected VoxelShape getShape(
             BlockState state,
             BlockGetter level,
             BlockPos pos,
             CollisionContext context) {
-        return SHAPE;
+        return PebbleShape.shape(pos);
     }
 }

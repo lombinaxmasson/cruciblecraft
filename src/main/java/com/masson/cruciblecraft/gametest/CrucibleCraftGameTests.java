@@ -112,6 +112,7 @@ import com.masson.cruciblecraft.worldgen.LargeVeinLayout;
 import com.masson.cruciblecraft.worldgen.OreHostVariantCatalog.Host;
 import com.masson.cruciblecraft.worldgen.SubsurfaceFluidDepositConfiguration;
 import com.masson.cruciblecraft.worldgen.SurfaceRockConfiguration;
+import com.masson.cruciblecraft.worldgen.SurfaceRockFeature;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -130,7 +131,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.TagKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -6619,63 +6619,38 @@ public final class CrucibleCraftGameTests {
         SurfaceRockConfiguration config =
                 (SurfaceRockConfiguration) configured.config();
         helper.assertTrue(
-                config.rarity() == 128,
-                "surface_rock_scatter rarity drifted from catalog declaration");
+                config.amount() == 2,
+                "surface_rock_scatter amount drifted from WorldgenRocks");
         helper.assertTrue(
-                config.rockTag().location().equals(
-                        ResourceLocation.fromNamespaceAndPath("c", "rocks")),
-                "surface_rock_scatter rock_tag drifted from catalog declaration");
-        TagKey<Block> rockTag = config.rockTag();
-        var blockRegistry = level.registryAccess().registryOrThrow(
-                Registries.BLOCK);
-        var taggedRocks = blockRegistry.getTag(rockTag)
-                .map(holders -> holders.stream()
-                        .map(holder -> holder.value())
-                        .filter(block -> block instanceof RockBlock)
-                        .toList())
-                .orElse(List.of());
-        helper.assertTrue(
-                !taggedRocks.isEmpty(),
-                "Runtime c:rocks tag has no RockBlock members from "
-                        + "GeneratedMaterialPack");
+                config.probability() == 3,
+                "surface_rock_scatter probability drifted from WorldgenRocks");
 
         BlockPos chunkOrigin = chunkAlignedOrigin(helper);
         int surfaceY = 64;
         BlockPos protectedPos = chunkOrigin.offset(8, surfaceY + 1, 8);
-        long placementSeed = findSurfaceRockScatterSeed(
-                level,
-                configured,
-                chunkOrigin,
-                surfaceY,
-                protectedPos);
-        helper.assertTrue(
-                placementSeed >= 0L,
-                "Could not find a deterministic surface-rock scatter seed");
         prepareSurfaceRockScatterPad(level, chunkOrigin, surfaceY);
         level.setBlock(
                 protectedPos,
                 Blocks.STONE.defaultBlockState(),
                 Block.UPDATE_ALL);
+        boolean placed = SurfaceRockFeature.tryPlace(
+                level,
+                chunkOrigin.getX(),
+                surfaceY,
+                chunkOrigin.getZ(),
+                new java.util.Random(1L),
+                Blocks.DIRT.defaultBlockState());
         helper.assertTrue(
-                configured.place(
-                        level,
-                        level.getChunkSource().getGenerator(),
-                        RandomSource.create(placementSeed),
-                        chunkOrigin),
+                placed,
                 "surface_rock_scatter failed real placement");
-
-        boolean placedRock = false;
-        for (int dx = 0; dx < 16; dx++) {
-            for (int dz = 0; dz < 16; dz++) {
-                BlockPos pos = chunkOrigin.offset(dx, surfaceY + 1, dz);
-                if (level.getBlockState(pos).getBlock() instanceof RockBlock) {
-                    placedRock = true;
-                }
-            }
-        }
         helper.assertTrue(
-                placedRock,
-                "surface_rock_scatter did not place a RockBlock into air");
+                level.getBlockState(chunkOrigin.offset(0, surfaceY + 1, 0)).getBlock()
+                        instanceof com.masson.cruciblecraft.content.block.GtSurfaceRockBlock,
+                "surface_rock_scatter did not place gt_surface_rock into air");
+        helper.assertTrue(
+                !(level.getBlockState(chunkOrigin.offset(0, surfaceY + 1, 0)).getBlock()
+                        instanceof RockBlock),
+                "surface_rock_scatter must not place a catalog RockBlock");
         helper.assertTrue(
                 level.getBlockState(protectedPos).is(Blocks.STONE),
                 "surface_rock_scatter overwrote an occupied surface cell");
@@ -6711,29 +6686,6 @@ public final class CrucibleCraftGameTests {
                         Block.UPDATE_ALL);
             }
         }
-    }
-
-    private static long findSurfaceRockScatterSeed(
-            ServerLevel level,
-            ConfiguredFeature<?, ?> configured,
-            BlockPos chunkOrigin,
-            int surfaceY,
-            BlockPos protectedPos) {
-        for (long seed = 0L; seed < 10_000L; seed++) {
-            prepareSurfaceRockScatterPad(level, chunkOrigin, surfaceY);
-            level.setBlock(
-                    protectedPos,
-                    Blocks.STONE.defaultBlockState(),
-                    Block.UPDATE_ALL);
-            if (configured.place(
-                    level,
-                    level.getChunkSource().getGenerator(),
-                    RandomSource.create(seed),
-                    chunkOrigin)) {
-                return seed;
-            }
-        }
-        return -1L;
     }
 
     private static void assertLargeVeinPlaces(

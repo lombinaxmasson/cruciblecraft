@@ -12,10 +12,6 @@ import com.google.gson.JsonParser;
 
 import org.junit.jupiter.api.Test;
 
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
-
 /** Codec round-trip for the surface rock scatter configuration. */
 class SurfaceRockFeatureConfigTest {
     private static final Path SURFACE_SCATTER_DECLARATION = Path.of(
@@ -26,17 +22,16 @@ class SurfaceRockFeatureConfigTest {
                     + "/configured_feature/surface_rock_scatter.json");
 
     @Test
-    void codecRoundTripsRarityAndRockTag() throws Exception {
+    void codecRoundTripsAmountAndProbability() throws Exception {
         JsonObject declaration = JsonParser.parseString(
                 Files.readString(SURFACE_SCATTER_DECLARATION))
                 .getAsJsonObject()
                 .getAsJsonObject("config");
-        int rarity = declaration.get("rarity").getAsInt();
-        ResourceLocation rockTag = ResourceLocation.parse(
-                declaration.get("rock_tag").getAsString());
+        int amount = declaration.get("amount").getAsInt();
+        int probability = declaration.get("probability").getAsInt();
         SurfaceRockConfiguration config = new SurfaceRockConfiguration(
-                rarity,
-                TagKey.create(Registries.BLOCK, rockTag));
+                amount,
+                probability);
         var encoded = SurfaceRockConfiguration.CODEC
                 .encodeStart(JsonOps.INSTANCE, config)
                 .getOrThrow();
@@ -44,21 +39,21 @@ class SurfaceRockFeatureConfigTest {
                 .parse(JsonOps.INSTANCE, encoded)
                 .getOrThrow();
         assertEquals(config, decoded);
-        assertEquals(rarity, decoded.rarity());
-        assertEquals(rockTag, decoded.rockTag().location());
+        assertEquals(amount, decoded.amount());
+        assertEquals(probability, decoded.probability());
         JsonObject json = (JsonObject) encoded;
-        assertEquals(rockTag.toString(), json.get("rock_tag").getAsString());
+        assertEquals(amount, json.get("amount").getAsInt());
 
         JsonObject runtime = JsonParser.parseString(
                 Files.readString(CONFIGURED_RUNTIME))
                 .getAsJsonObject()
                 .getAsJsonObject("config");
         assertEquals(
-                runtime.get("rarity").getAsInt(),
-                decoded.rarity());
+                runtime.get("amount").getAsInt(),
+                decoded.amount());
         assertEquals(
-                runtime.get("rock_tag").getAsString(),
-                decoded.rockTag().location().toString());
+                runtime.get("probability").getAsInt(),
+                decoded.probability());
     }
 
     @Test
@@ -75,5 +70,8 @@ class SurfaceRockFeatureConfigTest {
         assertEquals(
                 declaration.getAsJsonObject("config").toString(),
                 runtime.getAsJsonObject("config").toString());
+        assertEquals(
+                "cruciblecraft:gt_surface_rock",
+                declaration.get("placer").getAsString());
     }
 }

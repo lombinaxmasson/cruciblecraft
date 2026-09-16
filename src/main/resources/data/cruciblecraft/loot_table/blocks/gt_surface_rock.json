@@ -1,0 +1,64 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:flint",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "cruciblecraft:gt_surface_rock",
+                  "properties": {
+                    "contents": "flint"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "cruciblecraft:meteoric_iron/rock",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "cruciblecraft:gt_surface_rock",
+                  "properties": {
+                    "contents": "meteoric_rock"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "cruciblecraft:meteoric_iron/raw_ore",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "cruciblecraft:gt_surface_rock",
+                  "properties": {
+                    "contents": "meteoric_raw"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "cruciblecraft:stone/rock"
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

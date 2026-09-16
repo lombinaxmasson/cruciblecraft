@@ -33,8 +33,8 @@
   不得宣称 `runtime_ready`。PUV 六张 capability 是 `frozen` + `paused` 的
   CC 扩展，计划文件也还在 Prep；不要读成原版 PUV2+ 科技线或
   `player_complete`。语言键与显示名规范收口
-  （`localization/language-key-display-name-normalization`）是现行 unique-active，
-  已关 `runtime_ready`：点号 translation key 与显示名规范已进生成器；
+  （`localization/language-key-display-name-normalization`）已关 `runtime_ready`：
+  点号 translation key 与显示名规范已进生成器；
   关闭 `player_complete` 时才删 dual slash/dot lookup。不改 registry / 模型 /
   loot / 存档 ID，不得把手改 generated lang 当成实现。
 - 跨域审计 [GT6 管道与线缆语义重基线](../history/card-plans/closed/GT6管道与线缆语义重基线详细计划.md)

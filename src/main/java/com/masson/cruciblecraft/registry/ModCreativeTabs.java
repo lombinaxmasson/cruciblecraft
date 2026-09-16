@@ -102,6 +102,7 @@ public final class ModCreativeTabs {
                         com.masson.cruciblecraft.worldgen.crop.GlowtusColor.ALL.forEach(color ->
                                 output.accept(ModItems.glowtusItem(color).get()));
                         output.accept(ModItems.GT_BUSH.get());
+                        output.accept(ModItems.GT_SURFACE_ROCK.get());
                         output.accept(ModItems.PROGRAMMED_CIRCUIT.get());
                         output.accept(ModItems.CREOSOTE_BUCKET.get());
                         output.accept(ModItems.STEAM_BUCKET.get());

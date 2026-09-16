@@ -1,21 +1,8 @@
 {
-  "parent": "minecraft:block/block",
+  "loader": "cruciblecraft:positional_pebble",
+  "tint": true,
   "textures": {
-    "particle": "cruciblecraft:block/rock",
-    "rock": "cruciblecraft:block/rock"
-  },
-  "elements": [
-    {
-      "from": [4, 0, 4],
-      "to": [12, 3, 12],
-      "faces": {
-        "down": {"uv": [4, 4, 12, 12], "texture": "#rock", "tintindex": 0},
-        "up": {"uv": [4, 4, 12, 12], "texture": "#rock", "tintindex": 0},
-        "north": {"uv": [4, 13, 12, 16], "texture": "#rock", "tintindex": 0},
-        "south": {"uv": [4, 13, 12, 16], "texture": "#rock", "tintindex": 0},
-        "west": {"uv": [4, 13, 12, 16], "texture": "#rock", "tintindex": 0},
-        "east": {"uv": [4, 13, 12, 16], "texture": "#rock", "tintindex": 0}
-      }
-    }
-  ]
+    "particle": "minecraft:block/stone",
+    "rock": "minecraft:block/stone"
+  }
 }

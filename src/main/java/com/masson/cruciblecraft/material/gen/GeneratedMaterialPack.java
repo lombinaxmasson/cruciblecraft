@@ -60,7 +60,8 @@ public final class GeneratedMaterialPack {
             "fine_wire",
             "tiny_crushed_ore",
             "plate_gem",
-            "ring");
+            "ring",
+            "rock");
     private static volatile Roots roots = new Roots(null, null);
 
     private GeneratedMaterialPack() {}
@@ -762,7 +763,14 @@ public final class GeneratedMaterialPack {
                 "assets/" + CrucibleCraft.MODID + "/blockstates/" + path + ".json",
                 GSON.toJson(blockState));
         JsonObject itemModel = new JsonObject();
-        itemModel.addProperty("parent", modelId);
+        itemModel.addProperty("parent", "minecraft:item/generated");
+        JsonObject textures = new JsonObject();
+        textures.addProperty("layer0", CrucibleCraft.MODID + ":item/material/rock");
+        String overlay = overlayLayer(CrucibleCraft.MODID + ":item/material/rock");
+        if (overlay != null) {
+            textures.addProperty("layer1", overlay);
+        }
+        itemModel.add("textures", textures);
         files.put(
                 "assets/" + CrucibleCraft.MODID + "/models/item/" + path + ".json",
                 GSON.toJson(itemModel));

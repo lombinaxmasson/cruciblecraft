@@ -17,6 +17,7 @@ TOOLS = ROOT / "tools"
 sys.path.insert(0, str(ROOT))
 
 from tools import build_gt6_veins as vein_builder  # noqa: E402
+from tools import gt_surface_rocks as surface_rocks  # noqa: E402
 from tools import worldgen_rows  # noqa: E402
 
 ORE_DECLARATIONS = (
@@ -75,7 +76,7 @@ FLUID_FEATURE_TYPE = "cruciblecraft:subsurface_fluid_deposit"
 SURFACE_FEATURE_TYPE = "cruciblecraft:surface_rock_scatter"
 SURFACE_BIOME_MODIFIER_ID = "add_surface_rocks"
 SURFACE_DECORATION_STEP = "top_layer_modification"
-SURFACE_OVERWORLD_BIOMES = "#minecraft:is_overworld"
+SURFACE_OVERWORLD_BIOMES = list(surface_rocks.OVERWORLD_BIOMES)
 
 
 def load(path: Path) -> Any:
@@ -473,10 +474,9 @@ def _configured_surface_from_declaration(
     return {
         "type": declaration["feature_type"],
         "config": {
-            "rarity": require_int(config, "rarity", 1, 1_000_000, "surface_scatter.config"),
-            "rock_tag": _require_resource_location(
-                config.get("rock_tag"),
-                "surface_scatter.config.rock_tag",
+            "amount": require_int(config, "amount", 1, 16, "surface_scatter.config"),
+            "probability": require_int(
+                config, "probability", 1, 16, "surface_scatter.config"
             ),
         },
     }
@@ -509,7 +509,8 @@ def _biome_modifier_from_declaration(
     biomes = modifier.get("biomes")
     if biomes != SURFACE_OVERWORLD_BIOMES:
         raise ValueError(
-            "surface_scatter.biome_modifier.biomes must be #minecraft:is_overworld"
+            "surface_scatter.biome_modifier.biomes must match GT6 overworld.rocks "
+            "DESIGN_POLICY 1.21 vanilla cores"
         )
     step = modifier.get("step")
     if step != SURFACE_DECORATION_STEP:
@@ -685,6 +686,10 @@ def load_surface_scatter() -> dict[str, Any]:
     design_policy = document.get("design_policy")
     if design_policy != "DESIGN_POLICY":
         raise ValueError("surface scatter design_policy must be DESIGN_POLICY")
+    if document.get("placer") != surface_rocks.PLACER:
+        raise ValueError("surface scatter placer must be cruciblecraft:gt_surface_rock")
+    if document.get("worldgen_loot") != surface_rocks.WORLDGEN_LOOT:
+        raise ValueError("surface scatter worldgen_loot drifted from WorldgenRocks")
     rock_tag_source = _validate_rock_tag_source(
         require_mapping(
             document.get("rock_tag_source"),
@@ -719,8 +724,10 @@ def load_surface_scatter() -> dict[str, Any]:
         "biome_modifier_id": modifier["features"][0],
         "biomes": modifier["biomes"],
         "decoration_step": modifier["step"],
-        "rarity": configured["config"]["rarity"],
-        "rock_tag": configured["config"]["rock_tag"],
+        "amount": configured["config"]["amount"],
+        "probability": configured["config"]["probability"],
+        "placer": document.get("placer"),
+        "worldgen_loot": document.get("worldgen_loot"),
         "provenance": provenance,
         "design_policy": design_policy,
         "rock_tag_source": rock_tag_source,
@@ -1083,8 +1090,10 @@ def build_documents() -> tuple[
                 "biome_modifier_id",
                 "biomes",
                 "decoration_step",
-                "rarity",
-                "rock_tag",
+                "amount",
+                "probability",
+                "placer",
+                "worldgen_loot",
                 "provenance",
                 "design_policy",
                 "audit_mode",

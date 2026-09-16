@@ -6,7 +6,7 @@
 
 ## Unique active
 
-`content/gt6-foundry-art`（GT6 Foundry Art，`workflow=active`，`maturity=runtime_ready`）；计划 [GT6 铸造美术详细计划](../history/card-plans/active/GT6铸造美术详细计划.md)。
+无。`capability.json` 里没有 `workflow=active`。
 
 ## Prep（不占落地锁）
 
@@ -34,9 +34,9 @@
 
 `2026-09-15-obtain-reset` **pending**. Major worldgen / gameplay / obtain / GUI / save / network changes open or extend this cycle. Ordinary bugfix does not invalidate it. Accept only after a human `runClient`; CI never auto-signs.
 
-Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction
+Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks
 
-## runtime_ready accepted（70）
+## runtime_ready accepted（72）
 
 机制可跑。`survival_access` 独立、不挡关闭。不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。
 
@@ -52,6 +52,7 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `content/gt6-fluid-dangerous-media-runtime` — GT6 Fluid Dangerous Media Runtime — [GT6 流体危险介质运行时详细计划](../history/card-plans/closed/GT6流体危险介质运行时详细计划.md)
 - `content/gt6-fluid-pipe-acquisition` — GT6 Fluid Pipe Acquisition — [GT6 流体管获得格详细计划](../history/card-plans/closed/GT6流体管获得格详细计划.md)
 - `content/gt6-fluid-pipe-runtime` — GT6 Fluid Pipe Runtime — [GT6 流体管运行时详细计划](../history/card-plans/closed/GT6流体管运行时详细计划.md)
+- `content/gt6-foundry-art` — GT6 Foundry Art — [GT6 铸造美术详细计划](../history/card-plans/closed/GT6铸造美术详细计划.md)
 - `content/gt6-insulated-redstone-runtime` — GT6 Insulated Redstone Runtime — [GT6 绝缘红石运行时详细计划](../history/card-plans/closed/GT6绝缘红石运行时详细计划.md)
 - `content/gt6-item-pipe-acquisition` — GT6 Item Pipe Acquisition — [GT6 物品管获得格详细计划](../history/card-plans/closed/GT6物品管获得格详细计划.md)
 - `content/gt6-item-pipe-runtime` — GT6 Item Pipe Runtime — [GT6 物品管运行时详细计划](../history/card-plans/closed/GT6物品管运行时详细计划.md)
@@ -109,6 +110,7 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `registry/catalog-modern-ids` — Catalog modern IDs — [目录身份现代 id 详细计划](../history/card-plans/closed/目录身份现代id详细计划.md)
 - `registry/tool-head-prefix-reclaim` — Sharpener overflow reclaim — [工具头前缀与打磨机余量回收详细计划](../history/card-plans/closed/工具头前缀与打磨机余量回收详细计划.md)
 - `worldgen/gt-crops` — GT Crops — [GT 作物世界生成](../history/card-plans/closed/GT作物世界生成详细计划.md)
+- `worldgen/gt-surface-rocks` — GT Surface Rocks — [GT6 地表石子保真](../history/card-plans/closed/GT6地表石子保真详细计划.md)
 - `worldgen/gt-trees` — GT Trees — [GT 树详细计划](../history/card-plans/closed/GT树详细计划.md)
 
 ## frozen（9）

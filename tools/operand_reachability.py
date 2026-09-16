@@ -32,6 +32,11 @@ from typing import Any, Iterable
 # ---------------------------------------------------------------------------
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tools import gt_surface_rocks as surface_rocks  # noqa: E402
+
 TOOLS = ROOT / "tools"
 OUTPUT = TOOLS / "chemical_axis_operand_reachability.json"
 BUILDER = Path(__file__).resolve()
@@ -349,11 +354,17 @@ def parse_surface_scatter_declaration(
             "cruciblecraft:surface_rock_scatter"
         )
     config = _require_mapping(document.get("config"), "surface_scatter.config")
-    rock_tag = config.get("rock_tag")
-    if rock_tag != SURFACE_SCATTER_ROCK_TAG:
+    if config.get("amount") != 2 or config.get("probability") != 3:
         raise ValueError(
-            f"surface_scatter.config.rock_tag must be {SURFACE_SCATTER_ROCK_TAG}"
+            "surface_scatter.config must be WorldgenRocks amount=2 probability=3"
         )
+    if config.get("rock_tag") == SURFACE_SCATTER_ROCK_TAG:
+        raise ValueError("surface_scatter.config must not sample c:rocks")
+    if document.get("placer") != surface_rocks.PLACER:
+        raise ValueError("surface_scatter.placer must be cruciblecraft:gt_surface_rock")
+    worldgen_loot = document.get("worldgen_loot")
+    if worldgen_loot != surface_rocks.WORLDGEN_LOOT:
+        raise ValueError("surface_scatter.worldgen_loot drifted from WorldgenRocks")
     source = _require_mapping(
         document.get("rock_tag_source"),
         "surface_scatter.rock_tag_source",
@@ -418,11 +429,17 @@ def parse_surface_scatter_declaration(
         raise ValueError(
             "surface_scatter material gate has no rock-form materials"
         )
+    rock_tag = f"{tag_namespace}:{tag_directory}"
+    if rock_tag != SURFACE_SCATTER_ROCK_TAG:
+        raise ValueError(
+            f"surface_scatter.rock_tag_source must resolve to {SURFACE_SCATTER_ROCK_TAG}"
+        )
     return {
         "declaration_path": _display_path(path),
         "id": scatter_id,
         "feature_type": feature_type,
         "rock_tag": rock_tag,
+        "worldgen_loot": list(worldgen_loot),
         "prefix": prefix,
         "generation_flag": generation_flag,
         "runtime_pack": runtime_pack,
@@ -466,7 +483,11 @@ def _surface_rock_seeds(
     form_items: dict[str, dict[str, str]],
 ) -> set[str]:
     """Return S0 seeds for worldgen-placed surface rocks."""
-    return set(_surface_rock_item_identities(declaration, form_items))
+    del form_items
+    loot = declaration.get("worldgen_loot")
+    if not isinstance(loot, list) or not loot:
+        raise ValueError("surface_scatter.worldgen_loot is required for S0 seeds")
+    return set(loot)
 
 
 # ---------------------------------------------------------------------------
@@ -1283,6 +1304,7 @@ def compute_closure(graph: ReachabilityGraph) -> dict[str, Any]:
         "surface_scatter": {
             "declaration_path": surface_scatter["declaration_path"],
             "rock_tag": surface_scatter["rock_tag"],
+            "worldgen_loot": surface_scatter["worldgen_loot"],
             "prefix": surface_scatter["prefix"],
             "runtime_pack": surface_scatter["runtime_pack"],
             "material_gate_path": surface_scatter["material_gate_path"],

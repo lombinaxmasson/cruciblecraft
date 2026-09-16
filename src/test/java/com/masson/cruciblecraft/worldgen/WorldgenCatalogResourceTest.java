@@ -114,11 +114,13 @@ class WorldgenCatalogResourceTest {
         assertEquals(
                 "cruciblecraft:surface_rock_scatter",
                 scatter.get("feature_type").getAsString());
-        assertEquals(128, scatter.get("rarity").getAsInt());
-        assertEquals("c:rocks", scatter.get("rock_tag").getAsString());
+        assertEquals(2, scatter.get("amount").getAsInt());
+        assertEquals(3, scatter.get("probability").getAsInt());
         assertEquals(
-                "#minecraft:is_overworld",
-                scatter.get("biomes").getAsString());
+                "cruciblecraft:gt_surface_rock",
+                scatter.get("placer").getAsString());
+        assertTrue(scatter.get("biomes").isJsonArray());
+        assertEquals(28, scatter.get("biomes").getAsJsonArray().size());
         assertEquals(
                 "top_layer_modification",
                 scatter.get("decoration_step").getAsString());
@@ -144,12 +146,15 @@ class WorldgenCatalogResourceTest {
         var document = JsonParser.parseString(Files.readString(declaration))
                 .getAsJsonObject();
         assertEquals(
-                scatter.get("rarity").getAsInt(),
-                document.getAsJsonObject("config").get("rarity").getAsInt());
+                scatter.get("amount").getAsInt(),
+                document.getAsJsonObject("config").get("amount").getAsInt());
         assertEquals(
-                scatter.get("rock_tag").getAsString(),
+                scatter.get("probability").getAsInt(),
                 document.getAsJsonObject("config")
-                        .get("rock_tag")
-                        .getAsString());
+                        .get("probability")
+                        .getAsInt());
+        assertEquals(
+                "cruciblecraft:gt_surface_rock",
+                document.get("placer").getAsString());
     }
 }

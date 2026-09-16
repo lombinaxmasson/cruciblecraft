@@ -17,6 +17,7 @@ import com.masson.cruciblecraft.client.color.MaterialItemColor;
 import com.masson.cruciblecraft.client.color.MaterialOreColor;
 import com.masson.cruciblecraft.client.color.MaterialStorageColor;
 import com.masson.cruciblecraft.client.color.RockColor;
+import com.masson.cruciblecraft.client.model.PositionalPebbleGeometry;
 import com.masson.cruciblecraft.client.render.AnvilRenderer;
 import com.masson.cruciblecraft.client.render.CrucibleRenderer;
 import com.masson.cruciblecraft.client.render.PipeCoverRenderer;
@@ -48,6 +49,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
@@ -68,6 +70,14 @@ public class ClientSetup {
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
         CrucibleCraft.LOGGER.info("CrucibleCraft client setup");
+    }
+
+    @SubscribeEvent
+    static void registerGeometryLoaders(ModelEvent.RegisterGeometryLoaders event) {
+        event.register(
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, "positional_pebble"),
+                PositionalPebbleGeometry.LOADER);
     }
 
     @SubscribeEvent
