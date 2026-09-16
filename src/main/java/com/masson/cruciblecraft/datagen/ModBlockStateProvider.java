@@ -1289,14 +1289,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     .texture("bot_up", modLoc(base + "/colored/top"))
                     .texture("bot_north", modLoc(base + "/colored/front"))
                     .texture("bot_south", modLoc(base + "/colored/back"))
-                    .texture("bot_west", modLoc(base + "/colored/left"))
-                    .texture("bot_east", modLoc(base + "/colored/right"))
+                    // North-front cube: GT6 LEFT is east, RIGHT is west.
+                    .texture("bot_west", modLoc(base + "/colored/right"))
+                    .texture("bot_east", modLoc(base + "/colored/left"))
                     .texture("top_down", modLoc(base + "/overlay/bottom"))
                     .texture("top_up", modLoc(base + "/overlay/top"))
                     .texture("top_north", modLoc(base + "/overlay/front"))
                     .texture("top_south", modLoc(base + "/overlay/back"))
-                    .texture("top_west", modLoc(base + "/overlay/left"))
-                    .texture("top_east", modLoc(base + "/overlay/right"));
+                    .texture("top_west", modLoc(base + "/overlay/right"))
+                    .texture("top_east", modLoc(base + "/overlay/left"));
         } else {
             model = models().orientable(
                     id,
@@ -1319,14 +1320,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .texture("bot_up", modLoc(base + "/colored/top"))
                 .texture("bot_north", modLoc(base + "/colored/front"))
                 .texture("bot_south", modLoc(base + "/colored/back"))
-                .texture("bot_west", modLoc(base + "/colored/left"))
-                .texture("bot_east", modLoc(base + "/colored/right"))
+                .texture("bot_west", modLoc(base + "/colored/right"))
+                .texture("bot_east", modLoc(base + "/colored/left"))
                 .texture("top_down", modLoc(base + "/overlay/bottom"))
                 .texture("top_up", modLoc(base + "/overlay/top"))
                 .texture("top_north", modLoc(base + "/overlay/front"))
                 .texture("top_south", modLoc(base + "/overlay/back"))
-                .texture("top_west", modLoc(base + "/overlay/left"))
-                .texture("top_east", modLoc(base + "/overlay/right"));
+                .texture("top_west", modLoc(base + "/overlay/right"))
+                .texture("top_east", modLoc(base + "/overlay/left"));
         configuredFacingLit(block, model, model);
         simpleBlockItem(block, model);
     }
