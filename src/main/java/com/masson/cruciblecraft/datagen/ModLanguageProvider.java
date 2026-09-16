@@ -467,6 +467,7 @@ public class ModLanguageProvider extends LanguageProvider {
             add("emi.category.cruciblecraft.crucible", "坩埚合金");
             add("emi.category.cruciblecraft.crusher", "破碎机");
             add("emi.category.cruciblecraft.mold_casting", "陶瓷模具铸造");
+            addMachineIoTranslations();
             addHopperTranslations(true);
             addSensorTranslations();
             addRedstoneWireTranslations();
@@ -980,6 +981,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("cruciblecraft.configuration.section.cruciblecraft.client.toml", "Client");
         add("cruciblecraft.configuration.section.cruciblecraft.client.toml.title", "Client");
         add("cruciblecraft.configuration.temperatureUnit", "Temperature Unit");
+        addMachineIoTranslations();
         addHopperTranslations(false);
         addSensorTranslations();
         addRedstoneWireTranslations();
@@ -1007,6 +1009,103 @@ public class ModLanguageProvider extends LanguageProvider {
             add("container.cruciblecraft.bottle_crate", "Bottle Crate");
             add("container.cruciblecraft.drawer", "Compartment Drawer");
         }
+    }
+
+    private void addMachineIoTranslations() {
+        add(
+                "tooltip.cruciblecraft.machine.items_in",
+                chinese ? "物品输入" : "Items IN");
+        add(
+                "tooltip.cruciblecraft.machine.items_out",
+                chinese ? "物品输出" : "Items OUT");
+        add(
+                "tooltip.cruciblecraft.machine.fluids_in",
+                chinese ? "流体输入" : "Fluids IN");
+        add(
+                "tooltip.cruciblecraft.machine.fluids_out",
+                chinese ? "流体输出" : "Fluids OUT");
+        add(
+                "tooltip.cruciblecraft.machine.energy_in",
+                chinese ? "能量输入" : "Energy IN");
+        add("tooltip.cruciblecraft.machine.auto", chinese ? "(自动)" : "(auto)");
+        add(
+                "tooltip.cruciblecraft.machine.auto_otherwise_any",
+                chinese ? "(自动，否则任意面)" : "(auto, otherwise any)");
+        add(
+                "tooltip.cruciblecraft.machine.no_auto",
+                chinese ? "(无自动)" : "(no auto)");
+        add(
+                "tooltip.cruciblecraft.machine.face.any",
+                chinese ? "任意面" : "Any Side");
+        add(
+                "tooltip.cruciblecraft.machine.face.bottom",
+                chinese ? "底面" : "Bottom");
+        add("tooltip.cruciblecraft.machine.face.top", chinese ? "顶面" : "Top");
+        add("tooltip.cruciblecraft.machine.face.left", chinese ? "左面" : "Left");
+        add(
+                "tooltip.cruciblecraft.machine.face.front",
+                chinese ? "正面" : "Front");
+        add(
+                "tooltip.cruciblecraft.machine.face.right",
+                chinese ? "右面" : "Right");
+        add("tooltip.cruciblecraft.machine.face.back", chinese ? "背面" : "Back");
+        add(
+                "tooltip.cruciblecraft.machine.screwdriver",
+                chinese ? "用螺丝刀切换模式" : "Use Screwdriver to toggle Modes");
+        add(
+                "tooltip.cruciblecraft.machine.monkey_wrench.auto_in",
+                chinese
+                        ? "用活动扳手切换自动输入"
+                        : "Use Monkey Wrench to toggle automatic Inputs");
+        add(
+                "tooltip.cruciblecraft.machine.monkey_wrench.auto_out",
+                chinese
+                        ? "用活动扳手切换自动输出"
+                        : "Use Monkey Wrench to toggle automatic Outputs");
+        add(
+                "message.cruciblecraft.machine.mode.output_empty",
+                chinese
+                        ? "仅在输出完全空时生产"
+                        : "Only produce when Output is completely empty");
+        add(
+                "message.cruciblecraft.machine.mode.output_space",
+                chinese
+                        ? "只要有空位就生产"
+                        : "Produce whenever there is space");
+        add(
+                "message.cruciblecraft.machine.mode.input_empty",
+                chinese
+                        ? "仅向空的输入槽接受输入"
+                        : "Only accept Input on empty Input Slots");
+        add(
+                "message.cruciblecraft.machine.mode.input_all",
+                chinese
+                        ? "向所有输入槽接受输入"
+                        : "Accept Input on all Input Slots");
+        add(
+                "message.cruciblecraft.machine.auto.item_in.disabled",
+                chinese ? "自动物品输入：关" : "Auto Item Input Disabled");
+        add(
+                "message.cruciblecraft.machine.auto.item_in.enabled",
+                chinese ? "自动物品输入：开" : "Auto Item Input Enabled");
+        add(
+                "message.cruciblecraft.machine.auto.item_out.disabled",
+                chinese ? "自动物品输出：关" : "Auto Item Output Disabled");
+        add(
+                "message.cruciblecraft.machine.auto.item_out.enabled",
+                chinese ? "自动物品输出：开" : "Auto Item Output Enabled");
+        add(
+                "message.cruciblecraft.machine.auto.fluid_in.disabled",
+                chinese ? "自动流体输入：关" : "Auto Fluid Input Disabled");
+        add(
+                "message.cruciblecraft.machine.auto.fluid_in.enabled",
+                chinese ? "自动流体输入：开" : "Auto Fluid Input Enabled");
+        add(
+                "message.cruciblecraft.machine.auto.fluid_out.disabled",
+                chinese ? "自动流体输出：关" : "Auto Fluid Output Disabled");
+        add(
+                "message.cruciblecraft.machine.auto.fluid_out.enabled",
+                chinese ? "自动流体输出：开" : "Auto Fluid Output Enabled");
     }
 
     private void addHopperTranslations(boolean chinese) {

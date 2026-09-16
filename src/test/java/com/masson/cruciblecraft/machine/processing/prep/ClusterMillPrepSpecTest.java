@@ -47,10 +47,10 @@ class ClusterMillPrepSpecTest {
         Direction front = Direction.NORTH;
         assertEquals(
                 ProcessingMachineSpec.CapabilityAccess.INPUT,
-                spec.sidedIo().items().resolve(front, Direction.WEST));
+                spec.sidedIo().items().resolve(front, Direction.EAST));
         assertEquals(
                 ProcessingMachineSpec.CapabilityAccess.OUTPUT,
-                spec.sidedIo().items().resolve(front, Direction.EAST));
+                spec.sidedIo().items().resolve(front, Direction.WEST));
         assertEquals(
                 ProcessingMachineSpec.CapabilityAccess.NONE,
                 spec.sidedIo().items().resolve(front, front));

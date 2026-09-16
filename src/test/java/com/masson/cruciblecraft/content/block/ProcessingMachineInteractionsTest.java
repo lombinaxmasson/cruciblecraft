@@ -15,7 +15,7 @@ class ProcessingMachineInteractionsTest {
             assertTransfer(
                     ProcessingMachineInteractions.FluidTransfer.FILL_INPUT,
                     ModProcessingMachines.BATH,
-                    Direction.WEST,
+                    Direction.EAST,
                     true,
                     canAcceptFluid);
             assertTransfer(
@@ -32,13 +32,13 @@ class ProcessingMachineInteractionsTest {
         assertTransfer(
                 ProcessingMachineInteractions.FluidTransfer.DRAIN_INPUT,
                 ModProcessingMachines.BATH,
-                Direction.WEST,
+                Direction.EAST,
                 false,
                 true);
         assertTransfer(
                 ProcessingMachineInteractions.FluidTransfer.DRAIN_OUTPUT,
                 ModProcessingMachines.BATH,
-                Direction.NORTH,
+                Direction.DOWN,
                 false,
                 true);
     }
@@ -48,7 +48,7 @@ class ProcessingMachineInteractionsTest {
         assertTransfer(
                 ProcessingMachineInteractions.FluidTransfer.DRAIN_OUTPUT,
                 ModProcessingMachines.BATH,
-                Direction.NORTH,
+                Direction.DOWN,
                 true,
                 true);
     }
@@ -58,13 +58,13 @@ class ProcessingMachineInteractionsTest {
         assertTransfer(
                 ProcessingMachineInteractions.FluidTransfer.DRAIN_OUTPUT,
                 ModProcessingMachines.SMELTER,
-                Direction.NORTH,
+                Direction.WEST,
                 false,
                 true);
         assertTransfer(
                 ProcessingMachineInteractions.FluidTransfer.NONE,
                 ModProcessingMachines.SMELTER,
-                Direction.WEST,
+                Direction.NORTH,
                 false,
                 true);
     }

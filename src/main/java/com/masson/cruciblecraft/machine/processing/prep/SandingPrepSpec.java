@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.machine.processing.Gt6BasicMachineGui;
+import com.masson.cruciblecraft.machine.processing.Gt6SidedIo;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
@@ -35,10 +36,7 @@ public final class SandingPrepSpec {
                     ProcessingMachineSpec.EnergyMode.BUFFERED,
                     PrepMachineCommon.RU_CAPACITY,
                     PrepMachineCommon.RU_MAX_PACKET),
-            new ProcessingMachineSpec.SidedIoPolicy(
-                    PrepSidedIo.leftInRightOut(),
-                    PrepSidedIo.none(),
-                    PrepSidedIo.upEnergy()),
+            Gt6SidedIo.policy("sanding"),
             SandingPrepSpec::validate,
             ProcessingMachineSpec.BufferPolicy.PAUSE,
             Gt6BasicMachineGui.ui(

@@ -501,12 +501,13 @@ class ProcessingAdaptersTest {
         assertEquals(List.of(0), crusher.items().inputs());
         assertEquals(List.of(1), crusher.items().outputs());
         assertEquals(1024, crusher.energy().capacity());
-        assertEquals(
-                ProcessingMachineSpec.CapabilityAccess.OUTPUT,
-                crusher.sidedIo().items().resolve(Direction.NORTH, Direction.NORTH));
+        ProcessingMachineIoAssertions.assertMatchesProfile(crusher);
         assertEquals(
                 ProcessingMachineSpec.CapabilityAccess.INPUT,
-                crusher.sidedIo().items().resolve(Direction.NORTH, null));
+                crusher.sidedIo().items().resolve(Direction.NORTH, Direction.UP));
+        assertEquals(
+                ProcessingMachineSpec.CapabilityAccess.OUTPUT,
+                crusher.sidedIo().items().resolve(Direction.NORTH, Direction.DOWN));
         assertEquals(
                 ProcessingMachineSpec.CapabilityAccess.INPUT,
                 crusher.sidedIo().energy().resolve(Direction.NORTH, Direction.SOUTH));
@@ -548,12 +549,7 @@ class ProcessingAdaptersTest {
             }
             assertEquals(1, spec.items().inputs().size());
             assertTrue(spec.items().outputs().size() >= 3);
-            assertEquals(
-                    ProcessingMachineSpec.CapabilityAccess.OUTPUT,
-                    spec.sidedIo().items().resolve(Direction.NORTH, Direction.NORTH));
-            assertEquals(
-                    ProcessingMachineSpec.CapabilityAccess.NONE,
-                    spec.sidedIo().items().resolve(Direction.NORTH, null));
+            ProcessingMachineIoAssertions.assertMatchesProfile(spec);
             if (spec == ModProcessingMachines.SLUICE || spec == ModProcessingMachines.BATH) {
                 assertEquals(1, spec.fluids().inputs().size());
                 assertTrue(spec.fluids().inputs().getFirst().capacity() >= 250);
@@ -599,21 +595,7 @@ class ProcessingAdaptersTest {
             assertEquals(256L, spec.energy().maxPacket());
             assertEquals(spec.items().slotCount(), spec.ui().machineSlots().size());
             assertEquals(1, spec.items().outputs().size());
-            assertEquals(
-                    ProcessingMachineSpec.CapabilityAccess.OUTPUT,
-                    spec.sidedIo().items().resolve(Direction.NORTH, Direction.NORTH));
-            assertEquals(
-                    ProcessingMachineSpec.CapabilityAccess.INPUT,
-                    spec.sidedIo().items().resolve(Direction.NORTH, Direction.WEST));
-            assertEquals(
-                    ProcessingMachineSpec.CapabilityAccess.NONE,
-                    spec.sidedIo().items().resolve(Direction.NORTH, null));
-            assertEquals(
-                    ProcessingMachineSpec.CapabilityAccess.INPUT,
-                    spec.sidedIo().energy().resolve(Direction.NORTH, Direction.SOUTH));
-            assertEquals(
-                    ProcessingMachineSpec.CapabilityAccess.NONE,
-                    spec.sidedIo().energy().resolve(Direction.NORTH, null));
+            ProcessingMachineIoAssertions.assertMatchesProfile(spec);
             var placement = ProcessingMachineEnergyPlacement.connection(spec, Direction.NORTH);
             assertEquals(Direction.SOUTH, placement.providerOffset());
             assertEquals(Direction.NORTH, placement.providerFace());
@@ -781,7 +763,7 @@ class ProcessingAdaptersTest {
         assertTrue(ProcessingMachineInteractions.shouldTransferFluid(
                 ModProcessingMachines.SLUICE,
                 Direction.NORTH,
-                Direction.WEST,
+                Direction.EAST,
                 false,
                 true));
         assertFalse(ProcessingMachineInteractions.shouldTransferFluid(
@@ -793,16 +775,16 @@ class ProcessingAdaptersTest {
         assertFalse(ProcessingMachineInteractions.shouldTransferFluid(
                 ModProcessingMachines.SLUICE,
                 Direction.NORTH,
-                Direction.WEST,
+                Direction.EAST,
                 true,
                 true), "sneaking deterministically falls through to menu opening");
         assertEquals(ProcessingMachineInteractions.FluidTransfer.FILL_INPUT,
                 ProcessingMachineInteractions.fluidTransfer(
-                        ModProcessingMachines.BATH, Direction.NORTH, Direction.WEST,
+                        ModProcessingMachines.BATH, Direction.NORTH, Direction.EAST,
                         false, true, true));
         assertEquals(ProcessingMachineInteractions.FluidTransfer.DRAIN_INPUT,
                 ProcessingMachineInteractions.fluidTransfer(
-                        ModProcessingMachines.BATH, Direction.NORTH, Direction.WEST,
+                        ModProcessingMachines.BATH, Direction.NORTH, Direction.EAST,
                         false, true, false));
 
         RecipeMap bath = ModProcessingMachines.BATH.requireRecipeMap();

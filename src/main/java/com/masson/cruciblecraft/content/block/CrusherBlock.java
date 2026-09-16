@@ -4,6 +4,8 @@ import com.masson.cruciblecraft.api.tool.ToolAction;
 import com.masson.cruciblecraft.api.tool.ToolInteractable;
 import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.blockentity.CrusherBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.ProcessingMachineBlockEntity;
+import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverBlockInteraction;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverHost;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
@@ -52,10 +54,23 @@ public final class CrusherBlock extends Block
     public ToolResult useTool(
             ToolAction action,
             net.minecraft.world.item.context.UseOnContext context) {
+        ToolResult coverResult = ToolResult.PASS;
         if (context.getLevel().getBlockEntity(context.getClickedPos())
                 instanceof MachineCoverHost machine) {
-            return MachineCoverBlockInteraction.useTool(
+            coverResult = MachineCoverBlockInteraction.useTool(
                     machine, action, context);
+            if (coverResult != ToolResult.PASS) {
+                return coverResult;
+            }
+        }
+        if (context.getLevel().getBlockEntity(context.getClickedPos())
+                instanceof ProcessingMachineBlockEntity processing
+                && processing.handleIoTool(
+                        action, context.getClickedFace(), context.getPlayer())) {
+            if (!context.getLevel().isClientSide) {
+                ToolClick.hurt(context);
+            }
+            return ToolResult.SUCCESS;
         }
         return ToolResult.PASS;
     }

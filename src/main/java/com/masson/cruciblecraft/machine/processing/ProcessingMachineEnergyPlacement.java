@@ -31,7 +31,9 @@ public final class ProcessingMachineEnergyPlacement {
                 || spec.recipeMapId().equals(
                         ModProcessingMachines.ROASTER.recipeMapId())
                 || spec.recipeMapId().equals(
-                        ModProcessingMachines.OVEN.recipeMapId());
+                        ModProcessingMachines.OVEN.recipeMapId())
+                || spec.recipeMapId().equals(
+                        ModProcessingMachines.LAMINATOR.recipeMapId());
     }
 
     private static boolean isSandingMachine(ProcessingMachineSpec spec) {

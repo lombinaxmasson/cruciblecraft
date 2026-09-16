@@ -206,7 +206,8 @@ public record ProcessingMachineSpec(
     public enum CapabilityAccess {
         NONE,
         INPUT,
-        OUTPUT
+        OUTPUT,
+        BOTH
     }
 
     public record SidedIoPolicy(
@@ -217,6 +218,22 @@ public record ProcessingMachineSpec(
             Objects.requireNonNull(items, "items");
             Objects.requireNonNull(fluids, "fluids");
             Objects.requireNonNull(energy, "energy");
+        }
+
+        public IoChannel itemsChannel() {
+            return asChannel(items);
+        }
+
+        public IoChannel fluidsChannel() {
+            return asChannel(fluids);
+        }
+
+        public IoChannel energyChannel() {
+            return asChannel(energy);
+        }
+
+        private static IoChannel asChannel(SideRule rule) {
+            return rule instanceof IoChannel channel ? channel : IoChannel.NONE;
         }
     }
 

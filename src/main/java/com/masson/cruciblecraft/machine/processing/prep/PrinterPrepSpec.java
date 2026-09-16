@@ -6,6 +6,7 @@ import java.util.stream.IntStream;
 
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.machine.processing.Gt6BasicMachineGui;
+import com.masson.cruciblecraft.machine.processing.Gt6SidedIo;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
@@ -36,10 +37,7 @@ public final class PrinterPrepSpec {
                     ProcessingMachineSpec.EnergyMode.BUFFERED,
                     PrepMachineCommon.EU_CAPACITY,
                     PrepMachineCommon.EU_MAX_PACKET),
-            new ProcessingMachineSpec.SidedIoPolicy(
-                    PrepSidedIo.leftUpInRightDownOut(),
-                    PrepSidedIo.leftUpIn(),
-                    PrepSidedIo.backEnergy()),
+            Gt6SidedIo.policy("printer"),
             PrinterPrepSpec::validate,
             ProcessingMachineSpec.BufferPolicy.PAUSE,
             Gt6BasicMachineGui.ui(

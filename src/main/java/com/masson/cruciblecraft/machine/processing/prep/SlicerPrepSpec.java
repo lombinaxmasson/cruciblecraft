@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.machine.processing.Gt6BasicMachineGui;
+import com.masson.cruciblecraft.machine.processing.Gt6SidedIo;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
@@ -30,10 +31,7 @@ public final class SlicerPrepSpec {
                     ProcessingMachineSpec.EnergyMode.BUFFERED,
                     PrepMachineCommon.EU_CAPACITY,
                     PrepMachineCommon.EU_MAX_PACKET),
-            new ProcessingMachineSpec.SidedIoPolicy(
-                    PrepSidedIo.leftUpInRightDownOut(),
-                    PrepSidedIo.none(),
-                    PrepSidedIo.backEnergy()),
+            Gt6SidedIo.policy("slicer"),
             SlicerPrepSpec::validate,
             ProcessingMachineSpec.BufferPolicy.PAUSE,
             Gt6BasicMachineGui.ui(
