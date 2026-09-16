@@ -65,5 +65,16 @@ class StoneLayerRockFeatureConfigTest {
                 "cruciblecraft:gt_surface_rock",
                 declaration.get("placer").getAsString());
         assertEquals(123, declaration.get("layer_count").getAsInt());
+        assertEquals(45, declaration.get("stone_block_count").getAsInt());
+        boolean hasBlackGranite = false;
+        var cubes = declaration.getAsJsonArray("stone_blocks");
+        for (int i = 0; i < cubes.size(); i++) {
+            if ("granite_black/stone".equals(
+                    cubes.get(i).getAsJsonObject().get("registry_path").getAsString())) {
+                hasBlackGranite = true;
+                break;
+            }
+        }
+        assertEquals(true, hasBlackGranite);
     }
 }

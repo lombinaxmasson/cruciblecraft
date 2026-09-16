@@ -127,6 +127,24 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
             stone.add(block.getKey());
             gtStones.add(block.getKey());
         });
+        var baseStone = tag(BlockTags.BASE_STONE_OVERWORLD);
+        var diamond = tag(BlockTags.NEEDS_DIAMOND_TOOL);
+        for (var cube : com.masson.cruciblecraft.worldgen.StoneLayerStones.cubes()) {
+            if (!ModBlocks.hasLayerStone(cube.registryPath())) {
+                continue;
+            }
+            var holder = ModBlocks.layerStone(cube.registryPath());
+            pickaxe.add(holder.getKey());
+            if (cube.harvestLevel() >= 3) {
+                diamond.add(holder.getKey());
+            } else if (cube.harvestLevel() == 1) {
+                stone.add(holder.getKey());
+            }
+            if (cube.role()
+                    == com.masson.cruciblecraft.worldgen.StoneLayerStones.Role.STONE) {
+                baseStone.add(holder.getKey());
+            }
+        }
         var gtBlockObjects = tag(ModBlockTags.GT_BLOCK_OBJECTS);
         var rails = tag(BlockTags.RAILS);
         ModBlocks.gtBlockObjectBlocks().forEach(holder -> {

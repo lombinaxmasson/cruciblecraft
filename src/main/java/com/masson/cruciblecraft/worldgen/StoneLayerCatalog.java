@@ -13,7 +13,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * No-mod GT6 {@code StoneLayer.LAYERS} surface materials for 32757 pebbles.
+ * No-mod GT6 {@code StoneLayer.LAYERS} surface materials for cube replace
+ * and 32757 pebbles.
  */
 public final class StoneLayerCatalog {
     public static final String DEEPSLATE = "deepslate";

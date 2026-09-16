@@ -76,6 +76,7 @@ import com.masson.cruciblecraft.content.block.GtBlockObjectSlabBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectSpikeBlock;
 import com.masson.cruciblecraft.content.block.GtStoneBlock;
 import com.masson.cruciblecraft.content.block.GtStoneSlabBlock;
+import com.masson.cruciblecraft.content.block.StoneLayerStoneBlock;
 import com.masson.cruciblecraft.content.block.DustFunnelBlock;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.mte.MteInPlaceCatalog;
@@ -121,6 +122,7 @@ import com.masson.cruciblecraft.content.storage.StorageBehaviorProfile;
 import com.masson.cruciblecraft.content.storage.StorageVariant;
 import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.worldgen.OreHostVariantCatalog.Host;
+import com.masson.cruciblecraft.worldgen.StoneLayerStones;
 import com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies;
 
 import net.minecraft.resources.ResourceLocation;
@@ -442,6 +444,8 @@ public final class ModBlocks {
             REDSTONE_WIRE_BLOCKS = bareRedstoneWireBlocks();
     private static final Map<ResourceLocation, DeferredBlock<Block>>
             GT_STONE_BLOCKS = registerGtStoneBlocks();
+    private static final Map<ResourceLocation, DeferredBlock<Block>>
+            LAYER_STONE_BLOCKS = registerLayerStoneBlocks();
     private static final Map<ResourceLocation, DeferredBlock<Block>>
             GT_BLOCK_OBJECT_BLOCKS = registerGtBlockObjectBlocks();
     private static final Map<ResourceLocation, DeferredBlock<Block>>
@@ -1478,6 +1482,82 @@ public final class ModBlocks {
                             + " variants");
         }
         return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    private static Map<ResourceLocation, DeferredBlock<Block>>
+            registerLayerStoneBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<Block>> blocks =
+                new LinkedHashMap<>();
+        int reused = 0;
+        for (StoneLayerStones.Cube cube : StoneLayerStones.cubes()) {
+            if (GT_STONE_BLOCKS.containsKey(cube.id())) {
+                reused++;
+                continue;
+            }
+            DeferredBlock<Block> block = BLOCKS.register(
+                    cube.registryPath(),
+                    () -> new StoneLayerStoneBlock(
+                            cube, layerStoneProperties(cube)));
+            if (blocks.put(cube.id(), block) != null) {
+                throw new IllegalStateException(
+                        "Duplicate stone-layer cube " + cube.id());
+            }
+        }
+        if (blocks.size() + reused != StoneLayerStones.cubes().size()) {
+            throw new IllegalStateException(
+                    "stone-layer cube registration drifted");
+        }
+        return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    public static DeferredBlock<Block> layerOrExistingStone(String registryPath) {
+        ResourceLocation id = ResourceLocation.fromNamespaceAndPath(
+                CrucibleCraft.MODID, registryPath);
+        DeferredBlock<Block> layer = LAYER_STONE_BLOCKS.get(id);
+        if (layer != null) {
+            return layer;
+        }
+        DeferredBlock<Block> existing = GT_STONE_BLOCKS.get(id);
+        if (existing == null) {
+            throw new IllegalArgumentException(
+                    "No stone-layer cube " + registryPath);
+        }
+        return existing;
+    }
+
+    public static DeferredBlock<Block> layerStone(String registryPath) {
+        DeferredBlock<Block> block = LAYER_STONE_BLOCKS.get(
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, registryPath));
+        if (block == null) {
+            throw new IllegalArgumentException(
+                    "No stone-layer cube " + registryPath);
+        }
+        return block;
+    }
+
+    public static boolean hasLayerStone(String registryPath) {
+        return LAYER_STONE_BLOCKS.containsKey(
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, registryPath));
+    }
+
+    public static Map<ResourceLocation, DeferredBlock<Block>>
+            layerStoneBlocksById() {
+        return LAYER_STONE_BLOCKS;
+    }
+
+    public static Collection<DeferredBlock<Block>> layerStoneBlocks() {
+        return LAYER_STONE_BLOCKS.values();
+    }
+
+    private static BlockBehaviour.Properties layerStoneProperties(
+            StoneLayerStones.Cube cube) {
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.STONE)
+                .strength(cube.hardness(), cube.resistance())
+                .requiresCorrectToolForDrops()
+                .sound(SoundType.STONE);
     }
 
     public static Map<ResourceLocation, DeferredBlock<Block>>

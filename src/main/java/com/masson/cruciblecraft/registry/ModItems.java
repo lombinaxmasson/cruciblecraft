@@ -32,6 +32,8 @@ import com.masson.cruciblecraft.content.item.CellItem;
 import com.masson.cruciblecraft.content.item.CeramicMoldBlockItem;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.content.item.GtWoodCatalog;
+import com.masson.cruciblecraft.worldgen.OreHostVariantCatalog.Host;
+import com.masson.cruciblecraft.worldgen.StoneLayerStones;
 import com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies;
 import com.masson.cruciblecraft.content.item.BathMteIdentityCatalog;
 import com.masson.cruciblecraft.content.item.TechnologicalPartCatalog;
@@ -573,6 +575,10 @@ public final class ModItems {
             net.minecraft.resources.ResourceLocation,
             DeferredItem<BlockItem>> GT_STONE_ITEMS =
                     registerGtStoneItems();
+    private static final Map<
+            net.minecraft.resources.ResourceLocation,
+            DeferredItem<BlockItem>> LAYER_STONE_ITEMS =
+                    registerLayerStoneItems();
     private static final Map<
             net.minecraft.resources.ResourceLocation,
             DeferredItem<BlockItem>> GT_BLOCK_OBJECT_ITEMS =
@@ -1639,6 +1645,44 @@ public final class ModItems {
 
     public static Collection<DeferredItem<BlockItem>> gtStoneItems() {
         return GT_STONE_ITEMS.values();
+    }
+
+    private static Map<ResourceLocation, DeferredItem<BlockItem>>
+            registerLayerStoneItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<BlockItem>> items =
+                new LinkedHashMap<>();
+        int reused = 0;
+        for (StoneLayerStones.Cube cube : StoneLayerStones.cubes()) {
+            if (GT_STONE_ITEMS.containsKey(cube.id())) {
+                reused++;
+                continue;
+            }
+            DeferredItem<BlockItem> item = ITEMS.register(
+                    cube.registryPath(),
+                    () -> new CatalogNamedBlockItem(
+                            ModBlocks.layerStone(cube.registryPath()).get(),
+                            new Item.Properties(),
+                            cube.english(),
+                            cube.chinese()));
+            if (items.put(cube.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate stone-layer cube item " + cube.id());
+            }
+        }
+        if (items.size() + reused != StoneLayerStones.cubes().size()) {
+            throw new IllegalStateException(
+                    "stone-layer cube item registration drifted");
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    public static Map<ResourceLocation, DeferredItem<BlockItem>>
+            layerStoneItemsById() {
+        return LAYER_STONE_ITEMS;
+    }
+
+    public static Collection<DeferredItem<BlockItem>> layerStoneItems() {
+        return LAYER_STONE_ITEMS.values();
     }
 
     private static Map<ResourceLocation, DeferredItem<BlockItem>>

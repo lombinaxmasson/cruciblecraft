@@ -12,7 +12,9 @@
     "src/main/java/com/masson/cruciblecraft/content/blockentity/GtSurfaceRockBlockEntity.java",
     "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerNoise.java",
     "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerCatalog.java",
+    "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerStones.java",
     "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerRockFeature.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/StoneLayerStoneBlock.java",
     "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerRockConfiguration.java",
     "src/main/java/com/masson/cruciblecraft/registry/ModFeatures.java",
     "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
@@ -21,8 +23,12 @@
     "src/main/resources/data/cruciblecraft/worldgen/configured_feature/stone_layer_rocks.json",
     "src/main/resources/data/cruciblecraft/worldgen/placed_feature/stone_layer_rocks.json",
     "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_stone_layer_rocks.json",
+    "src/main/resources/data/minecraft/tags/block/needs_iron_tool.json",
     "src/main/resources/data/cruciblecraft_wave_worldgen_gt_stone_layer_rocks/**",
     "src/main/resources/assets/cruciblecraft/gt6_gt_stone_layer_rocks_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/stone.png",
+    "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/cobble.png",
+    "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/cobble_mossy.png",
     "tools/capabilities/worldgen/gt-stone-layer-rocks/**",
     "tools/waves/worldgen/gt-stone-layer-rocks/**",
     "tools/gt_stone_layer_rocks.py",
@@ -39,9 +45,10 @@
   "required_test_ids": [
     "stoneLayerCatalogMatchesLoaderWorldgen",
     "stoneLayerPlaces32757WithLayerLoot",
-    "stoneLayerDoesNotReplaceStone",
+    "stoneLayerReplacesVanillaStone",
     "stoneLayerOneIn128AndNoDeep",
-    "stoneLayerDoesNotDumpCatalog"
+    "stoneLayerDoesNotDumpCatalog",
+    "stoneLayerManifestResolvesLocalGt6"
   ],
   "identity_disposition": [
     {
@@ -49,10 +56,11 @@
       "disposition": "new_distinct",
       "runtime_ids": [
         "cruciblecraft:gt_surface_rock",
-        "cruciblecraft:stone_layer_rocks"
+        "cruciblecraft:stone_layer_rocks",
+        "cruciblecraft:granite_black/stone"
       ],
-      "reason": "GT6 WorldgenStoneLayers 32757 tLastRock pebbles on stone/cave surfaces. Not WorldgenRocks grass scatter, not catalog dump, not moon/mars/planet rocks, not stone-cube replacement."
+      "reason": "GT6 WorldgenStoneLayers 32757 tLastRock pebbles and stone-cube replace on overworld stone/cobble/deepslate. Not WorldgenRocks grass scatter, not catalog dump, not moon/mars/planet rocks, not StoneLayerOres."
     }
   ],
-  "note": "Overworld WorldgenStoneLayers pebbles only. Close at runtime_ready. Do not scatter catalog ItemEntity. Do not land worldgen/gt-planet-rocks. Do not replace vanilla stone cubes or emit StoneLayerOres."
+  "note": "Overworld WorldgenStoneLayers cubes plus pebbles. Close at runtime_ready. Do not scatter catalog ItemEntity. Do not land worldgen/gt-planet-rocks. Do not emit StoneLayerOres or eat vanilla ore cells."
 }

@@ -126,6 +126,24 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 dropSelf(block);
             }
         }
+        for (com.masson.cruciblecraft.worldgen.StoneLayerStones.Cube cube :
+                com.masson.cruciblecraft.worldgen.StoneLayerStones.cubes()) {
+            if (!ModBlocks.hasLayerStone(cube.registryPath())) {
+                continue;
+            }
+            Block block = ModBlocks.layerStone(cube.registryPath()).get();
+            if (cube.role()
+                    == com.masson.cruciblecraft.worldgen.StoneLayerStones.Role.STONE) {
+                add(
+                        block,
+                        createSingleItemTableWithSilkTouch(
+                                block,
+                                ModBlocks.layerStone(
+                                        cube.material() + "/cobble").get()));
+            } else {
+                dropSelf(block);
+            }
+        }
         for (GtBlockObjectCatalog.Variant variant : GtBlockObjectCatalog.variants()) {
             Block block = ModBlocks.gtBlockObjectBlocksById().get(variant.id()).get();
             if (variant.slab()) {
@@ -213,6 +231,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         ModBlocks.variantStorageBlocks().forEach(
                 holder -> blocks.add(holder.get()));
         ModBlocks.gtStoneBlocks().forEach(holder -> blocks.add(holder.get()));
+        ModBlocks.layerStoneBlocks().forEach(holder -> blocks.add(holder.get()));
         ModBlocks.gtBlockObjectBlocks().forEach(holder -> blocks.add(holder.get()));
         ModBlocks.bathRemainderBlockObjectBlocks().forEach(
                 holder -> blocks.add(holder.get()));

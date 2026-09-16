@@ -38,6 +38,7 @@
     "test_prep_machines",
     "test_gt_trees",
     "test_gt_crops",
+    "test_gt_stone_layer_rocks",
     "test_blockers",
     "test_roll_former",
     "test_cluster_mill",
@@ -436,6 +437,29 @@
       ],
       "test_modules": [
         "test_gt_crops"
+      ]
+    },
+    {
+      "paths": [
+        "tools/gt_stone_layer_rocks.py",
+        "tools/build_gt_stone_layer_rocks.py",
+        "tools/tests/test_gt_stone_layer_rocks.py",
+        "tools/waves/worldgen/gt-stone-layer-rocks/**",
+        "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayer*.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/StoneLayerStoneBlock.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/GtStoneLayerRocksGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/worldgen/StoneLayerRockFeatureConfigTest.java",
+        "src/main/resources/assets/cruciblecraft/gt6_gt_stone_layer_rocks_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**",
+        "src/main/resources/data/cruciblecraft/worldgen_catalog/stone_layer_rocks.json",
+        "src/main/resources/data/cruciblecraft/worldgen/**/stone_layer_rocks.json",
+        "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_stone_layer_rocks.json",
+        "src/main/resources/data/cruciblecraft_wave_worldgen_gt_stone_layer_rocks/**",
+        "tools/capabilities/worldgen/gt-stone-layer-rocks/**",
+        "docs/history/card-plans/active/GT6石层石子详细计划.md"
+      ],
+      "test_modules": [
+        "test_gt_stone_layer_rocks"
       ]
     },
     {

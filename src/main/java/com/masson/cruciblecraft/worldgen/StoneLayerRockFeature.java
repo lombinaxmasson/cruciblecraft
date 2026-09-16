@@ -14,8 +14,9 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 /**
- * GT6 {@code WorldgenStoneLayers} 32757 pebbles: 1/128 on opaque stone/cave
- * surfaces using {@code tLastRock}. Does not replace stone cubes or emit ores.
+ * GT6 {@code WorldgenStoneLayers}: replace vanilla stone/cobble/deepslate with
+ * the noise-selected layer cube, then 1/128 32757 pebbles using
+ * {@code tLastRock}. Does not emit {@code StoneLayerOres}.
  */
 public class StoneLayerRockFeature extends Feature<StoneLayerRockConfiguration> {
     public StoneLayerRockFeature() {
@@ -25,11 +26,16 @@ public class StoneLayerRockFeature extends Feature<StoneLayerRockConfiguration> 
     @Override
     public boolean place(FeaturePlaceContext<StoneLayerRockConfiguration> context) {
         WorldGenLevel level = context.level();
-        RandomSource random = context.random();
         BlockPos origin = context.origin();
         int minX = origin.getX() & ~15;
         int minZ = origin.getZ() & ~15;
-        int minY = Math.max(level.getMinBuildHeight() + 1, 1);
+        int chunkX = minX >> 4;
+        int chunkZ = minZ >> 4;
+        long chunkSeed = level.getSeed()
+                ^ (chunkX * 341873128712L + chunkZ * 132897987541L)
+                ^ 32757L;
+        RandomSource random = RandomSource.create(chunkSeed);
+        int minY = level.getMinBuildHeight() + 1;
         int maxY = level.getMaxBuildHeight();
         StoneLayerNoise noise = new StoneLayerNoise((int) level.getSeed(), 0);
         boolean placed = false;
@@ -66,6 +72,7 @@ public class StoneLayerRockFeature extends Feature<StoneLayerRockConfiguration> 
         for (int y = minY; y < maxY; y++) {
             cursor.set(x, y, z);
             BlockState state = level.getBlockState(cursor);
+            String material = StoneLayerCatalog.surfaceMaterial(noise, x, y, z);
             if (state.is(Blocks.BEDROCK)) {
                 canPlace = true;
             } else if (state.isAir()) {
@@ -76,9 +83,34 @@ public class StoneLayerRockFeature extends Feature<StoneLayerRockConfiguration> 
                             lastRock);
                 }
                 canPlace = false;
-            } else if (isStoneCell(state)) {
+            } else if (isReplaceableStone(state)) {
                 canPlace = true;
-                lastRock = StoneLayerCatalog.surfaceMaterial(noise, x, y, z);
+                lastRock = material;
+                placed |= tryReplace(
+                        level,
+                        cursor.immutable(),
+                        material,
+                        StoneLayerStones.Role.STONE);
+            } else if (isCobble(state)) {
+                canPlace = true;
+                lastRock = material;
+                placed |= tryReplace(
+                        level,
+                        cursor.immutable(),
+                        material,
+                        StoneLayerStones.Role.COBBLE);
+            } else if (isMossyCobble(state)) {
+                canPlace = true;
+                lastRock = material;
+                placed |= tryReplace(
+                        level,
+                        cursor.immutable(),
+                        material,
+                        StoneLayerStones.Role.MOSSY_COBBLE);
+            } else if (StoneLayerStones.isNaturalLayerCube(state)) {
+                canPlace = true;
+            } else if (isVanillaOre(state)) {
+                canPlace = true;
             } else if (SurfaceRockFeature.easyRep(state)
                     && state.getFluidState().isEmpty()) {
                 if (canPlace && random.nextInt(chance) == 0) {
@@ -95,6 +127,19 @@ public class StoneLayerRockFeature extends Feature<StoneLayerRockConfiguration> 
             }
         }
         return placed;
+    }
+
+    public static boolean tryReplace(
+            WorldGenLevel level,
+            BlockPos pos,
+            String material,
+            StoneLayerStones.Role role) {
+        BlockState target = StoneLayerStones.cube(material, role);
+        BlockState existing = level.getBlockState(pos);
+        if (existing.getBlock() == target.getBlock()) {
+            return false;
+        }
+        return level.setBlock(pos, target, Block.UPDATE_CLIENTS);
     }
 
     public static boolean tryPlace(
@@ -125,15 +170,28 @@ public class StoneLayerRockFeature extends Feature<StoneLayerRockConfiguration> 
         return true;
     }
 
-    static boolean isStoneCell(BlockState state) {
-        return state.is(BlockTags.BASE_STONE_OVERWORLD)
-                || state.is(Blocks.STONE)
+    static boolean isReplaceableStone(BlockState state) {
+        return state.is(Blocks.STONE)
                 || state.is(Blocks.INFESTED_STONE)
-                || state.is(Blocks.COBBLESTONE)
-                || state.is(Blocks.MOSSY_COBBLESTONE)
                 || state.is(Blocks.DEEPSLATE)
-                || state.is(Blocks.COBBLED_DEEPSLATE)
-                || state.is(BlockTags.COAL_ORES)
+                || state.is(Blocks.INFESTED_DEEPSLATE)
+                || state.is(Blocks.GRANITE)
+                || state.is(Blocks.DIORITE)
+                || state.is(Blocks.ANDESITE)
+                || state.is(Blocks.TUFF);
+    }
+
+    static boolean isCobble(BlockState state) {
+        return state.is(Blocks.COBBLESTONE)
+                || state.is(Blocks.COBBLED_DEEPSLATE);
+    }
+
+    static boolean isMossyCobble(BlockState state) {
+        return state.is(Blocks.MOSSY_COBBLESTONE);
+    }
+
+    static boolean isVanillaOre(BlockState state) {
+        return state.is(BlockTags.COAL_ORES)
                 || state.is(BlockTags.IRON_ORES)
                 || state.is(BlockTags.GOLD_ORES)
                 || state.is(BlockTags.DIAMOND_ORES)

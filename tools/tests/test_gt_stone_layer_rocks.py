@@ -21,6 +21,7 @@ class GtStoneLayerRocksTest(unittest.TestCase):
         self.assertEqual(32757, document["mte"])
         self.assertEqual("cruciblecraft:gt_surface_rock", document["placer"])
         self.assertEqual(rocks.LAYER_COUNT, document["layer_count"])
+        self.assertEqual(rocks.STONE_BLOCK_COUNT, document["stone_block_count"])
         self.assertGreaterEqual(document["material_counts"]["granite_black"], 1)
         self.assertNotIn("moon", str(document))
 
@@ -51,15 +52,44 @@ class GtStoneLayerRocksTest(unittest.TestCase):
         self.assertEqual(3, sum(1 for row in layers if row["no_deep"]))
         self.assertIn("granite_black", {row["material"] for row in layers})
 
-    def test_java_does_not_replace_stone_or_dump_catalog(self) -> None:
+    def test_java_replaces_stone_and_does_not_dump_catalog(self) -> None:
         feature = (JAVA / "worldgen" / "StoneLayerRockFeature.java").read_text(
             encoding="utf-8"
         )
         self.assertNotIn("c:rocks", feature)
         self.assertNotIn("instanceof RockBlock", feature)
         self.assertIn("GT_SURFACE_ROCK", feature)
+        self.assertIn("tryReplace", feature)
+        self.assertIn("Blocks.TUFF", feature)
         self.assertIn("nextInt", feature)
+        cube = (JAVA / "content" / "block" / "StoneLayerStoneBlock.java").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("canEntityDestroy", cube)
         tests = (JAVA / "gametest" / rocks.GAME_TESTS).read_text(encoding="utf-8")
         self.assertIn("cruciblecraft_wave_worldgen_gt_stone_layer_rocks", tests)
         self.assertIn("granite_black", tests)
+        self.assertIn("stoneLayerReplacesVanillaStone", tests)
+        self.assertIn("stoneLayerManifestResolvesLocalGt6", tests)
         self.assertIn("stoneLayerDoesNotDumpCatalog", tests)
+
+    def test_art_copies_gt6_stone_cubes(self) -> None:
+        self.assertEqual(rocks.STONE_BLOCK_COUNT, len(rocks.art_imports()))
+        self.assertTrue(
+            any(
+                "gt.stone.granite.black/stone.png" in row["destination"]
+                for row in rocks.art_imports()
+            )
+        )
+        cubes = rocks.stone_blocks()
+        self.assertEqual(rocks.STONE_BLOCK_COUNT, len(cubes))
+        self.assertEqual("granite_black/stone", cubes[0]["registry_path"])
+        catalog = census.load_json(
+            ROOT / "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+        )
+        existing: set[str] = set()
+        for identity in catalog.get("identities") or []:
+            for variant in identity.get("variants") or []:
+                existing.add(variant["registry_path"])
+        self.assertIn("marble/stone", existing)
+        self.assertNotIn("granite_black/stone", existing)

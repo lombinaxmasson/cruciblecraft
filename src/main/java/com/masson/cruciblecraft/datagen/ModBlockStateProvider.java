@@ -10,6 +10,7 @@ import com.masson.cruciblecraft.content.sensor.SensorKind;
 import com.masson.cruciblecraft.content.block.LogisticsCoreBlock;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtStoneCatalog;
+import com.masson.cruciblecraft.worldgen.StoneLayerStones;
 import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.logistics.hopper.HopperKind;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
@@ -169,7 +170,21 @@ public class ModBlockStateProvider extends BlockStateProvider {
         registerSensors();
         registerStorage();
         registerGtStones();
+        registerLayerStones();
         registerGtBlockObjects();
+    }
+
+    private void registerLayerStones() {
+        for (StoneLayerStones.Cube cube : StoneLayerStones.cubes()) {
+            if (!ModBlocks.hasLayerStone(cube.registryPath())) {
+                continue;
+            }
+            var block = ModBlocks.layerStone(cube.registryPath()).get();
+            ResourceLocation texture = ResourceLocation.parse(cube.texture());
+            ModelFile cubeModel = models().cubeAll(cube.registryPath(), texture);
+            simpleBlock(block, cubeModel);
+            itemModels().getBuilder("item/" + cube.registryPath()).parent(cubeModel);
+        }
     }
 
     private void registerGtStones() {

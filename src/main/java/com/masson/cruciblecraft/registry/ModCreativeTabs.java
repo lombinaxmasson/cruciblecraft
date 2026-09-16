@@ -15,6 +15,7 @@ import com.masson.cruciblecraft.content.item.SemanticObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtStoneCatalog;
+import com.masson.cruciblecraft.worldgen.StoneLayerStones;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.machine.MachineDurabilityComponent;
 import com.masson.cruciblecraft.machine.MachineMaterialRules;
@@ -204,6 +205,13 @@ public final class ModCreativeTabs {
                                 output.accept(ModItems.gtStoneItemsById()
                                         .get(stone.id())
                                         .get()));
+                        StoneLayerStones.cubes().forEach(cube -> {
+                            var item = ModItems.layerStoneItemsById()
+                                    .get(cube.id());
+                            if (item != null) {
+                                output.accept(item.get());
+                            }
+                        });
                         GtBlockObjectCatalog.variants().forEach(block ->
                                 output.accept(ModItems.gtBlockObjectItemsById()
                                         .get(block.id())

@@ -69,6 +69,13 @@ public class ModLanguageProvider extends LanguageProvider {
                     addBlock(holder, stone.chineseName());
                 }
             });
+            com.masson.cruciblecraft.worldgen.StoneLayerStones.cubes().forEach(cube -> {
+                if (ModBlocks.hasLayerStone(cube.registryPath())) {
+                    addBlock(
+                            ModBlocks.layerStone(cube.registryPath()),
+                            cube.chinese());
+                }
+            });
             GtBlockObjectCatalog.variants().forEach(block -> {
                 var holder = ModBlocks.gtBlockObjectBlocksById().get(block.id());
                 LanguageNames.playerChinese(block.chineseName(), block.registryPath())
@@ -616,6 +623,13 @@ public class ModLanguageProvider extends LanguageProvider {
             var holder = ModBlocks.gtStoneBlocksById().get(stone.id());
             if (holder != null) {
                 addBlock(holder, stone.englishName());
+            }
+        });
+        com.masson.cruciblecraft.worldgen.StoneLayerStones.cubes().forEach(cube -> {
+            if (ModBlocks.hasLayerStone(cube.registryPath())) {
+                addBlock(
+                        ModBlocks.layerStone(cube.registryPath()),
+                        cube.english());
             }
         });
         GtBlockObjectCatalog.variants().forEach(block ->

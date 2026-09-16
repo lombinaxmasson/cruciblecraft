@@ -59,9 +59,10 @@ GAME_TESTS = "GtStoneLayerRocksGameTests.java"
 TEST_IDS = [
     "stoneLayerCatalogMatchesLoaderWorldgen",
     "stoneLayerPlaces32757WithLayerLoot",
-    "stoneLayerDoesNotReplaceStone",
+    "stoneLayerReplacesVanillaStone",
     "stoneLayerOneIn128AndNoDeep",
-        "stoneLayerDoesNotDumpCatalog",
+    "stoneLayerDoesNotDumpCatalog",
+    "stoneLayerManifestResolvesLocalGt6",
 ]
 PLACER = "cruciblecraft:gt_surface_rock"
 FEATURE_TYPE = "cruciblecraft:stone_layer_rocks"
@@ -87,6 +88,175 @@ BLOCKSGT_TO_CC = {
     "Shale": "shale",
 }
 NATIVE_MATERIALS = tuple(sorted({*BLOCKSGT_TO_CC.values(), "stone", DEEPSLATE}))
+# BlocksGT.stones harvest/hardness from Loader_Rocks. Vanilla stone/deepslate
+# stay minecraft blocks; only GT BlockStones cubes are registered here.
+NATIVE_STONES = (
+    {
+        "material": "granite_black",
+        "gt_folder": "gt.stone.granite.black",
+        "english": "Black Granite",
+        "chinese": "黑花岗岩",
+        "harvest": 3,
+        "hardness_mul": 3.00,
+        "resistance_mul": 6.00,
+    },
+    {
+        "material": "granite_red",
+        "gt_folder": "gt.stone.granite.red",
+        "english": "Red Granite",
+        "chinese": "红花岗岩",
+        "harvest": 3,
+        "hardness_mul": 3.00,
+        "resistance_mul": 6.00,
+    },
+    {
+        "material": "basalt",
+        "gt_folder": "gt.stone.basalt",
+        "english": "Basalt",
+        "chinese": "玄武岩",
+        "harvest": 2,
+        "hardness_mul": 2.00,
+        "resistance_mul": 3.00,
+    },
+    {
+        "material": "marble",
+        "gt_folder": "gt.stone.marble",
+        "english": "Marble",
+        "chinese": "大理石",
+        "harvest": 0,
+        "hardness_mul": 0.50,
+        "resistance_mul": 0.75,
+    },
+    {
+        "material": "limestone",
+        "gt_folder": "gt.stone.limestone",
+        "english": "Limestone",
+        "chinese": "石灰岩",
+        "harvest": 0,
+        "hardness_mul": 0.50,
+        "resistance_mul": 0.75,
+    },
+    {
+        "material": "granite",
+        "gt_folder": "gt.stone.granite",
+        "english": "Granite",
+        "chinese": "花岗岩",
+        "harvest": 1,
+        "hardness_mul": 1.00,
+        "resistance_mul": 2.00,
+    },
+    {
+        "material": "diorite",
+        "gt_folder": "gt.stone.diorite",
+        "english": "Diorite",
+        "chinese": "闪长岩",
+        "harvest": 0,
+        "hardness_mul": 0.50,
+        "resistance_mul": 0.75,
+    },
+    {
+        "material": "andesite",
+        "gt_folder": "gt.stone.andesite",
+        "english": "Andesite",
+        "chinese": "安山岩",
+        "harvest": 0,
+        "hardness_mul": 0.50,
+        "resistance_mul": 0.75,
+    },
+    {
+        "material": "komatiite",
+        "gt_folder": "gt.stone.komatiite",
+        "english": "Komatiite",
+        "chinese": "科马提岩",
+        "harvest": 2,
+        "hardness_mul": 2.00,
+        "resistance_mul": 3.00,
+    },
+    {
+        "material": "greenschist",
+        "gt_folder": "gt.stone.greenschist",
+        "english": "Green Schist",
+        "chinese": "绿片岩",
+        "harvest": 0,
+        "hardness_mul": 0.50,
+        "resistance_mul": 0.75,
+    },
+    {
+        "material": "blueschist",
+        "gt_folder": "gt.stone.blueschist",
+        "english": "Blue Schist",
+        "chinese": "蓝片岩",
+        "harvest": 0,
+        "hardness_mul": 0.50,
+        "resistance_mul": 0.75,
+    },
+    {
+        "material": "kimberlite",
+        "gt_folder": "gt.stone.kimberlite",
+        "english": "Kimberlite",
+        "chinese": "金伯利岩",
+        "harvest": 2,
+        "hardness_mul": 2.00,
+        "resistance_mul": 3.00,
+    },
+    {
+        "material": "quartzite",
+        "gt_folder": "gt.stone.quartzite",
+        "english": "Quartzite",
+        "chinese": "石英岩",
+        "harvest": 0,
+        "hardness_mul": 0.50,
+        "resistance_mul": 0.75,
+    },
+    {
+        "material": "slate",
+        "gt_folder": "gt.stone.slate",
+        "english": "Slate",
+        "chinese": "板岩",
+        "harvest": 1,
+        "hardness_mul": 0.50,
+        "resistance_mul": 0.75,
+    },
+    {
+        "material": "shale",
+        "gt_folder": "gt.stone.shale",
+        "english": "Shale",
+        "chinese": "页岩",
+        "harvest": 0,
+        "hardness_mul": 0.50,
+        "resistance_mul": 0.75,
+    },
+)
+STONE_ROLES = (
+    {
+        "role": "stone",
+        "gt_file": "stone.png",
+        "english_suffix": "",
+        "chinese_suffix": "",
+        "english_prefix": "",
+        "chinese_prefix": "",
+    },
+    {
+        "role": "cobble",
+        "gt_file": "cobble.png",
+        "english_suffix": " Cobblestone",
+        "chinese_suffix": "圆石",
+        "english_prefix": "",
+        "chinese_prefix": "",
+    },
+    {
+        "role": "mossy_cobble",
+        "gt_file": "cobble_mossy.png",
+        "english_suffix": " Cobblestone",
+        "chinese_suffix": "圆石",
+        "english_prefix": "Mossy ",
+        "chinese_prefix": "苔石",
+    },
+)
+STONE_BLOCK_COUNT = len(NATIVE_STONES) * len(STONE_ROLES)
+GT6_W = census.ROOT / "gt6_referencable_port_code" / "gregtech6_w"
+GT6_STONES = Path("src/main/resources/assets/gregtech/textures/blocks/stones")
+CC_STONES = "assets/cruciblecraft/textures/block/gt6/stones"
 
 
 def _write_json(path: Path, document: Any) -> None:
@@ -106,7 +276,9 @@ def _owned_paths(*, closed: bool) -> list[str]:
         "src/main/java/com/masson/cruciblecraft/content/blockentity/GtSurfaceRockBlockEntity.java",
         "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerNoise.java",
         "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerCatalog.java",
+        "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerStones.java",
         "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerRockFeature.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/StoneLayerStoneBlock.java",
         "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerRockConfiguration.java",
         "src/main/java/com/masson/cruciblecraft/registry/ModFeatures.java",
         "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
@@ -115,8 +287,12 @@ def _owned_paths(*, closed: bool) -> list[str]:
         "src/main/resources/data/cruciblecraft/worldgen/configured_feature/stone_layer_rocks.json",
         "src/main/resources/data/cruciblecraft/worldgen/placed_feature/stone_layer_rocks.json",
         "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_stone_layer_rocks.json",
+        "src/main/resources/data/minecraft/tags/block/needs_iron_tool.json",
         "src/main/resources/data/cruciblecraft_wave_worldgen_gt_stone_layer_rocks/**",
         "src/main/resources/assets/cruciblecraft/gt6_gt_stone_layer_rocks_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/stone.png",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/cobble.png",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/cobble_mossy.png",
         f"tools/capabilities/{SLUG}/**",
         "tools/waves/worldgen/gt-stone-layer-rocks/**",
         "tools/gt_stone_layer_rocks.py",
@@ -163,23 +339,25 @@ def _plan_body(*, closed: bool) -> str:
         f"> 计划 slug：`{SLUG}`\n"
         f"{status}\n"
         "> 正式名称：GT6 石层石子\n"
-        "> 性质：把 GT6 `WorldgenStoneLayers` 在不透明石面 1/128 放置的 32757\n"
-        "> （`tLastRock` / 层表面材料，如黑色花岗岩）接到主世界。\n"
-        "> 不替换原版石头立方体，不生成 `StoneLayerOres`，不撒 catalog\n"
+        "> 性质：把 GT6 `WorldgenStoneLayers` 接到主世界：按噪声把原版石头/\n"
+        "> 圆石/深板岩换成层立方体（黑色花岗岩等），并在不透明石面 1/128 放\n"
+        "> 32757（`tLastRock`）。不生成 `StoneLayerOres`，不撒 catalog\n"
         "> `ItemEntity`，不重开行星岩 prep。\n"
         ">\n"
         "> Java/tick 源：`gt6_code/gregtech6` @ "
         f"`{GT6_REVISION}`。\n"
-        "> 贴图：复用已导入的 `rockgt`；本卡无新占位图。\n\n"
+        "> 贴图：从 `gregtech6_w` `blocks/stones/<folder>/"
+        "{stone,cobble,cobble_mossy}.png` 拷进已有族 `block/gt6/stones/`。\n\n"
         "```text\n"
         f"{lane}\n"
         "```\n\n"
         "关闭目标不是 `player_complete`。月/火/行星岩仍在 prep。\n\n"
         "## 门禁\n\n"
         f"- {gate} 无模组 GT6 `StoneLayer.LAYERS` 加权 123 条，噪声选层\n"
+        f"- {gate} 列扫描替换石头/圆石/深板岩为层立方体（{STONE_BLOCK_COUNT} 个 GT 方块）\n"
         f"- {gate} 列扫描 1/{PROBABILITY} 在石/基岩/圆石面空气放置 `gt_surface_rock`\n"
         f"- {gate} 掉落 `tLastRock` 的 `rock`（granite_black 等），不是整表 `c:rocks`\n"
-        f"- {gate} 不替换石头立方体，不写 `StoneLayerOres`\n"
+        f"- {gate} 不写 `StoneLayerOres`，不替换原版矿石格\n"
         f"- {gate} y<{NO_DEEP_Y} 的 `setNoDeep` 层用 deepslate\n"
         f"- {gate} 隔离 GameTest `-PwaveRecipes={SLUG}`\n"
         "- [x] 不以 catalog `ItemEntity` 当获得；不写 moon/mars/planet.rocks\n"
@@ -209,12 +387,82 @@ def readiness(unique_active: bool) -> dict[str, Any]:
         "placer": PLACER,
         "mte": 32757,
         "layer_count": LAYER_COUNT,
+        "stone_block_count": STONE_BLOCK_COUNT,
         "no_deep_y": NO_DEEP_Y,
     }
 
 
 def art_imports() -> list[dict[str, str]]:
-    return []
+    rows: list[dict[str, str]] = []
+    for stone in NATIVE_STONES:
+        for role in STONE_ROLES:
+            rows.append(
+                {
+                    "source": "gregtech6_w",
+                    "gt6_source": (
+                        GT6_STONES / stone["gt_folder"] / role["gt_file"]
+                    ).as_posix(),
+                    "destination": (
+                        f"{CC_STONES}/{stone['gt_folder']}/{role['gt_file']}"
+                    ),
+                }
+            )
+    return rows
+
+
+def copy_art() -> None:
+    if not GT6_W.is_dir():
+        raise FileNotFoundError(census.relative(GT6_W))
+    for row in art_imports():
+        source = GT6_W / row["gt6_source"]
+        dest = (
+            census.ROOT
+            / "src"
+            / "main"
+            / "resources"
+            / row["destination"]
+        )
+        if not source.is_file():
+            raise FileNotFoundError(row["gt6_source"])
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, dest)
+
+
+def stone_blocks() -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for stone in NATIVE_STONES:
+        hardness = round(stone["hardness_mul"] * 1.5, 4)
+        resistance = round(stone["resistance_mul"] * 10.0, 4)
+        for role in STONE_ROLES:
+            rows.append(
+                {
+                    "material": stone["material"],
+                    "role": role["role"],
+                    "registry_path": f"{stone['material']}/{role['role']}",
+                    "texture": (
+                        "cruciblecraft:block/gt6/stones/"
+                        f"{stone['gt_folder']}/{role['gt_file'][:-4]}"
+                    ),
+                    "gt_folder": stone["gt_folder"],
+                    "gt_file": role["gt_file"],
+                    "harvest_level": stone["harvest"],
+                    "hardness": hardness,
+                    "resistance": resistance,
+                    "english": (
+                        f"{role['english_prefix']}{stone['english']}"
+                        f"{role['english_suffix']}"
+                    ),
+                    "chinese": (
+                        f"{role['chinese_prefix']}{stone['chinese']}"
+                        f"{role['chinese_suffix']}"
+                    ),
+                }
+            )
+    if len(rows) != STONE_BLOCK_COUNT:
+        raise ValueError(
+            f"expected {STONE_BLOCK_COUNT} stone cubes, got {len(rows)}"
+        )
+    return rows
 
 
 def _matching_paren(text: str, open_idx: int) -> int:
@@ -282,6 +530,7 @@ def layer_catalog() -> dict[str, Any]:
     missing = [name for name in NATIVE_MATERIALS if name not in materials]
     if missing:
         raise ValueError(f"native materials missing from LAYERS: {missing}")
+    blocks = stone_blocks()
     return {
         "schema_version": 1,
         "id": "stone_layer_rocks",
@@ -294,10 +543,12 @@ def layer_catalog() -> dict[str, Any]:
         "no_deep_y": NO_DEEP_Y,
         "deepslate": DEEPSLATE,
         "layer_count": len(layers),
+        "stone_block_count": len(blocks),
         "layers": [
             {"material": row["material"], "no_deep": row["no_deep"]}
             for row in layers
         ],
+        "stone_blocks": blocks,
         "biome_modifier": {
             "id": "add_stone_layer_rocks",
             "type": "neoforge:add_features",
@@ -306,8 +557,8 @@ def layer_catalog() -> dict[str, Any]:
             "step": "underground_decoration",
         },
         "provenance": (
-            "GT6 WorldgenStoneLayers overworld 32757 tLastRock pebbles; "
-            "no-mod LAYERS weights; no stone-cube replace; no StoneLayerOres"
+            "GT6 WorldgenStoneLayers overworld cube replace plus 32757 "
+            "tLastRock pebbles; no-mod LAYERS weights; no StoneLayerOres"
         ),
         "design_policy": "DESIGN_POLICY",
     }
@@ -403,18 +654,23 @@ def capability_document(*, closed: bool) -> dict[str, Any]:
             {
                 "semantic_key": "worldgen:overworld.stonelayers.rocks",
                 "disposition": "new_distinct",
-                "runtime_ids": [PLACER, FEATURE_TYPE],
+                "runtime_ids": [
+                    PLACER,
+                    FEATURE_TYPE,
+                    "cruciblecraft:granite_black/stone",
+                ],
                 "reason": (
-                    "GT6 WorldgenStoneLayers 32757 tLastRock pebbles on stone/cave "
-                    "surfaces. Not WorldgenRocks grass scatter, not catalog dump, "
-                    "not moon/mars/planet rocks, not stone-cube replacement."
+                    "GT6 WorldgenStoneLayers 32757 tLastRock pebbles and "
+                    "stone-cube replace on overworld stone/cobble/deepslate. "
+                    "Not WorldgenRocks grass scatter, not catalog dump, "
+                    "not moon/mars/planet rocks, not StoneLayerOres."
                 ),
             }
         ],
         "note": (
-            "Overworld WorldgenStoneLayers pebbles only. Close at runtime_ready. "
+            "Overworld WorldgenStoneLayers cubes plus pebbles. Close at runtime_ready. "
             "Do not scatter catalog ItemEntity. Do not land worldgen/gt-planet-rocks. "
-            "Do not replace vanilla stone cubes or emit StoneLayerOres."
+            "Do not emit StoneLayerOres or eat vanilla ore cells."
         ),
     }
 
@@ -460,6 +716,7 @@ def write(*, unique_active: bool) -> dict[str, Any]:
             if path.name != PLAN_STEM:
                 raise ValueError(f"unique-active already occupied by {path.name}")
     write_noise()
+    copy_art()
     declaration = write_worldgen()
     _write_json(ART_MANIFEST, {"imports": art_imports(), "schema_version": 1})
     _write_json(WAVE / "topology.json", topology(unique_active))
@@ -468,8 +725,9 @@ def write(*, unique_active: bool) -> dict[str, Any]:
         WAVE / "production_lock.json",
         {
             "note": (
-                "GT6 WorldgenStoneLayers overworld 32757 tLastRock pebbles; "
-                "not player_complete; not planet rocks; not stone replace"
+                "GT6 WorldgenStoneLayers overworld cube replace plus 32757 "
+                "tLastRock pebbles; not player_complete; not planet rocks; "
+                "not StoneLayerOres"
             )
         },
     )
@@ -481,6 +739,7 @@ def write(*, unique_active: bool) -> dict[str, Any]:
             "placer": PLACER,
             "mte": 32757,
             "layer_count": declaration["layer_count"],
+            "stone_block_count": declaration["stone_block_count"],
             "no_deep_y": NO_DEEP_Y,
             "material_counts": dict(counts),
             "schema_version": 1,
@@ -521,10 +780,26 @@ def check() -> list[str]:
         errors.append("stone_layer_rocks.json drifted from Loader_Worldgen LAYERS")
     if actual.get("layer_count") != LAYER_COUNT:
         errors.append("layer_count drifted from no-mod GT6 LAYERS")
+    if actual.get("stone_block_count") != STONE_BLOCK_COUNT:
+        errors.append("stone_block_count drifted from BlocksGT native cubes")
+    cube_materials = {row["material"] for row in actual.get("stone_blocks", [])}
+    native_gt = {stone["material"] for stone in NATIVE_STONES}
+    if cube_materials != native_gt:
+        errors.append("stone_blocks materials drifted from BlocksGT")
     if "granite_black" not in {
         row["material"] for row in actual.get("layers", [])
     }:
         errors.append("granite_black must remain a StoneLayer surface material")
+    imports = art_imports()
+    if len(imports) != STONE_BLOCK_COUNT:
+        errors.append("art manifest must copy stone/cobble/mossy for each GT cube")
+    manifest = census.load_json(ART_MANIFEST) if ART_MANIFEST.is_file() else {}
+    if manifest.get("imports") != imports:
+        errors.append("gt6_gt_stone_layer_rocks_art_manifest.json drifted")
+    for row in imports:
+        dest = census.ROOT / "src" / "main" / "resources" / row["destination"]
+        if not dest.is_file():
+            errors.append(f"missing imported texture {row['destination']}")
     materials_dir = (
         census.ROOT
         / "src"
@@ -562,11 +837,32 @@ def check() -> list[str]:
             errors.append("stone-layer pebbles must be gt_surface_rock, not RockBlock")
         if "nextInt" not in text:
             errors.append("stone-layer feature must keep 1/128 roll")
-        if "setBlock" in text and "mStone" in text:
-            errors.append("this card must not replace stone cubes")
+        if "tryReplace" not in text or "Blocks.STONE" not in text:
+            errors.append("stone-layer feature must replace vanilla stone cubes")
+        if "Blocks.TUFF" not in text:
+            errors.append("stone-layer feature must replace 1.21 tuff")
+        if "canEntityDestroy" not in (
+            java_root / "content" / "block" / "StoneLayerStoneBlock.java"
+        ).read_text(encoding="utf-8"):
+            errors.append("harvest-3 cubes must keep GT6 wither proof")
+        if "StoneLayerOres" in text and "placeBlock" in text:
+            errors.append("this card must not emit StoneLayerOres")
         for forbidden in ("moon.rocks", "mars.rocks", "planet.rocks"):
             if forbidden in text:
                 errors.append(f"must not land {forbidden}")
+    stones = java_root / "worldgen" / "StoneLayerStones.java"
+    if not stones.is_file():
+        errors.append("missing StoneLayerStones.java")
+    blocks_java = java_root / "registry" / "ModBlocks.java"
+    if not blocks_java.is_file():
+        errors.append("missing ModBlocks.java")
+    else:
+        text = blocks_java.read_text(encoding="utf-8")
+        if "GT_STONE_BLOCKS.containsKey" not in text:
+            errors.append("layer cubes must reuse live gt_stone_catalog ids")
+    cube = java_root / "content" / "block" / "StoneLayerStoneBlock.java"
+    if not cube.is_file():
+        errors.append("missing StoneLayerStoneBlock.java")
     tests = java_root / "gametest" / GAME_TESTS
     if not tests.is_file():
         errors.append(f"missing {GAME_TESTS}")
@@ -576,6 +872,10 @@ def check() -> list[str]:
             errors.append("GameTest namespace drifted")
         if "granite_black" not in text:
             errors.append("GameTest must cover granite_black loot")
+        if "stoneLayerReplacesVanillaStone" not in text:
+            errors.append("GameTest must cover stone-cube replace")
+        if "stoneLayerManifestResolvesLocalGt6" not in text:
+            errors.append("GameTest must cover local GT6 stone textures")
         if "GtItemScatterFeature" in text:
             errors.append("GameTest must not reintroduce catalog scatter")
     block = (
