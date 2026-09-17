@@ -1,9 +1,9 @@
 ---
-description: Never run git checkout or git restore. Mixed working-tree WIP is committed together.
+description: Never discard the working tree. Mixed WIP commits together by default; split only by git add of exclusive files.
 alwaysApply: true
 ---
 
-# No git checkout / git restore
+# Never discard uncommitted work
 
 **Never run `git checkout` or `git restore`.** Any arguments, any paths, including
 `HEAD`, `--`, `--staged`, `--worktree`, `--ours`, `--theirs`, single files,
@@ -17,10 +17,21 @@ that a destructive git command is safe.
 Switch branches with `git switch` / `git switch -c` only when the user asked
 to change branch. Do not switch in order to discard files.
 
-# Commit mixed WIP together
+# How to commit
 
-If the user asks to commit and the tree has more than one piece of work,
-`git add` the dirty tracked files and new work, then one commit. Do not
-split cards or leave “other” dirty files out.
+Skip secrets, `run/`, `.idea/`, and gitignored evidence dumps.
 
-Still skip secrets, `run/`, `.idea/`, and gitignored evidence dumps.
+**Default:** if the user asks to commit and the tree has more than one piece of
+work, `git add` the dirty tracked files and new work, then one commit. Do not
+restore, checkout, or stash the “other” files to make the diff look on-theme.
+
+**Split only with `git add`.** A split is allowed when the user asks to commit
+one topic and leave the rest, **and** every path you stage belongs wholly to
+that topic. Leave every other dirty file unstaged. Do not touch those files
+with checkout, restore, reset, clean, or stash.
+
+Shared files are not exclusive: `ModLanguageProvider`, generated
+`en_us.json` / `zh_cn.json`, `ModBlocks`, `player-guide.md`, and any other
+file that already mixes more than one piece of work. Those either go into the
+commit as they stand or stay unstaged. Never revert them to HEAD so a commit
+can look clean.
