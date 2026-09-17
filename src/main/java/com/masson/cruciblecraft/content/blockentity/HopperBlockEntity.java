@@ -19,6 +19,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -70,7 +71,7 @@ public final class HopperBlockEntity extends BlockEntity implements MenuProvider
             public int getSlotLimit(int slot) {
                 return variant.kind().isQueue()
                         ? slotSize
-                        : HopperTransferCore.TICK_ITEM_CAP;
+                        : HopperTransferCore.stackLimit(mode);
             }
 
             @Override
@@ -143,7 +144,6 @@ public final class HopperBlockEntity extends BlockEntity implements MenuProvider
             if (slotSize > MAX_MODE) {
                 slotSize = 1;
             }
-            restackToSlotSize();
         } else if (reverse) {
             mode--;
             if (mode < 0) {
@@ -163,6 +163,17 @@ public final class HopperBlockEntity extends BlockEntity implements MenuProvider
             exactMode = !exactMode;
             setChanged();
         }
+    }
+
+    public void resetModes() {
+        if (variant.kind().isQueue()) {
+            slotSize = MAX_MODE;
+            restackToSlotSize();
+        } else {
+            mode = 0;
+            exactMode = false;
+        }
+        setChanged();
     }
 
     public Component statusMessage() {
@@ -210,7 +221,7 @@ public final class HopperBlockEntity extends BlockEntity implements MenuProvider
             BlockPos pos,
             BlockState state,
             HopperBlockEntity hopper) {
-        if (hopper.failClosed || level.hasNeighborSignal(pos)) {
+        if (hopper.failClosed || pausedByRedstone(level, pos)) {
             return;
         }
         hopper.pull(level, pos);
@@ -221,6 +232,19 @@ public final class HopperBlockEntity extends BlockEntity implements MenuProvider
             HopperTransferCore.compact(hopper.inventory, false);
         }
         hopper.push(level, pos, state);
+    }
+
+    private static boolean pausedByRedstone(Level level, BlockPos pos) {
+        for (Direction side : Direction.values()) {
+            BlockPos neighbor = pos.relative(side);
+            if (level.getBlockState(neighbor).is(BlockTags.RAILS)) {
+                continue;
+            }
+            if (level.getSignal(neighbor, side) > 0) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void pull(Level level, BlockPos pos) {

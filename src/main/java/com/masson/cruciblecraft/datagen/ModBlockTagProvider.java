@@ -63,12 +63,22 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
                 ModBlocks.LARGE_HEAT_EXCHANGER.getKey(),
                 ModBlocks.BEDROCK_DRILL.getKey(),
                 ModBlocks.BEDROCK_DRILL_HEAD.getKey(),
+                ModBlocks.GT_SMALL_ORE.getKey(),
+                ModBlocks.GT_HOSTED_ORE.getKey(),
+                ModBlocks.GT_BROKEN_ORE.getKey(),
                 ModBlocks.REACTOR_CORE_1X1.getKey(),
                 ModBlocks.REACTOR_CORE_2X2.getKey(),
                 ModBlocks.TUNGSTENSTEEL_WALL.getKey(),
                 ModBlocks.STAINLESS_STEEL_WALL.getKey(),
                 ModBlocks.LARGE_IRIDIUM_COIL.getKey());
         stone.add(ModBlocks.BRONZE_CRUSHER.getKey());
+        stone.add(ModBlocks.GT_SMALL_ORE.getKey());
+        stone.add(ModBlocks.GT_HOSTED_ORE.getKey());
+        stone.add(ModBlocks.GT_BROKEN_ORE.getKey());
+        tag(BlockTags.SMALL_FLOWERS).add(ModBlocks.GT_INDICATOR_FLOWER.getKey());
+        tag(BlockTags.FLOWERS).add(ModBlocks.GT_INDICATOR_FLOWER.getKey());
+        tag(BlockTags.MINEABLE_WITH_SHOVEL).add(ModBlocks.GT_INDICATOR_GRASS.getKey());
+        tag(BlockTags.DIRT).add(ModBlocks.GT_INDICATOR_GRASS.getKey());
         ModBlocks.converterBlocksById().values().stream()
                 .sorted(Comparator.comparing(block -> block.getId().toString()))
                 .forEach(block -> pickaxe.add(block.getKey()));

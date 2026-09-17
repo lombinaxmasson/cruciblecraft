@@ -1,0 +1,38 @@
+{
+  "type": "cruciblecraft:gt_recipe",
+  "duration": 3600,
+  "eut": 0,
+  "fluid_outputs": [
+    {
+      "amount": 200,
+      "id": "cruciblecraft:creosote"
+    }
+  ],
+  "item_input_actions": [
+    {
+      "kind": "consume"
+    }
+  ],
+  "item_input_counts": [
+    1
+  ],
+  "item_inputs": [
+    {
+      "item": "minecraft:crimson_stem"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": 1,
+      "id": "minecraft:charcoal"
+    }
+  ],
+  "map": "cruciblecraft:coke_oven",
+  "output_chances": [
+    10000
+  ],
+  "provenance": {
+    "selected_source_recipe": "gt6_code/gregtech6/src/main/java/gregtech/loaders/c/Loader_Recipes_OreDict.java:205",
+    "source_kind": "gt6_java_source"
+  }
+}

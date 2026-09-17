@@ -20,6 +20,7 @@ import com.masson.cruciblecraft.material.def.MaterialDefinition;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.BaseFlowingFluid;
@@ -64,6 +65,51 @@ public final class ModFluids {
             FLUIDS.register("steam", () -> new BaseFlowingFluid.Source(steamProperties()));
     public static final DeferredHolder<Fluid, FlowingFluid> STEAM_FLOWING =
             FLUIDS.register("flowing_steam", () -> new BaseFlowingFluid.Flowing(steamProperties()));
+
+    public static final Supplier<FluidType> OIL_EXTRA_HEAVY_TYPE =
+            registerSpringOilType("oil_extra_heavy", 3_000);
+    public static final DeferredHolder<Fluid, FlowingFluid> OIL_EXTRA_HEAVY_SOURCE =
+            FLUIDS.register(
+                    "oil_extra_heavy",
+                    () -> new BaseFlowingFluid.Source(oilExtraHeavyProperties()));
+    public static final DeferredHolder<Fluid, FlowingFluid> OIL_EXTRA_HEAVY_FLOWING =
+            FLUIDS.register(
+                    "flowing_oil_extra_heavy",
+                    () -> new BaseFlowingFluid.Flowing(oilExtraHeavyProperties()));
+
+    public static final Supplier<FluidType> OIL_HEAVY_TYPE =
+            registerSpringOilType("oil_heavy", 2_000);
+    public static final DeferredHolder<Fluid, FlowingFluid> OIL_HEAVY_SOURCE =
+            FLUIDS.register(
+                    "oil_heavy",
+                    () -> new BaseFlowingFluid.Source(oilHeavyProperties()));
+    public static final DeferredHolder<Fluid, FlowingFluid> OIL_HEAVY_FLOWING =
+            FLUIDS.register(
+                    "flowing_oil_heavy",
+                    () -> new BaseFlowingFluid.Flowing(oilHeavyProperties()));
+
+    public static final Supplier<FluidType> OIL_MEDIUM_TYPE =
+            registerSpringOilType("oil_medium", 1_500);
+    public static final DeferredHolder<Fluid, FlowingFluid> OIL_MEDIUM_SOURCE =
+            FLUIDS.register(
+                    "oil_medium",
+                    () -> new BaseFlowingFluid.Source(oilMediumProperties()));
+    public static final DeferredHolder<Fluid, FlowingFluid> OIL_MEDIUM_FLOWING =
+            FLUIDS.register(
+                    "flowing_oil_medium",
+                    () -> new BaseFlowingFluid.Flowing(oilMediumProperties()));
+
+    public static final Supplier<FluidType> OIL_LIGHT_TYPE =
+            registerSpringOilType("oil_light", 1_000);
+    public static final DeferredHolder<Fluid, FlowingFluid> OIL_LIGHT_SOURCE =
+            FLUIDS.register(
+                    "oil_light",
+                    () -> new BaseFlowingFluid.Source(oilLightProperties()));
+    public static final DeferredHolder<Fluid, FlowingFluid> OIL_LIGHT_FLOWING =
+            FLUIDS.register(
+                    "flowing_oil_light",
+                    () -> new BaseFlowingFluid.Flowing(oilLightProperties()));
+
     private static final Map<ResourceLocation, BathOverlayFluidEntry> BATH_OVERLAY_FLUIDS =
             registerBathOverlayFluids();
 
@@ -80,6 +126,64 @@ public final class ModFluids {
         return new BaseFlowingFluid.Properties(STEAM_TYPE, STEAM_SOURCE, STEAM_FLOWING)
                 .bucket(ModItems.STEAM_BUCKET)
                 .block(ModBlocks.STEAM)
+                .slopeFindDistance(2)
+                .levelDecreasePerBlock(2);
+    }
+
+    private static Supplier<FluidType> registerSpringOilType(String id, int viscosity) {
+        return FLUID_TYPES.register(
+                id,
+                () -> new FluidType(FluidType.Properties.create()
+                        .density(1_000)
+                        .viscosity(viscosity)
+                        .canConvertToSource(false)));
+    }
+
+    private static BaseFlowingFluid.Properties oilExtraHeavyProperties() {
+        return springOilProperties(
+                OIL_EXTRA_HEAVY_TYPE,
+                OIL_EXTRA_HEAVY_SOURCE,
+                OIL_EXTRA_HEAVY_FLOWING,
+                ModItems.OIL_EXTRA_HEAVY_BUCKET,
+                ModBlocks.OIL_EXTRA_HEAVY);
+    }
+
+    private static BaseFlowingFluid.Properties oilHeavyProperties() {
+        return springOilProperties(
+                OIL_HEAVY_TYPE,
+                OIL_HEAVY_SOURCE,
+                OIL_HEAVY_FLOWING,
+                ModItems.OIL_HEAVY_BUCKET,
+                ModBlocks.OIL_HEAVY);
+    }
+
+    private static BaseFlowingFluid.Properties oilMediumProperties() {
+        return springOilProperties(
+                OIL_MEDIUM_TYPE,
+                OIL_MEDIUM_SOURCE,
+                OIL_MEDIUM_FLOWING,
+                ModItems.OIL_MEDIUM_BUCKET,
+                ModBlocks.OIL_MEDIUM);
+    }
+
+    private static BaseFlowingFluid.Properties oilLightProperties() {
+        return springOilProperties(
+                OIL_LIGHT_TYPE,
+                OIL_LIGHT_SOURCE,
+                OIL_LIGHT_FLOWING,
+                ModItems.OIL_LIGHT_BUCKET,
+                ModBlocks.OIL_LIGHT);
+    }
+
+    private static BaseFlowingFluid.Properties springOilProperties(
+            Supplier<FluidType> type,
+            DeferredHolder<Fluid, FlowingFluid> source,
+            DeferredHolder<Fluid, FlowingFluid> flowing,
+            net.neoforged.neoforge.registries.DeferredItem<?> bucket,
+            net.neoforged.neoforge.registries.DeferredBlock<? extends LiquidBlock> block) {
+        return new BaseFlowingFluid.Properties(type, source, flowing)
+                .bucket(bucket)
+                .block(block)
                 .slopeFindDistance(2)
                 .levelDecreasePerBlock(2);
     }
@@ -334,6 +438,12 @@ public final class ModFluids {
 
     public static Collection<BathOverlayFluidEntry> bathOverlayFluids() {
         return BATH_OVERLAY_FLUIDS.values();
+    }
+
+    public static Optional<BathOverlayFluidEntry> bathOverlay(String path) {
+        return Optional.ofNullable(
+                BATH_OVERLAY_FLUIDS.get(
+                        ResourceLocation.fromNamespaceAndPath(CrucibleCraft.MODID, path)));
     }
 
     private static Map<ResourceLocation, BathOverlayFluidEntry> registerBathOverlayFluids() {

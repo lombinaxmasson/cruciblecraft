@@ -47,6 +47,9 @@ class DustFunnelBlockEntityTest {
         funnel.cycleMode(true);
         assertEquals(Form.DUST, funnel.ledger().outputMode());
         assertEquals(36, funnel.ledger().units());
+        funnel.dropLedger();
+        assertEquals(0, funnel.ledger().units());
+        assertTrue(funnel.ledger().isEmpty());
     }
 
     @Test

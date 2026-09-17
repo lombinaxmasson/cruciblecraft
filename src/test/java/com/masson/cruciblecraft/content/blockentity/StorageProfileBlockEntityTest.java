@@ -75,8 +75,9 @@ class StorageProfileBlockEntityTest {
         assertNull(standard.logisticsStorage());
         assertEquals(0, standard.getLogisticsPriorityItem());
         assertEquals(logistics, logistics.logisticsStorage());
-        assertEquals(2, logistics.getLogisticsPriorityItem());
+        assertEquals(1, logistics.getLogisticsPriorityItem());
         logistics.inventory().insertAll(new ItemStack(Items.IRON_INGOT, 8), false);
+        assertEquals(2, logistics.getLogisticsPriorityItem());
         assertTrue(
                 logistics.getLogisticsFilterItem().is(Items.IRON_INGOT));
         CompoundTag tag = logistics.saveForTest(registries);

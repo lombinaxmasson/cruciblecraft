@@ -43,7 +43,10 @@ import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.BathIdentityCatalog;
+import com.masson.cruciblecraft.content.item.GtIndicatorFlowerItem;
+import com.masson.cruciblecraft.content.item.GtIndicatorGrassItem;
 import com.masson.cruciblecraft.content.item.GtSurfaceRockItem;
+import com.masson.cruciblecraft.content.item.OreMaterialBlockItem;
 import com.masson.cruciblecraft.content.item.PebbleBlockItem;
 import com.masson.cruciblecraft.content.item.SemanticObjectCatalog;
 import com.masson.cruciblecraft.content.item.SlicerOperandCatalog;
@@ -158,6 +161,39 @@ public final class ModItems {
                     () -> new GtSurfaceRockItem(
                             ModBlocks.GT_SURFACE_ROCK.get(),
                             new Item.Properties()));
+    public static final DeferredItem<BlockItem> GT_BEDROCK_ORE =
+            ITEMS.registerSimpleBlockItem("gt_bedrock_ore", ModBlocks.GT_BEDROCK_ORE);
+    public static final DeferredItem<BlockItem> GT_SMALL_BEDROCK_ORE =
+            ITEMS.registerSimpleBlockItem(
+                    "gt_small_bedrock_ore", ModBlocks.GT_SMALL_BEDROCK_ORE);
+    public static final DeferredItem<BlockItem> GT_SMALL_ORE =
+            ITEMS.registerSimpleBlockItem("gt_small_ore", ModBlocks.GT_SMALL_ORE);
+    public static final DeferredItem<OreMaterialBlockItem> GT_HOSTED_ORE =
+            ITEMS.register(
+                    "gt_hosted_ore",
+                    () -> new OreMaterialBlockItem(
+                            ModBlocks.GT_HOSTED_ORE.get(),
+                            new Item.Properties()));
+    public static final DeferredItem<OreMaterialBlockItem> GT_BROKEN_ORE =
+            ITEMS.register(
+                    "gt_broken_ore",
+                    () -> new OreMaterialBlockItem(
+                            ModBlocks.GT_BROKEN_ORE.get(),
+                            new Item.Properties()));
+    public static final DeferredItem<GtIndicatorFlowerItem> GT_INDICATOR_FLOWER =
+            ITEMS.register(
+                    "gt_indicator_flower",
+                    () -> new GtIndicatorFlowerItem(
+                            ModBlocks.GT_INDICATOR_FLOWER.get(),
+                            new Item.Properties()));
+    public static final DeferredItem<GtIndicatorGrassItem> GT_INDICATOR_GRASS =
+            ITEMS.register(
+                    "gt_indicator_grass",
+                    () -> new GtIndicatorGrassItem(
+                            ModBlocks.GT_INDICATOR_GRASS.get(),
+                            new Item.Properties()));
+    public static final DeferredItem<BlockItem> GT_FLUID_SPRING =
+            ITEMS.registerSimpleBlockItem("gt_fluid_spring", ModBlocks.GT_FLUID_SPRING);
 
     static {
         registerGtTrees();
@@ -347,6 +383,36 @@ public final class ModItems {
             "steam_bucket",
             () -> new BucketItem(
                     ModFluids.STEAM_SOURCE.get(),
+                    new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+    public static final DeferredItem<BucketItem> OIL_EXTRA_HEAVY_BUCKET = ITEMS.register(
+            "oil_extra_heavy_bucket",
+            () -> new BucketItem(
+                    ModFluids.OIL_EXTRA_HEAVY_SOURCE.get(),
+                    new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+    public static final DeferredItem<BucketItem> OIL_HEAVY_BUCKET = ITEMS.register(
+            "oil_heavy_bucket",
+            () -> new BucketItem(
+                    ModFluids.OIL_HEAVY_SOURCE.get(),
+                    new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+    public static final DeferredItem<BucketItem> OIL_MEDIUM_BUCKET = ITEMS.register(
+            "oil_medium_bucket",
+            () -> new BucketItem(
+                    ModFluids.OIL_MEDIUM_SOURCE.get(),
+                    new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+    public static final DeferredItem<BucketItem> OIL_LIGHT_BUCKET = ITEMS.register(
+            "oil_light_bucket",
+            () -> new BucketItem(
+                    ModFluids.OIL_LIGHT_SOURCE.get(),
+                    new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+    public static final DeferredItem<BucketItem> NATURAL_GAS_BUCKET = ITEMS.register(
+            "natural_gas_bucket",
+            () -> new BucketItem(
+                    ModFluids.chemical("natural_gas").orElseThrow().source().get(),
+                    new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+    public static final DeferredItem<BucketItem> WATER_GEOTHERMAL_BUCKET = ITEMS.register(
+            "water_geothermal_bucket",
+            () -> new BucketItem(
+                    ModFluids.bathOverlay("water_geothermal").orElseThrow().source().get(),
                     new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
     public static final DeferredItem<PortableFluidTankItem> PORTABLE_FLUID_TANK =
             ITEMS.register(

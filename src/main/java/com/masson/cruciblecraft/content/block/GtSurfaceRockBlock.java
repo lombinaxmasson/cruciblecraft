@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.blockentity.GtSurfaceRockBlockEntity;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
@@ -196,12 +197,19 @@ public final class GtSurfaceRockBlock extends Block implements EntityBlock {
     private static ItemStack layerOrStone(@Nullable BlockEntity blockEntity) {
         if (blockEntity instanceof GtSurfaceRockBlockEntity rock
                 && rock.hasMaterial()) {
-            return new ItemStack(ModItems.materialItem(
-                    rock.materialId(),
-                    MaterialPrefixCatalog.require("rock")).get());
+            if (rock.rawOre()) {
+                return MaterialLookup.item(rock.materialId(), MaterialPrefixes.RAW_ORE)
+                        .map(item -> new ItemStack(item, 1))
+                        .orElseGet(() -> rockDrop(rock.materialId()));
+            }
+            return rockDrop(rock.materialId());
         }
+        return rockDrop("stone");
+    }
+
+    private static ItemStack rockDrop(String materialId) {
         return new ItemStack(ModItems.materialItem(
-                "stone",
+                materialId,
                 MaterialPrefixCatalog.require("rock")).get());
     }
 

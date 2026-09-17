@@ -152,6 +152,20 @@ public final class HopperBlock extends Block
                 instanceof HopperBlockEntity hopper)) {
             return ToolResult.PASS;
         }
+        if (action == ToolAction.WRENCH) {
+            Direction target = Gt6StyleConnections.sideFromHit(ToolClick.hit(context));
+            BlockState state = level.getBlockState(context.getClickedPos());
+            if (!level.isClientSide) {
+                if (state.getValue(FACING) != target) {
+                    level.setBlock(
+                            context.getClickedPos(),
+                            state.setValue(FACING, target),
+                            Block.UPDATE_ALL);
+                }
+                ToolClick.hurt(context);
+            }
+            return ToolResult.SUCCESS;
+        }
         if (action == ToolAction.SCREWDRIVER) {
             if (!level.isClientSide) {
                 hopper.cycleMode(context.getPlayer() != null
@@ -164,12 +178,23 @@ public final class HopperBlock extends Block
             }
             return ToolResult.SUCCESS;
         }
-        if (action == ToolAction.WRENCH) {
+        if (action == ToolAction.MONKEY_WRENCH) {
             if (variant.kind() == HopperKind.QUEUE_HOPPER) {
                 return ToolResult.PASS;
             }
             if (!level.isClientSide) {
                 hopper.toggleExactMode();
+                if (context.getPlayer() != null) {
+                    context.getPlayer().displayClientMessage(
+                            hopper.statusMessage(), true);
+                }
+                ToolClick.hurt(context);
+            }
+            return ToolResult.SUCCESS;
+        }
+        if (action == ToolAction.SOFT_HAMMER) {
+            if (!level.isClientSide) {
+                hopper.resetModes();
                 if (context.getPlayer() != null) {
                     context.getPlayer().displayClientMessage(
                             hopper.statusMessage(), true);

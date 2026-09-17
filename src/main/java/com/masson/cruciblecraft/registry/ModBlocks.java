@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Supplier;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
@@ -67,6 +68,13 @@ import com.masson.cruciblecraft.content.block.GtBlockObjectLogBlock;
 import com.masson.cruciblecraft.content.block.GlowtusBlock;
 import com.masson.cruciblecraft.content.block.GtBushBlock;
 import com.masson.cruciblecraft.content.block.GtSurfaceRockBlock;
+import com.masson.cruciblecraft.content.block.BedrockOreBlock;
+import com.masson.cruciblecraft.content.block.GtBrokenOreBlock;
+import com.masson.cruciblecraft.content.block.GtHostedOreBlock;
+import com.masson.cruciblecraft.content.block.GtIndicatorFlowerBlock;
+import com.masson.cruciblecraft.content.block.GtIndicatorGrassBlock;
+import com.masson.cruciblecraft.content.block.FluidSpringBlock;
+import com.masson.cruciblecraft.content.block.GtSmallOreBlock;
 import com.masson.cruciblecraft.content.block.GtTreeHoleBlock;
 import com.masson.cruciblecraft.content.block.GtTreeLeavesBlock;
 import com.masson.cruciblecraft.content.block.GtTreeLogBlock;
@@ -85,6 +93,7 @@ import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.block.RotationalAxleBlock;
 import com.masson.cruciblecraft.content.block.RotationalGearboxBlock;
 import com.masson.cruciblecraft.content.block.SolidBurningBoxBlock;
+import com.masson.cruciblecraft.content.block.SpringLiquidBlock;
 import com.masson.cruciblecraft.content.block.SteamEngineBlock;
 import com.masson.cruciblecraft.content.block.SubsurfaceFluidDepositBlock;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
@@ -180,6 +189,50 @@ public final class ModBlocks {
             GtBushBlock::new);
     public static final DeferredBlock<GtSurfaceRockBlock> GT_SURFACE_ROCK =
             BLOCKS.register("gt_surface_rock", GtSurfaceRockBlock::new);
+    public static final DeferredBlock<BedrockOreBlock> GT_BEDROCK_ORE =
+            BLOCKS.register(
+                    "gt_bedrock_ore",
+                    () -> new BedrockOreBlock(false, bedrockOreProperties()));
+    public static final DeferredBlock<BedrockOreBlock> GT_SMALL_BEDROCK_ORE =
+            BLOCKS.register(
+                    "gt_small_bedrock_ore",
+                    () -> new BedrockOreBlock(true, bedrockOreProperties()));
+    public static final DeferredBlock<GtSmallOreBlock> GT_SMALL_ORE =
+            BLOCKS.register(
+                    "gt_small_ore",
+                    () -> new GtSmallOreBlock(
+                            BlockBehaviour.Properties.of()
+                                    .mapColor(MapColor.STONE)
+                                    .strength(1.0F, 1.0F)
+                                    .requiresCorrectToolForDrops()
+                                    .sound(SoundType.STONE)
+                                    .noLootTable()));
+    public static final DeferredBlock<GtHostedOreBlock> GT_HOSTED_ORE =
+            BLOCKS.register(
+                    "gt_hosted_ore",
+                    () -> new GtHostedOreBlock(
+                            BlockBehaviour.Properties.of()
+                                    .mapColor(MapColor.STONE)
+                                    .strength(1.0F, 1.0F)
+                                    .requiresCorrectToolForDrops()
+                                    .sound(SoundType.STONE)
+                                    .noLootTable()));
+    public static final DeferredBlock<GtBrokenOreBlock> GT_BROKEN_ORE =
+            BLOCKS.register(
+                    "gt_broken_ore",
+                    () -> new GtBrokenOreBlock(
+                            BlockBehaviour.Properties.of()
+                                    .mapColor(MapColor.STONE)
+                                    .strength(0.5F, 0.5F)
+                                    .requiresCorrectToolForDrops()
+                                    .sound(SoundType.STONE)
+                                    .noLootTable()));
+    public static final DeferredBlock<GtIndicatorFlowerBlock> GT_INDICATOR_FLOWER =
+            BLOCKS.register("gt_indicator_flower", () -> new GtIndicatorFlowerBlock());
+    public static final DeferredBlock<GtIndicatorGrassBlock> GT_INDICATOR_GRASS =
+            BLOCKS.register("gt_indicator_grass", GtIndicatorGrassBlock::new);
+    public static final DeferredBlock<FluidSpringBlock> GT_FLUID_SPRING =
+            BLOCKS.register("gt_fluid_spring", FluidSpringBlock::new);
 
     static {
         registerGtTrees();
@@ -371,6 +424,67 @@ public final class ModBlocks {
                             .noLootTable()
                             .liquid()));
 
+    public static final DeferredBlock<SpringLiquidBlock> OIL_EXTRA_HEAVY =
+            registerSpringLiquid(
+                    "oil_extra_heavy",
+                    MapColor.COLOR_BLACK,
+                    () -> ModFluids.OIL_EXTRA_HEAVY_SOURCE.get(),
+                    () -> ModItems.OIL_EXTRA_HEAVY_BUCKET.get(),
+                    1_000,
+                    3_000,
+                    1_000,
+                    true);
+    public static final DeferredBlock<SpringLiquidBlock> OIL_HEAVY =
+            registerSpringLiquid(
+                    "oil_heavy",
+                    MapColor.COLOR_BLACK,
+                    () -> ModFluids.OIL_HEAVY_SOURCE.get(),
+                    () -> ModItems.OIL_HEAVY_BUCKET.get(),
+                    1_000,
+                    2_000,
+                    1_000,
+                    true);
+    public static final DeferredBlock<SpringLiquidBlock> OIL_MEDIUM =
+            registerSpringLiquid(
+                    "oil_medium",
+                    MapColor.COLOR_BROWN,
+                    () -> ModFluids.OIL_MEDIUM_SOURCE.get(),
+                    () -> ModItems.OIL_MEDIUM_BUCKET.get(),
+                    1_000,
+                    1_500,
+                    1_000,
+                    false);
+    public static final DeferredBlock<SpringLiquidBlock> OIL_LIGHT =
+            registerSpringLiquid(
+                    "oil_light",
+                    MapColor.TERRACOTTA_BROWN,
+                    () -> ModFluids.OIL_LIGHT_SOURCE.get(),
+                    () -> ModItems.OIL_LIGHT_BUCKET.get(),
+                    1_000,
+                    1_000,
+                    1_000,
+                    false);
+    public static final DeferredBlock<SpringLiquidBlock> NATURAL_GAS =
+            registerSpringLiquid(
+                    "natural_gas",
+                    MapColor.NONE,
+                    () -> ModFluids.chemical("natural_gas").orElseThrow().source().get(),
+                    () -> ModItems.NATURAL_GAS_BUCKET.get(),
+                    -717,
+                    200,
+                    1_000,
+                    false);
+    public static final DeferredBlock<SpringLiquidBlock> WATER_GEOTHERMAL =
+            registerSpringLiquid(
+                    "water_geothermal",
+                    MapColor.WATER,
+                    () -> ModFluids.bathOverlay("water_geothermal").orElseThrow().source().get(),
+                    () -> ModItems.WATER_GEOTHERMAL_BUCKET.get(),
+                    1_000,
+                    1_000,
+                    0,
+                    false);
+
     public static final DeferredBlock<SubsurfaceFluidDepositBlock>
             SUBSURFACE_FLUID_DEPOSIT = BLOCKS.register(
                     "subsurface_fluid_deposit",
@@ -415,8 +529,13 @@ public final class ModBlocks {
             converter("bronze_fuel_engine");
     public static final DeferredBlock<FuelGeneratorBlock>
             BRONZE_BURNING_BOX_GAS = converter("bronze_burning_box_gas");
+    public static final DeferredBlock<FuelGeneratorBlock>
+            BRONZE_BURNING_BOX_LIQUID = converter("bronze_burning_box_liquid");
     public static final DeferredBlock<SolidBurningBoxBlock>
             BRONZE_BURNING_BOX_SOLID = converter("bronze_burning_box_solid");
+    public static final DeferredBlock<FluidBedBurningBoxBlock>
+            BRONZE_BURNING_BOX_FLUID_BED =
+                    converter("bronze_burning_box_fluid_bed");
     public static final DeferredBlock<RotationalAxleBlock>
             ROTATIONAL_AXLE = BLOCKS.register(
                     "rotational_axle",
@@ -2111,6 +2230,43 @@ public final class ModBlocks {
                 .strength(0.5F)
                 .sound(SoundType.STONE)
                 .noOcclusion();
+    }
+
+    private static BlockBehaviour.Properties bedrockOreProperties() {
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.STONE)
+                .strength(-1.0F, 3600000.0F)
+                .noLootTable()
+                .isValidSpawn((state, level, pos, type) -> false);
+    }
+
+    private static DeferredBlock<SpringLiquidBlock> registerSpringLiquid(
+            String id,
+            MapColor color,
+            Supplier<net.minecraft.world.level.material.FlowingFluid> fluid,
+            Supplier<net.minecraft.world.item.Item> bucket,
+            int density,
+            int viscosity,
+            int flammability,
+            boolean web) {
+        return BLOCKS.register(
+                id,
+                () -> new SpringLiquidBlock(
+                        fluid.get(),
+                        BlockBehaviour.Properties.of()
+                                .mapColor(color)
+                                .replaceable()
+                                .noCollission()
+                                .strength(100.0F)
+                                .pushReaction(PushReaction.DESTROY)
+                                .noLootTable()
+                                .liquid()
+                                .noOcclusion(),
+                        bucket,
+                        density,
+                        viscosity,
+                        flammability,
+                        web));
     }
 
     public record OreBlockKey(String materialId, Host host) {

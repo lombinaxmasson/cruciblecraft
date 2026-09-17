@@ -11,6 +11,7 @@ import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
 import com.masson.cruciblecraft.content.block.ItemPipeBlock;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
 import com.masson.cruciblecraft.content.storage.ILogisticsStorage;
+import com.masson.cruciblecraft.content.storage.MassStoragePrefixUnits;
 import com.masson.cruciblecraft.logistics.pipe.PipeTransferDiagnostics;
 import com.masson.cruciblecraft.registry.ModCapabilities;
 
@@ -139,7 +140,8 @@ public final class ItemPipeNetworkTraversal {
         }
         ItemStack filter = logistics.getLogisticsFilterItem();
         if (!filter.isEmpty()
-                && !ItemStack.isSameItemSameComponents(filter, stack)) {
+                && !ItemStack.isSameItemSameComponents(filter, stack)
+                && !MassStoragePrefixUnits.sameFamily(filter, stack)) {
             return -1;
         }
         return logistics.getLogisticsPriorityItem();

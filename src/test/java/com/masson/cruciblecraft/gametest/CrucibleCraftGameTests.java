@@ -11432,11 +11432,12 @@ public final class CrucibleCraftGameTests {
                                     && dest.getItem(0).getCount() == 62,
                             "Divisible mode 8 should not move into a 2-space dest");
                     hopper.toggleExactMode();
-                    helper.assertTrue(hopper.exactMode(), "Wrench did not enable exact mode");
+                    helper.assertTrue(hopper.exactMode(), "Monkey wrench did not enable exact mode");
                     Player player = helper.makeMockPlayer(GameType.SURVIVAL);
                     ItemStack screwdriver = new ItemStack(
                             ModItems.MATERIAL_SCREWDRIVER.get());
-                    ItemStack wrench = new ItemStack(ModItems.MATERIAL_WRENCH.get());
+                    ItemStack monkeyWrench = new ItemStack(
+                            ModItems.MATERIAL_MONKEY_WRENCH.get());
                     BlockPos absolute = helper.absolutePos(hopperPos);
                     helper.getBlockState(hopperPos).useItemOn(
                             screwdriver,
@@ -11452,14 +11453,14 @@ public final class CrucibleCraftGameTests {
                             hopper.mode() == 8,
                             "Sneak screwdriver did not reverse hopper mode");
                     helper.getBlockState(hopperPos).useItemOn(
-                            wrench,
+                            monkeyWrench,
                             helper.getLevel(),
                             player,
                             InteractionHand.MAIN_HAND,
                             faceHit(absolute, Direction.UP, 0.5, 1.0, 0.5));
                     helper.assertTrue(
                             !hopper.exactMode(),
-                            "Wrench did not toggle exact mode off");
+                            "Monkey wrench did not toggle exact mode off");
                     player.discard();
                 })
                 .thenSucceed();
@@ -11608,12 +11609,12 @@ public final class CrucibleCraftGameTests {
                 !funnel.absorb("copper", DustAmountLedger.Form.DUST, 1),
                 "Mixed material was consumed");
         Player player = helper.makeMockPlayer(GameType.SURVIVAL);
-        ItemStack wrench = new ItemStack(ModItems.MATERIAL_WRENCH.get());
+        ItemStack monkeyWrench = new ItemStack(ModItems.MATERIAL_MONKEY_WRENCH.get());
         BlockPos absolute = helper.absolutePos(pos);
         DustAmountLedger.Form before = funnel.ledger().outputMode();
         int units = funnel.ledger().units();
         helper.getBlockState(pos).useItemOn(
-                wrench,
+                monkeyWrench,
                 helper.getLevel(),
                 player,
                 InteractionHand.MAIN_HAND,
@@ -11621,7 +11622,7 @@ public final class CrucibleCraftGameTests {
         helper.assertTrue(
                 funnel.ledger().outputMode() != before
                         && funnel.ledger().units() == units,
-                "Wrench mode must not change leftover units");
+                "Monkey wrench mode must not change leftover units");
         ItemStack dust = material("iron", MaterialPrefixes.DUST, 1);
         helper.assertTrue(
                 funnel.insertFromHand(dust) || !DustFunnelBlockEntity.isDustForm(dust),

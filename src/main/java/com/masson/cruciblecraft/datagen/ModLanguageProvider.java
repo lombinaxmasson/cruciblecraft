@@ -242,6 +242,10 @@ public class ModLanguageProvider extends LanguageProvider {
             addBlock(ModBlocks.GT_BUSH, "浆果灌木");
             addBlock(ModBlocks.GT_SURFACE_ROCK, "地表石子");
             add("tooltip.cruciblecraft.surface_rock.material", "材质：%s");
+            addBlock(ModBlocks.GT_BEDROCK_ORE, "基岩矿");
+            addBlock(ModBlocks.GT_SMALL_BEDROCK_ORE, "小型基岩矿");
+            addBlock(ModBlocks.GT_SMALL_ORE, "小型矿石");
+            addBedrockOreRemainderNames();
             addBlock(ModBlocks.REACTOR_CORE_1X1, "反应堆芯 1×1");
             add("item.cruciblecraft.reactor_core_1x1", "反应堆芯 1×1");
             addBlock(ModBlocks.REACTOR_CORE_2X2, "反应堆芯 2×2");
@@ -588,6 +592,10 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.GT_BUSH, "Berry Bush");
         addBlock(ModBlocks.GT_SURFACE_ROCK, "Surface Rock");
         add("tooltip.cruciblecraft.surface_rock.material", "Material: %s");
+        addBlock(ModBlocks.GT_BEDROCK_ORE, "Bedrock Ore");
+        addBlock(ModBlocks.GT_SMALL_BEDROCK_ORE, "Small Bedrock Ore");
+        addBlock(ModBlocks.GT_SMALL_ORE, "Small Ore");
+        addBedrockOreRemainderNames();
         addBlock(ModBlocks.REACTOR_CORE_1X1, "Reactor Core 1x1");
         add("item.cruciblecraft.reactor_core_1x1", "Reactor Core 1x1");
         addBlock(ModBlocks.REACTOR_CORE_2X2, "Reactor Core 2x2");
@@ -1045,6 +1053,26 @@ public class ModLanguageProvider extends LanguageProvider {
 
     private void addMachineIoTranslations() {
         add(
+                "tooltip.cruciblecraft.fluid_bed.molten_calcite",
+                chinese
+                        ? "燃料：粉尘 + 熔融方解石（方解石粉进冶炼炉，用流体单元灌入）"
+                        : "Fuel: dust + molten calcite (smelt calcite dust, fill a fluid cell)");
+        add(
+                "tooltip.cruciblecraft.burning_box.ignite",
+                chinese
+                        ? "正面打火石点火；燃烧中不能装卸燃料"
+                        : "Ignite the front with flint and steel; fuel cannot be swapped while burning");
+        add(
+                "tooltip.cruciblecraft.burning_box.gas_only",
+                chinese
+                        ? "只烧气体燃料（甲烷、天然气等）"
+                        : "Burns gases only (methane, natural gas, ...)");
+        add(
+                "tooltip.cruciblecraft.burning_box.liquid_only",
+                chinese
+                        ? "只烧液体燃料（柴油、煤油、汽油等）"
+                        : "Burns liquids only (diesel, kerosene, petrol, ...)");
+        add(
                 "tooltip.cruciblecraft.machine.items_in",
                 chinese ? "物品输入" : "Items IN");
         add(
@@ -1160,26 +1188,38 @@ public class ModLanguageProvider extends LanguageProvider {
             add("container.cruciblecraft.queue_hopper", "队列料斗");
             add("tooltip.cruciblecraft.hopper.slots", "槽位：%s");
             add("tooltip.cruciblecraft.hopper.fifo", "先进先出");
-            add("message.cruciblecraft.hopper.queue_slot_size", "队列槽上限：%s");
-            add("message.cruciblecraft.hopper.mode_stack", "精确整组输出");
-            add("message.cruciblecraft.hopper.mode_any", "任意数量输出");
-            add("message.cruciblecraft.hopper.mode_exact", "精确输出 %s 个");
-            add("message.cruciblecraft.hopper.mode_divisible", "整除输出 %s 个");
+            add("message.cruciblecraft.hopper.queue_slot_size", "槽位上限：%s");
+            add("message.cruciblecraft.hopper.mode_stack", "每次最多输出一组");
+            add("message.cruciblecraft.hopper.mode_any", "每次最多输出 64 个");
+            add("message.cruciblecraft.hopper.mode_exact", "精确输出数量：%s");
+            add("message.cruciblecraft.hopper.mode_divisible", "整除输出数量：%s");
             add("message.cruciblecraft.hopper.queue_no_exact", "队列料斗没有精确模式");
-            add("message.cruciblecraft.dust_funnel.mode", "粉末漏斗输出：%s");
+            add("message.cruciblecraft.dust_funnel.mode", "按 %s 尺寸输出");
+            add("message.cruciblecraft.mass_storage.auto_output_on", "会向下填充库存");
+            add("message.cruciblecraft.mass_storage.auto_output_off", "不会向下填充库存");
+            add("message.cruciblecraft.mass_storage.filter_reset", "空时重置过滤");
+            add("message.cruciblecraft.mass_storage.filter_stay", "空时保留过滤");
+            add("message.cruciblecraft.mass_storage.overflow_on", "会向下排出溢出");
+            add("message.cruciblecraft.mass_storage.overflow_off", "不会向下排出溢出");
         } else {
             addBlock(ModBlocks.STEEL_DUST_FUNNEL, "Steel Dust Funnel");
             add("container.cruciblecraft.hopper", "Hopper");
             add("container.cruciblecraft.queue_hopper", "Queue Hopper");
             add("tooltip.cruciblecraft.hopper.slots", "Slots: %s");
             add("tooltip.cruciblecraft.hopper.fifo", "First in, first out");
-            add("message.cruciblecraft.hopper.queue_slot_size", "Queue slot size: %s");
-            add("message.cruciblecraft.hopper.mode_stack", "Exact full-stack output");
-            add("message.cruciblecraft.hopper.mode_any", "Any-count output");
-            add("message.cruciblecraft.hopper.mode_exact", "Exact output of %s");
-            add("message.cruciblecraft.hopper.mode_divisible", "Divisible output of %s");
+            add("message.cruciblecraft.hopper.queue_slot_size", "Max Stacksize: %s");
+            add("message.cruciblecraft.hopper.mode_stack", "Emits up to 1 Stack");
+            add("message.cruciblecraft.hopper.mode_any", "Emits up to 64 Items");
+            add("message.cruciblecraft.hopper.mode_exact", "Emits exact Stacksize of: %s");
+            add("message.cruciblecraft.hopper.mode_divisible", "Emits divisible Stacksize of: %s");
             add("message.cruciblecraft.hopper.queue_no_exact", "Queue hoppers have no exact mode");
-            add("message.cruciblecraft.dust_funnel.mode", "Dust funnel output: %s");
+            add("message.cruciblecraft.dust_funnel.mode", "Outputs in the Size of %s");
+            add("message.cruciblecraft.mass_storage.auto_output_on", "Will fill inventories below");
+            add("message.cruciblecraft.mass_storage.auto_output_off", "Won't fill inventories below");
+            add("message.cruciblecraft.mass_storage.filter_reset", "Filter resets when empty");
+            add("message.cruciblecraft.mass_storage.filter_stay", "Filter stays when empty");
+            add("message.cruciblecraft.mass_storage.overflow_on", "Will emit overflow to inventories below");
+            add("message.cruciblecraft.mass_storage.overflow_off", "Won't emit overflow");
         }
     }
 
@@ -1784,5 +1824,103 @@ public class ModLanguageProvider extends LanguageProvider {
             }
         }
         addItem(ModItems.RUBBER_RESIN, chinese ? "橡胶树脂" : "Rubber Resin");
+    }
+
+    private void addBedrockOreRemainderNames() {
+        addBlock(
+                ModBlocks.GT_HOSTED_ORE,
+                chinese ? "宿主矿石" : "Hosted Ore");
+        addBlock(
+                ModBlocks.GT_BROKEN_ORE,
+                chinese ? "破碎矿石" : "Broken Ore");
+        addBlock(
+                ModBlocks.GT_INDICATOR_FLOWER,
+                chinese ? "指示花" : "Ore Indicator Flower");
+        add(
+                "block.cruciblecraft.gt_hosted_ore.named",
+                chinese ? "%s矿石" : "%s Ore");
+        add(
+                "block.cruciblecraft.gt_broken_ore.named",
+                chinese ? "破碎%s矿石" : "Broken %s Ore");
+        for (com.masson.cruciblecraft.worldgen.IndicatorFlower flower :
+                com.masson.cruciblecraft.worldgen.IndicatorFlower.values()) {
+            add(
+                    "block.cruciblecraft.gt_indicator_flower."
+                            + flower.getSerializedName(),
+                    chinese ? flower.chineseName() : flower.englishName());
+            add(
+                    "tooltip.cruciblecraft.gt_indicator_flower."
+                            + flower.getSerializedName(),
+                    chinese ? flower.tooltipChinese() : flower.tooltipEnglish());
+        }
+        addFluidSpringNames();
+    }
+
+    private void addFluidSpringNames() {
+        addBlock(
+                ModBlocks.GT_FLUID_SPRING,
+                chinese ? "流体泉" : "Fluid Spring");
+        addBlock(
+                ModBlocks.GT_INDICATOR_GRASS,
+                chinese ? "指示草" : "Indicator Grass");
+        addItem(
+                ModItems.OIL_EXTRA_HEAVY_BUCKET,
+                chinese ? "超重油桶" : "Extra Heavy Oil Bucket");
+        addItem(
+                ModItems.OIL_HEAVY_BUCKET,
+                chinese ? "重油桶" : "Heavy Oil Bucket");
+        addItem(
+                ModItems.OIL_MEDIUM_BUCKET,
+                chinese ? "中油桶" : "Medium Oil Bucket");
+        addItem(
+                ModItems.OIL_LIGHT_BUCKET,
+                chinese ? "轻油桶" : "Light Oil Bucket");
+        addItem(
+                ModItems.NATURAL_GAS_BUCKET,
+                chinese ? "天然气桶" : "Natural Gas Bucket");
+        addItem(
+                ModItems.WATER_GEOTHERMAL_BUCKET,
+                chinese ? "地热水桶" : "Geothermal Water Bucket");
+        add(
+                "fluid_type.cruciblecraft.oil_extra_heavy",
+                chinese ? "超重油" : "Extra Heavy Oil");
+        add(
+                "fluid_type.cruciblecraft.oil_heavy",
+                chinese ? "重油" : "Heavy Oil");
+        add(
+                "fluid_type.cruciblecraft.oil_medium",
+                chinese ? "中油" : "Medium Oil");
+        add(
+                "fluid_type.cruciblecraft.oil_light",
+                chinese ? "轻油" : "Light Oil");
+        add(
+                "block.cruciblecraft.oil_extra_heavy",
+                chinese ? "超重油" : "Extra Heavy Oil");
+        add(
+                "block.cruciblecraft.oil_heavy",
+                chinese ? "重油" : "Heavy Oil");
+        add(
+                "block.cruciblecraft.oil_medium",
+                chinese ? "中油" : "Medium Oil");
+        add(
+                "block.cruciblecraft.oil_light",
+                chinese ? "轻油" : "Light Oil");
+        add(
+                "block.cruciblecraft.natural_gas",
+                chinese ? "天然气" : "Natural Gas");
+        add(
+                "block.cruciblecraft.water_geothermal",
+                chinese ? "地热水" : "Geothermal Water");
+        for (com.masson.cruciblecraft.worldgen.IndicatorGrass grass :
+                com.masson.cruciblecraft.worldgen.IndicatorGrass.values()) {
+            add(
+                    "block.cruciblecraft.gt_indicator_grass."
+                            + grass.getSerializedName(),
+                    chinese ? grass.chineseName() : grass.englishName());
+            add(
+                    "tooltip.cruciblecraft.gt_indicator_grass."
+                            + grass.getSerializedName(),
+                    chinese ? grass.tooltipChinese() : grass.tooltipEnglish());
+        }
     }
 }

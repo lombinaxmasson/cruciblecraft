@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.state.BlockState;
  */
 public final class GtSurfaceRockBlockEntity extends BlockEntity {
     private String materialId = "";
+    private boolean rawOre;
 
     public GtSurfaceRockBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.GT_SURFACE_ROCK.get(), pos, state);
@@ -35,11 +36,23 @@ public final class GtSurfaceRockBlockEntity extends BlockEntity {
         setChanged();
     }
 
+    public boolean rawOre() {
+        return rawOre;
+    }
+
+    public void setRawOre(boolean rawOre) {
+        this.rawOre = rawOre;
+        setChanged();
+    }
+
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
         if (!materialId.isEmpty()) {
             tag.putString("Material", materialId);
+        }
+        if (rawOre) {
+            tag.putBoolean("RawOre", true);
         }
     }
 
@@ -47,6 +60,7 @@ public final class GtSurfaceRockBlockEntity extends BlockEntity {
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         materialId = tag.getString("Material");
+        rawOre = tag.getBoolean("RawOre");
     }
 
     @Override

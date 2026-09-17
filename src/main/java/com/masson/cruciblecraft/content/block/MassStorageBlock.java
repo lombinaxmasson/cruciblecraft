@@ -11,9 +11,11 @@ import com.masson.cruciblecraft.content.storage.StorageVariant;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -49,6 +51,25 @@ public final class MassStorageBlock extends StorageHostBlock
     }
 
     @Override
+    protected InteractionResult useWithoutItem(
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            Player player,
+            BlockHitResult hit) {
+        if (!(level.getBlockEntity(pos) instanceof MassStorageBlockEntity storage)) {
+            return InteractionResult.PASS;
+        }
+        if (hit.getDirection() != state.getValue(FACING)) {
+            return InteractionResult.PASS;
+        }
+        if (!level.isClientSide) {
+            storage.onActivated(player, ItemStack.EMPTY, hit);
+        }
+        return InteractionResult.sidedSuccess(level.isClientSide);
+    }
+
+    @Override
     protected ItemInteractionResult useItemOn(
             ItemStack stack,
             BlockState state,
@@ -62,9 +83,10 @@ public final class MassStorageBlock extends StorageHostBlock
         if (tool.consumesAction()) {
             return tool;
         }
-        if (level.getBlockEntity(pos) instanceof MassStorageBlockEntity storage) {
+        if (level.getBlockEntity(pos) instanceof MassStorageBlockEntity storage
+                && hit.getDirection() == state.getValue(FACING)) {
             if (!level.isClientSide) {
-                storage.playerInsertOrExtract(player, stack);
+                storage.onActivated(player, stack, hit);
             }
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
@@ -73,10 +95,79 @@ public final class MassStorageBlock extends StorageHostBlock
 
     @Override
     public ToolResult useTool(ToolAction action, UseOnContext context) {
-        if (action != ToolAction.CROWBAR) {
+        Level level = context.getLevel();
+        if (!(level.getBlockEntity(context.getClickedPos())
+                instanceof MassStorageBlockEntity storage)) {
             return ToolResult.PASS;
         }
-        return pickUp(context);
+        if (action == ToolAction.CROWBAR) {
+            return pickUp(context);
+        }
+        if (action == ToolAction.WRENCH) {
+            Direction target = Gt6StyleConnections.sideFromHit(ToolClick.hit(context));
+            if (!target.getAxis().isHorizontal()) {
+                return ToolResult.PASS;
+            }
+            BlockState state = level.getBlockState(context.getClickedPos());
+            if (!level.isClientSide) {
+                if (state.getValue(FACING) != target) {
+                    level.setBlock(
+                            context.getClickedPos(),
+                            state.setValue(FACING, target),
+                            Block.UPDATE_ALL);
+                }
+                ToolClick.hurt(context);
+            }
+            return ToolResult.SUCCESS;
+        }
+        if (action == ToolAction.PINCERS) {
+            if (!level.isClientSide && context.getPlayer() != null) {
+                storage.giveToPlayer(context.getPlayer());
+                ToolClick.hurt(context);
+            }
+            return ToolResult.SUCCESS;
+        }
+        if (action == ToolAction.SOFT_HAMMER) {
+            if (!level.isClientSide) {
+                storage.dumpInFront();
+                ToolClick.hurt(context);
+            }
+            return ToolResult.SUCCESS;
+        }
+        if (action == ToolAction.SCREWDRIVER) {
+            if (!level.isClientSide) {
+                storage.toggleResetFilterWhenEmpty();
+                if (context.getPlayer() != null) {
+                    context.getPlayer().displayClientMessage(
+                            storage.filterMessage(), true);
+                }
+                ToolClick.hurt(context);
+            }
+            return ToolResult.SUCCESS;
+        }
+        if (action == ToolAction.MONKEY_WRENCH) {
+            if (!level.isClientSide) {
+                storage.toggleAutoOutput();
+                if (context.getPlayer() != null) {
+                    context.getPlayer().displayClientMessage(
+                            storage.autoOutputMessage(), true);
+                }
+                ToolClick.hurt(context);
+            }
+            return ToolResult.SUCCESS;
+        }
+        if (action == ToolAction.WIRE_CUTTER) {
+            if (!level.isClientSide) {
+                storage.toggleOverflow();
+                if (context.getPlayer() != null) {
+                    context.getPlayer().displayClientMessage(
+                            storage.overflowMessage(), true);
+                }
+                ToolClick.hurt(context);
+            }
+            return ToolResult.SUCCESS;
+        }
+        return ToolResult.PASS;
     }
 
     private static ToolResult pickUp(UseOnContext context) {

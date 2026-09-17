@@ -19,6 +19,8 @@ import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidBedBurningBoxBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.GasCloudBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.GtSurfaceRockBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.BedrockOreBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FluidSpringBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.GtTreeHoleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.HopperBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SensorBlockEntity;
@@ -536,6 +538,28 @@ public final class ModBlockEntities {
                             () -> BlockEntityType.Builder.of(
                                     GtSurfaceRockBlockEntity::new,
                                     ModBlocks.GT_SURFACE_ROCK.get())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<BedrockOreBlockEntity>>
+                    BEDROCK_ORE = BLOCK_ENTITIES.register(
+                            "bedrock_ore",
+                            () -> BlockEntityType.Builder.of(
+                                    BedrockOreBlockEntity::new,
+                                    ModBlocks.GT_BEDROCK_ORE.get(),
+                                    ModBlocks.GT_SMALL_BEDROCK_ORE.get(),
+                                    ModBlocks.GT_SMALL_ORE.get(),
+                                    ModBlocks.GT_HOSTED_ORE.get(),
+                                    ModBlocks.GT_BROKEN_ORE.get())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<FluidSpringBlockEntity>>
+                    FLUID_SPRING = BLOCK_ENTITIES.register(
+                            "gt_fluid_spring",
+                            () -> BlockEntityType.Builder.of(
+                                    FluidSpringBlockEntity::new,
+                                    ModBlocks.GT_FLUID_SPRING.get())
                                     .build(null));
 
     private ModBlockEntities() {}

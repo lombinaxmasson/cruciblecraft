@@ -48,6 +48,14 @@ public final class FluidBedBurningBoxBlockEntity extends BlockEntity
     private final FluidTank input;
     private final ItemStackHandler inventory = new ItemStackHandler(2) {
         @Override
+        public boolean isItemValid(int slot, ItemStack stack) {
+            if (slot == FUEL_SLOT) {
+                return ModRecipeMaps.FUELS_FLUIDBED.hasCandidate(stack);
+            }
+            return slot == ASH_SLOT && !stack.isEmpty();
+        }
+
+        @Override
         protected void onContentsChanged(int slot) {
             setChanged();
         }
@@ -71,7 +79,10 @@ public final class FluidBedBurningBoxBlockEntity extends BlockEntity
                 Math.max(
                         profile.outputPacket().size(),
                         profile.outputCapacity()));
-        input = new FluidTank(Math.max(1, profile.inputCapacity())) {
+        input = new FluidTank(
+                Math.max(1, profile.inputCapacity()),
+                stack -> ModRecipeMaps.FUELS_FLUIDBED.hasFluidCandidate(
+                        stack.getFluid())) {
             @Override
             protected void onContentsChanged() {
                 setChanged();
@@ -241,10 +252,18 @@ public final class FluidBedBurningBoxBlockEntity extends BlockEntity
             setChanged();
             return true;
         }
+        if (burning) {
+            return true;
+        }
         if (stack.isEmpty()) {
             ItemStack ash = inventory.extractItem(ASH_SLOT, 64, false);
             if (!ash.isEmpty()) {
                 player.setItemInHand(hand, ash);
+                return true;
+            }
+            ItemStack fuel = inventory.extractItem(FUEL_SLOT, 64, false);
+            if (!fuel.isEmpty()) {
+                player.setItemInHand(hand, fuel);
                 return true;
             }
             return false;
@@ -252,6 +271,24 @@ public final class FluidBedBurningBoxBlockEntity extends BlockEntity
         ItemStack remainder = inventory.insertItem(FUEL_SLOT, stack, false);
         player.setItemInHand(hand, remainder);
         return remainder.getCount() != stack.getCount();
+    }
+
+    public boolean insertFuel(ItemStack stack) {
+        ItemStack remainder = inventory.insertItem(FUEL_SLOT, stack, false);
+        return remainder.getCount() < stack.getCount();
+    }
+
+    public void ignite() {
+        burning = true;
+        setChanged();
+    }
+
+    public long energyStored() {
+        return energy.stored();
+    }
+
+    public int inputAmount() {
+        return input.getFluidAmount();
     }
 
     public IFluidHandler fluids(Direction side) {

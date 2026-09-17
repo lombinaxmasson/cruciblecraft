@@ -25,7 +25,7 @@ class MassStorageHandlerTest {
     }
 
     @Test
-    void locksTypeRejectsOverflowAndResetsFilterWhenEmpty() {
+    void locksTypeRejectsOverflowAndKeepsFilterWhenEmpty() {
         MassStorageHandler handler = new MassStorageHandler(10);
         assertTrue(handler.insertAll(iron(8), false).isEmpty());
         assertEquals(8, handler.stored());
@@ -35,6 +35,9 @@ class MassStorageHandlerTest {
         assertEquals(10, handler.stored());
         assertEquals(10, handler.extractItem(0, 64, false).getCount());
         assertEquals(0, handler.stored());
+        assertTrue(handler.filter().is(Items.IRON_INGOT));
+        assertEquals(3, handler.insertAll(gold(3), false).getCount());
+        handler.setKeepFilterWhenEmpty(false);
         assertTrue(handler.filter().isEmpty());
         assertTrue(handler.insertAll(gold(3), false).isEmpty());
         assertTrue(handler.sameType(gold(1)));
@@ -49,6 +52,34 @@ class MassStorageHandlerTest {
         assertTrue(StorageFilters.bottle(new ItemStack(Items.GLASS_BOTTLE)));
         assertTrue(StorageFilters.bottle(new ItemStack(Items.POTION)));
         assertFalse(StorageFilters.bottle(iron(1)));
+    }
+
+    @Test
+    void clickMapMatchesGt6FaceButtons() {
+        assertEquals(1, MassStorageClicks.amount(new float[] {0.125F, 0.8125F}));
+        assertEquals(4, MassStorageClicks.amount(new float[] {0.125F, 0.625F}));
+        assertEquals(8, MassStorageClicks.amount(new float[] {0.125F, 0.4375F}));
+        assertEquals(16, MassStorageClicks.amount(new float[] {0.875F, 0.8125F}));
+        assertEquals(32, MassStorageClicks.amount(new float[] {0.875F, 0.625F}));
+        assertEquals(64, MassStorageClicks.amount(new float[] {0.875F, 0.4375F}));
+        assertEquals(-1, MassStorageClicks.amount(new float[] {0.5F, 0.5F}));
+        assertTrue(MassStoragePrefixUnits.familyOf(
+                com.masson.cruciblecraft.api.material.MaterialPrefixes.INGOT)
+                .contains(com.masson.cruciblecraft.api.material.MaterialPrefixes.NUGGET));
+        assertTrue(MassStoragePrefixUnits.familyOf(
+                com.masson.cruciblecraft.api.material.MaterialPrefixes.INGOT)
+                .contains(com.masson.cruciblecraft.api.material.MaterialPrefixes.BLOCK));
+    }
+
+    @Test
+    void overflowBonusExtendsCapacityAndRejectsWhenFull() {
+        MassStorageHandler handler = new MassStorageHandler(10);
+        handler.setOverflowBonus(MassStorageHandler.OVERFLOW_BONUS);
+        assertEquals(266, handler.maxContent());
+        assertTrue(handler.insertAll(iron(10), false).isEmpty());
+        assertEquals(44, handler.insertAll(iron(300), false).getCount());
+        assertEquals(266, handler.stored());
+        assertFalse(handler.isItemValid(0, iron(1)));
     }
 
     private static ItemStack iron(int count) {

@@ -1,0 +1,26 @@
+---
+description: Never run git checkout or git restore. Mixed working-tree WIP is committed together.
+alwaysApply: true
+---
+
+# No git checkout / git restore
+
+**Never run `git checkout` or `git restore`.** Any arguments, any paths, including
+`HEAD`, `--`, `--staged`, `--worktree`, `--ours`, `--theirs`, single files,
+generated lang, or “just to isolate a commit”. There is no exception for
+cleaning a diff, undoing an edit, runData pollution, or mixed WIP.
+
+Do not use `git reset --hard`, `git reset -- <paths>`, `git clean`, or
+`git stash` of uncommitted work either. This agent does not get to decide
+that a destructive git command is safe.
+
+Switch branches with `git switch` / `git switch -c` only when the user asked
+to change branch. Do not switch in order to discard files.
+
+# Commit mixed WIP together
+
+If the user asks to commit and the tree has more than one piece of work,
+`git add` the dirty tracked files and new work, then one commit. Do not
+split cards or leave “other” dirty files out.
+
+Still skip secrets, `run/`, `.idea/`, and gitignored evidence dumps.

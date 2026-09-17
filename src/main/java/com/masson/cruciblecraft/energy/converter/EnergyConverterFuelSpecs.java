@@ -33,6 +33,8 @@ public final class EnergyConverterFuelSpecs {
                     1);
         }
         if ("fluid_burning_box".equals(runtime)) {
+            boolean gas = "MultiTileEntityGeneratorGas".equals(
+                    profile.source().machineKind());
             return new FuelGeneratorSpec(
                     profile.id(),
                     () -> ModRecipeMaps.FUELS_GAS,
@@ -48,7 +50,10 @@ public final class EnergyConverterFuelSpecs {
                     requireEfficiency(profile),
                     FuelGeneratorSpec.EnergyOutputFace.UP,
                     List.of(Direction.NORTH, Direction.SOUTH),
-                    2);
+                    2,
+                    gas
+                            ? FuelGeneratorSpec.InputPhase.GAS
+                            : FuelGeneratorSpec.InputPhase.LIQUID);
         }
         throw new IllegalArgumentException(
                 "No fuel-generator spec for " + profile.id());

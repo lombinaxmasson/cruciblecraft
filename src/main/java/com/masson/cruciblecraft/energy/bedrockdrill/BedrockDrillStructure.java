@@ -1,27 +1,38 @@
 package com.masson.cruciblecraft.energy.bedrockdrill;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.masson.cruciblecraft.content.block.BedrockOreBlock;
 import com.masson.cruciblecraft.registry.ModBlocks;
+import com.masson.cruciblecraft.worldgen.BedrockOreVeins;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 
 /**
- * GT6 17999 structure: 3x3 bedrock rocks at y-5, 3x3 heads at y-4, dense
- * titanium walls filling the 3x3x4 tower, controller at the top center.
+ * GT6 17999 structure: 3x3 bedrock / bedrock-ore at y-5, 3x3 heads at y-4,
+ * dense titanium walls filling the 3x3x4 tower, controller at the top center.
  */
 public final class BedrockDrillStructure {
     public static final ResourceLocation WALL_ID = ResourceLocation.fromNamespaceAndPath(
             "cruciblecraft", "multiblock/dense_titanium_wall");
-    public static final long RU_PER_TICK = 1_024L;
-    public static final int LUBE_PER_TICK = 100;
+    public static final long RU_PER_OPERATION = 32_768L;
+    /** @deprecated use {@link #RU_PER_OPERATION} */
+    public static final long RU_PER_TICK = RU_PER_OPERATION;
+    public static final int LUBE_PER_OPERATION = 100;
+    /** @deprecated use {@link #LUBE_PER_OPERATION} */
+    public static final int LUBE_PER_TICK = LUBE_PER_OPERATION;
     public static final int TANK_CAPACITY = 16_000;
 
     private BedrockDrillStructure() {}
 
     public static boolean check(Level level, BlockPos controller) {
-        if (!ModBlocks.hasRockBlock("bedrock")) {
+        if (controller.getY() < level.getMinBuildHeight() + 5) {
             return false;
         }
         Block head = ModBlocks.BEDROCK_DRILL_HEAD.get();
@@ -30,12 +41,11 @@ public final class BedrockDrillStructure {
             return false;
         }
         Block wall = wallHolder.get();
-        Block rock = ModBlocks.rockBlock("bedrock").get();
+        boolean floorOk = true;
         for (int dx = -1; dx <= 1; dx++) {
             for (int dz = -1; dz <= 1; dz++) {
-                BlockPos ore = controller.offset(dx, -5, dz);
-                if (level.getBlockState(ore).getBlock() != rock) {
-                    return false;
+                if (!isFloor(level.getBlockState(controller.offset(dx, -5, dz)))) {
+                    floorOk = false;
                 }
                 if (level.getBlockState(controller.offset(dx, -4, dz)).getBlock()
                         != head) {
@@ -52,6 +62,30 @@ public final class BedrockDrillStructure {
                 }
             }
         }
-        return true;
+        return floorOk;
+    }
+
+    public static List<String> probeMaterials(Level level, BlockPos controller) {
+        List<String> materials = new ArrayList<>();
+        for (int dx = -1; dx <= 1; dx++) {
+            for (int dz = -1; dz <= 1; dz++) {
+                BlockPos ore = controller.offset(dx, -5, dz);
+                BlockState state = level.getBlockState(ore);
+                if (!(state.getBlock() instanceof BedrockOreBlock bedrockOre)) {
+                    continue;
+                }
+                BedrockOreBlock.materialAt(level, ore).ifPresent(material -> {
+                    materials.add(material);
+                    if (!bedrockOre.small()) {
+                        materials.add(material);
+                    }
+                });
+            }
+        }
+        return materials;
+    }
+
+    public static boolean isFloor(BlockState state) {
+        return BedrockOreVeins.isBedrockFloor(state) || state.is(Blocks.BEDROCK);
     }
 }

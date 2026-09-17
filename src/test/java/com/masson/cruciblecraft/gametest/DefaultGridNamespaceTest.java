@@ -32,7 +32,7 @@ class DefaultGridNamespaceTest {
                 "src/main/resources/data/cruciblecraft_default_grid/"
                         + "gametest/structure/empty.nbt")));
         assertFalse(Files.exists(Path.of(
-                "src/main/java/com/masson/cruciblecraft/gametest")));
+                "src/test/java/com/masson/cruciblecraft/gametest")));
     }
 
     @Test
@@ -46,9 +46,9 @@ class DefaultGridNamespaceTest {
                 "src/test/java/com/masson/cruciblecraft/census/"
                         + "RecipeCensusGameTests.java")));
         assertFalse(Files.exists(Path.of(
-                "src/main/java/com/masson/cruciblecraft/gametest")));
+                "src/test/java/com/masson/cruciblecraft/gametest")));
         assertFalse(Files.exists(Path.of(
-                "src/main/java/com/masson/cruciblecraft/scale/ScaleGameTests.java")));
+                "src/test/java/com/masson/cruciblecraft/scale/ScaleGameTests.java")));
         assertFalse(Files.exists(Path.of(
                 "src/main/java/com/masson/cruciblecraft/census/"
                         + "RecipeCensusGameTests.java")));

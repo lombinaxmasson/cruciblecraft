@@ -5,8 +5,13 @@ import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.machine.processing.MachineEnergyBuffer;
+import com.masson.cruciblecraft.material.MaterialByproductIndex;
+import com.masson.cruciblecraft.content.block.GtBrokenOreBlock;
+import com.masson.cruciblecraft.content.block.OreStoneHost;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModFluids;
+
+import java.util.List;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -18,6 +23,7 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
@@ -27,7 +33,7 @@ import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
 /**
- * Dedicated 17999 host. Accepts RU and lubricant, emits bedrock dust.
+ * Dedicated 17999 host. Accepts RU and lubricant; probes bedrock ores.
  * Not HEX, steam turbine, or transformer.
  */
 public final class BedrockDrillBlockEntity extends BlockEntity
@@ -80,26 +86,69 @@ public final class BedrockDrillBlockEntity extends BlockEntity
     }
 
     private void tryMine() {
-        if (ru.stored() < BedrockDrillStructure.RU_PER_TICK
-                || lube.getFluidAmount() < BedrockDrillStructure.LUBE_PER_TICK) {
+        if (level == null || !output.getStackInSlot(0).isEmpty()) {
             return;
         }
-        ItemStack produced = bedrockDust();
+        if (ru.stored() < BedrockDrillStructure.RU_PER_OPERATION
+                || lube.getFluidAmount() < BedrockDrillStructure.LUBE_PER_OPERATION) {
+            return;
+        }
+        ItemStack produced = produce();
         if (produced.isEmpty()) {
             return;
         }
-        ItemStack leftover = output.insertItem(0, produced, true);
-        if (!leftover.isEmpty()) {
-            return;
-        }
-        if (!ru.consume(BedrockDrillStructure.RU_PER_TICK)) {
+        if (!ru.consume(BedrockDrillStructure.RU_PER_OPERATION)) {
             return;
         }
         lube.drain(
-                BedrockDrillStructure.LUBE_PER_TICK,
+                BedrockDrillStructure.LUBE_PER_OPERATION,
                 IFluidHandler.FluidAction.EXECUTE);
         output.insertItem(0, produced, false);
         setChanged();
+    }
+
+    private ItemStack produce() {
+        List<String> materials =
+                BedrockDrillStructure.probeMaterials(level, worldPosition);
+        int selector = level.random.nextInt(128);
+        if (selector < materials.size()) {
+            return oreBroken(selectMaterial(materials.get(selector)));
+        }
+        return stoneOutput();
+    }
+
+    private String selectMaterial(String material) {
+        if (level.random.nextInt(32) != 0) {
+            return material;
+        }
+        List<String> byproducts = MaterialByproductIndex.byproducts(material);
+        if (byproducts.isEmpty()) {
+            return material;
+        }
+        int pick = level.random.nextInt(byproducts.size() + 1);
+        return pick < byproducts.size() ? byproducts.get(pick) : material;
+    }
+
+    private ItemStack oreBroken(String material) {
+        OreStoneHost host = level.dimension() == Level.NETHER
+                ? OreStoneHost.NETHERRACK
+                : (level.random.nextBoolean()
+                        ? OreStoneHost.DEEPSLATE
+                        : OreStoneHost.STONE);
+        return GtBrokenOreBlock.item(material, host);
+    }
+
+    private ItemStack stoneOutput() {
+        if (level.random.nextInt(1000) == 0) {
+            return bedrockDust();
+        }
+        if (level.dimension() == Level.NETHER) {
+            return new ItemStack(Blocks.NETHERRACK);
+        }
+        if (level.random.nextBoolean()) {
+            return new ItemStack(Blocks.COBBLED_DEEPSLATE);
+        }
+        return new ItemStack(Blocks.COBBLESTONE);
     }
 
     private static ItemStack bedrockDust() {

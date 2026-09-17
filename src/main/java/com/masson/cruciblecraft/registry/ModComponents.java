@@ -48,6 +48,15 @@ public final class ModComponents {
 
     public static final DeferredHolder<
             net.minecraft.core.component.DataComponentType<?>,
+            net.minecraft.core.component.DataComponentType<String>> ORE_MATERIAL =
+            COMPONENTS.registerComponentType(
+                    "ore_material",
+                    builder -> builder
+                            .persistent(MaterialId.CODEC)
+                            .networkSynchronized(ByteBufCodecs.STRING_UTF8));
+
+    public static final DeferredHolder<
+            net.minecraft.core.component.DataComponentType<?>,
             net.minecraft.core.component.DataComponentType<String>> TOOL_MATERIAL =
             COMPONENTS.registerComponentType(
                     "tool_material",

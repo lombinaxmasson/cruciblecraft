@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.masson.cruciblecraft.api.energy.EnergyType;
+import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.block.StorageHostBlock;
 import com.masson.cruciblecraft.content.blockentity.BookshelfBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.BottleCrateBlockEntity;
@@ -18,6 +19,7 @@ import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModCapabilities;
 import com.masson.cruciblecraft.registry.ModComponents;
+import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.registry.ModMachineVariants;
 
 import net.minecraft.core.BlockPos;
@@ -32,6 +34,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
@@ -186,6 +189,65 @@ public final class StorageGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void massStorageMergesNuggetsIntoStoredIngots(
+            GameTestHelper helper) {
+        helper.assertTrue(
+                ModItems.hasMaterialItem("iron", MaterialPrefixes.INGOT)
+                        && ModItems.hasMaterialItem("iron", MaterialPrefixes.NUGGET),
+                "iron ingot/nugget forms are missing");
+        BlockPos pos = new BlockPos(2, 2, 2);
+        place(helper, pos, "cruciblecraft:mass_storage_barrel_6999");
+        MassStorageBlockEntity storage =
+                (MassStorageBlockEntity) helper.getBlockEntity(pos);
+        ItemStack ingot = new ItemStack(
+                ModItems.materialItem("iron", MaterialPrefixes.INGOT).get());
+        ItemStack nuggets = new ItemStack(
+                ModItems.materialItem("iron", MaterialPrefixes.NUGGET).get(), 9);
+        helper.assertTrue(
+                storage.inventory().insertAll(ingot, false).isEmpty(),
+                "wooden barrel rejected an iron ingot");
+        helper.assertTrue(
+                storage.inventory().insertAll(nuggets, false).isEmpty(),
+                "barrel rejected same-material nuggets");
+        helper.assertTrue(
+                storage.inventory().stored() == 2
+                        && storage.inventory().filter().is(
+                                ModItems.materialItem("iron", MaterialPrefixes.INGOT).get()),
+                "9 nuggets did not convert into a second stored ingot");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void massStorageAutoOutputsDownNotThroughFront(
+            GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 3, 2);
+        placeFacing(helper, pos, "cruciblecraft:mass_storage_box_6993", Direction.EAST);
+        helper.setBlock(pos.below(), Blocks.CHEST);
+        helper.setBlock(pos.east(), Blocks.CHEST);
+        MassStorageBlockEntity storage =
+                (MassStorageBlockEntity) helper.getBlockEntity(pos);
+        storage.toggleAutoOutput();
+        helper.assertTrue(
+                storage.inventory().insertAll(
+                        new ItemStack(Items.IRON_INGOT, 8), false).isEmpty(),
+                "box rejected iron");
+        helper.startSequence()
+                .thenIdle(8)
+                .thenExecute(() -> {
+                    ChestBlockEntity below = helper.getBlockEntity(pos.below());
+                    ChestBlockEntity front = helper.getBlockEntity(pos.east());
+                    helper.assertTrue(
+                            below.getItem(0).is(Items.IRON_INGOT)
+                                    && below.getItem(0).getCount() == 8,
+                            "auto-output did not fill the inventory below");
+                    helper.assertTrue(
+                            front.getItem(0).isEmpty(),
+                            "mass storage pushed through the front face");
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void inserterScansMassStorageNotChests(GameTestHelper helper) {
         BlockPos inserterPos = new BlockPos(2, 2, 2);
         BlockPos storagePos = new BlockPos(2, 2, 3);
@@ -225,7 +287,7 @@ public final class StorageGameTests {
                 "standard mass storage exposed logistics");
         helper.assertTrue(
                 logistics.logisticsStorage() != null
-                        && logistics.getLogisticsPriorityItem() == 2,
+                        && logistics.getLogisticsPriorityItem() == 1,
                 "logistics mass storage missing ILogisticsStorage");
         helper.assertTrue(
                 helper.getLevel().getCapability(

@@ -116,6 +116,31 @@ class HopperBlockEntityTest {
         assertEquals(2, source.getStackInSlot(0).getCount());
     }
 
+    @Test
+    void modeStackLimitFollowsGt6AndSoftHammerResets() {
+        HopperBlockEntity hopper = hopper("steel_hopper");
+        for (int step = 0; step < 5; step++) {
+            hopper.cycleMode(false);
+        }
+        assertEquals(5, hopper.mode());
+        assertEquals(60, hopper.inventory().getSlotLimit(0));
+        hopper.toggleExactMode();
+        hopper.resetModes();
+        assertEquals(0, hopper.mode());
+        assertFalse(hopper.exactMode());
+        assertEquals(64, hopper.inventory().getSlotLimit(0));
+    }
+
+    @Test
+    void queueScrewdriverKeepsOversizedStacksInsteadOfOverflow() {
+        HopperBlockEntity queue = hopper("bismuth_queue_hopper");
+        queue.inventory().setStackInSlot(0, iron(64));
+        queue.cycleMode(true);
+        assertEquals(63, queue.mode());
+        assertEquals(64, queue.inventory().getStackInSlot(0).getCount());
+        assertTrue(queue.overflow().isEmpty());
+    }
+
     private static HopperBlockEntity hopper(String path) {
         var variant = HopperVariantCatalog.require(
                 ResourceLocation.fromNamespaceAndPath("cruciblecraft", path));

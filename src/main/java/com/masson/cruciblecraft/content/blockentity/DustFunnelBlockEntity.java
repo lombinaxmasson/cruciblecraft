@@ -1,5 +1,6 @@
 package com.masson.cruciblecraft.content.blockentity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
@@ -18,6 +19,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.Containers;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -116,6 +118,36 @@ public final class DustFunnelBlockEntity extends BlockEntity {
 
     public void cycleMode(boolean reverse) {
         ledger.cycleOutputMode(reverse);
+        setChanged();
+    }
+
+    public void dropLedger() {
+        convertInput();
+        DustAmountLedger.Decomposition split = ledger.decompose();
+        if (level != null) {
+            ArrayList<ItemStack> drops = new ArrayList<>();
+            addForm(drops, split.materialId(), MaterialPrefixes.DUST, split.dust());
+            addForm(
+                    drops,
+                    split.materialId(),
+                    MaterialPrefixes.SMALL_DUST,
+                    split.smallDust());
+            addForm(
+                    drops,
+                    split.materialId(),
+                    MaterialPrefixes.TINY_DUST,
+                    split.tinyDust());
+            for (ItemStack drop : drops) {
+                Containers.dropItemStack(
+                        level,
+                        worldPosition.getX(),
+                        worldPosition.getY(),
+                        worldPosition.getZ(),
+                        drop);
+            }
+        }
+        ledger.restore(new DustAmountLedger.Snapshot(
+                DustAmountLedger.SCHEMA_VERSION, "", 0, ledger.outputMode()));
         setChanged();
     }
 

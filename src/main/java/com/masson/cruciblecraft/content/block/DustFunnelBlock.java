@@ -91,12 +91,19 @@ public final class DustFunnelBlock extends Block
 
     @Override
     public ToolResult useTool(ToolAction action, UseOnContext context) {
-        if (action != ToolAction.WRENCH) {
-            return ToolResult.PASS;
-        }
         Level level = context.getLevel();
         if (!(level.getBlockEntity(context.getClickedPos())
                 instanceof DustFunnelBlockEntity funnel)) {
+            return ToolResult.PASS;
+        }
+        if (action == ToolAction.PINCERS) {
+            if (!level.isClientSide) {
+                funnel.dropLedger();
+                ToolClick.hurt(context);
+            }
+            return ToolResult.SUCCESS;
+        }
+        if (action != ToolAction.MONKEY_WRENCH) {
             return ToolResult.PASS;
         }
         if (!level.isClientSide) {

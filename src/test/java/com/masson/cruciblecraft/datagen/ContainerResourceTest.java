@@ -39,6 +39,10 @@ class ContainerResourceTest {
                 CellContentGate.Kind.FLUID,
                 entries.get(ResourceLocation.parse("cruciblecraft:chlorine")));
         assertEquals(
+                CellContentGate.Kind.FLUID,
+                entries.get(ResourceLocation.parse(
+                        "cruciblecraft:molten_calcite")));
+        assertEquals(
                 CellContentGate.Kind.GAS,
                 entries.get(ResourceLocation.parse("cruciblecraft:fluorine")));
         assertFalse(entries.containsKey(

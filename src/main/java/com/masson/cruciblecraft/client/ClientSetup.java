@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.client.color.BedrockOreColor;
 import com.masson.cruciblecraft.client.color.FoundryBlockColor;
 import com.masson.cruciblecraft.client.color.Gt6OpeningBlockColor;
 import com.masson.cruciblecraft.client.color.GtBlockDyeColor;
@@ -162,6 +163,7 @@ public class ClientSetup {
                         .map(net.minecraft.world.level.block.Block::asItem)
                         .toArray(Item[]::new));
         event.register(MaterialOreColor::itemColor, MaterialOreColor.oreBlockItems());
+        event.register(BedrockOreColor::itemColor, BedrockOreColor.items());
         Block[] tintedHoppers = HopperBlockColor.tintedBlocks();
         event.register(
                 HopperBlockColor::itemColor,
@@ -265,6 +267,7 @@ public class ClientSetup {
                 LogisticsCoreBlockColor::blockColor,
                 LogisticsCoreBlockColor.tintedBlocks());
         event.register(MaterialOreColor::blockColor, MaterialOreColor.oreBlocks());
+        event.register(BedrockOreColor::blockColor, BedrockOreColor.blocks());
         event.register(
                 MaterialStorageColor::blockColor,
                 MaterialStorageColor.storageBlocks());
@@ -402,6 +405,10 @@ public class ClientSetup {
             }, entry.type().get());
         });
         ModFluids.chemicalFluids().forEach(entry -> {
+            if ("natural_gas".equals(entry.id())) {
+                registerImportedSpringFluid(event, entry.type().get(), "natural_gas");
+                return;
+            }
             int tintColor = 0xFF000000
                     | MaterialColors.parse(entry.color());
             event.registerFluidType(new IClientFluidTypeExtensions() {
@@ -442,6 +449,11 @@ public class ClientSetup {
             }, entry.type().get());
         });
         ModFluids.bathOverlayFluids().forEach(entry -> {
+            if ("water_geothermal".equals(entry.id().getPath())) {
+                registerImportedSpringFluid(
+                        event, entry.type().get(), "water_geothermal");
+                return;
+            }
             int tintColor = 0xFF000000 | entry.colorRgb();
             event.registerFluidType(new IClientFluidTypeExtensions() {
                 @Override
@@ -460,6 +472,35 @@ public class ClientSetup {
                 }
             }, entry.type().get());
         });
+        registerImportedSpringFluid(
+                event, ModFluids.OIL_EXTRA_HEAVY_TYPE.get(), "oil_extra_heavy");
+        registerImportedSpringFluid(event, ModFluids.OIL_HEAVY_TYPE.get(), "oil_heavy");
+        registerImportedSpringFluid(event, ModFluids.OIL_MEDIUM_TYPE.get(), "oil_medium");
+        registerImportedSpringFluid(event, ModFluids.OIL_LIGHT_TYPE.get(), "oil_light");
+    }
+
+    private static void registerImportedSpringFluid(
+            RegisterClientExtensionsEvent event,
+            net.neoforged.neoforge.fluids.FluidType type,
+            String textureId) {
+        ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(
+                CrucibleCraft.MODID, "fluid/gt6_import/" + textureId);
+        event.registerFluidType(new IClientFluidTypeExtensions() {
+            @Override
+            public ResourceLocation getStillTexture() {
+                return texture;
+            }
+
+            @Override
+            public ResourceLocation getFlowingTexture() {
+                return texture;
+            }
+
+            @Override
+            public int getTintColor() {
+                return 0xFFFFFFFF;
+            }
+        }, type);
     }
 
     private static int machineColor(String materialId) {

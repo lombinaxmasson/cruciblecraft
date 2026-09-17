@@ -339,7 +339,7 @@ class PythonTestWorkflowTest(unittest.TestCase):
         self.assertIn("tools/python_test_policy.json", tracked)
 
     def test_game_test_java_lives_in_the_test_source_set(self) -> None:
-        main = ROOT / "src/main/java/com/masson/cruciblecraft/gametest"
+        main = ROOT / "src/test/java/com/masson/cruciblecraft/gametest"
         test_holder = (
             ROOT
             / "src/test/java/com/masson/cruciblecraft/gametest"

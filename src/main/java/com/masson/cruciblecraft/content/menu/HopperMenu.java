@@ -104,7 +104,7 @@ public final class HopperMenu extends AbstractContainerMenu {
     }
 
     public int playerInventoryLabelY() {
-        return HopperMenuLayout.playerInventoryY(machineSlots) - 11;
+        return HopperMenuLayout.playerInventoryLabelY(machineSlots);
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.masson.cruciblecraft.registry;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.worldgen.BedrockOreVeinFeature;
+import com.masson.cruciblecraft.worldgen.FluidSpringFeature;
 import com.masson.cruciblecraft.worldgen.LargeVeinFeature;
 import com.masson.cruciblecraft.worldgen.NetherQuartzLayerFeature;
 import com.masson.cruciblecraft.worldgen.StoneLayerRockFeature;
@@ -40,6 +42,16 @@ public final class ModFeatures {
                     FEATURES.register(
                             "nether_netherquartz",
                             NetherQuartzLayerFeature::new);
+    public static final DeferredHolder<Feature<?>, BedrockOreVeinFeature>
+            BEDROCK_ORE_VEINS =
+                    FEATURES.register(
+                            "bedrock_ore_veins",
+                            BedrockOreVeinFeature::new);
+    public static final DeferredHolder<Feature<?>, FluidSpringFeature>
+            LAVA_FLUID_SPRINGS =
+                    FEATURES.register(
+                            "lava_fluid_springs",
+                            FluidSpringFeature::new);
 
     /** GT6 WorldgenTree* via com.masson.cruciblecraft.worldgen.tree.prep GtTreeGrower / GtTreeSpecies / GtTreePlacement. */
     public static final DeferredHolder<Feature<?>, GtTreeFeature> GT_TREE =

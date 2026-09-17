@@ -1,0 +1,74 @@
+package com.masson.cruciblecraft.content.block;
+
+import java.util.List;
+
+import org.jetbrains.annotations.Nullable;
+
+import com.masson.cruciblecraft.api.material.MaterialLookup;
+import com.masson.cruciblecraft.api.material.MaterialPrefixes;
+import com.masson.cruciblecraft.content.blockentity.BedrockOreBlockEntity;
+import com.masson.cruciblecraft.worldgen.DropsSmallOre;
+import com.masson.cruciblecraft.worldgen.OreHarvest;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+
+/**
+ * GT6 {@code WD.setSmallOre} muffin/tendril cubes. Drops follow
+ * {@code Drops_SmallOre}.
+ */
+public final class GtSmallOreBlock extends Block implements EntityBlock {
+    public static final EnumProperty<OreStoneHost> HOST =
+            EnumProperty.create("host", OreStoneHost.class);
+
+    public GtSmallOreBlock(Properties properties) {
+        super(properties);
+        registerDefaultState(stateDefinition.any().setValue(HOST, OreStoneHost.STONE));
+    }
+
+    @Override
+    protected void createBlockStateDefinition(
+            StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(HOST);
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new BedrockOreBlockEntity(pos, state);
+    }
+
+    @Override
+    protected List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
+        BlockEntity blockEntity =
+                params.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
+        String material = "";
+        if (blockEntity instanceof BedrockOreBlockEntity ore) {
+            material = ore.materialId();
+        }
+        BlockPos pos = BlockPos.containing(
+                params.getParameter(LootContextParams.ORIGIN));
+        OreHarvest harvest = OreHarvest.from(params);
+        return DropsSmallOre.drops(
+                material, state.getValue(HOST), pos, harvest.fortune(), harvest.silkTouch());
+    }
+
+    public static ItemStack drop(String materialId) {
+        if (materialId == null || materialId.isEmpty()) {
+            return ItemStack.EMPTY;
+        }
+        return MaterialLookup.item(materialId, MaterialPrefixes.CRUSHED_ORE)
+                .or(() -> MaterialLookup.item(materialId, MaterialPrefixes.RAW_ORE))
+                .or(() -> MaterialLookup.item(materialId, MaterialPrefixes.DUST))
+                .map(item -> new ItemStack(item, 1))
+                .orElse(ItemStack.EMPTY);
+    }
+}

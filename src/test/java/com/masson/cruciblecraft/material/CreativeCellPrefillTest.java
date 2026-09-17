@@ -44,12 +44,22 @@ class CreativeCellPrefillTest {
     }
 
     @Test
-    void gateContainsNoMoltenFluids() {
-        // 4.5 disposition: molten fluids stay out of cells; the closed gate
-        // must not silently grow molten rows.
-        assertTrue(
-                CellContentGate.entries().keySet().stream()
-                        .noneMatch(id -> id.getPath().startsWith("molten_")),
-                "molten fluids must not enter the cell gate");
+    void gateContainsOnlyExplicitMoltenCalcite() {
+        // Fluid-bed FM.FluidBed requires molten calcite. Other molten metals
+        // stay out of the closed cell gate.
+        java.util.Set<String> molten = CellContentGate.entries().keySet()
+                .stream()
+                .map(net.minecraft.resources.ResourceLocation::getPath)
+                .filter(path -> path.startsWith("molten_"))
+                .collect(java.util.stream.Collectors.toSet());
+        assertEquals(
+                java.util.Set.of("molten_calcite"),
+                molten,
+                "only molten calcite may enter the cell gate");
+        assertEquals(
+                CellContentGate.Kind.FLUID,
+                CellContentGate.entries().get(
+                        net.minecraft.resources.ResourceLocation.parse(
+                                "cruciblecraft:molten_calcite")));
     }
 }

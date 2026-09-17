@@ -44,6 +44,59 @@ class HydrocarbonResourceTest {
     }
 
     @Test
+    void remainderRecipesStayOnHostShapesAndPinnedDumpRows() throws Exception {
+        int distillery = 0;
+        int engine = 0;
+        int gas = 0;
+        try (var paths = Files.walk(ROOT)) {
+            for (Path path : paths.filter(Files::isRegularFile).sorted().toList()) {
+                JsonObject recipe = JsonParser.parseString(
+                        Files.readString(path)).getAsJsonObject();
+                String map = recipe.get("map").getAsString();
+                String relative = ROOT.relativize(path).toString().replace('\\', '/');
+                GTRecipe decoded = decode(relative);
+                JsonObject provenance = recipe.getAsJsonObject("provenance");
+                assertFalse(provenance.get("selected_source_recipe")
+                        .getAsString().isBlank());
+                switch (map) {
+                    case "cruciblecraft:distillery" -> {
+                        distillery++;
+                        assertTrue(ModProcessingMachines.DISTILLERY.validator()
+                                .validate(decoded).isEmpty(), relative);
+                        assertTrue(provenance.get("selected_source_recipe")
+                                .getAsString()
+                                .contains("gt.recipe.distillery.json"));
+                    }
+                    case "cruciblecraft:generifier" -> assertTrue(
+                            ModProcessingMachines.GENERIFIER.validator()
+                                    .validate(decoded).isEmpty(),
+                            relative);
+                    case "cruciblecraft:fuels_engine" -> {
+                        engine++;
+                        assertTrue(ModFuelGenerators.FUEL_ENGINE
+                                .validate(decoded).isEmpty(), relative);
+                        assertTrue(provenance.get("selected_source_recipe")
+                                .getAsString()
+                                .contains("gt.recipe.fuels.engine.json"));
+                    }
+                    case "cruciblecraft:fuels_gas" -> {
+                        gas++;
+                        assertTrue(ModFuelGenerators.BURNING_GAS_GENERATOR
+                                .validate(decoded).isEmpty(), relative);
+                        assertTrue(provenance.get("selected_source_recipe")
+                                .getAsString()
+                                .contains("gt.recipe.fuels.burn.json"));
+                    }
+                    default -> throw new AssertionError("unexpected map " + map);
+                }
+            }
+        }
+        assertEquals(4, distillery);
+        assertEquals(6, engine);
+        assertEquals(23, gas);
+    }
+
+    @Test
     void allFourRecipesCarryPinnedSourceProvenance() throws Exception {
         assertRecipe(
                 "hydrocarbon/distillery/crude_oil_to_fuel_and_lubricant.json",
@@ -122,6 +175,19 @@ class HydrocarbonResourceTest {
                 ModFuelGenerators.BURNING_GAS_GENERATOR
                         .outputEnergyType());
 
+        assertRecipe(
+                "hydrocarbon/distillery/oil_extra_heavy_to_fuel_and_lubricant.json",
+                "cruciblecraft:distillery",
+                "gt.recipe.distillery.json#recipes[716]");
+        assertRecipe(
+                "hydrocarbon/distillery/oil_heavy_to_fuel_and_lubricant.json",
+                "cruciblecraft:distillery",
+                "gt.recipe.distillery.json#recipes[1035]");
+        assertRecipe(
+                "hydrocarbon/distillery/oil_light_to_fuel_and_lubricant.json",
+                "cruciblecraft:distillery",
+                "gt.recipe.distillery.json#recipes[851]");
+
         var indexedMap = new com.masson.cruciblecraft.recipe.gt.RecipeMap(
                 ResourceLocation.fromNamespaceAndPath(
                         "cruciblecraft", "test_fuel_index"));
@@ -133,6 +199,37 @@ class HydrocarbonResourceTest {
         assertTrue(indexedMap.entry(recipeId).isPresent());
         assertTrue(indexedMap.hasFluidCandidate(
                 gas.fluidInputs().getFirst().getFluid()));
+    }
+
+    @Test
+    void remainderHostedRowsValidateAgainstDistilleryAndFuelHosts()
+            throws Exception {
+        int distillery = 0;
+        int engine = 0;
+        int gas = 0;
+        try (var paths = Files.walk(ROOT)) {
+            for (Path path : paths.filter(Files::isRegularFile).toList()) {
+                String relative = ROOT.relativize(path).toString()
+                        .replace('\\', '/');
+                GTRecipe recipe = decode(relative);
+                if (relative.startsWith("hydrocarbon/distillery/")) {
+                    assertTrue(ModProcessingMachines.DISTILLERY.validator()
+                            .validate(recipe).isEmpty(), relative);
+                    distillery++;
+                } else if (relative.startsWith("hydrocarbon/fuels_engine/")) {
+                    assertTrue(ModFuelGenerators.FUEL_ENGINE
+                            .validate(recipe).isEmpty(), relative);
+                    engine++;
+                } else if (relative.startsWith("hydrocarbon/fuels_gas/")) {
+                    assertTrue(ModFuelGenerators.BURNING_GAS_GENERATOR
+                            .validate(recipe).isEmpty(), relative);
+                    gas++;
+                }
+            }
+        }
+        assertEquals(4, distillery);
+        assertEquals(6, engine);
+        assertEquals(23, gas);
     }
 
     private static void assertRecipe(

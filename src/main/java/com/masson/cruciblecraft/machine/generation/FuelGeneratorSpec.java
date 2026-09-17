@@ -6,8 +6,10 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import com.masson.cruciblecraft.api.energy.EnergyType;
+import com.masson.cruciblecraft.material.ChemicalFluidRegistrationGate;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
+import com.masson.cruciblecraft.registry.ModFluids;
 
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -27,7 +29,8 @@ public record FuelGeneratorSpec(
         int efficiencyBps,
         EnergyOutputFace energyOutputFace,
         List<Direction> exhaustOutputSides,
-        int identitySchemaVersion) {
+        int identitySchemaVersion,
+        InputPhase inputPhase) {
     public enum EnergyOutputFace {
         FRONT,
         UP;
@@ -37,11 +40,50 @@ public record FuelGeneratorSpec(
         }
     }
 
+    /** GT6 {@code FL.gas} vs liquid split on FM.Burn hosts. */
+    public enum InputPhase {
+        ANY,
+        GAS,
+        LIQUID
+    }
+
+    public FuelGeneratorSpec(
+            ResourceLocation id,
+            Supplier<RecipeMap> recipeMap,
+            int inputCapacityMb,
+            int outputCapacityMb,
+            int outputTanks,
+            EnergyType outputEnergyType,
+            long outputPacketSize,
+            long maximumOutputPacketsPerTick,
+            long energyCapacity,
+            int efficiencyBps,
+            EnergyOutputFace energyOutputFace,
+            List<Direction> exhaustOutputSides,
+            int identitySchemaVersion) {
+        this(
+                id,
+                recipeMap,
+                inputCapacityMb,
+                outputCapacityMb,
+                outputTanks,
+                outputEnergyType,
+                outputPacketSize,
+                maximumOutputPacketsPerTick,
+                energyCapacity,
+                efficiencyBps,
+                energyOutputFace,
+                exhaustOutputSides,
+                identitySchemaVersion,
+                InputPhase.ANY);
+    }
+
     public FuelGeneratorSpec {
         Objects.requireNonNull(id, "id");
         Objects.requireNonNull(recipeMap, "recipeMap");
         Objects.requireNonNull(outputEnergyType, "outputEnergyType");
         Objects.requireNonNull(energyOutputFace, "energyOutputFace");
+        Objects.requireNonNull(inputPhase, "inputPhase");
         exhaustOutputSides = List.copyOf(
                 Objects.requireNonNull(
                         exhaustOutputSides, "exhaustOutputSides"));
@@ -132,9 +174,20 @@ public record FuelGeneratorSpec(
     }
 
     public boolean acceptsInput(FluidStack stack) {
-        if (stack.isEmpty()) {
+        if (stack.isEmpty()
+                || !requireRecipeMap().hasFluidCandidate(stack.getFluid())) {
             return false;
         }
-        return requireRecipeMap().hasFluidCandidate(stack.getFluid());
+        return switch (inputPhase) {
+            case ANY -> true;
+            case GAS -> gaseous(stack);
+            case LIQUID -> !gaseous(stack);
+        };
+    }
+
+    private static boolean gaseous(FluidStack stack) {
+        return ModFluids.chemicalState(stack.getFluid())
+                .orElse(ChemicalFluidRegistrationGate.State.LIQUID)
+                == ChemicalFluidRegistrationGate.State.GAS;
     }
 }

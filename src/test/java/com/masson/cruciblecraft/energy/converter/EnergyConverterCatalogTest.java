@@ -9,6 +9,8 @@ import java.nio.file.Path;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.masson.cruciblecraft.machine.generation.FuelGeneratorSpec;
+
 import org.junit.jupiter.api.Test;
 
 class EnergyConverterCatalogTest {
@@ -233,6 +235,21 @@ class EnergyConverterCatalogTest {
                 "CURRENT_HEAT_IDENTITY_REQUIRED"));
         assertTrue(generator.policy().sourceResolution().contains(
                 "MISSING_PARTIAL_OR_WRONG_IDENTITY_QUARANTINED"));
+        assertEquals(
+                FuelGeneratorSpec.InputPhase.GAS,
+                EnergyConverterFuelSpecs.fromProfile(generator).inputPhase());
+        assertEquals(
+                FuelGeneratorSpec.InputPhase.LIQUID,
+                EnergyConverterFuelSpecs.fromProfile(
+                                EnergyConverterCatalog.require(
+                                        "cruciblecraft:bronze_burning_box_liquid"))
+                        .inputPhase());
+        assertEquals(
+                FuelGeneratorSpec.InputPhase.ANY,
+                EnergyConverterFuelSpecs.fromProfile(
+                                EnergyConverterCatalog.require(
+                                        "cruciblecraft:bronze_fuel_engine"))
+                        .inputPhase());
     }
 
     @Test
