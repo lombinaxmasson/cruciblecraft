@@ -358,21 +358,30 @@ public class ModLanguageProvider extends LanguageProvider {
             add("disconnect.cruciblecraft.material_mismatch",
                     "CrucibleCraft 材质定义与服务端不一致：%s。"
                             + "请安装与服务端相同的附加组件和材质定义。");
+            add("itemGroup.cruciblecraft.machines", "Crucible Craft：机器");
+            add("itemGroup.cruciblecraft.energy", "Crucible Craft：能量");
+            add("itemGroup.cruciblecraft.covers", "Crucible Craft：盖板");
+            add("itemGroup.cruciblecraft.storage", "Crucible Craft：仓储");
+            add("itemGroup.cruciblecraft.building", "Crucible Craft：建筑");
+            add("itemGroup.cruciblecraft.nature", "Crucible Craft：自然");
+            add("itemGroup.cruciblecraft.components", "Crucible Craft：科技部件");
             add("itemGroup.cruciblecraft.cables", "Crucible Craft：电缆");
             add("itemGroup.cruciblecraft.dusts", "Crucible Craft：粉");
             add("itemGroup.cruciblecraft.mechanical_parts",
-                    "Crucible Craft：机械部件");
+                    "Crucible Craft：机械零件");
             add("itemGroup.cruciblecraft.metals_gems",
-                    "Crucible Craft：金属与宝石");
+                    "Crucible Craft：金属");
             add("itemGroup.cruciblecraft.misc",
-                    "Crucible Craft：杂项材料");
+                    "Crucible Craft：杂项");
             add("itemGroup.cruciblecraft.ore_processing",
                     "Crucible Craft：矿石处理");
-            add("itemGroup.cruciblecraft.ores", "Crucible Craft：矿石");
-            add("itemGroup.cruciblecraft.parts", "Crucible Craft：部件");
+            add("itemGroup.cruciblecraft.ores", "Crucible Craft：矿物方块");
+            add("itemGroup.cruciblecraft.raw_ores", "Crucible Craft：粗矿");
+            add("itemGroup.cruciblecraft.parts", "Crucible Craft：材料零件");
             add("itemGroup.cruciblecraft.pipes", "Crucible Craft：管道");
             add("itemGroup.cruciblecraft.plates", "Crucible Craft：板");
             add("itemGroup.cruciblecraft.tools", "Crucible Craft：工具");
+            add("itemGroup.cruciblecraft.tool_heads", "Crucible Craft：工具部件");
             add("itemGroup.cruciblecraft.fluid_cells",
                     "Crucible Craft：流体单元");
             add("item.cruciblecraft.fluid_cell.filled", "%s 流体单元");
@@ -540,21 +549,30 @@ public class ModLanguageProvider extends LanguageProvider {
             return;
         }
         add("itemGroup.cruciblecraft", "Crucible Craft");
-        add("itemGroup.cruciblecraft.ores", "Crucible Craft: Ores");
+        add("itemGroup.cruciblecraft.machines", "Crucible Craft: Machines");
+        add("itemGroup.cruciblecraft.energy", "Crucible Craft: Energy");
+        add("itemGroup.cruciblecraft.covers", "Crucible Craft: Covers");
+        add("itemGroup.cruciblecraft.storage", "Crucible Craft: Storage");
+        add("itemGroup.cruciblecraft.building", "Crucible Craft: Building");
+        add("itemGroup.cruciblecraft.nature", "Crucible Craft: Nature");
+        add("itemGroup.cruciblecraft.components", "Crucible Craft: Components");
+        add("itemGroup.cruciblecraft.ores", "Crucible Craft: Ore Blocks");
+        add("itemGroup.cruciblecraft.raw_ores", "Crucible Craft: Raw Ores");
         add("itemGroup.cruciblecraft.ore_processing", "Crucible Craft: Ore Processing");
         add("itemGroup.cruciblecraft.dusts", "Crucible Craft: Dusts");
-        add("itemGroup.cruciblecraft.metals_gems", "Crucible Craft: Metals & Gems");
+        add("itemGroup.cruciblecraft.metals_gems", "Crucible Craft: Metals");
         add("itemGroup.cruciblecraft.plates", "Crucible Craft: Plates");
-        add("itemGroup.cruciblecraft.parts", "Crucible Craft: Parts");
+        add("itemGroup.cruciblecraft.parts", "Crucible Craft: Material Parts");
         add("itemGroup.cruciblecraft.mechanical_parts", "Crucible Craft: Mechanical Parts");
         add("itemGroup.cruciblecraft.wires", "Crucible Craft: Stranded Wires");
         add("itemGroup.cruciblecraft.cables", "Crucible Craft: Conductors");
         add("itemGroup.cruciblecraft.pipes", "Crucible Craft: Pipes");
         add("itemGroup.cruciblecraft.tools", "Crucible Craft: Tools");
+        add("itemGroup.cruciblecraft.tool_heads", "Crucible Craft: Tool Heads");
         add("itemGroup.cruciblecraft.fluid_cells", "Crucible Craft: Fluid Cells");
         add("item.cruciblecraft.fluid_cell.filled", "%s Fluid Cell");
         add("item.cruciblecraft.gas_cell.filled", "%s Gas Cell");
-        add("itemGroup.cruciblecraft.misc", "Crucible Craft: Miscellaneous Materials");
+        add("itemGroup.cruciblecraft.misc", "Crucible Craft: Miscellaneous");
         addBlock(ModBlocks.FIREBRICK, "Firebrick");
         addBlock(ModBlocks.CRUCIBLE, "Crucible");
         addBlock(ModBlocks.ANVIL, "Smithing Anvil");

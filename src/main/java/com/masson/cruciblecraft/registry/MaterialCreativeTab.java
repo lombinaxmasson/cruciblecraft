@@ -18,6 +18,7 @@ import com.masson.cruciblecraft.material.def.MaterialDefinition;
 /** Semantic, mutually exclusive grouping for material creative-tab entries. */
 public enum MaterialCreativeTab {
     ORES("ores"),
+    RAW_ORES("raw_ores"),
     ORE_PROCESSING("ore_processing"),
     DUSTS("dusts"),
     METALS_GEMS("metals_gems"),
@@ -44,89 +45,103 @@ public enum MaterialCreativeTab {
     }
 
     public static MaterialCreativeTab forPrefix(MaterialPrefix prefix) {
-        return switch (prefix.id()) {
-            case "cruciblecraft:ore" -> ORES;
-            case "cruciblecraft:raw_ore",
-                    "cruciblecraft:crushed_ore",
-                    "cruciblecraft:tiny_crushed_ore",
-                    "cruciblecraft:washed_crushed_ore",
-                    "cruciblecraft:centrifuged_crushed_ore",
-                    "cruciblecraft:tiny_centrifuged_crushed_ore",
-                    "cruciblecraft:tiny_washed_crushed_ore",
-                    "cruciblecraft:purified_dust",
-                    "cruciblecraft:rock" -> ORE_PROCESSING;
-            case "cruciblecraft:dust",
-                    "cruciblecraft:small_dust",
-                    "cruciblecraft:tiny_dust",
-                    "cruciblecraft:dust_div72" -> DUSTS;
-            case "cruciblecraft:block",
-                    "cruciblecraft:machine_casing",
-                    "cruciblecraft:machine_casing_double",
-                    "cruciblecraft:machine_casing_quadruple",
-                    "cruciblecraft:machine_casing_dense",
-                    "cruciblecraft:ingot",
-                    "cruciblecraft:double_ingot",
-                    "cruciblecraft:triple_ingot",
-                    "cruciblecraft:ingot_hot",
-                    "cruciblecraft:nugget",
-                    "cruciblecraft:gem",
-                    "cruciblecraft:gem_exquisite",
-                    "cruciblecraft:gem_flawless",
-                    "cruciblecraft:gem_flawed",
-                    "cruciblecraft:gem_chipped",
-                    "cruciblecraft:gem_legendary",
-                    "cruciblecraft:quadruple_ingot",
-                    "cruciblecraft:quintuple_ingot" -> METALS_GEMS;
-            case "cruciblecraft:plate",
-                    "cruciblecraft:plate_gem",
-                    "cruciblecraft:curved_plate",
-                    "cruciblecraft:tiny_plate",
-                    "cruciblecraft:tiny_plate_gem",
-                    "cruciblecraft:foil",
-                    "cruciblecraft:double_plate",
-                    "cruciblecraft:triple_plate",
-                    "cruciblecraft:quadruple_plate",
-                    "cruciblecraft:quintuple_plate",
-                    "cruciblecraft:dense_plate" -> PLATES;
-            case "cruciblecraft:rod",
-                    "cruciblecraft:long_rod",
-                    "cruciblecraft:bolt",
-                    "cruciblecraft:screw",
-                    "cruciblecraft:ring",
-                    "cruciblecraft:capcellcon" -> PARTS;
-            case "cruciblecraft:spring",
-                    "cruciblecraft:small_spring",
-                    "cruciblecraft:gear",
-                    "cruciblecraft:small_gear",
-                    "cruciblecraft:rotor" -> MECHANICAL_PARTS;
-            case "cruciblecraft:fine_wire",
-                    "cruciblecraft:double_wire",
-                    "cruciblecraft:quadruple_wire",
-                    "cruciblecraft:octuple_wire",
-                    "cruciblecraft:dodecuple_wire",
-                    "cruciblecraft:hexadecuple_wire" -> WIRES;
-            // Placeable conductors share one page (wire + cable + multi-cable);
-            // pipes get their own page.
-            case "cruciblecraft:wire",
-                    "cruciblecraft:cable",
-                    "cruciblecraft:double_cable",
-                    "cruciblecraft:quadruple_cable",
-                    "cruciblecraft:octuple_cable",
-                    "cruciblecraft:dodecuple_cable" -> CABLES;
-            case "cruciblecraft:tiny_fluid_pipe",
-                    "cruciblecraft:small_fluid_pipe",
-                    "cruciblecraft:fluid_pipe",
-                    "cruciblecraft:large_fluid_pipe",
-                    "cruciblecraft:huge_fluid_pipe",
-                    "cruciblecraft:item_pipe",
-                    "cruciblecraft:large_item_pipe",
-                    "cruciblecraft:huge_item_pipe" -> PIPES;
-            default -> MISC;
+        String path = prefixPath(prefix);
+        if (path.startsWith("tool_head")) {
+            return MISC;
+        }
+        return switch (path) {
+            case "ore" -> ORES;
+            case "raw_ore", "rock" -> RAW_ORES;
+            case "crushed_ore",
+                    "tiny_crushed_ore",
+                    "washed_crushed_ore",
+                    "centrifuged_crushed_ore",
+                    "tiny_centrifuged_crushed_ore",
+                    "tiny_washed_crushed_ore",
+                    "purified_dust" -> ORE_PROCESSING;
+            case "dust",
+                    "small_dust",
+                    "tiny_dust",
+                    "dust_div72" -> DUSTS;
+            case "block",
+                    "machine_casing",
+                    "machine_casing_double",
+                    "machine_casing_quadruple",
+                    "machine_casing_dense",
+                    "small_casing",
+                    "ingot",
+                    "double_ingot",
+                    "triple_ingot",
+                    "ingot_hot",
+                    "nugget",
+                    "billet",
+                    "chunk",
+                    "storage_ingot",
+                    "boule",
+                    "gem",
+                    "gem_exquisite",
+                    "gem_flawless",
+                    "gem_flawed",
+                    "gem_chipped",
+                    "gem_legendary",
+                    "quadruple_ingot",
+                    "quintuple_ingot" -> METALS_GEMS;
+            case "plate",
+                    "plate_gem",
+                    "curved_plate",
+                    "tiny_plate",
+                    "tiny_plate_gem",
+                    "foil",
+                    "double_plate",
+                    "triple_plate",
+                    "quadruple_plate",
+                    "quintuple_plate",
+                    "dense_plate",
+                    "storage_plate" -> PLATES;
+            case "rod",
+                    "long_rod",
+                    "bolt",
+                    "screw",
+                    "ring",
+                    "capcellcon",
+                    "chain",
+                    "round",
+                    "lens" -> PARTS;
+            case "spring",
+                    "small_spring",
+                    "gear",
+                    "small_gear",
+                    "rotor",
+                    "minecart_wheels" -> MECHANICAL_PARTS;
+            // Placeable conductors share one page (bare wire + cable).
+            case "wire",
+                    "cable",
+                    "double_cable",
+                    "quadruple_cable",
+                    "octuple_cable",
+                    "dodecuple_cable" -> CABLES;
+            default -> {
+                if ("fine_wire".equals(path) || path.endsWith("_wire")) {
+                    yield WIRES;
+                }
+                if (path.endsWith("_pipe")) {
+                    yield PIPES;
+                }
+                yield MISC;
+            }
         };
     }
 
     public static boolean isToolHeadPrefix(MaterialPrefix prefix) {
-        return prefix.serializedName().startsWith("tool_head");
+        String path = prefixPath(prefix);
+        if (path.startsWith("tool_head")) {
+            return true;
+        }
+        try {
+            return prefix.serializedName().startsWith("tool_head");
+        } catch (RuntimeException ignored) {
+            return false;
+        }
     }
 
     /**
@@ -208,6 +223,12 @@ public enum MaterialCreativeTab {
             }
         }
         return List.copyOf(ids);
+    }
+
+    private static String prefixPath(MaterialPrefix prefix) {
+        String id = prefix.id();
+        int colon = id.indexOf(':');
+        return colon < 0 ? id : id.substring(colon + 1);
     }
 
     private static List<MaterialPrefix> requireForms(

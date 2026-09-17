@@ -148,7 +148,7 @@ public final class PlayerCompleteSmoke {
                 "dump_cover_definitions",
                 CORE_CAPABILITY.equals(surface.capability()) && covers);
         boolean tab = BuiltInRegistries.CREATIVE_MODE_TAB.containsKey(
-                ModCreativeTabs.MAIN.getId());
+                ModCreativeTabs.MACHINES.getId());
         root.addProperty("creative_tab", tab);
         boolean emiPlan = false;
         try {
