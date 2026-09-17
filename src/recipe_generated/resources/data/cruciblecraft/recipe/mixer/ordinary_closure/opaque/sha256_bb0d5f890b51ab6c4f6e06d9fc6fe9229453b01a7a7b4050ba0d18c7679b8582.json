@@ -28,13 +28,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:potassium_hydroxide/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "potassium_hydroxide"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "potassium_carbonate"
+          },
           "count": 1,
-          "id": "cruciblecraft:potassium_carbonate/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

@@ -65,10 +65,9 @@ public final class GtSmallOreBlock extends Block implements EntityBlock {
         if (materialId == null || materialId.isEmpty()) {
             return ItemStack.EMPTY;
         }
-        return MaterialLookup.item(materialId, MaterialPrefixes.CRUSHED_ORE)
-                .or(() -> MaterialLookup.item(materialId, MaterialPrefixes.RAW_ORE))
-                .or(() -> MaterialLookup.item(materialId, MaterialPrefixes.DUST))
-                .map(item -> new ItemStack(item, 1))
+        return MaterialLookup.tryStack(materialId, MaterialPrefixes.CRUSHED_ORE, 1)
+                .or(() -> MaterialLookup.tryStack(materialId, MaterialPrefixes.RAW_ORE, 1))
+                .or(() -> MaterialLookup.tryStack(materialId, MaterialPrefixes.DUST, 1))
                 .orElse(ItemStack.EMPTY);
     }
 }

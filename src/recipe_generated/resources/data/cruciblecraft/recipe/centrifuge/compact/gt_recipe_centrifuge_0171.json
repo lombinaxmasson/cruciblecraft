@@ -18,17 +18,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:cobalt/tiny_centrifuged_crushed_ore"
+          "components": {
+            "cruciblecraft:prefix_material": "cobalt"
+          },
+          "items": "cruciblecraft:tiny_centrifuged_crushed_ore",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "cobalt"
+          },
           "count": 1,
-          "id": "cruciblecraft:cobalt/tiny_dust"
+          "id": "cruciblecraft:tiny_dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "cobalt60"
+          },
           "count": 8,
-          "id": "cruciblecraft:cobalt60/tiny_dust"
+          "id": "cruciblecraft:tiny_dust"
         }
       ],
       "output_chances": [

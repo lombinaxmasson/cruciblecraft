@@ -22,25 +22,40 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:dreamwood/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "dreamwood"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
           {
-            "item": "cruciblecraft:shimmerwood/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "shimmerwood"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
           {
-            "item": "cruciblecraft:silverwood/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "silverwood"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "wood"
+            },
             "count": 4,
-            "id": "cruciblecraft:wood/pellet"
+            "id": "cruciblecraft:pellet"
           }
         ]
       ]

@@ -61,8 +61,9 @@ public final class GtHostedOreBlock extends Block implements EntityBlock {
             return List.of(item(state, material));
         }
         if (harvest.fortune() > 0) {
-            ItemStack raw = MaterialLookup.item(material, MaterialPrefixes.RAW_ORE)
-                    .map(item -> new ItemStack(item, 1 + params.getLevel().random.nextInt(harvest.fortune() + 1)))
+            ItemStack raw = MaterialLookup.tryStack(
+                            material, MaterialPrefixes.RAW_ORE,
+                            1 + params.getLevel().random.nextInt(harvest.fortune() + 1))
                     .orElse(ItemStack.EMPTY);
             if (!raw.isEmpty()) {
                 return List.of(raw);

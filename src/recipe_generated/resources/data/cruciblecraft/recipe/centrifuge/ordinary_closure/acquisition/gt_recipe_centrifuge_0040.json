@@ -16,34 +16,54 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:tritanium/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "tritanium"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vanadium_gallium/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_gallium"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "tritanium_elemental"
+            },
             "count": 3,
-            "id": "cruciblecraft:tritanium_elemental/dust"
+            "id": "cruciblecraft:dust"
           },
           {
+            "components": {
+              "cruciblecraft:prefix_material": "duranium_elemental"
+            },
             "count": 1,
-            "id": "cruciblecraft:duranium_elemental/dust"
+            "id": "cruciblecraft:dust"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium"
+            },
             "count": 3,
-            "id": "cruciblecraft:vanadium/dust"
+            "id": "cruciblecraft:dust"
           },
           {
+            "components": {
+              "cruciblecraft:prefix_material": "gallium"
+            },
             "count": 1,
-            "id": "cruciblecraft:gallium/dust"
+            "id": "cruciblecraft:dust"
           }
         ]
       ]

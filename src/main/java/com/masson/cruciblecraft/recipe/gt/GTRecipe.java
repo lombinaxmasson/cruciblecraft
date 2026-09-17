@@ -34,7 +34,7 @@ public record GTRecipe(
     public static final int GUARANTEED_CHANCE = 10_000;
 
     public static final MapCodec<GTRecipe> MAP_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-            Ingredient.CODEC_NONEMPTY.listOf()
+            PrefixMaterialItemCodecs.INGREDIENT.listOf()
                     .optionalFieldOf("item_inputs", List.of())
                     .forGetter(GTRecipe::itemInputs),
             Codec.INT.listOf()
@@ -43,7 +43,7 @@ public record GTRecipe(
             ItemInputAction.CODEC.listOf()
                     .optionalFieldOf("item_input_actions", List.of())
                     .forGetter(GTRecipe::itemInputActions),
-            ItemStack.STRICT_CODEC.listOf()
+            PrefixMaterialItemCodecs.ITEM_STACK.listOf()
                     .optionalFieldOf("item_outputs", List.of())
                     .forGetter(GTRecipe::itemOutputs),
             FluidStack.CODEC.listOf()

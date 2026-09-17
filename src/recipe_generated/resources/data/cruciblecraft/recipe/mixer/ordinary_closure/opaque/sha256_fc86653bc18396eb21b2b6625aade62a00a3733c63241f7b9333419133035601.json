@@ -30,22 +30,41 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:peridot/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "peridot"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:rare_earth/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "rare_earth"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:meteoric_iron/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "meteoric_iron"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:obsidian/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "obsidian"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "sky_stone"
+          },
           "count": 9,
-          "id": "cruciblecraft:sky_stone/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

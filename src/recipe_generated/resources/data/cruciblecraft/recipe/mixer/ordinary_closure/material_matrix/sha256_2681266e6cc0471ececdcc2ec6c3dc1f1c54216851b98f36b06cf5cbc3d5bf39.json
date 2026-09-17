@@ -50,15 +50,22 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:sodium_sulfate/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "sodium_sulfate"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "mirabilite"
+            },
             "count": 7,
-            "id": "cruciblecraft:mirabilite/dust"
+            "id": "cruciblecraft:dust"
           }
         ]
       ]

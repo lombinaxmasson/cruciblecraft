@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#2148",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/meteoric_steel",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 4508,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 608,
+          "id": "cruciblecraft:molten_meteoric_steel"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "meteoric_steel"
+          },
+          "items": "cruciblecraft:bookshelf",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "9674f6b98a6e54d3e5f57735a3afe9dd25c9640e06db29d30bc7011b783c1e20"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#2148",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/4e2fa7a53ec812c8"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:monazite/tiny_dust"
+          "components": {
+            "cruciblecraft:prefix_material": "monazite"
+          },
+          "items": "cruciblecraft:tiny_dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "rare_earth"
+          },
           "count": 1,
-          "id": "cruciblecraft:rare_earth/tiny_dust"
+          "id": "cruciblecraft:tiny_dust"
         }
       ],
       "output_chances": [

@@ -22,16 +22,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:mint/ice_cream_fresh_smelling_gelato"
+          "components": {
+            "cruciblecraft:prefix_material": "mint"
+          },
+          "items": "cruciblecraft:ice_cream_fresh_smelling_gelato",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:chocolate/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "chocolate"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "mint"
+          },
           "count": 4,
-          "id": "cruciblecraft:mint/chocolate_chip_ice_cream_minty_chocolate_chip_gelato"
+          "id": "cruciblecraft:chocolate_chip_ice_cream_minty_chocolate_chip_gelato"
         }
       ],
       "output_chances": [

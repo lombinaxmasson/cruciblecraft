@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:food/end_comb"
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
+          "items": "cruciblecraft:end_comb",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "endstone"
+          },
           "count": 1,
-          "id": "cruciblecraft:endstone/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

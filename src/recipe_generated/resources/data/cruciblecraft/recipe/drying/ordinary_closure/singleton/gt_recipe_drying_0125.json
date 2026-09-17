@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:applewood/pomegranate_a_seeded"
+          "components": {
+            "cruciblecraft:prefix_material": "applewood"
+          },
+          "items": "cruciblecraft:pomegranate_a_seeded",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
           "count": 1,
-          "id": "cruciblecraft:food/pomeraisins_lesser_dogs_favourite_food"
+          "id": "cruciblecraft:pomeraisins_lesser_dogs_favourite_food"
         }
       ],
       "output_chances": [

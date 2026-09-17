@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:sapphire/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "sapphire"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "alumina"
+          },
           "count": 5,
-          "id": "cruciblecraft:alumina/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

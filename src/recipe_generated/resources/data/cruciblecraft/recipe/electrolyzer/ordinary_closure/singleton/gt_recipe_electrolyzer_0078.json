@@ -34,17 +34,27 @@
           "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:alexandrite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "alexandrite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "alumina"
+          },
           "count": 1,
-          "id": "cruciblecraft:alumina/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "beryllium"
+          },
           "count": 1,
-          "id": "cruciblecraft:beryllium/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

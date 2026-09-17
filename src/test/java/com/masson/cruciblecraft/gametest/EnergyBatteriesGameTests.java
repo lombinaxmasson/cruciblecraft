@@ -216,18 +216,16 @@ public final class EnergyBatteriesGameTests {
                     helper.getLevel().getRecipeManager().byKey(id(path)).isPresent(),
                     "Missing survival recipe " + path);
         }
-        var cable = MaterialLookup.item("lead", MaterialPrefixes.CABLE)
-                .orElseThrow();
+        var cable = MaterialLookup.stack("lead", MaterialPrefixes.CABLE);
         var cell = ModItems.batteryCell("lead_acid_cell_filled").get();
-        var plate = MaterialLookup.item(
-                        "battery_alloy", MaterialPrefixes.PLATE)
-                .orElseThrow();
+        var plate = MaterialLookup.stack(
+                "battery_alloy", MaterialPrefixes.PLATE);
         List<ItemStack> slots = List.of(
-                new ItemStack(cable),
+                cable,
                 ItemStack.EMPTY,
                 new ItemStack(cell),
                 ItemStack.EMPTY,
-                new ItemStack(plate),
+                plate,
                 ItemStack.EMPTY);
         ItemStack assembled = craft(helper, 2, 3, slots);
         helper.assertTrue(

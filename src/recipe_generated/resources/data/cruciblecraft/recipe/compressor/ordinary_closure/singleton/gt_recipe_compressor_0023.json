@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:red/clay_perfectly_balanced_with_no_exploits"
+          "components": {
+            "cruciblecraft:prefix_material": "red"
+          },
+          "items": "cruciblecraft:clay_perfectly_balanced_with_no_exploits",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "diggable"
+          },
           "count": 1,
-          "id": "cruciblecraft:diggable/red_clay"
+          "id": "cruciblecraft:red_clay"
         }
       ],
       "output_chances": [

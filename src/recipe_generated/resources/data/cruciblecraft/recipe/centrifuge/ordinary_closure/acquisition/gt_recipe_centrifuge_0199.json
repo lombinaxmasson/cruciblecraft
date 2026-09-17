@@ -18,29 +18,48 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:netherrack/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "netherrack"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "stone"
+          },
           "count": 1,
-          "id": "cruciblecraft:stone/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "sulfur"
+          },
           "count": 2,
-          "id": "cruciblecraft:sulfur/tiny_dust"
+          "id": "cruciblecraft:tiny_dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "redstone"
+          },
           "count": 1,
-          "id": "cruciblecraft:redstone/tiny_dust"
+          "id": "cruciblecraft:tiny_dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "coal"
+          },
           "count": 1,
-          "id": "cruciblecraft:coal/tiny_dust"
+          "id": "cruciblecraft:tiny_dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "gold"
+          },
           "count": 1,
-          "id": "cruciblecraft:gold/tiny_dust"
+          "id": "cruciblecraft:tiny_dust"
         }
       ],
       "output_chances": [

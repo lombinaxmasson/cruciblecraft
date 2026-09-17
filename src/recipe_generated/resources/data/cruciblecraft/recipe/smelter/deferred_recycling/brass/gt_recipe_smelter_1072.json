@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#1072",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/brass",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 1535,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 432,
+          "id": "cruciblecraft:molten_brass"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "item_pipe_tile"
+          },
+          "items": "cruciblecraft:brass",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "90355bc71e51f586985291f4111d13de0907fa137e3728fcc8ec6790af649cc2"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#1072",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/07cc101485f96d93"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

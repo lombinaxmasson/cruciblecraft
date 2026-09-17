@@ -3,6 +3,7 @@ package com.masson.cruciblecraft.client.color;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.content.item.MaterialFormItem;
 import com.masson.cruciblecraft.content.item.MaterialToolItem;
+import com.masson.cruciblecraft.content.item.PrefixMaterialItem;
 import com.masson.cruciblecraft.heat.ItemHeat;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
@@ -38,7 +39,8 @@ public final class MaterialItemColor {
             }
             material = MaterialCatalog.find(
                     entry.orElseThrow().materialId()).orElse(null);
-            neutralTexture = stack.getItem() instanceof MaterialFormItem;
+            neutralTexture = stack.getItem() instanceof MaterialFormItem
+                    || stack.getItem() instanceof PrefixMaterialItem;
         }
         if (material == null) {
             return 0xFF000000 | baseColor(null, neutralTexture);

@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#2203",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/osmium_elemental",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 67282,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 2048,
+          "id": "cruciblecraft:molten_osmium_elemental"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "furniture"
+          },
+          "items": "cruciblecraft:locker_osmiumelemental",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "783a5d8c100597667a92b78347ecda0d88362aad0f5dd2575834a1952b5e786f"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#2203",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/e95c7b1f880a6b3e"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

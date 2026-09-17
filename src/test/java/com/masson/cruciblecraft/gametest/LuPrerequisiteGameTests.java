@@ -207,10 +207,9 @@ public final class LuPrerequisiteGameTests {
                         .byKey(id("machines/laser_engraver"))
                         .isPresent(),
                 "Missing source-backed laser engraver recipe");
-        var silver = MaterialLookup.item("silver", MaterialPrefixes.PLATE)
-                .orElseThrow();
+        var silver = MaterialLookup.stack("silver", MaterialPrefixes.PLATE);
         List<ItemStack> slots = List.of(
-                new ItemStack(silver),
+                silver,
                 new ItemStack(Items.GLASS),
                 new ItemStack(Items.REDSTONE),
                 new ItemStack(Items.DIAMOND),
@@ -218,7 +217,7 @@ public final class LuPrerequisiteGameTests {
                 new ItemStack(Items.DIAMOND),
                 new ItemStack(Items.REDSTONE),
                 new ItemStack(Items.GLASS),
-                new ItemStack(silver));
+                silver.copy());
         ItemStack assembled = craft(helper, slots);
         helper.assertTrue(
                 assembled.is(ModItems.LU_FIBER_CABLE.get())

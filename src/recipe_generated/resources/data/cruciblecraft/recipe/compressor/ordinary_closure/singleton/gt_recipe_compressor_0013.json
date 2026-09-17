@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:food/grass_make_9_of_this_into_a_bale_in_order_to_dry_it"
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
+          "items": "cruciblecraft:grass_make_9_of_this_into_a_bale_in_order_to_dry_it",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "bale"
+          },
           "count": 1,
-          "id": "cruciblecraft:bale/grass"
+          "id": "cruciblecraft:grass"
         }
       ],
       "output_chances": [

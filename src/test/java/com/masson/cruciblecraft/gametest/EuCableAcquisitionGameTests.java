@@ -35,8 +35,7 @@ public final class EuCableAcquisitionGameTests {
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void copperPlateCraftsWireWithCutter(GameTestHelper helper) {
-        Item plate = ModItems.materialItem(
-                "copper", MaterialPrefixes.PLATE).get();
+        ItemStack plate = MaterialLookup.stack("copper", MaterialPrefixes.PLATE);
         Item wire = ModItems.materialItem(
                 "copper", MaterialPrefixes.WIRE).get();
         ItemStack assembled = assembleNamed(
@@ -45,7 +44,7 @@ public final class EuCableAcquisitionGameTests {
                 2,
                 1,
                 List.of(
-                        new ItemStack(plate),
+                        plate,
                         new ItemStack(ModItems.MATERIAL_WIRE_CUTTER.get())));
         helper.assertTrue(
                 assembled.is(wire) && assembled.getCount() == 1,
@@ -58,8 +57,8 @@ public final class EuCableAcquisitionGameTests {
             GameTestHelper helper) {
         Item wire = ModItems.materialItem(
                 "copper", MaterialPrefixes.WIRE).get();
-        Item rubber = MaterialLookup.item(
-                "rubber", MaterialPrefixes.PLATE).orElseThrow();
+        ItemStack rubber = MaterialLookup.stack(
+                "rubber", MaterialPrefixes.PLATE);
         Item cable = ModItems.materialItem(
                 "copper", MaterialPrefixes.CABLE).get();
         ItemStack assembled = assembleNamed(
@@ -67,7 +66,7 @@ public final class EuCableAcquisitionGameTests {
                 "cable/shapeless/copper/cable",
                 2,
                 1,
-                List.of(new ItemStack(wire), new ItemStack(rubber)));
+                List.of(new ItemStack(wire), rubber));
         helper.assertTrue(
                 assembled.is(cable) && assembled.getCount() == 1,
                 "copper cable did not craft from wire + rubber plate: "

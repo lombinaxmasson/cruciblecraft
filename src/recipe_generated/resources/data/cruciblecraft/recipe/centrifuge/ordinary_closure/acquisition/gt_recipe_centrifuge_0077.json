@@ -18,17 +18,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:soularium/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "soularium"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "soulsand"
+          },
           "count": 9,
-          "id": "cruciblecraft:soulsand/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "gold"
+          },
           "count": 1,
-          "id": "cruciblecraft:gold/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

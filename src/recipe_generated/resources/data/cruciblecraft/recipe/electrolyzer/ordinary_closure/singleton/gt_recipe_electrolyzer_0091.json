@@ -29,13 +29,20 @@
           "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:sand/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "sand"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "silicon_dioxide"
+          },
           "count": 1,
-          "id": "cruciblecraft:silicon_dioxide/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

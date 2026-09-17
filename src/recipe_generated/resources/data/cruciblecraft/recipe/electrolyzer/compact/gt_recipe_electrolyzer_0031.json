@@ -34,17 +34,27 @@
           "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:apatite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "apatite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "calcium"
+          },
           "count": 5,
-          "id": "cruciblecraft:calcium/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "phosphate"
+          },
           "count": 3,
-          "id": "cruciblecraft:phosphate/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

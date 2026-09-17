@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:ice/cream_basic_milk_gelato"
+          "components": {
+            "cruciblecraft:prefix_material": "ice"
+          },
+          "items": "cruciblecraft:cream_basic_milk_gelato",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "chocolate"
+          },
           "count": 1,
-          "id": "cruciblecraft:chocolate/ice_cream_standard_chocolate_gelato"
+          "id": "cruciblecraft:ice_cream_standard_chocolate_gelato"
         }
       ],
       "output_chances": [

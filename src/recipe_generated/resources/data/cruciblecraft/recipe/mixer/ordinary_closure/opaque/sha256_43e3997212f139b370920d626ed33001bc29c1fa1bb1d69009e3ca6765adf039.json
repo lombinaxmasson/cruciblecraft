@@ -27,13 +27,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:magnesium_chloride/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "magnesium_chloride"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "plastic"
+          },
           "count": 1,
-          "id": "cruciblecraft:plastic/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

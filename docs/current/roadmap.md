@@ -16,6 +16,8 @@
 
 CrucibleCraft 是 Minecraft 1.21.1 NeoForge 上的 GT6 风格工业模组。技术目标是让
 材料、配方和机器族的常规内容变化优先由数据与规则驱动，而不是按单个对象复制 Java。
+库存材料形态的目标身份是前缀物品 + 材料组件，见
+[材料身份合同](material-prefix-identity.md)；落地是 unique-active `registry/prefix-material-component`。
 
 本项目不宣称是 GT6、GT6U 或任何其他模组的完整移植。来源事实、派生规则和设计决策
 必须分别记录为 `SOURCE_BACKED`、`SOURCE_DERIVED` 或 `DESIGN_POLICY`。

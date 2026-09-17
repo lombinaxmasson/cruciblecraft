@@ -18,21 +18,34 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:tantalum_hafnium_carbide/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "tantalum"
+          },
           "count": 4,
-          "id": "cruciblecraft:tantalum/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "hafnium"
+          },
           "count": 1,
-          "id": "cruciblecraft:hafnium/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "carbon"
+          },
           "count": 5,
-          "id": "cruciblecraft:carbon/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

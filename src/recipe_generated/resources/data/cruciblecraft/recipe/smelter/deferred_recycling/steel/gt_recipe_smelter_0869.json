@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#0869",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/steel",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 5275,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 720,
+          "id": "cruciblecraft:molten_steel"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "steel_galvanized"
+          },
+          "items": "cruciblecraft:chest",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "e4355d559c727f274d34bee8a6f2d41780041b0df6e61bb52b5e6c10691cde26"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#0869",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/f00cf2fe130f8a1c"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

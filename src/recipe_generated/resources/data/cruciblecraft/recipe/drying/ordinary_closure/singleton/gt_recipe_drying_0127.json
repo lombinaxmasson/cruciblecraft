@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:rye/food"
+          "components": {
+            "cruciblecraft:prefix_material": "rye"
+          },
+          "items": "cruciblecraft:food",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
           "count": 1,
-          "id": "cruciblecraft:food/dry_grass_useful_for_making_a_simple_fire_starter"
+          "id": "cruciblecraft:dry_grass_useful_for_making_a_simple_fire_starter"
         }
       ],
       "output_chances": [

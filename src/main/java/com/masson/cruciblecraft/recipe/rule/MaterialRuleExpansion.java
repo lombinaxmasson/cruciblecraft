@@ -637,7 +637,17 @@ public final class MaterialRuleExpansion {
                     resource.chance(),
                     resourceContext,
                     ruleId);
-            ItemStack stack = new ItemStack(item.get(), count.get());
+            ItemStack stack;
+            if (resource.prefix().isPresent()) {
+                stack = MaterialLookup.tryStack(
+                                selection.material(),
+                                resource.prefix().get(),
+                                count.get(),
+                                MaterialCatalog.runtimePreferences())
+                        .orElseGet(() -> new ItemStack(item.get(), count.get()));
+            } else {
+                stack = new ItemStack(item.get(), count.get());
+            }
             applyStringComponents(
                     stack,
                     resolveStringComponents(

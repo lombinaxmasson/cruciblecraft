@@ -42,41 +42,68 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:black_end_sand/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "black_end_sand"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
           {
-            "item": "cruciblecraft:endstone/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "endstone"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
           {
-            "item": "cruciblecraft:white_end_sand/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "white_end_sand"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "sand"
+            },
             "count": 1,
-            "id": "cruciblecraft:sand/dust"
+            "id": "cruciblecraft:dust"
           },
           {
+            "components": {
+              "cruciblecraft:prefix_material": "platinum"
+            },
             "count": 1,
-            "id": "cruciblecraft:platinum/tiny_dust"
+            "id": "cruciblecraft:tiny_dust"
           },
           {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_trioxide"
+            },
             "count": 1,
-            "id": "cruciblecraft:tungsten_trioxide/tiny_dust"
+            "id": "cruciblecraft:tiny_dust"
           },
           {
+            "components": {
+              "cruciblecraft:prefix_material": "endium"
+            },
             "count": 1,
-            "id": "cruciblecraft:endium/tiny_dust"
+            "id": "cruciblecraft:tiny_dust"
           },
           {
+            "components": {
+              "cruciblecraft:prefix_material": "sugilite"
+            },
             "count": 1,
-            "id": "cruciblecraft:sugilite/gem"
+            "id": "cruciblecraft:gem"
           }
         ]
       ]

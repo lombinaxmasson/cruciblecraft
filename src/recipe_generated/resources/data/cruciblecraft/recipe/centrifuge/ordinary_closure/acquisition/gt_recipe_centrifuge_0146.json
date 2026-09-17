@@ -18,25 +18,41 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:komatiite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "komatiite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "peridot"
+          },
           "count": 1,
-          "id": "cruciblecraft:peridot/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "magnesium_carbonate"
+          },
           "count": 2,
-          "id": "cruciblecraft:magnesium_carbonate/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "flint"
+          },
           "count": 6,
-          "id": "cruciblecraft:flint/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "dark_ashes"
+          },
           "count": 3,
-          "id": "cruciblecraft:dark_ashes/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

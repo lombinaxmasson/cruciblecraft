@@ -25,6 +25,11 @@
 当前边界：
 
 - unique-active 以 [project-status.md](project-status.md) 为准，本页不复述。
+  材料库存身份已决策为前缀 Item + 材料组件
+  （[ADR](../decisions/材料前缀组件身份ADR.md)，已关 `runtime_ready`
+  `registry/prefix-material-component`）。live 库存前缀是共享 Item +
+  `prefix_material`，禁止 dual-register 旧 `cruciblecraft:{material}/{form}`。
+  管 / 缆折叠仍未做，另开 child。
   状态页 Prep 里仍列着 `machines/printer`、地牢 / 行星岩 / Center，以及
   `content/mte-prep-index` 下 12 张 MTE 家族 prep **计划文件**。
   那些 prep 文件是 2026-09-11 的冻结合同，**不是**「家族 runtime 还没做」。
@@ -364,6 +369,7 @@ behavior 仍没有 owner，不能从 `cc_mechanism = none` 直接推导工作量
 | 计数上限与 kind envelope | capability map 的 report-only / count-ceiling 行 | 新 RecipeMap 前要先明确处理方式 |
 | 冷却器 | `energy/cooler` | 仍缺独立 runtime。排期 [blocked.md](blocked.md) C 桶。热交换器第一切片 ≠ 冷却器；蒸汽涡轮已落地也 ≠ 冷却器 |
 | 建筑方块 identity / behavior | identity、hardness、multiblock parts、decorative behavior | 仍没有当前 owner |
+| 材料前缀组件身份 | 管 / 缆 registry 粒度 | 库存前缀已关 `runtime_ready` `registry/prefix-material-component`。管 / 缆 / 红石线仍按材料独立 Block。合同 [material-prefix-identity.md](material-prefix-identity.md) |
 | 材质铸造坩埚 / 模具 / 盆 / 交叉 | `content/gt6-mte-crucible-foundry-runtime` 的 85 个 live BlockItem | dummy 罐已按 GT6 `U` 对齐为熔炼 2304 / 模具 144 / 盆 1296 / 交叉 0 mB（`content/gt6-crucible-mold-behavior-correction`），仍不是 `MultiTileEntitySmeltery` / `ITileEntityMold`。陶瓷主机的 16 锭、掉落吸入、模具自动抽、`fillMold` / 凿子 / 钳子已关。体素模型与共享 iconset 由 `content/gt6-foundry-art` 落地。不要重开身份卡 |
 | 浇铸口熔体浇模具 | `content/gt6-mte-fluid-attachments-runtime` | 面对陶瓷坩埚时走 `fillMold`（`content/gt6-crucible-mold-interaction`）。面对普通流体罐仍倒 NeoForge 流体。85 个材质模具不是 `ITileEntityMold`。不要改陶瓷校正卡的 `required_test_ids` |
 

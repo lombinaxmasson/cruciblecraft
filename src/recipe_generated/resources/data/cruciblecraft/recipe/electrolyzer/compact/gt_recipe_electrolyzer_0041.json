@@ -34,17 +34,27 @@
           "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:barite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "barite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "barium"
+          },
           "count": 1,
-          "id": "cruciblecraft:barium/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "sulfur"
+          },
           "count": 1,
-          "id": "cruciblecraft:sulfur/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

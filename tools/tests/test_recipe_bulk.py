@@ -7,7 +7,13 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-from tools.recipe_bulk.emit import hex_stable_id, semantic_replay_key
+from tools.recipe_bulk.emit import (
+    emit_item,
+    emit_item_output,
+    hex_stable_id,
+    project_shared_inventory,
+    semantic_replay_key,
+)
 from tools.recipe_bulk.resolver import ResolutionError, resolve_operand
 from tools.recipe_bulk.templates import expand_family
 from tools.recipe_bulk import compile as compile_mod
@@ -90,6 +96,63 @@ class RecipeBulkCompilerTest(unittest.TestCase):
                 },
                 require_proven=True,
             )
+
+    def test_shared_inventory_dust_emits_prefix_component(self) -> None:
+        self.assertEqual(
+            project_shared_inventory("cruciblecraft:copper/dust"),
+            ("cruciblecraft:dust", {"cruciblecraft:prefix_material": "copper"}),
+        )
+        self.assertEqual(
+            emit_item({"runtime_id": "cruciblecraft:copper/dust"}),
+            {
+                "type": "neoforge:components",
+                "items": "cruciblecraft:dust",
+                "components": {"cruciblecraft:prefix_material": "copper"},
+            },
+        )
+        self.assertEqual(
+            emit_item_output({"runtime_id": "cruciblecraft:iron/plate", "count": 2}),
+            {
+                "count": 2,
+                "id": "cruciblecraft:plate",
+                "components": {"cruciblecraft:prefix_material": "iron"},
+            },
+        )
+
+    def test_unique_hosted_and_external_items_stay_plain(self) -> None:
+        self.assertIsNone(project_shared_inventory("cruciblecraft:copper/fluid_pipe"))
+        self.assertIsNone(project_shared_inventory("cruciblecraft:copper/wire"))
+        self.assertIsNone(project_shared_inventory("minecraft:iron_ingot"))
+        self.assertEqual(
+            emit_item({"runtime_id": "cruciblecraft:copper/fluid_pipe"}),
+            {"item": "cruciblecraft:copper/fluid_pipe"},
+        )
+        self.assertEqual(
+            emit_item({"runtime_id": "minecraft:iron_ingot"}),
+            {"item": "minecraft:iron_ingot"},
+        )
+
+    def test_existing_circuit_components_are_not_overwritten(self) -> None:
+        operand = {
+            "runtime_id": "cruciblecraft:programmed_circuit",
+            "_components": {"cruciblecraft:circuit_config": 1},
+        }
+        self.assertEqual(
+            emit_item(operand),
+            {
+                "type": "neoforge:components",
+                "items": "cruciblecraft:programmed_circuit",
+                "components": {"cruciblecraft:circuit_config": 1},
+            },
+        )
+        self.assertEqual(
+            emit_item_output(operand),
+            {
+                "count": 1,
+                "id": "cruciblecraft:programmed_circuit",
+                "components": {"cruciblecraft:circuit_config": 1},
+            },
+        )
 
     def test_component_circuit_projects_neoforge_components(self) -> None:
         result = resolve_operand(

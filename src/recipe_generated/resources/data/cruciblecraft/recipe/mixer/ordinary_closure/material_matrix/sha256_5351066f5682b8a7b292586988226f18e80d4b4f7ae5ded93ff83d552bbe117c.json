@@ -50,15 +50,22 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:redrock/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "redrock"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "red"
+            },
             "count": 4,
-            "id": "cruciblecraft:red/clay_perfectly_balanced_with_no_exploits"
+            "id": "cruciblecraft:clay_perfectly_balanced_with_no_exploits"
           }
         ]
       ]

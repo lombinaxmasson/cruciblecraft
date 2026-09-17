@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:steeleaf/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "steeleaf"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "steel"
+          },
           "count": 1,
-          "id": "cruciblecraft:steel/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

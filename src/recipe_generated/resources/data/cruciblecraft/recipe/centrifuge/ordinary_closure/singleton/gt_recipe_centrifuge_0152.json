@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:conductive_iron/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "conductive_iron"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "iron"
+          },
           "count": 1,
-          "id": "cruciblecraft:iron/dust"
+          "id": "cruciblecraft:dust"
         },
         {
           "count": 1,

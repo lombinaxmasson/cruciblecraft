@@ -18,17 +18,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:aluminium_alloy/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "aluminium_alloy"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "aluminium"
+          },
           "count": 45,
-          "id": "cruciblecraft:aluminium/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "silicon"
+          },
           "count": 1,
-          "id": "cruciblecraft:silicon/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

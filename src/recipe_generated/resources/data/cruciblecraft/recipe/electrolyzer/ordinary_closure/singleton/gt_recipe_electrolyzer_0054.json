@@ -34,21 +34,34 @@
           "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:yttrium_barium_cuprate/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "yttrium_barium_cuprate"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "yttrium"
+          },
           "count": 1,
-          "id": "cruciblecraft:yttrium/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "barium"
+          },
           "count": 2,
-          "id": "cruciblecraft:barium/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "copper"
+          },
           "count": 3,
-          "id": "cruciblecraft:copper/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

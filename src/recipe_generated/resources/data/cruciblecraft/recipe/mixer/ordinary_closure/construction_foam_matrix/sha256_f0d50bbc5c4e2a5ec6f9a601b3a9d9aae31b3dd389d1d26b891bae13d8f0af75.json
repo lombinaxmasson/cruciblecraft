@@ -22,16 +22,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:obsidian/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "obsidian"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:diamantine/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "diamantine"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "obsidian_refined"
+          },
           "count": 1,
-          "id": "cruciblecraft:obsidian_refined/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

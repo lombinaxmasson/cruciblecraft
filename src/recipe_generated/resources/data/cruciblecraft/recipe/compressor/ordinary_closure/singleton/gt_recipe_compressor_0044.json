@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:soylent_green/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "soylent_green"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "emerald"
+          },
           "count": 1,
-          "id": "cruciblecraft:emerald/green_bar_emerald_green_is_villagers"
+          "id": "cruciblecraft:green_bar_emerald_green_is_villagers"
         }
       ],
       "output_chances": [

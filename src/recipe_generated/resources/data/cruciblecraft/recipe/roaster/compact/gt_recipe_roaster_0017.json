@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:chromium/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "chromium"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "chromium_dioxide"
+          },
           "count": 1,
-          "id": "cruciblecraft:chromium_dioxide/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

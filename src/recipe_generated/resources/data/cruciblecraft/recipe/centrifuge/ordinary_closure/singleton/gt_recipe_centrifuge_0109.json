@@ -23,21 +23,34 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:food/aero_comb"
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
+          "items": "cruciblecraft:aero_comb",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "blitz"
+          },
           "count": 1,
-          "id": "cruciblecraft:blitz/tiny_dust"
+          "id": "cruciblecraft:tiny_dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "blitz"
+          },
           "count": 1,
-          "id": "cruciblecraft:blitz/rod"
+          "id": "cruciblecraft:rod"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "breeze"
+          },
           "count": 1,
-          "id": "cruciblecraft:breeze/rod"
+          "id": "cruciblecraft:rod"
         }
       ],
       "output_chances": [

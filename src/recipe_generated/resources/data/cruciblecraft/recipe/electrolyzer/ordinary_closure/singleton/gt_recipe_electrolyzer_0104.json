@@ -38,13 +38,20 @@
           "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:hydrogen_borate/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "hydrogen_borate"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "boron"
+          },
           "count": 1,
-          "id": "cruciblecraft:boron/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

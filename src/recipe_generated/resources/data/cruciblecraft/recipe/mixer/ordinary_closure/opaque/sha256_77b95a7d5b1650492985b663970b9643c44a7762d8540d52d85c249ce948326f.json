@@ -26,19 +26,34 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:cherrywood/ice_cream_fruity_red_gelato"
+          "components": {
+            "cruciblecraft:prefix_material": "cherrywood"
+          },
+          "items": "cruciblecraft:ice_cream_fruity_red_gelato",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:pistachio/ice_cream_nut_flavoured_gelato"
+          "components": {
+            "cruciblecraft:prefix_material": "pistachio"
+          },
+          "items": "cruciblecraft:ice_cream_nut_flavoured_gelato",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:vanilla/ice_cream_standard_vanilla_gelato"
+          "components": {
+            "cruciblecraft:prefix_material": "vanilla"
+          },
+          "items": "cruciblecraft:ice_cream_standard_vanilla_gelato",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "vanilla"
+          },
           "count": 3,
-          "id": "cruciblecraft:vanilla/spumoni_vanilla_ice_cream_gelato_mix_of_cherry_pistachio_and"
+          "id": "cruciblecraft:spumoni_vanilla_ice_cream_gelato_mix_of_cherry_pistachio_and"
         }
       ],
       "output_chances": [

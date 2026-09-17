@@ -114,18 +114,17 @@ public final class EnergyConverterCatalogGameTests {
                     helper.getLevel().getRecipeManager().byKey(id).isPresent(),
                     "Missing survival recipe " + path);
         }
-        var plate = MaterialLookup.item("bronze", MaterialPrefixes.DOUBLE_PLATE)
-                .orElseThrow();
+        var plate = MaterialLookup.stack("bronze", MaterialPrefixes.DOUBLE_PLATE);
         List<ItemStack> slots = List.of(
                 ItemStack.EMPTY,
-                new ItemStack(plate),
+                plate,
                 ItemStack.EMPTY,
-                new ItemStack(plate),
+                plate.copy(),
                 ItemStack.EMPTY,
-                new ItemStack(plate),
-                new ItemStack(plate),
+                plate.copy(),
+                plate.copy(),
                 ItemStack.EMPTY,
-                new ItemStack(plate));
+                plate.copy());
         ItemStack assembled = craft(helper, 3, 3, slots);
         helper.assertTrue(
                 assembled.is(ModItems.BRONZE_BOILER.get())

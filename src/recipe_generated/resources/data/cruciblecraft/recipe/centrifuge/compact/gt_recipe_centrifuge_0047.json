@@ -21,34 +21,54 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:powellite/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "powellite"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
           {
-            "item": "cruciblecraft:wulfenite/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "wulfenite"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "calcium"
+            },
             "count": 1,
-            "id": "cruciblecraft:calcium/dust"
+            "id": "cruciblecraft:dust"
           },
           {
+            "components": {
+              "cruciblecraft:prefix_material": "molybdenum"
+            },
             "count": 1,
-            "id": "cruciblecraft:molybdenum/dust"
+            "id": "cruciblecraft:dust"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "lead"
+            },
             "count": 1,
-            "id": "cruciblecraft:lead/dust"
+            "id": "cruciblecraft:dust"
           },
           {
+            "components": {
+              "cruciblecraft:prefix_material": "molybdenum"
+            },
             "count": 1,
-            "id": "cruciblecraft:molybdenum/dust"
+            "id": "cruciblecraft:dust"
           }
         ]
       ]

@@ -42,6 +42,7 @@ final class CompactRecipeWireValues {
     private static final byte HOLDER_TAG = 1;
     private static final byte COMPONENT_INT = 0;
     private static final byte COMPONENT_TEXT = 1;
+    private static final byte COMPONENT_STRING = 2;
 
     private CompactRecipeWireValues() {}
 
@@ -239,6 +240,11 @@ final class CompactRecipeWireValues {
             buffer.writeVarInt(integer);
             return;
         }
+        if (value instanceof String string) {
+            buffer.writeByte(COMPONENT_STRING);
+            buffer.writeUtf(string, CompactRecipeWireLimits.MAX_SELECTED_SOURCE_LENGTH);
+            return;
+        }
         if (value instanceof Component component) {
             buffer.writeByte(COMPONENT_TEXT);
             buffer.writeUtf(
@@ -256,6 +262,8 @@ final class CompactRecipeWireValues {
             case COMPONENT_INT -> buffer.readVarInt();
             case COMPONENT_TEXT -> Component.literal(buffer.readUtf(
                     CompactRecipeWireLimits.MAX_SELECTED_SOURCE_LENGTH));
+            case COMPONENT_STRING -> buffer.readUtf(
+                    CompactRecipeWireLimits.MAX_SELECTED_SOURCE_LENGTH);
             default -> throw new DecoderException(
                     "Unknown compact component kind: " + kind);
         };

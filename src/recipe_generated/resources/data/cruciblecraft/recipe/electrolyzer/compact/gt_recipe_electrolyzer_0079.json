@@ -29,17 +29,27 @@
           "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:sperrylite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "sperrylite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "platinum"
+          },
           "count": 1,
-          "id": "cruciblecraft:platinum/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "arsenic"
+          },
           "count": 2,
-          "id": "cruciblecraft:arsenic/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

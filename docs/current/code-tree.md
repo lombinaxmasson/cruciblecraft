@@ -12,7 +12,7 @@ Minecraft 运行实例或缓存，不要整理、删除或链接它们。
 | `src/test/java/` | JUnit |
 | `tools/waves/<slug>/` | 波次输入、production lock、census |
 | `tools/tests/` 且列入 `python_test_policy.json` 的 `active_test_modules` | 现行 Python 测试 |
-| `docs/current/` | 现行规范 |
+| `docs/current/` | 现行规范（含 [材料身份](material-prefix-identity.md)） |
 
 验证入口是 `python tools/verify.py`。Python 套件只有 `active`、`affected`、
 `modules`，见 [tools/README.md](../../tools/README.md) 和

@@ -23,17 +23,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:food/sticky_comb"
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
+          "items": "cruciblecraft:sticky_comb",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "wax_bee"
+          },
           "count": 1,
-          "id": "cruciblecraft:wax_bee/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "rubber"
+          },
           "count": 1,
-          "id": "cruciblecraft:rubber/resin"
+          "id": "cruciblecraft:resin"
         }
       ],
       "output_chances": [

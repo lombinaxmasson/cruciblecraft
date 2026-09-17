@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:prometheum/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "prometheum"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "promethium"
+          },
           "count": 3,
-          "id": "cruciblecraft:promethium/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

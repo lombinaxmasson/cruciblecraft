@@ -190,7 +190,7 @@ public enum MaterialCreativeTab {
                         entries,
                         claimed,
                         forPrefix(prefix),
-                        MaterialLookup.resolveItemId(
+                        MaterialLookup.logicalItemId(
                                 material,
                                 prefix,
                                 unificationPreferences).toString());
@@ -214,7 +214,7 @@ public enum MaterialCreativeTab {
                 if (!isToolHeadPrefix(prefix)) {
                     continue;
                 }
-                String itemId = MaterialLookup.resolveItemId(
+                String itemId = MaterialLookup.logicalItemId(
                         material,
                         prefix,
                         unificationPreferences).toString();

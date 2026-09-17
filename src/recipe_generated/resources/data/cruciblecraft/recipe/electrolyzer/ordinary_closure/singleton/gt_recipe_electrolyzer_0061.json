@@ -38,21 +38,34 @@
           "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:datolite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "datolite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "calcium"
+          },
           "count": 1,
-          "id": "cruciblecraft:calcium/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "boron"
+          },
           "count": 1,
-          "id": "cruciblecraft:boron/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "silicon"
+          },
           "count": 1,
-          "id": "cruciblecraft:silicon/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

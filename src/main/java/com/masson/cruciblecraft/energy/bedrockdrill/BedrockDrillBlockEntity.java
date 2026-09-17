@@ -152,8 +152,7 @@ public final class BedrockDrillBlockEntity extends BlockEntity
     }
 
     private static ItemStack bedrockDust() {
-        return MaterialLookup.item("bedrock", MaterialPrefixes.DUST)
-                .map(item -> new ItemStack(item, 1))
+        return MaterialLookup.tryStack("bedrock", MaterialPrefixes.DUST, 1)
                 .orElse(ItemStack.EMPTY);
     }
 

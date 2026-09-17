@@ -22,16 +22,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:copper/small_dust"
+          "components": {
+            "cruciblecraft:prefix_material": "copper"
+          },
+          "items": "cruciblecraft:small_dust",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:arsenic/small_dust"
+          "components": {
+            "cruciblecraft:prefix_material": "arsenic"
+          },
+          "items": "cruciblecraft:small_dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "arsenic_copper"
+          },
           "count": 9,
-          "id": "cruciblecraft:arsenic_copper/compound_put_in_furnace_to_smelt_it"
+          "id": "cruciblecraft:compound_put_in_furnace_to_smelt_it"
         }
       ],
       "output_chances": [

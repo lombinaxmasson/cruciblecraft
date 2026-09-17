@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:clay_brown/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "clay_brown"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "brown"
+          },
           "count": 1,
-          "id": "cruciblecraft:brown/clay_contains_small_amounts_of_lithium"
+          "id": "cruciblecraft:clay_contains_small_amounts_of_lithium"
         }
       ],
       "output_chances": [

@@ -35,6 +35,12 @@ committed L1b selected-recipe operand projection, with explicit compatibility
 retention for forms that existed before the gate was introduced. Runtime code
 never recomputes the gate from recipe dumps.
 
+Live inventory prefixes are one Item per prefix plus `prefix_material`.
+The gate licenses live stacks rather than new Item ids. Policy:
+`docs/current/material-prefix-identity.md`. Do not dual-register
+`cruciblecraft:{material}/{form}` for those prefixes. Pipes, cables, storage
+blocks, casings, and rock stay per-material hosted ids.
+
 The top-level `compatibility_forms` object is audit metadata only. Its legacy
 baseline is recomputed from
 `tools/gt6_material_activation_policy.json:records[].pre_gate_registered_forms`;

@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:meat_cooked/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "meat_cooked"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "meat_cooked"
+          },
           "count": 1,
-          "id": "cruciblecraft:meat_cooked/cooked_meat_bar_compressed"
+          "id": "cruciblecraft:cooked_meat_bar_compressed"
         }
       ],
       "output_chances": [

@@ -18,17 +18,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:titanium_aluminide/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "titanium_aluminide"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "titanium"
+          },
           "count": 3,
-          "id": "cruciblecraft:titanium/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "aluminium"
+          },
           "count": 7,
-          "id": "cruciblecraft:aluminium/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

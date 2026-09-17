@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#2095",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/syrmorite",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 1337,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 2656,
+          "id": "cruciblecraft:molten_syrmorite"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "furniture"
+          },
+          "items": "cruciblecraft:mass_storage_syrmorite",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "3afe7cd8954ec048473542cee52b26b8454cc8360f89ebe75006436b8fe26e76"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#2095",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/8722f609535f7cde"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

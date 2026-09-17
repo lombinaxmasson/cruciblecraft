@@ -24,7 +24,11 @@
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:granite/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "granite"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
@@ -36,7 +40,11 @@
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:granite_red/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "granite_red"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
@@ -48,23 +56,36 @@
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:granite_black/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "granite_black"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "biotite"
+            },
             "count": 1,
-            "id": "cruciblecraft:biotite/dust"
+            "id": "cruciblecraft:dust"
           },
           {
+            "components": {
+              "cruciblecraft:prefix_material": "potassium_feldspar"
+            },
             "count": 1,
-            "id": "cruciblecraft:potassium_feldspar/dust"
+            "id": "cruciblecraft:dust"
           },
           {
+            "components": {
+              "cruciblecraft:prefix_material": "flint"
+            },
             "count": 1,
-            "id": "cruciblecraft:flint/dust"
+            "id": "cruciblecraft:dust"
           }
         ]
       ]

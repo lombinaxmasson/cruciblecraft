@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#0787",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/chromium",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 2810,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 432,
+          "id": "cruciblecraft:molten_chromium"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "fluid_attachment"
+          },
+          "items": "cruciblecraft:crucible_faucet_chromium",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "42eb57ee774e48d784caf931d7a5b83a8b23769b397ebd8a3c3e3c3f2200c424"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#0787",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/cbade6edc28b2d52"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

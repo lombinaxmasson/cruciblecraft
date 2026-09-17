@@ -26,19 +26,34 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:cherrywood/ice_cream_fruity_red_gelato"
+          "components": {
+            "cruciblecraft:prefix_material": "cherrywood"
+          },
+          "items": "cruciblecraft:ice_cream_fruity_red_gelato",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:food/blueberry_ice_cream_smurfy_blue_gelato"
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
+          "items": "cruciblecraft:blueberry_ice_cream_smurfy_blue_gelato",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:food/lemon_ice_cream_sour_yellow_gelato"
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
+          "items": "cruciblecraft:lemon_ice_cream_sour_yellow_gelato",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
           "count": 3,
-          "id": "cruciblecraft:food/superman_ice_cream_gelato_that_saves_the_day"
+          "id": "cruciblecraft:superman_ice_cream_gelato_that_saves_the_day"
         }
       ],
       "output_chances": [

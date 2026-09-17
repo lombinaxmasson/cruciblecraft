@@ -34,26 +34,45 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:carbon/small_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "carbon"
+            },
+            "items": "cruciblecraft:small_dust",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:alumina/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "alumina"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
           {
-            "item": "cruciblecraft:coal_coke/small_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "coal_coke"
+            },
+            "items": "cruciblecraft:small_dust",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:alumina/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "alumina"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "aluminium"
+            },
             "count": 2,
-            "id": "cruciblecraft:aluminium/dust"
+            "id": "cruciblecraft:dust"
           }
         ]
       ]

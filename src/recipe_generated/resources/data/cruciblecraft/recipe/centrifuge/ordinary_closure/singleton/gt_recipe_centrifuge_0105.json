@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:food/amnesic_comb"
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
+          "items": "cruciblecraft:amnesic_comb",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "wax_amnesic"
+          },
           "count": 1,
-          "id": "cruciblecraft:wax_amnesic/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

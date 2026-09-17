@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#2302",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/thaumium",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 7044,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 720,
+          "id": "cruciblecraft:molten_thaumium"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "thaumium"
+          },
+          "items": "cruciblecraft:queue_hopper",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "baae0a9466b6b6bd520a67d7f6ba869afa293810004d029f166110a2cc073c1e"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#2302",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/66e0a0a335efff77"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

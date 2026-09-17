@@ -70,18 +70,29 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:ferric_chloride/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "ferric_chloride"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:potassium_hydroxide/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "potassium_hydroxide"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "ferric_oxyhydroxide"
+            },
             "count": 7,
-            "id": "cruciblecraft:ferric_oxyhydroxide/dust"
+            "id": "cruciblecraft:dust"
           }
         ]
       ]

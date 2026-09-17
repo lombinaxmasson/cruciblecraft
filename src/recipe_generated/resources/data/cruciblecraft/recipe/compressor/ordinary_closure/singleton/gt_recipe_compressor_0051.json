@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:ice/small_dust"
+          "components": {
+            "cruciblecraft:prefix_material": "ice"
+          },
+          "items": "cruciblecraft:small_dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "ice"
+          },
           "count": 1,
-          "id": "cruciblecraft:ice/gem_chipped"
+          "id": "cruciblecraft:gem_chipped"
         }
       ],
       "output_chances": [

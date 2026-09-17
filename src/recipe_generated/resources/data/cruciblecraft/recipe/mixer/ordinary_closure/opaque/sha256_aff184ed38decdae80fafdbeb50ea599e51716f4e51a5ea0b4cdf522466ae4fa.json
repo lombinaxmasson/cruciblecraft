@@ -22,16 +22,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:ice/cream_basic_milk_gelato"
+          "components": {
+            "cruciblecraft:prefix_material": "ice"
+          },
+          "items": "cruciblecraft:cream_basic_milk_gelato",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:meat_cooked/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "meat_cooked"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
           "count": 4,
-          "id": "cruciblecraft:food/bear_ice_cream_gelato_for_bears"
+          "id": "cruciblecraft:bear_ice_cream_gelato_for_bears"
         }
       ],
       "output_chances": [

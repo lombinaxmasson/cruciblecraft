@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:hydrated_coal/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "hydrated_coal"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "coal"
+          },
           "count": 1,
-          "id": "cruciblecraft:coal/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

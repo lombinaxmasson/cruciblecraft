@@ -18,17 +18,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:marble/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "marble"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "magnesium"
+          },
           "count": 1,
-          "id": "cruciblecraft:magnesium/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "calcite"
+          },
           "count": 7,
-          "id": "cruciblecraft:calcite/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

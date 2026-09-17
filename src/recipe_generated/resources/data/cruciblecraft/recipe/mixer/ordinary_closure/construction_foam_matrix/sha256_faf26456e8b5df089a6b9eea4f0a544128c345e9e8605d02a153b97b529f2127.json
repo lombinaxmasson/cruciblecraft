@@ -22,16 +22,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:potassium/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "potassium"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:sulfur/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "sulfur"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "potassium_sulfide"
+          },
           "count": 3,
-          "id": "cruciblecraft:potassium_sulfide/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

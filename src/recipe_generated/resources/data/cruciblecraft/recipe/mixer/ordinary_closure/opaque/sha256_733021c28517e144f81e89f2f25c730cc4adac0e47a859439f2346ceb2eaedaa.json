@@ -36,16 +36,27 @@
           "item": "minecraft:blaze_powder"
         },
         {
-          "item": "cruciblecraft:coal/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "coal"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:sulfur/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "sulfur"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "pyrotheum"
+          },
           "count": 2,
-          "id": "cruciblecraft:pyrotheum/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

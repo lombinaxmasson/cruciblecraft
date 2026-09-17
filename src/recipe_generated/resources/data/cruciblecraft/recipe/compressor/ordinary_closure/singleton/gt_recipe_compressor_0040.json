@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:bentonite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "bentonite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "yellow"
+          },
           "count": 1,
-          "id": "cruciblecraft:yellow/clay_bentonite_clay"
+          "id": "cruciblecraft:clay_bentonite_clay"
         }
       ],
       "output_chances": [

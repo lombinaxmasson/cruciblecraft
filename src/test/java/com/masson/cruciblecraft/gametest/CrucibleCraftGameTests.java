@@ -5953,14 +5953,18 @@ public final class CrucibleCraftGameTests {
                             1,
                             false);
                     helper.assertTrue(
-                            hot.is(hotItem)
+                            MaterialLookup.matches(
+                                    hot,
+                                    "copper",
+                                    MaterialPrefixes.INGOT_HOT)
                                     && hot.has(ModComponents.HEAT.get())
                                     && ItemHeat.temperature(
                                             hot,
                                             helper.getLevel().getGameTime()) > 20.0f,
                             "Smelter output is not an independently heated hot ingot");
 
-                    ItemStack creativeHot = new ItemStack(hotItem);
+                    ItemStack creativeHot = MaterialLookup.stack(
+                            "copper", MaterialPrefixes.INGOT_HOT);
                     helper.assertTrue(
                             !creativeHot.has(ModComponents.HEAT.get()),
                             "Default creative hot ingot unexpectedly carried runtime heat");
@@ -9705,8 +9709,8 @@ public final class CrucibleCraftGameTests {
                     char symbol = row.charAt(column);
                     slots.add(symbol == ' '
                             ? ItemStack.EMPTY
-                            : new ItemStack(pipeOperandSample(
-                                    spec.operands().get(symbol))));
+                            : pipeOperandSample(
+                                    spec.operands().get(symbol)));
                 }
             }
             CraftingInput input = CraftingInput.of(
@@ -9723,30 +9727,29 @@ public final class CrucibleCraftGameTests {
                             + (match == null ? "none" : match.id()));
             ItemStack assembled = match.value().assemble(
                     input, level.registryAccess());
-            Item expected = MaterialLookup.item(
-                    spec.materialId(), spec.output()).orElseThrow();
             helper.assertTrue(
-                    assembled.is(expected)
+                    MaterialLookup.matches(
+                            assembled, spec.materialId(), spec.output())
                             && assembled.getCount() == spec.outputCount(),
                     spec.id() + " assembled " + assembled);
         }
         helper.succeed();
     }
 
-    private static Item pipeOperandSample(
+    private static ItemStack pipeOperandSample(
             PipeAcquisitionRecipeCatalog.Operand operand) {
         return switch (operand) {
-            case WOODEN_SLABS -> Items.OAK_SLAB;
-            case PLANKS -> Items.OAK_PLANKS;
-            case LOGS -> Items.OAK_LOG;
-            case CARBON_DUST -> MaterialLookup.item(
-                    "carbon", MaterialPrefixes.DUST).orElseThrow();
-            case PLASTIC_PLATE -> MaterialLookup.item(
-                    "plastic", MaterialPrefixes.PLATE).orElseThrow();
-            case RUBBER_PLATE -> MaterialLookup.item(
-                    "rubber", MaterialPrefixes.PLATE).orElseThrow();
-            case COAL_COKE -> MaterialLookup.item(
-                    "coal_coke", MaterialPrefixes.GEM).orElseThrow();
+            case WOODEN_SLABS -> new ItemStack(Items.OAK_SLAB);
+            case PLANKS -> new ItemStack(Items.OAK_PLANKS);
+            case LOGS -> new ItemStack(Items.OAK_LOG);
+            case CARBON_DUST -> MaterialLookup.stack(
+                    "carbon", MaterialPrefixes.DUST);
+            case PLASTIC_PLATE -> MaterialLookup.stack(
+                    "plastic", MaterialPrefixes.PLATE);
+            case RUBBER_PLATE -> MaterialLookup.stack(
+                    "rubber", MaterialPrefixes.PLATE);
+            case COAL_COKE -> MaterialLookup.stack(
+                    "coal_coke", MaterialPrefixes.GEM);
         };
     }
 
@@ -10815,8 +10818,7 @@ public final class CrucibleCraftGameTests {
     }
 
     private static ItemStack material(String id, com.masson.cruciblecraft.api.material.MaterialPrefix prefix, int count) {
-        Item item = MaterialLookup.item(id, prefix).orElseThrow();
-        return new ItemStack(item, count);
+        return MaterialLookup.stack(id, prefix, count);
     }
 
     // ---- Small workload: declared scenario identity, deterministic

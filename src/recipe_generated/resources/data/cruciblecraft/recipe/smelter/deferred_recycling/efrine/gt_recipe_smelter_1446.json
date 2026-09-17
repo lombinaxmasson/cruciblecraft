@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#1446",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/efrine",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 474,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 504,
+          "id": "cruciblecraft:molten_efrine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "electric_wire"
+          },
+          "items": "cruciblecraft:7x_efrine_wire",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "4a867eaa72e39302d0e2a86f67a04836226cbaf89b1b1987aa559ad54cf2eef5"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#1446",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/47a5135e7df9e19b"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

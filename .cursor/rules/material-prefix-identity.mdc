@@ -1,0 +1,30 @@
+---
+description: 材料形态终态是前缀物品+材料组件；禁止在别人的 unique-active 上展开一人一 id。
+alwaysApply: true
+---
+
+# 材料身份：前缀 + 组件
+
+人读合同：`docs/current/material-prefix-identity.md`。
+ADR：`docs/decisions/材料前缀组件身份ADR.md`。
+落地计划在 `docs/history/card-plans/closed/材料前缀组件身份详细计划.md`。
+库存前缀已经按前缀 Item + `prefix_material` 切；不要再 dual-register `cruciblecraft:{material}/{form}`。
+
+## 决策
+
+自身开放性优先于其他模组标签兼容。库存前缀 = 一个 Item 一种前缀 + 材料 DataComponent。
+已有 BE 的管/缆/hosted ore = 共享 Block + 材料在实体/组件。哑方块（存储块、机壳、岩块）保持按材料独立 Block。
+
+废止「材料形态必须独立 registry id」。不要回到 damage。不要「一个材料一个 Item、形态当组件」。
+
+## 过渡
+
+不要给库存前缀再注册 `MaterialItem`。哑方块、管、缆、hosted ore 保持现有 hosted 身份。
+`formItems()` 外部映射和 `ORE_MATERIAL` / `TOOL_MATERIAL` / `MACHINE_MATERIAL` 保持。
+
+## 禁止
+
+- 给新库存前缀按材料再注册一套 `MaterialItem` 当终态
+- 把共享前缀 Item 放进 `c:dusts/iron` 这类按材料划分的物品标签
+- 让 `cruciblecraft:{material}/{form}` 与前缀 Item 同时 live
+- 用 stand-in 配料或 ItemEntity 世界生成顶「材料全开了」

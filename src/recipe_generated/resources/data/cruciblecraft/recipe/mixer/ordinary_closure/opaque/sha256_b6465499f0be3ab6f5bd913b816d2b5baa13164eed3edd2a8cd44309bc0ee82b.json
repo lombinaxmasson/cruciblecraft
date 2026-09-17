@@ -22,16 +22,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:sugar/small_dust"
+          "components": {
+            "cruciblecraft:prefix_material": "sugar"
+          },
+          "items": "cruciblecraft:small_dust",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:cocoa/small_dust"
+          "components": {
+            "cruciblecraft:prefix_material": "cocoa"
+          },
+          "items": "cruciblecraft:small_dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "chocolate"
+          },
           "count": 2,
-          "id": "cruciblecraft:chocolate/small_dust"
+          "id": "cruciblecraft:small_dust"
         }
       ],
       "output_chances": [

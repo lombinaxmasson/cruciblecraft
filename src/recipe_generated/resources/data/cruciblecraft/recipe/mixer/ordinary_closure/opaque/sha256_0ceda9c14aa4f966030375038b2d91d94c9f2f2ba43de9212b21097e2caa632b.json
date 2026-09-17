@@ -27,16 +27,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:sodium_hydroxide/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "sodium_hydroxide"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:sodium_hydrogencarbonate/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "sodium_hydrogencarbonate"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "sodium_carbonate"
+          },
           "count": 2,
-          "id": "cruciblecraft:sodium_carbonate/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

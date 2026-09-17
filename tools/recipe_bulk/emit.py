@@ -11,6 +11,53 @@ from tools import tool_head_prefix as thp
 
 SOURCE_REVISION_DEFAULT = "3703e40308c8c030763fd6297dea8b210d2a77b1"
 GT_PREFIXES = ("gregtech:", "gregapi:", "fixed:")
+PREFIX_MATERIAL_COMPONENT = "cruciblecraft:prefix_material"
+# Matches Java MaterialFormHosts unique-hosted prefixes. Do not rewrite these
+# slash ids onto a shared prefix Item; pipes/cables/storage still have
+# per-material registry ids until a later child card.
+UNIQUE_HOSTED_PREFIXES = frozenset({
+    "block",
+    "ore",
+    "rock",
+    "machine_casing",
+    "machine_casing_double",
+    "machine_casing_quadruple",
+    "machine_casing_dense",
+    "wire",
+    "double_wire",
+    "triple_wire",
+    "quadruple_wire",
+    "quintuple_wire",
+    "sextuple_wire",
+    "septuple_wire",
+    "octuple_wire",
+    "nonuple_wire",
+    "decuple_wire",
+    "undecuple_wire",
+    "dodecuple_wire",
+    "tredecuple_wire",
+    "tetradecuple_wire",
+    "pentadecuple_wire",
+    "hexadecuple_wire",
+    "cable",
+    "double_cable",
+    "quadruple_cable",
+    "octuple_cable",
+    "dodecuple_cable",
+    "tiny_fluid_pipe",
+    "small_fluid_pipe",
+    "fluid_pipe",
+    "large_fluid_pipe",
+    "huge_fluid_pipe",
+    "quadruple_fluid_pipe",
+    "nonuple_fluid_pipe",
+    "item_pipe",
+    "large_item_pipe",
+    "huge_item_pipe",
+    "restrictive_item_pipe",
+    "large_restrictive_item_pipe",
+    "huge_restrictive_item_pipe",
+})
 _ASPHALT_OBJECT = re.compile(
     r"^cruciblecraft:gt_object/gt_block_asphalt_(m\d+)$"
 )
@@ -61,12 +108,42 @@ def _runtime_id(operand: dict[str, Any]) -> str:
     return runtime
 
 
+def project_shared_inventory(runtime: str) -> tuple[str, dict[str, str]] | None:
+    """Map ``cruciblecraft:{material}/{form}`` onto prefix Item + component.
+
+    Logical mill identity stays ``material/form``. Unique hosted forms, vanilla
+    items, and already-projected prefix ids are left alone.
+    """
+    if not runtime.startswith("cruciblecraft:"):
+        return None
+    path = runtime.split(":", 1)[1]
+    slash = path.find("/")
+    if slash <= 0 or slash >= len(path) - 1:
+        return None
+    material = path[:slash]
+    form = path[slash + 1 :]
+    if not material or not form or "/" in form:
+        return None
+    if form in UNIQUE_HOSTED_PREFIXES:
+        return None
+    return f"cruciblecraft:{form}", {PREFIX_MATERIAL_COMPONENT: material}
+
+
+def _item_identity(operand: dict[str, Any], runtime: str) -> tuple[str, dict[str, Any] | None]:
+    existing = operand.get("_components")
+    if existing:
+        return runtime, dict(existing)
+    projected = project_shared_inventory(runtime)
+    if projected is None:
+        return runtime, None
+    return projected[0], dict(projected[1])
+
+
 def emit_item(operand: dict[str, Any]) -> dict[str, Any]:
     tag = operand.get("tag")
     if tag and str(operand.get("mapping") or "") == "vanilla_wildcard_tag":
         return {"tag": str(tag)}
-    runtime = _runtime_id(operand)
-    components = operand.get("_components")
+    runtime, components = _item_identity(operand, _runtime_id(operand))
     if components:
         return {
             "type": "neoforge:components",
@@ -77,9 +154,12 @@ def emit_item(operand: dict[str, Any]) -> dict[str, Any]:
 
 
 def emit_item_output(operand: dict[str, Any]) -> dict[str, Any]:
-    runtime = _runtime_id(operand)
+    runtime, components = _item_identity(operand, _runtime_id(operand))
     count = int((operand.get("source") or {}).get("count") or operand.get("count") or 1)
-    return {"count": count, "id": runtime}
+    emitted: dict[str, Any] = {"count": count, "id": runtime}
+    if components:
+        emitted["components"] = dict(components)
+    return emitted
 
 
 def emit_fluid(operand: dict[str, Any]) -> dict[str, Any]:

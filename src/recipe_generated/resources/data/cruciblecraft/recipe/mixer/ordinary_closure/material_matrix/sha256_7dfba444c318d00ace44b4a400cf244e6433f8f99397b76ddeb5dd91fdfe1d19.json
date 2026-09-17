@@ -50,7 +50,11 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:charged_certus_quartz/gem"
+            "components": {
+              "cruciblecraft:prefix_material": "charged_certus_quartz"
+            },
+            "items": "cruciblecraft:gem",
+            "type": "neoforge:components"
           },
           {
             "item": "minecraft:quartz"
@@ -63,8 +67,11 @@
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "fluix"
+            },
             "count": 2,
-            "id": "cruciblecraft:fluix/gem"
+            "id": "cruciblecraft:gem"
           }
         ]
       ]

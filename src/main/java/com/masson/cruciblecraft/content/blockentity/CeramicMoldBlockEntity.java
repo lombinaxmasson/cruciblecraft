@@ -223,8 +223,7 @@ public final class CeramicMoldBlockEntity extends BlockEntity
         if (form == null) {
             form = MaterialPrefixes.INGOT;
         }
-        ItemStack result = MaterialLookup.item(materialId, form)
-                .map(item -> new ItemStack(item, outputCount))
+        ItemStack result = MaterialLookup.tryStack(materialId, form, outputCount)
                 .orElse(ItemStack.EMPTY);
         if (!result.isEmpty()) {
             ItemHeat.set(result, temperature, level == null ? 0L : level.getGameTime());

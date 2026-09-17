@@ -29,17 +29,27 @@
           "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:ceramic/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "ceramic"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "alumina"
+          },
           "count": 5,
-          "id": "cruciblecraft:alumina/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "silicon_dioxide"
+          },
           "count": 12,
-          "id": "cruciblecraft:silicon_dioxide/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

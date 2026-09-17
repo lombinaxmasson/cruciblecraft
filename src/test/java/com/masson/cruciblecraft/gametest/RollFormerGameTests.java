@@ -120,20 +120,18 @@ public final class RollFormerGameTests {
             Item result = ModItems.tieredProcessingItemsById()
                     .get(id(host.itemPath()))
                     .get();
-            Item gear = MaterialLookup.item(host.material(), MaterialPrefixes.GEAR)
-                    .orElseThrow();
-            Item casing = MaterialLookup.item(
-                            host.material(), MaterialPrefixes.MACHINE_CASING_DOUBLE)
-                    .orElseThrow();
+            ItemStack gear = MaterialLookup.stack(host.material(), MaterialPrefixes.GEAR);
+            ItemStack casing = MaterialLookup.stack(
+                    host.material(), MaterialPrefixes.MACHINE_CASING_DOUBLE);
             List<ItemStack> slots = List.of(
                     new ItemStack(ModItems.MATERIAL_WRENCH.get()),
-                    new ItemStack(gear),
+                    gear,
                     ItemStack.EMPTY,
-                    new ItemStack(gear),
-                    new ItemStack(casing),
-                    new ItemStack(gear),
+                    gear.copy(),
+                    casing,
+                    gear.copy(),
                     ItemStack.EMPTY,
-                    new ItemStack(gear),
+                    gear.copy(),
                     new ItemStack(ModItems.SMITHING_HAMMER.get()));
             ItemStack assembled = craft(helper, slots);
             helper.assertTrue(

@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:tofu/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "tofu"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "tofu"
+          },
           "count": 1,
-          "id": "cruciblecraft:tofu/bar_alternative_for_meat"
+          "id": "cruciblecraft:bar_alternative_for_meat"
         }
       ],
       "output_chances": [

@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:ice/cream_basic_milk_gelato"
+          "components": {
+            "cruciblecraft:prefix_material": "ice"
+          },
+          "items": "cruciblecraft:cream_basic_milk_gelato",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "magic"
+          },
           "count": 1,
-          "id": "cruciblecraft:magic/rainbow_ice_cream_gelato_of_friendship_and"
+          "id": "cruciblecraft:rainbow_ice_cream_gelato_of_friendship_and"
         }
       ],
       "output_chances": [

@@ -16,26 +16,40 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:fish_rotten/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "fish_rotten"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
           {
-            "item": "cruciblecraft:meat_rotten/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "meat_rotten"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "fish_rotten"
+            },
             "count": 1,
-            "id": "cruciblecraft:fish_rotten/ingot"
+            "id": "cruciblecraft:ingot"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "meat_rotten"
+            },
             "count": 1,
-            "id": "cruciblecraft:meat_rotten/ingot"
+            "id": "cruciblecraft:ingot"
           }
         ]
       ]

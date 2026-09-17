@@ -21,6 +21,7 @@ import com.masson.cruciblecraft.recipe.AnvilMode;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 import com.masson.cruciblecraft.registry.ModBlocks;
+import com.masson.cruciblecraft.content.item.PrefixMaterialItem;
 import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.registry.ModMachineVariants;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
@@ -34,6 +35,7 @@ import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.render.EmiRenderable;
+import dev.emi.emi.api.stack.Comparison;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import net.minecraft.resources.ResourceLocation;
@@ -116,11 +118,17 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                 cover -> registry.addEmiStack(EmiStack.of(cover.get())));
     }
 
-    /** Item-list polish layers: routed tool variants join the index as
-     *  component stacks, and each material's dust / small_dust / tiny_dust
-     *  triple aliases so the 9 tiny = 4 small = 1 dust conversion search
-     *  reaches all three. Per-material only — never an "any ingot" merge. */
+    /** Item-list polish layers: gated prefix+material stacks join the index,
+     *  routed tool variants do the same, and each material's dust /
+     *  small_dust / tiny_dust triple aliases so the 9 tiny = 4 small =
+     *  1 dust conversion search reaches all three. Per-material only —
+     *  never an "any ingot" merge. */
     private static void registerDisplayStacks(EmiRegistry registry) {
+        registry.removeEmiStacks(stack -> {
+            ItemStack itemStack = stack.getItemStack();
+            return itemStack.getItem() instanceof PrefixMaterialItem
+                    && itemStack.get(ModComponents.PREFIX_MATERIAL) == null;
+        });
         com.masson.cruciblecraft.content.item.ToolDisplayPlan
                 .routedVariantStacks()
                 .forEach(stack -> registry.addEmiStack(EmiStacks.ofItem(stack)));
@@ -130,6 +138,15 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                 new java.util.LinkedHashMap<>();
         materials.forEach(material -> forms.put(
                 material.id(), MaterialCatalog.registeredForms(material)));
+        for (String logicalId : EmiDisplayPlan.gatedPrefixStacks(materials, forms)) {
+            EmiStack stack = stackOf(logicalId);
+            if (!stack.isEmpty()) {
+                registry.addEmiStack(stack);
+            }
+        }
+        ModItems.prefixMaterialItems().forEach(item ->
+                registry.setDefaultComparison(
+                        item.get(), Comparison.compareComponents()));
         for (EmiDisplayPlan.DustFamily family :
                 EmiDisplayPlan.dustFamilies(materials, forms)) {
             EmiStack dust = stackOf(family.dust());
@@ -146,9 +163,10 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
     }
 
     private static EmiStack stackOf(String itemId) {
-        return EmiStack.of(net.minecraft.core.registries.BuiltInRegistries.ITEM
-                .getOptional(ResourceLocation.tryParse(itemId))
-                .orElse(net.minecraft.world.item.Items.AIR));
+        return MaterialLookup.stackFromLogicalId(itemId)
+                .map(EmiStacks::ofItem)
+                .orElseGet(() -> EmiStack.of(
+                        net.minecraft.world.item.Items.AIR));
     }
 
     private static void registerAlloys(EmiRegistry registry) {
@@ -164,21 +182,24 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
             boolean complete = true;
             int outputCount = 0;
             for (var component : material.composition().entrySet()) {
-                Optional<Item> item = displayItem(component.getKey());
+                Optional<ItemStack> item = displayStack(component.getKey());
                 if (item.isEmpty()) {
                     complete = false;
                     break;
                 }
-                inputs.add(EmiStack.of(item.get(), component.getValue()));
+                ItemStack stack = item.orElseThrow().copy();
+                stack.setCount(component.getValue());
+                inputs.add(EmiStack.of(stack));
                 outputCount += component.getValue();
             }
 
-            Optional<Item> output = MaterialLookup.item(material.id(), MaterialPrefixes.INGOT);
+            Optional<ItemStack> output = MaterialLookup.tryStack(
+                    material.id(), MaterialPrefixes.INGOT, outputCount);
             if (complete && output.isPresent()) {
                 registry.addRecipe(new AlloyEmiRecipe(
                         material.id(),
                         inputs,
-                        EmiStack.of(output.get(), outputCount)));
+                        EmiStack.of(output.orElseThrow())));
             }
         }
     }
@@ -209,11 +230,12 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         }
     }
 
-    private static Optional<Item> displayItem(String materialId) {
-        Optional<Item> ingot = MaterialLookup.item(materialId, MaterialPrefixes.INGOT);
+    private static Optional<ItemStack> displayStack(String materialId) {
+        Optional<ItemStack> ingot = MaterialLookup.tryStack(
+                materialId, MaterialPrefixes.INGOT, 1);
         return ingot.isPresent()
                 ? ingot
-                : MaterialLookup.item(materialId, MaterialPrefixes.DUST);
+                : MaterialLookup.tryStack(materialId, MaterialPrefixes.DUST, 1);
     }
 
     private static void registerCokeOvenRecipes(EmiRegistry registry) {
@@ -226,7 +248,7 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
 
     private static void registerMoldCasting(EmiRegistry registry) {
         for (MaterialDefinition material : MaterialCatalog.values()) {
-            Optional<Item> input = displayItem(material.id());
+            Optional<ItemStack> input = displayStack(material.id());
             if (input.isEmpty()) {
                 continue;
             }
@@ -239,16 +261,17 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                 if (!MaterialCatalog.isFormRegistered(material, shape.form())) {
                     continue;
                 }
-                Optional<Item> output = MaterialLookup.item(material.id(), shape.form());
+                Optional<ItemStack> output = MaterialLookup.tryStack(
+                        material.id(), shape.form(), 1);
                 Optional<MoldCastingRules.Batch> batch =
                         MoldCastingRules.smallestBatch(costPerIngot, shape.form());
                 if (output.isPresent() && batch.isPresent()) {
                     registry.addRecipe(new MoldCastingEmiRecipe(
                             material.id(),
                             shape.form().serializedName(),
-                            input.get(),
+                            input.orElseThrow(),
                             ModItems.moldItem(shape).get(),
-                            output.get(),
+                            output.orElseThrow(),
                             batch.get().outputCount()));
                 }
             }

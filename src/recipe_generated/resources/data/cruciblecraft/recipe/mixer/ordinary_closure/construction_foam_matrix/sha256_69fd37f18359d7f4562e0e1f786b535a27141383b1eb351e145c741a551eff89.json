@@ -28,13 +28,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:sylvite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "sylvite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "potassium_bisulfate"
+          },
           "count": 7,
-          "id": "cruciblecraft:potassium_bisulfate/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

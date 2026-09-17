@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#2018",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/hslasteel",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 2757,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 360,
+          "id": "cruciblecraft:molten_hslasteel"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "hslasteel"
+          },
+          "items": "cruciblecraft:reinforced_wooden_chest",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "04c6ebf3ca8cfb4e5b9e681a9f5fc8dc46ac9ddd676b618dd8299fe3a3979b02"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#2018",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/76fab1f76476f80c"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

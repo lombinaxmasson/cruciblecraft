@@ -28,21 +28,34 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:tetrahedrite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "tetrahedrite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "copper"
+          },
           "count": 27,
-          "id": "cruciblecraft:copper/dust_div72"
+          "id": "cruciblecraft:dust_div72"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "antimony"
+          },
           "count": 9,
-          "id": "cruciblecraft:antimony/dust_div72"
+          "id": "cruciblecraft:dust_div72"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "hematite"
+          },
           "count": 1,
-          "id": "cruciblecraft:hematite/small_dust"
+          "id": "cruciblecraft:small_dust"
         }
       ],
       "output_chances": [

@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:hslaspring_steel/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "hslaspring_steel"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "hslasteel"
+          },
           "count": 45,
-          "id": "cruciblecraft:hslasteel/dust"
+          "id": "cruciblecraft:dust"
         },
         {
           "count": 2,

@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:ferric_oxyhydroxide/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "ferric_oxyhydroxide"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "hematite"
+          },
           "count": 5,
-          "id": "cruciblecraft:hematite/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

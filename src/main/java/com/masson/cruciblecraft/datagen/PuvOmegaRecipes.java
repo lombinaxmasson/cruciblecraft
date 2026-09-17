@@ -188,10 +188,10 @@ final class PuvOmegaRecipes {
                 List.of("CPC", "wXh", "WMW"),
                 Map.of(
                         "C", Ingredient.of(circuit),
-                        "P", Ingredient.of(pipe),
+                        "P", keyedIngredient(pipe, "stainless_steel", MaterialPrefixes.TINY_FLUID_PIPE),
                         "X", Ingredient.of(conveyor),
                         "W", Ingredient.of(cable),
-                        "M", Ingredient.of(casing)),
+                        "M", keyedIngredient(casing, material, MaterialPrefixes.MACHINE_CASING)),
                 Map.of(
                         "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()),
                         "h", Ingredient.of(ModItems.SMITHING_HAMMER.get())),
@@ -218,10 +218,10 @@ final class PuvOmegaRecipes {
                 List.of("CPC", "wXh", "WMW"),
                 Map.of(
                         "C", Ingredient.of(circuit),
-                        "P", Ingredient.of(plate),
+                        "P", keyedIngredient(plate, "lumium", MaterialPrefixes.PLATE),
                         "X", Ingredient.of(conveyor),
                         "W", Ingredient.of(cable),
-                        "M", Ingredient.of(casing)),
+                        "M", keyedIngredient(casing, material, MaterialPrefixes.MACHINE_CASING)),
                 Map.of(
                         "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()),
                         "h", Ingredient.of(ModItems.SMITHING_HAMMER.get())),
@@ -249,7 +249,7 @@ final class PuvOmegaRecipes {
                         "W", Ingredient.of(cable),
                         "R", Ingredient.of(arm),
                         "C", Ingredient.of(circuit),
-                        "M", Ingredient.of(casing)),
+                        "M", keyedIngredient(casing, material, MaterialPrefixes.MACHINE_CASING_DOUBLE)),
                 Map.of("w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
                 new ItemStack(result));
     }
@@ -272,9 +272,9 @@ final class PuvOmegaRecipes {
                 "machines/" + entry.variantId().getPath(),
                 List.of("PMP", "PRP", "hSw"),
                 Map.of(
-                        "P", Ingredient.of(plate),
-                        "M", Ingredient.of(casing),
-                        "R", Ingredient.of(rotor),
+                        "P", keyedIngredient(plate, "stainless_steel", stackedPlate(tier, false)),
+                        "M", keyedIngredient(casing, material, MaterialPrefixes.MACHINE_CASING),
+                        "R", keyedIngredient(rotor, "stainless_steel", MaterialPrefixes.ROTOR),
                         "S", Ingredient.of(motor)),
                 Map.of(
                         "h", Ingredient.of(ModItems.SMITHING_HAMMER.get()),
@@ -303,7 +303,7 @@ final class PuvOmegaRecipes {
                         "P", Ingredient.of(piston),
                         "C", Ingredient.of(circuit),
                         "Y", Ingredient.of(conveyor),
-                        "M", Ingredient.of(casing)),
+                        "M", keyedIngredient(casing, material, MaterialPrefixes.MACHINE_CASING)),
                 Map.of("w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
                 new ItemStack(result));
     }
@@ -325,9 +325,9 @@ final class PuvOmegaRecipes {
                 "machines/" + entry.variantId().getPath(),
                 List.of("XxX", "WwW", "XMX"),
                 Map.of(
-                        "X", Ingredient.of(iron),
-                        "W", Ingredient.of(quad),
-                        "M", Ingredient.of(casing)),
+                        "X", keyedIngredient(iron, "iron", lightningIron(tier)),
+                        "W", keyedIngredient(quad, wireMaterial(tier), MaterialPrefixes.QUADRUPLE_WIRE),
+                        "M", keyedIngredient(casing, material, MaterialPrefixes.MACHINE_CASING)),
                 Map.of(
                         "x", Ingredient.of(ModItems.MATERIAL_WIRE_CUTTER.get()),
                         "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
@@ -369,7 +369,7 @@ final class PuvOmegaRecipes {
                         "W", Ingredient.of(cable),
                         "X", Ingredient.of(emitter),
                         "Z", Ingredient.of(specialty),
-                        "M", Ingredient.of(casing),
+                        "M", keyedIngredient(casing, material, MaterialPrefixes.MACHINE_CASING),
                         "P", Ingredient.of(processor),
                         "C", Ingredient.of(circuit),
                         "Y", Ingredient.of(sensor)),
@@ -398,7 +398,7 @@ final class PuvOmegaRecipes {
                         "R", Ingredient.of(ruby),
                         "F", Ingredient.of(field),
                         "S", Ingredient.of(sapphire),
-                        "M", Ingredient.of(casing)),
+                        "M", keyedIngredient(casing, material, MaterialPrefixes.MACHINE_CASING)),
                 Map.of(),
                 new ItemStack(result));
     }
@@ -426,7 +426,7 @@ final class PuvOmegaRecipes {
                         "E", Ingredient.of(emerald),
                         "X", Ingredient.of(emitter),
                         "F", Ingredient.of(field),
-                        "M", Ingredient.of(casing),
+                        "M", keyedIngredient(casing, material, MaterialPrefixes.MACHINE_CASING),
                         "S", Ingredient.of(sapphire)),
                 Map.of(),
                 new ItemStack(result));
@@ -449,9 +449,9 @@ final class PuvOmegaRecipes {
                 "machines/" + entry.variantId().getPath(),
                 List.of("hPw", "PMP", "PSP"),
                 Map.of(
-                        "P", Ingredient.of(plate),
-                        "M", Ingredient.of(casing),
-                        "S", Ingredient.of(silicon)),
+                        "P", keyedIngredient(plate, "stainless_steel", stackedPlate(tier, false)),
+                        "M", keyedIngredient(casing, material, MaterialPrefixes.MACHINE_CASING),
+                        "S", keyedIngredient(silicon, "silicon", stackedPlate(tier, true))),
                 Map.of(
                         "h", Ingredient.of(ModItems.SMITHING_HAMMER.get()),
                         "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
@@ -476,10 +476,10 @@ final class PuvOmegaRecipes {
                 "machines/" + entry.variantId().getPath(),
                 List.of("PMP", "PRP", "hSw"),
                 Map.of(
-                        "P", Ingredient.of(plate),
-                        "M", Ingredient.of(casing),
-                        "R", Ingredient.of(rotor),
-                        "S", Ingredient.of(silicon)),
+                        "P", keyedIngredient(plate, "stainless_steel", stackedPlate(tier, false)),
+                        "M", keyedIngredient(casing, material, MaterialPrefixes.MACHINE_CASING),
+                        "R", keyedIngredient(rotor, "stainless_steel", MaterialPrefixes.ROTOR),
+                        "S", keyedIngredient(silicon, "silicon", stackedPlate(tier, true))),
                 Map.of(
                         "h", Ingredient.of(ModItems.SMITHING_HAMMER.get()),
                         "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
@@ -503,9 +503,9 @@ final class PuvOmegaRecipes {
                 "machines/" + entry.variantId().getPath(),
                 pattern,
                 Map.of(
-                        "T", Ingredient.of(screw),
-                        "P", Ingredient.of(plate),
-                        "M", Ingredient.of(casing)),
+                        "T", keyedIngredient(screw, material, MaterialPrefixes.SCREW),
+                        "P", keyedIngredient(plate, material, MaterialPrefixes.PLATE),
+                        "M", keyedIngredient(casing, material, MaterialPrefixes.MACHINE_CASING)),
                 Map.of(
                         "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()),
                         "d", Ingredient.of(ModItems.MATERIAL_SCREWDRIVER.get())),
@@ -532,12 +532,12 @@ final class PuvOmegaRecipes {
             LinkedHashMap<String, Ingredient> ingredients = new LinkedHashMap<>();
             boolean complete = true;
             for (var entry : profile.recipe().keys().entrySet()) {
-                Item resolved = resolve(entry.getValue());
+                Ingredient resolved = resolveIngredient(entry.getValue());
                 if (resolved == null) {
                     complete = false;
                     break;
                 }
-                ingredients.put(entry.getKey(), Ingredient.of(resolved));
+                ingredients.put(entry.getKey(), resolved);
             }
             if (!complete) {
                 continue;
@@ -569,11 +569,29 @@ final class PuvOmegaRecipes {
         }
     }
 
+    private static Ingredient resolveIngredient(QuantumEnergizerProfile.Ingredient ingredient) {
+        if (ingredient.item() != null && !ingredient.item().isBlank()) {
+            Item item = registered(ingredient.item());
+            return item == null ? null : Ingredient.of(item);
+        }
+        if (ingredient.prefix() == null || ingredient.material() == null) {
+            return null;
+        }
+        try {
+            return MaterialLookup.ingredient(
+                            ingredient.material(),
+                            new MaterialPrefix("cruciblecraft:" + ingredient.prefix()))
+                    .orElse(null);
+        } catch (IllegalArgumentException ignored) {
+            return null;
+        }
+    }
+
     private static void addMassfabRecipe(RecipeOutput output) {
         Optional<Fluid> matter = ModFluids.chemical("matter_neutral")
                 .map(entry -> entry.source().get());
-        Optional<Item> ingot = MaterialLookup.item(
-                "neutronium", MaterialPrefixes.INGOT);
+        Optional<ItemStack> ingot = MaterialLookup.tryStack(
+                "neutronium", MaterialPrefixes.INGOT, 1);
         if (matter.isEmpty() || ingot.isEmpty()) {
             return;
         }
@@ -584,7 +602,7 @@ final class PuvOmegaRecipes {
                         new GTRecipe(
                                 List.of(),
                                 List.of(),
-                                List.of(new ItemStack(ingot.orElseThrow(), 1)),
+                                List.of(ingot.orElseThrow()),
                                 List.of(new FluidStack(matter.orElseThrow(), 144)),
                                 List.of(),
                                 List.of(GTRecipe.GUARANTEED_CHANCE),
@@ -624,8 +642,10 @@ final class PuvOmegaRecipes {
             int inputCount,
             MaterialPrefix outputPrefix,
             int outputCount) {
-        Optional<Item> carbon = MaterialLookup.item("carbon", inputPrefix);
-        Optional<Item> graphene = MaterialLookup.item("graphene", outputPrefix);
+        Optional<ItemStack> carbon = MaterialLookup.tryStack(
+                "carbon", inputPrefix, inputCount);
+        Optional<ItemStack> graphene = MaterialLookup.tryStack(
+                "graphene", outputPrefix, outputCount);
         if (carbon.isEmpty() || graphene.isEmpty()) {
             return;
         }
@@ -636,10 +656,11 @@ final class PuvOmegaRecipes {
                         new GTRecipe(
                                 List.of(
                                         circuit(circuit),
-                                        Ingredient.of(carbon.orElseThrow())),
+                                        net.neoforged.neoforge.common.crafting
+                                                .DataComponentIngredient.of(
+                                                        false, carbon.orElseThrow())),
                                 List.of(0, inputCount),
-                                List.of(new ItemStack(
-                                        graphene.orElseThrow(), outputCount)),
+                                List.of(graphene.orElseThrow()),
                                 List.of(),
                                 List.of(),
                                 List.of(GTRecipe.GUARANTEED_CHANCE),
@@ -650,20 +671,20 @@ final class PuvOmegaRecipes {
     }
 
     private static void addMagneticSeparator(RecipeOutput output) {
-        Optional<Item> bedrock = MaterialLookup.item(
-                "bedrock", MaterialPrefixes.DUST);
-        Optional<Item> deepslate = MaterialLookup.item(
-                "deepslate", MaterialPrefixes.DUST);
-        Optional<Item> adamantine = MaterialLookup.item(
-                "adamantine", MaterialPrefixes.TINY_DUST);
+        Optional<ItemStack> bedrock = MaterialLookup.tryStack(
+                "bedrock", MaterialPrefixes.DUST, 1);
+        Optional<ItemStack> deepslate = MaterialLookup.tryStack(
+                "deepslate", MaterialPrefixes.DUST, 1);
+        Optional<ItemStack> adamantine = MaterialLookup.tryStack(
+                "adamantine", MaterialPrefixes.TINY_DUST, 1);
         if (bedrock.isEmpty() || deepslate.isEmpty() || adamantine.isEmpty()) {
             return;
         }
         List<ItemStack> outputs = new ArrayList<>();
         List<Integer> chances = new ArrayList<>();
-        outputs.add(new ItemStack(deepslate.orElseThrow(), 1));
+        outputs.add(deepslate.orElseThrow());
         chances.add(7_000);
-        outputs.add(new ItemStack(adamantine.orElseThrow(), 1));
+        outputs.add(adamantine.orElseThrow());
         chances.add(3_000);
         addOptionalDust(outputs, chances, "atlantium", MaterialPrefixes.TINY_DUST, 3_000);
         addOptionalDust(outputs, chances, "rare_earth", MaterialPrefixes.TINY_DUST, 3_000);
@@ -678,7 +699,10 @@ final class PuvOmegaRecipes {
                 new GTRecipeEntry(
                         ModRecipeMaps.MAGNETIC_SEPARATOR.id(),
                         new GTRecipe(
-                                List.of(Ingredient.of(bedrock.orElseThrow())),
+                                List.of(
+                                        net.neoforged.neoforge.common.crafting
+                                                .DataComponentIngredient.of(
+                                                        false, bedrock.orElseThrow())),
                                 List.of(1),
                                 outputs,
                                 List.of(),
@@ -696,17 +720,17 @@ final class PuvOmegaRecipes {
             String material,
             MaterialPrefix prefix,
             int chance) {
-        MaterialLookup.item(material, prefix).ifPresent(item -> {
-            outputs.add(new ItemStack(item, 1));
+        MaterialLookup.tryStack(material, prefix, 1).ifPresent(stack -> {
+            outputs.add(stack);
             chances.add(chance);
         });
     }
 
     private static void addLightningAdamantium(RecipeOutput output) {
-        Optional<Item> adamantine = MaterialLookup.item(
-                "adamantine", MaterialPrefixes.DUST);
-        Optional<Item> adamantium = MaterialLookup.item(
-                "adamantium", MaterialPrefixes.DUST);
+        Optional<ItemStack> adamantine = MaterialLookup.tryStack(
+                "adamantine", MaterialPrefixes.DUST, 7);
+        Optional<ItemStack> adamantium = MaterialLookup.tryStack(
+                "adamantium", MaterialPrefixes.DUST, 3);
         Optional<Fluid> oxygen = ModFluids.chemical("oxygen")
                 .map(entry -> entry.source().get());
         if (adamantine.isEmpty() || adamantium.isEmpty() || oxygen.isEmpty()) {
@@ -719,9 +743,11 @@ final class PuvOmegaRecipes {
                         new GTRecipe(
                                 List.of(
                                         circuit(1),
-                                        Ingredient.of(adamantine.orElseThrow())),
+                                        net.neoforged.neoforge.common.crafting
+                                                .DataComponentIngredient.of(
+                                                        false, adamantine.orElseThrow())),
                                 List.of(0, 7),
-                                List.of(new ItemStack(adamantium.orElseThrow(), 3)),
+                                List.of(adamantium.orElseThrow()),
                                 List.of(),
                                 List.of(new FluidStack(oxygen.orElseThrow(), 4_000)),
                                 List.of(GTRecipe.GUARANTEED_CHANCE),
@@ -732,26 +758,22 @@ final class PuvOmegaRecipes {
     }
 
     private static void addPolarizerRecipes(RecipeOutput output) {
-        Item iron = material("iron", MaterialPrefixes.INGOT);
-        if (iron == null) {
-            iron = Items.IRON_INGOT;
-        }
         polarize(
                 output,
                 "polarizer/iron_ingot",
-                iron,
+                "iron",
                 "iron_magnetic",
                 16L);
         polarize(
                 output,
                 "polarizer/steel_ingot",
-                material("steel", MaterialPrefixes.INGOT),
+                "steel",
                 "steel_magnetic",
                 16L);
         polarize(
                 output,
                 "polarizer/neodymium_ingot",
-                material("neodymium", MaterialPrefixes.INGOT),
+                "neodymium",
                 "neodymium_magnetic",
                 128L);
     }
@@ -759,10 +781,18 @@ final class PuvOmegaRecipes {
     private static void polarize(
             RecipeOutput output,
             String path,
-            Item input,
+            String inputMaterial,
             String resultMaterial,
             long eut) {
-        Item result = material(resultMaterial, MaterialPrefixes.INGOT);
+        Ingredient input = MaterialLookup.ingredient(
+                inputMaterial, MaterialPrefixes.INGOT).orElse(null);
+        ItemStack result = MaterialLookup.tryStack(
+                resultMaterial, MaterialPrefixes.INGOT, 1).orElse(null);
+        if (input == null || result == null) {
+            if ("iron".equals(inputMaterial)) {
+                input = Ingredient.of(Items.IRON_INGOT);
+            }
+        }
         if (input == null || result == null) {
             return;
         }
@@ -771,9 +801,9 @@ final class PuvOmegaRecipes {
                 new GTRecipeEntry(
                         ModRecipeMaps.POLARIZER.id(),
                         new GTRecipe(
-                                List.of(Ingredient.of(input)),
+                                List.of(input),
                                 List.of(1),
-                                List.of(new ItemStack(result)),
+                                List.of(result),
                                 List.of(),
                                 List.of(),
                                 List.of(GTRecipe.GUARANTEED_CHANCE),
@@ -897,11 +927,11 @@ final class PuvOmegaRecipes {
                         ModRecipeMaps.CRYO_MIXER.id(),
                         new GTRecipe(
                                 List.of(
-                                        Ingredient.of(redstoneDust),
-                                        Ingredient.of(blizz),
-                                        Ingredient.of(niterDust)),
+                                        keyedIngredient(redstoneDust, "redstone", MaterialPrefixes.DUST),
+                                        keyedIngredient(blizz, "blizz", MaterialPrefixes.TINY_DUST),
+                                        keyedIngredient(niterDust, "niter", MaterialPrefixes.DUST)),
                                 List.of(redstone, blizzTiny, niter),
-                                List.of(new ItemStack(cryotheumDust, cryotheum)),
+                                List.of(keyedStack(cryotheumDust, "cryotheum", MaterialPrefixes.DUST, cryotheum)),
                                 List.of(new FluidStack(Fluids.WATER, waterMb)),
                                 List.of(),
                                 List.of(GTRecipe.GUARANTEED_CHANCE),
@@ -932,11 +962,11 @@ final class PuvOmegaRecipes {
                         ModRecipeMaps.CRYO_MIXER.id(),
                         new GTRecipe(
                                 List.of(
-                                        Ingredient.of(redstoneDust),
-                                        Ingredient.of(blizz),
-                                        Ingredient.of(saltDust)),
+                                        keyedIngredient(redstoneDust, "redstone", MaterialPrefixes.DUST),
+                                        keyedIngredient(blizz, "blizz", MaterialPrefixes.TINY_DUST),
+                                        keyedIngredient(saltDust, salt, MaterialPrefixes.DUST)),
                                 List.of(count, count, count),
-                                List.of(new ItemStack(cryotheumDust, cryotheum)),
+                                List.of(keyedStack(cryotheumDust, "cryotheum", MaterialPrefixes.DUST, cryotheum)),
                                 List.of(new FluidStack(Fluids.WATER, waterMb)),
                                 List.of(),
                                 List.of(GTRecipe.GUARANTEED_CHANCE),
@@ -971,11 +1001,11 @@ final class PuvOmegaRecipes {
                 dust("vibramantium", 4));
     }
 
-    private record Counted(Item item, int count) {}
+    private record Counted(ItemStack stack) {}
 
     private static Counted dust(String material, int count) {
-        return MaterialLookup.item(material, MaterialPrefixes.DUST)
-                .map(item -> new Counted(item, count))
+        return MaterialLookup.tryStack(material, MaterialPrefixes.DUST, count)
+                .map(Counted::new)
                 .orElse(null);
     }
 
@@ -993,10 +1023,12 @@ final class PuvOmegaRecipes {
                         ModRecipeMaps.MIXER.id(),
                         new GTRecipe(
                                 inputs.stream()
-                                        .map(input -> Ingredient.of(input.item()))
+                                        .map(input -> net.neoforged.neoforge.common.crafting
+                                                .DataComponentIngredient.of(
+                                                        false, input.stack()))
                                         .toList(),
-                                inputs.stream().map(Counted::count).toList(),
-                                List.of(new ItemStack(result.item(), result.count())),
+                                inputs.stream().map(input -> input.stack().getCount()).toList(),
+                                List.of(result.stack().copy()),
                                 List.of(),
                                 List.of(),
                                 List.of(GTRecipe.GUARANTEED_CHANCE),
@@ -1045,10 +1077,10 @@ final class PuvOmegaRecipes {
                 "compact_electric_motor_" + TIERS[tier] + recipeSuffix,
                 List.of("CWR", "WIW", "PWC"),
                 Map.of(
-                        "I", Ingredient.of(magnet),
-                        "P", Ingredient.of(plate),
-                        "R", Ingredient.of(rod),
-                        "W", Ingredient.of(winding),
+                        "I", keyedIngredient(magnet, magnetic, magnetPrefix(tier)),
+                        "P", keyedIngredient(plate, ELECTRIC[tier], MaterialPrefixes.CURVED_PLATE),
+                        "R", keyedIngredient(rod, ELECTRIC[tier], MaterialPrefixes.ROD),
+                        "W", keyedIngredient(winding, windingMaterial(tier), MOTOR_WINDING[tier]),
                         "C", Ingredient.of(cable)),
                 Map.of(),
                 new ItemStack(result));
@@ -1083,10 +1115,10 @@ final class PuvOmegaRecipes {
                 "compact_electric_pump_" + TIERS[tier],
                 List.of("TXO", "dPw", "OMT"),
                 Map.of(
-                        "T", Ingredient.of(screw),
-                        "X", Ingredient.of(rotor),
-                        "O", Ingredient.of(ring),
-                        "P", Ingredient.of(plate),
+                        "T", keyedIngredient(screw, ELECTRIC[tier], MaterialPrefixes.SCREW),
+                        "X", keyedIngredient(rotor, ELECTRIC[tier], MaterialPrefixes.ROTOR),
+                        "O", keyedIngredient(ring, "rubber", MaterialPrefixes.RING),
+                        "P", keyedIngredient(plate, ELECTRIC[tier], MaterialPrefixes.CURVED_PLATE),
                         "M", Ingredient.of(motor)),
                 Map.of(
                         "d", Ingredient.of(ModItems.MATERIAL_SCREWDRIVER.get()),
@@ -1107,7 +1139,7 @@ final class PuvOmegaRecipes {
                 "compact_electric_conveyor_" + TIERS[tier],
                 List.of("RRR", "MCM", "RRR"),
                 Map.of(
-                        "R", Ingredient.of(rubber),
+                        "R", keyedIngredient(rubber, "rubber", MaterialPrefixes.PLATE),
                         "M", Ingredient.of(motor),
                         "C", Ingredient.of(cable)),
                 Map.of(),
@@ -1129,11 +1161,11 @@ final class PuvOmegaRecipes {
                 "compact_electric_piston_" + TIERS[tier],
                 List.of("TPP", "dSS", "TMG"),
                 Map.of(
-                        "T", Ingredient.of(screw),
-                        "P", Ingredient.of(plate),
-                        "S", Ingredient.of(rod),
+                        "T", keyedIngredient(screw, ELECTRIC[tier], MaterialPrefixes.SCREW),
+                        "P", keyedIngredient(plate, ELECTRIC[tier], MaterialPrefixes.PLATE),
+                        "S", keyedIngredient(rod, ELECTRIC[tier], MaterialPrefixes.ROD),
                         "M", Ingredient.of(motor),
-                        "G", Ingredient.of(gear)),
+                        "G", keyedIngredient(gear, ELECTRIC[tier], MaterialPrefixes.SMALL_GEAR)),
                 Map.of("d", Ingredient.of(ModItems.MATERIAL_SCREWDRIVER.get())),
                 new ItemStack(result));
     }
@@ -1155,7 +1187,7 @@ final class PuvOmegaRecipes {
                 Map.of(
                         "C", Ingredient.of(cable),
                         "M", Ingredient.of(motor),
-                        "S", Ingredient.of(rod),
+                        "S", keyedIngredient(rod, ELECTRIC[tier], MaterialPrefixes.ROD),
                         "P", Ingredient.of(piston),
                         "E", Ingredient.of(circuit)),
                 Map.of(),
@@ -1176,8 +1208,8 @@ final class PuvOmegaRecipes {
                 "compact_force_field_emitter_" + TIERS[tier],
                 List.of("WPW", "CGC", "WPW"),
                 Map.of(
-                        "W", Ingredient.of(wire),
-                        "P", Ingredient.of(plate),
+                        "W", keyedIngredient(wire, "osmium_elemental", FIELD_OSMIUM[tier]),
+                        "P", keyedIngredient(plate, ELECTRIC[tier], MaterialPrefixes.DOUBLE_PLATE),
                         "C", Ingredient.of(circuit),
                         "G", Ingredient.of(gem)),
                 Map.of(),
@@ -1199,8 +1231,8 @@ final class PuvOmegaRecipes {
                 "compact_signal_emitter_" + TIERS[tier],
                 List.of("SPC", "WQP", "CWS"),
                 Map.of(
-                        "S", Ingredient.of(sensorWire),
-                        "P", Ingredient.of(plate),
+                        "S", keyedIngredient(sensorWire, wireMaterial(tier), MaterialPrefixes.QUADRUPLE_WIRE),
+                        "P", keyedIngredient(plate, ELECTRIC[tier], MaterialPrefixes.CURVED_PLATE),
                         "C", Ingredient.of(circuit),
                         "W", Ingredient.of(cable),
                         "Q", Ingredient.of(gem)),
@@ -1222,9 +1254,9 @@ final class PuvOmegaRecipes {
                 "compact_sensor_" + TIERS[tier],
                 List.of("P Q", "PS ", "CPP"),
                 Map.of(
-                        "P", Ingredient.of(plate),
+                        "P", keyedIngredient(plate, ELECTRIC[tier], MaterialPrefixes.CURVED_PLATE),
                         "Q", Ingredient.of(gem),
-                        "S", Ingredient.of(sensorWire),
+                        "S", keyedIngredient(sensorWire, wireMaterial(tier), MaterialPrefixes.WIRE),
                         "C", Ingredient.of(circuit)),
                 Map.of(),
                 new ItemStack(result));
@@ -1290,9 +1322,9 @@ final class PuvOmegaRecipes {
                     List.of("CWM", "WGx", "MTd"),
                     Map.of(
                             "C", Ingredient.of(circuitGood),
-                            "W", Ingredient.of(copperCable),
-                            "M", Ingredient.of(silver),
-                            "T", Ingredient.of(screw),
+                            "W", keyedIngredient(copperCable, "copper", MaterialPrefixes.CABLE),
+                            "M", keyedIngredient(silver, "silver", MaterialPrefixes.PLATE),
+                            "T", keyedIngredient(screw, "stainless_steel", MaterialPrefixes.SCREW),
                             "G", Ingredient.of(Items.GLASS)),
                     Map.of(
                             "x", Ingredient.of(ModItems.MATERIAL_WIRE_CUTTER.get()),
@@ -1347,10 +1379,12 @@ final class PuvOmegaRecipes {
     private static void laserCrystal(
             RecipeOutput output, String gem, String resultPath) {
         Item plate = material(gem, MaterialPrefixes.PLATE_GEM);
-        Item lens = material("emerald", new MaterialPrefix("cruciblecraft:lens"));
+        String lensMaterial = "emerald";
+        Item lens = material(lensMaterial, new MaterialPrefix("cruciblecraft:lens"));
         Item result = part(resultPath);
         if (anyNull(plate, lens, result)) {
-            lens = material("olivine", new MaterialPrefix("cruciblecraft:lens"));
+            lensMaterial = "olivine";
+            lens = material(lensMaterial, new MaterialPrefix("cruciblecraft:lens"));
         }
         if (anyNull(plate, lens, result)) {
             return;
@@ -1360,7 +1394,12 @@ final class PuvOmegaRecipes {
                 new GTRecipeEntry(
                         ModRecipeMaps.LASER_ENGRAVER.id(),
                         new GTRecipe(
-                                List.of(Ingredient.of(plate), Ingredient.of(lens)),
+                                List.of(
+                                        keyedIngredient(plate, gem, MaterialPrefixes.PLATE_GEM),
+                                        keyedIngredient(
+                                                lens,
+                                                lensMaterial,
+                                                new MaterialPrefix("cruciblecraft:lens"))),
                                 List.of(1, 0),
                                 List.of(new ItemStack(result)),
                                 List.of(),
@@ -1424,7 +1463,7 @@ final class PuvOmegaRecipes {
                     Map.of(
                             "F", Ingredient.of(vent),
                             "C", Ingredient.of(advanced),
-                            "M", Ingredient.of(casing),
+                            "M", keyedIngredient(casing, "steel_galvanized", MaterialPrefixes.MACHINE_CASING),
                             "E", Ingredient.of(motor)),
                     Map.of(
                             "w", Ingredient.of(cutter),
@@ -1441,7 +1480,7 @@ final class PuvOmegaRecipes {
                             "D", Ingredient.of(diamond),
                             "C", Ingredient.of(ultimate),
                             "S", Ingredient.of(sapphire),
-                            "M", Ingredient.of(casing),
+                            "M", keyedIngredient(casing, "steel_galvanized", MaterialPrefixes.MACHINE_CASING),
                             "R", Ingredient.of(ruby),
                             "E", Ingredient.of(emerald)),
                     Map.of(),
@@ -1498,7 +1537,7 @@ final class PuvOmegaRecipes {
         if (!anyNull(denseWs, gear, diamond) && ModItems.BEDROCK_DRILL_HEAD.get() != null) {
             LinkedHashMap<String, Ingredient> keys = new LinkedHashMap<>();
             keys.put("M", Ingredient.of(denseWs));
-            keys.put("G", Ingredient.of(gear));
+            keys.put("G", keyedIngredient(gear, "tungstensteel", MaterialPrefixes.GEAR));
             keys.put("D", Ingredient.of(diamond));
             if (drill != null) {
                 keys.put("I", Ingredient.of(drill));
@@ -1521,8 +1560,8 @@ final class PuvOmegaRecipes {
                             "P", Ingredient.of(ruby),
                             "Y", Ingredient.of(conveyor),
                             "C", Ingredient.of(circuit),
-                            "M", Ingredient.of(denseTi),
-                            "G", Ingredient.of(gear),
+                            "M", keyedIngredient(denseTi, "titanium", MaterialPrefixes.MACHINE_CASING_DENSE),
+                            "G", keyedIngredient(gear, "tungstensteel", MaterialPrefixes.GEAR),
                             "I", Ingredient.of(drill)),
                     Map.of(),
                     new ItemStack(ModItems.BEDROCK_DRILL.get()));
@@ -1546,7 +1585,7 @@ final class PuvOmegaRecipes {
                         profile.id().getPath(),
                         List.of("WMW", "MxM", "WMW"),
                         Map.of(
-                                "W", Ingredient.of(cable),
+                                "W", keyedIngredient(cable, "annealed_copper", MaterialPrefixes.QUADRUPLE_CABLE),
                                 "M", Ingredient.of(host)),
                         Map.of("x", Ingredient.of(cutter)),
                         new ItemStack(item.get()));
@@ -1569,10 +1608,10 @@ final class PuvOmegaRecipes {
                     profile.id().getPath(),
                     List.of("RSR", "PWP", "RSR"),
                     Map.of(
-                            "R", Ingredient.of(rubber),
-                            "S", Ingredient.of(aluminiumCurve),
-                            "P", Ingredient.of(copperCurve),
-                            "W", Ingredient.of(core)),
+                            "R", keyedIngredient(rubber, "rubber", MaterialPrefixes.PLATE),
+                            "S", keyedIngredient(aluminiumCurve, "aluminium", MaterialPrefixes.CURVED_PLATE),
+                            "P", keyedIngredient(copperCurve, "copper", MaterialPrefixes.CURVED_PLATE),
+                            "W", keyedIngredient(core, profile.core(), MaterialPrefixes.HEXADECUPLE_WIRE)),
                     Map.of(),
                     new ItemStack(item.get()));
         }
@@ -1612,6 +1651,48 @@ final class PuvOmegaRecipes {
         } catch (RuntimeException ignored) {
             return null;
         }
+    }
+
+    private static Ingredient materialIngredient(String material, MaterialPrefix prefix) {
+        try {
+            return MaterialLookup.ingredient(material, prefix).orElse(null);
+        } catch (RuntimeException ignored) {
+            return null;
+        }
+    }
+
+    private static ItemStack materialStack(String material, MaterialPrefix prefix) {
+        return materialStack(material, prefix, 1);
+    }
+
+    private static ItemStack materialStack(String material, MaterialPrefix prefix, int count) {
+        try {
+            return MaterialLookup.tryStack(material, prefix, count).orElse(null);
+        } catch (RuntimeException ignored) {
+            return null;
+        }
+    }
+
+    private static Ingredient keyedIngredient(
+            Item item, String material, MaterialPrefix prefix) {
+        if (item == null) {
+            return null;
+        }
+        if (item instanceof com.masson.cruciblecraft.content.item.PrefixMaterialItem) {
+            return materialIngredient(material, prefix);
+        }
+        return Ingredient.of(item);
+    }
+
+    private static ItemStack keyedStack(
+            Item item, String material, MaterialPrefix prefix, int count) {
+        if (item == null) {
+            return null;
+        }
+        if (item instanceof com.masson.cruciblecraft.content.item.PrefixMaterialItem) {
+            return materialStack(material, prefix, count);
+        }
+        return new ItemStack(item, count);
     }
 
     private static boolean anyNull(Item... items) {

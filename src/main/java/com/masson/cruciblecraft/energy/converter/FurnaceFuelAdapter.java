@@ -2,7 +2,7 @@ package com.masson.cruciblecraft.energy.converter;
 
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
-import com.masson.cruciblecraft.content.item.MaterialItem;
+import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.material.def.GT6MaterialMetadata;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 
@@ -54,8 +54,9 @@ public final class FurnaceFuelAdapter {
     }
 
     private static String materialId(ItemStack fuel) {
-        if (fuel.getItem() instanceof MaterialItem materialItem) {
-            return materialItem.materialId();
+        var resolved = MaterialUnits.resolve(fuel);
+        if (resolved.isPresent()) {
+            return resolved.orElseThrow().materialId();
         }
         if (fuel.is(Items.COAL) || fuel.is(Items.CHARCOAL)) {
             return "coal";
@@ -81,8 +82,7 @@ public final class FurnaceFuelAdapter {
             if (count <= 0L || count > 64L) {
                 continue;
             }
-            ItemStack stack = MaterialLookup.item(material, form)
-                    .map(item -> new ItemStack(item, (int) count))
+            ItemStack stack = MaterialLookup.tryStack(material, form, (int) count)
                     .orElse(ItemStack.EMPTY);
             if (!stack.isEmpty()) {
                 return stack;

@@ -18,21 +18,34 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:end_steel/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "end_steel"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "endstone"
+          },
           "count": 1,
-          "id": "cruciblecraft:endstone/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "obsidian_steel"
+          },
           "count": 1,
-          "id": "cruciblecraft:obsidian_steel/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "obsidian"
+          },
           "count": 9,
-          "id": "cruciblecraft:obsidian/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

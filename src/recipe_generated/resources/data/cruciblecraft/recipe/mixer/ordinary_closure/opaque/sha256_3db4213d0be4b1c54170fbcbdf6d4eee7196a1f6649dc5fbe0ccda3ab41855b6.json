@@ -22,16 +22,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:yellorite/washed_crushed_ore"
+          "components": {
+            "cruciblecraft:prefix_material": "yellorite"
+          },
+          "items": "cruciblecraft:washed_crushed_ore",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:aluminium/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "aluminium"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "yellorium"
+          },
           "count": 1,
-          "id": "cruciblecraft:yellorium/centrifuged_crushed_ore"
+          "id": "cruciblecraft:centrifuged_crushed_ore"
         }
       ],
       "output_chances": [

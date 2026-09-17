@@ -18,21 +18,34 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:volcanic_ashes/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "volcanic_ashes"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "flint"
+          },
           "count": 6,
-          "id": "cruciblecraft:flint/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "hematite"
+          },
           "count": 1,
-          "id": "cruciblecraft:hematite/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "magnesium"
+          },
           "count": 1,
-          "id": "cruciblecraft:magnesium/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#2105",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/bismuth_bronze",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 8340,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 2656,
+          "id": "cruciblecraft:molten_bismuth_bronze"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "bismuth_bronze"
+          },
+          "items": "cruciblecraft:mass_storage",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "b54da3222e8e9669ae5d95ba8d04ed9247fc26240985f9bd45ce27c779175602"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#2105",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/1f9d9e8938d74bc0"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

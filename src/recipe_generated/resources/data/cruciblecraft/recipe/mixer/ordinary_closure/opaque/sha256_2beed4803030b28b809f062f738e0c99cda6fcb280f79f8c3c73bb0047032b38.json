@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:ice/cream_basic_milk_gelato"
+          "components": {
+            "cruciblecraft:prefix_material": "ice"
+          },
+          "items": "cruciblecraft:cream_basic_milk_gelato",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "maple"
+          },
           "count": 1,
-          "id": "cruciblecraft:maple/ice_cream_maple_flavoured_gelato"
+          "id": "cruciblecraft:ice_cream_maple_flavoured_gelato"
         }
       ],
       "output_chances": [

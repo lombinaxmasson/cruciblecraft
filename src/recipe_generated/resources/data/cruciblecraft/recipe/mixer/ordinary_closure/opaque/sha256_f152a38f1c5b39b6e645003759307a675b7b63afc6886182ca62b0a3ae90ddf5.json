@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:umber/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "umber"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "asphalt"
+          },
           "count": 1,
-          "id": "cruciblecraft:asphalt/light_blue"
+          "id": "cruciblecraft:light_blue"
         }
       ],
       "output_chances": [

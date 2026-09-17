@@ -22,14 +22,18 @@ public interface MaterialFormItem {
     }
 
     default Component materialFormName() {
-        MaterialDefinition material = material();
+        return formName(materialId(), form());
+    }
+
+    static Component formName(String materialId, MaterialPrefix form) {
+        MaterialDefinition material = MaterialCatalog.require(materialId);
         Component materialName = material.nameKey()
                 .<Component>map(Component::translatable)
                 .orElseGet(() -> Component.literal(
                         LanguageNames.formatEnglishId(material.id())));
-        String formKey = "item.cruciblecraft.material_form." + form().serializedName();
+        String formKey = "item.cruciblecraft.material_form." + form.serializedName();
         String fallback = LanguageNames.englishFormTemplate(
-                LanguageNames.formatEnglishId(form().serializedName()));
+                LanguageNames.formatEnglishId(form.serializedName()));
         return Component.translatableWithFallback(formKey, fallback, materialName);
     }
 }

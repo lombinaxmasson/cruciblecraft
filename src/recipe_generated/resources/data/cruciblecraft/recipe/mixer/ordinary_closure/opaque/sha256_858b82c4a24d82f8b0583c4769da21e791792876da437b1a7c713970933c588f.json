@@ -22,16 +22,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:ice/cream_basic_milk_gelato"
+          "components": {
+            "cruciblecraft:prefix_material": "ice"
+          },
+          "items": "cruciblecraft:cream_basic_milk_gelato",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:mint/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "mint"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "mint"
+          },
           "count": 4,
-          "id": "cruciblecraft:mint/ice_cream_fresh_smelling_gelato"
+          "id": "cruciblecraft:ice_cream_fresh_smelling_gelato"
         }
       ],
       "output_chances": [

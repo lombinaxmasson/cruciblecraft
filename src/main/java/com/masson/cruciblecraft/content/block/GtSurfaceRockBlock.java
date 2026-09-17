@@ -179,8 +179,8 @@ public final class GtSurfaceRockBlock extends Block implements EntityBlock {
                     ModItems.materialItem(
                             "meteoric_iron",
                             MaterialPrefixCatalog.require("rock")).get());
-            case METEORIC_RAW -> new ItemStack(
-                    ModItems.materialItem("meteoric_iron", MaterialPrefixes.RAW_ORE).get());
+            case METEORIC_RAW -> MaterialLookup.stack(
+                    "meteoric_iron", MaterialPrefixes.RAW_ORE);
             case EMPTY -> layerOrStone(blockEntity);
         };
     }
@@ -198,8 +198,8 @@ public final class GtSurfaceRockBlock extends Block implements EntityBlock {
         if (blockEntity instanceof GtSurfaceRockBlockEntity rock
                 && rock.hasMaterial()) {
             if (rock.rawOre()) {
-                return MaterialLookup.item(rock.materialId(), MaterialPrefixes.RAW_ORE)
-                        .map(item -> new ItemStack(item, 1))
+                return MaterialLookup.tryStack(
+                                rock.materialId(), MaterialPrefixes.RAW_ORE, 1)
                         .orElseGet(() -> rockDrop(rock.materialId()));
             }
             return rockDrop(rock.materialId());

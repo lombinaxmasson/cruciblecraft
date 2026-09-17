@@ -2,6 +2,8 @@ package com.masson.cruciblecraft.gametest;
 
 import java.util.List;
 
+import com.masson.cruciblecraft.api.material.MaterialLookup;
+import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.tool.ToolAction;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverBehaviors;
@@ -59,16 +61,10 @@ public final class CoverRemainderGameTests {
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void blankCoverIsSurvivalCraftable(GameTestHelper helper) {
-        ItemStack aluminiumPlate = new ItemStack(
-                com.masson.cruciblecraft.api.material.MaterialLookup.item(
-                                "aluminium",
-                                com.masson.cruciblecraft.api.material.MaterialPrefixes.PLATE)
-                        .orElseThrow());
-        ItemStack aluminiumScrew = new ItemStack(
-                com.masson.cruciblecraft.api.material.MaterialLookup.item(
-                                "aluminium",
-                                com.masson.cruciblecraft.api.material.MaterialPrefixes.SCREW)
-                        .orElseThrow());
+        ItemStack aluminiumPlate = MaterialLookup.stack(
+                "aluminium", MaterialPrefixes.PLATE);
+        ItemStack aluminiumScrew = MaterialLookup.stack(
+                "aluminium", MaterialPrefixes.SCREW);
         ItemStack assembled = craft(
                 helper,
                 3,

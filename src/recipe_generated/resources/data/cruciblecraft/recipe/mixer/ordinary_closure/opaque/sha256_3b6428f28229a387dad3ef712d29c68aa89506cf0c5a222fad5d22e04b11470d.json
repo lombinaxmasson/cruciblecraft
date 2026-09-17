@@ -30,22 +30,41 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:food/cerublossom_used_for_magical_purposes"
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
+          "items": "cruciblecraft:cerublossom_used_for_magical_purposes",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:food/desert_nova_used_for_magical_purposes"
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
+          "items": "cruciblecraft:desert_nova_used_for_magical_purposes",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:arcane_ashes/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "arcane_ashes"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:vinteum/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "vinteum"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "vinteum_purified"
+          },
           "count": 1,
-          "id": "cruciblecraft:vinteum_purified/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

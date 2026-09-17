@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.compat.emi;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
@@ -75,5 +76,38 @@ class EmiDisplayPlanTest {
         }
         // No item is shared across families.
         assertEquals(families.size() * 3L, itemIds.size());
+    }
+
+    @Test
+    void gatedPrefixStacksArePerMaterialAndSkipUniqueHosted(
+            @TempDir Path configDirectory) {
+        var materials = MaterialLoader.load(configDirectory).values();
+        Map<String, List<com.masson.cruciblecraft.api.material.MaterialPrefix>> registered =
+                MaterialRegistrationGate.load(materials);
+
+        List<String> stacks = EmiDisplayPlan.gatedPrefixStacks(materials, registered);
+        assertTrue(stacks.size() > 0, "gated prefix stacks must not be empty");
+        assertTrue(stacks.contains("cruciblecraft:copper/dust"));
+        assertFalse(stacks.contains("cruciblecraft:dust"));
+        assertFalse(stacks.contains("cruciblecraft:copper/fluid_pipe"));
+        assertFalse(stacks.contains("cruciblecraft:copper/wire"));
+        assertFalse(stacks.contains("minecraft:iron_ingot"));
+
+        long expected = materials.stream()
+                .mapToLong(material -> {
+                    var forms = registered.get(material.id());
+                    if (forms == null) {
+                        return 0;
+                    }
+                    return forms.stream()
+                            .filter(form -> !material.formItems().containsKey(form)
+                                    && !com.masson.cruciblecraft.material
+                                            .MaterialFormHosts
+                                            .isUniqueHostedPrefixPath(
+                                                    form.serializedName()))
+                            .count();
+                })
+                .sum();
+        assertEquals(expected, stacks.size());
     }
 }

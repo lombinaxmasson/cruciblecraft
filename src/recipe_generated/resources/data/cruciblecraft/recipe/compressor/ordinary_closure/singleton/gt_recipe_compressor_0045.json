@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:meat_raw/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "meat_raw"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "meat_cooked"
+          },
           "count": 1,
-          "id": "cruciblecraft:meat_cooked/raw_meat_bar_don_t_eat_raw_mince"
+          "id": "cruciblecraft:raw_meat_bar_don_t_eat_raw_mince"
         }
       ],
       "output_chances": [

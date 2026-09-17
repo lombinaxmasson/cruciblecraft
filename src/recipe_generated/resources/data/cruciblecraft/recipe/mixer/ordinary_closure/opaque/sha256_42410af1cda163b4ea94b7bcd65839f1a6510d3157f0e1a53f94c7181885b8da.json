@@ -22,16 +22,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:food/dough_for_making_bread"
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
+          "items": "cruciblecraft:dough_for_making_bread",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:chocolate/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "chocolate"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "chocolate"
+          },
           "count": 2,
-          "id": "cruciblecraft:chocolate/dough_i_said_don_t_eat_the_dough"
+          "id": "cruciblecraft:dough_i_said_don_t_eat_the_dough"
         }
       ],
       "output_chances": [

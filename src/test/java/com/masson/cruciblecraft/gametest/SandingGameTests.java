@@ -122,23 +122,20 @@ public final class SandingGameTests {
             Item result = ModItems.tieredProcessingItemsById()
                     .get(id(host.itemPath()))
                     .get();
-            Item smallGear = MaterialLookup.item(
-                            host.material(), MaterialPrefixes.SMALL_GEAR)
-                    .orElseThrow();
-            Item gear = MaterialLookup.item(host.material(), MaterialPrefixes.GEAR)
-                    .orElseThrow();
-            Item casing = MaterialLookup.item(
-                            host.material(), MaterialPrefixes.MACHINE_CASING_DOUBLE)
-                    .orElseThrow();
+            ItemStack smallGear = MaterialLookup.stack(
+                    host.material(), MaterialPrefixes.SMALL_GEAR);
+            ItemStack gear = MaterialLookup.stack(host.material(), MaterialPrefixes.GEAR);
+            ItemStack casing = MaterialLookup.stack(
+                    host.material(), MaterialPrefixes.MACHINE_CASING_DOUBLE);
             List<ItemStack> slots = List.of(
-                    new ItemStack(smallGear),
-                    new ItemStack(gear),
-                    new ItemStack(smallGear),
+                    smallGear,
+                    gear,
+                    smallGear.copy(),
                     new ItemStack(Items.SANDSTONE),
                     new ItemStack(Items.SANDSTONE),
                     new ItemStack(Items.SANDSTONE),
                     new ItemStack(ModItems.MATERIAL_WRENCH.get()),
-                    new ItemStack(casing),
+                    casing,
                     new ItemStack(ModItems.SMITHING_HAMMER.get()));
             ItemStack assembled = craft(helper, slots);
             helper.assertTrue(

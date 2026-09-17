@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#1794",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/molybdenum",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 50803,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 3960,
+          "id": "cruciblecraft:molten_molybdenum"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "safe"
+          },
+          "items": "cruciblecraft:key_locked_molybdenum_safe",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "8423d8bdef1740010fb3004c93d4533321984b944ad90dc4c9002cc202508ddf"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#1794",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/5fd26afa766a562c"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:fish_raw/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "fish_raw"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
           "count": 1,
-          "id": "cruciblecraft:food/raw_fish_bar_compressed_fish"
+          "id": "cruciblecraft:raw_fish_bar_compressed_fish"
         }
       ],
       "output_chances": [

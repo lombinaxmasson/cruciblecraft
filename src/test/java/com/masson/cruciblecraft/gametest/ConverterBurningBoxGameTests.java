@@ -77,10 +77,7 @@ public final class ConverterBurningBoxGameTests {
                         == 72,
                 "Fluid-bed tank rejected molten calcite");
         helper.assertTrue(
-                box.insertFuel(new ItemStack(
-                        MaterialLookup.item(
-                                        "peat", MaterialPrefixes.DUST)
-                                .orElseThrow())),
+                box.insertFuel(MaterialLookup.stack("peat", MaterialPrefixes.DUST)),
                 "Fluid-bed fuel slot rejected peat dust");
         box.ignite();
         helper.startSequence()
@@ -109,10 +106,8 @@ public final class ConverterBurningBoxGameTests {
                         == 648,
                 "Fluid-bed tank rejected molten calcite");
         helper.assertTrue(
-                box.insertFuel(new ItemStack(
-                        MaterialLookup.item(
-                                        "peat", MaterialPrefixes.STORAGE_DUST)
-                                .orElseThrow())),
+                box.insertFuel(MaterialLookup.stack(
+                        "peat", MaterialPrefixes.STORAGE_DUST)),
                 "Fluid-bed fuel slot rejected peat dust block");
         box.ignite();
         helper.startSequence()
@@ -141,11 +136,9 @@ public final class ConverterBurningBoxGameTests {
                         == 1,
                 "Fluid-bed tank rejected molten calcite");
         helper.assertTrue(
-                box.insertFuel(new ItemStack(
-                        MaterialLookup.item(
-                                        "petroleum_coke",
-                                        MaterialPrefixes.DUST_DIV72)
-                                .orElseThrow())),
+                box.insertFuel(MaterialLookup.stack(
+                        "petroleum_coke",
+                        MaterialPrefixes.DUST_DIV72)),
                 "Fluid-bed fuel slot rejected petroleum coke 1/72 dust");
         box.ignite();
         helper.startSequence()

@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#1673",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/platinum",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 11722,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 648,
+          "id": "cruciblecraft:molten_platinum"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "electric_wire"
+          },
+          "items": "cruciblecraft:9x_platinum_wire",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "ca0a63456880575da77ef1426e35c7efb25a9f6a98385b546b1de3906d0a6227"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#1673",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/7c070985615458f2"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

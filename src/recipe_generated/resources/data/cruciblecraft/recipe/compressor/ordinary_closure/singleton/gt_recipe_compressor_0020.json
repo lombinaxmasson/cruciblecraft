@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:rice/food"
+          "components": {
+            "cruciblecraft:prefix_material": "rice"
+          },
+          "items": "cruciblecraft:food",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "bale"
+          },
           "count": 1,
-          "id": "cruciblecraft:bale/rice"
+          "id": "cruciblecraft:rice"
         }
       ],
       "output_chances": [

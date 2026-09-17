@@ -6,8 +6,10 @@ import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
+import com.masson.cruciblecraft.registry.ModComponents;
 import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.registry.ModMachineVariants;
+import com.masson.cruciblecraft.material.MaterialCatalog;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -18,6 +20,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.SetComponentsFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
@@ -177,22 +180,24 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
     private net.minecraft.world.level.storage.loot.LootTable.Builder denseRockOreLoot(
             Block block, String material) {
+        var drop = LootItem.lootTableItem(
+                        ModItems.materialItem(material, MaterialPrefixes.RAW_ORE).get())
+                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(2)))
+                .apply(ApplyBonusCount.addUniformBonusCount(
+                        this.registries
+                                .lookupOrThrow(Registries.ENCHANTMENT)
+                                .getOrThrow(Enchantments.FORTUNE),
+                        2));
+        if (MaterialCatalog.find(material)
+                .filter(definition -> !definition.formItems()
+                        .containsKey(MaterialPrefixes.RAW_ORE))
+                .isPresent()) {
+            drop = drop.apply(SetComponentsFunction.setComponent(
+                    ModComponents.PREFIX_MATERIAL.get(), material));
+        }
         return createSilkTouchDispatchTable(
                 block,
-                applyExplosionDecay(
-                        block,
-                        LootItem.lootTableItem(
-                                        ModItems.materialItem(
-                                                        material,
-                                                        MaterialPrefixes.RAW_ORE)
-                                                .get())
-                                .apply(SetItemCountFunction.setCount(
-                                        ConstantValue.exactly(2)))
-                                .apply(ApplyBonusCount.addUniformBonusCount(
-                                        this.registries
-                                                .lookupOrThrow(Registries.ENCHANTMENT)
-                                                .getOrThrow(Enchantments.FORTUNE),
-                                        2))));
+                applyExplosionDecay(block, drop));
     }
 
     @Override

@@ -16,34 +16,54 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:boron/tiny_centrifuged_crushed_ore"
+            "components": {
+              "cruciblecraft:prefix_material": "boron"
+            },
+            "items": "cruciblecraft:tiny_centrifuged_crushed_ore",
+            "type": "neoforge:components"
           }
         ],
         [
           {
-            "item": "cruciblecraft:lithium/tiny_centrifuged_crushed_ore"
+            "components": {
+              "cruciblecraft:prefix_material": "lithium"
+            },
+            "items": "cruciblecraft:tiny_centrifuged_crushed_ore",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "boron"
+            },
             "count": 1,
-            "id": "cruciblecraft:boron/tiny_dust"
+            "id": "cruciblecraft:tiny_dust"
           },
           {
+            "components": {
+              "cruciblecraft:prefix_material": "boron11"
+            },
             "count": 8,
-            "id": "cruciblecraft:boron11/tiny_dust"
+            "id": "cruciblecraft:tiny_dust"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "lithium"
+            },
             "count": 1,
-            "id": "cruciblecraft:lithium/tiny_dust"
+            "id": "cruciblecraft:tiny_dust"
           },
           {
+            "components": {
+              "cruciblecraft:prefix_material": "lithium6"
+            },
             "count": 8,
-            "id": "cruciblecraft:lithium6/tiny_dust"
+            "id": "cruciblecraft:tiny_dust"
           }
         ]
       ]

@@ -42,13 +42,20 @@
           "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:azurite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "azurite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "copper"
+          },
           "count": 3,
-          "id": "cruciblecraft:copper/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

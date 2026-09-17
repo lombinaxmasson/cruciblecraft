@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:ice/cream_basic_milk_gelato"
+          "components": {
+            "cruciblecraft:prefix_material": "ice"
+          },
+          "items": "cruciblecraft:cream_basic_milk_gelato",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "peanut"
+          },
           "count": 1,
-          "id": "cruciblecraft:peanut/butter_ice_cream_it_s_peanut_butter_ice_cream_time"
+          "id": "cruciblecraft:butter_ice_cream_it_s_peanut_butter_ice_cream_time"
         }
       ],
       "output_chances": [

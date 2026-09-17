@@ -208,26 +208,22 @@ public final class EnergyTransformersGameTests {
                     helper.getLevel().getRecipeManager().byKey(id(path)).isPresent(),
                     "Missing survival recipe " + path);
         }
-        var wire = MaterialLookup.item("copper", MaterialPrefixes.WIRE)
-                .orElseThrow();
-        var iron = MaterialLookup.item("iron", MaterialPrefixes.DOUBLE_PLATE)
-                .orElseThrow();
-        var quad = MaterialLookup.item(
-                        "copper", MaterialPrefixes.QUADRUPLE_WIRE)
-                .orElseThrow();
-        var casing = MaterialLookup.item(
-                        "tin_alloy", MaterialPrefixes.MACHINE_CASING)
-                .orElseThrow();
+        var wire = MaterialLookup.stack("copper", MaterialPrefixes.WIRE);
+        var iron = MaterialLookup.stack("iron", MaterialPrefixes.DOUBLE_PLATE);
+        var quad = MaterialLookup.stack(
+                "copper", MaterialPrefixes.QUADRUPLE_WIRE);
+        var casing = MaterialLookup.stack(
+                "tin_alloy", MaterialPrefixes.MACHINE_CASING);
         List<ItemStack> slots = List.of(
-                new ItemStack(wire),
-                new ItemStack(iron),
-                new ItemStack(wire),
-                new ItemStack(quad),
-                new ItemStack(casing),
+                wire,
+                iron,
+                wire.copy(),
+                quad,
+                casing,
                 ItemStack.EMPTY,
-                new ItemStack(wire),
-                new ItemStack(iron),
-                new ItemStack(wire));
+                wire.copy(),
+                iron.copy(),
+                wire.copy());
         ItemStack assembled = craft(helper, 3, 3, slots);
         helper.assertTrue(
                 assembled.is(

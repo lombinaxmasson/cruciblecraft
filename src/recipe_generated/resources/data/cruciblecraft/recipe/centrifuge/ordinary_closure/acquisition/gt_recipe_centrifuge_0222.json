@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:cobalt_hexahydrate/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "cobalt_hexahydrate"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "cobalt"
+          },
           "count": 1,
-          "id": "cruciblecraft:cobalt/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

@@ -37,7 +37,11 @@
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:balas_ruby/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "balas_ruby"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
@@ -49,29 +53,45 @@
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:lignite/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "lignite"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "chromium"
+            },
             "count": 2,
-            "id": "cruciblecraft:chromium/dust"
+            "id": "cruciblecraft:dust"
           },
           {
+            "components": {
+              "cruciblecraft:prefix_material": "magnesium"
+            },
             "count": 1,
-            "id": "cruciblecraft:magnesium/dust"
+            "id": "cruciblecraft:dust"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "carbon"
+            },
             "count": 2,
-            "id": "cruciblecraft:carbon/dust"
+            "id": "cruciblecraft:dust"
           },
           {
+            "components": {
+              "cruciblecraft:prefix_material": "dark_ashes"
+            },
             "count": 1,
-            "id": "cruciblecraft:dark_ashes/dust"
+            "id": "cruciblecraft:dust"
           }
         ]
       ]

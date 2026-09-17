@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#1113",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/magnalium",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 1260,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 1728,
+          "id": "cruciblecraft:molten_magnalium"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "item_pipe_tile"
+          },
+          "items": "cruciblecraft:huge_magnalium_item_pipe",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "a237bbb635bc02102e99bad148c258c23d4cfe348226e896c89940e1b05d60a7"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#1113",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/0a2750b860aaf3e7"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

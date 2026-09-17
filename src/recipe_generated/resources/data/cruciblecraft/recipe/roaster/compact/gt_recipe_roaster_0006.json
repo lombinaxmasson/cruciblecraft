@@ -28,13 +28,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:stibnite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "stibnite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "antimony"
+          },
           "count": 28,
-          "id": "cruciblecraft:antimony/dust_div72"
+          "id": "cruciblecraft:dust_div72"
         }
       ],
       "output_chances": [

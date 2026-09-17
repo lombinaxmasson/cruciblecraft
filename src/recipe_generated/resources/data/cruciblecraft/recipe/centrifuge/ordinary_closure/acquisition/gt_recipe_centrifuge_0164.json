@@ -18,21 +18,34 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:cd_in_ag_alloy/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "cd_in_ag_alloy"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "cadmium"
+          },
           "count": 1,
-          "id": "cruciblecraft:cadmium/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "indium"
+          },
           "count": 1,
-          "id": "cruciblecraft:indium/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "silver"
+          },
           "count": 1,
-          "id": "cruciblecraft:silver/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

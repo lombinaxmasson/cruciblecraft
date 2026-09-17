@@ -32,13 +32,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:potassium_carbonate/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "potassium_carbonate"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "potassium_fluoride"
+          },
           "count": 2,
-          "id": "cruciblecraft:potassium_fluoride/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

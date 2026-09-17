@@ -40,8 +40,8 @@ public final class ItemPipeAcquisitionGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void copperMediumTableCraftsFromCurvedPlate(
             GameTestHelper helper) {
-        Item curved = ModItems.materialItem(
-                "copper", MaterialPrefixes.CURVED_PLATE).get();
+        ItemStack curved = MaterialLookup.stack(
+                "copper", MaterialPrefixes.CURVED_PLATE);
         Item pipe = ModItems.materialItem(
                 "copper", MaterialPrefixes.ITEM_PIPE).get();
         ItemStack assembled = assembleNamed(
@@ -50,9 +50,9 @@ public final class ItemPipeAcquisitionGameTests {
                 3,
                 2,
                 List.of(
-                        new ItemStack(curved),
-                        new ItemStack(curved),
-                        new ItemStack(curved),
+                        curved,
+                        curved.copy(),
+                        curved.copy(),
                         new ItemStack(ModItems.MATERIAL_WRENCH.get()),
                         new ItemStack(ModItems.MATERIAL_FILE.get()),
                         new ItemStack(ModItems.SMITHING_HAMMER.get())));
@@ -71,8 +71,8 @@ public final class ItemPipeAcquisitionGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void copperHugeItemTableCraftsFromDoublePlate(
             GameTestHelper helper) {
-        Item plate = ModItems.materialItem(
-                "copper", MaterialPrefixes.DOUBLE_PLATE).get();
+        ItemStack plate = MaterialLookup.stack(
+                "copper", MaterialPrefixes.DOUBLE_PLATE);
         Item huge = ModItems.materialItem(
                 "copper", MaterialPrefixes.HUGE_ITEM_PIPE).get();
         ItemStack assembled = assembleNamed(
@@ -81,15 +81,15 @@ public final class ItemPipeAcquisitionGameTests {
                 3,
                 3,
                 List.of(
-                        new ItemStack(plate),
-                        new ItemStack(plate),
-                        new ItemStack(plate),
+                        plate,
+                        plate.copy(),
+                        plate.copy(),
                         new ItemStack(ModItems.MATERIAL_WRENCH.get()),
                         new ItemStack(ModItems.MATERIAL_FILE.get()),
                         new ItemStack(ModItems.SMITHING_HAMMER.get()),
-                        new ItemStack(plate),
-                        new ItemStack(plate),
-                        new ItemStack(plate)));
+                        plate.copy(),
+                        plate.copy(),
+                        plate.copy()));
         helper.assertTrue(
                 assembled.is(huge) && assembled.getCount() == 1,
                 "copper huge item pipe did not craft from double plates: "
@@ -104,9 +104,8 @@ public final class ItemPipeAcquisitionGameTests {
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void itemTableDoesNotUseFlatPlate(GameTestHelper helper) {
-        Item plate = MaterialLookup.item(
-                "copper", MaterialPrefixes.PLATE).orElseThrow();
-        ItemStack plateStack = new ItemStack(plate);
+        ItemStack plateStack = MaterialLookup.stack(
+                "copper", MaterialPrefixes.PLATE);
         for (RecipeHolder<?> holder : helper.getLevel()
                 .getRecipeManager()
                 .getAllRecipesFor(RecipeType.CRAFTING)) {
@@ -135,8 +134,7 @@ public final class ItemPipeAcquisitionGameTests {
             GameTestHelper helper) {
         Item medium = ModItems.materialItem(
                 "copper", MaterialPrefixes.ITEM_PIPE).get();
-        Item ring = ModItems.materialItem(
-                "steel", MaterialPrefixes.RING).get();
+        ItemStack ring = MaterialLookup.stack("steel", MaterialPrefixes.RING);
         Item restrictive = ModItems.materialItem(
                 "copper", MaterialPrefixes.RESTRICTIVE_ITEM_PIPE).get();
         ItemStack assembled = assembleNamed(
@@ -148,11 +146,11 @@ public final class ItemPipeAcquisitionGameTests {
                         ItemStack.EMPTY,
                         new ItemStack(ModItems.SMITHING_HAMMER.get()),
                         ItemStack.EMPTY,
-                        new ItemStack(ring),
+                        ring,
                         new ItemStack(medium),
-                        new ItemStack(ring),
+                        ring.copy(),
                         ItemStack.EMPTY,
-                        new ItemStack(ring),
+                        ring.copy(),
                         ItemStack.EMPTY));
         helper.assertTrue(
                 assembled.is(restrictive) && assembled.getCount() == 1,
@@ -170,9 +168,8 @@ public final class ItemPipeAcquisitionGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void restrictiveUsesSteelRingNotInvented(
             GameTestHelper helper) {
-        Item steelRing = MaterialLookup.item(
-                "steel", MaterialPrefixes.RING).orElseThrow();
-        ItemStack steelRingStack = new ItemStack(steelRing);
+        ItemStack steelRingStack = MaterialLookup.stack(
+                "steel", MaterialPrefixes.RING);
         Item circuit = ModItems.PROGRAMMED_CIRCUIT.get();
         ItemStack circuitStack = new ItemStack(circuit);
         int seen = 0;

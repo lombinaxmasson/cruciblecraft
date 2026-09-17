@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:rye/food"
+          "components": {
+            "cruciblecraft:prefix_material": "rye"
+          },
+          "items": "cruciblecraft:food",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "bale"
+          },
           "count": 1,
-          "id": "cruciblecraft:bale/rye"
+          "id": "cruciblecraft:rye"
         }
       ],
       "output_chances": [

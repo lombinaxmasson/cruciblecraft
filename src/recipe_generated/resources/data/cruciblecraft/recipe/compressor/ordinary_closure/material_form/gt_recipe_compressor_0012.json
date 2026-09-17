@@ -16,26 +16,40 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:lazurite/plate_gem"
+            "components": {
+              "cruciblecraft:prefix_material": "lazurite"
+            },
+            "items": "cruciblecraft:plate_gem",
+            "type": "neoforge:components"
           }
         ],
         [
           {
-            "item": "cruciblecraft:sodalite/plate_gem"
+            "components": {
+              "cruciblecraft:prefix_material": "sodalite"
+            },
+            "items": "cruciblecraft:plate_gem",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "lazurite"
+            },
             "count": 1,
-            "id": "cruciblecraft:lazurite/dense_plate"
+            "id": "cruciblecraft:dense_plate"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "sodalite"
+            },
             "count": 1,
-            "id": "cruciblecraft:sodalite/dense_plate"
+            "id": "cruciblecraft:dense_plate"
           }
         ]
       ]

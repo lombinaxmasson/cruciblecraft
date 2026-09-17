@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.HexFormat;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -52,7 +53,7 @@ import net.neoforged.fml.loading.FMLEnvironment;
 public final class GeneratedMaterialPack {
     private static final int SERVER_PACK_FORMAT = 48;
     private static final int CLIENT_PACK_FORMAT = 34;
-    private static final String OUTPUT_SCHEMA = "generated-material-pack-v1";
+    private static final String OUTPUT_SCHEMA = "generated-material-pack-v2";
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final String OUTPUT_GENERATOR_IDENTITY = outputGeneratorIdentity();
     private static final Set<String> ITEM_OVERLAY_TEXTURES = Set.of(
@@ -196,20 +197,43 @@ public final class GeneratedMaterialPack {
                     oreIds.forEach(oreId -> files.put(
                             "data/" + CrucibleCraft.MODID + "/loot_table/blocks/"
                                     + ResourceLocation.parse(oreId).getPath() + ".json",
-                            oreLootTable(oreId, rawOreId)));
+                            oreLootTable(
+                                    oreId,
+                                    rawOreId,
+                                    material.id(),
+                                    !material.formItems()
+                                            .containsKey(MaterialPrefixes.RAW_ORE))));
                     continue;
                 }
                 String itemId = canonicalItemId(material, form);
-                addTag(
-                        files,
-                        "data/" + tagNamespace + "/tags/item/" + formTag + "/"
-                                + material.tagName() + ".json",
-                        List.of(itemId));
-                aggregateItemTags.computeIfAbsent(
-                                ResourceLocation.fromNamespaceAndPath(tagNamespace, formTag),
-                                ignored -> new ArrayList<>())
-                        .add("#" + tagNamespace + ":" + formTag + "/" + material.tagName());
-                materialItems.add(itemId);
+                boolean uniqueBlock = electricalSpecification(material, form) != null
+                        || pipeModelKey(material, form) != null
+                        || isPlaceableStorage(material, form)
+                        || isPlaceableCasing(material, form)
+                        || isRockForm(form)
+                        || isRedstoneWire(material, form);
+                boolean sharedInventory = !material.formItems().containsKey(form)
+                        && !uniqueBlock;
+                if (!sharedInventory) {
+                    addTag(
+                            files,
+                            "data/" + tagNamespace + "/tags/item/" + formTag + "/"
+                                    + material.tagName() + ".json",
+                            List.of(itemId));
+                    aggregateItemTags.computeIfAbsent(
+                                    ResourceLocation.fromNamespaceAndPath(tagNamespace, formTag),
+                                    ignored -> new ArrayList<>())
+                            .add("#" + tagNamespace + ":" + formTag + "/" + material.tagName());
+                    materialItems.add(itemId);
+                } else {
+                    String prefixId = prefixItemId(form);
+                    List<String> aggregate = aggregateItemTags.computeIfAbsent(
+                            ResourceLocation.fromNamespaceAndPath(tagNamespace, formTag),
+                            ignored -> new ArrayList<>());
+                    if (!aggregate.contains(prefixId)) {
+                        aggregate.add(prefixId);
+                    }
+                }
                 String electricalSpecification =
                         electricalSpecification(material, form);
                 String pipeModelKey = pipeModelKey(material, form);
@@ -287,6 +311,7 @@ public final class GeneratedMaterialPack {
         LinkedHashMap<String, String> files = new LinkedHashMap<>();
         files.put("pack.mcmeta", packMeta(CLIENT_PACK_FORMAT));
         JsonObject oreTranslations = new JsonObject();
+        LinkedHashSet<MaterialPrefix> sharedPrefixModels = new LinkedHashSet<>();
         for (MaterialDefinition material : materials) {
             for (MaterialPrefix form : requireRegisteredForms(material, registeredForms)) {
                 if (form.equals(MaterialPrefixes.ORE)) {
@@ -333,8 +358,8 @@ public final class GeneratedMaterialPack {
                                     material.id(), form.serializedName()));
                     continue;
                 }
-                JsonObject model = new JsonObject();
                 if (isRedstoneWire(material, form)) {
+                    JsonObject model = new JsonObject();
                     boolean insulated = com.masson.cruciblecraft.content
                             .redstonewire.RedstoneWireKind
                             .byPath(material.registryName(form))
@@ -356,6 +381,7 @@ public final class GeneratedMaterialPack {
                 String electricalSpecification =
                         electricalSpecification(material, form);
                 if (electricalSpecification != null) {
+                    JsonObject model = new JsonObject();
                     model.addProperty(
                             "parent",
                             CrucibleCraft.MODID + ":conductor/"
@@ -375,6 +401,7 @@ public final class GeneratedMaterialPack {
                 }
                 String pipeModelKey = pipeModelKey(material, form);
                 if (pipeModelKey != null) {
+                    JsonObject model = new JsonObject();
                     model.addProperty(
                             "parent",
                             CrucibleCraft.MODID + ":pipe/"
@@ -390,31 +417,11 @@ public final class GeneratedMaterialPack {
                             GSON.toJson(model));
                     continue;
                 }
-                String wireBundle = wireBundleItemParent(form);
-                if (wireBundle != null) {
-                    model.addProperty(
-                            "parent",
-                            CrucibleCraft.MODID + ":" + wireBundle);
-                    files.put(
-                            "assets/" + CrucibleCraft.MODID + "/models/item/"
-                                    + material.registryName(form) + ".json",
-                            GSON.toJson(model));
-                    continue;
-                }
-                var prefix = MaterialPrefixCatalog.definition(form);
-                model.addProperty("parent", prefix.modelTemplate());
-                JsonObject textures = new JsonObject();
-                textures.addProperty("layer0", prefix.modelTexture());
-                String overlay = overlayLayer(prefix.modelTexture());
-                if (overlay != null) {
-                    textures.addProperty("layer1", overlay);
-                }
-                model.add("textures", textures);
-                files.put(
-                        "assets/" + CrucibleCraft.MODID + "/models/item/"
-                                + material.registryName(form) + ".json",
-                        GSON.toJson(model));
+                sharedPrefixModels.add(form);
             }
+        }
+        for (MaterialPrefix form : sharedPrefixModels) {
+            addSharedPrefixItemModel(files, form);
         }
         JsonObject zhTranslations = new JsonObject();
         for (MaterialDefinition material : materials) {
@@ -733,8 +740,26 @@ public final class GeneratedMaterialPack {
         if (override != null) {
             return override;
         }
+        if (isUniqueBlockForm(material, form)) {
+            return ResourceLocation.fromNamespaceAndPath(
+                    CrucibleCraft.MODID, material.registryName(form)).toString();
+        }
+        return prefixItemId(form);
+    }
+
+    private static boolean isUniqueBlockForm(
+            MaterialDefinition material, MaterialPrefix form) {
+        return electricalSpecification(material, form) != null
+                || pipeModelKey(material, form) != null
+                || isPlaceableStorage(material, form)
+                || isPlaceableCasing(material, form)
+                || isRockForm(form)
+                || isRedstoneWire(material, form);
+    }
+
+    private static String prefixItemId(MaterialPrefix form) {
         return ResourceLocation.fromNamespaceAndPath(
-                CrucibleCraft.MODID, material.registryName(form)).toString();
+                CrucibleCraft.MODID, form.serializedName()).toString();
     }
 
     private static List<String> oreIds(String materialId) {
@@ -747,6 +772,29 @@ public final class GeneratedMaterialPack {
         return com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog
                 .require("rock")
                 .equals(form);
+    }
+
+    private static void addSharedPrefixItemModel(
+            Map<String, String> files, MaterialPrefix form) {
+        JsonObject model = new JsonObject();
+        String wireBundle = wireBundleItemParent(form);
+        if (wireBundle != null) {
+            model.addProperty("parent", CrucibleCraft.MODID + ":" + wireBundle);
+        } else {
+            MaterialPrefixDefinition prefix = MaterialPrefixCatalog.definition(form);
+            model.addProperty("parent", prefix.modelTemplate());
+            JsonObject textures = new JsonObject();
+            textures.addProperty("layer0", prefix.modelTexture());
+            String overlay = overlayLayer(prefix.modelTexture());
+            if (overlay != null) {
+                textures.addProperty("layer1", overlay);
+            }
+            model.add("textures", textures);
+        }
+        files.put(
+                "assets/" + CrucibleCraft.MODID + "/models/item/"
+                        + form.serializedName() + ".json",
+                GSON.toJson(model));
     }
 
     private static void addRockClientFiles(
@@ -850,7 +898,11 @@ public final class GeneratedMaterialPack {
         }
     }
 
-    private static String oreLootTable(String oreId, String rawOreId) {
+    private static String oreLootTable(
+            String oreId,
+            String rawOreId,
+            String materialId,
+            boolean prefixRawOre) {
         JsonObject silkCondition = new JsonObject();
         silkCondition.addProperty("condition", "minecraft:match_tool");
         JsonObject predicate = new JsonObject();
@@ -876,11 +928,19 @@ public final class GeneratedMaterialPack {
         JsonObject rawEntry = new JsonObject();
         rawEntry.addProperty("type", "minecraft:item");
         rawEntry.addProperty("name", rawOreId);
+        JsonArray functions = new JsonArray();
+        if (prefixRawOre) {
+            JsonObject setComponents = new JsonObject();
+            setComponents.addProperty("function", "minecraft:set_components");
+            JsonObject components = new JsonObject();
+            components.addProperty("cruciblecraft:prefix_material", materialId);
+            setComponents.add("components", components);
+            functions.add(setComponents);
+        }
         JsonObject fortune = new JsonObject();
         fortune.addProperty("function", "minecraft:apply_bonus");
         fortune.addProperty("enchantment", "minecraft:fortune");
         fortune.addProperty("formula", "minecraft:ore_drops");
-        JsonArray functions = new JsonArray();
         functions.add(fortune);
         rawEntry.add("functions", functions);
 

@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:energetic_silver/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "energetic_silver"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "silver"
+          },
           "count": 1,
-          "id": "cruciblecraft:silver/dust"
+          "id": "cruciblecraft:dust"
         },
         {
           "count": 1,

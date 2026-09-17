@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:biotite/washed_crushed_ore"
+          "components": {
+            "cruciblecraft:prefix_material": "biotite"
+          },
+          "items": "cruciblecraft:washed_crushed_ore",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "biotite"
+          },
           "count": 1,
-          "id": "cruciblecraft:biotite/centrifuged_crushed_ore"
+          "id": "cruciblecraft:centrifuged_crushed_ore"
         }
       ],
       "output_chances": [

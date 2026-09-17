@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:oat/oats"
+          "components": {
+            "cruciblecraft:prefix_material": "oat"
+          },
+          "items": "cruciblecraft:oats",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "bale"
+          },
           "count": 1,
-          "id": "cruciblecraft:bale/oats"
+          "id": "cruciblecraft:oats"
         }
       ],
       "output_chances": [

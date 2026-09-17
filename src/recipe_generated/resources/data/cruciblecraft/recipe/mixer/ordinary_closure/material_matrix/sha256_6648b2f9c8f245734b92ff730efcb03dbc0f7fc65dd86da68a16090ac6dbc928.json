@@ -22,25 +22,40 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:pitstone/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "pitstone"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
           {
-            "item": "cruciblecraft:prismarine_dark/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "prismarine_dark"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
           {
-            "item": "cruciblecraft:mazestone/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "mazestone"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "asphalt"
+            },
             "count": 1,
-            "id": "cruciblecraft:asphalt/magenta"
+            "id": "cruciblecraft:magenta"
           }
         ]
       ]

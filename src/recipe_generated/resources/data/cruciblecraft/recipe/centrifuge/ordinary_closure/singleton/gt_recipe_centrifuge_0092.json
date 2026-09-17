@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:water/comb"
+          "components": {
+            "cruciblecraft:prefix_material": "water"
+          },
+          "items": "cruciblecraft:comb",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "wax_bee"
+          },
           "count": 1,
-          "id": "cruciblecraft:wax_bee/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

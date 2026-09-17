@@ -34,17 +34,27 @@
           "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:chromite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "chromite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "iron"
+          },
           "count": 1,
-          "id": "cruciblecraft:iron/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "chromium"
+          },
           "count": 2,
-          "id": "cruciblecraft:chromium/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

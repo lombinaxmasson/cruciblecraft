@@ -169,7 +169,7 @@ public final class ModCreativeTabs {
                         .icon(icon)
                         .displayItems((parameters, output) -> {
                             materialEntryPlan().get(tab).forEach(itemId ->
-                                    output.accept(requirePlannedItem(itemId)));
+                                    output.accept(requirePlannedStack(itemId)));
                             if (tab == MaterialCreativeTab.CABLES) {
                                 output.accept(ModItems.LU_FIBER_CABLE.get());
                                 ModBlocks.redstoneWireCatalog().forEach(block ->
@@ -438,7 +438,7 @@ public final class ModCreativeTabs {
                         MaterialCatalog.startupValues(),
                         registeredFormsForPlan(),
                         MaterialCatalog.runtimePreferences())
-                .forEach(itemId -> output.accept(requirePlannedItem(itemId)));
+                .forEach(itemId -> output.accept(requirePlannedStack(itemId)));
     }
 
     private static void fillFluidCells(
@@ -513,18 +513,21 @@ public final class ModCreativeTabs {
         return registeredForms;
     }
 
+    static ItemStack requirePlannedStack(String itemId) {
+        return com.masson.cruciblecraft.api.material.MaterialLookup
+                .stackFromLogicalId(itemId)
+                .orElseThrow(() -> {
+                    CrucibleCraft.LOGGER.error(
+                            "Material creative-tab plan references missing item {}",
+                            itemId);
+                    return new IllegalStateException(
+                            "Material creative-tab plan references missing item "
+                                    + itemId);
+                });
+    }
+
     static Item requirePlannedItem(String itemId) {
-        ResourceLocation location = ResourceLocation.tryParse(itemId);
-        if (location != null) {
-            var item = BuiltInRegistries.ITEM.getOptional(location);
-            if (item.isPresent()) {
-                return item.orElseThrow();
-            }
-        }
-        CrucibleCraft.LOGGER.error(
-                "Material creative-tab plan references missing item {}", itemId);
-        throw new IllegalStateException(
-                "Material creative-tab plan references missing item " + itemId);
+        return requirePlannedStack(itemId).getItem();
     }
 
     static final class MaterialEntryPlanCache {

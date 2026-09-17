@@ -1,0 +1,47 @@
+{
+  "schema_version": 2,
+  "slug": "registry/prefix-material-component",
+  "title": "Prefix Material Component",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "not_applicable",
+  "owned_paths": [
+    "docs/history/card-plans/closed/材料前缀组件身份详细计划.md",
+    "docs/decisions/材料前缀组件身份ADR.md",
+    "docs/current/material-prefix-identity.md",
+    ".cursor/rules/material-prefix-identity.mdc",
+    "src/main/java/com/masson/cruciblecraft/content/item/PrefixMaterialItem.java",
+    "src/main/java/com/masson/cruciblecraft/material/MaterialFormHosts.java",
+    "src/main/java/com/masson/cruciblecraft/recipe/gt/PrefixMaterialItemCodecs.java",
+    "src/main/java/com/masson/cruciblecraft/api/material/MaterialLookup.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModComponents.java",
+    "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+    "src/test/java/com/masson/cruciblecraft/material/PrefixMaterialIdentityTest.java",
+    "tools/capabilities/registry/prefix-material-component/**"
+  ],
+  "depends_on": [],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "registry/prefix-material-component",
+  "required_test_ids": [
+    "sharedInventoryPrefixesDoNotEmitPerMaterialTags",
+    "uniqueHostedFormsKeepPerMaterialIds",
+    "slashInventoryIdRewritesOntoSharedPrefixItem"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "registry:material.inventory_prefix",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:dust",
+        "cruciblecraft:ingot",
+        "cruciblecraft:plate",
+        "cruciblecraft:prefix_material"
+      ],
+      "reason": "One Item per inventory prefix; material is prefix_material. Not per-material Item ids, not c:dusts/iron on the shared dust, not pipe/cable/dumb-block fold."
+    }
+  ],
+  "note": "Inventory prefixes become shared Items plus prefix_material. Do not dual-register cruciblecraft:{material}/{form}. Unique hosted pipes, cables, storage, casing, and rock stay per-material. Close at runtime_ready. Old saves are out of scope."
+}

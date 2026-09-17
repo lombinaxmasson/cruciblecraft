@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:tungstic_acid/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "tungstic_acid"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "tungsten_trioxide"
+          },
           "count": 4,
-          "id": "cruciblecraft:tungsten_trioxide/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

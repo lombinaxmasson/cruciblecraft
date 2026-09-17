@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#0851",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/titanium",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 2597,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 720,
+          "id": "cruciblecraft:molten_titanium"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "foundry"
+          },
+          "items": "cruciblecraft:crucible_crossing_titanium",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "26f468e52bda31df3dbd1390802dd60e23a6a7198c7148d13407ffe241e1e572"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#0851",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/7d001a3dd0ea6663"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

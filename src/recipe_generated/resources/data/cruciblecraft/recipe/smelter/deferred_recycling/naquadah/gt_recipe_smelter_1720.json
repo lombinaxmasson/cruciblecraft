@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#1720",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/naquadah",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 2640,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 216,
+          "id": "cruciblecraft:molten_naquadah"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "electric_wire"
+          },
+          "items": "cruciblecraft:3x_naquadah_wire",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "3a56d72103b5ca86d8a58c33df18e16068b856d1c5729119c1890f54f1388b7d"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#1720",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/a00a4f9d079891f1"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

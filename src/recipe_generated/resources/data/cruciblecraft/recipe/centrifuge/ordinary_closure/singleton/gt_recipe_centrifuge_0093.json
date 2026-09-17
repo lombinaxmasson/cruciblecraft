@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:magic/comb"
+          "components": {
+            "cruciblecraft:prefix_material": "magic"
+          },
+          "items": "cruciblecraft:comb",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "wax_magic"
+          },
           "count": 1,
-          "id": "cruciblecraft:wax_magic/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

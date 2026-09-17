@@ -50,15 +50,22 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:sodium_carbonate/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "sodium_carbonate"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "trona"
+            },
             "count": 1,
-            "id": "cruciblecraft:trona/dust"
+            "id": "cruciblecraft:dust"
           }
         ]
       ]

@@ -21,7 +21,7 @@ import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.item.MaterialCasingBlockItem;
-import com.masson.cruciblecraft.content.item.MaterialItem;
+import com.masson.cruciblecraft.content.item.PrefixMaterialItem;
 import com.masson.cruciblecraft.content.item.MaterialStorageBlockItem;
 import com.masson.cruciblecraft.content.item.CableBlockItem;
 import com.masson.cruciblecraft.content.item.CatalogNamedBlockItem;
@@ -113,6 +113,7 @@ import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
 import com.masson.cruciblecraft.content.sensor.SensorKind;
 import com.masson.cruciblecraft.material.CellContentGate;
 import com.masson.cruciblecraft.material.MaterialCatalog;
+import com.masson.cruciblecraft.material.MaterialFormHosts;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverComponentTiers;
@@ -137,6 +138,8 @@ public final class ModItems {
             GtWoodCatalog.registerAll(ITEMS);
     private static final Map<String, DeferredItem<? extends Item>>
             MATERIAL_ITEMS = new LinkedHashMap<>();
+    private static final Map<MaterialPrefix, DeferredItem<PrefixMaterialItem>>
+            PREFIX_ITEMS = new LinkedHashMap<>();
     private static final Map<ModBlocks.OreBlockKey, DeferredItem<BlockItem>>
             MATERIAL_ORE_ITEMS = new LinkedHashMap<>();
 
@@ -975,8 +978,25 @@ public final class ModItems {
     public static final Map<String, DeferredItem<Item>> EMPTY_TOOL_HEADS =
             registerEmptyToolHeads();
     public static void registerMaterials(Collection<MaterialDefinition> definitions) {
-        if (!MATERIAL_ITEMS.isEmpty() || !MATERIAL_ORE_ITEMS.isEmpty()) {
+        if (!MATERIAL_ITEMS.isEmpty()
+                || !MATERIAL_ORE_ITEMS.isEmpty()
+                || !PREFIX_ITEMS.isEmpty()) {
             throw new IllegalStateException("Material items or ore items already registered");
+        }
+        java.util.LinkedHashSet<MaterialPrefix> sharedPrefixes = new java.util.LinkedHashSet<>();
+        for (MaterialDefinition material : definitions) {
+            for (MaterialPrefix form : MaterialCatalog.registeredForms(material)) {
+                if (MaterialFormHosts.isSharedInventoryForm(material, form)) {
+                    sharedPrefixes.add(form);
+                }
+            }
+        }
+        for (MaterialPrefix form : sharedPrefixes) {
+            PREFIX_ITEMS.put(
+                    form,
+                    ITEMS.register(
+                            MaterialFormHosts.prefixItemPath(form),
+                            () -> new PrefixMaterialItem(form, new Item.Properties())));
         }
         for (MaterialDefinition material : definitions) {
             if (!MaterialCatalog.registeredForms(material).contains(MaterialPrefixes.ORE)) {
@@ -993,7 +1013,8 @@ public final class ModItems {
         for (MaterialDefinition material : definitions) {
             for (MaterialPrefix form : MaterialCatalog.registeredForms(material)) {
                 if (form.equals(MaterialPrefixes.ORE)
-                        || material.formItems().containsKey(form)) {
+                        || material.formItems().containsKey(form)
+                        || MaterialFormHosts.isSharedInventoryForm(material, form)) {
                     continue;
                 }
                 String registryName = material.registryName(form);
@@ -1057,17 +1078,39 @@ public final class ModItems {
                                     ModBlocks.rockBlock(material.id()).get(),
                                     new Item.Properties()));
                 } else {
-                    item = ITEMS.register(
-                            registryName,
-                            () -> new MaterialItem(
-                                    material,
-                                    form,
-                                    new Item.Properties()));
+                    throw new IllegalStateException(
+                            "Unique hosted form has no block item: "
+                                    + material.id() + "/" + form.serializedName());
                 }
                 MATERIAL_ITEMS.put(key(material.id(), form), item);
             }
         }
         bindNamedCasingAliases();
+        MaterialCatalog.replaceCanonicalItemMappings(
+                liveCanonicalItemMappings(definitions));
+    }
+
+    private static java.util.Map<String, String> liveCanonicalItemMappings(
+            Collection<MaterialDefinition> definitions) {
+        java.util.LinkedHashMap<String, String> mappings = new java.util.LinkedHashMap<>();
+        for (MaterialDefinition material : definitions) {
+            for (MaterialPrefix form : MaterialCatalog.registeredForms(material)) {
+                String override = material.formItems().get(form);
+                String itemId;
+                if (form.equals(MaterialPrefixes.ORE)) {
+                    itemId = "cruciblecraft:" + material.id() + "_ore";
+                } else if (override != null) {
+                    itemId = override;
+                } else if (MaterialFormHosts.isSharedInventoryForm(material, form)) {
+                    itemId = "cruciblecraft:"
+                            + MaterialFormHosts.prefixItemPath(form);
+                } else {
+                    itemId = "cruciblecraft:" + material.registryName(form);
+                }
+                mappings.put(material.id() + "/" + form.serializedName(), itemId);
+            }
+        }
+        return java.util.Collections.unmodifiableMap(mappings);
     }
 
     private static DeferredItem<PipeBlockItem> pipeItem(
@@ -1088,18 +1131,37 @@ public final class ModItems {
             String materialId, MaterialPrefix form) {
         DeferredItem<? extends Item> item =
                 MATERIAL_ITEMS.get(key(materialId, form));
-        if (item == null) {
-            throw new IllegalArgumentException("No " + form.serializedName() + " for material " + materialId);
+        if (item != null) {
+            return item;
         }
-        return item;
+        DeferredItem<PrefixMaterialItem> prefixItem = PREFIX_ITEMS.get(form);
+        if (prefixItem != null
+                && MaterialCatalog.find(materialId)
+                        .filter(material -> MaterialCatalog.isFormRegistered(material, form))
+                        .isPresent()) {
+            return prefixItem;
+        }
+        throw new IllegalArgumentException("No " + form.serializedName() + " for material " + materialId);
     }
 
     public static boolean hasMaterialItem(String materialId, MaterialPrefix form) {
-        return MATERIAL_ITEMS.containsKey(key(materialId, form));
+        return MATERIAL_ITEMS.containsKey(key(materialId, form))
+                || (PREFIX_ITEMS.containsKey(form)
+                        && MaterialCatalog.find(materialId)
+                                .filter(material -> MaterialCatalog.isFormRegistered(
+                                        material, form))
+                                .isPresent());
     }
 
     public static Collection<DeferredItem<? extends Item>> materialItems() {
-        return MATERIAL_ITEMS.values();
+        java.util.ArrayList<DeferredItem<? extends Item>> items =
+                new java.util.ArrayList<>(MATERIAL_ITEMS.values());
+        items.addAll(PREFIX_ITEMS.values());
+        return items;
+    }
+
+    public static Collection<DeferredItem<PrefixMaterialItem>> prefixMaterialItems() {
+        return PREFIX_ITEMS.values();
     }
 
     public static DeferredItem<PipeCoverItem> compactElectricCover(

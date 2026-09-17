@@ -150,10 +150,10 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
         if (preview.isEmpty()) {
             return;
         }
-        ItemStack produced = MaterialLookup.item(
+        ItemStack produced = MaterialLookup.tryStack(
                         preview.get().material().id(),
-                        preview.get().form())
-                .map(item -> new ItemStack(item, preview.get().count()))
+                        preview.get().form(),
+                        preview.get().count())
                 .orElse(ItemStack.EMPTY);
         if (produced.isEmpty()) {
             return;

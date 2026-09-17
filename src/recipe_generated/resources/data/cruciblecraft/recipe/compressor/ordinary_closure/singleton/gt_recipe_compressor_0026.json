@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:white/clay_kaolinite_clay_porcelain_clay"
+          "components": {
+            "cruciblecraft:prefix_material": "white"
+          },
+          "items": "cruciblecraft:clay_kaolinite_clay_porcelain_clay",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "diggable"
+          },
           "count": 1,
-          "id": "cruciblecraft:diggable/white_clay"
+          "id": "cruciblecraft:white_clay"
         }
       ],
       "output_chances": [

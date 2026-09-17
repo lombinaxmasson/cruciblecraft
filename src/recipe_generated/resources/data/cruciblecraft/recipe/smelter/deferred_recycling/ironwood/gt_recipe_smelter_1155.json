@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#1155",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/ironwood",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 6101,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 1728,
+          "id": "cruciblecraft:molten_ironwood"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "fluid_pipe_tile"
+          },
+          "items": "cruciblecraft:quadruple_ironwood_fluid_pipe",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "b7187496d131cfb9e526b1f6177003a9a4fa8926b0303a8ad58de29db7d6b2c4"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#1155",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/17a7324230f4fbe2"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

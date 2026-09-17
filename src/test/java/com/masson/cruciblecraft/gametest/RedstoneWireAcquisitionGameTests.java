@@ -129,10 +129,9 @@ public final class RedstoneWireAcquisitionGameTests {
 
     private static void assertPlateRecipe(
             GameTestHelper helper, String material) {
-        Item plate = MaterialLookup.item(
-                "rubber", MaterialPrefixes.PLATE).orElseThrow();
-        Item wire = ModItems.materialItem(
-                material, MaterialPrefixes.WIRE).get();
+        ItemStack plate = MaterialLookup.stack(
+                "rubber", MaterialPrefixes.PLATE);
+        ItemStack wire = MaterialLookup.stack(material, MaterialPrefixes.WIRE);
         Item cable = ModItems.materialItem(
                 material, MaterialPrefixes.CABLE).get();
         GTRecipeEntry entry = requireGt(
@@ -147,10 +146,10 @@ public final class RedstoneWireAcquisitionGameTests {
                 entry.map().equals(ModRecipeMaps.LAMINATOR.id()),
                 material + " plate recipe is not laminator");
         helper.assertTrue(
-                entry.recipe().itemInputs().get(0).test(new ItemStack(plate)),
+                entry.recipe().itemInputs().get(0).test(plate),
                 material + " plate recipe missing rubber/plate");
         helper.assertTrue(
-                entry.recipe().itemInputs().get(1).test(new ItemStack(wire)),
+                entry.recipe().itemInputs().get(1).test(wire),
                 material + " plate recipe missing matching wire");
         helper.assertTrue(
                 entry.recipe().itemOutputs().getFirst().is(cable),

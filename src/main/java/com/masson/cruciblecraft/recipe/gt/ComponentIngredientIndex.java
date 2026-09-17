@@ -24,6 +24,7 @@ public final class ComponentIngredientIndex {
     private static final Set<ResourceLocation> INDEXABLE_COMPONENTS = Set.of(
             ModComponents.TOOL_MATERIAL.getId(),
             ModComponents.MACHINE_MATERIAL.getId(),
+            ModComponents.PREFIX_MATERIAL.getId(),
             ModComponents.CIRCUIT_CONFIG.getId(),
             ModComponents.FIREPROOF.getId());
 
@@ -40,6 +41,9 @@ public final class ComponentIngredientIndex {
         }
         if (componentId.equals(ModComponents.MACHINE_MATERIAL.getId())) {
             return Optional.of(ModComponents.MACHINE_MATERIAL.get());
+        }
+        if (componentId.equals(ModComponents.PREFIX_MATERIAL.getId())) {
+            return Optional.of(ModComponents.PREFIX_MATERIAL.get());
         }
         return Optional.empty();
     }

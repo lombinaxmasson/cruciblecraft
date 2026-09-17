@@ -28,13 +28,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:pyrite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "pyrite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "hematite"
+          },
           "count": 60,
-          "id": "cruciblecraft:hematite/dust_div72"
+          "id": "cruciblecraft:dust_div72"
         }
       ],
       "output_chances": [

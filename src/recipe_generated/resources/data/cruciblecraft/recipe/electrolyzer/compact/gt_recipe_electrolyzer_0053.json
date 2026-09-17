@@ -34,21 +34,34 @@
           "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:obsidian/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "obsidian"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "magnesium"
+          },
           "count": 1,
-          "id": "cruciblecraft:magnesium/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "iron"
+          },
           "count": 1,
-          "id": "cruciblecraft:iron/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "silicon_dioxide"
+          },
           "count": 6,
-          "id": "cruciblecraft:silicon_dioxide/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

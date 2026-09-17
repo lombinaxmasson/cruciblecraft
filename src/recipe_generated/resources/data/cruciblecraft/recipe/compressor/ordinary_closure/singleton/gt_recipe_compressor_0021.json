@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:food/mud"
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
+          "items": "cruciblecraft:mud",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "diggable"
+          },
           "count": 1,
-          "id": "cruciblecraft:diggable/mud"
+          "id": "cruciblecraft:mud"
         }
       ],
       "output_chances": [

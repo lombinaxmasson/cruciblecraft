@@ -22,25 +22,40 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:greenschist/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "greenschist"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
           {
-            "item": "cruciblecraft:prismarine/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "prismarine"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
           {
-            "item": "cruciblecraft:betweenstone/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "betweenstone"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "asphalt"
+            },
             "count": 1,
-            "id": "cruciblecraft:asphalt/purple"
+            "id": "cruciblecraft:purple"
           }
         ]
       ]

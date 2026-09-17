@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:energetic_alloy/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "energetic_alloy"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "gold_inductive"
+          },
           "count": 2,
-          "id": "cruciblecraft:gold_inductive/dust"
+          "id": "cruciblecraft:dust"
         },
         {
           "count": 1,

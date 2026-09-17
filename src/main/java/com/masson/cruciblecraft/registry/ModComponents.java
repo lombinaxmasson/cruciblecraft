@@ -66,6 +66,15 @@ public final class ModComponents {
 
     public static final DeferredHolder<
             net.minecraft.core.component.DataComponentType<?>,
+            net.minecraft.core.component.DataComponentType<String>> PREFIX_MATERIAL =
+            COMPONENTS.registerComponentType(
+                    "prefix_material",
+                    builder -> builder
+                            .persistent(MaterialId.CODEC)
+                            .networkSynchronized(ByteBufCodecs.STRING_UTF8));
+
+    public static final DeferredHolder<
+            net.minecraft.core.component.DataComponentType<?>,
             net.minecraft.core.component.DataComponentType<MachineDurabilityComponent>> MACHINE_DURABILITY =
             COMPONENTS.registerComponentType(
                     "machine_durability",

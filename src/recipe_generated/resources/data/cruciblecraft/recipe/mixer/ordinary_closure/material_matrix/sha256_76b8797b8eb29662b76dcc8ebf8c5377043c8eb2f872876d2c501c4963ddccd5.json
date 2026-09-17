@@ -86,15 +86,22 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:magnesium/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "magnesium"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "magnesium_carbonate"
+            },
             "count": 5,
-            "id": "cruciblecraft:magnesium_carbonate/dust"
+            "id": "cruciblecraft:dust"
           }
         ]
       ]

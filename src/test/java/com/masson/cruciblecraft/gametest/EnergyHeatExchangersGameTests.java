@@ -163,28 +163,24 @@ public final class EnergyHeatExchangersGameTests {
                     helper.getLevel().getRecipeManager().byKey(id(path)).isPresent(),
                     "Missing survival recipe " + path);
         }
-        var plate = MaterialLookup.item("lead", MaterialPrefixes.PLATE)
-                .orElseThrow();
-        var copper = MaterialLookup.item(
-                        "copper", MaterialPrefixes.DOUBLE_PLATE)
-                .orElseThrow();
-        var pipe = MaterialLookup.item(
-                        "copper", MaterialPrefixes.SMALL_FLUID_PIPE)
-                .orElseThrow();
-        var casing = MaterialLookup.item(
-                        "invar", MaterialPrefixes.MACHINE_CASING)
-                .orElseThrow();
+        var plate = MaterialLookup.stack("lead", MaterialPrefixes.PLATE);
+        var copper = MaterialLookup.stack(
+                "copper", MaterialPrefixes.DOUBLE_PLATE);
+        var pipe = MaterialLookup.stack(
+                "copper", MaterialPrefixes.SMALL_FLUID_PIPE);
+        var casing = MaterialLookup.stack(
+                "invar", MaterialPrefixes.MACHINE_CASING);
         var wrench = ModItems.MATERIAL_WRENCH.get();
         List<ItemStack> slots = List.of(
-                new ItemStack(plate),
-                new ItemStack(copper),
-                new ItemStack(plate),
-                new ItemStack(pipe),
+                plate,
+                copper,
+                plate.copy(),
+                pipe,
                 new ItemStack(wrench),
-                new ItemStack(pipe),
-                new ItemStack(plate),
-                new ItemStack(casing),
-                new ItemStack(plate));
+                pipe.copy(),
+                plate.copy(),
+                casing,
+                plate.copy());
         ItemStack assembled = craft(helper, 3, 3, slots);
         helper.assertTrue(
                 assembled.is(

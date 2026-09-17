@@ -28,21 +28,34 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:kesterite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "kesterite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "copper"
+          },
           "count": 1,
-          "id": "cruciblecraft:copper/small_dust"
+          "id": "cruciblecraft:small_dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "zinc"
+          },
           "count": 9,
-          "id": "cruciblecraft:zinc/dust_div72"
+          "id": "cruciblecraft:dust_div72"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "tin"
+          },
           "count": 9,
-          "id": "cruciblecraft:tin/dust_div72"
+          "id": "cruciblecraft:dust_div72"
         }
       ],
       "output_chances": [

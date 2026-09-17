@@ -66,6 +66,20 @@ class MissingMaterialStackRewriterTest {
     }
 
     @Test
+    void slashInventoryIdRewritesOntoSharedPrefixItem() {
+        var plan = MissingMaterialStackRewriter.plan(
+                "cruciblecraft:copper/dust",
+                Map.of("copper/dust", "cruciblecraft:dust"),
+                "cruciblecraft:dust"::equals);
+
+        assertEquals(MissingMaterialStackRewriter.Kind.CANONICAL, plan.kind());
+        assertEquals("cruciblecraft:dust", plan.targetItemId());
+        assertEquals("copper", plan.materialId());
+        assertEquals("dust", plan.form());
+        assertEquals(true, plan.writePrefixMaterial());
+    }
+
+    @Test
     void leavesRegisteredItemsAloneWhenTheirSuffixLooksLikeAMaterialPrefix() {
         var plan = MissingMaterialStackRewriter.plan(
                 "cruciblecraft:deepslate_copper_raw_ore",

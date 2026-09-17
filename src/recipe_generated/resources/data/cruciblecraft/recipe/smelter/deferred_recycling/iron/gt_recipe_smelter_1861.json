@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#1861",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/iron",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 116,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 16,
+          "id": "cruciblecraft:molten_iron"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "panel"
+          },
+          "items": "cruciblecraft:wood_98",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "ae1c40c9d62d30a89056d0e719f05c319d367506d1e4d112581150841f13ec41"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#1861",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/c64498375fadbd4b"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

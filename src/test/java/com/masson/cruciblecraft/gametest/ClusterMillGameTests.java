@@ -122,25 +122,22 @@ public final class ClusterMillGameTests {
             Item result = ModItems.tieredProcessingItemsById()
                     .get(id(host.itemPath()))
                     .get();
-            Item gear = MaterialLookup.item(host.material(), MaterialPrefixes.GEAR)
-                    .orElseThrow();
-            Item smallGear = MaterialLookup.item(
-                            host.material(), MaterialPrefixes.SMALL_GEAR)
-                    .orElseThrow();
-            Item casing = MaterialLookup.item(
-                            host.material(),
-                            MaterialPrefixes.MACHINE_CASING_QUADRUPLE)
-                    .orElseThrow();
+            ItemStack gear = MaterialLookup.stack(host.material(), MaterialPrefixes.GEAR);
+            ItemStack smallGear = MaterialLookup.stack(
+                    host.material(), MaterialPrefixes.SMALL_GEAR);
+            ItemStack casing = MaterialLookup.stack(
+                    host.material(),
+                    MaterialPrefixes.MACHINE_CASING_QUADRUPLE);
             List<ItemStack> slots = List.of(
-                    new ItemStack(smallGear),
-                    new ItemStack(smallGear),
-                    new ItemStack(smallGear),
+                    smallGear,
+                    smallGear.copy(),
+                    smallGear.copy(),
                     new ItemStack(ModItems.MATERIAL_WRENCH.get()),
-                    new ItemStack(gear),
+                    gear,
                     new ItemStack(ModItems.SMITHING_HAMMER.get()),
-                    new ItemStack(smallGear),
-                    new ItemStack(casing),
-                    new ItemStack(smallGear));
+                    smallGear.copy(),
+                    casing,
+                    smallGear.copy());
             ItemStack assembled = craft(helper, slots);
             helper.assertTrue(
                     assembled.is(result) && assembled.getCount() == 1,

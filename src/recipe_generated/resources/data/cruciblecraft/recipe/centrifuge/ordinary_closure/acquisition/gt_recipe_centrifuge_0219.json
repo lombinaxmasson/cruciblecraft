@@ -18,21 +18,34 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:stellar_alloy/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "stellar_alloy"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "melodic_alloy"
+          },
           "count": 1,
-          "id": "cruciblecraft:melodic_alloy/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "nether_star"
+          },
           "count": 1,
-          "id": "cruciblecraft:nether_star/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "clay"
+          },
           "count": 4,
-          "id": "cruciblecraft:clay/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

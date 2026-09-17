@@ -34,21 +34,34 @@
           "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:amazonite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "amazonite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "alumina"
+          },
           "count": 5,
-          "id": "cruciblecraft:alumina/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "silicon_dioxide"
+          },
           "count": 18,
-          "id": "cruciblecraft:silicon_dioxide/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "potassium"
+          },
           "count": 2,
-          "id": "cruciblecraft:potassium/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

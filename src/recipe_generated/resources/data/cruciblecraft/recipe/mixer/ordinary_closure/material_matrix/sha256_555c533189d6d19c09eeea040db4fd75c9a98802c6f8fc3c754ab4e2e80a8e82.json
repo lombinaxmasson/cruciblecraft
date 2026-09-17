@@ -50,15 +50,22 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:calcium_sulfate/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "calcium_sulfate"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "gypsum"
+            },
             "count": 1,
-            "id": "cruciblecraft:gypsum/dust"
+            "id": "cruciblecraft:dust"
           }
         ]
       ]

@@ -336,6 +336,20 @@ public final class MaterialCatalog {
         return requireState().canonicalItemMappings();
     }
 
+    public static synchronized void replaceCanonicalItemMappings(
+            Map<String, String> mappings) {
+        State current = requireState();
+        state = new State(
+                current.bootstrapped(),
+                current.definitions(),
+                current.decompositionInfo(),
+                current.alloyIndex(),
+                mappings,
+                current.registeredForms(),
+                current.prefixIndex(),
+                current.factualPrefixIndex());
+    }
+
     private static Map<String, Integer> scaleRatio(
             String materialId,
             int units,

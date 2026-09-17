@@ -22,16 +22,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:food/sugary_dough_don_t_eat_the_dough_before_it_is_baken"
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
+          "items": "cruciblecraft:sugary_dough_don_t_eat_the_dough_before_it_is_baken",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:chocolate/raisins_dried_grapes_coated_in_chocolate"
+          "components": {
+            "cruciblecraft:prefix_material": "chocolate"
+          },
+          "items": "cruciblecraft:raisins_dried_grapes_coated_in_chocolate",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
           "count": 1,
-          "id": "cruciblecraft:food/sugary_chocolate_raisin_dough_almost_looks_like_chocolate_chips"
+          "id": "cruciblecraft:sugary_chocolate_raisin_dough_almost_looks_like_chocolate_chips"
         }
       ],
       "output_chances": [

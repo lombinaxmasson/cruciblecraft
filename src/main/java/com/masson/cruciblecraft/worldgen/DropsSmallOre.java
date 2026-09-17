@@ -158,8 +158,7 @@ public final class DropsSmallOre {
     }
 
     private static ItemStack item(String materialId, MaterialPrefix prefix) {
-        return MaterialLookup.item(materialId, prefix)
-                .map(item -> new ItemStack(item, 1))
+        return MaterialLookup.tryStack(materialId, prefix, 1)
                 .orElse(ItemStack.EMPTY);
     }
 

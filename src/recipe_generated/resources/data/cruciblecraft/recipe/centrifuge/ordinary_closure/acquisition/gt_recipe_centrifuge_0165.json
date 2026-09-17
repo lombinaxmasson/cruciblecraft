@@ -18,17 +18,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:trinitanium/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "trinitanium"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "trinium"
+          },
           "count": 2,
-          "id": "cruciblecraft:trinium/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "titanium"
+          },
           "count": 1,
-          "id": "cruciblecraft:titanium/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

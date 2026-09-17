@@ -102,15 +102,22 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:ferric_chloride/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "ferric_chloride"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "ferrous_chloride"
+            },
             "count": 3,
-            "id": "cruciblecraft:ferrous_chloride/dust"
+            "id": "cruciblecraft:dust"
           }
         ]
       ]

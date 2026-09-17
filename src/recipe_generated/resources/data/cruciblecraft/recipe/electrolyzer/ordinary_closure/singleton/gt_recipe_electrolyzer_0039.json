@@ -34,17 +34,27 @@
           "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:smithsonite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "smithsonite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "zinc"
+          },
           "count": 1,
-          "id": "cruciblecraft:zinc/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "carbon"
+          },
           "count": 1,
-          "id": "cruciblecraft:carbon/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

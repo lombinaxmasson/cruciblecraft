@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#2297",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/nickel",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 5526,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 720,
+          "id": "cruciblecraft:molten_nickel"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "nickel"
+          },
+          "items": "cruciblecraft:queue_hopper",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "ac21c285352386d1e51476e98f9496890aede86b65cd149b9bdb567a26ab0df5"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#2297",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/6ab47135644e4a3f"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -18,17 +18,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:flerovium/centrifuged_crushed_ore"
+          "components": {
+            "cruciblecraft:prefix_material": "flerovium"
+          },
+          "items": "cruciblecraft:centrifuged_crushed_ore",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "flerovium"
+          },
           "count": 1,
-          "id": "cruciblecraft:flerovium/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "flerovium298"
+          },
           "count": 8,
-          "id": "cruciblecraft:flerovium298/tiny_dust"
+          "id": "cruciblecraft:tiny_dust"
         }
       ],
       "output_chances": [

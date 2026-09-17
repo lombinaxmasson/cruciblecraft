@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.item.MaterialFormItem;
+import com.masson.cruciblecraft.content.item.PrefixMaterialItem;
+import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.registry.ModComponents;
 
 import net.minecraft.world.item.ItemStack;
@@ -19,11 +21,31 @@ public final class HotIngotProcessing {
     }
 
     static ItemStack prepare(ItemStack source, long gameTime) {
+        if (source.getItem() instanceof PrefixMaterialItem prefix
+                && prefix.form().equals(MaterialPrefixes.INGOT_HOT)) {
+            return preparePrefix(source, prefix, gameTime);
+        }
         if (source.getItem() instanceof MaterialFormItem form
                 && form.form().equals(MaterialPrefixes.INGOT_HOT)) {
             return prepare(source, form, gameTime);
         }
         return source;
+    }
+
+    private static ItemStack preparePrefix(
+            ItemStack source,
+            PrefixMaterialItem prefix,
+            long gameTime) {
+        String materialId = source.get(ModComponents.PREFIX_MATERIAL);
+        if (materialId == null || !prefix.isPersistedMaterialAllowed(materialId)) {
+            return source;
+        }
+        ItemStack output = source.copy();
+        ItemHeat.set(
+                output,
+                (float) MaterialCatalog.require(materialId).thermal().meltingPoint(),
+                gameTime);
+        return output;
     }
 
     static ItemStack prepare(
@@ -45,9 +67,22 @@ public final class HotIngotProcessing {
      * creative inventory, commands, loot, or compatibility integrations.
      */
     static boolean initializeIfMissing(ItemStack stack, long gameTime) {
-        if (stack.isEmpty()
-                || stack.has(ModComponents.HEAT.get())
-                || !(stack.getItem() instanceof MaterialFormItem form)
+        if (stack.isEmpty() || stack.has(ModComponents.HEAT.get())) {
+            return false;
+        }
+        if (stack.getItem() instanceof PrefixMaterialItem prefix
+                && prefix.form().equals(MaterialPrefixes.INGOT_HOT)) {
+            String materialId = stack.get(ModComponents.PREFIX_MATERIAL);
+            if (materialId == null || !prefix.isPersistedMaterialAllowed(materialId)) {
+                return false;
+            }
+            ItemHeat.set(
+                    stack,
+                    (float) MaterialCatalog.require(materialId).thermal().meltingPoint(),
+                    gameTime);
+            return stack.has(ModComponents.HEAT.get());
+        }
+        if (!(stack.getItem() instanceof MaterialFormItem form)
                 || !form.form().equals(MaterialPrefixes.INGOT_HOT)) {
             return false;
         }

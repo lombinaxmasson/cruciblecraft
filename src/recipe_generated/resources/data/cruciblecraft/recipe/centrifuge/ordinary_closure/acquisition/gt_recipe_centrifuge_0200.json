@@ -18,17 +18,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:dark_ashes/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "dark_ashes"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "ashes"
+          },
           "count": 1,
-          "id": "cruciblecraft:ashes/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "ashes"
+          },
           "count": 1,
-          "id": "cruciblecraft:ashes/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

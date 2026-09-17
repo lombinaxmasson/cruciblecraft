@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:quartzite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "quartzite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "asphalt"
+          },
           "count": 1,
-          "id": "cruciblecraft:asphalt/cyan"
+          "id": "cruciblecraft:cyan"
         }
       ],
       "output_chances": [

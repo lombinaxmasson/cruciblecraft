@@ -34,17 +34,27 @@
           "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:zircon/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "zircon"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "zirconium"
+          },
           "count": 1,
-          "id": "cruciblecraft:zirconium/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "silicon_dioxide"
+          },
           "count": 3,
-          "id": "cruciblecraft:silicon_dioxide/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

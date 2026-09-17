@@ -18,17 +18,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:duranium/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "duranium"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "duranium_elemental"
+          },
           "count": 7,
-          "id": "cruciblecraft:duranium_elemental/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "magnesium"
+          },
           "count": 1,
-          "id": "cruciblecraft:magnesium/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

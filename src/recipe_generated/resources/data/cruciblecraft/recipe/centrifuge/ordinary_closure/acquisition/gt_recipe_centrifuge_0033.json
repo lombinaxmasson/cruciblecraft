@@ -16,32 +16,52 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:basalt/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "basalt"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
           {
-            "item": "cruciblecraft:gabbro/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "gabbro"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "peridot"
+            },
             "count": 1,
-            "id": "cruciblecraft:peridot/dust"
+            "id": "cruciblecraft:dust"
           },
           {
+            "components": {
+              "cruciblecraft:prefix_material": "calcite"
+            },
             "count": 3,
-            "id": "cruciblecraft:calcite/dust"
+            "id": "cruciblecraft:dust"
           },
           {
+            "components": {
+              "cruciblecraft:prefix_material": "flint"
+            },
             "count": 8,
-            "id": "cruciblecraft:flint/dust"
+            "id": "cruciblecraft:dust"
           },
           {
+            "components": {
+              "cruciblecraft:prefix_material": "dark_ashes"
+            },
             "count": 4,
-            "id": "cruciblecraft:dark_ashes/dust"
+            "id": "cruciblecraft:dust"
           }
         ]
       ]

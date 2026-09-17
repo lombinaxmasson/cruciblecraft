@@ -70,15 +70,22 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:silicon/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "silicon"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "silicon_dioxide"
+            },
             "count": 3,
-            "id": "cruciblecraft:silicon_dioxide/dust"
+            "id": "cruciblecraft:dust"
           }
         ]
       ]

@@ -204,9 +204,7 @@ public final class SensorGameTests {
         helper.assertTrue(items != null, "Chest item handler missing");
         ItemStack leftover = items.insertItem(
                 0,
-                new ItemStack(
-                        MaterialLookup.item("copper", MaterialPrefixes.INGOT)
-                                .orElseThrow()),
+                MaterialLookup.stack("copper", MaterialPrefixes.INGOT),
                 false);
         helper.assertTrue(leftover.isEmpty(), "Chest rejected copper ingot");
         placeLive(helper, SensorKind.TACHOMETER, tachometer);
@@ -281,7 +279,7 @@ public final class SensorGameTests {
                 char letter = row.charAt(i);
                 slots.add(letter == ' '
                         ? ItemStack.EMPTY
-                        : new ItemStack(ingredient(kind, letter)));
+                        : ingredient(kind, letter));
             }
         }
         CraftingInput input = CraftingInput.of(3, 3, slots);
@@ -293,17 +291,17 @@ public final class SensorGameTests {
                 .orElse(ItemStack.EMPTY);
     }
 
-    private static Item ingredient(SensorKind kind, char letter) {
+    private static ItemStack ingredient(SensorKind kind, char letter) {
         return switch (letter) {
-            case 'P' -> MaterialLookup.item(
-                    "tin_alloy", MaterialPrefixes.DOUBLE_PLATE).orElseThrow();
-            case 'W' -> MaterialLookup.item(
-                    "red_alloy", MaterialPrefixes.FINE_WIRE).orElseThrow();
-            case 'R' -> Items.REDSTONE;
-            case 'G' -> Items.GLASS;
-            case 'B' -> MaterialLookup.item(
-                    "tin_alloy", MaterialPrefixes.BOLT).orElseThrow();
-            case 'C' -> Items.COMPARATOR;
+            case 'P' -> MaterialLookup.stack(
+                    "tin_alloy", MaterialPrefixes.DOUBLE_PLATE);
+            case 'W' -> MaterialLookup.stack(
+                    "red_alloy", MaterialPrefixes.FINE_WIRE);
+            case 'R' -> new ItemStack(Items.REDSTONE);
+            case 'G' -> new ItemStack(Items.GLASS);
+            case 'B' -> MaterialLookup.stack(
+                    "tin_alloy", MaterialPrefixes.BOLT);
+            case 'C' -> new ItemStack(Items.COMPARATOR);
             case 'X' -> special(kind.specialX());
             case 'Y' -> special(kind.specialY());
             default -> throw new IllegalStateException(
@@ -311,45 +309,47 @@ public final class SensorGameTests {
         };
     }
 
-    private static Item special(String key) {
+    private static ItemStack special(String key) {
         return switch (key) {
-            case "thermometer" -> ModItems.semanticIdentityItemsById()
+            case "thermometer" -> new ItemStack(ModItems.semanticIdentityItemsById()
                     .get(id(ThermometerItem.REGISTRY_PATH))
-                    .get();
-            case "electro_meter" -> ModItems.semanticIdentityItemsById()
+                    .get());
+            case "electro_meter" -> new ItemStack(ModItems.semanticIdentityItemsById()
                     .get(id(ElectroMeterItem.REGISTRY_PATH))
-                    .get();
-            case "tacho_meter" -> ModItems.semanticIdentityItemsById()
+                    .get());
+            case "tacho_meter" -> new ItemStack(ModItems.semanticIdentityItemsById()
                     .get(id(TachoMeterItem.REGISTRY_PATH))
-                    .get();
-            case "sio2_gem" -> MaterialLookup.item(
-                    "glass", MaterialPrefixes.GEM).orElseThrow();
-            case "silicon_plate" -> MaterialLookup.item(
-                    "silicon", MaterialPrefixes.PLATE).orElseThrow();
-            case "copper_fine_wire" -> MaterialLookup.item(
-                    "copper", MaterialPrefixes.FINE_WIRE).orElseThrow();
-            case "copper_wire" -> MaterialLookup.item(
-                    "copper", MaterialPrefixes.WIRE).orElseThrow();
-            case "clock" -> Items.CLOCK;
-            case "gold_pressure_plate" -> Items.LIGHT_WEIGHTED_PRESSURE_PLATE;
-            case "iron_pressure_plate" -> Items.HEAVY_WEIGHTED_PRESSURE_PLATE;
-            case "stone_pressure_plate" -> Items.STONE_PRESSURE_PLATE;
-            case "wood_pressure_plate" -> Items.OAK_PRESSURE_PLATE;
-            case "chest" -> Items.CHEST;
-            case "bucket" -> Items.BUCKET;
-            case "brass_small_gear" -> MaterialLookup.item(
-                    "brass", MaterialPrefixes.SMALL_GEAR).orElseThrow();
-            case "brass_gear" -> MaterialLookup.item(
-                    "brass", MaterialPrefixes.GEAR).orElseThrow();
-            case "geiger_counter" -> ModItems.semanticIdentityItemsById()
+                    .get());
+            case "sio2_gem" -> MaterialLookup.stack(
+                    "glass", MaterialPrefixes.GEM);
+            case "silicon_plate" -> MaterialLookup.stack(
+                    "silicon", MaterialPrefixes.PLATE);
+            case "copper_fine_wire" -> MaterialLookup.stack(
+                    "copper", MaterialPrefixes.FINE_WIRE);
+            case "copper_wire" -> MaterialLookup.stack(
+                    "copper", MaterialPrefixes.WIRE);
+            case "clock" -> new ItemStack(Items.CLOCK);
+            case "gold_pressure_plate" -> new ItemStack(
+                    Items.LIGHT_WEIGHTED_PRESSURE_PLATE);
+            case "iron_pressure_plate" -> new ItemStack(
+                    Items.HEAVY_WEIGHTED_PRESSURE_PLATE);
+            case "stone_pressure_plate" -> new ItemStack(Items.STONE_PRESSURE_PLATE);
+            case "wood_pressure_plate" -> new ItemStack(Items.OAK_PRESSURE_PLATE);
+            case "chest" -> new ItemStack(Items.CHEST);
+            case "bucket" -> new ItemStack(Items.BUCKET);
+            case "brass_small_gear" -> MaterialLookup.stack(
+                    "brass", MaterialPrefixes.SMALL_GEAR);
+            case "brass_gear" -> MaterialLookup.stack(
+                    "brass", MaterialPrefixes.GEAR);
+            case "geiger_counter" -> new ItemStack(ModItems.semanticIdentityItemsById()
                     .get(id(GeigerCounterItem.FILLED_PATH))
-                    .get();
-            case "lead_double_plate" -> MaterialLookup.item(
-                    "lead", MaterialPrefixes.DOUBLE_PLATE).orElseThrow();
-            case "compact_sensor_lv" -> ModItems.technologicalPart(
-                    "compact_sensor_lv").get();
-            case "diamond_gem" -> MaterialLookup.item(
-                    "diamantine", MaterialPrefixes.GEM).orElseThrow();
+                    .get());
+            case "lead_double_plate" -> MaterialLookup.stack(
+                    "lead", MaterialPrefixes.DOUBLE_PLATE);
+            case "compact_sensor_lv" -> new ItemStack(ModItems.technologicalPart(
+                    "compact_sensor_lv").get());
+            case "diamond_gem" -> MaterialLookup.stack(
+                    "diamantine", MaterialPrefixes.GEM);
             default -> throw new IllegalStateException(
                     "Unknown sensor special " + key);
         };

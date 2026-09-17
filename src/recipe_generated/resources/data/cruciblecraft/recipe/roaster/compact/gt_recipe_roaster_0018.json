@@ -28,17 +28,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:galena/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "galena"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "silver"
+          },
           "count": 27,
-          "id": "cruciblecraft:silver/dust_div72"
+          "id": "cruciblecraft:dust_div72"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "lead"
+          },
           "count": 27,
-          "id": "cruciblecraft:lead/dust_div72"
+          "id": "cruciblecraft:dust_div72"
         }
       ],
       "output_chances": [

@@ -12,6 +12,7 @@ import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.WidgetHolder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
 final class MoldCastingEmiRecipe implements EmiRecipe {
     private final ResourceLocation id;
@@ -19,13 +20,21 @@ final class MoldCastingEmiRecipe implements EmiRecipe {
     private final List<EmiIngredient> catalysts;
     private final List<EmiStack> outputs;
 
-    MoldCastingEmiRecipe(String materialId, String form, Item input, Item mold, Item output, int count) {
+    MoldCastingEmiRecipe(
+            String materialId,
+            String form,
+            ItemStack input,
+            Item mold,
+            ItemStack output,
+            int count) {
         id = EmiIds.synthetic(ResourceLocation.fromNamespaceAndPath(
                 CrucibleCraft.MODID,
                 "mold_casting/" + materialId + "/" + form));
         inputs = List.of(EmiStack.of(input));
         catalysts = List.of(EmiStack.of(mold));
-        outputs = List.of(EmiStack.of(output, count));
+        ItemStack result = output.copy();
+        result.setCount(count);
+        outputs = List.of(EmiStack.of(result));
     }
 
     @Override

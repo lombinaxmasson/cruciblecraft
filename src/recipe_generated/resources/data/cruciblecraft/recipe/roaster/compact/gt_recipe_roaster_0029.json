@@ -28,13 +28,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:molybdenite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "molybdenite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "molybdenum"
+          },
           "count": 3,
-          "id": "cruciblecraft:molybdenum/tiny_dust"
+          "id": "cruciblecraft:tiny_dust"
         }
       ],
       "output_chances": [

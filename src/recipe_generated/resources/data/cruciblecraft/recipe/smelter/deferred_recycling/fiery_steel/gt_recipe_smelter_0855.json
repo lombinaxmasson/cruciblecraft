@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#0855",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/fiery_steel",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 7220,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 720,
+          "id": "cruciblecraft:molten_fiery_steel"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "fiery_steel"
+          },
+          "items": "cruciblecraft:crucible_crossing",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "33bbd95d57b2458dc77ebae1490259bffa3bb7e9221300ba99d2400d8b3b6086"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#0855",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/1ed05b3b5ba86dbf"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:junglewood/comb"
+          "components": {
+            "cruciblecraft:prefix_material": "junglewood"
+          },
+          "items": "cruciblecraft:comb",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "cocoa"
+          },
           "count": 1,
-          "id": "cruciblecraft:cocoa/dust"
+          "id": "cruciblecraft:dust"
         },
         {
           "count": 1,

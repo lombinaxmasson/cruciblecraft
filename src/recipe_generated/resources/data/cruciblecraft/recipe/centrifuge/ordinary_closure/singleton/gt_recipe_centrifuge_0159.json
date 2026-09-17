@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:electrum_flux/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "electrum_flux"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "electrum"
+          },
           "count": 1,
-          "id": "cruciblecraft:electrum/dust"
+          "id": "cruciblecraft:dust"
         },
         {
           "count": 2,

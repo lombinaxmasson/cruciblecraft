@@ -44,13 +44,20 @@ final class CompactRelationItemCodecs {
     private static <T> DataResult<Pair<Ingredient, T>> decodeIngredient(
             DynamicOps<T> ops,
             T input) {
+        JsonElement json = new Dynamic<>(ops, input).convert(JsonOps.INSTANCE).getValue();
+        if (json != null && json.isJsonObject() && !json.getAsJsonObject().has("components")) {
+            java.util.Optional<Ingredient> rewritten =
+                    PrefixMaterialItemCodecs.rewriteIngredient(itemId(json, "item"));
+            if (rewritten.isPresent()) {
+                return DataResult.success(Pair.of(rewritten.orElseThrow(), input));
+            }
+        }
         DataResult<Pair<Ingredient, T>> primary =
                 Ingredient.CODEC_NONEMPTY.decode(ops, input);
         if (primary.result().isPresent()
                 && !primary.result().get().getFirst().isEmpty()) {
             return primary;
         }
-        JsonElement json = new Dynamic<>(ops, input).convert(JsonOps.INSTANCE).getValue();
         ResourceLocation itemId = itemId(json, "item");
         if (itemId == null) {
             return primary;
@@ -61,11 +68,27 @@ final class CompactRelationItemCodecs {
     private static <T> DataResult<Pair<ItemStack, T>> decodeItemStack(
             DynamicOps<T> ops,
             T input) {
+        JsonElement json = new Dynamic<>(ops, input).convert(JsonOps.INSTANCE).getValue();
+        if (json != null && json.isJsonObject() && !json.getAsJsonObject().has("components")) {
+            ResourceLocation rewrittenId = itemId(json, "id");
+            int rewrittenCount = 1;
+            if (json.isJsonObject() && json.getAsJsonObject().has("count")) {
+                JsonElement countElement = json.getAsJsonObject().get("count");
+                if (countElement.isJsonPrimitive()
+                        && countElement.getAsJsonPrimitive().isNumber()) {
+                    rewrittenCount = countElement.getAsInt();
+                }
+            }
+            java.util.Optional<ItemStack> rewritten =
+                    PrefixMaterialItemCodecs.rewriteStack(rewrittenId, rewrittenCount);
+            if (rewritten.isPresent()) {
+                return DataResult.success(Pair.of(rewritten.orElseThrow(), input));
+            }
+        }
         DataResult<Pair<ItemStack, T>> primary = ItemStack.STRICT_CODEC.decode(ops, input);
         if (primary.result().isPresent() && !primary.result().get().getFirst().isEmpty()) {
             return primary;
         }
-        JsonElement json = new Dynamic<>(ops, input).convert(JsonOps.INSTANCE).getValue();
         ResourceLocation itemId = itemId(json, "id");
         if (itemId == null) {
             return primary;

@@ -29,7 +29,11 @@
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:yellorite/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "yellorite"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
@@ -41,7 +45,11 @@
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:chromium_dioxide/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "chromium_dioxide"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
@@ -53,27 +61,40 @@
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:cassiterite/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "cassiterite"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "yellorium"
+            },
             "count": 1,
-            "id": "cruciblecraft:yellorium/dust"
+            "id": "cruciblecraft:dust"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "chromium"
+            },
             "count": 1,
-            "id": "cruciblecraft:chromium/dust"
+            "id": "cruciblecraft:dust"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "tin"
+            },
             "count": 1,
-            "id": "cruciblecraft:tin/dust"
+            "id": "cruciblecraft:dust"
           }
         ]
       ]

@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#1330",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/vanadium_steel",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 11156,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 1728,
+          "id": "cruciblecraft:molten_vanadium_steel"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "fluid_pipe_tile"
+          },
+          "items": "cruciblecraft:quadruple_vanadiumsteel_fluid_pipe",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "2299b8133697cf0e230f8b48024d09aa09ef9eac83a3e6fff365ec8234b34701"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#1330",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/39dc5df00fe1fa5d"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

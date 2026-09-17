@@ -8,6 +8,7 @@ import java.util.Objects;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.masson.cruciblecraft.recipe.gt.PrefixMaterialItemCodecs;
 import com.masson.cruciblecraft.registry.ModRecipes;
 
 import net.minecraft.core.NonNullList;
@@ -42,13 +43,13 @@ public final class ShapedCatalystRecipe implements CraftingRecipe {
                     Codec.STRING.listOf()
                             .fieldOf("pattern")
                             .forGetter(ShapedCatalystRecipe::pattern),
-                    Codec.unboundedMap(Codec.STRING, Ingredient.CODEC_NONEMPTY)
+                    Codec.unboundedMap(Codec.STRING, PrefixMaterialItemCodecs.INGREDIENT)
                             .optionalFieldOf("ingredients", Map.of())
                             .forGetter(ShapedCatalystRecipe::ingredients),
-                    Codec.unboundedMap(Codec.STRING, Ingredient.CODEC_NONEMPTY)
+                    Codec.unboundedMap(Codec.STRING, PrefixMaterialItemCodecs.INGREDIENT)
                             .optionalFieldOf("catalysts", Map.of())
                             .forGetter(ShapedCatalystRecipe::catalysts),
-                    ItemStack.STRICT_CODEC
+                    PrefixMaterialItemCodecs.ITEM_STACK
                             .fieldOf("result")
                             .forGetter(ShapedCatalystRecipe::result))
                     .apply(instance, ShapedCatalystRecipe::new));

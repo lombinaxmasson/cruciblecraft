@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:live_root/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "live_root"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "wood"
+          },
           "count": 1,
-          "id": "cruciblecraft:wood/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

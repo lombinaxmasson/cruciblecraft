@@ -112,22 +112,20 @@ public final class OvenGameTests {
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void fourHostsAreSurvivalCraftable(GameTestHelper helper) {
-        Item copperPlate = MaterialLookup.item(
-                        "copper", MaterialPrefixes.DOUBLE_PLATE)
-                .orElseThrow();
+        ItemStack copperPlate = MaterialLookup.stack(
+                "copper", MaterialPrefixes.DOUBLE_PLATE);
         for (HostCraft host : HOSTS) {
             Item result = ModItems.tieredProcessingItemsById()
                     .get(id(host.itemPath()))
                     .get();
-            Item casing = MaterialLookup.item(
-                            host.material(), MaterialPrefixes.MACHINE_CASING)
-                    .orElseThrow();
+            ItemStack casing = MaterialLookup.stack(
+                    host.material(), MaterialPrefixes.MACHINE_CASING);
             List<ItemStack> slots = List.of(
                     new ItemStack(ModItems.MATERIAL_WRENCH.get()),
-                    new ItemStack(casing),
+                    casing,
                     new ItemStack(ModItems.SMITHING_HAMMER.get()),
                     new ItemStack(Items.BRICKS),
-                    new ItemStack(copperPlate),
+                    copperPlate.copy(),
                     new ItemStack(Items.BRICKS));
             ItemStack assembled = craft(helper, slots);
             helper.assertTrue(

@@ -18,17 +18,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:clay_compound/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "clay_compound"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "stone"
+          },
           "count": 2,
-          "id": "cruciblecraft:stone/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "ceramic"
+          },
           "count": 1,
-          "id": "cruciblecraft:ceramic/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

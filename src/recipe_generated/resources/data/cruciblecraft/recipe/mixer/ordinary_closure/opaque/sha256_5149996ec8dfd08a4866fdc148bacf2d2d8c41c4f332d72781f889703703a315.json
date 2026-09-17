@@ -22,16 +22,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:ice/cream_basic_milk_gelato"
+          "components": {
+            "cruciblecraft:prefix_material": "ice"
+          },
+          "items": "cruciblecraft:cream_basic_milk_gelato",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:pistachio/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "pistachio"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "pistachio"
+          },
           "count": 4,
-          "id": "cruciblecraft:pistachio/ice_cream_nut_flavoured_gelato"
+          "id": "cruciblecraft:ice_cream_nut_flavoured_gelato"
         }
       ],
       "output_chances": [

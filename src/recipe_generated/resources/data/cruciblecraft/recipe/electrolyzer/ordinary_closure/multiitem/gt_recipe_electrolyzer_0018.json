@@ -48,7 +48,11 @@
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:niobium_nitride/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "niobium_nitride"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
@@ -60,7 +64,11 @@
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:potassium_fluoride/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "potassium_fluoride"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
@@ -72,7 +80,11 @@
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:bromargyrite/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "bromargyrite"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
@@ -84,33 +96,49 @@
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:sodium_fluoride/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "sodium_fluoride"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "niobium"
+            },
             "count": 1,
-            "id": "cruciblecraft:niobium/dust"
+            "id": "cruciblecraft:dust"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "potassium"
+            },
             "count": 1,
-            "id": "cruciblecraft:potassium/dust"
+            "id": "cruciblecraft:dust"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "silver"
+            },
             "count": 1,
-            "id": "cruciblecraft:silver/dust"
+            "id": "cruciblecraft:dust"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "sodium"
+            },
             "count": 1,
-            "id": "cruciblecraft:sodium/dust"
+            "id": "cruciblecraft:dust"
           }
         ]
       ]

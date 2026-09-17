@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:green/grapes_source_of_wine"
+          "components": {
+            "cruciblecraft:prefix_material": "green"
+          },
+          "items": "cruciblecraft:grapes_source_of_wine",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "green"
+          },
           "count": 1,
-          "id": "cruciblecraft:green/raisins_dried_grapes"
+          "id": "cruciblecraft:raisins_dried_grapes"
         }
       ],
       "output_chances": [

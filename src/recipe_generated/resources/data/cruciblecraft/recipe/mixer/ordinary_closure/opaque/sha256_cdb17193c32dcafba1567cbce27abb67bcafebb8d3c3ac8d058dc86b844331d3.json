@@ -26,19 +26,34 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:food/strawberry_ice_cream_fruity_red_gelato"
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
+          "items": "cruciblecraft:strawberry_ice_cream_fruity_red_gelato",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:vanilla/ice_cream_standard_vanilla_gelato"
+          "components": {
+            "cruciblecraft:prefix_material": "vanilla"
+          },
+          "items": "cruciblecraft:ice_cream_standard_vanilla_gelato",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:chocolate/ice_cream_standard_chocolate_gelato"
+          "components": {
+            "cruciblecraft:prefix_material": "chocolate"
+          },
+          "items": "cruciblecraft:ice_cream_standard_chocolate_gelato",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "chocolate"
+          },
           "count": 3,
-          "id": "cruciblecraft:chocolate/neapolitan_ice_cream_gelato_mix_of_strawberry_vanilla_and"
+          "id": "cruciblecraft:neapolitan_ice_cream_gelato_mix_of_strawberry_vanilla_and"
         }
       ],
       "output_chances": [

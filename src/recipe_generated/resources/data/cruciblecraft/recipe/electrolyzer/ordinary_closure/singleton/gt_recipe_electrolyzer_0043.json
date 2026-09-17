@@ -29,13 +29,20 @@
           "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:lonsdaleite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "lonsdaleite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "carbon"
+          },
           "count": 8,
-          "id": "cruciblecraft:carbon/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

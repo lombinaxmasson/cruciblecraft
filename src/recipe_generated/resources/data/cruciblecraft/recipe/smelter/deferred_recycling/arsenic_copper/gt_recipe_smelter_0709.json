@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#0709",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/arsenic_copper",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 16739,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 5472,
+          "id": "cruciblecraft:molten_arsenic_copper"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "arsenic_copper"
+          },
+          "items": "cruciblecraft:strong_steam_engine",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "0bf7132857b27cefbaf31f7468359777416ef423c7bc9aaf647f084baae4bd05"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#0709",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/f1b81d2e55f9d22a"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#1485",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/silver",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 4803,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 1008,
+          "id": "cruciblecraft:molten_silver"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "electric_wire"
+          },
+          "items": "cruciblecraft:14x_silver_wire",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "d10e8f1a3e16c08fb71ebcca9718be24cfbc0f12f5e7176b21041b85ae12149f"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#1485",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/d6500ae331fa81f4"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -1154,7 +1154,7 @@ public final class WorkbenchToolRecipePlan {
     }
 
     private static String item(MaterialDefinition material, MaterialPrefix form) {
-        return MaterialLookup.resolveItemId(material, form, Map.of()).toString();
+        return MaterialLookup.logicalItemId(material, form, Map.of()).toString();
     }
 
     private static String path(String material, String tool) {

@@ -43,15 +43,19 @@ public final class QuantumMassfabGameTests {
                 MaterialLookup.item("neutronium", MaterialPrefixes.INGOT).isPresent(),
                 "neutronium ingot is missing");
         helper.assertTrue(
-                MaterialLookup.item("cosmic_neutronium", MaterialPrefixes.INGOT)
+                MaterialLookup.tryStack("neutronium", MaterialPrefixes.INGOT, 1)
                                 .isPresent()
-                        && MaterialLookup.item(
-                                        "neutronium", MaterialPrefixes.INGOT)
-                                .orElseThrow()
-                                != MaterialLookup.item(
-                                                "cosmic_neutronium",
-                                                MaterialPrefixes.INGOT)
-                                        .orElseThrow(),
+                        && MaterialLookup.tryStack(
+                                        "cosmic_neutronium",
+                                        MaterialPrefixes.INGOT,
+                                        1)
+                                .isPresent()
+                        && !net.minecraft.world.item.ItemStack.isSameItemSameComponents(
+                                MaterialLookup.stack(
+                                        "neutronium", MaterialPrefixes.INGOT),
+                                MaterialLookup.stack(
+                                        "cosmic_neutronium",
+                                        MaterialPrefixes.INGOT)),
                 "neutronium must stay distinct from cosmic_neutronium");
         helper.assertFalse(
                 BuiltInRegistries.ITEM.containsKey(id("cosmic_neutronium"))
@@ -82,8 +86,6 @@ public final class QuantumMassfabGameTests {
                 .get();
         machine.tanks().get(machine.spec().fluids().inputs().getFirst().index())
                 .setFluid(new FluidStack(matter, 144));
-        var neutronium = MaterialLookup.item(
-                "neutronium", MaterialPrefixes.INGOT).orElseThrow();
         Direction energy = Direction.SOUTH;
         for (int tick = 0; tick < 128; tick++) {
             helper.assertTrue(
@@ -104,7 +106,9 @@ public final class QuantumMassfabGameTests {
         boolean produced = false;
         for (int slot = 0; slot < machine.inventory().getSlots(); slot++) {
             ItemStack stack = machine.inventory().getStackInSlot(slot);
-            if (stack.is(neutronium) && stack.getCount() >= 1) {
+            if (MaterialLookup.matches(
+                    stack, "neutronium", MaterialPrefixes.INGOT)
+                    && stack.getCount() >= 1) {
                 produced = true;
                 break;
             }
@@ -141,11 +145,10 @@ public final class QuantumMassfabGameTests {
         helper.assertTrue(
                 ModRecipeMaps.MASSFAB.entries().stream().anyMatch(
                         entry -> entry.recipe().itemOutputs().stream().anyMatch(
-                                stack -> stack.is(
-                                        MaterialLookup.item(
-                                                        "neutronium",
-                                                        MaterialPrefixes.INGOT)
-                                                .orElseThrow()))),
+                                stack -> MaterialLookup.matches(
+                                        stack,
+                                        "neutronium",
+                                        MaterialPrefixes.INGOT))),
                 "Massfab must output a neutronium ingot");
         helper.succeed();
     }

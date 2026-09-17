@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
@@ -137,9 +138,9 @@ public final class MassStoragePrefixUnits {
             if (count <= 0L) {
                 continue;
             }
-            return new ItemStack(
-                    ModItems.materialItem(materialId, drop).get(),
-                    (int) Math.min(count, Integer.MAX_VALUE));
+            return MaterialLookup.tryStack(
+                            materialId, drop, (int) Math.min(count, Integer.MAX_VALUE))
+                    .orElse(ItemStack.EMPTY);
         }
         for (MaterialPrefix drop : family) {
             if (!ModItems.hasMaterialItem(materialId, drop)) {
@@ -150,9 +151,9 @@ public final class MassStoragePrefixUnits {
             if (count <= 0L) {
                 continue;
             }
-            return new ItemStack(
-                    ModItems.materialItem(materialId, drop).get(),
-                    (int) Math.min(count, Integer.MAX_VALUE));
+            return MaterialLookup.tryStack(
+                            materialId, drop, (int) Math.min(count, Integer.MAX_VALUE))
+                    .orElse(ItemStack.EMPTY);
         }
         return ItemStack.EMPTY;
     }

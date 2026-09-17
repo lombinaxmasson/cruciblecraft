@@ -22,16 +22,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:ice/cream_basic_milk_gelato"
+          "components": {
+            "cruciblecraft:prefix_material": "ice"
+          },
+          "items": "cruciblecraft:cream_basic_milk_gelato",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:food/chum_chum_is_fum"
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
+          "items": "cruciblecraft:chum_chum_is_fum",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
           "count": 4,
-          "id": "cruciblecraft:food/chum_ice_cream_fum_is_fum"
+          "id": "cruciblecraft:chum_ice_cream_fum_is_fum"
         }
       ],
       "output_chances": [

@@ -23,7 +23,11 @@
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:silver_iodide/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "silver_iodide"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
@@ -35,29 +39,45 @@
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:carborundum/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "carborundum"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "silver"
+            },
             "count": 1,
-            "id": "cruciblecraft:silver/dust"
+            "id": "cruciblecraft:dust"
           },
           {
+            "components": {
+              "cruciblecraft:prefix_material": "iodine"
+            },
             "count": 1,
-            "id": "cruciblecraft:iodine/dust"
+            "id": "cruciblecraft:dust"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "silicon"
+            },
             "count": 1,
-            "id": "cruciblecraft:silicon/dust"
+            "id": "cruciblecraft:dust"
           },
           {
+            "components": {
+              "cruciblecraft:prefix_material": "carbon"
+            },
             "count": 1,
-            "id": "cruciblecraft:carbon/dust"
+            "id": "cruciblecraft:dust"
           }
         ]
       ]

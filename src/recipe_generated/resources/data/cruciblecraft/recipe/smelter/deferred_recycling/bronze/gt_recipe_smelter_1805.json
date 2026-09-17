@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#1805",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/bronze",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 4417,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 1008,
+          "id": "cruciblecraft:molten_bronze"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "bronze"
+          },
+          "items": "cruciblecraft:anvil",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "4ce91119636f7923a71154665f65758a3546e2f69a45133a94818262094ae76f"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#1805",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/370620de70ac49b6"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

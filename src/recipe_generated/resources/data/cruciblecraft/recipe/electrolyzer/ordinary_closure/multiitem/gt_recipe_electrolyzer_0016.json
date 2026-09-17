@@ -24,7 +24,11 @@
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:kaolinite/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "kaolinite"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
@@ -36,7 +40,11 @@
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:palygorskite/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "palygorskite"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
@@ -48,39 +56,61 @@
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:bentonite/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "bentonite"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "calcium"
+            },
             "count": 1,
-            "id": "cruciblecraft:calcium/dust"
+            "id": "cruciblecraft:dust"
           },
           {
+            "components": {
+              "cruciblecraft:prefix_material": "clay"
+            },
             "count": 18,
-            "id": "cruciblecraft:clay/dust"
+            "id": "cruciblecraft:dust"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "magnesium"
+            },
             "count": 1,
-            "id": "cruciblecraft:magnesium/dust"
+            "id": "cruciblecraft:dust"
           },
           {
+            "components": {
+              "cruciblecraft:prefix_material": "clay"
+            },
             "count": 18,
-            "id": "cruciblecraft:clay/dust"
+            "id": "cruciblecraft:dust"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "sodium_hydroxide"
+            },
             "count": 1,
-            "id": "cruciblecraft:sodium_hydroxide/dust"
+            "id": "cruciblecraft:dust"
           },
           {
+            "components": {
+              "cruciblecraft:prefix_material": "clay"
+            },
             "count": 18,
-            "id": "cruciblecraft:clay/dust"
+            "id": "cruciblecraft:dust"
           }
         ]
       ]

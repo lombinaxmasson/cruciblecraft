@@ -131,17 +131,17 @@ public final class CircuitTierGameTests {
                         ItemStack.EMPTY,
                         ItemStack.EMPTY,
                         ItemStack.EMPTY,
-                        new ItemStack(MaterialLookup.item(
-                                "redstone_alloy", MaterialPrefixes.BOULE)
-                                .orElseThrow()),
+                        MaterialLookup.stack(
+                                "redstone_alloy", MaterialPrefixes.BOULE),
                         ItemStack.EMPTY,
                         ItemStack.EMPTY,
                         ItemStack.EMPTY,
                         ItemStack.EMPTY));
         helper.assertTrue(
-                plates.is(MaterialLookup.item(
-                        "redstone_alloy", MaterialPrefixes.PLATE_GEM)
-                        .orElseThrow())
+                MaterialLookup.matches(
+                        plates,
+                        "redstone_alloy",
+                        MaterialPrefixes.PLATE_GEM)
                         && plates.getCount() == 3,
                 "Redstone alloy boule did not saw into 3 crystalline plates");
         ItemStack tinies = craft(
@@ -151,17 +151,17 @@ public final class CircuitTierGameTests {
                         ItemStack.EMPTY,
                         ItemStack.EMPTY,
                         ItemStack.EMPTY,
-                        new ItemStack(MaterialLookup.item(
-                                "redstone_alloy", MaterialPrefixes.PLATE_GEM)
-                                .orElseThrow()),
+                        MaterialLookup.stack(
+                                "redstone_alloy", MaterialPrefixes.PLATE_GEM),
                         ItemStack.EMPTY,
                         ItemStack.EMPTY,
                         ItemStack.EMPTY,
                         ItemStack.EMPTY));
         helper.assertTrue(
-                tinies.is(MaterialLookup.item(
-                        "redstone_alloy", MaterialPrefixes.TINY_PLATE_GEM)
-                        .orElseThrow())
+                MaterialLookup.matches(
+                        tinies,
+                        "redstone_alloy",
+                        MaterialPrefixes.TINY_PLATE_GEM)
                         && tinies.getCount() == 8,
                 "Redstone alloy crystalline plate did not saw into 8 tiny plates");
         helper.succeed();

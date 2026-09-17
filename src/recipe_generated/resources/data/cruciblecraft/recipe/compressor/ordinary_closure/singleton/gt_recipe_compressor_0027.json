@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:wood/pellet"
+          "components": {
+            "cruciblecraft:prefix_material": "wood"
+          },
+          "items": "cruciblecraft:pellet",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "planks"
+          },
           "count": 1,
-          "id": "cruciblecraft:planks/light_gray"
+          "id": "cruciblecraft:light_gray"
         }
       ],
       "output_chances": [

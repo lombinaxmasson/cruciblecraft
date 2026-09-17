@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#0676",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/tungsten",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 204651,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 6480,
+          "id": "cruciblecraft:molten_tungsten"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "energy"
+          },
+          "items": "cruciblecraft:strong_steam_boiler_tank_tungsten",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "5b95d4d1c15d0886175c2e6ecbd3b39cc2e46d8129d9a706e3cf96f97d6a38ab"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#0676",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/8326a17d46eeb0ba"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

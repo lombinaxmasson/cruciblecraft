@@ -33,7 +33,11 @@
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:sodium_hydroxide/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "sodium_hydroxide"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
@@ -45,7 +49,11 @@
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:lithium_hydroxide/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "lithium_hydroxide"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
@@ -57,27 +65,40 @@
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:potassium_hydroxide/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "potassium_hydroxide"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "sodium"
+            },
             "count": 1,
-            "id": "cruciblecraft:sodium/dust"
+            "id": "cruciblecraft:dust"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "lithium"
+            },
             "count": 1,
-            "id": "cruciblecraft:lithium/dust"
+            "id": "cruciblecraft:dust"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "potassium"
+            },
             "count": 1,
-            "id": "cruciblecraft:potassium/dust"
+            "id": "cruciblecraft:dust"
           }
         ]
       ]

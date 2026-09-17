@@ -2405,6 +2405,34 @@
       "depends_on": [],
       "maturity": "runtime_ready",
       "owned_paths": [
+        "docs/history/card-plans/closed/材料前缀组件身份详细计划.md",
+        "docs/decisions/材料前缀组件身份ADR.md",
+        "docs/current/material-prefix-identity.md",
+        ".cursor/rules/material-prefix-identity.mdc",
+        "src/main/java/com/masson/cruciblecraft/content/item/PrefixMaterialItem.java",
+        "src/main/java/com/masson/cruciblecraft/material/MaterialFormHosts.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/PrefixMaterialItemCodecs.java",
+        "src/main/java/com/masson/cruciblecraft/api/material/MaterialLookup.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModComponents.java",
+        "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+        "src/test/java/com/masson/cruciblecraft/material/PrefixMaterialIdentityTest.java",
+        "tools/capabilities/registry/prefix-material-component/**"
+      ],
+      "path": "tools/capabilities/registry/prefix-material-component/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "registry/prefix-material-component",
+      "survival_access": "not_applicable",
+      "title": "Prefix Material Component",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [],
+      "maturity": "runtime_ready",
+      "owned_paths": [
         "docs/history/card-plans/closed/工具头前缀与打磨机余量回收详细计划.md",
         "tools/build_tool_head_prefix_reclaim.py",
         "tools/build_sanding_reclaim_forms.py",
@@ -2526,7 +2554,7 @@
       "depends_on": [],
       "maturity": "runtime_ready",
       "owned_paths": [
-        "docs/history/card-plans/active/GT6石层石子详细计划.md",
+        "docs/history/card-plans/closed/GT6石层石子详细计划.md",
         "src/test/java/com/masson/cruciblecraft/gametest/GtStoneLayerRocksGameTests.java",
         "src/main/java/com/masson/cruciblecraft/content/block/GtSurfaceRockBlock.java",
         "src/main/java/com/masson/cruciblecraft/content/blockentity/GtSurfaceRockBlockEntity.java",
@@ -2534,7 +2562,9 @@
         "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerCatalog.java",
         "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerStones.java",
         "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerRockFeature.java",
+        "src/main/java/com/masson/cruciblecraft/worldgen/NetherQuartzLayerFeature.java",
         "src/main/java/com/masson/cruciblecraft/content/block/StoneLayerStoneBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/StoneLayerRockOreBlock.java",
         "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerRockConfiguration.java",
         "src/main/java/com/masson/cruciblecraft/registry/ModFeatures.java",
         "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
@@ -2543,12 +2573,18 @@
         "src/main/resources/data/cruciblecraft/worldgen/configured_feature/stone_layer_rocks.json",
         "src/main/resources/data/cruciblecraft/worldgen/placed_feature/stone_layer_rocks.json",
         "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_stone_layer_rocks.json",
+        "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/remove_overworld_large_veins.json",
+        "src/main/resources/data/cruciblecraft/worldgen/configured_feature/nether_netherquartz.json",
+        "src/main/resources/data/cruciblecraft/worldgen/placed_feature/nether_netherquartz.json",
+        "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_nether_netherquartz.json",
+        "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/remove_vanilla_nether_quartz.json",
         "src/main/resources/data/minecraft/tags/block/needs_iron_tool.json",
         "src/main/resources/data/cruciblecraft_wave_worldgen_gt_stone_layer_rocks/**",
         "src/main/resources/assets/cruciblecraft/gt6_gt_stone_layer_rocks_art_manifest.json",
         "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/stone.png",
         "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/cobble.png",
         "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/cobble_mossy.png",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6/rock_ores/**",
         "tools/capabilities/worldgen/gt-stone-layer-rocks/**",
         "tools/waves/worldgen/gt-stone-layer-rocks/**",
         "tools/gt_stone_layer_rocks.py",
@@ -2565,7 +2601,7 @@
       "slug": "worldgen/gt-stone-layer-rocks",
       "survival_access": "partial",
       "title": "GT Stone Layer Rocks",
-      "workflow": "active"
+      "workflow": "accepted"
     },
     {
       "depends_on": [],
@@ -2671,7 +2707,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 82,
+  "capability_count": 83,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -3587,6 +3623,9 @@
       "content/mte-redstone-wire",
       "registry/catalog-modern-ids"
     ],
+    "registry/prefix-material-component": [
+      "registry/prefix-material-component"
+    ],
     "registry/tool-head-prefix-reclaim": [
       "registry/tool-head-prefix-reclaim"
     ],
@@ -3688,6 +3727,7 @@
       "machines/sanding",
       "machines/slicer",
       "registry/catalog-modern-ids",
+      "registry/prefix-material-component",
       "registry/tool-head-prefix-reclaim",
       "registry/tool-head-remainder",
       "worldgen/gt-crops",
@@ -3699,5 +3739,5 @@
   },
   "progress_rule": "runtime_ready is the close maturity; survival_access is independent and does not gate close; playtest is a project-level human cycle",
   "schema_version": 2,
-  "unique_active_slug": "worldgen/gt-stone-layer-rocks"
+  "unique_active_slug": null
 }

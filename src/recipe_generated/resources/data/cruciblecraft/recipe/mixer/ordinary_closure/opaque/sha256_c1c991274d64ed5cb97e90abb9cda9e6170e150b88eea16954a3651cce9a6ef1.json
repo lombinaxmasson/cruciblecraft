@@ -22,16 +22,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:gilded_iron/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "gilded_iron"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:live_root/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "live_root"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "ironwood"
+          },
           "count": 2,
-          "id": "cruciblecraft:ironwood/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

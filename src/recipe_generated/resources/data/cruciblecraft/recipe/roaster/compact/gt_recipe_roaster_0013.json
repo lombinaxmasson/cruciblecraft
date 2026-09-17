@@ -28,21 +28,34 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:cooperite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "cooperite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "platinum"
+          },
           "count": 2,
-          "id": "cruciblecraft:platinum/small_dust"
+          "id": "cruciblecraft:small_dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "nickel"
+          },
           "count": 12,
-          "id": "cruciblecraft:nickel/dust_div72"
+          "id": "cruciblecraft:dust_div72"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "palladium"
+          },
           "count": 12,
-          "id": "cruciblecraft:palladium/dust_div72"
+          "id": "cruciblecraft:dust_div72"
         }
       ],
       "output_chances": [

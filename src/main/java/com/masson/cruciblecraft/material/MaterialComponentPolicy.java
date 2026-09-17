@@ -10,6 +10,7 @@ package com.masson.cruciblecraft.material;
 public interface MaterialComponentPolicy {
     String TOOL_MATERIAL_COMPONENT_ID = "cruciblecraft:tool_material";
     String MACHINE_MATERIAL_COMPONENT_ID = "cruciblecraft:machine_material";
+    String PREFIX_MATERIAL_COMPONENT_ID = "cruciblecraft:prefix_material";
     String TOOL_COMPONENT_FORM = "component:tool_material";
     String MACHINE_COMPONENT_FORM = "component:machine_material";
 

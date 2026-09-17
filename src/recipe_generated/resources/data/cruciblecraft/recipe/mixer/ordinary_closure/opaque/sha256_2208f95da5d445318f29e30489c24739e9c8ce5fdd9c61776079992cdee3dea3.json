@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:komatiite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "komatiite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "asphalt"
+          },
           "count": 1,
-          "id": "cruciblecraft:asphalt/blue"
+          "id": "cruciblecraft:blue"
         }
       ],
       "output_chances": [

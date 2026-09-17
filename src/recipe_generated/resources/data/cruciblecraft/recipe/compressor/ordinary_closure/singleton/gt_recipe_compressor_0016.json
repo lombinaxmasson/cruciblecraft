@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:wood_rotten/grass"
+          "components": {
+            "cruciblecraft:prefix_material": "wood_rotten"
+          },
+          "items": "cruciblecraft:grass",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "bale"
+          },
           "count": 1,
-          "id": "cruciblecraft:bale/rotten_grass"
+          "id": "cruciblecraft:rotten_grass"
         }
       ],
       "output_chances": [

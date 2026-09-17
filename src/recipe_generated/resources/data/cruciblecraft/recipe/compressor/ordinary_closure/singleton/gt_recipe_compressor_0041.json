@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:palygorskite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "palygorskite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "blue"
+          },
           "count": 1,
-          "id": "cruciblecraft:blue/clay_palygorskite_clay_fullers_earth"
+          "id": "cruciblecraft:clay_palygorskite_clay_fullers_earth"
         }
       ],
       "output_chances": [

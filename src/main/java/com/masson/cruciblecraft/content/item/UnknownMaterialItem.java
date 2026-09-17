@@ -68,8 +68,8 @@ public final class UnknownMaterialItem extends Item {
         } catch (IllegalArgumentException exception) {
             return;
         }
-        MaterialLookup.item(missing.materialId(), form).ifPresent(item ->
-                restore(player, slotId, stack, item));
+        MaterialLookup.tryStack(missing.materialId(), form, stack.getCount())
+                .ifPresent(restored -> restore(player, slotId, stack, restored));
     }
 
     private static void restoreComponentMaterialStack(
@@ -92,7 +92,25 @@ public final class UnknownMaterialItem extends Item {
         if (itemId == null || !BuiltInRegistries.ITEM.containsKey(itemId)) {
             return;
         }
-        restore(player, slotId, stack, BuiltInRegistries.ITEM.get(itemId));
+        Item item = BuiltInRegistries.ITEM.get(itemId);
+        ItemStack restored = new ItemStack(item, stack.getCount());
+        if (missing.form().equals(MissingMaterialStackNbtAdapter.TOOL_COMPONENT_FORM)) {
+            restored.set(ModComponents.TOOL_MATERIAL.get(), missing.materialId());
+        } else {
+            restored.set(ModComponents.MACHINE_MATERIAL.get(), missing.materialId());
+        }
+        restore(player, slotId, stack, restored);
+    }
+
+    private static void restore(
+            Player player,
+            int slotId,
+            ItemStack stack,
+            ItemStack restored) {
+        restored.setCount(stack.getCount());
+        restored.applyComponents(stack.getComponents());
+        restored.remove(ModComponents.MISSING_MATERIAL.get());
+        player.getInventory().setItem(slotId, restored);
     }
 
     private static void restore(
@@ -100,9 +118,6 @@ public final class UnknownMaterialItem extends Item {
             int slotId,
             ItemStack stack,
             Item item) {
-        ItemStack restored = new ItemStack(item, stack.getCount());
-        restored.applyComponents(stack.getComponents());
-        restored.remove(ModComponents.MISSING_MATERIAL.get());
-        player.getInventory().setItem(slotId, restored);
+        restore(player, slotId, stack, new ItemStack(item, stack.getCount()));
     }
 }

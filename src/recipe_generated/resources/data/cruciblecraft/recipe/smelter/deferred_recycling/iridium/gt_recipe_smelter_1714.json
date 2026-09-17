@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#1714",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/iridium",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 24704,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 936,
+          "id": "cruciblecraft:molten_iridium"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "electric_wire"
+          },
+          "items": "cruciblecraft:13x_iridium_wire",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "86c47894f403186f8e9a6517b37a84793ba6d39f0ff7ae3373129e4e8c9e6122"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#1714",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/feb5eb41f116b08a"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

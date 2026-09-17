@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#0649",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/octine",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 917,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 720,
+          "id": "cruciblecraft:molten_octine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "foundry"
+          },
+          "items": "cruciblecraft:mold_octine",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "7630b169d9aac4229b231b606a74ea45dbfe1c3607b6d8d6f64076f7ef167bb0"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#0649",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/d7f958fbfbb145a3"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

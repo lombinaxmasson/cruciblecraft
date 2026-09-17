@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:kimberlite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "kimberlite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "asphalt"
+          },
           "count": 1,
-          "id": "cruciblecraft:asphalt/light_blue"
+          "id": "cruciblecraft:light_blue"
         }
       ],
       "output_chances": [

@@ -122,8 +122,14 @@ public final class ModRecipeProvider extends RecipeProvider {
                     MachineCoverKinds.itemPath("cover_blank"),
                     List.of("Sh ", "Pd "),
                     Map.of(
-                            "P", Ingredient.of(aluminiumPlate),
-                            "S", Ingredient.of(aluminiumScrew)),
+                            "P", keyedIngredient(
+                                    aluminiumPlate,
+                                    "aluminium",
+                                    MaterialPrefixes.PLATE),
+                            "S", keyedIngredient(
+                                    aluminiumScrew,
+                                    "aluminium",
+                                    MaterialPrefixes.SCREW)),
                     Map.of(
                             "h", Ingredient.of(ModItems.SMITHING_HAMMER.get()),
                             "d", Ingredient.of(
@@ -156,11 +162,11 @@ public final class ModRecipeProvider extends RecipeProvider {
                     "controller_display",
                     List.of("LLB", "CQW"),
                     Map.of(
-                            "L", Ingredient.of(lumiumWire),
+                            "L", keyedIngredient(lumiumWire, "lumium", MaterialPrefixes.WIRE),
                             "B", Ingredient.of(Items.LEVER),
                             "C", Ingredient.of(circuitBasic),
                             "Q", blank(),
-                            "W", Ingredient.of(tinCable)));
+                            "W", keyedIngredient(tinCable, "tin", MaterialPrefixes.CABLE)));
         }
         if (blankAvailable && available(tinCable, circuitBasic)) {
             machineRecipe(
@@ -169,7 +175,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                     List.of("BW ", "CQ "),
                     Map.of(
                             "B", Ingredient.of(Items.LEVER),
-                            "W", Ingredient.of(tinCable),
+                            "W", keyedIngredient(tinCable, "tin", MaterialPrefixes.CABLE),
                             "C", Ingredient.of(circuitBasic),
                             "Q", blank()));
         }
@@ -181,9 +187,9 @@ public final class ModRecipeProvider extends RecipeProvider {
                     List.of("CLB", "WQW"),
                     Map.of(
                             "C", Ingredient.of(circuitBasic),
-                            "L", Ingredient.of(lumiumWire),
-                            "B", Ingredient.of(tinWire),
-                            "W", Ingredient.of(tinCable),
+                            "L", keyedIngredient(lumiumWire, "lumium", MaterialPrefixes.WIRE),
+                            "B", keyedIngredient(tinWire, "tin", MaterialPrefixes.WIRE),
+                            "W", keyedIngredient(tinCable, "tin", MaterialPrefixes.CABLE),
                             "Q", blank()));
         }
         if (blankAvailable && available(tinCable, circuitBasic)) {
@@ -193,7 +199,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                     List.of("BW ", "CQ "),
                     Map.of(
                             "B", Ingredient.of(Items.REDSTONE_TORCH),
-                            "W", Ingredient.of(tinCable),
+                            "W", keyedIngredient(tinCable, "tin", MaterialPrefixes.CABLE),
                             "C", Ingredient.of(circuitBasic),
                             "Q", blank()));
         }
@@ -204,7 +210,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                     List.of("BW ", "CQ "),
                     Map.of(
                             "B", Ingredient.of(Items.LEVER),
-                            "W", Ingredient.of(copperCable),
+                            "W", keyedIngredient(copperCable, "copper", MaterialPrefixes.CABLE),
                             "C", Ingredient.of(circuitGood),
                             "Q", blank()));
         }
@@ -215,7 +221,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                     List.of(" C ", "WQX", " B "),
                     Map.of(
                             "C", Ingredient.of(circuitBasic),
-                            "W", Ingredient.of(copperCable),
+                            "W", keyedIngredient(copperCable, "copper", MaterialPrefixes.CABLE),
                             "Q", blank(),
                             "X", Ingredient.of(selector),
                             "B", Ingredient.of(Items.COMPARATOR)));
@@ -253,9 +259,9 @@ public final class ModRecipeProvider extends RecipeProvider {
                     "scale_energy",
                     List.of("WQW", "BCB"),
                     Map.of(
-                            "W", Ingredient.of(tinCable),
+                            "W", keyedIngredient(tinCable, "tin", MaterialPrefixes.CABLE),
                             "Q", blank(),
-                            "B", Ingredient.of(tinWire),
+                            "B", keyedIngredient(tinWire, "tin", MaterialPrefixes.WIRE),
                             "C", Ingredient.of(circuitGood)));
         }
         if (blankAvailable && available(tinCable, circuitGood)) {
@@ -264,7 +270,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                     "detector_running_possible",
                     List.of("WQW", "BCB"),
                     Map.of(
-                            "W", Ingredient.of(tinCable),
+                            "W", keyedIngredient(tinCable, "tin", MaterialPrefixes.CABLE),
                             "Q", blank(),
                             "B", Ingredient.of(Items.COMPARATOR),
                             "C", Ingredient.of(circuitGood)));
@@ -273,7 +279,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                     "detector_running_passively",
                     List.of("WQW", "BCB"),
                     Map.of(
-                            "W", Ingredient.of(tinCable),
+                            "W", keyedIngredient(tinCable, "tin", MaterialPrefixes.CABLE),
                             "Q", blank(),
                             "B", Ingredient.of(Items.REPEATER),
                             "C", Ingredient.of(circuitGood)));
@@ -282,7 +288,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                     "detector_running_actively",
                     List.of("WQW", "BCX"),
                     Map.of(
-                            "W", Ingredient.of(tinCable),
+                            "W", keyedIngredient(tinCable, "tin", MaterialPrefixes.CABLE),
                             "Q", blank(),
                             "B", Ingredient.of(Items.COMPARATOR),
                             "C", Ingredient.of(circuitGood),
@@ -292,7 +298,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                     "detector_running_successfully",
                     List.of("WQW", "BCX"),
                     Map.of(
-                            "W", Ingredient.of(tinCable),
+                            "W", keyedIngredient(tinCable, "tin", MaterialPrefixes.CABLE),
                             "Q", blank(),
                             "B", button,
                             "C", Ingredient.of(circuitGood),
@@ -305,7 +311,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                     "scale_progress",
                     List.of("WQW", "BCB"),
                     Map.of(
-                            "W", Ingredient.of(tinCable),
+                            "W", keyedIngredient(tinCable, "tin", MaterialPrefixes.CABLE),
                             "Q", blank(),
                             "B", Ingredient.of(brassSmallGear),
                             "C", Ingredient.of(circuitGood)));
@@ -318,7 +324,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                     Map.of(
                             "B", button,
                             "Q", blank(),
-                            "W", Ingredient.of(tinCable),
+                            "W", keyedIngredient(tinCable, "tin", MaterialPrefixes.CABLE),
                             "X", Ingredient.of(Items.COMPARATOR)));
         }
         if (available(ironRod, ironRotor)) {
@@ -327,8 +333,8 @@ public final class ModRecipeProvider extends RecipeProvider {
                     "vent",
                     List.of("RRR", "RXR", "RRR"),
                     Map.of(
-                            "R", Ingredient.of(ironRod),
-                            "X", Ingredient.of(ironRotor)));
+                            "R", keyedIngredient(ironRod, "iron", MaterialPrefixes.ROD),
+                            "X", keyedIngredient(ironRotor, "iron", MaterialPrefixes.ROTOR)));
         }
         if (blankAvailable && available(tinCable, circuitGood)) {
             machineRecipe(
@@ -337,7 +343,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                     List.of("BW ", "CQ "),
                     Map.of(
                             "B", Ingredient.of(Items.COMPARATOR),
-                            "W", Ingredient.of(tinCable),
+                            "W", keyedIngredient(tinCable, "tin", MaterialPrefixes.CABLE),
                             "C", Ingredient.of(circuitGood),
                             "Q", blank()));
         }
@@ -427,7 +433,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 pattern,
                 Map.of(
                         "B", Ingredient.of(Items.REPEATER),
-                        "W", Ingredient.of(tinCable),
+                        "W", keyedIngredient(tinCable, "tin", MaterialPrefixes.CABLE),
                         "C", Ingredient.of(circuit),
                         "Q", blank()),
                 Map.of(
@@ -457,6 +463,46 @@ public final class ModRecipeProvider extends RecipeProvider {
         return MaterialLookup.item(material, prefix).orElse(null);
     }
 
+    private static Ingredient materialIngredient(
+            String material, MaterialPrefix prefix) {
+        return MaterialLookup.ingredient(material, prefix)
+                .orElseThrow(() -> new IllegalStateException(
+                        "Missing source machine component "
+                                + material
+                                + "/"
+                                + prefix.serializedName()));
+    }
+
+    private static ItemStack materialStack(String material, MaterialPrefix prefix) {
+        return MaterialLookup.tryStack(material, prefix, 1)
+                .orElseThrow(() -> new IllegalStateException(
+                        "Missing source machine component "
+                                + material
+                                + "/"
+                                + prefix.serializedName()));
+    }
+
+    private static Ingredient keyedIngredient(
+            Item item, String material, MaterialPrefix prefix) {
+        if (item instanceof com.masson.cruciblecraft.content.item.PrefixMaterialItem) {
+            return materialIngredient(material, prefix);
+        }
+        return Ingredient.of(item);
+    }
+
+    private static ItemStack keyedStack(
+            Item item, String material, MaterialPrefix prefix, int count) {
+        if (item instanceof com.masson.cruciblecraft.content.item.PrefixMaterialItem) {
+            return MaterialLookup.stack(material, prefix, count);
+        }
+        return new ItemStack(item, count);
+    }
+
+    private static Item unlockSample(Ingredient ingredient) {
+        ItemStack[] items = ingredient.getItems();
+        return items.length == 0 ? Items.CRAFTING_TABLE : items[0].getItem();
+    }
+
     private static Item techPart(String path) {
         try {
             return ModItems.technologicalPart(path).get();
@@ -481,7 +527,12 @@ public final class ModRecipeProvider extends RecipeProvider {
                     variant.materialPath(), MaterialPrefixes.PLATE);
             ShapedRecipeBuilder builder = ShapedRecipeBuilder.shaped(
                             RecipeCategory.MISC, result)
-                    .define('P', plate)
+                    .define(
+                            'P',
+                            keyedIngredient(
+                                    plate,
+                                    variant.materialPath(),
+                                    MaterialPrefixes.PLATE))
                     .define('C', Items.CHEST)
                     .unlockedBy("has_plate", has(plate))
                     .unlockedBy("has_chest", has(Items.CHEST));
@@ -499,9 +550,14 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .pattern(" P ")
                 .pattern(" H ")
                 .pattern(" R ")
-                .define('P', ironPlate)
+                .define(
+                        'P',
+                        keyedIngredient(
+                                ironPlate, "iron", MaterialPrefixes.PLATE))
                 .define('H', Items.HOPPER)
-                .define('R', ironRod)
+                .define(
+                        'R',
+                        keyedIngredient(ironRod, "iron", MaterialPrefixes.ROD))
                 .unlockedBy("has_hopper", has(Items.HOPPER))
                 .unlockedBy("has_plate", has(ironPlate))
                 .save(output, id("hoppers/steel_dust_funnel"));
@@ -524,10 +580,20 @@ public final class ModRecipeProvider extends RecipeProvider {
                     .unlockedBy("has_redstone", has(Items.REDSTONE));
             String letters = String.join("", kind.grid());
             if (letters.indexOf('P') >= 0) {
-                builder.define('P', plate);
+                builder.define(
+                        'P',
+                        keyedIngredient(
+                                plate,
+                                "tin_alloy",
+                                MaterialPrefixes.DOUBLE_PLATE));
             }
             if (letters.indexOf('W') >= 0) {
-                builder.define('W', fineWire);
+                builder.define(
+                        'W',
+                        keyedIngredient(
+                                fineWire,
+                                "red_alloy",
+                                MaterialPrefixes.FINE_WIRE));
             }
             if (letters.indexOf('R') >= 0) {
                 builder.define('R', Items.REDSTONE);
@@ -536,7 +602,10 @@ public final class ModRecipeProvider extends RecipeProvider {
                 builder.define('G', Items.GLASS);
             }
             if (letters.indexOf('B') >= 0) {
-                builder.define('B', bolt);
+                builder.define(
+                        'B',
+                        keyedIngredient(
+                                bolt, "tin_alloy", MaterialPrefixes.BOLT));
             }
             if (letters.indexOf('C') >= 0) {
                 builder.define('C', Items.COMPARATOR);
@@ -563,14 +632,10 @@ public final class ModRecipeProvider extends RecipeProvider {
                     ElectroMeterItem.REGISTRY_PATH));
             case "tacho_meter" -> Ingredient.of(semanticItem(
                     TachoMeterItem.REGISTRY_PATH));
-            case "sio2_gem" -> Ingredient.of(
-                    materialItem("glass", MaterialPrefixes.GEM));
-            case "silicon_plate" -> Ingredient.of(
-                    materialItem("silicon", MaterialPrefixes.PLATE));
-            case "copper_fine_wire" -> Ingredient.of(
-                    materialItem("copper", MaterialPrefixes.FINE_WIRE));
-            case "copper_wire" -> Ingredient.of(
-                    materialItem("copper", MaterialPrefixes.WIRE));
+            case "sio2_gem" -> materialIngredient("glass", MaterialPrefixes.GEM);
+            case "silicon_plate" -> materialIngredient("silicon", MaterialPrefixes.PLATE);
+            case "copper_fine_wire" -> materialIngredient("copper", MaterialPrefixes.FINE_WIRE);
+            case "copper_wire" -> materialIngredient("copper", MaterialPrefixes.WIRE);
             case "clock" -> Ingredient.of(Items.CLOCK);
             case "gold_pressure_plate" -> Ingredient.of(
                     Items.LIGHT_WEIGHTED_PRESSURE_PLATE);
@@ -582,18 +647,14 @@ public final class ModRecipeProvider extends RecipeProvider {
                     Items.OAK_PRESSURE_PLATE);
             case "chest" -> Ingredient.of(Items.CHEST);
             case "bucket" -> Ingredient.of(Items.BUCKET);
-            case "brass_small_gear" -> Ingredient.of(
-                    materialItem("brass", MaterialPrefixes.SMALL_GEAR));
-            case "brass_gear" -> Ingredient.of(
-                    materialItem("brass", MaterialPrefixes.GEAR));
+            case "brass_small_gear" -> materialIngredient("brass", MaterialPrefixes.SMALL_GEAR);
+            case "brass_gear" -> materialIngredient("brass", MaterialPrefixes.GEAR);
             case "geiger_counter" -> Ingredient.of(semanticItem(
                     GeigerCounterItem.FILLED_PATH));
-            case "lead_double_plate" -> Ingredient.of(
-                    materialItem("lead", MaterialPrefixes.DOUBLE_PLATE));
+            case "lead_double_plate" -> materialIngredient("lead", MaterialPrefixes.DOUBLE_PLATE);
             case "compact_sensor_lv" -> Ingredient.of(
                     ModItems.technologicalPart("compact_sensor_lv").get());
-            case "diamond_gem" -> Ingredient.of(
-                    materialItem("diamantine", MaterialPrefixes.GEM));
+            case "diamond_gem" -> materialIngredient("diamantine", MaterialPrefixes.GEM);
             default -> throw new IllegalStateException(
                     "Unknown sensor D0 special " + key);
         };
@@ -705,7 +766,12 @@ public final class ModRecipeProvider extends RecipeProvider {
                         .pattern("PPP")
                         .pattern("PCP")
                         .pattern("PPP")
-                        .define('P', steelPlate)
+                        .define(
+                                'P',
+                                keyedIngredient(
+                                        steelPlate,
+                                        "steel",
+                                        MaterialPrefixes.PLATE))
                         .define('C', Items.CHEST)
                         .unlockedBy("has_steel_plate", has(steelPlate))
                         .save(output, id(recipeId));
@@ -723,7 +789,12 @@ public final class ModRecipeProvider extends RecipeProvider {
                         .pattern("PPP")
                         .pattern("PCP")
                         .pattern("PPP")
-                        .define('P', treatedRod)
+                        .define(
+                                'P',
+                                keyedIngredient(
+                                        treatedRod,
+                                        "wood_treated",
+                                        MaterialPrefixes.ROD))
                         .define('C', Items.CHEST)
                         .unlockedBy("has_treated_rod", has(treatedRod))
                         .save(output, id(recipeId));
@@ -732,7 +803,12 @@ public final class ModRecipeProvider extends RecipeProvider {
                         .pattern("PPP")
                         .pattern("PCP")
                         .pattern("PPP")
-                        .define('P', plasticPlate)
+                        .define(
+                                'P',
+                                keyedIngredient(
+                                        plasticPlate,
+                                        "plastic",
+                                        MaterialPrefixes.PLATE))
                         .define('C', Items.CHEST)
                         .unlockedBy("has_plastic_plate", has(plasticPlate))
                         .save(output, id(recipeId));
@@ -741,7 +817,12 @@ public final class ModRecipeProvider extends RecipeProvider {
                         .pattern("PPP")
                         .pattern("PCP")
                         .pattern("PRP")
-                        .define('P', steelPlate)
+                        .define(
+                                'P',
+                                keyedIngredient(
+                                        steelPlate,
+                                        "steel",
+                                        MaterialPrefixes.PLATE))
                         .define('C', Items.CHEST)
                         .define('R', ModItems.PROGRAMMED_CIRCUIT.get())
                         .unlockedBy("has_circuit", has(ModItems.PROGRAMMED_CIRCUIT.get()))
@@ -751,7 +832,12 @@ public final class ModRecipeProvider extends RecipeProvider {
                         .pattern(" P ")
                         .pattern(" H ")
                         .pattern(" P ")
-                        .define('P', steelPlate)
+                        .define(
+                                'P',
+                                keyedIngredient(
+                                        steelPlate,
+                                        "steel",
+                                        MaterialPrefixes.PLATE))
                         .define('H', Items.HOPPER)
                         .unlockedBy("has_hopper", has(Items.HOPPER))
                         .save(output, id(recipeId));
@@ -1114,9 +1200,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                         new GTRecipe(
                                 List.of(Ingredient.of(Items.COAL)),
                                 List.of(1),
-                                List.of(new ItemStack(materialItem(
-                                        "coal_coke",
-                                        MaterialPrefixes.GEM))),
+                                List.of(materialStack("coal_coke", MaterialPrefixes.GEM)),
                                 List.of(),
                                 List.of(new FluidStack(ModFluids.CREOSOTE_SOURCE.get(), 500)),
                                 List.of(GTRecipe.GUARANTEED_CHANCE),
@@ -1279,14 +1363,14 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .pattern(" R ")
                 .define(
                         'P',
-                        materialItem(
+                        materialIngredient(
                                 material, MaterialPrefixes.QUINTUPLE_PLATE))
                 .define(
                         'S',
-                        materialItem(material, MaterialPrefixes.SPRING))
+                        materialIngredient(material, MaterialPrefixes.SPRING))
                 .define(
                         'R',
-                        materialItem(material, MaterialPrefixes.ROD))
+                        materialIngredient(material, MaterialPrefixes.ROD))
                 .define('C', casing)
                 .unlockedBy("has_casing", has(casing))
                 .save(output, id("machines/" + id));
@@ -1307,7 +1391,7 @@ public final class ModRecipeProvider extends RecipeProvider {
         ingredients.put("X", Ingredient.of(pump));
         ingredients.put("M", Ingredient.of(casing));
         ingredients.put("C", Ingredient.of(circuit));
-        ingredients.put("W", Ingredient.of(cable));
+        ingredients.put("W", keyedIngredient(cable, "tin", MaterialPrefixes.CABLE));
         // GT6 Loader_MultiTileEntities.java:1379 {"wPh","XMX","CPW"}.
         acceptShapedCatalyst(
                 output,
@@ -1333,8 +1417,11 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .pattern("G ")
                 .pattern("SC")
                 .pattern("G ")
-                .define('G', gear)
-                .define('S', longRod)
+                .define('G', keyedIngredient(gear, material, MaterialPrefixes.GEAR))
+                .define(
+                        'S',
+                        keyedIngredient(
+                                longRod, material, MaterialPrefixes.LONG_ROD))
                 .define('C', casing)
                 .unlockedBy("has_casing", has(casing))
                 .save(output, id("machines/" + id));
@@ -1449,7 +1536,7 @@ public final class ModRecipeProvider extends RecipeProvider {
             Item plate = materialItem(pipe.materialId(), plateForm);
             Item result = materialItem(pipe.materialId(), pipe.form());
             Map<String, Ingredient> ingredients = new LinkedHashMap<>();
-            ingredients.put("P", Ingredient.of(plate));
+            ingredients.put("P", keyedIngredient(plate, pipe.materialId(), plateForm));
             Map<String, Ingredient> catalysts = new LinkedHashMap<>();
             String joined = String.join("", pattern);
             if (joined.indexOf('s') >= 0) {
@@ -1471,7 +1558,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                     pattern,
                     ingredients,
                     catalysts,
-                    new ItemStack(result));
+                    keyedStack(result, pipe.materialId(), pipe.form(), 1));
         }
     }
 
@@ -1518,7 +1605,7 @@ public final class ModRecipeProvider extends RecipeProvider {
             Item plate = materialItem(pipe.materialId(), plateForm);
             Item result = materialItem(pipe.materialId(), pipe.form());
             Map<String, Ingredient> ingredients = new LinkedHashMap<>();
-            ingredients.put("P", Ingredient.of(plate));
+            ingredients.put("P", keyedIngredient(plate, pipe.materialId(), plateForm));
             Map<String, Ingredient> catalysts = new LinkedHashMap<>();
             catalysts.put(
                     "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()));
@@ -1535,7 +1622,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                     pattern,
                     ingredients,
                     catalysts,
-                    new ItemStack(result));
+                    keyedStack(result, pipe.materialId(), pipe.form(), 1));
         }
     }
 
@@ -1577,8 +1664,8 @@ public final class ModRecipeProvider extends RecipeProvider {
             Item source = materialItem(pipe.materialId(), sourceForm);
             Item result = materialItem(pipe.materialId(), pipe.form());
             Map<String, Ingredient> ingredients = new LinkedHashMap<>();
-            ingredients.put("P", Ingredient.of(source));
-            ingredients.put("R", Ingredient.of(steelRing));
+            ingredients.put("P", keyedIngredient(source, pipe.materialId(), sourceForm));
+            ingredients.put("R", keyedIngredient(steelRing, "steel", MaterialPrefixes.RING));
             Map<String, Ingredient> catalysts = new LinkedHashMap<>();
             catalysts.put(
                     "h", Ingredient.of(ModItems.SMITHING_HAMMER.get()));
@@ -1591,7 +1678,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                     pattern,
                     ingredients,
                     catalysts,
-                    new ItemStack(result));
+                    keyedStack(result, pipe.materialId(), pipe.form(), 1));
         }
     }
 
@@ -1647,7 +1734,8 @@ public final class ModRecipeProvider extends RecipeProvider {
             Item result = materialItem(
                     wire.materialId(), MaterialPrefixes.WIRE);
             Map<String, Ingredient> ingredients = new LinkedHashMap<>();
-            ingredients.put("P", Ingredient.of(plate));
+            ingredients.put("P", keyedIngredient(
+                    plate, wire.materialId(), MaterialPrefixes.PLATE));
             Map<String, Ingredient> catalysts = new LinkedHashMap<>();
             catalysts.put(
                     "x",
@@ -1660,13 +1748,18 @@ public final class ModRecipeProvider extends RecipeProvider {
                     List.of("Px ", "   "),
                     ingredients,
                     catalysts,
-                    new ItemStack(result));
+                    keyedStack(
+                            result,
+                            wire.materialId(),
+                            MaterialPrefixes.WIRE,
+                            1));
         }
     }
 
     /**
      * GT6 shapeless {@code cableGt01/02 = wireGt01/02 + plate.dat(ANY.Rubber)}.
-     * The live CC tag is {@code cruciblecraft:any_rubber_plates}.
+     * Live rubber is a shared inventory plate, so this is a component
+     * ingredient rather than {@code #c:plates/rubber}.
      */
     private static void addEuCableShapelessRecipes(RecipeOutput output) {
         if (!ElectricalConductorCatalog.isInitialized()
@@ -1674,10 +1767,6 @@ public final class ModRecipeProvider extends RecipeProvider {
                         "rubber", MaterialPrefixes.PLATE)) {
             return;
         }
-        TagKey<Item> rubberPlates = TagKey.create(
-                Registries.ITEM,
-                ResourceLocation.fromNamespaceAndPath(
-                        CrucibleCraft.MODID, "any_rubber_plates"));
         for (ElectricalConductorCatalog.Entry cable :
                 ElectricalConductorCatalog.cables()) {
             MaterialPrefix wireForm = cableWireForm(cable.form());
@@ -1696,7 +1785,7 @@ public final class ModRecipeProvider extends RecipeProvider {
             Item result = materialItem(cable.materialId(), cable.form());
             ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result)
                     .requires(wire)
-                    .requires(rubberPlates)
+                    .requires(materialIngredient("rubber", MaterialPrefixes.PLATE))
                     .unlockedBy("has_wire", has(wire))
                     .save(
                             output,
@@ -1842,10 +1931,13 @@ public final class ModRecipeProvider extends RecipeProvider {
                             ModRecipeMaps.LAMINATOR.id(),
                             new GTRecipe(
                                     List.of(
-                                            Ingredient.of(rubberPlate),
-                                            Ingredient.of(wire)),
+                                            keyedIngredient(rubberPlate, "rubber", MaterialPrefixes.PLATE),
+                                            keyedIngredient(
+                                                    wire,
+                                                    cable.materialId(),
+                                                    MaterialPrefixes.WIRE)),
                                     List.of(1, 1),
-                                    List.of(new ItemStack(result)),
+                                    List.of(keyedStack(result, cable.materialId(), cable.form(), 1)),
                                     List.of(),
                                     List.of(),
                                     List.of(GTRecipe.GUARANTEED_CHANCE),
@@ -1865,9 +1957,12 @@ public final class ModRecipeProvider extends RecipeProvider {
                             new GTRecipe(
                                     List.of(
                                             Ingredient.of(rubberFoil),
-                                            Ingredient.of(wire)),
+                                            keyedIngredient(
+                                                    wire,
+                                                    cable.materialId(),
+                                                    MaterialPrefixes.WIRE)),
                                     List.of(4, 1),
-                                    List.of(new ItemStack(result)),
+                                    List.of(keyedStack(result, cable.materialId(), cable.form(), 1)),
                                     List.of(),
                                     List.of(),
                                     List.of(GTRecipe.GUARANTEED_CHANCE),
@@ -1897,22 +1992,32 @@ public final class ModRecipeProvider extends RecipeProvider {
             }
             case CARBON_DUST -> {
                 Item item = materialItem("carbon", MaterialPrefixes.DUST);
-                builder.define(symbol, item);
+                builder.define(
+                        symbol,
+                        keyedIngredient(item, "carbon", MaterialPrefixes.DUST));
                 yield item;
             }
             case PLASTIC_PLATE -> {
                 Item item = materialItem("plastic", MaterialPrefixes.PLATE);
-                builder.define(symbol, item);
+                builder.define(
+                        symbol,
+                        keyedIngredient(
+                                item, "plastic", MaterialPrefixes.PLATE));
                 yield item;
             }
             case RUBBER_PLATE -> {
                 Item item = materialItem("rubber", MaterialPrefixes.PLATE);
-                builder.define(symbol, item);
+                builder.define(
+                        symbol,
+                        keyedIngredient(item, "rubber", MaterialPrefixes.PLATE));
                 yield item;
             }
             case COAL_COKE -> {
                 Item item = materialItem("coal_coke", MaterialPrefixes.GEM);
-                builder.define(symbol, item);
+                builder.define(
+                        symbol,
+                        keyedIngredient(
+                                item, "coal_coke", MaterialPrefixes.GEM));
                 yield item;
             }
         };
@@ -1933,9 +2038,17 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .pattern("W W")
                 .pattern("RCR")
                 .pattern("S S")
-                .define('W', wire)
-                .define('R', rod)
-                .define('S', spring)
+                .define(
+                        'W',
+                        keyedIngredient(
+                                wire, material, MaterialPrefixes.FINE_WIRE))
+                .define(
+                        'R',
+                        keyedIngredient(rod, material, MaterialPrefixes.ROD))
+                .define(
+                        'S',
+                        keyedIngredient(
+                                spring, material, MaterialPrefixes.SPRING))
                 .define('C', casing)
                 .unlockedBy("has_casing", has(casing))
                 .save(output, id("machines/" + id));
@@ -1949,17 +2062,28 @@ public final class ModRecipeProvider extends RecipeProvider {
             String id) {
         Item platinumWire = materialItem(
                 "platinum", MaterialPrefixes.WIRE);
-        Item cable = MaterialLookup.item(cableMaterial, MaterialPrefixes.CABLE)
-                .or(() -> MaterialLookup.item(cableMaterial, MaterialPrefixes.WIRE))
+        MaterialPrefix conductorForm = MaterialLookup.item(
+                        cableMaterial, MaterialPrefixes.CABLE)
+                .isPresent()
+                ? MaterialPrefixes.CABLE
+                : MaterialPrefixes.WIRE;
+        Item cable = MaterialLookup.item(cableMaterial, conductorForm)
                 .orElseThrow(() -> new IllegalStateException(
                         "Missing electrolyzer conductor "
                                 + cableMaterial));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
                 .pattern("SMS")
                 .pattern("W W")
-                .define('S', platinumWire)
+                .define(
+                        'S',
+                        keyedIngredient(
+                                platinumWire,
+                                "platinum",
+                                MaterialPrefixes.WIRE))
                 .define('M', casing)
-                .define('W', cable)
+                .define(
+                        'W',
+                        keyedIngredient(cable, cableMaterial, conductorForm))
                 .unlockedBy("has_casing", has(casing))
                 .save(output, id("machines/" + id));
     }
@@ -1977,8 +2101,8 @@ public final class ModRecipeProvider extends RecipeProvider {
             Item quadruple = materialItem(
                     material, MaterialPrefixes.MACHINE_CASING_QUADRUPLE);
             Map<String, Ingredient> ingredients = new LinkedHashMap<>();
-            ingredients.put("S", Ingredient.of(smallGear));
-            ingredients.put("G", Ingredient.of(gear));
+            ingredients.put("S", keyedIngredient(smallGear, material, MaterialPrefixes.SMALL_GEAR));
+            ingredients.put("G", keyedIngredient(gear, material, MaterialPrefixes.GEAR));
             ingredients.put("M", Ingredient.of(quadruple));
             // GT6 Loader_MultiTileEntities.java:1367 {"SSS","wGh","SMS"}.
             acceptShapedCatalyst(
@@ -1994,7 +2118,7 @@ public final class ModRecipeProvider extends RecipeProvider {
         }
         if ("rollformer".equals(kind)) {
             Map<String, Ingredient> ingredients = new LinkedHashMap<>();
-            ingredients.put("G", Ingredient.of(gear));
+            ingredients.put("G", keyedIngredient(gear, material, MaterialPrefixes.GEAR));
             ingredients.put("M", Ingredient.of(casing));
             // GT6 Loader_MultiTileEntities.java:1361 {"wG ","GMG"," Gh"}.
             acceptShapedCatalyst(
@@ -2011,8 +2135,8 @@ public final class ModRecipeProvider extends RecipeProvider {
         if ("sanding".equals(kind)) {
             Item smallGear = materialItem(material, MaterialPrefixes.SMALL_GEAR);
             Map<String, Ingredient> ingredients = new LinkedHashMap<>();
-            ingredients.put("S", Ingredient.of(smallGear));
-            ingredients.put("G", Ingredient.of(gear));
+            ingredients.put("S", keyedIngredient(smallGear, material, MaterialPrefixes.SMALL_GEAR));
+            ingredients.put("G", keyedIngredient(gear, material, MaterialPrefixes.GEAR));
             ingredients.put("X", Ingredient.of(Items.SANDSTONE));
             ingredients.put("M", Ingredient.of(casing));
             // GT6 Loader_MultiTileEntities.java:1589 {"SGS","XXX","wMh"}.
@@ -2032,7 +2156,8 @@ public final class ModRecipeProvider extends RecipeProvider {
                         .define('C', casing)
                         .unlockedBy("has_casing", has(casing));
         if (!kind.equals("press")) {
-            builder.define('G', gear);
+            builder.define(
+                    'G', keyedIngredient(gear, material, MaterialPrefixes.GEAR));
         }
         switch (kind) {
             case "lathe" -> builder
@@ -2040,17 +2165,17 @@ public final class ModRecipeProvider extends RecipeProvider {
                     .pattern(" CG")
                     .define(
                             'T',
-                            materialItem(
+                            materialIngredient(
                                     material,
                                     MaterialPrefixes.SCREW))
                     .define(
                             'D',
-                            materialItem(
+                            materialIngredient(
                                     "diamond",
                                     MaterialPrefixes.GEM))
                     .define(
                             'S',
-                            materialItem(
+                            materialIngredient(
                                     material,
                                     MaterialPrefixes.SMALL_GEAR));
             case "rollingmill", "rollbender" -> builder
@@ -2062,7 +2187,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                     .pattern(" C ")
                     .define(
                             'S',
-                            materialItem(
+                            materialIngredient(
                                     material,
                                     MaterialPrefixes.SMALL_GEAR));
             case "shredder", "cutter" -> builder
@@ -2070,7 +2195,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                     .pattern(" C ")
                     .define(
                             'D',
-                            materialItem(
+                            materialIngredient(
                                     "diamond",
                                     MaterialPrefixes.GEM));
             case "press" -> builder
@@ -2079,17 +2204,17 @@ public final class ModRecipeProvider extends RecipeProvider {
                     .pattern("P ")
                     .define(
                             'P',
-                            materialItem(
+                            materialIngredient(
                                     material,
                                     MaterialPrefixes.DOUBLE_PLATE))
                     .define(
                             'R',
-                            materialItem(
+                            materialIngredient(
                                     material,
                                     MaterialPrefixes.ROD))
                     .define(
                             'S',
-                            materialItem(
+                            materialIngredient(
                                     material,
                                     MaterialPrefixes.SPRING));
             default -> throw new IllegalArgumentException(
@@ -2114,8 +2239,18 @@ public final class ModRecipeProvider extends RecipeProvider {
         ShapedRecipeBuilder builder =
                 ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
                         .define('M', casing)
-                        .define('P', tierPlate)
-                        .define('C', copperDoublePlate)
+                        .define(
+                                'P',
+                                keyedIngredient(
+                                        tierPlate,
+                                        machineMaterial,
+                                        MaterialPrefixes.PLATE))
+                        .define(
+                                'C',
+                                keyedIngredient(
+                                        copperDoublePlate,
+                                        "copper",
+                                        MaterialPrefixes.DOUBLE_PLATE))
                         .unlockedBy("has_casing", has(casing));
         switch (kind) {
             case "distillery" -> builder
@@ -2125,7 +2260,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                     .define('G', Items.GLASS)
                     .define(
                             'W',
-                            materialItem(
+                            materialIngredient(
                                     java.util.Objects.requireNonNull(
                                             wireMaterial,
                                             "distillery wire material"),
@@ -2154,7 +2289,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                     .pattern(" C ")
                     .define(
                             'W',
-                            materialItem(
+                            materialIngredient(
                                     machineMaterial,
                                     MaterialPrefixes.ROD));
             default -> throw new IllegalArgumentException(
@@ -2170,8 +2305,7 @@ public final class ModRecipeProvider extends RecipeProvider {
             String id) {
         Map<String, Ingredient> ingredients = new LinkedHashMap<>();
         ingredients.put("M", Ingredient.of(casing));
-        ingredients.put("C", Ingredient.of(materialItem(
-                "copper", MaterialPrefixes.DOUBLE_PLATE)));
+        ingredients.put("C", materialIngredient("copper", MaterialPrefixes.DOUBLE_PLATE));
         ingredients.put("B", Ingredient.of(Items.BRICKS));
         acceptShapedCatalyst(
                 output,
@@ -2192,10 +2326,8 @@ public final class ModRecipeProvider extends RecipeProvider {
             String id) {
         Map<String, Ingredient> ingredients = new LinkedHashMap<>();
         ingredients.put("M", Ingredient.of(casing));
-        ingredients.put("P", Ingredient.of(materialItem(
-                material, MaterialPrefixes.FLUID_PIPE)));
-        ingredients.put("C", Ingredient.of(materialItem(
-                "copper", MaterialPrefixes.DOUBLE_PLATE)));
+        ingredients.put("P", materialIngredient(material, MaterialPrefixes.FLUID_PIPE));
+        ingredients.put("C", materialIngredient("copper", MaterialPrefixes.DOUBLE_PLATE));
         ingredients.put("B", Ingredient.of(Items.BRICKS));
         ingredients.put("U", Ingredient.of(ModItems.CRUCIBLE.get()));
         acceptShapedCatalyst(
@@ -2218,19 +2350,16 @@ public final class ModRecipeProvider extends RecipeProvider {
         Map<String, Ingredient> ingredients = new LinkedHashMap<>();
         ingredients.put(
                 "G",
-                Ingredient.of(materialItem(
-                        material, MaterialPrefixes.SMALL_GEAR)));
+                materialIngredient(material, MaterialPrefixes.SMALL_GEAR));
         ingredients.put(
                 "S",
-                Ingredient.of(materialItem(
-                        material, MaterialPrefixes.ROD)));
+                materialIngredient(material, MaterialPrefixes.ROD));
         ingredients.put(
                 "M",
                 Ingredient.of(casing));
         ingredients.put(
                 "C",
-                Ingredient.of(materialItem(
-                        "copper", MaterialPrefixes.DOUBLE_PLATE)));
+                materialIngredient("copper", MaterialPrefixes.DOUBLE_PLATE));
         // GT6 Loader_MultiTileEntities.java:1532-1535 {"SwS","GMG","SCS"}.
         acceptShapedCatalyst(
                 output,
@@ -2260,14 +2389,13 @@ public final class ModRecipeProvider extends RecipeProvider {
         Map<String, Ingredient> ingredients = new LinkedHashMap<>();
         ingredients.put(
                 "R",
-                Ingredient.of(materialItem(
-                        "stainless_steel", MaterialPrefixes.ROTOR)));
+                materialIngredient("stainless_steel", MaterialPrefixes.ROTOR));
         ingredients.put(
                 "P",
-                Ingredient.of(materialItem("stainless_steel", pipePrefix)));
+                materialIngredient("stainless_steel", pipePrefix));
         ingredients.put(
                 "G",
-                Ingredient.of(materialItem(material, MaterialPrefixes.SMALL_GEAR)));
+                materialIngredient(material, MaterialPrefixes.SMALL_GEAR));
         ingredients.put("M", Ingredient.of(casing));
         // GT6 Loader_MultiTileEntities.java:1615-1618 {"RPG","wMG"}.
         acceptShapedCatalyst(
@@ -2286,10 +2414,8 @@ public final class ModRecipeProvider extends RecipeProvider {
             String material,
             String id) {
         Map<String, Ingredient> ingredients = new LinkedHashMap<>();
-        ingredients.put("S", Ingredient.of(materialItem(
-                material, MaterialPrefixes.LONG_ROD)));
-        ingredients.put("G", Ingredient.of(materialItem(
-                material, MaterialPrefixes.GEAR)));
+        ingredients.put("S", materialIngredient(material, MaterialPrefixes.LONG_ROD));
+        ingredients.put("G", materialIngredient(material, MaterialPrefixes.GEAR));
         ingredients.put("M", Ingredient.of(casing));
         // GT6 Loader_MultiTileEntities.java:1412-1415 {"ShS","GMG","SwS"}.
         acceptShapedCatalyst(
@@ -2318,8 +2444,7 @@ public final class ModRecipeProvider extends RecipeProvider {
             default -> compactPartOrThrow(id, "compact_electric_motor");
         };
         Map<String, Ingredient> ingredients = new LinkedHashMap<>();
-        ingredients.put("S", Ingredient.of(materialItem(
-                material, MaterialPrefixes.LONG_ROD)));
+        ingredients.put("S", materialIngredient(material, MaterialPrefixes.LONG_ROD));
         ingredients.put("G", Ingredient.of(
                 ModItems.technologicalPart(motorPath).get()));
         ingredients.put("M", Ingredient.of(casing));
@@ -2373,13 +2498,11 @@ public final class ModRecipeProvider extends RecipeProvider {
         }
         Map<String, Ingredient> ingredients = new LinkedHashMap<>();
         ingredients.put("X", Ingredient.of(piston));
-        ingredients.put("P", Ingredient.of(materialItem(
-                "stainless_steel",
-                MaterialPrefixCatalog.require(pipe))));
+        ingredients.put("P", materialIngredient("stainless_steel", MaterialPrefixCatalog.require(pipe)));
         ingredients.put("C", Ingredient.of(ModItems.technologicalPart(
                 circuitPath(tier)).get()));
         ingredients.put("M", Ingredient.of(casing));
-        ingredients.put("W", Ingredient.of(materialItem(cable, cablePrefix)));
+        ingredients.put("W", materialIngredient(cable, cablePrefix));
         // GT6 Loader_MultiTileEntities.java:1443-1447 {"XPw","CMW"}.
         acceptShapedCatalyst(
                 output,
@@ -2411,8 +2534,7 @@ public final class ModRecipeProvider extends RecipeProvider {
         }
         Map<String, Ingredient> ingredients = new LinkedHashMap<>();
         ingredients.put("P", Ingredient.of(piston));
-        ingredients.put("R", Ingredient.of(materialItem(
-                material, MaterialPrefixes.ROD)));
+        ingredients.put("R", materialIngredient(material, MaterialPrefixes.ROD));
         ingredients.put("Y", Ingredient.of(conveyor));
         ingredients.put("M", Ingredient.of(casing));
         ingredients.put("C", Ingredient.of(ModItems.technologicalPart(
@@ -2471,8 +2593,9 @@ public final class ModRecipeProvider extends RecipeProvider {
         }
         Item result = ModItems.materialItem(material, casingForm).get();
         Map<String, Ingredient> ingredients = new LinkedHashMap<>();
-        ingredients.put("X", Ingredient.of(plate));
-        ingredients.put("Y", Ingredient.of(rod));
+        ingredients.put("X", keyedIngredient(plate, material, plateForm));
+        ingredients.put(
+                "Y", keyedIngredient(rod, material, MaterialPrefixes.LONG_ROD));
         // GT6 Loader_OreProcessing.java:152-153 {"YXX", "XwX", "XXY"}.
         acceptShapedCatalyst(
                 output,
@@ -2503,19 +2626,30 @@ public final class ModRecipeProvider extends RecipeProvider {
         planned.ingredients().forEach((symbol, itemId) ->
                 ingredients.put(
                         symbol,
-                        Ingredient.of(resolveRegisteredItem(
-                                ResourceLocation.parse(itemId)))));
+                        MaterialLookup.ingredientFromLogicalId(itemId)
+                                .orElseThrow(() -> new IllegalStateException(
+                                        "Missing planned ingredient " + itemId))));
         LinkedHashMap<String, Ingredient> catalysts = new LinkedHashMap<>();
         planned.catalysts().forEach((symbol, itemId) ->
                 catalysts.put(
                         symbol,
-                        Ingredient.of(resolveRegisteredItem(
-                                ResourceLocation.parse(itemId)))));
-        Item resultItem = resolveRegisteredItem(
-                ResourceLocation.parse(planned.resultId()));
+                        MaterialLookup.ingredientFromLogicalId(itemId)
+                                .orElseThrow(() -> new IllegalStateException(
+                                        "Missing planned catalyst " + itemId))));
         ItemStack result = planned.persistToolMaterial()
-                ? toolStack(resultItem, planned.material())
-                : new ItemStack(resultItem, planned.count());
+                ? toolStack(
+                        resolveRegisteredItem(
+                                ResourceLocation.parse(planned.resultId())),
+                        planned.material())
+                : MaterialLookup.stackFromLogicalId(planned.resultId())
+                        .map(stack -> {
+                            stack.setCount(planned.count());
+                            return stack;
+                        })
+                        .orElseGet(() -> new ItemStack(
+                                resolveRegisteredItem(
+                                        ResourceLocation.parse(planned.resultId())),
+                                planned.count()));
         acceptShapedCatalyst(
                 output,
                 planned.path(),
@@ -2606,9 +2740,10 @@ public final class ModRecipeProvider extends RecipeProvider {
         String path = entry.id().getPath();
         boolean required = REQUIRED_CONVERTER_RECIPES.contains(path);
         Item result = ModItems.converterItemsById().get(entry.id()).get();
-        java.util.LinkedHashMap<Character, Item> keys = new java.util.LinkedHashMap<>();
+        java.util.LinkedHashMap<Character, Ingredient> keys =
+                new java.util.LinkedHashMap<>();
         for (var key : entry.recipe().keys().entrySet()) {
-            Item item = resolveConverterIngredient(entry, key.getValue());
+            Ingredient item = resolveConverterIngredient(entry, key.getValue());
             if (item == null) {
                 if (required) {
                     throw new IllegalStateException(
@@ -2642,16 +2777,14 @@ public final class ModRecipeProvider extends RecipeProvider {
             }
             builder.define(key.getKey(), key.getValue());
             if (unlock == null) {
-                unlock = key.getValue();
+                unlock = unlockSample(key.getValue());
             }
         }
         builder.unlockedBy("has_part", has(unlock)).save(output, id(path));
     }
 
     private static void addLuFiberRecipe(RecipeOutput output) {
-        var silverPlate = MaterialLookup.item(
-                "silver", MaterialPrefixes.PLATE);
-        if (silverPlate.isEmpty()) {
+        if (MaterialLookup.ingredient("silver", MaterialPrefixes.PLATE).isEmpty()) {
             return;
         }
         output.accept(
@@ -2659,7 +2792,8 @@ public final class ModRecipeProvider extends RecipeProvider {
                 new ShapedCatalystRecipe(
                         List.of("PGR", "DxD", "RGP"),
                         Map.of(
-                                "P", Ingredient.of(silverPlate.orElseThrow()),
+                                "P", materialIngredient(
+                                        "silver", MaterialPrefixes.PLATE),
                                 "G", Ingredient.of(Items.GLASS),
                                 "D", Ingredient.of(Items.DIAMOND),
                                 "R", Ingredient.of(Items.REDSTONE)),
@@ -2682,7 +2816,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 "tungstensteel",
                 ModItems.TUNGSTENSTEEL_WALL.get(),
                 "tungstensteel_wall");
-        var iridiumWire = MaterialLookup.item(
+        var iridiumWire = MaterialLookup.ingredient(
                 "iridium", MaterialPrefixes.QUADRUPLE_WIRE);
         if (iridiumWire.isEmpty()) {
             return;
@@ -2691,7 +2825,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 id("machines/large_iridium_coil"),
                 new ShapedCatalystRecipe(
                         List.of("WWW", "WxW", "WWW"),
-                        Map.of("W", Ingredient.of(iridiumWire.orElseThrow())),
+                        Map.of("W", iridiumWire.orElseThrow()),
                         Map.of(
                                 "x",
                                 Ingredient.of(
@@ -2716,7 +2850,7 @@ public final class ModRecipeProvider extends RecipeProvider {
             String material,
             Item result,
             String path) {
-        var plate = MaterialLookup.item(material, MaterialPrefixes.PLATE);
+        var plate = MaterialLookup.ingredient(material, MaterialPrefixes.PLATE);
         if (plate.isEmpty()) {
             return;
         }
@@ -2724,7 +2858,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 id(path),
                 new ShapedCatalystRecipe(
                         List.of("wPP", "hPP", "   "),
-                        Map.of("P", Ingredient.of(plate.orElseThrow())),
+                        Map.of("P", plate.orElseThrow()),
                         Map.of(
                                 "w",
                                 Ingredient.of(ModItems.MATERIAL_WRENCH.get()),
@@ -2794,23 +2928,22 @@ public final class ModRecipeProvider extends RecipeProvider {
 
     private static List<ItemStack> fusionItems(FusionRecipeCatalog.Entry entry) {
         return entry.itemOutputs().stream()
-                .map(item -> new ItemStack(
-                        MaterialLookup.item(
-                                        item.material(),
-                                        switch (item.prefix()) {
-                                            case "dust" -> MaterialPrefixes.DUST;
-                                            default -> throw new IllegalStateException(
-                                                    "Unsupported fusion item prefix "
-                                                            + item.prefix());
-                                        })
-                                .orElseThrow(() -> new IllegalStateException(
-                                        "Missing fusion item "
-                                                + item.material()
-                                                + "/"
-                                                + item.prefix()
-                                                + " for "
-                                                + entry.id())),
-                        item.count()))
+                .map(item -> MaterialLookup.tryStack(
+                                item.material(),
+                                switch (item.prefix()) {
+                                    case "dust" -> MaterialPrefixes.DUST;
+                                    default -> throw new IllegalStateException(
+                                            "Unsupported fusion item prefix "
+                                                    + item.prefix());
+                                },
+                                item.count())
+                        .orElseThrow(() -> new IllegalStateException(
+                                "Missing fusion item "
+                                        + item.material()
+                                        + "/"
+                                        + item.prefix()
+                                        + " for "
+                                        + entry.id())))
                 .toList();
     }
 
@@ -2957,12 +3090,6 @@ public final class ModRecipeProvider extends RecipeProvider {
                 null);
     }
 
-    private static Ingredient materialIngredient(
-            String material,
-            MaterialPrefix prefix) {
-        return Ingredient.of(materialItem(material, prefix));
-    }
-
     private static Ingredient circuitIngredient(String path) {
         return Ingredient.of(ModItems.technologicalPart(path).get());
     }
@@ -2972,9 +3099,10 @@ public final class ModRecipeProvider extends RecipeProvider {
             EnergyBatteryTierCatalog.Entry entry) {
         String path = entry.id().getPath();
         Item result = ModItems.batteryItemsById().get(entry.id()).get();
-        java.util.LinkedHashMap<Character, Item> keys = new java.util.LinkedHashMap<>();
+        java.util.LinkedHashMap<Character, Ingredient> keys =
+                new java.util.LinkedHashMap<>();
         for (var key : entry.recipe().keys().entrySet()) {
-            Item item = resolveBatteryIngredient(key.getValue());
+            Ingredient item = resolveBatteryIngredient(key.getValue());
             if (item == null) {
                 throw new IllegalStateException(
                         "Missing battery recipe ingredient for "
@@ -3005,7 +3133,7 @@ public final class ModRecipeProvider extends RecipeProvider {
             }
             builder.define(key.getKey(), key.getValue());
             if (unlock == null) {
-                unlock = key.getValue();
+                unlock = unlockSample(key.getValue());
             }
         }
         builder.unlockedBy("has_part", has(unlock)).save(output, id(path));
@@ -3022,10 +3150,10 @@ public final class ModRecipeProvider extends RecipeProvider {
             EnergyTransformerTierCatalog.Entry entry) {
         String path = entry.id().getPath();
         Item result = ModItems.transformerItemsById().get(entry.id()).get();
-        java.util.LinkedHashMap<Character, Item> keys =
+        java.util.LinkedHashMap<Character, Ingredient> keys =
                 new java.util.LinkedHashMap<>();
         for (var key : entry.recipe().keys().entrySet()) {
-            Item item = resolveTransformerIngredient(key.getValue());
+            Ingredient item = resolveTransformerIngredient(key.getValue());
             if (item == null) {
                 return;
             }
@@ -3052,7 +3180,7 @@ public final class ModRecipeProvider extends RecipeProvider {
             }
             builder.define(key.getKey(), key.getValue());
             if (unlock == null) {
-                unlock = key.getValue();
+                unlock = unlockSample(key.getValue());
             }
         }
         if (unlock == null) {
@@ -3071,11 +3199,11 @@ public final class ModRecipeProvider extends RecipeProvider {
             RecipeOutput output, HeatExchangerProfile profile) {
         LinkedHashMap<String, Ingredient> ingredients = new LinkedHashMap<>();
         for (var entry : profile.recipe().keys().entrySet()) {
-            Item item = resolveHeatExchangerIngredient(entry.getValue());
+            Ingredient item = resolveHeatExchangerIngredient(entry.getValue());
             if (item == null) {
                 return;
             }
-            ingredients.put(entry.getKey(), Ingredient.of(item));
+            ingredients.put(entry.getKey(), item);
         }
         acceptShapedCatalyst(
                 output,
@@ -3091,7 +3219,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                                 .get()));
     }
 
-    private static Item resolveHeatExchangerIngredient(
+    private static Ingredient resolveHeatExchangerIngredient(
             HeatExchangerProfile.Ingredient ingredient) {
         MaterialPrefix prefix;
         try {
@@ -3099,7 +3227,7 @@ public final class ModRecipeProvider extends RecipeProvider {
         } catch (IllegalArgumentException ignored) {
             return null;
         }
-        return MaterialLookup.item(ingredient.material(), prefix).orElse(null);
+        return MaterialLookup.ingredient(ingredient.material(), prefix).orElse(null);
     }
 
     private static void addLargeHeatExchangerRecipes(RecipeOutput output) {
@@ -3179,12 +3307,7 @@ public final class ModRecipeProvider extends RecipeProvider {
         if (slot.item() == null || slot.item().isBlank()) {
             return null;
         }
-        ResourceLocation loc = ResourceLocation.tryParse(slot.item());
-        if (loc == null || !BuiltInRegistries.ITEM.containsKey(loc)) {
-            return null;
-        }
-        Item item = BuiltInRegistries.ITEM.get(loc);
-        return item == Items.AIR ? null : Ingredient.of(item);
+        return MaterialLookup.ingredientFromLogicalId(slot.item()).orElse(null);
     }
 
     private static void addSteamTurbineRecipes(RecipeOutput output) {
@@ -3208,14 +3331,14 @@ public final class ModRecipeProvider extends RecipeProvider {
             ItemStack result) {
         LinkedHashMap<String, Ingredient> ingredients = new LinkedHashMap<>();
         for (var entry : recipe.keys().entrySet()) {
-            Item item = resolveFlexibleIngredient(
+            Ingredient item = resolveFlexibleIngredient(
                     entry.getValue().item(),
                     entry.getValue().prefix(),
                     entry.getValue().material());
             if (item == null) {
                 return;
             }
-            ingredients.put(entry.getKey(), Ingredient.of(item));
+            ingredients.put(entry.getKey(), item);
         }
         LinkedHashMap<String, Ingredient> catalysts = new LinkedHashMap<>();
         for (String tool : recipe.catalysts()) {
@@ -3238,14 +3361,14 @@ public final class ModRecipeProvider extends RecipeProvider {
         }
         LinkedHashMap<String, Ingredient> ingredients = new LinkedHashMap<>();
         for (var entry : recipe.keys().entrySet()) {
-            Item item = resolveFlexibleIngredient(
+            Ingredient item = resolveFlexibleIngredient(
                     entry.getValue().item(),
                     entry.getValue().prefix(),
                     entry.getValue().material());
             if (item == null) {
                 return;
             }
-            ingredients.put(entry.getKey(), Ingredient.of(item));
+            ingredients.put(entry.getKey(), item);
         }
         LinkedHashMap<String, Ingredient> catalysts = new LinkedHashMap<>();
         for (String tool : recipe.catalysts()) {
@@ -3258,15 +3381,10 @@ public final class ModRecipeProvider extends RecipeProvider {
         acceptShapedCatalyst(output, path, recipe.pattern(), ingredients, catalysts, result);
     }
 
-    private static Item resolveFlexibleIngredient(
+    private static Ingredient resolveFlexibleIngredient(
             String itemId, String prefix, String material) {
         if (itemId != null && !itemId.isBlank()) {
-            ResourceLocation loc = ResourceLocation.tryParse(itemId);
-            if (loc == null || !BuiltInRegistries.ITEM.containsKey(loc)) {
-                return null;
-            }
-            Item item = BuiltInRegistries.ITEM.get(loc);
-            return item == Items.AIR ? null : item;
+            return MaterialLookup.ingredientFromLogicalId(itemId).orElse(null);
         }
         if (prefix == null || material == null) {
             return null;
@@ -3277,7 +3395,7 @@ public final class ModRecipeProvider extends RecipeProvider {
         } catch (IllegalArgumentException ignored) {
             return null;
         }
-        return MaterialLookup.item(material, parsed).orElse(null);
+        return MaterialLookup.ingredient(material, parsed).orElse(null);
     }
 
     private static Item catalystItem(String key) {
@@ -3301,15 +3419,11 @@ public final class ModRecipeProvider extends RecipeProvider {
         };
     }
 
-    private static Item resolveTransformerIngredient(
+    private static Ingredient resolveTransformerIngredient(
             EnergyTransformerTierCatalog.Ingredient ingredient) {
         if (ingredient.item() != null) {
-            ResourceLocation loc = ResourceLocation.parse(ingredient.item());
-            if (!BuiltInRegistries.ITEM.containsKey(loc)) {
-                return null;
-            }
-            Item item = BuiltInRegistries.ITEM.get(loc);
-            return item == Items.AIR ? null : item;
+            return MaterialLookup.ingredientFromLogicalId(ingredient.item())
+                    .orElse(null);
         }
         MaterialPrefix prefix;
         try {
@@ -3317,18 +3431,14 @@ public final class ModRecipeProvider extends RecipeProvider {
         } catch (IllegalArgumentException ignored) {
             return null;
         }
-        return MaterialLookup.item(ingredient.material(), prefix).orElse(null);
+        return MaterialLookup.ingredient(ingredient.material(), prefix).orElse(null);
     }
 
-    private static Item resolveBatteryIngredient(
+    private static Ingredient resolveBatteryIngredient(
             EnergyBatteryTierCatalog.Ingredient ingredient) {
         if (ingredient.item() != null) {
-            ResourceLocation loc = ResourceLocation.parse(ingredient.item());
-            if (!BuiltInRegistries.ITEM.containsKey(loc)) {
-                return null;
-            }
-            Item item = BuiltInRegistries.ITEM.get(loc);
-            return item == Items.AIR ? null : item;
+            return MaterialLookup.ingredientFromLogicalId(ingredient.item())
+                    .orElse(null);
         }
         MaterialPrefix prefix;
         try {
@@ -3336,19 +3446,15 @@ public final class ModRecipeProvider extends RecipeProvider {
         } catch (IllegalArgumentException ignored) {
             return null;
         }
-        return MaterialLookup.item(ingredient.material(), prefix).orElse(null);
+        return MaterialLookup.ingredient(ingredient.material(), prefix).orElse(null);
     }
 
-    private static Item resolveConverterIngredient(
+    private static Ingredient resolveConverterIngredient(
             EnergyConverterTierCatalog.Entry entry,
             EnergyConverterTierCatalog.Ingredient ingredient) {
         if (ingredient.item() != null) {
-            ResourceLocation loc = ResourceLocation.parse(ingredient.item());
-            if (!BuiltInRegistries.ITEM.containsKey(loc)) {
-                return null;
-            }
-            Item item = BuiltInRegistries.ITEM.get(loc);
-            return item == Items.AIR ? null : item;
+            return MaterialLookup.ingredientFromLogicalId(ingredient.item())
+                    .orElse(null);
         }
         String material = "variant".equals(ingredient.material())
                 ? entry.material()
@@ -3359,7 +3465,7 @@ public final class ModRecipeProvider extends RecipeProvider {
         } catch (IllegalArgumentException ignored) {
             return null;
         }
-        return MaterialLookup.item(material, prefix).orElse(null);
+        return MaterialLookup.ingredient(material, prefix).orElse(null);
     }
 
     private static final String[] COMPACT_TIER_NAMES = {
@@ -3472,33 +3578,31 @@ public final class ModRecipeProvider extends RecipeProvider {
             RecipeOutput output,
             MaterialDefinition material,
             MaterialPrefix inputForm) {
-        Item ore = MaterialLookup.item(material.id(), inputForm)
+        Ingredient ingredient = MaterialLookup.ingredient(material.id(), inputForm)
                 .orElseThrow(() -> new IllegalStateException(
                         "Missing " + inputForm.serializedName() + " item for " + material.id()));
-        Item ingot = MaterialLookup.item(material.id(), MaterialPrefixes.INGOT)
-                .orElseThrow(() -> new IllegalStateException(
-                        "Missing ingot item for " + material.id()));
-        Ingredient ingredient = Ingredient.of(ore);
-        String unlockName = "has_" + material.registryName(inputForm);
+        ItemStack result = MaterialLookup.stack(material.id(), MaterialPrefixes.INGOT);
 
-        SimpleCookingRecipeBuilder.smelting(
+        output.accept(
+                recipeId(material, inputForm, "smelting"),
+                new net.minecraft.world.item.crafting.SmeltingRecipe(
+                        COMPAT_SHORTCUT_GROUP,
+                        net.minecraft.world.item.crafting.CookingBookCategory.MISC,
                         ingredient,
-                        RecipeCategory.MISC,
-                        ingot,
+                        result,
                         ORE_EXPERIENCE,
-                        SMELTING_TIME)
-                .group(COMPAT_SHORTCUT_GROUP)
-                .unlockedBy(unlockName, has(ore))
-                .save(output, recipeId(material, inputForm, "smelting"));
-        SimpleCookingRecipeBuilder.blasting(
+                        SMELTING_TIME),
+                null);
+        output.accept(
+                recipeId(material, inputForm, "blasting"),
+                new net.minecraft.world.item.crafting.BlastingRecipe(
+                        COMPAT_SHORTCUT_GROUP,
+                        net.minecraft.world.item.crafting.CookingBookCategory.MISC,
                         ingredient,
-                        RecipeCategory.MISC,
-                        ingot,
+                        result.copy(),
                         ORE_EXPERIENCE,
-                        BLASTING_TIME)
-                .group(COMPAT_SHORTCUT_GROUP)
-                .unlockedBy(unlockName, has(ore))
-                .save(output, recipeId(material, inputForm, "blasting"));
+                        BLASTING_TIME),
+                null);
     }
 
     private static ResourceLocation recipeId(

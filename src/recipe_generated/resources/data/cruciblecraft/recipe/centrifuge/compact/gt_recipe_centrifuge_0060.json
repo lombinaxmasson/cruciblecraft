@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:energium_red/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "energium_red"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "sapphire"
+          },
           "count": 4,
-          "id": "cruciblecraft:sapphire/dust"
+          "id": "cruciblecraft:dust"
         },
         {
           "count": 5,

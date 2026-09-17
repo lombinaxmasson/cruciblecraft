@@ -29,7 +29,7 @@ public final class MissingMaterialStackRewriter {
         if (itemExists.test(itemId)) {
             return Plan.unchanged(itemId);
         }
-        Optional<Identity> identity = parseLegacyIdentity(
+        Optional<Identity> identity = parseIdentity(
                 itemId.substring(MOD_ID.length() + 1));
         if (identity.isEmpty()) {
             return Plan.unchanged(itemId);
@@ -37,12 +37,29 @@ public final class MissingMaterialStackRewriter {
         Identity value = identity.get();
         String canonical = canonicalItems.get(value.key());
         if (canonical == null) {
-            return new Plan(Kind.UNKNOWN, UNKNOWN_ITEM_ID, value.materialId(), value.form());
+            return new Plan(
+                    Kind.UNKNOWN, UNKNOWN_ITEM_ID, value.materialId(), value.form(), false);
         }
         if (canonical.equals(itemId)) {
             return Plan.unchanged(itemId);
         }
-        return new Plan(Kind.CANONICAL, canonical, value.materialId(), value.form());
+        boolean writePrefixMaterial = prefixItemPath(canonical).equals(value.form());
+        return new Plan(
+                Kind.CANONICAL, canonical, value.materialId(), value.form(), writePrefixMaterial);
+    }
+
+    static Optional<Identity> parseIdentity(String path) {
+        Optional<Identity> legacy = parseLegacyIdentity(path);
+        if (legacy.isPresent()) {
+            return legacy;
+        }
+        int slash = path.indexOf('/');
+        if (slash > 0 && slash < path.length() - 1) {
+            return Optional.of(new Identity(
+                    path.substring(0, slash),
+                    path.substring(slash + 1)));
+        }
+        return Optional.empty();
     }
 
     static Optional<Identity> parseLegacyIdentity(String path) {
@@ -57,6 +74,11 @@ public final class MissingMaterialStackRewriter {
         return Optional.empty();
     }
 
+    private static String prefixItemPath(String itemId) {
+        int colon = itemId.indexOf(':');
+        return colon < 0 ? itemId : itemId.substring(colon + 1);
+    }
+
     private static String key(String materialId, String form) {
         return materialId + "/" + form;
     }
@@ -67,9 +89,18 @@ public final class MissingMaterialStackRewriter {
         UNKNOWN
     }
 
-    public record Plan(Kind kind, String targetItemId, String materialId, String form) {
+    public record Plan(
+            Kind kind,
+            String targetItemId,
+            String materialId,
+            String form,
+            boolean writePrefixMaterial) {
         private static Plan unchanged(String itemId) {
-            return new Plan(Kind.UNCHANGED, itemId, "", "");
+            return new Plan(Kind.UNCHANGED, itemId, "", "", false);
+        }
+
+        public Plan(Kind kind, String targetItemId, String materialId, String form) {
+            this(kind, targetItemId, materialId, form, false);
         }
     }
 

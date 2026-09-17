@@ -18,13 +18,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:food/dry_grass_useful_for_making_a_simple_fire_starter"
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
+          "items": "cruciblecraft:dry_grass_useful_for_making_a_simple_fire_starter",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "bale"
+          },
           "count": 1,
-          "id": "cruciblecraft:bale/dry_grass"
+          "id": "cruciblecraft:dry_grass"
         }
       ],
       "output_chances": [

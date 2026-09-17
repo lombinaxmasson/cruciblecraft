@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:calcium/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "calcium"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "fluorite"
+          },
           "count": 3,
-          "id": "cruciblecraft:fluorite/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

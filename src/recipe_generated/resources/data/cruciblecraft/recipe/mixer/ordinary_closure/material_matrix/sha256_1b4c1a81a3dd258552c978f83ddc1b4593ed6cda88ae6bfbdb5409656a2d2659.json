@@ -70,15 +70,22 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:sodium/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "sodium"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "sodium_hydroxide"
+            },
             "count": 3,
-            "id": "cruciblecraft:sodium_hydroxide/dust"
+            "id": "cruciblecraft:dust"
           }
         ]
       ]

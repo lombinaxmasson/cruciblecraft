@@ -87,8 +87,8 @@ public final class FluidPipeAcquisitionGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void copperHugeTableCraftsFromDoublePlate(
             GameTestHelper helper) {
-        Item plate = ModItems.materialItem(
-                "copper", MaterialPrefixes.DOUBLE_PLATE).get();
+        ItemStack plate = MaterialLookup.stack(
+                "copper", MaterialPrefixes.DOUBLE_PLATE);
         Item huge = ModItems.materialItem(
                 "copper", MaterialPrefixes.HUGE_FLUID_PIPE).get();
         ItemStack assembled = craft(
@@ -96,15 +96,15 @@ public final class FluidPipeAcquisitionGameTests {
                 3,
                 3,
                 List.of(
-                        new ItemStack(plate),
-                        new ItemStack(plate),
-                        new ItemStack(plate),
+                        plate,
+                        plate.copy(),
+                        plate.copy(),
                         new ItemStack(ModItems.MATERIAL_WRENCH.get()),
                         new ItemStack(ModItems.MATERIAL_FILE.get()),
                         new ItemStack(ModItems.SMITHING_HAMMER.get()),
-                        new ItemStack(plate),
-                        new ItemStack(plate),
-                        new ItemStack(plate)));
+                        plate.copy(),
+                        plate.copy(),
+                        plate.copy()));
         helper.assertTrue(
                 assembled.is(huge) && assembled.getCount() == 1,
                 "copper huge did not craft from double plates: " + assembled);
@@ -119,8 +119,8 @@ public final class FluidPipeAcquisitionGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void copperTinyTableCraftsFromCurvedPlate(
             GameTestHelper helper) {
-        Item curved = ModItems.materialItem(
-                "copper", MaterialPrefixes.CURVED_PLATE).get();
+        ItemStack curved = MaterialLookup.stack(
+                "copper", MaterialPrefixes.CURVED_PLATE);
         Item tiny = ModItems.materialItem(
                 "copper", MaterialPrefixes.TINY_FLUID_PIPE).get();
         ItemStack assembled = craft(
@@ -129,7 +129,7 @@ public final class FluidPipeAcquisitionGameTests {
                 2,
                 List.of(
                         new ItemStack(ModItems.MATERIAL_SAW.get()),
-                        new ItemStack(curved),
+                        curved,
                         ItemStack.EMPTY,
                         new ItemStack(ModItems.MATERIAL_WRENCH.get()),
                         new ItemStack(ModItems.MATERIAL_FILE.get()),
@@ -148,9 +148,8 @@ public final class FluidPipeAcquisitionGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void fiveGaugeTableDoesNotUseFlatPlate(
             GameTestHelper helper) {
-        Item plate = MaterialLookup.item(
-                "copper", MaterialPrefixes.PLATE).orElseThrow();
-        ItemStack plateStack = new ItemStack(plate);
+        ItemStack plateStack = MaterialLookup.stack(
+                "copper", MaterialPrefixes.PLATE);
         var access = helper.getLevel().registryAccess();
         for (RecipeHolder<?> holder : helper.getLevel()
                 .getRecipeManager()

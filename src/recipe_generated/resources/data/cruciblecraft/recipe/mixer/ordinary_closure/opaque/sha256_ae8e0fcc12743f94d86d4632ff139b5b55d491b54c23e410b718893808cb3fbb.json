@@ -22,7 +22,11 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:sodium/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "sodium"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         },
         {
           "item": "minecraft:blaze_powder"
@@ -30,8 +34,11 @@
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "sodium_sulfide"
+          },
           "count": 3,
-          "id": "cruciblecraft:sodium_sulfide/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

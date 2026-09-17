@@ -28,17 +28,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:arsenopyrite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "arsenopyrite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "hematite"
+          },
           "count": 60,
-          "id": "cruciblecraft:hematite/dust_div72"
+          "id": "cruciblecraft:dust_div72"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "arsenic"
+          },
           "count": 3,
-          "id": "cruciblecraft:arsenic/tiny_dust"
+          "id": "cruciblecraft:tiny_dust"
         }
       ],
       "output_chances": [

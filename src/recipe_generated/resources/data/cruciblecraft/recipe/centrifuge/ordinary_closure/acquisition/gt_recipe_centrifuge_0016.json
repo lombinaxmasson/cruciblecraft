@@ -17,29 +17,47 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:blue_phosphorus/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "blue_phosphorus"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
           {
-            "item": "cruciblecraft:white_phosphorus/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "white_phosphorus"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
           {
-            "item": "cruciblecraft:red_phosphorus/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "red_phosphorus"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "calcium"
+            },
             "count": 3,
-            "id": "cruciblecraft:calcium/dust"
+            "id": "cruciblecraft:dust"
           },
           {
+            "components": {
+              "cruciblecraft:prefix_material": "phosphate"
+            },
             "count": 2,
-            "id": "cruciblecraft:phosphate/dust"
+            "id": "cruciblecraft:dust"
           }
         ]
       ]

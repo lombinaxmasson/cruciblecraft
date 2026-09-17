@@ -22,16 +22,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:copper/small_dust"
+          "components": {
+            "cruciblecraft:prefix_material": "copper"
+          },
+          "items": "cruciblecraft:small_dust",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:redstone/small_dust"
+          "components": {
+            "cruciblecraft:prefix_material": "redstone"
+          },
+          "items": "cruciblecraft:small_dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "mingrade"
+          },
           "count": 2,
-          "id": "cruciblecraft:mingrade/small_dust"
+          "id": "cruciblecraft:small_dust"
         }
       ],
       "output_chances": [

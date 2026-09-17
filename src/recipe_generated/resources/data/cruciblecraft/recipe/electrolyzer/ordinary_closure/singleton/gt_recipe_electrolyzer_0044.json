@@ -34,17 +34,27 @@
           "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:ferrite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "ferrite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "lithium"
+          },
           "count": 1,
-          "id": "cruciblecraft:lithium/dust"
+          "id": "cruciblecraft:dust"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "iron"
+          },
           "count": 1,
-          "id": "cruciblecraft:iron/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

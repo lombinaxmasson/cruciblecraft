@@ -22,16 +22,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:food/dough_for_making_bread"
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
+          "items": "cruciblecraft:dough_for_making_bread",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:sugar/gem_chipped"
+          "components": {
+            "cruciblecraft:prefix_material": "sugar"
+          },
+          "items": "cruciblecraft:gem_chipped",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
           "count": 2,
-          "id": "cruciblecraft:food/sugary_dough_don_t_eat_the_dough_before_it_is_baken"
+          "id": "cruciblecraft:sugary_dough_don_t_eat_the_dough_before_it_is_baken"
         }
       ],
       "output_chances": [

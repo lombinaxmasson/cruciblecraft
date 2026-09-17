@@ -22,16 +22,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:white/egg"
+          "components": {
+            "cruciblecraft:prefix_material": "white"
+          },
+          "items": "cruciblecraft:egg",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:food/egg_yolk_that_s_all_yolks"
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
+          "items": "cruciblecraft:egg_yolk_that_s_all_yolks",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
           "count": 1,
-          "id": "cruciblecraft:food/scrambled_egg"
+          "id": "cruciblecraft:scrambled_egg"
         }
       ],
       "output_chances": [

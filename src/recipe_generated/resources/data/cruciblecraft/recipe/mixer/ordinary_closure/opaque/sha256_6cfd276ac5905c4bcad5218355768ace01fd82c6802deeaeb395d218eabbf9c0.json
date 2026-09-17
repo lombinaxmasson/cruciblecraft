@@ -22,16 +22,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:ice/cream_basic_milk_gelato"
+          "components": {
+            "cruciblecraft:prefix_material": "ice"
+          },
+          "items": "cruciblecraft:cream_basic_milk_gelato",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:chocolate/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "chocolate"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "food"
+          },
           "count": 4,
-          "id": "cruciblecraft:food/stracciatella_ice_cream_fine_chocolate_chip_gelato"
+          "id": "cruciblecraft:stracciatella_ice_cream_fine_chocolate_chip_gelato"
         }
       ],
       "output_chances": [

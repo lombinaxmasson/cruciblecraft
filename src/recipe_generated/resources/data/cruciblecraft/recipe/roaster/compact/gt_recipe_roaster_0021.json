@@ -28,17 +28,27 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:chalcopyrite/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "chalcopyrite"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "hematite"
+          },
           "count": 45,
-          "id": "cruciblecraft:hematite/dust_div72"
+          "id": "cruciblecraft:dust_div72"
         },
         {
+          "components": {
+            "cruciblecraft:prefix_material": "copper"
+          },
           "count": 1,
-          "id": "cruciblecraft:copper/small_dust"
+          "id": "cruciblecraft:small_dust"
         }
       ],
       "output_chances": [

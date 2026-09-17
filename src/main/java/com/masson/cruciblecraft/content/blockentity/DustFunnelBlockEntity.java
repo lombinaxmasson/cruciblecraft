@@ -3,6 +3,7 @@ package com.masson.cruciblecraft.content.blockentity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
@@ -280,9 +281,8 @@ public final class DustFunnelBlockEntity extends BlockEntity {
             case SMALL_DUST -> MaterialPrefixes.SMALL_DUST;
             case TINY_DUST -> MaterialPrefixes.TINY_DUST;
         };
-        return new ItemStack(
-                ModItems.materialItem(ledger.materialId(), prefix).get(),
-                count);
+        return MaterialLookup.tryStack(ledger.materialId(), prefix, count)
+                .orElse(ItemStack.EMPTY);
     }
 
     private static void addForm(
@@ -293,7 +293,7 @@ public final class DustFunnelBlockEntity extends BlockEntity {
         if (!ModItems.hasMaterialItem(materialId, prefix)) {
             return;
         }
-        drops.add(new ItemStack(ModItems.materialItem(materialId, prefix).get(), count));
+        MaterialLookup.tryStack(materialId, prefix, count).ifPresent(drops::add);
     }
 
     public static boolean isDustForm(ItemStack stack) {

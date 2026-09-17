@@ -70,15 +70,22 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:lithium/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "lithium"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "lithium_hydroxide"
+            },
             "count": 3,
-            "id": "cruciblecraft:lithium_hydroxide/dust"
+            "id": "cruciblecraft:dust"
           }
         ]
       ]

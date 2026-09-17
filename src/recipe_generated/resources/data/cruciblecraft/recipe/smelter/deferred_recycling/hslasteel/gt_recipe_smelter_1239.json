@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#1239",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/hslasteel",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 10367,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 1728,
+          "id": "cruciblecraft:molten_hslasteel"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "fluid_pipe_tile"
+          },
+          "items": "cruciblecraft:quadruple_hsla_steel_fluid_pipe",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "8caaa1cf7433add3acc728a31b48f464a5d7c5cc97fab5a0402603fcc60aade3"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#1239",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/0fc841b98cbb6f45"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

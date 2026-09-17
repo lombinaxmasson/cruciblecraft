@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#2013",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/titanium",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 1922,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 360,
+          "id": "cruciblecraft:molten_titanium"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "titanium"
+          },
+          "items": "cruciblecraft:reinforced_wooden_chest",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "a5c7c3a8e15e101efa3ef7b72e9637c59abdd3c16d0a8e0d02d1b9ebff0eccee"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#2013",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/18769fe55c0beb6f"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

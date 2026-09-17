@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#1087",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/black_bronze",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 2443,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 432,
+          "id": "cruciblecraft:molten_black_bronze"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "item_pipe_tile"
+          },
+          "items": "cruciblecraft:black_bronze",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "c3841a83101cf5d6b9fe4d59afb8d2d5780b8014784e847a9a77cd1c62d588e5"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#1087",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/d47def3fa3a42051"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

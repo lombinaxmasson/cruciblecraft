@@ -13,6 +13,8 @@ public final class MissingMaterialStackNbtAdapter {
             MaterialComponentPolicy.TOOL_MATERIAL_COMPONENT_ID;
     public static final String MACHINE_MATERIAL_COMPONENT_ID =
             MaterialComponentPolicy.MACHINE_MATERIAL_COMPONENT_ID;
+    public static final String PREFIX_MATERIAL_COMPONENT_ID =
+            MaterialComponentPolicy.PREFIX_MATERIAL_COMPONENT_ID;
     public static final String TOOL_COMPONENT_FORM =
             MaterialComponentPolicy.TOOL_COMPONENT_FORM;
     public static final String MACHINE_COMPONENT_FORM =
@@ -72,6 +74,13 @@ public final class MissingMaterialStackNbtAdapter {
 
         CompoundTag rewritten = normalized.copy();
         rewritten.putString("id", plan.targetItemId());
+        if (plan.writePrefixMaterial() && !plan.materialId().isBlank()) {
+            CompoundTag components = rewritten.contains("components", Tag.TAG_COMPOUND)
+                    ? rewritten.getCompound("components").copy()
+                    : new CompoundTag();
+            components.putString(PREFIX_MATERIAL_COMPONENT_ID, plan.materialId());
+            rewritten.put("components", components);
+        }
         if (plan.kind() == MissingMaterialStackRewriter.Kind.UNKNOWN) {
             CompoundTag components = rewritten.contains("components", Tag.TAG_COMPOUND)
                     ? rewritten.getCompound("components").copy()
@@ -114,12 +123,27 @@ public final class MissingMaterialStackNbtAdapter {
         if (rewritten != null) {
             return rewritten;
         }
-        return rewriteMissingComponentMaterial(
+        rewritten = rewriteMissingComponentMaterial(
                 input,
                 components,
                 MACHINE_MATERIAL_COMPONENT_ID,
                 MACHINE_COMPONENT_FORM,
                 materialExists);
+        if (rewritten != null) {
+            return rewritten;
+        }
+        var policy = MaterialComponentPolicies.resolve(input.getString("id"));
+        if (policy.isPresent()
+                && PREFIX_MATERIAL_COMPONENT_ID.equals(
+                        policy.orElseThrow().materialComponentId())) {
+            return rewriteMissingComponentMaterial(
+                    input,
+                    components,
+                    PREFIX_MATERIAL_COMPONENT_ID,
+                    policy.orElseThrow().missingMaterialForm(),
+                    materialExists);
+        }
+        return null;
     }
 
     private static CompoundTag rewriteMissingComponentMaterial(

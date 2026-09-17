@@ -32,13 +32,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:alumina/ingot"
+          "components": {
+            "cruciblecraft:prefix_material": "alumina"
+          },
+          "items": "cruciblecraft:ingot",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "silicon_dioxide"
+          },
           "count": 3,
-          "id": "cruciblecraft:silicon_dioxide/dust"
+          "id": "cruciblecraft:dust"
         }
       ],
       "output_chances": [

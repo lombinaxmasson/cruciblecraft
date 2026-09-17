@@ -28,7 +28,11 @@
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:sodium_bisulfate/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "sodium_bisulfate"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ],
         [
@@ -40,21 +44,31 @@
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:potassium_bisulfate/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "potassium_bisulfate"
+            },
+            "items": "cruciblecraft:dust",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "sodium_persulfate"
+            },
             "count": 6,
-            "id": "cruciblecraft:sodium_persulfate/dust"
+            "id": "cruciblecraft:dust"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "potassium_persulfate"
+            },
             "count": 6,
-            "id": "cruciblecraft:potassium_persulfate/dust"
+            "id": "cruciblecraft:dust"
           }
         ]
       ]

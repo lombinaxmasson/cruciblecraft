@@ -23,13 +23,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:lithium/dust"
+          "components": {
+            "cruciblecraft:prefix_material": "lithium"
+          },
+          "items": "cruciblecraft:dust",
+          "type": "neoforge:components"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "lithium_oxide"
+          },
           "count": 6,
-          "id": "cruciblecraft:lithium_oxide/small_dust"
+          "id": "cruciblecraft:small_dust"
         }
       ],
       "output_chances": [

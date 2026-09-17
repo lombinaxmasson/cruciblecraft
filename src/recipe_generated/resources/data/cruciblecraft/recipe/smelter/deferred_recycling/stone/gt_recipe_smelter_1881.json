@@ -1,0 +1,50 @@
+{
+  "family_id": "gt.recipe.smelter#1881",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/stone",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 348,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 1152,
+          "id": "cruciblecraft:molten_stone"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "wood_mossy"
+          },
+          "items": "cruciblecraft:stone_chest",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "86b491b9514c82d6d38d4cb766b7f87cb14608f8a6112b554c818241503a830a"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#1881",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/825bb6b9e084b855"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}
