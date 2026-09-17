@@ -20,13 +20,19 @@ import com.masson.cruciblecraft.worldgen.FluidSpringCatalog;
 import com.masson.cruciblecraft.worldgen.FluidSpringVeins;
 import com.masson.cruciblecraft.worldgen.IndicatorFlower;
 
+import com.masson.cruciblecraft.registry.ModItems;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
@@ -495,5 +501,81 @@ public final class GtBedrockOreVeinsGameTests {
                                 == SpringLiquidBlock.DRIP_META,
                 "natural gas densityDir is +1 so it rises");
         helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void bucketPickupTakesEightQuanta(GameTestHelper helper) {
+        SpringLiquidBlock oil = ModBlocks.OIL_MEDIUM.get();
+        BlockPos origin = new BlockPos(8, 3, 8);
+        helper.setBlock(origin.below(), Blocks.STONE);
+        helper.setBlock(origin, oil.fullState());
+        ItemStack full = oil.pickupBlock(
+                null,
+                helper.getLevel(),
+                helper.absolutePos(origin),
+                helper.getBlockState(origin));
+        helper.assertTrue(
+                full.is(ModItems.OIL_MEDIUM_BUCKET.get()),
+                "meta>=7 must fill the spring bucket");
+        helper.assertTrue(
+                helper.getBlockState(origin).is(oil)
+                        && helper.getBlockState(origin)
+                                        .getValue(SpringLiquidBlock.META)
+                                == SpringLiquidBlock.DRIP_META,
+                "full muffin leaves 8 quanta (meta 7) after a 1000 mB bucket");
+        ItemStack drip = oil.pickupBlock(
+                null,
+                helper.getLevel(),
+                helper.absolutePos(origin),
+                helper.getBlockState(origin));
+        helper.assertTrue(
+                drip.is(ModItems.OIL_MEDIUM_BUCKET.get())
+                        && helper.getBlockState(origin).isAir(),
+                "meta 7 is exactly one bucket and clears the block");
+        helper.setBlock(origin, oil.withMeta(6));
+        ItemStack tooThin = oil.pickupBlock(
+                null,
+                helper.getLevel(),
+                helper.absolutePos(origin),
+                helper.getBlockState(origin));
+        helper.assertTrue(
+                tooThin.isEmpty()
+                        && helper.getBlockState(origin)
+                                        .getValue(SpringLiquidBlock.META)
+                                == 6,
+                "below drip meta must not pick up");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void oilImmersionPoisonsAndBlinds(GameTestHelper helper) {
+        SpringLiquidBlock oil = ModBlocks.OIL_HEAVY.get();
+        BlockPos origin = new BlockPos(8, 2, 8);
+        helper.setBlock(origin.below(), Blocks.STONE);
+        helper.setBlock(origin, oil.fullState());
+        helper.setBlock(origin.above(), oil.fullState());
+        Pig pig = helper.spawn(EntityType.PIG, new Vec3(8.5, 2.1, 8.5));
+        pig.setNoAi(true);
+        helper.succeedWhen(() -> helper.assertTrue(
+                pig.hasEffect(MobEffects.POISON)
+                        && pig.hasEffect(MobEffects.BLINDNESS)
+                        && pig.hasEffect(MobEffects.CONFUSION),
+                "oil bathing blinds; breathing poisons and nauseates"));
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void geothermalImmersionRegenerates(GameTestHelper helper) {
+        SpringLiquidBlock water = ModBlocks.WATER_GEOTHERMAL.get();
+        BlockPos origin = new BlockPos(8, 2, 8);
+        helper.setBlock(origin.below(), Blocks.STONE);
+        helper.setBlock(origin, water.fullState());
+        helper.setBlock(origin.above(), water.fullState());
+        Pig pig = helper.spawn(EntityType.PIG, new Vec3(8.5, 2.1, 8.5));
+        pig.setNoAi(true);
+        helper.succeedWhen(() -> helper.assertTrue(
+                pig.hasEffect(MobEffects.REGENERATION)
+                        && pig.hasEffect(MobEffects.DAMAGE_RESISTANCE)
+                        && !pig.hasEffect(MobEffects.POISON),
+                "geothermal bathing regenerates without oil poison"));
     }
 }

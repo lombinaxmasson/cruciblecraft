@@ -9,8 +9,8 @@
 
 ## 统计
 
-- 条目 60：open 38，partial 2，resolved 10，superseded 5，out_of_scope 5
-- 未关闭排期桶：数字是规模，不是待办 5，分母已冻，可当卡排 18，有名字，分母未冻成工作量 14，不是活 3
+- 条目 60：open 37，partial 2，resolved 11，superseded 5，out_of_scope 5
+- 未关闭排期桶：数字是规模，不是待办 5，分母已冻，可当卡排 17，有名字，分母未冻成工作量 14，不是活 3
 
 ## 排期分类（未关闭）
 
@@ -25,7 +25,7 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - `recipe/nanofab-overflow`：57 rows
 - `worldgen/food`：n/a
 
-### B. 分母已冻，可当卡排（18）
+### B. 分母已冻，可当卡排（17）
 
 - `cover/torch-repeater-wire-host`：2 covers
 - `fluid/ic2-coolant`：1 fluids
@@ -39,7 +39,6 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - `obtain/injector-mv-hv-iv-hosts`：3 hosts
 - `obtain/nanofab-hosts`：5 hosts
 - `obtain/redstone-wiregt01`：3 items
-- `recipe/fluidbed-overflow`：49 rows
 - `recipe/laminator-overflow`：60 rows
 - `recipe/oven-cooking-oil-xp`：2 fluids
 - `recipe/pressure-washer-stone`：120 rows
@@ -229,8 +228,7 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
   - `identity/eu-blocked-gauges`
   - `identity/hsla-ungated-gauges`
   - `identity/processing-ungated-families`
-- `unmapped_operand`（8）
-  - `recipe/fluidbed-overflow`
+- `unmapped_operand`（7）
   - `recipe/injector-overflow`
   - `recipe/laminator-overflow`
   - `recipe/loom-overflow`
@@ -592,22 +590,6 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 权威：`tools/capabilities/content/sensors/capability.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：ITileEntityComputerizable stays blocked. Sensors are not in the cover net.
-
-### `recipe/fluidbed-overflow`
-
-- 标题：流化床 49 行 blocked chain
-- 状态：`open`
-- 根因：`unmapped_operand` / `unmapped_storage_dust_or_div72`
-- 数量：49 rows
-- 排期：`schedulable`
-- 挡住：`player_complete`
-- 发现卡：`recipe/blocked-chain-ledger`
-- 由本卡引入：否（发现既有缺口）
-- 解决卡：—
-- 影响：`energy/converter-catalog`
-- 权威：`tools/blocked_recipe_ledger.json`
-- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：Must not be added to bath families or petroleum 702.
 
 ### `recipe/injector-overflow`
 
@@ -1024,6 +1006,22 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 权威：`tools/blocked_recipe_ledger.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：T48 完成 145 个 family，T49 完成最后 5 个。Bath ordinary remainder 已为 0；不要把历史 family 分母加入 fluidbed 49。
+
+### `recipe/fluidbed-overflow`
+
+- 标题：流化床 49 行 blocked chain（已关闭）
+- 状态：`resolved`
+- 根因：`unmapped_operand` / `unmapped_storage_dust_or_div72`
+- 数量：0 rows
+- 排期：`not_work`
+- 挡住：`player_complete`
+- 发现卡：`recipe/blocked-chain-ledger`
+- 由本卡引入：否（发现既有缺口）
+- 解决卡：energy/converter-catalog
+- 影响：`energy/converter-catalog`
+- 权威：`tools/blocked_recipe_ledger.json`
+- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
+- 说明：storage.dust, dust_div72 and needsOutputs:false are live. Must not be added to petroleum 702.
 
 ### `worldgen/crops-glowtus-bush`
 

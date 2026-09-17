@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Blocked-recipe ledger card: replayable counts, fluidbed first chain blocked."""
+"""Blocked-recipe ledger card: fluidbed chain resolved, other denominators stay put."""
 from __future__ import annotations
 
 import json
@@ -67,22 +67,14 @@ class BlockedRecipeLedgerCardTest(unittest.TestCase):
         self.assertEqual(0, families["bath_remainder"])
         self.assertEqual(0, families["bath_identity"])
         self.assertEqual(0, families["ordinary_closure"])
-        self.assertEqual(49, rows["fluidbed_rows"])
+        self.assertEqual(0, rows["fluidbed_rows"])
         self.assertEqual(702, rows["petroleum_sampled_blocked_rows"])
         self.assertNotEqual(
             families["bath_remainder"] + rows["fluidbed_rows"],
             rows["petroleum_sampled_blocked_rows"],
         )
         roots = self.document["blocker_roots"]
-        self.assertIn("unmapped_storage_dust", roots["fluidbed"])
-        self.assertEqual(11, roots["fluidbed"]["unmapped_storage_dust"])
-        self.assertEqual(11, roots["fluidbed"]["missing_input_form"])
-        self.assertEqual(21, roots["fluidbed"]["missing_dust_div72_form"])
-        self.assertEqual(6, roots["fluidbed"]["outputless_fuel_model"])
-        self.assertEqual(
-            49,
-            sum(roots["fluidbed"].values()),
-        )
+        self.assertEqual({}, roots["fluidbed"])
 
     def test_fluidbed_rows_have_disposition_and_required_fields(self) -> None:
         fluidbed = [
@@ -90,40 +82,34 @@ class BlockedRecipeLedgerCardTest(unittest.TestCase):
             for row in self.document["entries"]
             if row["chain"] == "fluidbed-form-output-model"
         ]
-        self.assertEqual(49, len(fluidbed))
-        indexes = {row["dump_index"] for row in fluidbed}
-        self.assertEqual(49, len(indexes))
-        for row in fluidbed:
-            for field in REQUIRED_FIELDS:
-                self.assertIn(field, row, field)
-            self.assertEqual("blocked", row["player_path_disposition"])
-            self.assertEqual("current", row["freshness"])
-            self.assertEqual(io.SOURCE_REVISION, row["source_revision"])
-            self.assertTrue(row["blocker_root"])
-            self.assertTrue(row["owner"])
-            self.assertTrue(row["replacement_condition"])
-            self.assertTrue(row["recheck_point"])
-            self.assertNotIn("stand-in", row["replacement_condition"].lower())
-            self.assertNotIn("programmed_circuit", row["replacement_condition"])
+        self.assertEqual(0, len(fluidbed))
 
     def test_emitted_fluidbed_files_stay_source_backed(self) -> None:
         files = {path.name for path in FLUIDBED_OUT.glob("*.json")}
-        self.assertEqual(EMITTED, files)
-        self.assertEqual(sorted(EMITTED), self.document["written_fluidbed"]["files"])
-        self.assertEqual([4, 14, 36, 47, 49, 50], self.document["written_fluidbed"]["indexes"])
-        for name in EMITTED:
+        self.assertEqual(55, len(files))
+        self.assertEqual(sorted(files), self.document["written_fluidbed"]["files"])
+        self.assertEqual(55, len(self.document["written_fluidbed"]["indexes"]))
+        empty_outputs = 0
+        for name in files:
             recipe = io.load_json(FLUIDBED_OUT / name)
             self.assertEqual("cruciblecraft:fuels_fluidbed", recipe["map"])
-            self.assertTrue(recipe["item_outputs"])
             self.assertTrue(recipe["item_inputs"])
-            self.assertIn("gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.fluidbed.json", recipe["provenance"]["selected_source_recipe"])
+            self.assertEqual(len(recipe["item_outputs"]), len(recipe["output_chances"]))
+            self.assertIn(
+                "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.fluidbed.json",
+                recipe["provenance"]["selected_source_recipe"],
+            )
+            if not recipe["item_outputs"]:
+                empty_outputs += 1
+        self.assertEqual(17, empty_outputs)
+        self.assertTrue(EMITTED.issubset(files))
 
-    def test_first_chain_is_explicitly_blocked_without_stand_in(self) -> None:
+    def test_first_chain_is_resolved_without_stand_in(self) -> None:
         first = self.document["first_chain"]
-        self.assertEqual("explicitly_blocked", first["decision"])
-        self.assertEqual(49, first["rows"])
-        self.assertEqual(0, first["ready_rows"])
-        self.assertEqual(6, first["emitted_rows"])
+        self.assertEqual("resolved", first["decision"])
+        self.assertEqual(0, first["rows"])
+        self.assertEqual(55, first["ready_rows"])
+        self.assertEqual(55, first["emitted_rows"])
         self.assertFalse(first["stand_in"])
         self.assertEqual(
             [
@@ -153,7 +139,7 @@ class BlockedRecipeLedgerCardTest(unittest.TestCase):
             for row in self.document["entries"]
             if row["chain"] == "bath-identity-form-object"
         ]
-        self.assertEqual(49, len(fluidbed))
+        self.assertEqual(0, len(fluidbed))
         self.assertEqual(1, len(petroleum))
         self.assertEqual(0, len(bath))
         self.assertEqual(702, petroleum[0]["relation_count"])

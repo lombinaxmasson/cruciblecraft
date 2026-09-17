@@ -48,6 +48,7 @@ class HydrocarbonResourceTest {
         int distillery = 0;
         int engine = 0;
         int gas = 0;
+        int generifier = 0;
         try (var paths = Files.walk(ROOT)) {
             for (Path path : paths.filter(Files::isRegularFile).sorted().toList()) {
                 JsonObject recipe = JsonParser.parseString(
@@ -67,10 +68,13 @@ class HydrocarbonResourceTest {
                                 .getAsString()
                                 .contains("gt.recipe.distillery.json"));
                     }
-                    case "cruciblecraft:generifier" -> assertTrue(
+                    case "cruciblecraft:generifier" -> {
+                        generifier++;
+                        assertTrue(
                             ModProcessingMachines.GENERIFIER.validator()
                                     .validate(decoded).isEmpty(),
                             relative);
+                    }
                     case "cruciblecraft:fuels_engine" -> {
                         engine++;
                         assertTrue(ModFuelGenerators.FUEL_ENGINE
@@ -91,7 +95,8 @@ class HydrocarbonResourceTest {
                 }
             }
         }
-        assertEquals(4, distillery);
+        assertEquals(5, distillery);
+        assertEquals(5, generifier);
         assertEquals(6, engine);
         assertEquals(23, gas);
     }
@@ -187,6 +192,14 @@ class HydrocarbonResourceTest {
                 "hydrocarbon/distillery/oil_light_to_fuel_and_lubricant.json",
                 "cruciblecraft:distillery",
                 "gt.recipe.distillery.json#recipes[851]");
+        assertRecipe(
+                "hydrocarbon/distillery/oil_medium_to_fuel_and_lubricant.json",
+                "cruciblecraft:distillery",
+                "gt.recipe.distillery.json#recipes[872]");
+        assertRecipe(
+                "hydrocarbon/generifier/oil_extra_heavy_to_oil.json",
+                "cruciblecraft:generifier",
+                "gt.recipe.generifier.json#recipes[8504]");
 
         var indexedMap = new com.masson.cruciblecraft.recipe.gt.RecipeMap(
                 ResourceLocation.fromNamespaceAndPath(
@@ -207,6 +220,7 @@ class HydrocarbonResourceTest {
         int distillery = 0;
         int engine = 0;
         int gas = 0;
+        int generifier = 0;
         try (var paths = Files.walk(ROOT)) {
             for (Path path : paths.filter(Files::isRegularFile).toList()) {
                 String relative = ROOT.relativize(path).toString()
@@ -224,10 +238,15 @@ class HydrocarbonResourceTest {
                     assertTrue(ModFuelGenerators.BURNING_GAS_GENERATOR
                             .validate(recipe).isEmpty(), relative);
                     gas++;
+                } else if (relative.startsWith("hydrocarbon/generifier/")) {
+                    assertTrue(ModProcessingMachines.GENERIFIER.validator()
+                            .validate(recipe).isEmpty(), relative);
+                    generifier++;
                 }
             }
         }
-        assertEquals(4, distillery);
+        assertEquals(5, distillery);
+        assertEquals(5, generifier);
         assertEquals(6, engine);
         assertEquals(23, gas);
     }

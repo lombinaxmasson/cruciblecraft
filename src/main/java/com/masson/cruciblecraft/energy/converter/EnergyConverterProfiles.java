@@ -86,12 +86,12 @@ final class EnergyConverterProfiles {
                                 "DESIGN_POLICY_FIXED_OUTPUT",
                                 Math.toIntExact(packet)),
                         new EnergyConverterProfile.Gt6RuntimeOutput(
-                                "DEFERRED_REPLACEMENT",
+                                "SOURCE_BACKED",
                                 6,
                                 24,
                                 "STATE_DEPENDENT_MOUTPUT_HALF_TO_DOUBLE",
-                                "Replace the fixed KU/t CC output only with a measured state accumulator, piston-phase emission, saturation/venting, persistence and transaction model matching the pinned GT6 behavior.",
-                                "Recheck when a dedicated steam-engine dynamics batch is selected or before adding another steam-engine tier."),
+                                "Bronze emits (nominal*(state+1))/16 KU/t; active when stored>tOutput and tOutput*2>=nominal (inclusive 6-24).",
+                                "Live on SteamEngineBlockEntity. DistW side exhaust remains the water identity."),
                         List.of(
                                 "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/"
                                         + "Loader_MultiTileEntities.java:"
@@ -127,9 +127,9 @@ final class EnergyConverterProfiles {
                         "NO_STEAM_KU_FULL_OR_EXHAUST_FULL",
                         "KEEP_STEAM_BUFFERED",
                         bronze
-                                ? "EXACT_STANDARD_BRONZE_SOURCE_1302; SOURCE_BACKED_200_MB_TO_50_KU_AT_4_MB_PER_KU; SOURCE_DERIVED_NOMINAL_24_DIV_STEAM_PER_EU_2_EQUALS_12_KU_MOUTPUT; DESIGN_POLICY_FIXED_OUTPUT_12_KU_PER_TICK; GT6_STATE_DEPENDENT_6_TO_24_KU_DEFERRED_REPLACEMENT"
+                                ? "EXACT_STANDARD_BRONZE_SOURCE_1302; SOURCE_BACKED_200_MB_TO_50_KU_AT_4_MB_PER_KU; SOURCE_DERIVED_NOMINAL_24_DIV_STEAM_PER_EU_2_EQUALS_12_KU_MOUTPUT; DESIGN_POLICY_FIXED_OUTPUT_12_KU_PER_TICK; LIVE_STATE_DEPENDENT_6_TO_24"
                                 : "SOURCE_DERIVED_NOMINAL_KU_PACKET_" + packet
-                                        + "; DEFERRED_REPLACEMENT_6_TO_24"),
+                                        + "; LIVE_STATE_DEPENDENT_6_TO_24"),
                 semantics,
                 16_000,
                 1_024);

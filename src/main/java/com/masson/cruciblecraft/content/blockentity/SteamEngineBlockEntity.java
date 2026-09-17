@@ -11,9 +11,10 @@ import com.masson.cruciblecraft.machine.CheckpointDecisions;
 import com.masson.cruciblecraft.machine.component.CheckpointTracker;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModFluids;
-import com.masson.cruciblecraft.steam.SteamConversion;
 import com.masson.cruciblecraft.steam.KineticBuffer;
 import com.masson.cruciblecraft.steam.MachineSideRules;
+import com.masson.cruciblecraft.steam.SteamConversion;
+import com.masson.cruciblecraft.steam.SteamEngineKuCurve;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -37,8 +38,9 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
             EnergyConverterCatalog.require("cruciblecraft:bronze_steam_engine")
                     .outputCapacity();
     /**
-     * CC design policy: fixed 12 KU/t. Source 1302 derives only nominal
+     * CC design policy: fixed 12 KU/t nominal packet. Source 1302 derives only
      * mOutput=24/STEAM_PER_EU(2)=12; GT6 emits state-dependent 6..24 KU/t.
+     * Live emit uses that curve.
      */
     public static final long OUTPUT_RATE =
             EnergyConverterCatalog.require("cruciblecraft:bronze_steam_engine")
@@ -73,7 +75,7 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
         };
         kinetic = new KineticBuffer(
                 profile.outputCapacity(),
-                profile.outputPacket().size());
+                maxOutputRate());
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, SteamEngineBlockEntity engine) {
@@ -147,8 +149,11 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
      * always {@code mEnergy -= tOutput} even when the neighbor took nothing.
      */
     private void emitKinetic(Level level, BlockPos pos, BlockState state) {
-        long rate = outputRate();
-        if (kinetic.stored() <= rate) {
+        long rate = currentOutputRate();
+        if (!SteamEngineKuCurve.activelyEmitting(
+                kinetic.stored(),
+                rate,
+                profile.outputPacket().size())) {
             return;
         }
         Direction output = state.getValue(SteamEngineBlock.FACING);
@@ -173,8 +178,15 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
                 ? steamIo
                 : null;
     }
-    private long outputRate() {
-        return profile.outputPacket().size();
+    public long currentOutputRate() {
+        return SteamEngineKuCurve.outputKu(
+                profile.outputPacket().size(),
+                SteamEngineKuCurve.visualState(
+                        kinetic.stored(), profile.outputCapacity()));
+    }
+
+    private long maxOutputRate() {
+        return SteamEngineKuCurve.maximumKu(profile.outputPacket().size());
     }
 
     public int steamAmount() { return steam.getFluidAmount(); }
@@ -188,9 +200,9 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
     }
     @Override public long outputSize(EnergyType type, Direction side) {
         return handles(type, side)
-                        && kinetic.stored() >= outputRate()
+                        && kinetic.stored() >= currentOutputRate()
                         && outputBudget.claim(gameTime(), 1L, 1L, true) > 0L
-                ? kinetic.strokeSign() * outputRate()
+                ? kinetic.strokeSign() * currentOutputRate()
                 : 0L;
     }
     @Override public long extract(
@@ -201,8 +213,8 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
             boolean simulate) {
         if (!handles(type, side)
                 || maxAmount <= 0L
-                || size != kinetic.strokeSign() * outputRate()
-                || kinetic.stored() < outputRate()
+                || size != kinetic.strokeSign() * currentOutputRate()
+                || kinetic.stored() < currentOutputRate()
                 || outputBudget.claim(gameTime(), 1L, 1L, true) <= 0L) {
             return 0L;
         }
@@ -214,8 +226,8 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
                 throw new IllegalStateException(
                         "Steam engine output budget changed after simulation");
             }
-            long removed = kinetic.extract(outputRate(), false);
-            if (removed != outputRate()) {
+            long removed = kinetic.extract(currentOutputRate(), false);
+            if (removed != currentOutputRate()) {
                 throw new IllegalStateException(
                         "Steam engine kinetic storage changed after simulation");
             }
@@ -257,7 +269,7 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
         }
         kinetic = new KineticBuffer(
                 profile.outputCapacity(),
-                outputRate(),
+                maxOutputRate(),
                 tag.getLong("kinetic"),
                 tag.getInt("stroke_sign"));
         status = tag.getString("status");
@@ -311,7 +323,7 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
                         exhaustAmount));
         kinetic = new KineticBuffer(
                 profile.outputCapacity(),
-                outputRate(),
+                maxOutputRate(),
                 tag.getLong("kinetic"),
                 tag.getInt("stroke_sign"));
         status = tag.getString("status");

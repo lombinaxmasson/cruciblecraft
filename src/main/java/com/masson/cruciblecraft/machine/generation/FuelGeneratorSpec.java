@@ -165,6 +165,12 @@ public record FuelGeneratorSpec(
         return energyOutputFace.resolve(front);
     }
 
+    /** GT6 gas/liquid burning boxes need a front-face igniter. */
+    public boolean requiresIgnition() {
+        return inputPhase == InputPhase.GAS
+                || inputPhase == InputPhase.LIQUID;
+    }
+
     private boolean recipePowerInvalid(GTRecipe recipe) {
         try {
             return generatedEnergy(recipe) <= 0L;

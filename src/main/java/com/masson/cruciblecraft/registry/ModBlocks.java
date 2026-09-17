@@ -94,6 +94,7 @@ import com.masson.cruciblecraft.content.block.RotationalAxleBlock;
 import com.masson.cruciblecraft.content.block.RotationalGearboxBlock;
 import com.masson.cruciblecraft.content.block.SolidBurningBoxBlock;
 import com.masson.cruciblecraft.content.block.SpringLiquidBlock;
+import com.masson.cruciblecraft.content.block.SpringLiquidContact;
 import com.masson.cruciblecraft.content.block.SteamEngineBlock;
 import com.masson.cruciblecraft.content.block.SubsurfaceFluidDepositBlock;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
@@ -433,7 +434,8 @@ public final class ModBlocks {
                     1_000,
                     3_000,
                     1_000,
-                    true);
+                    true,
+                    SpringLiquidContact.OIL);
     public static final DeferredBlock<SpringLiquidBlock> OIL_HEAVY =
             registerSpringLiquid(
                     "oil_heavy",
@@ -443,7 +445,8 @@ public final class ModBlocks {
                     1_000,
                     2_000,
                     1_000,
-                    true);
+                    true,
+                    SpringLiquidContact.OIL);
     public static final DeferredBlock<SpringLiquidBlock> OIL_MEDIUM =
             registerSpringLiquid(
                     "oil_medium",
@@ -453,7 +456,8 @@ public final class ModBlocks {
                     1_000,
                     1_500,
                     1_000,
-                    false);
+                    false,
+                    SpringLiquidContact.OIL);
     public static final DeferredBlock<SpringLiquidBlock> OIL_LIGHT =
             registerSpringLiquid(
                     "oil_light",
@@ -463,7 +467,8 @@ public final class ModBlocks {
                     1_000,
                     1_000,
                     1_000,
-                    false);
+                    false,
+                    SpringLiquidContact.OIL);
     public static final DeferredBlock<SpringLiquidBlock> NATURAL_GAS =
             registerSpringLiquid(
                     "natural_gas",
@@ -473,7 +478,8 @@ public final class ModBlocks {
                     -717,
                     200,
                     1_000,
-                    false);
+                    false,
+                    SpringLiquidContact.GAS);
     public static final DeferredBlock<SpringLiquidBlock> WATER_GEOTHERMAL =
             registerSpringLiquid(
                     "water_geothermal",
@@ -483,7 +489,8 @@ public final class ModBlocks {
                     1_000,
                     1_000,
                     0,
-                    false);
+                    false,
+                    SpringLiquidContact.GEOTHERMAL);
 
     public static final DeferredBlock<SubsurfaceFluidDepositBlock>
             SUBSURFACE_FLUID_DEPOSIT = BLOCKS.register(
@@ -2248,7 +2255,8 @@ public final class ModBlocks {
             int density,
             int viscosity,
             int flammability,
-            boolean web) {
+            boolean web,
+            SpringLiquidContact contact) {
         return BLOCKS.register(
                 id,
                 () -> new SpringLiquidBlock(
@@ -2266,7 +2274,8 @@ public final class ModBlocks {
                         density,
                         viscosity,
                         flammability,
-                        web));
+                        web,
+                        contact));
     }
 
     public record OreBlockKey(String materialId, Host host) {

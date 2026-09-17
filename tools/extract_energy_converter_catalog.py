@@ -409,6 +409,7 @@ PREFIX_ITEMS = {
     "gregtech:gt.meta.dustTiny": "tiny_dust",
     "gregtech:gt.meta.dustSmall": "small_dust",
     "gregtech:gt.meta.dustDiv72": "dust_div72",
+    "gregtech:gt.meta.storage.dust": "storage_dust",
     "gregtech:gt.meta.ingot": "ingot",
     "gregtech:gt.meta.gem": "gem",
 }
@@ -735,7 +736,7 @@ def map_fluidbed_recipe(
         "item_input_counts": [item_in["count"]],
         "item_outputs": item_outs,
         "fluid_inputs": [fluid_in],
-        "output_chances": [10_000] * max(1, len(item_outs)),
+        "output_chances": [10_000] * len(item_outs),
         "provenance": {
             "selected_source_recipe": (
                 "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.fluidbed.json"

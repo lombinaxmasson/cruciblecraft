@@ -5,6 +5,7 @@ import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.block.SolidBurningBoxBlock;
 import com.masson.cruciblecraft.energy.EnergyEmitter;
 import com.masson.cruciblecraft.energy.PerTickEnergyBudget;
+import com.masson.cruciblecraft.energy.converter.BurningBoxWorldEffects;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterHost;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterProfile;
 import com.masson.cruciblecraft.energy.converter.FurnaceFuelAdapter;
@@ -82,6 +83,14 @@ public final class SolidBurningBoxBlockEntity extends BlockEntity
     private static void emitHeat(
             Level level, BlockPos pos, SolidBurningBoxBlockEntity box) {
         long rate = box.rate();
+        if (box.energy.stored() >= rate) {
+            BurningBoxWorldEffects.trySpreadFlame(
+                    level, pos, box.profile.efficiencyBps());
+        }
+        if (box.burning && box.energy.stored() < rate * 2L) {
+            BurningBoxWorldEffects.burnFront(
+                    level, pos.relative(box.frontOrNorth()));
+        }
         if (box.energy.stored() < rate) {
             return;
         }

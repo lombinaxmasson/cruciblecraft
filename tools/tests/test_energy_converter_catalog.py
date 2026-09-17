@@ -90,6 +90,27 @@ MANIFEST = (
     / "cruciblecraft"
     / "gt6_converter_catalog_art_manifest.json"
 )
+DUST_ART = (
+    ROOT
+    / "src"
+    / "main"
+    / "resources"
+    / "assets"
+    / "cruciblecraft"
+    / "gt6_dust_forms_art_manifest.json"
+)
+FLUIDBED_OUT = (
+    ROOT
+    / "src"
+    / "main"
+    / "resources"
+    / "data"
+    / "cruciblecraft"
+    / "recipe"
+    / "energy"
+    / "fuels_fluidbed"
+)
+REQUIRED_FORMS = WAVE / "required_forms.json"
 
 
 class EnergyConverterCatalogCardTest(unittest.TestCase):
@@ -147,6 +168,37 @@ class EnergyConverterCatalogCardTest(unittest.TestCase):
         for row in manifest["imports"]:
             self.assertTrue(row["gt6_source"].startswith("assets/gregtech/"))
             self.assertIn("textures/block/machine/", row["destination"])
+
+    def test_fluidbed_dust_forms_are_source_backed(self) -> None:
+        recipes = list(FLUIDBED_OUT.glob("*.json"))
+        self.assertEqual(55, len(recipes))
+        empty_outputs = 0
+        for path in recipes:
+            recipe = io.load_json(path)
+            self.assertEqual("cruciblecraft:fuels_fluidbed", recipe["map"])
+            self.assertLess(recipe["eut"], 0)
+            if not recipe["item_outputs"]:
+                empty_outputs += 1
+        self.assertEqual(17, empty_outputs)
+        required = io.load_json(REQUIRED_FORMS)
+        self.assertEqual(13, required["counts"]["required_materials"])
+        self.assertEqual(62, required["counts"]["required_form_pairs"])
+        self.assertIn("storage_dust", required["required_forms"]["peat"])
+        self.assertIn("dust_div72", required["required_forms"]["petroleum_coke"])
+        dust_art = io.load_json(DUST_ART)
+        self.assertEqual(
+            "gt6_referencable_port_code/gregtech6_w",
+            dust_art["source"],
+        )
+        destinations = {row["destination"] for row in dust_art["imports"]}
+        self.assertIn(
+            "assets/cruciblecraft/textures/item/material/dust_div72.png",
+            destinations,
+        )
+        self.assertIn(
+            "assets/cruciblecraft/textures/item/material/storage_dust.png",
+            destinations,
+        )
 
     def test_capability_is_player_complete(self) -> None:
         capability = ledger.load_capability(

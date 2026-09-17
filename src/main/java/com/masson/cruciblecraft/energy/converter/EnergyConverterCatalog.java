@@ -147,7 +147,7 @@ public final class EnergyConverterCatalog {
                 || !"DESIGN_POLICY_FIXED_OUTPUT".equals(
                         engineSemantics.fixedOutput().classification())
                 || engineSemantics.fixedOutput().kuPerTick() != 12
-                || !"DEFERRED_REPLACEMENT".equals(
+                || !"SOURCE_BACKED".equals(
                         engineSemantics.gt6Runtime().classification())
                 || engineSemantics.gt6Runtime().minimumKuPerTick() != 6
                 || engineSemantics.gt6Runtime().maximumKuPerTick() != 24

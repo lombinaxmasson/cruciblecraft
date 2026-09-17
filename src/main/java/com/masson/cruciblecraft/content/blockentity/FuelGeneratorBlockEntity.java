@@ -9,6 +9,7 @@ import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.block.FuelGeneratorBlock;
 import com.masson.cruciblecraft.energy.EnergyEmitter;
 import com.masson.cruciblecraft.energy.PerTickEnergyBudget;
+import com.masson.cruciblecraft.energy.converter.BurningBoxWorldEffects;
 import com.masson.cruciblecraft.machine.generation.FuelGeneratorEnergy;
 import com.masson.cruciblecraft.machine.generation.FuelGeneratorIdentityPolicy;
 import com.masson.cruciblecraft.machine.generation.FuelGeneratorSpec;
@@ -25,6 +26,12 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -66,6 +73,7 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
     private String identityQuarantine = "";
     private boolean quarantineWarningLogged;
     private int heatEmitCooldown;
+    private boolean burning;
 
     public FuelGeneratorBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.FUEL_GENERATOR.get(), pos, state);
@@ -138,11 +146,24 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
         }
         if (type.sizeIrrelevant()) {
             boolean live = generator.activeRecipe != null
-                    || generator.heatEmitCooldown > 0;
+                    || generator.heatEmitCooldown > 0
+                    || generator.burning;
             if (generator.heatEmitCooldown > 0) {
                 generator.heatEmitCooldown--;
             }
             long rate = generator.spec.maximumOutputPacketsPerTick();
+            if (live && generator.energy.stored() >= rate) {
+                BurningBoxWorldEffects.trySpreadFlame(
+                        level, pos, generator.spec.efficiencyBps());
+            }
+            if ((generator.burning || generator.heatEmitCooldown > 0)
+                    && generator.energy.stored() < rate * 2L) {
+                Direction facing = generator.front();
+                if (facing != null) {
+                    BurningBoxWorldEffects.burnFront(
+                            level, pos.relative(facing));
+                }
+            }
             if (!live || generator.energy.stored() < rate) {
                 return;
             }
@@ -180,6 +201,23 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
         if (!identityQuarantine.isBlank()) {
             setStatus("identity_quarantined");
             return;
+        }
+        if (spec.requiresIgnition()) {
+            if (!burning && heatEmitCooldown <= 0) {
+                Direction facing = front();
+                if (facing != null
+                        && BurningBoxWorldEffects.tryAutoIgnite(
+                                level, worldPosition.relative(facing))) {
+                    burning = true;
+                    markPersistentMutation();
+                }
+            }
+            if (!burning && heatEmitCooldown <= 0 && activeRecipe == null) {
+                if (input.isEmpty()) {
+                    reset("idle");
+                }
+                return;
+            }
         }
         GTRecipe recipe;
         if (activeRecipe == null) {
@@ -251,6 +289,10 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
             activeRecipe = null;
             duration = 0;
         }
+        if (spec.requiresIgnition()
+                && energy.stored() < spec.maximumOutputPacketsPerTick()) {
+            burning = false;
+        }
         markTickMutation();
     }
 
@@ -280,6 +322,9 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
         }
         if (spec.outputEnergyType().sizeIrrelevant()) {
             heatEmitCooldown = HEAT_EMIT_COOLDOWN_TICKS;
+            if (spec.requiresIgnition()) {
+                burning = true;
+            }
         }
     }
 
@@ -344,6 +389,48 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
 
     public long energyCapacity() {
         return energy.capacity();
+    }
+
+    public boolean tryIgnite(
+            Player player,
+            InteractionHand hand,
+            Direction hitFace,
+            ItemStack stack) {
+        if (!spec.requiresIgnition()
+                || hitFace == null
+                || hitFace != front()
+                || !stack.is(Items.FLINT_AND_STEEL)) {
+            return false;
+        }
+        ignite();
+        stack.hurtAndBreak(
+                1,
+                player,
+                net.minecraft.world.entity.LivingEntity.getSlotForHand(hand));
+        if (level != null) {
+            level.playSound(
+                    null,
+                    worldPosition,
+                    SoundEvents.FLINTANDSTEEL_USE,
+                    SoundSource.BLOCKS,
+                    1.0F,
+                    1.0F);
+        }
+        return true;
+    }
+
+    /** GameTest / flint: GT6 igniter sets burning and cooldown 100. */
+    public void ignite() {
+        if (!spec.requiresIgnition()) {
+            return;
+        }
+        burning = true;
+        heatEmitCooldown = HEAT_EMIT_COOLDOWN_TICKS;
+        markPersistentMutation();
+    }
+
+    public boolean burning() {
+        return burning;
     }
 
     /** GameTest helper: fill the remaining HU/RU buffer without a recipe. */
@@ -496,7 +583,8 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
             return;
         }
         BlockState state = getBlockState();
-        boolean lit = "running".equals(status);
+        boolean lit = "running".equals(status)
+                || (spec.requiresIgnition() && burning);
         if (state.hasProperty(FuelGeneratorBlock.LIT)
                 && state.getValue(FuelGeneratorBlock.LIT) != lit) {
             level.setBlock(
@@ -565,6 +653,7 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
             tag.putString(QUARANTINE_KEY, identityQuarantine);
         }
         tag.putInt("heat_emit_cooldown", heatEmitCooldown);
+        tag.putBoolean("burning", burning);
     }
 
     @Override
@@ -614,6 +703,7 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
             status = "identity_quarantined";
         }
         heatEmitCooldown = Math.max(0, tag.getInt("heat_emit_cooldown"));
+        burning = tag.getBoolean("burning");
     }
 
     @Override

@@ -158,6 +158,33 @@ class MaterialVisualResourceTest {
                 "cruciblecraft:item/material/dust",
                 dust.getAsJsonObject("textures").get("layer0").getAsString());
         assertFalse(dust.getAsJsonObject("textures").has("layer1"));
+
+        String div72Path = clientFiles.keySet().stream()
+                .filter(path -> path.endsWith("/dust_div72.json"))
+                .filter(path -> path.contains("/models/item/"))
+                .findFirst()
+                .orElseThrow();
+        JsonObject div72Textures = json(clientFiles.get(div72Path))
+                .getAsJsonObject("textures");
+        assertEquals(
+                "cruciblecraft:item/material/dust_div72",
+                div72Textures.get("layer0").getAsString());
+        assertEquals(
+                "cruciblecraft:item/material/dust_div72_overlay",
+                div72Textures.get("layer1").getAsString());
+        String storagePath = clientFiles.keySet().stream()
+                .filter(path -> path.endsWith("/storage_dust.json"))
+                .filter(path -> path.contains("/models/item/"))
+                .findFirst()
+                .orElseThrow();
+        JsonObject storageTextures = json(clientFiles.get(storagePath))
+                .getAsJsonObject("textures");
+        assertEquals(
+                "cruciblecraft:item/material/storage_dust",
+                storageTextures.get("layer0").getAsString());
+        assertEquals(
+                "cruciblecraft:item/material/storage_dust_overlay",
+                storageTextures.get("layer1").getAsString());
     }
 
     @Test

@@ -190,7 +190,7 @@ class MaterialPrefixCatalogTest {
                         MaterialPrefixes.ROD,
                         MaterialPrefixes.SMALL_DUST),
                 List.copyOf(MaterialPrefixCatalog.values()).subList(0, 15));
-        assertEquals(144, MaterialPrefixCatalog.values().size());
+        assertEquals(145, MaterialPrefixCatalog.values().size());
         assertEquals(16, MaterialPrefixes.TINY_CRUSHED_ORE.units());
         assertEquals(144, MaterialPrefixes.WASHED_CRUSHED_ORE.units());
         assertEquals(144, MaterialPrefixes.CENTRIFUGED_CRUSHED_ORE.units());
@@ -217,6 +217,8 @@ class MaterialPrefixCatalogTest {
         assertEquals(MaterialPrefixes.SMALL_DUST, MaterialPrefixCatalog.require("dustsmall"));
         assertEquals(MaterialPrefixes.TINY_DUST, MaterialPrefixCatalog.require("dusttiny"));
         assertEquals(MaterialPrefixes.DUST_DIV72, MaterialPrefixCatalog.require("dustDiv72"));
+        assertEquals(MaterialPrefixes.STORAGE_DUST, MaterialPrefixCatalog.require("blockDust"));
+        assertEquals(1296, MaterialPrefixes.STORAGE_DUST.units());
         assertEquals(
                 MaterialPrefixes.MACHINE_CASING,
                 MaterialPrefixCatalog.require("casingMachine"));
@@ -258,6 +260,7 @@ class MaterialPrefixCatalogTest {
                 MaterialPrefixes.SMALL_DUST,
                 MaterialPrefixes.TINY_DUST,
                 MaterialPrefixes.DUST_DIV72,
+                MaterialPrefixes.STORAGE_DUST,
                 MaterialPrefixes.CRUSHED_ORE,
                 MaterialPrefixes.FOIL,
                 MaterialPrefixes.GEAR,
@@ -322,7 +325,11 @@ class MaterialPrefixCatalogTest {
                 .getOrThrow();
 
         assertEquals(
-                List.of(MaterialPrefixes.INGOT, MaterialPrefixes.TINY_DUST),
+                List.of(
+                        MaterialPrefixes.INGOT,
+                        MaterialPrefixes.TINY_DUST,
+                        MaterialPrefixes.DUST_DIV72,
+                        MaterialPrefixes.STORAGE_DUST),
                 material.forms());
         assertTrue(material.generationFlags().cardinality() == 2);
         assertEquals(List.of("tiny_dust"), material.includedPrefixIds());

@@ -24,7 +24,8 @@ public final class MassStoragePrefixUnits {
                     MaterialPrefixes.DUST,
                     MaterialPrefixes.SMALL_DUST,
                     MaterialPrefixes.TINY_DUST,
-                    MaterialPrefixes.DUST_DIV72),
+                    MaterialPrefixes.DUST_DIV72,
+                    MaterialPrefixes.STORAGE_DUST),
             Set.of(
                     MaterialPrefixes.INGOT,
                     MaterialPrefixes.NUGGET,

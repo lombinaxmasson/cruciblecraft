@@ -48,6 +48,7 @@ public final class SpringLiquidBlock extends LiquidBlock {
     private final Supplier<Item> bucket;
     private final int flammability;
     private final boolean web;
+    private final SpringLiquidContact contact;
     private final boolean lighterThanWater;
     private final int density;
     private final int densityDir;
@@ -60,12 +61,14 @@ public final class SpringLiquidBlock extends LiquidBlock {
             int density,
             int viscosity,
             int flammability,
-            boolean web) {
+            boolean web,
+            SpringLiquidContact contact) {
         super(fluid, properties);
         this.flowing = fluid;
         this.bucket = bucket;
         this.flammability = flammability;
         this.web = web;
+        this.contact = contact;
         this.lighterThanWater = true;
         this.density = density;
         this.densityDir = density > 0 ? -1 : 1;
@@ -286,7 +289,12 @@ public final class SpringLiquidBlock extends LiquidBlock {
         if (state.getValue(META) < DRIP_META) {
             return ItemStack.EMPTY;
         }
-        level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
+        int leftover = quanta(state) - FiniteFluidQuanta.BUCKET_QUANTA;
+        if (leftover > 0) {
+            level.setBlock(pos, withMeta(leftover - 1), 11);
+        } else {
+            level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
+        }
         if (level instanceof Level world) {
             updateFluidBlocks(world, pos, true);
         }
@@ -308,9 +316,11 @@ public final class SpringLiquidBlock extends LiquidBlock {
     @Override
     protected void entityInside(
             BlockState state, Level level, BlockPos pos, Entity entity) {
+        super.entityInside(state, level, pos, entity);
         if (web) {
             entity.makeStuckInBlock(state, WEB_STUCK);
         }
+        contact.apply(this, level, entity);
     }
 
     @Override

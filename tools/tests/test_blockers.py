@@ -33,14 +33,13 @@ class BlockerLedgerTest(unittest.TestCase):
         self.assertEqual(869, amounts["recipe/loom-overflow"]["count"])
         self.assertEqual("rows", amounts["recipe/loom-overflow"]["unit"])
         self.assertEqual("scale_not_todo", amounts["recipe/loom-overflow"]["planning_bucket"])
-        self.assertEqual(49, amounts["recipe/fluidbed-overflow"]["count"])
+        self.assertNotIn("recipe/fluidbed-overflow", amounts)
         self.assertNotIn("recipe/bath-remainder-families", amounts)
         self.assertNotIn("recipe/bath-identity-families", amounts)
         self.assertNotIn("historical/petroleum-sampled-702", amounts)
         self.assertNotIn("energy/reactor-fusion", amounts)
         self.assertNotEqual(
-            amounts["recipe/loom-overflow"]["count"]
-            + amounts["recipe/fluidbed-overflow"]["count"],
+            amounts["recipe/loom-overflow"]["count"],
             702,
         )
 

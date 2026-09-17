@@ -149,7 +149,7 @@ public record GTRecipe(
                 !fluidInputs.isEmpty())) {
             throw new IllegalArgumentException("A GT recipe must consume at least one input");
         }
-        if (itemOutputs.isEmpty() && fluidOutputs.isEmpty()) {
+        if (itemOutputs.isEmpty() && fluidOutputs.isEmpty() && eut >= 0L) {
             throw new IllegalArgumentException("A GT recipe must have at least one output");
         }
         if (duration <= 0) {

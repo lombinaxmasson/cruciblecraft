@@ -61,7 +61,9 @@ public final class GeneratedMaterialPack {
             "tiny_crushed_ore",
             "plate_gem",
             "ring",
-            "rock");
+            "rock",
+            "dust_div72",
+            "storage_dust");
     private static volatile Roots roots = new Roots(null, null);
 
     private GeneratedMaterialPack() {}

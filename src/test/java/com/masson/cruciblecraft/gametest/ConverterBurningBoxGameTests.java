@@ -6,6 +6,7 @@ import com.masson.cruciblecraft.content.block.FluidBedBurningBoxBlock;
 import com.masson.cruciblecraft.content.block.FuelGeneratorBlock;
 import com.masson.cruciblecraft.content.blockentity.FluidBedBurningBoxBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
+import com.masson.cruciblecraft.energy.converter.BurningBoxWorldEffects;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.registry.ModItems;
@@ -15,6 +16,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -90,6 +92,71 @@ public final class ConverterBurningBoxGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void fluidBedBurnsPeatStorageDust(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 1, 2);
+        helper.setBlock(
+                pos,
+                ModBlocks.BRONZE_BURNING_BOX_FLUID_BED.get()
+                        .defaultBlockState()
+                        .setValue(
+                                FluidBedBurningBoxBlock.FACING,
+                                Direction.EAST));
+        FluidBedBurningBoxBlockEntity box = helper.getBlockEntity(pos);
+        helper.assertTrue(
+                box.fluids(Direction.WEST).fill(
+                        moltenCalcite(648),
+                        IFluidHandler.FluidAction.EXECUTE)
+                        == 648,
+                "Fluid-bed tank rejected molten calcite");
+        helper.assertTrue(
+                box.insertFuel(new ItemStack(
+                        MaterialLookup.item(
+                                        "peat", MaterialPrefixes.STORAGE_DUST)
+                                .orElseThrow())),
+                "Fluid-bed fuel slot rejected peat dust block");
+        box.ignite();
+        helper.startSequence()
+                .thenIdle(2)
+                .thenExecute(() -> helper.assertTrue(
+                        box.energyStored() > 0L,
+                        "Peat dust block + molten calcite did not produce HU"))
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void fluidBedBurnsOutputlessDiv72(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 1, 2);
+        helper.setBlock(
+                pos,
+                ModBlocks.BRONZE_BURNING_BOX_FLUID_BED.get()
+                        .defaultBlockState()
+                        .setValue(
+                                FluidBedBurningBoxBlock.FACING,
+                                Direction.EAST));
+        FluidBedBurningBoxBlockEntity box = helper.getBlockEntity(pos);
+        helper.assertTrue(
+                box.fluids(Direction.WEST).fill(
+                        moltenCalcite(1),
+                        IFluidHandler.FluidAction.EXECUTE)
+                        == 1,
+                "Fluid-bed tank rejected molten calcite");
+        helper.assertTrue(
+                box.insertFuel(new ItemStack(
+                        MaterialLookup.item(
+                                        "petroleum_coke",
+                                        MaterialPrefixes.DUST_DIV72)
+                                .orElseThrow())),
+                "Fluid-bed fuel slot rejected petroleum coke 1/72 dust");
+        box.ignite();
+        helper.startSequence()
+                .thenIdle(2)
+                .thenExecute(() -> helper.assertTrue(
+                        box.energyStored() > 0L,
+                        "Outputless 1/72 dust fuel did not produce HU"))
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void gasAndLiquidBoxesSplitFmBurnPhase(
             GameTestHelper helper) {
         BlockPos gasPos = new BlockPos(1, 1, 1);
@@ -120,6 +187,58 @@ public final class ConverterBurningBoxGameTests {
         helper.assertTrue(
                 fill(liquid, methane, IFluidHandler.FluidAction.SIMULATE) == 0,
                 "Liquid burning box accepted methane");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void gasBoxNeedsFrontIgnition(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 1, 2);
+        helper.setBlock(
+                pos,
+                ModBlocks.BRONZE_BURNING_BOX_GAS.get()
+                        .defaultBlockState()
+                        .setValue(FuelGeneratorBlock.FACING, Direction.EAST));
+        FuelGeneratorBlockEntity gas = helper.getBlockEntity(pos);
+        helper.assertTrue(
+                fill(
+                        gas,
+                        chemical("methane", 16),
+                        IFluidHandler.FluidAction.EXECUTE)
+                        == 16,
+                "Gas burning box rejected methane");
+        helper.startSequence()
+                .thenIdle(8)
+                .thenExecute(() -> helper.assertTrue(
+                        gas.energyGenerated() == 0L && !gas.burning(),
+                        "Gas box burned without ignition"))
+                .thenExecute(gas::ignite)
+                .thenIdle(8)
+                .thenExecute(() -> helper.assertTrue(
+                        gas.energyGenerated() > 0L,
+                        "Ignited gas box produced no HU"))
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void burningBoxBurnsFlammableFront(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 2, 2);
+        BlockPos front = pos.east();
+        helper.setBlock(pos.below(), Blocks.NETHERRACK);
+        helper.setBlock(front.below(), Blocks.NETHERRACK);
+        helper.setBlock(
+                pos,
+                ModBlocks.BRONZE_BURNING_BOX_GAS.get()
+                        .defaultBlockState()
+                        .setValue(FuelGeneratorBlock.FACING, Direction.EAST));
+        helper.setBlock(front, Blocks.WHITE_WOOL);
+        FuelGeneratorBlockEntity gas = helper.getBlockEntity(pos);
+        gas.ignite();
+        BurningBoxWorldEffects.burnFront(
+                helper.getLevel(), helper.absolutePos(front));
+        helper.assertTrue(
+                helper.getBlockState(front.above()).is(Blocks.FIRE)
+                        || helper.getBlockState(front).is(Blocks.FIRE),
+                "Front wool did not catch fire");
         helper.succeed();
     }
 

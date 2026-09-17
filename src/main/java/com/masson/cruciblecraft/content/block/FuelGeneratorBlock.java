@@ -17,6 +17,7 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -72,6 +73,19 @@ public final class FuelGeneratorBlock extends Block implements EntityBlock, com.
             Player player,
             InteractionHand hand,
             BlockHitResult hit) {
+        if (level.getBlockEntity(pos)
+                instanceof FuelGeneratorBlockEntity generator) {
+            if (spec.requiresIgnition()
+                    && stack.is(Items.FLINT_AND_STEEL)) {
+                if (level.isClientSide) {
+                    return ItemInteractionResult.SUCCESS;
+                }
+                if (generator.tryIgnite(
+                        player, hand, hit.getDirection(), stack)) {
+                    return ItemInteractionResult.SUCCESS;
+                }
+            }
+        }
         if (FluidUtil.getFluidHandler(stack).isEmpty()) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
@@ -107,9 +121,15 @@ public final class FuelGeneratorBlock extends Block implements EntityBlock, com.
             tooltip.add(Component.translatable(
                             "tooltip.cruciblecraft.burning_box.gas_only")
                     .withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.translatable(
+                            "tooltip.cruciblecraft.burning_box.ignite")
+                    .withStyle(ChatFormatting.GRAY));
         } else if (spec.inputPhase() == FuelGeneratorSpec.InputPhase.LIQUID) {
             tooltip.add(Component.translatable(
                             "tooltip.cruciblecraft.burning_box.liquid_only")
+                    .withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.translatable(
+                            "tooltip.cruciblecraft.burning_box.ignite")
                     .withStyle(ChatFormatting.GRAY));
         }
     }

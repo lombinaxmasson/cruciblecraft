@@ -62,7 +62,8 @@ public enum MaterialCreativeTab {
             case "dust",
                     "small_dust",
                     "tiny_dust",
-                    "dust_div72" -> DUSTS;
+                    "dust_div72",
+                    "storage_dust" -> DUSTS;
             case "block",
                     "machine_casing",
                     "machine_casing_double",

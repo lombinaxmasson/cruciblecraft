@@ -124,7 +124,7 @@ class EnergyConverterCatalogTest {
                 semantics.fixedOutput().classification());
         assertEquals(12, semantics.fixedOutput().kuPerTick());
         assertEquals(
-                "DEFERRED_REPLACEMENT",
+                "SOURCE_BACKED",
                 semantics.gt6Runtime().classification());
         assertEquals(6, semantics.gt6Runtime().minimumKuPerTick());
         assertEquals(24, semantics.gt6Runtime().maximumKuPerTick());
@@ -143,6 +143,8 @@ class EnergyConverterCatalogTest {
                 semantics.sourceEvidencePaths());
         assertTrue(engine.policy().sourceResolution().contains(
                 "DESIGN_POLICY_FIXED_OUTPUT_12_KU_PER_TICK"));
+        assertTrue(engine.policy().sourceResolution().contains(
+                "LIVE_STATE_DEPENDENT_6_TO_24"));
     }
 
     @Test

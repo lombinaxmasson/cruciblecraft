@@ -81,7 +81,7 @@ class MaterialFormGateTest(unittest.TestCase):
         index = json.loads(
             (self.material_root / "index.json").read_text(encoding="utf-8")
         )
-        self.assertEqual(1773, len(index))
+        self.assertEqual(1776, len(index))
         self.assertEqual(
             {Path(filename).stem for filename in index},
             set(self.gate["materials"]),
@@ -112,7 +112,7 @@ class MaterialFormGateTest(unittest.TestCase):
                 self.assertFalse(registered, material["id"])
             else:
                 self.assertTrue(factual, material["id"])
-        self.assertEqual(663, metadata_only)
+        self.assertEqual(664, metadata_only)
         self.assertEqual(282, self.gate["counts"]["pipe_forms"])
         self.assertEqual(967, self.gate["counts"]["known_ingot_forms"])
         self.assertEqual(12, self.gate["counts"]["roaster_required_forms"])

@@ -7066,6 +7066,96 @@
       "triple_plate"
     ]
   },
+  "converter_catalog_fluidbed_required_forms": {
+    "anthracite": [
+      "dust",
+      "dust_div72",
+      "small_dust",
+      "storage_dust",
+      "tiny_dust"
+    ],
+    "ashes": [
+      "dust_div72",
+      "small_dust",
+      "tiny_dust"
+    ],
+    "charcoal": [
+      "dust",
+      "dust_div72",
+      "small_dust",
+      "storage_dust",
+      "tiny_dust"
+    ],
+    "coal": [
+      "dust",
+      "dust_div72",
+      "small_dust",
+      "storage_dust",
+      "tiny_dust"
+    ],
+    "coal_coke": [
+      "dust",
+      "dust_div72",
+      "small_dust",
+      "storage_dust",
+      "tiny_dust"
+    ],
+    "dark_ashes": [
+      "dust",
+      "dust_div72",
+      "small_dust",
+      "tiny_dust"
+    ],
+    "lignite": [
+      "dust",
+      "dust_div72",
+      "small_dust",
+      "storage_dust",
+      "tiny_dust"
+    ],
+    "lignite_coke": [
+      "dust",
+      "dust_div72",
+      "small_dust",
+      "storage_dust",
+      "tiny_dust"
+    ],
+    "lonsdaleite": [
+      "dust",
+      "dust_div72",
+      "small_dust",
+      "storage_dust",
+      "tiny_dust"
+    ],
+    "peat": [
+      "dust",
+      "dust_div72",
+      "small_dust",
+      "storage_dust",
+      "tiny_dust"
+    ],
+    "peat_bituminous": [
+      "dust",
+      "dust_div72",
+      "small_dust",
+      "storage_dust",
+      "tiny_dust"
+    ],
+    "petroleum_coke": [
+      "dust",
+      "dust_div72",
+      "small_dust",
+      "storage_dust",
+      "tiny_dust"
+    ],
+    "prismane": [
+      "dust",
+      "dust_div72",
+      "small_dust",
+      "storage_dust",
+      "tiny_dust"
+    ]
+  },
   "counts": {
     "acceptance_forms": 1,
     "bath_required_forms": 1679,
@@ -7076,7 +7166,7 @@
     "electrical_wire_forms": 29,
     "electrolyzer_required_forms": 3,
     "known_ingot_forms": 967,
-    "materials": 1773,
+    "materials": 1776,
     "metadata_only_materials": 663,
     "missing_wire_forms": 203,
     "ore_chain_forms": 2443,
@@ -7085,7 +7175,7 @@
     "ore_source_materials": 137,
     "pipe_forms": 282,
     "recipe_gated_forms": 13338,
-    "registered_forms": 39798,
+    "registered_forms": 39813,
     "restrictive_pipe_forms": 72,
     "roaster_required_forms": 12,
     "tool_head_required_forms": 13938,
@@ -7693,7 +7783,8 @@
     "technological_parts_foundation_required_forms",
     "machines_slicer_paper_tiny_plate_required_forms",
     "fission_observation_safety_required_forms",
-    "fission_survival_required_forms"
+    "fission_survival_required_forms",
+    "converter_catalog_fluidbed_required_forms"
   ],
   "known_ingot_forms": {
     "abyssalnite": [
@@ -14834,47 +14925,6 @@
     ]
   },
   "materials": {
-    "matter_neutral": [],
-    "superconductor": [
-      "block",
-      "cable",
-      "double_wire",
-      "dust",
-      "ingot",
-      "plate",
-      "quadruple_wire",
-      "wire"
-    ],
-    "neutronium": [
-      "block",
-      "bolt",
-      "cable",
-      "curved_plate",
-      "dense_plate",
-      "double_plate",
-      "double_wire",
-      "dust",
-      "foil",
-      "gear",
-      "ingot",
-      "long_rod",
-      "machine_casing",
-      "machine_casing_double",
-      "machine_casing_quadruple",
-      "nugget",
-      "plate",
-      "quadruple_wire",
-      "ring",
-      "rod",
-      "rotor",
-      "screw",
-      "small_dust",
-      "small_gear",
-      "small_spring",
-      "spring",
-      "tiny_dust",
-      "wire"
-    ],
     "abyssal_oat": [
       "dust"
     ],
@@ -16841,6 +16891,7 @@
       "scrap",
       "screw",
       "small_dust",
+      "storage_dust",
       "storage_ingot",
       "storage_plate",
       "tiny_centrifuged_crushed_ore",
@@ -18165,6 +18216,7 @@
     ],
     "ashes": [
       "dust",
+      "dust_div72",
       "small_dust",
       "tiny_dust"
     ],
@@ -22854,6 +22906,7 @@
       "scrap",
       "screw",
       "small_dust",
+      "storage_dust",
       "storage_ingot",
       "storage_plate",
       "tiny_centrifuged_crushed_ore",
@@ -23513,6 +23566,7 @@
       "scrap",
       "screw",
       "small_dust",
+      "storage_dust",
       "storage_ingot",
       "storage_plate",
       "tiny_centrifuged_crushed_ore",
@@ -23552,6 +23606,7 @@
       "scrap",
       "screw",
       "small_dust",
+      "storage_dust",
       "storage_ingot",
       "storage_plate",
       "tiny_centrifuged_crushed_ore",
@@ -25144,6 +25199,7 @@
     ],
     "dark_ashes": [
       "dust",
+      "dust_div72",
       "small_dust",
       "tiny_dust"
     ],
@@ -36624,6 +36680,7 @@
       "round",
       "screw",
       "small_dust",
+      "storage_dust",
       "tiny_crushed_ore",
       "tiny_dust",
       "tiny_washed_crushed_ore",
@@ -36649,6 +36706,7 @@
       "round",
       "screw",
       "small_dust",
+      "storage_dust",
       "tiny_crushed_ore",
       "tiny_dust",
       "washed_crushed_ore"
@@ -37144,6 +37202,7 @@
       "rod",
       "round",
       "small_dust",
+      "storage_dust",
       "tiny_crushed_ore",
       "tiny_dust",
       "tiny_washed_crushed_ore",
@@ -38402,6 +38461,7 @@
       "tool_head_sword"
     ],
     "martian_vitriol": [],
+    "matter_neutral": [],
     "mauftrium": [
       "billet",
       "block",
@@ -41295,6 +41355,36 @@
     ],
     "neutrino": [],
     "neutron": [],
+    "neutronium": [
+      "block",
+      "bolt",
+      "cable",
+      "curved_plate",
+      "dense_plate",
+      "double_plate",
+      "double_wire",
+      "dust",
+      "foil",
+      "gear",
+      "ingot",
+      "long_rod",
+      "machine_casing",
+      "machine_casing_double",
+      "machine_casing_quadruple",
+      "nugget",
+      "plate",
+      "quadruple_wire",
+      "ring",
+      "rod",
+      "rotor",
+      "screw",
+      "small_dust",
+      "small_gear",
+      "small_spring",
+      "spring",
+      "tiny_dust",
+      "wire"
+    ],
     "nichrome": [
       "arrow_gt_wood",
       "billet",
@@ -43529,9 +43619,11 @@
       "block",
       "double_ingot",
       "dust",
+      "dust_div72",
       "ingot",
       "nugget",
       "small_dust",
+      "storage_dust",
       "tiny_dust",
       "triple_ingot"
     ],
@@ -43539,9 +43631,11 @@
       "block",
       "double_ingot",
       "dust",
+      "dust_div72",
       "ingot",
       "nugget",
       "small_dust",
+      "storage_dust",
       "tiny_dust",
       "triple_ingot"
     ],
@@ -43697,6 +43791,7 @@
       "round",
       "screw",
       "small_dust",
+      "storage_dust",
       "tiny_crushed_ore",
       "tiny_dust",
       "washed_crushed_ore"
@@ -45210,6 +45305,7 @@
       "rod",
       "round",
       "small_dust",
+      "storage_dust",
       "tiny_crushed_ore",
       "tiny_dust",
       "tiny_washed_crushed_ore",
@@ -50522,6 +50618,16 @@
       "tool_head_universal_spade",
       "tool_head_wrench",
       "washed_crushed_ore"
+    ],
+    "superconductor": [
+      "block",
+      "cable",
+      "double_wire",
+      "dust",
+      "ingot",
+      "plate",
+      "quadruple_wire",
+      "wire"
     ],
     "sweetgum": [
       "arrow_gt_plastic",
@@ -70568,6 +70674,12 @@
       "path": "tools/waves/compressor/ordinary-closure/required_forms.json",
       "sha256": "6c5b948a6c43553df07f6060c46176ad34c76c34e5684ed8019bd2c30cb5b608"
     },
+    "converter_catalog_fluidbed_required_forms": {
+      "classification": "semantic_ordinary_runtime_required",
+      "field": "required_forms",
+      "path": "tools/waves/runtime/converter-catalog/required_forms.json",
+      "sha256": "f20af7fabdb7a9406c6cbe2135513cd96152e94b50a9e823df34b7399880a2c0"
+    },
     "drying_ordinary_closure_required_forms": {
       "classification": "semantic_ordinary_runtime_required",
       "field": "required_forms",
@@ -70594,6 +70706,10 @@
       "path": "tools/waves/electrolyzer/ordinary-closure/required_forms.json",
       "sha256": "a399583a7d9f5341534d63851927a9e4c2bf435bcf19f2733b2cbb0749298787"
     },
+    "factual_ore_sources": {
+      "field": "resolved factual prefix `ore`",
+      "path": "src/main/resources/data/cruciblecraft/materials/*.json"
+    },
     "fission_observation_safety_required_forms": {
       "classification": "semantic_ordinary_runtime_required",
       "field": "required_forms",
@@ -70605,10 +70721,6 @@
       "field": "required_forms",
       "path": "tools/waves/runtime/fission-survival/required_forms.json",
       "sha256": "de9ccbd8d29ea04c34f368ae2210202a4b6caf61a29085ee3789a0ec1e79d2c8"
-    },
-    "factual_ore_sources": {
-      "field": "resolved factual prefix `ore`",
-      "path": "src/main/resources/data/cruciblecraft/materials/*.json"
     },
     "known_ingot_forms": {
       "classification": "known_ingot_source_domain_runtime_required",

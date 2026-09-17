@@ -62,10 +62,13 @@ PREFIX_ITEMS = {
     "gregtech:gt.meta.dustTiny": "tiny_dust",
     "gregtech:gt.meta.dustSmall": "small_dust",
     "gregtech:gt.meta.dustDiv72": "dust_div72",
+    "gregtech:gt.meta.storage.dust": "storage_dust",
     "gregtech:gt.meta.ingot": "ingot",
     "gregtech:gt.meta.gem": "gem",
 }
-DUST_FLAG_FORMS = frozenset({"dust", "tiny_dust", "small_dust"})
+DUST_FLAG_FORMS = frozenset(
+    {"dust", "tiny_dust", "small_dust", "dust_div72", "storage_dust"}
+)
 OWNER = "recipe/blocked-chain-ledger"
 CHAIN_FLUIDBED = "fluidbed-form-output-model"
 CHAIN_BATH = "bath-identity-form-object"
@@ -169,9 +172,6 @@ def classify_fluidbed_row(
     if not inputs or not fluid_inputs:
         blocker = "incomplete_gt6_row"
         missing_identity = source
-    elif gt_item == "gregtech:gt.meta.storage.dust":
-        blocker = "unmapped_storage_dust"
-        missing_identity = f"gregtech:gt.meta.storage.dust#{gt_meta}"
     elif mapped_in is None:
         blocker = "unmapped_item_input"
         missing_identity = f"{gt_item}#{gt_meta}"
@@ -197,10 +197,7 @@ def classify_fluidbed_row(
                 else "missing_output_form"
             )
             missing_form = ",".join(absent)
-    elif not needs_outputs:
-        blocker = "outputless_fuel_model"
-        missing_output_model = "fuels_fluidbed_outputless"
-    else:
+    elif needs_outputs:
         blocker = "no_outputs"
 
     ready = blocker is None
@@ -430,22 +427,21 @@ def compile_ledger() -> dict[str, Any]:
     ordinary = ordinary_blocked_count()
     if any(ordinary.values()):
         raise ValueError(f"ordinary-closure candidate blocked drifted: {ordinary}")
-    historical = io.load_json(FLUIDBED_BLOCKED)
-    historical_indexes = {
-        int(str(row["source"]).rsplit("[", 1)[1].rstrip("]"))
-        for row in historical["blocked"]
-    }
-    live_indexes = {row["dump_index"] for row in fluidbed_blocked}
-    if live_indexes != historical_indexes:
+    dump_count = len(io.load_json(FLUIDBED_DUMP).get("recipes") or [])
+    if fluidbed_blocked:
         raise ValueError(
-            "fluidbed blocked indexes drifted from "
-            f"{sorted(historical_indexes)} to {sorted(live_indexes)}"
+            "fluidbed rows still blocked: "
+            + str([row["dump_index"] for row in fluidbed_blocked])
         )
-    if len(emitted) != 6:
-        raise ValueError(f"expected 6 emitted fluidbed rows, got {len(emitted)}")
+    if len(emitted) != dump_count:
+        raise ValueError(
+            f"expected {dump_count} emitted fluidbed rows, got {len(emitted)}"
+        )
     written_files = sorted(path.name for path in FLUIDBED_OUT.glob("*.json"))
-    if len(written_files) != 6:
-        raise ValueError(f"expected 6 fluidbed JSON files, got {written_files}")
+    if len(written_files) != dump_count:
+        raise ValueError(
+            f"expected {dump_count} fluidbed JSON files, got {len(written_files)}"
+        )
 
     remainder_ids = {row["family_id"] for row in bath_remainder}
     identity_ids = {row["family_id"] for row in bath_identity}
@@ -459,22 +455,20 @@ def compile_ledger() -> dict[str, Any]:
 
     first_chain = {
         "chain": CHAIN_FLUIDBED,
-        "decision": "explicitly_blocked",
-        "emitted_rows": 6,
-        "ready_rows": 0,
+        "decision": "resolved",
+        "emitted_rows": dump_count,
+        "ready_rows": dump_count,
         "reason": (
-            "No fluidbed blocked row is source-backed ready: storage.dust has "
-            "no CC identity, ash/fuel dust_div72 is unregistered, and "
-            "needsOutputs:false rows have no outputless fuel model. This card "
-            "does not invent forms or fake output chance."
+            "storage.dust, dust_div72 and needsOutputs:false fluidbed rows "
+            "are live; no stand-in prefixes or invented ash chance."
         ),
-        "rows": 49,
+        "rows": 0,
         "stand_in": False,
     }
     chains = [
         {
             "chain": CHAIN_FLUIDBED,
-            "decision": "explicitly_blocked",
+            "decision": "resolved",
             "freshness": "current",
             "next_card": False,
             "player_path": "energy/converter-catalog fluidbed fuels",
@@ -531,7 +525,7 @@ def compile_ledger() -> dict[str, Any]:
             "note": (
                 "blocked_families, blocked_relations_or_rows, and blocker_roots "
                 "are separate denominators. Bath relations inflate by family "
-                "and must not be added to fluidbed 49 or petroleum 702."
+                "must not be added to fluidbed 0 or petroleum 702."
             ),
         },
         "entries": recipe_entries,
@@ -555,7 +549,7 @@ def compile_ledger() -> dict[str, Any]:
         "source_revision": SOURCE_REVISION,
         "unique_active_wave": None,
         "written_fluidbed": {
-            "count": 6,
+            "count": dump_count,
             "files": written_files,
             "indexes": [row["dump_index"] for row in emitted],
         },

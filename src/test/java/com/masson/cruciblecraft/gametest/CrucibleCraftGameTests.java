@@ -1565,8 +1565,11 @@ public final class CrucibleCraftGameTests {
                             "Full engine did not diagnose kinetic_full: "
                                     + engine.status());
                     long before = engine.stored();
-                    long packet = engine.strokeSign()
-                            * SteamEngineBlockEntity.OUTPUT_RATE;
+                    long rate = engine.currentOutputRate();
+                    long packet = engine.strokeSign() * rate;
+                    helper.assertTrue(
+                            rate >= 6L && rate <= 24L,
+                            "Full engine KU rate was not in 6-24: " + rate);
                     helper.assertTrue(
                             engine.extract(
                                             EnergyType.KINETIC_PUSH,
@@ -1585,10 +1588,7 @@ public final class CrucibleCraftGameTests {
                                             Direction.EAST,
                                             false)
                                     == 1L
-                                    && engine.stored()
-                                            == before
-                                                    - SteamEngineBlockEntity
-                                                            .OUTPUT_RATE,
+                                    && engine.stored() == before - rate,
                             "KU extraction execute differed from simulation");
                     var registries = helper.getLevel().registryAccess();
                     CompoundTag persisted =
@@ -6270,6 +6270,7 @@ public final class CrucibleCraftGameTests {
                         generifier.fluids(fluidOut(generifier)),
                         generator.fluids(Direction.WEST),
                         5))
+                .thenExecute(generator::ignite)
                 .thenIdle(65)
                 .thenExecute(() -> {
                     FluidStack expectedWater =
@@ -6379,6 +6380,9 @@ public final class CrucibleCraftGameTests {
                 fullCarbonDioxide.writeToNBT(
                         registries, new CompoundTag()));
         exhaustFull.loadWithComponents(exhaustTag, registries);
+
+        consumerBlocked.ignite();
+        exhaustFull.ignite();
 
         CompoundTag currentTag =
                 current.saveWithoutMetadata(registries);

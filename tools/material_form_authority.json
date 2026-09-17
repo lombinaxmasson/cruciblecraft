@@ -19,7 +19,8 @@
     "technological_parts_foundation_required_forms",
     "machines_slicer_paper_tiny_plate_required_forms",
     "fission_observation_safety_required_forms",
-    "fission_survival_required_forms"
+    "fission_survival_required_forms",
+    "converter_catalog_fluidbed_required_forms"
   ],
   "note": "Single overlay authority. Card builders write required_forms.json only; they do not write material_registration_gate.json.",
   "schema_version": 1,
@@ -555,6 +556,26 @@
       "owner": "energy/nuclear-fission-survival",
       "path": "tools/waves/runtime/fission-survival/required_forms.json",
       "required_factual_prereqs": {}
+    },
+    {
+      "extra_factual_forms": [
+        "dust_div72",
+        "storage_dust"
+      ],
+      "field": "required_forms",
+      "gate_section": "converter_catalog_fluidbed_required_forms",
+      "id": "converter_catalog_fluidbed_required_forms",
+      "java_runtime_visible": true,
+      "owner": "energy/converter-catalog",
+      "path": "tools/waves/runtime/converter-catalog/required_forms.json",
+      "required_factual_prereqs": {
+        "dust_div72": [
+          "dust"
+        ],
+        "storage_dust": [
+          "dust"
+        ]
+      }
     }
   ],
   "status": "MATERIAL_FORM_AUTHORITY",

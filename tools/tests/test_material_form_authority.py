@@ -204,6 +204,32 @@ class MaterialFormAuthorityTest(unittest.TestCase):
             gate["fission_survival_required_forms"]["lead"],
         )
 
+    def test_converter_catalog_fluidbed_dust_forms_are_authority_gated(self) -> None:
+        self.assertIn(
+            "converter_catalog_fluidbed_required_forms",
+            self.document["java_overlay_sections"],
+        )
+        source = authority.source_by_id(
+            "converter_catalog_fluidbed_required_forms",
+            document=self.document,
+        )
+        self.assertEqual("energy/converter-catalog", source["owner"])
+        gate = vr.gate_document()
+        self.assertIn("storage_dust", gate["materials"]["peat"])
+        self.assertIn("dust_div72", gate["materials"]["petroleum_coke"])
+        self.assertIn(
+            "converter_catalog_fluidbed_required_forms",
+            gate["java_overlay_sections"],
+        )
+        self.assertIn(
+            "storage_dust",
+            gate["converter_catalog_fluidbed_required_forms"]["peat"],
+        )
+        self.assertIn(
+            "dust_div72",
+            gate["converter_catalog_fluidbed_required_forms"]["petroleum_coke"],
+        )
+
     def test_authored_recipe_material_forms_are_gated_or_aliased(self) -> None:
         missing = _ungated_authored_material_forms()
         self.assertEqual([], missing)

@@ -34,7 +34,7 @@
     "T18a": {
       "name": "steam_chain",
       "status": "COMPLETE",
-      "acceptance": "Close the source-selected bronze Firebox, Boiler and standard Steam Engine profiles; execute Firebox -> Boiler -> Steam Engine -> KU Press with exact 80 HU + 1 mB water -> 160 mB steam accounting. For source 1302, classify 200 mB steam -> 50 KU and 4 mB/KU as SOURCE_BACKED conservation, 24/STEAM_PER_EU(2)=12 KU mOutput only as SOURCE_DERIVED_NOMINAL, and CC's fixed 12 KU/t as DESIGN_POLICY_FIXED_OUTPUT; defer GT6's state-dependent 6-24 KU/t dynamics behind an explicit replacement/recheck contract. Preserve simulate/execute transactions, blocked-state diagnostics, persistence and Firebox survival resources.",
+      "acceptance": "Close the source-selected bronze Firebox, Boiler and standard Steam Engine profiles; execute Firebox -> Boiler -> Steam Engine -> KU Press with exact 80 HU + 1 mB water -> 160 mB steam accounting. For source 1302, classify 200 mB steam -> 50 KU and 4 mB/KU as SOURCE_BACKED conservation, 24/STEAM_PER_EU(2)=12 KU mOutput only as SOURCE_DERIVED_NOMINAL, and CC's fixed 12 KU/t as DESIGN_POLICY_FIXED_OUTPUT; live GT6 state-dependent 6-24 KU/t on SteamEngineBlockEntity. Preserve simulate/execute transactions, blocked-state diagnostics, persistence and Firebox survival resources.",
       "junit_tests": [
         "selectedSourceRowsAreFixedAndStagesRemainExplicit",
         "bronzeSteamEngineChooses1302AndResolvesThe24UnitExpression",
@@ -194,7 +194,7 @@
         "outputPacket().size() != 12L",
         "SOURCE_DERIVED_NOMINAL",
         "DESIGN_POLICY_FIXED_OUTPUT",
-        "DEFERRED_REPLACEMENT"
+        "SOURCE_BACKED"
       ]
     },
     "converter_catalog_test": {
@@ -207,7 +207,7 @@
         "SOURCE_BACKED",
         "SOURCE_DERIVED_NOMINAL",
         "DESIGN_POLICY_FIXED_OUTPUT",
-        "DEFERRED_REPLACEMENT"
+        "LIVE_STATE_DEPENDENT_6_TO_24"
       ]
     },
     "firebox_buffer": {

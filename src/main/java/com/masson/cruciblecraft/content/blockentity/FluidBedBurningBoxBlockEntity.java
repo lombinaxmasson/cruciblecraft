@@ -7,6 +7,7 @@ import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.block.FluidBedBurningBoxBlock;
 import com.masson.cruciblecraft.energy.EnergyEmitter;
 import com.masson.cruciblecraft.energy.PerTickEnergyBudget;
+import com.masson.cruciblecraft.energy.converter.BurningBoxWorldEffects;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterHost;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterProfile;
 import com.masson.cruciblecraft.machine.generation.FuelGeneratorEnergy;
@@ -103,6 +104,14 @@ public final class FluidBedBurningBoxBlockEntity extends BlockEntity
     private static void emitHeat(
             Level level, BlockPos pos, FluidBedBurningBoxBlockEntity box) {
         long rate = box.rate();
+        if (box.energy.stored() >= rate) {
+            BurningBoxWorldEffects.trySpreadFlame(
+                    level, pos, box.profile.efficiencyBps());
+        }
+        if (box.burning && box.energy.stored() < rate * 2L) {
+            BurningBoxWorldEffects.burnFront(
+                    level, pos.relative(box.frontOrNorth()));
+        }
         if (box.energy.stored() < rate) {
             return;
         }
@@ -114,8 +123,17 @@ public final class FluidBedBurningBoxBlockEntity extends BlockEntity
     }
 
     private void tickGeneration() {
-        if (level == null || level.isClientSide || !burning) {
+        if (level == null || level.isClientSide) {
             return;
+        }
+        if (!burning) {
+            if (BurningBoxWorldEffects.tryAutoIgnite(
+                    level, worldPosition.relative(frontOrNorth()))) {
+                burning = true;
+                setChanged();
+            } else {
+                return;
+            }
         }
         RecipeMap map = ModRecipeMaps.FUELS_FLUIDBED;
         GTRecipe recipe;

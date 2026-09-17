@@ -545,18 +545,18 @@
       ],
       "blocks_maturity": "player_complete",
       "claimed_by": [],
-      "count": 49,
+      "count": 0,
       "discovered_by": "recipe/blocked-chain-ledger",
       "id": "recipe/fluidbed-overflow",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "Must not be added to bath families or petroleum 702.",
-      "planning_bucket": "schedulable",
-      "resolved_by": null,
+      "note": "storage.dust, dust_div72 and needsOutputs:false are live. Must not be added to petroleum 702.",
+      "planning_bucket": "not_work",
+      "resolved_by": "energy/converter-catalog",
       "root_cause": "unmapped_storage_dust_or_div72",
       "root_cause_class": "unmapped_operand",
-      "status": "open",
-      "title": "流化床 49 行 blocked chain",
+      "status": "resolved",
+      "title": "流化床 49 行 blocked chain（已关闭）",
       "unit": "rows"
     },
     {
@@ -1948,12 +1948,6 @@
       "unit": "integrations"
     },
     {
-      "count": 49,
-      "id": "recipe/fluidbed-overflow",
-      "planning_bucket": "schedulable",
-      "unit": "rows"
-    },
-    {
       "count": 535,
       "id": "recipe/injector-overflow",
       "planning_bucket": "scale_not_todo",
@@ -2068,7 +2062,6 @@
       "identity/processing-ungated-families"
     ],
     "unmapped_operand": [
-      "recipe/fluidbed-overflow",
       "recipe/injector-overflow",
       "recipe/laminator-overflow",
       "recipe/loom-overflow",
@@ -2257,11 +2250,6 @@
         "unit": "items"
       },
       {
-        "count": 49,
-        "id": "recipe/fluidbed-overflow",
-        "unit": "rows"
-      },
-      {
         "count": 60,
         "id": "recipe/laminator-overflow",
         "unit": "rows"
@@ -2292,15 +2280,15 @@
     "audit_first": 14,
     "not_work": 3,
     "scale_not_todo": 5,
-    "schedulable": 18
+    "schedulable": 17
   },
   "schema_version": 1,
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "stats": {
-    "open": 38,
+    "open": 37,
     "out_of_scope": 5,
     "partial": 2,
-    "resolved": 10,
+    "resolved": 11,
     "superseded": 5,
     "total": 60
   }
