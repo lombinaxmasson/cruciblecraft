@@ -110,7 +110,7 @@ class OreResourceTest {
                 "data/minecraft/tags/block/needs_stone_tool.json",
                 GENERATED_RESOURCES,
                 "data/minecraft/tags/block/needs_iron_tool.json",
-                RESOURCES).entrySet()) {
+                GENERATED_RESOURCES).entrySet()) {
             Set<String> leaked = tagValues(readString(
                     tag.getValue().resolve(tag.getKey()))).stream()
                     .filter(oreBlocks::contains)

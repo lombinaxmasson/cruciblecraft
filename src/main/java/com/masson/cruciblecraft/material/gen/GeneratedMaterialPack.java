@@ -27,6 +27,7 @@ import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.MaterialFingerprint;
+import com.masson.cruciblecraft.material.MaterialFormHosts;
 import com.masson.cruciblecraft.material.MaterialZhNames;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
@@ -212,8 +213,11 @@ public final class GeneratedMaterialPack {
                         || isPlaceableCasing(material, form)
                         || isRockForm(form)
                         || isRedstoneWire(material, form);
+                boolean publicExchange = MaterialFormHosts.isPublicExchangePrefix(form)
+                        && !material.formItems().containsKey(form);
                 boolean sharedInventory = !material.formItems().containsKey(form)
-                        && !uniqueBlock;
+                        && !uniqueBlock
+                        && !publicExchange;
                 if (!sharedInventory) {
                     addTag(
                             files,
@@ -417,11 +421,15 @@ public final class GeneratedMaterialPack {
                             GSON.toJson(model));
                     continue;
                 }
+                if (MaterialFormHosts.isPublicExchangePrefix(form)) {
+                    addPrefixItemModel(files, form, material.registryName(form));
+                    continue;
+                }
                 sharedPrefixModels.add(form);
             }
         }
         for (MaterialPrefix form : sharedPrefixModels) {
-            addSharedPrefixItemModel(files, form);
+            addPrefixItemModel(files, form, form.serializedName());
         }
         JsonObject zhTranslations = new JsonObject();
         for (MaterialDefinition material : materials) {
@@ -740,7 +748,8 @@ public final class GeneratedMaterialPack {
         if (override != null) {
             return override;
         }
-        if (isUniqueBlockForm(material, form)) {
+        if (isUniqueBlockForm(material, form)
+                || MaterialFormHosts.isPublicExchangePrefix(form)) {
             return ResourceLocation.fromNamespaceAndPath(
                     CrucibleCraft.MODID, material.registryName(form)).toString();
         }
@@ -774,8 +783,8 @@ public final class GeneratedMaterialPack {
                 .equals(form);
     }
 
-    private static void addSharedPrefixItemModel(
-            Map<String, String> files, MaterialPrefix form) {
+    private static void addPrefixItemModel(
+            Map<String, String> files, MaterialPrefix form, String path) {
         JsonObject model = new JsonObject();
         String wireBundle = wireBundleItemParent(form);
         if (wireBundle != null) {
@@ -793,7 +802,7 @@ public final class GeneratedMaterialPack {
         }
         files.put(
                 "assets/" + CrucibleCraft.MODID + "/models/item/"
-                        + form.serializedName() + ".json",
+                        + path + ".json",
                 GSON.toJson(model));
     }
 

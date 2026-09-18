@@ -2405,6 +2405,38 @@
       "depends_on": [],
       "maturity": "runtime_ready",
       "owned_paths": [
+        "docs/history/card-plans/closed/材料身份分层混合详细计划.md",
+        "docs/decisions/材料身份分层混合ADR.md",
+        "docs/current/material-prefix-identity.md",
+        ".cursor/rules/material-prefix-identity.mdc",
+        "src/main/java/com/masson/cruciblecraft/content/item/MaterialItem.java",
+        "src/main/java/com/masson/cruciblecraft/content/item/PrefixMaterialItem.java",
+        "src/main/java/com/masson/cruciblecraft/material/MaterialFormHosts.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/PrefixMaterialItemCodecs.java",
+        "src/main/java/com/masson/cruciblecraft/api/material/MaterialLookup.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+        "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+        "src/main/java/com/masson/cruciblecraft/compat/emi/EmiDisplayPlan.java",
+        "src/main/java/com/masson/cruciblecraft/material/MissingMaterialStackRewriter.java",
+        "src/test/java/com/masson/cruciblecraft/material/PrefixMaterialIdentityTest.java",
+        "tools/recipe_bulk/emit.py",
+        "tools/recipe_bulk/public_exchange.py",
+        "tools/capabilities/registry/hybrid-material-identity/**"
+      ],
+      "path": "tools/capabilities/registry/hybrid-material-identity/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "registry/hybrid-material-identity",
+      "survival_access": "not_applicable",
+      "title": "Hybrid material identity",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [],
+      "maturity": "runtime_ready",
+      "owned_paths": [
         "docs/history/card-plans/closed/材料前缀组件身份详细计划.md",
         "docs/decisions/材料前缀组件身份ADR.md",
         "docs/current/material-prefix-identity.md",
@@ -2578,7 +2610,7 @@
         "src/main/resources/data/cruciblecraft/worldgen/placed_feature/nether_netherquartz.json",
         "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_nether_netherquartz.json",
         "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/remove_vanilla_nether_quartz.json",
-        "src/main/resources/data/minecraft/tags/block/needs_iron_tool.json",
+        "src/generated/resources/data/minecraft/tags/block/needs_iron_tool.json",
         "src/main/resources/data/cruciblecraft_wave_worldgen_gt_stone_layer_rocks/**",
         "src/main/resources/assets/cruciblecraft/gt6_gt_stone_layer_rocks_art_manifest.json",
         "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/stone.png",
@@ -2707,7 +2739,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 83,
+  "capability_count": 84,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -3623,6 +3655,9 @@
       "content/mte-redstone-wire",
       "registry/catalog-modern-ids"
     ],
+    "registry/hybrid-material-identity": [
+      "registry/hybrid-material-identity"
+    ],
     "registry/prefix-material-component": [
       "registry/prefix-material-component"
     ],
@@ -3727,6 +3762,7 @@
       "machines/sanding",
       "machines/slicer",
       "registry/catalog-modern-ids",
+      "registry/hybrid-material-identity",
       "registry/prefix-material-component",
       "registry/tool-head-prefix-reclaim",
       "registry/tool-head-remainder",

@@ -7,7 +7,21 @@
   },
   "ingredients": {
     "X": {
-      "item": "cruciblecraft:arsenic_bronze/double_plate"
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "arsenic_bronze",
+        "minecraft:attribute_modifiers": {
+          "modifiers": []
+        },
+        "minecraft:enchantments": {
+          "levels": {}
+        },
+        "minecraft:lore": [],
+        "minecraft:max_stack_size": 64,
+        "minecraft:rarity": "common",
+        "minecraft:repair_cost": 0
+      },
+      "items": "cruciblecraft:double_plate"
     },
     "Y": {
       "item": "cruciblecraft:arsenic_bronze/long_rod"

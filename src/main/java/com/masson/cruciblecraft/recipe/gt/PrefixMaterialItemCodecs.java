@@ -18,14 +18,20 @@ import com.mojang.serialization.Dynamic;
 import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.JsonOps;
 
+import com.masson.cruciblecraft.registry.ModComponents;
+
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 
 /**
- * Rewrites legacy {@code cruciblecraft:{material}/{form}} recipe JSON onto the
- * shared prefix Item plus {@code prefix_material}. Unique hosted forms keep
- * their per-material ids.
+ * Long-tail slash ids rewrite onto the shared prefix Item plus
+ * {@code prefix_material}. Leftover public-exchange prefix Item + component
+ * JSON rewrites onto the unique Item. Unique hosted forms keep their
+ * per-material ids.
  */
 public final class PrefixMaterialItemCodecs {
     public static final Codec<Ingredient> INGREDIENT = Codec.of(
@@ -38,9 +44,11 @@ public final class PrefixMaterialItemCodecs {
     private PrefixMaterialItemCodecs() {}
 
     public static Optional<Ingredient> rewriteIngredient(ResourceLocation itemId) {
-        return rewriteStack(itemId, 1).map(stack ->
-                net.neoforged.neoforge.common.crafting.DataComponentIngredient
-                        .of(false, stack));
+        Parsed parsed = parseSharedInventoryId(itemId).orElse(null);
+        if (parsed == null) {
+            return Optional.empty();
+        }
+        return MaterialLookup.ingredient(parsed.material(), parsed.form());
     }
 
     public static Optional<ItemStack> rewriteStack(ResourceLocation itemId, int count) {
@@ -115,10 +123,170 @@ public final class PrefixMaterialItemCodecs {
         return Optional.of(new Parsed(material, form));
     }
 
+    public static Optional<Ingredient> rewritePublicExchangeComponent(JsonElement json) {
+        Parsed parsed = parsePublicExchangeComponent(json).orElse(null);
+        if (parsed == null) {
+            return Optional.empty();
+        }
+        return MaterialLookup.ingredient(parsed.material(), parsed.form());
+    }
+
+    public static Optional<ItemStack> rewritePublicExchangeStack(JsonElement json) {
+        Parsed parsed = parsePublicExchangeComponent(json).orElse(null);
+        if (parsed == null) {
+            return Optional.empty();
+        }
+        int count = 1;
+        if (json != null && json.isJsonObject() && json.getAsJsonObject().has("count")) {
+            JsonElement countElement = json.getAsJsonObject().get("count");
+            if (countElement.isJsonPrimitive() && countElement.getAsJsonPrimitive().isNumber()) {
+                count = countElement.getAsInt();
+            }
+        }
+        return MaterialLookup.tryStack(parsed.material().id(), parsed.form(), count);
+    }
+
+    static Optional<Parsed> parsePublicExchangeComponent(JsonElement json) {
+        if (json == null || !json.isJsonObject() || !MaterialCatalog.isBootstrapped()) {
+            return Optional.empty();
+        }
+        JsonObject object = json.getAsJsonObject();
+        if (!object.has("components") || !object.get("components").isJsonObject()) {
+            return Optional.empty();
+        }
+        JsonObject components = object.getAsJsonObject("components");
+        if (!components.has("cruciblecraft:prefix_material")
+                || !components.get("cruciblecraft:prefix_material").isJsonPrimitive()) {
+            return Optional.empty();
+        }
+        String materialId = components.get("cruciblecraft:prefix_material").getAsString();
+        ResourceLocation itemId = itemId(object, "items");
+        if (itemId == null) {
+            itemId = itemId(object, "item");
+        }
+        if (itemId == null) {
+            itemId = itemId(object, "id");
+        }
+        if (itemId == null
+                || !CrucibleCraft.MODID.equals(itemId.getNamespace())
+                || itemId.getPath().indexOf('/') >= 0
+                || !MaterialFormHosts.isPublicExchangePrefixPath(itemId.getPath())) {
+            return Optional.empty();
+        }
+        MaterialDefinition material = MaterialCatalog.find(materialId).orElse(null);
+        MaterialPrefix form = MaterialPrefixCatalog.find(itemId.getPath()).orElse(null);
+        if (material == null
+                || form == null
+                || !MaterialCatalog.isFormRegistered(material, form)
+                || MaterialFormHosts.isSharedInventoryForm(material, form)) {
+            return Optional.empty();
+        }
+        return Optional.of(new Parsed(material, form));
+    }
+
+    /**
+     * Collapses a fat {@code neoforge:components} snapshot (prefix_material plus
+     * unrelated default-stack fields) onto the same tight predicate mill emit
+     * uses. Extra indexable CC components stay on the vanilla codec path.
+     */
+    public static Optional<Ingredient> tightenComponentIngredient(JsonElement json) {
+        if (json == null || !json.isJsonObject()) {
+            return Optional.empty();
+        }
+        JsonObject object = json.getAsJsonObject();
+        if (!object.has("components") || !object.get("components").isJsonObject()) {
+            return Optional.empty();
+        }
+        JsonObject components = object.getAsJsonObject("components");
+        if (!components.has("cruciblecraft:prefix_material")
+                || !components.get("cruciblecraft:prefix_material").isJsonPrimitive()) {
+            return Optional.empty();
+        }
+        if (components.has("cruciblecraft:tool_material")
+                || components.has("cruciblecraft:machine_material")
+                || components.has("cruciblecraft:circuit_config")
+                || components.has("cruciblecraft:fireproof")) {
+            return Optional.empty();
+        }
+        String materialId = components.get("cruciblecraft:prefix_material").getAsString();
+        if (materialId == null || materialId.isBlank()) {
+            return Optional.empty();
+        }
+        ResourceLocation itemId = itemId(object, "items");
+        if (itemId == null) {
+            itemId = itemId(object, "item");
+        }
+        if (itemId == null) {
+            return Optional.empty();
+        }
+        Item item = BuiltInRegistries.ITEM.getOptional(itemId).orElse(null);
+        if (item == null) {
+            return Optional.empty();
+        }
+        return Optional.of(MaterialLookup.prefixMaterialIngredient(item, materialId));
+    }
+
+    public static Ingredient tightenLiveIngredient(Ingredient ingredient) {
+        if (ingredient == null || ingredient.isEmpty()) {
+            return ingredient;
+        }
+        if (ComponentIngredientIndex.extract(ingredient).supported()) {
+            return ingredient;
+        }
+        if (!(ingredient.getCustomIngredient()
+                instanceof DataComponentIngredient componentIngredient)) {
+            JsonElement encoded = Ingredient.CODEC_NONEMPTY
+                    .encodeStart(JsonOps.INSTANCE, ingredient)
+                    .result()
+                    .orElse(null);
+            return tightenComponentIngredient(encoded).orElse(ingredient);
+        }
+        Item item = null;
+        int itemCount = 0;
+        for (var holder : componentIngredient.items()) {
+            itemCount++;
+            item = holder.value();
+        }
+        if (itemCount != 1 || item == null) {
+            return ingredient;
+        }
+        String materialId = null;
+        boolean otherIndexable = false;
+        for (var entry : componentIngredient.components().asPatch().entrySet()) {
+            if (entry.getValue().isEmpty()) {
+                continue;
+            }
+            ResourceLocation componentId =
+                    BuiltInRegistries.DATA_COMPONENT_TYPE.getKey(entry.getKey());
+            if (componentId == null) {
+                continue;
+            }
+            Object value = entry.getValue().orElseThrow();
+            if (componentId.equals(ModComponents.PREFIX_MATERIAL.getId())
+                    && value instanceof String string) {
+                materialId = string;
+            } else if (ComponentIngredientIndex.isIndexableStringComponent(componentId)) {
+                otherIndexable = true;
+            }
+        }
+        if (materialId == null || otherIndexable) {
+            return ingredient;
+        }
+        return MaterialLookup.prefixMaterialIngredient(item, materialId);
+    }
+
     private static <T> DataResult<Pair<Ingredient, T>> decodeIngredient(
             DynamicOps<T> ops,
             T input) {
         JsonElement json = new Dynamic<>(ops, input).convert(JsonOps.INSTANCE).getValue();
+        Optional<Ingredient> publicExchange = rewritePublicExchangeComponent(json);
+        if (publicExchange.isPresent()) {
+            return DataResult.success(Pair.of(publicExchange.orElseThrow(), input));
+        }
+        Optional<Ingredient> tightened = tightenComponentIngredient(json);
+        if (tightened.isPresent()) {
+            return DataResult.success(Pair.of(tightened.orElseThrow(), input));
+        }
         if (hasComponents(json)) {
             return Ingredient.CODEC_NONEMPTY.decode(ops, input);
         }
@@ -137,6 +305,10 @@ public final class PrefixMaterialItemCodecs {
             DynamicOps<T> ops,
             T input) {
         JsonElement json = new Dynamic<>(ops, input).convert(JsonOps.INSTANCE).getValue();
+        Optional<ItemStack> publicExchange = rewritePublicExchangeStack(json);
+        if (publicExchange.isPresent()) {
+            return DataResult.success(Pair.of(publicExchange.orElseThrow(), input));
+        }
         if (hasComponents(json)) {
             return ItemStack.STRICT_CODEC.decode(ops, input);
         }

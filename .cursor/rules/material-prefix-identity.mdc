@@ -1,30 +1,45 @@
 ---
-description: 材料形态终态是前缀物品+材料组件；禁止在别人的 unique-active 上展开一人一 id。
+description: 材料身份目标是分层混合；live 已落地（公共 16 独立 Item，长尾组件）。
 alwaysApply: true
 ---
 
-# 材料身份：前缀 + 组件
+# 材料身份：分层混合
 
-人读合同：`docs/current/material-prefix-identity.md`。
-ADR：`docs/decisions/材料前缀组件身份ADR.md`。
-落地计划在 `docs/history/card-plans/closed/材料前缀组件身份详细计划.md`。
-库存前缀已经按前缀 Item + `prefix_material` 切；不要再 dual-register `cruciblecraft:{material}/{form}`。
+人读合同：`docs/current/material-prefix-identity.md`。  
+目标 ADR：`docs/decisions/材料身份分层混合ADR.md`。  
+历史落地（不再是目标）：`docs/decisions/材料前缀组件身份ADR.md`，
+已关计划 `docs/history/card-plans/closed/材料前缀组件身份详细计划.md`。  
+已关混合卡：`registry/hybrid-material-identity` `runtime_ready`。
 
-## 决策
+## 目标
 
-自身开放性优先于其他模组标签兼容。库存前缀 = 一个 Item 一种前缀 + 材料 DataComponent。
-已有 BE 的管/缆/hosted ore = 共享 Block + 材料在实体/组件。哑方块（存储块、机壳、岩块）保持按材料独立 Block。
+- 外部 `formItems()`：不注册 CC 副本。
+- 公共 16 前缀一人一 Item，进精确 `c:` 标签：
+  `ingot` `nugget` `dust` `small_dust` `tiny_dust` `plate` `rod` `long_rod`
+  `bolt` `screw` `ring` `gear` `small_gear` `gem` `foil` `fine_wire`
+- 其余库存前缀：前缀 Item + `prefix_material`；共享 Item 不进 `c:dusts/iron`。
+- 哑方块按材料独立 Block。管/缆/hosted ore 保持现有 hosted。
+- 每个 `(材料, 前缀)` 一种后端。不要 damage。不要「一个材料一个 Item、形态当组件」。
 
-废止「材料形态必须独立 registry id」。不要回到 damage。不要「一个材料一个 Item、形态当组件」。
+## live
 
-## 过渡
+公共 16 是独立 `MaterialItem`（`cruciblecraft:{material}/{form}`）。  
+长尾库存仍是共享 `PrefixMaterialItem` + `prefix_material`。  
+slash 对长尾只是解析期别名，禁止与前缀 Item 双 live。
 
-不要给库存前缀再注册 `MaterialItem`。哑方块、管、缆、hosted ore 保持现有 hosted 身份。
-`formItems()` 外部映射和 `ORE_MATERIAL` / `TOOL_MATERIAL` / `MACHINE_MATERIAL` 保持。
+不要把公共 16 再收进组件，也不要把长尾改成一人一 id。增减公共名单是新的 `DESIGN_POLICY`，必须用户当场确认。
 
 ## 禁止
 
-- 给新库存前缀按材料再注册一套 `MaterialItem` 当终态
-- 把共享前缀 Item 放进 `c:dusts/iron` 这类按材料划分的物品标签
-- 让 `cruciblecraft:{material}/{form}` 与前缀 Item 同时 live
+- 把公共 16 再往组件里收，或把长尾改成一人一 id
+- 把旧 ADR 或已关 `registry/prefix-material-component` 当现行终态
+- 继续做管/缆切片 C
+- 发明双注册或兑换壳
 - 用 stand-in 配料或 ItemEntity 世界生成顶「材料全开了」
+
+## 允许
+
+- 修混合后端：组件路由、codec、标签、EMI、测试
+- leftover 公共前缀 Item + 组件 JSON 单向解析成 unique Item
+- `formItems()`、`ORE_MATERIAL` / `TOOL_MATERIAL` / `MACHINE_MATERIAL` 保持
+- 按普查 `openable` 开 gated 形态（另开 unique-active）

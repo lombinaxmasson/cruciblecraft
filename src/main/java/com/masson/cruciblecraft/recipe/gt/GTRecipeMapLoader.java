@@ -1741,7 +1741,8 @@ public final class GTRecipeMapLoader {
             if (ingredients.isEmpty()) {
                 continue;
             }
-            Ingredient input = ingredients.getFirst();
+            Ingredient input = PrefixMaterialItemCodecs.tightenLiveIngredient(
+                    ingredients.getFirst());
             if (input.isEmpty() || input.getItems().length == 0) {
                 continue;
             }

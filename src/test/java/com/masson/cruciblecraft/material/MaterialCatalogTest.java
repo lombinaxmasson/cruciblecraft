@@ -113,6 +113,13 @@ class MaterialCatalogTest {
         assertEquals(
                 "cruciblecraft:copper_ore",
                 MaterialCatalog.canonicalItemMappings().get("copper/ore"));
+        var copper = MaterialCatalog.require("copper");
+        assertTrue(MaterialFormHosts.isUniqueInventoryForm(
+                copper, MaterialPrefixes.DUST));
+        assertFalse(MaterialFormHosts.isSharedInventoryForm(
+                copper, MaterialPrefixes.DUST));
+        assertTrue(MaterialFormHosts.isSharedInventoryForm(
+                copper, MaterialPrefixes.CRUSHED_ORE));
         assertEquals(
                 ResourceLocation.fromNamespaceAndPath("cruciblecraft", "copper_ore"),
                 MaterialLookup.itemId("copper", MaterialPrefixes.ORE).orElseThrow());

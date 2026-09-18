@@ -71,8 +71,12 @@
 - `survival_access` 为 `blocked` / `partial` / `unreviewed` **不挡**关闭
 - 新能力默认 `change-class=major`，打开或延长项目试玩 cycle
 
-配方仍必须按 GT6 源逐格翻译，禁止 stand-in 配料。缺格就保持缺口，不要用
-别的材料、原版零件或 `programmed_circuit` 顶。
+配方仍必须按 GT6 源逐格翻译，禁止 stand-in 配料。配方卡上缺格就保持缺口，不要用
+别的材料、原版零件或 `programmed_circuit` 顶。那是安全阀，不是缺形态的工作顺序。
+已经能对上 GT6 的 `(材料, 前缀)` 走
+[材料形态需求普查](../history/card-plans/prep/材料形态需求普查详细计划.md)
+（prep，不占落地锁），再开 bounded form-open unique-active。不要做到配方才补，
+不要把 `blocked.md` 当形态排队，也不要按生成旗标全开长尾。
 **严禁**把 catalog 物品以 `ItemEntity` 撒在主世界，或把 stone / block-object
 目录倒在 dirt/sand 上，当成生存获得。不要写「用主世界掉落物顶 player_complete」。合同见
 [gt6-no-item-entity-worldgen.md](gt6-no-item-entity-worldgen.md)。
@@ -192,3 +196,7 @@ RecipeMap / live compile，再跑内容卡 GameTest。`recipes` profile 不能�
 
 签发不等于开工。本步只合计划文档；不创建 `capability.json`、`tools/waves/**`
 或实施分支，也不改 `unique_active_wave`。
+
+材料形态普查是例外：计划在 `card-plans/prep/`，产物只写
+`tools/waves/prep/material-form-demand-census/**`，仍不创建 capability、
+不改 `unique_active_wave`、不写 `landing_owned_paths`。开门必须另占 unique-active。

@@ -1,42 +1,40 @@
-# 材料身份：前缀物品 + 材料组件
+# 材料身份：分层混合
 
-GT6 meta 在 1.21 的对应物是 **DataComponent，不是一人一 id**。
-权威决策：[材料前缀组件身份 ADR](../decisions/材料前缀组件身份ADR.md)。
-落地：[材料前缀组件身份详细计划](../history/card-plans/closed/材料前缀组件身份详细计划.md)。
-本页是现行合同。代理规则：`.cursor/rules/material-prefix-identity.mdc`。
+**目标权威：** [材料身份分层混合 ADR](../decisions/材料身份分层混合ADR.md)。  
+历史落地（事故态，已被本卡改掉）：[材料前缀组件身份 ADR](../decisions/材料前缀组件身份ADR.md)，计划 `registry/prefix-material-component` 已关 `runtime_ready`。  
+已关能力：`registry/hybrid-material-identity` `runtime_ready` / `accepted`，计划 `docs/history/card-plans/closed/材料身份分层混合详细计划.md`。  
+代理规则：`.cursor/rules/material-prefix-identity.mdc`。
 
-## 优先级
+## 目标
 
-加 CC 自己的材料要便宜，高于其他模组认不认 `c:dusts/iron`。
-公共物品标签不能区分同 Item 上的组件；那是后置适配，不是内核。
+公共交换前缀一人一 Item，进精确 `c:` 标签。GT6 内部长尾才用前缀 Item + `prefix_material`。每个 `(材料, 前缀)` 一种 live 后端。
 
-## 三分
+公共 16 个（不得私自加减）：
 
-| 种类 | 例子 | 身份 |
-| --- | --- | --- |
-| 库存前缀 | dust / ingot / plate / rod / gem / crushed_ore / tool_head_* | 一个 Item 一种前缀；材料在组件上 |
-| 已有 BE 的可放置前缀 | fluid/item pipe、cable、hosted/broken/bedrock ore | 共享 Block；材料在 BE / `ORE_MATERIAL` |
-| 哑方块 | storage `block`、machine_casing、rock | 继续按材料独立 Block |
+`ingot`, `nugget`, `dust`, `small_dust`, `tiny_dust`, `plate`, `rod`, `long_rod`, `bolt`, `screw`, `ring`, `gear`, `small_gear`, `gem`, `foil`, `fine_wire`
 
-不要用「一个材料一个 Item，形态当组件」。不要回到 damage。不要给哑方块强行加实体。
+`formItems()` 外部映射优先。哑方块继续按材料独立 Block。管 / 缆 / hosted ore 保持现有 hosted，切片 C 未授权。
 
-## 现在的模型
+不要「一个材料一个 Item，形态当组件」。不要 damage。不要双注册。不要兑换壳。
 
-`ModItems.registerMaterials` 为每个库存前缀注册一次 `PrefixMaterialItem`。
-材料写在 `prefix_material` 上。`MaterialLookup.stack` 是规范构造。
-gate 许可 live 栈，不再为库存前缀分配 per-material Item id。
+## live
 
-不要 dual-register 旧的 `cruciblecraft:{material}/{form}`。`formItems()` 外部映射保留。
+公共 16 前缀是独立 `MaterialItem`，路径 `cruciblecraft:{material}/{form}`，进入精确 `c:` 标签。  
+其余库存前缀是共享 `PrefixMaterialItem` + `prefix_material`。长尾 slash id 只是解析期别名。  
+共享前缀 Item 不进 `c:dusts/iron`。`formItems()` 仍用外部 Item。
+
+这是 2026-09-18 用户下令的混合落地，不是 09-17 全量组件事故的延续。
 
 ## 禁止
 
-- 给库存前缀按材料再注册一套 `MaterialItem`，或让 `iron/dust` 与 `dust` 同时 live
-- 把共享前缀 Item 放进按材料划分的 `c:` 标签
-- 用原版物品、错误前缀或 `programmed_circuit` 顶缺失形态
-- 为了「全开」去注册对方模组材料或发明获得路径
+- 把公共 16 再收进组件，或把长尾改成一人一 id
+- 发明双注册或兑换壳
+- 继续做管/缆切片 C
+- 用 stand-in 配料或 ItemEntity 世界生成顶「材料全开了」
+- 把已关计划 `registry/prefix-material-component` 读成现行目标
 
 ## 允许
 
-- 工具 / 机器 / 单元 / hosted ore 继续用已有组件
-- 新材料 JSON 与 gate 仍按 `(material, prefix)` 记账；含义将改为 live 栈而不是新 Item id
-- 其他模组兼容作为独立薄层，不挡本内核
+- 修混合后端下的 codec、标签、EMI、测试
+- leftover mill JSON 把公共前缀 Item + 组件解析成 unique Item（单向，不双 live）
+- 按普查 `openable` 开 gated 形态（另开 unique-active；本身份卡已关，不再扩名单）

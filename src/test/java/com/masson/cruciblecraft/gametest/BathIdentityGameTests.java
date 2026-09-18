@@ -198,6 +198,16 @@ public final class BathIdentityGameTests {
                     snapshot.overflowRelationCount() == expectedOverflow,
                     "bath/identity live shard overflow drifted for " + group
                             + ": " + snapshot.overflowRelationCount());
+            int worst = 0;
+            CompactRecipeShardRouter router = snapshot.shardRouter();
+            for (ResourceLocation id : snapshot.recipeIds()) {
+                String shard = router.shardId(id).orElseThrow();
+                worst = Math.max(worst, router.shardMembers(shard).size());
+            }
+            helper.assertTrue(
+                    worst <= CompactRecipeShardRouter.HARD_SHARD_CEILING,
+                    "bath/identity worst live shard exceeded the hard ceiling for "
+                            + group + ": " + worst);
             helper.assertTrue(
                     snapshot.shardCount() > 0
                             && snapshot.shardCount() <= snapshot.recipeIds().size(),

@@ -3,10 +3,14 @@
 from __future__ import annotations
 
 import re
+from functools import lru_cache
+from pathlib import Path
 from typing import Any
 
 from tools.recipe_bulk.models import WaveSpec
 from tools.recipe_bulk.matrix import authored_relations, wrap_document
+from tools.recipe_bulk.public_exchange import PUBLIC_EXCHANGE_PREFIXES
+from tools import io_common as files
 from tools import tool_head_prefix as thp
 
 SOURCE_REVISION_DEFAULT = "3703e40308c8c030763fd6297dea8b210d2a77b1"
@@ -58,9 +62,55 @@ UNIQUE_HOSTED_PREFIXES = frozenset({
     "large_restrictive_item_pipe",
     "huge_restrictive_item_pipe",
 })
+_PREFIX_INDEX = (
+    files.ROOT / "src/main/resources/data/cruciblecraft/material_prefixes/index.json"
+)
+_MATERIAL_INDEX = (
+    files.ROOT / "src/main/resources/data/cruciblecraft/materials/index.json"
+)
 _ASPHALT_OBJECT = re.compile(
     r"^cruciblecraft:gt_object/gt_block_asphalt_(m\d+)$"
 )
+_CONTENT = files.ROOT / "tools" / "waves" / "content"
+# Dummy CatalogNamedItem paths folded onto live BlockItems. Mill locks still
+# carry the withdrawn ids; emit must publish the live host or RegistryOps
+# drops item_inputs and GTRecipe dies with inputs=0, counts=1.
+_FOLD_OVERLAY_PATHS = (
+    _CONTENT / "gt6-mte-converter-host-fold" / "fold_overlay.json",
+    _CONTENT / "gt6-mte-processing-host-fold" / "fold_overlay.json",
+    _CONTENT / "gt6-mte-hopper-host-fold" / "fold_overlay.json",
+    _CONTENT / "gt6-mte-reactor-rod-host-fold" / "fold_overlay.json",
+    _CONTENT / "gt6-fluid-pipe-runtime" / "execution_subset.json",
+    _CONTENT / "gt6-item-pipe-runtime" / "execution_subset.json",
+    _CONTENT / "gt6-restrictive-item-pipe-runtime" / "restrictive_overlay.json",
+    _CONTENT / "gt6-fluid-combo-pipe-runtime" / "combo_overlay.json",
+    _CONTENT / "gt6-eu-wire-cable-runtime" / "execution_subset.json",
+    _CONTENT / "gt6-eu-missing-wire-gauges-runtime" / "missing_gauge_overlay.json",
+    _CONTENT / "gt6-connector-alias-repair" / "alias_overlay.json",
+)
+# Closed mte-redstone-wire withdrew these dummy CatalogNamedItem ids onto
+# the live wireGt01 RedstoneWireBlockItems. Overlay rows keep dummy_path
+# historical; mill locks still emit the withdrawn ids.
+_WITHDRAWN_DUMMY_HOSTS = {
+    "cruciblecraft:redstone_wire/red_alloy": "cruciblecraft:red_alloy/wire",
+    "cruciblecraft:redstone_wire/signalum": "cruciblecraft:signalum/wire",
+    "cruciblecraft:lumium/wirelamp": "cruciblecraft:lumium/wire",
+}
+# Bare material ids that mill still publishes for OP.gem. Live inventory is
+# the unique ``cruciblecraft:{material}/gem`` item.
+_BARE_GEM_MATERIALS = frozenset({"coal_coke"})
+
+
+@lru_cache(maxsize=1)
+def _inventory_prefix_paths() -> frozenset[str]:
+    names = files.load_json(_PREFIX_INDEX)
+    return frozenset(Path(str(name)).stem for name in names)
+
+
+@lru_cache(maxsize=1)
+def _material_ids() -> frozenset[str]:
+    names = files.load_json(_MATERIAL_INDEX)
+    return frozenset(Path(str(name)).stem for name in names)
 
 
 def rewrite_published_block_runtime(runtime: str) -> str:
@@ -74,6 +124,58 @@ def rewrite_published_block_runtime(runtime: str) -> str:
     if row:
         return str(row["runtime_id"])
     return f"cruciblecraft:{numbered}"
+
+
+def _published_runtime(value: str) -> str:
+    value = str(value or "").strip()
+    if not value:
+        return ""
+    if ":" in value:
+        return value
+    return f"cruciblecraft:{value}"
+
+
+@lru_cache(maxsize=1)
+def _folded_host_runtime_map() -> dict[str, str]:
+    mapped: dict[str, str] = {}
+    for path in _FOLD_OVERLAY_PATHS:
+        if not path.is_file():
+            continue
+        document = files.load_json(path)
+        for row in document.get("rows") or []:
+            dummy = _published_runtime(str(row.get("dummy_path") or ""))
+            live = _published_runtime(str(row.get("live_block") or ""))
+            if not dummy or not live or dummy == live:
+                continue
+            previous = mapped.get(dummy)
+            if previous and previous != live:
+                raise ValueError(
+                    f"folded host remap conflict {dummy}: {previous} vs {live}"
+                )
+            mapped[dummy] = live
+    for dummy, live in _WITHDRAWN_DUMMY_HOSTS.items():
+        previous = mapped.get(dummy)
+        if previous and previous != live:
+            raise ValueError(
+                f"folded host remap conflict {dummy}: {previous} vs {live}"
+            )
+        mapped[dummy] = live
+    return mapped
+
+
+def rewrite_folded_host_runtime(runtime: str) -> str:
+    """Map withdrawn dummy MTE/pipe/wire paths onto the live host id."""
+    return _folded_host_runtime_map().get(runtime, runtime)
+
+
+def rewrite_bare_gem_runtime(runtime: str) -> str:
+    """Map leftover bare material ids onto ``{material}/gem`` for prefix emit."""
+    if not runtime.startswith("cruciblecraft:"):
+        return runtime
+    path = runtime.split(":", 1)[1]
+    if "/" in path or path not in _BARE_GEM_MATERIALS:
+        return runtime
+    return f"cruciblecraft:{path}/gem"
 
 
 def family_filename(template_key: str) -> str:
@@ -99,6 +201,8 @@ def _runtime_id(operand: dict[str, Any]) -> str:
     meta = source.get("meta")
     runtime = thp.rewrite_published_runtime(runtime, item, meta)
     runtime = rewrite_published_block_runtime(runtime)
+    runtime = rewrite_folded_host_runtime(runtime)
+    runtime = rewrite_bare_gem_runtime(runtime)
     if thp.is_forbidden_unique_tool_head(runtime):
         raise ValueError(f"refusing unique tool_head item: {runtime}")
     if runtime.startswith(GT_PREFIXES):
@@ -109,10 +213,12 @@ def _runtime_id(operand: dict[str, Any]) -> str:
 
 
 def project_shared_inventory(runtime: str) -> tuple[str, dict[str, str]] | None:
-    """Map ``cruciblecraft:{material}/{form}`` onto prefix Item + component.
+    """Map long-tail ``cruciblecraft:{material}/{form}`` onto prefix Item + component.
 
-    Logical mill identity stays ``material/form``. Unique hosted forms, vanilla
-    items, and already-projected prefix ids are left alone.
+    Logical mill identity stays ``material/form``. Public exchange prefixes and
+    unique hosted forms keep their live slash ids. GT wood, furniture, food,
+    vanilla items, and already-projected prefix ids stay as their live registry
+    ids.
     """
     if not runtime.startswith("cruciblecraft:"):
         return None
@@ -124,7 +230,9 @@ def project_shared_inventory(runtime: str) -> tuple[str, dict[str, str]] | None:
     form = path[slash + 1 :]
     if not material or not form or "/" in form:
         return None
-    if form in UNIQUE_HOSTED_PREFIXES:
+    if form in UNIQUE_HOSTED_PREFIXES or form in PUBLIC_EXCHANGE_PREFIXES:
+        return None
+    if form not in _inventory_prefix_paths() or material not in _material_ids():
         return None
     return f"cruciblecraft:{form}", {PREFIX_MATERIAL_COMPONENT: material}
 

@@ -744,7 +744,11 @@ def previous_opening(slug: str) -> dict[str, int]:
     prev = wave_dir(prev_slug)
     meas = census.load_json(prev / "measurements.json") if (prev / "measurements.json").is_file() else {}
     load = census.load_json(prev / "load_projection.json") if (prev / "load_projection.json").is_file() else {}
-    census = census.load_json(prev / "census_delta.json") if (prev / "census_delta.json").is_file() else {}
+    delta = (
+        census.load_json(prev / "census_delta.json")
+        if (prev / "census_delta.json").is_file()
+        else {}
+    )
     return {
         "authored_entries": int(
             load.get("datapack_authored_entries") or OPENING_AUTHORED
@@ -755,7 +759,7 @@ def previous_opening(slug: str) -> dict[str, int]:
             or OPENING_EAGER
         ),
         "execution_gap": int(
-            census.get("remaining_recipe_gap") or previous_gap(slug)
+            delta.get("remaining_recipe_gap") or previous_gap(slug)
         ),
         "lazy_rows": int(
             meas.get("lazy_logical_rows")
@@ -1096,8 +1100,8 @@ def previous_deferred_recycling(slug: str) -> int:
             or 1817
         )
     prev = PREVIOUS_GAP_SLUG.get(slug, "mixer/ordinary-closure")
-    census = census.load_json(wave_dir(prev) / "census_delta.json")
-    return int((census.get("remaining_ordinary") or {}).get("deferred_recycling_count") or 1819)
+    delta = census.load_json(wave_dir(prev) / "census_delta.json")
+    return int((delta.get("remaining_ordinary") or {}).get("deferred_recycling_count") or 1819)
 
 
 def build_census(

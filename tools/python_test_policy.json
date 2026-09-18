@@ -29,6 +29,7 @@
     "test_check_zero_milestone_names",
     "test_tree_compare",
     "test_material_form_authority",
+    "test_material_form_demand_census",
     "test_build_semantic_recipes",
     "test_recipe_bulk",
     "test_generic_recipe_import",
@@ -336,6 +337,20 @@
       "test_modules": [
         "test_build_semantic_recipes",
         "test_material_form_authority"
+      ]
+    },
+    {
+      "paths": [
+        "tools/waves/prep/material-form-demand-census/**",
+        "tools/tests/test_material_form_demand_census.py",
+        "docs/history/card-plans/prep/材料形态需求普查详细计划.md",
+        "docs/current/recipe-wave-workflow.md",
+        "docs/current/capability-delivery-workflow.md",
+        ".cursor/rules/material-form-demand-queue.mdc",
+        ".cursor/rules/gt6-recipe-no-placeholder.mdc"
+      ],
+      "test_modules": [
+        "test_material_form_demand_census"
       ]
     },
     {

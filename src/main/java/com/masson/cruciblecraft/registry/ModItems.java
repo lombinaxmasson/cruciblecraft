@@ -21,6 +21,7 @@ import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.item.MaterialCasingBlockItem;
+import com.masson.cruciblecraft.content.item.MaterialItem;
 import com.masson.cruciblecraft.content.item.PrefixMaterialItem;
 import com.masson.cruciblecraft.content.item.MaterialStorageBlockItem;
 import com.masson.cruciblecraft.content.item.CableBlockItem;
@@ -1076,6 +1077,13 @@ public final class ModItems {
                             registryName,
                             () -> new PebbleBlockItem(
                                     ModBlocks.rockBlock(material.id()).get(),
+                                    new Item.Properties()));
+                } else if (MaterialFormHosts.isPublicExchangePrefix(form)) {
+                    item = ITEMS.register(
+                            registryName,
+                            () -> new MaterialItem(
+                                    material,
+                                    form,
                                     new Item.Properties()));
                 } else {
                     throw new IllegalStateException(

@@ -21,26 +21,40 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:tanzanite/gem_chipped"
+            "components": {
+              "cruciblecraft:prefix_material": "tanzanite"
+            },
+            "items": "cruciblecraft:gem_chipped",
+            "type": "neoforge:components"
           }
         ],
         [
           {
-            "item": "cruciblecraft:amber/gem_chipped"
+            "components": {
+              "cruciblecraft:prefix_material": "amber"
+            },
+            "items": "cruciblecraft:gem_chipped",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "zanite"
+            },
             "count": 1,
-            "id": "cruciblecraft:zanite/gem_chipped"
+            "id": "cruciblecraft:gem_chipped"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "golden_amber"
+            },
             "count": 1,
-            "id": "cruciblecraft:golden_amber/gem_chipped"
+            "id": "cruciblecraft:gem_chipped"
           }
         ]
       ]

@@ -38,7 +38,7 @@
     "cruciblecraft:shutter",
     "cruciblecraft:vent"
   ],
-  "disposition_count": 161,
+  "disposition_count": 167,
   "errors": [],
   "generated_by": "tools/build_registry_identity.py",
   "live_entries": [
@@ -14761,10 +14761,64 @@
       "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
     },
     {
+      "registry_path": "gt_bedrock_ore",
+      "runtime_id": "cruciblecraft:gt_bedrock_ore",
+      "semantic_key": "block:gt_bedrock_ore",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
+      "registry_path": "gt_broken_ore",
+      "runtime_id": "cruciblecraft:gt_broken_ore",
+      "semantic_key": "block:gt_broken_ore",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
+      "registry_path": "gt_fluid_spring",
+      "runtime_id": "cruciblecraft:gt_fluid_spring",
+      "semantic_key": "block:gt_fluid_spring",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
+      "registry_path": "gt_hosted_ore",
+      "runtime_id": "cruciblecraft:gt_hosted_ore",
+      "semantic_key": "block:gt_hosted_ore",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
+      "registry_path": "gt_indicator_flower",
+      "runtime_id": "cruciblecraft:gt_indicator_flower",
+      "semantic_key": "block:gt_indicator_flower",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
+      "registry_path": "gt_indicator_grass",
+      "runtime_id": "cruciblecraft:gt_indicator_grass",
+      "semantic_key": "block:gt_indicator_grass",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
       "registry_path": "gt_multitileentity/mortar",
       "runtime_id": "cruciblecraft:gt_multitileentity/mortar",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:32735",
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "gt_small_bedrock_ore",
+      "runtime_id": "cruciblecraft:gt_small_bedrock_ore",
+      "semantic_key": "block:gt_small_bedrock_ore",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
+      "registry_path": "gt_small_ore",
+      "runtime_id": "cruciblecraft:gt_small_ore",
+      "semantic_key": "block:gt_small_ore",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
+      "registry_path": "gt_surface_rock",
+      "runtime_id": "cruciblecraft:gt_surface_rock",
+      "semantic_key": "block:gt_surface_rock",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
     },
     {
       "registry_path": "gt_wood/blue_mahoe_planks",
@@ -19387,6 +19441,12 @@
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
     },
     {
+      "registry_path": "natural_gas_bucket",
+      "runtime_id": "cruciblecraft:natural_gas_bucket",
+      "semantic_key": "item:natural_gas_bucket",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java"
+    },
+    {
       "registry_path": "netherite/anvil",
       "runtime_id": "cruciblecraft:netherite/anvil",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:32088",
@@ -20321,6 +20381,30 @@
       "runtime_id": "cruciblecraft:octine_queue_hopper",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:8245",
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "oil_extra_heavy_bucket",
+      "runtime_id": "cruciblecraft:oil_extra_heavy_bucket",
+      "semantic_key": "item:oil_extra_heavy_bucket",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java"
+    },
+    {
+      "registry_path": "oil_heavy_bucket",
+      "runtime_id": "cruciblecraft:oil_heavy_bucket",
+      "semantic_key": "item:oil_heavy_bucket",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java"
+    },
+    {
+      "registry_path": "oil_light_bucket",
+      "runtime_id": "cruciblecraft:oil_light_bucket",
+      "semantic_key": "item:oil_light_bucket",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java"
+    },
+    {
+      "registry_path": "oil_medium_bucket",
+      "runtime_id": "cruciblecraft:oil_medium_bucket",
+      "semantic_key": "item:oil_medium_bucket",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java"
     },
     {
       "registry_path": "orange/canvas",
@@ -27757,6 +27841,12 @@
       "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
     },
     {
+      "registry_path": "water_geothermal_bucket",
+      "runtime_id": "cruciblecraft:water_geothermal_bucket",
+      "semantic_key": "item:water_geothermal_bucket",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java"
+    },
+    {
       "registry_path": "weedwood/item_barrel",
       "runtime_id": "cruciblecraft:weedwood/item_barrel",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:6989",
@@ -28033,8 +28123,8 @@
       "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
     }
   ],
-  "live_entry_count": 4665,
-  "record_count": 4865,
+  "live_entry_count": 4680,
+  "record_count": 4889,
   "schema_version": 2,
   "status": "PASS"
 }

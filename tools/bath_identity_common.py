@@ -76,6 +76,20 @@ PUBLICATION_GROUPS = (
     PUBLICATION_GROUP_EXACT_MULTI,
     PUBLICATION_GROUP_TOOL_HEAD,
 )
+PRODUCTION_EXACT_FAMILIES = 47
+PRODUCTION_EXACT_MULTI_FAMILIES = 62
+PRODUCTION_TOOL_HEAD_FAMILIES = 36
+PRODUCTION_EXACT_RELATIONS = 47
+PRODUCTION_EXACT_MULTI_RELATIONS = 12422
+PRODUCTION_TOOL_HEAD_RELATIONS = 21622
+PRODUCTION_GROUP_RELATIONS = {
+    PUBLICATION_GROUP_EXACT: PRODUCTION_EXACT_RELATIONS,
+    PUBLICATION_GROUP_EXACT_MULTI: PRODUCTION_EXACT_MULTI_RELATIONS,
+    PUBLICATION_GROUP_TOOL_HEAD: PRODUCTION_TOOL_HEAD_RELATIONS,
+}
+ZERO_OVERFLOW_GROUPS = frozenset(
+    {PUBLICATION_GROUP_EXACT_MULTI, PUBLICATION_GROUP_TOOL_HEAD}
+)
 BATH_MTE_PUBLICATION_GROUP = bath_mte.PUBLICATION_GROUP
 BATH_REMAINDER_PUBLICATION_GROUP_EXACT = bath_remainder.PUBLICATION_GROUP_EXACT
 BATH_REMAINDER_PUBLICATION_GROUP_EXACT_MULTI = bath_remainder.PUBLICATION_GROUP_EXACT_MULTI
@@ -900,6 +914,173 @@ def v2_policy_hash() -> str:
     if not LOAD_POLICY_V2.is_file():
         raise FileNotFoundError("bath/identity forward-v2 load policy is missing")
     return census.sha256_file(LOAD_POLICY_V2)
+
+
+def _shard_aggregate_root(groups: list[dict[str, Any]]) -> str:
+    hasher = hashlib.sha256()
+    for group in groups:
+        hasher.update(str(group["publication_group"]).encode("utf-8"))
+        hasher.update(b"\n")
+        hasher.update(str(group["overflow_shard_id"]).encode("utf-8"))
+        hasher.update(b"\n")
+        for shard in group.get("shards") or []:
+            hasher.update(str(shard["shard_id"]).encode("utf-8"))
+            hasher.update(b"\t")
+            hasher.update(str(shard.get("route_key") or "").encode("utf-8"))
+            hasher.update(b"\t")
+            hasher.update(str(shard["relation_count"]).encode("utf-8"))
+            hasher.update(b"\n")
+    return hasher.hexdigest()
+
+
+def emitted_router_relations(
+        planned: list[tuple[Path, dict[str, Any]]],
+) -> dict[str, list[dict[str, Any]]]:
+    from collections import defaultdict
+
+    from tools.recipe_bulk.matrix import authored_relations
+
+    grouped: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for _path, document in planned:
+        group = str(document.get("publication_group") or "")
+        target = str(document.get("target_map") or TARGET_MAP)
+        if not group:
+            raise ValueError("bath/identity emitted family is missing publication_group")
+        for relation in authored_relations(document):
+            grouped[group].append(
+                {
+                    "_target_map": target,
+                    "fluid_inputs": list(relation.get("fluid_inputs") or []),
+                    "item_inputs": list(relation.get("item_inputs") or []),
+                    "shadow_order": int(relation.get("shadow_order") or 0),
+                    "stable_id": str(relation["stable_id"]),
+                }
+            )
+    return grouped
+
+
+def build_emitted_shard_manifest(
+        planned: list[tuple[Path, dict[str, Any]]],
+) -> dict[str, Any]:
+    from tools import assembler_wood_shard_router as router
+
+    grouped = emitted_router_relations(planned)
+    if set(grouped) != set(PUBLICATION_GROUPS):
+        raise ValueError(
+            "bath/identity emitted publication groups drifted: "
+            + ",".join(sorted(grouped))
+        )
+    groups: list[dict[str, Any]] = []
+    stable_ids: list[str] = []
+    for group_id in PUBLICATION_GROUPS:
+        rows = grouped[group_id]
+        expected = PRODUCTION_GROUP_RELATIONS[group_id]
+        if len(rows) != expected:
+            raise ValueError(
+                f"bath/identity {group_id} relation count {len(rows)} != {expected}"
+            )
+        target = str(rows[0]["_target_map"])
+        routed = router.route_group(target, group_id, rows)
+        router.prove_route_group(
+            routed,
+            require_zero_overflow=group_id in ZERO_OVERFLOW_GROUPS,
+        )
+        ids = [str(row["stable_id"]) for row in rows]
+        if len(ids) != len(set(ids)):
+            raise ValueError(f"bath/identity {group_id} stable ids collided")
+        stable_ids.extend(ids)
+        groups.append(
+            {
+                "overflow_count": routed["overflow_count"],
+                "overflow_shard_id": routed["overflow_shard_id"],
+                "publication_group": group_id,
+                "relation_count": len(rows),
+                "relations": routed["relations"],
+                "routing_schema_version": router.ROUTING_SCHEMA_VERSION,
+                "shard_count": routed["shard_count"],
+                "shards": routed["shards"],
+                "target_map": target,
+                "worst_shard_size": routed["worst_shard_size"],
+            }
+        )
+    if len(stable_ids) != EXPECTED_RELATION_COUNT:
+        raise ValueError(
+            f"bath/identity relation count {len(stable_ids)} != {EXPECTED_RELATION_COUNT}"
+        )
+    if semantic_family_count(planned) != EXPECTED_FAMILY_COUNT:
+        raise ValueError(
+            f"bath/identity family count {semantic_family_count(planned)} "
+            f"!= {EXPECTED_FAMILY_COUNT}"
+        )
+    document = {
+        "group_count": len(groups),
+        "groups": groups,
+        "hard_ceiling": router.HARD_SHARD_CEILING,
+        "schema_version": 1,
+        "status": "BATH_IDENTITY_SHARD_MEMBERSHIP_FROZEN",
+    }
+    document["aggregate_root_sha256"] = _shard_aggregate_root(groups)
+    return document
+
+
+def semantic_family_count(planned: list[tuple[Path, dict[str, Any]]]) -> int:
+    return len({str(document.get("family_id") or "") for _path, document in planned})
+
+
+def check_emitted_shard_proof(
+        planned: list[tuple[Path, dict[str, Any]]],
+) -> list[str]:
+    expected = build_emitted_shard_manifest(planned)
+    if not SHARD_MANIFEST.is_file():
+        return ["bath/identity shard manifest is missing"]
+    current = load_json(SHARD_MANIFEST)
+    if current != expected:
+        return ["bath/identity shard manifest drifted from emitted documents"]
+    return []
+
+
+def refresh_runtime_dependency_hashes() -> None:
+    if not RUNTIME_DEPENDENCY_MANIFEST.is_file():
+        raise FileNotFoundError("bath/identity runtime dependency manifest is missing")
+    manifest = load_json(RUNTIME_DEPENDENCY_MANIFEST)
+    trees = manifest.setdefault("bath_identity_trees", {})
+    generated = trees.setdefault("generated_recipes", {})
+    generated["path"] = relative(GENERATED_ROOT)
+    generated["sha256"] = tree_sha256(GENERATED_ROOT)
+    overlays = manifest.setdefault("overlays", {})
+    shard = overlays.setdefault("shard_manifest", {})
+    shard["path"] = relative(SHARD_MANIFEST)
+    shard["sha256"] = _file_sha256(SHARD_MANIFEST)
+    lock = overlays.setdefault("production_lock", {})
+    lock["path"] = relative(PRODUCTION_LOCK)
+    lock["sha256"] = production_lock_sha256()
+    source = overlays.setdefault("source", {})
+    source["path"] = relative(SOURCE)
+    source["sha256"] = _file_sha256(SOURCE)
+    census.write_stable(RUNTIME_DEPENDENCY_MANIFEST, manifest)
+
+
+def refresh_readiness_lock_hash() -> None:
+    if not READINESS.is_file():
+        return
+    digest = production_lock_sha256()
+    document = load_json(READINESS)
+    document["production_lock_sha256"] = digest
+    evidence = document.setdefault("evidence", {})
+    player_path = evidence.setdefault("player_path", {})
+    if "production_lock_sha256" in player_path:
+        player_path["production_lock_sha256"] = digest
+    census.write_stable(READINESS, document)
+
+
+def write_emitted_shard_proof(
+        planned: list[tuple[Path, dict[str, Any]]],
+) -> dict[str, Any]:
+    document = build_emitted_shard_manifest(planned)
+    census.write_stable(SHARD_MANIFEST, document)
+    refresh_runtime_dependency_hashes()
+    refresh_readiness_lock_hash()
+    return document
 
 
 refresh_gametest_required()

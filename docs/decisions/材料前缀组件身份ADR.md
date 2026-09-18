@@ -1,12 +1,15 @@
 # 材料前缀组件身份 ADR
 
-状态：Accepted  
+状态：**不再是目标策略。** 2026-09-17 作为 Accepted 落地；2026-09-18 认定为大方向事故。  
+现行目标：[材料身份分层混合 ADR](材料身份分层混合ADR.md)。  
+live 代码仍是本文件描述的全库存前缀组件化，**冻结**，等用户下令再重写。
+
 范围：材料前缀物品 / 可放置材料方块的 registry 粒度  
-日期：2026-09-17  
-类别：`DESIGN_POLICY`
+日期：2026-09-17（目标废止：2026-09-18）  
+类别：`DESIGN_POLICY`（历史实现记录）
 
 人读合同：[material-prefix-identity.md](../current/material-prefix-identity.md)。  
-落地计划：[材料前缀组件身份详细计划](../history/card-plans/closed/材料前缀组件身份详细计划.md)（已关 `runtime_ready`）。
+落地计划：[材料前缀组件身份详细计划](../history/card-plans/closed/材料前缀组件身份详细计划.md)（已关 `runtime_ready`；关卡不等于终态正确）。
 
 ## 背景
 
@@ -16,7 +19,7 @@ GT6 用少量 multiitem + damage/meta 表达「前缀 × 材料」。CrucibleCra
 
 更早的卡曾写「独立 registry id；不折进 prefix，不用共享物品+材料 component」（见 [紧凑配方传输编解码](../history/card-plans/closed/紧凑配方传输编解码详细计划.md)、[工具头前缀折回](../history/card-plans/closed/工具头前缀折回详细计划.md) 的 deferred）。那是当时为了避开组件栈、用独立 id 顶住 compact 传输。它解决的是 RecipeHolder NBT，不是材料开放性。本 ADR 废止「材料形态必须一人一 id」这条，不废止 compact 的 exact-relation 合同，也不要求本卡去改 Holder 粒度。
 
-## 决策
+## 决策（2026-09-17 实际落地；目标已废止）
 
 **自身开放性优先于其他模组标签兼容。** 目标是：前缀集合冻结之后，新材料主要是 JSON（颜色、性质、名字、它有哪些前缀），不必再为每种库存形态占一个 Item id。
 

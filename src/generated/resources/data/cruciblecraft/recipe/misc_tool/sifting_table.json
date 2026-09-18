@@ -1,4 +1,5 @@
 {
+  "type": "cruciblecraft:shaped_catalyst",
   "catalysts": {
     "d": {
       "item": "cruciblecraft:material_screwdriver"
@@ -9,7 +10,21 @@
   },
   "ingredients": {
     "P": {
-      "item": "cruciblecraft:iron/double_plate"
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "iron",
+        "minecraft:attribute_modifiers": {
+          "modifiers": []
+        },
+        "minecraft:enchantments": {
+          "levels": {}
+        },
+        "minecraft:lore": [],
+        "minecraft:max_stack_size": 64,
+        "minecraft:rarity": "common",
+        "minecraft:repair_cost": 0
+      },
+      "items": "cruciblecraft:double_plate"
     },
     "S": {
       "item": "cruciblecraft:iron/long_rod"
@@ -29,6 +44,5 @@
   "result": {
     "count": 1,
     "id": "cruciblecraft:misc_tool/sifting_table"
-  },
-  "type": "cruciblecraft:shaped_catalyst"
+  }
 }

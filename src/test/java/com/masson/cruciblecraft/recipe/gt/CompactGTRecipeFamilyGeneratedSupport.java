@@ -23,6 +23,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.component.DataComponentPredicate;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -563,6 +564,11 @@ final class CompactGTRecipeFamilyGeneratedSupport {
         if (ingredient.has("item")) {
             ResourceLocation itemId = ResourceLocation.parse(
                     ingredient.get("item").getAsString());
+            Optional<Ingredient> rewritten =
+                    PrefixMaterialItemCodecs.rewriteIngredient(itemId);
+            if (rewritten.isPresent()) {
+                return rewritten.orElseThrow();
+            }
             ensureItem(itemId);
             if (!BuiltInRegistries.ITEM.containsKey(itemId)) {
                 return stubIngredient(itemId.toString());
@@ -592,24 +598,45 @@ final class CompactGTRecipeFamilyGeneratedSupport {
                 item = BuiltInRegistries.ITEM.get(itemId);
             }
         }
-        ItemStack stack = new ItemStack(item);
+        DataComponentPredicate.Builder predicate = DataComponentPredicate.builder();
+        boolean indexed = false;
+        if (components != null && components.has("cruciblecraft:prefix_material")) {
+            predicate.expect(
+                    ModComponents.PREFIX_MATERIAL.get(),
+                    components.get("cruciblecraft:prefix_material").getAsString());
+            indexed = true;
+        }
+        if (components != null && components.has("cruciblecraft:tool_material")) {
+            predicate.expect(
+                    ModComponents.TOOL_MATERIAL.get(),
+                    components.get("cruciblecraft:tool_material").getAsString());
+            indexed = true;
+        }
+        if (components != null && components.has("cruciblecraft:machine_material")) {
+            predicate.expect(
+                    ModComponents.MACHINE_MATERIAL.get(),
+                    components.get("cruciblecraft:machine_material").getAsString());
+            indexed = true;
+        }
         if (components != null && components.has("cruciblecraft:circuit_config")) {
-            stack.set(
+            predicate.expect(
                     ModComponents.CIRCUIT_CONFIG.get(),
                     components.get("cruciblecraft:circuit_config").getAsInt());
+            indexed = true;
         }
         if (components != null && components.has("cruciblecraft:fireproof")) {
-            stack.set(
+            predicate.expect(
                     ModComponents.FIREPROOF.get(),
                     components.get("cruciblecraft:fireproof").getAsInt());
+            indexed = true;
         }
-        if (components != null
-                && !components.has("cruciblecraft:circuit_config")
-                && !components.has("cruciblecraft:fireproof")) {
-            stack.set(
-                    DataComponents.CUSTOM_NAME,
-                    Component.literal("components:" + ingredient));
+        if (indexed) {
+            return DataComponentIngredient.of(false, predicate.build(), item);
         }
+        ItemStack stack = new ItemStack(item);
+        stack.set(
+                DataComponents.CUSTOM_NAME,
+                Component.literal("components:" + ingredient));
         return DataComponentIngredient.of(false, stack);
     }
 
@@ -637,11 +664,19 @@ final class CompactGTRecipeFamilyGeneratedSupport {
         return stubIngredient(label).getItems()[0].getItem();
     }
 
+    static void installPrefixMaterialRouting() {
+        ensureGeneratedIngredientSupport();
+        ensureItem(ResourceLocation.fromNamespaceAndPath("cruciblecraft", "crushed_ore"));
+    }
+
     private static void ensureGeneratedIngredientSupport() {
         synchronized (REGISTRY_LOCK) {
             bindComponentIngredientType();
             bindIntegerComponent(ModComponents.CIRCUIT_CONFIG);
             bindIntegerComponent(ModComponents.FIREPROOF);
+            bindStringComponent(ModComponents.PREFIX_MATERIAL);
+            bindStringComponent(ModComponents.TOOL_MATERIAL);
+            bindStringComponent(ModComponents.MACHINE_MATERIAL);
         }
     }
 
@@ -678,6 +713,21 @@ final class CompactGTRecipeFamilyGeneratedSupport {
                     fluidId,
                     new StubStillFluid(FluidTypeHolder.VALUE));
         }
+    }
+
+    private static void bindStringComponent(
+            DeferredHolder<DataComponentType<?>, DataComponentType<String>> holder) {
+        ResourceLocation id = holder.getId();
+        if (!BuiltInRegistries.DATA_COMPONENT_TYPE.containsKey(id)) {
+            unfreeze(BuiltInRegistries.DATA_COMPONENT_TYPE);
+            DataComponentType<String> type = DataComponentType.<String>builder()
+                    .persistent(Codec.STRING)
+                    .build();
+            Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, id, type);
+        }
+        bindDeferredHolder(
+                holder,
+                BuiltInRegistries.DATA_COMPONENT_TYPE.getHolderOrThrow(holder.getKey()));
     }
 
     private static void bindIntegerComponent(

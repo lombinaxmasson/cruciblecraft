@@ -45,6 +45,16 @@ final class CompactRelationItemCodecs {
             DynamicOps<T> ops,
             T input) {
         JsonElement json = new Dynamic<>(ops, input).convert(JsonOps.INSTANCE).getValue();
+        java.util.Optional<Ingredient> publicExchange =
+                PrefixMaterialItemCodecs.rewritePublicExchangeComponent(json);
+        if (publicExchange.isPresent()) {
+            return DataResult.success(Pair.of(publicExchange.orElseThrow(), input));
+        }
+        java.util.Optional<Ingredient> tightened =
+                PrefixMaterialItemCodecs.tightenComponentIngredient(json);
+        if (tightened.isPresent()) {
+            return DataResult.success(Pair.of(tightened.orElseThrow(), input));
+        }
         if (json != null && json.isJsonObject() && !json.getAsJsonObject().has("components")) {
             java.util.Optional<Ingredient> rewritten =
                     PrefixMaterialItemCodecs.rewriteIngredient(itemId(json, "item"));
@@ -69,6 +79,11 @@ final class CompactRelationItemCodecs {
             DynamicOps<T> ops,
             T input) {
         JsonElement json = new Dynamic<>(ops, input).convert(JsonOps.INSTANCE).getValue();
+        java.util.Optional<ItemStack> publicExchange =
+                PrefixMaterialItemCodecs.rewritePublicExchangeStack(json);
+        if (publicExchange.isPresent()) {
+            return DataResult.success(Pair.of(publicExchange.orElseThrow(), input));
+        }
         if (json != null && json.isJsonObject() && !json.getAsJsonObject().has("components")) {
             ResourceLocation rewrittenId = itemId(json, "id");
             int rewrittenCount = 1;

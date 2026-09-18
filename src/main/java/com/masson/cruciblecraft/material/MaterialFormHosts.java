@@ -1,5 +1,7 @@
 package com.masson.cruciblecraft.material;
 
+import java.util.Set;
+
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.redstonewire.RedstoneWireKind;
@@ -9,15 +11,57 @@ import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 
 /**
- * Splits live material forms into unique hosted BlockItems versus shared
- * inventory prefix items. Call after pipe/conductor catalogs initialize.
+ * Splits live material forms into unique hosted BlockItems, public-exchange
+ * unique Items, and shared inventory prefix items. Call after pipe/conductor
+ * catalogs initialize.
  */
 public final class MaterialFormHosts {
+    /**
+     * Frozen public-exchange prefix paths. Rewrite cards must not add or
+     * remove entries without a new DESIGN_POLICY confirmation.
+     */
+    public static final Set<String> PUBLIC_EXCHANGE_PREFIX_PATHS = Set.of(
+            "ingot",
+            "nugget",
+            "dust",
+            "small_dust",
+            "tiny_dust",
+            "plate",
+            "rod",
+            "long_rod",
+            "bolt",
+            "screw",
+            "ring",
+            "gear",
+            "small_gear",
+            "gem",
+            "foil",
+            "fine_wire");
+
     private MaterialFormHosts() {}
+
+    public static boolean isPublicExchangePrefix(MaterialPrefix form) {
+        return form != null && isPublicExchangePrefixPath(form.serializedName());
+    }
+
+    public static boolean isPublicExchangePrefixPath(String path) {
+        return path != null && PUBLIC_EXCHANGE_PREFIX_PATHS.contains(path);
+    }
 
     public static boolean isSharedInventoryForm(
             MaterialDefinition material, MaterialPrefix form) {
         if (form.equals(MaterialPrefixes.ORE)
+                || material.formItems().containsKey(form)
+                || isPublicExchangePrefix(form)
+                || !MaterialCatalog.isFormRegistered(material, form)) {
+            return false;
+        }
+        return !isUniqueHostedForm(material, form);
+    }
+
+    public static boolean isUniqueInventoryForm(
+            MaterialDefinition material, MaterialPrefix form) {
+        if (!isPublicExchangePrefix(form)
                 || material.formItems().containsKey(form)
                 || !MaterialCatalog.isFormRegistered(material, form)) {
             return false;

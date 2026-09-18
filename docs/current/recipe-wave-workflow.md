@@ -34,7 +34,10 @@ Source Pack
 新 RecipeMap 只增加 `SourcePack + recipe_import.json + work_set + 人工
 production_lock`。不得新增 per-wave builder，也不得把卡号写入 `WaveSpec`、Java
 类型、配方路径、codec、cache key。`import-source` 不得写 `production_lock.json`
-或 `src/recipe_generated`。缺形态、缺身份或跨域依赖保持 `blocked`，不发 stand-in。
+或 `src/recipe_generated`。配方卡上缺形态、缺身份或跨域依赖仍保持 `blocked`，
+不发 stand-in。那是安全阀，不是缺形态的工作顺序。已知 GT6 会生成、且已有需求的
+`(材料, 前缀)` 走 [材料形态需求普查](../history/card-plans/prep/材料形态需求普查详细计划.md)
+再开 bounded unique-active，不要做到配方才补，也不要把它们继续堆进 blocked 当排队。
 
 落地同时只允许一条 active delivery lane。Prep 卡（计划在
 `docs/history/card-plans/prep/`）可以签发并在分支上 `import-source` /
@@ -43,6 +46,24 @@ isolated compile，但不得写 live `src/recipe_generated`，也不得把
 `(target_map, publication_group)`；一个 group 可以拥有多个 query-addressable shards。
 Shard 是运行时索引单位，不是另一张卡。缺失单块机器晋升落地仍要 unique-active
 空窗；prep 签发不因工具管线自动改 unique-active。
+
+## 1.1 缺形态排队
+
+安全阀不变：缺真零件就停发配方，禁止 stand-in。
+
+排队改成：
+
+1. prep 普查 `current_gap` / B 桶 `missing_form` ∩ 前缀 JSON ∩ 未进
+   `material_registration_gate.materials`。产物是
+   `tools/waves/prep/material-form-demand-census/census.json`。
+   `openable` 才是未 gated 的冻结核。`gated_unresolved` 是已 gated、resolve
+   还当成缺的长尾，修查找，不要再开门。
+2. 下一张 unique-active 只消化 `openable`（可先切木板等点名格）。对不上 GT6
+   生成旗标或 dump 已用格的继续 blocked。
+3. `ungated_generated_flag_pairs` 只报规模，不是待办。禁止按生成旗标全开长尾。
+
+配方卡不再顺手开门，也不再把已经能对上的缺形态当成「本图 blocked 余量」。
+非前缀缺口（染料流体、激光气体、未映射 OD / plank / MTE）仍记 blocked。
 
 ## 2. Source Pack 与 production lock
 

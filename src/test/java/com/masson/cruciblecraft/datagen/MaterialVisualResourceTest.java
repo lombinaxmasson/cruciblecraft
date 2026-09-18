@@ -153,13 +153,13 @@ class MaterialVisualResourceTest {
         assertFalse(textures.has("layer2"));
 
         JsonObject dust = json(clientFiles.get(
-                "assets/cruciblecraft/models/item/dust.json"));
+                "assets/cruciblecraft/models/item/copper/dust.json"));
         assertEquals(
                 "cruciblecraft:item/material/dust",
                 dust.getAsJsonObject("textures").get("layer0").getAsString());
         assertFalse(dust.getAsJsonObject("textures").has("layer1"));
         assertFalse(clientFiles.containsKey(
-                "assets/cruciblecraft/models/item/copper/dust.json"));
+                "assets/cruciblecraft/models/item/dust.json"));
 
         String div72Path = clientFiles.keySet().stream()
                 .filter(path -> path.endsWith("/dust_div72.json"))
@@ -214,11 +214,11 @@ class MaterialVisualResourceTest {
         });
         assertTrue(serverFiles.containsKey(
                 "data/c/tags/block/wires/copper.json"));
-        assertFalse(serverFiles.containsKey(
+        assertTrue(serverFiles.containsKey(
                 "data/c/tags/item/dusts/copper.json"));
         assertTrue(json(serverFiles.get("data/c/tags/item/dusts.json"))
                 .toString()
-                .contains("cruciblecraft:dust"));
+                .contains("#c:dusts/copper"));
     }
 
     @Test

@@ -1,5 +1,6 @@
 package com.masson.cruciblecraft.recipe.gt;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -7,17 +8,28 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
+import com.google.gson.JsonObject;
+import com.masson.cruciblecraft.api.material.MaterialLookup;
+import com.masson.cruciblecraft.material.MaterialCatalog;
+import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
+import com.masson.cruciblecraft.registry.ModComponents;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
 import com.masson.cruciblecraft.test.MinecraftTestBootstrap;
+import com.mojang.serialization.JsonOps;
 
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -30,8 +42,15 @@ class CompactRecipeShardRouterTest {
     private static ResourceLocation group;
 
     @BeforeAll
-    static void bootstrapMinecraft() {
+    static void bootstrapMinecraft(@TempDir Path configDirectory) {
         MinecraftTestBootstrap.bootstrap();
+        CompactGTRecipeFamilyGeneratedSupport.installPrefixMaterialRouting();
+        if (!MaterialPrefixCatalog.isBootstrapped()) {
+            MaterialPrefixCatalog.bootstrap(null);
+        }
+        if (!MaterialCatalog.isBootstrapped()) {
+            MaterialCatalog.bootstrap(configDirectory);
+        }
         group = CompactPublicationGroups.CENTRIFUGE_SINGLETON;
     }
 
@@ -138,6 +157,103 @@ class CompactRecipeShardRouterTest {
                 () -> router(relations));
         assertTrue(thrown.getMessage().contains("hard ceiling"));
         assertTrue(thrown.getMessage().contains("129"));
+    }
+
+
+    @Test
+    void slashIdRewriteUsesTightPrefixMaterialAndDoesNotOverflow() {
+        ResourceLocation slashId = ResourceLocation.fromNamespaceAndPath(
+                "cruciblecraft", "iron/crushed_ore");
+        Ingredient rewritten = PrefixMaterialItemCodecs.rewriteIngredient(slashId)
+                .orElseThrow();
+        ComponentIngredientIndex.Extraction extraction =
+                ComponentIngredientIndex.extract(rewritten);
+        assertTrue(extraction.supported());
+        assertEquals(1, extraction.keys().size());
+        ComponentIngredientIndex.Key key = extraction.keys().get(0);
+        assertEquals(
+                ResourceLocation.fromNamespaceAndPath("cruciblecraft", "crushed_ore"),
+                BuiltInRegistries.ITEM.getKey(key.item()));
+        assertEquals(ModComponents.PREFIX_MATERIAL.getId(), key.componentId());
+        assertEquals("iron", key.value());
+
+        Item crushed = BuiltInRegistries.ITEM.get(
+                ResourceLocation.fromNamespaceAndPath("cruciblecraft", "crushed_ore"));
+        ItemStack fatStack = new ItemStack(crushed);
+        fatStack.set(ModComponents.PREFIX_MATERIAL, "iron");
+        fatStack.set(DataComponents.CUSTOM_NAME, Component.literal("fat-default-patch"));
+        Ingredient fat = DataComponentIngredient.of(false, fatStack);
+        assertFalse(ComponentIngredientIndex.extract(fat).supported());
+        Ingredient tightenedLive = PrefixMaterialItemCodecs.tightenLiveIngredient(fat);
+        assertTrue(ComponentIngredientIndex.extract(tightenedLive).supported());
+
+        CompactGTRecipeFamilyDefinition.Relation tight = relation(
+                "centrifuge/compact/prefix_tight",
+                rewritten,
+                List.of(new FluidStack(Fluids.WATER, 250)),
+                0);
+        CompactRecipeShardRouter tightRouter = router(List.of(tight));
+        assertEquals(0, tightRouter.overflowCount());
+        assertEquals(
+                "component:cruciblecraft:crushed_ore/"
+                        + ModComponents.PREFIX_MATERIAL.getId()
+                        + "=iron",
+                tightRouter.routeKey(tight.stableId()).orElseThrow());
+
+        JsonObject slashJson = new JsonObject();
+        slashJson.addProperty("item", slashId.toString());
+        Ingredient decoded = CompactRelationItemCodecs.INGREDIENT.parse(
+                JsonOps.INSTANCE, slashJson).getOrThrow();
+        assertTrue(ComponentIngredientIndex.extract(decoded).supported());
+        CompactGTRecipeFamilyDefinition.Relation decodedRelation = relation(
+                "centrifuge/compact/prefix_decoded",
+                decoded,
+                List.of(new FluidStack(Fluids.WATER, 250)),
+                1);
+        CompactRecipeShardRouter decodedRouter = router(List.of(decodedRelation));
+        assertEquals(0, decodedRouter.overflowCount());
+        assertEquals(
+                tightRouter.routeKey(tight.stableId()).orElseThrow(),
+                decodedRouter.routeKey(decodedRelation.stableId()).orElseThrow());
+    }
+
+    @Test
+    void fatPrefixMaterialJsonTightensOnDecodeAndDoesNotOverflow() {
+        JsonObject fatJson = new JsonObject();
+        fatJson.addProperty("type", "neoforge:components");
+        fatJson.addProperty("items", "cruciblecraft:crushed_ore");
+        JsonObject components = new JsonObject();
+        components.addProperty("cruciblecraft:prefix_material", "iron");
+        components.addProperty("minecraft:max_stack_size", 64);
+        fatJson.add("components", components);
+        Ingredient decoded = PrefixMaterialItemCodecs.INGREDIENT.parse(
+                JsonOps.INSTANCE, fatJson).getOrThrow();
+        ComponentIngredientIndex.Extraction extraction =
+                ComponentIngredientIndex.extract(decoded);
+        assertTrue(extraction.supported());
+        assertEquals(1, extraction.keys().size());
+        assertEquals("iron", extraction.keys().get(0).value());
+        CompactGTRecipeFamilyDefinition.Relation relation = relation(
+                "centrifuge/compact/prefix_fat_json",
+                decoded,
+                List.of(new FluidStack(Fluids.WATER, 250)),
+                0);
+        CompactRecipeShardRouter router = router(List.of(relation));
+        assertEquals(0, router.overflowCount());
+    }
+
+    @Test
+    void prefixMaterialIngredientIgnoresUnrelatedStackComponents() {
+        Item crushed = BuiltInRegistries.ITEM.get(
+                ResourceLocation.fromNamespaceAndPath("cruciblecraft", "crushed_ore"));
+        Ingredient tight = MaterialLookup.prefixMaterialIngredient(crushed, "iron");
+        ItemStack offered = new ItemStack(crushed);
+        offered.set(ModComponents.PREFIX_MATERIAL, "iron");
+        offered.set(DataComponents.CUSTOM_NAME, Component.literal("named"));
+        assertTrue(tight.test(offered));
+        ItemStack other = new ItemStack(crushed);
+        other.set(ModComponents.PREFIX_MATERIAL, "copper");
+        assertFalse(tight.test(other));
     }
 
     private static CompactRecipeShardRouter router(

@@ -27,7 +27,8 @@
 | 文档 | 类型 | 替代 |
 | --- | --- | --- |
 | [容器身份与边界 ADR](../decisions/容器身份与边界ADR.md) | ADR | 仍有效 |
-| [材料前缀组件身份 ADR](../decisions/材料前缀组件身份ADR.md) | ADR | unique-active `registry/prefix-material-component` |
+| [材料身份分层混合 ADR](../decisions/材料身份分层混合ADR.md) | ADR | 现行目标；`registry/hybrid-material-identity` 已关 `runtime_ready` |
+| [材料前缀组件身份 ADR](../decisions/材料前缀组件身份ADR.md) | ADR | 历史落地 / 事故态；不再是目标 |
 | [表现层与可玩性分母](../decisions/CrucibleCraft-表现层与可玩性分母.md) | 设计提案 | 现行路线见 roadmap |
 | [GT6U 搬运差距](../decisions/CrucibleCraft-GT6U搬运差距分析.md) | 来源分析 | 仍有效 |
 | [关闭计划目录](card-plans/closed/) | 关闭计划 | 唯一保留的历史计划树 |

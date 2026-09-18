@@ -113,6 +113,7 @@ public final class MaterialFingerprint {
                 .append(prefix.units()).append('|')
                 .append(prefix.heatDamage()).append('|')
                 .append(prefix.generationFlag()).append('|')
+                .append(prefix.tagNamespace()).append('|')
                 .append(prefix.tagDirectory()).append('|')
                 .append(prefix.modelTemplate()).append('|')
                 .append(prefix.modelTexture()).append('|');

@@ -21,26 +21,40 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:tanzanite/tool_head_pickaxe_gem"
+            "components": {
+              "cruciblecraft:prefix_material": "tanzanite"
+            },
+            "items": "cruciblecraft:tool_head_pickaxe_gem",
+            "type": "neoforge:components"
           }
         ],
         [
           {
-            "item": "cruciblecraft:amber/tool_head_pickaxe_gem"
+            "components": {
+              "cruciblecraft:prefix_material": "amber"
+            },
+            "items": "cruciblecraft:tool_head_pickaxe_gem",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "zanite"
+            },
             "count": 1,
-            "id": "cruciblecraft:zanite/tool_head_pickaxe_gem"
+            "id": "cruciblecraft:tool_head_pickaxe_gem"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "golden_amber"
+            },
             "count": 1,
-            "id": "cruciblecraft:golden_amber/tool_head_pickaxe_gem"
+            "id": "cruciblecraft:tool_head_pickaxe_gem"
           }
         ]
       ]

@@ -726,6 +726,44 @@ def _emits_live(host: dict[str, Any]) -> bool:
     )
 
 
+def _slot_item_id(slot: Any) -> str:
+    if not isinstance(slot, dict):
+        return ""
+    item = str(slot.get("item") or slot.get("items") or slot.get("tag") or "")
+    material = (slot.get("components") or {}).get("cruciblecraft:prefix_material")
+    if (
+        isinstance(material, str)
+        and material
+        and item.startswith("cruciblecraft:")
+        and "/" not in item.split(":", 1)[-1]
+    ):
+        return f"cruciblecraft:{material}/{item.split(':', 1)[-1]}"
+    return item
+
+
+def _item_matches_expected(expected: str, live: str) -> bool:
+    if not expected or not live:
+        return True
+    exp = expected.lstrip("#")
+    if exp in live or live == expected:
+        return True
+    if not (live.startswith("c:") and expected.startswith("cruciblecraft:")):
+        return False
+    path = expected.split(":", 1)[1]
+    if "/" not in path or "/" not in live:
+        return False
+    material, form = path.split("/", 1)
+    directory, tag_mat = live.split(":", 1)[1].rsplit("/", 1)
+    if tag_mat != material:
+        return False
+    return (
+        directory == form
+        or directory == form + "s"
+        or directory.rstrip("s") == form
+        or (form == "block" and directory == "storage_blocks")
+    )
+
+
 def _audit_live_recipe(dummy_path: str, pattern: list[str], operands: dict[str, dict[str, Any]]) -> dict[str, Any]:
     path = _live_recipe_path(dummy_path)
     if not path.is_file():
@@ -737,12 +775,10 @@ def _audit_live_recipe(dummy_path: str, pattern: list[str], operands: dict[str, 
     matches = live_pattern == pattern
     for key, operand in operands.items():
         expected = operand.get("cc")
-        live_item = (ingredients.get(key) or catalysts.get(key) or {}).get("item") or (
-            (ingredients.get(key) or {}).get("tag")
-        )
+        live_item = _slot_item_id(ingredients.get(key) or catalysts.get(key) or {})
         if operand.get("tag") and not expected:
             expected = f"#{operand['tag']}" if not str(operand["tag"]).startswith("#") else operand["tag"]
-        if expected and live_item and expected.lstrip("#") not in str(live_item) and str(live_item) != expected:
+        if expected and live_item and not _item_matches_expected(str(expected), str(live_item)):
             matches = False
     return {
         "present": True,

@@ -1,4 +1,5 @@
 {
+  "type": "cruciblecraft:shaped_catalyst",
   "ingredients": {
     "G": {
       "item": "cruciblecraft:tin_alloy/small_gear"
@@ -7,7 +8,21 @@
       "item": "cruciblecraft:tin_alloy/gear"
     },
     "P": {
-      "item": "cruciblecraft:tin_alloy/quintuple_plate"
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "tin_alloy",
+        "minecraft:attribute_modifiers": {
+          "modifiers": []
+        },
+        "minecraft:enchantments": {
+          "levels": {}
+        },
+        "minecraft:lore": [],
+        "minecraft:max_stack_size": 64,
+        "minecraft:rarity": "common",
+        "minecraft:repair_cost": 0
+      },
+      "items": "cruciblecraft:quintuple_plate"
     },
     "S": {
       "item": "cruciblecraft:tin_alloy/rod"
@@ -21,6 +36,5 @@
   "result": {
     "count": 1,
     "id": "cruciblecraft:safe/mechanical_tin_alloy_safe"
-  },
-  "type": "cruciblecraft:shaped_catalyst"
+  }
 }

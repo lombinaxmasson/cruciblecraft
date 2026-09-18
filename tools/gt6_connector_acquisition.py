@@ -461,6 +461,18 @@ def readiness(unique_active: bool) -> dict[str, Any]:
     }
 
 
+def _slot_item(slot: Any) -> str:
+    if not isinstance(slot, dict):
+        return ""
+    return str(slot.get("item") or slot.get("items") or "")
+
+
+def _form_operand(item: str) -> str:
+    if not item:
+        return ""
+    return item.split(":", 1)[-1].rsplit("/", 1)[-1]
+
+
 def _generated_combo_counts() -> tuple[int, int]:
     if not GENERATED_COMBO.is_dir():
         return 0, 0
@@ -476,10 +488,8 @@ def _generated_table_operands() -> dict[str, int]:
         return counts
     for path in GENERATED_TABLE.glob("*/*.json"):
         document = json.loads(path.read_text(encoding="utf-8"))
-        item = str(
-            ((document.get("ingredients") or {}).get("P") or {}).get("item") or ""
-        )
-        operand = item.rsplit("/", 1)[-1] if item else ""
+        item = _slot_item((document.get("ingredients") or {}).get("P"))
+        operand = _form_operand(item)
         counts[operand] = counts.get(operand, 0) + 1
     return {key: counts[key] for key in sorted(counts)}
 
@@ -563,10 +573,8 @@ def _generated_item_table_operands() -> dict[str, int]:
         return counts
     for path in GENERATED_ITEM_TABLE.glob("*/*.json"):
         document = json.loads(path.read_text(encoding="utf-8"))
-        item = str(
-            ((document.get("ingredients") or {}).get("P") or {}).get("item") or ""
-        )
-        operand = item.rsplit("/", 1)[-1] if item else ""
+        item = _slot_item((document.get("ingredients") or {}).get("P"))
+        operand = _form_operand(item)
         counts[operand] = counts.get(operand, 0) + 1
     return {key: counts[key] for key in sorted(counts)}
 
@@ -913,14 +921,8 @@ def check() -> list[str]:
         errors.append("five-gauge table crafts lost curved_plate or double_plate")
     for path in GENERATED_TABLE.glob("*/*.json") if GENERATED_TABLE.is_dir() else []:
         document = json.loads(path.read_text(encoding="utf-8"))
-        item = str(
-            ((document.get("ingredients") or {}).get("P") or {}).get("item") or ""
-        )
-        if (
-            item.endswith("/plate")
-            and not item.endswith("/curved_plate")
-            and not item.endswith("/double_plate")
-        ):
+        item = _slot_item((document.get("ingredients") or {}).get("P"))
+        if _form_operand(item) == "plate":
             errors.append(
                 f"{census.relative(path)} used flat plate as a curved_plate stand-in"
             )
@@ -1000,14 +1002,8 @@ def _check_item() -> list[str]:
         else []
     ):
         document = json.loads(path.read_text(encoding="utf-8"))
-        item = str(
-            ((document.get("ingredients") or {}).get("P") or {}).get("item") or ""
-        )
-        if (
-            item.endswith("/plate")
-            and not item.endswith("/curved_plate")
-            and not item.endswith("/double_plate")
-        ):
+        item = _slot_item((document.get("ingredients") or {}).get("P"))
+        if _form_operand(item) == "plate":
             errors.append(
                 f"{census.relative(path)} used flat plate as a curved_plate stand-in"
             )
@@ -1017,9 +1013,7 @@ def _check_item() -> list[str]:
         else []
     ):
         document = json.loads(path.read_text(encoding="utf-8"))
-        ring = str(
-            ((document.get("ingredients") or {}).get("R") or {}).get("item") or ""
-        )
+        ring = _slot_item((document.get("ingredients") or {}).get("R"))
         if ring != "cruciblecraft:steel/ring":
             errors.append(
                 f"{census.relative(path)} did not use steel/ring"
@@ -1059,7 +1053,17 @@ def _check_eu() -> list[str]:
         errors.append("ModRecipeProvider lost EU shapeless cable")
     if "addEuWirePackRecipes" not in provider:
         errors.append("ModRecipeProvider lost EU wire packing")
-    if "any_rubber_plates" not in provider:
+    shapeless = GENERATED_CABLE_SHAPELESS / "copper" / "cable.json"
+    if shapeless.is_file():
+        shapeless_text = shapeless.read_text(encoding="utf-8")
+        if (
+            "cruciblecraft:rubber/plate" not in shapeless_text
+            and "any_rubber_plates" not in shapeless_text
+        ):
+            errors.append(
+                "EU shapeless cable is not gated on live rubber plate"
+            )
+    elif "any_rubber_plates" not in provider:
         errors.append("EU shapeless cable is not gated on any_rubber_plates")
     if "cable/table/" not in provider:
         errors.append("EU plate2wire crafts are not isolated under cable/table/")

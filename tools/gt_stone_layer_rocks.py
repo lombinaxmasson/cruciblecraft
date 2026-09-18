@@ -387,7 +387,7 @@ def _owned_paths(*, closed: bool) -> list[str]:
         "src/main/resources/data/cruciblecraft/worldgen/placed_feature/nether_netherquartz.json",
         "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_nether_netherquartz.json",
         "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/remove_vanilla_nether_quartz.json",
-        "src/main/resources/data/minecraft/tags/block/needs_iron_tool.json",
+        "src/generated/resources/data/minecraft/tags/block/needs_iron_tool.json",
         "src/main/resources/data/cruciblecraft_wave_worldgen_gt_stone_layer_rocks/**",
         "src/main/resources/assets/cruciblecraft/gt6_gt_stone_layer_rocks_art_manifest.json",
         "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/stone.png",
@@ -1555,10 +1555,15 @@ def check() -> list[str]:
             / "coal"
             / "dense_ore.json"
         )
-        if loot_coal.is_file() and "cruciblecraft:coal/raw_ore" not in loot_coal.read_text(
-            encoding="utf-8"
-        ):
-            errors.append("coal dense cube loot must drop coal/raw_ore")
+        if loot_coal.is_file():
+            loot_text = loot_coal.read_text(encoding="utf-8")
+            if (
+                '"name": "cruciblecraft:raw_ore"' not in loot_text
+                or '"cruciblecraft:prefix_material": "coal"' not in loot_text
+            ):
+                errors.append(
+                    "coal dense cube loot must drop shared raw_ore plus prefix_material coal"
+                )
         for forbidden in ("moon.rocks", "mars.rocks", "planet.rocks"):
             if forbidden in text:
                 errors.append(f"must not land {forbidden}")

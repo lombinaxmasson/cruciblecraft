@@ -71,8 +71,9 @@ public final class MaterialLookup {
 
     /**
      * Logical identity used by creative-tab plans and workbench recipe plans.
-     * Shared inventory forms keep {@code cruciblecraft:{material}/{form}} so
-     * stacks stay distinct even when they share one Item.
+     * Long-tail shared inventory forms keep {@code cruciblecraft:{material}/{form}}
+     * so stacks stay distinct even when they share one Item. Public exchange
+     * prefixes use the same path as the live unique Item.
      */
     public static ResourceLocation logicalItemId(
             MaterialDefinition material,
@@ -103,8 +104,9 @@ public final class MaterialLookup {
     }
 
     /**
-     * Live registry id of the Item. Shared inventory prefixes resolve to
+     * Live registry id of the Item. Shared long-tail prefixes resolve to
      * {@code cruciblecraft:{prefix}} rather than a per-material path.
+     * Public exchange prefixes keep {@code cruciblecraft:{material}/{form}}.
      */
     public static ResourceLocation resolveItemId(
             MaterialDefinition material,
@@ -206,10 +208,24 @@ public final class MaterialLookup {
             return Optional.empty();
         }
         if (MaterialFormHosts.isSharedInventoryForm(material, prefix)) {
-            return tryStack(material, prefix, 1, MaterialCatalog.runtimePreferences())
-                    .map(stack -> DataComponentIngredient.of(false, stack));
+            return item(material, prefix, MaterialCatalog.runtimePreferences())
+                    .map(resolved -> prefixMaterialIngredient(resolved, material.id()));
         }
         return Optional.of(Ingredient.of(materialTag(material, prefix)));
+    }
+
+    /**
+     * Non-strict predicate for a shared prefix Item. Only
+     * {@link ModComponents#PREFIX_MATERIAL} is required so compact routing can
+     * extract a single component key; extra stack defaults stay unmatched.
+     */
+    public static Ingredient prefixMaterialIngredient(Item item, String materialId) {
+        return DataComponentIngredient.of(
+                false,
+                DataComponentPredicate.builder()
+                        .expect(ModComponents.PREFIX_MATERIAL.get(), materialId)
+                        .build(),
+                item);
     }
 
     public static Optional<Ingredient> ingredientFromLogicalId(String logicalId) {

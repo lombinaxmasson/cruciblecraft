@@ -49,17 +49,13 @@ public final class MissingMaterialStackRewriter {
     }
 
     static Optional<Identity> parseIdentity(String path) {
-        Optional<Identity> legacy = parseLegacyIdentity(path);
-        if (legacy.isPresent()) {
-            return legacy;
-        }
         int slash = path.indexOf('/');
         if (slash > 0 && slash < path.length() - 1) {
             return Optional.of(new Identity(
                     path.substring(0, slash),
                     path.substring(slash + 1)));
         }
-        return Optional.empty();
+        return parseLegacyIdentity(path);
     }
 
     static Optional<Identity> parseLegacyIdentity(String path) {

@@ -21,26 +21,40 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:amber/lens"
+            "components": {
+              "cruciblecraft:prefix_material": "amber"
+            },
+            "items": "cruciblecraft:lens",
+            "type": "neoforge:components"
           }
         ],
         [
           {
-            "item": "cruciblecraft:tanzanite/lens"
+            "components": {
+              "cruciblecraft:prefix_material": "tanzanite"
+            },
+            "items": "cruciblecraft:lens",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "golden_amber"
+            },
             "count": 1,
-            "id": "cruciblecraft:golden_amber/lens"
+            "id": "cruciblecraft:lens"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "zanite"
+            },
             "count": 1,
-            "id": "cruciblecraft:zanite/lens"
+            "id": "cruciblecraft:lens"
           }
         ]
       ]

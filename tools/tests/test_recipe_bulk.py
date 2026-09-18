@@ -12,6 +12,7 @@ from tools.recipe_bulk.emit import (
     emit_item_output,
     hex_stable_id,
     project_shared_inventory,
+    rewrite_folded_host_runtime,
     semantic_replay_key,
 )
 from tools.recipe_bulk.resolver import ResolutionError, resolve_operand
@@ -97,25 +98,72 @@ class RecipeBulkCompilerTest(unittest.TestCase):
                 require_proven=True,
             )
 
-    def test_shared_inventory_dust_emits_prefix_component(self) -> None:
-        self.assertEqual(
-            project_shared_inventory("cruciblecraft:copper/dust"),
-            ("cruciblecraft:dust", {"cruciblecraft:prefix_material": "copper"}),
-        )
+    def test_public_exchange_dust_stays_unique_item(self) -> None:
+        self.assertIsNone(project_shared_inventory("cruciblecraft:copper/dust"))
         self.assertEqual(
             emit_item({"runtime_id": "cruciblecraft:copper/dust"}),
-            {
-                "type": "neoforge:components",
-                "items": "cruciblecraft:dust",
-                "components": {"cruciblecraft:prefix_material": "copper"},
-            },
+            {"item": "cruciblecraft:copper/dust"},
         )
         self.assertEqual(
             emit_item_output({"runtime_id": "cruciblecraft:iron/plate", "count": 2}),
             {
                 "count": 2,
-                "id": "cruciblecraft:plate",
-                "components": {"cruciblecraft:prefix_material": "iron"},
+                "id": "cruciblecraft:iron/plate",
+            },
+        )
+
+    def test_long_tail_inventory_emits_prefix_component(self) -> None:
+        self.assertEqual(
+            project_shared_inventory("cruciblecraft:copper/crushed_ore"),
+            ("cruciblecraft:crushed_ore", {"cruciblecraft:prefix_material": "copper"}),
+        )
+        self.assertEqual(
+            emit_item({"runtime_id": "cruciblecraft:copper/crushed_ore"}),
+            {
+                "type": "neoforge:components",
+                "items": "cruciblecraft:crushed_ore",
+                "components": {"cruciblecraft:prefix_material": "copper"},
+            },
+        )
+
+    def test_public_exchange_leftover_component_json_rewrites_to_unique_item(self) -> None:
+        from tools.recipe_bulk.public_exchange import rewrite_document
+
+        self.assertEqual(
+            rewrite_document(
+                {
+                    "type": "neoforge:components",
+                    "items": "cruciblecraft:dust",
+                    "components": {
+                        "cruciblecraft:prefix_material": "copper",
+                        "minecraft:max_stack_size": 64,
+                    },
+                }
+            ),
+            {"item": "cruciblecraft:copper/dust"},
+        )
+        self.assertEqual(
+            rewrite_document(
+                {
+                    "id": "cruciblecraft:ingot",
+                    "count": 2,
+                    "components": {"cruciblecraft:prefix_material": "steel"},
+                }
+            ),
+            {"id": "cruciblecraft:steel/ingot", "count": 2},
+        )
+        self.assertEqual(
+            rewrite_document(
+                {
+                    "type": "neoforge:components",
+                    "items": "cruciblecraft:crushed_ore",
+                    "components": {"cruciblecraft:prefix_material": "copper"},
+                }
+            ),
+            {
+                "type": "neoforge:components",
+                "items": "cruciblecraft:crushed_ore",
+                "components": {"cruciblecraft:prefix_material": "copper"},
             },
         )
 
@@ -131,6 +179,152 @@ class RecipeBulkCompilerTest(unittest.TestCase):
             emit_item({"runtime_id": "minecraft:iron_ingot"}),
             {"item": "minecraft:iron_ingot"},
         )
+
+    def test_component_route_keys_match_java_whitelist(self) -> None:
+        from tools.assembler_wood_shard_router import (
+            HARD_SHARD_CEILING,
+            extract_index_keys,
+            prove_route_group,
+            route_group,
+        )
+
+        keys, unindexed = extract_index_keys(
+            {
+                "item_inputs": [
+                    {
+                        "type": "neoforge:components",
+                        "items": "cruciblecraft:crushed_ore",
+                        "components": {"cruciblecraft:prefix_material": "iron"},
+                    }
+                ],
+                "fluid_inputs": [{"id": "minecraft:water"}],
+                "stable_id": "cruciblecraft:bath/identity/tight",
+            }
+        )
+        self.assertFalse(unindexed)
+        self.assertEqual(
+            [
+                "component:cruciblecraft:crushed_ore/cruciblecraft:prefix_material=iron",
+                "fluid:minecraft:water",
+            ],
+            keys,
+        )
+        _, fat = extract_index_keys(
+            {
+                "item_inputs": [
+                    {
+                        "type": "neoforge:components",
+                        "items": "cruciblecraft:crushed_ore",
+                        "components": {
+                            "cruciblecraft:prefix_material": "iron",
+                            "minecraft:max_stack_size": 64,
+                        },
+                    }
+                ],
+                "stable_id": "cruciblecraft:bath/identity/fat",
+            }
+        )
+        self.assertTrue(fat)
+        _, tagged = extract_index_keys(
+            {
+                "item_inputs": [{"tag": "c:ingots"}],
+                "stable_id": "cruciblecraft:bath/identity/tag",
+            }
+        )
+        self.assertTrue(tagged)
+        routed = route_group(
+            "cruciblecraft:bath",
+            "cruciblecraft:bath/identity/exact_multi",
+            [
+                {
+                    "item_inputs": [
+                        {
+                            "type": "neoforge:components",
+                            "items": "cruciblecraft:crushed_ore",
+                            "components": {"cruciblecraft:prefix_material": "iron"},
+                        }
+                    ],
+                    "fluid_inputs": [{"id": "minecraft:water"}],
+                    "shadow_order": 0,
+                    "stable_id": "cruciblecraft:bath/identity/tight",
+                }
+            ],
+        )
+        self.assertEqual(0, routed["overflow_count"])
+        self.assertLessEqual(routed["worst_shard_size"], HARD_SHARD_CEILING)
+        prove_route_group(routed, require_zero_overflow=True)
+
+    def test_folded_dummy_hosts_emit_live_ids(self) -> None:
+        self.assertEqual(
+            rewrite_folded_host_runtime("cruciblecraft:steam/boiler_tank_lead"),
+            "cruciblecraft:lead_boiler",
+        )
+        self.assertEqual(
+            emit_item({"runtime_id": "cruciblecraft:steam/boiler_tank_lead"}),
+            {"item": "cruciblecraft:lead_boiler"},
+        )
+        self.assertEqual(
+            emit_item({"runtime_id": "cruciblecraft:electric_wire/1x_tin_wire"}),
+            {"item": "cruciblecraft:tin/wire"},
+        )
+        self.assertEqual(
+            emit_item(
+                {
+                    "runtime_id": (
+                        "cruciblecraft:fluid_pipe_tile/tiny_tin_alloy_fluid_pipe"
+                    )
+                }
+            ),
+            {"item": "cruciblecraft:tin_alloy/tiny_fluid_pipe"},
+        )
+        self.assertEqual(
+            emit_item(
+                {"runtime_id": "cruciblecraft:processing/sanding_machine_steel"}
+            ),
+            {"item": "cruciblecraft:steel_sanding"},
+        )
+        self.assertEqual(
+            emit_item({"runtime_id": "cruciblecraft:tin/wire"}),
+            {"item": "cruciblecraft:tin/wire"},
+        )
+        self.assertEqual(
+            emit_item({"runtime_id": "cruciblecraft:redstone_wire/red_alloy"}),
+            {"item": "cruciblecraft:red_alloy/wire"},
+        )
+        self.assertEqual(
+            emit_item({"runtime_id": "cruciblecraft:lumium/wirelamp"}),
+            {"item": "cruciblecraft:lumium/wire"},
+        )
+        self.assertEqual(
+            emit_item({"runtime_id": "cruciblecraft:coal_coke"}),
+            {"item": "cruciblecraft:coal_coke/gem"},
+        )
+
+    def test_unique_catalog_slash_ids_are_not_prefix_projected(self) -> None:
+        self.assertIsNone(project_shared_inventory("cruciblecraft:gt_wood/mossy_planks"))
+        self.assertIsNone(
+            project_shared_inventory(
+                "cruciblecraft:furniture/advanced_crafting_table_platinum"
+            )
+        )
+        self.assertIsNone(
+            project_shared_inventory("cruciblecraft:ice/cream_basic_milk_gelato")
+        )
+        self.assertEqual(
+            emit_item({"runtime_id": "cruciblecraft:gt_wood/mossy_planks"}),
+            {"item": "cruciblecraft:gt_wood/mossy_planks"},
+        )
+        self.assertEqual(
+            emit_item(
+                {
+                    "runtime_id": (
+                        "cruciblecraft:furniture/advanced_crafting_table_platinum"
+                    )
+                }
+            ),
+            {"item": "cruciblecraft:furniture/advanced_crafting_table_platinum"},
+        )
+        self.assertIsNone(project_shared_inventory("cruciblecraft:ice/dust"))
 
     def test_existing_circuit_components_are_not_overwritten(self) -> None:
         operand = {

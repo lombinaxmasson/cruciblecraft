@@ -16,8 +16,10 @@
 
 CrucibleCraft 是 Minecraft 1.21.1 NeoForge 上的 GT6 风格工业模组。技术目标是让
 材料、配方和机器族的常规内容变化优先由数据与规则驱动，而不是按单个对象复制 Java。
-库存材料形态的目标身份是前缀物品 + 材料组件，见
-[材料身份合同](material-prefix-identity.md)；落地是 unique-active `registry/prefix-material-component`。
+库存材料形态身份是分层混合（公共前缀一人一 Item，内部长尾才用组件），见
+[材料身份合同](material-prefix-identity.md) 与
+[分层混合 ADR](../decisions/材料身份分层混合ADR.md)。
+live 已由 `registry/hybrid-material-identity` 对齐该目标（已关 `runtime_ready`）。
 
 本项目不宣称是 GT6、GT6U 或任何其他模组的完整移植。来源事实、派生规则和设计决策
 必须分别记录为 `SOURCE_BACKED`、`SOURCE_DERIVED` 或 `DESIGN_POLICY`。
@@ -72,7 +74,9 @@ CC 扩展落地，capability `frozen`+`paused`，不是 `player_complete`，
 [unimplemented-gap.md](unimplemented-gap.md) 第 0.1 / 第 1 节。
 Bath remainder / identity 已由 T48/T49 关完，不是下一张 unique-active。后续排期
 读 [blocked.md](blocked.md) 与 `tools/blockers/batches.json`，不要从只读
-growth-order 档案倒推。
+growth-order 档案倒推。缺形态不做到配方才补：prep
+[材料形态需求普查](../history/card-plans/prep/材料形态需求普查详细计划.md)
+出冻结核，再开 bounded unique-active；禁止按生成旗标全开长尾。
 
 电能转换已关 `runtime_ready`。聚变 18 源行是 `frozen`+`paused` 的 CC 扩展，
 不是缺口第 2 节「尚未签发」。冷却器仍 blocked。Dump 的来源执行器是 Core，

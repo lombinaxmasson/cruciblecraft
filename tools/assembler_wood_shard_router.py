@@ -10,6 +10,17 @@ ROUTING_SCHEMA_VERSION = "compact-shard-v1"
 HARD_SHARD_CEILING = 128
 OVERFLOW_ROUTE_KEY = "overflow"
 PAIR_SEPARATOR = "\0"
+INDEXABLE_COMPONENTS = frozenset({
+    "cruciblecraft:tool_material",
+    "cruciblecraft:machine_material",
+    "cruciblecraft:prefix_material",
+    "cruciblecraft:circuit_config",
+    "cruciblecraft:fireproof",
+})
+INTEGER_COMPONENTS = frozenset({
+    "cruciblecraft:circuit_config",
+    "cruciblecraft:fireproof",
+})
 
 
 def canonical_item(item_id: str) -> str:
@@ -20,9 +31,40 @@ def canonical_fluid(fluid_id: str) -> str:
     return f"fluid:{fluid_id}"
 
 
+def _ingredient_item_ids(ingredient: dict[str, Any]) -> list[str]:
+    raw = ingredient.get("items", ingredient.get("item"))
+    if isinstance(raw, str) and raw:
+        return [raw]
+    if isinstance(raw, list):
+        ids: list[str] = []
+        for entry in raw:
+            if isinstance(entry, str) and entry:
+                ids.append(entry)
+            elif isinstance(entry, dict):
+                item_id = entry.get("item") or entry.get("id")
+                if isinstance(item_id, str) and item_id:
+                    ids.append(item_id)
+                else:
+                    return []
+            else:
+                return []
+        return ids
+    return []
+
+
+def _indexable_component_value(component_id: str, value: Any) -> str | None:
+    if isinstance(value, str):
+        return value
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, int) and component_id in INTEGER_COMPONENTS:
+        return str(value)
+    return None
+
+
 def _ingredient_item_id(ingredient: dict[str, Any]) -> str | None:
-    item_id = ingredient.get("item") or ingredient.get("items")
-    return str(item_id) if isinstance(item_id, str) and item_id else None
+    ids = _ingredient_item_ids(ingredient)
+    return ids[0] if len(ids) == 1 else None
 
 
 def canonical_component(item_id: str, component_id: str, value: Any) -> str:
@@ -36,22 +78,35 @@ def extract_index_keys(relation: dict[str, Any]) -> tuple[list[str], bool]:
         if not isinstance(ingredient, dict):
             unindexed = True
             continue
-        if ingredient.get("type") == "neoforge:components":
-            item_id = _ingredient_item_id(ingredient)
+        ingredient_type = ingredient.get("type")
+        if ingredient_type == "neoforge:components":
+            item_ids = _ingredient_item_ids(ingredient)
             components = ingredient.get("components") or {}
-            if not item_id or not isinstance(components, dict) or not components:
+            if (
+                len(item_ids) != 1
+                or not isinstance(components, dict)
+                or not components
+            ):
                 unindexed = True
                 continue
+            extracted: list[str] = []
+            unsupported = False
             for component_id, value in components.items():
-                keys.add(canonical_component(item_id, str(component_id), value))
+                cid = str(component_id)
+                indexed = _indexable_component_value(cid, value)
+                if cid not in INDEXABLE_COMPONENTS or indexed is None:
+                    unsupported = True
+                    break
+                extracted.append(canonical_component(item_ids[0], cid, indexed))
+            if unsupported or not extracted:
+                unindexed = True
+            else:
+                keys.update(extracted)
+            continue
+        if "tag" in ingredient or ingredient_type not in (None, "minecraft:item"):
+            unindexed = True
             continue
         item_id = _ingredient_item_id(ingredient)
-        if "tag" in ingredient or ingredient.get("type") not in (None, "minecraft:item"):
-            if item_id:
-                keys.add(canonical_item(item_id))
-            else:
-                unindexed = True
-            continue
         if not item_id:
             unindexed = True
             continue
@@ -187,3 +242,24 @@ def route_group(
         "target_map": target_map,
         "worst_shard_size": worst,
     }
+
+
+def prove_route_group(
+        routed: dict[str, Any],
+        *,
+        require_zero_overflow: bool,
+) -> None:
+    """Fail closed before writing publication policy or a mill seal."""
+    group = routed.get("publication_group")
+    if int(routed["worst_shard_size"]) > HARD_SHARD_CEILING:
+        raise ValueError(
+            f"compact shard ceiling {HARD_SHARD_CEILING} exceeded for {group}"
+        )
+    overflow = int(routed["overflow_count"])
+    if overflow > HARD_SHARD_CEILING:
+        raise ValueError(
+            f"compact overflow shard contains {overflow} relations, "
+            f"exceeding hard ceiling {HARD_SHARD_CEILING}"
+        )
+    if require_zero_overflow and overflow != 0:
+        raise ValueError(f"compact shard overflow for {group}")

@@ -87,7 +87,8 @@ class EmiDisplayPlanTest {
 
         List<String> stacks = EmiDisplayPlan.gatedPrefixStacks(materials, registered);
         assertTrue(stacks.size() > 0, "gated prefix stacks must not be empty");
-        assertTrue(stacks.contains("cruciblecraft:copper/dust"));
+        assertTrue(stacks.contains("cruciblecraft:copper/crushed_ore"));
+        assertFalse(stacks.contains("cruciblecraft:copper/dust"));
         assertFalse(stacks.contains("cruciblecraft:dust"));
         assertFalse(stacks.contains("cruciblecraft:copper/fluid_pipe"));
         assertFalse(stacks.contains("cruciblecraft:copper/wire"));
@@ -104,7 +105,10 @@ class EmiDisplayPlanTest {
                                     && !com.masson.cruciblecraft.material
                                             .MaterialFormHosts
                                             .isUniqueHostedPrefixPath(
-                                                    form.serializedName()))
+                                                    form.serializedName())
+                                    && !com.masson.cruciblecraft.material
+                                            .MaterialFormHosts
+                                            .isPublicExchangePrefix(form))
                             .count();
                 })
                 .sum();

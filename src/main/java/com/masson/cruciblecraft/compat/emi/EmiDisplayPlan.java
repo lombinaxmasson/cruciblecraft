@@ -26,8 +26,7 @@ public final class EmiDisplayPlan {
             String materialId, String dust, String smallDust, String tinyDust) {}
 
     /** One family per material whose registration gate carries all three
-     *  dust forms. Ids stay logical {@code cruciblecraft:{material}/{form}}
-     *  so EMI can build component stacks; they are not live Item registry ids. */
+     *  dust forms. Ids are live unique Items {@code cruciblecraft:{material}/{form}}. */
     public static List<DustFamily> dustFamilies(
             Collection<MaterialDefinition> materials,
             Map<String, List<MaterialPrefix>> registeredForms) {
@@ -50,10 +49,10 @@ public final class EmiDisplayPlan {
     }
 
     /**
-     * Logical {@code cruciblecraft:{material}/{form}} ids for gated shared
-     * inventory stacks. Unique hosted pipes/cables/storage and
-     * {@code formItems()} externals stay out so EMI does not index a naked
-     * prefix Item as "any dust".
+     * Logical {@code cruciblecraft:{material}/{form}} ids for gated long-tail
+     * shared inventory stacks. Public exchange unique Items, unique hosted
+     * pipes/cables/storage, and {@code formItems()} externals stay out so EMI
+     * does not index a naked prefix Item as "any dust".
      */
     public static List<String> gatedPrefixStacks(
             Collection<MaterialDefinition> materials,
@@ -67,7 +66,8 @@ public final class EmiDisplayPlan {
             for (MaterialPrefix form : forms) {
                 if (material.formItems().containsKey(form)
                         || MaterialFormHosts.isUniqueHostedPrefixPath(
-                                form.serializedName())) {
+                                form.serializedName())
+                        || MaterialFormHosts.isPublicExchangePrefix(form)) {
                     continue;
                 }
                 ids.add(itemId(material, form));

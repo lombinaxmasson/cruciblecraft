@@ -123,12 +123,16 @@ class GtStoneLayerRocksTest(unittest.TestCase):
         loot = (
             generated / "data/cruciblecraft/loot_table/blocks/coal/dense_ore.json"
         ).read_text(encoding="utf-8")
-        self.assertIn("cruciblecraft:coal/raw_ore", loot)
+        self.assertIn('"name": "cruciblecraft:raw_ore"', loot)
+        self.assertIn('"cruciblecraft:prefix_material": "coal"', loot)
         quartz_loot = (
             generated
             / "data/cruciblecraft/loot_table/blocks/nether_quartz/dense_ore.json"
         ).read_text(encoding="utf-8")
-        self.assertIn("cruciblecraft:nether_quartz/raw_ore", quartz_loot)
+        self.assertIn('"name": "cruciblecraft:raw_ore"', quartz_loot)
+        self.assertIn(
+            '"cruciblecraft:prefix_material": "nether_quartz"', quartz_loot
+        )
 
     def test_art_copies_gt6_stone_cubes(self) -> None:
         self.assertEqual(rocks.STONE_BLOCK_COUNT + rocks.ROCK_ORE_COUNT + 1, len(rocks.art_imports()))

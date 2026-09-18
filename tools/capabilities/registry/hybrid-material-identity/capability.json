@@ -1,0 +1,62 @@
+{
+  "schema_version": 2,
+  "slug": "registry/hybrid-material-identity",
+  "title": "Hybrid material identity",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "not_applicable",
+  "owned_paths": [
+    "docs/history/card-plans/closed/材料身份分层混合详细计划.md",
+    "docs/decisions/材料身份分层混合ADR.md",
+    "docs/current/material-prefix-identity.md",
+    ".cursor/rules/material-prefix-identity.mdc",
+    "src/main/java/com/masson/cruciblecraft/content/item/MaterialItem.java",
+    "src/main/java/com/masson/cruciblecraft/content/item/PrefixMaterialItem.java",
+    "src/main/java/com/masson/cruciblecraft/material/MaterialFormHosts.java",
+    "src/main/java/com/masson/cruciblecraft/recipe/gt/PrefixMaterialItemCodecs.java",
+    "src/main/java/com/masson/cruciblecraft/api/material/MaterialLookup.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+    "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+    "src/main/java/com/masson/cruciblecraft/compat/emi/EmiDisplayPlan.java",
+    "src/main/java/com/masson/cruciblecraft/material/MissingMaterialStackRewriter.java",
+    "src/test/java/com/masson/cruciblecraft/material/PrefixMaterialIdentityTest.java",
+    "tools/recipe_bulk/emit.py",
+    "tools/recipe_bulk/public_exchange.py",
+    "tools/capabilities/registry/hybrid-material-identity/**"
+  ],
+  "depends_on": [],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "registry/hybrid-material-identity",
+  "required_test_ids": [
+    "publicExchangePrefixesEmitPerMaterialTagsAndUniqueModels",
+    "longTailInventoryPrefixesStayShared",
+    "uniqueHostedFormsKeepPerMaterialIds",
+    "slashInventoryIdRewritesOntoSharedPrefixItem",
+    "publicExchangeSlashIdStaysUniqueWhenLive"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "registry:material.public_exchange_prefix",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:copper/dust",
+        "cruciblecraft:steel/ingot",
+        "cruciblecraft:iron/plate"
+      ],
+      "reason": "Public 16 prefixes are unique Items at cruciblecraft:{material}/{form} and enter exact c: tags. formItems() stays external."
+    },
+    {
+      "semantic_key": "registry:material.inventory_prefix",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:crushed_ore",
+        "cruciblecraft:dust_div72",
+        "cruciblecraft:prefix_material"
+      ],
+      "reason": "Long-tail inventory prefixes keep PrefixMaterialItem plus prefix_material. Shared items do not enter c:dusts/iron."
+    }
+  ],
+  "note": "User-ordered rewrite of the 2026-09-17 all-shared accident onto the hybrid ADR. Closed runtime_ready. Do not dual-register public slash ids with prefix Items. Pipes, cables, hosted ore, and dumb blocks stay as they are."
+}

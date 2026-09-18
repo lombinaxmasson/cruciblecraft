@@ -7,7 +7,21 @@
   },
   "ingredients": {
     "X": {
-      "item": "cruciblecraft:steel_galvanized/quadruple_plate"
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "steel_galvanized",
+        "minecraft:attribute_modifiers": {
+          "modifiers": []
+        },
+        "minecraft:enchantments": {
+          "levels": {}
+        },
+        "minecraft:lore": [],
+        "minecraft:max_stack_size": 64,
+        "minecraft:rarity": "common",
+        "minecraft:repair_cost": 0
+      },
+      "items": "cruciblecraft:quadruple_plate"
     },
     "Y": {
       "item": "cruciblecraft:steel_galvanized/long_rod"

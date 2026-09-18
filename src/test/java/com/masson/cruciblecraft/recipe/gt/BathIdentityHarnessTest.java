@@ -447,6 +447,16 @@ class BathIdentityHarnessTest {
                 router.overflowCount() <= CompactRecipeShardRouter.HARD_SHARD_CEILING,
                 () -> publicationGroup + " overflow exceeded the hard ceiling: "
                         + router.overflowCount());
+        int worstShard = 0;
+        for (CompactGTRecipeFamilyDefinition.Relation relation : relations) {
+            String shard = router.shardId(relation.stableId()).orElseThrow();
+            worstShard = Math.max(worstShard, router.shardMembers(shard).size());
+        }
+        final int worst = worstShard;
+        assertTrue(
+                worst <= CompactRecipeShardRouter.HARD_SHARD_CEILING,
+                () -> publicationGroup + " worst shard " + worst
+                        + " exceeded the hard ceiling");
         for (CompactGTRecipeFamilyDefinition.Relation relation : relations) {
             ResourceLocation stableId = relation.stableId();
             String shard = router.shardId(stableId).orElseThrow();

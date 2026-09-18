@@ -273,7 +273,14 @@ class Gt6ConnectorAcquisitionTest(unittest.TestCase):
         provider = runtime.RECIPE_PROVIDER.read_text(encoding="utf-8")
         self.assertIn("addEuWireTableRecipes", provider)
         self.assertIn("addEuCableShapelessRecipes", provider)
-        self.assertIn("any_rubber_plates", provider)
+        shapeless = runtime.GENERATED_CABLE_SHAPELESS / "copper" / "cable.json"
+        self.assertTrue(shapeless.is_file())
+        shapeless_text = shapeless.read_text(encoding="utf-8")
+        self.assertTrue(
+            "cruciblecraft:rubber/plate" in shapeless_text
+            or "any_rubber_plates" in shapeless_text,
+            shapeless_text,
+        )
         tests = runtime.EU_GAME_TESTS.read_text(encoding="utf-8")
         self.assertIn("copperPlateCraftsWireWithCutter", tests)
         self.assertIn("redAlloyHasNoEuPlate2wire", tests)

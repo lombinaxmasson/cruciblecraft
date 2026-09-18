@@ -21,26 +21,40 @@
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:tanzanite/gem_flawless"
+            "components": {
+              "cruciblecraft:prefix_material": "tanzanite"
+            },
+            "items": "cruciblecraft:gem_flawless",
+            "type": "neoforge:components"
           }
         ],
         [
           {
-            "item": "cruciblecraft:amber/gem_flawless"
+            "components": {
+              "cruciblecraft:prefix_material": "amber"
+            },
+            "items": "cruciblecraft:gem_flawless",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "zanite"
+            },
             "count": 1,
-            "id": "cruciblecraft:zanite/gem_flawless"
+            "id": "cruciblecraft:gem_flawless"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "golden_amber"
+            },
             "count": 1,
-            "id": "cruciblecraft:golden_amber/gem_flawless"
+            "id": "cruciblecraft:gem_flawless"
           }
         ]
       ]

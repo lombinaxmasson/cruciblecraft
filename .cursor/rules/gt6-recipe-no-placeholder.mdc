@@ -25,8 +25,13 @@ member, never an unrelated metal.
   `player_complete`.
 
 If any ingredient is missing: do not emit a stand-in recipe; keep
-`runtime_ready`; record the missing part as `blocked` / gap. Either add the
-real part in-scope or leave the recipe unimplemented.
+`runtime_ready`; record the missing part as `blocked` / gap. That is the
+safety valve, not the form-open queue. Known GT6-generated demanded
+`(material, prefix)` pairs go to the prep census
+`tools/waves/prep/material-form-demand-census/` then a bounded form-open
+unique-active. Do not wait for the next recipe card to open them. Do not
+treat `blocked.md` as that queue. Do not dump all generation-flag forms.
+Either add the real part on a form-open card or leave the recipe unimplemented.
 
 Closed-card stand-ins are not stable. When the real GT6 part exists, replace
 the fake grid/slot on the next touching change — do not wait for a reclaim

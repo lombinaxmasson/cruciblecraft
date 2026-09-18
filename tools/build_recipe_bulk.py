@@ -110,6 +110,7 @@ def _write_compile(waves: tuple[str, ...]) -> dict[str, Any]:
             from tools import bath_identity_common as bath_identity
 
             census.write_stable(bath_identity.COMPILE_REPORT, built["report"])
+            bath_identity.write_emitted_shard_proof(built["planned"])
             last_report = built["report"]
         elif "/" in wave_id:
             last_report = built["report"]
@@ -153,6 +154,12 @@ def _check_compile(waves: tuple[str, ...]) -> list[str]:
         fixture = ROOT / "src/test/resources/block_object_compiler_fixture/smelter_stone_replay.json"
         if fixture.is_file():
             errors.extend(common.check_document(fixture, replay))
+    if "bath/identity" in waves:
+        from tools import bath_identity_common as bath_identity
+
+        built = compile_mod.compile_wave("bath/identity")
+        errors.extend(common.check_document(bath_identity.COMPILE_REPORT, built["report"]))
+        errors.extend(bath_identity.check_emitted_shard_proof(built["planned"]))
     return errors
 
 

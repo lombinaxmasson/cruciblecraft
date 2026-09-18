@@ -1,0 +1,22 @@
+---
+description: Missing GT6 material forms are censused then opened on a bounded card, not filled at recipe time.
+alwaysApply: true
+---
+
+# Material form demand queue
+
+Safety valve unchanged: no stand-in ingredients. A recipe or obtain card that
+hits a missing part still stays `blocked`.
+
+Queue: do not wait until the next recipe card to register known GT6-generated
+demanded `(material, prefix)` pairs. Do not use `blocked.md` / `current_gap`
+as that work order.
+
+1. Prep census (does not occupy unique-active):
+   `tools/waves/prep/material-form-demand-census/census.json`
+2. Later unique-active opens only `openable`. `gated_unresolved` is already in
+   the gate; fix `gt6_resolve.form_exists` / obtain overlays, do not re-gate.
+3. `ungated_generated_flag_pairs` is scale, not a to-do.
+
+Forbidden: invent forms GT6 would not generate; unbounded long-tail import;
+opening forms on a recipe/identity card "while we are here".
