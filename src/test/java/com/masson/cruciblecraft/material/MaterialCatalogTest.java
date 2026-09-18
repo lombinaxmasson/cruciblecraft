@@ -194,7 +194,8 @@ class MaterialCatalogTest {
         assertEquals(1749.0, MaterialCatalog.require("lead").thermal().boilingPoint());
         assertEquals(11.34, MaterialCatalog.require("lead").thermal().density());
         assertEquals(2, MaterialCatalog.require("lead").tier());
-        assertEquals("#5C6274", MaterialCatalog.require("lead").color());
+        assertEquals("#FFE650", MaterialCatalog.require("gold").color());
+        assertEquals("#3C286E", MaterialCatalog.require("lead").color());
         assertEquals(2562.0, MaterialCatalog.require("copper").thermal().boilingPoint());
         assertEquals(1538.0, MaterialCatalog.require("iron").thermal().meltingPoint());
         assertEquals(3527.0, MaterialCatalog.require("carbon").thermal().meltingPoint());

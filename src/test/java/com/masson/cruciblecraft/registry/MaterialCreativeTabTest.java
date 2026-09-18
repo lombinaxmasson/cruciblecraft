@@ -53,6 +53,18 @@ class MaterialCreativeTabTest {
         assertEquals(
                 MaterialCreativeTab.MISC,
                 MaterialCreativeTab.forPrefix(new MaterialPrefix("example:unknown")));
+        assertEquals(
+                MaterialCreativeTab.CABLES,
+                MaterialCreativeTab.forPrefix(MaterialPrefixes.WIRE));
+        assertEquals(
+                MaterialCreativeTab.CABLES,
+                MaterialCreativeTab.forPrefix(MaterialPrefixes.DOUBLE_WIRE));
+        assertEquals(
+                MaterialCreativeTab.CABLES,
+                MaterialCreativeTab.forPrefix(MaterialPrefixes.CABLE));
+        assertEquals(
+                MaterialCreativeTab.WIRES,
+                MaterialCreativeTab.forPrefix(MaterialPrefixes.FINE_WIRE));
     }
 
     @Test
@@ -118,8 +130,8 @@ class MaterialCreativeTabTest {
                         Map.entry(MaterialCreativeTab.PLATES, 3_782),
                         Map.entry(MaterialCreativeTab.PARTS, 4_237),
                         Map.entry(MaterialCreativeTab.MECHANICAL_PARTS, 2_152),
-                        Map.entry(MaterialCreativeTab.WIRES, 584),
-                        Map.entry(MaterialCreativeTab.CABLES, 157),
+                        Map.entry(MaterialCreativeTab.WIRES, 168),
+                        Map.entry(MaterialCreativeTab.CABLES, 573),
                         Map.entry(MaterialCreativeTab.PIPES, 438),
                         Map.entry(MaterialCreativeTab.MISC, 2_170)),
                 counts);

@@ -7,6 +7,7 @@ import java.util.Set;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.client.color.BedrockOreColor;
+import com.masson.cruciblecraft.client.color.ElectricWireRemainderColor;
 import com.masson.cruciblecraft.client.color.FoundryBlockColor;
 import com.masson.cruciblecraft.client.color.Gt6OpeningBlockColor;
 import com.masson.cruciblecraft.client.color.GtBlockDyeColor;
@@ -27,7 +28,9 @@ import com.masson.cruciblecraft.client.screen.StorageScreen;
 import com.masson.cruciblecraft.client.screen.ConfiguredProcessingMachineScreen;
 import com.masson.cruciblecraft.client.screen.CokeOvenScreen;
 import com.masson.cruciblecraft.client.screen.CrusherScreen;
+import com.masson.cruciblecraft.content.item.CableBlockItem;
 import com.masson.cruciblecraft.content.item.ReactorRodItem;
+import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.content.blockentity.AnvilBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
@@ -126,7 +129,41 @@ public class ClientSetup {
         com.masson.cruciblecraft.material.MaterialCatalog.values().forEach(material ->
                 material.formItems().keySet().forEach(form ->
                         MaterialLookup.item(material.id(), form).ifPresent(materialItems::add)));
+        materialItems.removeIf(item -> item instanceof CableBlockItem);
         event.register(MaterialItemColor::color, materialItems.toArray(Item[]::new));
+        Item[] conductorItems = java.util.Arrays.stream(
+                        ModBlocks.electricalConductorBlockArray())
+                .map(Block::asItem)
+                .toArray(Item[]::new);
+        event.register(
+                (stack, tintIndex) -> {
+                    if (!(stack.getItem() instanceof CableBlockItem item)) {
+                        return 0xFFFFFFFF;
+                    }
+                    if (tintIndex == 1) {
+                        return item.conductor().electrical().insulated()
+                                ? ElectricalConductorCatalog.INSULATION_COLOR
+                                : 0xFFFFFFFF;
+                    }
+                    return MaterialItemColor.color(stack, tintIndex);
+                },
+                conductorItems);
+        java.util.ArrayList<Item> remainderWires = new java.util.ArrayList<>();
+        ModItems.bathMteItemsById().forEach((id, holder) -> {
+            if (id.getPath().startsWith("electric_wire/")) {
+                remainderWires.add(holder.get());
+            }
+        });
+        ModItems.smelterMteItemsById().forEach((id, holder) -> {
+            if (id.getPath().startsWith("electric_wire/")) {
+                remainderWires.add(holder.get());
+            }
+        });
+        if (!remainderWires.isEmpty()) {
+            event.register(
+                    ElectricWireRemainderColor::color,
+                    remainderWires.toArray(Item[]::new));
+        }
         event.register(
                 (stack, tintIndex) -> tintIndex == 0
                         ? machineColor(
@@ -200,13 +237,20 @@ public class ClientSetup {
     static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
         event.register(
                 (state, level, pos, tintIndex) -> {
-                    if (tintIndex != 0
-                            || !(state.getBlock()
-                                    instanceof com.masson.cruciblecraft
-                                            .content.block.CableBlock cable)) {
+                    if (!(state.getBlock()
+                            instanceof com.masson.cruciblecraft
+                                    .content.block.CableBlock cable)) {
                         return 0xFFFFFFFF;
                     }
                     if (cable.isLuFiber()) {
+                        return 0xFFFFFFFF;
+                    }
+                    if (tintIndex == 1) {
+                        return cable.conductor().electrical().insulated()
+                                ? ElectricalConductorCatalog.INSULATION_COLOR
+                                : 0xFFFFFFFF;
+                    }
+                    if (tintIndex != 0) {
                         return 0xFFFFFFFF;
                     }
                     return com.masson.cruciblecraft.material.MaterialCatalog

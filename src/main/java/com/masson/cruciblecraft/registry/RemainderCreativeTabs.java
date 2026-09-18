@@ -15,6 +15,7 @@ public final class RemainderCreativeTabs {
         BUILDING,
         NATURE,
         WIRES,
+        CABLES,
         PIPES,
         MISC
     }
@@ -80,7 +81,7 @@ public final class RemainderCreativeTabs {
             return Tab.MACHINES;
         }
         if ("electric_wire".equals(root)) {
-            return Tab.WIRES;
+            return Tab.CABLES;
         }
         if ("panel".equals(root)
                 || path.startsWith("asphalt/")

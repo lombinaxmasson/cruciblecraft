@@ -27,6 +27,7 @@ class PipeCableVisualResourceTest {
         assertTrue(Files.isRegularFile(copper.resolve("wire.png")));
         assertTrue(Files.isRegularFile(copper.resolve("wire_overlay.png")));
         assertTrue(Files.isRegularFile(iconsets.resolve("insulation_tiny.png")));
+        assertTrue(Files.isRegularFile(iconsets.resolve("insulation_full.png")));
         assertTrue(Files.isRegularFile(iconsets.resolve("pipe_restrictor.png")));
         assertFalse(Files.isRegularFile(copper.resolve("cable.png")));
         assertFalse(Files.isRegularFile(iconsets.resolve("cable.png")));
@@ -40,10 +41,47 @@ class PipeCableVisualResourceTest {
                 "cruciblecraft:block/gt6_import/materialicons/copper/wire",
                 textures.get("side").getAsString());
         assertEquals(
-                "cruciblecraft:block/gt6_import/iconsets/insulation_tiny",
-                textures.get("overlay").getAsString());
+                "cruciblecraft:block/gt6_import/iconsets/insulation_full",
+                textures.get("end").getAsString());
+        assertFalse(textures.has("overlay"));
+        assertEquals(
+                "#end",
+                core.getAsJsonArray("elements")
+                        .get(0)
+                        .getAsJsonObject()
+                        .getAsJsonObject("faces")
+                        .getAsJsonObject("north")
+                        .get("texture")
+                        .getAsString());
         JsonObject item = json(GENERATED.resolve("conductor/cablegt01_item.json"));
-        assertTrue(item.getAsJsonArray("elements").size() >= 2);
+        assertEquals(3, item.getAsJsonArray("elements").size());
+        assertEquals(
+                "cruciblecraft:block/gt6_import/materialicons/copper/wire_overlay",
+                item.getAsJsonObject("textures").get("overlay").getAsString());
+        assertEquals(
+                "cruciblecraft:block/gt6_import/iconsets/insulation_tiny",
+                item.getAsJsonObject("textures").get("insulation").getAsString());
+        JsonObject itemSide = item.getAsJsonArray("elements")
+                .get(0)
+                .getAsJsonObject()
+                .getAsJsonObject("faces")
+                .getAsJsonObject("up");
+        assertEquals("#end", itemSide.get("texture").getAsString());
+        assertEquals(1, itemSide.get("tintindex").getAsInt());
+        JsonObject itemWireOverlay = item.getAsJsonArray("elements")
+                .get(1)
+                .getAsJsonObject()
+                .getAsJsonObject("faces")
+                .getAsJsonObject("north");
+        assertEquals("#overlay", itemWireOverlay.get("texture").getAsString());
+        assertFalse(itemWireOverlay.has("tintindex"));
+        JsonObject itemJacket = item.getAsJsonArray("elements")
+                .get(2)
+                .getAsJsonObject()
+                .getAsJsonObject("faces")
+                .getAsJsonObject("north");
+        assertEquals("#insulation", itemJacket.get("texture").getAsString());
+        assertEquals(1, itemJacket.get("tintindex").getAsInt());
         JsonObject wire = json(GENERATED.resolve("conductor/wiregt01_core.json"));
         assertEquals(
                 "cruciblecraft:block/gt6_import/materialicons/copper/wire",
@@ -58,6 +96,24 @@ class PipeCableVisualResourceTest {
         assertEquals(
                 "cruciblecraft:block/gt6_import/materialicons/copper/pipetiny_overlay",
                 pipe.getAsJsonObject("textures").get("overlay").getAsString());
+    }
+
+    @Test
+    void leftoverGoldAndLeadWireItemsHaveConductorParents() throws Exception {
+        Path models = Path.of(
+                "src/main/resources/assets/cruciblecraft/models/item/electric_wire");
+        for (String material : java.util.List.of("gold", "lead")) {
+            for (int strands : java.util.List.of(3, 5, 6, 7, 9, 10, 11, 13, 14, 15)) {
+                JsonObject model = json(models.resolve(
+                        strands + "x_" + material + "_wire.json"));
+                assertEquals(
+                        "cruciblecraft:conductor/wiregt"
+                                + String.format("%02d", strands)
+                                + "_item",
+                        model.get("parent").getAsString(),
+                        material + " " + strands);
+            }
+        }
     }
 
     private static JsonObject json(Path path) throws Exception {

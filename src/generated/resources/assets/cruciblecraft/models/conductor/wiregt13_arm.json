@@ -2,6 +2,16 @@
   "parent": "minecraft:block/block",
   "elements": [
     {
+      "from": [
+        1.5,
+        1.5,
+        0
+      ],
+      "to": [
+        14.5,
+        14.5,
+        1.5
+      ],
       "faces": {
         "down": {
           "texture": "#side",
@@ -12,7 +22,7 @@
           "tintindex": 0
         },
         "north": {
-          "texture": "#end",
+          "texture": "#side",
           "tintindex": 0
         },
         "up": {
@@ -23,24 +33,9 @@
           "texture": "#side",
           "tintindex": 0
         }
-      },
-      "from": [
-        1.5,
-        1.5,
-        0
-      ],
-      "to": [
-        14.5,
-        14.5,
-        1.5
-      ]
+      }
     },
     {
-      "faces": {
-        "north": {
-          "texture": "#overlay"
-        }
-      },
       "from": [
         1.498,
         1.498,
@@ -50,14 +45,31 @@
         14.502,
         14.502,
         1.502
-      ]
+      ],
+      "faces": {
+        "down": {
+          "texture": "#overlay"
+        },
+        "east": {
+          "texture": "#overlay"
+        },
+        "north": {
+          "texture": "#overlay"
+        },
+        "up": {
+          "texture": "#overlay"
+        },
+        "west": {
+          "texture": "#overlay"
+        }
+      }
     }
   ],
   "render_type": "minecraft:cutout_mipped",
   "textures": {
     "end": "cruciblecraft:block/gt6_import/materialicons/copper/wire",
-    "overlay": "cruciblecraft:block/gt6_import/materialicons/copper/wire_overlay",
     "particle": "cruciblecraft:block/gt6_import/materialicons/copper/wire",
-    "side": "cruciblecraft:block/gt6_import/materialicons/copper/wire"
+    "side": "cruciblecraft:block/gt6_import/materialicons/copper/wire",
+    "overlay": "cruciblecraft:block/gt6_import/materialicons/copper/wire_overlay"
   }
 }

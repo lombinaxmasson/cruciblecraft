@@ -2,32 +2,6 @@
   "parent": "minecraft:block/block",
   "elements": [
     {
-      "faces": {
-        "down": {
-          "texture": "#side",
-          "tintindex": 0
-        },
-        "east": {
-          "texture": "#side",
-          "tintindex": 0
-        },
-        "north": {
-          "texture": "#end",
-          "tintindex": 0
-        },
-        "south": {
-          "texture": "#end",
-          "tintindex": 0
-        },
-        "up": {
-          "texture": "#side",
-          "tintindex": 0
-        },
-        "west": {
-          "texture": "#side",
-          "tintindex": 0
-        }
-      },
       "from": [
         6,
         6,
@@ -37,46 +11,83 @@
         10,
         10,
         16
-      ]
+      ],
+      "faces": {
+        "down": {
+          "texture": "#end",
+          "tintindex": 1
+        },
+        "east": {
+          "texture": "#end",
+          "tintindex": 1
+        },
+        "north": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#end",
+          "tintindex": 1
+        },
+        "west": {
+          "texture": "#end",
+          "tintindex": 1
+        }
+      }
     },
     {
+      "from": [
+        5.998,
+        5.998,
+        -0.002
+      ],
+      "to": [
+        10.002,
+        10.002,
+        16.002
+      ],
       "faces": {
-        "down": {
-          "texture": "#overlay"
-        },
-        "east": {
-          "texture": "#overlay"
-        },
         "north": {
           "texture": "#overlay"
         },
         "south": {
           "texture": "#overlay"
-        },
-        "up": {
-          "texture": "#overlay"
-        },
-        "west": {
-          "texture": "#overlay"
         }
-      },
+      }
+    },
+    {
       "from": [
-        6,
-        6,
-        0
+        5.996,
+        5.996,
+        -0.004
       ],
       "to": [
-        10,
-        10,
-        16
-      ]
+        10.004,
+        10.004,
+        16.004
+      ],
+      "faces": {
+        "north": {
+          "texture": "#insulation",
+          "tintindex": 1
+        },
+        "south": {
+          "texture": "#insulation",
+          "tintindex": 1
+        }
+      }
     }
   ],
   "render_type": "minecraft:cutout_mipped",
   "textures": {
-    "end": "cruciblecraft:block/gt6_import/materialicons/copper/wire",
-    "overlay": "cruciblecraft:block/gt6_import/iconsets/insulation_tiny",
-    "particle": "cruciblecraft:block/gt6_import/materialicons/copper/wire",
-    "side": "cruciblecraft:block/gt6_import/materialicons/copper/wire"
+    "end": "cruciblecraft:block/gt6_import/iconsets/insulation_full",
+    "particle": "cruciblecraft:block/gt6_import/iconsets/insulation_full",
+    "side": "cruciblecraft:block/gt6_import/materialicons/copper/wire",
+    "overlay": "cruciblecraft:block/gt6_import/materialicons/copper/wire_overlay",
+    "insulation": "cruciblecraft:block/gt6_import/iconsets/insulation_tiny"
   }
 }

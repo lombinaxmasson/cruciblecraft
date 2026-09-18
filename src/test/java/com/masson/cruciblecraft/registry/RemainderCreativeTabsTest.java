@@ -15,8 +15,11 @@ class RemainderCreativeTabsTest {
                 RemainderCreativeTabs.Tab.NATURE,
                 RemainderCreativeTabs.of("food/tomato_solid_ketchup", "multiitem"));
         assertEquals(
-                RemainderCreativeTabs.Tab.WIRES,
+                RemainderCreativeTabs.Tab.CABLES,
                 RemainderCreativeTabs.of("electric_wire/3x_lead_wire", "mte_item"));
+        assertEquals(
+                RemainderCreativeTabs.Tab.CABLES,
+                RemainderCreativeTabs.of("electric_wire/1x_gold_cable", "mte_item"));
         assertEquals(
                 RemainderCreativeTabs.Tab.PIPES,
                 RemainderCreativeTabs.of("quadruple/wood_fluid_pipe", "mte_item"));

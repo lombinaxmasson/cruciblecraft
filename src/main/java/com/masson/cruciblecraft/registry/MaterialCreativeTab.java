@@ -116,14 +116,32 @@ public enum MaterialCreativeTab {
                     "minecart_wheels" -> MECHANICAL_PARTS;
             // Placeable conductors share one page (bare wire + cable).
             case "wire",
+                    "double_wire",
+                    "triple_wire",
+                    "quadruple_wire",
+                    "quintuple_wire",
+                    "sextuple_wire",
+                    "septuple_wire",
+                    "octuple_wire",
+                    "nonuple_wire",
+                    "decuple_wire",
+                    "undecuple_wire",
+                    "dodecuple_wire",
+                    "tredecuple_wire",
+                    "tetradecuple_wire",
+                    "pentadecuple_wire",
+                    "hexadecuple_wire",
                     "cable",
                     "double_cable",
                     "quadruple_cable",
                     "octuple_cable",
                     "dodecuple_cable" -> CABLES;
             default -> {
-                if ("fine_wire".equals(path) || path.endsWith("_wire")) {
+                if ("fine_wire".equals(path)) {
                     yield WIRES;
+                }
+                if (path.endsWith("_wire")) {
+                    yield CABLES;
                 }
                 if (path.endsWith("_pipe")) {
                     yield PIPES;

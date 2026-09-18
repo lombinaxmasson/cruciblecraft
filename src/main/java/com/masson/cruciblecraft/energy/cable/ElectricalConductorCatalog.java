@@ -21,6 +21,8 @@ import com.masson.cruciblecraft.material.def.MaterialDefinition;
 public final class ElectricalConductorCatalog {
     public static final int EXPECTED_CABLE_BLOCKS = 116;
     public static final int EXPECTED_WIRE_BLOCKS = 445;
+    /** GT6 cable insulation {@code RGB(64, 64, 64)} when unpainted. */
+    public static final int INSULATION_COLOR = 0xFF404040;
     private static final Set<String> REDSTONE_MATERIALS =
             Set.of("red_alloy", "signalum", "lumium");
 
