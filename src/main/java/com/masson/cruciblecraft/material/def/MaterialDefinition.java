@@ -338,6 +338,21 @@ public final class MaterialDefinition {
         return nameKey.orElse("material.cruciblecraft." + id);
     }
 
+    public boolean hasMaterialTag(String tag) {
+        return gt6Metadata()
+                .map(metadata -> metadata.materialTags().contains(tag))
+                .orElse(false);
+    }
+
+    /**
+     * GT6 {@code Loader_Recipes_Furnace} only smelts
+     * {@code TD.Processing.FURNACE} materials that are not unused.
+     */
+    public boolean furnaceSmeltable() {
+        return hasMaterialTag("PROCESSING.FURNACE")
+                && !hasMaterialTag("PROPERTIES.UNUSED_MATERIAL");
+    }
+
     MaterialDefinition withTuning(int tunedTier, String tunedColor, ThermalProperties tunedThermal) {
         return new MaterialDefinition(
                 id,

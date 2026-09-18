@@ -11,9 +11,10 @@ class SteamConversionTest {
         assertEquals(3, SteamConversion.boilerBatches(5, 500, 400));
     }
     @Test void engineConversionUsesExactSourceEfficiencyBatches() {
-        assertEquals(0, SteamConversion.engineBatches(200, 50, 0));
-        assertEquals(1, SteamConversion.engineBatches(200, 50, 1));
-        assertEquals(2, SteamConversion.engineBatches(400, 100, 2));
+        assertEquals(0, SteamConversion.engineBatches(199));
+        assertEquals(1, SteamConversion.engineBatches(200));
+        assertEquals(1, SteamConversion.engineBatches(399));
+        assertEquals(2, SteamConversion.engineBatches(400));
         assertEquals(200, SteamConversion.ENGINE_STEAM_PER_BATCH);
         assertEquals(50, SteamConversion.KU_PER_ENGINE_BATCH);
         assertEquals(
@@ -38,6 +39,9 @@ class SteamConversionTest {
         assertEquals(8, buffer.discard(8));
         assertEquals(0, buffer.stored());
         assertEquals(1, buffer.strokeSign());
+        buffer.addConverted(80);
+        assertEquals(80, buffer.stored());
+        assertEquals(0, buffer.room());
     }
 
     @Test void eightHuSourcesAccumulateWithoutFractionalLoss() {

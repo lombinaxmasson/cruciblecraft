@@ -27,20 +27,27 @@ import com.masson.cruciblecraft.registry.ModMachineVariants;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
 import com.masson.cruciblecraft.registry.ModComponents;
+import com.masson.cruciblecraft.content.item.MaterialToolItem;
+import com.masson.cruciblecraft.content.item.ToolDisplayPlan;
 import com.masson.cruciblecraft.machine.MachineDurabilityComponent;
 import com.masson.cruciblecraft.machine.MachineMaterialRules;
+import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
+import com.masson.cruciblecraft.recipe.crafting.WorkbenchToolRecipePlan;
 
 import dev.emi.emi.api.EmiEntrypoint;
 import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
+import dev.emi.emi.api.recipe.EmiCraftingRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.render.EmiRenderable;
 import dev.emi.emi.api.stack.Comparison;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 
 @EmiEntrypoint
@@ -97,6 +104,7 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         registerFuelMaps(registry, addedCategories);
         registerHeatExchangerFuels(registry, addedCategories);
         registerDisplayStacks(registry);
+        registerToolHeadAssemblies(registry);
         for (var cover : List.of(
                 ModItems.LOGISTICS_ITEM_STORAGE_COVER,
                 ModItems.LOGISTICS_ITEM_IMPORT_COVER,
@@ -147,6 +155,11 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         ModItems.prefixMaterialItems().forEach(item ->
                 registry.setDefaultComparison(
                         item.get(), Comparison.compareComponents()));
+        for (ToolKind kind : ToolKind.values()) {
+            registry.setDefaultComparison(
+                    ToolDisplayPlan.itemFor(kind),
+                    Comparison.compareComponents());
+        }
         for (EmiDisplayPlan.DustFamily family :
                 EmiDisplayPlan.dustFamilies(materials, forms)) {
             EmiStack dust = stackOf(family.dust());
@@ -159,6 +172,48 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                     new dev.emi.emi.api.stack.ListEmiIngredient(
                             List.of(dust, small, tiny), 1),
                     dust.getItemStack().getHoverName());
+        }
+    }
+
+    /**
+     * GT6 {@code RM.ToolHeads}: one shapeless row per (head material, tool).
+     * The datapack matcher is special/empty-ingredient, so vanilla EMI would
+     * not reverse-index {@code PrefixMaterialItem} heads.
+     */
+    private static void registerToolHeadAssemblies(EmiRegistry registry) {
+        Set<String> genericPaths = new HashSet<>();
+        WorkbenchToolRecipePlan.assemblies().forEach(assembly ->
+                genericPaths.add(assembly.path()));
+        registry.removeRecipes(recipe -> {
+            ResourceLocation recipeId = recipe.getId();
+            return recipeId != null && genericPaths.contains(recipeId.getPath());
+        });
+        var materials = MaterialCatalog.startupValues();
+        Map<String, List<com.masson.cruciblecraft.api.material.MaterialPrefix>> forms =
+                new java.util.LinkedHashMap<>();
+        materials.forEach(material -> forms.put(
+                material.id(), MaterialCatalog.registeredForms(material)));
+        for (var variant : WorkbenchToolRecipePlan.assemblyVariants(
+                materials, forms)) {
+            ItemStack head = MaterialLookup.stackFromLogicalId(
+                    variant.headLogicalId()).orElse(ItemStack.EMPTY);
+            Item resultItem = BuiltInRegistries.ITEM.getOptional(
+                    ResourceLocation.parse(variant.resultId()))
+                    .orElse(Items.AIR);
+            if (head.isEmpty()
+                    || !(resultItem instanceof MaterialToolItem tool)) {
+                continue;
+            }
+            ItemStack result = tool.variant(variant.material());
+            registry.addEmiStack(EmiStacks.ofItem(result));
+            List<EmiIngredient> inputs = List.of(
+                    EmiStacks.ofItem(head),
+                    EmiStack.of(Items.STICK));
+            registry.addRecipe(new EmiCraftingRecipe(
+                    inputs,
+                    EmiStacks.ofItem(result),
+                    EmiIds.synthetic(id(variant.path())),
+                    true));
         }
     }
 

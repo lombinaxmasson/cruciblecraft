@@ -9,6 +9,8 @@ import com.masson.cruciblecraft.recipe.gt.CompactPublicationPolicyEntry;
 import com.masson.cruciblecraft.recipe.gt.CompactPublicationPolicySerializer;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeEntry;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeEntrySerializer;
+import com.masson.cruciblecraft.recipe.crafting.PrefixPackRecipe;
+import com.masson.cruciblecraft.recipe.crafting.PrefixPackRecipeSerializer;
 import com.masson.cruciblecraft.recipe.crafting.ShapedCatalystRecipe;
 import com.masson.cruciblecraft.recipe.crafting.ShapedCatalystRecipeSerializer;
 import com.masson.cruciblecraft.recipe.crafting.ToolHeadAssemblyRecipe;
@@ -129,6 +131,13 @@ public final class ModRecipes {
                     RECIPE_SERIALIZERS.register(
                             "tool_head_assembly",
                             ToolHeadAssemblyRecipeSerializer::new);
+
+    public static final DeferredHolder<
+            RecipeSerializer<?>, RecipeSerializer<PrefixPackRecipe>>
+            PREFIX_PACK_SERIALIZER =
+                    RECIPE_SERIALIZERS.register(
+                            "prefix_pack",
+                            PrefixPackRecipeSerializer::new);
 
     private ModRecipes() {}
 }

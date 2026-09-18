@@ -192,6 +192,37 @@ public final class EnergyHeatExchangersGameTests {
         helper.succeed();
     }
 
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void tungstenPlungerTrashesExhaustThenHotFluid(
+            GameTestHelper helper) {
+        HeatExchangerBlockEntity exchanger =
+                place(helper, "heat_exchanger_tungsten");
+        helper.assertTrue(
+                exchanger.fillInput(hotTin(1)),
+                "Could not fill tungsten heat exchanger for the plunger");
+        HeatExchangerBlockEntity.serverTick(
+                helper.getLevel(),
+                helper.absolutePos(POS),
+                helper.getBlockState(POS),
+                exchanger);
+        int leftover = 1_200;
+        helper.assertTrue(
+                exchanger.outputAmount() == 1
+                        && leftover > 1_000
+                        && exchanger.fillInput(hotTin(leftover)),
+                "Heat exchanger did not keep leftover hot tin behind exhaust");
+        GameTestPlunger.click(helper, POS);
+        helper.assertTrue(
+                exchanger.outputAmount() == 0
+                        && exchanger.inputAmount() == leftover,
+                "Plunger did not trash heat-exchanger exhaust first");
+        GameTestPlunger.click(helper, POS);
+        helper.assertTrue(
+                exchanger.outputAmount() == 0 && exchanger.inputAmount() == 0,
+                "Second plunger click did not trash leftover hot tin");
+        helper.succeed();
+    }
+
     private static HeatExchangerBlockEntity place(
             GameTestHelper helper, String path) {
         helper.setBlock(

@@ -1207,6 +1207,78 @@
     },
     {
       "depends_on": [
+        "content/gt6-mte-furniture-storage-runtime",
+        "content/gt6-mte-furniture-barrel-runtime"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/active/GT6仓储美术详细计划.md",
+        "docs/history/card-plans/closed/GT6仓储美术详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/client/color/StorageArtColor.java",
+        "src/main/java/com/masson/cruciblecraft/client/ClientSetup.java",
+        "src/main/java/com/masson/cruciblecraft/client/render/MassStorageRenderer.java",
+        "src/main/java/com/masson/cruciblecraft/client/render/BookshelfRenderer.java",
+        "src/main/java/com/masson/cruciblecraft/client/render/BottleCrateRenderer.java",
+        "src/main/java/com/masson/cruciblecraft/client/render/MteInPlaceStorageRenderer.java",
+        "src/main/java/com/masson/cruciblecraft/client/render/StorageVoxelBuffer.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MassStorageBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/BookshelfBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/BottleCrateBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/storage/StorageClientSync.java",
+        "src/main/java/com/masson/cruciblecraft/content/storage/StorageCountFormat.java",
+        "src/main/java/com/masson/cruciblecraft/content/storage/StorageBookDisplay.java",
+        "src/main/java/com/masson/cruciblecraft/content/storage/StorageBottleDisplay.java",
+        "src/main/java/com/masson/cruciblecraft/content/storage/StorageVariant.java",
+        "src/main/java/com/masson/cruciblecraft/content/storage/StorageVariantCatalog.java",
+        "src/main/java/com/masson/cruciblecraft/content/storage/StorageBehaviorProfile.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModBlockStateProvider.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/StorageArtGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/content/storage/StorageVariantCatalogTest.java",
+        "src/test/java/com/masson/cruciblecraft/content/storage/StorageFaceDisplayTest.java",
+        "src/main/resources/assets/cruciblecraft/gt6_storage_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/models/block/storage_*.json",
+        "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_barrel.json",
+        "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_bookshelf.json",
+        "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_bottle_crate.json",
+        "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_drawer.json",
+        "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_locker.json",
+        "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_mass_storage.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/storage/**",
+        "src/generated/resources/assets/cruciblecraft/blockstates/mass_storage*.json",
+        "src/generated/resources/assets/cruciblecraft/blockstates/bookshelf_*.json",
+        "src/generated/resources/assets/cruciblecraft/blockstates/bottle_crate_*.json",
+        "src/generated/resources/assets/cruciblecraft/blockstates/drawer_*.json",
+        "src/generated/resources/assets/cruciblecraft/blockstates/locker_*.json",
+        "src/generated/resources/assets/cruciblecraft/blockstates/charging_locker_*.json",
+        "src/generated/resources/assets/cruciblecraft/blockstates/storage_inserter_*.json",
+        "src/generated/resources/assets/cruciblecraft/models/item/mass_storage*.json",
+        "src/generated/resources/assets/cruciblecraft/models/item/bookshelf_*.json",
+        "src/generated/resources/assets/cruciblecraft/models/item/bottle_crate_*.json",
+        "src/generated/resources/assets/cruciblecraft/models/item/drawer_*.json",
+        "src/generated/resources/assets/cruciblecraft/models/item/locker_*.json",
+        "src/generated/resources/assets/cruciblecraft/models/item/charging_locker_*.json",
+        "src/generated/resources/assets/cruciblecraft/models/item/storage_inserter_*.json",
+        "src/main/resources/data/cruciblecraft_wave_content_gt6_storage_art/**",
+        "tools/capabilities/content/gt6-storage-art/**",
+        "tools/waves/content/gt6-storage-art/**",
+        "tools/gt6_storage_art.py",
+        "tools/build_gt6_storage_art.py",
+        "tools/tests/test_gt6_storage_art.py",
+        "tools/gt6_mte_inplace_runtime.py"
+      ],
+      "path": "tools/capabilities/content/gt6-storage-art/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-storage-art",
+      "survival_access": "unreviewed",
+      "title": "GT6 Storage Art",
+      "workflow": "active"
+    },
+    {
+      "depends_on": [
         "registry/catalog-modern-ids"
       ],
       "maturity": "runtime_ready",
@@ -2739,7 +2811,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 84,
+  "capability_count": 85,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -2871,7 +2943,8 @@
       "content/gt6-mte-fluid-attachments-runtime"
     ],
     "content/gt6-mte-furniture-barrel-runtime": [
-      "content/gt6-mte-furniture-barrel-runtime"
+      "content/gt6-mte-furniture-barrel-runtime",
+      "content/gt6-storage-art"
     ],
     "content/gt6-mte-furniture-chest-runtime": [
       "content/gt6-mte-furniture-chest-runtime"
@@ -2883,7 +2956,8 @@
       "content/gt6-mte-furniture-scaffold-runtime"
     ],
     "content/gt6-mte-furniture-storage-runtime": [
-      "content/gt6-mte-furniture-storage-runtime"
+      "content/gt6-mte-furniture-storage-runtime",
+      "content/gt6-storage-art"
     ],
     "content/gt6-mte-furniture-table-runtime": [
       "content/gt6-mte-furniture-table-runtime"
@@ -2920,6 +2994,9 @@
     "content/gt6-restrictive-item-pipe-runtime": [
       "content/gt6-item-pipe-acquisition",
       "content/gt6-restrictive-item-pipe-runtime"
+    ],
+    "content/gt6-storage-art": [
+      "content/gt6-storage-art"
     ],
     "content/mte-redstone-wire": [
       "content/gt6-insulated-redstone-runtime",
@@ -3652,6 +3729,7 @@
       "content/gt6-redstone-wire-acquisition",
       "content/gt6-redstone-wire-correction",
       "content/gt6-restrictive-item-pipe-runtime",
+      "content/gt6-storage-art",
       "content/mte-redstone-wire",
       "registry/catalog-modern-ids"
     ],
@@ -3726,6 +3804,7 @@
       "content/gt6-redstone-wire-acquisition",
       "content/gt6-redstone-wire-correction",
       "content/gt6-restrictive-item-pipe-runtime",
+      "content/gt6-storage-art",
       "content/mte-redstone-wire",
       "content/puv-omega-parts",
       "content/sensors",
@@ -3775,5 +3854,5 @@
   },
   "progress_rule": "runtime_ready is the close maturity; survival_access is independent and does not gate close; playtest is a project-level human cycle",
   "schema_version": 2,
-  "unique_active_slug": null
+  "unique_active_slug": "content/gt6-storage-art"
 }

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,8 @@ import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.material.MaterialRegistrationGate;
 import com.masson.cruciblecraft.material.def.MaterialLoader;
 import com.masson.cruciblecraft.material.gen.GeneratedMaterialPack;
+import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
+import com.masson.cruciblecraft.registry.MaterialCreativeTab;
 
 class MaterialVisualResourceTest {
     @Test
@@ -174,19 +177,72 @@ class MaterialVisualResourceTest {
         assertEquals(
                 "cruciblecraft:item/material/dust_div72_overlay",
                 div72Textures.get("layer1").getAsString());
-        String storagePath = clientFiles.keySet().stream()
-                .filter(path -> path.endsWith("/storage_dust.json"))
-                .filter(path -> path.contains("/models/item/"))
-                .findFirst()
-                .orElseThrow();
-        JsonObject storageTextures = json(clientFiles.get(storagePath))
-                .getAsJsonObject("textures");
+        String storagePath = "assets/cruciblecraft/models/item/coal_coke/storage_dust.json";
+        assertTrue(clientFiles.containsKey(storagePath));
+        JsonObject storageItem = json(clientFiles.get(storagePath));
         assertEquals(
-                "cruciblecraft:item/material/storage_dust",
-                storageTextures.get("layer0").getAsString());
+                "cruciblecraft:block/material_storage_dust",
+                storageItem.get("parent").getAsString());
+        assertFalse(clientFiles.containsKey(
+                "assets/cruciblecraft/models/item/storage_dust.json"));
+        JsonObject storageState = json(clientFiles.get(
+                "assets/cruciblecraft/blockstates/coal_coke/storage_dust.json"));
         assertEquals(
-                "cruciblecraft:item/material/storage_dust_overlay",
-                storageTextures.get("layer1").getAsString());
+                "cruciblecraft:block/material_storage_dust",
+                storageState.getAsJsonObject("variants")
+                        .getAsJsonObject("")
+                        .get("model")
+                        .getAsString());
+    }
+
+    @Test
+    void leftoverMiscPrefixesUseGt6MaterialIcons(
+            @TempDir Path configDirectory) {
+        var materials = MaterialLoader.load(configDirectory).values();
+        var registered = MaterialRegistrationGate.load(materials);
+        var clientFiles = GeneratedMaterialPack.planClientFiles(materials, registered);
+        Path textures = Path.of(
+                "src/main/resources/assets/cruciblecraft/textures/item/material");
+        var overlays = java.util.Set.of(
+                "arrow_gt_plastic",
+                "arrow_gt_wood",
+                "plant_gt_berry",
+                "plant_gt_blossom",
+                "plant_gt_twig");
+        for (String prefix : java.util.List.of(
+                "arrow_gt_plastic",
+                "arrow_gt_wood",
+                "scrap",
+                "rail_gt",
+                "plant_gt_berry",
+                "plant_gt_blossom",
+                "plant_gt_fiber",
+                "plant_gt_twig",
+                "plant_gt_wart")) {
+            assertEquals(
+                    MaterialCreativeTab.MISC,
+                    MaterialCreativeTab.forPrefix(
+                            MaterialPrefixCatalog.require(prefix)));
+            JsonObject texturesJson = json(clientFiles.get(
+                    "assets/cruciblecraft/models/item/" + prefix + ".json"))
+                    .getAsJsonObject("textures");
+            assertEquals(
+                    "cruciblecraft:item/material/" + prefix,
+                    texturesJson.get("layer0").getAsString(),
+                    prefix);
+            assertTrue(Files.isRegularFile(textures.resolve(prefix + ".png")), prefix);
+            if (overlays.contains(prefix)) {
+                assertEquals(
+                        "cruciblecraft:item/material/" + prefix + "_overlay",
+                        texturesJson.get("layer1").getAsString(),
+                        prefix);
+                assertTrue(
+                        Files.isRegularFile(textures.resolve(prefix + "_overlay.png")),
+                        prefix);
+            } else {
+                assertFalse(texturesJson.has("layer1"), prefix);
+            }
+        }
     }
 
     @Test
@@ -251,8 +307,12 @@ class MaterialVisualResourceTest {
                 "Planks2 Blue",
                 english.get("block.cruciblecraft.planks2.blue").getAsString());
         assertFalse(chinese.has("block.cruciblecraft.planks2.blue"));
-        assertTrue(clientFiles.containsKey(
+        assertFalse(clientFiles.containsKey(
                 "assets/cruciblecraft/models/item/planks2/blue.json"));
+        assertFalse(clientFiles.containsKey(
+                "assets/cruciblecraft/blockstates/asphalt/white.json"));
+        assertFalse(clientFiles.containsKey(
+                "assets/cruciblecraft/models/block/asphalt/white.json"));
     }
 
     private static JsonObject json(String document) {

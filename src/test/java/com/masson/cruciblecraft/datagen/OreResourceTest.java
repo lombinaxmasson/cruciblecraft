@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.datagen;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -21,8 +22,9 @@ import org.junit.jupiter.api.io.TempDir;
 import com.google.gson.JsonParser;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
-import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
-import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
+import com.masson.cruciblecraft.content.redstonewire.RedstoneWireKind;
+import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
+import com.masson.cruciblecraft.material.MaterialFormHosts;
 import com.masson.cruciblecraft.material.MaterialRegistrationGate;
 import com.masson.cruciblecraft.material.def.MaterialLoader;
 import com.masson.cruciblecraft.material.gen.GeneratedMaterialPack;
@@ -144,10 +146,39 @@ class OreResourceTest {
                             ? override
                             : "cruciblecraft:" + material.registryName(prefix);
                     itemIds = List.of(itemId);
-                    if (override == null) {
+                    boolean uniqueHosted = MaterialFormHosts.isUniqueHostedPrefixPath(
+                            prefix.serializedName())
+                            || RedstoneWireKind.owns(material.id(), prefix);
+                    String specification =
+                            ElectricalConductorCatalog.specificationFor(prefix);
+                    if (uniqueHosted
+                            && specification != null
+                            && !RedstoneWireKind.owns(material.id(), prefix)) {
+                        uniqueHosted = material.gt6Metadata()
+                                .map(metadata -> metadata
+                                        .electricalBySpecification()
+                                        .containsKey(specification))
+                                .orElse(false);
+                    }
+                    boolean sharedInventory = override == null
+                            && !MaterialFormHosts.isPublicExchangePrefix(prefix)
+                            && !uniqueHosted;
+                    if (override == null && !sharedInventory) {
                         expectedModels.add(
                                 "assets/cruciblecraft/models/item/"
                                         + material.registryName(prefix) + ".json");
+                    }
+                    if (sharedInventory) {
+                        String prefixId = "cruciblecraft:"
+                                + MaterialFormHosts.prefixItemPath(prefix);
+                        List<String> aggregate = aggregateTags.computeIfAbsent(
+                                "data/" + prefix.tagNamespace() + "/tags/item/"
+                                        + prefix.tagDirectory() + ".json",
+                                ignored -> new ArrayList<>());
+                        if (!aggregate.contains(prefixId)) {
+                            aggregate.add(prefixId);
+                        }
+                        continue;
                     }
                 }
                 String tagId = prefix.tagNamespace() + ":" + prefix.tagDirectory()
@@ -172,24 +203,6 @@ class OreResourceTest {
             }
         }
         expectedTags.putAll(aggregateTags);
-        Set<String> catalogBlockObjectModels = new HashSet<>();
-        for (GtBlockObjectCatalog.Variant variant : GtBlockObjectCatalog.variants()) {
-            if (variant.registryPath().contains("/")) {
-                catalogBlockObjectModels.add(
-                        "assets/cruciblecraft/models/item/"
-                                + variant.registryPath() + ".json");
-            }
-        }
-        for (GtBlockObjectCatalog.Variant variant
-                : BathRemainderBlockObjectCatalog.variants()) {
-            if (variant.registryPath().contains("/")) {
-                catalogBlockObjectModels.add(
-                        "assets/cruciblecraft/models/item/"
-                                + variant.registryPath() + ".json");
-            }
-        }
-        expectedModels.addAll(catalogBlockObjectModels);
-
         Set<String> actualModels = clientFiles.keySet().stream()
                 .filter(path -> path.startsWith("assets/cruciblecraft/models/item/"))
                 .filter(path -> path.substring(
@@ -202,9 +215,6 @@ class OreResourceTest {
         Path datagenModels =
                 GENERATED_RESOURCES.resolve("assets/cruciblecraft/models/item");
         for (String path : expectedModels) {
-            if (catalogBlockObjectModels.contains(path)) {
-                continue;
-            }
             String relative = path.substring(
                     "assets/cruciblecraft/models/item/".length());
             assertTrue(Files.notExists(datagenModels.resolve(relative)), relative);
@@ -252,11 +262,26 @@ class OreResourceTest {
                                         "minecraft/tags/block/mineable/"
                                                 + "hoe.json"),
                                 generatedData.resolve(
+                                        "minecraft/tags/block/mineable/"
+                                                + "shovel.json"),
+                                generatedData.resolve(
                                         "minecraft/tags/block/"
                                                 + "needs_stone_tool.json"),
                                 generatedData.resolve(
                                         "minecraft/tags/block/"
+                                                + "needs_iron_tool.json"),
+                                generatedData.resolve(
+                                        "minecraft/tags/block/"
                                                 + "needs_diamond_tool.json"),
+                                generatedData.resolve(
+                                        "minecraft/tags/block/"
+                                                + "dirt.json"),
+                                generatedData.resolve(
+                                        "minecraft/tags/block/"
+                                                + "flowers.json"),
+                                generatedData.resolve(
+                                        "minecraft/tags/block/"
+                                                + "small_flowers.json"),
                                 generatedData.resolve(
                                         "minecraft/tags/block/"
                                                 + "base_stone_overworld.json"),
@@ -408,6 +433,9 @@ class OreResourceTest {
         var materials = MaterialLoader.load(configDirectory).values();
         var registeredForms = MaterialRegistrationGate.load(materials);
         for (var material : materials) {
+            if (!material.furnaceSmeltable()) {
+                continue;
+            }
             if (!registeredForms.get(material.id()).contains(MaterialPrefixes.INGOT)) {
                 continue;
             }
@@ -419,9 +447,50 @@ class OreResourceTest {
                 addExpectedCookingRecipes(expectedDerived, material.id(), MaterialPrefixes.RAW_ORE);
             }
         }
+        assertFalse(expectedDerived.contains("chromium/crushed_ore_smelting.json"));
+        assertFalse(expectedDerived.contains("iron/crushed_ore_smelting.json"));
+        assertTrue(expectedDerived.contains("copper/crushed_ore_smelting.json"));
         Path generatedRecipes = GENERATED_RESOURCES.resolve("data/cruciblecraft/recipe");
         Path generatedAdvancements = GENERATED_RESOURCES.resolve(
                 "data/cruciblecraft/advancement/recipes");
+        try (var paths = Files.walk(generatedRecipes)) {
+            Set<String> actualCooking = paths
+                    .filter(Files::isRegularFile)
+                    .map(path -> generatedRecipes.relativize(path).toString().replace('\\', '/'))
+                    .filter(name -> name.matches(
+                            ".+/(raw|crushed)_ore_(smelting|blasting)\\.json"))
+                    .collect(Collectors.toUnmodifiableSet());
+            assertEquals(expectedDerived, actualCooking);
+        }
+        for (String recipeName : expectedDerived) {
+            assertTrue(Files.notExists(RESOURCES.resolve(
+                    "data/cruciblecraft/recipe/" + recipeName)));
+        }
+        var shortcutPolicy = JsonParser.parseString(Files.readString(ORE_CHAIN_INDEX))
+                .getAsJsonObject()
+                .getAsJsonObject("coverage_ledger")
+                .getAsJsonObject("furnace_shortcut_policy");
+        int rawPairs = Math.toIntExact(expectedDerived.stream()
+                .filter(name -> name.endsWith("/raw_ore_smelting.json"))
+                .count());
+        int crushedPairs = Math.toIntExact(expectedDerived.stream()
+                .filter(name -> name.endsWith("/crushed_ore_smelting.json"))
+                .count());
+        int smeltingFiles = Math.toIntExact(expectedDerived.stream()
+                .filter(name -> name.endsWith("_smelting.json"))
+                .count());
+        int blastingFiles = Math.toIntExact(expectedDerived.stream()
+                .filter(name -> name.endsWith("_blasting.json"))
+                .count());
+        assertEquals(rawPairs, shortcutPolicy.get("raw_pairs").getAsInt());
+        assertEquals(crushedPairs, shortcutPolicy.get("crushed_pairs").getAsInt());
+        assertEquals(smeltingFiles, shortcutPolicy.get("smelting_files").getAsInt());
+        assertEquals(blastingFiles, shortcutPolicy.get("blasting_files").getAsInt());
+        assertEquals(expectedDerived.size(), shortcutPolicy.get("total_files").getAsInt());
+        assertEquals(
+                COMPAT_SHORTCUT_GROUP,
+                shortcutPolicy.get("group").getAsString());
+
         Set<String> generatedRecipeSet;
         try (var paths = Files.walk(generatedRecipes)) {
             generatedRecipeSet = paths
@@ -469,43 +538,6 @@ class OreResourceTest {
         assertEquals(51, countRegularFiles(COMPONENT_RULE_RESOURCES.resolve(
                 "data/cruciblecraft/recipe")));
         assertEquals(0, countRegularFiles(generatedAdvancements));
-        try (var paths = Files.walk(generatedRecipes)) {
-            Set<String> actual = paths
-                    .filter(Files::isRegularFile)
-                    .map(path -> generatedRecipes.relativize(path).toString().replace('\\', '/'))
-                    .filter(name -> name.matches(
-                            ".+/(raw|crushed)_ore_(smelting|blasting)\\.json"))
-                    .collect(Collectors.toUnmodifiableSet());
-            assertEquals(expectedDerived, actual);
-        }
-        for (String recipeName : expectedDerived) {
-            assertTrue(Files.notExists(RESOURCES.resolve(
-                    "data/cruciblecraft/recipe/" + recipeName)));
-        }
-        var shortcutPolicy = JsonParser.parseString(Files.readString(ORE_CHAIN_INDEX))
-                .getAsJsonObject()
-                .getAsJsonObject("coverage_ledger")
-                .getAsJsonObject("furnace_shortcut_policy");
-        int rawPairs = Math.toIntExact(expectedDerived.stream()
-                .filter(name -> name.endsWith("/raw_ore_smelting.json"))
-                .count());
-        int crushedPairs = Math.toIntExact(expectedDerived.stream()
-                .filter(name -> name.endsWith("/crushed_ore_smelting.json"))
-                .count());
-        int smeltingFiles = Math.toIntExact(expectedDerived.stream()
-                .filter(name -> name.endsWith("_smelting.json"))
-                .count());
-        int blastingFiles = Math.toIntExact(expectedDerived.stream()
-                .filter(name -> name.endsWith("_blasting.json"))
-                .count());
-        assertEquals(rawPairs, shortcutPolicy.get("raw_pairs").getAsInt());
-        assertEquals(crushedPairs, shortcutPolicy.get("crushed_pairs").getAsInt());
-        assertEquals(smeltingFiles, shortcutPolicy.get("smelting_files").getAsInt());
-        assertEquals(blastingFiles, shortcutPolicy.get("blasting_files").getAsInt());
-        assertEquals(expectedDerived.size(), shortcutPolicy.get("total_files").getAsInt());
-        assertEquals(
-                COMPAT_SHORTCUT_GROUP,
-                shortcutPolicy.get("group").getAsString());
 
         Path handwrittenRecipes = RESOURCES.resolve("data/cruciblecraft/recipe");
         try (var handwritten = Files.walk(handwrittenRecipes);

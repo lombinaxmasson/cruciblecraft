@@ -1,0 +1,101 @@
+{
+  "parent": "minecraft:block/block",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bot_bottom": "cruciblecraft:block/gt6_import/storage/mass_storage_box/colored_bottom",
+    "bot_top": "cruciblecraft:block/gt6_import/storage/mass_storage_box/colored_top",
+    "bot_front": "cruciblecraft:block/gt6_import/storage/mass_storage_box/colored_front",
+    "bot_back": "cruciblecraft:block/gt6_import/storage/mass_storage_box/colored_back",
+    "bot_side": "cruciblecraft:block/gt6_import/storage/mass_storage_box/colored_side",
+    "top_bottom": "cruciblecraft:block/gt6_import/storage/mass_storage_box/overlay_bottom",
+    "top_top": "cruciblecraft:block/gt6_import/storage/mass_storage_box/overlay_top",
+    "top_front": "cruciblecraft:block/gt6_import/storage/mass_storage_box/overlay_front",
+    "top_back": "cruciblecraft:block/gt6_import/storage/mass_storage_box/overlay_back",
+    "top_side": "cruciblecraft:block/gt6_import/storage/mass_storage_box/overlay_side",
+    "particle": "cruciblecraft:block/gt6_import/storage/mass_storage_box/colored_side"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "down": {
+          "texture": "#bot_bottom",
+          "cullface": "down",
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#bot_top",
+          "cullface": "up",
+          "tintindex": 0
+        },
+        "north": {
+          "texture": "#bot_front",
+          "cullface": "north",
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#bot_back",
+          "cullface": "south",
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#bot_side",
+          "cullface": "west",
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#bot_side",
+          "cullface": "east",
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "down": {
+          "texture": "#top_bottom",
+          "cullface": "down"
+        },
+        "up": {
+          "texture": "#top_top",
+          "cullface": "up"
+        },
+        "north": {
+          "texture": "#top_front",
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#top_back",
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#top_side",
+          "cullface": "west"
+        },
+        "east": {
+          "texture": "#top_side",
+          "cullface": "east"
+        }
+      }
+    }
+  ]
+}

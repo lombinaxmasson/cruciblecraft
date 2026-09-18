@@ -26,14 +26,19 @@ public interface MaterialFormItem {
     }
 
     static Component formName(String materialId, MaterialPrefix form) {
-        MaterialDefinition material = MaterialCatalog.require(materialId);
-        Component materialName = material.nameKey()
-                .<Component>map(Component::translatable)
-                .orElseGet(() -> Component.literal(
-                        LanguageNames.formatEnglishId(material.id())));
+        Component materialName = materialDisplayName(materialId);
         String formKey = "item.cruciblecraft.material_form." + form.serializedName();
         String fallback = LanguageNames.englishFormTemplate(
                 LanguageNames.formatEnglishId(form.serializedName()));
         return Component.translatableWithFallback(formKey, fallback, materialName);
+    }
+
+    static Component materialDisplayName(String materialId) {
+        return MaterialCatalog.find(materialId)
+                .map(material -> Component.translatable(material.translationKey()))
+                .orElseGet(() -> Component.literal(
+                        materialId == null || materialId.isEmpty()
+                                ? ""
+                                : LanguageNames.formatEnglishId(materialId)));
     }
 }

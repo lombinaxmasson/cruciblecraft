@@ -7,6 +7,7 @@ import com.masson.cruciblecraft.content.block.GtBlockObjectBarsBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectBaleBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectCFoamFreshBlock;
+import com.masson.cruciblecraft.content.block.GtBlockObjectGlassBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectLogBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectRailBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectSlabBlock;
@@ -14,6 +15,7 @@ import com.masson.cruciblecraft.content.block.GtBlockObjectSpikeBlock;
 import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.BlockArtIndex;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
+import com.masson.cruciblecraft.content.item.GtBuildingBlockCatalog;
 import com.masson.cruciblecraft.content.item.SemanticObjectCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModItems;
@@ -57,6 +59,10 @@ public final class GtBlockDyeColor {
                 blocks,
                 BathRemainderBlockObjectCatalog.variants(),
                 ModBlocks.bathRemainderBlockObjectBlocksById());
+        addTinted(
+                blocks,
+                GtBuildingBlockCatalog.variants(),
+                ModBlocks.gtBuildingBlockObjectBlocksById());
         return blocks.toArray(Block[]::new);
     }
 
@@ -130,6 +136,9 @@ public final class GtBlockDyeColor {
             return typed.variant();
         }
         if (block instanceof GtBlockObjectCFoamFreshBlock typed) {
+            return typed.variant();
+        }
+        if (block instanceof GtBlockObjectGlassBlock typed) {
             return typed.variant();
         }
         if (block instanceof GtBlockObjectLogBlock typed) {

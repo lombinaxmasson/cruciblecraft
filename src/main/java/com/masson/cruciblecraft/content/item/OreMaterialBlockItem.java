@@ -2,8 +2,6 @@ package com.masson.cruciblecraft.content.item;
 
 import com.masson.cruciblecraft.content.block.BedrockOreBlock;
 import com.masson.cruciblecraft.content.block.GtBrokenOreBlock;
-import com.masson.cruciblecraft.localization.LanguageNames;
-import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.registry.ModComponents;
 
 import net.minecraft.core.BlockPos;
@@ -24,13 +22,7 @@ public final class OreMaterialBlockItem extends BlockItem {
     @Override
     public Component getName(ItemStack stack) {
         String materialId = stack.getOrDefault(ModComponents.ORE_MATERIAL.get(), "");
-        Component materialName = MaterialCatalog.find(materialId)
-                .flatMap(definition -> definition.nameKey())
-                .<Component>map(Component::translatable)
-                .orElseGet(() -> Component.literal(
-                        materialId.isEmpty()
-                                ? ""
-                                : LanguageNames.formatEnglishId(materialId)));
+        Component materialName = MaterialFormItem.materialDisplayName(materialId);
         String key = getBlock() instanceof GtBrokenOreBlock
                 ? "block.cruciblecraft.gt_broken_ore.named"
                 : "block.cruciblecraft.gt_hosted_ore.named";

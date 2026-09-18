@@ -37,8 +37,10 @@ public enum StorageBehaviorProfile {
             case BOOKSHELF -> "block/storage_bookshelf";
             case BOTTLE_CRATE -> "block/storage_bottle_crate";
             case DRAWER -> "block/storage_drawer";
-            case LOCKER, LOCKER_CHARGING -> "block/storage_locker";
-            case MASS_STORAGE, MASS_STORAGE_LOGISTICS -> "block/storage_mass";
+            case LOCKER -> "block/storage_locker";
+            case LOCKER_CHARGING -> "block/storage_charging_locker";
+            case MASS_STORAGE -> "block/storage_mass";
+            case MASS_STORAGE_LOGISTICS -> "block/storage_mass_logistics";
             case STORAGE_INSERTER -> "block/storage_inserter";
         };
         return ResourceLocation.fromNamespaceAndPath("cruciblecraft", path);

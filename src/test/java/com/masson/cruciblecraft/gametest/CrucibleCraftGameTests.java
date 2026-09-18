@@ -818,7 +818,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
-    public static void fuelEngineBuffersCarbonDioxideWithoutNeighbor(
+    public static void fuelEngineVentsCarbonDioxideIntoAir(
             GameTestHelper helper) {
         BlockPos enginePos = new BlockPos(3, 2, 5);
         helper.setBlock(
@@ -841,9 +841,8 @@ public final class CrucibleCraftGameTests {
         helper.startSequence()
                 .thenIdle(fuel.duration() + 2)
                 .thenExecute(() -> helper.assertTrue(
-                        engine.outputAmount(0)
-                                == fuel.fluidOutputs().getFirst().getAmount(),
-                        "Isolated fuel engine voided recipe CO2 instead of buffering"))
+                        engine.outputAmount(0) == 0,
+                        "Isolated fuel engine did not vent leftover CO2 into air"))
                 .thenSucceed();
     }
 
@@ -1421,12 +1420,12 @@ public final class CrucibleCraftGameTests {
                 match.id().equals(source.id()),
                 "Sifter query resolved the wrong source recipe");
         loadRecipeInputs(sifter, match.recipe());
-        IFluidHandler steamInput = engine.fluids(Direction.NORTH);
-        helper.assertTrue(steamInput != null, "Steam engine input capability missing");
+        IFluidHandler steamInput = engine.fluids(Direction.WEST);
+        helper.assertTrue(steamInput != null, "Steam engine back input missing");
         helper.assertTrue(
                 steamInput.fill(
-                        new FluidStack(ModFluids.STEAM_SOURCE.get(), 16_000),
-                        IFluidHandler.FluidAction.EXECUTE) == 16_000,
+                        new FluidStack(ModFluids.STEAM_SOURCE.get(), 2_000),
+                        IFluidHandler.FluidAction.EXECUTE) == 2_000,
                 "Could not prime the tier-profile KU vertical");
 
         helper.startSequence()
@@ -1452,10 +1451,12 @@ public final class CrucibleCraftGameTests {
             GameTestHelper helper) {
         BlockPos fireboxPos = new BlockPos(4, 1, 5);
         BlockPos boilerPos = fireboxPos.above();
-        BlockPos enginePos = boilerPos.above();
+        BlockPos pipePos = boilerPos.above();
+        BlockPos enginePos = pipePos.east();
         BlockPos pressPos = enginePos.east();
         GameTestHeatSources.placeHuSourceBlock(helper, fireboxPos);
         helper.setBlock(boilerPos, ModBlocks.BRONZE_BOILER.get());
+        placeConnectedFluidPipe(helper, pipePos, Direction.DOWN, Direction.EAST);
         helper.setBlock(
                 enginePos,
                 ModBlocks.BRONZE_STEAM_ENGINE.get().defaultBlockState()
@@ -1527,7 +1528,8 @@ public final class CrucibleCraftGameTests {
                                     + engine.status());
                     helper.assertTrue(
                             boiler.waterAmount() < 1_000
-                                    && engine.exhaustAmount() > 0
+                                    && (engine.stored() > 0L
+                                            || engine.steamAmount() > 0)
                                     && firebox.energyCapacity() > 0L
                                     && SteamEngineBlockEntity.OUTPUT_RATE
                                             == 12L,
@@ -1626,7 +1628,7 @@ public final class CrucibleCraftGameTests {
                     boiler.loadWithComponents(boilerTag, registries);
 
                     IFluidHandler steamIo =
-                            engine.fluids(Direction.NORTH);
+                            engine.fluids(Direction.WEST);
                     FluidStack sourceBatch = new FluidStack(
                             ModFluids.STEAM_SOURCE.get(), 200);
                     helper.assertTrue(
@@ -1644,9 +1646,7 @@ public final class CrucibleCraftGameTests {
                             "Engine steam execute did not commit");
                     CompoundTag engineTag =
                             engine.saveWithoutMetadata(registries);
-                    engineTag.putLong(
-                            "kinetic",
-                            SteamEngineBlockEntity.KU_CAPACITY);
+                    engineTag.putLong("kinetic", 512L);
                     engineTag.putInt("stroke_sign", 1);
                     engine.loadWithComponents(engineTag, registries);
                 })
@@ -1662,8 +1662,10 @@ public final class CrucibleCraftGameTests {
                                     + "and stay idle: "
                                     + boiler.status());
                     helper.assertTrue(
-                            engine.status().equals("kinetic_full"),
-                            "Full engine did not diagnose kinetic_full: "
+                            engine.steamAmount() == 0
+                                    && engine.stored() > 0L
+                                    && !engine.stopped(),
+                            "Engine did not convert the primed steam batch: "
                                     + engine.status());
                     long before = engine.stored();
                     long rate = engine.currentOutputRate();
@@ -5555,15 +5557,15 @@ public final class CrucibleCraftGameTests {
                 .findFirst()
                 .orElseThrow();
         loadRecipeInputs(press, recipe);
-        IFluidHandler steamInput = engine.fluids(Direction.NORTH);
+        IFluidHandler steamInput = engine.fluids(Direction.WEST);
         helper.assertTrue(
                 steamInput != null
                         && steamInput.fill(
                                 new FluidStack(
                                         ModFluids.STEAM_SOURCE.get(),
-                                        16_000),
+                                        2_000),
                                 IFluidHandler.FluidAction.EXECUTE)
-                                == 16_000,
+                                == 2_000,
                 "Could not prime the Press KU vertical");
         helper.assertTrue(
                 press.variant().kind().behavior()
@@ -10929,7 +10931,8 @@ public final class CrucibleCraftGameTests {
 
     private static final BlockPos SMALL_WORKLOAD_FIREBOX = new BlockPos(4, 1, 5);
     private static final BlockPos SMALL_WORKLOAD_BOILER = SMALL_WORKLOAD_FIREBOX.above();
-    private static final BlockPos SMALL_WORKLOAD_STEAM_ENGINE = SMALL_WORKLOAD_BOILER.above();
+    private static final BlockPos SMALL_WORKLOAD_STEAM_PIPE = SMALL_WORKLOAD_BOILER.above();
+    private static final BlockPos SMALL_WORKLOAD_STEAM_ENGINE = SMALL_WORKLOAD_STEAM_PIPE.east();
     private static final BlockPos SMALL_WORKLOAD_PRESS = SMALL_WORKLOAD_STEAM_ENGINE.east();
     private static final BlockPos SMALL_WORKLOAD_FUEL_ENGINE = new BlockPos(7, 1, 5);
     private static final BlockPos SMALL_WORKLOAD_AXLE = SMALL_WORKLOAD_FUEL_ENGINE.east();
@@ -11000,7 +11003,7 @@ public final class CrucibleCraftGameTests {
                     helper.assertTrue(
                             boiler.steamAmount() > 0
                                     || engine.stored() > 0L
-                                    || engine.exhaustAmount() > 0,
+                                    || engine.steamAmount() > 0,
                             "Small-workload warmup produced no steam or KU");
                     helper.assertTrue(
                             firebox.seedStoredEnergy(energyCapacity()),
@@ -11095,7 +11098,9 @@ public final class CrucibleCraftGameTests {
                     // converted steam is evidenced by engine exhaust.
                     helper.assertTrue(
                             boiler.waterAmount() < 10_000
-                                    && engine.exhaustAmount() > 0,
+                                    && (engine.stored() > 0L
+                                            || engine.steamAmount() > 0
+                                            || boiler.steamAmount() > 0),
                             "Small-workload boiler did not batch water into steam");
 
                     // Dynamo conservation: 32 RU -> 22 EU + 10 loss.
@@ -11176,6 +11181,11 @@ public final class CrucibleCraftGameTests {
             GameTestHelper helper, boolean includePress) {
         GameTestHeatSources.placeHuSource(helper, SMALL_WORKLOAD_FIREBOX);
         helper.setBlock(SMALL_WORKLOAD_BOILER, ModBlocks.BRONZE_BOILER.get());
+        placeConnectedFluidPipe(
+                helper,
+                SMALL_WORKLOAD_STEAM_PIPE,
+                Direction.DOWN,
+                Direction.EAST);
         helper.setBlock(
                 SMALL_WORKLOAD_STEAM_ENGINE,
                 ModBlocks.BRONZE_STEAM_ENGINE.get().defaultBlockState()
@@ -11334,6 +11344,9 @@ public final class CrucibleCraftGameTests {
                 "copper",
                 MaterialPrefixes.ITEM_PIPE,
                 PipeCatalog.Kind.ITEM).get();
+        if (!helper.getBlockState(SMALL_WORKLOAD_STEAM_PIPE).is(fluidPipe)) {
+            return false;
+        }
         for (int i = 0; i < SMALL_WORKLOAD_FLUID_PIPE_COUNT; i++) {
             if (!helper.getBlockState(new BlockPos(4 + i, 1, 3))
                     .is(fluidPipe)) {
@@ -11347,6 +11360,24 @@ public final class CrucibleCraftGameTests {
             }
         }
         return true;
+    }
+
+
+    private static void placeConnectedFluidPipe(
+            GameTestHelper helper, BlockPos pos, Direction... connections) {
+        FluidPipeBlock pipeBlock = (FluidPipeBlock) ModBlocks.pipeBlock(
+                "copper",
+                MaterialPrefixes.TINY_FLUID_PIPE,
+                PipeCatalog.Kind.FLUID).get();
+        helper.setBlock(pos, pipeBlock);
+        var state = helper.getBlockState(pos);
+        for (Direction direction : connections) {
+            state = state.setValue(
+                    AbstractPipeBlock.PROPERTY_BY_DIRECTION.get(direction),
+                    true);
+        }
+        helper.getLevel().setBlock(
+                helper.absolutePos(pos), state, Block.UPDATE_CLIENTS);
     }
 
     private static void primeBoilerOperatingPressure(

@@ -100,6 +100,7 @@ public final class MaterialFormHosts {
         }
         if (path.equals("ore")
                 || path.equals("block")
+                || path.equals("storage_dust")
                 || path.equals("rock")
                 || path.equals("machine_casing")
                 || path.equals("machine_casing_double")
@@ -119,7 +120,8 @@ public final class MaterialFormHosts {
 
     private static boolean isPlaceableStorage(
             MaterialDefinition material, MaterialPrefix form) {
-        return form.equals(MaterialPrefixes.BLOCK)
+        return (form.equals(MaterialPrefixes.BLOCK)
+                        || form.equals(MaterialPrefixes.STORAGE_DUST))
                 && !material.formItems().containsKey(form)
                 && MaterialCatalog.isFormRegistered(material, form);
     }

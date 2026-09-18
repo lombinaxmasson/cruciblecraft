@@ -27,12 +27,25 @@ FLUID_BLOCKS = {"creosote", "steam"}
 NO_LOOT_BLOCKS = {
     "ceramic_mold",
     "gas_cloud",
+    "gt_bedrock_ore",
+    "gt_broken_ore",
+    "gt_fluid_spring",
+    "gt_hosted_ore",
+    "gt_indicator_flower",
+    "gt_indicator_grass",
+    "gt_small_bedrock_ore",
+    "gt_small_ore",
+    "gt_surface_rock",
     "subsurface_fluid_deposit",
 }
 NO_ITEM_BLOCKS = {
     "gas_cloud",
     "subsurface_fluid_deposit",
 }
+HAND_BREAKABLE_PREFIXES = (
+    "glass/",
+    "glow_glass/",
+)
 def python_owned_generated_prefixes() -> tuple[str, ...]:
     prefixes = {
         "assets/cruciblecraft/models/gt_block/",
@@ -95,6 +108,7 @@ def live_block_paths() -> list[dict[str, str]]:
     for path, _prefix in (
         (registry_identity.GT_BLOCK, "gt_block"),
         (registry_identity.BATH_REMAINDER, "building_block"),
+        (registry_identity.GT_BUILDING, "building_block"),
     ):
         document = io.load_json(path)
         rel = io.relative(path)
@@ -362,7 +376,8 @@ def check_block(
         )
         if loot is None:
             errors.append(f"{runtime} missing loot table")
-        if runtime not in mineable:
+        if runtime not in mineable and not registry.startswith(
+                HAND_BREAKABLE_PREFIXES):
             errors.append(f"{runtime} missing mineable tag owner")
     if lang_key(registry) not in lang:
         errors.append(f"{runtime} missing language owner {lang_key(registry)}")

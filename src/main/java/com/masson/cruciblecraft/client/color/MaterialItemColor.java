@@ -5,6 +5,7 @@ import com.masson.cruciblecraft.content.item.MaterialFormItem;
 import com.masson.cruciblecraft.content.item.MaterialToolItem;
 import com.masson.cruciblecraft.content.item.PrefixMaterialItem;
 import com.masson.cruciblecraft.heat.ItemHeat;
+import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 
@@ -19,20 +20,15 @@ public final class MaterialItemColor {
     private MaterialItemColor() {}
 
     public static int color(ItemStack stack, int tintIndex) {
+        if (stack.getItem() instanceof MaterialToolItem tool) {
+            return toolColor(stack, tool, tintIndex);
+        }
         if (tintIndex != 0) {
             return 0xFFFFFFFF;
         }
         MaterialDefinition material;
         boolean neutralTexture;
-        if (stack.getItem() instanceof MaterialToolItem tool) {
-            var materialId = tool.material(stack);
-            if (materialId.isEmpty()) {
-                return 0xFFFFFFFF;
-            }
-            material = MaterialCatalog.find(materialId.orElseThrow())
-                    .orElse(null);
-            neutralTexture = true;
-        } else {
+        {
             var entry = MaterialUnits.resolve(stack);
             if (entry.isEmpty()) {
                 return 0xFFFFFFFF;
@@ -57,6 +53,61 @@ public final class MaterialItemColor {
         float temperature = ItemHeat.temperature(stack, minecraft.level.getGameTime());
         float meltingPoint = (float) material.thermal().meltingPoint();
         return colorAtTemperature(baseColor, temperature, meltingPoint);
+    }
+
+    private static int toolColor(
+            ItemStack stack, MaterialToolItem tool, int tintIndex) {
+        if (tintIndex == 2 && isWoodHandleKind(tool.kind())) {
+            return 0xFF000000 | woodHandleColor();
+        }
+        if (tintIndex != 0
+                && !(tintIndex == 2 && tool.kind() == ToolKind.UNIVERSAL_SPADE)) {
+            return 0xFFFFFFFF;
+        }
+        var materialId = tool.material(stack);
+        if (materialId.isEmpty()) {
+            return 0xFFFFFFFF;
+        }
+        MaterialDefinition material = MaterialCatalog.find(materialId.orElseThrow())
+                .orElse(null);
+        int headColor = baseColor(material, true);
+        Minecraft minecraft = Minecraft.getInstance();
+        if (minecraft.level == null || material == null) {
+            return 0xFF000000 | headColor;
+        }
+        float temperature = ItemHeat.temperature(
+                stack, minecraft.level.getGameTime());
+        float meltingPoint = (float) material.thermal().meltingPoint();
+        return colorAtTemperature(headColor, temperature, meltingPoint);
+    }
+
+    static boolean isWoodHandleKind(ToolKind kind) {
+        return switch (kind) {
+            case PICKAXE, SHOVEL, AXE, HOE, SWORD, SMITHING_HAMMER, FILE, CHISEL,
+                    SAW, SCREWDRIVER, SPADE, DOUBLE_AXE, SENSE, PLOW,
+                    CONSTRUCTION_PICK, GEM_PICK, BUILDER_WAND, SOFT_HAMMER ->
+                true;
+            default -> false;
+        };
+    }
+
+    static int layerTint(
+            ToolKind kind, int tintIndex, int headColor, int woodColor) {
+        if (tintIndex == 0
+                || (tintIndex == 2 && kind == ToolKind.UNIVERSAL_SPADE)) {
+            return headColor;
+        }
+        if (tintIndex == 2 && isWoodHandleKind(kind)) {
+            return woodColor;
+        }
+        return 0xFFFFFF;
+    }
+
+    static int woodHandleColor() {
+        return MaterialCatalog.find("spruce")
+                .map(material -> styleColor(
+                        material.colorRgb(), material.tintStyle()))
+                .orElse(0x664F2F);
     }
 
     static int baseColor(

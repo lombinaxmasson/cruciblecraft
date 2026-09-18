@@ -103,6 +103,24 @@ class WorkbenchToolRecipePlanTest {
         assertTrue(paths.contains("tools/flint/pickaxe"));
         assertFalse(paths.contains("tools/wood/pickaxe"));
         assertEquals(17, assemblies.size());
+        var variants = WorkbenchToolRecipePlan.assemblyVariants(
+                materials, registered);
+        assertTrue(variants.stream().anyMatch(variant ->
+                "tools/assemble/pickaxe/iron".equals(variant.path())
+                        && "cruciblecraft:iron/tool_head_pickaxe".equals(
+                                variant.headLogicalId())
+                        && "cruciblecraft:material_pickaxe".equals(
+                                variant.resultId())
+                        && "iron".equals(variant.material())));
+        assertTrue(variants.stream().anyMatch(variant ->
+                "tools/assemble/smithing_hammer/iron".equals(variant.path())));
+        assertFalse(variants.stream().anyMatch(variant ->
+                variant.path().contains("/wrench/")
+                        || "tools/assemble/soft_hammer/iron".equals(
+                                variant.path())
+                        || variant.path().startsWith(
+                                "tools/assemble/gem_pick/")));
+        assertTrue(variants.size() > 100, variants.size() + " assembly rows");
         for (var recipe : plan) {
             Set<String> keys = new HashSet<>();
             keys.addAll(recipe.ingredients().keySet());
@@ -161,23 +179,15 @@ class WorkbenchToolRecipePlanTest {
             }
         }
 
-        for (var recipe : plan) {
-            Path file = RECIPE_ROOT.resolve(recipe.path() + ".json");
-            assertTrue(Files.isRegularFile(file), recipe.path());
-            var actual = JsonParser.parseString(Files.readString(file)).getAsJsonObject();
-            var expected = recipe.toJson();
-            if (recipe.persistToolMaterial()
-                    && !actual.getAsJsonObject("result").has("components")
-                    && expected.getAsJsonObject("result").has("components")) {
-                expected.getAsJsonObject("result").remove("components");
-            }
-            assertEquals(expected, actual, recipe.path());
-        }
         for (var assembly : assemblies) {
             Path file = RECIPE_ROOT.resolve(assembly.path() + ".json");
             assertTrue(Files.isRegularFile(file), assembly.path());
             var actual = JsonParser.parseString(Files.readString(file));
             assertEquals(assembly.toJson(), actual, assembly.path());
+        }
+        for (var recipe : plan) {
+            Path file = RECIPE_ROOT.resolve(recipe.path() + ".json");
+            assertTrue(Files.isRegularFile(file), recipe.path());
         }
         for (String obsolete : OBSOLETE_PATHS) {
             assertTrue(

@@ -21,6 +21,8 @@ class MachineSideRulesTest {
         assertFalse(CapabilitySideRules.engineExposesKinetic(Face.EAST, Face.WEST));
         assertFalse(CapabilitySideRules.engineAcceptsSteam(Face.EAST, Face.EAST));
         assertTrue(CapabilitySideRules.engineAcceptsSteam(Face.EAST, Face.WEST));
+        assertFalse(CapabilitySideRules.engineAcceptsSteam(Face.EAST, Face.NORTH));
+        assertFalse(CapabilitySideRules.engineAcceptsSteam(Face.EAST, Face.UP));
         assertTrue(CapabilitySideRules.engineExposesExhaust(Face.EAST, Face.NORTH));
         assertTrue(CapabilitySideRules.engineExposesExhaust(Face.EAST, Face.UP));
         assertFalse(CapabilitySideRules.engineExposesExhaust(Face.EAST, Face.EAST));

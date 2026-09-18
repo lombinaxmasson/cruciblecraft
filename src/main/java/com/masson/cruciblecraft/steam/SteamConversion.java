@@ -76,20 +76,14 @@ public final class SteamConversion {
                         accumulatedHu / HU_PER_BATCH));
     }
 
-    public static int engineBatches(
-            int steam,
-            long kineticRoom,
-            int exhaustRoom) {
-        if (steam < ENGINE_STEAM_PER_BATCH
-                || kineticRoom < KU_PER_ENGINE_BATCH
-                || exhaustRoom < EXHAUST_WATER_PER_BATCH) {
+    /**
+     * GT6 {@code mTank.amount() / STEAM_PER_WATER}. Conversion is not gated
+     * on KU room or DistW space; leftover DistW is pushed then trashed.
+     */
+    public static int engineBatches(int steam) {
+        if (steam < ENGINE_STEAM_PER_BATCH) {
             return 0;
         }
-        long batches = Math.min(
-                steam / ENGINE_STEAM_PER_BATCH,
-                Math.min(
-                        kineticRoom / KU_PER_ENGINE_BATCH,
-                        exhaustRoom / EXHAUST_WATER_PER_BATCH));
-        return (int) Math.min(Integer.MAX_VALUE, batches);
+        return steam / ENGINE_STEAM_PER_BATCH;
     }
 }

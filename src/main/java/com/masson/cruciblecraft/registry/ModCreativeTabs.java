@@ -12,6 +12,7 @@ import com.masson.cruciblecraft.content.item.BathMteIdentityCatalog;
 import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
+import com.masson.cruciblecraft.content.item.GtBuildingBlockCatalog;
 import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.content.item.GtWoodCatalog;
 import com.masson.cruciblecraft.content.item.SemanticObjectCatalog;
@@ -190,6 +191,7 @@ public final class ModCreativeTabs {
             MaterialCreativeTab tab) {
         return switch (tab) {
             case WIRES -> RemainderCreativeTabs.Tab.WIRES;
+            case CABLES -> RemainderCreativeTabs.Tab.CABLES;
             case PIPES -> RemainderCreativeTabs.Tab.PIPES;
             case MISC -> RemainderCreativeTabs.Tab.MISC;
             default -> null;
@@ -341,6 +343,10 @@ public final class ModCreativeTabs {
                 output.accept(ModItems.bathRemainderBlockObjectItemsById()
                         .get(block.id())
                         .get()));
+        GtBuildingBlockCatalog.variants().forEach(block ->
+                output.accept(ModItems.gtBuildingBlockObjectItemsById()
+                        .get(block.id())
+                        .get()));
         acceptRemainder(output, RemainderCreativeTabs.Tab.BUILDING);
     }
 
@@ -487,7 +493,10 @@ public final class ModCreativeTabs {
         });
         SemanticObjectCatalog.identities().forEach(identity -> {
             if (RemainderCreativeTabs.of(identity.registryPath(), identity.kind()) == tab) {
-                output.accept(ModItems.semanticIdentityItemsById().get(identity.id()).get());
+                var holder = ModItems.semanticIdentityItemsById().get(identity.id());
+                if (holder != null) {
+                    output.accept(holder.get());
+                }
             }
         });
     }

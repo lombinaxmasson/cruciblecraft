@@ -88,4 +88,10 @@ public final class MachineCoverBlockInteraction {
             BlockHitResult hit) {
         return !player.isShiftKeyDown() && rightClick(machine, hit);
     }
+
+    public static void dropCovers(Level level, BlockPos pos) {
+        if (level.getBlockEntity(pos) instanceof MachineCoverHost machine) {
+            machine.dropCovers();
+        }
+    }
 }

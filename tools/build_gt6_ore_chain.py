@@ -1059,6 +1059,30 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any], dict[str, str]]:
                 f"{form} ore furnace shortcuts are not paired between "
                 "smelting and blasting"
             )
+    ineligible = sorted({
+        material_id
+        for material_ids in shortcut_materials.values()
+        for material_id in material_ids
+        if "PROCESSING.FURNACE"
+        not in (
+            (materials[material_id].get("gt6_metadata") or {}).get(
+                "material_tags"
+            )
+            or []
+        )
+        or "PROPERTIES.UNUSED_MATERIAL"
+        in (
+            (materials[material_id].get("gt6_metadata") or {}).get(
+                "material_tags"
+            )
+            or []
+        )
+    })
+    if ineligible:
+        raise ValueError(
+            "furnace shortcuts exist for materials without "
+            "PROCESSING.FURNACE: " + ", ".join(ineligible)
+        )
     raw_pairs = len(shortcut_materials[("raw", "smelting")])
     crushed_pairs = len(shortcut_materials[("crushed", "smelting")])
     smelting_files = sum(
@@ -1109,7 +1133,10 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any], dict[str, str]]:
             "output_count": ORE_BLOCK_OUTPUT_COUNT,
         },
         "furnace_shortcut_policy": {
-            "decision": "retained compatibility route",
+            "decision": "gt6 furnace-tag gated compatibility route",
+            "eligibility": (
+                "PROCESSING.FURNACE and not PROPERTIES.UNUSED_MATERIAL"
+            ),
             "scope": "generated raw/crushed ore smelting and blasting recipes",
             "main_output_policy": (
                 "furnace shortcuts and the six-stage chain yield equal "

@@ -463,10 +463,14 @@ class OreChainBuilderTest(unittest.TestCase):
         self.assertTrue(ledger["sifter_dust_without_smelter"])
         self.assertTrue(ledger["incomplete_routes_from_crusher"])
         self.assertEqual(
-            "retained compatibility route",
+            "gt6 furnace-tag gated compatibility route",
             ledger["furnace_shortcut_policy"]["decision"],
         )
         shortcuts = ledger["furnace_shortcut_policy"]
+        self.assertEqual(
+            "PROCESSING.FURNACE and not PROPERTIES.UNUSED_MATERIAL",
+            shortcuts["eligibility"],
+        )
         self.assertEqual(
             "furnace shortcuts and the six-stage chain yield equal "
             "main-output material units",

@@ -148,7 +148,7 @@ class EnergyConverterCatalogTest {
         assertTrue(engine.policy().sourceResolution().contains(
                 "LIVE_STATE_DEPENDENT_6_TO_24"));
         assertTrue(engine.policy().sourceResolution().contains(
-                "DISTW_SIDE_BUFFER_THEN_DRAIN"));
+                "DISTW_SIDE_PUSH_THEN_TRASH"));
         assertTrue(engine.policy().sourceResolution().contains(
                 "SOFT_HAMMER_AND_STEAM_VENT_STOP"));
     }
@@ -171,7 +171,7 @@ class EnergyConverterCatalogTest {
         assertEquals(
                 "cruciblecraft:water_distilled",
                 engine.exhaust().identity());
-        assertEquals("BUFFER_THEN_DRAIN", engine.exhaust().mode());
+        assertEquals("PUSH_THEN_TRASH", engine.exhaust().mode());
         assertEquals(
                 java.util.List.of("BACK"),
                 engine.faces().fluidInputs());
@@ -231,7 +231,7 @@ class EnergyConverterCatalogTest {
         assertTrue(engine.policy().sourceResolution().contains(
                 "MISSING_PARTIAL_OR_WRONG_IDENTITY_QUARANTINED"));
         assertTrue(engine.policy().sourceResolution().contains(
-                "MOTOR_LIQUID_BACK_PUSH_BUFFER"));
+                "MOTOR_LIQUID_BACK_PUSH_VENT"));
         assertEquals(
                 java.util.List.of("SIDES"),
                 engine.faces().fluidInputs());

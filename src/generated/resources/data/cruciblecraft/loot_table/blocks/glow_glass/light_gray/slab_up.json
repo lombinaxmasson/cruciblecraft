@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "cruciblecraft:glow_glass/light_gray/slab_up",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "type": "double"
+                  }
+                }
+              ],
+              "count": 2.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "cruciblecraft:glow_glass/light_gray/slab_up"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "cruciblecraft:blocks/glow_glass/light_gray/slab_up"
+}

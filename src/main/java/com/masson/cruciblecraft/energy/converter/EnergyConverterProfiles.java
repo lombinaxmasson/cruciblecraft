@@ -91,7 +91,7 @@ final class EnergyConverterProfiles {
                                 24,
                                 "STATE_DEPENDENT_MOUTPUT_HALF_TO_DOUBLE",
                                 "Bronze emits (nominal*(state+1))/16 KU/t; active when stored>tOutput and tOutput*2>=nominal (inclusive 6-24).",
-                                "Live on SteamEngineBlockEntity: DistW side push, BUFFER_THEN_DRAIN leftover, soft-hammer and KU-full steam vent stop."),
+                                "Live on SteamEngineBlockEntity: BACK steam, all-batch convert, DistW SIDES then trash, KU overflow vent-stop, soft hammer."),
                         List.of(
                                 "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/"
                                         + "Loader_MultiTileEntities.java:"
@@ -121,15 +121,15 @@ final class EnergyConverterProfiles {
                 conservation(
                         "STEAM", 200, "NONE", 0,
                         "KU", 50, "cruciblecraft:water_distilled", 1),
-                exhaust("cruciblecraft:water_distilled", "BUFFER_THEN_DRAIN", 16_000),
+                exhaust("cruciblecraft:water_distilled", "PUSH_THEN_TRASH", 16_000),
                 kind.faces(),
                 policy(
-                        "NO_STEAM_KU_FULL_OR_EXHAUST_FULL",
+                        "STOPPED_OR_NO_STEAM",
                         "KEEP_STEAM_BUFFERED",
                         bronze
-                                ? "EXACT_STANDARD_BRONZE_SOURCE_1302; SOURCE_BACKED_200_MB_TO_50_KU_AT_4_MB_PER_KU; SOURCE_DERIVED_NOMINAL_24_DIV_STEAM_PER_EU_2_EQUALS_12_KU_MOUTPUT; DESIGN_POLICY_FIXED_OUTPUT_12_KU_PER_TICK; LIVE_STATE_DEPENDENT_6_TO_24; DISTW_SIDE_BUFFER_THEN_DRAIN; SOFT_HAMMER_AND_STEAM_VENT_STOP"
+                                ? "EXACT_STANDARD_BRONZE_SOURCE_1302; SOURCE_BACKED_200_MB_TO_50_KU_AT_4_MB_PER_KU; SOURCE_DERIVED_NOMINAL_24_DIV_STEAM_PER_EU_2_EQUALS_12_KU_MOUTPUT; DESIGN_POLICY_FIXED_OUTPUT_12_KU_PER_TICK; LIVE_STATE_DEPENDENT_6_TO_24; DISTW_SIDE_PUSH_THEN_TRASH; SOFT_HAMMER_AND_STEAM_VENT_STOP"
                                 : "SOURCE_DERIVED_NOMINAL_KU_PACKET_" + packet
-                                        + "; LIVE_STATE_DEPENDENT_6_TO_24; DISTW_SIDE_BUFFER_THEN_DRAIN; SOFT_HAMMER_AND_STEAM_VENT_STOP"),
+                                        + "; LIVE_STATE_DEPENDENT_6_TO_24; DISTW_SIDE_PUSH_THEN_TRASH; SOFT_HAMMER_AND_STEAM_VENT_STOP"),
                 semantics,
                 16_000,
                 1_024);
@@ -164,7 +164,7 @@ final class EnergyConverterProfiles {
                         "KEEP_RECIPE_ENERGY_IN_RU_BUFFER_AND_EMIT_ONE_PACKET_PER_TICK",
                         "EXACT_SOURCE_" + tier.sourceId()
                                 + "_MOTOR_LIQUID_" + packet
-                                + "_RU_10000_BPS; CURRENT_KINETIC_ROTATION_IDENTITY_REQUIRED; MISSING_PARTIAL_OR_WRONG_IDENTITY_QUARANTINED; MOTOR_LIQUID_BACK_PUSH_BUFFER"),
+                                + "_RU_10000_BPS; CURRENT_KINETIC_ROTATION_IDENTITY_REQUIRED; MISSING_PARTIAL_OR_WRONG_IDENTITY_QUARANTINED; MOTOR_LIQUID_BACK_PUSH_VENT"),
                 null,
                 tanks,
                 scale(65_536, 16, (int) packet));

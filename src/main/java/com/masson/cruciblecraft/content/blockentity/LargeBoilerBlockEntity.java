@@ -116,6 +116,21 @@ public final class LargeBoilerBlockEntity extends BlockEntity
         return steam;
     }
 
+    /** GT6 LargeBoiler: trash water if present, otherwise steam. */
+    public boolean trashWithPlunger() {
+        if (!water.isEmpty()) {
+            water.setFluid(FluidStack.EMPTY);
+            setChanged();
+            return true;
+        }
+        if (steam.isEmpty()) {
+            return false;
+        }
+        steam.setFluid(FluidStack.EMPTY);
+        setChanged();
+        return true;
+    }
+
     public boolean pluginQuarantined() {
         return pluginQuarantined;
     }

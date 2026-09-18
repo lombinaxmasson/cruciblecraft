@@ -6,6 +6,7 @@ import com.masson.cruciblecraft.content.storage.ILogisticsStorage;
 import com.masson.cruciblecraft.content.storage.MassStorageClicks;
 import com.masson.cruciblecraft.content.storage.MassStorageHandler;
 import com.masson.cruciblecraft.content.storage.MassStorageSidedHandler;
+import com.masson.cruciblecraft.content.storage.StorageClientSync;
 import com.masson.cruciblecraft.content.storage.StorageVariant;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 
@@ -14,6 +15,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Containers;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -50,6 +52,7 @@ public final class MassStorageBlockEntity extends BlockEntity
         this.inventory = new MassStorageHandler(variant.capacity(), () -> {
             inventoryChanged = true;
             setChanged();
+            StorageClientSync.send(this);
         });
     }
 
@@ -256,6 +259,18 @@ public final class MassStorageBlockEntity extends BlockEntity
 
     public void loadForTest(CompoundTag tag, HolderLookup.Provider registries) {
         loadAdditional(tag, registries);
+    }
+
+    @Override
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        CompoundTag tag = new CompoundTag();
+        saveAdditional(tag, registries);
+        return tag;
+    }
+
+    @Override
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override

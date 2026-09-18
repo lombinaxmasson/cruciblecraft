@@ -2,6 +2,10 @@ package com.masson.cruciblecraft.energy.heatexchanger;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.masson.cruciblecraft.api.tool.ToolAction;
+import com.masson.cruciblecraft.api.tool.ToolInteractable;
+import com.masson.cruciblecraft.api.tool.ToolResult;
+import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 
 import net.minecraft.core.BlockPos;
@@ -11,6 +15,7 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -32,7 +37,8 @@ import net.neoforged.neoforge.fluids.FluidUtil;
  * Single-block GT6 heat exchanger. Not an {@code EnergyConverterHost}: Jade
  * must not look the identity up in the converter catalog.
  */
-public final class HeatExchangerBlock extends Block implements EntityBlock {
+public final class HeatExchangerBlock extends Block
+        implements EntityBlock, ToolInteractable {
     public static final DirectionProperty FACING =
             BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
@@ -74,6 +80,16 @@ public final class HeatExchangerBlock extends Block implements EntityBlock {
     }
 
     @Override
+    public ToolResult useTool(ToolAction action, UseOnContext context) {
+        if (action == ToolAction.PLUNGER
+                && context.getLevel().getBlockEntity(context.getClickedPos())
+                        instanceof HeatExchangerBlockEntity exchanger) {
+            return ToolClick.plunger(context, exchanger.trashWithPlunger());
+        }
+        return ToolResult.PASS;
+    }
+
+    @Override
     protected ItemInteractionResult useItemOn(
             ItemStack stack,
             BlockState state,
@@ -82,6 +98,11 @@ public final class HeatExchangerBlock extends Block implements EntityBlock {
             Player player,
             InteractionHand hand,
             BlockHitResult hit) {
+        ItemInteractionResult tool = ToolClick.useItemOn(
+                stack, level, player, hand, hit);
+        if (tool != ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION) {
+            return tool;
+        }
         if (FluidUtil.getFluidHandler(stack).isEmpty()) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }

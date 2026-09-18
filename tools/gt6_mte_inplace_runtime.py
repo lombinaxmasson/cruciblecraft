@@ -834,9 +834,19 @@ def _write_models(rows: list[dict[str, Any]]) -> None:
         path = str(row["dummy_path"])
         texture = f"cruciblecraft:block/gt6_import/mte/{_texture_name(kind)}"
         model_name = f"mte_inplace_{kind.lower()}"
+        storage_parent = {
+            "BARREL": "cruciblecraft:block/storage_mass_barrel",
+            "BOOKSHELF": "cruciblecraft:block/storage_bookshelf_metal",
+            "BOTTLE_CRATE": "cruciblecraft:block/storage_bottle_crate_wood",
+            "DRAWER": "cruciblecraft:block/storage_drawer",
+            "LOCKER": "cruciblecraft:block/storage_locker",
+            "MASS_STORAGE": "cruciblecraft:block/storage_mass",
+        }.get(kind)
         _write_json(
             BLOCK_MODELS / f"{model_name}.json",
-            {
+            {"parent": storage_parent}
+            if storage_parent
+            else {
                 "parent": "minecraft:block/cube_all",
                 "textures": {"all": texture},
             },

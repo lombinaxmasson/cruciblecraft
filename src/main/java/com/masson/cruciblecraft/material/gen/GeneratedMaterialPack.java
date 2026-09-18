@@ -36,6 +36,7 @@ import com.masson.cruciblecraft.content.item.BathIdentityCatalog;
 import com.masson.cruciblecraft.content.item.BathMteIdentityCatalog;
 import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
+import com.masson.cruciblecraft.content.item.GtBuildingBlockCatalog;
 import com.masson.cruciblecraft.content.item.SemanticObjectCatalog;
 import com.masson.cruciblecraft.content.item.SmelterMteIdentityCatalog;
 import com.masson.cruciblecraft.localization.LanguageNames;
@@ -58,14 +59,19 @@ public final class GeneratedMaterialPack {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final String OUTPUT_GENERATOR_IDENTITY = outputGeneratorIdentity();
     private static final Set<String> ITEM_OVERLAY_TEXTURES = Set.of(
+            "arrow_gt_plastic",
+            "arrow_gt_wood",
             "crushed_ore",
+            "dust_div72",
             "fine_wire",
-            "tiny_crushed_ore",
+            "plant_gt_berry",
+            "plant_gt_blossom",
+            "plant_gt_twig",
             "plate_gem",
             "ring",
             "rock",
-            "dust_div72",
-            "storage_dust");
+            "storage_dust",
+            "tiny_crushed_ore");
     private static volatile Roots roots = new Roots(null, null);
 
     private GeneratedMaterialPack() {}
@@ -158,6 +164,7 @@ public final class GeneratedMaterialPack {
         Map<ResourceLocation, List<String>> aggregateBlockTags = new LinkedHashMap<>();
         List<String> aggregateOreTags = new ArrayList<>();
         List<String> mineableOres = new ArrayList<>();
+        List<String> mineableShovels = new ArrayList<>();
         List<String> stoneToolOres = new ArrayList<>();
         List<String> ironToolOres = new ArrayList<>();
         for (MaterialDefinition material : materials) {
@@ -261,10 +268,14 @@ public final class GeneratedMaterialPack {
                                     ignored -> new ArrayList<>())
                             .add("#" + tagNamespace + ":" + formTag + "/"
                                     + material.tagName());
-                    mineableOres.add(itemId);
-                    if (placeableStorage || placeableCasing) {
-                        (material.tier() >= 2 ? ironToolOres : stoneToolOres)
-                                .add(itemId);
+                    if (form.equals(MaterialPrefixes.STORAGE_DUST)) {
+                        mineableShovels.add(itemId);
+                    } else {
+                        mineableOres.add(itemId);
+                        if (placeableStorage || placeableCasing) {
+                            (material.tier() >= 2 ? ironToolOres : stoneToolOres)
+                                    .add(itemId);
+                        }
                     }
                     files.put(
                             "data/" + CrucibleCraft.MODID
@@ -298,6 +309,7 @@ public final class GeneratedMaterialPack {
         }
         addTag(files, "data/c/tags/block/ores.json", aggregateOreTags);
         addTag(files, "data/minecraft/tags/block/mineable/pickaxe.json", mineableOres);
+        addTag(files, "data/minecraft/tags/block/mineable/shovel.json", mineableShovels);
         addTag(files, "data/minecraft/tags/block/needs_stone_tool.json", stoneToolOres);
         addTag(files, "data/minecraft/tags/block/needs_iron_tool.json", ironToolOres);
         return Map.copyOf(files);
@@ -336,7 +348,7 @@ public final class GeneratedMaterialPack {
                     continue;
                 }
                 if (isPlaceableStorage(material, form)) {
-                    addStorageClientFiles(files, material);
+                    addStorageClientFiles(files, material, form);
                     putBlockEnglish(
                             oreTranslations,
                             material.registryName(form),
@@ -520,6 +532,8 @@ public final class GeneratedMaterialPack {
         addBlockObjectAssets(files, english, chinese, GtBlockObjectCatalog.variants());
         addBlockObjectAssets(
                 files, english, chinese, BathRemainderBlockObjectCatalog.variants());
+        addBlockObjectAssets(
+                files, english, chinese, GtBuildingBlockCatalog.variants());
     }
 
     private static <T> void addIdentityLang(
@@ -571,30 +585,6 @@ public final class GeneratedMaterialPack {
                             variant.chineseName(),
                             true)),
                     value -> value);
-            String path = variant.registryPath();
-            String modelId = CrucibleCraft.MODID + ":block/" + path;
-            JsonObject blockstate = new JsonObject();
-            JsonObject variantsJson = new JsonObject();
-            JsonObject def = new JsonObject();
-            def.addProperty("model", modelId);
-            variantsJson.add("", def);
-            blockstate.add("variants", variantsJson);
-            files.put(
-                    "assets/" + CrucibleCraft.MODID + "/blockstates/" + path + ".json",
-                    GSON.toJson(blockstate));
-            JsonObject blockModel = new JsonObject();
-            blockModel.addProperty("parent", "minecraft:block/cube_all");
-            JsonObject textures = new JsonObject();
-            textures.addProperty("all", variant.texture());
-            blockModel.add("textures", textures);
-            files.put(
-                    "assets/" + CrucibleCraft.MODID + "/models/block/" + path + ".json",
-                    GSON.toJson(blockModel));
-            JsonObject itemModel = new JsonObject();
-            itemModel.addProperty("parent", modelId);
-            files.put(
-                    "assets/" + CrucibleCraft.MODID + "/models/item/" + path + ".json",
-                    GSON.toJson(itemModel));
         }
     }
 
@@ -836,11 +826,13 @@ public final class GeneratedMaterialPack {
     }
 
     private static void addStorageClientFiles(
-            Map<String, String> files, MaterialDefinition material) {
-        addSharedCubeClientFiles(
-                files,
-                material.registryName(MaterialPrefixes.BLOCK),
-                CrucibleCraft.MODID + ":block/material_storage");
+            Map<String, String> files,
+            MaterialDefinition material,
+            MaterialPrefix form) {
+        String model = form.equals(MaterialPrefixes.STORAGE_DUST)
+                ? CrucibleCraft.MODID + ":block/material_storage_dust"
+                : CrucibleCraft.MODID + ":block/material_storage";
+        addSharedCubeClientFiles(files, material.registryName(form), model);
     }
 
     private static void addCasingClientFiles(
@@ -1007,7 +999,8 @@ public final class GeneratedMaterialPack {
 
     private static boolean isPlaceableStorage(
             MaterialDefinition material, MaterialPrefix form) {
-        return form.equals(MaterialPrefixes.BLOCK)
+        return (form.equals(MaterialPrefixes.BLOCK)
+                        || form.equals(MaterialPrefixes.STORAGE_DUST))
                 && !material.formItems().containsKey(form);
     }
 

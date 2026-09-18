@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.content.blockentity;
 
 import com.masson.cruciblecraft.content.block.BookshelfBlock;
 import com.masson.cruciblecraft.content.menu.StorageMenu;
+import com.masson.cruciblecraft.content.storage.StorageClientSync;
 import com.masson.cruciblecraft.content.storage.StorageFilters;
 import com.masson.cruciblecraft.content.storage.StorageVariant;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
@@ -12,6 +13,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -49,6 +51,7 @@ public final class BookshelfBlockEntity extends BlockEntity implements MenuProvi
             @Override
             protected void onContentsChanged(int slot) {
                 setChanged();
+                StorageClientSync.send(BookshelfBlockEntity.this);
             }
         };
     }
@@ -103,6 +106,18 @@ public final class BookshelfBlockEntity extends BlockEntity implements MenuProvi
 
     public void loadForTest(CompoundTag tag, HolderLookup.Provider registries) {
         loadAdditional(tag, registries);
+    }
+
+    @Override
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        CompoundTag tag = new CompoundTag();
+        saveAdditional(tag, registries);
+        return tag;
+    }
+
+    @Override
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override

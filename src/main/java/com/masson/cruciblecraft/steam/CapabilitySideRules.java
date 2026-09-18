@@ -15,12 +15,12 @@ public final class CapabilitySideRules {
     }
 
     public static boolean engineAcceptsSteam(Face front, Face side) {
-        return side == Face.UNSIDED || side != front;
+        return side != Face.UNSIDED && side == opposite(front);
     }
 
     /**
      * GT6 {@code FACING_SIDES}: every face except front and back. DistW is
-     * pushed here; the back remains steam-only in {@code kinds.json}.
+     * pushed here; steam fill stays {@code OPOS[mFacing]} (BACK) only.
      */
     public static boolean engineExposesExhaust(Face front, Face side) {
         return side != Face.UNSIDED

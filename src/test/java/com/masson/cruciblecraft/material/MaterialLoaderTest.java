@@ -69,6 +69,18 @@ class MaterialLoaderTest {
         assertTrue(loaded.containsKey("iron"));
     }
 
+    @Test
+    void chromiumUsesTranslationKeyAndIsNotFurnaceSmeltable(
+            @TempDir Path configDirectory) {
+        Map<String, MaterialDefinition> loaded = MaterialLoader.load(configDirectory);
+        MaterialDefinition chromium = loaded.get("chromium");
+        assertTrue(chromium.nameKey().isEmpty());
+        assertEquals("material.cruciblecraft.chromium", chromium.translationKey());
+        assertFalse(chromium.furnaceSmeltable());
+        assertTrue(loaded.get("copper").furnaceSmeltable());
+        assertFalse(loaded.get("iron").furnaceSmeltable());
+    }
+
     private static MaterialDefinition material(
             String id,
             Map<String, Integer> composition) {

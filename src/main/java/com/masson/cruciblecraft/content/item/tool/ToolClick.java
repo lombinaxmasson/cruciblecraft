@@ -6,6 +6,8 @@ import com.masson.cruciblecraft.api.tool.ToolInteractable;
 import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.item.MaterialToolItem;
 
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
@@ -64,6 +66,25 @@ public final class ToolClick {
                 context.getClickedFace(),
                 context.getClickedPos(),
                 context.isInside());
+    }
+
+    public static ToolResult plunger(UseOnContext context, boolean emptied) {
+        Level level = context.getLevel();
+        if (level.isClientSide) {
+            return ToolResult.SUCCESS;
+        }
+        if (!emptied) {
+            return ToolResult.PASS;
+        }
+        hurt(context);
+        level.playSound(
+                null,
+                context.getClickedPos(),
+                SoundEvents.BUCKET_EMPTY,
+                SoundSource.BLOCKS,
+                0.6F,
+                0.6F);
+        return ToolResult.SUCCESS;
     }
 
     public static void hurt(UseOnContext context) {

@@ -63,6 +63,24 @@ public interface MachineCoverHost {
 
     boolean removeCover(Direction side, net.minecraft.world.entity.player.Player player);
 
+    void dropCovers();
+
+    default boolean allowCover(Direction side) {
+        return true;
+    }
+
+    default boolean switchableOnOff() {
+        return false;
+    }
+
+    default boolean getStateOnOff() {
+        return true;
+    }
+
+    default boolean setStateOnOff(boolean on) {
+        return getStateOnOff();
+    }
+
     long gameTime();
 
     Level level();

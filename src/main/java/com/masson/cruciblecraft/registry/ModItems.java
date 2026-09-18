@@ -23,6 +23,7 @@ import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.item.MaterialCasingBlockItem;
 import com.masson.cruciblecraft.content.item.MaterialItem;
 import com.masson.cruciblecraft.content.item.PrefixMaterialItem;
+import com.masson.cruciblecraft.content.item.MaterialDustBlockItem;
 import com.masson.cruciblecraft.content.item.MaterialStorageBlockItem;
 import com.masson.cruciblecraft.content.item.CableBlockItem;
 import com.masson.cruciblecraft.content.item.CatalogNamedBlockItem;
@@ -43,6 +44,7 @@ import com.masson.cruciblecraft.content.mte.MteInPlaceCatalog;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
+import com.masson.cruciblecraft.content.item.GtBuildingBlockCatalog;
 import com.masson.cruciblecraft.content.item.BathIdentityCatalog;
 import com.masson.cruciblecraft.content.item.GtIndicatorFlowerItem;
 import com.masson.cruciblecraft.content.item.GtIndicatorGrassItem;
@@ -657,6 +659,10 @@ public final class ModItems {
             net.minecraft.resources.ResourceLocation,
             DeferredItem<BlockItem>> BATH_REMAINDER_BLOCK_OBJECT_ITEMS =
                     registerBathRemainderBlockObjectItems();
+    private static final Map<
+            net.minecraft.resources.ResourceLocation,
+            DeferredItem<BlockItem>> GT_BUILDING_BLOCK_OBJECT_ITEMS =
+                    registerGtBuildingBlockObjectItems();
     public static final DeferredItem<BlockItem> STEEL_DUST_FUNNEL =
             ITEMS.registerSimpleBlockItem(
                     "steel_dust_funnel", ModBlocks.STEEL_DUST_FUNNEL);
@@ -1062,6 +1068,13 @@ public final class ModItems {
                             registryName,
                             () -> new MaterialStorageBlockItem(
                                     ModBlocks.storageBlock(material.id()).get(),
+                                    new Item.Properties()));
+                } else if (ModBlocks.hasDustBlock(material.id())
+                        && form.equals(MaterialPrefixes.STORAGE_DUST)) {
+                    item = ITEMS.register(
+                            registryName,
+                            () -> new MaterialDustBlockItem(
+                                    ModBlocks.dustBlock(material.id()).get(),
                                     new Item.Properties()));
                 } else if (ModBlocks.hasCasingBlock(material.id(), form)) {
                     item = ITEMS.register(
@@ -1873,6 +1886,34 @@ public final class ModItems {
         return java.util.Collections.unmodifiableMap(items);
     }
 
+    private static Map<ResourceLocation, DeferredItem<BlockItem>>
+            registerGtBuildingBlockObjectItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<BlockItem>> items =
+                new LinkedHashMap<>();
+        for (GtBlockObjectCatalog.Variant variant : GtBuildingBlockCatalog.variants()) {
+            DeferredItem<BlockItem> item = ITEMS.register(
+                    variant.registryPath(),
+                    () -> new CatalogNamedBlockItem(
+                            ModBlocks.gtBuildingBlockObjectBlocksById()
+                                    .get(variant.id())
+                                    .get(),
+                            new Item.Properties(),
+                            variant.englishName(),
+                            variant.chineseName()));
+            if (items.put(variant.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate GT building-block item " + variant.id());
+            }
+        }
+        if (items.size() != GtBuildingBlockCatalog.VARIANT_COUNT) {
+            throw new IllegalStateException(
+                    "GT building-block item registration drifted from "
+                            + GtBuildingBlockCatalog.VARIANT_COUNT
+                            + " variants");
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
     public static Map<ResourceLocation, DeferredItem<BlockItem>>
             gtBlockObjectItemsById() {
         return GT_BLOCK_OBJECT_ITEMS;
@@ -1889,6 +1930,15 @@ public final class ModItems {
 
     public static Collection<DeferredItem<BlockItem>> bathRemainderBlockObjectItems() {
         return BATH_REMAINDER_BLOCK_OBJECT_ITEMS.values();
+    }
+
+    public static Map<ResourceLocation, DeferredItem<BlockItem>>
+            gtBuildingBlockObjectItemsById() {
+        return GT_BUILDING_BLOCK_OBJECT_ITEMS;
+    }
+
+    public static Collection<DeferredItem<BlockItem>> gtBuildingBlockObjectItems() {
+        return GT_BUILDING_BLOCK_OBJECT_ITEMS.values();
     }
 
     private static DeferredItem<BlockItem> tieredProcessingItem(String path) {
@@ -2032,6 +2082,9 @@ public final class ModItems {
         LinkedHashMap<ResourceLocation, DeferredItem<Item>> items =
                 new LinkedHashMap<>();
         for (SemanticObjectCatalog.Identity identity : SemanticObjectCatalog.identities()) {
+            if (GtBuildingBlockCatalog.find(identity.id()) != null) {
+                continue;
+            }
             DeferredItem<Item> item = ITEMS.register(
                     identity.registryPath(),
                     () -> createSemanticIdentityItem(identity));
@@ -2040,10 +2093,13 @@ public final class ModItems {
                         "Duplicate semantic identity item " + identity.id());
             }
         }
-        if (items.size() != SemanticObjectCatalog.VARIANT_COUNT) {
+        int expected = SemanticObjectCatalog.VARIANT_COUNT
+                - GtBuildingBlockCatalog.PROMOTED_LEFTOVER_COUNT;
+        if (items.size() != expected) {
             throw new IllegalStateException(
                     "Semantic identity item registration drifted from "
-                            + SemanticObjectCatalog.VARIANT_COUNT);
+                            + expected
+                            + " leftover identities");
         }
         return java.util.Collections.unmodifiableMap(items);
     }

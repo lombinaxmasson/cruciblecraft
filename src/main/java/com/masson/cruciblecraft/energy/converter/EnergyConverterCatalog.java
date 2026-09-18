@@ -137,7 +137,7 @@ public final class EnergyConverterCatalog {
                         engine.conservation().exhaust())
                 || !"cruciblecraft:water_distilled".equals(
                         engine.exhaust().identity())
-                || !"BUFFER_THEN_DRAIN".equals(engine.exhaust().mode())
+                || !"PUSH_THEN_TRASH".equals(engine.exhaust().mode())
                 || engineSemantics == null
                 || !"SOURCE_BACKED".equals(
                         engineSemantics.conservation().classification())
@@ -191,7 +191,7 @@ public final class EnergyConverterCatalog {
                 || !fuelEngine.faces().fluidOutputs().equals(List.of("BACK"))
                 || !fuelEngine.faces().fluidInputs().equals(List.of("SIDES"))
                 || !fuelEngine.policy().sourceResolution().contains(
-                        "MOTOR_LIQUID_BACK_PUSH_BUFFER")) {
+                        "MOTOR_LIQUID_BACK_PUSH_VENT")) {
             throw new IllegalStateException(
                     "Kinetic converter rows drifted");
         }

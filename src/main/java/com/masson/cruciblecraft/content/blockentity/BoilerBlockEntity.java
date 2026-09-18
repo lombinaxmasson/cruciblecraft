@@ -287,6 +287,28 @@ public final class BoilerBlockEntity extends BlockEntity implements IEnergyHandl
     }
     public int waterAmount() { return water.getFluidAmount(); }
     public int steamAmount() { return steam.getFluidAmount(); }
+
+    public boolean fillSteam(int amount) {
+        int filled = steam.fill(
+                new FluidStack(ModFluids.STEAM_SOURCE.get(), amount),
+                IFluidHandler.FluidAction.EXECUTE);
+        return filled == amount;
+    }
+
+    /** GT6 BoilerTank: trash water if present, otherwise steam. */
+    public boolean trashWithPlunger() {
+        if (!water.isEmpty()) {
+            water.setFluid(FluidStack.EMPTY);
+            markMutation();
+            return true;
+        }
+        if (steam.isEmpty()) {
+            return false;
+        }
+        steam.setFluid(FluidStack.EMPTY);
+        markMutation();
+        return true;
+    }
     public int accumulatedHu() {
         return heatUnitsForConversion();
     }

@@ -1,7 +1,7 @@
 package com.masson.cruciblecraft.recipe.crafting;
 
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
-import com.masson.cruciblecraft.content.item.MaterialFormItem;
+import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.machine.ToolMaterialRules;
 import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
@@ -29,7 +29,13 @@ import net.minecraft.world.level.Level;
 /**
  * GT6 {@code AdvancedCraftingTool}: shapeless tool head plus a wooden stick.
  *
- * <p>Handle materials besides {@code minecraft:stick} are not invented.
+ * <p>Heads are live material stacks ({@code PrefixMaterialItem} or unique
+ * {@code MaterialItem}), not a bare prefix Item. Handle materials besides
+ * {@code minecraft:stick} are not invented.
+ *
+ * <p>This matcher stays one recipe per tool kind. EMI lists the per-material
+ * rows the way GT6 {@code RM.ToolHeads} did, not a single "any head → iron"
+ * crafting preview.
  */
 public final class ToolHeadAssemblyRecipe implements CraftingRecipe {
     public static final MapCodec<ToolHeadAssemblyRecipe> CODEC =
@@ -95,16 +101,12 @@ public final class ToolHeadAssemblyRecipe implements CraftingRecipe {
 
     @Override
     public NonNullList<Ingredient> getIngredients() {
-        NonNullList<Ingredient> ingredients = NonNullList.create();
-        Item[] heads = BuiltInRegistries.ITEM.stream()
-                .filter(item -> item instanceof MaterialFormItem form
-                        && form.form().equals(headPrefix))
-                .toArray(Item[]::new);
-        if (heads.length > 0) {
-            ingredients.add(Ingredient.of(heads));
-        }
-        ingredients.add(Ingredient.of(Items.STICK));
-        return ingredients;
+        return NonNullList.create();
+    }
+
+    @Override
+    public boolean isSpecial() {
+        return true;
     }
 
     @Override
@@ -144,13 +146,15 @@ public final class ToolHeadAssemblyRecipe implements CraftingRecipe {
                 stick = true;
                 continue;
             }
-            if (stack.getItem() instanceof MaterialFormItem form
-                    && form.form().equals(headPrefix)
-                    && ToolMaterialRules.isAllowed(kind, form.materialId())) {
+            var entry = MaterialUnits.resolve(stack);
+            if (entry.isPresent()
+                    && entry.orElseThrow().form().equals(headPrefix)
+                    && ToolMaterialRules.isAllowed(
+                            kind, entry.orElseThrow().materialId())) {
                 if (material != null) {
                     return null;
                 }
-                material = form.materialId();
+                material = entry.orElseThrow().materialId();
                 continue;
             }
             return null;

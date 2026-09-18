@@ -15,11 +15,10 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 /** Runtime projection of GT6 MultiTileEntityEngineElectric. */
-public final class ElectricEngineBlockEntity extends BlockEntity
+public final class ElectricEngineBlockEntity extends MachineCoverHostBlockEntity
         implements IEnergyHandler {
     private final EnergyConverterProfile profile;
     private final long inputNominal;
@@ -58,6 +57,7 @@ public final class ElectricEngineBlockEntity extends BlockEntity
             BlockPos pos,
             BlockState blockState,
             ElectricEngineBlockEntity engine) {
+        engine.tickCovers();
         if (engine.active
                 && level.getGameTime() % (32L - engine.state) == 0L) {
             engine.piston = (engine.piston + 1) & 3;
@@ -163,6 +163,46 @@ public final class ElectricEngineBlockEntity extends BlockEntity
 
     public boolean stopped() {
         return stopped;
+    }
+
+    @Override
+    public boolean allowCover(Direction side) {
+        return alongFacingAxis(front(), side);
+    }
+
+    @Override
+    public boolean switchableOnOff() {
+        return true;
+    }
+
+    @Override
+    public boolean getStateOnOff() {
+        return !stopped;
+    }
+
+    @Override
+    public boolean setStateOnOff(boolean on) {
+        boolean nextStopped = !on;
+        if (stopped != nextStopped) {
+            stopped = nextStopped;
+            setChanged();
+        }
+        return !stopped;
+    }
+
+    @Override
+    public boolean runningActively() {
+        return active;
+    }
+
+    @Override
+    public long energyStored() {
+        return electric.stored();
+    }
+
+    @Override
+    public long energyCapacity() {
+        return electric.capacity();
     }
 
     public boolean overcharged() {

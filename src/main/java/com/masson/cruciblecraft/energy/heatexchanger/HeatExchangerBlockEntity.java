@@ -204,6 +204,24 @@ public final class HeatExchangerBlockEntity extends BlockEntity
         return filled == stack.getAmount();
     }
 
+    /**
+     * GT6 GeneratorHotFluid: trash exhaust if present, otherwise the hot-fluid
+     * tank.
+     */
+    public boolean trashWithPlunger() {
+        if (!output.isEmpty()) {
+            output.setFluid(FluidStack.EMPTY);
+            markPersistentMutation();
+            return true;
+        }
+        if (input.isEmpty()) {
+            return false;
+        }
+        input.setFluid(FluidStack.EMPTY);
+        markPersistentMutation();
+        return true;
+    }
+
     public int inputAmount() {
         return input.getFluidAmount();
     }

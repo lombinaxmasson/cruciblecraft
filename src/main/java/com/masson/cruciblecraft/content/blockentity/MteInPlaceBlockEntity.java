@@ -9,6 +9,7 @@ import com.masson.cruciblecraft.content.mold.MoldHost;
 import com.masson.cruciblecraft.content.mte.MteFoundryTanks;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
+import com.masson.cruciblecraft.content.storage.StorageClientSync;
 import com.masson.cruciblecraft.energy.steam.SteamTurbineCatalog;
 import com.masson.cruciblecraft.energy.steam.SteamTurbineStructure;
 import com.masson.cruciblecraft.material.MaterialCatalog;
@@ -19,6 +20,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Containers;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -58,6 +60,12 @@ public final class MteInPlaceBlockEntity extends BlockEntity
             @Override
             protected void onContentsChanged(int slot) {
                 MteInPlaceBlockEntity.this.setChanged();
+                MteInPlaceKind kind = spec().kind();
+                if (kind == MteInPlaceKind.MASS_STORAGE
+                        || kind == MteInPlaceKind.BOOKSHELF
+                        || kind == MteInPlaceKind.BOTTLE_CRATE) {
+                    StorageClientSync.send(MteInPlaceBlockEntity.this);
+                }
             }
         };
         SteamTurbineCatalog.Profile turbine =
@@ -94,6 +102,33 @@ public final class MteInPlaceBlockEntity extends BlockEntity
 
     public FluidTank tank() {
         return tank;
+    }
+
+    public FluidTank distilledTank() {
+        return distilled;
+    }
+
+    /**
+     * GT6 TurbineSteam trashes the steam tank. LargeTurbineSteam trashes steam
+     * first, then DistW.
+     */
+    public boolean trashWithPlunger() {
+        if (spec().kind() != MteInPlaceKind.STEAM_TURBINE) {
+            return false;
+        }
+        if (!tank.isEmpty()) {
+            tank.setFluid(FluidStack.EMPTY);
+            setChanged();
+            return true;
+        }
+        SteamTurbineCatalog.Profile profile =
+                SteamTurbineCatalog.find(spec().id()).orElse(null);
+        if (profile == null || !profile.large() || distilled.isEmpty()) {
+            return false;
+        }
+        distilled.setFluid(FluidStack.EMPTY);
+        setChanged();
+        return true;
     }
 
     public boolean formed() {
@@ -216,6 +251,18 @@ public final class MteInPlaceBlockEntity extends BlockEntity
             setChanged();
         }
         return taken;
+    }
+
+    @Override
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        CompoundTag tag = new CompoundTag();
+        saveAdditional(tag, registries);
+        return tag;
+    }
+
+    @Override
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override

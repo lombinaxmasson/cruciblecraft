@@ -35,6 +35,7 @@ import com.masson.cruciblecraft.recipe.rule.ToolRules;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeEntry;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
+import com.masson.cruciblecraft.recipe.crafting.PrefixPackRecipe;
 import com.masson.cruciblecraft.recipe.crafting.ShapedCatalystRecipe;
 import com.masson.cruciblecraft.recipe.crafting.ToolHeadAssemblyRecipe;
 import com.masson.cruciblecraft.recipe.crafting.WorkbenchToolRecipePlan;
@@ -1175,6 +1176,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_flint", has(Items.FLINT))
                 .save(output, id("tools/flint_knife"));
         addWorkbenchToolRecipes(output);
+        addDustPrefixPackRecipes(output);
         ToolPatternCatalog.DEFINITIONS.forEach(pattern -> {
             ShapedRecipeBuilder builder = ShapedRecipeBuilder.shaped(
                             RecipeCategory.TOOLS,
@@ -2659,6 +2661,52 @@ public final class ModRecipeProvider extends RecipeProvider {
                 result);
     }
 
+    private static void addDustPrefixPackRecipes(RecipeOutput output) {
+        emitPrefixPack(output, "prefix_pack/tiny_dust_to_dust",
+                MaterialPrefixes.TINY_DUST, 9, MaterialPrefixes.DUST, 1, 0, 1);
+        emitPrefixPack(output, "prefix_pack/small_dust_to_dust",
+                MaterialPrefixes.SMALL_DUST, 4, MaterialPrefixes.DUST, 1, 0, 1);
+        emitPrefixPack(output, "prefix_pack/small_dust_to_dust_x2",
+                MaterialPrefixes.SMALL_DUST, 8, MaterialPrefixes.DUST, 2, 0, 1);
+        emitPrefixPack(output, "prefix_pack/dust_div72_to_tiny_dust",
+                MaterialPrefixes.DUST_DIV72, 8, MaterialPrefixes.TINY_DUST, 1, 0, 1);
+        emitPrefixPack(output, "prefix_pack/dust_to_storage_dust",
+                MaterialPrefixes.DUST, 9, MaterialPrefixes.STORAGE_DUST, 1, 0, 1);
+        emitPrefixPack(output, "prefix_pack/dust_to_tiny_dust",
+                MaterialPrefixes.DUST, 1, MaterialPrefixes.TINY_DUST, 9, 0, 2);
+        emitPrefixPack(output, "prefix_pack/dust_to_small_dust",
+                MaterialPrefixes.DUST, 1, MaterialPrefixes.SMALL_DUST, 4, 1, 2);
+        emitPrefixPack(output, "prefix_pack/tiny_dust_to_dust_div72",
+                MaterialPrefixes.TINY_DUST, 1, MaterialPrefixes.DUST_DIV72, 8, 0, 1);
+        emitPrefixPack(output, "prefix_pack/small_dust_to_dust_div72",
+                MaterialPrefixes.SMALL_DUST, 1, MaterialPrefixes.DUST_DIV72, 18, 0, 1);
+        emitPrefixPack(output, "prefix_pack/storage_dust_to_dust",
+                MaterialPrefixes.STORAGE_DUST, 1, MaterialPrefixes.DUST, 9, 0, 2);
+        emitPrefixPack(output, "prefix_pack/storage_dust_to_small_dust",
+                MaterialPrefixes.STORAGE_DUST, 1, MaterialPrefixes.SMALL_DUST, 36, 1, 2);
+    }
+
+    private static void emitPrefixPack(
+            RecipeOutput output,
+            String path,
+            MaterialPrefix input,
+            int inputCount,
+            MaterialPrefix result,
+            int outputCount,
+            int unpackIndex,
+            int unpackModulus) {
+        output.accept(
+                id(path),
+                new PrefixPackRecipe(
+                        input,
+                        inputCount,
+                        result,
+                        outputCount,
+                        unpackIndex,
+                        unpackModulus),
+                null);
+    }
+
     private static void emitToolHeadAssembly(
             RecipeOutput output, WorkbenchToolRecipePlan.Assembly assembly) {
         output.accept(
@@ -3562,6 +3610,9 @@ public final class ModRecipeProvider extends RecipeProvider {
     private static void addDerivedOreRecipes(
             RecipeOutput output,
             MaterialDefinition material) {
+        if (!material.furnaceSmeltable()) {
+            return;
+        }
         if (!MaterialCatalog.isFormRegistered(material, MaterialPrefixes.INGOT)) {
             return;
         }

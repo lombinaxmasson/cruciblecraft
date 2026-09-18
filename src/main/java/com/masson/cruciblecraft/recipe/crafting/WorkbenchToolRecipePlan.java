@@ -27,7 +27,7 @@ import com.masson.cruciblecraft.material.def.MaterialDefinition;
  */
 public final class WorkbenchToolRecipePlan {
     public static final String STONE_TAG = "PROPERTIES.STONE";
-    public static final int NON_WORKBENCH_GENERATED_RECIPES = 4_548;
+    public static final int NON_WORKBENCH_GENERATED_RECIPES = 3_918;
     private static final MaterialPrefix ROCK =
             new MaterialPrefix("cruciblecraft:rock");
     private static final MaterialPrefix PLATE_GEM =
@@ -131,7 +131,8 @@ public final class WorkbenchToolRecipePlan {
         }
     }
 
-    public record Assembly(String path, String headPrefix, String resultId) {
+    public record Assembly(
+            String path, String headPrefix, String resultId, ToolKind kind) {
         public JsonObject toJson() {
             JsonObject root = new JsonObject();
             root.addProperty("type", "cruciblecraft:tool_head_assembly");
@@ -141,42 +142,81 @@ public final class WorkbenchToolRecipePlan {
         }
     }
 
+    /**
+     * One EMI/recipe-viewer row per eligible material. GT6 registered these
+     * on {@code RM.ToolHeads}; the live crafting matcher stays one shapeless
+     * recipe per tool kind.
+     */
+    public record AssemblyVariant(
+            String path,
+            String headLogicalId,
+            String resultId,
+            String material) {}
+
     public static List<Assembly> assemblies() {
         return List.of(
                 assembly("pickaxe", "tool_head_pickaxe",
-                        "cruciblecraft:material_pickaxe"),
+                        "cruciblecraft:material_pickaxe", ToolKind.PICKAXE),
                 assembly("shovel", "tool_head_shovel",
-                        "cruciblecraft:material_shovel"),
+                        "cruciblecraft:material_shovel", ToolKind.SHOVEL),
                 assembly("axe", "tool_head_axe",
-                        "cruciblecraft:material_axe"),
+                        "cruciblecraft:material_axe", ToolKind.AXE),
                 assembly("hoe", "tool_head_hoe",
-                        "cruciblecraft:material_hoe"),
+                        "cruciblecraft:material_hoe", ToolKind.HOE),
                 assembly("sword", "tool_head_sword",
-                        "cruciblecraft:material_sword"),
+                        "cruciblecraft:material_sword", ToolKind.SWORD),
                 assembly("file", "tool_head_file",
-                        "cruciblecraft:material_file"),
+                        "cruciblecraft:material_file", ToolKind.FILE),
                 assembly("chisel", "tool_head_chisel",
-                        "cruciblecraft:material_chisel"),
+                        "cruciblecraft:material_chisel", ToolKind.CHISEL),
                 assembly("saw", "tool_head_saw",
-                        "cruciblecraft:material_saw"),
+                        "cruciblecraft:material_saw", ToolKind.SAW),
                 assembly("screwdriver", "tool_head_screwdriver",
-                        "cruciblecraft:material_screwdriver"),
+                        "cruciblecraft:material_screwdriver",
+                        ToolKind.SCREWDRIVER),
                 assembly("smithing_hammer", "tool_head_hammer",
-                        HAMMER_ITEM),
+                        HAMMER_ITEM, ToolKind.SMITHING_HAMMER),
                 assembly("soft_hammer", "tool_head_hammer",
-                        SOFT_HAMMER_ITEM),
+                        SOFT_HAMMER_ITEM, ToolKind.SOFT_HAMMER),
                 assembly("spade", "tool_head_spade",
-                        "cruciblecraft:material_spade"),
+                        "cruciblecraft:material_spade", ToolKind.SPADE),
                 assembly("double_axe", "tool_head_axe_double",
-                        "cruciblecraft:material_double_axe"),
+                        "cruciblecraft:material_double_axe", ToolKind.DOUBLE_AXE),
                 assembly("sense", "tool_head_sense",
-                        "cruciblecraft:material_sense"),
+                        "cruciblecraft:material_sense", ToolKind.SENSE),
                 assembly("plow", "tool_head_plow",
-                        "cruciblecraft:material_plow"),
+                        "cruciblecraft:material_plow", ToolKind.PLOW),
                 assembly("construction_pick", "tool_head_construction_pickaxe",
-                        "cruciblecraft:material_construction_pick"),
+                        "cruciblecraft:material_construction_pick",
+                        ToolKind.CONSTRUCTION_PICK),
                 assembly("builder_wand", "tool_head_builderwand",
-                        "cruciblecraft:material_builder_wand"));
+                        "cruciblecraft:material_builder_wand",
+                        ToolKind.BUILDER_WAND));
+    }
+
+    public static List<AssemblyVariant> assemblyVariants(
+            Collection<MaterialDefinition> materials,
+            Map<String, List<MaterialPrefix>> registeredForms) {
+        List<AssemblyVariant> variants = new ArrayList<>();
+        materials.stream()
+                .sorted(Comparator.comparing(MaterialDefinition::id))
+                .forEach(material -> {
+                    Set<MaterialPrefix> forms = formsOf(material, registeredForms);
+                    for (Assembly assembly : assemblies()) {
+                        MaterialPrefix head = new MaterialPrefix(
+                                "cruciblecraft:" + assembly.headPrefix());
+                        if (!forms.contains(head)
+                                || !eligible(material, assembly.kind())) {
+                            continue;
+                        }
+                        variants.add(new AssemblyVariant(
+                                assembly.path() + "/" + material.id(),
+                                item(material, head),
+                                assembly.resultId(),
+                                material.id()));
+                    }
+                });
+        return List.copyOf(variants);
     }
 
     public static List<Recipe> plan(
@@ -1166,8 +1206,9 @@ public final class WorkbenchToolRecipePlan {
     }
 
     private static Assembly assembly(
-            String tool, String headPrefix, String resultId) {
-        return new Assembly("tools/assemble/" + tool, headPrefix, resultId);
+            String tool, String headPrefix, String resultId, ToolKind kind) {
+        return new Assembly(
+                "tools/assemble/" + tool, headPrefix, resultId, kind);
     }
 
     private static Recipe finished(

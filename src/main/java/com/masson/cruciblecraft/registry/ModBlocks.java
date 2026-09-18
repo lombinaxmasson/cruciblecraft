@@ -64,6 +64,8 @@ import com.masson.cruciblecraft.content.block.GtBlockObjectBaleBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectBarsBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectCFoamFreshBlock;
+import com.masson.cruciblecraft.content.block.GtBlockObjectGlassBlock;
+import com.masson.cruciblecraft.content.block.MaterialDustBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectLogBlock;
 import com.masson.cruciblecraft.content.block.GlowtusBlock;
 import com.masson.cruciblecraft.content.block.GtBushBlock;
@@ -125,6 +127,7 @@ import com.masson.cruciblecraft.energy.converter.EnergyConverterFuelSpecs;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterProfile;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
+import com.masson.cruciblecraft.content.item.GtBuildingBlockCatalog;
 import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariant;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
@@ -144,6 +147,7 @@ import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -155,6 +159,8 @@ public final class ModBlocks {
             MATERIAL_ORE_BLOCKS = new LinkedHashMap<>();
     private static final Map<String, DeferredBlock<MaterialStorageBlock>>
             MATERIAL_STORAGE_BLOCKS = new LinkedHashMap<>();
+    private static final Map<String, DeferredBlock<MaterialDustBlock>>
+            MATERIAL_DUST_BLOCKS = new LinkedHashMap<>();
     private static final Map<CasingBlockKey, DeferredBlock<MaterialCasingBlock>>
             MATERIAL_CASING_BLOCKS = new LinkedHashMap<>();
     private static final Map<String, DeferredBlock<RockBlock>>
@@ -577,6 +583,8 @@ public final class ModBlocks {
             GT_BLOCK_OBJECT_BLOCKS = registerGtBlockObjectBlocks();
     private static final Map<ResourceLocation, DeferredBlock<Block>>
             BATH_REMAINDER_BLOCK_OBJECT_BLOCKS = registerBathRemainderBlockObjectBlocks();
+    private static final Map<ResourceLocation, DeferredBlock<Block>>
+            GT_BUILDING_BLOCK_OBJECT_BLOCKS = registerGtBuildingBlockObjectBlocks();
     private static final Map<ResourceLocation, DeferredBlock<? extends StorageHostBlock>>
             STORAGE_BLOCKS = registerStorageBlocks();
     public static final DeferredBlock<DustFunnelBlock> STEEL_DUST_FUNNEL =
@@ -721,6 +729,7 @@ public final class ModBlocks {
     public static void registerMaterials(Collection<MaterialDefinition> definitions) {
         if (!MATERIAL_ORE_BLOCKS.isEmpty()
                 || !MATERIAL_STORAGE_BLOCKS.isEmpty()
+                || !MATERIAL_DUST_BLOCKS.isEmpty()
                 || !MATERIAL_CASING_BLOCKS.isEmpty()
                 || !ROCK_BLOCKS.isEmpty()
                 || !ELECTRICAL_CONDUCTOR_BLOCKS.isEmpty()
@@ -797,6 +806,25 @@ public final class ModBlocks {
             if (previous != null) {
                 throw new IllegalStateException(
                         "Duplicate storage block for " + material.id());
+            }
+        }
+        for (MaterialDefinition material : definitions) {
+            if (!MaterialCatalog.registeredForms(material).contains(
+                    MaterialPrefixes.STORAGE_DUST)
+                    || material.formItems().containsKey(MaterialPrefixes.STORAGE_DUST)) {
+                continue;
+            }
+            DeferredBlock<MaterialDustBlock> previous =
+                    MATERIAL_DUST_BLOCKS.put(
+                            material.id(),
+                            BLOCKS.register(
+                                    material.registryName(MaterialPrefixes.STORAGE_DUST),
+                                    () -> new MaterialDustBlock(
+                                            material.id(),
+                                            dustProperties())));
+            if (previous != null) {
+                throw new IllegalStateException(
+                        "Duplicate dust block for " + material.id());
             }
         }
         for (MaterialDefinition material : definitions) {
@@ -1747,6 +1775,28 @@ public final class ModBlocks {
         return java.util.Collections.unmodifiableMap(blocks);
     }
 
+    private static Map<ResourceLocation, DeferredBlock<Block>>
+            registerGtBuildingBlockObjectBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<Block>> blocks =
+                new LinkedHashMap<>();
+        for (GtBlockObjectCatalog.Variant variant : GtBuildingBlockCatalog.variants()) {
+            DeferredBlock<Block> block = BLOCKS.register(
+                    variant.registryPath(),
+                    () -> createGtBlockObject(variant));
+            if (blocks.put(variant.id(), block) != null) {
+                throw new IllegalStateException(
+                        "Duplicate GT building-block " + variant.id());
+            }
+        }
+        if (blocks.size() != GtBuildingBlockCatalog.VARIANT_COUNT) {
+            throw new IllegalStateException(
+                    "GT building-block registration drifted from "
+                            + GtBuildingBlockCatalog.VARIANT_COUNT
+                            + " variants");
+        }
+        return java.util.Collections.unmodifiableMap(blocks);
+    }
+
     private static Block createGtBlockObject(GtBlockObjectCatalog.Variant variant) {
         if (variant.slab()) {
             return new GtBlockObjectSlabBlock(variant, gtBlockObjectProperties(variant));
@@ -1774,22 +1824,59 @@ public final class ModBlocks {
             return new GtBlockObjectCFoamFreshBlock(
                     variant, gtBlockObjectFreshCFoamProperties());
         }
+        if (variant.glassLike() && !variant.slab()) {
+            return new GtBlockObjectGlassBlock(
+                    variant, gtBlockObjectGlassProperties(variant));
+        }
         return new GtBlockObjectBlock(variant, gtBlockObjectProperties(variant));
     }
 
     private static BlockBehaviour.Properties gtBlockObjectProperties(
             GtBlockObjectCatalog.Variant variant) {
+        if (variant.slab() && variant.glassLike()) {
+            return gtBlockObjectGlassProperties(variant);
+        }
         if (variant.cfoam()) {
             return BlockBehaviour.Properties.of()
                     .mapColor(MapColor.WOOL)
                     .strength(0.8F)
                     .sound(SoundType.WOOL);
         }
+        if (variant.sourceItem().contains("gt.block.sands")) {
+            return BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_BLACK)
+                    .strength(0.5F)
+                    .sound(SoundType.SAND);
+        }
+        if (variant.sourceItem().contains("gt.block.diggable")) {
+            return BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.DIRT)
+                    .strength(0.5F)
+                    .sound(SoundType.GRAVEL);
+        }
         return BlockBehaviour.Properties.of()
                 .mapColor(MapColor.STONE)
                 .strength(1.5F, 6.0F)
                 .requiresCorrectToolForDrops()
                 .sound(SoundType.STONE);
+    }
+
+    private static BlockBehaviour.Properties gtBlockObjectGlassProperties(
+            GtBlockObjectCatalog.Variant variant) {
+        BlockBehaviour.Properties properties = BlockBehaviour.Properties.of()
+                .mapColor(MapColor.NONE)
+                .instrument(NoteBlockInstrument.HAT)
+                .strength(0.5F)
+                .sound(SoundType.GLASS)
+                .noOcclusion()
+                .isValidSpawn((state, getter, pos, type) -> false)
+                .isRedstoneConductor((state, getter, pos) -> false)
+                .isSuffocating((state, getter, pos) -> false)
+                .isViewBlocking((state, getter, pos) -> false);
+        if (variant.glowGlass()) {
+            properties = properties.lightLevel(state -> 15);
+        }
+        return properties;
     }
 
     private static BlockBehaviour.Properties gtBlockObjectLogProperties(
@@ -1837,6 +1924,33 @@ public final class ModBlocks {
 
     public static Collection<DeferredBlock<Block>> bathRemainderBlockObjectBlocks() {
         return BATH_REMAINDER_BLOCK_OBJECT_BLOCKS.values();
+    }
+
+    public static Map<ResourceLocation, DeferredBlock<Block>>
+            gtBuildingBlockObjectBlocksById() {
+        return GT_BUILDING_BLOCK_OBJECT_BLOCKS;
+    }
+
+    public static Collection<DeferredBlock<Block>> gtBuildingBlockObjectBlocks() {
+        return GT_BUILDING_BLOCK_OBJECT_BLOCKS.values();
+    }
+
+    public static DeferredBlock<MaterialDustBlock> dustBlock(String materialId) {
+        DeferredBlock<MaterialDustBlock> block =
+                MATERIAL_DUST_BLOCKS.get(materialId);
+        if (block == null) {
+            throw new IllegalArgumentException(
+                    "No dust block for material " + materialId);
+        }
+        return block;
+    }
+
+    public static boolean hasDustBlock(String materialId) {
+        return MATERIAL_DUST_BLOCKS.containsKey(materialId);
+    }
+
+    public static Collection<DeferredBlock<MaterialDustBlock>> dustBlocks() {
+        return Collections.unmodifiableCollection(MATERIAL_DUST_BLOCKS.values());
     }
 
     private static BlockBehaviour.Properties gtStoneProperties() {
@@ -2205,6 +2319,13 @@ public final class ModBlocks {
                 .strength(5.0F, 6.0F)
                 .requiresCorrectToolForDrops()
                 .sound(SoundType.METAL);
+    }
+
+    private static BlockBehaviour.Properties dustProperties() {
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.SAND)
+                .strength(0.5F, 4.5F)
+                .sound(SoundType.SAND);
     }
 
     private static BlockBehaviour.Properties casingProperties(MaterialPrefix form) {

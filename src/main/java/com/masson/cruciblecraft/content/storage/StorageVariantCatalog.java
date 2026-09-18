@@ -167,6 +167,12 @@ public final class StorageVariantCatalog {
         Integer plankIndex;
         @SerializedName("acquisition_profile")
         String acquisitionProfile;
+        @SerializedName("model_profile")
+        String modelProfile;
+        @SerializedName("representative_material")
+        String representativeMaterial;
+        @SerializedName("expansion_key")
+        String expansionKey;
 
         StorageVariant toVariant() {
             return new StorageVariant(
@@ -182,7 +188,10 @@ public final class StorageVariantCatalog {
                     english,
                     chinese,
                     plankIndex,
-                    acquisitionProfile);
+                    acquisitionProfile,
+                    modelProfile,
+                    representativeMaterial,
+                    expansionKey);
         }
     }
 }

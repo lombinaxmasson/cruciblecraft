@@ -16,7 +16,9 @@ import com.masson.cruciblecraft.machine.generation.FuelGeneratorSpec;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeQuery;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
+import com.masson.cruciblecraft.material.ChemicalFluidRegistrationGate;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
+import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.steam.ExactFluidTransfer;
 
 import net.minecraft.core.BlockPos;
@@ -35,7 +37,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -47,7 +48,7 @@ import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
  * the configured output packet, and every exhaust/energy mutation is gated by
  * a simulation-first check.
  */
-public final class FuelGeneratorBlockEntity extends BlockEntity
+public final class FuelGeneratorBlockEntity extends MachineCoverHostBlockEntity
         implements IEnergyHandler {
     private static final String SCHEMA_KEY =
             "fuel_generator_schema_version";
@@ -57,6 +58,11 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
             "fuel_generator_quarantine";
     /** GT6 {@code MultiTileEntityGeneratorLiquid} {@code mCooldown = 100}. */
     private static final int HEAT_EMIT_COOLDOWN_TICKS = 100;
+    /**
+     * GT6 {@code TE_Behavior_Active_Trinary.mData == 0}: leftover known fuel
+     * is voided after 64 inactive ticks so a different fuel can be filled.
+     */
+    private static final int LEFTOVER_FUEL_SWAP_TICKS = 64;
     private final FuelGeneratorSpec spec;
     private final FuelGeneratorEnergy energy;
     private final FluidTank input;
@@ -76,6 +82,8 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
     private boolean quarantineWarningLogged;
     private int heatEmitCooldown;
     private boolean burning;
+    private boolean stopped;
+    private int leftoverIdleTicks;
 
     public FuelGeneratorBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.FUEL_GENERATOR.get(), pos, state);
@@ -133,6 +141,7 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
             BlockPos pos,
             BlockState state,
             FuelGeneratorBlockEntity generator) {
+        generator.tickCovers();
         generator.tickGeneration();
         generator.pushExhaust();
         emitOutput(level, pos, generator);
@@ -205,6 +214,10 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
             setStatus("identity_quarantined");
             return;
         }
+        if (!spec.requiresIgnition() && stopped) {
+            setStatus("stopped");
+            return;
+        }
         if (spec.requiresIgnition()) {
             if (!burning && heatEmitCooldown <= 0) {
                 Direction facing = front();
@@ -225,18 +238,16 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
         GTRecipe recipe;
         if (activeRecipe == null) {
             if (input.isEmpty()) {
+                leftoverIdleTicks = 0;
                 reset("idle");
                 return;
             }
-            RecipeMap.Match match = spec.requireRecipeMap().findMatch(
-                            new GTRecipeQuery(
-                                    List.of(),
-                                    List.of(input.getFluid())))
-                    .orElse(null);
+            RecipeMap.Match match = findFuel(false);
             if (match == null) {
-                reset("invalid_fuel");
+                voidUnusableFuel();
                 return;
             }
+            leftoverIdleTicks = 0;
             recipe = match.recipe();
             if (spec.validate(recipe).isPresent()) {
                 reset("invalid_recipe");
@@ -301,8 +312,8 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
 
     /**
      * GT6 {@code MultiTileEntityMotorLiquid}: {@code FL.move} exhaust to
-     * {@code OPOS[mFacing]}. Leftover stays in the BUFFER_ALL_OUTPUTS tank
-     * instead of gas-venting or {@code GarbageGT.trash}.
+     * {@code OPOS[mFacing]}, then vent leftover gas when that cell has no
+     * collision.
      */
     private void pushExhaust() {
         if (level == null || level.isClientSide || !spec.pushesExhaust()) {
@@ -313,7 +324,7 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
             return;
         }
         List<Direction> sides = spec.resolvedExhaustSides(front);
-        boolean moved = false;
+        boolean changed = false;
         for (int index = 0; index < outputs.size() && index < sides.size(); index++) {
             FluidTank tank = outputs.get(index);
             if (tank.isEmpty()) {
@@ -328,17 +339,34 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
                     Capabilities.FluidHandler.BLOCK,
                     target,
                     side.getOpposite());
-            if (neighbor == null) {
-                continue;
+            if (neighbor != null
+                    && ExactFluidTransfer.move(
+                            tank, neighbor, tank.getFluidAmount()) > 0) {
+                changed = true;
             }
-            if (ExactFluidTransfer.move(
-                    tank, neighbor, tank.getFluidAmount()) > 0) {
-                moved = true;
+            if (!tank.isEmpty()
+                    && gaseous(tank.getFluid())
+                    && !hasCollision(level, target)) {
+                tank.setFluid(FluidStack.EMPTY);
+                changed = true;
             }
         }
-        if (moved) {
+        if (changed) {
             markPersistentMutation();
         }
+    }
+
+    private static boolean gaseous(FluidStack stack) {
+        return !stack.isEmpty()
+                && ModFluids.chemicalState(stack.getFluid())
+                        .orElse(ChemicalFluidRegistrationGate.State.LIQUID)
+                        == ChemicalFluidRegistrationGate.State.GAS;
+    }
+
+    private static boolean hasCollision(Level level, BlockPos pos) {
+        return !level.getBlockState(pos)
+                .getCollisionShape(level, pos)
+                .isEmpty();
     }
 
     private boolean hasOutputRoom(GTRecipe recipe) {
@@ -352,6 +380,63 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
                 return false;
             }
         }
+        return true;
+    }
+
+    private RecipeMap.Match findFuel(boolean ignoreAmount) {
+        FluidStack offered = input.getFluid();
+        if (offered.isEmpty()) {
+            return null;
+        }
+        FluidStack query = ignoreAmount
+                ? offered.copyWithAmount(Integer.MAX_VALUE)
+                : offered;
+        return spec.requireRecipeMap().findMatch(
+                        new GTRecipeQuery(List.of(), List.of(query)))
+                .orElse(null);
+    }
+
+    /**
+     * GT6 MotorLiquid/HotFluid: unknown fluid is voided immediately; leftover
+     * of a known fuel waits 64 inactive ticks. Burning boxes void both at
+     * once while they are trying to burn.
+     */
+    private void voidUnusableFuel() {
+        boolean knownType = findFuel(true) != null;
+        boolean delaySwap = knownType && !spec.requiresIgnition();
+        if (delaySwap) {
+            leftoverIdleTicks++;
+            if (leftoverIdleTicks < LEFTOVER_FUEL_SWAP_TICKS) {
+                reset("invalid_fuel");
+                return;
+            }
+        }
+        leftoverIdleTicks = 0;
+        input.setFluid(FluidStack.EMPTY);
+        reset("idle");
+    }
+
+    /**
+     * GT6 MotorLiquid: trash the exhaust tank if it holds anything, otherwise
+     * the whole fuel tank. GeneratorLiquid / gas boxes only have the fuel tank.
+     */
+    public boolean trashWithPlunger() {
+        if (spec.pushesExhaust()) {
+            for (FluidTank tank : outputs) {
+                if (tank.isEmpty()) {
+                    continue;
+                }
+                tank.setFluid(FluidStack.EMPTY);
+                markPersistentMutation();
+                return true;
+            }
+        }
+        if (input.isEmpty()) {
+            return false;
+        }
+        input.setFluid(FluidStack.EMPTY);
+        leftoverIdleTicks = 0;
+        markPersistentMutation();
         return true;
     }
 
@@ -419,6 +504,65 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
 
     public int progress() {
         return progress;
+    }
+
+    @Override
+    public int duration() {
+        return duration;
+    }
+
+    public boolean stopped() {
+        return stopped;
+    }
+
+    @Override
+    public boolean switchableOnOff() {
+        return !spec.requiresIgnition()
+                || spec.inputPhase() == FuelGeneratorSpec.InputPhase.GAS;
+    }
+
+    @Override
+    public boolean getStateOnOff() {
+        if (spec.inputPhase() == FuelGeneratorSpec.InputPhase.GAS) {
+            return burning;
+        }
+        return !stopped;
+    }
+
+    @Override
+    public boolean setStateOnOff(boolean on) {
+        if (spec.inputPhase() == FuelGeneratorSpec.InputPhase.GAS) {
+            if (burning && !on) {
+                burning = false;
+                heatEmitCooldown = 0;
+                markPersistentMutation();
+            }
+            return burning;
+        }
+        if (!spec.requiresIgnition()) {
+            boolean nextStopped = !on;
+            if (stopped != nextStopped) {
+                stopped = nextStopped;
+                markPersistentMutation();
+            }
+            return !stopped;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean runningActively() {
+        return burning || activeRecipe != null || progress > 0;
+    }
+
+    @Override
+    public boolean hasFluidTanks() {
+        return true;
+    }
+
+    @Override
+    protected void onHostChanged() {
+        markPersistentMutation();
     }
 
     public int inputAmount() {
@@ -531,7 +675,7 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
         return handles(type, side)
                         && energy.stored() >= spec.outputPacketSize()
                         && outputBudget.claim(
-                                        gameTime(),
+                                        budgetGameTime(),
                                         1L,
                                         spec.maximumOutputPacketsPerTick(),
                                         true)
@@ -552,7 +696,7 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
                 || maximum <= 0L
                 || energy.stored() < spec.outputPacketSize()
                 || outputBudget.claim(
-                                gameTime(),
+                                budgetGameTime(),
                                 maximum,
                                 spec.maximumOutputPacketsPerTick(),
                                 true)
@@ -562,14 +706,14 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
         long available = energy.extract(
                 size,
                 outputBudget.claim(
-                        gameTime(),
+                        budgetGameTime(),
                         maximum,
                         spec.maximumOutputPacketsPerTick(),
                         true),
                 true);
         if (!simulate && level != null && !level.isClientSide) {
             long claimed = outputBudget.claim(
-                    gameTime(),
+                    budgetGameTime(),
                     available,
                     spec.maximumOutputPacketsPerTick(),
                     false);
@@ -598,7 +742,7 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
                 : 0L;
     }
 
-    private long gameTime() {
+    private long budgetGameTime() {
         if (level == null) {
             outputBudget.reset();
             return 0L;
@@ -644,6 +788,7 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
         setChanged();
         markTickMutation();
     }
+
 
     private void markTickMutation() {
         clientSyncPending = true;
@@ -700,6 +845,8 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
         }
         tag.putInt("heat_emit_cooldown", heatEmitCooldown);
         tag.putBoolean("burning", burning);
+        tag.putBoolean("stopped", stopped);
+        tag.putInt("leftover_idle_ticks", leftoverIdleTicks);
     }
 
     @Override
@@ -750,6 +897,8 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
         }
         heatEmitCooldown = Math.max(0, tag.getInt("heat_emit_cooldown"));
         burning = tag.getBoolean("burning");
+        stopped = tag.getBoolean("stopped");
+        leftoverIdleTicks = Math.max(0, tag.getInt("leftover_idle_ticks"));
     }
 
     @Override
@@ -763,6 +912,7 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
         if (!identityQuarantine.isBlank()) {
             tag.putString(QUARANTINE_KEY, identityQuarantine);
         }
+        saveCoverNbt(tag, registries);
         return tag;
     }
 
@@ -781,6 +931,7 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
         progress = Math.max(0, tag.getInt("progress"));
         duration = Math.max(0, tag.getInt("duration"));
         identityQuarantine = tag.getString(QUARANTINE_KEY);
+        loadCoverNbt(tag, registries);
     }
 
     private FuelGeneratorIdentityPolicy.Identity readIdentity(

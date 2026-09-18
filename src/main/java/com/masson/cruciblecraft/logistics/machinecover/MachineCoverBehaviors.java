@@ -76,6 +76,9 @@ public final class MachineCoverBehaviors {
         if (host == null || side == null || cover == null) {
             return false;
         }
+        if (!host.allowCover(side)) {
+            return false;
+        }
         String path = cover.definitionId().getPath();
         String behaviorPath = cover.definition()
                 .map(definition -> definition.behaviorId().getPath())
@@ -140,6 +143,9 @@ public final class MachineCoverBehaviors {
                 : (hasDisplay ? host.coverEnabled() : true));
         host.setCoversStopped(stopped);
         host.setSelectorMode(selectedMode);
+        if (host.switchableOnOff() && controlled) {
+            host.setStateOnOff(enabled);
+        }
         for (Direction side : Direction.values()) {
             PipeCover cover = host.covers().get(side).orElse(null);
             if (cover == null) {
@@ -147,6 +153,16 @@ public final class MachineCoverBehaviors {
             }
             tickOne(host, side, cover, cover.definitionId().getPath());
         }
+    }
+
+    public static boolean isControllerCover(PipeCover cover) {
+        if (cover == null) {
+            return false;
+        }
+        String behaviorPath = cover.definition()
+                .map(definition -> definition.behaviorId().getPath())
+                .orElse("");
+        return CONTROLLERS.contains(behaviorPath);
     }
 
     public static boolean hasSelector(MachineCoverHost host) {
@@ -455,7 +471,11 @@ public final class MachineCoverBehaviors {
                     uv[1])) {
                 return false;
             }
-            host.setCoverEnabled(!host.coverEnabled());
+            boolean next = !host.coverEnabled();
+            host.setCoverEnabled(next);
+            if (host.switchableOnOff()) {
+                host.setStateOnOff(next);
+            }
             return true;
         }
         if ("redstone_emitter".equals(path)) {

@@ -216,6 +216,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     variant,
                     ModBlocks.bathRemainderBlockObjectBlocksById().get(variant.id()).get());
         }
+        for (GtBlockObjectCatalog.Variant variant :
+                com.masson.cruciblecraft.content.item.GtBuildingBlockCatalog.variants()) {
+            registerGtBlockObject(
+                    variant,
+                    ModBlocks.gtBuildingBlockObjectBlocksById().get(variant.id()).get());
+        }
     }
 
     private void registerGtBlockObject(
@@ -327,7 +333,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     private void registerStorage() {
         StorageVariantCatalog.variants().forEach(variant -> {
             var block = ModBlocks.storageBlocksById().get(variant.id()).get();
-            ModelFile model = models().getExistingFile(variant.behavior().model());
+            ModelFile model = models().getExistingFile(variant.model());
             horizontalBlock(block, model);
             simpleBlockItem(block, model);
         });
@@ -353,14 +359,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
             conductorArm(multipart, arm, CableBlock.WEST, 0, 270);
             conductorArm(multipart, arm, CableBlock.EAST, 0, 90);
             if (itemModels.add(specification)) {
-                itemThroughModel(
-                        "conductor/"
-                                + specification.toLowerCase(java.util.Locale.ROOT)
-                                + "_item",
-                        conductorWidth(specification),
-                        conductorSide(specification),
-                        conductorSide(specification),
-                        conductorOverlay(specification));
+                conductorItemModel(specification);
             }
         });
     }
@@ -401,27 +400,176 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     private ModelFile conductorCore(String specification) {
-        return pipeCube(
-                "conductor/"
-                        + specification.toLowerCase(java.util.Locale.ROOT)
-                        + "_core",
-                conductorWidth(specification),
-                false,
-                conductorSide(specification),
-                conductorSide(specification),
-                conductorOverlay(specification));
+        return conductorModel(specification, false);
     }
 
     private ModelFile conductorArm(String specification) {
-        return pipeCube(
-                "conductor/"
-                        + specification.toLowerCase(java.util.Locale.ROOT)
-                        + "_arm",
-                conductorWidth(specification),
-                true,
-                conductorSide(specification),
-                conductorSide(specification),
-                conductorOverlay(specification));
+        return conductorModel(specification, true);
+    }
+
+    private ModelFile conductorModel(String specification, boolean arm) {
+        boolean cable = specification.startsWith("cableGt");
+        float width = conductorWidth(specification);
+        float minimum = 8.0F - width / 2.0F;
+        float maximum = 8.0F + width / 2.0F;
+        ResourceLocation wire = conductorSide(specification);
+        ResourceLocation insulation = conductorInsulation();
+        ResourceLocation wireOverlay = conductorWireOverlay();
+        ResourceLocation jacket = conductorJacket(specification);
+        BlockModelBuilder builder = models()
+                .withExistingParent(
+                        "conductor/"
+                                + specification.toLowerCase(java.util.Locale.ROOT)
+                                + (arm ? "_arm" : "_core"),
+                        mcLoc("block/block"))
+                .renderType("cutout_mipped")
+                .texture("particle", cable ? insulation : wire)
+                .texture("side", wire)
+                .texture("end", cable ? insulation : wire);
+        if (!cable || arm) {
+            builder.texture("overlay", wireOverlay);
+        }
+        if (jacket != null && arm) {
+            builder.texture("insulation", jacket);
+        }
+        Direction endFace = arm ? Direction.NORTH : null;
+        float z1 = arm ? 0.0F : minimum;
+        float z2 = arm ? minimum : maximum;
+        addConductorFaces(
+                builder,
+                minimum,
+                minimum,
+                z1,
+                maximum,
+                maximum,
+                z2,
+                endFace,
+                cable,
+                ConductorLayer.BASE);
+        if (!cable || arm) {
+            addConductorFaces(
+                    builder,
+                    minimum,
+                    minimum,
+                    z1,
+                    maximum,
+                    maximum,
+                    z2,
+                    endFace,
+                    cable,
+                    ConductorLayer.WIRE_OVERLAY);
+        }
+        if (jacket != null && arm) {
+            addConductorFaces(
+                    builder,
+                    minimum,
+                    minimum,
+                    z1,
+                    maximum,
+                    maximum,
+                    z2,
+                    endFace,
+                    cable,
+                    ConductorLayer.INSULATION);
+        }
+        return builder;
+    }
+
+    private ModelFile conductorItemModel(String specification) {
+        boolean cable = specification.startsWith("cableGt");
+        float width = conductorWidth(specification);
+        float minimum = 8.0F - width / 2.0F;
+        float maximum = 8.0F + width / 2.0F;
+        ResourceLocation wire = conductorSide(specification);
+        ResourceLocation insulation = conductorInsulation();
+        ResourceLocation wireOverlay = conductorWireOverlay();
+        ResourceLocation jacket = conductorJacket(specification);
+        BlockModelBuilder builder = models()
+                .withExistingParent(
+                        "conductor/"
+                                + specification.toLowerCase(java.util.Locale.ROOT)
+                                + "_item",
+                        mcLoc("block/block"))
+                .renderType("cutout_mipped")
+                .texture("particle", cable ? insulation : wire)
+                .texture("side", wire)
+                .texture("end", cable ? insulation : wire)
+                .texture("overlay", wireOverlay);
+        if (jacket != null) {
+            builder.texture("insulation", jacket);
+        }
+        addConductorItemFaces(builder, minimum, maximum, cable, ConductorLayer.BASE);
+        addConductorItemFaces(
+                builder, minimum, maximum, cable, ConductorLayer.WIRE_OVERLAY);
+        if (jacket != null) {
+            addConductorItemFaces(
+                    builder, minimum, maximum, cable, ConductorLayer.INSULATION);
+        }
+        return builder;
+    }
+
+    private ResourceLocation conductorInsulation() {
+        return modLoc("block/gt6_import/iconsets/insulation_full");
+    }
+
+    private static void addConductorFaces(
+            BlockModelBuilder builder,
+            float x1,
+            float y1,
+            float z1,
+            float x2,
+            float y2,
+            float z2,
+            Direction endFace,
+            boolean cable,
+            ConductorLayer layer) {
+        float offset = layer.offset();
+        var element = builder.element()
+                .from(x1 - offset, y1 - offset, z1 - offset)
+                .to(x2 + offset, y2 + offset, z2 + offset);
+        for (Direction direction : Direction.values()) {
+            if (endFace != null && direction == endFace.getOpposite()) {
+                continue;
+            }
+            boolean cap = endFace == direction;
+            if (layer.skipCableSide(cable, cap)) {
+                continue;
+            }
+            var face = element.face(direction)
+                    .texture(layer.texture(cable, cap));
+            Integer tint = layer.tintIndex(cable, cap);
+            if (tint != null) {
+                face.tintindex(tint);
+            }
+            face.end();
+        }
+        element.end();
+    }
+
+    private static void addConductorItemFaces(
+            BlockModelBuilder builder,
+            float minimum,
+            float maximum,
+            boolean cable,
+            ConductorLayer layer) {
+        float offset = layer.offset();
+        var element = builder.element()
+                .from(minimum - offset, minimum - offset, 0.0F - offset)
+                .to(maximum + offset, maximum + offset, 16.0F + offset);
+        for (Direction direction : Direction.values()) {
+            boolean cap = direction.getAxis() == Direction.Axis.Z;
+            if (layer.skipCableSide(cable, cap)) {
+                continue;
+            }
+            var face = element.face(direction)
+                    .texture(layer.texture(cable, cap));
+            Integer tint = layer.tintIndex(cable, cap);
+            if (tint != null) {
+                face.tintindex(tint);
+            }
+            face.end();
+        }
+        element.end();
     }
 
     private ResourceLocation conductorSide(String specification) {
@@ -431,7 +579,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
         return modLoc("block/gt6_import/materialicons/copper/wire");
     }
 
-    private ResourceLocation conductorOverlay(String specification) {
+    private ResourceLocation conductorWireOverlay() {
+        return modLoc("block/gt6_import/materialicons/copper/wire_overlay");
+    }
+
+    private ResourceLocation conductorJacket(String specification) {
         return switch (specification) {
             case "cableGt01" ->
                     modLoc("block/gt6_import/iconsets/insulation_tiny");
@@ -443,11 +595,49 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     modLoc("block/gt6_import/iconsets/insulation_large");
             case "cableGt12" ->
                     modLoc("block/gt6_import/iconsets/insulation_huge");
-            default -> specification.startsWith("wireGt")
-                    ? modLoc(
-                            "block/gt6_import/materialicons/copper/wire_overlay")
-                    : null;
+            default -> null;
         };
+    }
+
+    private enum ConductorLayer {
+        BASE(0.0F, "#side", "#end"),
+        WIRE_OVERLAY(0.002F, "#overlay", "#overlay"),
+        INSULATION(0.004F, "#insulation", "#insulation");
+
+        private final float offset;
+        private final String wireTexture;
+        private final String cableSideTexture;
+
+        ConductorLayer(float offset, String wireTexture, String cableSideTexture) {
+            this.offset = offset;
+            this.wireTexture = wireTexture;
+            this.cableSideTexture = cableSideTexture;
+        }
+
+        float offset() {
+            return offset;
+        }
+
+        boolean skipCableSide(boolean cable, boolean cap) {
+            return this != BASE && cable && !cap;
+        }
+
+        String texture(boolean cable, boolean cap) {
+            if (this == BASE && cable && !cap) {
+                return cableSideTexture;
+            }
+            return wireTexture;
+        }
+
+        Integer tintIndex(boolean cable, boolean cap) {
+            if (this == INSULATION) {
+                return 1;
+            }
+            if (this == BASE) {
+                return cable && !cap ? 1 : 0;
+            }
+            return null;
+        }
     }
 
     private static void conductorArm(

@@ -581,7 +581,7 @@ public final class NuclearFissionGameTests {
                         >= SteamConversion.ENGINE_STEAM_PER_BATCH
                         && core.outputTank().getFluid().is(ModFluids.STEAM_SOURCE.get()),
                 "U-238 player path did not produce usable steam");
-        IFluidHandler steamInput = engine.fluids(Direction.NORTH);
+        IFluidHandler steamInput = engine.fluids(Direction.WEST);
         helper.assertTrue(steamInput != null, "Steam engine input missing");
         int moved = Math.min(core.outputTank().getFluidAmount(), 16_000);
         helper.assertTrue(

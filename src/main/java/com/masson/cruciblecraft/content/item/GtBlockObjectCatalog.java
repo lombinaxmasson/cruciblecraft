@@ -43,6 +43,10 @@ public final class GtBlockObjectCatalog {
         return variant;
     }
 
+    public static Variant find(ResourceLocation id) {
+        return CATALOG.byId().get(id);
+    }
+
     public static String sourceRevision() {
         return CATALOG.sourceRevision();
     }
@@ -175,6 +179,22 @@ public final class GtBlockObjectCatalog {
 
         public boolean cfoam() {
             return "cfoam".equals(behavior);
+        }
+
+        public boolean glassLike() {
+            return sourceItem.contains("gt.block.glass")
+                    || "glass".equals(behavior)
+                    || "glow_glass".equals(behavior);
+        }
+
+        public boolean glowGlass() {
+            return sourceItem.contains("gt.block.glass.glow")
+                    || "glow_glass".equals(behavior);
+        }
+
+        public boolean shovelMineable() {
+            return sourceItem.contains("gt.block.diggable")
+                    || sourceItem.contains("gt.block.sands");
         }
     }
 

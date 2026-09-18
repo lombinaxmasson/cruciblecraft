@@ -44,6 +44,20 @@ class BlockArtTest(unittest.TestCase):
             art.identity_layer0(identity),
         )
 
+    def test_glass_shares_one_png_dye_tint_and_translucent(self) -> None:
+        cube = art.resolve("gregtech:gt.block.glass", 0)
+        slab = art.resolve("gregtech:gt.block.glass.slab.0", 15)
+        glow = art.resolve("gregtech:gt.block.glass.glow", 4)
+        self.assertIsNotNone(cube)
+        assert cube is not None
+        self.assertEqual(cube, glow)
+        self.assertEqual("dye", cube["tint"])
+        self.assertTrue(cube["translucent"])
+        self.assertEqual(["iconsets/glass_clear.png"], cube["sources"])
+        assert slab is not None
+        self.assertEqual("slab", slab["model"])
+        self.assertTrue(slab["translucent"])
+
     def test_catalog_covers_expected_binds_without_overlap(self) -> None:
         rows = art.catalog_rows()
         runtimes = [str(row["runtime_id"]) for row in rows]
@@ -51,7 +65,7 @@ class BlockArtTest(unittest.TestCase):
         self.assertEqual(art.EXPECTED_BIND_COUNT, len(set(runtimes)))
         catalogs = {str(row["catalog"]) for row in rows}
         self.assertEqual(
-            {"block_object", "bath_remainder", "stone", "semantic_block"},
+            {"block_object", "bath_remainder", "building_block", "stone", "semantic_block"},
             catalogs,
         )
 

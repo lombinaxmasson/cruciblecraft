@@ -106,14 +106,15 @@ public class ModItemModelProvider extends ItemModelProvider {
                 gtWood(wood.registryPath()));
         ToolPatternCatalog.DEFINITIONS.forEach(pattern ->
                 generatedCc(pattern.registryPath()));
-        // layer0 = tinted metal head; later layers stay untinted (handles/overlays).
+        // layer0 = tinted metal head; later layers stay untinted except
+        // wood-handle layer2 (stick / HANDLE_* iconsets).
         tool("flint_knife", "knife", "knife_overlay");
-        tool("smithing_hammer", "smithing_hammer", "smithing_hammer_overlay");
-        tool("material_pickaxe", "pickaxe", "pickaxe_overlay");
+        toolWithStick("smithing_hammer", "smithing_hammer", "smithing_hammer_overlay");
+        toolWithStick("material_pickaxe", "pickaxe", "pickaxe_overlay");
         tool("material_file", "file", "file_overlay", "handle_file", "handle_file_overlay");
-        tool("material_shovel", "shovel", "shovel_overlay");
-        tool("material_axe", "axe", "axe_overlay");
-        tool("material_hoe", "hoe", "hoe_overlay");
+        toolWithStick("material_shovel", "shovel", "shovel_overlay");
+        toolWithStick("material_axe", "axe", "axe_overlay");
+        toolWithStick("material_hoe", "hoe", "hoe_overlay");
         tool("material_sword", "sword", "sword_overlay", "handle_sword", "handle_sword_overlay");
         tool("material_chisel", "chisel", "chisel_overlay", "handle_chisel", "handle_chisel_overlay");
         tool("material_saw", "saw", "saw_overlay", "handle_saw", "handle_saw_overlay");
@@ -131,15 +132,15 @@ public class ModItemModelProvider extends ItemModelProvider {
         tool("material_wire_cutter", "wire_cutter", "wire_cutter_overlay");
         tool("material_knife", "knife", "knife_overlay");
         tool("material_club", "club", "club_overlay");
-        tool("material_spade", "spade", "spade_overlay");
-        tool("material_double_axe", "double_axe", "double_axe_overlay");
-        tool("material_sense", "sense", "sense_overlay");
-        tool("material_plow", "plow", "plow_overlay");
-        tool("material_construction_pick", "construction_pick",
+        toolWithStick("material_spade", "spade", "spade_overlay");
+        toolWithStick("material_double_axe", "double_axe", "double_axe_overlay");
+        toolWithStick("material_sense", "sense", "sense_overlay");
+        toolWithStick("material_plow", "plow", "plow_overlay");
+        toolWithStick("material_construction_pick", "construction_pick",
                 "construction_pick_overlay");
-        tool("material_gem_pick", "gem_pick", "gem_pick_overlay");
-        tool("material_builder_wand", "builder_wand", "builder_wand_overlay");
-        tool("material_universal_spade", "universal_spade",
+        toolWithStick("material_gem_pick", "gem_pick", "gem_pick_overlay");
+        toolWithStick("material_builder_wand", "builder_wand", "builder_wand_overlay");
+        toolWithStick("material_universal_spade", "universal_spade",
                 "universal_spade_overlay");
         tool("material_crowbar", "crowbar", "crowbar_overlay");
         tool("material_plunger", "plunger", "plunger_overlay");
@@ -150,7 +151,7 @@ public class ModItemModelProvider extends ItemModelProvider {
                 "branch_cutter_overlay");
         tool("material_scissors", "scissors", "scissors_overlay");
         tool("material_pincers", "pincers", "pincers_overlay");
-        tool("material_soft_hammer", "soft_hammer", "soft_hammer_overlay");
+        toolWithStick("material_soft_hammer", "soft_hammer", "soft_hammer_overlay");
         tool("material_bending_cylinder", "bending_cylinder",
                 "bending_cylinder_overlay");
         tool("material_bending_cylinder_small", "bending_cylinder_small",
@@ -237,5 +238,18 @@ public class ModItemModelProvider extends ItemModelProvider {
         for (int i = 0; i < textureLayers.length; i++) {
             model.texture("layer" + i, modLoc("item/tool/" + textureLayers[i]));
         }
+    }
+
+    /** GT6 MultiItemTool: tool-head iconset plus {@code OP.stick} (rod + overlay). */
+    private void toolWithStick(String name, String... headLayers) {
+        var model = withExistingParent(name, mcLoc("item/handheld"));
+        int index = 0;
+        for (; index < headLayers.length; index++) {
+            model.texture(
+                    "layer" + index,
+                    modLoc("item/tool/" + headLayers[index]));
+        }
+        model.texture("layer" + index, modLoc("item/material/rod"));
+        model.texture("layer" + (index + 1), modLoc("item/material/rod_overlay"));
     }
 }

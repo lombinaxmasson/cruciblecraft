@@ -1,6 +1,10 @@
 package com.masson.cruciblecraft.content.block;
 
+import com.masson.cruciblecraft.api.tool.ToolAction;
+import com.masson.cruciblecraft.api.tool.ToolInteractable;
+import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.blockentity.BoilerBlockEntity;
+import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -8,6 +12,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -23,7 +28,9 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import org.jetbrains.annotations.Nullable;
 
-public final class BoilerBlock extends Block implements EntityBlock, com.masson.cruciblecraft.energy.converter.EnergyConverterHost {
+public final class BoilerBlock extends Block
+        implements EntityBlock, ToolInteractable,
+                com.masson.cruciblecraft.energy.converter.EnergyConverterHost {
     public static final DirectionProperty FACING =
             BlockStateProperties.HORIZONTAL_FACING;
     private final net.minecraft.resources.ResourceLocation converterId;
@@ -53,8 +60,23 @@ public final class BoilerBlock extends Block implements EntityBlock, com.masson.
             StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }
+    @Override
+    public ToolResult useTool(ToolAction action, UseOnContext context) {
+        if (action == ToolAction.PLUNGER
+                && context.getLevel().getBlockEntity(context.getClickedPos())
+                        instanceof BoilerBlockEntity boiler) {
+            return ToolClick.plunger(context, boiler.trashWithPlunger());
+        }
+        return ToolResult.PASS;
+    }
+
     @Override protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level,
             BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        ItemInteractionResult tool = ToolClick.useItemOn(
+                stack, level, player, hand, hit);
+        if (tool != ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION) {
+            return tool;
+        }
         if (level.isClientSide) {
             return FluidUtil.getFluidHandler(stack).isPresent()
                     ? ItemInteractionResult.SUCCESS

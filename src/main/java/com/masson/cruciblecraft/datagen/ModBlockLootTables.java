@@ -176,6 +176,15 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 dropSelf(block);
             }
         }
+        for (GtBlockObjectCatalog.Variant variant :
+                com.masson.cruciblecraft.content.item.GtBuildingBlockCatalog.variants()) {
+            Block block = ModBlocks.gtBuildingBlockObjectBlocksById().get(variant.id()).get();
+            if (variant.slab()) {
+                add(block, createSlabItemTable((SlabBlock) block));
+            } else {
+                dropSelf(block);
+            }
+        }
     }
 
     private net.minecraft.world.level.storage.loot.LootTable.Builder denseRockOreLoot(
@@ -272,6 +281,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         ModBlocks.layerStoneBlocks().forEach(holder -> blocks.add(holder.get()));
         ModBlocks.gtBlockObjectBlocks().forEach(holder -> blocks.add(holder.get()));
         ModBlocks.bathRemainderBlockObjectBlocks().forEach(
+                holder -> blocks.add(holder.get()));
+        ModBlocks.gtBuildingBlockObjectBlocks().forEach(
                 holder -> blocks.add(holder.get()));
         ModBlocks.treeSaplings().forEach(holder -> blocks.add(holder.get()));
         ModBlocks.treeLogs().forEach(holder -> blocks.add(holder.get()));

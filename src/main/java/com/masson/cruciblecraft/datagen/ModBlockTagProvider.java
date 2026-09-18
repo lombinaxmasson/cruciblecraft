@@ -77,7 +77,8 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
         stone.add(ModBlocks.GT_BROKEN_ORE.getKey());
         tag(BlockTags.SMALL_FLOWERS).add(ModBlocks.GT_INDICATOR_FLOWER.getKey());
         tag(BlockTags.FLOWERS).add(ModBlocks.GT_INDICATOR_FLOWER.getKey());
-        tag(BlockTags.MINEABLE_WITH_SHOVEL).add(ModBlocks.GT_INDICATOR_GRASS.getKey());
+        var shovel = tag(BlockTags.MINEABLE_WITH_SHOVEL);
+        shovel.add(ModBlocks.GT_INDICATOR_GRASS.getKey());
         tag(BlockTags.DIRT).add(ModBlocks.GT_INDICATOR_GRASS.getKey());
         ModBlocks.converterBlocksById().values().stream()
                 .sorted(Comparator.comparing(block -> block.getId().toString()))
@@ -164,12 +165,17 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
         ModBlocks.gtBlockObjectBlocks().forEach(holder -> {
             var variant = com.masson.cruciblecraft.content.item.GtBlockObjectCatalog
                     .require(holder.getId());
-            addGtBlockObjectTags(holder, variant, gtBlockObjects, rails, pickaxe, stone, axe);
+            addGtBlockObjectTags(holder, variant, gtBlockObjects, rails, pickaxe, stone, axe, shovel);
         });
         ModBlocks.bathRemainderBlockObjectBlocks().forEach(holder -> {
             var variant = com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog
                     .require(holder.getId());
-            addGtBlockObjectTags(holder, variant, gtBlockObjects, rails, pickaxe, stone, axe);
+            addGtBlockObjectTags(holder, variant, gtBlockObjects, rails, pickaxe, stone, axe, shovel);
+        });
+        ModBlocks.gtBuildingBlockObjectBlocks().forEach(holder -> {
+            var variant = com.masson.cruciblecraft.content.item.GtBuildingBlockCatalog
+                    .require(holder.getId());
+            addGtBlockObjectTags(holder, variant, gtBlockObjects, rails, pickaxe, stone, axe, shovel);
         });
         var logs = tag(BlockTags.LOGS);
         var logsThatBurn = tag(BlockTags.LOGS_THAT_BURN);
@@ -197,13 +203,16 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
             TagAppender<Block> rails,
             TagAppender<Block> pickaxe,
             TagAppender<Block> stone,
-            TagAppender<Block> axe) {
+            TagAppender<Block> axe,
+            TagAppender<Block> shovel) {
         gtBlockObjects.add(holder.getKey());
         if (variant.log() || variant.bale()) {
             axe.add(holder.getKey());
+        } else if (variant.shovelMineable()) {
+            shovel.add(holder.getKey());
         } else {
             pickaxe.add(holder.getKey());
-            if (!variant.rail()) {
+            if (!variant.glassLike() && !variant.rail()) {
                 stone.add(holder.getKey());
             }
         }

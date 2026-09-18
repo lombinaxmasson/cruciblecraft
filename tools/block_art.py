@@ -26,7 +26,7 @@ BUNDLED_INDEX = (
 )
 MANIFEST = TOOLS / "block_art_manifest.json"
 STATUS = "BLOCK_ART_MANIFEST"
-EXPECTED_BIND_COUNT = 1076
+EXPECTED_BIND_COUNT = 1301
 
 STONE_VARIANT = (
     "stone",
@@ -208,6 +208,8 @@ def resolve(source_item: str, meta: int) -> dict[str, Any] | None:
         return _cube(_icon(DIGGABLE[min(meta, len(DIGGABLE) - 1)]))
     if item == "gt.block.sands":
         return _cube(_icon(SANDS[min(meta, len(SANDS) - 1)]))
+    if item in {"gt.block.glass", "gt.block.glass.glow"}:
+        return _cube(_icon("glass_clear"), tint="dye", slab=slab is not None, translucent=True)
     if item == "gt.block.lilypad.glowtus":
         return {
             "model": "generated",
@@ -233,10 +235,18 @@ def resolve(source_item: str, meta: int) -> dict[str, Any] | None:
     return None
 
 
-def _cube(rel: str, *, tint: str | None = None, slab: bool = False) -> dict[str, Any]:
-    payload = {"model": "slab" if slab else "cube_all", "sources": [rel]}
+def _cube(
+    rel: str,
+    *,
+    tint: str | None = None,
+    slab: bool = False,
+    translucent: bool = False,
+) -> dict[str, Any]:
+    payload: dict[str, Any] = {"model": "slab" if slab else "cube_all", "sources": [rel]}
     if tint:
         payload["tint"] = tint
+    if translucent:
+        payload["translucent"] = True
     return payload
 
 
@@ -265,6 +275,7 @@ def catalog_rows() -> list[dict[str, Any]]:
                 "source_item": source,
                 "sources": list(bind["sources"]),
                 "tint": bind.get("tint"),
+                "translucent": bool(bind.get("translucent")),
             }
         )
 
@@ -286,6 +297,17 @@ def catalog_rows() -> list[dict[str, Any]]:
     for identity in remainder.get("identities") or []:
         add(
             "bath_remainder",
+            str(identity["runtime_id"]),
+            str(identity["registry_path"]),
+            str(identity["source_item"]),
+            int(identity["meta"]),
+        )
+    building = census.load_json(
+        ROOT / "src/main/resources/data/cruciblecraft/gt_building_block_catalog.json"
+    )
+    for identity in building.get("identities") or []:
+        add(
+            "building_block",
             str(identity["runtime_id"]),
             str(identity["registry_path"]),
             str(identity["source_item"]),
@@ -336,6 +358,13 @@ def _write_json(path: Path, document: dict[str, Any]) -> None:
     census.write_stable(path, document)
 
 
+def _write_model(path: Path, document: dict[str, Any], row: dict[str, Any]) -> None:
+    payload = dict(document)
+    if row.get("translucent"):
+        payload["render_type"] = "minecraft:translucent"
+    _write_json(path, payload)
+
+
 def _model_id(registry_path: str) -> str:
     return f"cruciblecraft:{registry_path}"
 
@@ -383,9 +412,10 @@ def write_models(row: dict[str, Any]) -> None:
             if tinted
             else "minecraft:block/cube_all"
         )
-        _write_json(
+        _write_model(
             Path(str(stem) + ".json"),
             {"parent": parent, "textures": {"all": sources[0]}},
+            row,
         )
         _write_json(
             ROOT
@@ -404,15 +434,17 @@ def write_models(row: dict[str, Any]) -> None:
             else "minecraft:block/slab_top"
         )
         textures = {"bottom": sources[0], "side": sources[0], "top": sources[0]}
-        _write_json(
+        _write_model(
             Path(str(stem) + "_bottom.json"),
             {"parent": parent_bottom, "textures": textures},
+            row,
         )
-        _write_json(
+        _write_model(
             Path(str(stem) + "_top.json"),
             {"parent": parent_top, "textures": textures},
+            row,
         )
-        _write_json(
+        _write_model(
             Path(str(stem) + "_double.json"),
             {
                 "parent": (
@@ -422,6 +454,7 @@ def write_models(row: dict[str, Any]) -> None:
                 ),
                 "textures": {"all": sources[0]},
             },
+            row,
         )
         _write_json(
             ROOT
@@ -521,7 +554,8 @@ def copy_and_write(rows: list[dict[str, Any]] | None = None) -> dict[str, Any]:
         "note": (
             "Static block/object / remainder / stone / leftover semantic block icons "
             "from gregtech6_w. Catalog texture fields stay vanilla so smelter/stone/block/object "
-            "hashes do not move. Dye-tinted kinds share one PNG + GT6 DYES_INT."
+            "hashes do not move. Dye-tinted kinds share one PNG + GT6 DYES_INT. "
+            "Glass uses iconsets/glass_clear with translucent render_type."
         ),
         "schema_version": 1,
         "source_revision": SOURCE_REVISION,

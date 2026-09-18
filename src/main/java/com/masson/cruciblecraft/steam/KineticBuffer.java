@@ -18,7 +18,18 @@ public final class KineticBuffer {
         this.strokeSign = strokeSign < 0 ? -1 : 1;
     }
     public long insert(long amount) {
-        long accepted = Math.max(0, Math.min(amount, capacity - stored)); stored += accepted; return accepted;
+        long accepted = Math.max(0, Math.min(amount, room())); stored += accepted; return accepted;
+    }
+
+    /**
+     * GT6 steam conversion may push {@code mEnergy} past {@code mCapacity};
+     * overflow is vent-clamped later, not dropped at convert time.
+     */
+    public void addConverted(long amount) {
+        if (amount <= 0L) {
+            return;
+        }
+        stored += amount;
     }
     public long extract(long amount, boolean simulate) {
         long extracted = Math.max(0, Math.min(Math.min(amount, outputRate), stored));
@@ -37,6 +48,6 @@ public final class KineticBuffer {
     }
 
     public long stored() { return stored; }
-    public long room() { return capacity - stored; }
+    public long room() { return Math.max(0L, capacity - stored); }
     public int strokeSign() { return strokeSign; }
 }

@@ -35,6 +35,16 @@ class StorageVariantCatalogTest {
         assertTrue(ids.contains("cruciblecraft:mass_storage_barrel_6999"));
         assertTrue(ids.contains("cruciblecraft:storage_inserter_32751"));
         assertTrue(ids.contains("cruciblecraft:mass_storage_logistics_6200"));
+        StorageVariant treatedBarrel = StorageVariantCatalog.require(
+                ResourceLocation.parse("cruciblecraft:mass_storage_barrel_6999"));
+        assertEquals("mass_storage_barrel", treatedBarrel.modelProfile());
+        assertEquals(
+                "block/storage_mass_barrel",
+                treatedBarrel.model().getPath());
+        assertEquals("wood_treated", treatedBarrel.tintMaterial());
+        StorageVariant skyroot = StorageVariantCatalog.require(
+                ResourceLocation.parse("cruciblecraft:mass_storage_barrel_6983"));
+        assertEquals("skyroot", skyroot.tintMaterial());
         assertEquals(
                 StorageVariantCatalog.SOURCE_REVISION,
                 "3703e40308c8c030763fd6297dea8b210d2a77b1");

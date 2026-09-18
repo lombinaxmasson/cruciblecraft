@@ -69,7 +69,7 @@ public final class ToolDisplayPlan {
         return List.copyOf(stacks);
     }
 
-    private static MaterialToolItem itemFor(ToolKind kind) {
+    public static MaterialToolItem itemFor(ToolKind kind) {
         return switch (kind) {
             case PICKAXE -> ModItems.MATERIAL_PICKAXE.get();
             case SHOVEL -> ModItems.MATERIAL_SHOVEL.get();

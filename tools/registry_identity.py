@@ -61,6 +61,9 @@ BATH_REMAINDER = (
     ROOT
     / "src/main/resources/data/cruciblecraft/bath_remainder_identity_catalog.json"
 )
+GT_BUILDING = (
+    ROOT / "src/main/resources/data/cruciblecraft/gt_building_block_catalog.json"
+)
 MACHINE_TIERS = ROOT / "src/main/resources/data/cruciblecraft/machine_tiers.json"
 TECHNOLOGICAL_PARTS = (
     ROOT / "src/main/resources/data/cruciblecraft/technological_parts.json"
@@ -433,6 +436,7 @@ def compile_manifest() -> dict[str, Any]:
     collect_identity_catalog(SMELTER_MTE, "smelter_mte", records)
     collect_identity_catalog(GT_BLOCK, "gt_block", records)
     collect_identity_catalog(BATH_REMAINDER, "building_block", records)
+    collect_identity_catalog(GT_BUILDING, "building_block", records)
     collect_gt_stone(records)
     collect_runtime_id_rows(MACHINE_TIERS, "machine", records, rows_key="variants")
     collect_technological_parts(records)

@@ -90,6 +90,13 @@ public class ModLanguageProvider extends LanguageProvider {
                                 block.chineseName(), block.englishName()))
                         .ifPresent(name -> addBlock(holder, name));
             });
+            com.masson.cruciblecraft.content.item.GtBuildingBlockCatalog.variants().forEach(block -> {
+                var holder = ModBlocks.gtBuildingBlockObjectBlocksById().get(block.id());
+                LanguageNames.playerChinese(block.chineseName(), block.registryPath())
+                        .or(() -> LanguageNames.chineseOrEmpty(
+                                block.chineseName(), block.englishName()))
+                        .ifPresent(name -> addBlock(holder, name));
+            });
             add("tooltip.cruciblecraft.fireproof", "防火");
             ToolPatternCatalog.DEFINITIONS.forEach(pattern ->
                     LanguageNames.chineseOrEmpty(
@@ -369,7 +376,7 @@ public class ModLanguageProvider extends LanguageProvider {
             add("itemGroup.cruciblecraft.building", "Crucible Craft：建筑");
             add("itemGroup.cruciblecraft.nature", "Crucible Craft：自然");
             add("itemGroup.cruciblecraft.components", "Crucible Craft：科技部件");
-            add("itemGroup.cruciblecraft.cables", "Crucible Craft：电缆");
+            add("itemGroup.cruciblecraft.cables", "Crucible Craft：导线与电缆");
             add("itemGroup.cruciblecraft.dusts", "Crucible Craft：粉");
             add("itemGroup.cruciblecraft.mechanical_parts",
                     "Crucible Craft：机械零件");
@@ -425,6 +432,8 @@ public class ModLanguageProvider extends LanguageProvider {
             add("jade.cruciblecraft.mold_state", "状态：%s，%s °C");
             add("jade.cruciblecraft.steam_engine",
                     "蒸汽：%s/%s mB，KU：%s/%s（%s 冲程）");
+            add("jade.cruciblecraft.steam_engine.exhaust",
+                    "蒸馏水：%s/%s mB（%s）");
             add("jade.cruciblecraft.temperature", "温度：%s %s");
             add("tooltip.cruciblecraft.durability", "耐久：%s / %s");
             add("tooltip.cruciblecraft.machine_material",
@@ -477,6 +486,8 @@ public class ModLanguageProvider extends LanguageProvider {
                     "坩埚自动输入：不用红石");
             add("message.cruciblecraft.mold_auto_input_cleared",
                     "坩埚自动输入：关且不用红石");
+            add("message.cruciblecraft.steam_engine.stopped", "蒸汽机已停机");
+            add("message.cruciblecraft.steam_engine.running", "蒸汽机已启动");
             add("message.cruciblecraft.thermometer_kelvin", "温度：%s K");
             add("message.cruciblecraft.thermometer_kelvin_too_hot",
                     "温度：%s K（太烫，现在拿不起来！）");
@@ -668,6 +679,11 @@ public class ModLanguageProvider extends LanguageProvider {
                         ModBlocks.bathRemainderBlockObjectBlocksById().get(block.id()),
                         LanguageNames.playerEnglish(
                                 block.englishName(), block.registryPath())));
+        com.masson.cruciblecraft.content.item.GtBuildingBlockCatalog.variants().forEach(block ->
+                addBlock(
+                        ModBlocks.gtBuildingBlockObjectBlocksById().get(block.id()),
+                        LanguageNames.playerEnglish(
+                                block.englishName(), block.registryPath())));
         add("tooltip.cruciblecraft.fireproof", "Fireproof");
         addItem(ModItems.CREOSOTE_BUCKET, "Creosote Bucket");
         add("fluid_type.cruciblecraft.creosote", "Creosote");
@@ -717,6 +733,8 @@ public class ModLanguageProvider extends LanguageProvider {
         add("emi.category.cruciblecraft.crusher", "Crusher");
         add("jade.cruciblecraft.boiler", "Water: %s/%s mB, Steam: %s/%s mB, Heat: %s/80 HU");
         add("jade.cruciblecraft.steam_engine", "Steam: %s/%s mB, KU: %s/%s (%s stroke)");
+        add("jade.cruciblecraft.steam_engine.exhaust",
+                "Distilled water: %s/%s mB (%s)");
         add("jade.cruciblecraft.crusher", "Power: %s KU/t, Progress: %s/%s (%s)");
         add("jade.cruciblecraft.processing_machine",
                 "Power: %s/t, Progress: %s/%s (%s)");
@@ -976,6 +994,8 @@ public class ModLanguageProvider extends LanguageProvider {
         add("message.cruciblecraft.mold_auto_input_redstone", "Crucible Auto-Input: REDSTONE");
         add("message.cruciblecraft.mold_auto_input_no_redstone", "Crucible Auto-Input: NO REDSTONE");
         add("message.cruciblecraft.mold_auto_input_cleared", "Crucible Auto-Input: OFF & NO REDSTONE");
+        add("message.cruciblecraft.steam_engine.stopped", "Steam engine stopped");
+        add("message.cruciblecraft.steam_engine.running", "Steam engine running");
         add("message.cruciblecraft.thermometer_kelvin", "Temperature: %s K");
         add(
                 "message.cruciblecraft.thermometer_kelvin_too_hot",

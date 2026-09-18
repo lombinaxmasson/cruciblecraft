@@ -2,12 +2,21 @@ package com.masson.cruciblecraft.content.block;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.masson.cruciblecraft.api.tool.ToolAction;
+import com.masson.cruciblecraft.api.tool.ToolInteractable;
+import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.blockentity.LargeBoilerBlockEntity;
+import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -18,7 +27,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 
 /** Facing/ticker shell for the JSON large-boiler conversion controller. */
-public final class LargeBoilerBlock extends Block implements EntityBlock {
+public final class LargeBoilerBlock extends Block
+        implements EntityBlock, ToolInteractable {
     public LargeBoilerBlock(Properties properties) {
         super(properties);
         registerDefaultState(stateDefinition.any().setValue(
@@ -45,6 +55,28 @@ public final class LargeBoilerBlock extends Block implements EntityBlock {
             boiler.clearBindings();
         }
         super.onRemove(state, level, pos, next, moved);
+    }
+
+    @Override
+    public ToolResult useTool(ToolAction action, UseOnContext context) {
+        if (action == ToolAction.PLUNGER
+                && context.getLevel().getBlockEntity(context.getClickedPos())
+                        instanceof LargeBoilerBlockEntity boiler) {
+            return ToolClick.plunger(context, boiler.trashWithPlunger());
+        }
+        return ToolResult.PASS;
+    }
+
+    @Override
+    protected ItemInteractionResult useItemOn(
+            ItemStack stack,
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            Player player,
+            InteractionHand hand,
+            net.minecraft.world.phys.BlockHitResult hit) {
+        return ToolClick.useItemOn(stack, level, player, hand, hit);
     }
 
     @Override

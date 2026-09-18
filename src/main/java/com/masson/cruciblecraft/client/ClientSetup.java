@@ -15,13 +15,19 @@ import com.masson.cruciblecraft.client.color.HopperBlockColor;
 import com.masson.cruciblecraft.client.color.LogisticsCoreBlockColor;
 import com.masson.cruciblecraft.client.color.MachineBlockColor;
 import com.masson.cruciblecraft.client.color.MaterialCasingColor;
+import com.masson.cruciblecraft.client.color.MaterialDustColor;
 import com.masson.cruciblecraft.client.color.MaterialItemColor;
 import com.masson.cruciblecraft.client.color.MaterialOreColor;
 import com.masson.cruciblecraft.client.color.MaterialStorageColor;
+import com.masson.cruciblecraft.client.color.StorageArtColor;
 import com.masson.cruciblecraft.client.color.RockColor;
 import com.masson.cruciblecraft.client.model.PositionalPebbleGeometry;
 import com.masson.cruciblecraft.client.render.AnvilRenderer;
+import com.masson.cruciblecraft.client.render.BookshelfRenderer;
+import com.masson.cruciblecraft.client.render.BottleCrateRenderer;
 import com.masson.cruciblecraft.client.render.CrucibleRenderer;
+import com.masson.cruciblecraft.client.render.MassStorageRenderer;
+import com.masson.cruciblecraft.client.render.MteInPlaceStorageRenderer;
 import com.masson.cruciblecraft.client.render.PipeCoverRenderer;
 import com.masson.cruciblecraft.client.screen.HopperScreen;
 import com.masson.cruciblecraft.client.screen.StorageScreen;
@@ -213,6 +219,12 @@ public class ClientSetup {
                 java.util.Arrays.stream(tintedFoundry)
                         .map(net.minecraft.world.level.block.Block::asItem)
                         .toArray(Item[]::new));
+        Block[] tintedStorageArt = StorageArtColor.tintedBlocks();
+        event.register(
+                StorageArtColor::itemColor,
+                java.util.Arrays.stream(tintedStorageArt)
+                        .map(net.minecraft.world.level.block.Block::asItem)
+                        .toArray(Item[]::new));
         Block[] tintedLogisticsCore = LogisticsCoreBlockColor.tintedBlocks();
         event.register(
                 LogisticsCoreBlockColor::itemColor,
@@ -307,6 +319,7 @@ public class ClientSetup {
                 Gt6OpeningBlockColor.tintedBlocks());
         event.register(HopperBlockColor::blockColor, HopperBlockColor.tintedBlocks());
         event.register(FoundryBlockColor::blockColor, FoundryBlockColor.tintedBlocks());
+        event.register(StorageArtColor::blockColor, StorageArtColor.tintedBlocks());
         event.register(
                 LogisticsCoreBlockColor::blockColor,
                 LogisticsCoreBlockColor.tintedBlocks());
@@ -318,6 +331,9 @@ public class ClientSetup {
         event.register(
                 MaterialCasingColor::blockColor,
                 MaterialCasingColor.casingBlocks());
+        event.register(
+                MaterialDustColor::blockColor,
+                MaterialDustColor.dustBlocks());
         event.register(
                 RockColor::blockColor,
                 RockColor.rockBlocks());
@@ -377,8 +393,25 @@ public class ClientSetup {
                 ModBlockEntities.LASER_ENGRAVER.get(),
                 PipeCoverRenderer::new);
         event.registerBlockEntityRenderer(
+                ModBlockEntities.STEAM_ENGINE.get(),
+                PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.FUEL_GENERATOR.get(),
+                PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.ELECTRIC_ENGINE.get(),
+                PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
                 ModBlockEntities.BATTERY.get(),
                 com.masson.cruciblecraft.energy.battery.BatteryRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.MASS_STORAGE.get(), MassStorageRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.BOOKSHELF.get(), BookshelfRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.BOTTLE_CRATE.get(), BottleCrateRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.MTE_INPLACE.get(), MteInPlaceStorageRenderer::new);
     }
 
     @SubscribeEvent

@@ -75,6 +75,16 @@ class PrefixMaterialIdentityTest {
                 "assets/cruciblecraft/models/item/purified_dust.json"));
         assertTrue(registered.get("copper").contains(MaterialPrefixes.CRUSHED_ORE));
         assertTrue(registered.get("copper").contains(MaterialPrefixes.DUST));
+        assertEquals(
+                "minecraft:sugar",
+                materials.stream()
+                        .filter(material -> "sugar".equals(material.id()))
+                        .findFirst()
+                        .orElseThrow()
+                        .formItems()
+                        .get(MaterialPrefixes.DUST));
+        assertTrue(registered.get("sugar").contains(MaterialPrefixes.DUST));
+        assertFalse(registered.get("sugar").contains(MaterialPrefixes.STORAGE_DUST));
     }
 
     @Test
@@ -90,6 +100,15 @@ class PrefixMaterialIdentityTest {
                 "assets/cruciblecraft/models/item/aluminium/block.json"));
         assertTrue(serverFiles.containsKey(
                 "data/c/tags/block/wires/copper.json"));
+        assertTrue(serverFiles.containsKey(
+                "data/c/tags/item/storage_dusts/coal_coke.json"));
+        assertTrue(clientFiles.containsKey(
+                "assets/cruciblecraft/blockstates/coal_coke/storage_dust.json"));
+        assertFalse(clientFiles.containsKey(
+                "assets/cruciblecraft/models/item/storage_dust.json"));
+        assertTrue(serverFiles.get(
+                "data/minecraft/tags/block/mineable/shovel.json")
+                .contains("cruciblecraft:coal_coke/storage_dust"));
     }
 
     @Test
@@ -97,11 +116,32 @@ class PrefixMaterialIdentityTest {
         assertTrue(MaterialFormHosts.isUniqueHostedPrefixPath("fluid_pipe"));
         assertTrue(MaterialFormHosts.isUniqueHostedPrefixPath("wire"));
         assertTrue(MaterialFormHosts.isUniqueHostedPrefixPath("block"));
+        assertTrue(MaterialFormHosts.isUniqueHostedPrefixPath("storage_dust"));
         assertFalse(MaterialFormHosts.isUniqueHostedPrefixPath("dust"));
         assertFalse(MaterialFormHosts.isUniqueHostedPrefixPath("fine_wire"));
         assertFalse(MaterialFormHosts.isUniqueHostedPrefixPath("ingot"));
         assertTrue(MaterialFormHosts.isPublicExchangePrefixPath("dust"));
         assertTrue(MaterialFormHosts.isPublicExchangePrefixPath("fine_wire"));
         assertEquals(16, MaterialFormHosts.PUBLIC_EXCHANGE_PREFIX_PATHS.size());
+    }
+
+    @Test
+    void sugarDustUnifiesToVanillaSugar(@TempDir Path configDirectory) {
+        var materials = MaterialLoader.load(configDirectory).values();
+        var registered = MaterialRegistrationGate.load(materials);
+        var sugar = materials.stream()
+                .filter(material -> "sugar".equals(material.id()))
+                .findFirst()
+                .orElseThrow();
+        assertEquals("minecraft:sugar", sugar.formItems().get(MaterialPrefixes.DUST));
+        assertTrue(registered.get("sugar").contains(MaterialPrefixes.DUST));
+        assertTrue(registered.get("sugar").contains(MaterialPrefixes.TINY_DUST));
+        assertFalse(registered.get("sugar").contains(MaterialPrefixes.STORAGE_DUST));
+        var serverFiles = GeneratedMaterialPack.planServerFiles(materials, registered);
+        var dusts = JsonParser.parseString(
+                        serverFiles.get("data/c/tags/item/dusts/sugar.json"))
+                .getAsJsonObject()
+                .getAsJsonArray("values");
+        assertEquals("[\"minecraft:sugar\"]", dusts.toString());
     }
 }

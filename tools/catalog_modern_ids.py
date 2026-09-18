@@ -201,6 +201,7 @@ CATALOG_FILES = (
     DATA / "bath_identity_catalog.json",
     DATA / "gt_block_object_catalog.json",
     DATA / "bath_remainder_identity_catalog.json",
+    DATA / "gt_building_block_catalog.json",
     DATA / "gt_stone_catalog.json",
     DATA / "slicer_operands.json",
 )
