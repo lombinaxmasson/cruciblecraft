@@ -18,6 +18,10 @@ public final class MachineSideRules {
         return CapabilitySideRules.engineAcceptsSteam(face(front), face(side));
     }
 
+    public static boolean engineExposesExhaust(Direction front, Direction side) {
+        return CapabilitySideRules.engineExposesExhaust(face(front), face(side));
+    }
+
     public static boolean engineExposesKinetic(Direction front, Direction side) {
         return CapabilitySideRules.engineExposesKinetic(face(front), face(side));
     }

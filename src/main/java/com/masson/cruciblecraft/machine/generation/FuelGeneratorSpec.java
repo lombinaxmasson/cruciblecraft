@@ -30,6 +30,7 @@ public record FuelGeneratorSpec(
         EnergyOutputFace energyOutputFace,
         List<Direction> exhaustOutputSides,
         int identitySchemaVersion,
+        ExhaustRouting exhaustRouting,
         InputPhase inputPhase) {
     public enum EnergyOutputFace {
         FRONT,
@@ -38,6 +39,16 @@ public record FuelGeneratorSpec(
         public Direction resolve(Direction front) {
             return this == UP ? Direction.UP : front;
         }
+    }
+
+    /**
+     * GT6 {@code MultiTileEntityMotorLiquid} auto-pushes exhaust to
+     * {@code OPOS[mFacing]}. Burning boxes keep world-fixed exhaust
+     * sides and do not auto-push.
+     */
+    public enum ExhaustRouting {
+        WORLD_SIDES,
+        BACK
     }
 
     /** GT6 {@code FL.gas} vs liquid split on FM.Burn hosts. */
@@ -75,7 +86,41 @@ public record FuelGeneratorSpec(
                 energyOutputFace,
                 exhaustOutputSides,
                 identitySchemaVersion,
+                ExhaustRouting.WORLD_SIDES,
                 InputPhase.ANY);
+    }
+
+    public FuelGeneratorSpec(
+            ResourceLocation id,
+            Supplier<RecipeMap> recipeMap,
+            int inputCapacityMb,
+            int outputCapacityMb,
+            int outputTanks,
+            EnergyType outputEnergyType,
+            long outputPacketSize,
+            long maximumOutputPacketsPerTick,
+            long energyCapacity,
+            int efficiencyBps,
+            EnergyOutputFace energyOutputFace,
+            List<Direction> exhaustOutputSides,
+            int identitySchemaVersion,
+            InputPhase inputPhase) {
+        this(
+                id,
+                recipeMap,
+                inputCapacityMb,
+                outputCapacityMb,
+                outputTanks,
+                outputEnergyType,
+                outputPacketSize,
+                maximumOutputPacketsPerTick,
+                energyCapacity,
+                efficiencyBps,
+                energyOutputFace,
+                exhaustOutputSides,
+                identitySchemaVersion,
+                ExhaustRouting.WORLD_SIDES,
+                inputPhase);
     }
 
     public FuelGeneratorSpec {
@@ -83,6 +128,7 @@ public record FuelGeneratorSpec(
         Objects.requireNonNull(recipeMap, "recipeMap");
         Objects.requireNonNull(outputEnergyType, "outputEnergyType");
         Objects.requireNonNull(energyOutputFace, "energyOutputFace");
+        Objects.requireNonNull(exhaustRouting, "exhaustRouting");
         Objects.requireNonNull(inputPhase, "inputPhase");
         exhaustOutputSides = List.copyOf(
                 Objects.requireNonNull(
@@ -99,16 +145,30 @@ public record FuelGeneratorSpec(
                 || exhaustOutputSides.size() != outputTanks
                 || exhaustOutputSides.stream().distinct().count()
                         != outputTanks
-                || identitySchemaVersion <= 0) {
+                || identitySchemaVersion <= 0
+                || (exhaustRouting == ExhaustRouting.BACK
+                        && outputTanks != 1)) {
             throw new IllegalArgumentException(
                     "Fuel-generator tank and energy limits are invalid");
         }
         Direction fixedEnergySide = energyOutputFace.resolve(Direction.NORTH);
-        if (exhaustOutputSides.contains(fixedEnergySide)
+        if (exhaustRouting == ExhaustRouting.WORLD_SIDES
+                && exhaustOutputSides.contains(fixedEnergySide)
                 && energyOutputFace == EnergyOutputFace.UP) {
             throw new IllegalArgumentException(
                     "Fuel-generator energy and exhaust faces overlap");
         }
+    }
+
+    public boolean pushesExhaust() {
+        return exhaustRouting == ExhaustRouting.BACK;
+    }
+
+    public List<Direction> resolvedExhaustSides(Direction front) {
+        if (exhaustRouting == ExhaustRouting.BACK) {
+            return front == null ? List.of() : List.of(front.getOpposite());
+        }
+        return exhaustOutputSides;
     }
 
     public RecipeMap requireRecipeMap() {

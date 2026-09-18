@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 
 import com.masson.cruciblecraft.machine.generation.FuelGeneratorSpec;
 
+import net.minecraft.core.Direction;
+
 import org.junit.jupiter.api.Test;
 
 class EnergyConverterCatalogTest {
@@ -139,12 +141,16 @@ class EnergyConverterCatalogTest {
                         "gt6_code/gregtech6/src/main/java/gregtech/tileentity/"
                                 + "energy/converters/"
                                 + "MultiTileEntityEngineSteam.java:"
-                                + "58,62-63,77-80,98-103,121-146"),
+                                + "58,62-63,77-80,98-103,119-165,175,224-226,239"),
                 semantics.sourceEvidencePaths());
         assertTrue(engine.policy().sourceResolution().contains(
                 "DESIGN_POLICY_FIXED_OUTPUT_12_KU_PER_TICK"));
         assertTrue(engine.policy().sourceResolution().contains(
                 "LIVE_STATE_DEPENDENT_6_TO_24"));
+        assertTrue(engine.policy().sourceResolution().contains(
+                "DISTW_SIDE_BUFFER_THEN_DRAIN"));
+        assertTrue(engine.policy().sourceResolution().contains(
+                "SOFT_HAMMER_AND_STEAM_VENT_STOP"));
     }
 
     @Test
@@ -159,6 +165,19 @@ class EnergyConverterCatalogTest {
         assertEquals(200, engine.conservation().primaryInputUnits());
         assertEquals(50, engine.conservation().outputUnits());
         assertEquals(1, engine.conservation().exhaustUnits());
+        assertEquals(
+                "cruciblecraft:water_distilled",
+                engine.conservation().exhaust());
+        assertEquals(
+                "cruciblecraft:water_distilled",
+                engine.exhaust().identity());
+        assertEquals("BUFFER_THEN_DRAIN", engine.exhaust().mode());
+        assertEquals(
+                java.util.List.of("BACK"),
+                engine.faces().fluidInputs());
+        assertEquals(
+                java.util.List.of("SIDES"),
+                engine.faces().fluidOutputs());
         assertEquals(
                 java.util.List.of("DOWN"),
                 boiler.faces().energyInputs());
@@ -211,6 +230,19 @@ class EnergyConverterCatalogTest {
                 "CURRENT_KINETIC_ROTATION_IDENTITY_REQUIRED"));
         assertTrue(engine.policy().sourceResolution().contains(
                 "MISSING_PARTIAL_OR_WRONG_IDENTITY_QUARANTINED"));
+        assertTrue(engine.policy().sourceResolution().contains(
+                "MOTOR_LIQUID_BACK_PUSH_BUFFER"));
+        assertEquals(
+                java.util.List.of("SIDES"),
+                engine.faces().fluidInputs());
+        assertEquals(
+                java.util.List.of("BACK"),
+                engine.faces().fluidOutputs());
+        FuelGeneratorSpec live = EnergyConverterFuelSpecs.fromProfile(engine);
+        assertTrue(live.pushesExhaust());
+        assertEquals(
+                java.util.List.of(Direction.WEST),
+                live.resolvedExhaustSides(Direction.EAST));
     }
 
     @Test

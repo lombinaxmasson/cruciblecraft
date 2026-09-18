@@ -470,6 +470,17 @@ public final class CrucibleCraftGameTests {
                         .setValue(
                                 FuelGeneratorBlock.FACING,
                                 Direction.EAST));
+        BlockPos exhaustPos = enginePos.west();
+        FluidPipeBlock exhaustPipeBlock = (FluidPipeBlock) ModBlocks.pipeBlock(
+                "copper",
+                MaterialPrefixes.TINY_FLUID_PIPE,
+                PipeCatalog.Kind.FLUID).get();
+        helper.setBlock(exhaustPos, exhaustPipeBlock);
+        helper.getLevel().setBlock(
+                helper.absolutePos(exhaustPos),
+                helper.getBlockState(exhaustPos)
+                        .setValue(FluidPipeBlock.EAST, true),
+                Block.UPDATE_CLIENTS);
         helper.setBlock(
                 axlePos,
                 ModBlocks.ROTATIONAL_AXLE.get().defaultBlockState()
@@ -558,7 +569,7 @@ public final class CrucibleCraftGameTests {
                     transferFluid(
                             helper,
                             fuelTank,
-                            engine.fluids(Direction.WEST),
+                            engine.fluids(Direction.UP),
                             fuel.fluidInputs()
                                     .getFirst().getAmount());
                 })
@@ -605,11 +616,21 @@ public final class CrucibleCraftGameTests {
                             "Crude oil -> HU distillery -> Fuel Engine -> "
                                     + "RU axle/gearbox -> Dynamo -> EU cable "
                                     + "did not power the Electrolyzer");
+                    FluidPipeBlockEntity exhaustPipe =
+                            helper.getBlockEntity(enginePos.west());
                     helper.assertTrue(
                             engine.outputAmount(0)
+                                            + exhaustPipe.storedFluid()
+                                                    .getAmount()
                                     == fuel.fluidOutputs()
-                                            .getFirst().getAmount(),
-                            "Fuel Engine lost recipe-defined CO2 exhaust");
+                                            .getFirst().getAmount()
+                                    && exhaustPipe.storedFluid().getAmount()
+                                            == fuel.fluidOutputs()
+                                                    .getFirst().getAmount()
+                                    && exhaustPipe.storedFluid().is(
+                                            fuel.fluidOutputs()
+                                                    .getFirst().getFluid()),
+                            "Fuel Engine did not push recipe-defined CO2 to its back");
                 })
                 .thenSucceed();
     }
@@ -647,7 +668,7 @@ public final class CrucibleCraftGameTests {
                 "hydrocarbon/fuels_engine/fuel_oil");
         FluidStack required = fuel.fluidInputs().getFirst();
         IFluidHandler input =
-                exhaustBlocked.fluids(Direction.WEST);
+                exhaustBlocked.fluids(Direction.UP);
         helper.assertTrue(
                 input.fill(
                                 required,
@@ -743,6 +764,86 @@ public final class CrucibleCraftGameTests {
                                             == 32L,
                             "Blocked Dynamo violated source waste policy");
                 })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void fuelEnginePushesCarbonDioxideToBack(
+            GameTestHelper helper) {
+        BlockPos enginePos = new BlockPos(3, 2, 5);
+        BlockPos exhaustPos = enginePos.west();
+        helper.setBlock(
+                enginePos,
+                ModBlocks.BRONZE_FUEL_ENGINE.get().defaultBlockState()
+                        .setValue(
+                                FuelGeneratorBlock.FACING,
+                                Direction.EAST));
+        FluidPipeBlock pipeBlock = (FluidPipeBlock) ModBlocks.pipeBlock(
+                "copper",
+                MaterialPrefixes.TINY_FLUID_PIPE,
+                PipeCatalog.Kind.FLUID).get();
+        helper.setBlock(exhaustPos, pipeBlock);
+        helper.getLevel().setBlock(
+                helper.absolutePos(exhaustPos),
+                helper.getBlockState(exhaustPos)
+                        .setValue(FluidPipeBlock.EAST, true),
+                Block.UPDATE_CLIENTS);
+        FuelGeneratorBlockEntity engine = helper.getBlockEntity(enginePos);
+        FluidPipeBlockEntity pipe = helper.getBlockEntity(exhaustPos);
+        GTRecipe fuel = requireRecipe(
+                ModRecipeMaps.FUELS_ENGINE,
+                "hydrocarbon/fuels_engine/fuel_oil");
+        FluidStack required = fuel.fluidInputs().getFirst();
+        IFluidHandler input = engine.fluids(Direction.UP);
+        helper.assertTrue(
+                input != null
+                        && engine.fluids(Direction.WEST) != null
+                        && input.fill(
+                                required,
+                                IFluidHandler.FluidAction.EXECUTE)
+                                == required.getAmount(),
+                "Could not fill fuel into a side of the fuel engine");
+        helper.startSequence()
+                .thenIdle(fuel.duration() + 2)
+                .thenExecute(() -> helper.assertTrue(
+                        engine.outputAmount(0) == 0
+                                && pipe.storedFluid().getAmount()
+                                        == fuel.fluidOutputs()
+                                                .getFirst().getAmount()
+                                && pipe.storedFluid().is(
+                                        fuel.fluidOutputs()
+                                                .getFirst().getFluid()),
+                        "Fuel engine did not push recipe CO2 to its back"))
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void fuelEngineBuffersCarbonDioxideWithoutNeighbor(
+            GameTestHelper helper) {
+        BlockPos enginePos = new BlockPos(3, 2, 5);
+        helper.setBlock(
+                enginePos,
+                ModBlocks.BRONZE_FUEL_ENGINE.get().defaultBlockState()
+                        .setValue(
+                                FuelGeneratorBlock.FACING,
+                                Direction.EAST));
+        FuelGeneratorBlockEntity engine = helper.getBlockEntity(enginePos);
+        GTRecipe fuel = requireRecipe(
+                ModRecipeMaps.FUELS_ENGINE,
+                "hydrocarbon/fuels_engine/fuel_oil");
+        FluidStack required = fuel.fluidInputs().getFirst();
+        helper.assertTrue(
+                engine.fluids(Direction.UP).fill(
+                                required,
+                                IFluidHandler.FluidAction.EXECUTE)
+                        == required.getAmount(),
+                "Could not fill fuel into an isolated fuel engine");
+        helper.startSequence()
+                .thenIdle(fuel.duration() + 2)
+                .thenExecute(() -> helper.assertTrue(
+                        engine.outputAmount(0)
+                                == fuel.fluidOutputs().getFirst().getAmount(),
+                        "Isolated fuel engine voided recipe CO2 instead of buffering"))
                 .thenSucceed();
     }
 
@@ -9977,7 +10078,7 @@ public final class CrucibleCraftGameTests {
                 .thenExecute(() -> {
                     FluidStack fuelStack = fuelCombustion.fluidInputs()
                             .getFirst();
-                    engine.fluids(Direction.WEST).fill(
+                    engine.fluids(Direction.UP).fill(
                             fuelStack.copy(),
                             IFluidHandler.FluidAction.EXECUTE);
                 })
@@ -11307,8 +11408,8 @@ public final class CrucibleCraftGameTests {
         primeBoilerOperatingPressure(helper, boiler);
         FluidStack fuelInput = fuel.fluidInputs().getFirst();
         helper.assertTrue(
-                fuelEngine.fluids(Direction.WEST) != null
-                        && fuelEngine.fluids(Direction.WEST).fill(
+                fuelEngine.fluids(Direction.UP) != null
+                        && fuelEngine.fluids(Direction.UP).fill(
                                 new FluidStack(
                                         fuelInput.getFluid(),
                                         fuelInput.getAmount()),

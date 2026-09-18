@@ -17,6 +17,7 @@ import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeQuery;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
+import com.masson.cruciblecraft.steam.ExactFluidTransfer;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -36,6 +37,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
@@ -132,6 +134,7 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
             BlockState state,
             FuelGeneratorBlockEntity generator) {
         generator.tickGeneration();
+        generator.pushExhaust();
         emitOutput(level, pos, generator);
         generator.updateLitState();
         generator.flushClientSync(level.getGameTime());
@@ -296,6 +299,48 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
         markTickMutation();
     }
 
+    /**
+     * GT6 {@code MultiTileEntityMotorLiquid}: {@code FL.move} exhaust to
+     * {@code OPOS[mFacing]}. Leftover stays in the BUFFER_ALL_OUTPUTS tank
+     * instead of gas-venting or {@code GarbageGT.trash}.
+     */
+    private void pushExhaust() {
+        if (level == null || level.isClientSide || !spec.pushesExhaust()) {
+            return;
+        }
+        Direction front = front();
+        if (front == null) {
+            return;
+        }
+        List<Direction> sides = spec.resolvedExhaustSides(front);
+        boolean moved = false;
+        for (int index = 0; index < outputs.size() && index < sides.size(); index++) {
+            FluidTank tank = outputs.get(index);
+            if (tank.isEmpty()) {
+                continue;
+            }
+            Direction side = sides.get(index);
+            BlockPos target = worldPosition.relative(side);
+            if (!level.hasChunkAt(target)) {
+                continue;
+            }
+            IFluidHandler neighbor = level.getCapability(
+                    Capabilities.FluidHandler.BLOCK,
+                    target,
+                    side.getOpposite());
+            if (neighbor == null) {
+                continue;
+            }
+            if (ExactFluidTransfer.move(
+                    tank, neighbor, tank.getFluidAmount()) > 0) {
+                moved = true;
+            }
+        }
+        if (moved) {
+            markPersistentMutation();
+        }
+    }
+
     private boolean hasOutputRoom(GTRecipe recipe) {
         for (int index = 0;
                 index < recipe.fluidOutputs().size();
@@ -357,10 +402,11 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
     }
 
     public IFluidHandler fluids(Direction side) {
-        if (side == null || front() == null) {
+        Direction front = front();
+        if (side == null || front == null) {
             return null;
         }
-        int outputIndex = spec.exhaustOutputSides().indexOf(side);
+        int outputIndex = spec.resolvedExhaustSides(front).indexOf(side);
         if (outputIndex >= 0) {
             return outputViews.get(outputIndex);
         }

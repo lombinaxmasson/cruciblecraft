@@ -352,6 +352,11 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                         engine.steamAmount(), SteamEngineBlockEntity.STEAM_CAPACITY,
                         engine.stored(), SteamEngineBlockEntity.KU_CAPACITY,
                         engine.strokeSign() > 0 ? "push" : "return"));
+                tooltip.add(Component.translatable(
+                        "jade.cruciblecraft.steam_engine.exhaust",
+                        engine.exhaustAmount(),
+                        SteamEngineBlockEntity.EXHAUST_CAPACITY,
+                        engine.status()));
             }
         }
         @Override public ResourceLocation getUid() { return UID; }

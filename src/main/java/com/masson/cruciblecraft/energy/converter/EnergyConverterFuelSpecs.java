@@ -30,7 +30,9 @@ public final class EnergyConverterFuelSpecs {
                     requireEfficiency(profile),
                     FuelGeneratorSpec.EnergyOutputFace.FRONT,
                     List.of(Direction.UP),
-                    1);
+                    1,
+                    FuelGeneratorSpec.ExhaustRouting.BACK,
+                    FuelGeneratorSpec.InputPhase.ANY);
         }
         if ("fluid_burning_box".equals(runtime)) {
             boolean gas = "MultiTileEntityGeneratorGas".equals(

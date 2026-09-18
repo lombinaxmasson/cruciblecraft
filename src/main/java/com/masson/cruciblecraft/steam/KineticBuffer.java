@@ -28,6 +28,14 @@ public final class KineticBuffer {
         }
         return extracted;
     }
+
+    /** Bleed stored KU without flipping the piston stroke. */
+    public long discard(long amount) {
+        long removed = Math.max(0L, Math.min(amount, stored));
+        stored -= removed;
+        return removed;
+    }
+
     public long stored() { return stored; }
     public long room() { return capacity - stored; }
     public int strokeSign() { return strokeSign; }

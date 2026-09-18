@@ -11,6 +11,7 @@ import com.masson.cruciblecraft.machine.CheckpointDecisions;
 import com.masson.cruciblecraft.machine.component.CheckpointTracker;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModFluids;
+import com.masson.cruciblecraft.steam.ExactFluidTransfer;
 import com.masson.cruciblecraft.steam.KineticBuffer;
 import com.masson.cruciblecraft.steam.MachineSideRules;
 import com.masson.cruciblecraft.steam.SteamConversion;
@@ -21,10 +22,13 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -55,6 +59,7 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
     private final PerTickEnergyBudget outputBudget = new PerTickEnergyBudget();
     private final CheckpointTracker checkpoint = new CheckpointTracker();
     private String status = "no_steam";
+    private boolean stopped;
 
     public SteamEngineBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.STEAM_ENGINE.get(), pos, state);
@@ -69,8 +74,7 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
         };
         exhaust = new FluidTank(
                 profile.exhaust().capacity(),
-                stack -> stack.is(
-                        net.minecraft.world.level.material.Fluids.WATER)) {
+                SteamConversion::isDistilledWater) {
             @Override protected void onContentsChanged() { markMutation(); }
         };
         kinetic = new KineticBuffer(
@@ -81,6 +85,9 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
     public static void serverTick(Level level, BlockPos pos, BlockState state, SteamEngineBlockEntity engine) {
         engine.convertOneBatch();
         engine.emitKinetic(level, pos, state);
+        engine.checkSteamVentStop();
+        engine.bleedIfStopped();
+        engine.pushDistilledExhaust();
         long phaseKey = CheckpointDecisions.phaseKey(pos.getX(), pos.getY(), pos.getZ());
         if (engine.checkpoint.shouldSync(false, level.getGameTime(), phaseKey, 20)) {
             engine.syncToClient();
@@ -89,18 +96,22 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
     }
 
     private void convertOneBatch() {
+        if (stopped) {
+            setStatus("stopped");
+            return;
+        }
         if (steam.getFluidAmount()
                 < SteamConversion.ENGINE_STEAM_PER_BATCH) {
             setStatus("no_steam");
             return;
         }
-        if (kinetic.room() < SteamConversion.KU_PER_ENGINE_BATCH) {
-            setStatus("kinetic_full");
-            return;
-        }
         if (exhaust.getSpace()
                 < SteamConversion.EXHAUST_WATER_PER_BATCH) {
             setStatus("exhaust_full");
+            return;
+        }
+        if (kinetic.room() < SteamConversion.KU_PER_ENGINE_BATCH) {
+            setStatus("kinetic_full");
             return;
         }
         int batches = Math.min(
@@ -117,9 +128,7 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
         int waterReturned = SteamConversion.EXHAUST_WATER_PER_BATCH;
         FluidStack simulated = steam.drain(
                 steamUsed, IFluidHandler.FluidAction.SIMULATE);
-        FluidStack water = new FluidStack(
-                net.minecraft.world.level.material.Fluids.WATER,
-                waterReturned);
+        FluidStack water = SteamConversion.distilledExhaust(waterReturned);
         int simulatedExhaust = exhaust.fill(
                 water, IFluidHandler.FluidAction.SIMULATE);
         if (simulated.getAmount() != steamUsed
@@ -145,10 +154,97 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
     }
 
     /**
+     * GT6 {@code MultiTileEntityEngineSteam}: when KU cannot take another
+     * batch and the steam tank is packed, vent steam and latch {@code mStopped}.
+     */
+    private void checkSteamVentStop() {
+        if (stopped
+                || steam.getSpace() > 0
+                || kinetic.room() >= SteamConversion.KU_PER_ENGINE_BATCH) {
+            return;
+        }
+        if (SteamEngineKuCurve.visualState(
+                kinetic.stored(), profile.outputCapacity()) <= 30) {
+            return;
+        }
+        steam.setFluid(FluidStack.EMPTY);
+        long overflow = kinetic.stored() - (profile.outputCapacity() - 1L);
+        if (overflow > 0L) {
+            kinetic.discard(overflow);
+        }
+        stopped = true;
+        setStatus("overloaded");
+        if (level != null && !level.isClientSide) {
+            level.playSound(
+                    null,
+                    worldPosition,
+                    SoundEvents.FIRE_EXTINGUISH,
+                    SoundSource.BLOCKS,
+                    0.5F,
+                    2.6F);
+        }
+        markMutation();
+    }
+
+    private void bleedIfStopped() {
+        if (!stopped || kinetic.stored() <= 0L) {
+            return;
+        }
+        long bleed = Math.max(1L, profile.outputCapacity() / 64L);
+        if (kinetic.discard(bleed) > 0L) {
+            markMutation();
+        }
+    }
+
+    /**
+     * GT6 {@code FACING_SIDES} DistW push. Leftover stays in the BUFFER_THEN_DRAIN
+     * tank instead of {@code GarbageGT.trash}.
+     */
+    private void pushDistilledExhaust() {
+        if (level == null || level.isClientSide || exhaust.isEmpty()) {
+            return;
+        }
+        Direction front = front();
+        if (front == null) {
+            return;
+        }
+        boolean moved = false;
+        for (Direction side : Direction.values()) {
+            if (exhaust.isEmpty()) {
+                break;
+            }
+            if (!MachineSideRules.engineExposesExhaust(front, side)) {
+                continue;
+            }
+            BlockPos target = worldPosition.relative(side);
+            if (!level.hasChunkAt(target)) {
+                continue;
+            }
+            IFluidHandler neighbor = level.getCapability(
+                    Capabilities.FluidHandler.BLOCK,
+                    target,
+                    side.getOpposite());
+            if (neighbor == null) {
+                continue;
+            }
+            if (ExactFluidTransfer.move(
+                    exhaust, neighbor, exhaust.getFluidAmount()) > 0) {
+                moved = true;
+            }
+        }
+        if (moved) {
+            markMutation();
+        }
+    }
+
+    /**
      * GT6 {@code MultiTileEntityEngineSteam}: emit one signed KU packet, then
      * always {@code mEnergy -= tOutput} even when the neighbor took nothing.
      */
     private void emitKinetic(Level level, BlockPos pos, BlockState state) {
+        if (stopped) {
+            return;
+        }
         long rate = currentOutputRate();
         if (!SteamEngineKuCurve.activelyEmitting(
                 kinetic.stored(),
@@ -191,11 +287,21 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
 
     public int steamAmount() { return steam.getFluidAmount(); }
     public int exhaustAmount() { return exhaust.getFluidAmount(); }
+    public FluidStack exhaustFluid() { return exhaust.getFluid().copy(); }
     public String status() { return status; }
+    public boolean stopped() { return stopped; }
+
+    public boolean toggleStopped() {
+        stopped = !stopped;
+        setStatus(stopped ? "stopped" : (steam.isEmpty() ? "no_steam" : "running"));
+        markMutation();
+        return !stopped;
+    }
     @Override public boolean handles(EnergyType type, Direction side) {
         Direction front = front();
         return type == EnergyType.KINETIC_PUSH
                 && front != null
+                && !stopped
                 && MachineSideRules.engineExposesKinetic(front, side);
     }
     @Override public long outputSize(EnergyType type, Direction side) {
@@ -260,21 +366,29 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
         tag.putLong("kinetic", kinetic.stored());
         tag.putInt("stroke_sign", kinetic.strokeSign());
         tag.putString("status", status);
+        tag.putBoolean("stopped", stopped);
     }
     @Override protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         if (tag.contains("steam")) steam.readFromNBT(registries, tag.getCompound("steam"));
         if (tag.contains("exhaust")) {
             exhaust.readFromNBT(registries, tag.getCompound("exhaust"));
+            FluidStack migrated = SteamConversion.migrateLegacyExhaust(
+                    exhaust.getFluid());
+            if (!FluidStack.isSameFluidSameComponents(
+                    migrated, exhaust.getFluid())) {
+                exhaust.setFluid(migrated);
+            }
         }
         kinetic = new KineticBuffer(
                 profile.outputCapacity(),
                 maxOutputRate(),
                 tag.getLong("kinetic"),
                 tag.getInt("stroke_sign"));
+        stopped = tag.getBoolean("stopped");
         status = tag.getString("status");
         if (status.isBlank()) {
-            status = steam.isEmpty() ? "no_steam" : "running";
+            status = stopped ? "stopped" : (steam.isEmpty() ? "no_steam" : "running");
         }
     }
 
@@ -289,6 +403,7 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
         tag.putLong("kinetic", kinetic.stored());
         tag.putInt("stroke_sign", kinetic.strokeSign());
         tag.putString("status", status);
+        tag.putBoolean("stopped", stopped);
         return tag;
     }
 
@@ -318,17 +433,16 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
                 Math.min(exhaust.getCapacity(), tag.getInt("exhaust_amount")));
         exhaust.setFluid(exhaustAmount == 0
                 ? FluidStack.EMPTY
-                : new FluidStack(
-                        net.minecraft.world.level.material.Fluids.WATER,
-                        exhaustAmount));
+                : SteamConversion.distilledExhaust(exhaustAmount));
         kinetic = new KineticBuffer(
                 profile.outputCapacity(),
                 maxOutputRate(),
                 tag.getLong("kinetic"),
                 tag.getInt("stroke_sign"));
+        stopped = tag.getBoolean("stopped");
         status = tag.getString("status");
         if (status.isBlank()) {
-            status = steam.isEmpty() ? "no_steam" : "running";
+            status = stopped ? "stopped" : (steam.isEmpty() ? "no_steam" : "running");
         }
     }
     @Override public ClientboundBlockEntityDataPacket getUpdatePacket() {
@@ -390,7 +504,7 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
         }
 
         @Override public int fill(FluidStack resource, FluidAction action) {
-            return steam.fill(resource, action);
+            return stopped ? 0 : steam.fill(resource, action);
         }
 
         @Override public FluidStack drain(FluidStack resource, FluidAction action) {

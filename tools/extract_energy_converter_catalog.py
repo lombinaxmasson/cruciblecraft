@@ -322,8 +322,8 @@ KIND_META: dict[str, dict[str, Any]] = {
         "faces": {
             "energyInputs": [],
             "energyOutputs": ["FRONT"],
-            "fluidInputs": ["UP"],
-            "fluidOutputs": ["UP"],
+            "fluidInputs": ["SIDES"],
+            "fluidOutputs": ["BACK"],
         },
         "texture_profile": "fuel_engine",
         "overlay_active": True,

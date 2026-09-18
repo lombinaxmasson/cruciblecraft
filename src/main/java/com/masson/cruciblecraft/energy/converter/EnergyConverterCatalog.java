@@ -133,6 +133,11 @@ public final class EnergyConverterCatalog {
                         engine.efficiencyBps())
                 || engine.conservation().primaryInputUnits() != 200
                 || engine.conservation().outputUnits() != 50
+                || !"cruciblecraft:water_distilled".equals(
+                        engine.conservation().exhaust())
+                || !"cruciblecraft:water_distilled".equals(
+                        engine.exhaust().identity())
+                || !"BUFFER_THEN_DRAIN".equals(engine.exhaust().mode())
                 || engineSemantics == null
                 || !"SOURCE_BACKED".equals(
                         engineSemantics.conservation().classification())
@@ -182,7 +187,11 @@ public final class EnergyConverterCatalog {
                 || !Integer.valueOf(10_000).equals(
                         fuelEngine.efficiencyBps())
                 || !"RU".equals(
-                        fuelEngine.outputPacket().identity())) {
+                        fuelEngine.outputPacket().identity())
+                || !fuelEngine.faces().fluidOutputs().equals(List.of("BACK"))
+                || !fuelEngine.faces().fluidInputs().equals(List.of("SIDES"))
+                || !fuelEngine.policy().sourceResolution().contains(
+                        "MOTOR_LIQUID_BACK_PUSH_BUFFER")) {
             throw new IllegalStateException(
                     "Kinetic converter rows drifted");
         }

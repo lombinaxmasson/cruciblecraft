@@ -18,6 +18,16 @@ public final class CapabilitySideRules {
         return side == Face.UNSIDED || side != front;
     }
 
+    /**
+     * GT6 {@code FACING_SIDES}: every face except front and back. DistW is
+     * pushed here; the back remains steam-only in {@code kinds.json}.
+     */
+    public static boolean engineExposesExhaust(Face front, Face side) {
+        return side != Face.UNSIDED
+                && side != front
+                && side != opposite(front);
+    }
+
     public static boolean engineExposesKinetic(Face front, Face side) {
         return side != Face.UNSIDED && side == front;
     }

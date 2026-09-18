@@ -21,6 +21,7 @@ class SteamConversionTest {
                 SteamConversion.ENGINE_STEAM_PER_BATCH
                         / SteamConversion.KU_PER_ENGINE_BATCH);
         assertEquals(1, SteamConversion.EXHAUST_WATER_PER_BATCH);
+        assertEquals("water_distilled", SteamConversion.DISTILLED_WATER_ID);
     }
     @Test void extractionSimulationDoesNotMutateAndRateLimits() {
         KineticBuffer buffer = new KineticBuffer(64, 16);
@@ -33,6 +34,9 @@ class SteamConversionTest {
         assertEquals(24, buffer.stored());
         assertEquals(-1, buffer.strokeSign());
         assertEquals(16, buffer.extract(32, false));
+        assertEquals(1, buffer.strokeSign());
+        assertEquals(8, buffer.discard(8));
+        assertEquals(0, buffer.stored());
         assertEquals(1, buffer.strokeSign());
     }
 
