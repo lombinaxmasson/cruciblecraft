@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.content.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -9,6 +10,8 @@ import java.util.Map;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 
 import net.minecraft.SharedConstants;
 import net.minecraft.server.Bootstrap;
@@ -69,6 +72,42 @@ class MassStorageHandlerTest {
         assertTrue(MassStoragePrefixUnits.familyOf(
                 com.masson.cruciblecraft.api.material.MaterialPrefixes.INGOT)
                 .contains(com.masson.cruciblecraft.api.material.MaterialPrefixes.BLOCK));
+    }
+
+    @Test
+    void dustPartialsPreferGt6LargestDenomination() {
+        assertEquals(
+                MaterialPrefixes.STORAGE_DUST,
+                MassStoragePrefixUnits.dustDenomination(72L * MassStoragePrefixUnits.U));
+        assertEquals(
+                MaterialPrefixes.DUST,
+                MassStoragePrefixUnits.dustDenomination(MassStoragePrefixUnits.U));
+        assertEquals(
+                MaterialPrefixes.DUST,
+                MassStoragePrefixUnits.dustDenomination(16L * MassStoragePrefixUnits.U));
+        assertEquals(
+                MaterialPrefixes.SMALL_DUST,
+                MassStoragePrefixUnits.dustDenomination(MassStoragePrefixUnits.U4));
+        assertEquals(
+                MaterialPrefixes.TINY_DUST,
+                MassStoragePrefixUnits.dustDenomination(MassStoragePrefixUnits.U9));
+        assertEquals(
+                MaterialPrefixes.DUST_DIV72,
+                MassStoragePrefixUnits.dustDenomination(MassStoragePrefixUnits.U72));
+        assertEquals(
+                MaterialPrefixes.SMALL_DUST,
+                MassStoragePrefixUnits.dustDenomination(MassStoragePrefixUnits.U + MassStoragePrefixUnits.U4));
+        assertNull(MassStoragePrefixUnits.dustDenomination(1L));
+        assertEquals(
+                MaterialPrefixes.INGOT,
+                MassStoragePrefixUnits.ingotDenomination(MassStoragePrefixUnits.U));
+        assertEquals(
+                MaterialPrefixes.NUGGET,
+                MassStoragePrefixUnits.ingotDenomination(MassStoragePrefixUnits.U9));
+        assertEquals("12k", StorageCountFormat.format(12_345));
+        assertEquals("32", StorageCountFormat.face(32, 64, "mass_storage_barrel"));
+        assertEquals("100%", StorageCountFormat.face(64, 64, "mass_storage_barrel"));
+        assertEquals("12k", StorageCountFormat.face(12_345, 1_000_000, "mass_storage_standard"));
     }
 
     @Test

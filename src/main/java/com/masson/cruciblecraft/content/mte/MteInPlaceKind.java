@@ -66,14 +66,35 @@ public enum MteInPlaceKind {
 
     public int slots() {
         return switch (this) {
-            case CHEST -> 36;
-            case SAFE, BARREL -> 27;
+            case CHEST -> 54;
+            case SAFE -> 15;
+            case BARREL -> 27;
             case CRAFTING_TABLE, BOTTLE_CRATE -> 9;
             case BOOKSHELF -> 28;
-            case DRAWER -> 36;
+            case DRAWER -> 144;
             case LOCKER -> 4;
             case MASS_STORAGE -> 1;
             default -> 0;
+        };
+    }
+
+    public boolean playerInventoryGui() {
+        return switch (this) {
+            case CHEST, SAFE, BOOKSHELF, BOTTLE_CRATE, DRAWER -> true;
+            default -> false;
+        };
+    }
+
+    public boolean storageTab() {
+        return switch (this) {
+            case CHEST,
+                    SAFE,
+                    BOOKSHELF,
+                    BOTTLE_CRATE,
+                    DRAWER,
+                    LOCKER,
+                    MASS_STORAGE -> true;
+            default -> false;
         };
     }
 

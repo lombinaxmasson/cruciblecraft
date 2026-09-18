@@ -28,6 +28,7 @@ import com.masson.cruciblecraft.client.render.BottleCrateRenderer;
 import com.masson.cruciblecraft.client.render.CrucibleRenderer;
 import com.masson.cruciblecraft.client.render.MassStorageRenderer;
 import com.masson.cruciblecraft.client.render.MteInPlaceStorageRenderer;
+import com.masson.cruciblecraft.client.render.GtChestRenderer;
 import com.masson.cruciblecraft.client.render.PipeCoverRenderer;
 import com.masson.cruciblecraft.client.screen.HopperScreen;
 import com.masson.cruciblecraft.client.screen.StorageScreen;
@@ -371,6 +372,11 @@ public class ClientSetup {
     }
 
     @SubscribeEvent
+    static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(GtChestRenderer.LAYER, GtChestRenderer::createBodyLayer);
+    }
+
+    @SubscribeEvent
     static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(ModBlockEntities.CRUCIBLE.get(), CrucibleRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.ANVIL.get(), AnvilRenderer::new);
@@ -420,6 +426,7 @@ public class ClientSetup {
         event.register(ModMenus.BOOKSHELF.get(), StorageScreen::new);
         event.register(ModMenus.BOTTLE_CRATE.get(), StorageScreen::new);
         event.register(ModMenus.DRAWER.get(), StorageScreen::new);
+        event.register(ModMenus.MTE_STORAGE.get(), StorageScreen::new);
         event.register(ModMenus.COKE_OVEN.get(), CokeOvenScreen::new);
         event.register(ModMenus.CRUSHER.get(), CrusherScreen::new);
         for (var menu : ModMenus.processingMenus()) {

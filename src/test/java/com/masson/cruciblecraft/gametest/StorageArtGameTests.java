@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
+import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.block.StorageHostBlock;
 import com.masson.cruciblecraft.content.blockentity.BookshelfBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.BottleCrateBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MassStorageBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
-import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.content.storage.StorageBookDisplay;
 import com.masson.cruciblecraft.content.storage.StorageBottleDisplay;
 import com.masson.cruciblecraft.content.storage.StorageCountFormat;
@@ -23,8 +23,11 @@ import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
@@ -72,7 +75,7 @@ public final class StorageArtGameTests {
         String model = resource(
                 "/assets/cruciblecraft/models/block/storage_mass_barrel.json");
         String state = resource(
-                "/assets/cruciblecraft/blockstates/mass_storage_barrel_6999.json");
+                "/assets/cruciblecraft/blockstates/item_barrel_6999.json");
         helper.assertTrue(
                 model.contains("gt6_import/storage/mass_storage_barrel")
                         && model.contains("tintindex")
@@ -82,20 +85,33 @@ public final class StorageArtGameTests {
                         && !state.contains("minecraft:block/barrel"),
                 "T44 item barrel still uses the vanilla oak barrel");
         BlockPos pos = new BlockPos(2, 2, 2);
-        helper.setBlock(
-                pos,
-                ModBlocks.storageBlocksById()
-                        .get(MteInPlaceGameTestSupport.id(
-                                "mass_storage_barrel_6999"))
-                        .get()
-                        .defaultBlockState());
+        place(helper, pos, "cruciblecraft:item_barrel_6999");
+        MassStorageBlockEntity barrel =
+                (MassStorageBlockEntity) helper.getBlockEntity(pos);
+        helper.assertTrue(
+                barrel.inventory().insertAll(
+                        new ItemStack(Items.IRON_INGOT, 32), false).isEmpty(),
+                "item barrel rejected iron");
+        CompoundTag tag = barrel.getUpdateTag(helper.getLevel().registryAccess());
+        helper.assertTrue(
+                tag.getInt("stored") == 32
+                        && tag.contains("filter")
+                        && "32".equals(
+                                StorageCountFormat.face(
+                                        32,
+                                        barrel.inventory().capacity(),
+                                        "mass_storage_barrel")),
+                "item barrel update tag dropped stored count");
         helper.succeed();
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void storageArtMteBarrelNotMissingCube(GameTestHelper helper) {
-        MteInPlaceGameTestSupport.assertLive(
-                helper, "skyroot/item_barrel", MteInPlaceKind.BARREL);
+        helper.assertTrue(
+                ModBlocks.mteInPlaceBlocksById().get(
+                        MteInPlaceGameTestSupport.id("skyroot/item_barrel"))
+                        == null,
+                "skyroot/item_barrel dummy is still registered");
         String model = resource(
                 "/assets/cruciblecraft/models/block/mte_inplace_barrel.json");
         helper.assertTrue(
@@ -104,12 +120,18 @@ public final class StorageArtGameTests {
                         && !model.contains("gt6_import/mte/barrel"),
                 "in-place barrel still uses cube_all pointing at a missing png");
         BlockPos pos = new BlockPos(2, 2, 2);
-        helper.setBlock(
-                pos,
-                ModBlocks.mteInPlaceBlocksById()
-                        .get(MteInPlaceGameTestSupport.id("skyroot/item_barrel"))
-                        .get()
-                        .defaultBlockState());
+        place(helper, pos, "cruciblecraft:item_barrel_6983");
+        MassStorageBlockEntity skyroot =
+                (MassStorageBlockEntity) helper.getBlockEntity(pos);
+        helper.assertTrue(
+                skyroot.inventory().insertAll(
+                        new ItemStack(Items.IRON_INGOT, 8), false).isEmpty(),
+                "skyroot item barrel rejected iron");
+        CompoundTag skyrootTag =
+                skyroot.getUpdateTag(helper.getLevel().registryAccess());
+        helper.assertTrue(
+                skyrootTag.getInt("stored") == 8 && skyrootTag.contains("filter"),
+                "skyroot item barrel update tag dropped stored count");
         helper.succeed();
     }
 
@@ -150,20 +172,11 @@ public final class StorageArtGameTests {
         helper.assertTrue(
                 tag.contains("inventory"),
                 "bookshelf update tag dropped inventory");
-        MteInPlaceGameTestSupport.assertLive(
-                helper, "furniture/bookshelf_lead", MteInPlaceKind.BOOKSHELF);
-        BlockPos mte = new BlockPos(3, 2, 2);
-        placeMte(helper, mte, "furniture/bookshelf_lead");
-        MteInPlaceBlockEntity host =
-                (MteInPlaceBlockEntity) helper.getBlockEntity(mte);
         helper.assertTrue(
-                host.items().insertItem(
-                        0, new ItemStack(Items.BOOK), false).isEmpty(),
-                "in-place bookshelf rejected a book");
-        helper.assertTrue(
-                StorageBookDisplay.index(host.items().getStackInSlot(0))
-                        == StorageBookDisplay.VANILLA,
-                "in-place bookshelf display id drifted");
+                ModBlocks.mteInPlaceBlocksById().get(
+                        MteInPlaceGameTestSupport.id("furniture/bookshelf_lead"))
+                        == null,
+                "lead bookshelf dummy is still registered");
         helper.succeed();
     }
 
@@ -203,19 +216,11 @@ public final class StorageArtGameTests {
         helper.assertTrue(
                 tag.contains("inventory"),
                 "bottle crate update tag dropped inventory");
-        MteInPlaceGameTestSupport.assertLive(
-                helper, "furniture/bottlecrate_lead", MteInPlaceKind.BOTTLE_CRATE);
-        BlockPos mte = new BlockPos(3, 2, 2);
-        placeMte(helper, mte, "furniture/bottlecrate_lead");
-        MteInPlaceBlockEntity host =
-                (MteInPlaceBlockEntity) helper.getBlockEntity(mte);
         helper.assertTrue(
-                host.items().insertItem(
-                        0, new ItemStack(Items.HONEY_BOTTLE), false).isEmpty(),
-                "in-place bottle crate rejected honey");
-        helper.assertTrue(
-                StorageBottleDisplay.hasFluid(host.items().getStackInSlot(0)),
-                "in-place bottle crate lost fluid display");
+                ModBlocks.mteInPlaceBlocksById().get(
+                        MteInPlaceGameTestSupport.id("furniture/bottlecrate_lead"))
+                        == null,
+                "lead bottle crate dummy is still registered");
         helper.succeed();
     }
 
@@ -241,33 +246,166 @@ public final class StorageArtGameTests {
         helper.assertTrue(
                 tag.getInt("stored") == 12_345 && tag.contains("filter"),
                 "mass storage update tag dropped stored count");
-        MteInPlaceGameTestSupport.assertLive(
-                helper, "furniture/mass_storage_lead", MteInPlaceKind.MASS_STORAGE);
-        BlockPos mte = new BlockPos(3, 2, 2);
-        placeMte(helper, mte, "furniture/mass_storage_lead");
-        MteInPlaceBlockEntity host =
-                (MteInPlaceBlockEntity) helper.getBlockEntity(mte);
         helper.assertTrue(
-                host.items().getSlots() == 1,
-                "in-place mass storage is not a single-item dummy");
+                ModBlocks.mteInPlaceBlocksById().get(
+                        MteInPlaceGameTestSupport.id("furniture/mass_storage_lead"))
+                        == null
+                        && ModBlocks.mteInPlaceBlocksById().get(
+                                MteInPlaceGameTestSupport.id("skyroot/item_barrel"))
+                        == null,
+                "folded T44 duals are still registered as in-place dummies");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void storageArtMetalBookshelfIsLive(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 2, 2);
+        MteInPlaceBlockEntity host = placeInPlace(
+                helper, pos, "furniture/bookshelf_aluminium");
+        helper.assertTrue(
+                host.items().getSlots() == 28,
+                "aluminium bookshelf slot count drifted");
         helper.assertTrue(
                 host.items().insertItem(
-                        0, new ItemStack(Items.IRON_INGOT, 8), false).isEmpty(),
-                "in-place mass storage rejected iron");
+                        0, new ItemStack(Items.BOOK), false).isEmpty(),
+                "aluminium bookshelf rejected a book");
         helper.assertTrue(
-                host.items().getStackInSlot(0).getCount() == 8,
-                "in-place mass storage lost the face count");
-        MteInPlaceGameTestSupport.assertLive(
-                helper, "skyroot/item_barrel", MteInPlaceKind.BARREL);
-        BlockPos barrel = new BlockPos(4, 2, 2);
-        placeMte(helper, barrel, "skyroot/item_barrel");
-        MteInPlaceBlockEntity dummy =
-                (MteInPlaceBlockEntity) helper.getBlockEntity(barrel);
+                !host.items().insertItem(
+                        1, new ItemStack(Items.APPLE), false).isEmpty(),
+                "aluminium bookshelf accepted a non-book");
+        var player = helper.makeMockPlayer(GameType.SURVIVAL);
         helper.assertTrue(
-                dummy.spec().kind() == MteInPlaceKind.BARREL
-                        && dummy.items().getSlots() == 27,
-                "in-place barrel was folded into mass-storage TESR");
+                host.createMenu(1, player.getInventory(), player) != null,
+                "aluminium bookshelf has no GUI");
         helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void storageArtMetalBottleCrateIsLive(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 2, 2);
+        MteInPlaceBlockEntity host = placeInPlace(
+                helper, pos, "furniture/bottlecrate_aluminium");
+        helper.assertTrue(
+                host.items().getSlots() == 9,
+                "aluminium bottle crate slot count drifted");
+        helper.assertTrue(
+                host.items().insertItem(
+                        0, new ItemStack(Items.GLASS_BOTTLE), false).isEmpty(),
+                "aluminium bottle crate rejected glass");
+        helper.assertTrue(
+                !host.items().insertItem(
+                        1, new ItemStack(Items.APPLE), false).isEmpty(),
+                "aluminium bottle crate accepted a non-bottle");
+        var player = helper.makeMockPlayer(GameType.SURVIVAL);
+        helper.assertTrue(
+                host.createMenu(1, player.getInventory(), player) != null,
+                "aluminium bottle crate has no GUI");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void storageArtMetalDrawerIsQuad(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 2, 2);
+        MteInPlaceBlockEntity host = placeInPlace(
+                helper, pos, "furniture/compartment_drawer_aluminium");
+        helper.assertTrue(
+                host.items().getSlots() == 144,
+                "aluminium drawer is not 144 slots");
+        helper.assertTrue(
+                host.items().insertItem(
+                        100, new ItemStack(Items.IRON_INGOT), false).isEmpty(),
+                "aluminium drawer rejected slot 100");
+        var player = helper.makeMockPlayer(GameType.SURVIVAL);
+        host.setDrawerCompartment(3);
+        helper.assertTrue(
+                host.createMenu(1, player.getInventory(), player) != null,
+                "aluminium drawer has no GUI");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void storageArtMetalLockerSwapsArmor(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 2, 2);
+        MteInPlaceBlockEntity host = placeInPlace(
+                helper, pos, "furniture/locker_aluminium");
+        helper.assertTrue(
+                host.items().getSlots() == 4,
+                "aluminium locker slot count drifted");
+        Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+        player.setItemSlot(
+                EquipmentSlot.HEAD,
+                new ItemStack(Items.IRON_HELMET));
+        host.swapArmor(player);
+        helper.assertTrue(
+                player.getItemBySlot(EquipmentSlot.HEAD).isEmpty()
+                        && host.items().getStackInSlot(3).is(Items.IRON_HELMET),
+                "aluminium locker did not swap helmet");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void storageArtMetalMassStorageIsLive(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 2, 2);
+        MteInPlaceBlockEntity host = placeInPlace(
+                helper, pos, "furniture/mass_storage_aluminium");
+        helper.assertTrue(
+                host.massStorage() != null
+                        && host.massStorage().capacity() == 1_000_000,
+                "aluminium mass storage is not 1e6");
+        helper.assertTrue(
+                host.massStorage().insertAll(
+                        new ItemStack(Items.IRON_INGOT, 64), false).isEmpty(),
+                "aluminium mass storage rejected iron");
+        helper.assertTrue(
+                host.massStorage().stored() == 64,
+                "aluminium mass storage stored count drifted");
+        CompoundTag tag = host.getUpdateTag(helper.getLevel().registryAccess());
+        helper.assertTrue(
+                tag.getInt("stored") == 64 && tag.contains("filter"),
+                "aluminium mass storage update tag dropped stored count");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void storageArtChestIsFiftyFour(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 2, 2);
+        MteInPlaceBlockEntity host = placeInPlace(helper, pos, "lead/chest");
+        helper.assertTrue(
+                host.items().getSlots() == 54,
+                "lead chest is not 54 slots");
+        var player = helper.makeMockPlayer(GameType.SURVIVAL);
+        helper.assertTrue(
+                host.createMenu(1, player.getInventory(), player) != null,
+                "lead chest has no GUI");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void storageArtSafeIsFifteen(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 2, 2);
+        MteInPlaceBlockEntity host = placeInPlace(
+                helper, pos, "safe/mechanical_lead_safe");
+        helper.assertTrue(
+                host.items().getSlots() == 15,
+                "lead safe is not 15 slots");
+        var player = helper.makeMockPlayer(GameType.SURVIVAL);
+        helper.assertTrue(
+                host.createMenu(1, player.getInventory(), player) != null,
+                "lead safe has no GUI");
+        helper.succeed();
+    }
+
+    private static MteInPlaceBlockEntity placeInPlace(
+            GameTestHelper helper, BlockPos pos, String path) {
+        var block = ModBlocks.mteInPlaceBlocksById()
+                .get(MteInPlaceGameTestSupport.id(path))
+                .get();
+        helper.setBlock(
+                pos,
+                block.defaultBlockState().setValue(
+                        MteInPlaceBlock.FACING,
+                        Direction.NORTH));
+        return helper.getBlockEntity(pos);
     }
 
     private static void place(GameTestHelper helper, BlockPos pos, String id) {
@@ -279,15 +417,6 @@ public final class StorageArtGameTests {
                 .defaultBlockState()
                 .setValue(StorageHostBlock.FACING, Direction.NORTH);
         helper.setBlock(pos, state);
-    }
-
-    private static void placeMte(GameTestHelper helper, BlockPos pos, String path) {
-        helper.setBlock(
-                pos,
-                ModBlocks.mteInPlaceBlocksById()
-                        .get(MteInPlaceGameTestSupport.id(path))
-                        .get()
-                        .defaultBlockState());
     }
 
     private static boolean classpathExists(String path) {

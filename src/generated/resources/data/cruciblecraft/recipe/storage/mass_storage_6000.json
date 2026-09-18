@@ -1,21 +1,31 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
-    "C": {
-      "item": "minecraft:chest"
+  "catalysts": {
+    "d": {
+      "item": "cruciblecraft:material_screwdriver"
     },
-    "P": {
-      "item": "cruciblecraft:steel/plate"
+    "w": {
+      "item": "cruciblecraft:material_wrench"
+    }
+  },
+  "ingredients": {
+    "C": {
+      "item": "cruciblecraft:lead/chest"
+    },
+    "M": {
+      "item": "cruciblecraft:lead/machine_casing"
+    },
+    "T": {
+      "item": "cruciblecraft:lead/screw"
     }
   },
   "pattern": [
-    "PPP",
-    "PCP",
-    "PPP"
+    "TCT",
+    "wMd",
+    "TCT"
   ],
   "result": {
     "count": 1,
     "id": "cruciblecraft:mass_storage_6000"
-  }
+  },
+  "type": "cruciblecraft:shaped_catalyst"
 }

@@ -1,11 +1,11 @@
 package com.masson.cruciblecraft.gametest;
 
-import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
-import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
-import com.masson.cruciblecraft.content.item.CatalogNamedBlockItem;
-import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
+import com.masson.cruciblecraft.content.block.StorageHostBlock;
+import com.masson.cruciblecraft.content.blockentity.BookshelfBlockEntity;
+import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
@@ -25,20 +25,27 @@ public final class MteFurnitureStorageRuntimeGameTests {
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void leadBookshelfIsLiveInventory(GameTestHelper helper) {
-        MteInPlaceGameTestSupport.assertLive(
-                helper, "furniture/bookshelf_lead", MteInPlaceKind.BOOKSHELF);
-        BlockPos pos = new BlockPos(2, 2, 2);
-        MteInPlaceBlock block = ModBlocks.mteInPlaceBlocksById()
-                .get(MteInPlaceGameTestSupport.id(
-                        "furniture/bookshelf_lead"))
-                .get();
-        helper.setBlock(pos, block.defaultBlockState());
-        MteInPlaceBlockEntity be = helper.getBlockEntity(pos);
         helper.assertTrue(
-                be.items().insertItem(
-                        0, new ItemStack(Items.APPLE), false)
+                ModBlocks.mteInPlaceBlocksById().get(
+                        MteInPlaceGameTestSupport.id("furniture/bookshelf_lead"))
+                        == null,
+                "furniture/bookshelf_lead dummy is still registered");
+        var variant = StorageVariantCatalog.require(
+                MteInPlaceGameTestSupport.id("bookshelf_7100"));
+        BlockPos pos = new BlockPos(2, 2, 2);
+        helper.setBlock(
+                pos,
+                ModBlocks.storageBlocksById()
+                        .get(variant.id())
+                        .get()
+                        .defaultBlockState()
+                        .setValue(StorageHostBlock.FACING, Direction.NORTH));
+        BookshelfBlockEntity be = helper.getBlockEntity(pos);
+        helper.assertTrue(
+                be.inventory().insertItem(
+                        0, new ItemStack(Items.BOOK), false)
                         .isEmpty(),
-                "furniture/bookshelf_lead rejected an item");
+                "bookshelf_7100 rejected a book");
         helper.succeed();
     }
 }

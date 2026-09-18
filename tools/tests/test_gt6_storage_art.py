@@ -77,10 +77,11 @@ class Gt6StorageArtTest(unittest.TestCase):
         self.assertTrue(notes["no_vanilla_oak_iron"])
         self.assertTrue(notes["no_per_material_png"])
         self.assertTrue(notes["kind_level_colored_overlay"])
-        self.assertTrue(notes["dual_t44_and_inplace_ids_remain"])
+        self.assertFalse(notes["dual_t44_and_inplace_ids_remain"])
         self.assertTrue(notes["face_item_count_books_bottles"])
         self.assertFalse(notes["digits_books_bottles_remain_ber"])
         self.assertFalse(notes["reopens_furniture_required_test_ids"])
+        self.assertTrue(notes["metal_inplace_player_storage"])
         self.assertEqual("explicitly_blocked", notes["obtain"])
         barrel = (
             ROOT

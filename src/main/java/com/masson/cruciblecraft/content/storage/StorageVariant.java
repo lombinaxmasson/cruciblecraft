@@ -81,6 +81,7 @@ public record StorageVariant(
             case "6999" -> "wood_treated";
             case "6990", "6991", "6992", "6998" -> "wood";
             case "6993", "6994", "6995", "6996" -> "plastic";
+            case "4000", "6000", "7100", "7300", "8600" -> "lead";
             default -> plankIndex() != null ? "wood" : representativeMaterial;
         };
     }

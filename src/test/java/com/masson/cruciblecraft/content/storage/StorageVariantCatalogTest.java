@@ -32,19 +32,28 @@ class StorageVariantCatalogTest {
         assertTrue(ids.contains("cruciblecraft:bookshelf_7000"));
         assertTrue(ids.contains("cruciblecraft:locker_7300"));
         assertTrue(ids.contains("cruciblecraft:charging_locker_7500"));
-        assertTrue(ids.contains("cruciblecraft:mass_storage_barrel_6999"));
+        assertTrue(ids.contains("cruciblecraft:item_barrel_6999"));
         assertTrue(ids.contains("cruciblecraft:storage_inserter_32751"));
         assertTrue(ids.contains("cruciblecraft:mass_storage_logistics_6200"));
         StorageVariant treatedBarrel = StorageVariantCatalog.require(
-                ResourceLocation.parse("cruciblecraft:mass_storage_barrel_6999"));
+                ResourceLocation.parse("cruciblecraft:item_barrel_6999"));
         assertEquals("mass_storage_barrel", treatedBarrel.modelProfile());
         assertEquals(
                 "block/storage_mass_barrel",
                 treatedBarrel.model().getPath());
         assertEquals("wood_treated", treatedBarrel.tintMaterial());
+        assertEquals("Wooden Item Barrel", treatedBarrel.english());
+        assertEquals("防腐木物品桶", treatedBarrel.chinese());
+        StorageVariant massStorage = StorageVariantCatalog.require(
+                ResourceLocation.parse("cruciblecraft:mass_storage_6000"));
+        assertEquals("Mass Storage", massStorage.english());
+        assertTrue(massStorage.chinese().contains("Mass Storage"));
         StorageVariant skyroot = StorageVariantCatalog.require(
-                ResourceLocation.parse("cruciblecraft:mass_storage_barrel_6983"));
+                ResourceLocation.parse("cruciblecraft:item_barrel_6983"));
         assertEquals("skyroot", skyroot.tintMaterial());
+        StorageVariant leadShelf = StorageVariantCatalog.require(
+                ResourceLocation.parse("cruciblecraft:bookshelf_7100"));
+        assertEquals("lead", leadShelf.tintMaterial());
         assertEquals(
                 StorageVariantCatalog.SOURCE_REVISION,
                 "3703e40308c8c030763fd6297dea8b210d2a77b1");

@@ -6,7 +6,7 @@
 
 ## Unique active
 
-`content/gt6-storage-art`（GT6 Storage Art，`workflow=active`，`maturity=runtime_ready`）；计划 [GT6仓储美术详细计划](../history/card-plans/active/GT6仓储美术详细计划.md)。
+无。`capability.json` 里没有 `workflow=active`。
 
 ## Prep（不占落地锁）
 
@@ -35,9 +35,9 @@
 
 `2026-09-15-obtain-reset` **pending**. Major worldgen / gameplay / obtain / GUI / save / network changes open or extend this cycle. Ordinary bugfix does not invalidate it. Accept only after a human `runClient`; CI never auto-signs.
 
-Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers
+Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art
 
-## runtime_ready accepted（75）
+## runtime_ready accepted（76）
 
 机制可跑。`survival_access` 独立、不挡关闭。不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。
 
@@ -80,6 +80,7 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `content/gt6-redstone-wire-acquisition` — GT6 Redstone Wire Acquisition — [GT6 绝缘红石获得格详细计划](../history/card-plans/closed/GT6绝缘红石获得格详细计划.md)
 - `content/gt6-redstone-wire-correction` — GT6 Redstone Wire Correction — [GT6 红石线行为校正详细计划](../history/card-plans/closed/GT6红石线行为校正详细计划.md)
 - `content/gt6-restrictive-item-pipe-runtime` — GT6 Restrictive Item Pipe Runtime — [GT6 限制物品管运行时详细计划](../history/card-plans/closed/GT6限制物品管运行时详细计划.md)
+- `content/gt6-storage-art` — GT6 Storage Art — [GT6仓储美术详细计划](../history/card-plans/closed/GT6仓储美术详细计划.md)
 - `content/mte-redstone-wire` — MTE Redstone Wire — [MTE 红石线详细计划](../history/card-plans/closed/MTE红石线详细计划.md)
 - `content/sensors` — Sensors — [Sensors 详细计划](../history/card-plans/closed/Sensors详细计划.md)
 - `content/technological-parts-foundation` — Technological Parts Foundation — [技术中间件基础详细计划](../history/card-plans/closed/技术中间件基础详细计划.md)

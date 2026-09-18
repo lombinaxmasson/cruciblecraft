@@ -701,8 +701,16 @@ def _grid_status(operands: list[dict[str, Any]]) -> str:
     return "source_exact"
 
 
-def _live_recipe_path(dummy_path: str) -> Path:
-    return LIVE_RECIPE_ROOT / f"{dummy_path}.json"
+def _live_recipe_path(relative: str) -> Path:
+    return LIVE_RECIPE_ROOT / f"{relative}.json"
+
+
+def _host_recipe_rel(host: dict[str, Any]) -> str:
+    stable = str(host.get("stable_id") or "")
+    live = str(host.get("runtime_id") or "").split(":", 1)[-1]
+    if live and live != stable:
+        return f"storage/{live}"
+    return stable
 
 
 @lru_cache(maxsize=1)
@@ -836,10 +844,18 @@ def audit_family(domain: str, recipes: dict[int, list[dict[str, Any]]] | None = 
         status = _grid_status(list(operands.values()) + list(catalysts.values()))
         if not pattern and chosen is None:
             status = "explicitly_blocked"
-        live = _audit_live_recipe(dummy, pattern, {**operands, **catalysts}) if pattern else {
-            "present": False,
-            "matches_source": False,
-        }
+        runtime_id = row.get("live_block")
+        recipe_rel = _host_recipe_rel(
+            {"stable_id": dummy, "runtime_id": runtime_id}
+        )
+        live = (
+            _audit_live_recipe(recipe_rel, pattern, {**operands, **catalysts})
+            if pattern
+            else {
+                "present": False,
+                "matches_source": False,
+            }
+        )
         hosts.append(
             {
                 "meta": meta,
@@ -1156,12 +1172,12 @@ def _write_live_catalog(matrices: list[dict[str, Any]]) -> None:
             document = _recipe_json(host)
             if document is None:
                 continue
-            path = str(host["stable_id"])
+            path = _host_recipe_rel(host)
             if any(row["path"] == path for row in recipes):
                 raise ValueError(f"duplicate live recipe path {path}")
             recipes.append(
                 {
-                    "path": host["stable_id"],
+                    "path": path,
                     "domain": matrix["domain"],
                     "pattern": document["pattern"],
                     "ingredients": document["ingredients"],
@@ -1204,7 +1220,7 @@ def _write_family_recipes(name: str, matrix: dict[str, Any], *, landed: bool) ->
         census.write_stable(recipe_dir / filename, document)
         written += 1
         if landed and _emits_live(host):
-            live_path = _live_recipe_path(host["stable_id"])
+            live_path = _live_recipe_path(_host_recipe_rel(host))
             live_path.parent.mkdir(parents=True, exist_ok=True)
             census.write_stable(live_path, document)
     return written

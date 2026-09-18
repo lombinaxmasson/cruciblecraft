@@ -7175,7 +7175,7 @@
     "ore_source_materials": 137,
     "pipe_forms": 282,
     "recipe_gated_forms": 13338,
-    "registered_forms": 39814,
+    "registered_forms": 39815,
     "restrictive_pipe_forms": 72,
     "roaster_required_forms": 12,
     "tool_head_required_forms": 13938,
@@ -7782,6 +7782,7 @@
     "machines_cluster_mill_required_forms",
     "technological_parts_foundation_required_forms",
     "machines_slicer_paper_tiny_plate_required_forms",
+    "gt6_storage_art_required_forms",
     "fission_observation_safety_required_forms",
     "fission_survival_required_forms",
     "converter_catalog_fluidbed_required_forms"
@@ -14917,6 +14918,11 @@
       "round",
       "small_dust",
       "tiny_dust"
+    ]
+  },
+  "gt6_storage_art_required_forms": {
+    "wood_treated": [
+      "plate"
     ]
   },
   "machines_slicer_paper_tiny_plate_required_forms": {
@@ -56475,6 +56481,7 @@
       "large_fluid_pipe",
       "long_rod",
       "nonuple_fluid_pipe",
+      "plate",
       "quadruple_fluid_pipe",
       "ring",
       "rod",
@@ -70745,6 +70752,12 @@
       "field": "required_forms",
       "path": "tools/waves/machines/sanding/required_forms.json",
       "sha256": "daffab09ebde4ee39d1f23206564159cda1b49812872802486da34d638c5f88b"
+    },
+    "gt6_storage_art_required_forms": {
+      "classification": "semantic_ordinary_runtime_required",
+      "field": "required_forms",
+      "path": "tools/waves/content/gt6-storage-art/required_forms.json",
+      "sha256": "802754325dc4d353ef1971b7dc155d2fc64f10ae787b8f698726982a1c2e0ecc"
     },
     "machines_slicer_paper_tiny_plate_required_forms": {
       "classification": "semantic_ordinary_runtime_required",

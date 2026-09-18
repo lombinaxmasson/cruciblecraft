@@ -3,6 +3,7 @@ package com.masson.cruciblecraft.client.color;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.block.StorageHostBlock;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
+import com.masson.cruciblecraft.content.mte.MteInPlaceMaterials;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
@@ -46,48 +47,20 @@ public final class StorageArtColor {
 
     static boolean storageKind(MteInPlaceKind kind) {
         return switch (kind) {
-            case BARREL, BOOKSHELF, BOTTLE_CRATE, DRAWER, LOCKER, MASS_STORAGE -> true;
+            case BARREL, BOOKSHELF, BOTTLE_CRATE, DRAWER, LOCKER, MASS_STORAGE, CHEST, SAFE -> true;
             default -> false;
         };
     }
 
+    public static int materialColor(MteInPlaceSpec spec) {
+        return MaterialCatalog.find(MteInPlaceMaterials.id(spec))
+                .map(material -> MaterialItemColor.styleColor(
+                        material.colorRgb(), material.tintStyle()))
+                .orElse(0x00CD7F32);
+    }
+
     static String materialId(MteInPlaceSpec spec) {
-        String path = spec.registryPath();
-        if (path.contains("wooden_item_barrel_cheap")
-                || "wooden_item_barrel_cheap".equals(path)) {
-            return "wood";
-        }
-        if (path.endsWith("wooden_item_barrel")) {
-            return "wood_treated";
-        }
-        int slash = path.indexOf('/');
-        if (slash > 0) {
-            String first = path.substring(0, slash);
-            if (MaterialCatalog.contains(first)) {
-                return first;
-            }
-            String elemental = first + "_elemental";
-            if (MaterialCatalog.contains(elemental)) {
-                return elemental;
-            }
-        }
-        int under = path.lastIndexOf('_');
-        if (under >= 0 && under < path.length() - 1) {
-            String last = path.substring(under + 1);
-            if (MaterialCatalog.contains(last)) {
-                return last;
-            }
-            String elemental = last + "_elemental";
-            if (MaterialCatalog.contains(elemental)) {
-                return elemental;
-            }
-        }
-        if (spec.kind() == MteInPlaceKind.BARREL
-                || spec.kind() == MteInPlaceKind.BOOKSHELF
-                || spec.kind() == MteInPlaceKind.BOTTLE_CRATE) {
-            return "wood";
-        }
-        return "steel";
+        return MteInPlaceMaterials.id(spec);
     }
 
     private static int colorFor(Block block) {
@@ -96,7 +69,7 @@ public final class StorageArtColor {
             materialId = storage.variant().tintMaterial();
         } else if (block instanceof MteInPlaceBlock inplace
                 && storageKind(inplace.spec().kind())) {
-            materialId = materialId(inplace.spec());
+            materialId = MteInPlaceMaterials.id(inplace.spec());
         } else {
             return 0xFFFFFFFF;
         }

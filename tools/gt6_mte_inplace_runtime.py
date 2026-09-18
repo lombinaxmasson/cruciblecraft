@@ -25,6 +25,9 @@ DATA = census.ROOT / "src" / "main" / "resources" / "data" / "cruciblecraft"
 DATA_CATALOG = DATA / "smelter_mte_identity_catalog.json"
 TOOLS_CATALOG = census.TOOLS / "smelter_mte_identity_catalog.json"
 INPLACE_CATALOG = DATA / "mte_inplace_catalog.json"
+STORAGE_VARIANTS = DATA / "storage_variants.json"
+T44_FOLD_DOMAINS = ("furniture_barrel", "furniture_storage")
+T44_FOLD_REASON = "folded onto T44 storage host"
 R0 = (
     census.TOOLS
     / "waves"
@@ -252,7 +255,10 @@ DOMAINS: dict[str, dict[str, Any]] = {
         "game_tests": "MteFurnitureBarrelRuntimeGameTests.java",
         "collision_reason": "in-place barrel BlockItem",
         "depends_on": ["registry/catalog-modern-ids"],
-        "lock_note": "12 mass-storage barrels are live BlockItems; not player_complete",
+        "lock_note": (
+            "12 mass-storage barrels fold onto T44 mass_storage_barrel_* hosts; "
+            "dummy ids become air; not player_complete"
+        ),
     },
     "furniture_storage": {
         "slug": "content/gt6-mte-furniture-storage-runtime",
@@ -267,9 +273,9 @@ DOMAINS: dict[str, dict[str, Any]] = {
         "collision_reason": "in-place storage furniture BlockItem",
         "depends_on": ["registry/catalog-modern-ids"],
         "lock_note": (
-            "bookshelf/crate/drawer/locker/mass-storage dummies are live "
-            "BlockItems; storage_variants material mismatch forbade fold; "
-            "not player_complete"
+            "5 exact-meta T44 overlaps fold onto storage_variants hosts; "
+            "remaining metal bookshelf/crate/drawer/locker/mass-storage "
+            "dummies stay live BlockItems; not player_complete"
         ),
     },
     "drive": {
@@ -425,12 +431,15 @@ ISSUE: dict[str, dict[str, Any]] = {
     "furniture_barrel": {
         "title": "GT6 Furniture Barrel Runtime",
         "semantic_key": "mte:furniture-barrel:in-place",
-        "sample_ids": ["skyroot/item_barrel"],
-        "reason": "Mass-storage barrels keep dummy modern ids as live BlockItems.",
+        "sample_ids": ["item_barrel_6983"],
+        "reason": (
+            "Mass-storage barrels fold onto T44 mass_storage_barrel_* hosts. "
+            "Dummy modern ids become air."
+        ),
         "checks": [
             {
                 "name": "skyrootBarrelIsLiveInventory",
-                "path": "skyroot/item_barrel",
+                "path": "item_barrel_6983",
                 "kind": "BARREL",
                 "forbid": "inventory",
             }
@@ -439,15 +448,16 @@ ISSUE: dict[str, dict[str, Any]] = {
     "furniture_storage": {
         "title": "GT6 Furniture Storage Runtime",
         "semantic_key": "mte:furniture-storage:in-place",
-        "sample_ids": ["furniture/bookshelf_lead"],
+        "sample_ids": ["bookshelf_7100", "furniture/bookshelf_aluminium"],
         "reason": (
-            "Bookshelf/crate/drawer/locker/mass-storage dummies stay live "
-            "BlockItems because storage_variants material mismatch forbade fold."
+            "Exact-meta T44 overlaps fold onto storage_variants hosts. "
+            "Remaining metal bookshelf/crate/drawer/locker/mass-storage "
+            "dummies stay live BlockItems."
         ),
         "checks": [
             {
                 "name": "leadBookshelfIsLiveInventory",
-                "path": "furniture/bookshelf_lead",
+                "path": "bookshelf_7100",
                 "kind": "BOOKSHELF",
                 "forbid": "inventory",
             }
@@ -614,6 +624,13 @@ def _write_loot(path: str) -> None:
     )
 
 
+def _withdraw_dummy_identity_files(dummy: str) -> None:
+    for folder in (ITEM_MODELS, BLOCKSTATES, LOOT):
+        path = folder / f"{dummy}.json"
+        if path.is_file():
+            path.unlink()
+
+
 def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -676,6 +693,33 @@ def _dummy_paths() -> set[str]:
     }
 
 
+def _t44_by_meta() -> dict[int, dict[str, Any]]:
+    if not STORAGE_VARIANTS.is_file():
+        return {}
+    out: dict[int, dict[str, Any]] = {}
+    for row in census.load_json(STORAGE_VARIANTS).get("variants") or []:
+        key = str(row.get("expansion_key") or "")
+        if key.isdigit():
+            out[int(key)] = row
+    return out
+
+
+def _t44_folded_metas() -> set[int]:
+    """Metas whose smelter catalog already points at a T44 storage host."""
+    t44 = _t44_by_meta()
+    smelter = {
+        int(row["meta"]): row
+        for row in census.load_json(DATA_CATALOG).get("identities") or []
+    }
+    folded: set[int] = set()
+    for meta, host in t44.items():
+        live = _strip_ns(str(host.get("runtime_id") or ""))
+        catalog = smelter.get(meta) or {}
+        if live and catalog.get("registry_path") == live:
+            folded.add(meta)
+    return folded
+
+
 def _class_matches(gt6_class: str, needle: str | None) -> bool:
     if not needle:
         return True
@@ -694,12 +738,14 @@ def _r0_family_rows(domain: str) -> list[dict[str, Any]]:
             for row in census.load_json(INPLACE_CATALOG).get("identities") or []
         }
     live = dummy | inplace
+    folded = _t44_folded_metas()
     rows = []
     for row in census.load_json(R0).get("identities") or []:
         if row.get("family") != spec["family"]:
             continue
         path = str(row.get("registry_path") or "")
-        if path not in live:
+        meta = int(row["meta"])
+        if path not in live and meta not in folded:
             continue
         tag = str(row.get("gt6_class_or_tag") or "")
         if not _class_matches(tag, spec.get("class_contains")):
@@ -715,7 +761,9 @@ def build_overlay(domain: str) -> dict[str, Any]:
         int(row["meta"]): row
         for row in census.load_json(DATA_CATALOG).get("identities") or []
     }
+    t44 = _t44_by_meta()
     rows = []
+    folded = 0
     for row in _r0_family_rows(domain):
         path = str(row["registry_path"])
         kind = _kind_for(str(row.get("gt6_class_or_tag") or ""), spec["family"])
@@ -729,26 +777,47 @@ def build_overlay(domain: str) -> dict[str, Any]:
             catalog.get("chinese_name")
             or english
         )
+        host = t44.get(int(row["meta"]))
+        live_block = f"cruciblecraft:{path}"
+        disposition = "keep_distinct"
+        collision = spec["collision_reason"]
+        if host is not None:
+            t44_id = str(host.get("runtime_id") or "")
+            t44_path = _strip_ns(t44_id)
+            if t44_path and t44_path != path:
+                live_block = t44_id
+                disposition = "fold_live_block"
+                collision = T44_FOLD_REASON
+                folded += 1
         rows.append(
             {
                 "meta": int(row["meta"]),
                 "dummy_path": path,
-                "live_block": f"cruciblecraft:{path}",
+                "live_block": live_block,
                 "kind": kind,
                 "family": spec["family"],
                 "gt6_class": row.get("gt6_class_or_tag"),
                 "english_name": english,
                 "chinese_name": chinese,
-                "disposition": "keep_distinct",
+                "disposition": disposition,
+                **(
+                    {"collision_reason": collision}
+                    if disposition == "fold_live_block"
+                    else {}
+                ),
             }
         )
+    counts = {"in_place": len(rows)}
+    if folded:
+        counts["fold_live_block"] = folded
+        counts["keep_distinct"] = len(rows) - folded
     return {
         "schema_version": 1,
         "capability_slug": spec["slug"],
         "status": STATUS,
         "source_revision": GT6_REVISION,
         "domain": domain,
-        "counts": {"in_place": len(rows)},
+        "counts": counts,
         "rows": rows,
     }
 
@@ -820,20 +889,30 @@ def _texture_name(kind: str) -> str:
 
 
 def _write_models(rows: list[dict[str, Any]]) -> None:
-    foundry = [row for row in rows if str(row["kind"]) == "CRUCIBLE_FOUNDRY"]
+    withdrawn = [
+        row for row in rows if row.get("disposition") == "fold_live_block"
+    ]
+    live_rows = [
+        row for row in rows if row.get("disposition") != "fold_live_block"
+    ]
+    for row in withdrawn:
+        _withdraw_dummy_identity_files(str(row["dummy_path"]))
+    foundry = [row for row in live_rows if str(row["kind"]) == "CRUCIBLE_FOUNDRY"]
     if foundry:
         from tools import gt6_foundry_art as foundry_art
 
         foundry_art.write_models(foundry)
         for row in foundry:
             _write_loot(str(row["dummy_path"]))
-    for row in rows:
+    for row in live_rows:
         kind = str(row["kind"])
         if kind == "CRUCIBLE_FOUNDRY":
             continue
         path = str(row["dummy_path"])
         texture = f"cruciblecraft:block/gt6_import/mte/{_texture_name(kind)}"
         model_name = f"mte_inplace_{kind.lower()}"
+        if kind in {"CHEST", "SAFE"}:
+            continue
         storage_parent = {
             "BARREL": "cruciblecraft:block/storage_mass_barrel",
             "BOOKSHELF": "cruciblecraft:block/storage_bookshelf_metal",
@@ -890,6 +969,8 @@ def _merge_inplace_catalog(rows: list[dict[str, Any]]) -> None:
     kept = [row for row in existing if int(row["meta"]) not in metas]
     added = []
     for row in rows:
+        if row.get("disposition") == "fold_live_block":
+            continue
         added.append(
             {
                 "chinese_name": row["chinese_name"],
@@ -925,7 +1006,7 @@ def _patch_catalogs(rows: list[dict[str, Any]]) -> int:
             row = by_meta.get(int(identity["meta"]))
             if row is None:
                 continue
-            live = row["dummy_path"]
+            live = _strip_ns(str(row["live_block"]))
             if identity.get("registry_kind") != "existing_item" or identity.get(
                 "registry_path"
             ) != live:
@@ -953,14 +1034,15 @@ def _patch_modern_map(rows: list[dict[str, Any]], reason: str) -> int:
         target = by_meta.get(int(row["meta"]))
         if target is None:
             continue
-        live = target["dummy_path"]
+        live = _strip_ns(str(target["live_block"]))
+        reason_text = str(target.get("collision_reason") or reason)
         if row.get("registry_path") != live:
             row["registry_path"] = live
             row["runtime_id"] = f"cruciblecraft:{live}"
-            row["collision_reason"] = reason
+            row["collision_reason"] = reason_text
             changed += 1
-        elif row.get("collision_reason") != reason:
-            row["collision_reason"] = reason
+        elif row.get("collision_reason") != reason_text:
+            row["collision_reason"] = reason_text
             changed += 1
     document["collision_count"] = sum(
         1 for row in document.get("rows") or [] if row.get("collision_reason")
@@ -1024,6 +1106,159 @@ def write(unique_active: bool = True, domain: str = "attachments") -> dict[str, 
     }
 
 
+def _fold_recipe_remap_pairs(rows: list[dict[str, Any]]) -> list[tuple[str, str]]:
+    pairs: list[tuple[str, str]] = []
+    for row in rows:
+        if row.get("disposition") != "fold_live_block":
+            continue
+        dummy = str(row.get("dummy_path") or "")
+        live = _strip_ns(str(row.get("live_block") or ""))
+        if not dummy or not live or dummy == live:
+            continue
+        pairs.append((f"cruciblecraft:{dummy}", f"cruciblecraft:{live}"))
+    pairs.sort(key=lambda item: len(item[0]), reverse=True)
+    return pairs
+
+
+def _remap_fold_recipe_ids(rows: list[dict[str, Any]]) -> int:
+    pairs = _fold_recipe_remap_pairs(rows)
+    if not pairs:
+        return 0
+    roots = (
+        census.ROOT / "src" / "recipe_generated",
+        census.ROOT / "src" / "recipe_support_generated",
+        census.ROOT
+        / "src"
+        / "generated"
+        / "resources"
+        / "data"
+        / "cruciblecraft"
+        / "recipe",
+        census.ROOT
+        / "src"
+        / "main"
+        / "resources"
+        / "data"
+        / "cruciblecraft"
+        / "mte_inplace_acquisition.json",
+    )
+    files: list[Path] = []
+    for root in roots:
+        if root.is_file():
+            files.append(root)
+        elif root.is_dir():
+            files.extend(path for path in root.rglob("*.json") if path.is_file())
+    changed = 0
+    for path in files:
+        try:
+            text = path.read_text(encoding="utf-8")
+        except (OSError, UnicodeDecodeError):
+            continue
+        updated = text
+        for old, new in pairs:
+            updated = updated.replace(old, new)
+        if updated != text:
+            path.write_text(updated, encoding="utf-8", newline="\n")
+            changed += 1
+    return changed
+
+
+def _patch_live_acquisition_catalog(fold_rows: list[dict[str, Any]]) -> int:
+    from tools import gt6_mte_inplace_acquisition as acquisition
+
+    if not fold_rows or not acquisition.LIVE_CATALOG.is_file():
+        return 0
+    fold_by_dummy = {str(row["dummy_path"]): row for row in fold_rows}
+    document = census.load_json(acquisition.LIVE_CATALOG)
+    changed = 0
+    recipes = []
+    seen: set[str] = set()
+    for recipe in document.get("recipes") or []:
+        row = dict(recipe)
+        fold = fold_by_dummy.get(str(row.get("path") or ""))
+        if fold is not None:
+            live = _strip_ns(str(fold["live_block"]))
+            row["path"] = f"storage/{live}"
+            result = dict(row.get("result") or {})
+            result["id"] = fold["live_block"]
+            row["result"] = result
+            changed += 1
+        path = str(row.get("path") or "")
+        if path in seen:
+            continue
+        seen.add(path)
+        recipes.append(row)
+    document["recipes"] = recipes
+    census.write_stable(acquisition.LIVE_CATALOG, document)
+    for dummy, fold in fold_by_dummy.items():
+        stale = acquisition.LIVE_RECIPE_ROOT / f"{dummy}.json"
+        if stale.is_file():
+            stale.unlink()
+            changed += 1
+    return changed
+
+
+def apply_t44_storage_host_fold() -> dict[str, Any]:
+    """Withdraw 17 T44/MTE dual dummies onto live storage_variants hosts."""
+    from tools import gt6_mte_inplace_acquisition as acquisition
+
+    fold_rows: list[dict[str, Any]] = []
+    summaries: dict[str, Any] = {}
+    for domain in T44_FOLD_DOMAINS:
+        spec = DOMAINS[domain]
+        overlay = build_overlay(domain)
+        if int(overlay["counts"]["in_place"]) != spec["expected"]:
+            raise ValueError(
+                f"{domain} in_place {overlay['counts']['in_place']} != "
+                f"{spec['expected']}"
+            )
+        wave = _wave(domain)
+        wave.mkdir(parents=True, exist_ok=True)
+        _write_json(wave / "runtime_overlay.json", overlay)
+        _write_json(wave / "production_lock.json", {"note": spec["lock_note"]})
+        _merge_inplace_catalog(overlay["rows"])
+        patched = _patch_catalogs(overlay["rows"])
+        mapped = _patch_modern_map(overlay["rows"], spec["collision_reason"])
+        withdrawn = [
+            row
+            for row in overlay["rows"]
+            if row.get("disposition") == "fold_live_block"
+        ]
+        for row in withdrawn:
+            _withdraw_dummy_identity_files(str(row["dummy_path"]))
+        fold_rows.extend(withdrawn)
+        summaries[domain] = {
+            "folded": len(withdrawn),
+            "remaining_in_place": int(overlay["counts"].get("keep_distinct") or 0),
+            "catalog_patches": patched,
+            "mapped_rows": mapped,
+        }
+    remapped = _remap_fold_recipe_ids(fold_rows)
+    modern.rewrite_catalog_item_tags()
+    remaps = [
+        (str(row["dummy_path"]), _strip_ns(str(row["live_block"])))
+        for row in fold_rows
+    ]
+    modern.apply_dummy_scoped_remaps(remaps)
+    recipes = acquisition.parse_loader_recipes()
+    for domain in T44_FOLD_DOMAINS:
+        first = acquisition.audit_family(domain, recipes)
+        written = acquisition._write_family_recipes(domain, first, landed=True)
+        matrix = acquisition.audit_family(domain, recipes)
+        acquisition._persist_family_wave(
+            domain, matrix, landed=True, written=written
+        )
+        summaries[domain]["acquisition_written"] = written
+    catalog_changed = _patch_live_acquisition_catalog(fold_rows)
+    modern.write_registry_identity_manifest()
+    return {
+        "folded_rows": len(fold_rows),
+        "remapped_files": remapped,
+        "acquisition_catalog": catalog_changed,
+        "domains": summaries,
+    }
+
+
 def _check_domain(domain: str) -> list[str]:
     spec = DOMAINS[domain]
     wave = _wave(domain)
@@ -1057,11 +1292,27 @@ def _check_domain(domain: str) -> list[str]:
             if identity is None:
                 errors.append(f"{census.relative(path)} missing meta {meta}")
                 continue
-            live_path = row["dummy_path"]
-            if live_path not in live_hosts:
-                errors.append(f"{domain} live host {live_path} is not registered")
-            if live_path not in inplace:
-                errors.append(f"{domain} {live_path} missing from inplace catalog")
+            dummy_path = str(row["dummy_path"])
+            live_path = _strip_ns(str(row["live_block"]))
+            folded = row.get("disposition") == "fold_live_block"
+            if folded:
+                if dummy_path in inplace:
+                    errors.append(
+                        f"{domain} {dummy_path} still registered in inplace catalog"
+                    )
+                if live_path not in live_hosts:
+                    errors.append(f"{domain} T44 host {live_path} is not registered")
+                dummy_model = ITEM_MODELS / f"{dummy_path}.json"
+                if dummy_model.is_file():
+                    errors.append(f"{dummy_path} dummy item model still present")
+            else:
+                if live_path not in live_hosts:
+                    errors.append(f"{domain} live host {live_path} is not registered")
+                if dummy_path not in inplace:
+                    errors.append(f"{domain} {dummy_path} missing from inplace catalog")
+                model = ITEM_MODELS / f"{live_path}.json"
+                if model.is_file() and "iron_ingot" in model.read_text(encoding="utf-8"):
+                    errors.append(f"{live_path} still uses iron_ingot")
             if identity.get("registry_kind") != "existing_item":
                 errors.append(f"{domain} meta {meta} still dummy item")
             if identity.get("registry_path") != live_path:
@@ -1069,9 +1320,6 @@ def _check_domain(domain: str) -> list[str]:
                     f"{domain} meta {meta} catalog {identity.get('registry_path')} "
                     f"!= {live_path}"
                 )
-            model = ITEM_MODELS / f"{live_path}.json"
-            if model.is_file() and "iron_ingot" in model.read_text(encoding="utf-8"):
-                errors.append(f"{live_path} still uses iron_ingot")
     tests_path = _game_tests(domain)
     tests = tests_path.read_text(encoding="utf-8") if tests_path.is_file() else ""
     for name in spec["tests"]:

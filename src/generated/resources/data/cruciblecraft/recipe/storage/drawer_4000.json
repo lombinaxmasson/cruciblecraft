@@ -1,21 +1,25 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
+  "catalysts": {
+    "d": {
+      "item": "cruciblecraft:material_screwdriver"
+    }
+  },
+  "ingredients": {
     "C": {
-      "item": "minecraft:chest"
+      "item": "cruciblecraft:lead/chest"
     },
-    "P": {
-      "item": "cruciblecraft:steel/plate"
+    "T": {
+      "item": "cruciblecraft:lead/screw"
     }
   },
   "pattern": [
-    "PPP",
-    "PCP",
-    "PPP"
+    "CTC",
+    "TdT",
+    "CTC"
   ],
   "result": {
     "count": 1,
     "id": "cruciblecraft:drawer_4000"
-  }
+  },
+  "type": "cruciblecraft:shaped_catalyst"
 }

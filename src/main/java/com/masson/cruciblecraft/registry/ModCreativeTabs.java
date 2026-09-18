@@ -20,6 +20,7 @@ import com.masson.cruciblecraft.content.item.SmelterMteIdentityCatalog;
 import com.masson.cruciblecraft.machine.MachineDurabilityComponent;
 import com.masson.cruciblecraft.machine.MachineMaterialRules;
 import com.masson.cruciblecraft.machine.processing.DeviceMaterialCatalog;
+import com.masson.cruciblecraft.content.mte.MteInPlaceCatalog;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.worldgen.StoneLayerStones;
 
@@ -65,7 +66,7 @@ public final class ModCreativeTabs {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> STORAGE =
             registerTab(
                     "storage",
-                    () -> ModItems.LOGISTICS_CORE.get().getDefaultInstance(),
+                    ModCreativeTabs::storageTabIcon,
                     ModCreativeTabs::fillStorage);
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> BUILDING =
             registerTab(
@@ -304,6 +305,15 @@ public final class ModCreativeTabs {
         output.accept(ModItems.LOGISTICS_CORE.get());
     }
 
+    private static ItemStack storageTabIcon() {
+        var item = ModItems.storageItemsById().get(
+                ResourceLocation.parse("cruciblecraft:mass_storage_6000"));
+        if (item == null) {
+            return ModItems.LOGISTICS_CORE.get().getDefaultInstance();
+        }
+        return item.get().getDefaultInstance();
+    }
+
     private static void fillStorage(
             CreativeModeTab.ItemDisplayParameters parameters,
             CreativeModeTab.Output output) {
@@ -314,6 +324,15 @@ public final class ModCreativeTabs {
                                 .get(variant.id())
                                 .get()
                                 .asItem()));
+        MteInPlaceCatalog.specs().forEach(spec -> {
+            if (!spec.kind().storageTab()) {
+                return;
+            }
+            var item = ModItems.mteInPlaceItemsById().get(spec.id());
+            if (item != null) {
+                output.accept(item.get());
+            }
+        });
     }
 
     private static void fillBuilding(

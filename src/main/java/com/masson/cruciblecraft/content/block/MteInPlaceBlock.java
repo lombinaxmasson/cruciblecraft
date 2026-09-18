@@ -5,14 +5,19 @@ import org.jetbrains.annotations.Nullable;
 import com.masson.cruciblecraft.api.tool.ToolAction;
 import com.masson.cruciblecraft.api.tool.ToolInteractable;
 import com.masson.cruciblecraft.api.tool.ToolResult;
+import com.masson.cruciblecraft.content.blockentity.DrawerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
+import com.masson.cruciblecraft.content.storage.MassStorageClicks;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
@@ -22,6 +27,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.Mirror;
@@ -68,6 +74,7 @@ public final class MteInPlaceBlock extends Block
             Block.box(0.0, 0.0, 15.0, 16.0, 16.0, 16.0));
     private static final VoxelShape FOUNDRY_MOLD = Block.box(0.0, 0.0, 0.0, 16.0, 7.0, 16.0);
     private static final VoxelShape FOUNDRY_CROSSING = Block.box(0.0, 0.0, 0.0, 16.0, 6.0, 16.0);
+    private static final VoxelShape CHEST = Block.box(1.0, 0.0, 1.0, 15.0, 14.0, 15.0);
 
     private final MteInPlaceSpec spec;
 
@@ -125,6 +132,9 @@ public final class MteInPlaceBlock extends Block
         if (kind == MteInPlaceKind.CRUCIBLE_FOUNDRY) {
             return foundryShape();
         }
+        if (kind == MteInPlaceKind.CHEST) {
+            return CHEST;
+        }
         if (!kind.attachment()) {
             return super.getShape(state, level, pos, context);
         }
@@ -154,17 +164,43 @@ public final class MteInPlaceBlock extends Block
 
     @Override
     protected RenderShape getRenderShape(BlockState state) {
-        return RenderShape.MODEL;
+        return spec.kind() == MteInPlaceKind.CHEST
+                ? RenderShape.ENTITYBLOCK_ANIMATED
+                : RenderShape.MODEL;
+    }
+
+    @Override
+    protected boolean triggerEvent(
+            BlockState state, Level level, BlockPos pos, int id, int param) {
+        super.triggerEvent(state, level, pos, id, param);
+        BlockEntity entity = level.getBlockEntity(pos);
+        return entity != null && entity.triggerEvent(id, param);
     }
 
     @Override
     public ToolResult useTool(ToolAction action, UseOnContext context) {
+        if (spec.kind() == MteInPlaceKind.MASS_STORAGE) {
+            ToolResult mass = useMassStorageTool(action, context);
+            if (mass != ToolResult.PASS) {
+                return mass;
+            }
+        }
         if (action == ToolAction.PLUNGER
                 && context.getLevel().getBlockEntity(context.getClickedPos())
                         instanceof MteInPlaceBlockEntity host) {
             return ToolClick.plunger(context, host.trashWithPlunger());
         }
         return ToolResult.PASS;
+    }
+
+    @Override
+    public float getEnchantPowerBonus(
+            BlockState state, LevelReader level, BlockPos pos) {
+        if (spec.kind() == MteInPlaceKind.BOOKSHELF
+                && level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity host) {
+            return host.enchantPower();
+        }
+        return 0.0F;
     }
 
     @Override
@@ -176,7 +212,20 @@ public final class MteInPlaceBlock extends Block
             Player player,
             InteractionHand hand,
             BlockHitResult hit) {
-        return ToolClick.useItemOn(stack, level, player, hand, hit);
+        ItemInteractionResult tool = ToolClick.useItemOn(
+                stack, level, player, hand, hit);
+        if (tool.consumesAction()) {
+            return tool;
+        }
+        if (spec.kind() == MteInPlaceKind.MASS_STORAGE
+                && hit.getDirection() == state.getValue(FACING)
+                && level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity host) {
+            if (!level.isClientSide) {
+                host.massStorageActivated(player, stack, hit);
+            }
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        }
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override
@@ -186,6 +235,52 @@ public final class MteInPlaceBlock extends Block
             BlockPos pos,
             Player player,
             BlockHitResult hit) {
+        MteInPlaceKind kind = spec.kind();
+        if (kind.playerInventoryGui()) {
+            if (!level.isClientSide
+                    && player instanceof ServerPlayer serverPlayer
+                    && level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity host) {
+                if (kind == MteInPlaceKind.DRAWER) {
+                    if (hit.getDirection() != state.getValue(FACING)) {
+                        return InteractionResult.PASS;
+                    }
+                    host.setDrawerCompartment(MassStorageClicks.drawerCompartment(
+                            hit.getDirection(), pos, hit.getLocation()));
+                }
+                int visible = kind == MteInPlaceKind.DRAWER
+                        ? DrawerBlockEntity.COMPARTMENT_SLOTS
+                        : kind.slots();
+                int offset = kind == MteInPlaceKind.DRAWER
+                        ? host.drawerCompartment() * DrawerBlockEntity.COMPARTMENT_SLOTS
+                        : 0;
+                serverPlayer.openMenu(host, buf -> {
+                    buf.writeBlockPos(pos);
+                    buf.writeVarInt(visible);
+                    buf.writeVarInt(offset);
+                });
+            }
+            return InteractionResult.sidedSuccess(level.isClientSide);
+        }
+        if (kind == MteInPlaceKind.LOCKER) {
+            if (hit.getDirection() != state.getValue(FACING)) {
+                return InteractionResult.PASS;
+            }
+            if (!level.isClientSide
+                    && level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity host) {
+                host.swapArmor(player);
+            }
+            return InteractionResult.sidedSuccess(level.isClientSide);
+        }
+        if (kind == MteInPlaceKind.MASS_STORAGE) {
+            if (hit.getDirection() != state.getValue(FACING)) {
+                return InteractionResult.PASS;
+            }
+            if (!level.isClientSide
+                    && level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity host) {
+                host.massStorageActivated(player, ItemStack.EMPTY, hit);
+            }
+            return InteractionResult.sidedSuccess(level.isClientSide);
+        }
         if (level.isClientSide) {
             return InteractionResult.SUCCESS;
         }
@@ -193,6 +288,110 @@ public final class MteInPlaceBlock extends Block
             host.transferOnce();
         }
         return InteractionResult.CONSUME;
+    }
+
+    private ToolResult useMassStorageTool(ToolAction action, UseOnContext context) {
+        Level level = context.getLevel();
+        if (!(level.getBlockEntity(context.getClickedPos())
+                instanceof MteInPlaceBlockEntity host)
+                || host.massStorage() == null) {
+            return ToolResult.PASS;
+        }
+        if (action == ToolAction.CROWBAR) {
+            return pickUpMassStorage(context, host);
+        }
+        if (action == ToolAction.WRENCH) {
+            Direction target = Gt6StyleConnections.sideFromHit(ToolClick.hit(context));
+            if (!target.getAxis().isHorizontal()) {
+                return ToolResult.PASS;
+            }
+            BlockState state = level.getBlockState(context.getClickedPos());
+            if (!level.isClientSide) {
+                if (state.getValue(FACING) != target) {
+                    level.setBlock(
+                            context.getClickedPos(),
+                            state.setValue(FACING, target),
+                            Block.UPDATE_ALL);
+                }
+                ToolClick.hurt(context);
+            }
+            return ToolResult.SUCCESS;
+        }
+        if (action == ToolAction.PINCERS) {
+            if (!level.isClientSide && context.getPlayer() != null) {
+                host.giveMassToPlayer(context.getPlayer());
+                ToolClick.hurt(context);
+            }
+            return ToolResult.SUCCESS;
+        }
+        if (action == ToolAction.SOFT_HAMMER) {
+            if (!level.isClientSide) {
+                host.dumpMassInFront();
+                ToolClick.hurt(context);
+            }
+            return ToolResult.SUCCESS;
+        }
+        if (action == ToolAction.SCREWDRIVER) {
+            if (!level.isClientSide) {
+                host.toggleResetFilterWhenEmpty();
+                if (context.getPlayer() != null) {
+                    context.getPlayer().displayClientMessage(
+                            host.filterMessage(), true);
+                }
+                ToolClick.hurt(context);
+            }
+            return ToolResult.SUCCESS;
+        }
+        if (action == ToolAction.MONKEY_WRENCH) {
+            if (!level.isClientSide) {
+                host.toggleAutoOutput();
+                if (context.getPlayer() != null) {
+                    context.getPlayer().displayClientMessage(
+                            host.autoOutputMessage(), true);
+                }
+                ToolClick.hurt(context);
+            }
+            return ToolResult.SUCCESS;
+        }
+        if (action == ToolAction.WIRE_CUTTER) {
+            if (!level.isClientSide) {
+                host.toggleOverflow();
+                if (context.getPlayer() != null) {
+                    context.getPlayer().displayClientMessage(
+                            host.overflowMessage(), true);
+                }
+                ToolClick.hurt(context);
+            }
+            return ToolResult.SUCCESS;
+        }
+        return ToolResult.PASS;
+    }
+
+    private static ToolResult pickUpMassStorage(
+            UseOnContext context, MteInPlaceBlockEntity host) {
+        Level level = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        if (level.isClientSide) {
+            return ToolResult.SUCCESS;
+        }
+        BlockState state = level.getBlockState(pos);
+        ItemStack packed = new ItemStack(state.getBlock());
+        host.saveToItem(packed, level.registryAccess());
+        host.clearMassContents();
+        level.removeBlock(pos, false);
+        Player player = context.getPlayer();
+        if (player == null || !player.addItem(packed)) {
+            Block.popResource(level, pos, packed);
+        }
+        ToolClick.hurt(context);
+        level.playSound(
+                null,
+                pos,
+                SoundEvents.WOOD_BREAK,
+                SoundSource.BLOCKS,
+                1.0F,
+                1.0F);
+        return ToolResult.SUCCESS;
     }
 
     @Override
@@ -220,12 +419,16 @@ public final class MteInPlaceBlock extends Block
             Level level,
             BlockState state,
             BlockEntityType<T> type) {
-        if (level.isClientSide) {
+        if (type != ModBlockEntities.MTE_INPLACE.get()) {
             return null;
         }
-        return type == ModBlockEntities.MTE_INPLACE.get()
-                ? (lvl, pos, st, be) -> MteInPlaceBlockEntity.serverTick(
-                        lvl, pos, st, (MteInPlaceBlockEntity) be)
-                : null;
+        if (level.isClientSide) {
+            return spec.kind() == MteInPlaceKind.CHEST
+                    ? (lvl, pos, st, be) -> MteInPlaceBlockEntity.clientTick(
+                            lvl, pos, st, (MteInPlaceBlockEntity) be)
+                    : null;
+        }
+        return (lvl, pos, st, be) -> MteInPlaceBlockEntity.serverTick(
+                lvl, pos, st, (MteInPlaceBlockEntity) be);
     }
 }

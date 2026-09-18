@@ -6,33 +6,50 @@ import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.mold.CruciblePour;
 import com.masson.cruciblecraft.content.mold.MoldCastingRules;
 import com.masson.cruciblecraft.content.mold.MoldHost;
+import com.masson.cruciblecraft.content.menu.StorageMenu;
 import com.masson.cruciblecraft.content.mte.MteFoundryTanks;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
+import com.masson.cruciblecraft.content.storage.MassStorageFace;
+import com.masson.cruciblecraft.content.storage.MassStorageHandler;
+import com.masson.cruciblecraft.content.storage.MassStorageSidedHandler;
 import com.masson.cruciblecraft.content.storage.StorageClientSync;
+import com.masson.cruciblecraft.content.storage.StorageFilters;
 import com.masson.cruciblecraft.energy.steam.SteamTurbineCatalog;
 import com.masson.cruciblecraft.energy.steam.SteamTurbineStructure;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModFluids;
+import com.masson.cruciblecraft.registry.ModMenus;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.Containers;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
 /**
@@ -40,17 +57,34 @@ import net.neoforged.neoforge.items.ItemStackHandler;
  * pipe cover, KU axle, vanilla tool, or the ceramic crucible.
  */
 public final class MteInPlaceBlockEntity extends BlockEntity
-        implements IEnergyHandler, MoldHost {
+        implements IEnergyHandler, MoldHost, MenuProvider {
     public static final int TRANSFER_MB = 1000;
     public static final long ENERGY_CAPACITY = 16_384L;
+    public static final int MASS_CAPACITY = 1_000_000;
+    private static final int AUTO_OUTPUT = 1;
+    private static final int RESET_FILTER = 2;
+    private static final int EMIT_OVERFLOW = 4;
+    private static final EquipmentSlot[] ARMOR = {
+            EquipmentSlot.FEET,
+            EquipmentSlot.LEGS,
+            EquipmentSlot.CHEST,
+            EquipmentSlot.HEAD
+    };
 
     private final ItemStackHandler items;
+    private final MassStorageHandler massStorage;
     private final FluidTank tank;
     private final FluidTank distilled;
     private final long energyCapacity;
     private long storedEnergy;
     private long steamCounter;
     private boolean formed;
+    private int massMode;
+    private boolean massInventoryChanged;
+    private int drawerCompartment;
+    private int usingPlayers;
+    private float lidAngle;
+    private float oldLidAngle;
 
     public MteInPlaceBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.MTE_INPLACE.get(), pos, state);
@@ -58,16 +92,32 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         int slots = Math.max(1, spec.kind().slots());
         this.items = new ItemStackHandler(slots) {
             @Override
+            public boolean isItemValid(int slot, ItemStack stack) {
+                return switch (spec().kind()) {
+                    case BOOKSHELF -> StorageFilters.book(stack);
+                    case BOTTLE_CRATE -> StorageFilters.bottle(stack);
+                    default -> true;
+                };
+            }
+
+            @Override
             protected void onContentsChanged(int slot) {
                 MteInPlaceBlockEntity.this.setChanged();
                 MteInPlaceKind kind = spec().kind();
-                if (kind == MteInPlaceKind.MASS_STORAGE
-                        || kind == MteInPlaceKind.BOOKSHELF
-                        || kind == MteInPlaceKind.BOTTLE_CRATE) {
+                if (kind == MteInPlaceKind.BOOKSHELF
+                        || kind == MteInPlaceKind.BOTTLE_CRATE
+                        || kind == MteInPlaceKind.MASS_STORAGE) {
                     StorageClientSync.send(MteInPlaceBlockEntity.this);
                 }
             }
         };
+        this.massStorage = spec.kind() == MteInPlaceKind.MASS_STORAGE
+                ? new MassStorageHandler(MASS_CAPACITY, () -> {
+                    massInventoryChanged = true;
+                    setChanged();
+                    StorageClientSync.send(this);
+                })
+                : null;
         SteamTurbineCatalog.Profile turbine =
                 spec.kind() == MteInPlaceKind.STEAM_TURBINE
                         ? SteamTurbineCatalog.find(spec.id()).orElse(null)
@@ -98,6 +148,256 @@ public final class MteInPlaceBlockEntity extends BlockEntity
 
     public ItemStackHandler items() {
         return items;
+    }
+
+    public MassStorageHandler massStorage() {
+        return massStorage;
+    }
+
+    public int drawerCompartment() {
+        return drawerCompartment;
+    }
+
+    public void setDrawerCompartment(int compartment) {
+        if (compartment < 0 || compartment >= DrawerBlockEntity.COMPARTMENTS) {
+            throw new IllegalArgumentException("drawer compartment " + compartment);
+        }
+        this.drawerCompartment = compartment;
+    }
+
+    public boolean stillValid(Player player) {
+        return level != null
+                && level.getBlockEntity(worldPosition) == this
+                && player.distanceToSqr(
+                        worldPosition.getX() + 0.5,
+                        worldPosition.getY() + 0.5,
+                        worldPosition.getZ() + 0.5) <= 64.0;
+    }
+
+    public void startOpen(Player player) {
+        if (spec().kind() != MteInPlaceKind.CHEST
+                || player.isSpectator()
+                || level == null
+                || level.isClientSide) {
+            return;
+        }
+        usingPlayers = Mth.clamp(usingPlayers + 1, 0, 127);
+        level.blockEvent(worldPosition, getBlockState().getBlock(), 1, usingPlayers);
+    }
+
+    public void stopOpen(Player player) {
+        if (spec().kind() != MteInPlaceKind.CHEST
+                || player.isSpectator()
+                || level == null
+                || level.isClientSide) {
+            return;
+        }
+        usingPlayers = Mth.clamp(usingPlayers - 1, 0, 127);
+        level.blockEvent(worldPosition, getBlockState().getBlock(), 1, usingPlayers);
+    }
+
+    public float lidOpenness(float partialTick) {
+        return oldLidAngle + (lidAngle - oldLidAngle) * partialTick;
+    }
+
+    @Override
+    public boolean triggerEvent(int id, int type) {
+        if (id == 1) {
+            usingPlayers = Mth.clamp(type, 0, 127);
+            return true;
+        }
+        return super.triggerEvent(id, type);
+    }
+
+    public static void clientTick(
+            Level level,
+            BlockPos pos,
+            BlockState state,
+            MteInPlaceBlockEntity host) {
+        if (host.spec().kind() != MteInPlaceKind.CHEST) {
+            return;
+        }
+        host.oldLidAngle = host.lidAngle;
+        if (host.usingPlayers > 0) {
+            host.lidAngle = Math.min(1.0F, host.lidAngle + 0.1F);
+            if (host.lidAngle > 0.1F && host.oldLidAngle <= 0.1F) {
+                level.playLocalSound(
+                        pos.getX() + 0.5,
+                        pos.getY() + 0.5,
+                        pos.getZ() + 0.5,
+                        SoundEvents.CHEST_OPEN,
+                        SoundSource.BLOCKS,
+                        0.5F,
+                        level.random.nextFloat() * 0.1F + 0.9F,
+                        false);
+            }
+        } else {
+            host.lidAngle = Math.max(0.0F, host.lidAngle - 0.1F);
+            if (host.lidAngle < 0.5F && host.oldLidAngle >= 0.5F) {
+                level.playLocalSound(
+                        pos.getX() + 0.5,
+                        pos.getY() + 0.5,
+                        pos.getZ() + 0.5,
+                        SoundEvents.CHEST_CLOSE,
+                        SoundSource.BLOCKS,
+                        0.5F,
+                        level.random.nextFloat() * 0.1F + 0.9F,
+                        false);
+            }
+        }
+    }
+
+    public float enchantPower() {
+        float points = 0.0F;
+        for (int slot = 0; slot < items.getSlots(); slot++) {
+            ItemStack stack = items.getStackInSlot(slot);
+            if (stack.isEmpty()) {
+                continue;
+            }
+            points += StorageFilters.enchantedBook(stack) ? 2.0F : 1.0F;
+        }
+        return points / 12.0F;
+    }
+
+    public void swapArmor(Player player) {
+        for (int slot = 0; slot < ARMOR.length; slot++) {
+            ItemStack stored = items.getStackInSlot(slot);
+            ItemStack worn = player.getItemBySlot(ARMOR[slot]);
+            items.setStackInSlot(slot, worn.copy());
+            player.setItemSlot(ARMOR[slot], stored.copy());
+        }
+        setChanged();
+    }
+
+    public boolean massStorageActivated(
+            Player player, ItemStack held, BlockHitResult hit) {
+        if (massStorage == null) {
+            return false;
+        }
+        Direction facing = getBlockState().getValue(MteInPlaceBlock.FACING);
+        boolean used = MassStorageFace.onActivated(
+                massStorage,
+                player,
+                held,
+                hit,
+                facing,
+                worldPosition,
+                stack -> MassStorageFace.ejectInFront(
+                        level, worldPosition, facing, stack));
+        if (used) {
+            setChanged();
+        }
+        return used;
+    }
+
+    public void giveMassToPlayer(Player player) {
+        if (massStorage == null) {
+            return;
+        }
+        MassStorageFace.giveToPlayer(massStorage, player);
+        setChanged();
+    }
+
+    public void dumpMassInFront() {
+        if (massStorage == null) {
+            return;
+        }
+        Direction facing = getBlockState().getValue(MteInPlaceBlock.FACING);
+        MassStorageFace.dumpInFront(
+                massStorage,
+                stack -> MassStorageFace.ejectInFront(
+                        level, worldPosition, facing, stack));
+        setChanged();
+    }
+
+    public void clearMassContents() {
+        if (massStorage == null) {
+            return;
+        }
+        massStorage.clearAll();
+        setChanged();
+    }
+
+    public boolean autoOutput() {
+        return (massMode & AUTO_OUTPUT) != 0;
+    }
+
+    public boolean emitOverflow() {
+        return (massMode & EMIT_OVERFLOW) != 0;
+    }
+
+    public boolean resetFilterWhenEmpty() {
+        return (massMode & RESET_FILTER) != 0;
+    }
+
+    public void toggleAutoOutput() {
+        massMode ^= AUTO_OUTPUT;
+        setChanged();
+    }
+
+    public void toggleResetFilterWhenEmpty() {
+        massMode ^= RESET_FILTER;
+        if (massStorage != null) {
+            massStorage.setKeepFilterWhenEmpty(!resetFilterWhenEmpty());
+        }
+        setChanged();
+    }
+
+    public void toggleOverflow() {
+        massMode ^= EMIT_OVERFLOW;
+        if (massStorage != null) {
+            massStorage.setOverflowBonus(
+                    emitOverflow() ? MassStorageHandler.OVERFLOW_BONUS : 0);
+        }
+        setChanged();
+    }
+
+    public Component autoOutputMessage() {
+        return Component.translatable(
+                autoOutput()
+                        ? "message.cruciblecraft.mass_storage.auto_output_on"
+                        : "message.cruciblecraft.mass_storage.auto_output_off");
+    }
+
+    public Component filterMessage() {
+        return Component.translatable(
+                resetFilterWhenEmpty()
+                        ? "message.cruciblecraft.mass_storage.filter_reset"
+                        : "message.cruciblecraft.mass_storage.filter_stay");
+    }
+
+    public Component overflowMessage() {
+        return Component.translatable(
+                emitOverflow()
+                        ? "message.cruciblecraft.mass_storage.overflow_on"
+                        : "message.cruciblecraft.mass_storage.overflow_off");
+    }
+
+    @Override
+    public Component getDisplayName() {
+        return getBlockState().getBlock().getName();
+    }
+
+    @Override
+    public AbstractContainerMenu createMenu(
+            int id, Inventory playerInventory, Player player) {
+        MteInPlaceKind kind = spec().kind();
+        if (!kind.playerInventoryGui()) {
+            return null;
+        }
+        int visible = kind == MteInPlaceKind.DRAWER
+                ? DrawerBlockEntity.COMPARTMENT_SLOTS
+                : kind.slots();
+        int offset = kind == MteInPlaceKind.DRAWER
+                ? drawerCompartment * DrawerBlockEntity.COMPARTMENT_SLOTS
+                : 0;
+        return new StorageMenu(
+                ModMenus.MTE_STORAGE.get(),
+                id,
+                playerInventory,
+                this,
+                visible,
+                offset);
     }
 
     public FluidTank tank() {
@@ -154,6 +454,9 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         if (host.spec().kind().drive()) {
             host.pushDrive();
         }
+        if (host.spec().kind() == MteInPlaceKind.MASS_STORAGE) {
+            host.tickMassStorage(level, pos);
+        }
     }
 
     public void transferOnce() {
@@ -183,12 +486,20 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         return null;
     }
 
-    public net.neoforged.neoforge.items.IItemHandler itemHandler(Direction side) {
+    public IItemHandler itemHandler(Direction side) {
+        if (massStorage != null) {
+            return new MassStorageSidedHandler(
+                    massStorage, autoOutput() && side == Direction.DOWN);
+        }
         return spec().kind().inventory() ? items : null;
     }
 
     public void dropContents() {
         if (level == null || !spec().kind().inventory()) {
+            return;
+        }
+        if (massStorage != null) {
+            MassStorageFace.dropContents(massStorage, level, worldPosition);
             return;
         }
         for (int slot = 0; slot < items.getSlots(); slot++) {
@@ -266,9 +577,34 @@ public final class MteInPlaceBlockEntity extends BlockEntity
     }
 
     @Override
+    public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider registries) {
+        loadAdditional(tag, registries);
+    }
+
+    @Override
+    public void onDataPacket(
+            Connection connection,
+            ClientboundBlockEntityDataPacket packet,
+            HolderLookup.Provider registries) {
+        if (packet.getTag() != null) {
+            handleUpdateTag(packet.getTag(), registries);
+        }
+    }
+
+    @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-        tag.put("inventory", items.serializeNBT(registries));
+        if (massStorage != null) {
+            if (!massStorage.filter().isEmpty()) {
+                tag.put("filter", massStorage.filter().save(registries));
+            }
+            tag.putInt("stored", massStorage.stored());
+            tag.putLong("partial", massStorage.partialUnits());
+            tag.putByte("mode", (byte) massMode);
+        } else {
+            tag.put("inventory", items.serializeNBT(registries));
+            tag.putInt("compartment", drawerCompartment);
+        }
         tag.put("tank", tank.writeToNBT(registries, new CompoundTag()));
         tag.putLong("StoredEnergy", storedEnergy);
         tag.putLong("SteamCounter", steamCounter);
@@ -279,8 +615,14 @@ public final class MteInPlaceBlockEntity extends BlockEntity
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
-        if (tag.contains("inventory")) {
-            items.deserializeNBT(registries, tag.getCompound("inventory"));
+        if (massStorage != null) {
+            loadMassStorage(tag, registries);
+        } else if (tag.contains("inventory")) {
+            loadClampedInventory(tag.getCompound("inventory"), registries);
+            if (tag.contains("compartment")) {
+                drawerCompartment = Math.floorMod(
+                        tag.getInt("compartment"), DrawerBlockEntity.COMPARTMENTS);
+            }
         }
         if (tag.contains("tank")) {
             tank.readFromNBT(registries, tag.getCompound("tank"));
@@ -509,6 +851,60 @@ public final class MteInPlaceBlockEntity extends BlockEntity
             return null;
         }
         return level.getCapability(Capabilities.FluidHandler.BLOCK, pos, access);
+    }
+
+    private void tickMassStorage(Level level, BlockPos pos) {
+        if (massStorage == null) {
+            return;
+        }
+        massStorage.convertPartials();
+        boolean pulse = massInventoryChanged || level.getGameTime() % 100L == 0L;
+        massInventoryChanged = false;
+        if (!pulse) {
+            return;
+        }
+        if (autoOutput() && massStorage.stored() > 0) {
+            MassStorageFace.pushBelow(massStorage, level, pos);
+        } else if (emitOverflow()
+                && massStorage.stored() > massStorage.capacity()) {
+            MassStorageFace.emitOverflowBelow(massStorage, level, pos);
+        }
+    }
+
+    private void loadMassStorage(CompoundTag tag, HolderLookup.Provider registries) {
+        massMode = tag.getByte("mode");
+        massStorage.setKeepFilterWhenEmpty(!resetFilterWhenEmpty());
+        massStorage.setOverflowBonus(
+                emitOverflow() ? MassStorageHandler.OVERFLOW_BONUS : 0);
+        if (tag.contains("stored") || tag.contains("filter")) {
+            ItemStack filter = tag.contains("filter")
+                    ? ItemStack.parseOptional(registries, tag.getCompound("filter"))
+                    : ItemStack.EMPTY;
+            massStorage.load(filter, tag.getInt("stored"), tag.getLong("partial"));
+            return;
+        }
+        if (!tag.contains("inventory")) {
+            return;
+        }
+        ItemStackHandler loaded = new ItemStackHandler();
+        loaded.deserializeNBT(registries, tag.getCompound("inventory"));
+        if (loaded.getSlots() <= 0) {
+            return;
+        }
+        ItemStack stack = loaded.getStackInSlot(0);
+        if (!stack.isEmpty()) {
+            massStorage.load(stack.copyWithCount(1), stack.getCount());
+        }
+    }
+
+    private void loadClampedInventory(
+            CompoundTag nbt, HolderLookup.Provider registries) {
+        ItemStackHandler loaded = new ItemStackHandler();
+        loaded.deserializeNBT(registries, nbt);
+        int n = Math.min(items.getSlots(), loaded.getSlots());
+        for (int slot = 0; slot < n; slot++) {
+            items.setStackInSlot(slot, loaded.getStackInSlot(slot));
+        }
     }
 
     private static MteInPlaceSpec specOf(BlockState state) {

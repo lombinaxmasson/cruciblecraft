@@ -8,11 +8,16 @@ import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.AABB;
 
 public final class MteInPlaceStorageRenderer
         implements BlockEntityRenderer<MteInPlaceBlockEntity> {
-    public MteInPlaceStorageRenderer(BlockEntityRendererProvider.Context context) {}
+    private final GtChestRenderer.Model chest;
+
+    public MteInPlaceStorageRenderer(BlockEntityRendererProvider.Context context) {
+        this.chest = new GtChestRenderer.Model(context.bakeLayer(GtChestRenderer.LAYER));
+    }
 
     @Override
     public void render(
@@ -23,10 +28,31 @@ public final class MteInPlaceStorageRenderer
             int packedLight,
             int packedOverlay) {
         MteInPlaceKind kind = host.spec().kind();
+        if (kind == MteInPlaceKind.CHEST) {
+            GtChestRenderer.renderHost(
+                    chest,
+                    host,
+                    poseStack,
+                    buffers,
+                    packedLight,
+                    packedOverlay,
+                    partialTick);
+            return;
+        }
         if (kind == MteInPlaceKind.MASS_STORAGE) {
-            ItemStack stack = host.items().getStackInSlot(0);
+            var inventory = host.massStorage();
+            if (inventory == null) {
+                return;
+            }
             MassStorageRenderer.renderFace(
-                    host, stack, stack.getCount(), poseStack, buffers, packedOverlay);
+                    host,
+                    inventory.filter(),
+                    inventory.stored(),
+                    inventory.capacity(),
+                    "mass_storage_standard",
+                    poseStack,
+                    buffers,
+                    packedOverlay);
             return;
         }
         if (kind == MteInPlaceKind.BOOKSHELF) {
@@ -38,5 +64,20 @@ public final class MteInPlaceStorageRenderer
             BottleCrateRenderer.renderBottles(
                     host, host.items(), poseStack, buffers, LightTexture.FULL_BRIGHT);
         }
+    }
+
+    @Override
+    public AABB getRenderBoundingBox(MteInPlaceBlockEntity host) {
+        if (host.spec().kind() == MteInPlaceKind.CHEST) {
+            BlockPos pos = host.getBlockPos();
+            return new AABB(
+                    pos.getX(),
+                    pos.getY(),
+                    pos.getZ(),
+                    pos.getX() + 1.0,
+                    pos.getY() + 2.0,
+                    pos.getZ() + 1.0);
+        }
+        return BlockEntityRenderer.super.getRenderBoundingBox(host);
     }
 }

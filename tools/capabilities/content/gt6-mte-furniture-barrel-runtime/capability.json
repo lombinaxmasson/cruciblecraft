@@ -32,11 +32,11 @@
   "identity_disposition": [
     {
       "semantic_key": "mte:furniture-barrel:in-place",
-      "disposition": "keep_distinct",
+      "disposition": "fold_live_block",
       "runtime_ids": [
-        "cruciblecraft:skyroot/item_barrel"
+        "cruciblecraft:item_barrel_6983"
       ],
-      "reason": "Mass-storage barrels keep dummy modern ids as live BlockItems."
+      "reason": "Mass-storage barrels fold onto T44 mass_storage_barrel_* hosts. Dummy modern ids become air."
     }
   ],
   "note": "In-place furniture_barrel runtime. Close at runtime_ready. Source-exact obtain lives on content/gt6-mte-inplace-acquisition; remaining D0 gaps stay blocked. Do not edit R0."

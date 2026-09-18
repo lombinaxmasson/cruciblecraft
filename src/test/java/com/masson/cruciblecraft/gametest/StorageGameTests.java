@@ -156,7 +156,7 @@ public final class StorageGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void massStorageOverflowAndReload(GameTestHelper helper) {
         BlockPos pos = new BlockPos(2, 2, 2);
-        place(helper, pos, "cruciblecraft:mass_storage_box_6993");
+        place(helper, pos, "cruciblecraft:plastic_storage_box_6993");
         MassStorageBlockEntity storage =
                 (MassStorageBlockEntity) helper.getBlockEntity(pos);
         helper.assertTrue(
@@ -196,7 +196,7 @@ public final class StorageGameTests {
                         && ModItems.hasMaterialItem("iron", MaterialPrefixes.NUGGET),
                 "iron ingot/nugget forms are missing");
         BlockPos pos = new BlockPos(2, 2, 2);
-        place(helper, pos, "cruciblecraft:mass_storage_barrel_6999");
+        place(helper, pos, "cruciblecraft:item_barrel_6999");
         MassStorageBlockEntity storage =
                 (MassStorageBlockEntity) helper.getBlockEntity(pos);
         ItemStack ingot = new ItemStack(
@@ -221,7 +221,7 @@ public final class StorageGameTests {
     public static void massStorageAutoOutputsDownNotThroughFront(
             GameTestHelper helper) {
         BlockPos pos = new BlockPos(2, 3, 2);
-        placeFacing(helper, pos, "cruciblecraft:mass_storage_box_6993", Direction.EAST);
+        placeFacing(helper, pos, "cruciblecraft:plastic_storage_box_6993", Direction.EAST);
         helper.setBlock(pos.below(), Blocks.CHEST);
         helper.setBlock(pos.east(), Blocks.CHEST);
         MassStorageBlockEntity storage =

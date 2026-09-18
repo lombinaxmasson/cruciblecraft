@@ -2,16 +2,6 @@
   "parent": "minecraft:block/block",
   "elements": [
     {
-      "from": [
-        6,
-        6,
-        0
-      ],
-      "to": [
-        10,
-        10,
-        16
-      ],
       "faces": {
         "down": {
           "texture": "#end",
@@ -37,9 +27,27 @@
           "texture": "#end",
           "tintindex": 1
         }
-      }
+      },
+      "from": [
+        6,
+        6,
+        0
+      ],
+      "to": [
+        10,
+        10,
+        16
+      ]
     },
     {
+      "faces": {
+        "north": {
+          "texture": "#overlay"
+        },
+        "south": {
+          "texture": "#overlay"
+        }
+      },
       "from": [
         5.998,
         5.998,
@@ -49,17 +57,19 @@
         10.002,
         10.002,
         16.002
-      ],
-      "faces": {
-        "north": {
-          "texture": "#overlay"
-        },
-        "south": {
-          "texture": "#overlay"
-        }
-      }
+      ]
     },
     {
+      "faces": {
+        "north": {
+          "texture": "#insulation",
+          "tintindex": 1
+        },
+        "south": {
+          "texture": "#insulation",
+          "tintindex": 1
+        }
+      },
       "from": [
         5.996,
         5.996,
@@ -69,25 +79,15 @@
         10.004,
         10.004,
         16.004
-      ],
-      "faces": {
-        "north": {
-          "texture": "#insulation",
-          "tintindex": 1
-        },
-        "south": {
-          "texture": "#insulation",
-          "tintindex": 1
-        }
-      }
+      ]
     }
   ],
   "render_type": "minecraft:cutout_mipped",
   "textures": {
     "end": "cruciblecraft:block/gt6_import/iconsets/insulation_full",
-    "particle": "cruciblecraft:block/gt6_import/iconsets/insulation_full",
-    "side": "cruciblecraft:block/gt6_import/materialicons/copper/wire",
+    "insulation": "cruciblecraft:block/gt6_import/iconsets/insulation_tiny",
     "overlay": "cruciblecraft:block/gt6_import/materialicons/copper/wire_overlay",
-    "insulation": "cruciblecraft:block/gt6_import/iconsets/insulation_tiny"
+    "particle": "cruciblecraft:block/gt6_import/iconsets/insulation_full",
+    "side": "cruciblecraft:block/gt6_import/materialicons/copper/wire"
   }
 }

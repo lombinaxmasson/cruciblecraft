@@ -13,4 +13,19 @@ public final class StorageCountFormat {
         }
         return (stored / 1_000_000) + "M";
     }
+
+    /**
+     * GT6 barrel/box fronts print the raw count (100% in red when full).
+     * Standard mass storage keeps the compact overlay string.
+     */
+    public static String face(int stored, int capacity, String modelProfile) {
+        if (capacity > 0 && stored >= capacity) {
+            return "100%";
+        }
+        if ("mass_storage_barrel".equals(modelProfile)
+                || "mass_storage_box".equals(modelProfile)) {
+            return Integer.toString(stored);
+        }
+        return format(stored);
+    }
 }

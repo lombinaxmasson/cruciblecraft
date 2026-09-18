@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 import com.masson.cruciblecraft.content.blockentity.BookshelfBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.BottleCrateBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DrawerBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
+import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.registry.ModMenus;
 
 import net.minecraft.core.BlockPos;
@@ -25,6 +27,7 @@ public final class StorageMenu extends AbstractContainerMenu {
     private final BlockPos storagePos;
     private final int imageHeight;
     private final int playerInventoryLabelY;
+    private MteInPlaceBlockEntity chest;
 
     public StorageMenu(
             MenuType<?> type,
@@ -133,6 +136,51 @@ public final class StorageMenu extends AbstractContainerMenu {
                     drawer::stillValid);
         }
         throw new IllegalStateException("Missing drawer at " + pos);
+    }
+
+    public static StorageMenu clientInPlace(
+            int id, Inventory inventory, BlockPos pos, int visible, int offset) {
+        if (inventory.player.level().getBlockEntity(pos)
+                instanceof MteInPlaceBlockEntity host) {
+            return new StorageMenu(
+                    ModMenus.MTE_STORAGE.get(),
+                    id,
+                    inventory,
+                    host,
+                    visible,
+                    offset);
+        }
+        throw new IllegalStateException("Missing in-place storage at " + pos);
+    }
+
+    public StorageMenu(
+            MenuType<?> type,
+            int id,
+            Inventory playerInventory,
+            MteInPlaceBlockEntity host,
+            int visibleSlots,
+            int offset) {
+        this(
+                type,
+                id,
+                playerInventory,
+                host.items(),
+                visibleSlots,
+                offset,
+                host.getBlockPos(),
+                host::stillValid);
+        if (host.spec().kind() == MteInPlaceKind.CHEST) {
+            this.chest = host;
+            host.startOpen(playerInventory.player);
+        }
+    }
+
+    @Override
+    public void removed(Player player) {
+        super.removed(player);
+        if (chest != null) {
+            chest.stopOpen(player);
+        }
     }
 
     public int machineSlots() {

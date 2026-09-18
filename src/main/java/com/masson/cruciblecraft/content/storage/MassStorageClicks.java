@@ -33,6 +33,17 @@ public final class MassStorageClicks {
     }
 
     /**
+     * GT6 {@code MultiTileEntityDrawerQuad}: {@code (x>0.5?1:0)|(y>0.5?2:0)}
+     * with Y from the bottom of the front face.
+     */
+    public static int drawerCompartment(Direction face, BlockPos pos, Vec3 hit) {
+        float[] uv = facingUv(face, pos, hit);
+        float x = uv[0];
+        float y = 1.0F - uv[1];
+        return (x > 0.5F ? 1 : 0) | (y > 0.5F ? 2 : 0);
+    }
+
+    /**
      * Positive = extract that many stored items. {@code -1} dumps matching
      * items from the player's inventory. {@code 0} is insert / no button.
      */

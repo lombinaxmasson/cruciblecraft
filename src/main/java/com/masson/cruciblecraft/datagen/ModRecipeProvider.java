@@ -757,7 +757,9 @@ public final class ModRecipeProvider extends RecipeProvider {
     private static void addStorageRecipes(RecipeOutput output) {
         Item steelPlate = materialItem("steel", MaterialPrefixes.PLATE);
         Item plasticPlate = materialItem("plastic", MaterialPrefixes.PLATE);
-        Item treatedRod = materialItem("wood_treated", MaterialPrefixes.ROD);
+        Item plasticScrew = materialItem("plastic", MaterialPrefixes.SCREW);
+        Item treatedPlate = materialItem("wood_treated", MaterialPrefixes.PLATE);
+        Item ironLongRod = materialItem("iron", MaterialPrefixes.LONG_ROD);
         StorageVariantCatalog.sourceVisible().forEach(variant -> {
             Item result = ModItems.storageItemsById().get(variant.id()).get();
             String recipeId = "storage/" + variant.path();
@@ -785,34 +787,50 @@ public final class ModRecipeProvider extends RecipeProvider {
                         .define('C', Items.CHEST)
                         .unlockedBy("has_oak_planks", has(Items.OAK_PLANKS))
                         .save(output, id(recipeId));
-                case "treated_barrel" -> ShapedRecipeBuilder.shaped(
-                                RecipeCategory.MISC, result)
-                        .pattern("PPP")
-                        .pattern("PCP")
-                        .pattern("PPP")
-                        .define(
-                                'P',
+                case "treated_barrel" -> acceptShapedCatalyst(
+                        output,
+                        recipeId,
+                        List.of("rCs", "PSP", "PSP"),
+                        Map.of(
+                                "C",
+                                Ingredient.of(Items.CHEST),
+                                "P",
                                 keyedIngredient(
-                                        treatedRod,
+                                        treatedPlate,
                                         "wood_treated",
-                                        MaterialPrefixes.ROD))
-                        .define('C', Items.CHEST)
-                        .unlockedBy("has_treated_rod", has(treatedRod))
-                        .save(output, id(recipeId));
-                case "plastic_box" -> ShapedRecipeBuilder.shaped(
-                                RecipeCategory.MISC, result)
-                        .pattern("PPP")
-                        .pattern("PCP")
-                        .pattern("PPP")
-                        .define(
-                                'P',
+                                        MaterialPrefixes.PLATE),
+                                "S",
+                                keyedIngredient(
+                                        ironLongRod,
+                                        "iron",
+                                        MaterialPrefixes.LONG_ROD)),
+                        Map.of(
+                                "r",
+                                Ingredient.of(ModItems.MATERIAL_SOFT_HAMMER.get()),
+                                "s",
+                                Ingredient.of(ModItems.MATERIAL_SAW.get())),
+                        new ItemStack(result));
+                case "plastic_box" -> acceptShapedCatalyst(
+                        output,
+                        recipeId,
+                        plasticBoxPattern(variant.expansionKey()),
+                        Map.of(
+                                "C",
+                                Ingredient.of(Items.CHEST),
+                                "P",
                                 keyedIngredient(
                                         plasticPlate,
                                         "plastic",
-                                        MaterialPrefixes.PLATE))
-                        .define('C', Items.CHEST)
-                        .unlockedBy("has_plastic_plate", has(plasticPlate))
-                        .save(output, id(recipeId));
+                                        MaterialPrefixes.PLATE),
+                                "T",
+                                keyedIngredient(
+                                        plasticScrew,
+                                        "plastic",
+                                        MaterialPrefixes.SCREW)),
+                        Map.of(
+                                "d",
+                                Ingredient.of(ModItems.MATERIAL_SCREWDRIVER.get())),
+                        new ItemStack(result));
                 case "charging_locker" -> ShapedRecipeBuilder.shaped(
                                 RecipeCategory.MISC, result)
                         .pattern("PPP")
@@ -842,11 +860,55 @@ public final class ModRecipeProvider extends RecipeProvider {
                         .define('H', Items.HOPPER)
                         .unlockedBy("has_hopper", has(Items.HOPPER))
                         .save(output, id(recipeId));
+                case "folded_gt6_catalyst" -> {
+                    // Source-exact GT6 grid is emitted from MteInPlaceAcquisitionCatalog
+                    // onto the T44 host id after the storage-art fold.
+                }
                 default -> throw new IllegalStateException(
                         "Visible storage row missing acquisition recipe: "
                                 + variant.id());
             }
         });
+        addPlasticBoxCycleRecipes(output);
+    }
+
+    private static List<String> plasticBoxPattern(String expansionKey) {
+        return switch (expansionKey) {
+            case "6996" -> List.of("dPT", "PCP", "TPT");
+            case "6995" -> List.of("TPd", "PCP", "TPT");
+            case "6994" -> List.of("TPT", "PCP", "dPT");
+            case "6993" -> List.of("TPT", "PCP", "TPd");
+            default -> throw new IllegalStateException(
+                    "Unknown plastic storage box meta " + expansionKey);
+        };
+    }
+
+    private static void addPlasticBoxCycleRecipes(RecipeOutput output) {
+        Item box128 = storageItem("plastic_storage_box_6993");
+        Item box256 = storageItem("plastic_storage_box_6994");
+        Item box512 = storageItem("plastic_storage_box_6995");
+        Item box1024 = storageItem("plastic_storage_box_6996");
+        plasticBoxCycle(output, box1024, box512, "storage/plastic_storage_box_6996_from_6995");
+        plasticBoxCycle(output, box512, box256, "storage/plastic_storage_box_6995_from_6994");
+        plasticBoxCycle(output, box256, box128, "storage/plastic_storage_box_6994_from_6993");
+        plasticBoxCycle(output, box128, box1024, "storage/plastic_storage_box_6993_from_6996");
+    }
+
+    private static void plasticBoxCycle(
+            RecipeOutput output, Item result, Item input, String path) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result)
+                .requires(input)
+                .unlockedBy("has_plastic_storage_box", has(input))
+                .save(output, id(path));
+    }
+
+    private static Item storageItem(String path) {
+        var item = ModItems.storageItemsById().get(
+                ResourceLocation.parse("cruciblecraft:" + path));
+        if (item == null) {
+            throw new IllegalStateException("Missing storage item " + path);
+        }
+        return item.get();
     }
 
     private static void addMachineRecipes(RecipeOutput output) {

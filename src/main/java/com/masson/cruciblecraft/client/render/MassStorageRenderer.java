@@ -1,5 +1,6 @@
 package com.masson.cruciblecraft.client.render;
 
+import com.masson.cruciblecraft.content.block.MassStorageBlock;
 import com.masson.cruciblecraft.content.block.StorageHostBlock;
 import com.masson.cruciblecraft.content.blockentity.MassStorageBlockEntity;
 import com.masson.cruciblecraft.content.storage.StorageCountFormat;
@@ -20,7 +21,8 @@ import net.minecraft.world.level.block.state.BlockState;
 
 /**
  * GT6 {@code MultiTileEntityRendererMassStorage}: GUI item on the front
- * window plus the stored count.
+ * window plus the stored count. Item facing follows the gregtech6_w port
+ * ({@code -toYRot} so GUI +Z points out of the face).
  */
 public final class MassStorageRenderer
         implements BlockEntityRenderer<MassStorageBlockEntity> {
@@ -38,10 +40,15 @@ public final class MassStorageRenderer
         if (inventory.filter().isEmpty() || inventory.stored() <= 0) {
             return;
         }
+        String profile = storage.getBlockState().getBlock() instanceof MassStorageBlock block
+                ? block.variant().modelProfile()
+                : "mass_storage_standard";
         renderFace(
                 storage,
                 inventory.filter(),
                 inventory.stored(),
+                inventory.capacity(),
+                profile,
                 poseStack,
                 buffers,
                 packedOverlay);
@@ -54,18 +61,37 @@ public final class MassStorageRenderer
             PoseStack poseStack,
             MultiBufferSource buffers,
             int packedOverlay) {
+        renderFace(
+                entity,
+                icon,
+                stored,
+                0,
+                "",
+                poseStack,
+                buffers,
+                packedOverlay);
+    }
+
+    static void renderFace(
+            BlockEntity entity,
+            ItemStack icon,
+            int stored,
+            int capacity,
+            String modelProfile,
+            PoseStack poseStack,
+            MultiBufferSource buffers,
+            int packedOverlay) {
         if (icon.isEmpty() || stored <= 0) {
             return;
         }
-        BlockState state = entity.getBlockState();
-        Direction facing = facingOf(state);
+        Direction facing = facingOf(entity.getBlockState());
         poseStack.pushPose();
         poseStack.translate(0.5, 0.5, 0.5);
-        poseStack.mulPose(Axis.YP.rotationDegrees(yRotation(facing)));
-        poseStack.translate(0.25, 0.125, -0.502);
-        poseStack.mulPose(Axis.ZP.rotationDegrees(180.0F));
-        poseStack.scale(0.03125F, 0.03125F, 0.0001F);
-        poseStack.scale(8.0F, 8.0F, 1.0F);
+        poseStack.mulPose(Axis.YP.rotationDegrees(-facing.toYRot()));
+        // GT6 1.7.10 item center landed at Y=0.375; GUI models face +Z.
+        poseStack.translate(0.0, -0.125, 0.51);
+        poseStack.mulPose(Axis.YP.rotationDegrees(180.0F));
+        poseStack.scale(0.4F, 0.4F, 0.0001F);
         Minecraft.getInstance()
                 .getItemRenderer()
                 .renderStatic(
@@ -80,21 +106,21 @@ public final class MassStorageRenderer
         poseStack.popPose();
         poseStack.pushPose();
         poseStack.translate(0.5, 0.5, 0.5);
-        poseStack.mulPose(Axis.YP.rotationDegrees(yRotation(facing)));
-        poseStack.translate(0.42, 0.02, -0.504);
-        poseStack.mulPose(Axis.ZP.rotationDegrees(180.0F));
-        poseStack.scale(0.012F, 0.012F, 0.012F);
+        poseStack.mulPose(Axis.YP.rotationDegrees(-facing.toYRot()));
+        poseStack.translate(0.28, 0.3125, 0.51);
+        poseStack.scale(0.0125F, -0.0125F, 0.0125F);
         Font font = Minecraft.getInstance().font;
-        String count = StorageCountFormat.format(stored);
+        String count = StorageCountFormat.face(stored, capacity, modelProfile);
+        int color = capacity > 0 && stored >= capacity ? 0xFFFF2020 : 0xFF202020;
         font.drawInBatch(
                 count,
                 -font.width(count),
                 0.0F,
-                0xFFFFFFFF,
+                color,
                 false,
                 poseStack.last().pose(),
                 buffers,
-                Font.DisplayMode.NORMAL,
+                Font.DisplayMode.SEE_THROUGH,
                 0,
                 LightTexture.FULL_BRIGHT);
         poseStack.popPose();

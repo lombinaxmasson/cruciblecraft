@@ -66,6 +66,17 @@ public final class ModMenus {
                                             inventory,
                                             data.readBlockPos(),
                                             data.readVarInt())));
+    public static final DeferredHolder<MenuType<?>, MenuType<StorageMenu>> MTE_STORAGE =
+            MENUS.register(
+                    "mte_storage",
+                    () -> IMenuTypeExtension.create(
+                            (containerId, inventory, data) ->
+                                    StorageMenu.clientInPlace(
+                                            containerId,
+                                            inventory,
+                                            data.readBlockPos(),
+                                            data.readVarInt(),
+                                            data.readVarInt())));
     public static final DeferredHolder<MenuType<?>, MenuType<CokeOvenMenu>> COKE_OVEN =
             MENUS.register(
                     "coke_oven",

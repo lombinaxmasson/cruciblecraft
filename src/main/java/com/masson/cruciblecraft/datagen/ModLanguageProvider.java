@@ -14,6 +14,9 @@ import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
 import com.masson.cruciblecraft.content.item.TechnologicalPartCatalog;
+import com.masson.cruciblecraft.content.mte.MteInPlaceCatalog;
+import com.masson.cruciblecraft.content.mte.MteInPlaceMaterials;
+import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
 import com.masson.cruciblecraft.content.sensor.SensorKind;
@@ -1060,6 +1063,7 @@ public class ModLanguageProvider extends LanguageProvider {
                             variant.chinese(), variant.english()))
                     .ifPresent(name -> add(key, name));
         });
+        MteInPlaceCatalog.specs().forEach(this::addMteInPlaceStorageName);
         if (chinese) {
             add("container.cruciblecraft.bookshelf", "书架");
             add("container.cruciblecraft.bottle_crate", "瓶箱");
@@ -1069,6 +1073,52 @@ public class ModLanguageProvider extends LanguageProvider {
             add("container.cruciblecraft.bottle_crate", "Bottle Crate");
             add("container.cruciblecraft.drawer", "Compartment Drawer");
         }
+    }
+
+    private void addMteInPlaceStorageName(MteInPlaceSpec spec) {
+        String blockKey = LanguageNames.translationKey("block", spec.registryPath());
+        String itemKey = LanguageNames.translationKey("item", spec.registryPath());
+        if (!chinese) {
+            String english = LanguageNames.playerEnglish(
+                    spec.englishName(), spec.registryPath());
+            add(blockKey, english);
+            add(itemKey, english);
+            return;
+        }
+        String zh = mteInPlaceChinese(spec);
+        if (zh == null) {
+            return;
+        }
+        add(blockKey, zh);
+        add(itemKey, zh);
+    }
+
+    private static String mteInPlaceChinese(MteInPlaceSpec spec) {
+        if (LanguageNames.hasCjk(spec.chineseName())
+                && !LanguageNames.isEnglishCopy(spec.chineseName(), spec.englishName())) {
+            return spec.chineseName();
+        }
+        String kindZh = switch (spec.kind()) {
+            case CHEST -> "箱子";
+            case SAFE -> spec.registryPath().contains("key_locked")
+                    ? "钥匙保险箱"
+                    : "机械保险箱";
+            case CRAFTING_TABLE -> "工作台";
+            case SCAFFOLD -> "脚手架";
+            case BARREL -> "物品桶";
+            case BOOKSHELF -> "书架";
+            case BOTTLE_CRATE -> "瓶箱";
+            case DRAWER -> "分区抽屉";
+            case LOCKER -> "储物柜";
+            case MASS_STORAGE -> "大容量仓储";
+            default -> null;
+        };
+        if (kindZh == null) {
+            return null;
+        }
+        return MteInPlaceMaterials.chineseMaterial(spec.registryPath())
+                .map(material -> material + kindZh)
+                .orElse(null);
     }
 
     private void addMachineIoTranslations() {

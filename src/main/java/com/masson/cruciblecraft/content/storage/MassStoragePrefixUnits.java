@@ -64,17 +64,16 @@ public final class MassStoragePrefixUnits {
                     prefix("tiny_centrifuged_crushed_ore")),
             Set.of(MaterialPrefixes.RAW_ORE, MaterialPrefixes.BLOCK));
 
-    private static final List<MaterialPrefix> DROP_PREFIXES = List.of(
-            MaterialPrefixes.DUST_DIV72,
-            MaterialPrefixes.NUGGET,
-            MaterialPrefixes.WIRE,
-            MaterialPrefixes.GEM,
-            MaterialPrefixes.PLATE,
-            MaterialPrefixes.TINY_PLATE_GEM,
-            MaterialPrefixes.TINY_CRUSHED_ORE,
-            MaterialPrefixes.TINY_WASHED_CRUSHED_ORE,
-            prefix("tiny_centrifuged_crushed_ore"),
-            MaterialPrefixes.RAW_ORE);
+    /**
+     * GT6 U after CC prefix JSON normalization ({@code dust}/{@code ingot}=144).
+     * Used by {@code OM.dust}/{@code OM.ingot} denomination, not by live
+     * {@link MaterialPrefix#units()} so tests can run without the catalog.
+     */
+    static final int U = 144;
+    static final int U4 = 36;
+    static final int U9 = 16;
+    static final int U72 = 2;
+    static final int U_BLOCK = 1296;
 
     private MassStoragePrefixUnits() {}
 
@@ -129,33 +128,166 @@ public final class MassStoragePrefixUnits {
             return ItemStack.EMPTY;
         }
         String materialId = entry.get().materialId();
-        for (MaterialPrefix drop : DROP_PREFIXES) {
-            if (!family.contains(drop) || !ModItems.hasMaterialItem(materialId, drop)) {
-                continue;
-            }
-            long unit = drop.units();
-            long count = partialUnits / unit;
-            if (count <= 0L) {
-                continue;
-            }
-            return MaterialLookup.tryStack(
-                            materialId, drop, (int) Math.min(count, Integer.MAX_VALUE))
-                    .orElse(ItemStack.EMPTY);
+        if (family.contains(MaterialPrefixes.DUST)
+                || family.contains(MaterialPrefixes.STORAGE_DUST)) {
+            return omDust(materialId, partialUnits);
         }
-        for (MaterialPrefix drop : family) {
-            if (!ModItems.hasMaterialItem(materialId, drop)) {
-                continue;
-            }
-            long unit = drop.units();
-            long count = partialUnits / unit;
-            if (count <= 0L) {
-                continue;
-            }
-            return MaterialLookup.tryStack(
-                            materialId, drop, (int) Math.min(count, Integer.MAX_VALUE))
-                    .orElse(ItemStack.EMPTY);
+        if (family.contains(MaterialPrefixes.INGOT)
+                || family.contains(MaterialPrefixes.NUGGET)) {
+            return omIngot(materialId, partialUnits);
+        }
+        if (family.contains(MaterialPrefixes.WIRE)) {
+            return tryMaterial(
+                    materialId,
+                    MaterialPrefixes.WIRE,
+                    partialUnits / Math.max(1, MaterialPrefixes.WIRE.units()));
+        }
+        if (family.contains(MaterialPrefixes.GEM)) {
+            return tryMaterial(
+                    materialId,
+                    MaterialPrefixes.GEM,
+                    partialUnits / Math.max(1, MaterialPrefixes.GEM.units()));
+        }
+        if (family.contains(MaterialPrefixes.PLATE)) {
+            return tryMaterial(
+                    materialId,
+                    MaterialPrefixes.PLATE,
+                    partialUnits / Math.max(1, MaterialPrefixes.PLATE.units()));
+        }
+        if (family.contains(MaterialPrefixes.TINY_PLATE_GEM)
+                || family.contains(MaterialPrefixes.PLATE_GEM)) {
+            return tryMaterial(
+                    materialId,
+                    MaterialPrefixes.PLATE_GEM,
+                    partialUnits / Math.max(1, MaterialPrefixes.PLATE_GEM.units()));
+        }
+        if (family.contains(MaterialPrefixes.TINY_CRUSHED_ORE)
+                || family.contains(MaterialPrefixes.CRUSHED_ORE)) {
+            return tryMaterial(
+                    materialId,
+                    MaterialPrefixes.TINY_CRUSHED_ORE,
+                    partialUnits / Math.max(1, MaterialPrefixes.TINY_CRUSHED_ORE.units()));
+        }
+        if (family.contains(MaterialPrefixes.TINY_WASHED_CRUSHED_ORE)
+                || family.contains(MaterialPrefixes.WASHED_CRUSHED_ORE)) {
+            return tryMaterial(
+                    materialId,
+                    MaterialPrefixes.TINY_WASHED_CRUSHED_ORE,
+                    partialUnits
+                            / Math.max(1, MaterialPrefixes.TINY_WASHED_CRUSHED_ORE.units()));
+        }
+        if (family.contains(prefix("tiny_centrifuged_crushed_ore"))
+                || family.contains(MaterialPrefixes.CENTRIFUGED_CRUSHED_ORE)) {
+            MaterialPrefix tiny = prefix("tiny_centrifuged_crushed_ore");
+            return tryMaterial(materialId, tiny, partialUnits / Math.max(1, tiny.units()));
+        }
+        if (family.contains(MaterialPrefixes.RAW_ORE)) {
+            return tryMaterial(
+                    materialId,
+                    MaterialPrefixes.RAW_ORE,
+                    partialUnits / Math.max(1, MaterialPrefixes.RAW_ORE.units()));
         }
         return ItemStack.EMPTY;
+    }
+
+    /**
+     * GT6 {@code OM.dust} denomination assuming every dust prefix exists.
+     * Largest unit first, with the original remainder heuristics.
+     */
+    public static MaterialPrefix dustDenomination(long amount) {
+        if (amount < U72) {
+            return null;
+        }
+        if (amount >= (long) U * 72) {
+            return MaterialPrefixes.STORAGE_DUST;
+        }
+        if (amount >= U && (amount >= (long) U * 16 || amount % U == 0)) {
+            return MaterialPrefixes.DUST;
+        }
+        if (amount >= U4 && (amount >= (long) U * 8 || amount % U4 <= amount % U9)) {
+            return MaterialPrefixes.SMALL_DUST;
+        }
+        if (amount >= U9 && (amount >= U || amount % U9 <= amount % U72)) {
+            return MaterialPrefixes.TINY_DUST;
+        }
+        return MaterialPrefixes.DUST_DIV72;
+    }
+
+    /**
+     * GT6 {@code OM.ingot} denomination. CC has no {@code chunkGt} at U/4, so
+     * that step falls through to nuggets.
+     */
+    public static MaterialPrefix ingotDenomination(long amount) {
+        if (amount < U9) {
+            return null;
+        }
+        if (amount >= (long) U * 72) {
+            return MaterialPrefixes.BLOCK;
+        }
+        if (amount >= U && (amount >= (long) U * 16 || amount % U == 0)) {
+            return MaterialPrefixes.INGOT;
+        }
+        return MaterialPrefixes.NUGGET;
+    }
+
+    private static ItemStack omDust(String materialId, long amount) {
+        if (amount < U72) {
+            return ItemStack.EMPTY;
+        }
+        if (amount >= (long) U * 72) {
+            ItemStack block = tryMaterial(materialId, MaterialPrefixes.STORAGE_DUST, amount / U_BLOCK);
+            if (!block.isEmpty()) {
+                return block;
+            }
+        }
+        if (amount >= U && (amount >= (long) U * 16 || amount % U == 0)) {
+            ItemStack dust = tryMaterial(materialId, MaterialPrefixes.DUST, amount / U);
+            if (!dust.isEmpty()) {
+                return dust;
+            }
+        }
+        if (amount >= U4 && (amount >= (long) U * 8 || amount % U4 <= amount % U9)) {
+            ItemStack small = tryMaterial(materialId, MaterialPrefixes.SMALL_DUST, amount / U4);
+            if (!small.isEmpty()) {
+                return small;
+            }
+        }
+        if (amount >= U9 && (amount >= U || amount % U9 <= amount % U72)) {
+            ItemStack tiny = tryMaterial(materialId, MaterialPrefixes.TINY_DUST, amount / U9);
+            if (!tiny.isEmpty()) {
+                return tiny;
+            }
+        }
+        return tryMaterial(materialId, MaterialPrefixes.DUST_DIV72, amount / U72);
+    }
+
+    private static ItemStack omIngot(String materialId, long amount) {
+        if (amount < U9) {
+            return ItemStack.EMPTY;
+        }
+        if (amount >= (long) U * 72) {
+            ItemStack block = tryMaterial(materialId, MaterialPrefixes.BLOCK, amount / U_BLOCK);
+            if (!block.isEmpty()) {
+                return block;
+            }
+        }
+        if (amount >= U && (amount >= (long) U * 16 || amount % U == 0)) {
+            ItemStack ingot = tryMaterial(materialId, MaterialPrefixes.INGOT, amount / U);
+            if (!ingot.isEmpty()) {
+                return ingot;
+            }
+        }
+        return tryMaterial(materialId, MaterialPrefixes.NUGGET, amount / U9);
+    }
+
+    private static ItemStack tryMaterial(
+            String materialId, MaterialPrefix prefix, long count) {
+        if (count <= 0L || !ModItems.hasMaterialItem(materialId, prefix)) {
+            return ItemStack.EMPTY;
+        }
+        return MaterialLookup.tryStack(
+                        materialId, prefix, (int) Math.min(count, Integer.MAX_VALUE))
+                .orElse(ItemStack.EMPTY);
     }
 
     private static MaterialPrefix prefix(String path) {

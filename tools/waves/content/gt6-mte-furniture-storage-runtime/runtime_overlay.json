@@ -5,19 +5,22 @@
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "domain": "furniture_storage",
   "counts": {
-    "in_place": 250
+    "in_place": 250,
+    "fold_live_block": 5,
+    "keep_distinct": 245
   },
   "rows": [
     {
       "meta": 4000,
       "dummy_path": "furniture/compartment_drawer_lead",
-      "live_block": "cruciblecraft:furniture/compartment_drawer_lead",
+      "live_block": "cruciblecraft:drawer_4000",
       "kind": "DRAWER",
       "family": "furniture_storage",
       "gt6_class": "MultiTileEntityDrawerQuad / Storage",
       "english_name": "Compartment Drawer (Lead)",
       "chinese_name": "Compartment Drawer (Lead)",
-      "disposition": "keep_distinct"
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto T44 storage host"
     },
     {
       "meta": 4001,
@@ -561,13 +564,14 @@
     {
       "meta": 6000,
       "dummy_path": "furniture/mass_storage_lead",
-      "live_block": "cruciblecraft:furniture/mass_storage_lead",
+      "live_block": "cruciblecraft:mass_storage_6000",
       "kind": "MASS_STORAGE",
       "family": "furniture_storage",
       "gt6_class": "MultiTileEntityMassStorageStandard / Storage",
       "english_name": "Mass Storage (Lead)",
       "chinese_name": "Mass Storage (Lead)",
-      "disposition": "keep_distinct"
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto T44 storage host"
     },
     {
       "meta": 6001,
@@ -1111,13 +1115,14 @@
     {
       "meta": 7100,
       "dummy_path": "furniture/bookshelf_lead",
-      "live_block": "cruciblecraft:furniture/bookshelf_lead",
+      "live_block": "cruciblecraft:bookshelf_7100",
       "kind": "BOOKSHELF",
       "family": "furniture_storage",
       "gt6_class": "MultiTileEntityBookShelf / Storage",
       "english_name": "Bookshelf (Lead)",
       "chinese_name": "Bookshelf (Lead)",
-      "disposition": "keep_distinct"
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto T44 storage host"
     },
     {
       "meta": 7101,
@@ -1661,13 +1666,14 @@
     {
       "meta": 7300,
       "dummy_path": "furniture/locker_lead",
-      "live_block": "cruciblecraft:furniture/locker_lead",
+      "live_block": "cruciblecraft:locker_7300",
       "kind": "LOCKER",
       "family": "furniture_storage",
       "gt6_class": "MultiTileEntityLocker / Storage",
       "english_name": "Locker (Lead)",
       "chinese_name": "Locker (Lead)",
-      "disposition": "keep_distinct"
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto T44 storage host"
     },
     {
       "meta": 7301,
@@ -2211,13 +2217,14 @@
     {
       "meta": 8600,
       "dummy_path": "furniture/bottlecrate_lead",
-      "live_block": "cruciblecraft:furniture/bottlecrate_lead",
+      "live_block": "cruciblecraft:bottle_crate_8600",
       "kind": "BOTTLE_CRATE",
       "family": "furniture_storage",
       "gt6_class": "MultiTileEntityBottleCrate / Storage",
       "english_name": "Bottlecrate (Lead)",
       "chinese_name": "Bottlecrate (Lead)",
-      "disposition": "keep_distinct"
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto T44 storage host"
     },
     {
       "meta": 8601,

@@ -32,11 +32,11 @@
   "identity_disposition": [
     {
       "semantic_key": "mte:furniture-storage:in-place",
-      "disposition": "keep_distinct",
+      "disposition": "fold_live_block",
       "runtime_ids": [
-        "cruciblecraft:furniture/bookshelf_lead"
+        "cruciblecraft:bookshelf_7100"
       ],
-      "reason": "Bookshelf/crate/drawer/locker/mass-storage dummies stay live BlockItems because storage_variants material mismatch forbade fold."
+      "reason": "Exact-meta T44 overlaps fold onto storage_variants hosts. Remaining metal bookshelf/crate/drawer/locker/mass-storage dummies stay live BlockItems."
     }
   ],
   "note": "In-place furniture_storage runtime. Close at runtime_ready. Source-exact obtain lives on content/gt6-mte-inplace-acquisition; remaining D0 gaps stay blocked. Do not edit R0."

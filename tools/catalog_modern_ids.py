@@ -691,6 +691,11 @@ def _bundled_machine_host_paths() -> set[str]:
         document = census.load_json(rods)
         for row in document.get("rods") or []:
             occupied.add(strip_ns(str(row.get("id") or "")))
+    storage = DATA / "storage_variants.json"
+    if storage.is_file():
+        document = census.load_json(storage)
+        for row in document.get("variants") or []:
+            occupied.add(strip_ns(str(row.get("runtime_id") or "")))
     return {path for path in occupied if path}
 
 
