@@ -7,6 +7,7 @@ import com.masson.cruciblecraft.api.tool.ToolAction;
 import com.masson.cruciblecraft.api.tool.ToolActionSource;
 import com.masson.cruciblecraft.content.item.tool.ProvidedToolActions;
 import com.masson.cruciblecraft.content.item.tool.ToolClick;
+import com.masson.cruciblecraft.content.item.tool.ToolMining;
 import com.masson.cruciblecraft.machine.ToolMaterialRules;
 import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
 import com.masson.cruciblecraft.material.MaterialCatalog;
@@ -14,12 +15,21 @@ import com.masson.cruciblecraft.material.MaterialComponentPolicy;
 import com.masson.cruciblecraft.registry.ModComponents;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Shearable;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 
 /** One registered item whose stack components select a tool material. */
 public abstract class MaterialToolItem extends Item
@@ -63,7 +73,7 @@ public abstract class MaterialToolItem extends Item
     }
 
     @Override
-    public boolean provides(ToolAction action) {
+    public boolean provides(ItemStack stack, ToolAction action) {
         return ProvidedToolActions.of(kind).contains(action);
     }
 
@@ -76,6 +86,27 @@ public abstract class MaterialToolItem extends Item
     }
 
     @Override
+    public InteractionResult interactLivingEntity(
+            ItemStack stack,
+            Player player,
+            LivingEntity entity,
+            InteractionHand hand) {
+        if (!canApplyDurabilityDamage(stack)
+                || !provides(stack, ToolAction.SHEARS)) {
+            return InteractionResult.PASS;
+        }
+        if (!(entity instanceof Shearable shearable)
+                || !shearable.readyForShearing()) {
+            return InteractionResult.PASS;
+        }
+        if (!player.level().isClientSide) {
+            shearable.shear(SoundSource.PLAYERS);
+            ToolClick.hurt(stack, player, hand);
+        }
+        return InteractionResult.sidedSuccess(player.level().isClientSide);
+    }
+
+    @Override
     public int getMaxDamage(ItemStack stack) {
         return material(stack)
                 .map(materialId -> ToolMaterialRules.durability(
@@ -85,6 +116,39 @@ public abstract class MaterialToolItem extends Item
 
     public final boolean canApplyDurabilityDamage(ItemStack stack) {
         return material(stack).isPresent();
+    }
+
+    @Override
+    public float getDestroySpeed(ItemStack stack, BlockState state) {
+        return material(stack)
+                .map(materialId -> ToolMining.destroySpeed(
+                        kind, materialId, state))
+                .orElse(1.0F);
+    }
+
+    @Override
+    public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
+        return material(stack).isPresent()
+                && ToolMining.correctTool(kind, state);
+    }
+
+    @Override
+    public boolean mineBlock(
+            ItemStack stack,
+            Level level,
+            BlockState state,
+            BlockPos pos,
+            LivingEntity miningEntity) {
+        if (!canApplyDurabilityDamage(stack)) {
+            return false;
+        }
+        if (!level.isClientSide
+                && state.getDestroySpeed(level, pos) != 0.0F
+                && (isCorrectToolForDrops(stack, state)
+                        || getDestroySpeed(stack, state) > 1.0F)) {
+            stack.hurtAndBreak(1, miningEntity, EquipmentSlot.MAINHAND);
+        }
+        return true;
     }
 
     @Override

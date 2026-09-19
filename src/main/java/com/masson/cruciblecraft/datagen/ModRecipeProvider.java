@@ -1376,6 +1376,8 @@ public final class ModRecipeProvider extends RecipeProvider {
                     output, result, casing, path);
             case "laminator" -> laminatorCrafting(
                     output, result, casing, material, path);
+            case "bath" -> bathCrafting(
+                    output, result, casing, material, path);
             case "pressurewasher" -> pressureWasherCrafting(
                     output, result, casing, material, path);
             case "loom" -> loomCrafting(
@@ -2429,6 +2431,29 @@ public final class ModRecipeProvider extends RecipeProvider {
                 output,
                 "machines/" + id,
                 List.of("SwS", "GMG", "SCS"),
+                ingredients,
+                Map.of("w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                new ItemStack(result));
+    }
+
+    private static void bathCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String material,
+            String id) {
+        Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+        ingredients.put("M", Ingredient.of(casing));
+        ingredients.put(
+                "C",
+                materialIngredient(
+                        material, MaterialPrefixCatalog.require("small_casing")));
+        ingredients.put("P", materialIngredient(material, MaterialPrefixes.PLATE));
+        // GT6 Loader_MultiTileEntities.java:1653 {"CwC","PMP","PPP"}.
+        acceptShapedCatalyst(
+                output,
+                "machines/" + id,
+                List.of("CwC", "PMP", "PPP"),
                 ingredients,
                 Map.of("w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
                 new ItemStack(result));

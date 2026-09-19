@@ -123,7 +123,7 @@ public final class Gt6BasicMachineGui {
         return new Layout(List.copyOf(items), List.copyOf(tanks), PROGRESS);
     }
 
-    static List<ProcessingMachineSpec.SlotPosition> inputSlots(
+    public static List<ProcessingMachineSpec.SlotPosition> inputSlots(
             int count, int inFluids) {
         int yHigh = inFluids > 6 ? 7 : 25;
         int y0 = inFluids > 3 ? 7 : 16;
@@ -168,7 +168,7 @@ public final class Gt6BasicMachineGui {
         return grid.subList(0, Math.min(count, grid.size()));
     }
 
-    static List<ProcessingMachineSpec.SlotPosition> outputSlots(
+    public static List<ProcessingMachineSpec.SlotPosition> outputSlots(
             int count, int outFluids) {
         int yHigh = outFluids > 6 ? 7 : 25;
         int y0 = outFluids > 3 ? 7 : 16;
@@ -214,7 +214,7 @@ public final class Gt6BasicMachineGui {
         return grid.subList(0, Math.min(count, grid.size()));
     }
 
-    static List<ProcessingMachineSpec.SlotPosition> fluidSlots(
+    public static List<ProcessingMachineSpec.SlotPosition> fluidSlots(
             int count, boolean outputs) {
         int originX = outputs ? 107 : 53;
         int sign = outputs ? 1 : -1;

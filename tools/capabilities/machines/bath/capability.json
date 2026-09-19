@@ -1,0 +1,100 @@
+{
+  "schema_version": 2,
+  "slug": "machines/bath",
+  "title": "Bath / Bathing Pot",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "partial",
+  "owned_paths": [
+    "docs/history/card-plans/closed/洗矿浴池详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/mte/BathingPotRuntime.java",
+    "src/main/java/com/masson/cruciblecraft/client/color/BathingPotColor.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/client/ClientSetup.java",
+    "src/main/java/com/masson/cruciblecraft/client/color/MachineBlockColor.java",
+    "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+    "src/main/resources/assets/cruciblecraft/gt6_bath_art_manifest.json",
+    "src/generated/resources/assets/cruciblecraft/models/block/bath.json",
+    "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_bathing_pot*.json",
+    "src/main/resources/assets/cruciblecraft/blockstates/misc_tool/bathing_pot*.json",
+    "src/main/resources/assets/cruciblecraft/blockstates/misc_tool/wooden_bathing_pot*.json",
+    "src/main/resources/assets/cruciblecraft/models/item/misc_tool/bathing_pot*.json",
+    "src/main/resources/assets/cruciblecraft/models/item/misc_tool/wooden_bathing_pot*.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bath/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/mte/bathing_pot/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/mte/bathing_pot_wood/**",
+    "src/main/resources/data/cruciblecraft/machine_delivery.json",
+    "src/main/resources/data/cruciblecraft/machine_kinds.json",
+    "src/main/resources/data/cruciblecraft/machine_acquisition.json",
+    "src/main/resources/data/cruciblecraft/mte_inplace_acquisition.json",
+    "src/generated/resources/data/cruciblecraft/recipe/machines/bath.json",
+    "src/generated/resources/data/cruciblecraft/recipe/misc_tool/bathing_pot.json",
+    "src/generated/resources/data/cruciblecraft/recipe/misc_tool/bathing_pot_table.json",
+    "src/main/resources/data/cruciblecraft_wave_machines_bath/**",
+    "src/test/java/com/masson/cruciblecraft/gametest/BathGameTests.java",
+    "src/test/java/com/masson/cruciblecraft/registry/ChemicalProcessingMachineSpecTest.java",
+    "tools/capabilities/machines/bath/**",
+    "tools/waves/machines/bath/**",
+    "tools/gt6_bath.py",
+    "tools/tests/test_bath.py"
+  ],
+  "depends_on": [
+    "content/gt6-mte-misc-tool-runtime"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/bath",
+  "required_test_ids": [
+    "bathHostAcquisitionIsSourceExact",
+    "bathMachineUsesCubeNotPotVoxel",
+    "bathingPotClickProcessesWithoutGui",
+    "bathingPotManifestResolvesLocalGt6",
+    "stainlessBathingPotTableHasAcquisitionRecipe",
+    "woodenBathingPotStaysBlockedOnGlue"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:bath:22002",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:bath"
+      ],
+      "reason": "GT6 MultiTileEntityBasicMachine 22002. Keep the live bath host. Replace copper-furnace stand-in with source-exact stainless casing/small_casing/plate + wrench. Cube art from basicmachines/bath. Inventory matches RM.Bath 6/6/1/3."
+    },
+    {
+      "semantic_key": "mte:bathing_pot:32708",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:misc_tool/bathing_pot"
+      ],
+      "reason": "GT6 MultiTileEntityBathingPot 32708. Keep the live BlockItem. Voxel + click-to-process on RM.Bath. Existing plate craft stays source-exact."
+    },
+    {
+      "semantic_key": "mte:bathing_pot_table:32707",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:misc_tool/bathing_pot_table"
+      ],
+      "reason": "GT6 MultiTileEntityBathingPotTable 32707. Pot + brick slab (stone_slab meta 4). Click-to-process, no GUI."
+    },
+    {
+      "semantic_key": "mte:wooden_bathing_pot:32721-32720",
+      "disposition": "blocked",
+      "runtime_ids": [
+        "cruciblecraft:misc_tool/wooden_bathing_pot",
+        "cruciblecraft:misc_tool/wooden_bathing_pot_table"
+      ],
+      "reason": "OD.itemGlue is unmapped. Do not stand in slimeball. Wooden table needs the wooden pot. Runtime voxels still land; obtain stays explicitly_blocked."
+    },
+    {
+      "semantic_key": "machine:bath:large-vat-17104",
+      "disposition": "blocked",
+      "runtime_ids": [],
+      "reason": "Large Bathing Vat 17104 is out of scope for this host card."
+    }
+  ],
+  "note": "Complete Bath 22002 and the four bathing-pot MTEs against local GT6. Do not import more Bath recipe rows. Obtain stays explicitly_blocked for wooden glue. Do not stand in glue. Do not open Large Bathing Vat. Close at runtime_ready, not player_complete."
+}

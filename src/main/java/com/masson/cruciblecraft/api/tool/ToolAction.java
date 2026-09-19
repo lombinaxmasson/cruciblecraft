@@ -16,7 +16,15 @@ public enum ToolAction {
     MONKEY_WRENCH,
     WIRE_CUTTER,
     SOFT_HAMMER,
-    CHISEL;
+    CHISEL,
+    HAMMER,
+    PROSPECTOR,
+    KNIFE,
+    SHEARS,
+    DRILL,
+    BUILDER_WAND,
+    MAGNIFYING_GLASS,
+    IGNITER;
 
     /** GTM pipe outline/raytrace expands for wrench, crowbar, and plunger. */
     public boolean expandsPipeGrid() {

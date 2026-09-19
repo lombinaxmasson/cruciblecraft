@@ -6,11 +6,11 @@ import net.minecraft.world.item.ItemStack;
 
 /** An item that can perform one or more {@link ToolAction}s. */
 public interface ToolActionSource {
-    boolean provides(ToolAction action);
+    boolean provides(ItemStack stack, ToolAction action);
 
-    static boolean provides(ItemStack stack, ToolAction action) {
+    static boolean heldProvides(ItemStack stack, ToolAction action) {
         return stack.getItem() instanceof ToolActionSource source
-                && source.provides(action);
+                && source.provides(stack, action);
     }
 
     static boolean providesAny(
@@ -19,7 +19,7 @@ public interface ToolActionSource {
             return false;
         }
         for (ToolAction action : ToolAction.values()) {
-            if (source.provides(action) && test.test(action)) {
+            if (source.provides(stack, action) && test.test(action)) {
                 return true;
             }
         }

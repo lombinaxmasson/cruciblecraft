@@ -28,6 +28,7 @@ public record ProcessingEmiRecipeData(
         List<FluidResource> fluidOutputs,
         int durationTicks,
         long eut,
+        long specialValue,
         EnergyType energyType) {
 
     public ProcessingEmiRecipeData {
@@ -87,17 +88,33 @@ public record ProcessingEmiRecipeData(
                 fluidOutputs,
                 recipe.duration(),
                 recipe.eut(),
+                recipe.specialValue(),
                 spec.energy().type());
     }
 
     public String durationText() {
-        return "Time: " + durationTicks + " ticks ("
-                + String.format(Locale.ROOT, "%.2f", durationTicks / 20.0D)
-                + " s)";
+        if (durationTicks < 1_200) {
+            return "Time: " + durationTicks + " ticks";
+        }
+        if (durationTicks < 36_000) {
+            return "Time: " + (durationTicks / 20) + " secs";
+        }
+        return "Time: " + (durationTicks / 1_200) + " mins";
     }
 
     public String powerText() {
-        return "Power: " + eut + " " + energyUnit();
+        long rate = Math.abs(eut);
+        return (eut < 0L ? "Output: " : "Usage: ") + rate + " " + energyUnit();
+    }
+
+    public String costsText() {
+        long total = Math.abs(eut) * (long) durationTicks;
+        return (eut < 0L ? "Gain: " : "Costs: ") + total + " " + energyName();
+    }
+
+    public String energyName() {
+        String unit = energyUnit();
+        return unit.endsWith("/t") ? unit.substring(0, unit.length() - 2) : unit;
     }
 
     public String energyUnit() {
@@ -110,7 +127,8 @@ public record ProcessingEmiRecipeData(
             case CU -> "CU/t";
             case MU -> "MU/t";
             case HEAT -> "HEAT/t";
-            default -> energyType.name() + "/t";
+            case TIME -> "TU/t";
+            case AIR -> "Air/t";
         };
     }
 

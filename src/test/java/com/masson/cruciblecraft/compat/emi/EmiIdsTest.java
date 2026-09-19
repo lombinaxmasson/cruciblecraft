@@ -37,6 +37,23 @@ class EmiIdsTest {
     }
 
     @Test
+    void prefixesSharedRecipeMapsByMachineCategory() {
+        ResourceLocation mixer = ResourceLocation.fromNamespaceAndPath(
+                "cruciblecraft", "mixer");
+        ResourceLocation electric = ResourceLocation.fromNamespaceAndPath(
+                "cruciblecraft", "electric_mixer");
+        ResourceLocation recipe = ResourceLocation.fromNamespaceAndPath(
+                "cruciblecraft", "mixer/ordinary_closure/deadbeef");
+        ResourceLocation mixerEmi = EmiIds.synthetic(mixer, recipe);
+        ResourceLocation electricEmi = EmiIds.synthetic(electric, recipe);
+        assertEquals("/mixer/mixer/ordinary_closure/deadbeef", mixerEmi.getPath());
+        assertEquals(
+                "/electric_mixer/mixer/ordinary_closure/deadbeef",
+                electricEmi.getPath());
+        assertTrue(!mixerEmi.equals(electricEmi));
+    }
+
+    @Test
     void leavesAlloyAndMoldIdsUnchanged() {
         ResourceLocation alloy = ResourceLocation.fromNamespaceAndPath(
                 "cruciblecraft", "/alloy/bronze");

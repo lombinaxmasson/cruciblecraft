@@ -95,6 +95,8 @@ import com.masson.cruciblecraft.content.item.MaterialSwordItem;
 import com.masson.cruciblecraft.content.item.MaterialUniversalSpadeItem;
 import com.masson.cruciblecraft.content.item.MaterialWireCutterItem;
 import com.masson.cruciblecraft.content.item.MaterialWorkshopToolItem;
+import com.masson.cruciblecraft.content.item.MaterialBuilderWandItem;
+import com.masson.cruciblecraft.content.item.MaterialPocketMultitoolItem;
 import com.masson.cruciblecraft.content.item.MaterialWrenchItem;
 import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
 import com.masson.cruciblecraft.content.item.LuFiberCableItem;
@@ -884,13 +886,10 @@ public final class ModItems {
             ITEMS.register(
                     "material_gem_pick",
                     () -> new MaterialGemPickItem(new Item.Properties()));
-    public static final DeferredItem<MaterialWorkshopToolItem> MATERIAL_BUILDER_WAND =
+    public static final DeferredItem<MaterialBuilderWandItem> MATERIAL_BUILDER_WAND =
             ITEMS.register(
                     "material_builder_wand",
-                    () -> new MaterialWorkshopToolItem(
-                            new Item.Properties(),
-                            ToolKind.BUILDER_WAND,
-                            "item.cruciblecraft.material_builder_wand"));
+                    () -> new MaterialBuilderWandItem(new Item.Properties()));
     public static final DeferredItem<MaterialUniversalSpadeItem>
             MATERIAL_UNIVERSAL_SPADE =
             ITEMS.register(
@@ -968,14 +967,11 @@ public final class ModItems {
             ITEMS.register(
                     "material_flint_and_tinder",
                     () -> new MaterialFlintAndTinderItem(new Item.Properties()));
-    public static final DeferredItem<MaterialWorkshopToolItem>
+    public static final DeferredItem<MaterialPocketMultitoolItem>
             MATERIAL_POCKET_MULTITOOL =
             ITEMS.register(
                     "material_pocket_multitool",
-                    () -> new MaterialWorkshopToolItem(
-                            new Item.Properties(),
-                            ToolKind.POCKET_MULTITOOL,
-                            "item.cruciblecraft.material_pocket_multitool"));
+                    () -> new MaterialPocketMultitoolItem(new Item.Properties()));
     public static final DeferredItem<FlintKnifeItem> FLINT_KNIFE =
             ITEMS.register(
                     "flint_knife",

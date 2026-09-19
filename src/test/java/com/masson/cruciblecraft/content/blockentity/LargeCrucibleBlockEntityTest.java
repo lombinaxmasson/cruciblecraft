@@ -65,4 +65,19 @@ class LargeCrucibleBlockEntityTest {
                         .getPath()
                         .equals("crucible"));
     }
+
+    @Test
+    void acceptsGt6HeatCryoAndKineticAirKinds() throws Exception {
+        String source = java.nio.file.Files.readString(java.nio.file.Path.of(
+                "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeCrucibleBlockEntity.java"));
+        int handles = source.indexOf("public boolean handles(EnergyType type, Direction side)");
+        String body = source.substring(handles, source.indexOf("public long insert", handles));
+        assertTrue(body.contains("HEAT"));
+        assertTrue(body.contains("CU"));
+        assertTrue(body.contains("AIR"));
+        assertTrue(body.contains("KINETIC_ROTATION"));
+        assertTrue(source.contains("queueCooling"));
+        assertTrue(source.contains("fillMeltdownLava"));
+        assertTrue(source.contains("pourHostAtWall"));
+    }
 }

@@ -235,6 +235,66 @@
   "entries": [
     {
       "affected_capabilities": [
+        "machines/bath"
+      ],
+      "authority": [
+        "tools/capabilities/machines/bath/capability.json"
+      ],
+      "blocks_maturity": "player_complete",
+      "claimed_by": [
+        {
+          "semantic_key": "mte:wooden_bathing_pot:32721-32720",
+          "slug": "machines/bath"
+        },
+        {
+          "note_marker": "Obtain stays explicitly_blocked",
+          "slug": "machines/bath"
+        }
+      ],
+      "count": 2,
+      "discovered_by": "machines/bath",
+      "id": "obtain/wooden-bathing-pot-glue",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute slimeball, another adhesive, or an unrelated material for OD.itemGlue.",
+      "note": "Wooden Bathing Pot 32721 needs OD.itemGlue. Wooden table 32720 needs that pot. Runtime voxels may land; obtain stays blocked.",
+      "planning_bucket": "schedulable",
+      "resolved_by": null,
+      "root_cause": "unmapped_od_item_glue",
+      "root_cause_class": "unmapped_operand",
+      "status": "open",
+      "title": "木浸洗盆胶水获得格仍 blocked",
+      "unit": "hosts"
+    },
+    {
+      "affected_capabilities": [
+        "machines/bath"
+      ],
+      "authority": [
+        "tools/capabilities/machines/bath/capability.json"
+      ],
+      "blocks_maturity": "none",
+      "claimed_by": [
+        {
+          "semantic_key": "machine:bath:large-vat-17104",
+          "slug": "machines/bath"
+        }
+      ],
+      "count": 1,
+      "discovered_by": "machines/bath",
+      "id": "identity/bath-large-vat-17104",
+      "introduced_by": null,
+      "no_stand_in": "Do not substitute the single-block Bath or a bathing pot for Large Bathing Vat 17104.",
+      "note": "Out of scope on the Bath host card. Do not fold 17104 onto 22002.",
+      "planning_bucket": "not_work",
+      "resolved_by": null,
+      "root_cause": "large_bathing_vat_out_of_scope",
+      "root_cause_class": "unmapped_identity",
+      "status": "out_of_scope",
+      "title": "本卡不含大型浸洗槽 17104",
+      "unit": "hosts"
+    },
+    {
+      "affected_capabilities": [
         "machines/loom"
       ],
       "authority": [
@@ -1942,6 +2002,12 @@
       "unit": "items"
     },
     {
+      "count": 2,
+      "id": "obtain/wooden-bathing-pot-glue",
+      "planning_bucket": "schedulable",
+      "unit": "hosts"
+    },
+    {
       "count": 1,
       "id": "peripheral/sensors-computercraft",
       "planning_bucket": "not_work",
@@ -2062,6 +2128,7 @@
       "identity/processing-ungated-families"
     ],
     "unmapped_operand": [
+      "obtain/wooden-bathing-pot-glue",
       "recipe/injector-overflow",
       "recipe/laminator-overflow",
       "recipe/loom-overflow",
@@ -2250,6 +2317,11 @@
         "unit": "items"
       },
       {
+        "count": 2,
+        "id": "obtain/wooden-bathing-pot-glue",
+        "unit": "hosts"
+      },
+      {
         "count": 60,
         "id": "recipe/laminator-overflow",
         "unit": "rows"
@@ -2280,16 +2352,16 @@
     "audit_first": 14,
     "not_work": 3,
     "scale_not_todo": 5,
-    "schedulable": 17
+    "schedulable": 18
   },
   "schema_version": 1,
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "stats": {
-    "open": 37,
-    "out_of_scope": 5,
+    "open": 38,
+    "out_of_scope": 6,
     "partial": 2,
     "resolved": 11,
     "superseded": 5,
-    "total": 60
+    "total": 62
   }
 }

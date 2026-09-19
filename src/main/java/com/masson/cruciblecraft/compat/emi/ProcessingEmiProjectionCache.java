@@ -10,52 +10,53 @@ import com.masson.cruciblecraft.recipe.gt.GTRecipeRuntimeEpoch;
 /**
  * EMI processing projection bound to the published recipe epoch. A stale
  * epoch cannot be served.
+ *
+ * <p>Cache state is stored in static fields rather than a nested record.
+ * NeoForge's GameTest exploded-directory loader has failed to resolve
+ * {@code ProcessingEmiProjectionCache$Cached}.
  */
 public final class ProcessingEmiProjectionCache {
-    private static volatile Cached cached;
+    private static volatile long cachedEpoch = -1L;
+    private static volatile String cachedFingerprint;
+    private static volatile ProcessingEmiRegistrationPlan cachedPlan;
+    private static volatile long cachedProjectionNanos = -1L;
 
     private ProcessingEmiProjectionCache() {}
-
-    private record Cached(
-            long epoch,
-            String fingerprint,
-            ProcessingEmiRegistrationPlan plan,
-            long projectionNanos) {}
 
     public static synchronized ProcessingEmiRegistrationPlan planFor(
             List<ProcessingMachineSpec> specs) {
         Objects.requireNonNull(specs, "specs");
         long epoch = GTRecipeRuntimeEpoch.epoch();
         String fingerprint = fingerprint(epoch);
-        Cached current = cached;
+        ProcessingEmiRegistrationPlan current = cachedPlan;
         if (current != null
-                && current.epoch() == epoch
-                && current.fingerprint().equals(fingerprint)) {
-            return current.plan();
+                && cachedEpoch == epoch
+                && fingerprint.equals(cachedFingerprint)) {
+            return current;
         }
         long started = System.nanoTime();
         ProcessingEmiRegistrationPlan plan =
                 ProcessingEmiRegistrationPlan.create(specs);
-        cached = new Cached(
-                epoch,
-                fingerprint,
-                plan,
-                System.nanoTime() - started);
+        cachedEpoch = epoch;
+        cachedFingerprint = fingerprint;
+        cachedPlan = plan;
+        cachedProjectionNanos = System.nanoTime() - started;
         return plan;
     }
 
     public static long lastProjectionNanos() {
-        Cached current = cached;
-        return current == null ? -1L : current.projectionNanos();
+        return cachedPlan == null ? -1L : cachedProjectionNanos;
     }
 
     public static long lastEpoch() {
-        Cached current = cached;
-        return current == null ? -1L : current.epoch();
+        return cachedPlan == null ? -1L : cachedEpoch;
     }
 
     public static synchronized void invalidate() {
-        cached = null;
+        cachedEpoch = -1L;
+        cachedFingerprint = null;
+        cachedPlan = null;
+        cachedProjectionNanos = -1L;
     }
 
     static void clearForTest() {

@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.machine.component;
 
 import com.masson.cruciblecraft.machine.MachineMaterialRules;
 import com.masson.cruciblecraft.machine.MachineMaterialRules.Device;
+import com.masson.cruciblecraft.material.MaterialCatalog;
 
 /** Material-backed casing state with all derived machine limits in one place. */
 public final class MachineCasing {
@@ -68,10 +69,16 @@ public final class MachineCasing {
     }
 
     public float maxTemperature() {
+        return maxTemperature(MachineMaterialRules.CRUCIBLE_TEMPERATURE_FACTOR);
+    }
+
+    public float maxTemperature(double heatResistanceBonus) {
         if (device != Device.CRUCIBLE) {
             throw new IllegalStateException("Temperature limit is only defined for crucible casings");
         }
-        return MachineMaterialRules.crucibleMaxTemperature(materialId);
+        return MachineMaterialRules.maxTemperature(
+                MaterialCatalog.require(materialId()).thermal().meltingPoint(),
+                heatResistanceBonus);
     }
 
     public double massGrams() {

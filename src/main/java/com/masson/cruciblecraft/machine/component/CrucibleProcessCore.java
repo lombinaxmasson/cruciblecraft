@@ -21,9 +21,11 @@ import com.masson.cruciblecraft.machine.MachineMaterialRules.Device;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.recipe.AlloyIndex.AlloyMatch;
+import com.masson.cruciblecraft.recipe.AlloyIndex.Conversion;
 import com.masson.cruciblecraft.recipe.SteelmakingProcess;
 import com.masson.cruciblecraft.recipe.SteelmakingProcess.Batch;
 import com.masson.cruciblecraft.registry.ModFluids;
+import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -41,31 +43,51 @@ public final class CrucibleProcessCore {
     public static final int LARGE_MAX_INGOTS = 432;
     public static final float AMBIENT_TEMPERATURE = 20.0f;
     public static final long HEAT_DISPLAY_CAPACITY = 64L;
-    private static final double CASING_VOLUME_CM3 = 800.0;
+    public static final double SINGLE_HEAT_RESISTANCE = 1.25;
+    public static final double LARGE_HEAT_RESISTANCE = 1.10;
+    private static final double SINGLE_CASING_VOLUME_CM3 = 800.0;
+    private static final double LARGE_CASING_VOLUME_CM3 = 800.0 * 100.0 / 7.0;
     private static final double CM3_PER_UNIT = 0.15;
+    private static final int RAIN_INTERVAL_TICKS = 600;
 
     private final int maxIngots;
-    private final CompositionTank contents = new CompositionTank();
-    private final MachineCasing casing = new MachineCasing(Device.CRUCIBLE, CASING_VOLUME_CM3);
+    private final double heatResistanceBonus;
+    private final CompositionTank contents;
+    private final MachineCasing casing;
     private final ThermalComponent thermal = new ThermalComponent(AMBIENT_TEMPERATURE);
     private final SteelmakingController steelmaking = new SteelmakingController();
     private final IFluidHandler fluids = new CoreFluidHandler();
     private boolean frozen;
+    private float previousTemperature = AMBIENT_TEMPERATURE;
     private Runnable onMutation = () -> {};
 
     public CrucibleProcessCore(int maxIngots) {
+        this(maxIngots, SINGLE_CASING_VOLUME_CM3, SINGLE_HEAT_RESISTANCE);
+    }
+
+    private CrucibleProcessCore(
+            int maxIngots, double casingVolumeCm3, double heatResistanceBonus) {
         if (maxIngots <= 0) {
             throw new IllegalArgumentException("maxIngots must be positive");
         }
         this.maxIngots = maxIngots;
+        this.heatResistanceBonus = heatResistanceBonus;
+        this.contents = new CompositionTank();
+        this.casing = new MachineCasing(Device.CRUCIBLE, casingVolumeCm3);
     }
 
     public static CrucibleProcessCore singleBlock() {
-        return new CrucibleProcessCore(SINGLE_BLOCK_MAX_INGOTS);
+        return new CrucibleProcessCore(
+                SINGLE_BLOCK_MAX_INGOTS,
+                SINGLE_CASING_VOLUME_CM3,
+                SINGLE_HEAT_RESISTANCE);
     }
 
     public static CrucibleProcessCore large() {
-        return new CrucibleProcessCore(LARGE_MAX_INGOTS);
+        return new CrucibleProcessCore(
+                LARGE_MAX_INGOTS,
+                LARGE_CASING_VOLUME_CM3,
+                LARGE_HEAT_RESISTANCE);
     }
 
     public int maxIngots() {
@@ -95,10 +117,38 @@ public final class CrucibleProcessCore {
         boolean unknownMaterials = hasUnknownMaterials();
         boolean boiled = false;
         boolean steelMutated = false;
+        boolean acidDestroyed = false;
+        float explodeRadius = 0.0F;
+        float temperature = thermal.authoritativeTemperature();
         if (authoritative && !unknownMaterials) {
-            boiled = contents.removeBoiling(thermal.authoritativeTemperature());
-            steelMutated = steelmaking.tick(
-                    contents, thermal.authoritativeTemperature()).immediateMutation();
+            Optional<Conversion> alloy = MaterialCatalog.alloys()
+                    .preferredCrucibleConversion(contents.composition(), temperature);
+            if (alloy.isPresent() && contents.applyAlloy(alloy.get())) {
+                steelMutated = true;
+            }
+            var reaction = contents.react(
+                    temperature,
+                    previousTemperature,
+                    steelMutated,
+                    false);
+            boiled = reaction.boiled();
+            acidDestroyed = reaction.acidDestroyed();
+            if (reaction.exploded()) {
+                explodeRadius = Math.max(
+                        0.5F,
+                        (maxIngots == LARGE_MAX_INGOTS ? 8.0F : 6.0F)
+                                * reaction.explodedUnits()
+                                / (float) Math.max(1, maxUnits()));
+            }
+            if (!acidDestroyed && explodeRadius <= 0.0F) {
+                steelMutated = steelmaking.tick(contents, temperature).immediateMutation()
+                        || steelMutated;
+            }
+        }
+        previousTemperature = thermal.authoritativeTemperature();
+        if (acidDestroyed || explodeRadius > 0.0F) {
+            contents.clear();
+            return new TickOutcome(false, true, boiled, acidDestroyed, explodeRadius);
         }
         thermal.advance(
                 unknownMaterials ? 0L : incomingEnergy,
@@ -107,9 +157,34 @@ public final class CrucibleProcessCore {
             if (authoritative) {
                 contents.clear();
             }
-            return new TickOutcome(true, true, boiled);
+            return new TickOutcome(true, true, boiled, false, 0.0F);
         }
-        return new TickOutcome(false, boiled || steelMutated, boiled);
+        return new TickOutcome(false, boiled || steelMutated, boiled, false, 0.0F);
+    }
+
+    public void driftTowardAmbient() {
+        if (frozen()) {
+            return;
+        }
+        previousTemperature = thermal.authoritativeTemperature();
+        thermal.advance(0L, totalWeightGrams());
+    }
+
+    public boolean addRainWater(long gameTime, float rainfall, boolean thunder) {
+        if (frozen()
+                || rainfall <= 0.0F
+                || gameTime % RAIN_INTERVAL_TICKS != 10L
+                || !MaterialCatalog.contains("water")) {
+            return false;
+        }
+        int amount = Math.max(1, Math.round(rainfall * 100.0F)) * (thunder ? 2 : 1);
+        int divisor = maxIngots == LARGE_MAX_INGOTS ? 100 : 1000;
+        int units = Math.max(1, MaterialPrefixes.INGOT.units() * amount / divisor);
+        if (totalUnits() > maxUnits() - units) {
+            return false;
+        }
+        applyAdditions(Map.of("water", units), AMBIENT_TEMPERATURE);
+        return true;
     }
 
     public boolean isThermallyQuiescent() {
@@ -174,22 +249,19 @@ public final class CrucibleProcessCore {
 
     /**
      * GT6 {@code ITileEntityCrucible.fillMoldAtSide}: first molten catalog
-     * stack the mold accepts, or an exact-ratio alloy product.
+     * stack whose smelting target is itself, then an exact-ratio alloy product.
      */
     public boolean fillMoldAtSide(MoldHost mold, Direction moldSide) {
         if (frozen() || mold == null) {
             return false;
         }
         float temperature = authoritativeTemperature();
-        if (pourAlloy(mold, moldSide, temperature)) {
-            return true;
-        }
         for (var entry : List.copyOf(contents.composition().entrySet())) {
             if (!MaterialCatalog.contains(entry.getKey()) || entry.getValue() <= 0) {
                 continue;
             }
             MaterialDefinition material = MaterialCatalog.require(entry.getKey());
-            if (temperature < material.thermal().meltingPoint()) {
+            if (!pourableMelt(material, temperature)) {
                 continue;
             }
             int consumed = mold.fillMold(
@@ -204,7 +276,7 @@ public final class CrucibleProcessCore {
             onMutation.run();
             return true;
         }
-        return false;
+        return pourAlloy(mold, moldSide, temperature);
     }
 
     public Optional<CastTransfer> previewCast(MaterialPrefix form) {
@@ -284,7 +356,7 @@ public final class CrucibleProcessCore {
     }
 
     public int moltenColor() {
-        return contents.moltenColor();
+        return contents.moltenColor(authoritativeTemperature());
     }
 
     public boolean hasUnknownMaterials() {
@@ -300,7 +372,11 @@ public final class CrucibleProcessCore {
     }
 
     public float casingMaxTemperature() {
-        return casing.maxTemperature();
+        return casing.maxTemperature(heatResistanceBonus);
+    }
+
+    public double heatResistanceBonus() {
+        return heatResistanceBonus;
     }
 
     public void save(CompoundTag tag) {
@@ -309,6 +385,7 @@ public final class CrucibleProcessCore {
         tag.put("composition", savedComposition);
         tag.putString("casing_material_id", casing.persistedMaterialId());
         tag.putFloat("temperature", thermal.authoritativeTemperature());
+        tag.putFloat("old_temperature", previousTemperature);
         tag.putLong("cached_energy_per_tick", thermal.pendingHeat());
         tag.putLong("stored_energy", thermal.storedEnergy());
         tag.putInt("cooldown_ticks", thermal.cooldownTicks());
@@ -351,6 +428,9 @@ public final class CrucibleProcessCore {
                 tag.getLong("stored_energy"),
                 savedCooldownTicks,
                 clientUpdate);
+        previousTemperature = tag.contains("old_temperature")
+                ? tag.getFloat("old_temperature")
+                : thermal.authoritativeTemperature();
         steelmaking.restore(
                 tag.getLong("stored_air"),
                 tag.getInt("steel_batch_iron_units"),
@@ -369,6 +449,43 @@ public final class CrucibleProcessCore {
         contents.addAll(additions);
         steelmaking.onCompositionChanged();
         onMutation.run();
+    }
+
+    public Optional<ScrapTake> takeScrap(int maxCount) {
+        if (frozen() || maxCount <= 0) {
+            return Optional.empty();
+        }
+        Optional<String> lightest = contents.lightestId();
+        if (lightest.isEmpty()) {
+            return Optional.empty();
+        }
+        MaterialDefinition material = MaterialCatalog.require(lightest.get());
+        if (authoritativeTemperature() >= material.thermal().meltingPoint()) {
+            return Optional.empty();
+        }
+        Optional<MaterialPrefix> scrap = MaterialPrefixCatalog.find("scrap");
+        int quantum = scrap.map(MaterialPrefix::units).orElse(MaterialPrefixes.INGOT.units() / 9);
+        int available = contents.units(material.id());
+        if (available < quantum) {
+            contents.setUnits(material.id(), 0);
+            onMutation.run();
+            return Optional.of(new ScrapTake(material, 0, available, true));
+        }
+        int count = Math.min(maxCount, available / quantum);
+        contents.setUnits(material.id(), available - count * quantum);
+        onMutation.run();
+        return Optional.of(new ScrapTake(material, count, count * quantum, false));
+    }
+
+    public Optional<MaterialDefinition> lightestSolid() {
+        Optional<String> lightest = contents.lightestId();
+        if (lightest.isEmpty()) {
+            return Optional.empty();
+        }
+        MaterialDefinition material = MaterialCatalog.require(lightest.get());
+        return authoritativeTemperature() < material.thermal().meltingPoint()
+                ? Optional.of(material)
+                : Optional.empty();
     }
 
     private Optional<Batch> currentSteelmakingBatch() {
@@ -417,6 +534,16 @@ public final class CrucibleProcessCore {
             scaled.put(component.getKey(), units);
         }
         return scaled;
+    }
+
+    private static boolean pourableMelt(MaterialDefinition material, float temperature) {
+        if (temperature < material.thermal().meltingPoint()) {
+            return false;
+        }
+        return material.gt6Metadata()
+                .map(metadata -> metadata.processingTargets().get("smelting"))
+                .map(target -> target.material().equals(material.id()))
+                .orElse(true);
     }
 
     private Optional<CastCandidate> castCandidate(MaterialPrefix form) {
@@ -492,9 +619,29 @@ public final class CrucibleProcessCore {
         return result;
     }
 
-    public record TickOutcome(boolean meltedDown, boolean mutated, boolean boiled) {
-        private static final TickOutcome IDLE = new TickOutcome(false, false, false);
+    public record TickOutcome(
+            boolean meltedDown,
+            boolean mutated,
+            boolean boiled,
+            boolean acidDestroyed,
+            float explodeRadius) {
+        private static final TickOutcome IDLE =
+                new TickOutcome(false, false, false, false, 0.0F);
+
+        public boolean exploded() {
+            return explodeRadius > 0.0F;
+        }
+
+        public boolean destroysHost() {
+            return meltedDown || acidDestroyed || exploded();
+        }
     }
+
+    public record ScrapTake(
+            MaterialDefinition material,
+            int count,
+            int unitsRemoved,
+            boolean discardedRemainder) {}
 
     public record CastTransfer(
             MaterialDefinition material,

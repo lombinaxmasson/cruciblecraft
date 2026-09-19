@@ -155,11 +155,18 @@ public final class MachineMaterialRules {
     }
 
     public static float maxTemperature(double meltingPointCelsius) {
+        return maxTemperature(meltingPointCelsius, CRUCIBLE_TEMPERATURE_FACTOR);
+    }
+
+    public static float maxTemperature(double meltingPointCelsius, double heatResistanceBonus) {
         if (!Double.isFinite(meltingPointCelsius) || meltingPointCelsius < 0.0) {
             throw new IllegalArgumentException("Melting point must be finite and non-negative");
         }
+        if (!Double.isFinite(heatResistanceBonus) || heatResistanceBonus <= 0.0) {
+            throw new IllegalArgumentException("Heat resistance bonus must be a positive finite value");
+        }
         return (float) Math.floor(
-                (meltingPointCelsius + KELVIN_OFFSET) * CRUCIBLE_TEMPERATURE_FACTOR
+                (meltingPointCelsius + KELVIN_OFFSET) * heatResistanceBonus
                         - KELVIN_OFFSET);
     }
 

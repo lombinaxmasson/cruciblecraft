@@ -91,6 +91,15 @@ public final class ToolClick {
         hurt(context.getItemInHand(), context.getPlayer(), context.getHand());
     }
 
+    public static void give(Player player, ItemStack stack) {
+        if (player == null || stack.isEmpty()) {
+            return;
+        }
+        if (!player.addItem(stack)) {
+            player.drop(stack, false);
+        }
+    }
+
     public static void hurt(
             ItemStack stack, Player player, InteractionHand hand) {
         if (player == null || player.getAbilities().instabuild) {
@@ -115,7 +124,7 @@ public final class ToolClick {
                 .getBlock();
         ToolResult lastReject = ToolResult.PASS;
         for (ToolAction action : ToolAction.values()) {
-            if (!source.provides(action)) {
+            if (!source.provides(stack, action)) {
                 continue;
             }
             ToolResult result = ToolResult.PASS;

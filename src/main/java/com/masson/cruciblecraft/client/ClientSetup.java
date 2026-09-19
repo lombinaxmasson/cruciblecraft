@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.client.color.BathingPotColor;
 import com.masson.cruciblecraft.client.color.BedrockOreColor;
 import com.masson.cruciblecraft.client.color.ElectricWireRemainderColor;
 import com.masson.cruciblecraft.client.color.FoundryBlockColor;
@@ -220,6 +221,12 @@ public class ClientSetup {
                 java.util.Arrays.stream(tintedFoundry)
                         .map(net.minecraft.world.level.block.Block::asItem)
                         .toArray(Item[]::new));
+        Block[] tintedBathingPots = BathingPotColor.tintedBlocks();
+        event.register(
+                BathingPotColor::itemColor,
+                java.util.Arrays.stream(tintedBathingPots)
+                        .map(net.minecraft.world.level.block.Block::asItem)
+                        .toArray(Item[]::new));
         Block[] tintedStorageArt = StorageArtColor.tintedBlocks();
         event.register(
                 StorageArtColor::itemColor,
@@ -320,6 +327,7 @@ public class ClientSetup {
                 Gt6OpeningBlockColor.tintedBlocks());
         event.register(HopperBlockColor::blockColor, HopperBlockColor.tintedBlocks());
         event.register(FoundryBlockColor::blockColor, FoundryBlockColor.tintedBlocks());
+        event.register(BathingPotColor::blockColor, BathingPotColor.tintedBlocks());
         event.register(StorageArtColor::blockColor, StorageArtColor.tintedBlocks());
         event.register(
                 LogisticsCoreBlockColor::blockColor,

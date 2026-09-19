@@ -260,7 +260,7 @@ public final class Gt6StyleConnections {
             BlockState state, ItemStack held) {
         if (state.getBlock() instanceof CableBlock
                 || state.getBlock() instanceof RedstoneWireBlock) {
-            return ToolActionSource.provides(held, ToolAction.WIRE_CUTTER);
+            return ToolActionSource.heldProvides(held, ToolAction.WIRE_CUTTER);
         }
         return state.getBlock() instanceof AbstractPipeBlock
                 && ToolActionSource.providesAny(

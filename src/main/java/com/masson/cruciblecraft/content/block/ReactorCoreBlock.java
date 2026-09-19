@@ -2,9 +2,12 @@ package com.masson.cruciblecraft.content.block;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.masson.cruciblecraft.api.tool.ToolAction;
+import com.masson.cruciblecraft.api.tool.ToolInteractable;
+import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.blockentity.ReactorCoreBlockEntity;
 import com.masson.cruciblecraft.content.item.ReactorRodItem;
-import com.masson.cruciblecraft.content.item.SmithingHammerItem;
+import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 
 import net.minecraft.core.BlockPos;
@@ -14,6 +17,7 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -28,7 +32,8 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
 /** GT6 1x1 / 2x2 nuclear reactor core. */
-public final class ReactorCoreBlock extends Block implements EntityBlock {
+public final class ReactorCoreBlock extends Block
+        implements EntityBlock, ToolInteractable {
     public static final DirectionProperty FACING =
             BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
@@ -72,14 +77,13 @@ public final class ReactorCoreBlock extends Block implements EntityBlock {
             Player player,
             InteractionHand hand,
             BlockHitResult hit) {
+        ItemInteractionResult tool = ToolClick.useItemOn(
+                stack, level, player, hand, hit);
+        if (tool.consumesAction()) {
+            return tool;
+        }
         if (!(level.getBlockEntity(pos) instanceof ReactorCoreBlockEntity core)) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-        }
-        if (stack.getItem() instanceof SmithingHammerItem) {
-            if (!level.isClientSide) {
-                core.toggleStopped();
-            }
-            return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         if (hit.getDirection() == Direction.UP
                 && stack.getItem() instanceof ReactorRodItem) {
@@ -95,6 +99,37 @@ public final class ReactorCoreBlock extends Block implements EntityBlock {
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+    }
+
+    @Override
+    public ToolResult useTool(ToolAction action, UseOnContext context) {
+        Level level = context.getLevel();
+        if (!(level.getBlockEntity(context.getClickedPos())
+                instanceof ReactorCoreBlockEntity core)) {
+            return ToolResult.PASS;
+        }
+        if (action == ToolAction.HAMMER) {
+            if (!level.isClientSide) {
+                core.toggleStopped();
+                ToolClick.hurt(context);
+            }
+            return ToolResult.SUCCESS;
+        }
+        if (action == ToolAction.PINCERS) {
+            Player player = context.getPlayer();
+            if (player == null) {
+                return ToolResult.PASS;
+            }
+            if (!level.isClientSide) {
+                ItemStack extracted = core.extractRod(
+                        slotAt(ToolClick.hit(context)), player);
+                if (!extracted.isEmpty()) {
+                    ToolClick.hurt(context);
+                }
+            }
+            return ToolResult.SUCCESS;
+        }
+        return ToolResult.PASS;
     }
 
     private int slotAt(BlockHitResult hit) {

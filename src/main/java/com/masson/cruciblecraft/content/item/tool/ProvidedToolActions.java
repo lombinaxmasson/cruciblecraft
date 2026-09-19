@@ -24,6 +24,17 @@ public final class ProvidedToolActions {
         map.put(ToolKind.PINCERS, Set.of(ToolAction.PINCERS));
         map.put(ToolKind.UNIVERSAL_SPADE, Set.of(ToolAction.CROWBAR));
         map.put(ToolKind.CHISEL, Set.of(ToolAction.CHISEL));
+        map.put(
+                ToolKind.SMITHING_HAMMER,
+                Set.of(ToolAction.HAMMER, ToolAction.PROSPECTOR));
+        map.put(ToolKind.KNIFE, Set.of(ToolAction.KNIFE));
+        map.put(ToolKind.BUTCHERY_KNIFE, Set.of(ToolAction.KNIFE));
+        map.put(ToolKind.HAND_DRILL, Set.of(ToolAction.DRILL));
+        map.put(ToolKind.BUILDER_WAND, Set.of(ToolAction.BUILDER_WAND));
+        map.put(
+                ToolKind.SCISSORS,
+                Set.of(ToolAction.KNIFE, ToolAction.SHEARS));
+        map.put(ToolKind.FLINT_AND_TINDER, Set.of(ToolAction.IGNITER));
         BY_KIND = Collections.unmodifiableMap(map);
     }
 

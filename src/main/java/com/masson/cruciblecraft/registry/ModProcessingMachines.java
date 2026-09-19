@@ -61,7 +61,7 @@ public final class ModProcessingMachines {
                     1, 9, 1, 1);
     public static final ProcessingMachineSpec BATH =
             reusedChemicalSpec("bath", () -> ModRecipeMaps.BATH,
-                    1, 4, 1, 1, 4_000, 8_000,
+                    6, 6, 1, 3, 4_000, 8_000,
                     6, 6, 1, 3,
                     EnergyType.TIME,
                     ProcessingMachineSpec.EnergyMode.BUFFERED);
@@ -1033,8 +1033,8 @@ public final class ModProcessingMachines {
             int gt6OutFluids,
             EnergyType energyType,
             long energyMax) {
-        int layoutItemOutputs = "bath".equals(path) ? gt6OutItems : itemOutputs;
-        int layoutFluidOutputs = "bath".equals(path) ? gt6OutFluids : fluidOutputs;
+        int layoutItemOutputs = itemOutputs;
+        int layoutFluidOutputs = fluidOutputs;
         List<Integer> inputSlots =
                 java.util.stream.IntStream.range(0, itemInputs).boxed().toList();
         List<Integer> outputSlots = java.util.stream.IntStream

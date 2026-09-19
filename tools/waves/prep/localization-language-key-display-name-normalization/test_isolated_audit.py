@@ -158,7 +158,7 @@ class EnglishDisplayNameTest(unittest.TestCase):
         self.assertEqual(
             "Wooden Item Barrel (Cheap)",
             audit.names.player_english(
-                "Wooden Item Barrel (Cheap)", "mass_storage_barrel_6990"
+                "Wooden Item Barrel (Cheap)", "item_barrel_6990"
             ),
         )
         self.assertEqual(

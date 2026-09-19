@@ -48,6 +48,10 @@ class MachineMaterialRulesTest {
         assertEquals(2227.0f, MachineMaterialRules.maxTemperature(1727.0), 0.001f);
         assertEquals(1255.0f, MachineMaterialRules.maxTemperature(950.0), 0.001f);
         assertEquals(2284.0f, MachineMaterialRules.maxTemperature(1773.0), 0.001f);
+        assertEquals(
+                1927.0f,
+                MachineMaterialRules.maxTemperature(1727.0, 1.10),
+                0.001f);
     }
 
     @Test

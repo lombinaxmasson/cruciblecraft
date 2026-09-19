@@ -23,4 +23,18 @@ public final class EmiIds {
         return ResourceLocation.fromNamespaceAndPath(
                 logicalId.getNamespace(), "/" + path);
     }
+
+    /**
+     * Mixer and electric mixer (and loom / electric loom) share a RecipeMap, so
+     * EMI ids must include the machine category or the same expansion is
+     * registered twice.
+     */
+    public static ResourceLocation synthetic(
+            ResourceLocation categoryId, ResourceLocation recipeId) {
+        Objects.requireNonNull(categoryId, "categoryId");
+        Objects.requireNonNull(recipeId, "recipeId");
+        return synthetic(ResourceLocation.fromNamespaceAndPath(
+                recipeId.getNamespace(),
+                categoryId.getPath() + "/" + recipeId.getPath()));
+    }
 }

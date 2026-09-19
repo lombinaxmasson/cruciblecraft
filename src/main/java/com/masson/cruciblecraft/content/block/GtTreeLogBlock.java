@@ -1,8 +1,9 @@
 package com.masson.cruciblecraft.content.block;
 
-import com.masson.cruciblecraft.content.item.MaterialWorkshopToolItem;
+import com.masson.cruciblecraft.api.tool.ToolAction;
+import com.masson.cruciblecraft.api.tool.ToolInteractable;
+import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.item.tool.ToolClick;
-import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies;
 import com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies.TreeHoleMode;
@@ -22,10 +23,11 @@ import net.minecraft.world.phys.BlockHitResult;
 
 /**
  * Growing GT log. Maple and rainbowood convert to a tree hole when a
- * {@link ToolKind#HAND_DRILL} clicks a horizontal face. Axe-to-beam stays
+ * {@link ToolAction#DRILL} clicks a horizontal face. Axe-to-beam stays
  * out of this card.
  */
-public final class GtTreeLogBlock extends RotatedPillarBlock {
+public final class GtTreeLogBlock extends RotatedPillarBlock
+        implements ToolInteractable {
     private final GtTreeSpecies species;
 
     public GtTreeLogBlock(GtTreeSpecies species, Properties properties) {
@@ -46,24 +48,29 @@ public final class GtTreeLogBlock extends RotatedPillarBlock {
             Player player,
             InteractionHand hand,
             BlockHitResult hit) {
-        if (!(stack.getItem() instanceof MaterialWorkshopToolItem tool)
-                || tool.kind() != ToolKind.HAND_DRILL) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        return ToolClick.useItemOn(stack, level, player, hand, hit);
+    }
+
+    @Override
+    public ToolResult useTool(ToolAction action, UseOnContext context) {
+        if (action != ToolAction.DRILL) {
+            return ToolResult.PASS;
         }
-        Direction face = hit.getDirection();
+        Direction face = context.getClickedFace();
         if (!face.getAxis().isHorizontal() || !canDrillHole()) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            return ToolResult.PASS;
         }
+        Level level = context.getLevel();
         if (!level.isClientSide) {
             BlockState hole = ModBlocks.treeHole(species)
                     .get()
                     .defaultBlockState()
                     .setValue(GtTreeHoleBlock.FACING, face)
                     .setValue(GtTreeHoleBlock.HAS_PRODUCT, Boolean.FALSE);
-            level.setBlock(pos, hole, Block.UPDATE_ALL);
-            ToolClick.hurt(new UseOnContext(level, player, hand, stack, hit));
+            level.setBlock(context.getClickedPos(), hole, Block.UPDATE_ALL);
+            ToolClick.hurt(context);
         }
-        return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        return ToolResult.SUCCESS;
     }
 
     private boolean canDrillHole() {

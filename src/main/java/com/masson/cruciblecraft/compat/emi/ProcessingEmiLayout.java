@@ -12,9 +12,12 @@ import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 /**
  * Pure layout policy translating machine UI coordinates into EMI bounds.
  *
- * <p>The source coordinates come from {@link ProcessingMachineSpec.UiLayout}.
- * A tank is shifted to the right only when the source UI overlaps another
- * visible recipe widget, which occurs in the densest configured layouts.
+ * <p>The source coordinates come from {@link ProcessingMachineSpec.UiLayout}
+ * and match GT6 {@code NEI_RecipeMap}: machine-GUI slots, a 176×83 recipe
+ * panel, progress overlay at {@code (176,0)}, and the NEI workstation slot
+ * at {@code (152,83)}. A tank is shifted to the right only when the source
+ * UI overlaps another visible recipe widget, which occurs in the densest
+ * configured layouts.
  */
 public record ProcessingEmiLayout(
         int width,
@@ -22,12 +25,16 @@ public record ProcessingEmiLayout(
         List<ItemSlot> itemSlots,
         List<FluidTank> fluidTanks,
         Rect progress,
-        int durationTextY,
-        int powerTextY) {
+        Rect workstation,
+        int costsTextY,
+        int powerTextY,
+        int durationTextY) {
     public static final int ITEM_SLOT_SIZE = 18;
-    public static final int ARROW_WIDTH = 24;
-    public static final int ARROW_HEIGHT = 17;
-    private static final int MINIMUM_WIDTH = 176;
+    public static final int PANEL_WIDTH = 176;
+    public static final int PANEL_HEIGHT = 83;
+    public static final int NEI_HEIGHT = 135;
+    public static final int TEXTURE_SIZE = 256;
+    public static final Rect WORKSTATION = new Rect(152, 83, ITEM_SLOT_SIZE, ITEM_SLOT_SIZE);
     private static final int PADDING = 4;
     private static final int TEXT_LINE_HEIGHT = 10;
 
@@ -35,6 +42,7 @@ public record ProcessingEmiLayout(
         itemSlots = List.copyOf(itemSlots);
         fluidTanks = List.copyOf(fluidTanks);
         Objects.requireNonNull(progress, "progress");
+        Objects.requireNonNull(workstation, "workstation");
         if (width <= 0 || height <= 0) {
             throw new IllegalArgumentException("Layout bounds must be positive");
         }
@@ -50,12 +58,13 @@ public record ProcessingEmiLayout(
         Rect progress = new Rect(
                 sourceProgress.x(),
                 sourceProgress.y(),
-                ARROW_WIDTH,
-                ARROW_HEIGHT);
+                sourceProgress.width(),
+                sourceProgress.height());
 
         List<Rect> occupied = new ArrayList<>();
         items.stream().map(ItemSlot::bounds).forEach(occupied::add);
         occupied.add(progress);
+        occupied.add(WORKSTATION);
         List<FluidTank> tanks = positionFluids(spec, data, occupied);
 
         int contentRight = java.util.stream.Stream.concat(
@@ -64,7 +73,7 @@ public record ProcessingEmiLayout(
                 .mapToInt(Rect::right)
                 .max()
                 .orElse(progress.right());
-        contentRight = Math.max(contentRight, progress.right());
+        contentRight = Math.max(contentRight, Math.max(progress.right(), WORKSTATION.right()));
         int contentBottom = java.util.stream.Stream.concat(
                         items.stream().map(ItemSlot::bounds),
                         tanks.stream().map(FluidTank::bounds))
@@ -72,16 +81,23 @@ public record ProcessingEmiLayout(
                 .max()
                 .orElse(progress.bottom());
         contentBottom = Math.max(contentBottom, progress.bottom());
-        int durationY = contentBottom + PADDING;
-        int powerY = durationY + TEXT_LINE_HEIGHT;
+        int textTop = Math.max(contentBottom, PANEL_HEIGHT) + PADDING;
+        int costsY = textTop;
+        int powerY = costsY + TEXT_LINE_HEIGHT;
+        int durationY = powerY + TEXT_LINE_HEIGHT;
+        int lastTextY = data.specialValue() == 0L
+                ? durationY
+                : durationY + TEXT_LINE_HEIGHT;
         return new ProcessingEmiLayout(
-                Math.max(MINIMUM_WIDTH, contentRight + PADDING),
-                powerY + TEXT_LINE_HEIGHT,
+                Math.max(PANEL_WIDTH, contentRight + PADDING),
+                Math.max(NEI_HEIGHT, lastTextY + TEXT_LINE_HEIGHT),
                 items,
                 tanks,
                 progress,
-                durationY,
-                powerY);
+                WORKSTATION,
+                costsY,
+                powerY,
+                durationY);
     }
 
     public List<Rect> visibleBounds() {
@@ -89,7 +105,7 @@ public record ProcessingEmiLayout(
                         java.util.stream.Stream.concat(
                                 itemSlots.stream().map(ItemSlot::bounds),
                                 fluidTanks.stream().map(FluidTank::bounds)),
-                        java.util.stream.Stream.of(progress))
+                        java.util.stream.Stream.of(progress, workstation))
                 .toList();
     }
 
@@ -190,10 +206,12 @@ public record ProcessingEmiLayout(
         int columns = 9;
         int col = overflowIndex % columns;
         int row = overflowIndex / columns;
-        int baseY = spec.ui().machineSlots().stream()
-                .mapToInt(slot -> slot.y() + ITEM_SLOT_SIZE)
-                .max()
-                .orElse(0);
+        int baseY = Math.max(
+                spec.ui().machineSlots().stream()
+                        .mapToInt(slot -> slot.y() + ITEM_SLOT_SIZE)
+                        .max()
+                        .orElse(0),
+                WORKSTATION.bottom());
         int x = PADDING + col * (ITEM_SLOT_SIZE + gap);
         int y = baseY + PADDING + row * (ITEM_SLOT_SIZE + gap);
         return new ItemSlot(

@@ -7,8 +7,10 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
+import com.masson.cruciblecraft.client.screen.MachineGuiTextures;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
+import com.masson.cruciblecraft.registry.ModBlocks;
 
 import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
@@ -24,6 +26,8 @@ import net.neoforged.neoforge.fluids.FluidStack;
 final class ProcessingEmiRecipe implements EmiRecipe {
     private final ResourceLocation id;
     private final EmiRecipeCategory category;
+    private final ResourceLocation texture;
+    private final EmiStack workstation;
     private final ProcessingEmiRecipeData data;
     private final ProcessingEmiLayout layout;
     private final Map<Integer, EmiIngredient> itemInputs;
@@ -39,8 +43,10 @@ final class ProcessingEmiRecipe implements EmiRecipe {
             EmiRecipeCategory category,
             ProcessingMachineSpec spec,
             GTRecipe recipe) {
-        this.id = EmiIds.synthetic(id);
         this.category = Objects.requireNonNull(category, "category");
+        this.id = EmiIds.synthetic(this.category.getId(), id);
+        texture = MachineGuiTextures.forMachine(spec.id());
+        workstation = EmiStack.of(ModBlocks.configuredProcessingBlock(spec));
         data = ProcessingEmiRecipeData.from(spec, recipe);
         layout = ProcessingEmiLayout.create(spec, data);
 
@@ -68,9 +74,11 @@ final class ProcessingEmiRecipe implements EmiRecipe {
         data.fluidInputs().forEach(input ->
                 displayedInputs.add(requireFluidInput(input.recipeIndex())));
         inputs = List.copyOf(displayedInputs);
-        catalysts = data.catalysts().stream()
-                .map(input -> requireItemInput(input.recipeIndex()))
-                .toList();
+        List<EmiIngredient> displayedCatalysts = new ArrayList<>();
+        data.catalysts().forEach(input ->
+                displayedCatalysts.add(requireItemInput(input.recipeIndex())));
+        displayedCatalysts.add(workstation);
+        catalysts = List.copyOf(displayedCatalysts);
         List<EmiStack> displayedOutputs = new ArrayList<>();
         data.itemOutputs().forEach(output ->
                 displayedOutputs.add(requireItemOutput(output.recipeIndex())));
@@ -121,22 +129,27 @@ final class ProcessingEmiRecipe implements EmiRecipe {
 
     @Override
     public void addWidgets(WidgetHolder widgets) {
+        Gt6EmiGui.addPanel(widgets, texture);
+        Gt6EmiGui.addProgress(widgets, texture, layout.progress(), data.durationTicks());
         for (ProcessingEmiLayout.ItemSlot slot : layout.itemSlots()) {
             ProcessingEmiLayout.Rect bounds = slot.bounds();
             switch (slot.kind()) {
-                case INPUT -> widgets.addSlot(
-                        requireItemInput(slot.recipeIndex()), bounds.x(), bounds.y());
+                case INPUT -> Gt6EmiGui.slot(
+                        widgets,
+                        requireItemInput(slot.recipeIndex()),
+                        bounds.x(),
+                        bounds.y());
                 case CATALYST -> {
                     ProcessingEmiRecipeData.ItemInput input = data.catalysts().stream()
                             .filter(candidate ->
                                     candidate.recipeIndex() == slot.recipeIndex())
                             .findFirst()
                             .orElseThrow();
-                    widgets.addSlot(
+                    Gt6EmiGui.catalyst(
+                                    widgets,
                                     requireItemInput(slot.recipeIndex()),
                                     bounds.x(),
                                     bounds.y())
-                            .catalyst(true)
                             .appendTooltip(switch (input.action().kind()) {
                                 case PRESERVE -> Component.translatable(
                                         "emi.cruciblecraft.processing.preserved");
@@ -150,11 +163,12 @@ final class ProcessingEmiRecipe implements EmiRecipe {
                 case OUTPUT -> {
                     ProcessingEmiRecipeData.ItemOutput output =
                             data.itemOutputs().get(slot.recipeIndex());
-                    SlotWidget widget = widgets.addSlot(
-                                    requireItemOutput(slot.recipeIndex()),
-                                    bounds.x(),
-                                    bounds.y())
-                            .recipeContext(this);
+                    SlotWidget widget = Gt6EmiGui.output(
+                            widgets,
+                            requireItemOutput(slot.recipeIndex()),
+                            this,
+                            bounds.x(),
+                            bounds.y());
                     if (output.chance() != GTRecipe.GUARANTEED_CHANCE) {
                         widget.appendTooltip(Component.translatable(
                                 "emi.cruciblecraft.processing.chance",
@@ -176,36 +190,23 @@ final class ProcessingEmiRecipe implements EmiRecipe {
                     bounds.y(),
                     bounds.width(),
                     bounds.height(),
-                    Math.toIntExact(tank.capacity()));
+                    Math.toIntExact(tank.capacity()))
+                    .drawBack(false);
             if (tank.kind() == ProcessingEmiLayout.FluidKind.OUTPUT) {
                 widget.recipeContext(this);
             }
         }
-        widgets.addFillingArrow(
-                layout.progress().x(),
-                layout.progress().y(),
-                (int) Math.min(Integer.MAX_VALUE, (long) data.durationTicks() * 50L));
-        widgets.addText(
-                Component.translatable(
-                        "emi.cruciblecraft.processing.duration",
-                        data.durationTicks(),
-                        String.format(
-                                Locale.ROOT,
-                                "%.2f",
-                                data.durationTicks() / 20.0D)),
-                4,
-                layout.durationTextY(),
-                0xFF404040,
-                false);
-        widgets.addText(
-                Component.translatable(
-                        "emi.cruciblecraft.processing.power."
-                                + data.energyType().name().toLowerCase(Locale.ROOT),
-                        data.eut()),
-                4,
+        Gt6EmiGui.catalyst(
+                widgets,
+                workstation,
+                layout.workstation().x(),
+                layout.workstation().y());
+        Gt6EmiGui.addStats(
+                widgets,
+                data,
+                layout.costsTextY(),
                 layout.powerTextY(),
-                0xFF404040,
-                false);
+                layout.durationTextY());
     }
 
     private EmiIngredient requireItemInput(int recipeIndex) {

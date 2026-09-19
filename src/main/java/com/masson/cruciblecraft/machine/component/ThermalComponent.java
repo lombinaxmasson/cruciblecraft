@@ -26,18 +26,27 @@ public final class ThermalComponent {
     }
 
     public long queueHeat(long size, long amount, boolean simulate) {
+        return queueEnergy(size, amount, false, simulate);
+    }
+
+    public long queueCooling(long size, long amount, boolean simulate) {
+        return queueEnergy(size, amount, true, simulate);
+    }
+
+    private long queueEnergy(long size, long amount, boolean cooling, boolean simulate) {
         if (size == 0L || amount <= 0L) {
             return 0L;
         }
-        long accepted = Math.min(
-                amount,
-                EnergyPackets.packetsForUnits(size, Long.MAX_VALUE - pendingHeat));
-        if (!simulate && accepted > 0L) {
-            pendingHeat = EnergyPackets.add(
-                    pendingHeat,
-                    EnergyPackets.units(size, accepted));
+        long units = EnergyPackets.units(size, amount);
+        if (units <= 0L) {
+            return 0L;
         }
-        return accepted;
+        if (!simulate) {
+            pendingHeat = cooling
+                    ? CrucibleThermalModel.addSignedEnergy(pendingHeat, -units)
+                    : CrucibleThermalModel.addSignedEnergy(pendingHeat, units);
+        }
+        return amount;
     }
 
     public long takePendingHeat() {
@@ -100,8 +109,8 @@ public final class ThermalComponent {
         temperature = Float.isFinite(savedTemperature)
                 ? savedTemperature
                 : ambientTemperature;
-        pendingHeat = Math.max(0L, savedPendingHeat);
-        storedEnergy = Math.max(0L, savedStoredEnergy);
+        pendingHeat = savedPendingHeat;
+        storedEnergy = savedStoredEnergy;
         cooldownTicks = Math.max(
                 0,
                 Math.min(CrucibleThermalModel.HOT_BUFFER_TICKS, savedCooldownTicks));
@@ -132,7 +141,7 @@ public final class ThermalComponent {
     }
 
     public long totalStoredHeat() {
-        return EnergyPackets.add(storedEnergy, pendingHeat);
+        return Math.max(0L, CrucibleThermalModel.addSignedEnergy(storedEnergy, pendingHeat));
     }
 
     public int cooldownTicks() {

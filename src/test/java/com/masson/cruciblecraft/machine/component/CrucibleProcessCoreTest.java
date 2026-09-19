@@ -7,10 +7,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
+import com.masson.cruciblecraft.content.mold.MoldHost;
 import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.InsertResult;
+import com.masson.cruciblecraft.heat.CrucibleThermalModel;
+import com.masson.cruciblecraft.machine.MachineMaterialRules;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -18,7 +22,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import net.minecraft.SharedConstants;
+import net.minecraft.core.Direction;
 import net.minecraft.server.Bootstrap;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.fml.loading.LoadingModList;
 
 class CrucibleProcessCoreTest {
@@ -74,12 +81,134 @@ class CrucibleProcessCoreTest {
                 CrucibleProcessCore.large().maxUnits());
     }
 
+    @Test
+    void heatResistanceMatchesGt6SmallAndLargeBonuses() {
+        CrucibleProcessCore small = CrucibleProcessCore.singleBlock();
+        CrucibleProcessCore large = CrucibleProcessCore.large();
+        assertEquals(1.25, small.heatResistanceBonus(), 0.0001);
+        assertEquals(1.10, large.heatResistanceBonus(), 0.0001);
+        double ceramic = MaterialCatalog.require("ceramic").thermal().meltingPoint();
+        assertEquals(
+                MachineMaterialRules.maxTemperature(ceramic, 1.25),
+                small.casingMaxTemperature(),
+                0.001f);
+        assertEquals(
+                MachineMaterialRules.maxTemperature(ceramic, 1.10),
+                large.casingMaxTemperature(),
+                0.001f);
+    }
+
+    @Test
+    void alloyTickConvertsLeftoverBronzeCharge() {
+        CrucibleProcessCore core = CrucibleProcessCore.singleBlock();
+        int ingot = MaterialPrefixes.INGOT.units();
+        assertEquals(InsertResult.SUCCESS, fill(core, "copper", 5));
+        assertEquals(InsertResult.SUCCESS, fill(core, "tin", 1));
+        float melt = Math.max(
+                (float) MaterialCatalog.require("copper").thermal().meltingPoint(),
+                (float) MaterialCatalog.require("bronze").thermal().meltingPoint());
+        core.thermal().restore(
+                melt + 50.0F,
+                0L,
+                0L,
+                CrucibleThermalModel.HOT_BUFFER_TICKS,
+                false);
+        CrucibleProcessCore.TickOutcome outcome = core.advance(0L, true);
+        assertTrue(!outcome.destroysHost());
+        assertEquals(4 * ingot, core.contents().units("bronze"));
+        assertEquals(2 * ingot, core.contents().units("copper"));
+        assertEquals(0, core.contents().units("tin"));
+    }
+
+    @Test
+    void fillMoldAtSidePoursFirstMoltenIdentityMelt() {
+        CrucibleProcessCore core = CrucibleProcessCore.singleBlock();
+        int ingot = MaterialPrefixes.INGOT.units();
+        assertEquals(InsertResult.SUCCESS, fill(core, "copper", 2));
+        core.thermal().restore(
+                (float) MaterialCatalog.require("copper").thermal().meltingPoint()
+                        + 50.0F,
+                0L,
+                0L,
+                CrucibleThermalModel.HOT_BUFFER_TICKS,
+                false);
+        RecordingMold mold = new RecordingMold(ingot);
+        assertTrue(core.fillMoldAtSide(mold, Direction.WEST));
+        assertEquals("copper", mold.materialId);
+        assertEquals(ingot, mold.consumed);
+        assertEquals(ingot, core.totalUnits());
+    }
+
+    @Test
+    void takeScrapRemovesTheLightestSolid() {
+        CrucibleProcessCore core = CrucibleProcessCore.singleBlock();
+        assertEquals(InsertResult.SUCCESS, fill(core, "iron", 1));
+        Optional<CrucibleProcessCore.ScrapTake> scrap = core.takeScrap(1);
+        assertTrue(scrap.isPresent());
+        assertEquals("iron", scrap.get().material().id());
+        assertTrue(scrap.get().count() > 0 || scrap.get().discardedRemainder());
+    }
+
+    @Test
+    void rainAddsWaterOnTheGt6Cadence() {
+        CrucibleProcessCore core = CrucibleProcessCore.singleBlock();
+        assertTrue(MaterialCatalog.contains("water"));
+        assertTrue(core.addRainWater(10L, 1.0F, false));
+        assertTrue(core.contents().units("water") > 0);
+        assertTrue(!core.addRainWater(11L, 1.0F, false));
+    }
+
     private static InsertResult fillIngots(CrucibleProcessCore core, int count) {
+        return fill(core, "iron", count);
+    }
+
+    private static InsertResult fill(CrucibleProcessCore core, String materialId, int count) {
         return core.insert(
                 new MaterialUnits.Entry(
-                        "iron",
+                        materialId,
                         MaterialPrefixes.INGOT,
                         Math.multiplyExact(MaterialPrefixes.INGOT.units(), count)),
                 CrucibleProcessCore.AMBIENT_TEMPERATURE);
+    }
+
+    private static final class RecordingMold implements MoldHost {
+        private final int required;
+        private String materialId = "";
+        private int consumed;
+
+        private RecordingMold(int required) {
+            this.required = required;
+        }
+
+        @Override
+        public boolean isMoldInputSide(Direction side) {
+            return true;
+        }
+
+        @Override
+        public float moldMaxTemperatureCelsius() {
+            return 10_000.0F;
+        }
+
+        @Override
+        public int moldRequiredMaterialUnits() {
+            return required;
+        }
+
+        @Override
+        public int fillMold(
+                String materialId, int availableUnits, float temperature, Direction side) {
+            if (availableUnits < required) {
+                return 0;
+            }
+            this.materialId = materialId;
+            this.consumed = required;
+            return required;
+        }
+
+        @Override
+        public ItemStack takeOutput(Player player, boolean causeDamage) {
+            return ItemStack.EMPTY;
+        }
     }
 }

@@ -23,7 +23,7 @@ class BlockerLedgerTest(unittest.TestCase):
             for row in capability.get("identity_disposition") or []:
                 if row.get("disposition") == "blocked":
                     blocked += 1
-        self.assertEqual(41, blocked)
+        self.assertEqual(43, blocked)
 
     def test_do_not_add_open_amounts(self) -> None:
         ledger = blockers.compile_ledger()

@@ -1,5 +1,5 @@
 {
-  "blocked": 8,
+  "blocked": 7,
   "capability_slug": "content/gt6-mte-furniture-barrel-acquisition",
   "domain": "furniture_barrel",
   "rows": [
@@ -142,28 +142,8 @@
       "reason": "operand_blocked",
       "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
       "stable_id": "weedwood/item_barrel"
-    },
-    {
-      "blocker_id": "obtain/mte-inplace-runtime",
-      "meta": 6999,
-      "missing": [
-        {
-          "blocker_id": "obtain/mte-inplace-runtime",
-          "cc": "cruciblecraft:wood_treated/plate",
-          "gt": "plate(MT.WoodTreated)",
-          "kind": "prefix_material",
-          "reason": "missing_form",
-          "recheck": "python tools/gt6_resolve.py; gated material forms must be on material_registration_gate.json. Circuits and other technological parts come from technological_parts.json, not runtime_registry_gate.json.",
-          "resolve_status": "ok",
-          "slot": "P",
-          "status": "explicitly_blocked"
-        }
-      ],
-      "reason": "operand_blocked",
-      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
-      "stable_id": "furniture/wooden_item_barrel"
     }
   ],
   "schema": "gt6-mte-inplace-acquisition-gap-v1",
-  "source_exact": 4
+  "source_exact": 5
 }

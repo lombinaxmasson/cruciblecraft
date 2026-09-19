@@ -69,6 +69,7 @@ import com.masson.cruciblecraft.compat.emi.ProcessingEmiRegistrationPlan;
 import com.masson.cruciblecraft.content.menu.ConfiguredProcessingMachineMenu;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureCatalog;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PredicateKind;
+import com.masson.cruciblecraft.content.mold.CruciblePour;
 import com.masson.cruciblecraft.heat.CrucibleThermalModel;
 import com.masson.cruciblecraft.heat.ItemHeat;
 import com.masson.cruciblecraft.machine.ToolMaterialRules;
@@ -5022,6 +5023,97 @@ public final class CrucibleCraftGameTests {
                                                                 .SLOT_INPUT)
                                                 .getCount() == 1),
                         "Layer ports did not feed HU from the bottom or items from the top"))
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void largeCrucibleMiddleWallPoursMold(GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 2, 6);
+        Direction facing = Direction.NORTH;
+        var structure = MultiblockStructureCatalog.require(
+                LargeCrucibleBlockEntity.STRUCTURE_ID);
+        LargeCrucibleBlockEntity crucible = placeLargeCrucible(
+                helper, controllerPos, facing);
+        BlockPos wall = structure.structure().stream()
+                .filter(element -> structure.predicate(element).kind()
+                        == PredicateKind.BLOCK
+                        && element.offset().y() == 1)
+                .map(element -> structure.worldPosition(
+                        controllerPos, facing, element.offset()))
+                .findFirst()
+                .orElseThrow();
+        BlockPos moldPos = wall.relative(Direction.WEST);
+        if (!helper.getBlockState(moldPos).isAir()) {
+            moldPos = wall.relative(Direction.EAST);
+        }
+        if (!helper.getBlockState(moldPos).isAir()) {
+            moldPos = wall.relative(Direction.SOUTH);
+        }
+        if (!helper.getBlockState(moldPos).isAir()) {
+            moldPos = wall.relative(Direction.NORTH);
+        }
+        BlockPos placedMold = moldPos;
+        helper.startSequence()
+                .thenIdle(25)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            crucible.structureValid(),
+                            "Large crucible structure was not recognized");
+                    helper.assertTrue(
+                            insertIngots(crucible, "copper", 1, 2_000f)
+                                    == InsertResult.SUCCESS,
+                            "Could not charge copper for wall pour");
+                    heatMelt(crucible, 2_000f);
+                    helper.setBlock(placedMold, ModBlocks.CERAMIC_MOLD.get());
+                    CeramicMoldBlockEntity mold = helper.getBlockEntity(placedMold);
+                    CruciblePour pour = CruciblePour.at(
+                            helper.getLevel(), helper.absolutePos(wall));
+                    helper.assertTrue(
+                            pour != null
+                                    && pour.fillMoldAtSide(
+                                            mold, Direction.EAST, Direction.WEST),
+                            "Middle-layer casing did not pour into the adjacent mold");
+                    helper.assertTrue(
+                            mold.isFilled() && "copper".equals(mold.materialId()),
+                            "Wall pour did not fill the ceramic mold with copper");
+                    helper.assertTrue(
+                            crucible.process().totalUnits() == 0,
+                            "Wall pour did not drain the large crucible");
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void largeCrucibleMeltDownFillsThreeByThree(GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 2, 6);
+        LargeCrucibleBlockEntity crucible = placeLargeCrucible(
+                helper, controllerPos, Direction.NORTH);
+        helper.startSequence()
+                .thenIdle(25)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            crucible.structureValid(),
+                            "Large crucible structure was not recognized");
+                    helper.assertTrue(
+                            insertIngots(crucible, "iron", 1, 2_000f)
+                                    == InsertResult.SUCCESS,
+                            "Could not charge iron for large-crucible meltdown");
+                    heatMelt(crucible, 100_000f);
+                })
+                .thenIdle(5)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            helper.getBlockState(controllerPos).is(Blocks.LAVA),
+                            "Overheated large crucible controller did not become lava");
+                    helper.assertTrue(
+                            helper.getBlockState(controllerPos.offset(-1, 0, -1))
+                                    .is(Blocks.LAVA),
+                            "Large crucible meltdown missed a bottom corner");
+                    helper.assertTrue(
+                            helper.getBlockState(controllerPos.offset(1, 2, 1))
+                                    .is(Blocks.LAVA),
+                            "Large crucible meltdown missed the 3x3x3 top corner");
+                })
                 .thenSucceed();
     }
 

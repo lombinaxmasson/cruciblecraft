@@ -68,8 +68,10 @@ class ProcessingEmiRecipeDataTest {
         assertEquals(125, data.fluidOutputs().getFirst().stack().getAmount());
         assertEquals(Fluids.LAVA,
                 data.fluidOutputs().getFirst().stack().getFluid());
-        assertEquals("Time: 40 ticks (2.00 s)", data.durationText());
-        assertEquals("Power: 24 KU/t", data.powerText());
+        assertEquals("Time: 40 ticks", data.durationText());
+        assertEquals("Usage: 24 KU/t", data.powerText());
+        assertEquals("Costs: 960 KU", data.costsText());
+        assertEquals(0L, data.specialValue());
 
         assertEquals("EU/t", ProcessingEmiRecipeData.from(
                 ModProcessingMachines.ELECTROLYZER, sampleRecipe()).energyUnit());

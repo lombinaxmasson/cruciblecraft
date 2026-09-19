@@ -2,21 +2,22 @@ package com.masson.cruciblecraft.compat.emi;
 
 import java.util.List;
 
+import com.masson.cruciblecraft.machine.processing.Gt6BasicMachineGui;
 import com.masson.cruciblecraft.recipe.AnvilMode;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 
 import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
-import dev.emi.emi.api.render.EmiTexture;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.WidgetHolder;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
 final class AnvilEmiRecipe implements EmiRecipe {
     private final ResourceLocation id;
+    private final ResourceLocation texture;
     private final AnvilMode mode;
     private final GTRecipe recipe;
     private final List<EmiIngredient> inputs;
@@ -32,6 +33,11 @@ final class AnvilEmiRecipe implements EmiRecipe {
         this.id = EmiIds.synthetic(id);
         this.mode = mode;
         this.recipe = recipe;
+        texture = Gt6EmiGui.texture(switch (mode) {
+            case BEND_SMALL -> "anvilbendingsmall";
+            case BEND_BIG -> "anvilbendingbig";
+            case ANVIL -> "anvil";
+        });
         inputs = java.util.stream.IntStream.range(0, recipe.itemInputs().size())
                 .mapToObj(index -> EmiIngredient.of(
                         recipe.itemInputs().get(index),
@@ -73,23 +79,53 @@ final class AnvilEmiRecipe implements EmiRecipe {
 
     @Override
     public int getDisplayWidth() {
-        return 92;
+        return ProcessingEmiLayout.PANEL_WIDTH;
     }
 
     @Override
     public int getDisplayHeight() {
-        return 44;
+        return ProcessingEmiLayout.NEI_HEIGHT;
     }
 
     @Override
     public void addWidgets(WidgetHolder widgets) {
-        widgets.addSlot(inputs.getFirst(), 0, 4);
-        if (inputs.size() > 1) {
-            widgets.addSlot(inputs.get(1), 18, 4);
+        Gt6EmiGui.addPanel(widgets, texture);
+        Gt6EmiGui.addProgress(
+                widgets,
+                texture,
+                new ProcessingEmiLayout.Rect(
+                        Gt6BasicMachineGui.PROGRESS_X,
+                        Gt6BasicMachineGui.PROGRESS_Y,
+                        Gt6BasicMachineGui.PROGRESS_WIDTH,
+                        Gt6BasicMachineGui.PROGRESS_HEIGHT),
+                Math.max(1, (int) recipe.specialValue()));
+        var inSlots = Gt6BasicMachineGui.inputSlots(2, 0);
+        for (int index = 0; index < inputs.size() && index < inSlots.size(); index++) {
+            Gt6EmiGui.slot(
+                    widgets,
+                    inputs.get(index),
+                    inSlots.get(index).x(),
+                    inSlots.get(index).y());
         }
-        widgets.addSlot(catalysts.getFirst(), 0, 22).catalyst(true);
-        widgets.addSlot(catalysts.get(1), 18, 22).catalyst(true);
-        widgets.addTexture(EmiTexture.EMPTY_ARROW, 28, 5);
+        Gt6EmiGui.catalyst(
+                widgets,
+                catalysts.getFirst(),
+                Gt6BasicMachineGui.SPECIAL_SLOT_X,
+                Gt6BasicMachineGui.SPECIAL_SLOT_Y);
+        var outSlots = Gt6BasicMachineGui.outputSlots(2, 0);
+        for (int index = 0; index < outputs.size() && index < outSlots.size(); index++) {
+            Gt6EmiGui.output(
+                    widgets,
+                    outputs.get(index),
+                    this,
+                    outSlots.get(index).x(),
+                    outSlots.get(index).y());
+        }
+        Gt6EmiGui.catalyst(
+                widgets,
+                catalysts.get(1),
+                ProcessingEmiLayout.WORKSTATION.x(),
+                ProcessingEmiLayout.WORKSTATION.y());
         String modeName = mode.serializedName().replace('_', ' ');
         widgets.addText(
                 outputs.size() > 1
@@ -102,13 +138,9 @@ final class AnvilEmiRecipe implements EmiRecipe {
                                 "emi.cruciblecraft.anvil.hits",
                                 modeName,
                                 recipe.specialValue()),
-                28,
-                29,
-                0xFF404040,
+                8,
+                86,
+                0xFF000000,
                 false);
-        widgets.addSlot(outputs.getFirst(), 66, 4).recipeContext(this);
-        if (outputs.size() > 1) {
-            widgets.addSlot(outputs.get(1), 66, 22).recipeContext(this);
-        }
     }
 }

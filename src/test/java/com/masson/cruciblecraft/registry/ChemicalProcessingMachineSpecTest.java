@@ -220,7 +220,7 @@ class ChemicalProcessingMachineSpecTest {
 
     @Test
     void reusedSourceMapsExposeT5OutputCapacityWithoutChangingEnergyType() {
-        assertLayout(ModProcessingMachines.BATH, 1, 6, 1, 3, 4_000, 8_000);
+        assertLayout(ModProcessingMachines.BATH, 6, 6, 1, 3, 4_000, 8_000);
         assertLayout(
                 ModProcessingMachines.CENTRIFUGE,
                 1, 6, 1, 6,
@@ -243,6 +243,7 @@ class ChemicalProcessingMachineSpecTest {
     @Test
     void reusedSourceValidatorsAcceptTheirExactT5LayoutsAndCapacities() {
         for (ProcessingMachineSpec spec : List.of(
+                ModProcessingMachines.BATH,
                 ModProcessingMachines.CENTRIFUGE,
                 ModProcessingMachines.SMELTER)) {
             assertTrue(
@@ -270,10 +271,10 @@ class ChemicalProcessingMachineSpecTest {
         assertTrue(
                 ModProcessingMachines.BATH.validator().validate(bronzeBath).isEmpty(),
                 "Bath T5 validator still accepts the bronze 1x4 / 1x1 envelope");
-        assertEquals(
-                Optional.of("chemical_recipe_shape"),
+        assertTrue(
                 ModProcessingMachines.BATH.validator().validate(
-                        maxLayoutRecipe(ModProcessingMachines.BATH)));
+                        maxLayoutRecipe(ModProcessingMachines.BATH)).isEmpty(),
+                "Bath validator accepts the GT6 6/6/1/3 panel");
     }
 
     @Test

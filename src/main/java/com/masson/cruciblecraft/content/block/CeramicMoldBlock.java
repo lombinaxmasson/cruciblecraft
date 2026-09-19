@@ -245,10 +245,9 @@ public final class CeramicMoldBlock extends Block implements EntityBlock, ToolIn
         if (!side.getAxis().isHorizontal()) {
             return false;
         }
-        if (!(level.getBlockEntity(pos.relative(side)) instanceof CruciblePour crucible)) {
-            return false;
-        }
-        return crucible.fillMoldAtSide(mold, side.getOpposite(), side);
+        CruciblePour crucible = CruciblePour.at(level, pos.relative(side));
+        return crucible != null
+                && crucible.fillMoldAtSide(mold, side.getOpposite(), side);
     }
 
     @Override

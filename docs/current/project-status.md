@@ -35,9 +35,9 @@
 
 `2026-09-15-obtain-reset` **pending**. Major worldgen / gameplay / obtain / GUI / save / network changes open or extend this cycle. Ordinary bugfix does not invalidate it. Accept only after a human `runClient`; CI never auto-signs.
 
-Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art
+Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath
 
-## runtime_ready accepted（76）
+## runtime_ready accepted（77）
 
 机制可跑。`survival_access` 独立、不挡关闭。不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。
 
@@ -98,6 +98,7 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `logistics/generic-network/core` — Generic network core
 - `logistics/item-network-core` — Item network core
 - `logistics/logistics-core` — Logistics Core
+- `machines/bath` — Bath / Bathing Pot — [洗矿浴池详细计划](../history/card-plans/closed/洗矿浴池详细计划.md)
 - `machines/cluster-mill` — Cluster Mill — [集群轧机详细计划](../history/card-plans/closed/集群轧机详细计划.md)
 - `machines/injector` — Injector — [注射机详细计划](../history/card-plans/closed/注射机详细计划.md)
 - `machines/laminator` — Laminator — [层压机详细计划](../history/card-plans/closed/层压机详细计划.md)

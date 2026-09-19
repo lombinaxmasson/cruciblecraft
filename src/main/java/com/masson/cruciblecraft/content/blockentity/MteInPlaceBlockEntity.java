@@ -7,6 +7,7 @@ import com.masson.cruciblecraft.content.mold.CruciblePour;
 import com.masson.cruciblecraft.content.mold.MoldCastingRules;
 import com.masson.cruciblecraft.content.mold.MoldHost;
 import com.masson.cruciblecraft.content.menu.StorageMenu;
+import com.masson.cruciblecraft.content.mte.BathingPotRuntime;
 import com.masson.cruciblecraft.content.mte.MteFoundryTanks;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
@@ -72,6 +73,7 @@ public final class MteInPlaceBlockEntity extends BlockEntity
     };
 
     private final ItemStackHandler items;
+    private final BathingPotRuntime bathingPot;
     private final MassStorageHandler massStorage;
     private final FluidTank tank;
     private final FluidTank distilled;
@@ -89,8 +91,13 @@ public final class MteInPlaceBlockEntity extends BlockEntity
     public MteInPlaceBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.MTE_INPLACE.get(), pos, state);
         MteInPlaceSpec spec = specOf(state);
+        this.bathingPot = BathingPotRuntime.hosts(spec)
+                ? new BathingPotRuntime(spec, this::setChanged)
+                : null;
         int slots = Math.max(1, spec.kind().slots());
-        this.items = new ItemStackHandler(slots) {
+        this.items = bathingPot != null
+                ? bathingPot.items()
+                : new ItemStackHandler(slots) {
             @Override
             public boolean isItemValid(int slot, ItemStack stack) {
                 return switch (spec().kind()) {
@@ -148,6 +155,10 @@ public final class MteInPlaceBlockEntity extends BlockEntity
 
     public ItemStackHandler items() {
         return items;
+    }
+
+    public BathingPotRuntime bathingPot() {
+        return bathingPot;
     }
 
     public MassStorageHandler massStorage() {
@@ -457,6 +468,9 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         if (host.spec().kind() == MteInPlaceKind.MASS_STORAGE) {
             host.tickMassStorage(level, pos);
         }
+        if (host.bathingPot != null) {
+            host.bathingPot.serverTick(level, pos);
+        }
     }
 
     public void transferOnce() {
@@ -474,6 +488,10 @@ public final class MteInPlaceBlockEntity extends BlockEntity
     }
 
     public IFluidHandler fluidHandler(Direction side) {
+        if (bathingPot != null) {
+            return bathingPot.fluidHandler(
+                    getBlockState().getValue(MteInPlaceBlock.FACING), side);
+        }
         if (spec().kind().extender()) {
             return new ExtenderHandler(side);
         }
@@ -487,6 +505,10 @@ public final class MteInPlaceBlockEntity extends BlockEntity
     }
 
     public IItemHandler itemHandler(Direction side) {
+        if (bathingPot != null) {
+            return bathingPot.itemHandler(
+                    getBlockState().getValue(MteInPlaceBlock.FACING), side);
+        }
         if (massStorage != null) {
             return new MassStorageSidedHandler(
                     massStorage, autoOutput() && side == Direction.DOWN);
@@ -495,7 +517,14 @@ public final class MteInPlaceBlockEntity extends BlockEntity
     }
 
     public void dropContents() {
-        if (level == null || !spec().kind().inventory()) {
+        if (level == null) {
+            return;
+        }
+        if (bathingPot != null) {
+            bathingPot.drop(level, worldPosition);
+            return;
+        }
+        if (!spec().kind().inventory()) {
             return;
         }
         if (massStorage != null) {
@@ -594,7 +623,9 @@ public final class MteInPlaceBlockEntity extends BlockEntity
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-        if (massStorage != null) {
+        if (bathingPot != null) {
+            bathingPot.save(tag, registries);
+        } else if (massStorage != null) {
             if (!massStorage.filter().isEmpty()) {
                 tag.put("filter", massStorage.filter().save(registries));
             }
@@ -615,7 +646,9 @@ public final class MteInPlaceBlockEntity extends BlockEntity
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
-        if (massStorage != null) {
+        if (bathingPot != null) {
+            bathingPot.load(tag, registries);
+        } else if (massStorage != null) {
             loadMassStorage(tag, registries);
         } else if (tag.contains("inventory")) {
             loadClampedInventory(tag.getCompound("inventory"), registries);
@@ -693,7 +726,8 @@ public final class MteInPlaceBlockEntity extends BlockEntity
     }
 
     private void pourFaucet(Direction facing) {
-        if (level.getBlockEntity(worldPosition.relative(facing)) instanceof CruciblePour crucible) {
+        CruciblePour crucible = CruciblePour.at(level, worldPosition.relative(facing));
+        if (crucible != null) {
             crucible.fillMoldAtSide(this, facing.getOpposite(), facing);
             return;
         }

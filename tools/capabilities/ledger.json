@@ -2131,6 +2131,56 @@
     },
     {
       "depends_on": [
+        "content/gt6-mte-misc-tool-runtime"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/洗矿浴池详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/mte/BathingPotRuntime.java",
+        "src/main/java/com/masson/cruciblecraft/client/color/BathingPotColor.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/client/ClientSetup.java",
+        "src/main/java/com/masson/cruciblecraft/client/color/MachineBlockColor.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+        "src/main/resources/assets/cruciblecraft/gt6_bath_art_manifest.json",
+        "src/generated/resources/assets/cruciblecraft/models/block/bath.json",
+        "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_bathing_pot*.json",
+        "src/main/resources/assets/cruciblecraft/blockstates/misc_tool/bathing_pot*.json",
+        "src/main/resources/assets/cruciblecraft/blockstates/misc_tool/wooden_bathing_pot*.json",
+        "src/main/resources/assets/cruciblecraft/models/item/misc_tool/bathing_pot*.json",
+        "src/main/resources/assets/cruciblecraft/models/item/misc_tool/wooden_bathing_pot*.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/bath/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/mte/bathing_pot/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/mte/bathing_pot_wood/**",
+        "src/main/resources/data/cruciblecraft/machine_delivery.json",
+        "src/main/resources/data/cruciblecraft/machine_kinds.json",
+        "src/main/resources/data/cruciblecraft/machine_acquisition.json",
+        "src/main/resources/data/cruciblecraft/mte_inplace_acquisition.json",
+        "src/generated/resources/data/cruciblecraft/recipe/machines/bath.json",
+        "src/generated/resources/data/cruciblecraft/recipe/misc_tool/bathing_pot.json",
+        "src/generated/resources/data/cruciblecraft/recipe/misc_tool/bathing_pot_table.json",
+        "src/main/resources/data/cruciblecraft_wave_machines_bath/**",
+        "src/test/java/com/masson/cruciblecraft/gametest/BathGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/registry/ChemicalProcessingMachineSpecTest.java",
+        "tools/capabilities/machines/bath/**",
+        "tools/waves/machines/bath/**",
+        "tools/gt6_bath.py",
+        "tools/tests/test_bath.py"
+      ],
+      "path": "tools/capabilities/machines/bath/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/bath",
+      "survival_access": "partial",
+      "title": "Bath / Bathing Pot",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "machines/roll-former"
       ],
       "maturity": "runtime_ready",
@@ -2831,7 +2881,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 85,
+  "capability_count": 86,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -2989,7 +3039,8 @@
       "content/gt6-mte-inplace-acquisition"
     ],
     "content/gt6-mte-misc-tool-runtime": [
-      "content/gt6-mte-misc-tool-runtime"
+      "content/gt6-mte-misc-tool-runtime",
+      "machines/bath"
     ],
     "content/gt6-mte-multiblock-runtime": [
       "content/gt6-mte-multiblock-runtime"
@@ -3585,6 +3636,9 @@
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
+    "machines/bath": [
+      "machines/bath"
+    ],
     "machines/cluster-mill": [
       "machines/cluster-mill"
     ],
@@ -3751,6 +3805,7 @@
       "content/gt6-restrictive-item-pipe-runtime",
       "content/gt6-storage-art",
       "content/mte-redstone-wire",
+      "machines/bath",
       "registry/catalog-modern-ids"
     ],
     "registry/hybrid-material-identity": [
@@ -3848,6 +3903,7 @@
       "logistics/generic-network/core",
       "logistics/item-network-core",
       "logistics/logistics-core",
+      "machines/bath",
       "machines/cluster-mill",
       "machines/injector",
       "machines/laminator",

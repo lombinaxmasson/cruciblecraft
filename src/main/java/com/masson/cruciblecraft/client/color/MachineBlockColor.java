@@ -112,6 +112,7 @@ public final class MachineBlockColor {
             case "bedrock_drill", "bedrock_drill_head" -> "titanium";
             case "reactor_core_1x1", "reactor_core_2x2" -> "lead";
             case "laser_engraver" -> "iron";
+            case "bath" -> "stainless_steel";
             default -> {
                 for (var profile : com.masson.cruciblecraft.energy.longdistance
                         .LongDistanceTransformerCatalog.endpoints()) {

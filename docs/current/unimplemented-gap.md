@@ -423,39 +423,22 @@ T30 `steel_dust_funnel` 只做 dust / small_dust / tiny_dust 的 1/4/9，计划�
 后面补行为走这套，不要再 `instanceof MaterialXxxItem`。
 创造栏 TOOLS 仍只放 assembler harvest 一次性，新 kind 不进创造栏是有意的。
 
-本节只列仍缺 GT6 世界行为、配方或动作协议的工具；已经有生存路径的工具不再逐一
-复述。工具行为补实现时仍以本地 GT6 源为准。
+活物品的世界点击、挖掘速度和掉落转换已经按 GT6 接到现有后端上：建筑杖铺面、
+口袋元数据循环、钳子抽模具/漏斗/堆芯/书架/龙蛋、扳手原版旋转/拆卸（含 FACING
+回退）、螺丝改中继器延迟、建筑镐矿石减速、斧非潜行整柱伐木、棒砸 `rock`
+（`tryStack` 安全阀）、锯/锉/凿/撬棍/剪线钳/修枝剪收获、锯/斧从背包放树苗和工作台。
+手钻回答 `DRILL`，枫树/彩虹木原木仍打树洞。硬锤挖矿走 `RecipeMapHammer.getRecipeFor`
+同款前缀转换（矿/`raw_ore` → `crushed_ore`，缺形态则 `dust`，`tryStack` 安全阀），
+并带 GT6 `TOOL_prospector` 探矿聊天。剪刀剪羊毛/绊线，刀/剪掉藤，万能锹在流体旁用
+背包方块堵漏。斧剥成 GT6 beam 还没有 CC beam。`gt.recipe.hammer` 那 309 行静态配方
+（鹅卵石→砂砾等）仍不是加工机卡，手持动态矿石粉碎已经接上。
+
+本节只列仍缺 GT6 配方或未注册物品的工具；已经有生存路径的工具不再逐一复述。
+工具行为补实现时仍以本地 GT6 源为准。
 
 ### 5.1 物品在，GT6 世界行为缺
 
-点击 / 交互：
-
-| 工具 | GT6 来源 | 现状 | 缺什么 |
-| --- | --- | --- | --- |
-| 建筑杖 | `Behavior_Builderwand` | `MaterialWorkshopToolItem` | 按品质在点击面铺同种方块 |
-| 钳子 | `TOOL_pincers`；仓储 `onToolClick2` | `PINCERS` 已登记，仓储桶未回答 | 仓储部分抽出；GT6 还打模具/漏斗/堆芯/书架/龙蛋 |
-| 口袋多功能 | `Behavior_Switch_Metadata` | 单一 workshop 物品 | 在刀/锯/锉/螺丝/剪线钳/剪刀/凿之间切换并继承对应动作 |
-| 手钻 | `Behavior_Tool(TOOL_drill)` | workshop 物品 | 不是挖掘工具；回答 `TOOL_drill` 点击 |
-| 万能锹 | `GT_Tool_UniversalSpade` | 铲 `useOn` + 撬棍 | 工作台配方（见 5.2）；还挖斧/锯类方块、铺路/水田/火把、堵漏 |
-| 刀 | `TOOL_knife` | 无世界 `useOn` | 方块/实体上的刀动作 |
-| 凿 | `Behavior_Tool(TOOL_chisel)` | 只当催化剂 | 回答 `TOOL_chisel` 点击 |
-| 软锤 × 仓储 | `TOOL_softhammer` 倒出槽位 | 只转灯/铁轨/朝向 | 点仓储桶把内容弹出 |
-| `ToolCompat` 原版表 | `gregapi/block/ToolCompat.java` | 只有灯、动力铁轨、铁轨撬棍、capability 皮搋子 | 熔炉/箱子/发射器/活塞等扳手旋转未搬 |
-
-挖掘 / 掉落：
-
-| 工具 | GT6 来源 | 现状 | 缺什么 |
-| --- | --- | --- | --- |
-| 建筑镐 | `GT_Tool_PickaxeConstruction` | 原版镐挖掘 | 非矿 ×2 速、矿石 /4、末影箱精准 |
-| 斧 / 双斧 | `GT_Tool_Axe` 非潜行伐整棵 | 原版斧速 + 剥皮 | 整树砍倒（与 Trees 卡独立，原版原木也缺） |
-| 硬锤 | `GT_Tool_HardHammer.convertBlockDrops` | 只当催化剂 | 挖方块走 Hammer 配方，矿变粉碎 |
-| 棒 | `GT_Tool_Club.convertBlockDrops` | 无挖掘 | 石头/砖/下界岩等砸成 `rockGt` |
-| 锯 | `GT_Tool_Saw` | 只当催化剂 | 伐木/叶/冰、放置树苗/工作台 |
-| 锉 | `GT_Tool_File` | 只当催化剂 | 铁栅栏等更快 |
-| 撬棍挖 | `GT_Tool_Crowbar.isMinableBlock` | 只有右键盖板/桶 | 其它工具挖不了的方块兜底收获 |
-| 扳手拆机 | `GT_Tool_Wrench.isMinableBlock` | 只有右键连管 | 左键拆机器/活塞/漏斗/发射器一类 |
-| 剪线钳挖 | `GT_Tool_WireCutter` | 只有右键连线 | 电缆/导线更快收获 |
-| 修枝剪 | `GT_Tool_BranchCutter` grafter | 快砍叶 + 斧剥皮 | 剪叶出树苗（树卡未开时仍对照 GT6） |
+（空。活工具的点击/挖掘/掉落已接到现有后端。）
 
 ### 5.2 配方 blocked 或未发（缺形态，禁止 stand-in）
 
@@ -478,9 +461,10 @@ T30 `steel_dust_funnel` 只做 dust / small_dust / tiny_dust 的 1/4/9，计划�
 
 ### 5.3 协议还没接到的动作
 
-`ProvidedToolActions` 目前只有扳手/活扳手/剪线钳/螺丝/撬棍/皮搋子/软锤/钳子/万能锹→撬棍。
-还没有 `KNIFE`、`CHISEL`、`DRILL`、`MAGNIFYING_GLASS`、`BUILDER_WAND`。
-钳子已有枚举，仓储桶 `useTool` 只处理撬棍。
+`ProvidedToolActions` 已覆盖扳手/活扳手/剪线钳/螺丝/撬棍/皮搋子/软锤/钳子/万能锹→撬棍、
+凿、锤+探矿、刀/屠宰刀/剪刀（刀+剪）、手钻、建筑杖、火绒点火。口袋按当前模式继承
+对应动作。`MAGNIFYING_GLASS` 枚举在，物品未注册所以没有 live 源；硬锤的探矿走
+`PROSPECTOR`，不是放大镜。
 
 补的时候对照 `gt6_code/gregtech6` 对账，`gregtech6_w` 只当 NeoForge 译稿。
 

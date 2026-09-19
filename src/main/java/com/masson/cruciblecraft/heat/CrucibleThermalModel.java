@@ -1,7 +1,5 @@
 package com.masson.cruciblecraft.heat;
 
-import com.masson.cruciblecraft.energy.EnergyPackets;
-
 public final class CrucibleThermalModel {
     public static final double GRAMS_PER_ENERGY = 200.0;
     public static final int HOT_BUFFER_TICKS = 100;
@@ -23,9 +21,11 @@ public final class CrucibleThermalModel {
             float ambientTemperature) {
         long requiredEnergyPerDegree =
                 1L + (long) Math.max(0.0, weightGrams / GRAMS_PER_ENERGY);
-        long acceptedIncoming = Math.max(0L, incomingEnergy);
-        storedEnergy = EnergyPackets.add(storedEnergy, acceptedIncoming);
-        long conversions = (long) (storedEnergy / requiredEnergyPerDegree);
+        long acceptedIncoming = incomingEnergy;
+        storedEnergy = addSignedEnergy(storedEnergy, acceptedIncoming);
+        long conversions = requiredEnergyPerDegree == 0L
+                ? 0L
+                : storedEnergy / requiredEnergyPerDegree;
 
         if (cooldownTicks > 0) {
             cooldownTicks--;
@@ -36,6 +36,7 @@ public final class CrucibleThermalModel {
             cooldownTicks = HOT_BUFFER_TICKS;
         }
         if (acceptedIncoming == 0L && conversions == 0L
+                && storedEnergy > 0L
                 && storedEnergy < requiredEnergyPerDegree) {
             storedEnergy = 0L;
         }
@@ -115,4 +116,13 @@ public final class CrucibleThermalModel {
     }
 
     public record StepResult(float temperature, long storedEnergy, int cooldownTicks) {}
+
+    /** Signed accumulator so GT6 CU can drive negative conversions. */
+    public static long addSignedEnergy(long first, long second) {
+        try {
+            return Math.addExact(first, second);
+        } catch (ArithmeticException overflow) {
+            return second >= 0L ? Long.MAX_VALUE : Long.MIN_VALUE + 1L;
+        }
+    }
 }

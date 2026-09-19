@@ -1,18 +1,29 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "w": {
+      "item": "cruciblecraft:material_wrench"
+    }
+  },
+  "ingredients": {
     "C": {
-      "item": "minecraft:copper_ingot"
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "stainless_steel"
+      },
+      "items": "cruciblecraft:small_casing"
     },
-    "F": {
-      "item": "minecraft:furnace"
+    "M": {
+      "item": "cruciblecraft:stainless_steel/machine_casing"
+    },
+    "P": {
+      "tag": "c:plates/stainless_steel"
     }
   },
   "pattern": [
-    "CCC",
-    "CFC",
-    "CCC"
+    "CwC",
+    "PMP",
+    "PPP"
   ],
   "result": {
     "count": 1,

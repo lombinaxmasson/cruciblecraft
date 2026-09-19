@@ -1,5 +1,6 @@
 package com.masson.cruciblecraft.content.item;
 
+import com.masson.cruciblecraft.content.item.tool.ToolMining;
 import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
 
 import net.minecraft.tags.BlockTags;
@@ -23,20 +24,16 @@ public final class MaterialBranchCutterItem extends MaterialDiggerItem {
 
     @Override
     public float getDestroySpeed(ItemStack stack, BlockState state) {
-        if (material(stack).isEmpty()) {
-            return 1.0F;
-        }
-        if (state.is(BlockTags.LEAVES)) {
-            return 15.0F;
-        }
-        return super.getDestroySpeed(stack, state);
+        return material(stack)
+                .map(materialId -> ToolMining.destroySpeed(
+                        kind(), materialId, state))
+                .orElse(1.0F);
     }
 
     @Override
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
         return material(stack).isPresent()
-                && (state.is(BlockTags.LEAVES)
-                        || super.isCorrectToolForDrops(stack, state));
+                && ToolMining.correctTool(kind(), state);
     }
 
     @Override

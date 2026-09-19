@@ -40,4 +40,13 @@ class ThermalComponentTest {
         assertEquals(40.0F, thermal.authoritativeTemperature());
         assertTrue(Float.isFinite(thermal.authoritativeTemperature()));
     }
+
+    @Test
+    void coolingPacketsSubtractFromTheSignedAccumulator() {
+        ThermalComponent thermal = new ThermalComponent(20.0F);
+        assertEquals(4L, thermal.queueHeat(1L, 4L, false));
+        assertEquals(4L, thermal.pendingHeat());
+        assertEquals(3L, thermal.queueCooling(1L, 3L, false));
+        assertEquals(1L, thermal.takePendingHeat());
+    }
 }

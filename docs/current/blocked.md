@@ -9,8 +9,8 @@
 
 ## 统计
 
-- 条目 60：open 37，partial 2，resolved 11，superseded 5，out_of_scope 5
-- 未关闭排期桶：数字是规模，不是待办 5，分母已冻，可当卡排 17，有名字，分母未冻成工作量 14，不是活 3
+- 条目 62：open 38，partial 2，resolved 11，superseded 5，out_of_scope 6
+- 未关闭排期桶：数字是规模，不是待办 5，分母已冻，可当卡排 18，有名字，分母未冻成工作量 14，不是活 3
 
 ## 排期分类（未关闭）
 
@@ -25,7 +25,7 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - `recipe/nanofab-overflow`：57 rows
 - `worldgen/food`：n/a
 
-### B. 分母已冻，可当卡排（17）
+### B. 分母已冻，可当卡排（18）
 
 - `cover/torch-repeater-wire-host`：2 covers
 - `fluid/ic2-coolant`：1 fluids
@@ -39,6 +39,7 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - `obtain/injector-mv-hv-iv-hosts`：3 hosts
 - `obtain/nanofab-hosts`：5 hosts
 - `obtain/redstone-wiregt01`：3 items
+- `obtain/wooden-bathing-pot-glue`：2 hosts
 - `recipe/laminator-overflow`：60 rows
 - `recipe/oven-cooking-oil-xp`：2 fluids
 - `recipe/pressure-washer-stone`：120 rows
@@ -228,7 +229,8 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
   - `identity/eu-blocked-gauges`
   - `identity/hsla-ungated-gauges`
   - `identity/processing-ungated-families`
-- `unmapped_operand`（7）
+- `unmapped_operand`（8）
+  - `obtain/wooden-bathing-pot-glue`
   - `recipe/injector-overflow`
   - `recipe/laminator-overflow`
   - `recipe/loom-overflow`
@@ -574,6 +576,22 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 权威：`tools/capabilities/content/mte-redstone-wire/capability.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：Insulated cable laminator obtain is a different card. This is the bare wireGt01 recipe.
+
+### `obtain/wooden-bathing-pot-glue`
+
+- 标题：木浸洗盆胶水获得格仍 blocked
+- 状态：`open`
+- 根因：`unmapped_operand` / `unmapped_od_item_glue`
+- 数量：2 hosts
+- 排期：`schedulable`
+- 挡住：`player_complete`
+- 发现卡：`machines/bath`
+- 由本卡引入：否（发现既有缺口）
+- 解决卡：—
+- 影响：`machines/bath`
+- 权威：`tools/capabilities/machines/bath/capability.json`
+- 禁止 stand-in：Do not substitute slimeball, another adhesive, or an unrelated material for OD.itemGlue.
+- 说明：Wooden Bathing Pot 32721 needs OD.itemGlue. Wooden table 32720 needs that pot. Runtime voxels may land; obtain stays blocked.
 
 ### `peripheral/sensors-computercraft`
 
@@ -1150,6 +1168,22 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 权威：`tools/blocked_recipe_ledger.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：Do not treat the 2026-08-11 702 as a current total.
+
+### `identity/bath-large-vat-17104`
+
+- 标题：本卡不含大型浸洗槽 17104
+- 状态：`out_of_scope`
+- 根因：`unmapped_identity` / `large_bathing_vat_out_of_scope`
+- 数量：1 hosts
+- 排期：`not_work`
+- 挡住：`none`
+- 发现卡：`machines/bath`
+- 由本卡引入：否（发现既有缺口）
+- 解决卡：—
+- 影响：`machines/bath`
+- 权威：`tools/capabilities/machines/bath/capability.json`
+- 禁止 stand-in：Do not substitute the single-block Bath or a bathing pot for Large Bathing Vat 17104.
+- 说明：Out of scope on the Bath host card. Do not fold 17104 onto 22002.
 
 ### `identity/redstone-not-eu-or-pipe`
 

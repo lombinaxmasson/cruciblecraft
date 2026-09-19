@@ -152,6 +152,28 @@ public final class HopperBlock extends Block
                 instanceof HopperBlockEntity hopper)) {
             return ToolResult.PASS;
         }
+        if (action == ToolAction.PINCERS) {
+            Player player = context.getPlayer();
+            if (player == null) {
+                return ToolResult.PASS;
+            }
+            if (!level.isClientSide) {
+                boolean extracted = false;
+                var inventory = hopper.inventory();
+                for (int slot = 0; slot < inventory.getSlots(); slot++) {
+                    ItemStack taken = inventory.extractItem(slot, 64, false);
+                    if (!taken.isEmpty()) {
+                        ToolClick.give(player, taken);
+                        extracted = true;
+                        break;
+                    }
+                }
+                if (extracted) {
+                    ToolClick.hurt(context);
+                }
+            }
+            return ToolResult.SUCCESS;
+        }
         if (action == ToolAction.WRENCH) {
             Direction target = Gt6StyleConnections.sideFromHit(ToolClick.hit(context));
             BlockState state = level.getBlockState(context.getClickedPos());

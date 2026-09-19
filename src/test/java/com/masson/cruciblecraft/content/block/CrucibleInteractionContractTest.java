@@ -45,15 +45,16 @@ class CrucibleInteractionContractTest {
     @Test
     void fluidTransferIsServerGuardedAndPrecedesServerMaterialInsertion() throws Exception {
         String source = Files.readString(Path.of(
-                "src/main/java/com/masson/cruciblecraft/content/block/CrucibleBlock.java"));
+                "src/main/java/com/masson/cruciblecraft/content/blockentity/CruciblePlayerInteraction.java"));
         String method = source.substring(
-                source.indexOf("protected ItemInteractionResult useItemOn"),
-                source.indexOf("protected InteractionResult useWithoutItem"));
+                source.indexOf("public static ItemInteractionResult useItemOn"),
+                source.indexOf("public static InteractionResult useEmpty"));
 
         int clientGuard = method.indexOf("if (level.isClientSide)");
-        int clientReturn = method.indexOf("return predictsInteraction");
+        int clientReturn = method.indexOf("return predictsItemUse");
         int fluidInteraction = method.indexOf("FluidUtil.interactWithFluidHandler");
-        int serverMaterialResolution = method.indexOf("var materialEntry", fluidInteraction);
+        int serverMaterialResolution = method.indexOf(
+                "Optional<MaterialUnits.Entry> material", fluidInteraction);
 
         assertTrue(clientGuard >= 0);
         assertTrue(clientGuard < clientReturn);

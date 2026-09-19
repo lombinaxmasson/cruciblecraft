@@ -54,12 +54,14 @@ class ProcessingEmiLayoutTest {
                                     + bounds.get(right));
                 }
             }
-            assertTrue(layout.durationTextY() >= bounds.stream()
-                    .mapToInt(ProcessingEmiLayout.Rect::bottom)
-                    .max()
-                    .orElse(0));
-            assertTrue(layout.powerTextY() > layout.durationTextY());
-            assertTrue(layout.powerTextY() < layout.height());
+            assertTrue(layout.costsTextY() >= ProcessingEmiLayout.PANEL_HEIGHT);
+            assertTrue(layout.powerTextY() > layout.costsTextY());
+            assertTrue(layout.durationTextY() > layout.powerTextY());
+            assertTrue(layout.durationTextY() < layout.height());
+            assertTrue(layout.height() >= ProcessingEmiLayout.NEI_HEIGHT);
+            assertEquals(ProcessingEmiLayout.WORKSTATION, layout.workstation());
+            assertEquals(spec.ui().progress().width(), layout.progress().width());
+            assertEquals(spec.ui().progress().height(), layout.progress().height());
         }
     }
 
@@ -193,6 +195,7 @@ class ProcessingEmiLayoutTest {
                 fluidOutputs,
                 20,
                 1L,
+                0L,
                 spec.energy().type());
     }
 }

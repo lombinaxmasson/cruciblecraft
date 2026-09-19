@@ -8,6 +8,7 @@ import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.blockentity.DrawerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.item.tool.ToolClick;
+import com.masson.cruciblecraft.content.mte.BathingPotRuntime;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.storage.MassStorageClicks;
@@ -75,6 +76,7 @@ public final class MteInPlaceBlock extends Block
     private static final VoxelShape FOUNDRY_MOLD = Block.box(0.0, 0.0, 0.0, 16.0, 7.0, 16.0);
     private static final VoxelShape FOUNDRY_CROSSING = Block.box(0.0, 0.0, 0.0, 16.0, 6.0, 16.0);
     private static final VoxelShape CHEST = Block.box(1.0, 0.0, 1.0, 15.0, 14.0, 15.0);
+    private static final VoxelShape BATHING_POT = Block.box(0.0, 0.0, 0.0, 16.0, 8.0, 16.0);
 
     private final MteInPlaceSpec spec;
 
@@ -123,6 +125,9 @@ public final class MteInPlaceBlock extends Block
             BlockPos pos,
             CollisionContext context) {
         MteInPlaceKind kind = spec.kind();
+        if (BathingPotRuntime.hosts(spec)) {
+            return BathingPotRuntime.table(spec) ? Shapes.block() : BATHING_POT;
+        }
         if (kind == MteInPlaceKind.ROPE) {
             return ROPE;
         }
@@ -190,6 +195,27 @@ public final class MteInPlaceBlock extends Block
                         instanceof MteInPlaceBlockEntity host) {
             return ToolClick.plunger(context, host.trashWithPlunger());
         }
+        if (action == ToolAction.PINCERS
+                && spec.kind() == MteInPlaceKind.BOOKSHELF
+                && context.getLevel().getBlockEntity(context.getClickedPos())
+                        instanceof MteInPlaceBlockEntity host) {
+            Player player = context.getPlayer();
+            if (player == null) {
+                return ToolResult.PASS;
+            }
+            if (!context.getLevel().isClientSide) {
+                var items = host.items();
+                for (int slot = 0; slot < items.getSlots(); slot++) {
+                    ItemStack taken = items.extractItem(slot, 64, false);
+                    if (!taken.isEmpty()) {
+                        ToolClick.give(player, taken);
+                        ToolClick.hurt(context);
+                        break;
+                    }
+                }
+            }
+            return ToolResult.SUCCESS;
+        }
         return ToolResult.PASS;
     }
 
@@ -225,6 +251,12 @@ public final class MteInPlaceBlock extends Block
             }
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
+        if (BathingPotRuntime.hosts(spec)
+                && level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity host
+                && host.bathingPot() != null
+                && host.bathingPot().useItem(level, player, hand)) {
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
@@ -236,6 +268,14 @@ public final class MteInPlaceBlock extends Block
             Player player,
             BlockHitResult hit) {
         MteInPlaceKind kind = spec.kind();
+        if (BathingPotRuntime.hosts(spec)
+                && level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity host
+                && host.bathingPot() != null) {
+            if (!level.isClientSide) {
+                host.bathingPot().extract(player);
+            }
+            return InteractionResult.sidedSuccess(level.isClientSide);
+        }
         if (kind.playerInventoryGui()) {
             if (!level.isClientSide
                     && player instanceof ServerPlayer serverPlayer

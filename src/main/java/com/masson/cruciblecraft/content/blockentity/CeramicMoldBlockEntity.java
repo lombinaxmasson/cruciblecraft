@@ -376,11 +376,9 @@ public final class CeramicMoldBlockEntity extends BlockEntity
             if (!autoPulls(side)) {
                 continue;
             }
-            if (!(level.getBlockEntity(pos.relative(side))
-                    instanceof CruciblePour crucible)) {
-                continue;
-            }
-            if (crucible.fillMoldAtSide(this, side.getOpposite(), side)) {
+            CruciblePour crucible = CruciblePour.at(level, pos.relative(side));
+            if (crucible != null
+                    && crucible.fillMoldAtSide(this, side.getOpposite(), side)) {
                 return;
             }
         }

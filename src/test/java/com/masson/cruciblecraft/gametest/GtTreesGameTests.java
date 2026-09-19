@@ -152,7 +152,7 @@ public final class GtTreesGameTests {
                     : new BlockPos(4, 2, 2);
             helper.setBlock(pos, ModBlocks.treeLog(species).get());
             Player player = helper.makeMockPlayer(GameType.SURVIVAL);
-            ItemStack drill = new ItemStack(ModItems.MATERIAL_HAND_DRILL.get());
+            ItemStack drill = ModItems.MATERIAL_HAND_DRILL.get().variant("iron");
             BlockHitResult hit = new BlockHitResult(
                     Vec3.atCenterOf(helper.absolutePos(pos)),
                     Direction.NORTH,

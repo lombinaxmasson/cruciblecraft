@@ -46,6 +46,7 @@
     "test_slicer",
     "test_injector",
     "test_laminator",
+    "test_bath",
     "test_loom",
     "test_nanofab",
     "test_melter",
@@ -503,6 +504,8 @@
         "tools/tests/test_slicer.py",
         "tools/tests/test_injector.py",
         "tools/tests/test_laminator.py",
+        "tools/tests/test_bath.py",
+        "tools/gt6_bath.py",
         "tools/tests/test_loom.py",
         "tools/tests/test_nanofab.py",
         "tools/tests/test_melter.py",
@@ -519,11 +522,13 @@
         "src/test/java/com/masson/cruciblecraft/gametest/ClusterMillGameTests.java",
         "src/test/java/com/masson/cruciblecraft/gametest/SlicerGameTests.java",
         "src/test/java/com/masson/cruciblecraft/gametest/InjectorGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/BathGameTests.java",
         "src/test/java/com/masson/cruciblecraft/gametest/SandingGameTests.java",
         "src/test/java/com/masson/cruciblecraft/gametest/OvenGameTests.java",
         "src/main/resources/data/cruciblecraft_wave_machines_roll_former/**",
         "src/main/resources/data/cruciblecraft_wave_machines_cluster_mill/**",
-        "src/main/resources/data/cruciblecraft_wave_machines_slicer/**"
+        "src/main/resources/data/cruciblecraft_wave_machines_slicer/**",
+        "src/main/resources/data/cruciblecraft_wave_machines_bath/**"
       ],
       "test_modules": [
         "test_roll_former",
@@ -531,6 +536,7 @@
         "test_slicer",
         "test_injector",
         "test_laminator",
+        "test_bath",
         "test_loom",
         "test_nanofab",
         "test_melter",
@@ -1336,6 +1342,7 @@
         "test_cluster_mill",
         "test_slicer",
         "test_injector",
+        "test_bath",
         "test_sanding",
         "test_oven"
       ]

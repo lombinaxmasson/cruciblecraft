@@ -34,6 +34,23 @@ class ProvidedToolActionsTest {
                 Set.of(ToolAction.CROWBAR),
                 ProvidedToolActions.of(ToolKind.UNIVERSAL_SPADE));
         assertEquals(Set.of(ToolAction.CHISEL), ProvidedToolActions.of(ToolKind.CHISEL));
+        assertEquals(
+                Set.of(ToolAction.HAMMER, ToolAction.PROSPECTOR),
+                ProvidedToolActions.of(ToolKind.SMITHING_HAMMER));
+        assertEquals(Set.of(ToolAction.KNIFE), ProvidedToolActions.of(ToolKind.KNIFE));
+        assertEquals(
+                Set.of(ToolAction.KNIFE),
+                ProvidedToolActions.of(ToolKind.BUTCHERY_KNIFE));
+        assertEquals(
+                Set.of(ToolAction.KNIFE, ToolAction.SHEARS),
+                ProvidedToolActions.of(ToolKind.SCISSORS));
+        assertEquals(
+                Set.of(ToolAction.IGNITER),
+                ProvidedToolActions.of(ToolKind.FLINT_AND_TINDER));
+        assertEquals(Set.of(ToolAction.DRILL), ProvidedToolActions.of(ToolKind.HAND_DRILL));
+        assertEquals(
+                Set.of(ToolAction.BUILDER_WAND),
+                ProvidedToolActions.of(ToolKind.BUILDER_WAND));
         assertTrue(ProvidedToolActions.of(ToolKind.PICKAXE).isEmpty());
         assertTrue(ProvidedToolActions.of(ToolKind.FILE).isEmpty());
     }
@@ -53,5 +70,7 @@ class ProvidedToolActionsTest {
         assertFalse(ToolAction.SCREWDRIVER.expandsPipeGrid());
         assertFalse(ToolAction.CHISEL.expandsPipeGrid());
         assertTrue(ToolAction.SOFT_HAMMER.ordinal() < ToolAction.CHISEL.ordinal());
+        assertTrue(ToolAction.HAMMER.ordinal() < ToolAction.PROSPECTOR.ordinal());
+        assertTrue(ToolAction.KNIFE.ordinal() < ToolAction.SHEARS.ordinal());
     }
 }

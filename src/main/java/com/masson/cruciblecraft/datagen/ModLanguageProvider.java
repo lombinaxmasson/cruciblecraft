@@ -304,6 +304,15 @@ public class ModLanguageProvider extends LanguageProvider {
             add("emi.cruciblecraft.processing.power.electric", "功率：%s EU/t");
             add("emi.cruciblecraft.processing.power.heat", "热功率：%s HU/t");
             add("emi.cruciblecraft.processing.power.time", "工时：%s TU/t");
+            add("emi.cruciblecraft.processing.costs", "消耗：%s %s");
+            add("emi.cruciblecraft.processing.gain", "获得：%s %s");
+            add("emi.cruciblecraft.processing.usage", "功率：%s %s");
+            add("emi.cruciblecraft.processing.output", "产出：%s %s");
+            add("emi.cruciblecraft.processing.time_ticks", "时间：%s tick");
+            add("emi.cruciblecraft.processing.time_secs", "时间：%s 秒");
+            add("emi.cruciblecraft.processing.time_mins", "时间：%s 分钟");
+            add("emi.cruciblecraft.processing.special", "%s");
+            add("emi.cruciblecraft.fusion.start", "启动：%s LU");
             add("device.cruciblecraft.anvil", "砧");
             add("device.cruciblecraft.crucible", "坩埚");
             add("device.cruciblecraft.hammer", "锤");
@@ -344,10 +353,25 @@ public class ModLanguageProvider extends LanguageProvider {
             add("item.cruciblecraft.material_rolling_pin", "%s擀面杖");
             add("item.cruciblecraft.material_flint_and_tinder", "%s火绒");
             add("item.cruciblecraft.material_pocket_multitool", "%s口袋多功能工具");
+            add("tooltip.cruciblecraft.pocket_multitool.mode.closed", "收起");
+            add("tooltip.cruciblecraft.pocket_multitool.mode.knife", "刀");
+            add("tooltip.cruciblecraft.pocket_multitool.mode.saw", "锯");
+            add("tooltip.cruciblecraft.pocket_multitool.mode.file", "锉");
+            add("tooltip.cruciblecraft.pocket_multitool.mode.screwdriver", "螺丝刀");
+            add("tooltip.cruciblecraft.pocket_multitool.mode.wire_cutter", "剪线钳");
+            add("tooltip.cruciblecraft.pocket_multitool.mode.scissors", "剪刀");
+            add("tooltip.cruciblecraft.pocket_multitool.mode.chisel", "凿");
             add("tooltip.cruciblecraft.plunger.fluid", "从储罐抽出 1000 mB 流体");
             add("tooltip.cruciblecraft.plunger.item", "清理管道中卡住的物品");
             add("tooltip.cruciblecraft.crowbar", "撬下盖板，并整桶搬走仓储桶");
             add("tooltip.cruciblecraft.soft_hammer", "轻敲以切换红石灯与动力铁轨");
+            add("message.cruciblecraft.prospect.ore", "%s！");
+            add("message.cruciblecraft.prospect.lava", "这块石头后面有岩浆");
+            add("message.cruciblecraft.prospect.fluid", "这块石头后面有流体");
+            add("message.cruciblecraft.prospect.air", "这块石头后面有空洞");
+            add("message.cruciblecraft.prospect.material_change", "这块石头后面的材料变了");
+            add("message.cruciblecraft.prospect.traces", "发现了%s的痕迹");
+            add("message.cruciblecraft.prospect.none", "没有发现矿石痕迹");
             add("jade.cruciblecraft.pipe_covers", "盖板参数：%s");
             add("tooltip.cruciblecraft.cover.behavior", "行为：%s");
             add("tooltip.cruciblecraft.cover.parameters",
@@ -864,6 +888,14 @@ public class ModLanguageProvider extends LanguageProvider {
         add("item.cruciblecraft.material_rolling_pin", "%s Rolling Pin");
         add("item.cruciblecraft.material_flint_and_tinder", "%s Flint and Tinder");
         add("item.cruciblecraft.material_pocket_multitool", "%s Pocket Multitool");
+        add("tooltip.cruciblecraft.pocket_multitool.mode.closed", "Closed");
+        add("tooltip.cruciblecraft.pocket_multitool.mode.knife", "Knife");
+        add("tooltip.cruciblecraft.pocket_multitool.mode.saw", "Saw");
+        add("tooltip.cruciblecraft.pocket_multitool.mode.file", "File");
+        add("tooltip.cruciblecraft.pocket_multitool.mode.screwdriver", "Screwdriver");
+        add("tooltip.cruciblecraft.pocket_multitool.mode.wire_cutter", "Wire Cutter");
+        add("tooltip.cruciblecraft.pocket_multitool.mode.scissors", "Scissors");
+        add("tooltip.cruciblecraft.pocket_multitool.mode.chisel", "Chisel");
         add("tooltip.cruciblecraft.plunger.fluid",
                 "Clears 1000 mB of fluid from tanks");
         add("tooltip.cruciblecraft.plunger.item", "Clears items from pipes");
@@ -871,6 +903,15 @@ public class ModLanguageProvider extends LanguageProvider {
                 "Pries off covers and picks up storage barrels");
         add("tooltip.cruciblecraft.soft_hammer",
                 "Toggles redstone lamps and powered rails");
+        add("message.cruciblecraft.prospect.ore", "%s!");
+        add("message.cruciblecraft.prospect.lava", "There is Lava behind this Rock");
+        add("message.cruciblecraft.prospect.fluid", "There is a Fluid behind this Rock");
+        add("message.cruciblecraft.prospect.air",
+                "There is an Air Pocket behind this Rock");
+        add("message.cruciblecraft.prospect.material_change",
+                "Material is changing behind this Rock");
+        add("message.cruciblecraft.prospect.traces", "Found traces of %s");
+        add("message.cruciblecraft.prospect.none", "No traces of Ore found");
         addItem(ModItems.UNKNOWN_MATERIAL, "Unknown Material");
         ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
                 addItem(ModItems.extruderShape(shape.id()), shape.englishName()));
@@ -958,6 +999,15 @@ public class ModLanguageProvider extends LanguageProvider {
         add("emi.cruciblecraft.processing.power.electric", "Power: %s EU/t");
         add("emi.cruciblecraft.processing.power.heat", "Heat: %s HU/t");
         add("emi.cruciblecraft.processing.power.time", "Work time: %s TU/t");
+        add("emi.cruciblecraft.processing.costs", "Costs: %s %s");
+        add("emi.cruciblecraft.processing.gain", "Gain: %s %s");
+        add("emi.cruciblecraft.processing.usage", "Usage: %s %s");
+        add("emi.cruciblecraft.processing.output", "Output: %s %s");
+        add("emi.cruciblecraft.processing.time_ticks", "Time: %s ticks");
+        add("emi.cruciblecraft.processing.time_secs", "Time: %s secs");
+        add("emi.cruciblecraft.processing.time_mins", "Time: %s mins");
+        add("emi.cruciblecraft.processing.special", "%s");
+        add("emi.cruciblecraft.fusion.start", "Start: %s LU");
 
         add("message.cruciblecraft.air_injection_started", "Airflow started; decarburization is underway");
         add("message.cruciblecraft.air_injection_continued", "Airflow duration extended");

@@ -13,6 +13,8 @@ import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.item.CeramicMoldBlockItem;
+import com.masson.cruciblecraft.content.mold.CruciblePour;
+import com.masson.cruciblecraft.content.mold.MoldHost;
 import com.masson.cruciblecraft.content.multiblock.MultiblockControllerBinding;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortAggregator;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortHost;
@@ -22,10 +24,12 @@ import com.masson.cruciblecraft.content.multiblock.PluginQuarantinePolicy;
 import com.masson.cruciblecraft.energy.EnergyPackets;
 import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.InsertResult;
 import com.masson.cruciblecraft.heat.ItemHeat;
+import com.masson.cruciblecraft.heat.TemperatureDamage;
 import com.masson.cruciblecraft.machine.CheckpointDecisions;
 import com.masson.cruciblecraft.machine.component.CrucibleProcessCore;
 import com.masson.cruciblecraft.machine.component.SteelmakingController;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
+import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModMultiblockPlugins;
 
 import net.minecraft.core.BlockPos;
@@ -36,10 +40,18 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
@@ -52,7 +64,7 @@ import net.neoforged.neoforge.items.ItemStackHandler;
  * controller inventory.
  */
 public final class LargeCrucibleBlockEntity extends BlockEntity
-        implements MultiblockControllerBinding, MultiblockPortHost {
+        implements MultiblockControllerBinding, MultiblockPortHost, CruciblePour {
     private static final String PLUGIN_TAG = "multiblock_plugins";
     public static final ResourceLocation STRUCTURE_ID =
             ResourceLocation.fromNamespaceAndPath(
@@ -71,7 +83,7 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
             if (slot == SLOT_MOLD) {
                 return stack.getItem() instanceof CeramicMoldBlockItem;
             }
-            return MaterialUnits.resolve(stack).isPresent();
+            return true;
         }
 
         @Override
@@ -106,18 +118,109 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
             crucible.recheckStructure(level, pos, state);
         }
         crucible.process.setFrozen(crucible.pluginQuarantined);
-        if (crucible.structureValid && !crucible.pluginQuarantined) {
-            crucible.tickProcess(level);
+        if (crucible.pluginQuarantined) {
+            return;
         }
+        if (!crucible.structureValid) {
+            crucible.process.driftTowardAmbient();
+            return;
+        }
+        crucible.tickProcess(level);
     }
 
     private void tickProcess(Level level) {
         if (!outputJammed) {
+            suckDroppedItems(level);
             ingestInput(level);
         }
+        process.addRainWater(
+                level.getGameTime(),
+                level.isRainingAt(worldPosition.above(2)) ? 1.0F : 0.0F,
+                level.isThundering());
         long incoming = process.thermal().takePendingHeat();
-        process.advance(incoming, true);
+        CrucibleProcessCore.TickOutcome outcome = process.advance(incoming, true);
+        if (outcome.boiled()) {
+            CrucibleWorldHazards.boilHazards(
+                    level,
+                    worldPosition,
+                    process.authoritativeTemperature(),
+                    CrucibleWorldHazards.LARGE_GAS_RANGE,
+                    4);
+        }
+        if (outcome.destroysHost()) {
+            applyDestruction(level, outcome);
+            return;
+        }
         tryCast(level);
+    }
+
+    private void suckDroppedItems(Level level) {
+        if (!inventory.getStackInSlot(SLOT_INPUT).isEmpty()) {
+            return;
+        }
+        AABB box = new AABB(
+                worldPosition.getX() - 0.5,
+                worldPosition.getY() + 2.0 / 16.0,
+                worldPosition.getZ() - 0.5,
+                worldPosition.getX() + 1.5,
+                worldPosition.getY() + 2.0 / 16.0 + 3.0,
+                worldPosition.getZ() + 1.5);
+        for (ItemEntity entity : level.getEntitiesOfClass(ItemEntity.class, box)) {
+            if (!entity.isAlive() || entity.getItem().isEmpty()) {
+                continue;
+            }
+            ItemStack stack = entity.getItem();
+            int before = stack.getCount();
+            ItemStack leftover = inventory.insertItem(SLOT_INPUT, stack, false);
+            if (leftover.getCount() == before) {
+                continue;
+            }
+            entity.setItem(leftover);
+            if (leftover.isEmpty()) {
+                entity.discard();
+            }
+            break;
+        }
+    }
+
+    private void applyDestruction(Level level, CrucibleProcessCore.TickOutcome outcome) {
+        BlockPos origin = worldPosition.immutable();
+        if (outcome.exploded()) {
+            level.explode(
+                    null,
+                    origin.getX() + 0.5,
+                    origin.getY() + 0.5,
+                    origin.getZ() + 0.5,
+                    outcome.explodeRadius(),
+                    false,
+                    Level.ExplosionInteraction.BLOCK);
+            return;
+        }
+        if (outcome.acidDestroyed()) {
+            level.setBlock(origin, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
+            return;
+        }
+        CrucibleWorldHazards.boilHazards(
+                level,
+                origin,
+                process.authoritativeTemperature(),
+                CrucibleWorldHazards.LARGE_GAS_RANGE,
+                Math.max(1, (int) (TemperatureDamage.kelvin(
+                        process.authoritativeTemperature()) / 25L)));
+        fillMeltdownLava(level, origin);
+    }
+
+    static void fillMeltdownLava(Level level, BlockPos origin) {
+        for (int dx = -1; dx <= 1; dx++) {
+            for (int dy = 0; dy <= 2; dy++) {
+                for (int dz = -1; dz <= 1; dz++) {
+                    level.setBlock(
+                            origin.offset(dx, dy, dz),
+                            Blocks.LAVA.defaultBlockState(),
+                            Block.UPDATE_ALL);
+                }
+            }
+        }
     }
 
     private void ingestInput(Level level) {
@@ -127,6 +230,16 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
         }
         Optional<MaterialUnits.Entry> entry = MaterialUnits.resolve(stack);
         if (entry.isEmpty()) {
+            inventory.setStackInSlot(SLOT_INPUT, ItemStack.EMPTY);
+            if (level instanceof ServerLevel serverLevel) {
+                serverLevel.playSound(
+                        null,
+                        worldPosition,
+                        SoundEvents.FIRE_EXTINGUISH,
+                        SoundSource.BLOCKS,
+                        0.7F,
+                        1.3F);
+            }
             return;
         }
         InsertResult result = process.insert(
@@ -199,6 +312,41 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
             MaterialUnits.Entry entry, float temperature) {
         process.setFrozen(pluginQuarantined);
         return process.insert(entry, temperature);
+    }
+
+    @Override
+    public boolean fillMoldAtSide(MoldHost mold, Direction crucibleSide, Direction moldSide) {
+        if (!structureValid || pluginQuarantined) {
+            return false;
+        }
+        return process.fillMoldAtSide(mold, moldSide);
+    }
+
+    /**
+     * GT6 middle-layer {@code ONLY_CRUCIBLE} casings have no BE here, so a
+     * mold or faucet next to a dummy wall still has to reach the controller.
+     */
+    public static LargeCrucibleBlockEntity pourHostAtWall(
+            BlockGetter level, BlockPos wall) {
+        if (level == null
+                || !level.getBlockState(wall).is(ModBlocks.MULTIBLOCK_CASING.get())) {
+            return null;
+        }
+        for (int dx = -1; dx <= 1; dx++) {
+            for (int dz = -1; dz <= 1; dz++) {
+                if (dx == 0 && dz == 0) {
+                    continue;
+                }
+                if (!(level.getBlockEntity(wall.offset(-dx, -1, -dz))
+                        instanceof LargeCrucibleBlockEntity crucible)) {
+                    continue;
+                }
+                if (crucible.structureValid() && !crucible.pluginQuarantined()) {
+                    return crucible;
+                }
+            }
+        }
+        return null;
     }
 
     public SteelmakingController.InjectionResult injectAir(long air) {
@@ -355,7 +503,11 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
 
     @Override
     public boolean handles(EnergyType type, Direction side) {
-        return type == EnergyType.HEAT || type == EnergyType.AIR;
+        return switch (type) {
+            case HEAT, CU -> true;
+            case AIR, KINETIC, KINETIC_PUSH, KINETIC_ROTATION -> true;
+            default -> false;
+        };
     }
 
     @Override
@@ -365,7 +517,11 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
             long amount,
             Direction side,
             boolean simulate) {
-        if (!structureValid || pluginQuarantined || size == 0L || amount <= 0L) {
+        if (!structureValid
+                || pluginQuarantined
+                || !handles(type, side)
+                || size == 0L
+                || amount <= 0L) {
             return 0L;
         }
         if (type == EnergyType.HEAT) {
@@ -374,7 +530,10 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
             }
             return process.thermal().queueHeat(size, amount, simulate);
         }
-        if (type != EnergyType.AIR) {
+        if (type == EnergyType.CU) {
+            return process.thermal().queueCooling(size, amount, simulate);
+        }
+        if (level == null || !level.getBlockState(worldPosition.above()).isAir()) {
             return 0L;
         }
         SteelmakingController.InjectionResult acceptance =

@@ -159,7 +159,7 @@ public final class ModComponents {
                             .persistent(Codec.LONG)
                             .networkSynchronized(ByteBufCodecs.VAR_LONG));
 
-            public static final DeferredHolder<
+    public static final DeferredHolder<
             net.minecraft.core.component.DataComponentType<?>,
             net.minecraft.core.component.DataComponentType<
                     com.masson.cruciblecraft.nuclear.ReactorRodState>>
@@ -181,6 +181,15 @@ public final class ModComponents {
                     builder -> builder
                             .persistent(Codec.BOOL)
                             .networkSynchronized(ByteBufCodecs.BOOL));
+
+    public static final DeferredHolder<
+            net.minecraft.core.component.DataComponentType<?>,
+            net.minecraft.core.component.DataComponentType<Integer>> POCKET_MODE =
+            COMPONENTS.registerComponentType(
+                    "pocket_mode",
+                    builder -> builder
+                            .persistent(Codec.INT)
+                            .networkSynchronized(ByteBufCodecs.VAR_INT));
 
     private ModComponents() {}
 }

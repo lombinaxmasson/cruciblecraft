@@ -1,5 +1,6 @@
 package com.masson.cruciblecraft.content.item;
 
+import com.masson.cruciblecraft.content.item.tool.InventoryBlockPlacer;
 import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
 
 import net.minecraft.tags.BlockTags;
@@ -25,8 +26,13 @@ public final class MaterialDoubleAxeItem extends MaterialDiggerItem {
         if (tool.consumesAction()) {
             return tool;
         }
-        return canApplyDurabilityDamage(context.getItemInHand())
-                ? VanillaToolUseOn.axe(context)
-                : InteractionResult.PASS;
+        if (!canApplyDurabilityDamage(context.getItemInHand())) {
+            return InteractionResult.PASS;
+        }
+        InteractionResult axe = VanillaToolUseOn.axe(context);
+        if (axe.consumesAction()) {
+            return axe;
+        }
+        return InventoryBlockPlacer.placeSaplingOrWorkbench(context);
     }
 }

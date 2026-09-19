@@ -15,6 +15,7 @@ import com.masson.cruciblecraft.content.mold.MoldHost;
 import com.masson.cruciblecraft.energy.EnergyPackets;
 import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.InsertResult;
 import com.masson.cruciblecraft.heat.ItemHeat;
+import com.masson.cruciblecraft.heat.TemperatureDamage;
 import com.masson.cruciblecraft.machine.CheckpointDecisions;
 import com.masson.cruciblecraft.machine.component.CheckpointTracker;
 import com.masson.cruciblecraft.machine.component.CrucibleProcessCore;
@@ -56,7 +57,7 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler, 
     private final ItemStackHandler inputBuffer = new ItemStackHandler(1) {
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
-            return MaterialUnits.resolve(stack).isPresent();
+            return true;
         }
 
         @Override
@@ -99,6 +100,10 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler, 
         }
         crucible.suckDroppedItems(level, pos);
         crucible.ingestBuffer(level);
+        crucible.process.addRainWater(
+                level.getGameTime(),
+                level.isRainingAt(pos.above()) ? 1.0F : 0.0F,
+                level.isThundering());
         long incomingEnergy = crucible.process.thermal().takePendingHeat();
 
         float previousTemperature = crucible.process.thermal().authoritativeTemperature();
@@ -110,7 +115,6 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler, 
                 ? false
                 : crucible.advance(incomingEnergy, true);
         if (meltedDown) {
-            level.setBlock(pos, Blocks.LAVA.defaultBlockState(), Block.UPDATE_ALL);
             return;
         }
         boolean processChanged = Float.compare(
@@ -151,10 +155,50 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler, 
         if (outcome.boiled()) {
             markMutation();
             emitBoilingEffects();
+            CrucibleWorldHazards.boilHazards(
+                    level,
+                    worldPosition,
+                    process.authoritativeTemperature(),
+                    CrucibleWorldHazards.SMALL_GAS_RANGE,
+                    4);
         } else if (outcome.mutated()) {
             markMutation();
         }
-        return outcome.meltedDown();
+        if (level != null && outcome.destroysHost()) {
+            applyDestruction(outcome);
+            return true;
+        }
+        return false;
+    }
+
+    private void applyDestruction(CrucibleProcessCore.TickOutcome outcome) {
+        if (level == null) {
+            return;
+        }
+        if (outcome.exploded()) {
+            level.explode(
+                    null,
+                    worldPosition.getX() + 0.5,
+                    worldPosition.getY() + 0.5,
+                    worldPosition.getZ() + 0.5,
+                    outcome.explodeRadius(),
+                    false,
+                    Level.ExplosionInteraction.BLOCK);
+            level.setBlock(worldPosition, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
+            return;
+        }
+        if (outcome.acidDestroyed()) {
+            level.setBlock(worldPosition, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
+            return;
+        }
+        CrucibleWorldHazards.boilHazards(
+                level,
+                worldPosition,
+                process.authoritativeTemperature(),
+                CrucibleWorldHazards.SMALL_GAS_RANGE,
+                Math.max(1, (int) (TemperatureDamage.kelvin(
+                        process.authoritativeTemperature()) / 25L)));
+        level.setBlock(worldPosition, Blocks.LAVA.defaultBlockState(), Block.UPDATE_ALL);
     }
 
     private boolean isThermallyQuiescent() {
@@ -191,8 +235,8 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler, 
     @Override
     public boolean handles(EnergyType type, Direction side) {
         return switch (type) {
-            case HEAT -> side == Direction.DOWN;
-            case AIR -> side != null && side.getAxis().isHorizontal();
+            case HEAT, CU -> true;
+            case AIR, KINETIC, KINETIC_PUSH, KINETIC_ROTATION -> true;
             default -> false;
         };
     }
@@ -215,6 +259,13 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler, 
                 return 0L;
             }
             long accepted = process.thermal().queueHeat(size, amount, simulate);
+            if (!simulate && accepted > 0L) {
+                checkpoint.markDirty();
+            }
+            return accepted;
+        }
+        if (type == EnergyType.CU) {
+            long accepted = process.thermal().queueCooling(size, amount, simulate);
             if (!simulate && accepted > 0L) {
                 checkpoint.markDirty();
             }
@@ -290,6 +341,10 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler, 
         return side == null || side == Direction.UP ? topInsert : EmptyRejectHandler.INSTANCE;
     }
 
+    public ItemStackHandler inputBuffer() {
+        return inputBuffer;
+    }
+
     public InsertResult insert(MaterialUnits.Entry entry, float inputTemperature) {
         InsertResult result = process.insert(entry, inputTemperature);
         if (result == InsertResult.SUCCESS) {
@@ -320,9 +375,6 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler, 
                 continue;
             }
             ItemStack stack = entity.getItem();
-            if (MaterialUnits.resolve(stack).isEmpty()) {
-                continue;
-            }
             ItemStack leftover = inputBuffer.insertItem(0, stack, false);
             if (leftover.getCount() == stack.getCount()) {
                 continue;
@@ -342,6 +394,8 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler, 
         }
         Optional<MaterialUnits.Entry> entry = MaterialUnits.resolve(stack);
         if (entry.isEmpty()) {
+            inputBuffer.setStackInSlot(0, ItemStack.EMPTY);
+            emitBoilingEffects();
             return;
         }
         InsertResult result = insert(
