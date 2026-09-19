@@ -1186,7 +1186,9 @@ public final class GTRecipeMapLoader {
                 && (id.getPath().startsWith("hydrocarbon/distillery/")
                         || id.getPath().startsWith("hydrocarbon/generifier/")
                         || id.getPath().startsWith("hydrocarbon/fuels_engine/")
-                        || id.getPath().startsWith("hydrocarbon/fuels_gas/"));
+                        || id.getPath().startsWith("hydrocarbon/fuels_gas/")
+                        || id.getPath().startsWith(
+                                "hydrocarbon/fuels_gas_turbine/"));
     }
 
     static OptionalInt authoredMaterialRuleStage(ResourceLocation id) {

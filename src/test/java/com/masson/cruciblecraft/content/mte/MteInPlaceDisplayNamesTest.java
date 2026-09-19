@@ -54,4 +54,12 @@ class MteInPlaceDisplayNamesTest {
                         "Smelting Crucible (Steel)",
                         "foundry/smelting_crucible_steel"));
     }
+
+    @Test
+    void englishWithoutRegistryPathKeepsCatalogName() {
+        assertEquals(
+                "Black Granite",
+                MteInPlaceDisplayNames.english("Black Granite", null));
+        assertEquals("", MteInPlaceDisplayNames.english(null, null));
+    }
 }

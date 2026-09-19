@@ -86,7 +86,7 @@ class EnergyChainResourceTest {
     }
 
     @Test
-    void bronzeDynamoUsesElectricRotationThreeFaceModelsAndTinAlloyTint() throws Exception {
+    void bronzeDynamoUsesElectricRotationThreeFaceModelsAndGalvanizedSteelName() throws Exception {
         assertModelParent("bronze_dynamo", "machine_3face_2_layer");
         assertModelParent("bronze_dynamo_active", "machine_3face_2_layer");
         assertTextureRoot("bronze_dynamo", "machines/dynamos/electric_rotation");
@@ -95,6 +95,24 @@ class EnergyChainResourceTest {
                 .getAsJsonObject());
         assertEquals("steel_galvanized",
                 MachineBlockColor.casingMaterialId("bronze_dynamo"));
+        assertEquals("bronze",
+                MachineBlockColor.casingMaterialId("bronze_crusher"));
+        assertEquals("tungstensteel",
+                MachineBlockColor.casingMaterialId("tungstensteel_crusher"));
+        JsonObject english = JsonParser.parseString(Files.readString(
+                GENERATED.resolve("assets/cruciblecraft/lang/en_us.json")))
+                .getAsJsonObject();
+        JsonObject chinese = JsonParser.parseString(Files.readString(
+                GENERATED.resolve("assets/cruciblecraft/lang/zh_cn.json")))
+                .getAsJsonObject();
+        assertEquals("Steel Galvanized Dynamo",
+                english.get("block.cruciblecraft.bronze_dynamo").getAsString());
+        assertEquals("Steel Galvanized Dynamo",
+                english.get("item.cruciblecraft.bronze_dynamo").getAsString());
+        assertEquals("镀锌钢发电机",
+                chinese.get("block.cruciblecraft.bronze_dynamo").getAsString());
+        assertEquals("镀锌钢发电机",
+                chinese.get("item.cruciblecraft.bronze_dynamo").getAsString());
     }
 
     private static JsonObject readBlockstate(String id) throws Exception {

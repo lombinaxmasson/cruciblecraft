@@ -84,6 +84,8 @@ class GtStoneLayerRocksTest(unittest.TestCase):
         self.assertNotIn("instanceof RockBlock", feature)
         self.assertIn("GT_SURFACE_ROCK", feature)
         self.assertIn("tryReplace", feature)
+        self.assertIn("tryReplaceVillageBrick", feature)
+        self.assertIn("StructureTags.VILLAGE", feature)
         self.assertIn("tryPlaceOre", feature)
         self.assertIn("minBuildHeight", feature)
         self.assertIn("scan[6] == scan[0]", feature)
@@ -103,6 +105,8 @@ class GtStoneLayerRocksTest(unittest.TestCase):
         self.assertIn("stoneLayerPlacesDenseRockOres", tests)
         self.assertIn("stoneLayerPlacesNetherQuartz", tests)
         self.assertIn("stoneLayerManifestResolvesLocalGt6", tests)
+        self.assertIn("stoneLayerDoesNotEatVillageCobble", tests)
+        self.assertIn("stoneLayerCubeItemModelsExist", tests)
         self.assertIn("stoneLayerDoesNotDumpCatalog", tests)
         self.assertIn("MaterialPrefixes.RAW_ORE", tests)
         self.assertIn("remove_overworld_large_veins", tests)
@@ -135,10 +139,22 @@ class GtStoneLayerRocksTest(unittest.TestCase):
         )
 
     def test_art_copies_gt6_stone_cubes(self) -> None:
-        self.assertEqual(rocks.STONE_BLOCK_COUNT + rocks.ROCK_ORE_COUNT + 1, len(rocks.art_imports()))
+        self.assertEqual(
+            rocks.STONE_BLOCK_COUNT
+            + rocks.ROCK_ORE_COUNT
+            + 1
+            + rocks.VILLAGE_BRICK_COUNT,
+            len(rocks.art_imports()),
+        )
         self.assertTrue(
             any(
                 "gt.stone.granite.black/stone.png" in row["destination"]
+                for row in rocks.art_imports()
+            )
+        )
+        self.assertTrue(
+            any(
+                "gt.stone.andesite/small_bricks.png" in row["destination"]
                 for row in rocks.art_imports()
             )
         )
@@ -157,6 +173,10 @@ class GtStoneLayerRocksTest(unittest.TestCase):
         cubes = rocks.stone_blocks()
         self.assertEqual(rocks.STONE_BLOCK_COUNT, len(cubes))
         self.assertEqual("granite_black/stone", cubes[0]["registry_path"])
+        bricks = rocks.village_brick_blocks()
+        self.assertEqual(rocks.VILLAGE_BRICK_COUNT, len(bricks))
+        self.assertEqual("andesite", bricks[7]["material"])
+        self.assertEqual("andesite/small_bricks", bricks[7]["registry_path"])
         catalog = census.load_json(
             ROOT / "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
         )

@@ -64,6 +64,12 @@ public final class MachineTierCatalog {
         return entry;
     }
 
+    public static Entry findByPath(String path) {
+        Objects.requireNonNull(path, "path");
+        return CATALOG.byId().get(ResourceLocation.fromNamespaceAndPath(
+                "cruciblecraft", path));
+    }
+
     /** True when the catalog records a source-backed obtain-grid gap. */
     public static boolean acquisitionBlocked(ResourceLocation id) {
         Objects.requireNonNull(id, "id");

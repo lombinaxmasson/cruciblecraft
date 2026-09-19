@@ -24,6 +24,18 @@ public final class BurningBoxWorldEffects {
         return level.random.nextInt(200) == 0 && isFlaming(level, front);
     }
 
+    /**
+     * GT6 {@code WD.hasCollide} + not liquid. {@code WD.oxygen} is true
+     * without Galacticraft, so front air is collision and fluid only.
+     */
+    public static boolean hasFrontAir(Level level, BlockPos front) {
+        BlockState state = level.getBlockState(front);
+        if (!state.getCollisionShape(level, front).isEmpty()) {
+            return false;
+        }
+        return !state.liquid() && state.getFluidState().isEmpty();
+    }
+
     public static void trySpreadFlame(
             Level level, BlockPos origin, Integer efficiencyBps) {
         int efficiency = efficiencyBps == null || efficiencyBps < 1

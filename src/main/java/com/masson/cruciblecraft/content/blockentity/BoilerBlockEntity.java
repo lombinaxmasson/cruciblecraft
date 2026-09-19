@@ -287,6 +287,8 @@ public final class BoilerBlockEntity extends BlockEntity implements IEnergyHandl
     }
     public int waterAmount() { return water.getFluidAmount(); }
     public int steamAmount() { return steam.getFluidAmount(); }
+    public int waterCapacity() { return water.getCapacity(); }
+    public int steamCapacity() { return steam.getCapacity(); }
 
     public boolean fillSteam(int amount) {
         int filled = steam.fill(
@@ -328,6 +330,8 @@ public final class BoilerBlockEntity extends BlockEntity implements IEnergyHandl
         super.loadAdditional(tag, registries);
         if (tag.contains("water")) water.readFromNBT(registries, tag.getCompound("water"));
         if (tag.contains("steam")) steam.readFromNBT(registries, tag.getCompound("steam"));
+        clampTank(water);
+        clampTank(steam);
         if (tag.contains("heat")) {
             heat = Math.max(0L, Math.min(heatCapacity, tag.getLong("heat")));
         } else {
@@ -401,6 +405,14 @@ public final class BoilerBlockEntity extends BlockEntity implements IEnergyHandl
         if (!status.equals(next)) {
             status = next;
             markMutation();
+        }
+    }
+
+    private static void clampTank(FluidTank tank) {
+        int amount = tank.getFluidAmount();
+        int capacity = tank.getCapacity();
+        if (amount > capacity) {
+            tank.setFluid(tank.getFluid().copyWithAmount(capacity));
         }
     }
 }

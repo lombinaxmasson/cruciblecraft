@@ -7,8 +7,11 @@ import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.content.block.HopperBlock;
 import com.masson.cruciblecraft.content.blockentity.CeramicMoldBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FoundryCastingBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FoundryCrossingBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.HopperBlockEntity;
-import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
+import com.masson.cruciblecraft.content.mold.CruciblePour;
+import com.masson.cruciblecraft.content.mold.MoldShape;
 import com.masson.cruciblecraft.content.mte.MteFoundryTanks;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.InsertResult;
@@ -146,8 +149,7 @@ public final class CrucibleMoldBehaviorCorrectionGameTests {
         BlockPos cruciblePos = new BlockPos(2, 2, 2);
         BlockPos moldPos = new BlockPos(3, 2, 2);
         placeMoltenCrucible(helper, cruciblePos);
-        helper.setBlock(moldPos, ModBlocks.CERAMIC_MOLD.get());
-        CeramicMoldBlockEntity mold = moldAt(helper, moldPos);
+        CeramicMoldBlockEntity mold = placeIngotMold(helper, moldPos);
         helper.assertTrue(
                 mold.toggleAutoPull(Direction.WEST),
                 "west auto-pull did not enable");
@@ -166,8 +168,7 @@ public final class CrucibleMoldBehaviorCorrectionGameTests {
         BlockPos cruciblePos = new BlockPos(2, 2, 2);
         BlockPos moldPos = new BlockPos(3, 2, 2);
         placeMoltenCrucible(helper, cruciblePos);
-        helper.setBlock(moldPos, ModBlocks.CERAMIC_MOLD.get());
-        CeramicMoldBlockEntity mold = moldAt(helper, moldPos);
+        CeramicMoldBlockEntity mold = placeIngotMold(helper, moldPos);
         helper.assertTrue(
                 mold.toggleAutoPull(Direction.WEST),
                 "west auto-pull did not enable");
@@ -225,29 +226,68 @@ public final class CrucibleMoldBehaviorCorrectionGameTests {
     public static void foundryTankCapacitiesMatchGt6Units(GameTestHelper helper) {
         MteInPlaceGameTestSupport.assertLive(
                 helper, "foundry/smelting_crucible_invar", MteInPlaceKind.CRUCIBLE_FOUNDRY);
-        assertFoundryCapacity(
-                helper, "foundry/smelting_crucible_invar", MteFoundryTanks.SMELTERY_MB);
-        assertFoundryCapacity(helper, "foundry/mold_stone", MteFoundryTanks.MOLD_MB);
-        assertFoundryCapacity(helper, "foundry/basin_stone", MteFoundryTanks.BASIN_MB);
-        assertFoundryCapacity(
-                helper, "foundry/crucible_crossing_stone", MteFoundryTanks.CROSSING_MB);
-        helper.succeed();
-    }
-
-    private static void assertFoundryCapacity(
-            GameTestHelper helper, String path, int expectedMb) {
         BlockPos pos = new BlockPos(2, 2, 2);
         helper.setBlock(
                 pos,
                 ModBlocks.mteInPlaceBlocksById()
-                        .get(MteInPlaceGameTestSupport.id(path))
+                        .get(MteInPlaceGameTestSupport.id("foundry/smelting_crucible_invar"))
                         .get()
                         .defaultBlockState());
-        MteInPlaceBlockEntity be = helper.getBlockEntity(pos);
+        CrucibleBlockEntity smeltery = helper.getBlockEntity(pos);
         helper.assertTrue(
-                be.tank().getCapacity() == expectedMb,
-                path + " tank capacity is " + be.tank().getCapacity()
-                        + ", expected " + expectedMb);
+                CrucibleBlockEntity.maxUnits() == MteFoundryTanks.SMELTERY_MB,
+                "foundry smeltery is not 16 ingots, got " + CrucibleBlockEntity.maxUnits());
+        helper.assertTrue(
+                smeltery instanceof CrucibleBlockEntity,
+                "invar smeltery is not a CrucibleBlockEntity");
+
+        helper.setBlock(
+                pos,
+                ModBlocks.mteInPlaceBlocksById()
+                        .get(MteInPlaceGameTestSupport.id("foundry/mold_stone"))
+                        .get()
+                        .defaultBlockState());
+        FoundryCastingBlockEntity mold = helper.getBlockEntity(pos);
+        mold.setPattern(MoldShape.INGOT.mask());
+        helper.assertTrue(
+                !mold.basin()
+                        && mold.moldRequiredMaterialUnits() == MteFoundryTanks.MOLD_MB,
+                "stone mold required units are " + mold.moldRequiredMaterialUnits()
+                        + ", expected " + MteFoundryTanks.MOLD_MB);
+
+        helper.setBlock(
+                pos,
+                ModBlocks.mteInPlaceBlocksById()
+                        .get(MteInPlaceGameTestSupport.id("foundry/basin_stone"))
+                        .get()
+                        .defaultBlockState());
+        FoundryCastingBlockEntity basin = helper.getBlockEntity(pos);
+        helper.assertTrue(
+                basin.basin()
+                        && basin.moldRequiredMaterialUnits() == MteFoundryTanks.BASIN_MB,
+                "stone basin required units are " + basin.moldRequiredMaterialUnits()
+                        + ", expected " + MteFoundryTanks.BASIN_MB);
+
+        helper.setBlock(
+                pos,
+                ModBlocks.mteInPlaceBlocksById()
+                        .get(MteInPlaceGameTestSupport.id("foundry/crucible_crossing_stone"))
+                        .get()
+                        .defaultBlockState());
+        FoundryCrossingBlockEntity crossing = helper.getBlockEntity(pos);
+        helper.assertTrue(
+                crossing instanceof CruciblePour
+                        && MteFoundryTanks.CROSSING_MB == 0,
+                "stone crossing still has a melt buffer");
+        helper.succeed();
+    }
+
+    private static CeramicMoldBlockEntity placeIngotMold(
+            GameTestHelper helper, BlockPos pos) {
+        helper.setBlock(pos, ModBlocks.CERAMIC_MOLD.get());
+        CeramicMoldBlockEntity mold = moldAt(helper, pos);
+        mold.setPattern(MoldShape.INGOT.mask());
+        return mold;
     }
 
     private static void placeMoltenCrucible(GameTestHelper helper, BlockPos pos) {

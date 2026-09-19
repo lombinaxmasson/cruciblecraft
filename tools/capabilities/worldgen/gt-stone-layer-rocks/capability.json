@@ -13,7 +13,8 @@
     "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerNoise.java",
     "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerCatalog.java",
     "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerStones.java",
-    "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerRockFeature.java",
+      "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerRockFeature.java",
+      "src/main/java/com/masson/cruciblecraft/worldgen/VillageStoneBricks.java",
     "src/main/java/com/masson/cruciblecraft/worldgen/NetherQuartzLayerFeature.java",
     "src/main/java/com/masson/cruciblecraft/content/block/StoneLayerStoneBlock.java",
     "src/main/java/com/masson/cruciblecraft/content/block/StoneLayerRockOreBlock.java",
@@ -35,7 +36,8 @@
     "src/main/resources/assets/cruciblecraft/gt6_gt_stone_layer_rocks_art_manifest.json",
     "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/stone.png",
     "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/cobble.png",
-    "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/cobble_mossy.png",
+      "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/cobble_mossy.png",
+      "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/small_bricks.png",
     "src/main/resources/assets/cruciblecraft/textures/block/gt6/rock_ores/**",
     "tools/capabilities/worldgen/gt-stone-layer-rocks/**",
     "tools/waves/worldgen/gt-stone-layer-rocks/**",
@@ -58,8 +60,10 @@
     "stoneLayerPlacesDenseRockOres",
     "stoneLayerPlacesNetherQuartz",
     "stoneLayerOneIn128AndNoDeep",
-    "stoneLayerDoesNotDumpCatalog",
-    "stoneLayerManifestResolvesLocalGt6"
+      "stoneLayerDoesNotDumpCatalog",
+      "stoneLayerManifestResolvesLocalGt6",
+      "stoneLayerDoesNotEatVillageCobble",
+      "stoneLayerCubeItemModelsExist"
   ],
   "identity_disposition": [
     {

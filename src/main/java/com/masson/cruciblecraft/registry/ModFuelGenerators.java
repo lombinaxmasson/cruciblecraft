@@ -28,6 +28,23 @@ public final class ModFuelGenerators {
                     FuelGeneratorSpec.EnergyOutputFace.FRONT,
                     List.of(Direction.UP),
                     1);
+    public static final FuelGeneratorSpec SMALL_GAS_TURBINE =
+            new FuelGeneratorSpec(
+                    id("small_gas_turbine"),
+                    () -> ModRecipeMaps.FUELS_GAS_TURBINE,
+                    8_000,
+                    8_000,
+                    1,
+                    EnergyType.KINETIC_ROTATION,
+                    16L,
+                    1L,
+                    65_536L,
+                    3_500,
+                    FuelGeneratorSpec.EnergyOutputFace.FRONT,
+                    List.of(Direction.UP),
+                    1,
+                    FuelGeneratorSpec.ExhaustRouting.BACK,
+                    FuelGeneratorSpec.InputPhase.ANY);
     public static final FuelGeneratorSpec BURNING_GAS_GENERATOR =
             new FuelGeneratorSpec(
                     id("burning_gas_generator"),
@@ -44,7 +61,7 @@ public final class ModFuelGenerators {
                     List.of(Direction.NORTH, Direction.SOUTH),
                     2);
     public static final List<FuelGeneratorSpec> ALL =
-            List.of(FUEL_ENGINE, BURNING_GAS_GENERATOR);
+            List.of(FUEL_ENGINE, SMALL_GAS_TURBINE, BURNING_GAS_GENERATOR);
     private static final Map<ResourceLocation, FuelGeneratorSpec> BY_MAP =
             ALL.stream().collect(java.util.stream.Collectors.toUnmodifiableMap(
                     spec -> spec.requireRecipeMap().id(),

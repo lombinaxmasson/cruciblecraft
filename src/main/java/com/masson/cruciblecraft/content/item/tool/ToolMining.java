@@ -8,6 +8,7 @@ import com.masson.cruciblecraft.content.block.GtBrokenOreBlock;
 import com.masson.cruciblecraft.content.block.GtHostedOreBlock;
 import com.masson.cruciblecraft.content.block.GtSmallOreBlock;
 import com.masson.cruciblecraft.content.block.HopperBlock;
+import com.masson.cruciblecraft.content.block.MaterialOreBlock;
 import com.masson.cruciblecraft.content.block.LargeBoilerBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.block.RedstoneWireBlock;
@@ -108,6 +109,7 @@ public final class ToolMining {
         Block block = state.getBlock();
         return state.is(Tags.Blocks.ORES)
                 || block instanceof GtHostedOreBlock
+                || block instanceof MaterialOreBlock
                 || block instanceof GtSmallOreBlock
                 || block instanceof GtBrokenOreBlock
                 || block instanceof BedrockOreBlock

@@ -121,6 +121,45 @@ class CrucibleProcessCoreTest {
     }
 
     @Test
+    void alloyTickConvertsNoDecomposeRedAlloy() {
+        CrucibleProcessCore core = CrucibleProcessCore.singleBlock();
+        int ingot = MaterialPrefixes.INGOT.units();
+        core.contents().replace(Map.of("copper", ingot, "redstone", 4 * ingot));
+        heatAbove(core, "red_alloy");
+        CrucibleProcessCore.TickOutcome outcome = core.advance(0L, true);
+        assertTrue(!outcome.destroysHost());
+        assertEquals(ingot, core.contents().units("red_alloy"));
+        assertEquals(0, core.contents().units("copper"));
+        assertEquals(0, core.contents().units("redstone"));
+    }
+
+    @Test
+    void alloyTickConvertsFirstLevelBlackBronze() {
+        CrucibleProcessCore core = CrucibleProcessCore.singleBlock();
+        int ingot = MaterialPrefixes.INGOT.units();
+        core.contents().replace(Map.of("copper", 3 * ingot, "electrum", 2 * ingot));
+        heatAbove(core, "black_bronze");
+        CrucibleProcessCore.TickOutcome outcome = core.advance(0L, true);
+        assertTrue(!outcome.destroysHost());
+        assertEquals(5 * ingot, core.contents().units("black_bronze"));
+        assertEquals(0, core.contents().units("copper"));
+        assertEquals(0, core.contents().units("electrum"));
+    }
+
+    @Test
+    void alloyTickUsesAnnealedCopperBronzeExtra() {
+        CrucibleProcessCore core = CrucibleProcessCore.singleBlock();
+        int ingot = MaterialPrefixes.INGOT.units();
+        core.contents().replace(Map.of("annealed_copper", 3 * ingot, "tin", ingot));
+        heatAbove(core, "bronze");
+        CrucibleProcessCore.TickOutcome outcome = core.advance(0L, true);
+        assertTrue(!outcome.destroysHost());
+        assertEquals(4 * ingot, core.contents().units("bronze"));
+        assertEquals(0, core.contents().units("annealed_copper"));
+        assertEquals(0, core.contents().units("tin"));
+    }
+
+    @Test
     void fillMoldAtSidePoursFirstMoltenIdentityMelt() {
         CrucibleProcessCore core = CrucibleProcessCore.singleBlock();
         int ingot = MaterialPrefixes.INGOT.units();
@@ -158,8 +197,53 @@ class CrucibleProcessCoreTest {
         assertTrue(!core.addRainWater(11L, 1.0F, false));
     }
 
+    @Test
+    void ambientIngotCoolsAHotCrucible() {
+        CrucibleProcessCore core = CrucibleProcessCore.singleBlock();
+        core.thermal().restore(
+                1_000.0F,
+                0L,
+                0L,
+                CrucibleThermalModel.HOT_BUFFER_TICKS,
+                false);
+        float before = core.authoritativeTemperature();
+        assertEquals(InsertResult.SUCCESS, fill(core, "iron", 1));
+        assertTrue(
+                core.authoritativeTemperature() < before - 300.0F,
+                "cold ingot mix should drop a hot smeltery by hundreds of degrees");
+    }
+
+    @Test
+    void fullerChargeHeatsSlowerUnderTheSameHu() {
+        CrucibleProcessCore empty = CrucibleProcessCore.singleBlock();
+        CrucibleProcessCore full = CrucibleProcessCore.singleBlock();
+        assertEquals(InsertResult.SUCCESS, fill(full, "iron", 16));
+        empty.thermal().restore(
+                20.0F, 0L, 0L, CrucibleThermalModel.HOT_BUFFER_TICKS, false);
+        full.thermal().restore(
+                20.0F, 0L, 0L, CrucibleThermalModel.HOT_BUFFER_TICKS, false);
+        for (int tick = 0; tick < 200; tick++) {
+            empty.advance(16L, true);
+            full.advance(16L, true);
+        }
+        assertTrue(
+                full.authoritativeTemperature()
+                        < empty.authoritativeTemperature() - 50.0F,
+                "16 ingots must raise HU-per-kelvin the way GT6 weight does");
+    }
+
     private static InsertResult fillIngots(CrucibleProcessCore core, int count) {
         return fill(core, "iron", count);
+    }
+
+    private static void heatAbove(CrucibleProcessCore core, String resultId) {
+        core.thermal().restore(
+                (float) MaterialCatalog.require(resultId).thermal().meltingPoint()
+                        + 50.0F,
+                0L,
+                0L,
+                CrucibleThermalModel.HOT_BUFFER_TICKS,
+                false);
     }
 
     private static InsertResult fill(CrucibleProcessCore core, String materialId, int count) {

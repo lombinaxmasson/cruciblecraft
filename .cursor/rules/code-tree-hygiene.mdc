@@ -11,7 +11,8 @@ reference trees or generated datapacks as a cleanup.
 ## Never
 
 - `git clean -fdx`, delete, junction, or symlink `gt6_code/`,
-  `gtceu_code/`, `gt6u_code/`, `gt6_dump/`, or `gt6_referencable_port_code/`
+  `gtceu_code/`, `gt6u_code/`, `gt6_dump/`, `gt6_referencable_port_code/`,
+  or `ktfruaddon/`
 - Add a new `src/<name>_generated` sibling. Frozen roots live in
   `tools/generated_resource_roots.json` and
   `gradle/scripts/source-sets.gradle`

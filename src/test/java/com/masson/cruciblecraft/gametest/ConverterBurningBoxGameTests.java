@@ -2,10 +2,14 @@ package com.masson.cruciblecraft.gametest;
 
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
+import com.masson.cruciblecraft.content.block.BoilerBlock;
 import com.masson.cruciblecraft.content.block.FluidBedBurningBoxBlock;
 import com.masson.cruciblecraft.content.block.FuelGeneratorBlock;
+import com.masson.cruciblecraft.content.block.SolidBurningBoxBlock;
+import com.masson.cruciblecraft.content.blockentity.BoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidBedBurningBoxBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.SolidBurningBoxBlockEntity;
 import com.masson.cruciblecraft.energy.converter.BurningBoxWorldEffects;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModFluids;
@@ -15,8 +19,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -233,6 +240,114 @@ public final class ConverterBurningBoxGameTests {
                         || helper.getBlockState(front).is(Blocks.FIRE),
                 "Front wool did not catch fire");
         helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void steelBoilerWaterFillStopsAtGt6Capacity(
+            GameTestHelper helper) {
+        BlockPos pos = new BlockPos(3, 1, 3);
+        helper.setBlock(
+                pos,
+                ModBlocks.converterBlocksById()
+                        .get(ResourceLocation.fromNamespaceAndPath(
+                                "cruciblecraft", "steel_boiler"))
+                        .get()
+                        .defaultBlockState()
+                        .setValue(BoilerBlock.FACING, Direction.EAST));
+        BoilerBlockEntity boiler = helper.getBlockEntity(pos);
+        IFluidHandler water = boiler.fluids(Direction.NORTH);
+        helper.assertTrue(
+                boiler.waterCapacity() == 4_000,
+                "Steel boiler water tank is not GT6 4000 L: "
+                        + boiler.waterCapacity());
+        helper.assertTrue(
+                water != null
+                        && water.fill(
+                                new FluidStack(Fluids.WATER, 16_000),
+                                IFluidHandler.FluidAction.EXECUTE)
+                                == 4_000
+                        && boiler.waterAmount() == 4_000,
+                "Steel boiler accepted water past capacity: "
+                        + boiler.waterAmount());
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void gasBoxFrontBlockStopsFuel(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 1, 2);
+        helper.setBlock(
+                pos,
+                ModBlocks.BRONZE_BURNING_BOX_GAS.get()
+                        .defaultBlockState()
+                        .setValue(FuelGeneratorBlock.FACING, Direction.EAST));
+        helper.setBlock(pos.east(), Blocks.STONE);
+        FuelGeneratorBlockEntity gas = helper.getBlockEntity(pos);
+        helper.assertTrue(
+                fill(
+                        gas,
+                        chemical("methane", 16),
+                        IFluidHandler.FluidAction.EXECUTE)
+                        == 16,
+                "Gas burning box rejected methane");
+        gas.ignite();
+        helper.startSequence()
+                .thenIdle(8)
+                .thenExecute(() -> helper.assertTrue(
+                        gas.energyGenerated() == 0L
+                                && !gas.burning()
+                                && gas.inputAmount() == 16,
+                        "Blocked-front gas box kept burning: generated="
+                                + gas.energyGenerated()
+                                + " burning="
+                                + gas.burning()
+                                + " fuel="
+                                + gas.inputAmount()))
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void gasBoxIgniteWithoutFuelProducesNoHu(
+            GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 1, 2);
+        helper.setBlock(
+                pos,
+                ModBlocks.BRONZE_BURNING_BOX_GAS.get()
+                        .defaultBlockState()
+                        .setValue(FuelGeneratorBlock.FACING, Direction.EAST));
+        FuelGeneratorBlockEntity gas = helper.getBlockEntity(pos);
+        gas.ignite();
+        helper.startSequence()
+                .thenIdle(2)
+                .thenExecute(() -> helper.assertTrue(
+                        !gas.burning() && gas.energyGenerated() == 0L,
+                        "Empty gas box stayed lit or emitted HU: burning="
+                                + gas.burning()
+                                + " generated="
+                                + gas.energyGenerated()))
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void solidBoxFrontBlockStopsFuel(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 1, 2);
+        helper.setBlock(
+                pos,
+                ModBlocks.BRONZE_BURNING_BOX_SOLID.get()
+                        .defaultBlockState()
+                        .setValue(SolidBurningBoxBlock.FACING, Direction.EAST));
+        helper.setBlock(pos.east(), Blocks.STONE);
+        SolidBurningBoxBlockEntity box = helper.getBlockEntity(pos);
+        helper.assertTrue(
+                box.insertFuel(new ItemStack(Items.COAL)),
+                "Solid burning box rejected coal");
+        box.ignite();
+        helper.startSequence()
+                .thenIdle(2)
+                .thenExecute(() -> helper.assertTrue(
+                        box.energyStored() == 0L,
+                        "Blocked-front solid box consumed fuel: HU="
+                                + box.energyStored()))
+                .thenSucceed();
     }
 
     private static int fill(

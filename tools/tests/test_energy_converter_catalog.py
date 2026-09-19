@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Energy converter catalog closed card: 179 loader rows, no placeholders."""
+"""Energy converter catalog closed card: 179 loader rows plus 7 DESIGN_POLICY turbines."""
 from __future__ import annotations
 
 import json
@@ -127,12 +127,13 @@ class EnergyConverterCatalogCardTest(unittest.TestCase):
     def test_kinds_and_tiers_are_not_processing_catalog(self) -> None:
         kinds = io.load_json(KINDS)
         tiers = io.load_json(TIERS)
-        self.assertEqual(18, len(kinds["kinds"]))
-        self.assertEqual(179, len(tiers["tiers"]))
+        self.assertEqual(19, len(kinds["kinds"]))
+        self.assertEqual(186, len(tiers["tiers"]))
         ids = {row["id"] for row in tiers["tiers"]}
         self.assertIn("cruciblecraft:bronze_burning_box_gas", ids)
         self.assertIn("cruciblecraft:bronze_boiler", ids)
         self.assertIn("cruciblecraft:bronze_fuel_engine", ids)
+        self.assertIn("cruciblecraft:bronze_small_gas_turbine", ids)
         self.assertIn("cruciblecraft:steel_galvanized_electric_motor", ids)
         self.assertIn("cruciblecraft:steel_galvanized_electric_heater", ids)
         self.assertIn("cruciblecraft:steel_galvanized_electric_engine", ids)

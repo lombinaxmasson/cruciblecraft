@@ -144,6 +144,11 @@ def geometry_key(gt6_class: str) -> str:
     raise ValueError(f"unknown foundry class {gt6_class}")
 
 
+def sits_flat(gt6_class: str) -> bool:
+    """GT6 molds/basins stay world-aligned; the 5×5 is not rotated by facing."""
+    return geometry_key(gt6_class) in {"Mold", "Basin"}
+
+
 def material_token(registry_path: str) -> str:
     if registry_path.startswith("foundry/"):
         return registry_path.rsplit("_", 1)[-1]
@@ -199,7 +204,12 @@ def _write_parents() -> None:
         _write_json(BLOCK_MODELS / dest_name, payload)
 
 
-def _blockstate(model: str) -> dict[str, Any]:
+def _blockstate(model: str, gt6_class: str = "") -> dict[str, Any]:
+    faces = ("down", "east", "north", "south", "up", "west")
+    if gt6_class and sits_flat(gt6_class):
+        return {
+            "variants": {f"facing={face}": {"model": model} for face in faces}
+        }
     return {
         "variants": {
             "facing=down": {"model": model, "x": 90},
@@ -224,7 +234,10 @@ def write_models(rows: list[dict[str, Any]] | None = None) -> None:
             "textures": {"body": texture, "particle": "#body"},
         }
         _write_json(BLOCK_MODELS / f"{path}.json", child)
-        _write_json(BLOCKSTATES / f"{path}.json", _blockstate(f"cruciblecraft:block/{path}"))
+        _write_json(
+            BLOCKSTATES / f"{path}.json",
+            _blockstate(f"cruciblecraft:block/{path}", str(row["gt6_class"])),
+        )
         _write_json(ITEM_MODELS / f"{path}.json", {"parent": f"cruciblecraft:block/{path}"})
 
 
@@ -333,7 +346,7 @@ def write(*, unique_active: bool = True) -> None:
             "no_per_material_png": True,
             "overlay_omitted_empty": True,
             "reuse_faucet_metallic": True,
-            "foundry_tanks_remain_dummy": True,
+            "foundry_tanks_remain_dummy": False,
             "reopens_foundry_identity": False,
             "reopens_foundry_required_test_ids": False,
         },
@@ -420,6 +433,17 @@ def check() -> list[str]:
             expected = texture_path(material_token(path))
             if model == block and expected not in text:
                 errors.append(f"{path} texture is not {expected}")
+        blockstate = BLOCKSTATES / f"{path}.json"
+        if not blockstate.is_file():
+            errors.append(f"missing blockstate {path}")
+        elif sits_flat(str(row["gt6_class"])):
+            variants = census.load_json(blockstate).get("variants") or {}
+            for name, variant in variants.items():
+                if "x" in variant or "y" in variant:
+                    errors.append(
+                        f"{path} {name} rotates the floor mold/basin "
+                        "(chisel hits world XZ)"
+                    )
     if not (PACK / "structure" / "empty.nbt").is_file():
         errors.append("missing foundry-art structure/empty.nbt")
     if not (PACK / "gametest" / "structure" / "empty.nbt").is_file():

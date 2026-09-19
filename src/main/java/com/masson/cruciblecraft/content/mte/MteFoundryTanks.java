@@ -4,10 +4,9 @@ import com.masson.cruciblecraft.fluid.MoltenTransferMath;
 import com.masson.cruciblecraft.machine.component.CrucibleProcessCore;
 
 /**
- * Dummy {@code IFluidHandler} capacities for in-place foundry hosts. These are
- * still tanks, not {@code MultiTileEntitySmeltery} / {@code ITileEntityMold}.
- * Amounts follow GT6 {@code U}: smeltery {@code 16*U}, mold one ingot, basin
- * {@code OP.blockSolid = 9*U}, crossing has no melt buffer.
+ * GT6 foundry amounts in CC units: smeltery {@code 16*U}, mold one ingot,
+ * basin {@code OP.blockSolid = 9*U}, crossing has no melt buffer. These are
+ * not dummy {@code IFluidHandler} tanks.
  */
 public final class MteFoundryTanks {
     public static final int SMELTERY_MB =
@@ -20,7 +19,7 @@ public final class MteFoundryTanks {
     private MteFoundryTanks() {}
 
     public static int capacityMb(MteInPlaceSpec spec) {
-        if (spec == null || !spec.kind().foundryTank()) {
+        if (spec == null || spec.kind() != MteInPlaceKind.CRUCIBLE_FOUNDRY) {
             return 0;
         }
         return capacityMb(spec.gt6Class());

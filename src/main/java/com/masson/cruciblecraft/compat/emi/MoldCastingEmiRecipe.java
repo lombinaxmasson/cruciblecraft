@@ -11,7 +11,6 @@ import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.WidgetHolder;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 final class MoldCastingEmiRecipe implements EmiRecipe {
@@ -25,7 +24,7 @@ final class MoldCastingEmiRecipe implements EmiRecipe {
             String materialId,
             String form,
             ItemStack input,
-            Item mold,
+            ItemStack mold,
             ItemStack output,
             int count) {
         id = EmiIds.synthetic(ResourceLocation.fromNamespaceAndPath(

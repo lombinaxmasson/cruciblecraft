@@ -37,8 +37,20 @@
     },
     {
       "faces": {
+        "down": {
+          "texture": "#side_overlay"
+        },
+        "east": {
+          "texture": "#side_overlay"
+        },
         "north": {
-          "texture": "#overlay"
+          "texture": "#end_overlay"
+        },
+        "up": {
+          "texture": "#side_overlay"
+        },
+        "west": {
+          "texture": "#side_overlay"
         }
       },
       "from": [
@@ -56,8 +68,9 @@
   "render_type": "minecraft:cutout_mipped",
   "textures": {
     "end": "cruciblecraft:block/gt6_import/lu_fiber_wire",
-    "overlay": "cruciblecraft:block/gt6_import/lu_fiber_wire_overlay",
+    "end_overlay": "cruciblecraft:block/gt6_import/lu_fiber_wire_overlay",
     "particle": "cruciblecraft:block/gt6_import/lu_fiber_wire",
-    "side": "cruciblecraft:block/gt6_import/lu_fiber_wire"
+    "side": "cruciblecraft:block/gt6_import/lu_fiber_wire",
+    "side_overlay": "cruciblecraft:block/gt6_import/lu_fiber_wire_overlay"
   }
 }

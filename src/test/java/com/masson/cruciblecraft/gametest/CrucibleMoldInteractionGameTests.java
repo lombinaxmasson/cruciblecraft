@@ -16,6 +16,7 @@ import com.masson.cruciblecraft.heat.ItemHeat;
 import com.masson.cruciblecraft.heat.TemperatureDamage;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
+import com.masson.cruciblecraft.registry.ModComponents;
 import com.masson.cruciblecraft.registry.ModItems;
 
 import net.minecraft.core.BlockPos;
@@ -25,10 +26,12 @@ import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Pig;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.gametest.GameTestHolder;
@@ -94,7 +97,7 @@ public final class CrucibleMoldInteractionGameTests {
         BlockPos copperPos = new BlockPos(4, 2, 2);
         placeMolten(helper, ironPos, "iron", 1);
         placeMolten(helper, copperPos, "copper", 1);
-        helper.setBlock(moldPos, ModBlocks.CERAMIC_MOLD.get());
+        placeIngotMold(helper, moldPos);
         Player player = helper.makeMockPlayer(GameType.SURVIVAL);
         clickEmpty(helper, moldPos, player, 0.10, 1.0, 0.50, Direction.UP);
         CeramicMoldBlockEntity mold = moldAt(helper, moldPos);
@@ -114,8 +117,7 @@ public final class CrucibleMoldInteractionGameTests {
         BlockPos cruciblePos = new BlockPos(2, 2, 2);
         BlockPos moldPos = new BlockPos(3, 2, 2);
         placeMolten(helper, cruciblePos, "iron", 2);
-        helper.setBlock(moldPos, ModBlocks.CERAMIC_MOLD.get());
-        CeramicMoldBlockEntity mold = moldAt(helper, moldPos);
+        CeramicMoldBlockEntity mold = placeIngotMold(helper, moldPos);
         CrucibleBlockEntity crucible = crucibleAt(helper, cruciblePos);
         int before = crucible.totalUnits();
         helper.assertTrue(
@@ -233,6 +235,7 @@ public final class CrucibleMoldInteractionGameTests {
         BlockPos moldPos = new BlockPos(2, 2, 2);
         helper.setBlock(moldPos, ModBlocks.CERAMIC_MOLD.get());
         CeramicMoldBlockEntity mold = moldAt(helper, moldPos);
+        mold.setPattern(MoldShape.INGOT.mask());
         int original = mold.pattern();
         Player player = helper.makeMockPlayer(GameType.SURVIVAL);
         ItemStack wrench = ModItems.MATERIAL_WRENCH.get().variant("iron");
@@ -260,7 +263,7 @@ public final class CrucibleMoldInteractionGameTests {
         // Stone faucet max is stone melting * 1.25 in Kelvin (~1102 °C). Iron at
         // 1600 °C lavas the faucet; copper just above melt stays under that cap.
         placeMolten(helper, cruciblePos, "copper", 1, 1090.0F);
-        helper.setBlock(moldPos, ModBlocks.CERAMIC_MOLD.get());
+        placeIngotMold(helper, moldPos);
         helper.setBlock(
                 faucetPos,
                 ModBlocks.mteInPlaceBlocksById()
@@ -294,6 +297,61 @@ public final class CrucibleMoldInteractionGameTests {
                 mold.temperature() < before,
                 "CU did not lower the mold temperature");
         helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void blankMoldRefusesFill(GameTestHelper helper) {
+        BlockPos cruciblePos = new BlockPos(2, 2, 2);
+        BlockPos moldPos = new BlockPos(3, 2, 2);
+        placeMolten(helper, cruciblePos, "iron", 1);
+        helper.setBlock(moldPos, ModBlocks.CERAMIC_MOLD.get());
+        CeramicMoldBlockEntity mold = moldAt(helper, moldPos);
+        helper.assertTrue(
+                mold.pattern() == 0,
+                "fresh ceramic mold was not unshaped");
+        helper.assertTrue(
+                !crucibleAt(helper, cruciblePos).fillMoldAtSide(
+                        mold, Direction.EAST, Direction.WEST),
+                "unshaped mold accepted molten iron");
+        helper.assertTrue(!mold.isFilled(), "unshaped mold stored a casting");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void customMoldDropKeepsPattern(GameTestHelper helper) {
+        BlockPos moldPos = new BlockPos(2, 2, 2);
+        helper.setBlock(moldPos, ModBlocks.CERAMIC_MOLD.get());
+        moldAt(helper, moldPos).setPattern(1);
+        helper.getLevel().destroyBlock(helper.absolutePos(moldPos), true);
+        helper.startSequence()
+                .thenIdle(2)
+                .thenExecute(() -> {
+                    ItemEntity dropped = helper.getLevel()
+                            .getEntitiesOfClass(
+                                    ItemEntity.class,
+                                    new AABB(helper.absolutePos(moldPos))
+                                            .inflate(1.25))
+                            .stream()
+                            .filter(entity -> entity.getItem().is(
+                                    ModItems.CERAMIC_MOLD.get()))
+                            .findFirst()
+                            .orElse(null);
+                    helper.assertTrue(
+                            dropped != null
+                                    && Integer.valueOf(1).equals(
+                                            dropped.getItem().get(
+                                                    ModComponents.MOLD_PATTERN)),
+                            "custom chiseled mold did not drop the blank mold with its pattern");
+                })
+                .thenSucceed();
+    }
+
+    private static CeramicMoldBlockEntity placeIngotMold(
+            GameTestHelper helper, BlockPos pos) {
+        helper.setBlock(pos, ModBlocks.CERAMIC_MOLD.get());
+        CeramicMoldBlockEntity mold = moldAt(helper, pos);
+        mold.setPattern(MoldShape.INGOT.mask());
+        return mold;
     }
 
     private static void placeMolten(

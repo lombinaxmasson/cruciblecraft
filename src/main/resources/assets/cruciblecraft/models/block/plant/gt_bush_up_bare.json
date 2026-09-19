@@ -1,0 +1,81 @@
+{
+  "parent": "minecraft:block/block",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "cruciblecraft:block/gt6_import/plants/bush/colored/bush",
+    "bush": "cruciblecraft:block/gt6_import/plants/bush/colored/bush",
+    "bush_overlay": "cruciblecraft:block/gt6_import/plants/bush/overlay/bush"
+  },
+  "elements": [
+    {
+      "from": [
+        2,
+        12,
+        2
+      ],
+      "to": [
+        14,
+        16,
+        14
+      ],
+      "faces": {
+        "down": {
+          "texture": "#bush",
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#bush",
+          "tintindex": 0
+        },
+        "north": {
+          "texture": "#bush",
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#bush",
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#bush",
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#bush",
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        12,
+        2
+      ],
+      "to": [
+        14,
+        16,
+        14
+      ],
+      "faces": {
+        "down": {
+          "texture": "#bush_overlay"
+        },
+        "up": {
+          "texture": "#bush_overlay"
+        },
+        "north": {
+          "texture": "#bush_overlay"
+        },
+        "south": {
+          "texture": "#bush_overlay"
+        },
+        "west": {
+          "texture": "#bush_overlay"
+        },
+        "east": {
+          "texture": "#bush_overlay"
+        }
+      }
+    }
+  ]
+}

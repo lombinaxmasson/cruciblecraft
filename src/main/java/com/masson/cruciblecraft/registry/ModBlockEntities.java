@@ -5,6 +5,8 @@ import com.masson.cruciblecraft.content.blockentity.AnvilBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.BoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CokeOvenBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CeramicMoldBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FoundryCastingBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FoundryCrossingBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CableBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrusherBlockEntity;
@@ -169,6 +171,26 @@ public final class ModBlockEntities {
                     () -> BlockEntityType.Builder.of(
                             CeramicMoldBlockEntity::new,
                             ModBlocks.CERAMIC_MOLD.get()).build(null));
+
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<FoundryCastingBlockEntity>>
+                    FOUNDRY_CASTING = BLOCK_ENTITIES.register(
+                            "foundry_casting",
+                            () -> BlockEntityType.Builder.of(
+                                    FoundryCastingBlockEntity::new,
+                                    ModBlocks.foundryCastingBlockArray())
+                                    .build(null));
+
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<FoundryCrossingBlockEntity>>
+                    FOUNDRY_CROSSING = BLOCK_ENTITIES.register(
+                            "foundry_crossing",
+                            () -> BlockEntityType.Builder.of(
+                                    FoundryCrossingBlockEntity::new,
+                                    ModBlocks.foundryCrossingBlockArray())
+                                    .build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BoilerBlockEntity>> BOILER =
             BLOCK_ENTITIES.register(
@@ -400,6 +422,7 @@ public final class ModBlockEntities {
                                     FuelGeneratorBlockEntity::new,
                                     ModBlocks.converterBlocks(
                                             "fuel_engine",
+                                            "small_gas_turbine",
                                             "fluid_burning_box"))
                                     .build(null));
     public static final DeferredHolder<

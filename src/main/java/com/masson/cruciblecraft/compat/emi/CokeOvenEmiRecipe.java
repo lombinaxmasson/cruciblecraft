@@ -102,20 +102,16 @@ final class CokeOvenEmiRecipe implements EmiRecipe {
         }
         if (outputs.size() > 1 && !layout.tanks().isEmpty()) {
             var tank = layout.tanks().getFirst();
-            widgets.addTank(
+            Gt6EmiGui.tank(
+                    widgets,
                     outputs.get(1),
                     tank.x(),
                     tank.y(),
                     tank.width(),
                     tank.height(),
                     Math.max(1, (int) outputs.get(1).getAmount()))
-                    .drawBack(false)
                     .recipeContext(this);
         }
-        Gt6EmiGui.catalyst(
-                widgets,
-                workstation,
-                ProcessingEmiLayout.WORKSTATION.x(),
-                ProcessingEmiLayout.WORKSTATION.y());
+        Gt6EmiGui.workstation(widgets, workstation);
     }
 }

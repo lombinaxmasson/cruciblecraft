@@ -2851,6 +2851,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                     "bronze_boiler",
                     "bronze_steam_engine",
                     "bronze_fuel_engine",
+                    "bronze_small_gas_turbine",
                     "bronze_dynamo",
                     "steel_galvanized_electric_motor",
                     "steel_galvanized_electric_heater",

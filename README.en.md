@@ -2,48 +2,41 @@
 
 [中文](README.md)
 
-CrucibleCraft is an unofficial port of GregTech 6 to Minecraft 1.21.1 on
-NeoForge. Its long-term goal is to port GT6's complete material, machine,
-recipe, energy, logistics, and world-generation systems to modern Minecraft,
-backed by a maintainable and verifiable data-driven implementation.
+GregTech 6 on Minecraft 1.21.1 / NeoForge: materials, machines, recipes,
+energy, logistics, and worldgen, ported from a pinned upstream with a
+data-driven pipeline. Unofficial. The target is full coverage; progress is
+closed capabilities, and remaining gaps stay on the ledger until they are
+done for real.
 
-- [Player guide](docs/current/player-guide.md)
+Current version `0.1.0-test.20260919` — source tree, development snapshot.
+Play notes: [player guide](docs/current/player-guide.md) (new worlds).
+
 - [Project status](docs/current/project-status.md)
-- [Roadmap and current progress](docs/current/roadmap.md)
+- [Unimplemented gaps](docs/current/unimplemented-gap.md)
+- [Roadmap](docs/current/roadmap.md)
 - [Issue tracker](https://github.com/icodestuljh/cruciblecraft/issues)
 
 ## Screenshots
 
 > Screenshots and gameplay demonstrations will be added here.
 
-<!-- Suggested subjects: world generation, machine lines, logistics networks, and multiblocks. -->
+## In the tree
 
-## Features
+- Materials, prefixes, ore processing, and source-generated recipe sets
+- Fire / heat / steam / kinetic / rotational / EU; electric heaters, engines,
+  LU fiber, and fission cores already run. Large heat exchangers, steam
+  turbines, and fusion are in as a CrucibleCraft extension; coolers are next
+- Processing machines through the later tiers, plus distillation towers,
+  large boilers, and tanks
+- Large veins, underground oil and gas, surface rocks, stone layers, bedrock
+  ores
+- Item pipes, fluid pipes, cables, covers, automation
+- Crude oil and natural gas through distillation into engines and power
+- EMI recipes, Jade overlays; optional unbundled KubeJS
 
-The current codebase includes the following foundations, with coverage
-continuing to expand toward the full GT6 target:
-
-- A material, prefix, and ore-processing system with large source-generated
-  recipe sets
-- Multi-stage energy chains spanning fire, heat, steam, kinetic, rotational,
-  and electrical power; electric heaters/engines, LU fiber, and fission
-  cores are `runtime_ready`. Large heat exchangers, steam turbines, and
-  fusion are in runtime as a CrucibleCraft extension (`frozen`, not a
-  survival completion bar). Coolers are still unopened.
-- Processing-machine families from early industry onward, plus multiblocks
-  such as distillation towers, large boilers, and tanks
-- World generation for large ore veins, underground oil and gas, and surface
-  resources
-- Item, fluid, and electrical transport using pipes, cables, covers, and
-  automation components
-- Oil and natural-gas processing with downstream fuel and power paths
-- EMI recipe display and Jade block information, with optional KubeJS
-  compatibility
-
-Systems that have not yet been implemented and their planned order are tracked
-in the [unimplemented feature ledger](docs/current/unimplemented-gap.md). See
-the [player guide](docs/current/player-guide.md) for play-facing documentation
-and known limitations.
+Status and gaps: [project status](docs/current/project-status.md),
+[unimplemented-gap.md](docs/current/unimplemented-gap.md),
+[blocked.md](docs/current/blocked.md).
 
 ## Porting principles
 
@@ -63,8 +56,13 @@ third-party attribution are listed in [CREDITS.md](CREDITS.md) and
 
 ## Build and run
 
-Java 21 is required. The project targets Minecraft 1.21.1 and NeoForge
-21.1.243 and builds with the included Gradle Wrapper.
+Java 21, Minecraft 1.21.1, NeoForge 21.1.243. Plan on ≥16 GiB; the first
+world load takes a while. Material identity and foundry blocks just moved:
+start a new save.
+
+A clone builds. `gt6_code/` and `gt6_referencable_port_code/` are local
+reference trees, not in Git. Runtime work does not need them. Replay or new
+art imports do; see the [code tree](docs/current/code-tree.md).
 
 ```powershell
 .\gradlew.bat build
@@ -72,10 +70,9 @@ Java 21 is required. The project targets Minecraft 1.21.1 and NeoForge
 .\gradlew.bat test
 ```
 
-Build artifacts are written to `build/libs/`. The current player guide is
-the private small-group snapshot `0.1.0-test.20260919`
-(`.\gradlew.bat jar distBeta`), not a public RC. Development proxies belong in
-the user-level `~/.gradle/gradle.properties`, not in the repository.
+Artifacts land in `build/libs/` as
+`cruciblecraft-0.1.0-test.20260919.jar`. `distBeta` zips the docs with it.
+Keep Gradle proxies in user-level `~/.gradle/gradle.properties`.
 
 ## Development model
 
@@ -193,11 +190,15 @@ For development and contributions:
 - [Tooling guide](tools/README.md)
 - [Complete documentation index](docs/README.md)
 
+Issues: version, steps, logs. Missing parts get the real GT6 object, not a
+stand-in.
+
 ## License
 
 Source code and original project assets are licensed under
 [LGPL-3.0-or-later](LICENSE). GT6-derived data, third-party assets, templates,
 and their respective licenses are documented in [CREDITS.md](CREDITS.md) and
-[NOTICE](NOTICE).
+[NOTICE](NOTICE). GT6 default assets are CC0 1.0 upstream; this project does
+not use the GregTech logo (CC-BY-NC-4.0).
 
 EMI, Jade, and KubeJS integrations are optional and are not bundled.

@@ -111,6 +111,15 @@ public final class ModComponents {
 
     public static final DeferredHolder<
             net.minecraft.core.component.DataComponentType<?>,
+            net.minecraft.core.component.DataComponentType<Integer>> MOLD_PATTERN =
+            COMPONENTS.registerComponentType(
+                    "mold_pattern",
+                    builder -> builder
+                            .persistent(Codec.INT)
+                            .networkSynchronized(ByteBufCodecs.VAR_INT));
+
+    public static final DeferredHolder<
+            net.minecraft.core.component.DataComponentType<?>,
             net.minecraft.core.component.DataComponentType<Integer>> CIRCUIT_CONFIG =
             COMPONENTS.registerComponentType(
                     "circuit_config",

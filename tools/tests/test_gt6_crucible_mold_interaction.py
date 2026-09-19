@@ -217,7 +217,7 @@ class Gt6CrucibleMoldInteractionTest(unittest.TestCase):
         self.assertTrue(notes["chisel_shape"])
         self.assertTrue(notes["faucet_fill_mold_ceramic"])
         self.assertTrue(notes["faucet_still_pours_generic_fluid_when_not_crucible"])
-        self.assertTrue(notes["foundry_tanks_remain_dummy"])
+        self.assertFalse(notes["foundry_tanks_remain_dummy"])
         self.assertFalse(notes["reopens_foundry_identity"])
         self.assertFalse(notes["reopens_correction_required_test_ids"])
         self.assertEqual("explicitly_blocked", notes["obtain"])

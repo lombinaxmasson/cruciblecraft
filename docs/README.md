@@ -13,6 +13,7 @@
 - [材料身份：分层混合](current/material-prefix-identity.md)（目标 ≠ live；禁止代理自行改后端）
 - [开发与验证指南](current/verification.md)
 - [代码树与工作副本](current/code-tree.md)
+- [kTFRUAddon：只依赖 GT6 的表面](current/ktfruaddon-gt6-surface.md)（本地 `ktfruaddon/` 清单；不是 unique-active，不是移植队列）
 - [Ordinary recipe wave 与 Card / Group / Shard / Source Pack 规范](current/recipe-wave-workflow.md)
 - [当前已知问题](current/known-issues.md)
 - [语义命名长期清单](current/semantic-naming.md)（日常门是 `--quick`；仅 `card-plans/closed/` 豁免卡号，`active/` 与 `prep/` 禁止）

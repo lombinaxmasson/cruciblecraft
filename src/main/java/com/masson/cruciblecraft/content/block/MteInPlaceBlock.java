@@ -8,6 +8,8 @@ import com.masson.cruciblecraft.api.tool.ToolAction;
 import com.masson.cruciblecraft.api.tool.ToolInteractable;
 import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.blockentity.DrawerBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FoundryCastingBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FoundryCrossingBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.AnvilBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
@@ -25,6 +27,7 @@ import com.masson.cruciblecraft.registry.ModComponents;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -207,6 +210,12 @@ public final class MteInPlaceBlock extends Block
 
     @Override
     public ToolResult useTool(ToolAction action, UseOnContext context) {
+        if (FoundryHosts.isCasting(spec)) {
+            ToolResult casting = FoundryCastingInteractions.useTool(action, context);
+            if (casting != ToolResult.PASS) {
+                return casting;
+            }
+        }
         if (AnvilHosts.isAnvil(spec)) {
             ToolResult anvil = AnvilInteractions.useTool(action, context);
             if (anvil != ToolResult.PASS) {
@@ -242,6 +251,25 @@ public final class MteInPlaceBlock extends Block
                         break;
                     }
                 }
+            }
+            return ToolResult.SUCCESS;
+        }
+        if (action == ToolAction.SOFT_HAMMER
+                && spec.kind().rotationEngine()
+                && context.getLevel().getBlockEntity(context.getClickedPos())
+                        instanceof MteInPlaceBlockEntity host) {
+            if (!context.getLevel().isClientSide) {
+                boolean running = host.toggleRotationEngineStopped();
+                Player player = context.getPlayer();
+                if (player != null) {
+                    player.displayClientMessage(
+                            Component.translatable(
+                                    running
+                                            ? "message.cruciblecraft.rotation_engine.running"
+                                            : "message.cruciblecraft.rotation_engine.stopped"),
+                            true);
+                }
+                ToolClick.hurt(context);
             }
             return ToolResult.SUCCESS;
         }
@@ -335,6 +363,9 @@ public final class MteInPlaceBlock extends Block
             BlockPos pos,
             Player player,
             BlockHitResult hit) {
+        if (FoundryHosts.isCasting(spec)) {
+            return FoundryCastingInteractions.useWithoutItem(level, pos, player, hit);
+        }
         if (AnvilHosts.isAnvil(spec)) {
             return AnvilInteractions.useWithoutItem(level, pos, player, hit);
         }
@@ -527,6 +558,9 @@ public final class MteInPlaceBlock extends Block
 
     @Override
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
+        if (FoundryHosts.isCasting(spec)) {
+            FoundryCastingInteractions.applyContactDamage(level, pos, entity);
+        }
         if (LargeCrucibleHosts.isController(spec)) {
             LargeCrucibleBlock.applyHotContact(level, pos, entity);
         }
@@ -550,8 +584,29 @@ public final class MteInPlaceBlock extends Block
             }
             return;
         }
+        if (FoundryHosts.isCasting(spec)) {
+            FoundryCastingInteractions.applyContactDamage(level, pos, entity);
+            return;
+        }
         if (LargeCrucibleHosts.isController(spec)) {
             LargeCrucibleBlock.applyHotContact(level, pos, entity);
+        }
+    }
+
+    @Override
+    protected void neighborChanged(
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            Block neighborBlock,
+            BlockPos neighborPos,
+            boolean movedByPiston) {
+        super.neighborChanged(
+                state, level, pos, neighborBlock, neighborPos, movedByPiston);
+        if (!level.isClientSide
+                && FoundryHosts.isMold(spec)
+                && level.getBlockEntity(pos) instanceof FoundryCastingBlockEntity mold) {
+            mold.onNeighborChanged();
         }
     }
 
@@ -569,6 +624,8 @@ public final class MteInPlaceBlock extends Block
                 crucible.dropBuffer(level, pos);
             } else if (level.getBlockEntity(pos) instanceof LargeCrucibleBlockEntity crucible) {
                 crucible.clearBindings();
+            } else if (level.getBlockEntity(pos) instanceof FoundryCastingBlockEntity mold) {
+                mold.dropContents();
             } else if (level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity host) {
                 host.dropContents();
             }
@@ -623,6 +680,12 @@ public final class MteInPlaceBlock extends Block
         if (SmelteryHosts.isSmeltery(spec)) {
             return new CrucibleBlockEntity(pos, state);
         }
+        if (FoundryHosts.isCasting(spec)) {
+            return new FoundryCastingBlockEntity(pos, state);
+        }
+        if (FoundryHosts.isCrossing(spec)) {
+            return new FoundryCrossingBlockEntity(pos, state);
+        }
         if (LargeCrucibleHosts.isController(spec)) {
             return new LargeCrucibleBlockEntity(pos, state);
         }
@@ -649,15 +712,31 @@ public final class MteInPlaceBlock extends Block
                     : null;
         }
         if (LargeCrucibleHosts.isController(spec)) {
-            return !level.isClientSide && type == ModBlockEntities.LARGE_CRUCIBLE.get()
+            return type == ModBlockEntities.LARGE_CRUCIBLE.get()
                     ? (lvl, pos, st, be) -> {
                         if (be instanceof LargeCrucibleBlockEntity crucible) {
-                            LargeCrucibleBlockEntity.serverTick(lvl, pos, st, crucible);
+                            if (lvl.isClientSide) {
+                                LargeCrucibleBlockEntity.clientTick(lvl, pos, st, crucible);
+                            } else {
+                                LargeCrucibleBlockEntity.serverTick(lvl, pos, st, crucible);
+                            }
                         }
                     }
                     : null;
         }
-        if (AnvilHosts.isAnvil(spec) || type != ModBlockEntities.MTE_INPLACE.get()) {
+        if (FoundryHosts.isCasting(spec)) {
+            return type == ModBlockEntities.FOUNDRY_CASTING.get()
+                    ? (lvl, pos, st, be) -> {
+                        if (!lvl.isClientSide
+                                && be instanceof FoundryCastingBlockEntity mold) {
+                            FoundryCastingBlockEntity.serverTick(lvl, pos, st, mold);
+                        }
+                    }
+                    : null;
+        }
+        if (FoundryHosts.isCrossing(spec)
+                || AnvilHosts.isAnvil(spec)
+                || type != ModBlockEntities.MTE_INPLACE.get()) {
             return null;
         }
         if (level.isClientSide) {

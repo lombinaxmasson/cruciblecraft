@@ -3,6 +3,9 @@ package com.masson.cruciblecraft.content.item;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
+import java.util.Map;
+
+import com.masson.cruciblecraft.recipe.crafting.WorkbenchToolRecipePlan;
 
 import org.junit.jupiter.api.Test;
 
@@ -43,5 +46,45 @@ class ToolDisplayPlanTest {
                                 "tool/assembler/wrench",
                                 "chemical/chemical/anything"),
                         "wrench"));
+    }
+
+    @Test
+    void workbenchMaterialsIncludePincersAndMergeWithAssembler() {
+        List<WorkbenchToolRecipePlan.Recipe> recipes = List.of(
+                recipe("tools/iron/pincers", "cruciblecraft:material_pincers", "iron"),
+                recipe("tools/steel/pincers", "cruciblecraft:material_pincers", "steel"),
+                recipe("tools/iron/wrench", "cruciblecraft:material_wrench", "iron"),
+                recipe("tools/steel/pincers", "cruciblecraft:material_pincers", "steel"));
+        assertEquals(
+                List.of("iron", "steel"),
+                ToolDisplayPlan.workbenchMaterials(
+                        recipes, "cruciblecraft:material_pincers"));
+        assertEquals(
+                List.of("copper", "iron"),
+                ToolDisplayPlan.displayMaterials(
+                        List.of("tool/assembler/wrench/metal/copper"),
+                        recipes,
+                        "wrench",
+                        "cruciblecraft:material_wrench"));
+        assertEquals(
+                List.of("iron", "steel"),
+                ToolDisplayPlan.displayMaterials(
+                        List.of(),
+                        recipes,
+                        "pincers",
+                        "cruciblecraft:material_pincers"));
+    }
+
+    private static WorkbenchToolRecipePlan.Recipe recipe(
+            String path, String resultId, String material) {
+        return new WorkbenchToolRecipePlan.Recipe(
+                path,
+                List.of(),
+                Map.of(),
+                Map.of(),
+                resultId,
+                material,
+                true,
+                1);
     }
 }

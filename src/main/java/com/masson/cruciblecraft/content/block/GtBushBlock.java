@@ -41,13 +41,12 @@ public final class GtBushBlock extends Block implements EntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static final IntegerProperty STAGE = IntegerProperty.create("stage", 0, 3);
     public static final int MAX_STAGE = 3;
-    private static final VoxelShape CORE = Block.box(2.0, 0.0, 2.0, 14.0, 12.0, 14.0);
     private static final VoxelShape NORTH = Block.box(2.0, 2.0, 0.0, 14.0, 14.0, 4.0);
     private static final VoxelShape SOUTH = Block.box(2.0, 2.0, 12.0, 14.0, 14.0, 16.0);
     private static final VoxelShape WEST = Block.box(0.0, 2.0, 2.0, 4.0, 14.0, 14.0);
     private static final VoxelShape EAST = Block.box(12.0, 2.0, 2.0, 16.0, 14.0, 14.0);
     private static final VoxelShape UP = Block.box(2.0, 12.0, 2.0, 14.0, 16.0, 14.0);
-    private static final VoxelShape DOWN = Block.box(2.0, 0.0, 2.0, 14.0, 4.0, 14.0);
+    private static final VoxelShape ROOTED = Block.box(0.0, 0.0, 0.0, 16.0, 16.0, 16.0);
 
     public GtBushBlock() {
         super(BlockBehaviour.Properties.of()
@@ -76,7 +75,7 @@ public final class GtBushBlock extends Block implements EntityBlock {
             case WEST -> WEST;
             case EAST -> EAST;
             case UP -> UP;
-            case DOWN -> DOWN;
+            case DOWN -> ROOTED;
         };
     }
 

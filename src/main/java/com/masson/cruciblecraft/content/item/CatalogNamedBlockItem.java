@@ -27,9 +27,11 @@ public final class CatalogNamedBlockItem extends BlockItem {
 
     @Override
     public Component getName(ItemStack stack) {
-        String path = getBlock() instanceof MteInPlaceBlock inplace
-                ? inplace.spec().registryPath()
-                : null;
+        if (!(getBlock() instanceof MteInPlaceBlock inplace)) {
+            return CatalogDisplayNames.itemName(
+                    getDescriptionId(stack), englishName, chineseName);
+        }
+        String path = inplace.spec().registryPath();
         return CatalogDisplayNames.itemName(
                 getDescriptionId(stack),
                 MteInPlaceDisplayNames.english(englishName, path),

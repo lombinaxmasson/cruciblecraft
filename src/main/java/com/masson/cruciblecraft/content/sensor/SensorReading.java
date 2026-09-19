@@ -203,7 +203,7 @@ public final class SensorReading {
         if (be instanceof BoilerBlockEntity boiler) {
             return new Sample(
                     boiler.steamAmount() / divisor,
-                    BoilerBlockEntity.STEAM_CAPACITY / divisor);
+                    boiler.steamCapacity() / divisor);
         }
         if (be instanceof CrucibleBlockEntity crucible) {
             long unitNine = 9L * MaterialPrefixes.INGOT.units();

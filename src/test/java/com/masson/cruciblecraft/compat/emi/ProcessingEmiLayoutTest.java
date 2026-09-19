@@ -34,6 +34,19 @@ class ProcessingEmiLayoutTest {
     }
 
     @Test
+    void gt6NeiOffsetsMatchRecipeMapBlit() {
+        assertEquals(52, Gt6EmiGui.slotX(53));
+        assertEquals(29, Gt6EmiGui.slotY(25));
+        assertEquals(78, Gt6EmiGui.progressX(78));
+        assertEquals(29, Gt6EmiGui.progressY(24));
+        assertEquals(8, Gt6EmiGui.MACHINE_PANEL_Y);
+        assertEquals(3, Gt6EmiGui.MACHINE_PANEL_V);
+        assertEquals(79, Gt6EmiGui.MACHINE_PANEL_HEIGHT);
+        assertEquals(166, Gt6EmiGui.NEI_CHROME_HEIGHT);
+        assertEquals(166, ProcessingEmiLayout.NEI_HEIGHT);
+    }
+
+    @Test
     void everyConfiguredLayoutIsBoundedAndNonOverlapping() {
         assertEquals(54, ModProcessingMachines.CONFIGURED_MACHINES.size());
         for (ProcessingMachineSpec spec

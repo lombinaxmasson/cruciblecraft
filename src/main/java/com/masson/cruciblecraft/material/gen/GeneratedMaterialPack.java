@@ -40,6 +40,7 @@ import com.masson.cruciblecraft.content.item.GtBuildingBlockCatalog;
 import com.masson.cruciblecraft.content.item.SemanticObjectCatalog;
 import com.masson.cruciblecraft.content.item.SmelterMteIdentityCatalog;
 import com.masson.cruciblecraft.localization.LanguageNames;
+import com.masson.cruciblecraft.content.block.OreStoneHost;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -64,6 +65,7 @@ public final class GeneratedMaterialPack {
             "crushed_ore",
             "dust_div72",
             "fine_wire",
+            "lens",
             "plant_gt_berry",
             "plant_gt_blossom",
             "plant_gt_twig",
@@ -870,9 +872,19 @@ public final class GeneratedMaterialPack {
             String modelId = CrucibleCraft.MODID + ":block/" + path;
             JsonObject blockState = new JsonObject();
             JsonObject variants = new JsonObject();
-            JsonObject defaultVariant = new JsonObject();
-            defaultVariant.addProperty("model", modelId);
-            variants.add("", defaultVariant);
+            if (path.startsWith("deepslate_")) {
+                JsonObject defaultVariant = new JsonObject();
+                defaultVariant.addProperty("model", modelId);
+                variants.add("", defaultVariant);
+            } else {
+                for (OreStoneHost host : OreStoneHost.uniqueOverworldHosts()) {
+                    JsonObject variant = new JsonObject();
+                    variant.addProperty(
+                            "model",
+                            host == OreStoneHost.STONE ? modelId : host.stoneModel());
+                    variants.add("host=" + host.getSerializedName(), variant);
+                }
+            }
             blockState.add("variants", variants);
             files.put(
                     "assets/" + CrucibleCraft.MODID + "/blockstates/" + path + ".json",

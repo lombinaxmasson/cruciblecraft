@@ -1,7 +1,6 @@
 package com.masson.cruciblecraft.gametest;
 
-import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
-import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
 import com.masson.cruciblecraft.content.item.CatalogNamedBlockItem;
 import com.masson.cruciblecraft.content.mte.MteFoundryTanks;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
@@ -38,10 +37,11 @@ public final class MteCrucibleFoundryRuntimeGameTests {
                                 "foundry/smelting_crucible_invar"))
                         .get()
                         .defaultBlockState());
-        MteInPlaceBlockEntity be = helper.getBlockEntity(pos);
+        CrucibleBlockEntity be = helper.getBlockEntity(pos);
         helper.assertTrue(
-                be.tank().getCapacity() == MteFoundryTanks.SMELTERY_MB,
-                "foundry smeltery tank is not 16 ingots");
+                be instanceof CrucibleBlockEntity
+                        && CrucibleBlockEntity.maxUnits() == MteFoundryTanks.SMELTERY_MB,
+                "foundry smeltery is not a 16-ingot crucible");
         helper.succeed();
     }
 }

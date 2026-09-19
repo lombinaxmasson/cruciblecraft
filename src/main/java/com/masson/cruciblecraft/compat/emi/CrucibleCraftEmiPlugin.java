@@ -13,12 +13,14 @@ import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
+import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.content.mold.MoldCastingRules;
+import com.masson.cruciblecraft.content.mold.MoldRecipes;
 import com.masson.cruciblecraft.content.mold.MoldShape;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
+import com.masson.cruciblecraft.recipe.AlloyIndex;
 import com.masson.cruciblecraft.recipe.AnvilMode;
-import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.content.item.PrefixMaterialItem;
@@ -95,6 +97,7 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         for (MoldShape shape : MoldShape.values()) {
             registry.addWorkstation(MOLD_CASTING, EmiStack.of(ModItems.moldItem(shape).get()));
         }
+        registry.addWorkstation(MOLD_CASTING, EmiStack.of(ModItems.CERAMIC_MOLD.get()));
 
         registerAlloys(registry);
         registerAnvilRecipes(registry);
@@ -107,32 +110,23 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         registerHeatExchangerFuels(registry, addedCategories);
         registerDisplayStacks(registry);
         registerToolHeadAssemblies(registry);
-        for (var cover : List.of(
-                ModItems.LOGISTICS_ITEM_STORAGE_COVER,
-                ModItems.LOGISTICS_ITEM_IMPORT_COVER,
-                ModItems.LOGISTICS_ITEM_EXPORT_COVER,
-                ModItems.LOGISTICS_FLUID_STORAGE_COVER,
-                ModItems.LOGISTICS_FLUID_IMPORT_COVER,
-                ModItems.LOGISTICS_FLUID_EXPORT_COVER,
-                ModItems.LOGISTICS_GENERIC_STORAGE_COVER,
-                ModItems.LOGISTICS_GENERIC_IMPORT_COVER,
-                ModItems.LOGISTICS_GENERIC_EXPORT_COVER,
-                ModItems.LOGISTICS_GENERIC_DUMP_COVER,
-                ModItems.LOGISTICS_DISPLAY_CPU_LOGIC_COVER,
-                ModItems.LOGISTICS_DISPLAY_CPU_CONTROL_COVER,
-                ModItems.LOGISTICS_DISPLAY_CPU_STORAGE_COVER,
-                ModItems.LOGISTICS_DISPLAY_CPU_CONVERSION_COVER)) {
-            registry.addEmiStack(EmiStack.of(cover.get()));
-        }
-        ModItems.machineCovers().forEach(
-                cover -> registry.addEmiStack(EmiStack.of(cover.get())));
+        // EMI already indexes creative-tab rows (and the item registry when
+        // that is the index source). addEmiStack appends without merging, so
+        // re-adding default converter/cover items listed each fuel engine
+        // twice in search. Variant addEmiStack calls still happen for
+        // REGISTERED-index polish; drop later identical item+patch copies
+        // at bake so CREATIVE-index players do not see those twice either.
+        Set<EmiIndexDedupe.ItemIndexKey> indexedItems = new HashSet<>();
+        registry.removeEmiStacks(stack ->
+                EmiIndexDedupe.isLaterCopy(indexedItems, stack.getItemStack()));
     }
 
     /** Item-list polish layers: gated prefix+material stacks join the index,
      *  routed tool variants do the same, and each material's dust /
      *  small_dust / tiny_dust triple aliases so the 9 tiny = 4 small =
      *  1 dust conversion search reaches all three. Per-material only —
-     *  never an "any ingot" merge. */
+     *  never an "any ingot" merge. Default converter/cover items stay out;
+     *  they are already in the creative-tab index. */
     private static void registerDisplayStacks(EmiRegistry registry) {
         registry.removeEmiStacks(stack -> {
             ItemStack itemStack = stack.getItemStack();
@@ -207,7 +201,6 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                 continue;
             }
             ItemStack result = tool.variant(variant.material());
-            registry.addEmiStack(EmiStacks.ofItem(result));
             List<EmiIngredient> inputs = List.of(
                     EmiStacks.ofItem(head),
                     EmiStack.of(Items.STICK));
@@ -227,18 +220,10 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
     }
 
     private static void registerAlloys(EmiRegistry registry) {
-        for (MaterialDefinition material : MaterialCatalog.values()) {
-            if (material.composition().isEmpty()
-                    || material.noDecompose()
-                    || !MaterialCatalog.isFormRegistered(
-                            material, MaterialPrefixes.INGOT)) {
-                continue;
-            }
-
+        for (AlloyIndex.AlloyMatch recipe : MaterialCatalog.alloys().recipes()) {
             List<EmiIngredient> inputs = new ArrayList<>();
             boolean complete = true;
-            int outputCount = 0;
-            for (var component : material.composition().entrySet()) {
+            for (var component : recipe.costParts().entrySet()) {
                 Optional<ItemStack> item = displayStack(component.getKey());
                 if (item.isEmpty()) {
                     complete = false;
@@ -247,14 +232,12 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                 ItemStack stack = item.orElseThrow().copy();
                 stack.setCount(component.getValue());
                 inputs.add(EmiStack.of(stack));
-                outputCount += component.getValue();
             }
-
             Optional<ItemStack> output = MaterialLookup.tryStack(
-                    material.id(), MaterialPrefixes.INGOT, outputCount);
+                    recipe.resultId(), MaterialPrefixes.INGOT, recipe.outputDivider());
             if (complete && output.isPresent()) {
                 registry.addRecipe(new AlloyEmiRecipe(
-                        material.id(),
+                        recipe.recipeKey(),
                         inputs,
                         EmiStack.of(output.orElseThrow())));
             }
@@ -314,20 +297,21 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                     : com.masson.cruciblecraft.material.MaterialCatalog.decompose(
                             material,
                             MaterialPrefixes.INGOT.units());
-            for (MoldShape shape : MoldShape.values()) {
-                if (!MaterialCatalog.isFormRegistered(material, shape.form())) {
+            for (var entry : MoldRecipes.representativeMasks().entrySet()) {
+                MaterialPrefix form = entry.getKey();
+                if (!MaterialCatalog.isFormRegistered(material, form)) {
                     continue;
                 }
                 Optional<ItemStack> output = MaterialLookup.tryStack(
-                        material.id(), shape.form(), 1);
+                        material.id(), form, 1);
                 Optional<MoldCastingRules.Batch> batch =
-                        MoldCastingRules.smallestBatch(costPerIngot, shape.form());
+                        MoldCastingRules.smallestBatch(costPerIngot, form);
                 if (output.isPresent() && batch.isPresent()) {
                     registry.addRecipe(new MoldCastingEmiRecipe(
                             material.id(),
-                            shape.form().serializedName(),
+                            form.serializedName(),
                             input.orElseThrow(),
-                            ModItems.moldItem(shape).get(),
+                            moldItem(form, entry.getValue()),
                             output.orElseThrow(),
                             batch.get().outputCount()));
                 }
@@ -363,6 +347,12 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         registerFuelMap(
                 registry,
                 addedCategories,
+                ModRecipeMaps.FUELS_GAS_TURBINE,
+                "fuels_gas_turbine",
+                "small_gas_turbine");
+        registerFuelMap(
+                registry,
+                addedCategories,
                 ModRecipeMaps.FUELS_GAS,
                 "fuels_gas",
                 "fluid_burning_box");
@@ -395,12 +385,6 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
             registry.addRecipe(new FuelMapEmiRecipe(
                     entry.id(), category, entry.recipe()));
         }
-        EnergyConverterCatalog.profiles().stream()
-                .filter(profile -> runtime.equals(profile.runtimeBinding()))
-                .forEach(profile -> registry.addEmiStack(
-                        EmiStack.of(ModItems.converterItemsById()
-                                .get(profile.id())
-                                .get())));
     }
 
     private static void registerHeatExchangerFuels(
@@ -481,6 +465,16 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         if (added.add(category.getId())) {
             registry.addCategory(category);
         }
+    }
+
+    private static ItemStack moldItem(MaterialPrefix form, int mask) {
+        Optional<MoldShape> named = MoldShape.fromMask(mask);
+        if (named.isPresent() && named.get().form().equals(form)) {
+            return new ItemStack(ModItems.moldItem(named.get()).get());
+        }
+        ItemStack stack = new ItemStack(ModItems.CERAMIC_MOLD.get());
+        stack.set(ModComponents.MOLD_PATTERN.get(), mask);
+        return stack;
     }
 
     private static ItemStack anvilVariant(String material) {

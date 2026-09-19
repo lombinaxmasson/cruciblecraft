@@ -2,20 +2,30 @@ package com.masson.cruciblecraft.content.item;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
+import com.masson.cruciblecraft.api.material.MaterialPrefix;
+import com.masson.cruciblecraft.machine.ToolMaterialRules;
 import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
+import com.masson.cruciblecraft.material.MaterialCatalog;
+import com.masson.cruciblecraft.material.def.MaterialDefinition;
+import com.masson.cruciblecraft.recipe.crafting.WorkbenchToolRecipePlan;
 import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.ItemStack;
 
 /**
- * EMI-free projection of the tool variants that have a live assembler
- * route: {@code ToolMaterialRules.isAllowed} intersected with the expanded
- * {@code tool/assembler/<tool>/<route>/<material>} entries — the same filter
- * the GameTest pins. Materials without a route stay out of the creative tab
- * and EMI by design; no "uncraftable" marking is invented.
+ * EMI-free projection of the tool variants that have a live obtain route:
+ * assembler {@code tool/assembler/<tool>/...} entries plus finished
+ * workbench crafts from {@link WorkbenchToolRecipePlan}. Materials without
+ * either stay out of the creative tab and EMI; no "uncraftable" marking is
+ * invented.
  *
  * <p>The result is cached per assembler epoch, so the TOOLS tab and the EMI
  * plugin pay the enumeration cost once per recipe reload.
@@ -35,6 +45,27 @@ public final class ToolDisplayPlan {
                 .distinct()
                 .sorted()
                 .toList();
+    }
+
+    public static List<String> workbenchMaterials(
+            Collection<WorkbenchToolRecipePlan.Recipe> recipes, String resultId) {
+        return recipes.stream()
+                .filter(recipe -> resultId.equals(recipe.resultId()))
+                .map(WorkbenchToolRecipePlan.Recipe::material)
+                .distinct()
+                .sorted()
+                .toList();
+    }
+
+    public static List<String> displayMaterials(
+            Collection<String> assemblerEntryPaths,
+            Collection<WorkbenchToolRecipePlan.Recipe> workbench,
+            String tool,
+            String resultId) {
+        Set<String> materials = new TreeSet<>();
+        materials.addAll(routedMaterials(assemblerEntryPaths, tool));
+        materials.addAll(workbenchMaterials(workbench, resultId));
+        return List.copyOf(materials);
     }
 
     public static List<ItemStack> routedVariantStacks() {
@@ -58,15 +89,31 @@ public final class ToolDisplayPlan {
         List<String> paths = ModRecipeMaps.ASSEMBLER.entries().stream()
                 .map(entry -> entry.id().getPath())
                 .toList();
+        List<WorkbenchToolRecipePlan.Recipe> workbench = workbenchRecipes();
         List<ItemStack> stacks = new ArrayList<>();
         for (ToolKind kind : ToolKind.values()) {
             MaterialToolItem item = itemFor(kind);
-            for (String materialId : routedMaterials(
-                    paths, kind.serializedName())) {
+            String resultId = BuiltInRegistries.ITEM.getKey(item).toString();
+            for (String materialId : displayMaterials(
+                    paths, workbench, kind.serializedName(), resultId)) {
+                if (!ToolMaterialRules.isAllowed(kind, materialId)) {
+                    continue;
+                }
                 stacks.add(item.variant(materialId));
             }
         }
         return List.copyOf(stacks);
+    }
+
+    private static List<WorkbenchToolRecipePlan.Recipe> workbenchRecipes() {
+        if (!MaterialCatalog.isBootstrapped()) {
+            return List.of();
+        }
+        Collection<MaterialDefinition> materials = MaterialCatalog.startupValues();
+        Map<String, List<MaterialPrefix>> forms = new LinkedHashMap<>();
+        materials.forEach(material -> forms.put(
+                material.id(), MaterialCatalog.registeredForms(material)));
+        return WorkbenchToolRecipePlan.plan(materials, forms);
     }
 
     public static MaterialToolItem itemFor(ToolKind kind) {

@@ -8,6 +8,7 @@ import com.masson.cruciblecraft.content.block.BedrockOreBlock;
 import com.masson.cruciblecraft.content.block.GtHostedOreBlock;
 import com.masson.cruciblecraft.content.block.GtIndicatorFlowerBlock;
 import com.masson.cruciblecraft.content.block.GtSmallOreBlock;
+import com.masson.cruciblecraft.content.block.MaterialOreBlock;
 import com.masson.cruciblecraft.content.block.OreStoneHost;
 import com.masson.cruciblecraft.content.blockentity.GtSurfaceRockBlockEntity;
 import com.masson.cruciblecraft.registry.ModBlocks;
@@ -237,16 +238,19 @@ public final class BedrockOreVeins {
         if (host == OreStoneHost.NETHERRACK) {
             return placeHostedOre(level, pos, materialId, host);
         }
-        Host catalogHost = host == OreStoneHost.DEEPSLATE ? Host.DEEPSLATE : Host.STONE;
+        Host catalogHost = host.catalogHost();
         if (!ModBlocks.hasOreBlock(materialId, catalogHost)
                 && ModBlocks.hasOreBlock(materialId, Host.STONE)) {
             catalogHost = Host.STONE;
         }
         if (ModBlocks.hasOreBlock(materialId, catalogHost)) {
-            return level.setBlock(
-                    pos,
-                    ModBlocks.oreBlock(materialId, catalogHost).get().defaultBlockState(),
-                    Block.UPDATE_CLIENTS);
+            BlockState placed = ModBlocks.oreBlock(materialId, catalogHost)
+                    .get()
+                    .defaultBlockState();
+            if (placed.hasProperty(MaterialOreBlock.HOST) && host.uniqueOverworld()) {
+                placed = placed.setValue(MaterialOreBlock.HOST, host);
+            }
+            return level.setBlock(pos, placed, Block.UPDATE_CLIENTS);
         }
         return placeHostedOre(level, pos, materialId, host);
     }
@@ -288,19 +292,12 @@ public final class BedrockOreVeins {
                 || state.is(BlockTags.BASE_STONE_OVERWORLD)
                 || state.is(BlockTags.BASE_STONE_NETHER)
                 || state.is(BlockTags.STONE_ORE_REPLACEABLES)
-                || state.is(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
+                || state.is(BlockTags.DEEPSLATE_ORE_REPLACEABLES)
+                || StoneLayerStones.isNaturalLayerCube(state);
     }
 
     static OreStoneHost hostOf(BlockState replaced) {
-        if (replaced.is(Blocks.NETHERRACK)
-                || replaced.is(BlockTags.BASE_STONE_NETHER)) {
-            return OreStoneHost.NETHERRACK;
-        }
-        if (replaced.is(Blocks.DEEPSLATE)
-                || replaced.is(BlockTags.DEEPSLATE_ORE_REPLACEABLES)) {
-            return OreStoneHost.DEEPSLATE;
-        }
-        return OreStoneHost.STONE;
+        return OreStoneHosts.of(replaced);
     }
 
     private static boolean isIndicatorGround(BlockState contact) {

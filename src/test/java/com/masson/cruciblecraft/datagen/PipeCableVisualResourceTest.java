@@ -22,8 +22,8 @@ class PipeCableVisualResourceTest {
     void gt6PipeAndCableTexturesArePresent() {
         Path copper = ASSETS.resolve("gt6_import/materialicons/copper");
         Path iconsets = ASSETS.resolve("gt6_import/iconsets");
-        assertTrue(Files.isRegularFile(copper.resolve("pipetiny.png")));
-        assertTrue(Files.isRegularFile(copper.resolve("pipetiny_overlay.png")));
+        assertTrue(Files.isRegularFile(copper.resolve("pipeside.png")));
+        assertTrue(Files.isRegularFile(copper.resolve("pipeside_overlay.png")));
         assertTrue(Files.isRegularFile(copper.resolve("wire.png")));
         assertTrue(Files.isRegularFile(copper.resolve("wire_overlay.png")));
         assertTrue(Files.isRegularFile(iconsets.resolve("insulation_tiny.png")));
@@ -91,11 +91,33 @@ class PipeCableVisualResourceTest {
                 wire.getAsJsonObject("textures").get("overlay").getAsString());
         JsonObject pipe = json(GENERATED.resolve("pipe/fluid_4_core.json"));
         assertEquals(
-                "cruciblecraft:block/gt6_import/materialicons/copper/pipetiny",
+                "cruciblecraft:block/gt6_import/materialicons/copper/pipeside",
                 pipe.getAsJsonObject("textures").get("side").getAsString());
         assertEquals(
+                "cruciblecraft:block/gt6_import/materialicons/copper/pipeside_overlay",
+                pipe.getAsJsonObject("textures").get("side_overlay").getAsString());
+        JsonObject pipeArm = json(GENERATED.resolve("pipe/fluid_4_arm.json"));
+        assertEquals(
+                "cruciblecraft:block/gt6_import/materialicons/copper/pipeside",
+                pipeArm.getAsJsonObject("textures").get("side").getAsString());
+        assertEquals(
+                "cruciblecraft:block/gt6_import/materialicons/copper/pipetiny",
+                pipeArm.getAsJsonObject("textures").get("end").getAsString());
+        assertEquals(
                 "cruciblecraft:block/gt6_import/materialicons/copper/pipetiny_overlay",
-                pipe.getAsJsonObject("textures").get("overlay").getAsString());
+                pipeArm.getAsJsonObject("textures").get("end_overlay").getAsString());
+        JsonObject armSide = pipeArm.getAsJsonArray("elements")
+                .get(0)
+                .getAsJsonObject()
+                .getAsJsonObject("faces")
+                .getAsJsonObject("up");
+        assertEquals("#side", armSide.get("texture").getAsString());
+        JsonObject armCap = pipeArm.getAsJsonArray("elements")
+                .get(0)
+                .getAsJsonObject()
+                .getAsJsonObject("faces")
+                .getAsJsonObject("north");
+        assertEquals("#end", armCap.get("texture").getAsString());
     }
 
     @Test

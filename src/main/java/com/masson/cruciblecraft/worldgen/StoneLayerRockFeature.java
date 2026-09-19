@@ -2,6 +2,10 @@ package com.masson.cruciblecraft.worldgen;
 
 import java.util.List;
 
+import com.masson.cruciblecraft.content.block.GtHostedOreBlock;
+import com.masson.cruciblecraft.content.block.GtSmallOreBlock;
+import com.masson.cruciblecraft.content.block.MaterialOreBlock;
+import com.masson.cruciblecraft.content.block.OreStoneHost;
 import com.masson.cruciblecraft.content.blockentity.GtSurfaceRockBlockEntity;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.worldgen.OreHostVariantCatalog.Host;
@@ -13,6 +17,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.StructureTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Biome;
@@ -105,6 +110,10 @@ public class StoneLayerRockFeature extends Feature<StoneLayerRockConfiguration> 
                 }
                 lastOre = null;
                 canPlace = false;
+            } else if (tryRestyleOre(level, cursor.immutable(), current)) {
+                canPlace = true;
+                lastRock = current.material();
+                placed = true;
             } else if (isReplaceableStone(state) || isVanillaOre(state)) {
                 canPlace = true;
                 String indicator = null;
@@ -158,13 +167,20 @@ public class StoneLayerRockFeature extends Feature<StoneLayerRockConfiguration> 
                     placed = true;
                 }
             } else if (isCobble(state)) {
-                canPlace = true;
-                lastRock = current.material();
-                placed |= tryReplace(
-                        level,
-                        cursor.immutable(),
-                        current.material(),
-                        StoneLayerStones.Role.COBBLE);
+                if (isVillageHouseCobble(state)
+                        && inVillage(level, cursor.immutable())) {
+                    canPlace = false;
+                    placed |= tryReplaceVillageBrick(
+                            level, cursor.immutable(), biome);
+                } else {
+                    canPlace = true;
+                    lastRock = current.material();
+                    placed |= tryReplace(
+                            level,
+                            cursor.immutable(),
+                            current.material(),
+                            StoneLayerStones.Role.COBBLE);
+                }
             } else if (isMossyCobble(state)) {
                 canPlace = true;
                 lastRock = current.material();
@@ -227,17 +243,89 @@ public class StoneLayerRockFeature extends Feature<StoneLayerRockConfiguration> 
         if (ore.material() == null || ore.material().isEmpty()) {
             return false;
         }
-        Host host = StoneLayerCatalog.DEEPSLATE.equals(layer.material())
-                ? Host.DEEPSLATE
-                : Host.STONE;
-        if (!ModBlocks.hasOreBlock(ore.material(), host)) {
+        OreStoneHost stoneHost = OreStoneHosts.ofLayer(layer.material());
+        Host catalogHost = stoneHost.catalogHost();
+        if (!ModBlocks.hasOreBlock(ore.material(), catalogHost)
+                && ModBlocks.hasOreBlock(ore.material(), Host.STONE)) {
+            catalogHost = Host.STONE;
+        }
+        if (ModBlocks.hasOreBlock(ore.material(), catalogHost)) {
+            BlockState placed = ModBlocks.oreBlock(ore.material(), catalogHost)
+                    .get()
+                    .defaultBlockState();
+            if (placed.hasProperty(MaterialOreBlock.HOST) && stoneHost.uniqueOverworld()) {
+                placed = placed.setValue(MaterialOreBlock.HOST, stoneHost);
+            }
+            return level.setBlock(pos, placed, Block.UPDATE_CLIENTS);
+        }
+        return BedrockOreVeins.placeHostedOre(level, pos, ore.material(), stoneHost);
+    }
+
+    /**
+     * Large veins run before stone layers. Unique CC ores already in the cell
+     * keep their material and pick up the layer cube's host texture.
+     *
+     * @return true when {@code pos} is a CC ore (restyled or already matching)
+     */
+    public static boolean tryRestyleOre(
+            WorldGenLevel level, BlockPos pos, Layer layer) {
+        BlockState state = level.getBlockState(pos);
+        BlockState restyled = restyledOre(state, OreStoneHosts.ofLayer(layer.material()));
+        if (restyled == null) {
             return false;
         }
-        // GT6 PrefixBlock ore vs oreSmall. CC has one stone/deepslate host pair.
-        return level.setBlock(
-                pos,
-                ModBlocks.oreBlock(ore.material(), host).get().defaultBlockState(),
-                Block.UPDATE_CLIENTS);
+        if (restyled == state) {
+            return true;
+        }
+        return level.setBlock(pos, restyled, Block.UPDATE_CLIENTS);
+    }
+
+    static BlockState restyledOre(BlockState state, OreStoneHost wanted) {
+        Block block = state.getBlock();
+        if (block instanceof MaterialOreBlock) {
+            if (wanted == OreStoneHost.DEEPSLATE) {
+                String material = OreStoneHosts.uniqueMaterial(block);
+                if (material != null && ModBlocks.hasOreBlock(material, Host.DEEPSLATE)) {
+                    return ModBlocks.oreBlock(material, Host.DEEPSLATE)
+                            .get()
+                            .defaultBlockState();
+                }
+                return state;
+            }
+            if (!wanted.uniqueOverworld()) {
+                return state;
+            }
+            return state.getValue(MaterialOreBlock.HOST) == wanted
+                    ? state
+                    : state.setValue(MaterialOreBlock.HOST, wanted);
+        }
+        if (block instanceof GtHostedOreBlock) {
+            return state.getValue(GtHostedOreBlock.HOST) == wanted
+                    ? state
+                    : state.setValue(GtHostedOreBlock.HOST, wanted);
+        }
+        if (block instanceof GtSmallOreBlock) {
+            return state.getValue(GtSmallOreBlock.HOST) == wanted
+                    ? state
+                    : state.setValue(GtSmallOreBlock.HOST, wanted);
+        }
+        if (OreStoneHosts.isDeepslateUnique(block)) {
+            String material = OreStoneHosts.uniqueMaterial(block);
+            if (wanted == OreStoneHost.DEEPSLATE || material == null) {
+                return state;
+            }
+            if (!ModBlocks.hasOreBlock(material, Host.STONE)) {
+                return state;
+            }
+            BlockState stone = ModBlocks.oreBlock(material, Host.STONE)
+                    .get()
+                    .defaultBlockState();
+            if (stone.hasProperty(MaterialOreBlock.HOST) && wanted.uniqueOverworld()) {
+                return stone.setValue(MaterialOreBlock.HOST, wanted);
+            }
+            return stone;
+        }
+        return null;
     }
 
     public static boolean tryReplace(
@@ -251,6 +339,28 @@ public class StoneLayerRockFeature extends Feature<StoneLayerRockConfiguration> 
             return false;
         }
         return level.setBlock(pos, target, Block.UPDATE_CLIENTS);
+    }
+
+    public static boolean tryReplaceVillageBrick(
+            WorldGenLevel level, BlockPos pos, Holder<Biome> biome) {
+        BlockState target = VillageStoneBricks.brickForBiome(
+                biome, level.registryAccess());
+        BlockState existing = level.getBlockState(pos);
+        if (existing.getBlock() == target.getBlock()) {
+            return false;
+        }
+        return level.setBlock(pos, target, Block.UPDATE_CLIENTS);
+    }
+
+    public static boolean isVillageHouseCobble(BlockState state) {
+        return state.is(Blocks.COBBLESTONE);
+    }
+
+    public static boolean inVillage(WorldGenLevel level, BlockPos pos) {
+        return level.getLevel()
+                .structureManager()
+                .getStructureWithPieceAt(pos, StructureTags.VILLAGE)
+                .isValid();
     }
 
     public static boolean tryPlace(

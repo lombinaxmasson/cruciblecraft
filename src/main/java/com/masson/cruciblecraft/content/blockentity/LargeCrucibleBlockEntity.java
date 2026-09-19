@@ -10,6 +10,7 @@ import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.air.AirOutputModel;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
+import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
 import com.masson.cruciblecraft.content.block.LargeCrucibleWalls;
@@ -31,6 +32,7 @@ import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.InsertResult;
 import com.masson.cruciblecraft.heat.ItemHeat;
 import com.masson.cruciblecraft.heat.TemperatureDamage;
 import com.masson.cruciblecraft.machine.CheckpointDecisions;
+import com.masson.cruciblecraft.machine.component.CheckpointTracker;
 import com.masson.cruciblecraft.machine.component.CrucibleProcessCore;
 import com.masson.cruciblecraft.machine.component.SteelmakingController;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
@@ -107,10 +109,11 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
     private boolean pluginQuarantined;
     private String pluginQuarantineReason = "";
     private boolean outputJammed;
+    private final CheckpointTracker checkpoint = new CheckpointTracker();
 
     public LargeCrucibleBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.LARGE_CRUCIBLE.get(), pos, state);
-        process.setOnMutation(this::setChanged);
+        process.setOnMutation(this::markMutation);
         process.casing().setMaterialId(LargeCrucibleHosts.DEFAULT_MATERIAL);
         LargeCrucibleHosts.bakedMaterial(state)
                 .ifPresent(process.casing()::setMaterialId);
@@ -143,7 +146,42 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
             crucible.process.driftTowardAmbient();
             return;
         }
+        float previousTemperature = crucible.process.thermal().authoritativeTemperature();
+        long previousStoredEnergy = crucible.process.thermal().storedEnergy();
+        int previousCooldown = crucible.process.thermal().cooldownTicks();
+        long previousAir = crucible.process.steelmaking().storedAir();
+        int previousReactionTicks = crucible.process.steelmaking().reactionTicks();
         crucible.tickProcess(level);
+        boolean processChanged = Float.compare(
+                        previousTemperature,
+                        crucible.process.thermal().authoritativeTemperature()) != 0
+                || previousStoredEnergy != crucible.process.thermal().storedEnergy()
+                || previousCooldown != crucible.process.thermal().cooldownTicks()
+                || previousAir != crucible.process.steelmaking().storedAir()
+                || previousReactionTicks != crucible.process.steelmaking().reactionTicks();
+        if (processChanged) {
+            crucible.checkpoint.markDirty();
+        }
+        if (crucible.checkpoint.shouldCheckpoint(level.getGameTime(), phaseKey, 20)) {
+            crucible.setChanged();
+            crucible.checkpoint.checkpointed();
+        }
+        if (crucible.checkpoint.shouldSync(
+                !crucible.process.isThermallyQuiescent(),
+                level.getGameTime(),
+                phaseKey,
+                20)) {
+            crucible.syncToClient();
+            crucible.checkpoint.synced();
+        }
+    }
+
+    public static void clientTick(
+            Level level,
+            BlockPos pos,
+            BlockState state,
+            LargeCrucibleBlockEntity crucible) {
+        crucible.process.thermal().clientTick();
     }
 
     private void tickProcess(Level level) {
@@ -276,8 +314,12 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
         if (!(mold.getItem() instanceof CeramicMoldBlockItem moldItem)) {
             return;
         }
+        Optional<MaterialPrefix> form = moldItem.castingForm(mold);
+        if (form.isEmpty()) {
+            return;
+        }
         Optional<CrucibleProcessCore.CastTransfer> preview =
-                process.previewCast(moldItem.shape().form());
+                process.previewCast(form.get());
         if (preview.isEmpty()) {
             return;
         }
@@ -298,7 +340,7 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
             outputJammed = true;
             return;
         }
-        if (process.cast(moldItem.shape().form()).isEmpty()) {
+        if (process.cast(form.get()).isEmpty()) {
             return;
         }
         if (existing.isEmpty()) {
@@ -312,6 +354,10 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
 
     public CrucibleProcessCore process() {
         return process;
+    }
+
+    public float temperature() {
+        return process.temperature(level != null && level.isClientSide);
     }
 
     public boolean pluginQuarantined() {
@@ -419,6 +465,7 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
         if (structureValid != valid) {
             structureValid = valid;
             setChanged();
+            checkpoint.markSyncPending();
             if (level != null && !level.isClientSide) {
                 invalidateCrucibleCapabilities();
             }
@@ -506,7 +553,10 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
 
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-        return process.clientTag();
+        CompoundTag tag = process.clientTag();
+        tag.putBoolean("structure_valid", structureValid);
+        tag.putBoolean("plugin_quarantined", pluginQuarantined);
+        return tag;
     }
 
     @Override
@@ -517,6 +567,12 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
     @Override
     public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider registries) {
         process.restore(tag, true);
+        if (tag.contains("structure_valid")) {
+            structureValid = tag.getBoolean("structure_valid");
+        }
+        if (tag.contains("plugin_quarantined")) {
+            pluginQuarantined = tag.getBoolean("plugin_quarantined");
+        }
         LargeCrucibleHosts.bakedMaterial(getBlockState())
                 .ifPresent(process.casing()::setMaterialId);
     }
@@ -530,6 +586,12 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
         if (tag != null) {
             handleUpdateTag(tag, registries);
         }
+    }
+
+    private void markMutation() {
+        setChanged();
+        checkpoint.checkpointed();
+        checkpoint.markSyncPending();
     }
 
     private void syncToClient() {

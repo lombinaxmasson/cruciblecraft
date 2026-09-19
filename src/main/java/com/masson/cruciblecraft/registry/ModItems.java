@@ -331,6 +331,8 @@ public final class ModItems {
             ITEMS.registerSimpleItem("raw_rod_mold", new Item.Properties());
     public static final DeferredItem<Item> RAW_BOLT_MOLD =
             ITEMS.registerSimpleItem("raw_bolt_mold", new Item.Properties());
+    public static final DeferredItem<CeramicMoldBlockItem> CERAMIC_MOLD =
+            mold("ceramic_mold", 0);
     public static final DeferredItem<CeramicMoldBlockItem> INGOT_MOLD = mold("ingot_mold", MoldShape.INGOT);
     public static final DeferredItem<CeramicMoldBlockItem> PLATE_MOLD = mold("plate_mold", MoldShape.PLATE);
     public static final DeferredItem<CeramicMoldBlockItem> ROD_MOLD = mold("rod_mold", MoldShape.ROD);
@@ -606,6 +608,8 @@ public final class ModItems {
             converterItem("steel_galvanized_electric_motor");
     public static final DeferredItem<BlockItem> BRONZE_FUEL_ENGINE =
             converterItem("bronze_fuel_engine");
+    public static final DeferredItem<BlockItem> BRONZE_SMALL_GAS_TURBINE =
+            converterItem("bronze_small_gas_turbine");
     public static final DeferredItem<BlockItem> BRONZE_BURNING_BOX_GAS =
             converterItem("bronze_burning_box_gas");
     public static final DeferredItem<BlockItem> BRONZE_BURNING_BOX_SOLID =
@@ -1261,12 +1265,20 @@ public final class ModItems {
         };
     }
 
+    public static DeferredItem<CeramicMoldBlockItem> moldStackItem(int pattern) {
+        return MoldShape.fromMask(pattern).map(ModItems::moldItem).orElse(CERAMIC_MOLD);
+    }
+
     private static DeferredItem<CeramicMoldBlockItem> mold(String id, MoldShape shape) {
+        return mold(id, shape.mask());
+    }
+
+    private static DeferredItem<CeramicMoldBlockItem> mold(String id, int defaultPattern) {
         return ITEMS.register(
                 id,
                 () -> new CeramicMoldBlockItem(
                         ModBlocks.CERAMIC_MOLD.get(),
-                        shape,
+                        defaultPattern,
                         new Item.Properties().stacksTo(1)));
     }
 

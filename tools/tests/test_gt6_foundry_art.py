@@ -62,7 +62,7 @@ class Gt6FoundryArtTest(unittest.TestCase):
         self.assertTrue(notes["no_large_crucible_side"])
         self.assertTrue(notes["no_per_material_png"])
         self.assertTrue(notes["reuse_faucet_metallic"])
-        self.assertTrue(notes["foundry_tanks_remain_dummy"])
+        self.assertFalse(notes["foundry_tanks_remain_dummy"])
         self.assertFalse(notes["reopens_foundry_identity"])
         self.assertFalse(notes["reopens_foundry_required_test_ids"])
         self.assertEqual("explicitly_blocked", notes["obtain"])

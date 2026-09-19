@@ -126,6 +126,18 @@ INPLACE_BE = (
     / "blockentity"
     / "MteInPlaceBlockEntity.java"
 )
+INPLACE_BLOCK = (
+    ROOT
+    / "src"
+    / "main"
+    / "java"
+    / "com"
+    / "masson"
+    / "cruciblecraft"
+    / "content"
+    / "block"
+    / "MteInPlaceBlock.java"
+)
 GENERATOR = ROOT / "tools" / "gt6_mte_inplace_runtime.py"
 FOUNDRY_OVERLAY = (
     ROOT
@@ -202,6 +214,7 @@ class Gt6CrucibleMoldBehaviorCorrectionTest(unittest.TestCase):
         foundry_tests = FOUNDRY_TESTS.read_text(encoding="utf-8")
         foundry_tanks = FOUNDRY_TANKS.read_text(encoding="utf-8")
         inplace = INPLACE_BE.read_text(encoding="utf-8")
+        inplace_block = INPLACE_BLOCK.read_text(encoding="utf-8")
         generator = GENERATOR.read_text(encoding="utf-8")
         capabilities = CAPABILITIES_JAVA.read_text(encoding="utf-8")
         self.assertIn("SINGLE_BLOCK_MAX_INGOTS = 16", core)
@@ -215,7 +228,10 @@ class Gt6CrucibleMoldBehaviorCorrectionTest(unittest.TestCase):
         self.assertIn("SOFT_HAMMER", mold_block)
         self.assertIn("ModBlockEntities.CRUCIBLE.get()", capabilities)
         self.assertIn("ModBlockEntities.CERAMIC_MOLD.get()", capabilities)
-        self.assertIn("MteFoundryTanks.capacityMb(spec)", inplace)
+        self.assertNotIn("MteFoundryTanks.capacityMb(spec)", inplace)
+        self.assertNotIn("foundryTank()", inplace)
+        self.assertIn("FoundryCastingBlockEntity", inplace_block)
+        self.assertIn("FoundryCrossingBlockEntity", inplace_block)
         self.assertNotIn("? 8_000", inplace)
         self.assertIn("SMELTERY_MB", foundry_tanks)
         self.assertIn("CROSSING_MB = 0", foundry_tanks)
@@ -250,6 +266,7 @@ class Gt6CrucibleMoldBehaviorCorrectionTest(unittest.TestCase):
         self.assertTrue(notes["mold_redstone_gate"])
         self.assertTrue(notes["mold_hopper_extract_when_cool"])
         self.assertFalse(notes["foundry_tanks_remain_8000mb"])
+        self.assertTrue(notes["foundry_dummy_tanks_removed"])
         self.assertEqual(
             {"smeltery": 2304, "mold": 144, "basin": 1296, "crossing": 0},
             notes["foundry_tank_capacities_mb"],

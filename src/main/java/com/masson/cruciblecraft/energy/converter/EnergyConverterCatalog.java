@@ -15,6 +15,7 @@ public final class EnergyConverterCatalog {
             "cruciblecraft:bronze_steam_engine",
             "cruciblecraft:bronze_dynamo",
             "cruciblecraft:bronze_fuel_engine",
+            "cruciblecraft:bronze_small_gas_turbine",
             "cruciblecraft:bronze_burning_box_gas",
             "cruciblecraft:steel_galvanized_electric_heater",
             "cruciblecraft:steel_galvanized_electric_engine");
@@ -23,6 +24,7 @@ public final class EnergyConverterCatalog {
             "cruciblecraft:bronze_steam_engine",
             "cruciblecraft:bronze_dynamo",
             "cruciblecraft:bronze_fuel_engine",
+            "cruciblecraft:bronze_small_gas_turbine",
             "cruciblecraft:bronze_burning_box_gas",
             "cruciblecraft:steel_galvanized_electric_heater",
             "cruciblecraft:aluminium_electric_heater",
@@ -106,6 +108,7 @@ public final class EnergyConverterCatalog {
         }
         validateSteamConverters(result);
         validateKineticConverters(result);
+        validateSmallGasTurbine(result);
         validateGasGenerator(result);
         validateElectricConverters(result);
         return Map.copyOf(result);
@@ -194,6 +197,44 @@ public final class EnergyConverterCatalog {
                         "MOTOR_LIQUID_BACK_PUSH_VENT")) {
             throw new IllegalStateException(
                     "Kinetic converter rows drifted");
+        }
+    }
+
+    private static void validateSmallGasTurbine(
+            Map<ResourceLocation, EnergyConverterProfile> profiles) {
+        EnergyConverterProfile turbine =
+                profiles.get(ResourceLocation.parse(
+                        "cruciblecraft:bronze_small_gas_turbine"));
+        EnergyConverterProfile chromium =
+                profiles.get(ResourceLocation.parse(
+                        "cruciblecraft:chromium_small_gas_turbine"));
+        EnergyConverterProfile tungstensteel =
+                profiles.get(ResourceLocation.parse(
+                        "cruciblecraft:tungstensteel_small_gas_turbine"));
+        EnergyConverterProfile iridium =
+                profiles.get(ResourceLocation.parse(
+                        "cruciblecraft:iridium_small_gas_turbine"));
+        if (turbine == null
+                || chromium == null
+                || tungstensteel == null
+                || iridium == null
+                || turbine.source().sourceId() != 110000
+                || !"MultiTileEntityGasMotor".equals(
+                        turbine.source().machineKind())
+                || !"FM.Gas".equals(turbine.fuelMap())
+                || turbine.outputPacket().size() != 16L
+                || !Integer.valueOf(3_500).equals(turbine.efficiencyBps())
+                || chromium.outputPacket().size() != 256L
+                || tungstensteel.outputPacket().size() != 372L
+                || iridium.outputPacket().size() != 768L
+                || iridium.source().sourceId() != 110005
+                || chromium.source().sourceId() != 110006
+                || !"RU".equals(turbine.outputPacket().identity())
+                || !turbine.faces().fluidOutputs().equals(List.of("BACK"))
+                || !turbine.policy().sourceResolution().contains(
+                        "KTFRUADDON_GAS_MOTOR_FM_GAS")) {
+            throw new IllegalStateException(
+                    "Small gas turbine converter rows drifted");
         }
     }
 

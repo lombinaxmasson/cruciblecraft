@@ -157,9 +157,7 @@ public final class FuelGeneratorBlockEntity extends MachineCoverHostBlockEntity
             return;
         }
         if (type.sizeIrrelevant()) {
-            boolean live = generator.activeRecipe != null
-                    || generator.heatEmitCooldown > 0
-                    || generator.burning;
+            boolean live = generator.burning || generator.heatEmitCooldown > 0;
             if (generator.heatEmitCooldown > 0) {
                 generator.heatEmitCooldown--;
             }
@@ -228,10 +226,24 @@ public final class FuelGeneratorBlockEntity extends MachineCoverHostBlockEntity
                     markPersistentMutation();
                 }
             }
-            if (!burning && heatEmitCooldown <= 0 && activeRecipe == null) {
-                if (input.isEmpty()) {
+            if (!burning && heatEmitCooldown <= 0) {
+                if (input.isEmpty() && activeRecipe == null) {
                     reset("idle");
                 }
+                return;
+            }
+            Direction facing = front();
+            if (facing == null
+                    || !BurningBoxWorldEffects.hasFrontAir(
+                            level, worldPosition.relative(facing))) {
+                if (facing != null) {
+                    BurningBoxWorldEffects.burnFront(
+                            level, worldPosition.relative(facing));
+                }
+                burning = false;
+                heatEmitCooldown = 0;
+                setStatus("no_air");
+                markPersistentMutation();
                 return;
             }
         }
@@ -239,11 +251,17 @@ public final class FuelGeneratorBlockEntity extends MachineCoverHostBlockEntity
         if (activeRecipe == null) {
             if (input.isEmpty()) {
                 leftoverIdleTicks = 0;
+                if (spec.requiresIgnition()) {
+                    burning = false;
+                }
                 reset("idle");
                 return;
             }
             RecipeMap.Match match = findFuel(false);
             if (match == null) {
+                if (spec.requiresIgnition()) {
+                    burning = false;
+                }
                 voidUnusableFuel();
                 return;
             }
@@ -370,10 +388,9 @@ public final class FuelGeneratorBlockEntity extends MachineCoverHostBlockEntity
     }
 
     private boolean hasOutputRoom(GTRecipe recipe) {
-        for (int index = 0;
-                index < recipe.fluidOutputs().size();
-                index++) {
-            FluidStack output = recipe.fluidOutputs().get(index);
+        List<FluidStack> hosted = spec.hostedFluidOutputs(recipe);
+        for (int index = 0; index < hosted.size(); index++) {
+            FluidStack output = hosted.get(index);
             if (outputs.get(index).fill(
                             output, IFluidHandler.FluidAction.SIMULATE)
                     != output.getAmount()) {
@@ -459,10 +476,9 @@ public final class FuelGeneratorBlockEntity extends MachineCoverHostBlockEntity
     }
 
     private void commitOutputs(GTRecipe recipe) {
-        for (int index = 0;
-                index < recipe.fluidOutputs().size();
-                index++) {
-            FluidStack output = recipe.fluidOutputs().get(index);
+        List<FluidStack> hosted = spec.hostedFluidOutputs(recipe);
+        for (int index = 0; index < hosted.size(); index++) {
+            FluidStack output = hosted.get(index);
             if (outputs.get(index).fill(
                             output, IFluidHandler.FluidAction.EXECUTE)
                     != output.getAmount()) {

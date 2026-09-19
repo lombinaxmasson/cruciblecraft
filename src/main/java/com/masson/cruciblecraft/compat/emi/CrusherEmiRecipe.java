@@ -75,10 +75,6 @@ final class CrusherEmiRecipe implements EmiRecipe {
                     outSlots.get(index).x(),
                     outSlots.get(index).y());
         }
-        Gt6EmiGui.catalyst(
-                widgets,
-                workstation,
-                ProcessingEmiLayout.WORKSTATION.x(),
-                ProcessingEmiLayout.WORKSTATION.y());
+        Gt6EmiGui.workstation(widgets, workstation);
     }
 }

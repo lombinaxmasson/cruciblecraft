@@ -93,6 +93,7 @@ class StoneLayerRockFeatureConfigTest {
         assertEquals(true, hasNetherQuartz);
         assertEquals(false, netherInLayers);
         assertEquals(45, declaration.get("stone_block_count").getAsInt());
+        assertEquals(17, declaration.get("village_brick_count").getAsInt());
         assertEquals(648648000, declaration.get("unit").getAsInt());
         assertEquals(
                 true,

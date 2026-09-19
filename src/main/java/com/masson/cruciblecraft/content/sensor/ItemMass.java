@@ -14,7 +14,8 @@ import net.minecraft.world.item.ItemStack;
  * {@code density_g_cm3 * 111.111111 * amount / U}.
  */
 public final class ItemMass {
-    private static final double KG_PER_DENSITY_UNIT = 111.111111;
+    /** GT6 cubic centimetres per ingot {@code U}. */
+    public static final double CM3_PER_INGOT = 111.111111;
 
     private ItemMass() {}
 
@@ -43,7 +44,7 @@ public final class ItemMass {
         if (ingot <= 0 || units <= 0) {
             return 0.0;
         }
-        return (material.thermal().density() * KG_PER_DENSITY_UNIT * units)
+        return (material.thermal().density() * CM3_PER_INGOT * units)
                 / ingot;
     }
 }

@@ -171,10 +171,6 @@ public final class DropsSmallOre {
     }
 
     private static String secondaryDust(OreStoneHost host) {
-        return switch (host) {
-            case NETHERRACK -> "netherrack";
-            case DEEPSLATE -> "deepslate";
-            case STONE -> "stone";
-        };
+        return host.secondaryDust();
     }
 }

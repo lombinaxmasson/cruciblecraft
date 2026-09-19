@@ -68,7 +68,8 @@ public final class NuclearFissionObservationSafetyGameTests {
         helper.assertTrue(
                 EnergyConverterCatalog.profiles().size()
                         == EnergyConverterTierCatalog.EXPECTED_SIZE,
-                "Converter catalog drifted from 179");
+                "Converter catalog drifted from "
+                        + EnergyConverterTierCatalog.EXPECTED_SIZE);
         helper.assertTrue(
                 semantic(ThermometerItem.REGISTRY_PATH).get()
                         instanceof ThermometerItem,

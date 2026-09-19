@@ -339,9 +339,8 @@ public final class FluidBedBurningBoxBlockEntity extends BlockEntity
         if (level == null) {
             return false;
         }
-        BlockState ahead = level.getBlockState(
-                worldPosition.relative(frontOrNorth()));
-        return ahead.isAir() && ahead.getFluidState().isEmpty();
+        return BurningBoxWorldEffects.hasFrontAir(
+                level, worldPosition.relative(frontOrNorth()));
     }
 
     private long rate() {

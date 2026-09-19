@@ -121,11 +121,7 @@ final class AnvilEmiRecipe implements EmiRecipe {
                     outSlots.get(index).x(),
                     outSlots.get(index).y());
         }
-        Gt6EmiGui.catalyst(
-                widgets,
-                catalysts.get(1),
-                ProcessingEmiLayout.WORKSTATION.x(),
-                ProcessingEmiLayout.WORKSTATION.y());
+        Gt6EmiGui.workstation(widgets, catalysts.get(1));
         String modeName = mode.serializedName().replace('_', ' ');
         widgets.addText(
                 outputs.size() > 1

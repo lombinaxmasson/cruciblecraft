@@ -1781,6 +1781,50 @@
     },
     {
       "depends_on": [
+        "energy/converter-catalog"
+      ],
+      "maturity": "frozen",
+      "owned_paths": [
+        "docs/history/card-plans/active/微型燃气涡轮详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalog.java",
+        "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterFuelSpecs.java",
+        "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterProfiles.java",
+        "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterTierCatalog.java",
+        "src/main/java/com/masson/cruciblecraft/machine/generation/FuelGeneratorSpec.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/FuelGeneratorBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModFuelGenerators.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+        "src/main/java/com/masson/cruciblecraft/compat/emi/CrucibleCraftEmiPlugin.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+        "src/main/resources/data/cruciblecraft/later_wave_publication_baseline.json",
+        "src/test/java/com/masson/cruciblecraft/datagen/HydrocarbonResourceTest.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/EnergyConverterCatalogGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/NuclearFissionObservationSafetyGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeMapLoader.java",
+        "src/main/resources/data/cruciblecraft/energy_converter_kinds.json",
+        "src/main/resources/data/cruciblecraft/energy_converter_tiers.json",
+        "src/hydrocarbon_recipe_generated/resources/data/cruciblecraft/recipe/hydrocarbon/fuels_gas_turbine/**",
+        "src/test/java/com/masson/cruciblecraft/gametest/SmallGasTurbineGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+        "tools/capabilities/energy/small-gas-turbine/**",
+        "tools/tests/test_energy_converter_catalog.py"
+      ],
+      "path": "tools/capabilities/energy/small-gas-turbine/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "energy/small-gas-turbine",
+      "survival_access": "unreviewed",
+      "title": "Small Gas Turbine",
+      "workflow": "active"
+    },
+    {
+      "depends_on": [
         "energy/large-heat-exchanger"
       ],
       "maturity": "frozen",
@@ -2736,6 +2780,7 @@
         "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerCatalog.java",
         "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerStones.java",
         "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerRockFeature.java",
+        "src/main/java/com/masson/cruciblecraft/worldgen/VillageStoneBricks.java",
         "src/main/java/com/masson/cruciblecraft/worldgen/NetherQuartzLayerFeature.java",
         "src/main/java/com/masson/cruciblecraft/content/block/StoneLayerStoneBlock.java",
         "src/main/java/com/masson/cruciblecraft/content/block/StoneLayerRockOreBlock.java",
@@ -2758,6 +2803,7 @@
         "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/stone.png",
         "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/cobble.png",
         "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/cobble_mossy.png",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/small_bricks.png",
         "src/main/resources/assets/cruciblecraft/textures/block/gt6/rock_ores/**",
         "tools/capabilities/worldgen/gt-stone-layer-rocks/**",
         "tools/waves/worldgen/gt-stone-layer-rocks/**",
@@ -2881,7 +2927,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 86,
+  "capability_count": 87,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -3156,6 +3202,7 @@
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/quantum-massfab",
+      "energy/small-gas-turbine",
       "energy/steam-turbine",
       "energy/transformers",
       "machines/cluster-mill",
@@ -3309,6 +3356,9 @@
       "energy/quantum-massfab",
       "machines/puv-omega-matrix"
     ],
+    "energy/small-gas-turbine": [
+      "energy/small-gas-turbine"
+    ],
     "energy/steam-turbine": [
       "content/puv-omega-parts",
       "energy/fusion-quantum",
@@ -3383,6 +3433,7 @@
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/quantum-massfab",
+      "energy/small-gas-turbine",
       "energy/steam-turbine",
       "energy/transformers",
       "logistics/cover-net-r0",
@@ -3435,6 +3486,7 @@
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/quantum-massfab",
+      "energy/small-gas-turbine",
       "energy/steam-turbine",
       "energy/transformers",
       "logistics/display-cpu",
@@ -3478,6 +3530,7 @@
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/quantum-massfab",
+      "energy/small-gas-turbine",
       "energy/steam-turbine",
       "energy/transformers",
       "logistics/display-cpu",
@@ -3524,6 +3577,7 @@
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/quantum-massfab",
+      "energy/small-gas-turbine",
       "energy/steam-turbine",
       "energy/transformers",
       "logistics/display-cpu",
@@ -3569,6 +3623,7 @@
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/quantum-massfab",
+      "energy/small-gas-turbine",
       "energy/steam-turbine",
       "energy/transformers",
       "logistics/display-cpu",
@@ -3616,6 +3671,7 @@
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/quantum-massfab",
+      "energy/small-gas-turbine",
       "energy/steam-turbine",
       "energy/transformers",
       "logistics/display-cpu",
@@ -3893,6 +3949,7 @@
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/quantum-massfab",
+      "energy/small-gas-turbine",
       "energy/steam-turbine",
       "energy/transformers",
       "localization/language-key-display-name-normalization",
@@ -3930,5 +3987,5 @@
   },
   "progress_rule": "runtime_ready is the close maturity; survival_access is independent and does not gate close; playtest is a project-level human cycle",
   "schema_version": 2,
-  "unique_active_slug": null
+  "unique_active_slug": "energy/small-gas-turbine"
 }

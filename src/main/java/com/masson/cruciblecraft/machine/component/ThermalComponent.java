@@ -55,13 +55,13 @@ public final class ThermalComponent {
         return pending;
     }
 
-    public void advance(long incomingEnergy, double totalWeightGrams) {
+    public void advance(long incomingEnergy, double thermalMass) {
         CrucibleThermalModel.StepResult result = CrucibleThermalModel.step(
                 temperature,
                 storedEnergy,
                 cooldownTicks,
                 incomingEnergy,
-                totalWeightGrams,
+                thermalMass,
                 ambientTemperature);
         temperature = result.temperature();
         storedEnergy = result.storedEnergy();

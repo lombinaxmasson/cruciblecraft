@@ -67,6 +67,7 @@ public final class ModRecipeMaps {
     public static final RecipeMap LASER_ENGRAVER = create("laser_engraver");
     public static final RecipeMap FUELS_ENGINE = create("fuels_engine");
     public static final RecipeMap FUELS_GAS = create("fuels_gas");
+    public static final RecipeMap FUELS_GAS_TURBINE = create("fuels_gas_turbine");
     public static final RecipeMap FUELS_FLUIDBED = create("fuels_fluidbed");
     public static final RecipeMap FUSION = create("fusion");
     public static final RecipeMap FUSION_EXTENSION = create("fusion_extension");
@@ -134,6 +135,7 @@ public final class ModRecipeMaps {
             LASER_ENGRAVER,
             FUELS_ENGINE,
             FUELS_GAS,
+            FUELS_GAS_TURBINE,
             FUELS_FLUIDBED,
             FUSION,
             FUSION_EXTENSION,

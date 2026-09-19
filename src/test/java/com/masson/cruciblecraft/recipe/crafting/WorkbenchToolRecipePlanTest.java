@@ -82,6 +82,7 @@ class WorkbenchToolRecipePlanTest {
         assertTrue(paths.contains("tools/iron/club"));
         assertTrue(paths.contains("tools/iron/crowbar"));
         assertTrue(paths.contains("tools/iron/plunger"));
+        assertTrue(paths.contains("tools/iron/pincers"));
         assertFalse(paths.contains("tools/iron/file"));
         assertFalse(paths.contains("tools/iron/pickaxe"));
         assertTrue(paths.contains("tools/stone/pickaxe"));

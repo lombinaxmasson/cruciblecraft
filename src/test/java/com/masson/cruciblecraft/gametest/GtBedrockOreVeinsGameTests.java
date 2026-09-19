@@ -181,6 +181,28 @@ public final class GtBedrockOreVeinsGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void graniteMuffinUsesUniqueOreWithLayerHost(GameTestHelper helper) {
+        BlockPos rel = new BlockPos(8, 4, 8);
+        helper.setBlock(rel, ModBlocks.layerStone("granite_black/stone").get());
+        boolean placed = BedrockOreVeins.placeNormalOre(
+                helper.getLevel(), helper.absolutePos(rel), "gold");
+        helper.assertTrue(placed, "black granite muffin must place unique gold ore");
+        helper.assertTrue(
+                helper.getBlockState(rel).is(
+                        ModBlocks.oreBlock(
+                                "gold",
+                                com.masson.cruciblecraft.worldgen.OreHostVariantCatalog.Host.STONE)
+                                .get()),
+                "black granite gold stays unique gold_ore for c:ores/gold");
+        helper.assertTrue(
+                helper.getBlockState(rel).getValue(
+                        com.masson.cruciblecraft.content.block.MaterialOreBlock.HOST)
+                        == com.masson.cruciblecraft.content.block.OreStoneHost.GRANITE_BLACK,
+                "black granite muffin gold must use granite_black host");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void missingGeneratesOreUsesHostedFallback(GameTestHelper helper) {
         BlockPos rel = new BlockPos(8, 4, 8);
         helper.setBlock(rel, Blocks.DEEPSLATE);
@@ -217,6 +239,11 @@ public final class GtBedrockOreVeinsGameTests {
                 helper.getBlockState(rel).canSurvive(
                         helper.getLevel(), helper.absolutePos(rel)),
                 "FlowersA must stay on grass");
+        var stacked = GtIndicatorFlowerBlock.item(desert);
+        helper.assertTrue(
+                com.masson.cruciblecraft.content.item.GtIndicatorFlowerItem.flowerOf(stacked)
+                        == IndicatorFlower.PANDANUS_CANDELABRUM,
+                "picked indicator flowers must keep BLOCK_STATE for item models");
         helper.succeed();
     }
 

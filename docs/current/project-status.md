@@ -6,7 +6,7 @@
 
 ## Unique active
 
-无。`capability.json` 里没有 `workflow=active`。
+`energy/small-gas-turbine`（Small Gas Turbine，`workflow=active`，`maturity=frozen`）；计划 [微型燃气涡轮详细计划](../history/card-plans/active/微型燃气涡轮详细计划.md)。
 
 ## Prep（不占落地锁）
 
@@ -119,7 +119,7 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `worldgen/gt-surface-rocks` — GT Surface Rocks — [GT6 地表石子保真](../history/card-plans/closed/GT6地表石子保真详细计划.md)
 - `worldgen/gt-trees` — GT Trees — [GT 树详细计划](../history/card-plans/closed/GT树详细计划.md)
 
-## frozen（9）
+## frozen（10）
 
 分母已冻。`paused` 的 PUV/OMEGA 六张代码已在 `src/main`，是 CC 扩展，不是原版高压线。地牢是结构载体，房间内容仍 blocked。
 
@@ -127,6 +127,7 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `energy/fusion-quantum` — Fusion execution, QUANTUM, and LU to QU（`workflow=paused`）
 - `energy/large-heat-exchanger` — Large Heat Exchanger 17197（`workflow=paused`）
 - `energy/quantum-massfab` — Matter Fabricator and Neutronium bootstrap（`workflow=paused`）
+- `energy/small-gas-turbine` — Small Gas Turbine（`workflow=active`） — [微型燃气涡轮详细计划](../history/card-plans/active/微型燃气涡轮详细计划.md)
 - `energy/steam-turbine` — Steam Turbines STEAM to RU（`workflow=paused`）
 - `logistics/cover-net-r0` — Logistics cover network R0（`workflow=accepted`）
 - `machines/puv-omega-matrix` — All machine variants through OMEGA（`workflow=paused`）

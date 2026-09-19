@@ -12,6 +12,7 @@ import com.masson.cruciblecraft.client.color.BedrockOreColor;
 import com.masson.cruciblecraft.client.color.ElectricWireRemainderColor;
 import com.masson.cruciblecraft.client.color.FoundryBlockColor;
 import com.masson.cruciblecraft.client.color.Gt6OpeningBlockColor;
+import com.masson.cruciblecraft.client.color.GtBushColor;
 import com.masson.cruciblecraft.client.color.GtBlockDyeColor;
 import com.masson.cruciblecraft.client.color.HopperBlockColor;
 import com.masson.cruciblecraft.client.color.LargeCrucibleBlockColor;
@@ -24,11 +25,13 @@ import com.masson.cruciblecraft.client.color.MaterialOreColor;
 import com.masson.cruciblecraft.client.color.MaterialStorageColor;
 import com.masson.cruciblecraft.client.color.StorageArtColor;
 import com.masson.cruciblecraft.client.color.RockColor;
+import com.masson.cruciblecraft.client.model.CeramicMoldGeometry;
 import com.masson.cruciblecraft.client.model.PositionalPebbleGeometry;
 import com.masson.cruciblecraft.client.render.AnvilRenderer;
 import com.masson.cruciblecraft.client.render.BookshelfRenderer;
 import com.masson.cruciblecraft.client.render.BottleCrateRenderer;
 import com.masson.cruciblecraft.client.render.CrucibleRenderer;
+import com.masson.cruciblecraft.client.render.LargeCrucibleRenderer;
 import com.masson.cruciblecraft.client.render.MassStorageRenderer;
 import com.masson.cruciblecraft.client.render.MteInPlaceStorageRenderer;
 import com.masson.cruciblecraft.client.render.GtChestRenderer;
@@ -47,6 +50,7 @@ import com.masson.cruciblecraft.machine.MachineMaterialRules;
 import com.masson.cruciblecraft.material.MaterialColors;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
+import com.masson.cruciblecraft.content.item.GtIndicatorFlowerItem;
 import com.masson.cruciblecraft.registry.ModComponents;
 import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.registry.ModItems;
@@ -84,15 +88,22 @@ public class ClientSetup {
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
         CrucibleCraft.LOGGER.info("CrucibleCraft client setup");
-        event.enqueueWork(() -> ItemProperties.register(
-                ModItems.ANVIL.get(),
-                ResourceLocation.fromNamespaceAndPath(CrucibleCraft.MODID, "metallic"),
-                (stack, level, entity, seed) -> {
-                    String material = stack.getOrDefault(
-                            ModComponents.MACHINE_MATERIAL.get(),
-                            MachineMaterialRules.DEFAULT_ANVIL_MATERIAL);
-                    return AnvilHosts.metallic(material) ? 1.0F : 0.0F;
-                }));
+        event.enqueueWork(() -> {
+            ItemProperties.register(
+                    ModItems.ANVIL.get(),
+                    ResourceLocation.fromNamespaceAndPath(CrucibleCraft.MODID, "metallic"),
+                    (stack, level, entity, seed) -> {
+                        String material = stack.getOrDefault(
+                                ModComponents.MACHINE_MATERIAL.get(),
+                                MachineMaterialRules.DEFAULT_ANVIL_MATERIAL);
+                        return AnvilHosts.metallic(material) ? 1.0F : 0.0F;
+                    });
+            ItemProperties.register(
+                    ModItems.GT_INDICATOR_FLOWER.get(),
+                    ResourceLocation.fromNamespaceAndPath(CrucibleCraft.MODID, "flower"),
+                    (stack, level, entity, seed) ->
+                            GtIndicatorFlowerItem.flowerOf(stack).ordinal());
+        });
     }
 
     @SubscribeEvent
@@ -101,6 +112,10 @@ public class ClientSetup {
                 ResourceLocation.fromNamespaceAndPath(
                         CrucibleCraft.MODID, "positional_pebble"),
                 PositionalPebbleGeometry.LOADER);
+        event.register(
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, "ceramic_mold"),
+                CeramicMoldGeometry.LOADER);
     }
 
     @SubscribeEvent
@@ -212,6 +227,7 @@ public class ClientSetup {
                 java.util.Arrays.stream(tintedMachines)
                         .map(net.minecraft.world.level.block.Block::asItem)
                         .toArray(Item[]::new));
+        event.register(GtBushColor::itemColor, ModItems.GT_BUSH.get());
         event.register(
                 Gt6OpeningBlockColor::itemColor,
                 java.util.Arrays.stream(Gt6OpeningBlockColor.tintedBlocks())
@@ -314,6 +330,7 @@ public class ClientSetup {
                 LargeCrucibleBlockColor.tintedBlocks());
         event.register(AnvilBlockColor::blockColor, AnvilBlockColor.tintedBlocks());
         event.register(MachineBlockColor::blockColor, MachineBlockColor.tintedBlocks());
+        event.register(GtBushColor::blockColor, GtBushColor.tintedBlocks());
         event.register(
                 Gt6OpeningBlockColor::blockColor,
                 Gt6OpeningBlockColor.tintedBlocks());
@@ -379,6 +396,8 @@ public class ClientSetup {
     @SubscribeEvent
     static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(ModBlockEntities.CRUCIBLE.get(), CrucibleRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.LARGE_CRUCIBLE.get(), LargeCrucibleRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.ANVIL.get(), AnvilRenderer::new);
         event.registerBlockEntityRenderer(
                 ModBlockEntities.ITEM_PIPE.get(), PipeCoverRenderer::new);

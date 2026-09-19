@@ -22,7 +22,7 @@ class ThermalComponentTest {
     @Test
     void advancesWithExplicitMassAndRestoresSanitizedState() {
         ThermalComponent thermal = new ThermalComponent(20.0F);
-        thermal.advance(2L, 200.0);
+        thermal.advance(2L, 100.0);
         assertEquals(21.0F, thermal.authoritativeTemperature());
         assertEquals(CrucibleThermalModel.HOT_BUFFER_TICKS, thermal.cooldownTicks());
         assertFalse(thermal.isQuiescent());

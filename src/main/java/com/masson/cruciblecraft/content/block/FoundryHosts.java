@@ -19,6 +19,22 @@ public final class FoundryHosts {
         return spec != null && spec.kind() == MteInPlaceKind.CRUCIBLE_FOUNDRY;
     }
 
+    public static boolean isMold(MteInPlaceSpec spec) {
+        return isFoundry(spec) && spec.gt6Class().contains("MultiTileEntityMold");
+    }
+
+    public static boolean isBasin(MteInPlaceSpec spec) {
+        return isFoundry(spec) && spec.gt6Class().contains("Basin");
+    }
+
+    public static boolean isCrossing(MteInPlaceSpec spec) {
+        return isFoundry(spec) && spec.gt6Class().contains("Crossing");
+    }
+
+    public static boolean isCasting(MteInPlaceSpec spec) {
+        return isMold(spec) || isBasin(spec);
+    }
+
     public static String materialId(MteInPlaceSpec spec) {
         return resolveMaterialId(token(spec.registryPath()));
     }

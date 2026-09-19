@@ -5110,6 +5110,7 @@ public final class CrucibleCraftGameTests {
                     heatMelt(crucible, 2_000f);
                     helper.setBlock(placedMold, ModBlocks.CERAMIC_MOLD.get());
                     CeramicMoldBlockEntity mold = helper.getBlockEntity(placedMold);
+                    mold.setPattern(com.masson.cruciblecraft.content.mold.MoldShape.INGOT.mask());
                     CruciblePour pour = CruciblePour.at(
                             helper.getLevel(), helper.absolutePos(wall));
                     helper.assertTrue(
@@ -10949,10 +10950,11 @@ public final class CrucibleCraftGameTests {
     private static void placeCeramicMold(
             GameTestHelper helper, BlockPos pos, boolean filled) {
         helper.setBlock(pos, ModBlocks.CERAMIC_MOLD.get());
+        CeramicMoldBlockEntity mold = helper.getBlockEntity(pos);
+        mold.setPattern(com.masson.cruciblecraft.content.mold.MoldShape.INGOT.mask());
         if (!filled) {
             return;
         }
-        CeramicMoldBlockEntity mold = helper.getBlockEntity(pos);
         mold.fill(new CrucibleBlockEntity.CastTransfer(
                 MaterialCatalog.require("copper"),
                 MaterialPrefixes.INGOT,
@@ -11574,9 +11576,11 @@ public final class CrucibleCraftGameTests {
         helper.assertTrue(
                 water != null
                         && water.fill(
-                                new FluidStack(Fluids.WATER, 10_000),
+                                new FluidStack(
+                                        Fluids.WATER,
+                                        boiler.waterCapacity()),
                                 IFluidHandler.FluidAction.EXECUTE)
-                                == 10_000,
+                                == boiler.waterCapacity(),
                 "Could not water the small-workload boiler");
         primeBoilerOperatingPressure(helper, boiler);
         FluidStack fuelInput = fuel.fluidInputs().getFirst();

@@ -2,55 +2,36 @@
 
 [English](README.en.md)
 
-CrucibleCraft 是一个面向 Minecraft 1.21.1 / NeoForge 的非官方 GregTech 6
-移植项目。长期目标是在现代 Minecraft 中完整移植 GT6 的材料、机器、配方、
-能源、物流与世界生成体系，同时保留可维护、可验证的数据驱动实现。
+本项目是把 GregTech 6 移植到 Minecraft 1.21.1 / NeoForge 上的一个尝试：材料、机器、配方、能源、物流、世界生成都照着钉死的上游版本走数据驱动的移植流程，目标是完整覆盖，而不是挑几个系统做个演示。
 
-- [玩家指南](docs/current/player-guide.md)
+当前版本是开发快照 `0.1.0-test.20260919`，以源码仓库的形式发布。想直接上手玩，先看[玩家指南](docs/current/player-guide.md)。
+
 - [项目状态](docs/current/project-status.md)
-- [当前进度与规划](docs/current/roadmap.md)
+- [未实现与缺口](docs/current/unimplemented-gap.md)
+- [总体规划](docs/current/roadmap.md)
 - [问题反馈](https://github.com/icodestuljh/cruciblecraft/issues)
 
-## 截图
+## 目前进了运行时的东西
 
-> 截图与演示动图待补充。
+材料、前缀和矿物处理这套配方都是按 GT6 来源生成的；火、热、蒸汽、动能、旋转能、电力几条能源链路都在跑，电加热器、电引擎、LU 光纤、裂变堆芯已经能用，大型热交换器、蒸汽涡轮和聚变作为 CrucibleCraft 的扩展也进了运行时（冷却器还没开）。加工机从青铜一路做到高档，蒸馏塔、大型锅炉、储罐这些多方块也在。世界生成这边有大型矿脉、地下油气、地表石子、石层和基岩矿。物流上是物品管、流体管、电缆、封面加自动化。原油和天然气可以蒸馏出燃油，送去引擎和燃气发电。第三方集成方面，EMI 能看配方，Jade 能看方块信息，KubeJS 是可选项——这些都不会强制捆绑进包里。
 
-<!-- 建议后续展示：世界生成、机器产线、物流网络和多方块结构。 -->
+具体进度和缺口记在 [项目状态](docs/current/project-status.md)、[未实现与缺口](docs/current/unimplemented-gap.md)、[已阻塞项](docs/current/blocked.md) 里。
 
-## 主要内容
+## 移植上的几条原则
 
-当前代码库已经包含以下基础系统，并会继续朝 GT6 的完整覆盖扩展：
+GT6 是这个项目的主要来源，也是完整移植的目标。Minecraft 和 NeoForge 版本之间总有些差异需要取舍，遇到这种情况时，项目会把信息分成三类：
 
-- 材料、前缀与矿物处理体系，以及由来源数据生成的大规模配方集合；
-- 火、热、蒸汽、动能、旋转能与电力组成的多阶段能源链；电加热器 / 电引擎、
-  LU 光纤与裂变堆芯已 `runtime_ready`。大型热交换器、蒸汽涡轮与聚变
-  已作为 CC 扩展进运行时（`frozen`，不是生存完成档）。冷却器仍未开；
-- 从早期加工到高阶处理的机器族，以及蒸馏塔、大型锅炉和储罐等多方块；
-- 大型矿脉、地下油气与地表资源等世界生成；
-- 物品、流体和电力传输，以及管道、线缆、封面与自动化组件；
-- 石油加工、天然气处理及其下游燃料与发电路径；
-- EMI 配方展示与 Jade 方块信息集成；KubeJS 作为可选兼容项。
+- `SOURCE_BACKED`：能直接追溯到某个固定上游来源的事实；
+- `SOURCE_DERIVED`：从来源数据或行为推导出来的结果；
+- `DESIGN_POLICY`：为了兼容性、可玩性或实现限制而做的项目决策。
 
-尚未完成的系统与后续顺序记录在
-[冻结与未实现账本](docs/current/unimplemented-gap.md)。玩家可见的玩法说明和已知问题
-见 [玩家指南](docs/current/player-guide.md)。
-
-## 移植原则
-
-CrucibleCraft 以 GT6 为主要来源和完整移植目标。面对 Minecraft 与 NeoForge
-版本差异时，项目会区分三类信息：
-
-- `SOURCE_BACKED`：可以直接追溯到固定上游来源的事实；
-- `SOURCE_DERIVED`：根据来源数据或行为推导出的结果；
-- `DESIGN_POLICY`：为兼容性、可玩性或实现约束作出的项目决策。
-
-这些标签用于说明依据，而不是替代玩家文档。固定来源版本、许可证与第三方归属见
-[CREDITS.md](CREDITS.md) 和 [NOTICE](NOTICE)。
+这几个标签是用来说明依据的，不是替代玩家文档。固定的来源版本、许可证和第三方归属信息见 [CREDITS.md](CREDITS.md) 和 [NOTICE](NOTICE)。
 
 ## 构建与运行
 
-需要 Java 21。项目面向 Minecraft 1.21.1、NeoForge 21.1.243，使用仓库自带的
-Gradle Wrapper 构建。
+需要 Java 21、Minecraft 1.21.1、NeoForge 21.1.243。内存建议留够 16 GiB 以上，第一次进世界要等它把东西都加载完。材料身份和铸造方块刚改过一版，建议开新档。
+
+直接 clone 下来就能编译。`gt6_code/` 和 `gt6_referencable_port_code/` 是本机的参考源码树，不进 Git，改运行时代码用不着它们；只有要重放 GT6 来源数据或者搬贴图时才需要本地准备一份，具体见[代码树说明](docs/current/code-tree.md)。
 
 ```powershell
 .\gradlew.bat build
@@ -58,56 +39,48 @@ Gradle Wrapper 构建。
 .\gradlew.bat test
 ```
 
-构建产物位于 `build/libs/`。当前玩家指南对应小群私测
-`0.1.0-test.20260919`（`.\gradlew.bat jar distBeta`），不是公开 RC。
-开发代理应配置在用户级 `~/.gradle/gradle.properties`，不要写入仓库。
+构建产物在 `build/libs/` 下，当前是 `cruciblecraft-0.1.0-test.20260919.jar`。`distBeta` 会把文档一起打进 zip。如果要配代理，写在用户级的 `~/.gradle/gradle.properties` 里。
 
 ## 开发方式
 
+
+
 ### 数据与规则
 
-材料、配方和机器族的常规变化优先通过数据、目录和生成规则表达，避免为每个对象复制
-一份 Java 实现。手写资源、生成资源和能力声明分别位于：
+材料、配方、机器族这些经常变动的东西，优先用数据、目录和生成规则来表达，而不是每加一个对象就手写一份 Java 实现。手写资源、生成资源、能力声明分别放在：
 
 ```text
 src/main/resources/     手写数据与资源
-src/*_generated/        由工具生成并纳入版本控制的资源
+src/*_generated/        由工具生成、纳入版本控制的资源
 tools/waves/<slug>/     领域输入、production lock 与 census
 tools/capabilities/     可验证的能力声明
 ```
 
-配方内容大致经过以下管线：
+配方内容大致走这样一条管线：
 
 ```text
 Source Pack（GT6 来源或明确的项目设计）
-  -> 确定移植范围并冻结 production lock
+  -> 确定移植范围，冻结 production lock
   -> tools/recipe_bulk 编译 exact / exact_multi
   -> publication group / shard
   -> 运行时物化
 ```
 
-新工作使用语义化 slug，例如 `logistics/fluid-network/basic-transfer` 和
-`smelter/ordinary-closure`。早期编号只保留在历史档案和兼容映射中，不再用于新的
-运行时 ID、配方路径或测试路径。
+新工作用语义化的 slug 命名，比如 `logistics/fluid-network/basic-transfer`、`smelter/ordinary-closure`。早期的编号只留在历史档案和兼容映射里，新的运行时 ID、配方路径、测试路径都不再用它。
 
 ### 能力状态
 
-项目用 capability 跟踪规格是否明确、机制是否可运行。玩家获得性是独立字段，
-试玩是项目级 cycle：
+项目用 capability 来跟踪一个东西的规格是否定清楚了、机制能不能跑起来；玩家能不能拿到手是单独的字段。试玩是项目级别的一个周期：
 
-- `frozen`：范围、来源和依赖已经确定；
-- `runtime_ready`：运行时机制已经可用，可以关卡；内容或获得路径可能尚未补齐；
-- `survival_access`：独立获得性（`unreviewed` / `blocked` / `partial` /
-  `complete` / `not_applicable`），不挡 runtime 关闭。
+- `frozen`：范围、来源和依赖都定下来了；
+- `runtime_ready`：运行时机制能用了，可以关闭这张卡，至于内容或获取路径是否补齐是另一回事；
+- `survival_access`：单独描述获得性（`unreviewed` / `blocked` / `partial` / `complete` / `not_applicable`），不会卡住 runtime 的关闭。
 
-路线图把 accepted `runtime_ready` 计为机制进度。试玩签收只来自人跑的
-`runClient`。现行集合见
-[项目状态](docs/current/project-status.md)。完整定义见
-[能力交付流程](docs/current/capability-delivery-workflow.md)。
+路线图把 accepted 的 `runtime_ready` 算作机制进度，但试玩签收只认人工跑一遍 `runClient` 之后的结果。现行的能力集合见[项目状态](docs/current/project-status.md)，完整定义见[能力交付流程](docs/current/capability-delivery-workflow.md)。
 
 ### 验证
 
-常用入口如下：
+常用的验证命令：
 
 ```powershell
 python tools/verify.py dev
@@ -119,42 +92,35 @@ python tools/verify.py integration --profile capability-runtime
 python tools/playtest.py check
 ```
 
-`dev` 会根据工作区改动选择相关检查：普通 runtime Java 跑 JUnit，不跑 datagen；
-datagen provider 或生成树才会跑两次 `runData`。试玩签收是人跑 `runClient`
-之后的 `python tools/playtest.py record-accept`，CI 不自动 `runClient`。需要运行哪些 profile、测试结果写到哪里，见
-[开发与验证指南](docs/current/verification.md)和
-[工具链说明](tools/README.md)。
+`dev` 会根据工作区改了什么来挑要跑的检查：普通的运行时 Java 改动只跑 JUnit，不碰 datagen；碰到 datagen provider 或生成树的改动才会跑两遍 `runData`。试玩签收是先人工跑一遍 `runClient`，再执行 `python tools/playtest.py record-accept`，CI 不会自动帮你跑 `runClient`。具体该跑哪些 profile、结果记在哪，见[开发与验证指南](docs/current/verification.md)和[工具链说明](tools/README.md)。
 
 ## 代码结构
 
-日常只打开 `src/main`、`src/test`、`tools/waves/`、`tools/tests/` 和
-`docs/current/`。本地 `run*/`、参考源码树和缓存不是仓库结构；完整地图见
-[代码树与工作副本](docs/current/code-tree.md)。
+平时开发只需要打开 `src/main`、`src/test`、`tools/waves/`、`tools/tests/` 和 `docs/current/`。本地的 `run*/` 目录、参考源码树和各种缓存都不算仓库结构的一部分，完整的地图在[代码树与工作副本](docs/current/code-tree.md)。
 
-主要运行时代码位于 `src/main/java/com/masson/cruciblecraft/`：
+主要运行时代码在 `src/main/java/com/masson/cruciblecraft/` 下面：
 
-- `registry`、`content`、`machine`：方块、物品、处理机与内容目录；
+- `registry`、`content`、`machine`：方块、物品、处理机和内容目录；
 - `recipe`、`recipe.gt`：RecipeMap、紧凑配方族与发布；
 - `material`：材料定义、前缀目录与生成包；
 - `energy`、`heat`、`steam`、`fluid`：能源与流体系统；
 - `logistics`：管道、线缆、漏斗、封面和传输网络；
-- `worldgen`：矿脉、油气与其他世界生成；
+- `worldgen`：矿脉、油气和其他世界生成；
 - `census`、`scale`、`gametest`：覆盖统计、载荷验证与 GameTest；
 - `datagen`、`client`：数据生成与客户端集成。
 
-现行规范位于 [docs/current/](docs/current/)，早期计划和阶段记录位于只读的
-[docs/history/](docs/history/INDEX.md)。
+现行规范都放在 [docs/current/](docs/current/)，早期的计划和阶段记录作为只读档案留在 [docs/history/](docs/history/INDEX.md)。
 
 ## 文档
 
-玩家与项目概览：
+面向玩家和项目概览：
 
 - [玩家指南](docs/current/player-guide.md)
 - [总体规划](docs/current/roadmap.md)
 - [当前已知问题](docs/current/known-issues.md)
 - [变更记录](CHANGELOG.md)
 
-开发与贡献：
+面向开发和贡献：
 
 - [开发与验证指南](docs/current/verification.md)
 - [代码树与工作副本](docs/current/code-tree.md)
@@ -164,9 +130,10 @@ datagen provider 或生成树才会跑两次 `runData`。试玩签收是人跑 `
 - [工具链说明](tools/README.md)
 - [完整文档索引](docs/README.md)
 
+报 issue 的时候带上版本号、复现步骤和日志。缺的零件按 GT6 里对应的对象补齐，不会拿别的东西顶替充数。
+
 ## 许可证
 
-源码与项目自有资源采用 [LGPL-3.0-or-later](LICENSE)。GT6 来源数据、第三方资产、
-模板与各自许可证见 [CREDITS.md](CREDITS.md) 和 [NOTICE](NOTICE)。
+源码和项目自有资源用 [LGPL-3.0-or-later](LICENSE)。GT6 来源数据、第三方资产、模板各自的许可证列在 [CREDITS.md](CREDITS.md) 和 [NOTICE](NOTICE) 里。GT6 的默认资产在上游是 CC0 1.0；本项目不使用 GregTech 的 logo（CC-BY-NC-4.0）。
 
-EMI、Jade 与 KubeJS 均为可选且不捆绑的集成。
+EMI、Jade 和 KubeJS 都是可选的集成，不会被捆绑进包里。

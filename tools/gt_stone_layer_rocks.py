@@ -70,6 +70,8 @@ TEST_IDS = [
     "stoneLayerOneIn128AndNoDeep",
     "stoneLayerDoesNotDumpCatalog",
     "stoneLayerManifestResolvesLocalGt6",
+    "stoneLayerDoesNotEatVillageCobble",
+    "stoneLayerCubeItemModelsExist",
 ]
 NETHER_QUARTZ_JAVA = (
     GT6 / "src" / "main" / "java" / "gregtech" / "worldgen" / "nether"
@@ -280,7 +282,7 @@ NATIVE_STONES = (
         "hardness_mul": 0.50,
         "resistance_mul": 0.75,
     },
-    {
+        {
         "material": "shale",
         "gt_folder": "gt.stone.shale",
         "english": "Shale",
@@ -290,6 +292,29 @@ NATIVE_STONES = (
         "resistance_mul": 0.75,
     },
 )
+PRISMARINE_STONES = (
+    {
+        "material": "prismarine_light",
+        "gt_folder": "gt.stone.prismarine.light",
+        "english": "Light Prismarine",
+        "chinese": "海晶石",
+        "harvest": 0,
+        "hardness_mul": 0.50,
+        "resistance_mul": 0.75,
+    },
+    {
+        "material": "prismarine_dark",
+        "gt_folder": "gt.stone.prismarine.dark",
+        "english": "Dark Prismarine",
+        "chinese": "暗海晶石",
+        "harvest": 1,
+        "hardness_mul": 0.50,
+        "resistance_mul": 0.75,
+    },
+)
+# BlocksGT.stones order, including prismarine which is not an overworld layer cube.
+VILLAGE_STONES = NATIVE_STONES[:13] + PRISMARINE_STONES + NATIVE_STONES[13:]
+VILLAGE_BRICK_COUNT = len(VILLAGE_STONES)
 STONE_ROLES = (
     {
         "role": "stone",
@@ -371,6 +396,7 @@ def _owned_paths(*, closed: bool) -> list[str]:
         "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerCatalog.java",
         "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerStones.java",
         "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayerRockFeature.java",
+        "src/main/java/com/masson/cruciblecraft/worldgen/VillageStoneBricks.java",
         "src/main/java/com/masson/cruciblecraft/worldgen/NetherQuartzLayerFeature.java",
         "src/main/java/com/masson/cruciblecraft/content/block/StoneLayerStoneBlock.java",
         "src/main/java/com/masson/cruciblecraft/content/block/StoneLayerRockOreBlock.java",
@@ -393,6 +419,7 @@ def _owned_paths(*, closed: bool) -> list[str]:
         "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/stone.png",
         "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/cobble.png",
         "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/cobble_mossy.png",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**/small_bricks.png",
         "src/main/resources/assets/cruciblecraft/textures/block/gt6/rock_ores/**",
         f"tools/capabilities/{SLUG}/**",
         "tools/waves/worldgen/gt-stone-layer-rocks/**",
@@ -538,6 +565,18 @@ def art_imports() -> list[dict[str, str]]:
             "destination": f"{CC_ROCK_ORES}/{NETHER_QUARTZ_ICON}",
         }
     )
+    for stone in VILLAGE_STONES:
+        rows.append(
+            {
+                "source": "gregtech6_w",
+                "gt6_source": (
+                    GT6_STONES / stone["gt_folder"] / "small_bricks.png"
+                ).as_posix(),
+                "destination": (
+                    f"{CC_STONES}/{stone['gt_folder']}/small_bricks.png"
+                ),
+            }
+        )
     return rows
 
 
@@ -557,6 +596,184 @@ def copy_art() -> None:
             raise FileNotFoundError(row["gt6_source"])
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(source, dest)
+
+
+GENERATED_ASSETS = census.ROOT / "src" / "generated" / "resources"
+GT_STONE_CATALOG = (
+    census.ROOT / "src" / "main" / "resources" / "data" / "cruciblecraft"
+    / "gt_stone_catalog.json"
+)
+
+
+def gt_stone_catalog_paths() -> set[str]:
+    catalog = census.load_json(GT_STONE_CATALOG)
+    paths: set[str] = set()
+    for identity in catalog.get("identities") or []:
+        for variant in identity.get("variants") or []:
+            paths.add(variant["registry_path"])
+    return paths
+
+
+def write_cube_item_model(registry_path: str) -> None:
+    dest = (
+        GENERATED_ASSETS
+        / "assets"
+        / "cruciblecraft"
+        / "models"
+        / "item"
+        / f"{registry_path}.json"
+    )
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_text(
+        json.dumps({"parent": f"cruciblecraft:{registry_path}"}, indent=2)
+        + "\n",
+        encoding="utf-8",
+    )
+
+
+def write_cube_block_assets(row: dict[str, Any]) -> None:
+    path = row["registry_path"]
+    texture = row["texture"]
+    blockstate = (
+        GENERATED_ASSETS
+        / "assets"
+        / "cruciblecraft"
+        / "blockstates"
+        / f"{path}.json"
+    )
+    blockstate.parent.mkdir(parents=True, exist_ok=True)
+    blockstate.write_text(
+        json.dumps(
+            {"variants": {"": {"model": f"cruciblecraft:{path}"}}},
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    model = (
+        GENERATED_ASSETS / "assets" / "cruciblecraft" / "models" / f"{path}.json"
+    )
+    model.parent.mkdir(parents=True, exist_ok=True)
+    model.write_text(
+        json.dumps(
+            {
+                "parent": "minecraft:block/cube_all",
+                "textures": {"all": texture},
+            },
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    write_cube_item_model(path)
+    loot = (
+        GENERATED_ASSETS
+        / "data"
+        / "cruciblecraft"
+        / "loot_table"
+        / "blocks"
+        / f"{path}.json"
+    )
+    loot.parent.mkdir(parents=True, exist_ok=True)
+    loot.write_text(
+        json.dumps(
+            {
+                "type": "minecraft:block",
+                "pools": [
+                    {
+                        "bonus_rolls": 0.0,
+                        "conditions": [
+                            {"condition": "minecraft:survives_explosion"}
+                        ],
+                        "entries": [
+                            {
+                                "type": "minecraft:item",
+                                "name": f"cruciblecraft:{path}",
+                            }
+                        ],
+                        "rolls": 1.0,
+                    }
+                ],
+                "random_sequence": f"cruciblecraft:blocks/{path}",
+            },
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+
+def _append_tag_ids(path: Path, ids: list[str]) -> None:
+    text = path.read_text(encoding="utf-8")
+    missing = [item for item in ids if f'"{item}"' not in text]
+    if not missing:
+        return
+    stripped = text.rstrip()
+    insert_at = stripped.rfind("\n  ]")
+    if insert_at < 0:
+        raise ValueError(f"missing values close {path}")
+    insertion = "".join(f',\n    "{item}"' for item in missing)
+    path.write_text(
+        stripped[:insert_at] + insertion + "\n  ]\n}\n",
+        encoding="utf-8",
+    )
+
+
+def write_generated_cube_assets() -> None:
+    existing = gt_stone_catalog_paths()
+    for row in stone_blocks() + rock_ore_blocks():
+        if row["registry_path"] not in existing:
+            write_cube_item_model(row["registry_path"])
+    new_bricks: list[str] = []
+    diamond: list[str] = []
+    iron: list[str] = []
+    stone: list[str] = []
+    for row in village_brick_blocks():
+        ident = f"cruciblecraft:{row['registry_path']}"
+        if row["registry_path"] not in existing:
+            write_cube_block_assets(row)
+            new_bricks.append(ident)
+            harvest = row["harvest_level"]
+            if harvest >= 3:
+                diamond.append(ident)
+            elif harvest == 2:
+                iron.append(ident)
+            elif harvest == 1:
+                stone.append(ident)
+    tags = GENERATED_ASSETS / "data" / "minecraft" / "tags" / "block"
+    _append_tag_ids(tags / "mineable" / "pickaxe.json", new_bricks)
+    _append_tag_ids(tags / "needs_diamond_tool.json", diamond)
+    _append_tag_ids(tags / "needs_iron_tool.json", iron)
+    _append_tag_ids(tags / "needs_stone_tool.json", stone)
+    en_entries: dict[str, str] = {}
+    zh_entries: dict[str, str] = {}
+    for row in village_brick_blocks() + stone_blocks() + rock_ore_blocks():
+        if row["registry_path"] in existing and row["role"] != "small_bricks":
+            continue
+        if row["registry_path"] in existing:
+            continue
+        key = "block.cruciblecraft." + row["registry_path"].replace("/", ".")
+        en_entries[key] = row["english"]
+        zh_entries[key] = row["chinese"]
+    lang = GENERATED_ASSETS / "assets" / "cruciblecraft" / "lang"
+    _append_lang_entries(lang / "en_us.json", en_entries)
+    _append_lang_entries(lang / "zh_cn.json", zh_entries)
+
+
+def _append_lang_entries(path: Path, entries: dict[str, str]) -> None:
+    text = path.read_text(encoding="utf-8")
+    missing = {key: value for key, value in entries.items() if f'"{key}"' not in text}
+    if not missing:
+        return
+    stripped = text.rstrip()
+    if not stripped.endswith("}"):
+        raise ValueError(f"unexpected lang footer {path}")
+    body = stripped[:-1].rstrip()
+    insertion = "".join(
+        f',\n  {json.dumps(key)}: {json.dumps(value, ensure_ascii=False)}'
+        for key, value in missing.items()
+    )
+    path.write_text(body + insertion + "\n}\n", encoding="utf-8")
 
 
 def stone_blocks() -> list[dict[str, Any]]:
@@ -592,6 +809,36 @@ def stone_blocks() -> list[dict[str, Any]]:
     if len(rows) != STONE_BLOCK_COUNT:
         raise ValueError(
             f"expected {STONE_BLOCK_COUNT} stone cubes, got {len(rows)}"
+        )
+    return rows
+
+
+def village_brick_blocks() -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for stone in VILLAGE_STONES:
+        hardness = round(stone["hardness_mul"] * 1.5, 4)
+        resistance = round(stone["resistance_mul"] * 10.0, 4)
+        rows.append(
+            {
+                "material": stone["material"],
+                "role": "small_bricks",
+                "registry_path": f"{stone['material']}/small_bricks",
+                "texture": (
+                    "cruciblecraft:block/gt6/stones/"
+                    f"{stone['gt_folder']}/small_bricks"
+                ),
+                "gt_folder": stone["gt_folder"],
+                "gt_file": "small_bricks.png",
+                "harvest_level": stone["harvest"],
+                "hardness": hardness,
+                "resistance": resistance,
+                "english": f"{stone['english']} Small Bricks",
+                "chinese": f"{stone['chinese']}小砖",
+            }
+        )
+    if len(rows) != VILLAGE_BRICK_COUNT:
+        raise ValueError(
+            f"expected {VILLAGE_BRICK_COUNT} village SBRIK cubes, got {len(rows)}"
         )
     return rows
 
@@ -1045,6 +1292,7 @@ def layer_catalog() -> dict[str, Any]:
         raise ValueError(f"native materials missing from LAYERS: {missing}")
     blocks = stone_blocks()
     dense = rock_ore_blocks()
+    village = village_brick_blocks()
     return {
         "schema_version": 1,
         "id": "stone_layer_rocks",
@@ -1061,6 +1309,7 @@ def layer_catalog() -> dict[str, Any]:
         "loader_layer_count": len(loader_layers),
         "rock_ore_count": len(rock_ores),
         "stone_block_count": len(blocks),
+        "village_brick_count": len(village),
         "unit": UNIT,
         "layers": [_layer_json(row) for row in layers],
         "deepslate_layer": {
@@ -1079,6 +1328,7 @@ def layer_catalog() -> dict[str, Any]:
         ],
         "random_small_gems": gems,
         "stone_blocks": blocks,
+        "village_bricks": village,
         "rock_ores": dense,
         "nether_rock_ore_count": 1,
         "nether_quartz": {
@@ -1312,6 +1562,7 @@ def write(*, unique_active: bool) -> dict[str, Any]:
                 raise ValueError(f"unique-active already occupied by {path.name}")
     write_noise()
     copy_art()
+    write_generated_cube_assets()
     declaration = write_worldgen()
     _write_json(ART_MANIFEST, {"imports": art_imports(), "schema_version": 1})
     _write_json(WAVE / "topology.json", topology(unique_active))
@@ -1399,6 +1650,15 @@ def check() -> list[str]:
         errors.append("rock_ore_count drifted from BlockRockOres")
     if actual.get("stone_block_count") != STONE_BLOCK_COUNT:
         errors.append("stone_block_count drifted from BlocksGT native cubes")
+    if actual.get("village_brick_count") != VILLAGE_BRICK_COUNT:
+        errors.append("village_brick_count drifted from BlocksGT.stones")
+    village_materials = [
+        row["material"] for row in actual.get("village_bricks", [])
+    ]
+    if village_materials != [stone["material"] for stone in VILLAGE_STONES]:
+        errors.append("village_bricks order drifted from BlocksGT.stones")
+    elif village_materials and village_materials[7] != "andesite":
+        errors.append("null-biome village cobble must stay Andesite SBRIK")
     cube_materials = {row["material"] for row in actual.get("stone_blocks", [])}
     native_gt = {stone["material"] for stone in NATIVE_STONES}
     if cube_materials != native_gt:
@@ -1433,9 +1693,11 @@ def check() -> list[str]:
     if "coal" not in set(layer_materials):
         errors.append("MT.Coal BlockRockOres layer must remain in LAYERS")
     imports = art_imports()
-    if len(imports) != STONE_BLOCK_COUNT + ROCK_ORE_COUNT + 1:
+    if len(imports) != (
+            STONE_BLOCK_COUNT + ROCK_ORE_COUNT + 1 + VILLAGE_BRICK_COUNT
+    ):
         errors.append(
-            "art manifest must copy stone cubes and BlockRockOres iconsets"
+            "art manifest must copy stone cubes, village SBRIK, and BlockRockOres iconsets"
         )
     manifest = census.load_json(ART_MANIFEST) if ART_MANIFEST.is_file() else {}
     if manifest.get("imports") != imports:
@@ -1483,6 +1745,8 @@ def check() -> list[str]:
             errors.append("stone-layer feature must keep 1/128 roll")
         if "tryReplace" not in text or "Blocks.STONE" not in text:
             errors.append("stone-layer feature must replace vanilla stone cubes")
+        if "StructureTags.VILLAGE" not in text or "tryReplaceVillageBrick" not in text:
+            errors.append("village cobble must become GetVillageBlockID SBRIK")
         if "Blocks.TUFF" not in text:
             errors.append("stone-layer feature must replace 1.21 tuff")
         if "tryPlaceOre" not in text or "UNIT" not in text:
@@ -1513,11 +1777,17 @@ def check() -> list[str]:
                 errors.append("dense ore loot must look up fortune from the enchantment registry")
             if "RAW_ORE" not in loot_text:
                 errors.append("BlockRockOres must drop oreRaw")
+            if "villageBricks" not in loot_text:
+                errors.append("village SBRIK cubes must drop themselves")
         states = java_root / "datagen" / "ModBlockStateProvider.java"
-        if states.is_file() and "simpleBlockWithItem" not in states.read_text(
-            encoding="utf-8"
-        ):
-            errors.append("layer cubes must emit block and item models together")
+        if states.is_file():
+            states_text = states.read_text(encoding="utf-8")
+            if "simpleBlockWithItem" not in states_text:
+                errors.append("layer cubes must emit block and item models together")
+            if 'item/" + cube.registryPath()' not in states_text:
+                errors.append(
+                    "slash-id layer cubes must write models/item/<path>.json"
+                )
         tags_java = java_root / "datagen" / "ModBlockTagProvider.java"
         if tags_java.is_file() and "NEEDS_IRON_TOOL" not in tags_java.read_text(
             encoding="utf-8"
@@ -1535,6 +1805,21 @@ def check() -> list[str]:
                 dest = folder / rel
                 if not dest.is_file():
                     errors.append(f"missing generated {census.relative(dest)}")
+        for rel in (
+            "granite_black/stone.json",
+            "granite_black/cobble.json",
+            "andesite/small_bricks.json",
+        ):
+            item_model = (
+                generated
+                / "assets"
+                / "cruciblecraft"
+                / "models"
+                / "item"
+                / rel
+            )
+            if not item_model.is_file():
+                errors.append(f"missing generated {census.relative(item_model)}")
         pickaxe = (
             generated / "data" / "minecraft" / "tags" / "block" / "mineable" / "pickaxe.json"
         )
@@ -1544,6 +1829,8 @@ def check() -> list[str]:
                 errors.append("dense cubes must be mineable with pickaxe")
             if "cruciblecraft:nether_quartz/dense_ore" not in pickaxe_text:
                 errors.append("nether quartz dense cube must be mineable with pickaxe")
+            if "cruciblecraft:andesite/small_bricks" not in pickaxe_text:
+                errors.append("village SBRIK cubes must be mineable with pickaxe")
         else:
             errors.append("missing generated pickaxe tag")
         loot_coal = (
@@ -1570,6 +1857,11 @@ def check() -> list[str]:
     stones = java_root / "worldgen" / "StoneLayerStones.java"
     if not stones.is_file():
         errors.append("missing StoneLayerStones.java")
+    elif 'load("village_bricks"' not in stones.read_text(encoding="utf-8"):
+        errors.append("layer cubes must load GetVillageBlockID SBRIK palette")
+    village_java = java_root / "worldgen" / "VillageStoneBricks.java"
+    if not village_java.is_file():
+        errors.append("missing VillageStoneBricks.java")
     blocks_java = java_root / "registry" / "ModBlocks.java"
     if not blocks_java.is_file():
         errors.append("missing ModBlocks.java")
@@ -1611,6 +1903,10 @@ def check() -> list[str]:
             errors.append("GameTest must cover vanilla nether quartz removal")
         if "stoneLayerManifestResolvesLocalGt6" not in text:
             errors.append("GameTest must cover local GT6 stone textures")
+        if "stoneLayerDoesNotEatVillageCobble" not in text:
+            errors.append("GameTest must cover GetVillageBlockID cobble")
+        if "stoneLayerCubeItemModelsExist" not in text:
+            errors.append("GameTest must cover slash-id item models")
         if "GtItemScatterFeature" in text:
             errors.append("GameTest must not reintroduce catalog scatter")
     block = (

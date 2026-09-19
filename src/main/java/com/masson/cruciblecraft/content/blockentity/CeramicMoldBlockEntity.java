@@ -1,5 +1,7 @@
 package com.masson.cruciblecraft.content.blockentity;
 
+import java.util.Optional;
+
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
@@ -17,6 +19,7 @@ import com.masson.cruciblecraft.heat.TemperatureDamage;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
+import com.masson.cruciblecraft.registry.ModComponents;
 import com.masson.cruciblecraft.registry.ModItems;
 
 import net.minecraft.core.BlockPos;
@@ -41,7 +44,7 @@ public final class CeramicMoldBlockEntity extends BlockEntity
     public static final float AMBIENT_TEMPERATURE = 20.0F;
     public static final float HOPPER_EXTRACT_SLACK = 50.0F;
 
-    private int pattern = MoldShape.INGOT.mask();
+    private int pattern;
     private String materialId = "";
     private int outputCount;
     private float temperature = AMBIENT_TEMPERATURE;
@@ -248,11 +251,19 @@ public final class CeramicMoldBlockEntity extends BlockEntity
     }
 
     public ItemStack moldStack() {
-        return new ItemStack(ModItems.moldItem(shape()).get());
+        ItemStack stack = new ItemStack(ModItems.moldStackItem(pattern).get());
+        if (stack.is(ModItems.CERAMIC_MOLD.get()) && pattern != 0) {
+            stack.set(ModComponents.MOLD_PATTERN, pattern);
+        }
+        return stack;
+    }
+
+    public Optional<MoldShape> namedShape() {
+        return MoldShape.fromMask(pattern);
     }
 
     public MoldShape shape() {
-        return MoldShape.fromMask(pattern).orElse(MoldShape.INGOT);
+        return namedShape().orElse(MoldShape.INGOT);
     }
 
     public int pattern() {
@@ -396,12 +407,17 @@ public final class CeramicMoldBlockEntity extends BlockEntity
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         if (tag.contains("pattern")) {
-            pattern = tag.getInt("pattern");
+            pattern = tag.getInt("pattern") & ((1 << MoldRecipes.CELL_COUNT) - 1);
         } else {
-            try {
-                pattern = MoldShape.parse(tag.getString("shape")).mask();
-            } catch (IllegalArgumentException exception) {
-                pattern = MoldShape.INGOT.mask();
+            String shape = tag.getString("shape");
+            if (shape.isEmpty() || "custom".equals(shape)) {
+                pattern = 0;
+            } else {
+                try {
+                    pattern = MoldShape.parse(shape).mask();
+                } catch (IllegalArgumentException exception) {
+                    pattern = 0;
+                }
             }
         }
         materialId = tag.getString("material");
@@ -416,7 +432,10 @@ public final class CeramicMoldBlockEntity extends BlockEntity
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
         tag.putInt("pattern", pattern);
-        tag.putString("shape", shape().serializedName());
+        tag.putString(
+                "shape",
+                namedShape().map(MoldShape::serializedName).orElse(
+                        pattern == 0 ? "" : "custom"));
         tag.putString("material", materialId);
         tag.putInt("output_count", outputCount);
         tag.putFloat("temperature", temperature);
@@ -445,6 +464,17 @@ public final class CeramicMoldBlockEntity extends BlockEntity
         if (tag != null) {
             loadAdditional(tag, registries);
         }
+        requestModelDataUpdate();
+        if (level != null && level.isClientSide) {
+            level.sendBlockUpdated(
+                    worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
+        }
+    }
+
+    @Override
+    public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider registries) {
+        super.handleUpdateTag(tag, registries);
+        requestModelDataUpdate();
     }
 
     private void sync() {

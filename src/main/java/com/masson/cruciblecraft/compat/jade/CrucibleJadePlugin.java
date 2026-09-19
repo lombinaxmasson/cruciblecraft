@@ -46,6 +46,8 @@ import com.masson.cruciblecraft.content.blockentity.AnvilBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CokeOvenBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CeramicMoldBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FoundryCastingBlockEntity;
+import com.masson.cruciblecraft.content.mold.MoldRecipes;
 import com.masson.cruciblecraft.content.blockentity.BoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SteamEngineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrusherBlockEntity;
@@ -134,6 +136,7 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
         registration.registerBlockComponent(AnvilComponentProvider.INSTANCE, MteInPlaceBlock.class);
         registration.registerBlockComponent(CokeOvenComponentProvider.INSTANCE, CokeOvenBlock.class);
         registration.registerBlockComponent(CeramicMoldComponentProvider.INSTANCE, CeramicMoldBlock.class);
+        registration.registerBlockComponent(CeramicMoldComponentProvider.INSTANCE, MteInPlaceBlock.class);
         registration.registerBlockComponent(BoilerComponentProvider.INSTANCE, BoilerBlock.class);
         registration.registerBlockComponent(SteamEngineComponentProvider.INSTANCE, SteamEngineBlock.class);
         registration.registerBlockComponent(CrusherComponentProvider.INSTANCE, CrusherBlock.class);
@@ -340,8 +343,8 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
         @Override public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
             if (accessor.getBlockEntity() instanceof BoilerBlockEntity boiler) {
                 tooltip.add(Component.translatable("jade.cruciblecraft.boiler",
-                        boiler.waterAmount(), BoilerBlockEntity.WATER_CAPACITY,
-                        boiler.steamAmount(), BoilerBlockEntity.STEAM_CAPACITY, boiler.accumulatedHu()));
+                        boiler.waterAmount(), boiler.waterCapacity(),
+                        boiler.steamAmount(), boiler.steamCapacity(), boiler.accumulatedHu()));
             }
         }
         @Override public ResourceLocation getUid() { return UID; }
@@ -885,26 +888,62 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
 
         @Override
         public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
-            if (!(accessor.getBlockEntity() instanceof CeramicMoldBlockEntity mold)) {
+            if (accessor.getBlockEntity() instanceof CeramicMoldBlockEntity mold) {
+                appendMold(
+                        tooltip,
+                        mold.pattern(),
+                        mold.isFilled(),
+                        mold.outputCount(),
+                        mold.materialId(),
+                        mold.isSolidified(),
+                        mold.temperature());
                 return;
             }
+            if (accessor.getBlockEntity() instanceof FoundryCastingBlockEntity mold
+                    && !mold.basin()) {
+                appendMold(
+                        tooltip,
+                        mold.pattern(),
+                        mold.isFilled(),
+                        mold.outputCount(),
+                        mold.materialId(),
+                        mold.isSolidified(),
+                        mold.temperature());
+            }
+        }
+
+        private static void appendMold(
+                ITooltip tooltip,
+                int pattern,
+                boolean filled,
+                int outputCount,
+                String materialId,
+                boolean solidified,
+                float temperature) {
             tooltip.add(Component.translatable(
                     "jade.cruciblecraft.mold_shape",
-                    title(mold.shape().serializedName())));
-            if (!mold.isFilled()) {
+                    MoldRecipes.recipe(pattern)
+                            .map(prefix -> title(prefix.serializedName()))
+                            .orElse(title("unshaped"))));
+            if (pattern != 0) {
+                tooltip.add(Component.translatable(
+                        "jade.cruciblecraft.mold_units",
+                        MoldRecipes.requiredUnits(pattern)));
+            }
+            if (!filled) {
                 tooltip.add(Component.translatable("jade.cruciblecraft.mold_empty"));
                 return;
             }
             tooltip.add(Component.translatable(
                     "jade.cruciblecraft.mold_contents",
-                    mold.outputCount(),
-                    mold.materialId()));
+                    outputCount,
+                    materialId));
             tooltip.add(Component.translatable(
                     "jade.cruciblecraft.mold_state",
-                    Component.translatable(mold.isSolidified()
+                    Component.translatable(solidified
                             ? "jade.cruciblecraft.mold_solid"
                             : "jade.cruciblecraft.mold_cooling"),
-                    String.format(Locale.ROOT, "%.1f", mold.temperature())));
+                    String.format(Locale.ROOT, "%.1f", temperature)));
         }
 
         @Override

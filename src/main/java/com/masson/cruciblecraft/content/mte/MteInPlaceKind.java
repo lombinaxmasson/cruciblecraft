@@ -98,10 +98,6 @@ public enum MteInPlaceKind {
         };
     }
 
-    public boolean foundryTank() {
-        return this == CRUCIBLE_FOUNDRY;
-    }
-
     public boolean energy() {
         return this == STEAM_TURBINE
                 || this == BATTERY_BOX
@@ -109,10 +105,20 @@ public enum MteInPlaceKind {
     }
 
     public boolean drive() {
-        return this == AXLE
-                || this == GEARBOX
-                || this == ROTATION_ENGINE
-                || this == ROTATION_TRANSFORMER;
+        return driveTransmit() || rotationEngine();
+    }
+
+    /** RU pass-through axles and gearboxes. Rotation engines convert instead. */
+    public boolean driveTransmit() {
+        return this == AXLE || this == GEARBOX || this == ROTATION_TRANSFORMER;
+    }
+
+    public boolean rotationEngine() {
+        return this == ROTATION_ENGINE;
+    }
+
+    public boolean foundryTank() {
+        return this == CRUCIBLE_FOUNDRY;
     }
 
     public EnergyType energyType() {

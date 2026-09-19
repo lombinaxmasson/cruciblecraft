@@ -177,13 +177,16 @@ public record FuelGeneratorSpec(
     }
 
     public Optional<String> validate(GTRecipe recipe) {
-        if (recipe.fluidOutputs().size() > outputTanks) {
+        if (recipe.fluidOutputs().isEmpty()) {
+            return Optional.of("fuel_generator_recipe_shape");
+        }
+        if (recipe.fluidOutputs().size() > outputTanks
+                && exhaustRouting != ExhaustRouting.BACK) {
             return Optional.of("host_output_shape_unsupported");
         }
         if (!recipe.itemInputs().isEmpty()
                 || !recipe.itemOutputs().isEmpty()
                 || recipe.fluidInputs().size() != 1
-                || recipe.fluidOutputs().isEmpty()
                 || recipe.eut() >= 0L
                 || recipe.eut() == Long.MIN_VALUE
                 || Math.abs(recipe.eut()) > 1_024L
@@ -191,11 +194,20 @@ public record FuelGeneratorSpec(
                 || recipePowerInvalid(recipe)
                 || recipe.fluidInputs().getFirst().getAmount()
                         > inputCapacityMb
-                || recipe.fluidOutputs().stream().anyMatch(
+                || hostedFluidOutputs(recipe).stream().anyMatch(
                         stack -> stack.getAmount() > outputCapacityMb)) {
             return Optional.of("fuel_generator_recipe_shape");
         }
         return Optional.empty();
+    }
+
+    /**
+     * GT6 {@code MultiTileEntityMotorLiquid} fills only
+     * {@code mFluidOutputs[0]}. Extra exhaust fluids are dropped.
+     */
+    public List<FluidStack> hostedFluidOutputs(GTRecipe recipe) {
+        int limit = Math.min(recipe.fluidOutputs().size(), outputTanks);
+        return recipe.fluidOutputs().subList(0, limit);
     }
 
     public long generatedEnergy(GTRecipe recipe) {

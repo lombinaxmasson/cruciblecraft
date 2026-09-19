@@ -123,14 +123,18 @@ public final class LanguageNames {
 
     public static String playerEnglish(String sourceName, String registryPath) {
         ensureLoaded();
+        String path = registryPath == null ? "" : registryPath;
         String name = sourceName == null ? "" : META_SUFFIX.matcher(sourceName).replaceFirst("").strip();
         if (name.isEmpty()) {
-            name = formatEnglishId(registryPath.replace('/', '_'));
+            if (path.isEmpty()) {
+                return "";
+            }
+            name = formatEnglishId(path.replace('/', '_'));
         }
         Set<String> owned = wordTokens(name);
         List<String> extras = new ArrayList<>();
         boolean first = true;
-        for (String segment : registryPath.replace('.', '/').split("/")) {
+        for (String segment : path.replace('.', '/').split("/")) {
             if (segment.isEmpty()) {
                 continue;
             }
@@ -186,7 +190,8 @@ public final class LanguageNames {
         }
         String name = META_SUFFIX.matcher(sourceName).replaceFirst("").strip();
         List<String> extras = new ArrayList<>();
-        for (String segment : registryPath.replace('.', '/').split("/")) {
+        String path = registryPath == null ? "" : registryPath;
+        for (String segment : path.replace('.', '/').split("/")) {
             if (segment.isEmpty()) {
                 continue;
             }

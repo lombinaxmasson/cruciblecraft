@@ -176,10 +176,16 @@ public final class LargeCrucibleBlock extends Block implements EntityBlock {
             Level level,
             BlockState state,
             BlockEntityType<T> type) {
-        return !level.isClientSide
-                        && type == ModBlockEntities.LARGE_CRUCIBLE.get()
-                ? (l, p, s, be) -> LargeCrucibleBlockEntity.serverTick(
-                        l, p, s, (LargeCrucibleBlockEntity) be)
+        return type == ModBlockEntities.LARGE_CRUCIBLE.get()
+                ? (l, p, s, be) -> {
+                    if (be instanceof LargeCrucibleBlockEntity crucible) {
+                        if (l.isClientSide) {
+                            LargeCrucibleBlockEntity.clientTick(l, p, s, crucible);
+                        } else {
+                            LargeCrucibleBlockEntity.serverTick(l, p, s, crucible);
+                        }
+                    }
+                }
                 : null;
     }
 }

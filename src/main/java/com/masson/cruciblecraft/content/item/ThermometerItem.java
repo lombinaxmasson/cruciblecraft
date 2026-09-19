@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import com.masson.cruciblecraft.content.blockentity.CeramicMoldBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FoundryCastingBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ReactorCoreBlockEntity;
 import com.masson.cruciblecraft.heat.TemperatureDamage;
 
@@ -42,6 +43,9 @@ public final class ThermometerItem extends Item {
             return reportKelvin(context, TemperatureDamage.kelvin(crucible.temperature()), true);
         }
         if (blockEntity instanceof CeramicMoldBlockEntity mold) {
+            return reportKelvin(context, TemperatureDamage.kelvin(mold.temperature()), false);
+        }
+        if (blockEntity instanceof FoundryCastingBlockEntity mold) {
             return reportKelvin(context, TemperatureDamage.kelvin(mold.temperature()), false);
         }
         if (!(blockEntity instanceof ReactorCoreBlockEntity core)) {

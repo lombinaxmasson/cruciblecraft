@@ -152,6 +152,13 @@ public class ModBlockLootTables extends BlockLootSubProvider {
             }
         }
         for (com.masson.cruciblecraft.worldgen.StoneLayerStones.Cube cube :
+                com.masson.cruciblecraft.worldgen.StoneLayerStones.villageBricks()) {
+            if (!ModBlocks.hasLayerStone(cube.registryPath())) {
+                continue;
+            }
+            dropSelf(ModBlocks.layerStone(cube.registryPath()).get());
+        }
+        for (com.masson.cruciblecraft.worldgen.StoneLayerStones.Cube cube :
                 com.masson.cruciblecraft.worldgen.StoneLayerStones.rockOres()) {
             if (!ModBlocks.hasLayerStone(cube.registryPath())) {
                 continue;

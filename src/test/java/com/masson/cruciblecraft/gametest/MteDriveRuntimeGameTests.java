@@ -2,6 +2,8 @@ package com.masson.cruciblecraft.gametest;
 
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
+import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
+import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.item.CatalogNamedBlockItem;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
@@ -73,5 +75,105 @@ public final class MteDriveRuntimeGameTests {
                             "drive did not push kinetic to neighbor");
                 })
                 .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void rotationEngineConvertsRuToKu(GameTestHelper helper) {
+        MteInPlaceGameTestSupport.assertLive(
+                helper, "brass/rotation_engine", MteInPlaceKind.ROTATION_ENGINE);
+        BlockPos enginePos = new BlockPos(2, 2, 2);
+        BlockPos sifterPos = new BlockPos(3, 2, 2);
+        MteInPlaceBlock engineBlock = ModBlocks.mteInPlaceBlocksById()
+                .get(MteInPlaceGameTestSupport.id("brass/rotation_engine"))
+                .get();
+        helper.setBlock(
+                enginePos,
+                engineBlock.defaultBlockState().setValue(
+                        MteInPlaceBlock.FACING, Direction.EAST));
+        helper.setBlock(
+                sifterPos,
+                ModBlocks.SIFTER.get().defaultBlockState().setValue(
+                        ProcessingMachineBlock.FACING, Direction.EAST));
+        MteInPlaceBlockEntity engine = helper.getBlockEntity(enginePos);
+        helper.assertTrue(
+                engine.handles(EnergyType.KINETIC_ROTATION, Direction.NORTH)
+                        && !engine.handles(
+                                EnergyType.KINETIC_ROTATION, Direction.EAST)
+                        && !engine.handles(
+                                EnergyType.KINETIC_PUSH, Direction.EAST),
+                "rotation engine ports drifted from GT6 bipolar RU/KU");
+        helper.assertTrue(
+                engine.insert(
+                        EnergyType.KINETIC_ROTATION,
+                        32L,
+                        2L,
+                        Direction.NORTH,
+                        false)
+                        == 2L
+                        && engine.stored(EnergyType.KINETIC_ROTATION) == 64L,
+                "rotation engine rejected side RU");
+        helper.startSequence()
+                .thenExecuteAfter(2, () -> {
+                    ConfiguredProcessingMachineBlockEntity sifter =
+                            helper.getBlockEntity(sifterPos);
+                    helper.assertTrue(
+                            engine.stored(EnergyType.KINETIC_ROTATION) == 0L
+                                    && sifter.stored(EnergyType.KINETIC_PUSH)
+                                            == 32L,
+                            "rotation engine did not convert RU to KU: RU="
+                                    + engine.stored(
+                                            EnergyType.KINETIC_ROTATION)
+                                    + " KU="
+                                    + sifter.stored(EnergyType.KINETIC_PUSH));
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void rotationEngineSoftHammerStopsInput(GameTestHelper helper) {
+        MteInPlaceGameTestSupport.assertLive(
+                helper, "brass/rotation_engine", MteInPlaceKind.ROTATION_ENGINE);
+        BlockPos enginePos = new BlockPos(2, 2, 2);
+        MteInPlaceBlock engineBlock = ModBlocks.mteInPlaceBlocksById()
+                .get(MteInPlaceGameTestSupport.id("brass/rotation_engine"))
+                .get();
+        helper.setBlock(
+                enginePos,
+                engineBlock.defaultBlockState().setValue(
+                        MteInPlaceBlock.FACING, Direction.EAST));
+        MteInPlaceBlockEntity engine = helper.getBlockEntity(enginePos);
+        helper.assertTrue(
+                engine.toggleRotationEngineStopped() == false
+                        && engine.rotationEngineStopped()
+                        && engine.insert(
+                                EnergyType.KINETIC_ROTATION,
+                                32L,
+                                1L,
+                                Direction.NORTH,
+                                false)
+                                == 0L,
+                "stopped rotation engine still accepted RU");
+        helper.assertTrue(
+                engine.insert(
+                        EnergyType.KINETIC_ROTATION,
+                        128L,
+                        1L,
+                        Direction.NORTH,
+                        true)
+                        == 0L,
+                "stopped rotation engine simulated oversize inject");
+        helper.assertTrue(
+                engine.toggleRotationEngineStopped()
+                        && engine.insert(
+                                EnergyType.KINETIC_ROTATION,
+                                128L,
+                                1L,
+                                Direction.NORTH,
+                                false)
+                                == 1L
+                        && engine.rotationEngineOvercharged()
+                        && engine.stored(EnergyType.KINETIC_ROTATION) == 0L,
+                "oversize RU did not overload the rotation engine");
+        helper.succeed();
     }
 }

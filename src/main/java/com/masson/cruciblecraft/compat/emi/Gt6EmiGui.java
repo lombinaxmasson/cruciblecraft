@@ -12,10 +12,21 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
 /**
- * Shared GT6 NEI chrome for EMI: machine-GUI crop, progress overlay from
- * {@code u=176}, slot frames from the texture, and Costs/Usage/Time lines.
+ * Shared GT6 NEI chrome for EMI.
+ *
+ * <p>GT6 {@code NEI_RecipeMap.drawBackground} blits {@code NEI.png} 176×166 at
+ * {@code (-5,-16)} and the machine GUI 176×79 from {@code v=3} at
+ * {@code (-5,-8)}. Items sit at GUI {@code (x-5,y-11)}. Translating by
+ * {@code (+5,+16)} puts chrome at EMI {@code (0,0)}. EMI's 18×18 slot widget
+ * insets the item by 1px, so machine slots land at {@code (guiX-1, guiY+4)}.
  */
 final class Gt6EmiGui {
+    static final int MACHINE_PANEL_Y = 8;
+    static final int MACHINE_PANEL_V = 3;
+    static final int MACHINE_PANEL_HEIGHT = 79;
+    static final int NEI_CHROME_HEIGHT = 166;
+    private static final int SLOT_INSET = 1;
+
     private Gt6EmiGui() {}
 
     static ResourceLocation texture(String path) {
@@ -26,29 +37,45 @@ final class Gt6EmiGui {
         return texture("nei");
     }
 
+    static int slotX(int guiX) {
+        return guiX - SLOT_INSET;
+    }
+
+    static int slotY(int guiY) {
+        return guiY + 4;
+    }
+
+    static int progressX(int guiX) {
+        return guiX;
+    }
+
+    static int progressY(int guiY) {
+        return guiY + 5;
+    }
+
     static void addPanel(WidgetHolder widgets, ResourceLocation texture) {
-        widgets.addTexture(
-                texture,
-                0,
-                0,
-                ProcessingEmiLayout.PANEL_WIDTH,
-                ProcessingEmiLayout.PANEL_HEIGHT,
-                0,
-                0,
-                ProcessingEmiLayout.PANEL_WIDTH,
-                ProcessingEmiLayout.PANEL_HEIGHT,
-                ProcessingEmiLayout.TEXTURE_SIZE,
-                ProcessingEmiLayout.TEXTURE_SIZE);
         widgets.addTexture(
                 neiChrome(),
                 0,
-                ProcessingEmiLayout.PANEL_HEIGHT,
-                ProcessingEmiLayout.PANEL_WIDTH,
-                ProcessingEmiLayout.NEI_HEIGHT - ProcessingEmiLayout.PANEL_HEIGHT,
                 0,
-                ProcessingEmiLayout.PANEL_HEIGHT,
                 ProcessingEmiLayout.PANEL_WIDTH,
-                ProcessingEmiLayout.NEI_HEIGHT - ProcessingEmiLayout.PANEL_HEIGHT,
+                NEI_CHROME_HEIGHT,
+                0,
+                0,
+                ProcessingEmiLayout.PANEL_WIDTH,
+                NEI_CHROME_HEIGHT,
+                ProcessingEmiLayout.TEXTURE_SIZE,
+                ProcessingEmiLayout.TEXTURE_SIZE);
+        widgets.addTexture(
+                texture,
+                0,
+                MACHINE_PANEL_Y,
+                ProcessingEmiLayout.PANEL_WIDTH,
+                MACHINE_PANEL_HEIGHT,
+                0,
+                MACHINE_PANEL_V,
+                ProcessingEmiLayout.PANEL_WIDTH,
+                MACHINE_PANEL_HEIGHT,
                 ProcessingEmiLayout.TEXTURE_SIZE,
                 ProcessingEmiLayout.TEXTURE_SIZE);
     }
@@ -60,8 +87,8 @@ final class Gt6EmiGui {
             int durationTicks) {
         widgets.addAnimatedTexture(
                 texture,
-                progress.x(),
-                progress.y(),
+                progressX(progress.x()),
+                progressY(progress.y()),
                 progress.width(),
                 progress.height(),
                 Gt6BasicMachineGui.PROGRESS_U,
@@ -72,17 +99,48 @@ final class Gt6EmiGui {
                 false);
     }
 
-    static SlotWidget slot(WidgetHolder widgets, EmiIngredient stack, int x, int y) {
-        return widgets.addSlot(stack, x, y).drawBack(false);
+    static SlotWidget slot(WidgetHolder widgets, EmiIngredient stack, int guiX, int guiY) {
+        return widgets.addSlot(stack, slotX(guiX), slotY(guiY)).drawBack(false);
+    }
+
+    static SlotWidget emptySlot(WidgetHolder widgets, int guiX, int guiY) {
+        return widgets.addSlot(slotX(guiX), slotY(guiY)).drawBack(false);
     }
 
     static SlotWidget output(
-            WidgetHolder widgets, EmiStack stack, EmiRecipe recipe, int x, int y) {
-        return slot(widgets, stack, x, y).recipeContext(recipe);
+            WidgetHolder widgets, EmiStack stack, EmiRecipe recipe, int guiX, int guiY) {
+        return slot(widgets, stack, guiX, guiY).recipeContext(recipe);
     }
 
-    static SlotWidget catalyst(WidgetHolder widgets, EmiIngredient stack, int x, int y) {
-        return slot(widgets, stack, x, y).catalyst(true);
+    static SlotWidget catalyst(WidgetHolder widgets, EmiIngredient stack, int guiX, int guiY) {
+        return slot(widgets, stack, guiX, guiY).catalyst(true);
+    }
+
+    static SlotWidget workstation(WidgetHolder widgets, EmiIngredient stack) {
+        return widgets.addSlot(
+                        stack,
+                        ProcessingEmiLayout.WORKSTATION.x(),
+                        ProcessingEmiLayout.WORKSTATION.y())
+                .drawBack(false)
+                .catalyst(true);
+    }
+
+    static SlotWidget tank(
+            WidgetHolder widgets,
+            EmiIngredient stack,
+            int guiX,
+            int guiY,
+            int width,
+            int height,
+            int capacity) {
+        return widgets.addTank(
+                stack,
+                slotX(guiX),
+                slotY(guiY),
+                width,
+                height,
+                capacity)
+                .drawBack(false);
     }
 
     static void addStats(

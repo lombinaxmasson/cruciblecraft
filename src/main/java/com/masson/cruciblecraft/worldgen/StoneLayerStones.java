@@ -32,13 +32,15 @@ public final class StoneLayerStones {
     public enum Role {
         STONE,
         COBBLE,
-        MOSSY_COBBLE;
+        MOSSY_COBBLE,
+        SMALL_BRICKS;
 
         public String id() {
             return switch (this) {
                 case STONE -> "stone";
                 case COBBLE -> "cobble";
                 case MOSSY_COBBLE -> "mossy_cobble";
+                case SMALL_BRICKS -> "small_bricks";
             };
         }
 
@@ -47,9 +49,14 @@ public final class StoneLayerStones {
                 case "stone" -> STONE;
                 case "cobble" -> COBBLE;
                 case "mossy_cobble" -> MOSSY_COBBLE;
+                case "small_bricks" -> SMALL_BRICKS;
                 default -> throw new IllegalArgumentException(
                         "unknown stone-layer role " + id);
             };
+        }
+
+        public boolean naturalLayer() {
+            return this != SMALL_BRICKS;
         }
     }
 
@@ -69,6 +76,7 @@ public final class StoneLayerStones {
 
     private static final List<Cube> CUBES = load("stone_blocks", false);
     private static final List<Cube> ROCK_ORES = load("rock_ores", true);
+    private static final List<Cube> VILLAGE_BRICKS = load("village_bricks", false);
     private static final Map<String, Cube> BY_PATH = index(allRegistered());
     private static final Map<String, Cube> DENSE_BY_MATERIAL = denseIndex(ROCK_ORES);
 
@@ -80,6 +88,10 @@ public final class StoneLayerStones {
 
     public static List<Cube> rockOres() {
         return ROCK_ORES;
+    }
+
+    public static List<Cube> villageBricks() {
+        return VILLAGE_BRICKS;
     }
 
     public static List<Cube> registeredCubes() {
@@ -111,6 +123,7 @@ public final class StoneLayerStones {
                         .defaultBlockState();
                 case COBBLE -> Blocks.COBBLESTONE.defaultBlockState();
                 case MOSSY_COBBLE -> Blocks.MOSSY_COBBLESTONE.defaultBlockState();
+                case SMALL_BRICKS -> villageBrickState(material);
             };
         }
         if (StoneLayerCatalog.DEEPSLATE.equals(material)) {
@@ -118,6 +131,7 @@ public final class StoneLayerStones {
                 case STONE -> Blocks.DEEPSLATE.defaultBlockState();
                 case COBBLE, MOSSY_COBBLE ->
                         Blocks.COBBLED_DEEPSLATE.defaultBlockState();
+                case SMALL_BRICKS -> villageBrickState(material);
             };
         }
         if ("stone".equals(material)) {
@@ -125,6 +139,7 @@ public final class StoneLayerStones {
                 case STONE -> Blocks.STONE.defaultBlockState();
                 case COBBLE -> Blocks.COBBLESTONE.defaultBlockState();
                 case MOSSY_COBBLE -> Blocks.MOSSY_COBBLESTONE.defaultBlockState();
+                case SMALL_BRICKS -> villageBrickState(material);
             };
         }
         return ModBlocks.layerOrExistingStone(material + "/" + role.id())
@@ -132,9 +147,14 @@ public final class StoneLayerStones {
                 .defaultBlockState();
     }
 
+    private static BlockState villageBrickState(String material) {
+        throw new IllegalArgumentException(
+                "village SBRIK is not a layer cube for " + material);
+    }
+
     public static boolean isNaturalLayerCube(BlockState state) {
-        if (state.getBlock() instanceof StoneLayerStoneBlock) {
-            return true;
+        if (state.getBlock() instanceof StoneLayerStoneBlock layer) {
+            return layer.role().naturalLayer();
         }
         if (state.getBlock() instanceof StoneLayerRockOreBlock) {
             return true;
@@ -159,9 +179,11 @@ public final class StoneLayerStones {
     }
 
     private static List<Cube> allRegistered() {
-        List<Cube> all = new ArrayList<>(CUBES.size() + ROCK_ORES.size());
+        List<Cube> all = new ArrayList<>(
+                CUBES.size() + ROCK_ORES.size() + VILLAGE_BRICKS.size());
         all.addAll(CUBES);
         all.addAll(ROCK_ORES);
+        all.addAll(VILLAGE_BRICKS);
         return Collections.unmodifiableList(all);
     }
 

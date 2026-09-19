@@ -14,8 +14,10 @@ import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
  *
  * <p>The source coordinates come from {@link ProcessingMachineSpec.UiLayout}
  * and match GT6 {@code NEI_RecipeMap}: machine-GUI slots, a 176×83 recipe
- * panel, progress overlay at {@code (176,0)}, and the NEI workstation slot
- * at {@code (152,83)}. A tank is shifted to the right only when the source
+ * panel, 176×166 NEI chrome, progress overlay at {@code (176,0)}, and the NEI
+ * workstation slot at {@code (152,83)}. EMI blits follow GT6
+ * {@code NEI_RecipeMap.drawBackground}: chrome at {@code (0,0)} and the
+ * machine crop 176×79 from {@code v=3} at {@code (0,8)}. A tank is shifted to the right only when the source
  * UI overlaps another visible recipe widget, which occurs in the densest
  * configured layouts.
  */
@@ -32,7 +34,7 @@ public record ProcessingEmiLayout(
     public static final int ITEM_SLOT_SIZE = 18;
     public static final int PANEL_WIDTH = 176;
     public static final int PANEL_HEIGHT = 83;
-    public static final int NEI_HEIGHT = 135;
+    public static final int NEI_HEIGHT = 166;
     public static final int TEXTURE_SIZE = 256;
     public static final Rect WORKSTATION = new Rect(152, 83, ITEM_SLOT_SIZE, ITEM_SLOT_SIZE);
     private static final int PADDING = 4;

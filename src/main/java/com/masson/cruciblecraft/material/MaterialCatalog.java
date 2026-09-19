@@ -56,9 +56,6 @@ public final class MaterialCatalog {
                 info,
                 new AlloyIndex(
                         definitions.values(),
-                        definition -> decomposition.decompose(
-                                definition,
-                                MaterialPrefixes.INGOT.units()),
                         definition -> registeredForms.get(definition.id())
                                 .contains(MaterialPrefixes.INGOT)),
                 buildCanonicalItemMappings(definitions.values(), registeredForms),
@@ -262,12 +259,8 @@ public final class MaterialCatalog {
             effective.put(tuning.id(), tuning.apply(base));
         }
         Map<String, MaterialDefinition> frozen = java.util.Collections.unmodifiableMap(effective);
-        DecompositionResolver decomposition = new DecompositionResolver(frozen);
         AlloyIndex alloys = new AlloyIndex(
                 frozen.values(),
-                definition -> decomposition.decompose(
-                        definition,
-                        MaterialPrefixes.INGOT.units()),
                 definition -> isFormRegistered(definition, MaterialPrefixes.INGOT));
         return new RuntimePreview(
                 frozen,

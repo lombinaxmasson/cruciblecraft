@@ -4,41 +4,40 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.masson.cruciblecraft.content.sensor.ItemMass;
 import com.masson.cruciblecraft.machine.CheckpointDecisions;
 
 import org.junit.jupiter.api.Test;
 
 class CrucibleThermalModelTest {
-    private static final double CLAY_CASING_WEIGHT = 1.9 * 800.0;
+    private static final double CLAY_CASING_WEIGHT = 1.9 * 7.0 * ItemMass.CM3_PER_INGOT;
+    private static final double IRON_INGOT_WEIGHT = 7.874 * ItemMass.CM3_PER_INGOT;
 
     @Test
-    void charcoalMeltsBronzeButNotIronOrClayCasing() {
-        float emptyTemperature = burnCharcoal(CLAY_CASING_WEIGHT);
-        double bronzeWeight = CLAY_CASING_WEIGHT
-                + 432 * 0.15 * 8.96
-                + 144 * 0.15 * 7.31;
-        float bronzeTemperature = burnCharcoal(bronzeWeight);
-        double ironWeight = CLAY_CASING_WEIGHT + 144 * 0.15 * 7.87;
-        float ironTemperature = burnCharcoal(ironWeight);
-
-        assertTrue(emptyTemperature < 1727 * 1.10);
-        assertTrue(bronzeTemperature >= 950);
-        assertTrue(ironTemperature < 1538);
+    void fullerChargeNeedsMoreHuPerKelvin() {
+        assertEquals(15L, CrucibleThermalModel.requiredEnergyPerDegree(CLAY_CASING_WEIGHT));
+        assertEquals(
+                155L,
+                CrucibleThermalModel.requiredEnergyPerDegree(
+                        CLAY_CASING_WEIGHT + 16.0 * IRON_INGOT_WEIGHT));
+        float empty = heat(CLAY_CASING_WEIGHT, 16L, 200);
+        float full = heat(CLAY_CASING_WEIGHT + 16.0 * IRON_INGOT_WEIGHT, 16L, 200);
+        assertTrue(full < empty - 50.0F);
     }
 
     @Test
     void retainsEnergyRemaindersAndUsesGt6CooldownCadence() {
-        var first = CrucibleThermalModel.step(20, 0, 100, 5, CLAY_CASING_WEIGHT, 20);
+        var first = CrucibleThermalModel.step(20, 0, 100, 5, 350.0, 20);
         var second = CrucibleThermalModel.step(
                 first.temperature(),
                 first.storedEnergy(),
                 first.cooldownTicks(),
                 5,
-                CLAY_CASING_WEIGHT,
+                350.0,
                 20);
-        assertEquals(20, first.temperature());
-        assertEquals(5, first.storedEnergy());
-        assertEquals(21, second.temperature());
+        assertEquals(21, first.temperature());
+        assertEquals(1, first.storedEnergy());
+        assertEquals(22, second.temperature());
         assertEquals(2, second.storedEnergy());
 
         var cooling = new CrucibleThermalModel.StepResult(1_000, 0, 100);
@@ -62,8 +61,8 @@ class CrucibleThermalModelTest {
                 ambient,
                 0,
                 0,
-                10,
-                CLAY_CASING_WEIGHT,
+                3,
+                100.0,
                 ambient);
         assertTrue(state.temperature() > ambient);
         assertTrue(state.storedEnergy() > 0.0);
@@ -73,7 +72,7 @@ class CrucibleThermalModelTest {
                 state.storedEnergy(),
                 state.cooldownTicks(),
                 0,
-                CLAY_CASING_WEIGHT,
+                100.0,
                 ambient);
         assertEquals(0.0, state.storedEnergy());
 
@@ -83,7 +82,7 @@ class CrucibleThermalModelTest {
                     state.storedEnergy(),
                     state.cooldownTicks(),
                     0,
-                    CLAY_CASING_WEIGHT,
+                    100.0,
                     ambient);
         }
 
@@ -109,19 +108,30 @@ class CrucibleThermalModelTest {
     }
 
     @Test
+    void coldIngotCoolsAHotChargeByGt6MassMix() {
+        float mixed = CrucibleThermalModel.mixTemperature(
+                1_000.0F,
+                CLAY_CASING_WEIGHT,
+                20.0F,
+                IRON_INGOT_WEIGHT);
+        assertEquals(635.0F, mixed);
+        assertTrue(mixed < 1_000.0F - 300.0F);
+    }
+
+    @Test
     void gt6AmbientFloorIsCappedAtTwoHundred() {
         var result = CrucibleThermalModel.step(20, 0, 100, 0, CLAY_CASING_WEIGHT, 500);
         assertEquals(200, result.temperature());
     }
 
-    private static float burnCharcoal(double weight) {
+    private static float heat(double weight, long incoming, int ticks) {
         var state = new CrucibleThermalModel.StepResult(20, 0, 100);
-        for (int tick = 0; tick < 1_600; tick++) {
+        for (int tick = 0; tick < ticks; tick++) {
             state = CrucibleThermalModel.step(
                     state.temperature(),
                     state.storedEnergy(),
                     state.cooldownTicks(),
-                    8L,
+                    incoming,
                     weight,
                     20);
         }

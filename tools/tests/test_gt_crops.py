@@ -76,6 +76,21 @@ class GtCropsTest(unittest.TestCase):
         ).read_text(encoding="utf-8")
         self.assertIn("SWEET_BERRIES", bush)
         self.assertIn("is(Items.STRING)", bush)
+        model = (
+            ROOT
+            / "src"
+            / "main"
+            / "resources"
+            / "assets"
+            / "cruciblecraft"
+            / "models"
+            / "block"
+            / "plant"
+            / "gt_bush_cube_bare.json"
+        ).read_text(encoding="utf-8")
+        self.assertIn("overlay/bush", model)
+        self.assertIn("tintindex", model)
+        self.assertNotIn("cube_all", model)
         feature = (JAVA / "worldgen" / "crop" / "GtCropFeature.java").read_text(
             encoding="utf-8"
         )

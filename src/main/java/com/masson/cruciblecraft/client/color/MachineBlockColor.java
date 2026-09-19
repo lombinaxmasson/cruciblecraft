@@ -4,6 +4,7 @@ import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterTierCatalog;
 import com.masson.cruciblecraft.energy.transformer.EnergyTransformerTierCatalog;
+import com.masson.cruciblecraft.machine.processing.MachineTierCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
 
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -90,6 +91,13 @@ public final class MachineBlockColor {
         if (converter != null) {
             return converter.material();
         }
+        var catalog = MachineTierCatalog.findByPath(path);
+        if (catalog != null) {
+            return catalogMaterialId(catalog.tierBand().materialId());
+        }
+        if (path.startsWith("tungstensteel_")) {
+            return "tungstensteel";
+        }
         if (path.startsWith("titanium_")) {
             return "titanium";
         }
@@ -126,6 +134,14 @@ public final class MachineBlockColor {
                                 : "bronze";
             }
         };
+    }
+
+    private static String catalogMaterialId(String materialId) {
+        var id = net.minecraft.resources.ResourceLocation.tryParse(materialId);
+        if (id != null && CrucibleCraft.MODID.equals(id.getNamespace())) {
+            return id.getPath();
+        }
+        return materialId;
     }
 
     static String machineTextureId(String id) {

@@ -13,6 +13,7 @@ import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.block.AnvilBlock;
 import com.masson.cruciblecraft.content.block.AnvilHosts;
+import com.masson.cruciblecraft.content.block.FoundryHosts;
 import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
 import com.masson.cruciblecraft.content.block.SmelteryHosts;
 import com.masson.cruciblecraft.content.block.RockBlock;
@@ -75,6 +76,7 @@ import com.masson.cruciblecraft.content.block.GtSurfaceRockBlock;
 import com.masson.cruciblecraft.content.block.BedrockOreBlock;
 import com.masson.cruciblecraft.content.block.GtBrokenOreBlock;
 import com.masson.cruciblecraft.content.block.GtHostedOreBlock;
+import com.masson.cruciblecraft.content.block.MaterialOreBlock;
 import com.masson.cruciblecraft.content.block.GtIndicatorFlowerBlock;
 import com.masson.cruciblecraft.content.block.GtIndicatorGrassBlock;
 import com.masson.cruciblecraft.content.block.FluidSpringBlock;
@@ -536,6 +538,8 @@ public final class ModBlocks {
     public static final DeferredBlock<FuelGeneratorBlock> BRONZE_FUEL_ENGINE =
             converter("bronze_fuel_engine");
     public static final DeferredBlock<FuelGeneratorBlock>
+            BRONZE_SMALL_GAS_TURBINE = converter("bronze_small_gas_turbine");
+    public static final DeferredBlock<FuelGeneratorBlock>
             BRONZE_BURNING_BOX_GAS = converter("bronze_burning_box_gas");
     public static final DeferredBlock<FuelGeneratorBlock>
             BRONZE_BURNING_BOX_LIQUID = converter("bronze_burning_box_liquid");
@@ -781,7 +785,10 @@ public final class ModBlocks {
                         key,
                         ore(
                                 oreRegistryName(material.id(), host),
-                                host == Host.DEEPSLATE ? MapColor.DEEPSLATE : MapColor.STONE));
+                                host == Host.DEEPSLATE
+                                        ? MapColor.DEEPSLATE
+                                        : MapColor.STONE,
+                                host != Host.DEEPSLATE));
             }
         }
         for (MaterialDefinition material : definitions) {
@@ -1056,16 +1063,21 @@ public final class ModBlocks {
                 : materialId + "_ore";
     }
 
-    private static DeferredBlock<DropExperienceBlock> ore(String id, MapColor color) {
+    private static DeferredBlock<DropExperienceBlock> ore(
+            String id, MapColor color, boolean layeredHost) {
         return BLOCKS.register(
                 id,
-                () -> new DropExperienceBlock(
-                        net.minecraft.util.valueproviders.UniformInt.of(0, 2),
-                        BlockBehaviour.Properties.of()
-                                .mapColor(color)
-                                .strength(3.0F, 3.0F)
-                                .requiresCorrectToolForDrops()
-                                .sound(SoundType.STONE)));
+                () -> {
+                    var xp = net.minecraft.util.valueproviders.UniformInt.of(0, 2);
+                    var properties = BlockBehaviour.Properties.of()
+                            .mapColor(color)
+                            .strength(3.0F, 3.0F)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.STONE);
+                    return layeredHost
+                            ? new MaterialOreBlock(xp, properties)
+                            : new DropExperienceBlock(xp, properties);
+                });
     }
 
     private static Map<ResourceLocation, DeferredBlock<ProcessingMachineBlock>>
@@ -1134,7 +1146,8 @@ public final class ModBlocks {
                     path,
                     () -> new ElectricEngineBlock(
                             profile.id(), machineProperties().noOcclusion()));
-            case "fuel_engine", "fluid_burning_box" -> BLOCKS.register(
+            case "fuel_engine", "small_gas_turbine", "fluid_burning_box" ->
+                    BLOCKS.register(
                     path,
                     () -> new FuelGeneratorBlock(
                             EnergyConverterFuelSpecs.fromProfile(profile),
@@ -1485,6 +1498,8 @@ public final class ModBlocks {
                 .map(DeferredBlock::get)
                 .filter(block -> !AnvilHosts.isAnvil(block.spec()))
                 .filter(block -> !SmelteryHosts.isSmeltery(block.spec()))
+                .filter(block -> !FoundryHosts.isCasting(block.spec()))
+                .filter(block -> !FoundryHosts.isCrossing(block.spec()))
                 .filter(block -> !LargeCrucibleHosts.isController(block.spec()))
                 .toArray(Block[]::new);
     }
@@ -1504,6 +1519,26 @@ public final class ModBlocks {
         java.util.ArrayList<Block> blocks = new java.util.ArrayList<>();
         MTE_INPLACE_BLOCKS.values().forEach(holder -> {
             if (SmelteryHosts.isSmeltery(holder.get().spec())) {
+                blocks.add(holder.get());
+            }
+        });
+        return blocks.toArray(Block[]::new);
+    }
+
+    public static Block[] foundryCastingBlockArray() {
+        java.util.ArrayList<Block> blocks = new java.util.ArrayList<>();
+        MTE_INPLACE_BLOCKS.values().forEach(holder -> {
+            if (FoundryHosts.isCasting(holder.get().spec())) {
+                blocks.add(holder.get());
+            }
+        });
+        return blocks.toArray(Block[]::new);
+    }
+
+    public static Block[] foundryCrossingBlockArray() {
+        java.util.ArrayList<Block> blocks = new java.util.ArrayList<>();
+        MTE_INPLACE_BLOCKS.values().forEach(holder -> {
+            if (FoundryHosts.isCrossing(holder.get().spec())) {
                 blocks.add(holder.get());
             }
         });

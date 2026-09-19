@@ -210,6 +210,7 @@ public final class ModCreativeTabs {
                 .forEach(material -> output.accept(
                         machineVariant(ModItems.ANVIL.get(), material.materialId())));
         output.accept(ModItems.COKE_OVEN.get());
+        acceptCeramicMolds(output);
         output.accept(ModItems.MULTIBLOCK_CASING.get());
         output.accept(ModItems.MULTIBLOCK_ITEM_FLUID_PORT.get());
         output.accept(ModItems.MULTIBLOCK_ENERGY_INPUT_PORT.get());
@@ -419,16 +420,7 @@ public final class ModCreativeTabs {
             CreativeModeTab.ItemDisplayParameters parameters,
             CreativeModeTab.Output output) {
         ModItems.technologicalParts().forEach(part -> output.accept(part.get()));
-        output.accept(ModItems.RAW_CERAMIC_CRUCIBLE.get());
-        output.accept(ModItems.RAW_CERAMIC_MOLD.get());
-        output.accept(ModItems.RAW_INGOT_MOLD.get());
-        output.accept(ModItems.RAW_PLATE_MOLD.get());
-        output.accept(ModItems.RAW_ROD_MOLD.get());
-        output.accept(ModItems.RAW_BOLT_MOLD.get());
-        output.accept(ModItems.INGOT_MOLD.get());
-        output.accept(ModItems.PLATE_MOLD.get());
-        output.accept(ModItems.ROD_MOLD.get());
-        output.accept(ModItems.BOLT_MOLD.get());
+        acceptCeramicMolds(output);
         output.accept(ModItems.PROGRAMMED_CIRCUIT.get());
         output.accept(ModItems.CREOSOTE_BUCKET.get());
         output.accept(ModItems.OIL_EXTRA_HEAVY_BUCKET.get());
@@ -494,6 +486,20 @@ public final class ModCreativeTabs {
                             SimpleFluidContent.copyOf(new FluidStack(fluid, 1_000)));
                     output.accept(cell);
                 });
+    }
+
+    private static void acceptCeramicMolds(CreativeModeTab.Output output) {
+        output.accept(ModItems.RAW_CERAMIC_CRUCIBLE.get());
+        output.accept(ModItems.RAW_CERAMIC_MOLD.get());
+        output.accept(ModItems.RAW_INGOT_MOLD.get());
+        output.accept(ModItems.RAW_PLATE_MOLD.get());
+        output.accept(ModItems.RAW_ROD_MOLD.get());
+        output.accept(ModItems.RAW_BOLT_MOLD.get());
+        output.accept(ModItems.CERAMIC_MOLD.get());
+        output.accept(ModItems.INGOT_MOLD.get());
+        output.accept(ModItems.PLATE_MOLD.get());
+        output.accept(ModItems.ROD_MOLD.get());
+        output.accept(ModItems.BOLT_MOLD.get());
     }
 
     private static boolean machinesTabMte(MteInPlaceSpec spec) {

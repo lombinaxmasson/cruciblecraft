@@ -14,10 +14,14 @@ public final class EnergyConverterFuelSpecs {
 
     public static FuelGeneratorSpec fromProfile(EnergyConverterProfile profile) {
         String runtime = profile.runtimeBinding();
-        if ("fuel_engine".equals(runtime)) {
+        if ("fuel_engine".equals(runtime)
+                || "small_gas_turbine".equals(runtime)) {
+            boolean gasTurbine = "small_gas_turbine".equals(runtime);
             return new FuelGeneratorSpec(
                     profile.id(),
-                    () -> ModRecipeMaps.FUELS_ENGINE,
+                    () -> gasTurbine
+                            ? ModRecipeMaps.FUELS_GAS_TURBINE
+                            : ModRecipeMaps.FUELS_ENGINE,
                     Math.max(1, profile.inputCapacity()),
                     Math.max(1, profile.exhaust().capacity()),
                     1,

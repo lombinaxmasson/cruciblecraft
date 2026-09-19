@@ -18,6 +18,10 @@ import com.masson.cruciblecraft.content.storage.MassStorageHandler;
 import com.masson.cruciblecraft.content.storage.MassStorageSidedHandler;
 import com.masson.cruciblecraft.content.storage.StorageClientSync;
 import com.masson.cruciblecraft.content.storage.StorageFilters;
+import com.masson.cruciblecraft.energy.EnergyEmitter;
+import com.masson.cruciblecraft.energy.EnergyPackets;
+import com.masson.cruciblecraft.energy.drive.RotationEngineCatalog;
+import com.masson.cruciblecraft.energy.drive.RotationEngineConversion;
 import com.masson.cruciblecraft.energy.steam.SteamTurbineCatalog;
 import com.masson.cruciblecraft.energy.steam.SteamTurbineStructure;
 import com.masson.cruciblecraft.material.MaterialCatalog;
@@ -80,9 +84,12 @@ public final class MteInPlaceBlockEntity extends BlockEntity
     private final FluidTank tank;
     private final FluidTank distilled;
     private final long energyCapacity;
+    private final RotationEngineCatalog.Profile rotationEngine;
     private long storedEnergy;
     private long steamCounter;
     private boolean formed;
+    private boolean stopped;
+    private boolean overcharged;
     private int massMode;
     private boolean massInventoryChanged;
     private int drawerCompartment;
@@ -131,9 +138,10 @@ public final class MteInPlaceBlockEntity extends BlockEntity
                 spec.kind() == MteInPlaceKind.STEAM_TURBINE
                         ? SteamTurbineCatalog.find(spec.id()).orElse(null)
                         : null;
-        int tankCap = spec.kind().foundryTank()
-                ? MteFoundryTanks.capacityMb(spec)
-                : turbine != null ? turbine.tankCapacityMb() : 1;
+        this.rotationEngine = spec.kind().rotationEngine()
+                ? RotationEngineCatalog.require(spec.id())
+                : null;
+        int tankCap = turbine != null ? turbine.tankCapacityMb() : 1;
         this.tank = new FluidTank(tankCap) {
             @Override
             protected void onContentsChanged() {
@@ -146,9 +154,9 @@ public final class MteInPlaceBlockEntity extends BlockEntity
                 MteInPlaceBlockEntity.this.setChanged();
             }
         };
-        this.energyCapacity = turbine != null
-                ? turbine.energyCapacity()
-                : ENERGY_CAPACITY;
+        this.energyCapacity = rotationEngine != null
+                ? rotationEngine.capacity()
+                : turbine != null ? turbine.energyCapacity() : ENERGY_CAPACITY;
     }
 
     public MteInPlaceSpec spec() {
@@ -448,6 +456,23 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         return formed;
     }
 
+    public boolean rotationEngineStopped() {
+        return stopped;
+    }
+
+    public boolean rotationEngineOvercharged() {
+        return overcharged;
+    }
+
+    public boolean toggleRotationEngineStopped() {
+        if (rotationEngine == null) {
+            return true;
+        }
+        stopped = !stopped;
+        setChanged();
+        return !stopped;
+    }
+
     public static void serverTick(
             Level level,
             BlockPos pos,
@@ -464,8 +489,11 @@ public final class MteInPlaceBlockEntity extends BlockEntity
             host.updateSteamFormed();
             host.consumeSteam();
         }
-        if (host.spec().kind().drive()) {
+        if (host.spec().kind().driveTransmit()) {
             host.pushDrive();
+        }
+        if (host.rotationEngine != null) {
+            host.convertRotationEngine();
         }
         if (host.spec().kind() == MteInPlaceKind.MASS_STORAGE) {
             host.tickMassStorage(level, pos);
@@ -496,9 +524,6 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         }
         if (spec().kind().extender()) {
             return new ExtenderHandler(side);
-        }
-        if (spec().kind().foundryTank()) {
-            return tank;
         }
         if (spec().kind() == MteInPlaceKind.STEAM_TURBINE) {
             return new SteamHandler(side);
@@ -555,16 +580,27 @@ public final class MteInPlaceBlockEntity extends BlockEntity
                     && LargeCrucibleWalls.forwardsEnergy(this)
                     && host.handles(type, side);
         }
+        if (rotationEngine != null) {
+            return type == EnergyType.KINETIC_ROTATION
+                    && !stopped
+                    && rotationInputSide(side);
+        }
         return spec().kind().energy() && type == spec().kind().energyType();
     }
 
     @Override
     public long stored(EnergyType type) {
+        if (rotationEngine != null) {
+            return type == EnergyType.KINETIC_ROTATION ? storedEnergy : 0L;
+        }
         return handles(type, Direction.NORTH) ? storedEnergy : 0L;
     }
 
     @Override
     public long capacity(EnergyType type) {
+        if (rotationEngine != null) {
+            return type == EnergyType.KINETIC_ROTATION ? energyCapacity : 0L;
+        }
         return handles(type, Direction.NORTH) ? energyCapacity : 0L;
     }
 
@@ -578,6 +614,9 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         if (LargeCrucibleHosts.isWall(spec())) {
             return LargeCrucibleWalls.insertEnergy(
                     this, type, size, amount, side, simulate);
+        }
+        if (rotationEngine != null) {
+            return insertRotationRu(type, size, amount, side, simulate);
         }
         if (!handles(type, side) || amount <= 0L) {
             return 0L;
@@ -598,6 +637,9 @@ public final class MteInPlaceBlockEntity extends BlockEntity
             long maxAmount,
             Direction side,
             boolean simulate) {
+        if (rotationEngine != null) {
+            return 0L;
+        }
         if (!handles(type, side) || maxAmount <= 0L) {
             return 0L;
         }
@@ -656,6 +698,8 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         tag.putLong("StoredEnergy", storedEnergy);
         tag.putLong("SteamCounter", steamCounter);
         tag.putBoolean("Formed", formed);
+        tag.putBoolean("Stopped", stopped);
+        tag.putBoolean("Overcharged", overcharged);
         tag.put("distilled", distilled.writeToNBT(registries, new CompoundTag()));
     }
 
@@ -679,6 +723,8 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         storedEnergy = tag.getLong("StoredEnergy");
         steamCounter = tag.getLong("SteamCounter");
         formed = tag.getBoolean("Formed");
+        stopped = tag.getBoolean("Stopped");
+        overcharged = tag.getBoolean("Overcharged");
         if (tag.contains("distilled")) {
             distilled.readFromNBT(registries, tag.getCompound("distilled"));
         }
@@ -852,6 +898,101 @@ public final class MteInPlaceBlockEntity extends BlockEntity
                             IFluidHandler.FluidAction.EXECUTE));
         }
         setChanged();
+    }
+
+    private boolean rotationInputSide(Direction side) {
+        if (side == null) {
+            return false;
+        }
+        Direction facing = getBlockState().getValue(MteInPlaceBlock.FACING);
+        return side.getAxis() != facing.getAxis();
+    }
+
+    /**
+     * GT6 {@code TE_Behavior_Energy_Stats.doInject}: packet size is voltage,
+     * amount is amperage. Oversize packets are consumed and overload.
+     */
+    private long insertRotationRu(
+            EnergyType type,
+            long size,
+            long amount,
+            Direction side,
+            boolean simulate) {
+        if (type != EnergyType.KINETIC_ROTATION
+                || !handles(type, side)
+                || amount <= 0L) {
+            return 0L;
+        }
+        long magnitude = EnergyPackets.magnitude(size);
+        if (magnitude == 0L) {
+            return 0L;
+        }
+        if (magnitude > rotationEngine.inputMax()) {
+            if (!simulate) {
+                overcharged = true;
+                storedEnergy = 0L;
+                setChanged();
+            }
+            return amount;
+        }
+        if (storedEnergy >= energyCapacity) {
+            return 0L;
+        }
+        long room = energyCapacity - storedEnergy;
+        long offered = EnergyPackets.units(size, amount);
+        long tInput = Math.min(room, offered);
+        long consumed = Math.min(
+                amount,
+                tInput / magnitude + (tInput % magnitude != 0L ? 1L : 0L));
+        if (!simulate && consumed > 0L) {
+            storedEnergy += EnergyPackets.units(size, consumed);
+            setChanged();
+        }
+        return consumed;
+    }
+
+    /**
+     * GT6 {@code MultiTileEntityEngineRotation.doConversion}: bipolar KU to
+     * front/back, swapping sign every 16 ticks, then waste remaining RU.
+     */
+    private void convertRotationEngine() {
+        if (level == null || level.isClientSide || storedEnergy <= 0L) {
+            return;
+        }
+        RotationEngineConversion.Tick tick = RotationEngineConversion.tick(
+                storedEnergy, rotationEngine, 0);
+        if (tick.overloaded()) {
+            storedEnergy = 0L;
+            overcharged = true;
+            setChanged();
+            return;
+        }
+        boolean emitted = false;
+        if (tick.canEmit()) {
+            Direction facing = getBlockState().getValue(MteInPlaceBlock.FACING);
+            boolean firstHalf = level.getGameTime() % 32L < 16L;
+            Direction positive = firstHalf ? facing.getOpposite() : facing;
+            Direction negative = positive.getOpposite();
+            EnergyEmitter.pushToSide(
+                    level,
+                    worldPosition,
+                    EnergyType.KINETIC_PUSH,
+                    tick.outputSize(),
+                    1L,
+                    positive);
+            EnergyEmitter.pushToSide(
+                    level,
+                    worldPosition,
+                    EnergyType.KINETIC_PUSH,
+                    -tick.outputSize(),
+                    1L,
+                    negative);
+            emitted = true;
+        }
+        if (storedEnergy != tick.storedAfterWaste() || emitted) {
+            storedEnergy = tick.storedAfterWaste();
+            setChanged();
+        }
     }
 
     private void pushDrive() {

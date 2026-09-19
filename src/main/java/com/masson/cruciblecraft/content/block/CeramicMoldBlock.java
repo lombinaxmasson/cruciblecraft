@@ -17,6 +17,8 @@ import com.masson.cruciblecraft.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
@@ -78,15 +80,20 @@ public final class CeramicMoldBlock extends Block implements EntityBlock, ToolIn
             Optional<Integer> bit = MoldRecipes.chiselBit(
                     location.x - pos.getX(),
                     location.z - pos.getZ());
-            if (bit.isEmpty()) {
+            if (bit.isEmpty() || (mold.pattern() & bit.get()) != 0) {
                 return ToolResult.PASS;
             }
             if (!level.isClientSide && mold.chiselBit(bit.get())) {
                 ToolClick.hurt(context);
+                level.playSound(
+                        null,
+                        pos,
+                        SoundEvents.STONE_HIT,
+                        SoundSource.BLOCKS,
+                        1.0F,
+                        0.8F);
             }
-            return mold.pattern() != 0 && (mold.pattern() & bit.get()) != 0
-                    ? ToolResult.SUCCESS
-                    : ToolResult.PASS;
+            return ToolResult.SUCCESS;
         }
         if (action == ToolAction.PINCERS) {
             Player player = context.getPlayer();
@@ -260,7 +267,7 @@ public final class CeramicMoldBlock extends Block implements EntityBlock, ToolIn
         super.setPlacedBy(level, pos, state, placer, stack);
         if (stack.getItem() instanceof CeramicMoldBlockItem item
                 && level.getBlockEntity(pos) instanceof CeramicMoldBlockEntity mold) {
-            mold.setShape(item.shape());
+            mold.setPattern(item.placementPattern(stack));
         }
     }
 

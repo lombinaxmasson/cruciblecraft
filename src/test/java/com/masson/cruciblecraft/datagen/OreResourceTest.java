@@ -80,6 +80,22 @@ class OreResourceTest {
         assertTrue(serverFiles.containsKey("data/c/tags/item/ores.json"));
         assertTrue(clientFiles.get("assets/cruciblecraft/lang/en_us.json")
                 .contains("\"block.cruciblecraft.tungsten_ore\""));
+        var copperState = JsonParser.parseString(clientFiles.get(
+                "assets/cruciblecraft/blockstates/copper_ore.json"))
+                .getAsJsonObject()
+                .getAsJsonObject("variants");
+        assertTrue(copperState.has("host=granite_black"));
+        assertEquals(
+                "cruciblecraft:block/ore_host/granite_black",
+                copperState.getAsJsonObject("host=granite_black")
+                        .get("model")
+                        .getAsString());
+        assertEquals(
+                "cruciblecraft:block/copper_ore",
+                copperState.getAsJsonObject("host=stone")
+                        .get("model")
+                        .getAsString());
+        assertFalse(copperState.has(""));
 
         var invalid = new LinkedHashMap<>(registered);
         var firstOre = oreMaterials.getFirst();

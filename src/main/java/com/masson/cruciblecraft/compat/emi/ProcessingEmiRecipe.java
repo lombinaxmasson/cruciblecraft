@@ -182,7 +182,8 @@ final class ProcessingEmiRecipe implements EmiRecipe {
         }
         for (ProcessingEmiLayout.FluidTank tank : layout.fluidTanks()) {
             ProcessingEmiLayout.Rect bounds = tank.bounds();
-            SlotWidget widget = widgets.addTank(
+            SlotWidget widget = Gt6EmiGui.tank(
+                    widgets,
                     tank.kind() == ProcessingEmiLayout.FluidKind.INPUT
                             ? requireFluidInput(tank.recipeIndex())
                             : requireFluidOutput(tank.recipeIndex()),
@@ -190,17 +191,12 @@ final class ProcessingEmiRecipe implements EmiRecipe {
                     bounds.y(),
                     bounds.width(),
                     bounds.height(),
-                    Math.toIntExact(tank.capacity()))
-                    .drawBack(false);
+                    Math.toIntExact(tank.capacity()));
             if (tank.kind() == ProcessingEmiLayout.FluidKind.OUTPUT) {
                 widget.recipeContext(this);
             }
         }
-        Gt6EmiGui.catalyst(
-                widgets,
-                workstation,
-                layout.workstation().x(),
-                layout.workstation().y());
+        Gt6EmiGui.workstation(widgets, workstation);
         Gt6EmiGui.addStats(
                 widgets,
                 data,

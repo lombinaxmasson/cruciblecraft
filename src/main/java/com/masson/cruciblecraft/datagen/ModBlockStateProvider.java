@@ -199,7 +199,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
             var block = ModBlocks.layerStone(cube.registryPath()).get();
             ResourceLocation texture = ResourceLocation.parse(cube.texture());
             ModelFile cubeModel = models().cubeAll(cube.registryPath(), texture);
-            simpleBlockWithItem(block, cubeModel);
+            simpleBlock(block, cubeModel);
+            itemModels().getBuilder("item/" + cube.registryPath()).parent(cubeModel);
         }
     }
 
@@ -392,6 +393,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 false,
                 fiber,
                 fiber,
+                null,
                 null);
         ModelFile arm = pipeCube(
                 "conductor/lu_fiber_arm",
@@ -399,6 +401,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 true,
                 fiber,
                 fiber,
+                overlay,
                 overlay);
         var multipart = getMultipartBuilder(ModBlocks.LU_FIBER_CABLE.get());
         multipart.part().modelFile(core).addModel().end();
@@ -413,6 +416,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 2.0F,
                 fiber,
                 fiber,
+                overlay,
                 overlay);
     }
 
@@ -688,26 +692,32 @@ public class ModBlockStateProvider extends BlockStateProvider {
             AbstractPipeBlock block = holder.get();
             String modelKey = block.pipe().kind().name().toLowerCase(
                     java.util.Locale.ROOT) + "_" + block.pipe().textureKey();
-            ResourceLocation side = pipeTexture(block.pipe());
-            ResourceLocation overlay = pipeOverlay(block.pipe());
+            ResourceLocation connected = pipeTexture(block.pipe());
+            ResourceLocation connectedOverlay = pipeOverlay(block.pipe());
+            ResourceLocation wall = pipeSideTexture();
+            ResourceLocation wallOverlay = block.pipe().textureKey().startsWith("restrictive")
+                    ? connectedOverlay
+                    : pipeSideOverlay();
             ModelFile core = cores.computeIfAbsent(
                     modelKey,
                     ignored -> pipeCube(
                             "pipe/" + modelKey + "_core",
                             block.pipe().width(),
                             false,
-                            side,
-                            side,
-                            overlay));
+                            wall,
+                            wall,
+                            wallOverlay,
+                            wallOverlay));
             ModelFile arm = arms.computeIfAbsent(
                     modelKey,
                     ignored -> pipeCube(
                             "pipe/" + modelKey + "_arm",
                             block.pipe().width(),
                             true,
-                            side,
-                            side,
-                            overlay));
+                            wall,
+                            connected,
+                            wallOverlay,
+                            connectedOverlay));
             var multipart = getMultipartBuilder(block);
             multipart.part().modelFile(core).addModel().end();
             conductorArm(
@@ -726,9 +736,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 itemThroughModel(
                         "pipe/" + modelKey + "_item",
                         block.pipe().width(),
-                        side,
-                        side,
-                        overlay);
+                        wall,
+                        connected,
+                        wallOverlay,
+                        connectedOverlay);
             }
         });
     }
@@ -779,13 +790,22 @@ public class ModBlockStateProvider extends BlockStateProvider {
         };
     }
 
+    private ResourceLocation pipeSideTexture() {
+        return modLoc("block/gt6_import/materialicons/copper/pipeside");
+    }
+
+    private ResourceLocation pipeSideOverlay() {
+        return modLoc("block/gt6_import/materialicons/copper/pipeside_overlay");
+    }
+
     private ModelFile pipeCube(
             String path,
             float width,
             boolean arm,
             ResourceLocation side,
             ResourceLocation end,
-            ResourceLocation overlay) {
+            ResourceLocation sideOverlay,
+            ResourceLocation endOverlay) {
         float minimum = 8.0F - width / 2.0F;
         float maximum = 8.0F + width / 2.0F;
         BlockModelBuilder builder = models()
@@ -794,8 +814,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .texture("particle", side)
                 .texture("side", side)
                 .texture("end", end);
-        if (overlay != null) {
-            builder.texture("overlay", overlay);
+        if (sideOverlay != null) {
+            builder.texture("side_overlay", sideOverlay);
+            builder.texture(
+                    "end_overlay",
+                    endOverlay != null ? endOverlay : sideOverlay);
         }
         addPipeElement(
                 builder,
@@ -807,7 +830,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 arm ? minimum : maximum,
                 arm ? Direction.NORTH : null,
                 false);
-        if (overlay != null) {
+        if (sideOverlay != null) {
             addPipeElement(
                     builder,
                     minimum,
@@ -827,7 +850,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
             float width,
             ResourceLocation side,
             ResourceLocation end,
-            ResourceLocation overlay) {
+            ResourceLocation sideOverlay,
+            ResourceLocation endOverlay) {
         float minimum = 8.0F - width / 2.0F;
         float maximum = 8.0F + width / 2.0F;
         BlockModelBuilder builder = models()
@@ -836,8 +860,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .texture("particle", side)
                 .texture("side", side)
                 .texture("end", end);
-        if (overlay != null) {
-            builder.texture("overlay", overlay);
+        if (sideOverlay != null) {
+            builder.texture("side_overlay", sideOverlay);
+            builder.texture(
+                    "end_overlay",
+                    endOverlay != null ? endOverlay : sideOverlay);
         }
         var element = builder.element()
                 .from(minimum, minimum, 0.0F)
@@ -850,13 +877,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     .end();
         }
         element.end();
-        if (overlay != null) {
+        if (sideOverlay != null) {
             var overlayElement = builder.element()
                     .from(minimum, minimum, 0.0F)
                     .to(maximum, maximum, 16.0F);
             for (Direction direction : Direction.values()) {
+                boolean cap = direction.getAxis() == Direction.Axis.Z;
                 overlayElement.face(direction)
-                        .texture("#overlay")
+                        .texture(cap ? "#end_overlay" : "#side_overlay")
                         .end();
             }
             overlayElement.end();
@@ -879,15 +907,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .from(x1 - offset, y1 - offset, z1 - offset)
                 .to(x2 + offset, y2 + offset, z2 + offset);
         for (Direction direction : Direction.values()) {
-            if (!overlay && endFace != null && direction == endFace.getOpposite()) {
+            if (endFace != null && direction == endFace.getOpposite()) {
                 continue;
             }
             boolean cap = endFace == direction;
-            if (overlay && endFace != null && !cap) {
-                continue;
-            }
             var face = element.face(direction)
-                    .texture(overlay ? "#overlay" : cap ? "#end" : "#side");
+                    .texture(overlay
+                            ? (cap ? "#end_overlay" : "#side_overlay")
+                            : cap ? "#end" : "#side");
             if (!overlay) {
                 face.tintindex(0);
             }

@@ -237,6 +237,14 @@ public final class ModCapabilities {
                 ModBlockEntities.CERAMIC_MOLD.get(),
                 (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.FOUNDRY_CASTING.get(),
+                (blockEntity, side) -> blockEntity.itemHandler(side));
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.FOUNDRY_CASTING.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
                 Capabilities.FluidHandler.BLOCK,
                 ModBlockEntities.BOILER.get(),
                 (blockEntity, side) -> blockEntity.fluids(side));

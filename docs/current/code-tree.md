@@ -24,15 +24,17 @@ Explorer 里会看到很多 Git 忽略的目录。它们不是仓库结构的一
 
 - `run/` 和 `run-*/`：Gradle 客户端 / GameTest 实例。日常只保留一个 `run/`。
 - `gt6_code/`、`gt6_referencable_port_code/`、`gtceu_code/`、`gt6u_code/`、
-  `gt6_dump/`：本地只读参考树，不在 Git 里。禁止 `git clean -fdx`、删除、
-  junction / symlink。
+  `gt6_dump/`、`ktfruaddon/`：本地只读参考树，不在 Git 里。禁止
+  `git clean -fdx`、删除、junction / symlink。`ktfruaddon/` 不是 GT6 权威；
+  只依赖 GT6 / 不绑 AR·TFC 的表面见
+  [ktfruaddon-gt6-surface.md](ktfruaddon-gt6-surface.md)。
 - `build/`、`bin/`、`.gradle/`、`logs/`、`tmp-baked_textures/`、`src/src/`、
   `__pycache__/`、崩溃日志：缓存或误生成副本。
 - `tools/_tmp_*.py` 和 `tools/scratch/`：本地草稿。坩埚卡结束前不要删除现有
   `_tmp_extract_gt6_*.py`；结束后再决定并入正式提取器或丢掉。
 
 Cursor 的 `.vscode/settings.json` 会把运行目录和缓存从资源管理器里藏起来，
-但 **不** 把 GT6 / GTCEu 参考树排除出搜索。
+但 **不** 把 GT6 / GTCEu / kTFRUAddon 参考树排除出搜索。
 
 ## Python 工具生命周期
 

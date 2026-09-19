@@ -32,13 +32,17 @@ public final class GtIndicatorFlowerItem extends BlockItem {
             List<Component> tooltip,
             TooltipFlag flag) {
         super.appendHoverText(stack, context, tooltip, flag);
-        IndicatorFlower flower = stateOf(stack).getValue(GtIndicatorFlowerBlock.FLOWER);
+        IndicatorFlower flower = flowerOf(stack);
         tooltip.add(Component.translatable(
                 "tooltip.cruciblecraft.gt_indicator_flower." + flower.getSerializedName()));
     }
 
-    private BlockState stateOf(ItemStack stack) {
-        BlockState fallback = getBlock().defaultBlockState();
+    public static IndicatorFlower flowerOf(ItemStack stack) {
+        return stateOf(stack).getValue(GtIndicatorFlowerBlock.FLOWER);
+    }
+
+    public static BlockState stateOf(ItemStack stack) {
+        BlockState fallback = Block.byItem(stack.getItem()).defaultBlockState();
         BlockItemStateProperties properties =
                 stack.getOrDefault(DataComponents.BLOCK_STATE, BlockItemStateProperties.EMPTY);
         return properties.apply(fallback);

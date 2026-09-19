@@ -104,7 +104,7 @@ final class FuelMapEmiRecipe implements EmiRecipe {
         }
         if (outputs.isEmpty()) {
             var out = Gt6BasicMachineGui.outputSlots(1, 0).getFirst();
-            widgets.addSlot(out.x(), out.y()).drawBack(false);
+            Gt6EmiGui.emptySlot(widgets, out.x(), out.y());
             return;
         }
         var outSlots = Gt6BasicMachineGui.outputSlots(Math.max(1, outputs.size()), 0);

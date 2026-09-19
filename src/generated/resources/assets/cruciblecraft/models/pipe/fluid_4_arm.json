@@ -37,8 +37,20 @@
     },
     {
       "faces": {
+        "down": {
+          "texture": "#side_overlay"
+        },
+        "east": {
+          "texture": "#side_overlay"
+        },
         "north": {
-          "texture": "#overlay"
+          "texture": "#end_overlay"
+        },
+        "up": {
+          "texture": "#side_overlay"
+        },
+        "west": {
+          "texture": "#side_overlay"
         }
       },
       "from": [
@@ -56,8 +68,9 @@
   "render_type": "minecraft:cutout_mipped",
   "textures": {
     "end": "cruciblecraft:block/gt6_import/materialicons/copper/pipetiny",
-    "overlay": "cruciblecraft:block/gt6_import/materialicons/copper/pipetiny_overlay",
-    "particle": "cruciblecraft:block/gt6_import/materialicons/copper/pipetiny",
-    "side": "cruciblecraft:block/gt6_import/materialicons/copper/pipetiny"
+    "end_overlay": "cruciblecraft:block/gt6_import/materialicons/copper/pipetiny_overlay",
+    "particle": "cruciblecraft:block/gt6_import/materialicons/copper/pipeside",
+    "side": "cruciblecraft:block/gt6_import/materialicons/copper/pipeside",
+    "side_overlay": "cruciblecraft:block/gt6_import/materialicons/copper/pipeside_overlay"
   }
 }

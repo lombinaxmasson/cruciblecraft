@@ -1,0 +1,153 @@
+{
+  "parent": "minecraft:block/block",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "cruciblecraft:block/gt6_import/plants/bush/colored/bush",
+    "bush": "cruciblecraft:block/gt6_import/plants/bush/colored/bush",
+    "bush_overlay": "cruciblecraft:block/gt6_import/plants/bush/overlay/bush",
+    "berry": "cruciblecraft:block/gt6_import/plants/bush/colored/berries",
+    "berry_overlay": "cruciblecraft:block/gt6_import/plants/bush/overlay/berries"
+  },
+  "elements": [
+    {
+      "from": [
+        2,
+        12,
+        2
+      ],
+      "to": [
+        14,
+        16,
+        14
+      ],
+      "faces": {
+        "down": {
+          "texture": "#bush",
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#bush",
+          "tintindex": 0
+        },
+        "north": {
+          "texture": "#bush",
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#bush",
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#bush",
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#bush",
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        12,
+        2
+      ],
+      "to": [
+        14,
+        16,
+        14
+      ],
+      "faces": {
+        "down": {
+          "texture": "#bush_overlay"
+        },
+        "up": {
+          "texture": "#bush_overlay"
+        },
+        "north": {
+          "texture": "#bush_overlay"
+        },
+        "south": {
+          "texture": "#bush_overlay"
+        },
+        "west": {
+          "texture": "#bush_overlay"
+        },
+        "east": {
+          "texture": "#bush_overlay"
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        12,
+        2
+      ],
+      "to": [
+        14,
+        16,
+        14
+      ],
+      "faces": {
+        "down": {
+          "texture": "#berry",
+          "tintindex": 1
+        },
+        "up": {
+          "texture": "#berry",
+          "tintindex": 1
+        },
+        "north": {
+          "texture": "#berry",
+          "tintindex": 1
+        },
+        "south": {
+          "texture": "#berry",
+          "tintindex": 1
+        },
+        "west": {
+          "texture": "#berry",
+          "tintindex": 1
+        },
+        "east": {
+          "texture": "#berry",
+          "tintindex": 1
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        12,
+        2
+      ],
+      "to": [
+        14,
+        16,
+        14
+      ],
+      "faces": {
+        "down": {
+          "texture": "#berry_overlay"
+        },
+        "up": {
+          "texture": "#berry_overlay"
+        },
+        "north": {
+          "texture": "#berry_overlay"
+        },
+        "south": {
+          "texture": "#berry_overlay"
+        },
+        "west": {
+          "texture": "#berry_overlay"
+        },
+        "east": {
+          "texture": "#berry_overlay"
+        }
+      }
+    }
+  ]
+}

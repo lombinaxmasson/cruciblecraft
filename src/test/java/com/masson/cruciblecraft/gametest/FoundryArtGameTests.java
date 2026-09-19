@@ -85,11 +85,17 @@ public final class FoundryArtGameTests {
                 "/assets/cruciblecraft/models/block/foundry/mold_steel.json");
         String stone = resource(
                 "/assets/cruciblecraft/models/block/foundry/mold_stone.json");
+        String parent = resource("/assets/cruciblecraft/models/block/mte_foundry_mold.json");
+        String stoneState = resource(
+                "/assets/cruciblecraft/blockstates/foundry/mold_stone.json");
         helper.assertTrue(
                 steel.contains("mte_foundry_mold")
                         && stone.contains("mte_foundry_mold")
                         && steel.contains("gt6_import/mte/faucet")
                         && stone.contains("materialicons/stone/blocksolid")
+                        && parent.contains("\"loader\": \"cruciblecraft:ceramic_mold\"")
+                        && !stoneState.contains("\"y\"")
+                        && !stoneState.contains("\"x\"")
                         && !classpathExists(
                                 "/assets/cruciblecraft/textures/block/"
                                         + "foundry/mold_steel.png"),

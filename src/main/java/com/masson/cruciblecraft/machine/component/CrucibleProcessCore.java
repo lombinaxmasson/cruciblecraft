@@ -11,6 +11,7 @@ import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
 import com.masson.cruciblecraft.content.block.SmelteryHosts;
+import com.masson.cruciblecraft.content.sensor.ItemMass;
 import com.masson.cruciblecraft.content.mold.MoldCastingRules;
 import com.masson.cruciblecraft.content.mold.MoldHost;
 import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator;
@@ -47,9 +48,10 @@ public final class CrucibleProcessCore {
     public static final long HEAT_DISPLAY_CAPACITY = 64L;
     public static final double SINGLE_HEAT_RESISTANCE = 1.25;
     public static final double LARGE_HEAT_RESISTANCE = 1.10;
-    private static final double SINGLE_CASING_VOLUME_CM3 = 800.0;
-    private static final double LARGE_CASING_VOLUME_CM3 = 800.0 * 100.0 / 7.0;
-    private static final double CM3_PER_UNIT = 0.15;
+    /** GT6 smeltery {@code getWeight(U*7)}. */
+    private static final double SINGLE_CASING_VOLUME_CM3 = 7.0 * ItemMass.CM3_PER_INGOT;
+    /** GT6 large crucible {@code getWeight(U*100)}. */
+    private static final double LARGE_CASING_VOLUME_CM3 = 100.0 * ItemMass.CM3_PER_INGOT;
     private static final int RAIN_INTERVAL_TICKS = 600;
 
     private final int maxIngots;
@@ -155,7 +157,7 @@ public final class CrucibleProcessCore {
         }
         thermal.advance(
                 unknownMaterials ? 0L : incomingEnergy,
-                totalWeightGrams());
+                totalThermalMass());
         if (thermal.authoritativeTemperature() > casingMaxTemperature()) {
             if (authoritative) {
                 contents.clear();
@@ -170,7 +172,7 @@ public final class CrucibleProcessCore {
             return;
         }
         previousTemperature = thermal.authoritativeTemperature();
-        thermal.advance(0L, totalWeightGrams());
+        thermal.advance(0L, totalThermalMass());
     }
 
     public boolean addRainWater(long gameTime, float rainfall, boolean thunder) {
@@ -252,7 +254,7 @@ public final class CrucibleProcessCore {
 
     /**
      * GT6 {@code ITileEntityCrucible.fillMoldAtSide}: first molten catalog
-     * stack whose smelting target is itself, then an exact-ratio alloy product.
+     * stack whose smelting target is itself.
      */
     public boolean fillMoldAtSide(MoldHost mold, Direction moldSide) {
         if (frozen() || mold == null) {
@@ -279,7 +281,7 @@ public final class CrucibleProcessCore {
             onMutation.run();
             return true;
         }
-        return pourAlloy(mold, moldSide, temperature);
+        return false;
     }
 
     public Optional<CastTransfer> previewCast(MaterialPrefix form) {
@@ -441,11 +443,8 @@ public final class CrucibleProcessCore {
     }
 
     public void applyAdditions(Map<String, Integer> additions, float inputTemperature) {
-        double existingWeight = totalWeightGrams();
-        double addedWeight = additions.entrySet().stream()
-                .mapToDouble(component ->
-                        unitWeightGrams(component.getKey(), component.getValue()))
-                .sum();
+        double existingWeight = totalThermalMass();
+        double addedWeight = ItemMass.kilograms(additions);
         float safeInputTemperature =
                 Float.isFinite(inputTemperature) ? inputTemperature : AMBIENT_TEMPERATURE;
         thermal.mixWith(safeInputTemperature, existingWeight, addedWeight);
@@ -495,50 +494,6 @@ public final class CrucibleProcessCore {
         return steelmaking.currentBatch(contents.composition());
     }
 
-    private boolean pourAlloy(MoldHost mold, Direction moldSide, float temperature) {
-        Optional<AlloyMatch> alloy = contents.alloy();
-        if (alloy.isEmpty()) {
-            return false;
-        }
-        MaterialDefinition result = alloy.get().result();
-        if (temperature < result.thermal().meltingPoint()) {
-            return false;
-        }
-        int required = mold.moldRequiredMaterialUnits();
-        Map<String, Integer> cost = scaleAlloyCost(alloy.get().costPerIngot(), required);
-        if (cost == null || !contents.containsAtLeast(cost)) {
-            return false;
-        }
-        int consumed = mold.fillMold(result.id(), required, temperature, moldSide);
-        if (consumed <= 0) {
-            return false;
-        }
-        contents.removeAll(cost);
-        onMutation.run();
-        return true;
-    }
-
-    private static Map<String, Integer> scaleAlloyCost(
-            Map<String, Integer> costPerIngot, int requiredUnits) {
-        if (requiredUnits <= 0) {
-            return null;
-        }
-        int ingot = MaterialPrefixes.INGOT.units();
-        Map<String, Integer> scaled = new LinkedHashMap<>();
-        for (var component : costPerIngot.entrySet()) {
-            long numerator = (long) component.getValue() * requiredUnits;
-            if (numerator % ingot != 0L) {
-                return null;
-            }
-            int units = Math.toIntExact(numerator / ingot);
-            if (units <= 0) {
-                return null;
-            }
-            scaled.put(component.getKey(), units);
-        }
-        return scaled;
-    }
-
     private static boolean pourableMelt(MaterialDefinition material, float temperature) {
         if (temperature < material.thermal().meltingPoint()) {
             return false;
@@ -558,7 +513,8 @@ public final class CrucibleProcessCore {
             if (!MaterialCatalog.isFormRegistered(alloy.get().result(), form)) {
                 return Optional.empty();
             }
-            return MoldCastingRules.smallestBatch(alloy.get().costPerIngot(), form)
+            return alloy.get().perIngotCost()
+                    .flatMap(cost -> MoldCastingRules.smallestBatch(cost, form))
                     .map(batch -> new CastCandidate(
                             alloy.get().result(),
                             batch.cost(),
@@ -582,14 +538,8 @@ public final class CrucibleProcessCore {
                         material.thermal().meltingPoint()));
     }
 
-    private static double unitWeightGrams(String materialId, int units) {
-        return MaterialCatalog.require(materialId).thermal().density()
-                * CM3_PER_UNIT
-                * units;
-    }
-
-    private double totalWeightGrams() {
-        return casing.massGrams() + contents.contentsWeightGrams(CM3_PER_UNIT);
+    private double totalThermalMass() {
+        return casing.massGrams() + ItemMass.kilograms(contents.composition());
     }
 
     private boolean fluidTransferBlocked() {

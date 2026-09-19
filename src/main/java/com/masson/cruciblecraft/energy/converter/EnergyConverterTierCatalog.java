@@ -9,11 +9,14 @@ import com.google.gson.annotations.SerializedName;
 
 import net.minecraft.resources.ResourceLocation;
 
-/** Source-backed converter variants: 179 Loader_MultiTileEntities rows. */
+/** 179 GT6 Loader_MultiTileEntities rows plus 7 DESIGN_POLICY kTFRUAddon turbines. */
 public final class EnergyConverterTierCatalog {
     private static final String RESOURCE =
             "/data/cruciblecraft/energy_converter_tiers.json";
-    public static final int EXPECTED_SIZE = 179;
+    public static final int GT6_LOADER_SIZE = 179;
+    public static final int SMALL_GAS_TURBINE_SIZE = 7;
+    public static final int EXPECTED_SIZE =
+            GT6_LOADER_SIZE + SMALL_GAS_TURBINE_SIZE;
     private static final EnergyConverterTierCatalog BUNDLED = loadBundled();
 
     private final List<Entry> entries;

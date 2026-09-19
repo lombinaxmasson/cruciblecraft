@@ -19,6 +19,7 @@ import com.masson.cruciblecraft.worldgen.StoneLayerCatalog;
 import com.masson.cruciblecraft.worldgen.StoneLayerNoise;
 import com.masson.cruciblecraft.worldgen.StoneLayerRockFeature;
 import com.masson.cruciblecraft.worldgen.StoneLayerStones;
+import com.masson.cruciblecraft.worldgen.VillageStoneBricks;
 import com.masson.cruciblecraft.worldgen.SurfaceRockContents;
 
 import net.minecraft.core.BlockPos;
@@ -81,6 +82,13 @@ public final class GtStoneLayerRocksGameTests {
                 StoneLayerStones.rockOres().size() == 9,
                 "BlockRockOres 8 overworld cubes plus nether quartz drifted");
         helper.assertTrue(
+                StoneLayerStones.villageBricks().size() == 17
+                        && "granite_black".equals(
+                                StoneLayerStones.villageBricks().getFirst().material())
+                        && "shale".equals(
+                                StoneLayerStones.villageBricks().getLast().material()),
+                "GetVillageBlockID BlocksGT.stones palette drifted");
+        helper.assertTrue(
                 StoneLayerCatalog.layers().stream()
                         .noneMatch(layer ->
                                 "nether_quartz".equals(layer.material())),
@@ -88,10 +96,12 @@ public final class GtStoneLayerRocksGameTests {
         helper.assertTrue(
                 ModBlocks.hasLayerStone("granite_black/stone")
                         && ModBlocks.hasLayerStone("granite_black/cobble")
+                        && ModBlocks.hasLayerStone("andesite/small_bricks")
                         && ModBlocks.hasLayerStone("coal/dense_ore")
                         && ModBlocks.hasLayerStone("nether_quartz/dense_ore")
-                        && !ModBlocks.hasLayerStone("marble/stone"),
-                "granite_black cubes register; coal/dense_ore registers; marble/stone reuses gt_stone_catalog");
+                        && !ModBlocks.hasLayerStone("marble/stone")
+                        && !ModBlocks.hasLayerStone("marble/small_bricks"),
+                "granite_black cubes register; village SBRIK registers; marble reuses gt_stone_catalog");
         helper.assertTrue(
                 ModFeatures.STONE_LAYER_ROCKS.get() != null
                         && ModBlocks.GT_SURFACE_ROCK.get() != null,
@@ -253,7 +263,12 @@ public final class GtStoneLayerRocksGameTests {
         helper.assertTrue(
                 helper.getBlockState(POS).is(
                         ModBlocks.oreBlock("diamond", Host.STONE).get()),
-                "in-layer diamond must be the stone-host ore block");
+                "in-layer diamond must be the unique stone-host ore block");
+        helper.assertTrue(
+                helper.getBlockState(POS).getValue(
+                        com.masson.cruciblecraft.content.block.MaterialOreBlock.HOST)
+                        == com.masson.cruciblecraft.content.block.OreStoneHost.COAL,
+                "coal-layer diamond must use the anthracite cube as the ore host");
         helper.setBlock(POS, Blocks.STONE);
         StoneLayerCatalog.Ore vanillaIron = new StoneLayerCatalog.Ore(
                 "iron",
@@ -291,6 +306,58 @@ public final class GtStoneLayerRocksGameTests {
                 StoneLayerRockFeature.isVanillaOre(
                         Blocks.IRON_ORE.defaultBlockState()),
                 "iron ore must stay on the replaceable list");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void stoneLayerOresMatchLayerCubeHost(GameTestHelper helper) {
+        StoneLayerCatalog.Layer granite = StoneLayerCatalog.layers().stream()
+                .filter(layer -> "granite_black".equals(layer.material()))
+                .findFirst()
+                .orElseThrow();
+        StoneLayerCatalog.Ore diamond = new StoneLayerCatalog.Ore(
+                "diamond",
+                StoneLayerCatalog.UNIT,
+                0,
+                255,
+                false,
+                null,
+                java.util.List.of(),
+                false);
+        helper.setBlock(POS, Blocks.STONE);
+        helper.assertTrue(
+                StoneLayerRockFeature.tryPlaceOre(
+                        helper.getLevel(),
+                        helper.absolutePos(POS),
+                        diamond,
+                        granite),
+                "black-granite StoneLayerOres must place unique diamond ore");
+        helper.assertTrue(
+                helper.getBlockState(POS).is(
+                        ModBlocks.oreBlock("diamond", Host.STONE).get()),
+                "black-granite diamond stays the unique diamond_ore id");
+        helper.assertTrue(
+                helper.getBlockState(POS).getValue(
+                        com.masson.cruciblecraft.content.block.MaterialOreBlock.HOST)
+                        == com.masson.cruciblecraft.content.block.OreStoneHost.GRANITE_BLACK,
+                "black-granite diamond must sit on the granite_black cube texture");
+        helper.setBlock(
+                POS,
+                ModBlocks.oreBlock("copper", Host.STONE).get().defaultBlockState());
+        helper.assertTrue(
+                StoneLayerRockFeature.tryRestyleOre(
+                        helper.getLevel(),
+                        helper.absolutePos(POS),
+                        granite),
+                "large-vein unique ores must restyle to the layer cube");
+        helper.assertTrue(
+                helper.getBlockState(POS).is(
+                        ModBlocks.oreBlock("copper", Host.STONE).get())
+                        && helper.getBlockState(POS).getValue(
+                                com.masson.cruciblecraft.content.block.MaterialOreBlock.HOST)
+                                == com.masson.cruciblecraft.content.block.OreStoneHost
+                                        .GRANITE_BLACK,
+                "restyled copper_ore must keep its id and take granite_black host");
         helper.succeed();
     }
 
@@ -495,6 +562,7 @@ public final class GtStoneLayerRocksGameTests {
                 manifest.contains("gt.stone.granite.black/stone.png")
                         && manifest.contains("gt.stone.granite.black/cobble.png")
                         && manifest.contains("gt.stone.granite.black/cobble_mossy.png")
+                        && manifest.contains("gt.stone.andesite/small_bricks.png")
                         && manifest.contains("iconsets/ore_anthracite.png")
                         && manifest.contains("iconsets/ore_netherquartz.png")
                         && !manifest.contains("multiblock_casing")
@@ -514,6 +582,89 @@ public final class GtStoneLayerRocksGameTests {
                                 "/assets/cruciblecraft/textures/block/gt6/rock_ores/"
                                         + "ore_netherquartz.png"),
                 "GT6 stone cubes and BlockRockOres were not imported");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void stoneLayerDoesNotEatVillageCobble(GameTestHelper helper) {
+        helper.assertTrue(
+                StoneLayerStones.villageBricks().size() == 17,
+                "BlocksGT.stones village SBRIK palette drifted");
+        helper.assertTrue(
+                "andesite".equals(
+                        StoneLayerStones.villageBricks()
+                                .get(VillageStoneBricks.ANDESITE_INDEX)
+                                .material()),
+                "null-biome village cobble must stay Andesite SBRIK");
+        helper.assertTrue(
+                StoneLayerRockFeature.isVillageHouseCobble(
+                        Blocks.COBBLESTONE.defaultBlockState())
+                        && !StoneLayerRockFeature.isVillageHouseCobble(
+                                Blocks.COBBLED_DEEPSLATE.defaultBlockState())
+                        && !StoneLayerRockFeature.isVillageHouseCobble(
+                                Blocks.MOSSY_COBBLESTONE.defaultBlockState()),
+                "GetVillageBlockID only restyles Blocks.cobblestone");
+        helper.assertTrue(
+                VillageStoneBricks.brickForBiomeId(-1)
+                        .is(ModBlocks.layerOrExistingStone("andesite/small_bricks").get()),
+                "biome == null uses BlocksGT.Andesite small bricks");
+        helper.assertTrue(
+                VillageStoneBricks.brickForBiomeId(0)
+                        .is(ModBlocks.layerOrExistingStone("diorite/small_bricks").get()),
+                "stones[(0+6)%17] is diorite");
+        helper.setBlock(POS, Blocks.COBBLESTONE);
+        helper.assertTrue(
+                StoneLayerRockFeature.tryReplaceVillageBrick(
+                        helper.getLevel(),
+                        helper.absolutePos(POS),
+                        helper.getLevel().getBiome(helper.absolutePos(POS))),
+                "village cobble must become biome SBRIK, not the layer cube");
+        helper.assertTrue(
+                !helper.getBlockState(POS).is(Blocks.COBBLESTONE)
+                        && helper.getBlockState(POS)
+                                .is(VillageStoneBricks.brickForBiome(
+                                                helper.getLevel().getBiome(
+                                                        helper.absolutePos(POS)),
+                                                helper.getLevel().registryAccess())
+                                        .getBlock())
+                        && !helper.getBlockState(POS)
+                                .is(ModBlocks.layerStone("granite_black/cobble").get())
+                        && !helper.getBlockState(POS)
+                                .is(ModBlocks.layerStone("granite_black/stone").get()),
+                "village house cobble must not become the noise layer cube");
+        helper.setBlock(POS, Blocks.COBBLESTONE);
+        helper.assertTrue(
+                StoneLayerRockFeature.tryReplace(
+                        helper.getLevel(),
+                        helper.absolutePos(POS),
+                        "granite_black",
+                        StoneLayerStones.Role.COBBLE),
+                "non-village cobble still becomes the layer cobble cube");
+        helper.assertTrue(
+                helper.getBlockState(POS).is(
+                        ModBlocks.layerStone("granite_black/cobble").get()),
+                "natural cobble restyle drifted");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void stoneLayerCubeItemModelsExist(GameTestHelper helper) {
+        helper.assertTrue(
+                classpathExists(
+                        "/assets/cruciblecraft/models/item/granite_black/stone.json")
+                        && classpathExists(
+                                "/assets/cruciblecraft/models/item/granite_black/cobble.json")
+                        && classpathExists(
+                                "/assets/cruciblecraft/models/item/coal/dense_ore.json")
+                        && classpathExists(
+                                "/assets/cruciblecraft/models/item/andesite/small_bricks.json"),
+                "slash-id layer cubes must keep models/item/<path>.json");
+        String stoneItem = resource(
+                "/assets/cruciblecraft/models/item/granite_black/stone.json");
+        helper.assertTrue(
+                stoneItem.contains("cruciblecraft:granite_black/stone")
+                        && !stoneItem.contains("cruciblecraft:item/item/"),
+                "item model parent must be the block model, not models/item/item");
         helper.succeed();
     }
 

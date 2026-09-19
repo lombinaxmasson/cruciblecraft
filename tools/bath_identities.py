@@ -289,7 +289,7 @@ PREFIX_FORM_TEXTURE: dict[str, str] = {
     "plant_gt_twig": "cruciblecraft:item/material/plant_gt_twig",
     "plant_gt_wart": "cruciblecraft:item/material/plant_gt_wart",
     "rail_gt": "cruciblecraft:item/material/rail_gt",
-    "lens": "minecraft:item/glass",
+    "lens": "cruciblecraft:item/material/lens",
     "gem_exquisite": "minecraft:item/diamond",
     "gem_flawless": "minecraft:item/diamond",
     "gem_flawed": "minecraft:item/emerald",

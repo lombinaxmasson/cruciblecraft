@@ -23,6 +23,7 @@ import com.masson.cruciblecraft.content.blockentity.SteamEngineBlockEntity;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.energy.steam.SteamTurbineCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
+import com.masson.cruciblecraft.energy.converter.EnergyConverterTierCatalog;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
 import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
@@ -121,8 +122,11 @@ public final class EnergyConverterCatalogGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void playerSurfaceIsRegistered(GameTestHelper helper) {
         helper.assertTrue(
-                EnergyConverterCatalog.profiles().size() == 179,
-                "Converter catalog drifted from 179 loader rows");
+                EnergyConverterCatalog.profiles().size()
+                        == EnergyConverterTierCatalog.EXPECTED_SIZE,
+                "Converter catalog drifted from "
+                        + EnergyConverterTierCatalog.EXPECTED_SIZE
+                        + " rows");
         helper.assertTrue(
                 ModItems.BRONZE_BURNING_BOX_GAS.get() != null,
                 "Bronze gas burning box item missing");

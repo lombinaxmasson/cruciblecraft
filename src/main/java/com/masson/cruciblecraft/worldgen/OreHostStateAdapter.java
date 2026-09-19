@@ -3,6 +3,8 @@ package com.masson.cruciblecraft.worldgen;
 import java.util.Optional;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.content.block.MaterialOreBlock;
+import com.masson.cruciblecraft.content.block.OreStoneHost;
 import com.masson.cruciblecraft.worldgen.OreHostVariantCatalog.Host;
 
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -24,7 +26,9 @@ final class OreHostStateAdapter {
         Host host;
         if (replaced.is(BlockTags.DEEPSLATE_ORE_REPLACEABLES)) {
             host = Host.DEEPSLATE;
-        } else if (replaced.is(BlockTags.STONE_ORE_REPLACEABLES)) {
+        } else if (replaced.is(BlockTags.STONE_ORE_REPLACEABLES)
+                || StoneLayerStones.isNaturalLayerCube(replaced)
+                || replaced.is(BlockTags.BASE_STONE_OVERWORLD)) {
             host = Host.STONE;
         } else {
             return Optional.empty();
@@ -45,6 +49,12 @@ final class OreHostStateAdapter {
         BlockState adapted = BuiltInRegistries.BLOCK.get(targetId).defaultBlockState();
         for (Property<?> property : selected.getProperties()) {
             adapted = copyProperty(selected, adapted, property);
+        }
+        if (adapted.hasProperty(MaterialOreBlock.HOST)) {
+            OreStoneHost layerHost = OreStoneHosts.of(replaced);
+            if (layerHost.uniqueOverworld()) {
+                adapted = adapted.setValue(MaterialOreBlock.HOST, layerHost);
+            }
         }
         return Optional.of(adapted);
     }

@@ -241,6 +241,16 @@ public class ModLanguageProvider extends LanguageProvider {
                     "%s：%s/%s mB");
             addBlock(ModBlocks.ANVIL, "锻造砧");
             addBlock(ModBlocks.CERAMIC_MOLD, "陶瓷模具");
+            addItem(ModItems.RAW_CERAMIC_CRUCIBLE, "黏土坩埚");
+            addItem(ModItems.RAW_CERAMIC_MOLD, "黏土模具");
+            addItem(ModItems.RAW_INGOT_MOLD, "黏土锭模具");
+            addItem(ModItems.RAW_PLATE_MOLD, "黏土板模具");
+            addItem(ModItems.RAW_ROD_MOLD, "黏土杆模具");
+            addItem(ModItems.RAW_BOLT_MOLD, "黏土螺栓模具");
+            addItem(ModItems.INGOT_MOLD, "锭模具");
+            addItem(ModItems.PLATE_MOLD, "板模具");
+            addItem(ModItems.ROD_MOLD, "杆模具");
+            addItem(ModItems.BOLT_MOLD, "螺栓模具");
             addBlock(ModBlocks.GAS_CLOUD, "气云");
             addBlock(ModBlocks.SUBSURFACE_FLUID_DEPOSIT, "地下流体矿床");
             addBlock(ModBlocks.LU_FIBER_CABLE, "LU 光纤线缆");
@@ -290,6 +300,7 @@ public class ModLanguageProvider extends LanguageProvider {
             });
             add("emi.category.cruciblecraft.laser_engraver", "激光雕刻机");
             add("emi.category.cruciblecraft.fuels_engine", "燃油发电");
+            add("emi.category.cruciblecraft.fuels_gas_turbine", "微型燃气涡轮");
             add("emi.category.cruciblecraft.fuels_gas", "燃气燃烧室");
             add("emi.category.cruciblecraft.fuels_fluidbed", "流化床燃烧室");
             add("emi.category.cruciblecraft.fuels_hot", "热交换燃料");
@@ -458,6 +469,9 @@ public class ModLanguageProvider extends LanguageProvider {
             add("jade.cruciblecraft.mold_cooling", "冷却中");
             add("jade.cruciblecraft.mold_empty", "空");
             add("jade.cruciblecraft.mold_shape", "模具：%s");
+            add("jade.cruciblecraft.mold_units", "耗料：%s 单位");
+            add("tooltip.cruciblecraft.mold_unshaped", "凿出形状后才能浇注");
+            add("tooltip.cruciblecraft.mold_recipe", "浇注 %s（%s 单位）");
             add("jade.cruciblecraft.mold_solid", "已凝固");
             add("jade.cruciblecraft.mold_state", "状态：%s，%s °C");
             add("jade.cruciblecraft.steam_engine",
@@ -518,6 +532,8 @@ public class ModLanguageProvider extends LanguageProvider {
                     "坩埚自动输入：关且不用红石");
             add("message.cruciblecraft.steam_engine.stopped", "蒸汽机已停机");
             add("message.cruciblecraft.steam_engine.running", "蒸汽机已启动");
+            add("message.cruciblecraft.rotation_engine.stopped", "旋转引擎已停机");
+            add("message.cruciblecraft.rotation_engine.running", "旋转引擎已启动");
             add("message.cruciblecraft.thermometer_kelvin", "温度：%s K");
             add("message.cruciblecraft.thermometer_kelvin_too_hot",
                     "温度：%s K（太烫，现在拿不起来！）");
@@ -660,12 +676,12 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.TANK_3X3X3, "3x3x3 Tank");
         addBlock(ModBlocks.LARGE_CRUCIBLE, "Large Crucible");
         add("block.cruciblecraft.large_crucible.named", "Large %s Crucible");
-        addItem(ModItems.RAW_CERAMIC_CRUCIBLE, "Unfired Ceramic Crucible");
-        addItem(ModItems.RAW_CERAMIC_MOLD, "Unshaped Unfired Ceramic Mold");
-        addItem(ModItems.RAW_INGOT_MOLD, "Unfired Ingot Mold");
-        addItem(ModItems.RAW_PLATE_MOLD, "Unfired Plate Mold");
-        addItem(ModItems.RAW_ROD_MOLD, "Unfired Rod Mold");
-        addItem(ModItems.RAW_BOLT_MOLD, "Unfired Bolt Mold");
+        addItem(ModItems.RAW_CERAMIC_CRUCIBLE, "Clay Crucible");
+        addItem(ModItems.RAW_CERAMIC_MOLD, "Clay Mold");
+        addItem(ModItems.RAW_INGOT_MOLD, "Clay Ingot Mold");
+        addItem(ModItems.RAW_PLATE_MOLD, "Clay Plate Mold");
+        addItem(ModItems.RAW_ROD_MOLD, "Clay Rod Mold");
+        addItem(ModItems.RAW_BOLT_MOLD, "Clay Bolt Mold");
         addItem(ModItems.INGOT_MOLD, "Ingot Mold");
         addItem(ModItems.PLATE_MOLD, "Plate Mold");
         addItem(ModItems.ROD_MOLD, "Rod Mold");
@@ -987,6 +1003,7 @@ public class ModLanguageProvider extends LanguageProvider {
                         "emi.category.cruciblecraft." + spec.id().getPath(),
                         title(spec.id().getPath())));
         add("emi.category.cruciblecraft.fuels_engine", "Fuel Engine");
+        add("emi.category.cruciblecraft.fuels_gas_turbine", "Small Gas Turbine");
         add("emi.category.cruciblecraft.fuels_gas", "Gas Burning Box");
         add("emi.category.cruciblecraft.fuels_fluidbed", "Fluid-Bed Burning Box");
         add("emi.category.cruciblecraft.fuels_hot", "Heat Exchanger Fuel");
@@ -1052,6 +1069,8 @@ public class ModLanguageProvider extends LanguageProvider {
         add("message.cruciblecraft.mold_auto_input_cleared", "Crucible Auto-Input: OFF & NO REDSTONE");
         add("message.cruciblecraft.steam_engine.stopped", "Steam engine stopped");
         add("message.cruciblecraft.steam_engine.running", "Steam engine running");
+        add("message.cruciblecraft.rotation_engine.stopped", "Rotation engine stopped");
+        add("message.cruciblecraft.rotation_engine.running", "Rotation engine running");
         add("message.cruciblecraft.thermometer_kelvin", "Temperature: %s K");
         add(
                 "message.cruciblecraft.thermometer_kelvin_too_hot",
@@ -1073,6 +1092,9 @@ public class ModLanguageProvider extends LanguageProvider {
         add("jade.cruciblecraft.anvil_durability", "Durability: %s / %s");
         add("jade.cruciblecraft.anvil_progress", "Hammer strikes: %s");
         add("jade.cruciblecraft.mold_shape", "Mold: %s");
+        add("jade.cruciblecraft.mold_units", "Requires %s units");
+        add("tooltip.cruciblecraft.mold_unshaped", "Chisel a shape before filling");
+        add("tooltip.cruciblecraft.mold_recipe", "Casts %s (%s units)");
         add("jade.cruciblecraft.mold_contents", "Contents: %sx %s");
         add("jade.cruciblecraft.mold_state", "State: %s at %s °C");
         add("jade.cruciblecraft.mold_empty", "Empty");
@@ -1746,9 +1768,6 @@ public class ModLanguageProvider extends LanguageProvider {
 
     private String converterDisplayName(
             EnergyConverterTierCatalog.Entry entry) {
-        if ("bronze_dynamo".equals(entry.id().getPath())) {
-            return chinese ? "青铜发电机" : "Bronze Dynamo";
-        }
         EnergyConverterKindCatalog.Kind kind =
                 EnergyConverterKindCatalog.require(entry.kindId());
         EnergyConverterKindCatalog.MaterialLang material =

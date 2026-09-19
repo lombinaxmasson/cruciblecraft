@@ -21,10 +21,10 @@ final class AlloyEmiRecipe implements EmiRecipe {
     private final List<EmiIngredient> catalysts;
     private final List<EmiStack> outputs;
 
-    AlloyEmiRecipe(String materialId, List<EmiIngredient> inputs, EmiStack output) {
+    AlloyEmiRecipe(String recipeKey, List<EmiIngredient> inputs, EmiStack output) {
         id = EmiIds.synthetic(ResourceLocation.fromNamespaceAndPath(
                 CrucibleCraft.MODID,
-                "alloy/" + materialId));
+                "alloy/" + recipeKey));
         texture = Gt6EmiGui.texture("alloying");
         workstation = EmiStack.of(ModBlocks.steelSmeltingCrucible().get());
         this.inputs = List.copyOf(inputs);
@@ -99,10 +99,6 @@ final class AlloyEmiRecipe implements EmiRecipe {
                 this,
                 outSlots.getFirst().x(),
                 outSlots.getFirst().y());
-        Gt6EmiGui.catalyst(
-                widgets,
-                workstation,
-                ProcessingEmiLayout.WORKSTATION.x(),
-                ProcessingEmiLayout.WORKSTATION.y());
+        Gt6EmiGui.workstation(widgets, workstation);
     }
 }

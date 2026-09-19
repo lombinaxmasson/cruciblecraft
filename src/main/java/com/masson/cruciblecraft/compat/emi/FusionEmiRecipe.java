@@ -135,14 +135,14 @@ final class FusionEmiRecipe implements EmiRecipe {
         var inTanks = Gt6BasicMachineGui.fluidSlots(2, false);
         for (int index = 0; index < fluidInputs.size() && index < inTanks.size(); index++) {
             var tank = inTanks.get(index);
-            widgets.addTank(
+            Gt6EmiGui.tank(
+                    widgets,
                     fluidInputs.get(index),
                     tank.x(),
                     tank.y(),
                     Gt6BasicMachineGui.FLUID_SLOT,
                     Gt6BasicMachineGui.FLUID_SLOT,
-                    Math.max(1, (int) fluidInputs.get(index).getAmount()))
-                    .drawBack(false);
+                    Math.max(1, (int) fluidInputs.get(index).getAmount()));
         }
         List<EmiStack> itemOutputs = recipe.itemOutputs().stream()
                 .map(EmiStacks::ofItem)
@@ -162,21 +162,17 @@ final class FusionEmiRecipe implements EmiRecipe {
         var outTanks = Gt6BasicMachineGui.fluidSlots(6, true);
         for (int index = 0; index < fluidOutputs.size() && index < outTanks.size(); index++) {
             var tank = outTanks.get(index);
-            widgets.addTank(
+            Gt6EmiGui.tank(
+                    widgets,
                     fluidOutputs.get(index),
                     tank.x(),
                     tank.y(),
                     Gt6BasicMachineGui.FLUID_SLOT,
                     Gt6BasicMachineGui.FLUID_SLOT,
                     Math.max(1, (int) fluidOutputs.get(index).getAmount()))
-                    .drawBack(false)
                     .recipeContext(this);
         }
-        Gt6EmiGui.catalyst(
-                widgets,
-                workstation,
-                ProcessingEmiLayout.WORKSTATION.x(),
-                ProcessingEmiLayout.WORKSTATION.y());
+        Gt6EmiGui.workstation(widgets, workstation);
         widgets.addText(
                 Component.translatable(
                         recipe.eut() < 0L

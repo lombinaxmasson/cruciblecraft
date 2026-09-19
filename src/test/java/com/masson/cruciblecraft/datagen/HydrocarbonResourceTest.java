@@ -49,6 +49,7 @@ class HydrocarbonResourceTest {
         int engine = 0;
         int gas = 0;
         int generifier = 0;
+        int turbine = 0;
         try (var paths = Files.walk(ROOT)) {
             for (Path path : paths.filter(Files::isRegularFile).sorted().toList()) {
                 JsonObject recipe = JsonParser.parseString(
@@ -83,6 +84,14 @@ class HydrocarbonResourceTest {
                                 .getAsString()
                                 .contains("gt.recipe.fuels.engine.json"));
                     }
+                    case "cruciblecraft:fuels_gas_turbine" -> {
+                        turbine++;
+                        assertTrue(ModFuelGenerators.SMALL_GAS_TURBINE
+                                .validate(decoded).isEmpty(), relative);
+                        assertTrue(provenance.get("selected_source_recipe")
+                                .getAsString()
+                                .contains("gt.recipe.fuels.gas.json"));
+                    }
                     case "cruciblecraft:fuels_gas" -> {
                         gas++;
                         assertTrue(ModFuelGenerators.BURNING_GAS_GENERATOR
@@ -99,6 +108,7 @@ class HydrocarbonResourceTest {
         assertEquals(5, generifier);
         assertEquals(6, engine);
         assertEquals(23, gas);
+        assertEquals(9, turbine);
     }
 
     @Test
@@ -119,6 +129,10 @@ class HydrocarbonResourceTest {
                 "hydrocarbon/fuels_gas/methane.json",
                 "cruciblecraft:fuels_gas",
                 "gt.recipe.fuels.burn.json#recipes[20]");
+        assertRecipe(
+                "hydrocarbon/fuels_gas_turbine/methane.json",
+                "cruciblecraft:fuels_gas_turbine",
+                "gt.recipe.fuels.gas.json#recipes[2]");
     }
 
     @Test
@@ -221,6 +235,7 @@ class HydrocarbonResourceTest {
         int engine = 0;
         int gas = 0;
         int generifier = 0;
+        int turbine = 0;
         try (var paths = Files.walk(ROOT)) {
             for (Path path : paths.filter(Files::isRegularFile).toList()) {
                 String relative = ROOT.relativize(path).toString()
@@ -234,6 +249,10 @@ class HydrocarbonResourceTest {
                     assertTrue(ModFuelGenerators.FUEL_ENGINE
                             .validate(recipe).isEmpty(), relative);
                     engine++;
+                } else if (relative.startsWith("hydrocarbon/fuels_gas_turbine/")) {
+                    assertTrue(ModFuelGenerators.SMALL_GAS_TURBINE
+                            .validate(recipe).isEmpty(), relative);
+                    turbine++;
                 } else if (relative.startsWith("hydrocarbon/fuels_gas/")) {
                     assertTrue(ModFuelGenerators.BURNING_GAS_GENERATOR
                             .validate(recipe).isEmpty(), relative);
@@ -249,6 +268,7 @@ class HydrocarbonResourceTest {
         assertEquals(5, generifier);
         assertEquals(6, engine);
         assertEquals(23, gas);
+        assertEquals(9, turbine);
     }
 
     private static void assertRecipe(
